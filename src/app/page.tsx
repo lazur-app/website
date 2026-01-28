@@ -1,65 +1,131 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Mic, Sparkles, Command, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    return (
+        <div className="min-h-screen bg-aurora selection:bg-orange-200 selection:text-orange-900">
+            {/* Navbar */}
+            <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/50 backdrop-blur-md border-b border-stone-200/50">
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
+                        <Mic className="w-5 h-5" />
+                    </div>
+                    <span className="font-bold text-xl tracking-tight text-stone-800">Lazur</span>
+                </div>
+                <div className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+                    <Link href="#features" className="hover:text-stone-900 transition-colors">Features</Link>
+                    <Link href="#pricing" className="hover:text-stone-900 transition-colors">Pricing</Link>
+                    <Link href="/login" className="hover:text-stone-900 transition-colors">Log in</Link>
+                </div>
+                <button className="bg-stone-900 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-stone-800 transition-colors shadow-xl">
+                    Download
+                </button>
+            </nav>
+
+            <main className="pt-32 pb-20 px-4 md:px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+                {/* Hero Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-100 rounded-full text-orange-700 text-xs font-semibold uppercase tracking-wider mb-8"
+                >
+                    <Sparkles className="w-3 h-3" />
+                    <span>v0.1 Public Beta</span>
+                </motion.div>
+
+                {/* Hero Headline */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-5xl md:text-7xl font-bold tracking-tight text-stone-900 mb-6 max-w-4xl text-balance"
+                >
+                    The AI dictation tool that <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">reads your mind</span>.
+                </motion.h1>
+
+                {/* Hero Subtitle */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-lg md:text-xl text-stone-500 mb-10 max-w-2xl text-balance"
+                >
+                    Lazur replaces your keyboard with your voice. Speak freely, and let our AI
+                    rewrite your rambling thoughts into clear, professional text instantly.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-col sm:flex-row items-center gap-4 mb-20"
+                >
+                    <button className="group relative flex items-center gap-3 bg-stone-900 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform shadow-2xl shadow-stone-900/20">
+                        {/* Custom Apple Logo SVG */}
+                        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                            <path d="M17.72 17.51c-.68 1.05-1.4 2.1-2.52 2.13-.98.03-1.33-.58-2.52-.58-1.18 0-1.57.59-2.52.59-1.05-.03-1.85-1.07-2.52-2.15-1.41-2.15-2.48-6.1-1.03-8.62.72-1.25 2.01-2.04 3.42-2.07 1.07-.03 2.09.72 2.75.72.66 0 1.93-.9 3.23-.76 1.1.09 2.13.56 2.76 1.48-2.43 1.25-2.03 4.95.42 6.01-.18.57-.44 1.13-.73 1.69h.01.01l-.03.06zM15.42 5.09c.58-.72.96-1.72.84-2.73-1.01.05-2.07.6-2.73 1.34-.58.68-1.03 1.66-.9 2.65 1.12.09 2.22-.53 2.79-1.26z" />
+                        </svg>
+                        Download for Mac
+                        <span className="absolute -top-3 -right-3 flex h-6 w-6">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-6 w-6 bg-green-500 text-[10px] items-center justify-center font-bold border-2 border-white">M1</span>
+                        </span>
+                    </button>
+
+                    <button className="flex items-center gap-2 text-stone-600 font-medium px-6 py-4 hover:bg-stone-100 rounded-full transition-colors">
+                        See how it works <ArrowRight className="w-4 h-4" />
+                    </button>
+                </motion.div>
+
+                {/* Visual Demo Area */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="relative w-full max-w-5xl aspect-[16/10] bg-white rounded-3xl shadow-2xl shadow-stone-200 border border-stone-200 overflow-hidden"
+                >
+                    <div className="absolute top-0 left-0 right-0 h-12 bg-stone-50 border-b border-stone-100 flex items-center px-4 gap-2">
+                        <div className="flex gap-2">
+                            <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                            <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                            <div className="w-3 h-3 rounded-full bg-green-400/80" />
+                        </div>
+                    </div>
+
+                    <div className="mt-12 p-12 grid md:grid-cols-2 gap-12 h-full">
+                        {/* Left: Input */}
+                        <div className="text-left space-y-4 opacity-50 blur-[1px]">
+                            <div className="flex items-center gap-2 text-stone-400 uppercase text-xs font-bold tracking-widest">
+                                <Mic className="w-4 h-4" /> Raw Input
+                            </div>
+                            <p className="text-2xl font-serif leading-relaxed text-stone-800">
+                                &quot;Uh hi yeah so I think we should probably maybe try to launch safely like next tuesday if testing is good you know?&quot;
+                            </p>
+                        </div>
+
+                        {/* Right: Output */}
+                        <div className="text-left space-y-4">
+                            <div className="flex items-center gap-2 text-orange-500 uppercase text-xs font-bold tracking-widest">
+                                <Sparkles className="w-4 h-4" /> Lazur Rewrite
+                            </div>
+                            <p className="text-2xl font-medium leading-relaxed text-stone-900">
+                                &quot;We should aim to launch next Tuesday, provided that testing goes well.&quot;
+                            </p>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 text-xs font-medium rounded-md">
+                                <Command className="w-3 h-3" /> Copied to clipboard
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Gradient Overlay at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+                </motion.div>
+
+            </main>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }

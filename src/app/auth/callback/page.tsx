@@ -18,6 +18,10 @@ function CallbackContent() {
         if (accessToken && refreshToken) {
             console.log("Found tokens, attempting redirect...");
 
+            // Store in localStorage for the website's own use (e.g. Pricing page)
+            localStorage.setItem("lazur_access_token", accessToken);
+            localStorage.setItem("lazur_refresh_token", refreshToken);
+
             // Priority 1: Local HTTP Server (Silent & Instant)
             try {
                 const params = `access_token=${accessToken}&refresh_token=${refreshToken}`;

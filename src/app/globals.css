@@ -1,26 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9; /* Warm stone-50 / cream */
-  --foreground: #1c1917; /* Stone-900 */
+  --background: #fafaf9;
+  --foreground: #1c1917;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #ffedd5;
+  color: #c2410c;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-  
-  .bg-aurora {
-    background: radial-gradient(ellipse at top, #dadada 0%, #fafaf9 50%),
-                radial-gradient(circle at 80% 20%, #ffedd5 0%, transparent 20%), 
-                radial-gradient(circle at 20% 60%, #e0f2fe 0%, transparent 20%);
   }
 }

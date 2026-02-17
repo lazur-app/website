@@ -60,70 +60,58 @@ function CallbackContent() {
     }, [searchParams]);
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-950 text-white overflow-hidden relative">
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-500/10 blur-[120px] rounded-full" />
+        <div className="flex min-h-screen flex-col items-center justify-center bg-[#fafaf9] text-zinc-900 overflow-hidden relative font-sans">
+            {/* Ambient Background */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-orange-500/[0.04] rounded-full blur-[140px]" />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-500/[0.04] rounded-full blur-[140px]" />
+            </div>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="relative z-10 w-full max-w-md px-8 text-center"
+                className="relative z-10 w-full max-w-sm px-8 text-center"
             >
                 {status === "verifying" ? (
                     <div className="space-y-6">
                         <div className="relative inline-block">
-                            <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full animate-pulse" />
+                            <div className="absolute inset-0 bg-orange-500/10 blur-xl rounded-full animate-pulse" />
                             <Loader2 className="w-16 h-16 text-orange-500 animate-spin relative" />
                         </div>
-                        <h1 className="text-3xl font-bold tracking-tight">Syncing Identity</h1>
-                        <p className="text-zinc-400">Verifying your account with Google...</p>
+                        <h1 className="text-3xl font-bold tracking-tight text-black">Syncing Identity</h1>
+                        <p className="text-zinc-500 font-medium">Verifying your account...</p>
                     </div>
                 ) : status === "success" ? (
                     <div className="space-y-8">
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            className="inline-flex p-4 bg-green-500/10 rounded-full border border-green-500/20 mb-2"
+                            className="inline-flex p-4 bg-green-500/[0.06] rounded-[28px] border border-green-500/10 mb-2"
                         >
                             <CheckCircle2 className="w-12 h-12 text-green-500" />
                         </motion.div>
 
                         <div className="space-y-3">
-                            <h1 className="text-4xl font-bold tracking-tight">Success!</h1>
-                            <p className="text-zinc-400 text-lg leading-relaxed">
-                                You're signed in to Lazur. The desktop app should open automatically.
+                            <h1 className="text-4xl font-bold tracking-tighter text-black">Success!</h1>
+                            <p className="text-zinc-500 text-lg font-medium leading-relaxed">
+                                You're signed in to Lazur. <br />
+                                <span className="text-zinc-400 font-normal">The desktop app should open automatically.</span>
                             </p>
                         </div>
 
                         <div className="pt-4 space-y-4">
                             <button
                                 onClick={triggerDeepLink}
-                                className="group relative w-full flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-5 text-lg font-bold text-zinc-950 transition-all hover:bg-zinc-100 hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-white/5"
+                                className="group relative w-full flex items-center justify-center gap-3 rounded-[20px] bg-black px-6 py-5 text-lg font-bold text-white transition-all hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-black/10"
                             >
                                 <ExternalLink className="w-5 h-5" />
                                 Open Lazur Desktop
                                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                             </button>
 
-                            <p className="text-zinc-500 text-sm">
+                            <p className="text-zinc-400 text-sm font-medium">
                                 Not working? Ensure Lazur is running on your Mac.
                             </p>
-
-                            {/* Debug Section */}
-                            <div className="mt-12 pt-8 border-t border-white/5 text-left">
-                                <p className="text-[10px] text-zinc-600 uppercase tracking-widest mb-4">Debug Info (Development Only)</p>
-                                <div className="space-y-2 font-mono text-[10px] bg-black/40 p-4 rounded-xl border border-white/5">
-                                    <p className="text-zinc-500">Access Token: <span className="text-orange-500/80">{searchParams.get("access_token")?.substring(0, 15)}...</span></p>
-                                    <p className="text-zinc-500">Refresh Token: <span className="text-orange-500/80">{searchParams.get("refresh_token")?.substring(0, 15)}...</span></p>
-                                    <p className="text-zinc-500">Scheme: <span className="text-green-500/80">lazur://</span></p>
-                                </div>
-                                <button
-                                    onClick={() => copyToClipboard(searchParams.get("access_token") || "")}
-                                    className="mt-4 text-[10px] bg-zinc-900 border border-white/10 px-3 py-1.5 rounded-lg text-zinc-400 hover:text-white transition-colors"
-                                >
-                                    {copied ? "Copied Access Token!" : "Copy Access Token"}
-                                </button>
-                            </div>
                         </div>
                     </div>
                 ) : (

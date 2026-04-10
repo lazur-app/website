@@ -21,11 +21,11 @@ const plans = [
         popular: false
     },
     {
-        name: "Pro",
+        name: "Basic",
         price: "$10",
         period: "/ month",
         description: "The ultimate tool for creators, professionals, and power users.",
-        buttonText: "Upgrade to Pro",
+        buttonText: "Upgrade to Basic",
         features: [
             "60 hours daily dictation",
             "Magic Mode™ context-aware rewrites",
@@ -54,7 +54,7 @@ export default function PricingPage() {
             }
 
             const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-            const response = await fetch(`${apiBase}/billing/create-checkout-session?plan_type=pro`, {
+            const response = await fetch(`${apiBase}/billing/create-checkout-session?plan_type=basic`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

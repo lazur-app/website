@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, LogIn } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginPage() {
     const handleLogin = (provider: "google" | "github") => {
@@ -49,7 +49,7 @@ export default function LoginPage() {
                 <div className="space-y-4">
                     <button
                         onClick={() => handleLogin("google")}
-                        className="group relative flex w-full items-center justify-center gap-3 rounded-[20px] bg-black px-4 py-4.5 text-sm font-bold text-white transition-all hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-black/10"
+                        className="group relative flex w-full items-center justify-center gap-3 rounded-[16px] bg-white border border-stone-200 px-4 py-4 text-sm font-bold text-zinc-900 transition-all hover:bg-stone-50 hover:shadow-md active:scale-[0.98] shadow-sm"
                     >
                         <svg className="w-5 h-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -59,20 +59,12 @@ export default function LoginPage() {
                         </svg>
                         Continue with Google
                     </button>
-
-                    <button
-                        onClick={() => handleLogin("github")}
-                        className="group relative flex w-full items-center justify-center gap-3 rounded-[20px] bg-white border border-stone-200 px-4 py-4.5 text-sm font-bold text-zinc-900 transition-all hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
-                    >
-                        <Github className="w-5 h-5 text-black transition-transform group-hover:rotate-12" />
-                        Continue with GitHub
-                    </button>
                 </div>
 
                 <div className="mt-12 text-center border-t border-stone-200/60 pt-8">
                     <p className="text-[11px] text-zinc-400 leading-relaxed max-w-[240px] mx-auto">
                         By continuing, you agree to Lazur's <br />
-                        <span className="text-zinc-900 font-semibold hover:underline cursor-pointer">Terms of Service</span> and <span className="text-zinc-900 font-semibold hover:underline cursor-pointer">Privacy Policy</span>
+                        <Link href="/terms" target="_blank" rel="noopener noreferrer" className="text-zinc-900 font-semibold hover:underline cursor-pointer transition-colors">Terms of Service</Link> and <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="text-zinc-900 font-semibold hover:underline cursor-pointer transition-colors">Privacy Policy</Link>
                     </p>
                 </div>
             </motion.div>

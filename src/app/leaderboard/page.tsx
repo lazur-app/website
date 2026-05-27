@@ -1,41 +1,120 @@
 "use client";
 
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Gift } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
-import { GridBackground } from "@/components/GridBackground";
+import { ReferralCapture } from "@/components/ReferralCapture";
 import { LeaderboardTable } from "@/components/Leaderboard";
 import { ReferralSystem } from "@/components/ReferralSystem";
-import { motion } from "framer-motion";
+import { Footer } from "@/components/Footer";
 
-export default function Leaderboard() {
-    return (
-        <div className="min-h-screen bg-[#fafaf9] selection:bg-orange-200 selection:text-orange-900">
-            <GridBackground />
-            <Navbar />
+const prizes = [
+  { place: "1st", amount: "$100", desc: "Most qualified invites" },
+  { place: "2nd", amount: "$50", desc: "Runner-up" },
+  { place: "3rd", amount: "$10", desc: "Bronze finish" },
+];
 
-            <main className="pt-44 pb-20">
-                <div className="px-6 text-center space-y-4 mb-20">
-                    <h1 className="text-5xl md:text-7xl font-black text-stone-900 tracking-tighter">
-                        Climb the <span className="text-white bg-orange-500 px-4 py-1 rounded-2xl rotate-3 inline-block shadow-lg shadow-orange-500/20">Leaderboard</span>
-                    </h1>
-                    <p className="text-stone-500 text-lg font-medium">Invite friends to earn rewards and win cash prizes.</p>
+export default function LeaderboardPage() {
+  return (
+    <div className="min-h-screen bg-[var(--background)]">
+      <ReferralCapture />
+      <div className="pointer-events-none fixed inset-0 grain" aria-hidden />
+      <div
+        className="ambient-blob pointer-events-none fixed -left-[10%] top-[0%] h-[45vh] w-[50vw] rounded-full bg-[#e8e0ff]"
+        aria-hidden
+      />
+      <div
+        className="ambient-blob pointer-events-none fixed -right-[5%] top-[15%] h-[40vh] w-[45vw] rounded-full bg-[#fde8d8]"
+        aria-hidden
+      />
 
-                    <div className="pt-8">
-                        <button className="text-stone-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mx-auto hover:text-stone-900 transition-colors">
-                            Explore rewards
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+      <Navbar />
 
-                <LeaderboardTable />
-                <ReferralSystem />
-            </main>
+      <main className="relative pb-24 pt-28 md:pt-32">
+        <section className="mx-auto max-w-4xl px-6">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-xl">
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3.5 py-1 text-[11px] font-medium text-[var(--foreground-muted)]"
+              >
+                <Gift className="h-3.5 w-3.5 text-[var(--brand)]" />
+                Referral rewards
+              </motion.p>
 
-            <footer className="py-20 border-t border-stone-200/50 text-center">
-                <p className="text-stone-400 text-sm font-medium">© 2026 Lazur AI. All rights reserved.</p>
-            </footer>
-        </div>
-    );
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.04 }}
+                className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl md:text-5xl"
+              >
+                Climb the{" "}
+                <span className="gradient-word">leaderboard</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="mt-3 text-sm leading-relaxed text-[var(--foreground-muted)] md:text-base"
+              >
+                Share your link, invite friends, and move up the ranks.
+              </motion.p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.14 }}
+              className="shrink-0"
+            >
+              <Link
+                href="/#waitlist"
+                className="btn-primary inline-flex rounded-full px-6 py-3 text-sm font-semibold"
+              >
+                Get your referral link
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <LeaderboardTable />
+        </section>
+
+        <section className="mx-auto mt-16 max-w-4xl px-6">
+          <div className="mb-6">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+              Top prizes
+            </h2>
+            <p className="mt-2 text-sm text-[var(--foreground-muted)]">
+              Cash rewards for the top three referrers each week.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            {prizes.map((p) => (
+              <div key={p.place} className="glass rounded-2xl px-5 py-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+                  {p.place} place
+                </p>
+                <p className="mt-1 font-display text-2xl font-semibold text-[var(--foreground)]">
+                  {p.amount}
+                </p>
+                <p className="mt-0.5 text-xs text-[var(--foreground-muted)]">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="rewards" className="scroll-mt-28">
+          <ReferralSystem />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }

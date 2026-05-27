@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -13,8 +8,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lazur - The AI Editor for Your Voice",
-  description: "Stop typing. Start speaking. Lazur turns your stream of consciousness into polished pro text.",
+  title: "Lazur — Your voice, upgraded",
+  description:
+    "The fastest way to think in text. Lazur turns messy speech into polished writing — everywhere you type.",
+  openGraph: {
+    title: "Lazur — Your voice, upgraded",
+    description:
+      "Speak naturally. Write brilliantly. Lazur transforms your voice into prose you'd actually send.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -24,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistMono.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

@@ -9,34 +9,36 @@ const plans = [
     {
         name: "Free",
         price: "$0",
-        description: "Perfect for casual use and trying out the magic of voice editing.",
+        description:
+            "Try Lazur without a meter running on minutes — a generous monthly word budget for light use.",
         buttonText: "Current Plan",
         features: [
-            "10 minutes daily dictation",
-            "Standard AI formatting",
-            "Sync with 1 device",
-            "Community support"
+            "5,000 AI-polished words / month",
+            "Standard rewriting & formatting",
+            "Magic Mode preview (included in word budget)",
+            "1 Mac · community support",
         ],
         icon: Zap,
-        popular: false
+        popular: false,
     },
     {
         name: "Basic",
         price: "$10",
         period: "/ month",
-        description: "The ultimate tool for creators, professionals, and power users.",
+        description:
+            "For people who speak all day — a large monthly word allowance so you rarely think about limits.",
         buttonText: "Upgrade to Basic",
         features: [
-            "60 hours daily dictation",
+            "150,000 AI-polished words / month",
             "Magic Mode™ context-aware rewrites",
             "Unlimited devices",
-            "High-priority transcription",
+            "High-priority cloud polish",
             "Custom vocabulary support",
-            "Priority human support"
+            "Priority support",
         ],
         icon: Sparkles,
-        popular: true
-    }
+        popular: true,
+    },
 ];
 
 export default function PricingPage() {
@@ -79,7 +81,7 @@ export default function PricingPage() {
     };
 
     return (
-        <div className="min-h-screen bg-aurora selection:bg-orange-200">
+        <div className="min-h-screen bg-[var(--background)] grain selection:bg-orange-100">
             <Navbar />
 
             <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center">
@@ -88,17 +90,18 @@ export default function PricingPage() {
                     <m.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold tracking-tight text-stone-900"
+                        className="font-display text-4xl font-semibold tracking-tight text-[var(--foreground)] md:text-6xl"
                     >
-                        Simple, transparent <span className="text-orange-600">pricing</span>.
+                        Simple, transparent{" "}
+                        <span className="gradient-word">pricing</span>.
                     </m.h1>
                     <m.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-stone-500 text-lg md:text-xl max-w-2xl mx-auto"
+                        className="text-[var(--foreground-muted)] text-lg md:text-xl max-w-2xl mx-auto"
                     >
-                        Choose the plan that fits your workflow. From casual thoughts to professional editing, we've got you covered.
+                        Pay for polished output — word counts reset each month so you always know where you stand.
                     </m.p>
                 </div>
 

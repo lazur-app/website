@@ -15,7 +15,7 @@ const plans = [
         features: [
             "5,000 AI-polished words / month",
             "Standard rewriting & formatting",
-            "Magic Mode preview (included in word budget)",
+            "Smart Rewrite preview (included in word budget)",
             "1 Mac · community support",
         ],
         icon: Zap,
@@ -30,7 +30,7 @@ const plans = [
         buttonText: "Upgrade to Basic",
         features: [
             "150,000 AI-polished words / month",
-            "Magic Mode™ context-aware rewrites",
+            "Smart Rewrite — context-aware rewrites",
             "Unlimited devices",
             "High-priority cloud polish",
             "Custom vocabulary support",

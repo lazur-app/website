@@ -194,7 +194,7 @@ function CallbackContent() {
                     <div className="space-y-6">
                         <h1 className="text-2xl font-bold text-red-500">Authentication Error</h1>
                         <p className="text-zinc-400">Tokens were not received correctly. Please try signing in again.</p>
-                        <a href="/login" className="text-orange-500 underline">Back to Login</a>
+                        <a href="/login/app" className="text-orange-500 underline">Back to Login</a>
                     </div>
                 )}
             </motion.div>

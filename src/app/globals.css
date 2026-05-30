@@ -123,6 +123,40 @@ body {
     opacity: 0.55;
   }
 
+  /* Hero side graffiti — fades toward center so copy stays crisp */
+  .hero-backdrop {
+    -webkit-mask-image: radial-gradient(
+      ellipse 72% 58% at 50% 36%,
+      transparent 0%,
+      transparent 42%,
+      rgba(0, 0, 0, 0.35) 62%,
+      black 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 72% 58% at 50% 36%,
+      transparent 0%,
+      transparent 42%,
+      rgba(0, 0, 0, 0.35) 62%,
+      black 100%
+    );
+  }
+
+  .hero-backdrop-raw {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-style: italic;
+    color: var(--brand);
+    opacity: 0.11;
+  }
+
+  .hero-backdrop-polished {
+    color: var(--foreground);
+    opacity: 0.09;
+  }
+
+  .hero-backdrop-arrow {
+    opacity: 1;
+  }
+
   /* Soft vertical fade — avoids hard bands at glow top/bottom */
   .voice-morph-aura-mask {
     -webkit-mask-image: linear-gradient(

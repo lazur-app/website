@@ -1,14 +1,19 @@
 import Link from "next/link";
+import { LogoWordmark } from "./LogoWordmark";
 
 const footerLinks = {
   Product: [
-    { href: "/#magic-mode", label: "Magic Mode" },
+    { href: "/#smart-rewrite", label: "Smart Rewrite" },
     { href: "/#transformation", label: "Demo" },
     { href: "/#speed", label: "Speed" },
     { href: "/pricing", label: "Pricing" },
     { href: "/leaderboard", label: "Leaderboard" },
   ],
-  Account: [{ href: "/#waitlist", label: "Early access" }],
+  Account: [
+    { href: "/login", label: "Log in" },
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/#waitlist", label: "Early access" },
+  ],
   Legal: [
     { href: "/terms", label: "Terms" },
     { href: "/privacy", label: "Privacy" },
@@ -21,12 +26,7 @@ export function Footer() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="Lazur" className="h-7 w-7 object-contain" />
-              <span className="font-display text-lg font-semibold lowercase">
-                lazur
-              </span>
-            </Link>
+            <LogoWordmark iconSize="h-7 w-7" textClassName="text-lg font-bold" />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
               Your voice, upgraded. The fastest way to think in text.
             </p>

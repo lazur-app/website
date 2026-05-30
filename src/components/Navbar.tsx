@@ -5,9 +5,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { LogoWordmark } from "./LogoWordmark";
+import { UserMenu } from "./UserMenu";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
-  { href: "/#magic-mode", label: "Magic Mode", match: "/" },
+  { href: "/#smart-rewrite", label: "Smart Rewrite", match: "/" },
   { href: "/#transformation", label: "Demo", match: "/" },
   { href: "/pricing", label: "Pricing", match: "/pricing" },
   { href: "/leaderboard", label: "Leaderboard", match: "/leaderboard" },
@@ -20,15 +23,8 @@ function isActive(pathname: string, match: string, href: string) {
 
 export function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const { user, loading, isAuthenticated } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -47,20 +43,9 @@ export function Navbar() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className={`mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-2xl px-4 py-2.5 transition-all duration-300 md:px-5 md:py-3 ${
-          scrolled || mobileOpen
-            ? "glass shadow-[var(--shadow-soft)]"
-            : "border border-transparent bg-transparent"
-        }`}
+        className="glass mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-2xl px-4 py-2.5 shadow-[var(--shadow-soft)] transition-all duration-300 md:px-5 md:py-3"
       >
-        <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface-solid)] shadow-sm transition-transform group-hover:scale-[1.02]">
-            <img src="/logo.png" alt="Lazur" className="h-full w-full object-contain" />
-          </div>
-          <span className="font-display text-lg font-semibold lowercase tracking-tight text-[var(--foreground)]">
-            lazur
-          </span>
-        </Link>
+        <LogoWordmark className="shrink-0" iconSize="h-9 w-9" textClassName="text-[1.35rem] font-bold" />
 
         <div className="hidden items-center md:flex md:flex-1 md:justify-center">
           <div className="flex items-center gap-0.5 rounded-full border border-[var(--border)] bg-[var(--surface-solid)]/80 p-1 shadow-sm backdrop-blur-sm">
@@ -90,19 +75,27 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <Link
-            href="/login"
-            className="btn-ghost rounded-full px-4 py-2 text-[13px] font-semibold"
-          >
-            Log in
-          </Link>
-          <Link
-            href="/#waitlist"
-            className="btn-primary rounded-full px-5 py-2.5 text-[13px] font-semibold"
-          >
-            Get access
-          </Link>
+        <div className="hidden items-center md:flex">
+          {loading ? (
+            <span className="h-9 w-[7.5rem] rounded-full bg-[var(--background-deep)]" />
+          ) : isAuthenticated && user ? (
+            <UserMenu user={user} />
+          ) : (
+            <div className="flex items-center gap-2">
+              <Link
+                href="/login"
+                className="btn-ghost rounded-full px-4 py-2 text-[13px] font-semibold"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/#waitlist"
+                className="btn-primary rounded-full px-5 py-2.5 text-[13px] font-semibold"
+              >
+                Get access
+              </Link>
+            </div>
+          )}
         </div>
 
         <button
@@ -142,19 +135,29 @@ export function Navbar() {
                 );
               })}
             </div>
-            <div className="mt-2 flex flex-col gap-2 border-t border-[var(--border)] pt-3">
-              <Link
-                href="/login"
-                className="rounded-xl px-4 py-3 text-center text-[15px] font-semibold text-[var(--foreground-muted)] hover:bg-[var(--background-deep)]"
-              >
-                Log in
-              </Link>
-              <Link
-                href="/#waitlist"
-                className="btn-primary rounded-xl px-4 py-3 text-center text-[15px] font-semibold"
-              >
-                Get access
-              </Link>
+            <div className="mt-2 border-t border-[var(--border)] pt-2">
+              {loading ? null : isAuthenticated && user ? (
+                <UserMenu
+                  user={user}
+                  variant="mobile"
+                  onNavigate={() => setMobileOpen(false)}
+                />
+              ) : (
+                <div className="flex flex-col gap-2 pt-1">
+                  <Link
+                    href="/login"
+                    className="rounded-xl px-4 py-3 text-center text-[15px] font-semibold text-[var(--foreground-muted)] hover:bg-[var(--background-deep)]"
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    href="/#waitlist"
+                    className="btn-primary rounded-xl px-4 py-3 text-center text-[15px] font-semibold"
+                  >
+                    Get access
+                  </Link>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

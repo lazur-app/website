@@ -17,7 +17,7 @@ const steps = [
     step: "02",
     title: "AI rewrites",
     description:
-      "Magic Mode reads the context of your active app and transforms your ramble into the right format and tone.",
+      "Smart Rewrite reads the context of your active app and transforms your ramble into the right format and tone.",
     chip: "bg-[var(--brand-hover)]",
   },
   {

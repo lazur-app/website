@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Wand2, Zap, Shield } from "lucide-react";
 
-const magicExamples = [
+const rewriteExamples = [
   { app: "Slack", before: "hey team quick update on the thing", after: "Quick update for the team on project status." },
   { app: "Email", before: "just following up on my last email", after: "Following up on my previous email — wanted to check if you had a chance to review." },
   { app: "VS Code", before: "todo fix this later when we have time", after: "// TODO: Refactor error handling when bandwidth allows" },
@@ -33,13 +33,13 @@ const moat = [
 export function BentoFeatures() {
   return (
     <>
-      {/* Magic Mode */}
-      <section id="magic-mode" className="relative py-32 md:py-40">
+      {/* Smart Rewrite */}
+      <section id="smart-rewrite" className="relative py-32 md:py-40">
         <div className="pointer-events-none absolute inset-0 grain" />
         <div className="relative mx-auto max-w-5xl px-6">
           <div className="max-w-2xl">
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--foreground-faint)]">
-              Magic Mode
+              Smart Rewrite
             </p>
             <h2 className="font-display text-balance text-3xl font-semibold tracking-tight text-[var(--foreground)] md:text-5xl">
               Context-aware rewrites.
@@ -48,12 +48,13 @@ export function BentoFeatures() {
             </h2>
             <p className="mt-5 max-w-md text-pretty text-base text-[var(--foreground-muted)]">
               Lazur reads what app you&apos;re in and shapes your words to match —
-              casual in Slack, formal in email, terse in code.
+              casual in Slack, formal in email, terse in code. Smart Format structures
+              spoken lists locally — no cloud required.
             </p>
           </div>
 
           <div className="mt-16 space-y-6">
-            {magicExamples.map((ex, i) => (
+            {rewriteExamples.map((ex, i) => (
               <motion.div
                 key={ex.app}
                 initial={{ opacity: 0, y: 16 }}

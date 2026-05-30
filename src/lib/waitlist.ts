@@ -139,6 +139,26 @@ export async function fetchWaitlistStats(): Promise<WaitlistStats> {
   return res.json();
 }
 
+export type WaitlistMe = {
+  on_waitlist: boolean;
+  email?: string;
+  referral_code?: string;
+  referral_link?: string;
+  referral_count?: number;
+  waitlist_position?: number;
+  total_count?: number;
+};
+
+export async function fetchWaitlistMe(token: string): Promise<WaitlistMe> {
+  const res = await fetch(`${apiBase()}/waitlist/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    return { on_waitlist: false };
+  }
+  return res.json();
+}
+
 export async function fetchLeaderboard(): Promise<LeaderboardData> {
   const res = await fetch(`${apiBase()}/waitlist/leaderboard`);
   if (!res.ok) {

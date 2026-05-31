@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { LogoWordmark } from "./LogoWordmark";
 import { UserMenu } from "./UserMenu";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/components/AuthProvider";
 
 const navLinks = [
   { href: "/#smart-rewrite", label: "Smart Rewrite", match: "/" },

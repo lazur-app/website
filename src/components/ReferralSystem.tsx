@@ -57,7 +57,7 @@ export function ReferralSystem() {
         </div>
 
         <p className="text-xs text-[var(--foreground-muted)]">
-          * Referrals must subscribe to a Basic plan or higher for the invite to qualify.
+          * Referrals must subscribe to Pro or Power for the invite to qualify.
         </p>
       </div>
 

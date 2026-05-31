@@ -9,6 +9,7 @@ const plans = [
     {
         name: "Free",
         price: "$0",
+        planType: null,
         description:
             "Try Lazur without a meter running on minutes — a generous monthly word budget for light use.",
         buttonText: "Current Plan",
@@ -22,30 +23,48 @@ const plans = [
         popular: false,
     },
     {
-        name: "Basic",
+        name: "Pro",
         price: "$10",
         period: "/ month",
+        planType: "pro",
         description:
-            "For people who speak all day — a large monthly word allowance so you rarely think about limits.",
-        buttonText: "Upgrade to Basic",
+            "For daily knowledge workers — large word allowance plus Command Mode for voice-driven writing.",
+        buttonText: "Upgrade to Pro",
         features: [
             "150,000 AI-polished words / month",
+            "Command Mode — 30 voice commands / month",
             "Smart Rewrite — context-aware rewrites",
             "Unlimited devices",
-            "High-priority cloud polish",
-            "Custom vocabulary support",
             "Priority support",
         ],
         icon: Sparkles,
         popular: true,
+    },
+    {
+        name: "Power",
+        price: "$25",
+        period: "/ month",
+        planType: "power",
+        description:
+            "For heavy writers and engineers — maximum words and Command Mode for all-day use.",
+        buttonText: "Upgrade to Power",
+        features: [
+            "500,000 AI-polished words / month",
+            "Command Mode — 200 voice commands / month",
+            "Smart Rewrite — context-aware rewrites",
+            "Unlimited devices",
+            "Priority support",
+        ],
+        icon: Cpu,
+        popular: false,
     },
 ];
 
 export default function PricingPage() {
     const [loading, setLoading] = useState(false);
 
-    const handleUpgrade = async (planName: string) => {
-        if (planName === "Free") return;
+    const handleUpgrade = async (planType: string | null) => {
+        if (!planType) return;
 
         setLoading(true);
         try {
@@ -56,7 +75,7 @@ export default function PricingPage() {
             }
 
             const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-            const response = await fetch(`${apiBase}/billing/create-checkout-session?plan_type=basic`, {
+            const response = await fetch(`${apiBase}/billing/create-checkout-session?plan_type=${planType}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -106,7 +125,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Pricing Cards Grid */}
-                <div className="grid md:grid-cols-2 gap-8 w-full max-w-5xl">
+                <div className="grid md:grid-cols-3 gap-8 w-full max-w-6xl">
                     {plans.map((plan, idx) => (
                         <m.div
                             key={plan.name}
@@ -151,9 +170,9 @@ export default function PricingPage() {
                             </div>
 
                             <button
-                                onClick={() => handleUpgrade(plan.name)}
-                                disabled={loading || plan.name === "Free"}
-                                className={`w-full py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 ${plan.name === "Free"
+                                onClick={() => handleUpgrade(plan.planType)}
+                                disabled={loading || !plan.planType}
+                                className={`w-full py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 ${!plan.planType
                                     ? 'bg-stone-100 text-stone-400 cursor-default'
                                     : 'bg-stone-900 text-white hover:bg-black shadow-lg shadow-stone-900/10'
                                     } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}

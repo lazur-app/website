@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { getAccessToken, startOAuth } from "@/lib/auth";
+import { hasValidSessionToken, startOAuth } from "@/lib/auth";
 import { LogoWordmark } from "./LogoWordmark";
 
 type LoginFormProps = {
@@ -29,7 +29,7 @@ export function LoginForm({ source }: LoginFormProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (source === "web" && getAccessToken()) {
+    if (source === "web" && hasValidSessionToken()) {
       router.replace("/dashboard");
     }
   }, [source, router]);

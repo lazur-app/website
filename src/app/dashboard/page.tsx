@@ -15,9 +15,11 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { DashboardSkeleton } from "@/components/DashboardSkeleton";
+import { useAuth } from "@/components/AuthProvider";
 import {
-  fetchMe,
   getAccessToken,
+  hasValidSessionToken,
   storeTokens,
   type UserProfile,
 } from "@/lib/auth";
@@ -40,6 +42,7 @@ function formatWords(n: number) {
 function DashboardContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { refresh } = useAuth();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [waitlist, setWaitlist] = useState<WaitlistMe | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,19 +60,21 @@ function DashboardContent() {
 
   useEffect(() => {
     async function load() {
-      const token = getAccessToken();
-      if (!token) {
+      if (!hasValidSessionToken()) {
         router.replace("/login");
         return;
       }
 
-      const profile = await fetchMe();
+      const profile = await refresh({ force: true });
       if (!profile) {
         router.replace("/login");
         return;
       }
 
       setUser(profile);
+      const token = getAccessToken();
+      if (!token) return;
+
       const wl = await fetchWaitlistMe(token);
       setWaitlist(wl);
       if (wl.referral_code) {
@@ -79,7 +84,7 @@ function DashboardContent() {
     }
 
     load();
-  }, [router]);
+  }, [router, refresh]);
 
   const handleJoinWaitlist = async () => {
     if (!user?.email) return;
@@ -111,11 +116,7 @@ function DashboardContent() {
   };
 
   if (loading || !user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[var(--background)]">
-        <Loader2 className="h-8 w-8 animate-spin text-[var(--brand)]" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   const pct = usagePercent(user.word_quota_used, user.word_quota_limit);
@@ -321,13 +322,7 @@ function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-screen items-center justify-center bg-[var(--background)]">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--brand)]" />
-        </div>
-      }
-    >
+    <Suspense fallback={<DashboardSkeleton />}>
       <DashboardContent />
     </Suspense>
   );

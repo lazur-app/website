@@ -208,9 +208,9 @@ function BillingContent() {
         <div className="space-y-4">
           {UPGRADE_PLANS.map((plan) => {
             const eligible = canUpgradeTo(user.plan, plan.planType);
+            const normalizedPlan = user.plan.toLowerCase();
             const isCurrent =
-              user.plan.toLowerCase() === plan.planType ||
-              (plan.planType === "pro" && user.plan.toLowerCase().includes("trial"));
+              normalizedPlan === plan.planType && !normalizedPlan.includes("trial");
 
             return (
               <section

@@ -13,7 +13,7 @@ export function LogoWordmark({
   textClassName = "text-xl",
 }: LogoWordmarkProps) {
   const wrapperClassName = [
-    "group inline-flex items-end gap-[0.35em]",
+    "group inline-flex items-center gap-[0.32em] leading-none",
     textClassName,
     className,
   ]
@@ -22,13 +22,17 @@ export function LogoWordmark({
 
   const content = (
     <>
-      <img
-        src="/logo.png"
-        alt=""
+      <span
+        className="flex h-[1em] w-[1.05em] shrink-0 items-center justify-center"
         aria-hidden
-        className="h-[1.35em] w-auto shrink-0 object-contain transition-transform group-hover:scale-[1.03]"
-      />
-      <span className="font-sans text-[1em] font-extrabold lowercase leading-none tracking-tight text-[var(--foreground)]">
+      >
+        <img
+          src="/logo.png"
+          alt=""
+          className="block max-h-full max-w-full object-contain transition-transform group-hover:scale-[1.03]"
+        />
+      </span>
+      <span className="font-sans text-[1em] font-extrabold lowercase tracking-tight text-[var(--foreground)]">
         lazur
       </span>
     </>

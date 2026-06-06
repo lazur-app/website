@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { HeroBackdrop } from "./HeroBackdrop";
 import { VoiceMorph } from "./VoiceMorph";
+import { HeroDownloadCta } from "./HeroDownloadCta";
 
 const trust = [
   { label: "No setup" },
@@ -70,25 +71,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.28, duration: 0.5 }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5"
+          className="mt-10"
         >
-          <Link
-            href="#refer"
-            className="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold"
-          >
-            Refer a friend
-          </Link>
-          <Link
-            href="#transformation"
-            className="btn-ghost flex items-center gap-2 text-sm font-semibold"
-          >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border-strong)]">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
-                <path d="M2 1.5v7l6-3.5L2 1.5z" />
-              </svg>
-            </span>
-            See it transform
-          </Link>
+          <HeroDownloadCta />
         </motion.div>
 
         {/* Trust — text only, no boxes */}

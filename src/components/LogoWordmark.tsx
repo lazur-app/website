@@ -3,27 +3,32 @@ import Link from "next/link";
 type LogoWordmarkProps = {
   href?: string;
   className?: string;
-  iconSize?: string;
+  /** Text size (icon scales to ~1.35× this em height). */
   textClassName?: string;
 };
 
 export function LogoWordmark({
   href = "/",
   className = "",
-  iconSize = "h-8 w-8",
-  textClassName = "text-xl font-bold",
+  textClassName = "text-xl",
 }: LogoWordmarkProps) {
+  const wrapperClassName = [
+    "group inline-flex items-end gap-[0.35em]",
+    textClassName,
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const content = (
     <>
       <img
         src="/logo.png"
         alt=""
         aria-hidden
-        className={`shrink-0 object-contain transition-transform group-hover:scale-[1.03] ${iconSize}`}
+        className="h-[1.35em] w-auto shrink-0 object-contain transition-transform group-hover:scale-[1.03]"
       />
-      <span
-        className={`font-sans lowercase leading-none tracking-tight text-[var(--foreground)] ${textClassName}`}
-      >
+      <span className="font-sans text-[1em] font-extrabold lowercase leading-none tracking-tight text-[var(--foreground)]">
         lazur
       </span>
     </>
@@ -31,11 +36,11 @@ export function LogoWordmark({
 
   if (href) {
     return (
-      <Link href={href} className={`group flex items-center gap-2 ${className}`}>
+      <Link href={href} className={wrapperClassName}>
         {content}
       </Link>
     );
   }
 
-  return <div className={`flex items-center gap-2 ${className}`}>{content}</div>;
+  return <div className={wrapperClassName}>{content}</div>;
 }

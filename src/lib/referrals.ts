@@ -2,29 +2,15 @@ const REF_STORAGE_KEY = "lazur_ref";
 const MY_REF_STORAGE_KEY = "lazur_my_referral";
 const UTM_STORAGE_KEY = "lazur_utm";
 
-export type WaitlistJoinPayload = {
-  email: string;
-  platform: string;
-  timezone: string;
-  locale: string;
-  referred_by_code?: string;
-  utm_source?: string;
-  utm_medium?: string;
-  utm_campaign?: string;
-};
-
-export type WaitlistJoinResult = {
-  email: string;
+export type ReferralMe = {
   referral_code: string;
   referral_link: string;
   referral_count: number;
-  waitlist_position: number;
-  total_count: number;
-  already_joined: boolean;
+  leaderboard_rank?: number | null;
 };
 
-export type WaitlistStats = {
-  total_count: number;
+export type ReferralStats = {
+  total_users: number;
 };
 
 export type LeaderboardEntry = {
@@ -91,76 +77,42 @@ export function getStoredReferralCode(): string | undefined {
   return localStorage.getItem(REF_STORAGE_KEY) || undefined;
 }
 
-function getStoredUtm(): Pick<
-  WaitlistJoinPayload,
-  "utm_source" | "utm_medium" | "utm_campaign"
-> {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = localStorage.getItem(UTM_STORAGE_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch {
-    return {};
-  }
-}
+export async function claimStoredReferral(token: string): Promise<void> {
+  const code = getStoredReferralCode();
+  if (!code) return;
 
-export function buildWaitlistPayload(email: string): WaitlistJoinPayload {
-  return {
-    email: email.trim().toLowerCase(),
-    platform: detectPlatform(),
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    locale: navigator.language,
-    referred_by_code: getStoredReferralCode(),
-    ...getStoredUtm(),
-  };
-}
-
-export async function joinWaitlist(email: string): Promise<WaitlistJoinResult> {
-  const res = await fetch(`${apiBase()}/waitlist/join`, {
+  const res = await fetch(`${apiBase()}/referrals/claim`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(buildWaitlistPayload(email)),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ referral_code: code }),
   });
 
-  if (!res.ok) {
-    const detail = await res.json().catch(() => ({}));
-    throw new Error(detail.detail || "Could not join the waitlist. Try again.");
+  if (res.ok) {
+    localStorage.removeItem(REF_STORAGE_KEY);
   }
-
-  return res.json();
 }
 
-export async function fetchWaitlistStats(): Promise<WaitlistStats> {
-  const res = await fetch(`${apiBase()}/waitlist/stats`);
-  if (!res.ok) {
-    return { total_count: 0 };
-  }
-  return res.json();
-}
-
-export type WaitlistMe = {
-  on_waitlist: boolean;
-  email?: string;
-  referral_code?: string;
-  referral_link?: string;
-  referral_count?: number;
-  waitlist_position?: number;
-  total_count?: number;
-};
-
-export async function fetchWaitlistMe(token: string): Promise<WaitlistMe> {
-  const res = await fetch(`${apiBase()}/waitlist/me`, {
+export async function fetchReferralMe(token: string): Promise<ReferralMe | null> {
+  const res = await fetch(`${apiBase()}/referrals/me`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+  if (!res.ok) return null;
+  return res.json();
+}
+
+export async function fetchReferralStats(): Promise<ReferralStats> {
+  const res = await fetch(`${apiBase()}/referrals/stats`);
   if (!res.ok) {
-    return { on_waitlist: false };
+    return { total_users: 0 };
   }
   return res.json();
 }
 
 export async function fetchLeaderboard(): Promise<LeaderboardData> {
-  const res = await fetch(`${apiBase()}/waitlist/leaderboard`);
+  const res = await fetch(`${apiBase()}/referrals/leaderboard`);
   if (!res.ok) {
     throw new Error("Could not load leaderboard.");
   }

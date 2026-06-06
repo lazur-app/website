@@ -14,6 +14,10 @@ export type UserProfile = {
   word_quota_limit: number;
   word_quota_used: number;
   onboarding_completed: boolean;
+  trial_ends_at?: string | null;
+  current_period_end?: string | null;
+  referral_code?: string | null;
+  referral_link?: string | null;
 };
 
 type CachedSession = {
@@ -166,6 +170,13 @@ export async function fetchMe(options?: { force?: boolean }): Promise<UserProfil
 
     const profile = (await res.json()) as UserProfile;
     writeCachedSession(profile, token);
+
+    const { claimStoredReferral, storeMyReferralCode } = await import("./referrals");
+    await claimStoredReferral(token).catch(() => {});
+    if (profile.referral_code) {
+      storeMyReferralCode(profile.referral_code);
+    }
+
     return profile;
   })();
 

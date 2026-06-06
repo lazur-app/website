@@ -41,7 +41,7 @@ export function Hero() {
           className="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-[var(--foreground-muted)]"
         >
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          Early access for macOS
+          Available for macOS
         </motion.div>
 
         <motion.h1
@@ -73,10 +73,10 @@ export function Hero() {
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5"
         >
           <Link
-            href="#waitlist"
+            href="#refer"
             className="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold"
           >
-            Join the waitlist
+            Refer a friend
           </Link>
           <Link
             href="#transformation"

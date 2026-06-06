@@ -7,7 +7,7 @@ import { ProductDemo } from "@/components/ProductDemo";
 import { WorksEverywhere } from "@/components/WorksEverywhere";
 import { UniversalApps } from "@/components/UniversalApps";
 import { BentoFeatures } from "@/components/BentoFeatures";
-import { WaitlistCTA } from "@/components/WaitlistCTA";
+import { ReferralCTA } from "@/components/ReferralCTA";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
         <WorksEverywhere />
         <UniversalApps />
         <BentoFeatures />
-        <WaitlistCTA />
+        <ReferralCTA />
       </main>
       <Footer />
     </div>

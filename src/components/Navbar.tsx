@@ -45,7 +45,7 @@ export function Navbar() {
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="glass mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-2xl px-4 py-2.5 shadow-[var(--shadow-soft)] transition-all duration-300 md:px-5 md:py-3"
       >
-        <LogoWordmark className="shrink-0" iconSize="h-9 w-9" textClassName="text-[1.35rem] font-bold" />
+        <LogoWordmark className="shrink-0" textClassName="text-[1.5rem]" />
 
         <div className="hidden items-center md:flex md:flex-1 md:justify-center">
           <div className="flex items-center gap-0.5 rounded-full border border-[var(--border)] bg-[var(--surface-solid)]/80 p-1 shadow-sm backdrop-blur-sm">
@@ -89,10 +89,10 @@ export function Navbar() {
                 Log in
               </Link>
               <Link
-                href="/#waitlist"
+                href="/#refer"
                 className="btn-primary rounded-full px-5 py-2.5 text-[13px] font-semibold"
               >
-                Get access
+                Refer a friend
               </Link>
             </div>
           )}
@@ -151,10 +151,10 @@ export function Navbar() {
                     Log in
                   </Link>
                   <Link
-                    href="/#waitlist"
+                    href="/#refer"
                     className="btn-primary rounded-xl px-4 py-3 text-center text-[15px] font-semibold"
                   >
-                    Get access
+                    Refer a friend
                   </Link>
                 </div>
               )}

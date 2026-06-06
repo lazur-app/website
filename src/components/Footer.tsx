@@ -12,7 +12,7 @@ const footerLinks = {
   Account: [
     { href: "/login", label: "Log in" },
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/#waitlist", label: "Early access" },
+    { href: "/#refer", label: "Refer a friend" },
   ],
   Legal: [
     { href: "/terms", label: "Terms" },
@@ -26,7 +26,7 @@ export function Footer() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
-            <LogoWordmark iconSize="h-7 w-7" textClassName="text-lg font-bold" />
+            <LogoWordmark textClassName="text-lg" />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
               Your voice, upgraded. The fastest way to think in text.
             </p>

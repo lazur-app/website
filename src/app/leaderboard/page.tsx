@@ -71,7 +71,7 @@ export default function LeaderboardPage() {
               className="shrink-0"
             >
               <Link
-                href="/#waitlist"
+                href="/#refer"
                 className="btn-primary inline-flex rounded-full px-6 py-3 text-sm font-semibold"
               >
                 Get your referral link

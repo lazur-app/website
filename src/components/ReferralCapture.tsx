@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { captureReferralFromUrl } from "@/lib/waitlist";
+import { captureReferralFromUrl } from "@/lib/referrals";
 
 export function ReferralCapture() {
   useEffect(() => {

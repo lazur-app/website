@@ -101,7 +101,7 @@ function CallbackContent() {
         className="relative z-10 w-full max-w-md"
       >
         <div className="mb-8 flex justify-center">
-          <LogoWordmark href="/" iconSize="h-9 w-9" textClassName="text-xl font-bold" />
+          <LogoWordmark href="/" textClassName="text-xl" />
         </div>
 
         <div className="glass overflow-hidden rounded-2xl px-6 py-8 text-center md:px-8 md:py-10">

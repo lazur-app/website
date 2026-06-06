@@ -8,7 +8,7 @@ import {
   getMyReferralCode,
   type LeaderboardData,
   type LeaderboardEntry,
-} from "@/lib/waitlist";
+} from "@/lib/referrals";
 
 const PRIZES: Record<number, string> = {
   1: "$100",
@@ -320,7 +320,7 @@ export function LeaderboardTable() {
             No referrals yet
           </p>
           <p className="mt-2 text-sm text-[var(--foreground-muted)]">
-            Join the waitlist, share your link, and you&apos;ll appear here when friends sign up.
+            Get your referral link, share it with friends, and you&apos;ll appear here when they sign up.
           </p>
         </div>
       )}

@@ -14,6 +14,8 @@ export type UserProfile = {
   word_quota_limit: number;
   word_quota_used: number;
   onboarding_completed: boolean;
+  trial_status?: string;
+  trial_started_at?: string | null;
   trial_ends_at?: string | null;
   current_period_end?: string | null;
   referral_code?: string | null;
@@ -118,8 +120,16 @@ export function clearSession() {
   clearTokens();
 }
 
-export function startOAuth(provider: "google" | "github", source: "web" | "desktop") {
-  window.location.href = `${apiBase()}/auth/login/${provider}?source=${source}`;
+export function startOAuth(
+  provider: "google" | "github",
+  source: "web" | "desktop",
+  returnTo?: string,
+) {
+  const params = new URLSearchParams({ source });
+  if (returnTo) {
+    params.set("return_to", returnTo);
+  }
+  window.location.href = `${apiBase()}/auth/login/${provider}?${params.toString()}`;
 }
 
 /** Instant session read for navbar — no network. */

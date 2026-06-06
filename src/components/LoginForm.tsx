@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { hasValidSessionToken, startOAuth } from "@/lib/auth";
+import { isSafeReturnPath } from "@/lib/returnTo";
 import { LogoWordmark } from "./LogoWordmark";
 
 type LoginFormProps = {
   source: "web" | "desktop";
+  returnTo?: string;
 };
 
 const copy = {
@@ -24,15 +26,16 @@ const copy = {
   },
 };
 
-export function LoginForm({ source }: LoginFormProps) {
+export function LoginForm({ source, returnTo }: LoginFormProps) {
   const text = copy[source];
   const router = useRouter();
+  const safeReturnTo = returnTo && isSafeReturnPath(returnTo) ? returnTo : undefined;
 
   useEffect(() => {
     if (source === "web" && hasValidSessionToken()) {
-      router.replace("/dashboard");
+      router.replace(safeReturnTo ?? "/dashboard");
     }
-  }, [source, router]);
+  }, [source, router, safeReturnTo]);
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--background)] px-6 py-16">
@@ -68,7 +71,7 @@ export function LoginForm({ source }: LoginFormProps) {
 
           <button
             type="button"
-            onClick={() => startOAuth("google", source)}
+            onClick={() => startOAuth("google", source, safeReturnTo)}
             className="flex w-full items-center justify-center gap-3 rounded-xl border border-[var(--border-strong)] bg-[var(--surface-solid)] px-4 py-3.5 text-sm font-semibold text-[var(--foreground)] transition-all hover:border-[var(--brand)]/30 hover:shadow-sm active:scale-[0.99]"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden>

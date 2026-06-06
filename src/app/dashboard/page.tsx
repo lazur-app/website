@@ -263,7 +263,7 @@ function DashboardContent() {
             </div>
           </Link>
           <Link
-            href="/pricing"
+            href="/billing"
             className="glass flex items-center gap-3 rounded-2xl p-5 transition-colors hover:border-[var(--brand)]/20"
           >
             <Sparkles className="h-5 w-5 text-[var(--brand)]" />

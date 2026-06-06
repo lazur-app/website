@@ -3,7 +3,8 @@
 import { motion as m } from "framer-motion";
 import { Check, Sparkles, ShieldCheck, Zap, Globe, Cpu } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
-import { useState } from "react";
+import { hasValidSessionToken } from "@/lib/auth";
+import { loginPathWithReturn } from "@/lib/returnTo";
 
 const plans = [
     {
@@ -61,42 +62,15 @@ const plans = [
 ];
 
 export default function PricingPage() {
-    const [loading, setLoading] = useState(false);
-
-    const handleUpgrade = async (planType: string | null) => {
+    const handleUpgrade = (planType: string | null) => {
         if (!planType) return;
 
-        setLoading(true);
-        try {
-            const token = typeof window !== "undefined" ? localStorage.getItem("lazur_access_token") : null;
-            if (!token) {
-                window.location.href = "/login";
-                return;
-            }
-
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-            const response = await fetch(`${apiBase}/billing/create-checkout-session?plan_type=${planType}`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            if (response.ok) {
-                const { url } = await response.json();
-                if (url) {
-                    window.location.href = url;
-                }
-            } else {
-                // If token expired or unauthorized
-                window.location.href = "/login";
-            }
-        } catch (err) {
-            console.error("Billing error:", err);
-            window.location.href = "/login";
-        } finally {
-            setLoading(false);
+        if (!hasValidSessionToken()) {
+            window.location.href = loginPathWithReturn("/billing");
+            return;
         }
+
+        window.location.href = `/billing?plan=${planType}`;
     };
 
     return (
@@ -171,13 +145,13 @@ export default function PricingPage() {
 
                             <button
                                 onClick={() => handleUpgrade(plan.planType)}
-                                disabled={loading || !plan.planType}
+                                disabled={!plan.planType}
                                 className={`w-full py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 ${!plan.planType
                                     ? 'bg-stone-100 text-stone-400 cursor-default'
                                     : 'bg-stone-900 text-white hover:bg-black shadow-lg shadow-stone-900/10'
-                                    } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    }`}
                             >
-                                {loading ? "Redirecting..." : plan.buttonText}
+                                {plan.buttonText}
                             </button>
                         </m.div>
                     ))}

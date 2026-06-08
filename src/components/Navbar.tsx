@@ -53,7 +53,7 @@ export function Navbar() {
       >
         {/* Command dock — ~56px inner height, Wispr-scale proportions */}
         <div
-          className={`overflow-hidden rounded-[var(--radius-nav)] border border-[var(--border)] bg-[var(--surface-solid)]/90 backdrop-blur-xl transition-shadow duration-300 ${
+          className={`rounded-[var(--radius-nav)] border border-[var(--border)] bg-[var(--surface-solid)]/90 backdrop-blur-xl transition-shadow duration-300 ${
             scrolled || mobileOpen
               ? "shadow-[var(--shadow-soft)]"
               : "shadow-[0_8px_40px_rgba(28,25,23,0.05)]"

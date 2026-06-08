@@ -11,10 +11,15 @@ export function isPaidPlan(plan: string): boolean {
   return normalized === "pro" || normalized === "power";
 }
 
+export function isFreeTierPlan(plan: string): boolean {
+  const normalized = plan.toLowerCase();
+  return normalized.includes("free") || normalized.includes("trial");
+}
+
 export function canUpgradeTo(plan: string, target: PlanType): boolean {
   const normalized = plan.toLowerCase();
   if (target === "pro") {
-    return normalized === "free" || normalized.includes("trial");
+    return isFreeTierPlan(plan);
   }
   return normalized !== "power";
 }

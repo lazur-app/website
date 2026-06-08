@@ -137,7 +137,7 @@ export default function DownloadPage() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col justify-center py-8 md:py-16"
           >
-            <LogoWordmark className="mb-10 w-fit" textClassName="text-[1.35rem]" />
+            <LogoWordmark className="mb-10 w-fit" height={32} />
 
             <h1 className="font-display text-balance text-3xl font-semibold leading-[1.08] tracking-tight md:text-4xl lg:text-[2.75rem]">
               Open Lazur in 3 steps

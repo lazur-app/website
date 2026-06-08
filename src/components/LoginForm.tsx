@@ -56,7 +56,7 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
         className="relative z-10 w-full max-w-sm"
       >
         <div className="mb-10 flex justify-center">
-          <LogoWordmark href="/" textClassName="text-2xl" />
+          <LogoWordmark href="/" height={40} />
         </div>
 
         <div className="glass rounded-2xl px-6 py-8 md:px-8">

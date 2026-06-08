@@ -9,8 +9,8 @@
 
 :root {
   /* Warm editorial base — Linear / Flow / Notion Calendar territory */
-  --background: #f6f4ef;
-  --background-deep: #edeae3;
+  --background: #fbfaf8;
+  --background-deep: #f3f1ec;
   --foreground: #1c1917;
   --foreground-muted: #6b6560;
   --foreground-faint: #a8a29e;
@@ -37,6 +37,20 @@
   --shadow-soft: 0 24px 80px rgba(28, 25, 23, 0.06);
   --shadow-glass: 0 8px 32px rgba(28, 25, 23, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* 4px-grid type & layout tokens */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --leading-body: 28px;
+  --leading-body-lg: 32px;
+  --radius-btn: 12px;
+  --radius-nav: 16px;
+  --btn-height: 48px;
+  --nav-inner-height: 56px;
 }
 
 body {
@@ -45,6 +59,33 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.page-backdrop {
+  background-color: var(--background);
+  background-image:
+    /* pixel dither overlay */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.06'/%3E%3C/svg%3E"),
+    /* paper grain */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E"),
+    /* dotted grid */
+    radial-gradient(
+      circle,
+      rgba(28, 25, 23, 0.05) 1px,
+      transparent 1px
+    ),
+    /* warm paper wash (bottom layer) */
+    radial-gradient(
+      ellipse 120% 80% at 50% -10%,
+      rgba(255, 253, 251, 0.75) 0%,
+      transparent 55%
+    );
+  background-size:
+    3px 3px,
+    512px 512px,
+    24px 24px,
+    100% 100%;
+  background-attachment: fixed;
 }
 
 ::selection {
@@ -69,7 +110,7 @@ body {
   }
 
   .grain {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
 
   .glass {
@@ -88,13 +129,32 @@ body {
   .btn-primary {
     background: var(--brand);
     color: #ffffff;
+    border-radius: var(--radius-btn);
+    min-height: var(--btn-height);
     transition: background 0.2s ease, transform 0.15s ease,
       box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px var(--brand-glow);
+    box-shadow: 0 4px 18px var(--brand-glow);
+  }
+
+  .demo-surface {
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    background: #ffffff;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 22px 50px rgba(28, 25, 23, 0.14),
+      0 4px 14px rgba(28, 25, 23, 0.06);
+  }
+
+  .lazur-ring-accent {
+    box-shadow:
+      0 0 0 1px rgba(107, 75, 252, 0.18),
+      0 0 32px rgba(107, 75, 252, 0.1);
   }
 
   .btn-primary:hover {
     background: var(--brand-hover);
+    box-shadow: 0 6px 22px var(--brand-glow);
   }
 
   .btn-primary:active {
@@ -120,7 +180,7 @@ body {
 
   .ambient-blob {
     filter: blur(80px);
-    opacity: 0.55;
+    opacity: 0.2;
   }
 
   .skeleton-shimmer {
@@ -212,6 +272,35 @@ body {
       transparent 72%
     );
   }
+
+  .app-marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+  }
+
+  .animate-app-marquee {
+    animation: app-marquee 32s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-app-marquee {
+      animation: none;
+    }
+  }
+
 }
 
 @keyframes wave-soft {
@@ -245,6 +334,15 @@ body {
 
 .animate-morph-glow {
   animation: morph-glow 4s ease-in-out infinite;
+}
+
+@keyframes app-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
 }
 
 html {

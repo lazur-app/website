@@ -3,8 +3,8 @@ import { LogoWordmark } from "./LogoWordmark";
 
 const footerLinks = {
   Product: [
+    { href: "/#how-it-works", label: "How it works" },
     { href: "/#smart-rewrite", label: "Smart Rewrite" },
-    { href: "/#transformation", label: "Demo" },
     { href: "/#speed", label: "Speed" },
     { href: "/pricing", label: "Pricing" },
     { href: "/leaderboard", label: "Leaderboard" },
@@ -26,7 +26,7 @@ export function Footer() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
-            <LogoWordmark textClassName="text-lg" />
+            <LogoWordmark height={28} />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
               Your voice, upgraded. The fastest way to think in text.
             </p>

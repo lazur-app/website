@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mic, Wand2, ClipboardPaste } from "lucide-react";
+import { VoiceMorph } from "./VoiceMorph";
 
 const steps = [
   {
@@ -10,72 +11,84 @@ const steps = [
     title: "Hold & speak",
     description:
       "Press ⌃ Space anywhere on your Mac. Talk like you're explaining to a friend — messy is fine.",
-    chip: "bg-[var(--brand)]",
   },
   {
     icon: Wand2,
     step: "02",
     title: "AI rewrites",
     description:
-      "Smart Rewrite reads the context of your active app and transforms your ramble into the right format and tone.",
-    chip: "bg-[var(--brand-hover)]",
+      "Smart Rewrite reads your active app and shapes your words to the right format and tone.",
   },
   {
     icon: ClipboardPaste,
     step: "03",
     title: "Release & paste",
     description:
-      "Let go of the key. Polished text is pasted directly into your cursor — no copy-paste, no app switching.",
-    chip: "bg-[var(--foreground)]",
+      "Let go of the key. Polished text lands at your cursor — no copy-paste, no app switching.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-[var(--surface)] py-28">
-      <div className="pointer-events-none absolute inset-0 grain-light opacity-35" />
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-56 w-[min(90%,520px)] -translate-x-1/2 rounded-full bg-[var(--brand-soft)] blur-[70px]" />
+    <section
+      id="how-it-works"
+      className="relative border-t border-[var(--border)] py-20 md:py-28"
+    >
+      <div className="pointer-events-none absolute inset-0 grain opacity-40" />
 
-      <div className="relative mx-auto max-w-6xl px-6">
-        <div className="mb-20 text-center">
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--foreground-muted)]">
-            How it works
-          </p>
-          <h2 className="font-display text-balance text-3xl font-bold tracking-tight text-[var(--foreground)] md:text-[2.35rem]">
-            Three beats to your{" "}
-            <span className="text-brand">superpower</span>
-          </h2>
-        </div>
-
-        <div className="relative grid gap-10 md:grid-cols-3 md:gap-8">
-          <div className="pointer-events-none absolute top-14 left-[16.67%] right-[16.67%] hidden h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent md:block" />
-
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.step}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="relative flex flex-col items-center text-center"
-            >
-              <div
-                className={`relative mb-8 flex h-[3.85rem] w-[3.85rem] items-center justify-center rounded-[1.2rem] ${step.chip} text-white shadow-[0_16px_40px_rgba(20,18,15,0.12)]`}
-                style={{ transform: `rotate(${i === 1 ? 1.5 : i === 2 ? -1.5 : 0}deg)` }}
-              >
-                <step.icon className="h-7 w-7" />
-                <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[10px] font-semibold text-[var(--brand)] shadow-sm">
-                  {step.step}
-                </span>
-              </div>
-              <h3 className="mb-3 font-display text-xl font-bold tracking-tight text-[var(--foreground)]">
-                {step.title}
-              </h3>
-              <p className="max-w-xs text-sm leading-relaxed text-[var(--foreground-muted)]">
-                {step.description}
+      <div className="relative mx-auto max-w-7xl px-8 lg:px-14 xl:px-16">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 xl:gap-16">
+          <div>
+            <div className="mb-10 max-w-xl md:mb-12">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+                How it works
               </p>
-            </motion.div>
-          ))}
+              <h2 className="font-display text-balance text-3xl font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
+                Three beats to flow state.
+              </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+                No plugins. No switching apps. Lazur lives in your menu bar and
+                writes wherever your cursor is.
+              </p>
+            </div>
+
+            <div className="flex max-w-xl flex-col gap-8">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: i * 0.08, duration: 0.45 }}
+                >
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand)] text-white">
+                      <step.icon className="h-4 w-4" />
+                    </div>
+                    <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--foreground-faint)]">
+                      Step {step.step}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--foreground-muted)]">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-full max-w-[18rem] sm:max-w-[19rem] lg:sticky lg:top-28 lg:mx-0 lg:max-w-[20rem] xl:max-w-[21rem]"
+          >
+            <VoiceMorph />
+          </motion.div>
         </div>
       </div>
     </section>

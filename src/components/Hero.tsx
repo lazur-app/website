@@ -1,126 +1,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { HeroBackdrop } from "./HeroBackdrop";
-import { VoiceMorph } from "./VoiceMorph";
 import { HeroDownloadCta } from "./HeroDownloadCta";
+import { WorksInBar } from "./WorksInBar";
 
-const trust = [
-  { label: "No setup" },
-  { label: "Works everywhere" },
-  { label: "Your data stays private" },
-];
-
-const apps = ["Slack", "Gmail", "Notion", "VS Code", "Cursor", "Discord"];
+const trust = ["No setup", "Works everywhere", "Private by default"];
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100svh] overflow-hidden pt-28 pb-20 md:pt-32 md:pb-28">
-      {/* Ambient layers */}
-      <div className="pointer-events-none absolute inset-0 grain" />
+    <section className="relative flex min-h-[calc(100vh-4.5rem)] flex-col items-center justify-center overflow-hidden pb-16 pt-28 md:min-h-[calc(100vh-5rem)] md:pb-20 md:pt-32 lg:pt-36">
       <div
-        className="ambient-blob pointer-events-none absolute -left-[10%] top-[5%] h-[50vh] w-[50vw] rounded-full bg-[#e8e0ff]"
-        aria-hidden
-      />
-      <div
-        className="ambient-blob pointer-events-none absolute -right-[5%] top-[20%] h-[45vh] w-[45vw] rounded-full bg-[#fde8d8]"
-        aria-hidden
-      />
-      <div
-        className="ambient-blob pointer-events-none absolute bottom-[10%] left-1/2 h-[40vh] w-[60vw] -translate-x-1/2 rounded-full bg-[#ede9fe]"
+        className="ambient-blob pointer-events-none absolute -right-[12%] top-[8%] h-[38vh] w-[44vw] rounded-full bg-[#e8e0ff]"
         aria-hidden
       />
 
-      <HeroBackdrop />
-
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
+      <div className="relative z-10 mx-auto w-full max-w-3xl px-8 text-center lg:px-12 xl:px-16">
+        <motion.p
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-[var(--foreground-muted)]"
+          className="mb-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-white/90 px-3 py-2 text-[var(--text-sm)] font-medium text-[var(--foreground-muted)] backdrop-blur-sm"
         >
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          Available for macOS
-        </motion.div>
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          Ambient writing for macOS
+        </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.06, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.02em] sm:text-6xl md:text-7xl lg:text-[5.25rem]"
+          transition={{ delay: 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display text-[52px] font-semibold leading-[1.08] tracking-[-0.03em] text-[var(--foreground)] sm:text-[56px] lg:text-[60px] xl:text-[64px]"
         >
-          Speak{" "}
-          <span className="gradient-word">naturally.</span>
-          <br />
-          Write brilliantly.
+          Typing is optional now.
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.18, duration: 0.55 }}
-          className="mt-8 max-w-md text-pretty text-base leading-relaxed text-[var(--foreground-muted)] md:max-w-lg md:text-[1.05rem] md:leading-[1.7]"
+          transition={{ delay: 0.14, duration: 0.5 }}
+          className="mx-auto mt-6 max-w-[520px] text-[var(--text-lg)] leading-[var(--leading-body-lg)] text-[var(--foreground-muted)] lg:text-[var(--text-xl)]"
         >
-          Your voice, upgraded. Lazur turns messy speech into polished writing,
-          everywhere you type.
+          Hold a key. Speak. Lazur rewrites your words for whatever app
+          you&apos;re in — then pastes at your cursor.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.28, duration: 0.5 }}
-          className="mt-10"
+          transition={{ delay: 0.22, duration: 0.45 }}
+          className="mt-8 flex justify-center"
         >
-          <HeroDownloadCta />
+          <HeroDownloadCta align="center" />
         </motion.div>
 
-        {/* Trust — text only, no boxes */}
-        <motion.div
+        <motion.ul
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-[var(--foreground-faint)]"
+          transition={{ delay: 0.3 }}
+          className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[var(--text-sm)] text-[var(--foreground-muted)]"
         >
-          {trust.map((t, i) => (
-            <span key={t.label} className="flex items-center gap-6">
-              {i > 0 && (
-                <span className="hidden h-3 w-px bg-[var(--border-strong)] sm:block" />
-              )}
-              {t.label}
-            </span>
+          {trust.map((label) => (
+            <li key={label}>{label}</li>
           ))}
-        </motion.div>
-
-        {/* Living hero visual */}
-        <VoiceMorph />
-
-        {/* App cloud — minimal, below fold of hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.6 }}
-          className="mt-20 w-full"
-        >
-          <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
-            Works in the apps you already use
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {apps.map((app) => (
-              <span
-                key={app}
-                className="rounded-full border border-[var(--border)] bg-[var(--surface-solid)]/60 px-4 py-2 text-[13px] font-medium text-[var(--foreground-muted)] backdrop-blur-sm transition-colors hover:border-[var(--brand)]/30 hover:text-[var(--foreground)]"
-              >
-                {app}
-              </span>
-            ))}
-            <span className="text-[13px] font-medium text-[var(--foreground-faint)]">
-              + more
-            </span>
-          </div>
-        </motion.div>
+        </motion.ul>
       </div>
+
+      <WorksInBar />
     </section>
   );
 }

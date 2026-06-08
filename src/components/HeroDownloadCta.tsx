@@ -1,52 +1,78 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Download } from "lucide-react";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
-export function HeroDownloadCta() {
+type HeroDownloadCtaProps = {
+  align?: "center" | "start";
+};
+
+export function HeroDownloadCta({ align = "center" }: HeroDownloadCtaProps) {
   const [platform, setPlatform] = useState<Platform | null>(null);
 
   useEffect(() => {
     setPlatform(detectPlatform());
   }, []);
 
+  const rowAlign =
+    align === "start"
+      ? "justify-center lg:justify-start"
+      : "justify-center";
+
   if (platform === "windows") {
     return (
-      <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)]/80 px-5 py-3 text-center backdrop-blur-sm">
-          <p className="text-sm font-semibold text-[var(--foreground)]">
+      <div
+        className={`flex flex-col gap-3 sm:flex-row sm:items-center ${rowAlign}`}
+      >
+        <div className="rounded-lg border border-[var(--border)] bg-white px-4 py-2 text-center sm:text-left">
+          <p className="text-[var(--text-sm)] font-semibold text-[var(--foreground)]">
             Coming to Windows soon
           </p>
-          <p className="mt-0.5 text-xs text-[var(--foreground-muted)]">
+          <p className="mt-1 text-[var(--text-xs)] text-[var(--foreground-muted)]">
             macOS is available now
           </p>
         </div>
         <Link
-          href="#refer"
-          className="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold"
+          href="/download"
+          className="btn-primary inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
         >
-          Refer a friend · join waitlist
+          <Image
+            src="/apple-icon.png"
+            alt=""
+            width={16}
+            height={16}
+            className="h-4 w-4 object-contain brightness-0 invert"
+          />
+          Download for Mac
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
+    <div
+      className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${rowAlign}`}
+    >
       <Link
         href="/download"
-        className="btn-primary inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold"
+        className="btn-primary inline-flex items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
       >
-        <Download className="h-4 w-4" />
-        Download
+        <Image
+          src="/apple-icon.png"
+          alt=""
+          width={16}
+          height={16}
+          className="h-4 w-4 object-contain brightness-0 invert"
+        />
+        Download for Mac
       </Link>
       <Link
         href="#refer"
-        className="btn-ghost text-sm font-semibold"
+        className="text-[var(--text-sm)] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
       >
-        Refer a friend
+        Refer a friend →
       </Link>
     </div>
   );

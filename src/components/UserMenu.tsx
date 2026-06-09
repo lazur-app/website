@@ -134,7 +134,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.15 }}
-            className="glass absolute right-0 top-[calc(100%+8px)] z-[100] w-56 overflow-hidden rounded-xl border border-[var(--border)] py-1 shadow-[var(--shadow-soft)]"
+            className="soft-card absolute right-0 top-[calc(100%+8px)] z-[200] w-56 overflow-hidden rounded-xl py-1 shadow-[var(--shadow-soft)]"
             role="menu"
           >
             <div className="border-b border-[var(--border)] px-3 py-2.5">

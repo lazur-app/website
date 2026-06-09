@@ -49,9 +49,9 @@ export function Navbar() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-glass-pill mx-auto max-w-3xl overflow-hidden rounded-full ${
-          scrolled || mobileOpen ? "nav-glass-pill--scrolled" : ""
-        }`}
+        className={`nav-glass-pill mx-auto max-w-3xl rounded-full ${
+          mobileOpen ? "overflow-hidden" : "overflow-visible"
+        } ${scrolled || mobileOpen ? "nav-glass-pill--scrolled" : ""}`}
       >
         <div className="flex h-[48px] items-center justify-between gap-4 px-5 md:px-6">
           <LogoWordmark height={32} />

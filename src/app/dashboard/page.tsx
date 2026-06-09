@@ -141,7 +141,7 @@ function DashboardContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.45 }}
           >
-            <SoftCard interactive className="p-6">
+            <SoftCard hover={false} className="p-6">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
                   Your plan
@@ -169,7 +169,7 @@ function DashboardContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.45 }}
           >
-            <SoftCard interactive className="p-6">
+            <SoftCard hover={false} className="p-6">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
                   Usage this month
@@ -202,7 +202,7 @@ function DashboardContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.45 }}
         >
-          <SoftCard interactive className="mt-4 p-6">
+          <SoftCard hover={false} className="mt-4 p-6">
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
                 Refer a friend
@@ -290,7 +290,7 @@ function DashboardContent() {
             transition={{ delay: 0.2, duration: 0.45 }}
           >
             <Link href="/login/app" className="block">
-              <SoftCard interactive className="flex items-center gap-4 p-5">
+              <SoftCard hover={false} className="flex items-center gap-4 p-5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
                   <Download className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
                 </div>
@@ -310,7 +310,7 @@ function DashboardContent() {
             transition={{ delay: 0.25, duration: 0.45 }}
           >
             <Link href="/billing" className="block">
-              <SoftCard interactive className="flex items-center gap-4 p-5">
+              <SoftCard hover={false} className="flex items-center gap-4 p-5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
                   <Sparkles className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
                 </div>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Loader2, Medal, Search, TrendingUp, Users } from "lucide-react";
+import { SoftCard } from "@/components/SoftCard";
 import {
   fetchLeaderboard,
   getMyReferralCode,
@@ -27,11 +28,11 @@ function initials(name: string) {
   return name.slice(0, 2).toUpperCase();
 }
 
-function avatarGradient(rank: number) {
-  if (rank === 1) return "from-[#6b4bfc] to-[#a855f7]";
-  if (rank === 2) return "from-[#a8a29e] to-[#78716c]";
-  if (rank === 3) return "from-[#f97316] to-[#fb923c]";
-  return "from-[var(--background-deep)] to-[#d6d3d1]";
+function rankBadgeClass(rank: number) {
+  if (rank === 1) return "bg-[var(--foreground)] text-[var(--background)]";
+  if (rank === 2) return "bg-[var(--foreground-muted)] text-white";
+  if (rank === 3) return "bg-[var(--foreground-faint)] text-white";
+  return "bg-[var(--background-deep)] text-[var(--foreground-muted)]";
 }
 
 function normalizeSearchQuery(value: string) {
@@ -60,7 +61,7 @@ function toRow(entry: LeaderboardEntry, myCode?: string) {
   };
 }
 
-function SidebarStat({
+function StatCard({
   label,
   value,
   icon: Icon,
@@ -70,17 +71,17 @@ function SidebarStat({
   icon: typeof Users;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80 px-3.5 py-3">
-      <div className="flex items-center gap-2 text-[var(--brand)]">
-        <Icon className="h-3.5 w-3.5" />
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--foreground-faint)]">
+    <SoftCard interactive className="px-5 py-4">
+      <div className="flex items-center gap-2">
+        <Icon className="h-3.5 w-3.5 text-[var(--foreground-faint)]" strokeWidth={1.75} />
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
           {label}
         </p>
       </div>
-      <p className="mt-1 font-display text-xl font-semibold text-[var(--foreground)]">
+      <p className="mt-2 font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
         {value}
       </p>
-    </div>
+    </SoftCard>
   );
 }
 
@@ -117,200 +118,162 @@ export function LeaderboardTable() {
     );
   }, [query, users]);
 
-  const topThree = users.slice(0, 3);
-
   if (loading) {
     return (
-      <div className="flex min-h-[240px] items-center justify-center">
-        <Loader2 className="h-7 w-7 animate-spin text-[var(--brand)]" />
+      <div className="flex min-h-[280px] items-center justify-center">
+        <Loader2 className="h-7 w-7 animate-spin text-[var(--foreground-faint)]" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="py-12 text-center">
-        <p className="text-sm text-red-600">{error}</p>
-      </div>
+      <SoftCard hover={false} className="px-6 py-12 text-center">
+        <p className="text-[14px] text-red-600">{error}</p>
+      </SoftCard>
     );
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[11.5rem_minmax(0,1fr)] lg:gap-8">
-      {/* Left sidebar — stats & prizes */}
-      <aside className="space-y-4">
-        <div className="space-y-2">
-          <SidebarStat
-            label="Total invites"
-            value={(data?.total_referrals ?? 0).toLocaleString()}
-            icon={Users}
-          />
-          <SidebarStat
-            label="Active referrers"
-            value={(data?.active_referrers ?? 0).toLocaleString()}
-            icon={TrendingUp}
-          />
-          <SidebarStat label="Prize pool" value="$160" icon={Medal} />
-        </div>
+    <div className="grid gap-6 lg:grid-cols-[12.5rem_minmax(0,1fr)] lg:gap-8">
+      <aside className="space-y-3">
+        <StatCard
+          label="Total invites"
+          value={(data?.total_referrals ?? 0).toLocaleString()}
+          icon={Users}
+        />
+        <StatCard
+          label="Active referrers"
+          value={(data?.active_referrers ?? 0).toLocaleString()}
+          icon={TrendingUp}
+        />
+        <StatCard label="Prize pool" value="$160" icon={Medal} />
 
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80 p-3.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--foreground-faint)]">
+        <SoftCard hover={false} className="px-5 py-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
             Weekly prizes
           </p>
-          <ul className="mt-2.5 space-y-2">
+          <div className="mt-3 space-y-2">
             {WEEKLY_PRIZES.map((p) => (
-              <li
-                key={p.place}
-                className="flex items-center justify-between text-[13px]"
-              >
-                <span className="font-medium text-[var(--foreground-muted)]">
-                  {p.place}
-                </span>
+              <div key={p.place} className="flex items-center justify-between text-[13px]">
+                <span className="font-medium text-[var(--foreground-muted)]">{p.place}</span>
                 <span className="font-display font-semibold text-[var(--foreground)]">
                   {p.amount}
                 </span>
-              </li>
+              </div>
             ))}
-          </ul>
-        </div>
-
-        {topThree.length > 0 && (
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80 p-3.5">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--foreground-faint)]">
-              Top 3
-            </p>
-            <ul className="mt-2.5 space-y-2.5">
-              {topThree.map((user) => (
-                <li key={user.referralCode} className="flex items-center gap-2">
-                  <span
-                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[10px] font-bold ${
-                      user.rank === 1
-                        ? "bg-[var(--brand)] text-white"
-                        : user.rank === 2
-                          ? "bg-stone-400 text-white"
-                          : "bg-orange-400 text-white"
-                    }`}
-                  >
-                    {user.rank}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[12px] font-medium text-[var(--foreground)]">
-                      {user.isYou ? "You" : user.name}
-                    </p>
-                    <p className="text-[11px] text-[var(--foreground-faint)]">
-                      {user.invites} invites
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
-        )}
+        </SoftCard>
 
         <Link
           href="/login"
-          className="hidden rounded-lg border border-[var(--border)] bg-[var(--background-deep)]/60 px-3 py-2 text-center text-[12px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)] lg:block"
+          className="btn-dark hidden w-full justify-center lg:inline-flex"
         >
-          Get referral link →
+          Get referral link
         </Link>
       </aside>
 
-      {/* Main — search + table */}
       <div className="min-w-0 space-y-3">
-        {users.length > 0 ? (
-          <>
-            <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--foreground-faint)]" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search name or code…"
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80 py-2.5 pl-10 pr-4 text-[13px] text-[var(--foreground)] placeholder:text-[var(--foreground-faint)] outline-none transition-shadow focus:ring-2 focus:ring-[var(--brand)]/20"
-              />
+      {users.length > 0 ? (
+        <>
+          <div className="relative">
+            <Search
+              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--foreground-faint)]"
+              strokeWidth={1.75}
+            />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search name or code…"
+              className="soft-card w-full py-3 pl-11 pr-4 text-[14px] text-[var(--foreground)] placeholder:text-[var(--foreground-faint)] outline-none transition-shadow focus:ring-2 focus:ring-[var(--foreground)]/8"
+            />
+          </div>
+
+          <SoftCard hover={false} className="overflow-hidden p-0">
+            <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+              <span>Rank · User</span>
+              <span>Invites</span>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80">
-              <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--background-deep)]/50 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--foreground-faint)]">
-                <span>Rank · User</span>
-                <span>Invites</span>
-              </div>
+            <div className="divide-y divide-[var(--border)]">
+              {filtered.length === 0 ? (
+                <p className="px-5 py-12 text-center text-[14px] text-[var(--foreground-muted)]">
+                  No users match &ldquo;{query}&rdquo;
+                </p>
+              ) : (
+                filtered.map((user, i) => (
+                  <motion.div
+                    key={user.referralCode}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: Math.min(i * 0.02, 0.3) }}
+                    className={`flex items-center justify-between gap-4 px-5 py-3.5 transition-colors hover:bg-[var(--background-deep)]/35 ${
+                      user.isYou ? "bg-[var(--background-deep)]/55" : ""
+                    }`}
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <span
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[11px] font-bold ${rankBadgeClass(user.rank)}`}
+                      >
+                        {user.rank}
+                      </span>
 
-              <div className="divide-y divide-[var(--border)]">
-                {filtered.length === 0 ? (
-                  <p className="px-4 py-10 text-center text-[13px] text-[var(--foreground-muted)]">
-                    No users match &ldquo;{query}&rdquo;
-                  </p>
-                ) : (
-                  filtered.map((user, i) => (
-                    <motion.div
-                      key={user.referralCode}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.02 }}
-                      className={`flex items-center justify-between gap-3 px-4 py-3 ${
-                        user.isYou ? "bg-[var(--brand-soft)]/50" : ""
-                      }`}
-                    >
-                      <div className="flex min-w-0 items-center gap-2.5">
-                        {user.rank <= 3 ? (
-                          <span
-                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[10px] font-bold ${
-                              user.rank === 1
-                                ? "bg-[var(--brand)] text-white"
-                                : user.rank === 2
-                                  ? "bg-stone-400 text-white"
-                                  : "bg-orange-400 text-white"
-                            }`}
-                          >
-                            {user.rank}
-                          </span>
-                        ) : (
-                          <span className="w-6 shrink-0 text-center text-[12px] font-semibold text-[var(--foreground-faint)]">
-                            {user.rank}
-                          </span>
-                        )}
-
-                        <div
-                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br text-[10px] font-bold text-white ${avatarGradient(user.rank)}`}
-                        >
-                          {initials(user.name)}
-                        </div>
-
-                        <div className="min-w-0">
-                          <p className="truncate text-[13px] font-medium text-[var(--foreground)]">
-                            {user.isYou ? "You" : user.name}
-                            {user.isYou && (
-                              <span className="ml-1.5 rounded-full bg-[var(--brand-soft)] px-1.5 py-px text-[9px] font-semibold text-[var(--brand-ink)]">
-                                you
-                              </span>
-                            )}
-                          </p>
-                          <p className="truncate text-[11px] text-[var(--foreground-faint)]">
-                            {user.referralCode}
-                          </p>
-                        </div>
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70 text-[11px] font-bold text-[var(--foreground-muted)]">
+                        {initials(user.name)}
                       </div>
 
-                      <span className="shrink-0 font-display text-sm font-semibold tabular-nums text-[var(--foreground)]">
+                      <div className="min-w-0">
+                        <p className="truncate text-[14px] font-medium text-[var(--foreground)]">
+                          {user.isYou ? "You" : user.name}
+                          {user.isYou && (
+                            <span className="ml-1.5 rounded-full bg-[var(--foreground)] px-1.5 py-px text-[9px] font-semibold text-[var(--background)]">
+                              you
+                            </span>
+                          )}
+                        </p>
+                        <p className="truncate text-[12px] text-[var(--foreground-faint)]">
+                          {user.referralCode}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex shrink-0 items-center gap-3">
+                      {user.prize && (
+                        <span className="hidden rounded-full bg-[var(--background-deep)]/80 px-2 py-0.5 text-[11px] font-medium text-[var(--foreground-muted)] sm:inline">
+                          {user.prize}
+                        </span>
+                      )}
+                      <span className="font-display text-base font-semibold tabular-nums text-[var(--foreground)]">
                         {user.invites}
                       </span>
-                    </motion.div>
-                  ))
-                )}
-              </div>
+                    </div>
+                  </motion.div>
+                ))
+              )}
             </div>
-          </>
-        ) : (
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--surface-solid)]/80 px-5 py-10 text-center">
-            <p className="font-display text-base font-semibold text-[var(--foreground)]">
-              No referrals yet
-            </p>
-            <p className="mt-1.5 text-[13px] text-[var(--foreground-muted)]">
-              Share your link — you&apos;ll appear here when friends sign up.
-            </p>
-          </div>
-        )}
+          </SoftCard>
+
+          <Link
+            href="/login"
+            className="btn-dark inline-flex w-full justify-center lg:hidden"
+          >
+            Get referral link
+          </Link>
+        </>
+      ) : (
+        <SoftCard hover={false} className="px-6 py-12 text-center">
+          <p className="font-display text-lg font-semibold text-[var(--foreground)]">
+            No referrals yet
+          </p>
+          <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
+            Share your link — you&apos;ll appear here when friends sign up.
+          </p>
+          <Link href="/login" className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]">
+            Get referral link
+          </Link>
+        </SoftCard>
+      )}
       </div>
     </div>
   );

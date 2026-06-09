@@ -3,16 +3,14 @@ import { LogoWordmark } from "./LogoWordmark";
 
 const footerLinks = {
   Product: [
-    { href: "/#how-it-works", label: "How it works" },
-    { href: "/#smart-rewrite", label: "Smart Rewrite" },
-    { href: "/#speed", label: "Speed" },
     { href: "/pricing", label: "Pricing" },
     { href: "/leaderboard", label: "Leaderboard" },
+    { href: "/download", label: "Download" },
   ],
   Account: [
     { href: "/login", label: "Log in" },
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/#refer", label: "Refer a friend" },
+    { href: "/login", label: "Refer a friend" },
   ],
   Legal: [
     { href: "/terms", label: "Terms" },
@@ -40,7 +38,7 @@ export function Footer() {
                 </p>
                 <ul className="space-y-2">
                   {links.map((link) => (
-                    <li key={link.href}>
+                    <li key={link.label}>
                       <Link
                         href={link.href}
                         className="text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"

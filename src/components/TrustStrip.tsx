@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Zap, Shield, Wand2 } from "lucide-react";
+import { SoftCard } from "./SoftCard";
 
 const items = [
   { icon: Zap, stat: "<200ms", label: "Streaming latency" },
@@ -11,37 +12,32 @@ const items = [
 
 export function TrustStrip() {
   return (
-    <section
-      id="speed"
-      className="relative border-y border-[var(--border)] bg-[var(--background-deep)]/50 py-8 md:py-10"
-    >
-      <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-3 md:gap-4">
+    <section id="speed" className="relative px-6 py-16 md:py-20">
+      <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3 md:gap-5">
         {items.map((item, i) => (
           <motion.div
             key={item.label}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.06, duration: 0.35 }}
-            className={`flex items-center gap-3.5 ${
-              i === 0
-                ? "md:justify-start"
-                : i === 2
-                  ? "md:justify-end"
-                  : "md:justify-center"
-            }`}
+            transition={{ delay: i * 0.07, duration: 0.45 }}
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--border-strong)] bg-white">
-              <item.icon className="h-4 w-4 text-[var(--brand)]" />
-            </div>
-            <div>
-              <p className="font-display text-base font-semibold text-[var(--foreground)]">
-                {item.stat}
-              </p>
-              <p className="text-[13px] text-[var(--foreground-muted)]">
-                {item.label}
-              </p>
-            </div>
+            <SoftCard className="flex items-center gap-4 p-6">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--background-deep)]">
+                <item.icon
+                  className="h-[18px] w-[18px] text-[var(--foreground)]"
+                  strokeWidth={1.75}
+                />
+              </div>
+              <div>
+                <p className="font-display text-lg font-semibold text-[var(--foreground)]">
+                  {item.stat}
+                </p>
+                <p className="text-[13px] text-[var(--foreground-muted)]">
+                  {item.label}
+                </p>
+              </div>
+            </SoftCard>
           </motion.div>
         ))}
       </div>

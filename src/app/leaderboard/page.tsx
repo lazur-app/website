@@ -2,23 +2,17 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Gift } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { LeaderboardTable } from "@/components/Leaderboard";
 import { ReferralSystem } from "@/components/ReferralSystem";
 import { Footer } from "@/components/Footer";
+import { MarketingPageShell } from "@/components/MarketingPageShell";
 
 export default function LeaderboardPage() {
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <MarketingPageShell>
       <ReferralCapture />
-      <div className="pointer-events-none fixed inset-0 grain" aria-hidden />
-      <div
-        className="ambient-blob pointer-events-none fixed -left-[10%] top-[0%] h-[40vh] w-[45vw] rounded-full bg-[#e8e0ff]"
-        aria-hidden
-      />
-
       <Navbar />
 
       <main className="relative mx-auto max-w-6xl px-6 pb-16 pt-24 md:pt-28">
@@ -27,32 +21,30 @@ export default function LeaderboardPage() {
             <motion.p
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-2 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3 py-1 text-[11px] font-medium text-[var(--foreground-muted)]"
+              className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]"
             >
-              <Gift className="h-3 w-3 text-[var(--brand)]" />
               Referral rewards
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.04 }}
-              className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] md:text-3xl"
+              className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
             >
-              Climb the{" "}
-              <span className="gradient-word">leaderboard</span>
+              Climb the leaderboard
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 }}
-              className="mt-1.5 text-[13px] text-[var(--foreground-muted)]"
+              className="mt-2 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]"
             >
               Share your link and move up the ranks.
             </motion.p>
           </div>
           <Link
             href="/login"
-            className="btn-primary shrink-0 rounded-lg px-5 py-2 text-[13px] font-semibold"
+            className="btn-dark inline-flex shrink-0 items-center justify-center px-6 py-3 text-[14px]"
           >
             Get your referral link
           </Link>
@@ -64,6 +56,6 @@ export default function LeaderboardPage() {
       </main>
 
       <Footer />
-    </div>
+    </MarketingPageShell>
   );
 }

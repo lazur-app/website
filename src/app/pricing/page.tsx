@@ -1,9 +1,11 @@
 "use client";
 
 import { motion as m } from "framer-motion";
-import { Check, Sparkles, ShieldCheck, Zap, Globe, Cpu } from "lucide-react";
+import { Check, ShieldCheck, Zap, Globe, Cpu } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SoftCard } from "@/components/SoftCard";
+import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { hasValidSessionToken } from "@/lib/auth";
 import { loginPathWithReturn } from "@/lib/returnTo";
 
@@ -22,7 +24,7 @@ const plans = [
       "1 Mac · community support",
     ],
     icon: Zap,
-    popular: false,
+    featured: false,
   },
   {
     name: "Pro",
@@ -39,8 +41,8 @@ const plans = [
       "Unlimited devices",
       "Priority support",
     ],
-    icon: Sparkles,
-    popular: true,
+    icon: Zap,
+    featured: true,
   },
   {
     name: "Power",
@@ -58,7 +60,7 @@ const plans = [
       "Priority support",
     ],
     icon: Cpu,
-    popular: false,
+    featured: false,
   },
 ];
 
@@ -75,18 +77,17 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <MarketingPageShell>
       <Navbar />
 
-      <main className="mx-auto flex max-w-6xl flex-col items-center px-6 pb-16 pt-24 md:pt-28">
+      <main className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-16 pt-24 md:pt-28">
         <div className="mb-10 space-y-3 text-center md:mb-12">
           <m.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]"
+            className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
           >
-            Simple, transparent{" "}
-            <span className="gradient-word">pricing</span>.
+            Simple, transparent pricing.
           </m.h1>
           <m.p
             initial={{ opacity: 0, y: 16 }}
@@ -99,86 +100,76 @@ export default function PricingPage() {
           </m.p>
         </div>
 
-        <div className="grid w-full gap-5 md:grid-cols-3 md:gap-6">
+        <div className="grid w-full gap-4 md:grid-cols-3 md:gap-5">
           {plans.map((plan, idx) => (
             <m.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 + idx * 0.08 }}
-              className={`glass group relative rounded-2xl p-6 transition-all hover:shadow-[var(--shadow-soft)] md:p-7 ${
-                plan.popular ? "ring-2 ring-[var(--brand)]/20" : ""
-              }`}
             >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--brand)] px-3 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
-                  Most Popular
-                </div>
-              )}
-
-              <div className="mb-5 flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h3 className="text-lg font-bold text-[var(--foreground)]">
-                    {plan.name}
-                  </h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-[var(--foreground-muted)]">
-                    {plan.description}
-                  </p>
-                </div>
-                <div
-                  className={`shrink-0 rounded-xl p-2 ${
-                    plan.popular
-                      ? "bg-[var(--brand-soft)] text-[var(--brand)]"
-                      : "bg-[var(--background-deep)] text-[var(--foreground-muted)]"
-                  }`}
-                >
-                  <plan.icon className="h-4 w-4" />
-                </div>
-              </div>
-
-              <div className="mb-6 flex items-baseline gap-1">
-                <span className="font-display text-4xl font-semibold text-[var(--foreground)]">
-                  {plan.price}
-                </span>
-                {plan.period && (
-                  <span className="text-sm font-medium text-[var(--foreground-faint)]">
-                    {plan.period}
-                  </span>
-                )}
-              </div>
-
-              <div className="mb-6 space-y-2.5">
-                {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-start gap-2.5">
-                    <div
-                      className={`mt-0.5 rounded-full p-0.5 ${
-                        plan.popular
-                          ? "bg-[var(--brand-soft)] text-[var(--brand)]"
-                          : "bg-[var(--background-deep)] text-[var(--foreground-muted)]"
-                      }`}
-                    >
-                      <Check className="h-3.5 w-3.5" />
-                    </div>
-                    <span className="text-[13px] font-medium leading-snug text-[var(--foreground-muted)]">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                onClick={() => handleUpgrade(plan.planType)}
-                disabled={!plan.planType}
-                className={`w-full rounded-xl py-2.5 text-sm font-semibold transition-all active:scale-[0.98] ${
-                  !plan.planType
-                    ? "cursor-default bg-[var(--background-deep)] text-[var(--foreground-faint)]"
-                    : plan.popular
-                      ? "btn-primary shadow-[var(--shadow-soft)]"
-                      : "bg-[var(--foreground)] text-white hover:bg-[var(--foreground)]/90"
+              <SoftCard
+                hover={false}
+                className={`relative flex h-full flex-col p-6 md:p-7 ${
+                  plan.featured ? "ring-1 ring-[var(--foreground)]/10" : ""
                 }`}
               >
-                {plan.buttonText}
-              </button>
+                {plan.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--foreground)] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--background)]">
+                    Most popular
+                  </div>
+                )}
+
+                <div className="mb-5 flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3 className="font-display text-lg font-semibold text-[var(--foreground)]">
+                      {plan.name}
+                    </h3>
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--foreground-muted)]">
+                      {plan.description}
+                    </p>
+                  </div>
+                  <div className="shrink-0 rounded-xl bg-[var(--background-deep)] p-2 text-[var(--foreground-muted)]">
+                    <plan.icon className="h-4 w-4" strokeWidth={1.75} />
+                  </div>
+                </div>
+
+                <div className="mb-6 flex items-baseline gap-1">
+                  <span className="font-display text-4xl font-semibold tracking-tight text-[var(--foreground)]">
+                    {plan.price}
+                  </span>
+                  {plan.period && (
+                    <span className="text-sm font-medium text-[var(--foreground-faint)]">
+                      {plan.period}
+                    </span>
+                  )}
+                </div>
+
+                <div className="mb-6 flex-1 space-y-2.5">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-2.5">
+                      <div className="mt-0.5 rounded-full bg-[var(--background-deep)] p-0.5 text-[var(--foreground-muted)]">
+                        <Check className="h-3.5 w-3.5" strokeWidth={2} />
+                      </div>
+                      <span className="text-[13px] font-medium leading-snug text-[var(--foreground-muted)]">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => handleUpgrade(plan.planType)}
+                  disabled={!plan.planType}
+                  className={`w-full rounded-full py-3 text-sm font-semibold transition-all active:scale-[0.98] ${
+                    !plan.planType
+                      ? "cursor-default bg-[var(--background-deep)] text-[var(--foreground-faint)]"
+                      : "btn-dark"
+                  }`}
+                >
+                  {plan.buttonText}
+                </button>
+              </SoftCard>
             </m.div>
           ))}
         </div>
@@ -190,20 +181,20 @@ export default function PricingPage() {
           className="mt-12 flex flex-wrap justify-center gap-8 text-[var(--foreground-faint)]"
         >
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider">
+            <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
               Secure SSL Encryption
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <Cpu className="h-4 w-4" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider">
+            <Cpu className="h-4 w-4" strokeWidth={1.5} />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
               Privacy First AI
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <Globe className="h-4 w-4" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider">
+            <Globe className="h-4 w-4" strokeWidth={1.5} />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
               Worldwide Support
             </span>
           </div>
@@ -211,6 +202,6 @@ export default function PricingPage() {
       </main>
 
       <Footer />
-    </div>
+    </MarketingPageShell>
   );
 }

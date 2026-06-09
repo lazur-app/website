@@ -3,28 +3,32 @@
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { Hero } from "@/components/Hero";
-import { HowItWorks } from "@/components/HowItWorks";
-import { BentoFeatures } from "@/components/BentoFeatures";
-import { TrustStrip } from "@/components/TrustStrip";
+import { SpeedRace } from "@/components/landing/SpeedRace";
+import { TypingTaxSection } from "@/components/landing/TypingTaxSection";
+import { FluidTransform } from "@/components/landing/FluidTransform";
+import { PersonaSection } from "@/components/landing/PersonaSection";
+import { TestimonialWall } from "@/components/landing/TestimonialWall";
+import { AppsStrip } from "@/components/landing/AppsStrip";
 import { DownloadCTA } from "@/components/DownloadCTA";
-import { ReferralCTA } from "@/components/ReferralCTA";
 import { Footer } from "@/components/Footer";
+import { MarketingPageShell } from "@/components/MarketingPageShell";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
-      <div className="page-backdrop pointer-events-none fixed inset-0 -z-20" aria-hidden />
+    <MarketingPageShell>
       <ReferralCapture />
       <Navbar />
-      <main>
+      <main className="relative">
         <Hero />
-        <HowItWorks />
-        <BentoFeatures />
-        <TrustStrip />
+        <SpeedRace />
+        <TypingTaxSection />
+        <FluidTransform />
+        <PersonaSection />
+        <TestimonialWall />
+        <AppsStrip />
         <DownloadCTA />
-        <ReferralCTA />
       </main>
       <Footer />
-    </div>
+    </MarketingPageShell>
   );
 }

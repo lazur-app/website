@@ -1,39 +1,62 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 
 export const metadata: Metadata = {
-    title: "Privacy Policy | Lazur",
-    description: "Privacy Policy detailing data usage and security for the Lazur ambient intelligence platform.",
+  title: "Privacy Policy | Lazur",
+  description: "How Lazur handles your data, voice input, and account information.",
 };
 
+const UPDATED = "June 10, 2026";
+
 export default function PrivacyPage() {
-    return (
-        <div className="min-h-screen bg-white text-zinc-900 px-8 py-24 md:py-32 flex justify-center">
-            <div className="max-w-2xl w-full">
-                <h1 className="text-4xl font-black tracking-tight mb-8">Privacy Policy</h1>
-                <p className="text-zinc-500 mb-8">Last updated: {new Date().toLocaleDateString()}</p>
-
-                <div className="space-y-8 text-zinc-600 leading-relaxed font-medium">
-                    <section>
-                        <h2 className="text-xl font-bold text-black mb-3 tracking-tight">1. Information Collection</h2>
-                        <p>Lazur collects ambient intelligence data required to deliver productivity features securely. This includes analytics, transcribed input data locally processed where possible, and account details necessary for functionality.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-bold text-black mb-3 tracking-tight">2. Use of Information</h2>
-                        <p>We use the information we collect to operate, maintain, and improve our services, as well as to develop new features that enhance user productivity.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-bold text-black mb-3 tracking-tight">3. Data Security</h2>
-                        <p>We implement industry-standard encryption and security measures to ensure your data remains protected from unauthorized access at all times.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-bold text-black mb-3 tracking-tight">4. Third-Party Sharing</h2>
-                        <p>We do not sell your personal data. Data is shared with trusted partners only when strictly necessary to provide our service under controlled security protocols.</p>
-                    </section>
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <LegalDocumentLayout
+      label="Legal"
+      title="Privacy Policy"
+      updated={UPDATED}
+      sections={[
+        {
+          title: "1. Information we collect",
+          content:
+            "We collect account information you provide (such as email and name), usage data needed to operate the service (including word counts and subscription status), and voice or text you submit for transcription and polishing when you use Lazur.",
+        },
+        {
+          title: "2. How we use information",
+          content:
+            "We use this information to provide and improve Lazur, process subscriptions, support your account, and maintain service reliability. We do not sell your personal data.",
+        },
+        {
+          title: "3. Voice and text processing",
+          content:
+            "Speech and text you dictate may be processed to deliver polished output at your cursor. Processing may involve secure third-party providers where necessary to run the service. We aim to minimize retention of raw audio beyond what is required to complete your request.",
+        },
+        {
+          title: "4. Data security",
+          content:
+            "We use industry-standard safeguards to protect your data in transit and at rest. No method of transmission over the internet is completely secure; we work to reduce risk through encryption, access controls, and monitoring.",
+        },
+        {
+          title: "5. Third-party sharing",
+          content:
+            "We share data with service providers only when needed to operate Lazur (for example, authentication, billing, or infrastructure). Those providers are bound by contractual obligations to protect your data.",
+        },
+        {
+          title: "6. Your choices",
+          content: (
+            <>
+              You may access, update, or delete account information from your dashboard where available. For privacy questions, contact us through the channels listed on our website. See also our{" "}
+              <Link
+                href="/terms"
+                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
+              >
+                Terms of Service
+              </Link>
+              .
+            </>
+          ),
+        },
+      ]}
+    />
+  );
 }

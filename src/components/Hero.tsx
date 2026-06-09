@@ -1,70 +1,90 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { useRef } from "react";
 import { HeroDownloadCta } from "./HeroDownloadCta";
-import { WorksInBar } from "./WorksInBar";
+import { HeroOrbCapsule } from "./HeroOrbCapsule";
 
-const trust = ["No setup", "Works everywhere", "Private by default"];
+const headline = ["Typing", "is", "optional", "now."];
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.55], [1, 0.96]);
+  const y = useTransform(scrollYProgress, [0, 0.55], [0, -40]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
   return (
-    <section className="relative flex min-h-[calc(100vh-4.5rem)] flex-col items-center justify-center overflow-hidden pb-16 pt-28 md:min-h-[calc(100vh-5rem)] md:pb-20 md:pt-32 lg:pt-36">
-      <div
-        className="ambient-blob pointer-events-none absolute -right-[12%] top-[8%] h-[38vh] w-[44vw] rounded-full bg-[#e8e0ff]"
+    <section
+      ref={ref}
+      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden"
+    >
+      <motion.div
         aria-hidden
+        className="pointer-events-none absolute left-1/2 top-[46%] h-[min(420px,55vh)] w-[min(560px,80vw)] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(107,75,252,0.07) 0%, rgba(168,85,247,0.03) 45%, transparent 72%)",
+        }}
+        animate={{ opacity: [0.55, 0.85, 0.55], scale: [1, 1.04, 1] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-3xl px-8 text-center lg:px-12 xl:px-16">
-        <motion.p
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-white/90 px-3 py-2 text-[var(--text-sm)] font-medium text-[var(--foreground-muted)] backdrop-blur-sm"
-        >
-          <span className="h-2 w-2 rounded-full bg-emerald-500" />
-          Ambient writing for macOS
-        </motion.p>
+      <motion.div
+        style={{ opacity, scale, y }}
+        className="relative z-10 flex flex-col items-center px-6 text-center"
+      >
+        <h1 className="font-display text-[2.75rem] font-semibold leading-[1.06] tracking-[-0.03em] text-[var(--foreground)] sm:text-[3.5rem] md:text-[4.25rem] lg:text-[4.75rem]">
+          {headline.map((word, i) => (
+            <motion.span
+              key={word}
+              initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                delay: 0.2 + i * 0.11,
+                duration: 0.75,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mr-[0.22em] inline-block last:mr-0"
+            >
+              {word}
+            </motion.span>
+          ))}
+        </h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[52px] font-semibold leading-[1.08] tracking-[-0.03em] text-[var(--foreground)] sm:text-[56px] lg:text-[60px] xl:text-[64px]"
-        >
-          Typing is optional now.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.14, duration: 0.5 }}
-          className="mx-auto mt-6 max-w-[520px] text-[var(--text-lg)] leading-[var(--leading-body-lg)] text-[var(--foreground-muted)] lg:text-[var(--text-xl)]"
-        >
-          Hold a key. Speak. Lazur rewrites your words for whatever app
-          you&apos;re in — then pastes at your cursor.
-        </motion.p>
+        <HeroOrbCapsule />
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.22, duration: 0.45 }}
-          className="mt-8 flex justify-center"
+          transition={{ delay: 0.72, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-9"
         >
-          <HeroDownloadCta align="center" />
+          <HeroDownloadCta align="center" variant="minimal" />
         </motion.div>
+      </motion.div>
 
-        <motion.ul
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[var(--text-sm)] text-[var(--foreground-muted)]"
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.6 }}
+        style={{ opacity: hintOpacity }}
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-[var(--foreground-faint)]"
+        aria-hidden
+      >
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
         >
-          {trust.map((label) => (
-            <li key={label}>{label}</li>
-          ))}
-        </motion.ul>
-      </div>
-
-      <WorksInBar />
+          <ChevronDown className="h-4 w-4" strokeWidth={1.5} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

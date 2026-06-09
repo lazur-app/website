@@ -1,11 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import navbarLogo from "../../public/lazur-transparent-logo-navbar.png";
 
 type LogoWordmarkProps = {
   href?: string;
   className?: string;
-  /** Logo height in px — default 32 (4px grid). */
+  /** Logo height in px — maps to type size on 4px grid. */
   height?: number;
 };
 
@@ -14,6 +12,8 @@ export function LogoWordmark({
   className = "",
   height = 32,
 }: LogoWordmarkProps) {
+  const fontSize = Math.round(height * 0.58);
+
   const wrapperClassName = [
     "group inline-flex shrink-0 items-center leading-none",
     className,
@@ -22,14 +22,12 @@ export function LogoWordmark({
     .join(" ");
 
   const content = (
-    <Image
-      src={navbarLogo}
-      alt="Lazur"
-      height={height}
-      style={{ height, width: "auto" }}
-      className="object-contain transition-transform group-hover:scale-[1.02]"
-      priority
-    />
+    <span
+      className="font-sans font-bold tracking-[-0.045em] text-[var(--foreground)] transition-opacity group-hover:opacity-75"
+      style={{ fontSize }}
+    >
+      lazur
+    </span>
   );
 
   if (href) {

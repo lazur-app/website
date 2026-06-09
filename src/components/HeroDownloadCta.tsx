@@ -7,9 +7,13 @@ import { detectPlatform, type Platform } from "@/lib/platform";
 
 type HeroDownloadCtaProps = {
   align?: "center" | "start";
+  variant?: "default" | "minimal";
 };
 
-export function HeroDownloadCta({ align = "center" }: HeroDownloadCtaProps) {
+export function HeroDownloadCta({
+  align = "center",
+  variant = "default",
+}: HeroDownloadCtaProps) {
   const [platform, setPlatform] = useState<Platform | null>(null);
 
   useEffect(() => {
@@ -36,7 +40,27 @@ export function HeroDownloadCta({ align = "center" }: HeroDownloadCtaProps) {
         </div>
         <Link
           href="/download"
-          className="btn-primary inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+          className="btn-dark inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+        >
+          <Image
+            src="/apple-icon.png"
+            alt=""
+            width={16}
+            height={16}
+            className="h-4 w-4 object-contain brightness-0 invert"
+          />
+          Download for Mac
+        </Link>
+      </div>
+    );
+  }
+
+  if (variant === "minimal") {
+    return (
+      <div className={`flex ${rowAlign}`}>
+        <Link
+          href="/download"
+          className="btn-dark inline-flex items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
         >
           <Image
             src="/apple-icon.png"
@@ -57,7 +81,7 @@ export function HeroDownloadCta({ align = "center" }: HeroDownloadCtaProps) {
     >
       <Link
         href="/download"
-        className="btn-primary inline-flex items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+        className="btn-dark inline-flex items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
       >
         <Image
           src="/apple-icon.png"

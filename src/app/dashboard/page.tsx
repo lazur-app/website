@@ -47,6 +47,11 @@ function formatWords(n: number) {
   return n.toLocaleString();
 }
 
+function displayWordsUsed(used: number, limit: number) {
+  if (limit <= 0) return formatWords(used);
+  return formatWords(Math.min(used, limit));
+}
+
 function DashboardContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -177,7 +182,7 @@ function DashboardContent() {
                 <TrendingUp className="h-4 w-4 text-[var(--foreground-faint)]" strokeWidth={1.75} />
               </div>
               <p className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-                {formatWords(user.word_quota_used)}{" "}
+                {displayWordsUsed(user.word_quota_used, user.word_quota_limit)}{" "}
                 <span className="text-base font-normal text-[var(--foreground-muted)]">
                   / {formatWords(user.word_quota_limit)} words
                 </span>

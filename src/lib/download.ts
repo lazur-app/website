@@ -1,7 +1,7 @@
 export const MAC_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_MAC_DOWNLOAD_URL?.trim() ?? "";
 
-export const MAC_DOWNLOAD_FILENAME = "Lazur_0.1.0_aarch64.dmg";
+export const MAC_DOWNLOAD_FILENAME = "Lazur_0.1.0_universal.dmg";
 
 export function triggerMacDownload() {
   if (!MAC_DOWNLOAD_URL) return false;

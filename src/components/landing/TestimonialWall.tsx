@@ -23,7 +23,7 @@ const quotes = [
 
 export function TestimonialWall() {
   return (
-    <section className="overflow-hidden px-6 py-12 md:py-16">
+    <section className="landing-section landing-section--social overflow-hidden px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
+import { LandingLowerFlow } from "@/components/landing/LandingLowerFlow";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 
 const LandingAtmosphere = dynamic(() =>
@@ -39,12 +40,14 @@ export default function Home() {
         <LandingAtmosphere />
         <Hero />
         <SpeedRace />
-        <TypingTaxSection />
-        <FluidTransform />
-        <PersonaSection />
-        <TestimonialWall />
-        <AppsStrip />
-        <DownloadCTA />
+        <LandingLowerFlow>
+          <TypingTaxSection />
+          <FluidTransform />
+          <PersonaSection />
+          <TestimonialWall />
+          <AppsStrip />
+          <DownloadCTA />
+        </LandingLowerFlow>
       </main>
       <Footer />
     </MarketingPageShell>

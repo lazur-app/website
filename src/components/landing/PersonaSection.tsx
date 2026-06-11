@@ -51,7 +51,7 @@ export function PersonaSection() {
   const current = personas.find((p) => p.id === active) ?? personas[0];
 
   return (
-    <section id="personas" className="px-6 py-12 md:py-16">
+    <section id="personas" className="landing-section landing-section--personas px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

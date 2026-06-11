@@ -24,7 +24,7 @@ export function LandingAtmosphere() {
         }}
       />
 
-      {/* Speed race — coral peek from left */}
+      {/* Speed race — coral peek from left only (no right blob — avoids seam at section break) */}
       <div
         className="absolute -left-[6%] top-[95vh] h-[320px] w-[280px] rounded-full opacity-[0.2] blur-[80px]"
         style={{
@@ -32,24 +32,26 @@ export function LandingAtmosphere() {
             "radial-gradient(circle, rgba(251, 146, 60, 0.4) 0%, transparent 68%)",
         }}
       />
+
+      {/* Lower-page wash — spans the speed → speech transition (no hard box edge) */}
       <div
-        className="absolute right-[2%] top-[108vh] h-[260px] w-[300px] rounded-full opacity-[0.18] blur-[85px]"
+        className="absolute -right-[8%] top-[88vh] h-[min(520px,48vh)] w-[min(420px,38vw)] rounded-full opacity-[0.055] blur-[110px]"
         style={{
           background:
-            "radial-gradient(circle, rgba(107, 75, 252, 0.35) 0%, transparent 65%)",
+            "radial-gradient(circle, rgba(107, 75, 252, 0.45) 0%, rgba(124, 58, 237, 0.12) 42%, transparent 72%)",
         }}
       />
 
-      {/* Mid page — mint + violet, offset */}
+      {/* Mid page — mint + violet, offset (softened) */}
       <div
-        className="absolute left-[8%] top-[175vh] h-[240px] w-[220px] rounded-full opacity-[0.14] blur-[70px]"
+        className="absolute left-[8%] top-[175vh] h-[240px] w-[220px] rounded-full opacity-[0.1] blur-[70px]"
         style={{
           background:
             "radial-gradient(circle, rgba(52, 211, 153, 0.35) 0%, transparent 70%)",
         }}
       />
       <div
-        className="absolute -right-[4%] top-[210vh] h-[400px] w-[360px] rounded-full opacity-[0.2] blur-[95px]"
+        className="absolute -right-[4%] top-[210vh] h-[400px] w-[360px] rounded-full opacity-[0.08] blur-[95px]"
         style={{
           background:
             "radial-gradient(circle, rgba(124, 58, 237, 0.28) 0%, rgba(250, 204, 21, 0.08) 40%, transparent 72%)",
@@ -58,7 +60,7 @@ export function LandingAtmosphere() {
 
       {/* Lower page */}
       <div
-        className="absolute -left-[8%] top-[290vh] h-[340px] w-[320px] rounded-full opacity-[0.16] blur-[88px]"
+        className="absolute -left-[8%] top-[290vh] h-[340px] w-[320px] rounded-full opacity-[0.08] blur-[88px]"
         style={{
           background:
             "radial-gradient(circle, rgba(107, 75, 252, 0.32) 0%, transparent 68%)",

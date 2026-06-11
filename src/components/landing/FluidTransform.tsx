@@ -152,7 +152,7 @@ export function FluidTransform() {
   const cardLabel = phase === "polished" ? "What you meant" : "What you said";
 
   return (
-    <section id="transform" ref={ref} className="px-6 py-12 md:py-16">
+    <section id="transform" ref={ref} className="landing-section landing-section--transform px-6 py-12 md:py-16">
       <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-14">
         <motion.div whileHover={{ scale: 1.008 }} transition={{ duration: 0.35 }}>
           <SoftCard

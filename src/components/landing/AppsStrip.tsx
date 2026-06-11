@@ -6,7 +6,7 @@ import { SoftCard } from "../SoftCard";
 
 export function AppsStrip() {
   return (
-    <section className="px-6 pb-8 md:pb-12">
+    <section className="landing-section landing-section--apps px-6 pb-8 md:pb-12">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

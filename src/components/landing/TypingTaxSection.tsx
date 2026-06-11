@@ -132,7 +132,7 @@ export function TypingTaxSection() {
   };
 
   return (
-    <section id="voice-era" ref={ref} className="px-6 py-12 md:py-16">
+    <section id="voice-era" ref={ref} className="landing-section landing-section--speech px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

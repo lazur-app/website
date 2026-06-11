@@ -119,7 +119,7 @@ function TypingStream({
 
   return (
     <motion.div
-      className="relative h-44 overflow-hidden rounded-2xl bg-[var(--background-deep)]/45 md:h-48"
+      className="relative h-44 overflow-hidden rounded-lg bg-[var(--background-deep)]/45 md:h-48"
       animate={{
         backgroundColor:
           speedBoost > 1
@@ -353,7 +353,7 @@ export function SpeedRace() {
                   <p className={`mt-1 text-[12px] ${TONE.strong.sub}`}>
                     {hovered === "lazur"
                       ? "Replay — voice in flow"
-                      : "Polished speech-to-text"}
+                      : "Reads what you meant"}
                   </p>
                 </div>
 

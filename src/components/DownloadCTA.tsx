@@ -24,8 +24,8 @@ export function DownloadCTA() {
             Your voice, upgraded.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Download for macOS. Hold a key, speak, release — polished text lands
-            at your cursor.
+            Download for macOS. Speak naturally — lazur lands what you meant at
+            your cursor.
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3">

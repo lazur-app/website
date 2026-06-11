@@ -3,6 +3,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useRef } from "react";
+import { HeroAppLogos } from "./hero/HeroAppLogos";
+import { HeroFluidWaves } from "./hero/HeroFluidWaves";
+import { HeroOptionalWord } from "./hero/HeroOptionalWord";
 import { HeroDownloadCta } from "./HeroDownloadCta";
 import { HeroOrbCapsule } from "./HeroOrbCapsule";
 
@@ -15,67 +18,90 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.55], [1, 0.96]);
-  const y = useTransform(scrollYProgress, [0, 0.55], [0, -40]);
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const headlineOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0]);
+  const headlineScale = useTransform(scrollYProgress, [0, 0.72], [1, 0.97]);
+  const headlineY = useTransform(scrollYProgress, [0, 0.72], [0, -32]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] overflow-hidden"
     >
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[46%] h-[min(420px,55vh)] w-[min(560px,80vw)] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(107,75,252,0.07) 0%, rgba(168,85,247,0.03) 45%, transparent 72%)",
-        }}
-        animate={{ opacity: [0.55, 0.85, 0.55], scale: [1, 1.04, 1] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <HeroFluidWaves />
 
-      <motion.div
-        style={{ opacity, scale, y }}
-        className="relative z-10 flex flex-col items-center px-6 text-center"
-      >
-        <h1 className="font-display text-[2.75rem] font-semibold leading-[1.06] tracking-[-0.03em] text-[var(--foreground)] sm:text-[3.5rem] md:text-[4.25rem] lg:text-[4.75rem]">
-          {headline.map((word, i) => (
-            <motion.span
-              key={word}
-              initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                delay: 0.2 + i * 0.11,
-                duration: 0.75,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mr-[0.22em] inline-block last:mr-0"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-
-        <HeroOrbCapsule />
-
+      <div className="relative z-10 flex min-h-[100dvh] flex-col">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.72, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-9"
+          style={{
+            opacity: headlineOpacity,
+            scale: headlineScale,
+            y: headlineY,
+          }}
+          className="flex flex-1 flex-col items-center justify-center px-6 text-center translate-y-9 sm:translate-y-11"
         >
-          <HeroDownloadCta align="center" variant="minimal" />
+          <h1 className="font-display text-[2.75rem] font-semibold leading-[1.06] tracking-[-0.03em] text-[var(--foreground)] sm:text-[3.5rem] md:text-[4.25rem] lg:text-[4.75rem]">
+            {headline.map((word, i) =>
+              word === "optional" ? (
+                <HeroOptionalWord key={word} />
+              ) : (
+                <motion.span
+                  key={word}
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    delay: 0.2 + i * 0.11,
+                    duration: 0.75,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="mr-[0.22em] inline-block last:mr-0"
+                >
+                  {word}
+                </motion.span>
+              ),
+            )}
+          </h1>
+
+          <motion.p
+            initial={{ y: 12 }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.55, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)] md:mt-5 md:text-[16px]"
+          >
+            Hold a key, speak, release — lazur reads what you meant and lands it
+            at your cursor, in any app.
+          </motion.p>
+
+          <motion.div
+            initial={{ y: 16 }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.68, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8"
+          >
+            <HeroDownloadCta align="center" variant="minimal" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.78, duration: 0.5 }}
+            className="mt-5 md:mt-6"
+          >
+            <HeroAppLogos />
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        {/* Capsule stays full opacity while in view — scroll fade only on headline */}
+        <div className="relative z-20 shrink-0 px-6 pb-14 sm:pb-16">
+          <HeroOrbCapsule />
+        </div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.6 }}
         style={{ opacity: hintOpacity }}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-[var(--foreground-faint)]"
+        className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center text-[var(--foreground-faint)]"
         aria-hidden
       >
         <motion.div

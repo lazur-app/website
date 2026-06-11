@@ -26,7 +26,7 @@ export function Footer() {
           <div>
             <LogoWordmark height={28} />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
-              Your voice, upgraded. The fastest way to think in text.
+              Your voice, upgraded. What you said → what you meant.
             </p>
           </div>
 

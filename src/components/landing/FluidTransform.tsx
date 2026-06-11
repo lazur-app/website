@@ -146,8 +146,10 @@ export function FluidTransform() {
     phase === "listening"
       ? "Listening"
       : phase === "flow"
-        ? "Rewriting"
+        ? "Reading intent"
         : null;
+
+  const cardLabel = phase === "polished" ? "What you meant" : "What you said";
 
   return (
     <section id="transform" ref={ref} className="px-6 py-12 md:py-16">
@@ -178,8 +180,14 @@ export function FluidTransform() {
 
             <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
               <div className="mb-4 flex items-center justify-between gap-3">
-                <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
-                  You spoke
+                <span
+                  className={`text-[11px] font-medium tracking-[0.02em] ${
+                    phase === "polished"
+                      ? "text-[var(--brand)]"
+                      : "text-[var(--foreground-faint)]"
+                  }`}
+                >
+                  {cardLabel}
                 </span>
                 <AnimatePresence mode="wait">
                   {statusLabel && (
@@ -262,14 +270,14 @@ export function FluidTransform() {
           transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-            Say it messy.
+            What you said.
             <br />
-            Ready to send out.
+            What you meant.
           </h2>
           <p className="mt-4 text-[15px] leading-[1.7] text-[var(--foreground-muted)]">
-            Lazur strips filler, fixes grammar, and shapes tone — while you
-            keep talking. Not a transcript. Writing you&apos;d actually hit send
-            on.
+            Lazur reads your intent — strips filler, fixes grammar, shapes tone
+            — while you keep talking. Not a transcript. Writing you&apos;d
+            actually hit send on.
           </p>
         </motion.div>
       </div>

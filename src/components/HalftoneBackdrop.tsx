@@ -1,4 +1,4 @@
-/** Fixed grunge + coarse grain backdrop for marketing pages. */
+/** Fixed grunge + scanline glitch + grain backdrop for marketing pages. */
 export function HalftoneBackdrop() {
   return (
     <div
@@ -6,6 +6,8 @@ export function HalftoneBackdrop() {
       aria-hidden
     >
       <div className="halftone-backdrop__wash" />
+      <div className="halftone-backdrop__analyze" />
+      <div className="halftone-backdrop__scanlines" />
       <div className="halftone-backdrop__grunge" />
       <div className="halftone-backdrop__grain" />
     </div>

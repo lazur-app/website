@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/Providers";
+import { clashDisplay, openSauceOne } from "@/lib/fonts";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -11,11 +12,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lazur — Your voice, upgraded",
   description:
-    "The fastest way to think in text. Lazur turns messy speech into polished writing — everywhere you type.",
+    "Speak naturally. Lazur reads what you meant and writes it where you're typing — in any app.",
   openGraph: {
     title: "Lazur — Your voice, upgraded",
     description:
-      "Speak naturally. Write brilliantly. Lazur transforms your voice into prose you'd actually send.",
+      "What you said, what you meant. Lazur turns messy speech into writing you'd actually send.",
     type: "website",
   },
 };
@@ -27,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistMono.variable} font-sans antialiased`}>
+      <body
+        className={`${openSauceOne.variable} ${clashDisplay.variable} ${geistMono.variable} font-sans antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

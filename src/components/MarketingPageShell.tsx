@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { CursorGlow } from "./CursorGlow";
 import { HalftoneBackdrop } from "./HalftoneBackdrop";
+import { LazurCursor } from "./LazurCursor";
 import { ScrollIndicator } from "./ScrollIndicator";
 
 type MarketingPageShellProps = {
@@ -10,9 +10,9 @@ type MarketingPageShellProps = {
 /** Shared halftone backdrop for marketing pages (landing, pricing, leaderboard). */
 export function MarketingPageShell({ children }: MarketingPageShellProps) {
   return (
-    <div className="relative min-h-screen">
+    <div className="lazur-cursor-scope relative min-h-screen">
       <HalftoneBackdrop />
-      <CursorGlow />
+      <LazurCursor />
       <ScrollIndicator />
       {children}
     </div>

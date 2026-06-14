@@ -21,17 +21,35 @@ export function daysRemaining(iso?: string | null): number | null {
   return Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
 }
 
-export function periodEndLabel(plan: string): string {
+export function periodEndLabel(
+  plan: string,
+  options?: { cancelAtPeriodEnd?: boolean },
+): string {
+  if (options?.cancelAtPeriodEnd) return "Cancels on";
   const normalized = plan.toLowerCase();
   if (normalized.includes("trial")) return "Trial ends";
   if (normalized.includes("free")) return "Billing";
   return "Renews on";
 }
 
-export function periodEndDescription(plan: string, iso?: string | null): string {
+export function periodEndDescription(
+  plan: string,
+  iso?: string | null,
+  options?: { cancelAtPeriodEnd?: boolean; billingSource?: string | null },
+): string {
   const date = formatSubscriptionDate(iso);
   const days = daysRemaining(iso);
   const normalized = plan.toLowerCase();
+
+  if (options?.billingSource === "admin_comp") {
+    return iso
+      ? `Complimentary access · valid until ${date}`
+      : "Complimentary access";
+  }
+
+  if (options?.cancelAtPeriodEnd && iso) {
+    return `Cancels on ${date} — access remains until then`;
+  }
 
   if (normalized.includes("free")) {
     return "Free tier — upgrade anytime";
@@ -42,7 +60,7 @@ export function periodEndDescription(plan: string, iso?: string | null): string 
       : `${days} ${days === 1 ? "day" : "days"} left · ends ${date}`;
   }
   if (iso) {
-    return `${periodEndLabel(plan)} ${date}`;
+    return `${periodEndLabel(plan, options)} ${date}`;
   }
   return "Active subscription";
 }

@@ -18,6 +18,8 @@ export type UserProfile = {
   trial_started_at?: string | null;
   trial_ends_at?: string | null;
   current_period_end?: string | null;
+  billing_source?: "polar" | "admin_comp" | "trial" | null;
+  cancel_at_period_end?: boolean;
   referral_code?: string | null;
   referral_link?: string | null;
 };

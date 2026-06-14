@@ -4,7 +4,16 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Check, CreditCard, Loader2, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  Check,
+  CreditCard,
+  ExternalLink,
+  History,
+  Loader2,
+  Receipt,
+  Sparkles,
+} from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -18,8 +27,16 @@ import {
 import {
   canUpgradeTo,
   createCheckoutSession,
+  fetchBillingActivity,
+  fetchBillingInvoices,
+  fetchBillingStatus,
   fetchCustomerPortalUrl,
+  formatMoney,
+  invoiceLabel,
   isPaidPlan,
+  type BillingActivityItem,
+  type BillingInvoiceItem,
+  type BillingStatus,
   type PlanType,
 } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
@@ -50,11 +67,27 @@ const UPGRADE_PLANS = [
   },
 ];
 
+function formatDateTime(iso?: string | null): string {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "—";
+  return d.toLocaleString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function BillingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
+  const [activity, setActivity] = useState<BillingActivityItem[]>([]);
+  const [invoices, setInvoices] = useState<BillingInvoiceItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
   const [portalLoading, setPortalLoading] = useState(false);
@@ -89,7 +122,16 @@ function BillingContent() {
         return;
       }
 
+      const [status, activityItems, invoiceItems] = await Promise.all([
+        fetchBillingStatus(),
+        fetchBillingActivity(),
+        fetchBillingInvoices(),
+      ]);
+
       setUser(profile);
+      setBillingStatus(status);
+      setActivity(activityItems);
+      setInvoices(invoiceItems);
       setLoading(false);
     }
 
@@ -126,12 +168,12 @@ function BillingContent() {
     setError(null);
     setPortalLoading(true);
     try {
-      const url = await fetchCustomerPortalUrl();
+      const { url, error: portalError } = await fetchCustomerPortalUrl();
       if (url) {
         window.location.href = url;
         return;
       }
-      setError("Billing portal is not available yet. Contact support if you need help.");
+      setError(portalError ?? "Could not open billing portal. Please try again.");
     } catch {
       setError("Could not open billing portal. Please try again.");
     } finally {
@@ -143,8 +185,11 @@ function BillingContent() {
     return <DashboardSkeleton />;
   }
 
-  const periodEnd = user.current_period_end ?? user.trial_ends_at;
+  const periodEnd = billingStatus?.current_period_end ?? user.current_period_end ?? user.trial_ends_at;
   const paid = isPaidPlan(user.plan);
+  const isComp = billingStatus?.billing_source === "admin_comp";
+  const canManagePortal = billingStatus?.can_manage_in_portal ?? (paid && !isComp);
+  const cancelScheduled = billingStatus?.cancel_at_period_end ?? user.cancel_at_period_end;
 
   return (
     <MarketingPageShell>
@@ -170,7 +215,10 @@ function BillingContent() {
             Plans & billing
           </h1>
           <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            {periodEndDescription(user.plan, periodEnd)}
+            {periodEndDescription(user.plan, periodEnd, {
+              cancelAtPeriodEnd: cancelScheduled,
+              billingSource: billingStatus?.billing_source ?? user.billing_source,
+            })}
           </p>
           {fromApp && (
             <SoftCard hover={false} className="mt-4 px-4 py-3">
@@ -197,10 +245,21 @@ function BillingContent() {
             <p className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
               {user.plan}
             </p>
+            {isComp && billingStatus?.comp_reason && (
+              <p className="mt-1 text-[13px] text-[var(--foreground-muted)]">
+                {billingStatus.comp_reason}
+              </p>
+            )}
             <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
-              {periodEndLabel(user.plan)}: {formatSubscriptionDate(periodEnd)}
+              {periodEndLabel(user.plan, { cancelAtPeriodEnd: cancelScheduled })}:{" "}
+              {formatSubscriptionDate(periodEnd)}
             </p>
-            {paid && (
+            {cancelScheduled && (
+              <p className="mt-2 text-[13px] text-amber-800">
+                Cancellation scheduled — you keep access until the date above.
+              </p>
+            )}
+            {canManagePortal && (
               <button
                 type="button"
                 onClick={handleManageBilling}
@@ -215,6 +274,15 @@ function BillingContent() {
                 Manage subscription
               </button>
             )}
+            {paid && isComp && (
+              <p className="mt-4 text-[13px] text-[var(--foreground-muted)]">
+                Complimentary access — contact{" "}
+                <a href="mailto:hello@lazur.app" className="font-medium underline">
+                  support
+                </a>{" "}
+                to change your plan.
+              </p>
+            )}
           </SoftCard>
         </motion.div>
 
@@ -222,6 +290,102 @@ function BillingContent() {
           <p className="mb-4 rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-800">
             {error}
           </p>
+        )}
+
+        {(activity.length > 0 || invoices.length > 0) && (
+          <div className="mb-8 grid gap-6 lg:grid-cols-2">
+            {activity.length > 0 && (
+              <motion.section
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08, duration: 0.45 }}
+              >
+                <SoftCard hover={false} className="p-6">
+                  <div className="mb-4 flex items-center gap-2">
+                    <History className="h-4 w-4 text-[var(--foreground-faint)]" />
+                    <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+                      Billing activity
+                    </h2>
+                  </div>
+                  <ul className="space-y-3">
+                    {activity.map((item) => (
+                      <li
+                        key={item.id}
+                        className="border-b border-[var(--foreground)]/5 pb-3 last:border-0 last:pb-0"
+                      >
+                        <p className="text-[14px] font-medium text-[var(--foreground)]">
+                          {item.label}
+                          {item.detail ? (
+                            <span className="font-normal text-[var(--foreground-muted)]">
+                              {" "}
+                              · {item.detail}
+                            </span>
+                          ) : null}
+                        </p>
+                        <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
+                          {formatDateTime(item.occurred_at)}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </SoftCard>
+              </motion.section>
+            )}
+
+            <motion.section
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.45 }}
+            >
+              <SoftCard hover={false} className="p-6">
+                <div className="mb-4 flex items-center gap-2">
+                  <Receipt className="h-4 w-4 text-[var(--foreground-faint)]" />
+                  <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+                    Billing history
+                  </h2>
+                </div>
+                {invoices.length === 0 ? (
+                  <p className="text-[13px] text-[var(--foreground-muted)]">
+                    No invoices yet. Payments through Polar will appear here.
+                  </p>
+                ) : (
+                  <ul className="space-y-3">
+                    {invoices.map((item) => (
+                      <li
+                        key={item.id}
+                        className="flex items-start justify-between gap-3 border-b border-[var(--foreground)]/5 pb-3 last:border-0 last:pb-0"
+                      >
+                        <div>
+                          <p className="text-[14px] font-medium text-[var(--foreground)]">
+                            {invoiceLabel(item)}
+                          </p>
+                          <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
+                            {formatDateTime(item.paid_at ?? item.created_at)} · {item.status}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-[14px] font-semibold text-[var(--foreground)]">
+                            {formatMoney(item.amount_cents, item.currency)}
+                          </p>
+                          {item.invoice_url && (
+                            <a
+                              href={item.invoice_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                            >
+                              Invoice
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </SoftCard>
+            </motion.section>
+          </div>
         )}
 
         <div className="space-y-4">

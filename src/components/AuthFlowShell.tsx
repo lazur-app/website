@@ -1,0 +1,27 @@
+import type { ReactNode } from "react";
+import { HalftoneBackdrop } from "./HalftoneBackdrop";
+import { LazurCursor } from "./LazurCursor";
+import { Navbar } from "./Navbar";
+
+type AuthFlowShellProps = {
+  children: ReactNode;
+  /** Width constraint for centered auth content. */
+  contentClassName?: string;
+};
+
+/** Shared layout for sign-in and OAuth callback — matches download/dashboard shell. */
+export function AuthFlowShell({
+  children,
+  contentClassName = "w-full max-w-sm",
+}: AuthFlowShellProps) {
+  return (
+    <div className="lazur-cursor-scope relative min-h-screen">
+      <HalftoneBackdrop />
+      <LazurCursor />
+      <Navbar />
+      <main className="relative mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center px-6 pb-20 pt-28 md:pt-32">
+        <div className={contentClassName}>{children}</div>
+      </main>
+    </div>
+  );
+}

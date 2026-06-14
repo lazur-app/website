@@ -5,38 +5,12 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Loader2, Sparkles } from "lucide-react";
-import confetti from "canvas-confetti";
+import { AuthFlowShell } from "@/components/AuthFlowShell";
 import { LogoWordmark } from "@/components/LogoWordmark";
 
 function CallbackContent() {
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"verifying" | "success" | "error">("verifying");
-
-  const fireConfetti = useCallback(() => {
-    const count = 200;
-    const defaults = {
-      origin: { y: 0.65 },
-      colors: ["#6b4bfc", "#a855f7", "#f97316", "#fffcf8"],
-      spread: 90,
-      gravity: 1,
-      scalar: 0.7,
-      ticks: 300,
-    };
-
-    function fire(particleRatio: number, opts: confetti.Options) {
-      confetti({
-        ...defaults,
-        ...opts,
-        particleCount: Math.floor(count * particleRatio),
-      });
-    }
-
-    fire(0.25, { spread: 26, startVelocity: 55 });
-    fire(0.2, { spread: 60 });
-    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-    fire(0.1, { spread: 120, startVelocity: 45 });
-  }, []);
 
   const triggerDeepLink = useCallback(async () => {
     const accessToken = searchParams.get("access_token");
@@ -63,48 +37,42 @@ function CallbackContent() {
   }, [searchParams]);
 
   useEffect(() => {
+    const accessToken = searchParams.get("access_token");
+    const refreshToken = searchParams.get("refresh_token");
+
+    if (!accessToken || !refreshToken) {
+      setStatus("error");
+      return;
+    }
+
     const timer = setTimeout(() => {
       setStatus("success");
-      fireConfetti();
       triggerDeepLink();
     }, 1200);
 
     return () => clearTimeout(timer);
-  }, [searchParams, fireConfetti, triggerDeepLink]);
+  }, [searchParams, triggerDeepLink]);
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[var(--background)] px-6 py-16">
-      <div className="pointer-events-none absolute inset-0 grain" aria-hidden />
-      <div
-        className="ambient-blob pointer-events-none absolute -left-[10%] top-[5%] h-[45vh] w-[50vw] rounded-full bg-[#e8e0ff]"
-        aria-hidden
-      />
-      <div
-        className="ambient-blob pointer-events-none absolute -right-[5%] bottom-[10%] h-[40vh] w-[45vw] rounded-full bg-[#fde8d8]"
-        aria-hidden
-      />
-      <AnimatePresence>
-        {status === "success" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="ambient-blob pointer-events-none absolute left-1/2 top-1/2 h-[50vh] w-[60vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ede9fe]"
-            aria-hidden
-          />
-        )}
-      </AnimatePresence>
-
+    <AuthFlowShell contentClassName="w-full max-w-md">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-md"
       >
         <div className="mb-8 flex justify-center">
-          <LogoWordmark href="/" height={32} />
+          <LogoWordmark href="/" height={40} />
         </div>
 
-        <div className="glass overflow-hidden rounded-2xl px-6 py-8 text-center md:px-8 md:py-10">
+        {(status === "verifying" || status === "success") && (
+          <div className="mb-6 text-center">
+            <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
+              Desktop sign-in
+            </span>
+          </div>
+        )}
+
+        <div className="glass rounded-[var(--radius-card)] px-6 py-8 text-center md:px-8 md:py-10">
           <AnimatePresence mode="wait">
             {status === "verifying" && (
               <motion.div
@@ -154,27 +122,20 @@ function CallbackContent() {
                 className="space-y-7"
               >
                 <motion.div
-                  initial={{ scale: 0.85, opacity: 0 }}
+                  initial={{ scale: 0.92, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: "spring", damping: 18, stiffness: 260 }}
-                  className="relative mx-auto flex h-20 w-20 items-center justify-center"
+                  transition={{ type: "spring", damping: 20, stiffness: 280 }}
+                  className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--brand-soft)] ring-1 ring-[var(--brand)]/20"
                 >
-                  <motion.div
-                    animate={{ scale: [1, 1.12, 1], opacity: [0.35, 0.55, 0.35] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute inset-0 rounded-full bg-[var(--brand-glow)] blur-md"
-                  />
-                  <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[var(--brand-soft)] ring-1 ring-[var(--brand)]/20">
-                    <Check className="h-8 w-8 text-[var(--brand)]" strokeWidth={2.5} />
-                  </div>
+                  <Check className="h-8 w-8 text-[var(--brand)]" strokeWidth={2.5} />
                 </motion.div>
 
                 <div className="space-y-3">
                   <motion.h1
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="font-display text-4xl font-semibold tracking-tight text-[var(--foreground)] md:text-5xl"
+                    transition={{ delay: 0.08 }}
+                    className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)] md:text-4xl"
                   >
                     You&apos;re{" "}
                     <span className="gradient-word">in.</span>
@@ -182,8 +143,8 @@ function CallbackContent() {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="mx-auto max-w-xs text-pretty text-[15px] leading-relaxed text-[var(--foreground-muted)]"
+                    transition={{ delay: 0.15 }}
+                    className="mx-auto max-w-xs text-pretty text-sm leading-relaxed text-[var(--foreground-muted)]"
                   >
                     Your account is synced. Head back to Lazur on your Mac to start
                     writing with your voice.
@@ -193,7 +154,7 @@ function CallbackContent() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.22 }}
                   className="space-y-4 pt-1"
                 >
                   <button
@@ -252,19 +213,24 @@ function CallbackContent() {
           </Link>
         </p>
       </motion.div>
-    </div>
+    </AuthFlowShell>
+  );
+}
+
+function CallbackFallback() {
+  return (
+    <AuthFlowShell contentClassName="w-full max-w-md">
+      <div className="flex flex-col items-center justify-center py-16">
+        <Loader2 className="h-8 w-8 animate-spin text-[var(--brand)]" />
+        <p className="mt-4 text-sm text-[var(--foreground-muted)]">Loading…</p>
+      </div>
+    </AuthFlowShell>
   );
 }
 
 export default function AuthCallbackPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-screen items-center justify-center bg-[var(--background)]">
-          <Loader2 className="h-7 w-7 animate-spin text-[var(--brand)]" />
-        </div>
-      }
-    >
+    <Suspense fallback={<CallbackFallback />}>
       <CallbackContent />
     </Suspense>
   );

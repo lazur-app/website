@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { hasValidSessionToken, startOAuth } from "@/lib/auth";
 import { isSafeReturnPath } from "@/lib/returnTo";
+import { AuthFlowShell } from "./AuthFlowShell";
 import { LogoWordmark } from "./LogoWordmark";
 
 type LoginFormProps = {
@@ -15,11 +16,13 @@ type LoginFormProps = {
 
 const copy = {
   web: {
+    eyebrow: "Account",
     title: "Welcome back",
     subtitle: "Sign in to manage your plan, usage, and referrals.",
     hint: "You'll land on your account dashboard after signing in.",
   },
   desktop: {
+    eyebrow: "Desktop sign-in",
     title: "Sign in to Lazur",
     subtitle: "Connect your account to the Mac app.",
     hint: "After signing in, you'll be redirected back to the desktop app.",
@@ -38,28 +41,23 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
   }, [source, router, safeReturnTo]);
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--background)] px-6 py-16">
-      <div className="pointer-events-none absolute inset-0 grain" aria-hidden />
-      <div
-        className="ambient-blob pointer-events-none absolute -left-[10%] top-[5%] h-[45vh] w-[50vw] rounded-full bg-[#e8e0ff]"
-        aria-hidden
-      />
-      <div
-        className="ambient-blob pointer-events-none absolute -right-[5%] bottom-[10%] h-[40vh] w-[45vw] rounded-full bg-[#fde8d8]"
-        aria-hidden
-      />
-
+    <AuthFlowShell>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-sm"
       >
-        <div className="mb-10 flex justify-center">
+        <div className="mb-8 flex justify-center">
           <LogoWordmark href="/" height={40} />
         </div>
 
-        <div className="glass rounded-2xl px-6 py-8 md:px-8">
+        <div className="mb-6 text-center">
+          <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
+            {text.eyebrow}
+          </span>
+        </div>
+
+        <div className="glass rounded-[var(--radius-card)] px-6 py-8 md:px-8">
           <div className="mb-8 text-center">
             <h1 className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
               {text.title}
@@ -112,6 +110,6 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
           .
         </p>
       </motion.div>
-    </div>
+    </AuthFlowShell>
   );
 }

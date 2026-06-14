@@ -1,7 +1,10 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { HalftoneBackdrop } from "./HalftoneBackdrop";
 import { LazurCursor } from "./LazurCursor";
 import { Navbar } from "./Navbar";
+import { PerformanceTierProvider } from "@/hooks/usePerformanceTier";
 
 type AuthFlowShellProps = {
   children: ReactNode;
@@ -15,13 +18,15 @@ export function AuthFlowShell({
   contentClassName = "w-full max-w-sm",
 }: AuthFlowShellProps) {
   return (
-    <div className="lazur-cursor-scope relative min-h-screen">
-      <HalftoneBackdrop />
-      <LazurCursor />
-      <Navbar />
-      <main className="relative mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center px-6 pb-20 pt-28 md:pt-32">
-        <div className={contentClassName}>{children}</div>
-      </main>
-    </div>
+    <PerformanceTierProvider>
+      <div className="lazur-cursor-scope relative min-h-screen">
+        <HalftoneBackdrop />
+        <LazurCursor />
+        <Navbar />
+        <main className="relative mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center px-6 pb-20 pt-28 md:pt-32">
+          <div className={contentClassName}>{children}</div>
+        </main>
+      </div>
+    </PerformanceTierProvider>
   );
 }

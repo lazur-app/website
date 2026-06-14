@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePerformanceTier } from "@/hooks/usePerformanceTier";
 
 const BRAND = { r: 107, g: 75, b: 252 };
 const PURPLE = { r: 168, g: 85, b: 247 };
@@ -24,7 +25,7 @@ type WaveConfig = {
   size: number;
 };
 
-const WAVES: WaveConfig[] = [
+const WAVES_FULL: WaveConfig[] = [
   {
     baseY: 0.52,
     amp: 0.1,
@@ -76,6 +77,35 @@ const WAVES: WaveConfig[] = [
     rows: 9,
     spread: 0.038,
     size: 1,
+  },
+];
+
+const WAVES_REDUCED: WaveConfig[] = [
+  {
+    baseY: 0.52,
+    amp: 0.1,
+    freq: 1.1,
+    speed: 0.35,
+    phase: 0,
+    color: BRAND,
+    alpha: 0.38,
+    step: 8,
+    rows: 5,
+    spread: 0.052,
+    size: 1.2,
+  },
+  {
+    baseY: 0.48,
+    amp: 0.082,
+    freq: 1.45,
+    speed: 0.48,
+    phase: 1.8,
+    color: PURPLE,
+    alpha: 0.42,
+    step: 7,
+    rows: 5,
+    spread: 0.048,
+    size: 1.05,
   },
 ];
 
@@ -146,11 +176,12 @@ function drawWaveParticles(
         Math.cos(col * 0.28 - row * 0.9 + time * 0.7) * band * 0.08;
 
       const y = centerY + offset + wobble;
-      const sparkle = 0.45 + 0.55 * Math.abs(Math.sin(col * 0.42 + row * 0.85 + wave.phase));
-      const alpha = wave.alpha * fade * sparkle * (0.55 + 0.45 * (1 - Math.abs(rowT - 0.5) * 1.6));
+      const sparkle =
+        0.45 + 0.55 * Math.abs(Math.sin(col * 0.42 + row * 0.85 + wave.phase));
+      const alpha =
+        wave.alpha * fade * sparkle * (0.55 + 0.45 * (1 - Math.abs(rowT - 0.5) * 1.6));
       const size = wave.size * (0.65 + 0.35 * Math.sin(col * 0.33 + row));
 
-      // Layered dots — soft halo + body + bright core blends into particle ribbon
       drawParticle(ctx, x, y, size * 2.1, wave.color, alpha * 0.07);
       drawParticle(ctx, x, y, size * 1.1, wave.color, alpha * 0.22);
       drawParticle(ctx, x, y, size * 0.42, wave.color, Math.min(0.85, alpha * 0.75));
@@ -163,6 +194,7 @@ function drawFrame(
   width: number,
   height: number,
   time: number,
+  waves: WaveConfig[],
 ) {
   ctx.clearRect(0, 0, width, height);
 
@@ -182,21 +214,25 @@ function drawFrame(
 
   ctx.globalCompositeOperation = "source-over";
 
-  for (const wave of WAVES) {
+  for (const wave of waves) {
     drawWaveParticles(ctx, width, height, time, wave);
   }
 }
 
 /** Wide particle waves — flowing dots that blend into ribbons, lazur purple palette. */
 export function HeroFluidWaves() {
+  const { isReduced } = usePerformanceTier();
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
   const sizeRef = useRef({ w: 0, h: 0 });
+  const pausedRef = useRef(false);
   const reducedMotionRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     reducedMotionRef.current = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -205,36 +241,76 @@ export function HeroFluidWaves() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const waves = isReduced ? WAVES_REDUCED : WAVES_FULL;
+    const maxDpr = isReduced ? 1 : 2;
+
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
       const w = parent.clientWidth;
       const h = parent.clientHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
       sizeRef.current = { w, h };
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      if (pausedRef.current) {
+        const { w: rw, h: rh } = sizeRef.current;
+        drawFrame(ctx, rw, rh, 0, waves);
+      }
+    };
+
+    const setPaused = (paused: boolean) => {
+      if (pausedRef.current === paused) return;
+      pausedRef.current = paused;
+      if (!paused) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const hidden = document.visibilityState === "hidden";
+        setPaused(hidden || !entry.isIntersecting);
+      },
+      { root: null, rootMargin: "10% 0px", threshold: 0 },
+    );
+    observer.observe(container);
+
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        setPaused(true);
+        return;
+      }
+      const rect = container.getBoundingClientRect();
+      const inView =
+        rect.bottom > 0 && rect.top < window.innerHeight;
+      setPaused(!inView);
     };
 
     resize();
     window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
 
     let cancelled = false;
     const start = performance.now();
     const tick = (now: number) => {
-      if (cancelled) return;
+      if (cancelled || pausedRef.current) return;
       const t = (now - start) / 1000;
       const time = reducedMotionRef.current ? 0 : t;
       const { w, h } = sizeRef.current;
-      drawFrame(ctx, w, h, time);
+      drawFrame(ctx, w, h, time, waves);
       rafRef.current = requestAnimationFrame(tick);
     };
 
     const begin = () => {
-      if (cancelled) return;
+      if (cancelled || pausedRef.current) return;
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -247,13 +323,16 @@ export function HeroFluidWaves() {
 
     return () => {
       cancelled = true;
+      observer.disconnect();
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [isReduced]);
 
   return (
     <div
+      ref={containerRef}
       className="hero-fluid-waves pointer-events-none absolute inset-x-0 top-1/2 z-[2] h-[min(360px,44vh)] -translate-y-1/2"
       aria-hidden
     >

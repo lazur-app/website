@@ -1,11 +1,14 @@
 "use client";
 
 import { forwardRef, useEffect, useRef } from "react";
+import { usePerformanceTier } from "@/hooks/usePerformanceTier";
 
 const MAX_BURSTS = 2;
-/** 0–1: higher = snappier. ~0.38 = subtle ease without lag. */
-const MOVE_SMOOTH = 0.38;
+const MOVE_SMOOTH_FULL = 0.38;
+const MOVE_SMOOTH_REDUCED = 0.72;
 const MOVE_EPSILON = 0.35;
+const HOVER_SAMPLE_PX = 10;
+const HOVER_SAMPLE_MS = 100;
 
 function spawnClickBurst(host: HTMLDivElement | null) {
   if (!host) return;
@@ -76,35 +79,41 @@ const CursorSprite = forwardRef<SVGSVGElement, { className?: string }>(
  * Position uses a short rAF lerp while moving; idle when settled.
  */
 export function LazurCursor() {
+  const { isReduced } = usePerformanceTier();
   const rootRef = useRef<HTMLDivElement>(null);
   const spriteRef = useRef<SVGSVGElement>(null);
   const burstHostRef = useRef<HTMLDivElement>(null);
   const hoveringRef = useRef(false);
 
   useEffect(() => {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
     const fine = window.matchMedia("(pointer: fine)").matches;
-    if (reduced || !fine) return;
+    if (!fine) return;
 
     const root = rootRef.current;
     if (!root) return;
 
     root.style.opacity = "1";
 
+    const moveSmooth = isReduced ? MOVE_SMOOTH_REDUCED : MOVE_SMOOTH_FULL;
     const target = { x: -100, y: -100 };
     const current = { x: -100, y: -100 };
     let rafId = 0;
     let positioned = false;
+    let tabVisible = document.visibilityState === "visible";
+    let lastHoverSample = { x: -1000, y: -1000, at: 0 };
 
     const applyTransform = () => {
       root.style.transform = `translate3d(${current.x}px,${current.y}px,0)`;
     };
 
     const tick = () => {
-      current.x += (target.x - current.x) * MOVE_SMOOTH;
-      current.y += (target.y - current.y) * MOVE_SMOOTH;
+      if (!tabVisible) {
+        rafId = 0;
+        return;
+      }
+
+      current.x += (target.x - current.x) * moveSmooth;
+      current.y += (target.y - current.y) * moveSmooth;
       applyTransform();
 
       const settled =
@@ -123,23 +132,22 @@ export function LazurCursor() {
     };
 
     const queueMove = () => {
+      if (!tabVisible) return;
       if (!rafId) rafId = requestAnimationFrame(tick);
     };
 
-    const onMove = (e: MouseEvent) => {
-      target.x = e.clientX;
-      target.y = e.clientY;
+    const updateHoverState = (el: HTMLElement | null, x: number, y: number) => {
+      const now = performance.now();
+      const dx = x - lastHoverSample.x;
+      const dy = y - lastHoverSample.y;
+      const movedFar =
+        dx * dx + dy * dy >= HOVER_SAMPLE_PX * HOVER_SAMPLE_PX;
+      const elapsed = now - lastHoverSample.at;
 
-      if (!positioned) {
-        positioned = true;
-        current.x = target.x;
-        current.y = target.y;
-        applyTransform();
-      } else {
-        queueMove();
-      }
+      if (!movedFar && elapsed < HOVER_SAMPLE_MS) return;
 
-      const el = e.target as HTMLElement | null;
+      lastHoverSample = { x, y, at: now };
+
       const useNative = !!el?.closest('[data-lazur-cursor="native"]');
       root.style.opacity = useNative ? "0" : "1";
 
@@ -155,23 +163,56 @@ export function LazurCursor() {
       );
     };
 
+    const onMove = (e: MouseEvent) => {
+      if (!tabVisible) return;
+
+      target.x = e.clientX;
+      target.y = e.clientY;
+
+      if (!positioned) {
+        positioned = true;
+        current.x = target.x;
+        current.y = target.y;
+        applyTransform();
+      } else if (isReduced) {
+        current.x = target.x;
+        current.y = target.y;
+        applyTransform();
+      } else {
+        queueMove();
+      }
+
+      updateHoverState(e.target as HTMLElement | null, e.clientX, e.clientY);
+    };
+
     const onLeave = () => {
       root.style.opacity = "0";
     };
 
     const onDown = () => {
-      spriteRef.current?.classList.add("lazur-cursor__sprite--click");
-      spawnClickBurst(burstHostRef.current);
+      if (!isReduced) {
+        spriteRef.current?.classList.add("lazur-cursor__sprite--click");
+        spawnClickBurst(burstHostRef.current);
+      }
     };
 
     const onUp = () => {
       spriteRef.current?.classList.remove("lazur-cursor__sprite--click");
     };
 
+    const onVisibility = () => {
+      tabVisible = document.visibilityState === "visible";
+      if (!tabVisible && rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
+
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
     document.documentElement.addEventListener("mouseleave", onLeave);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
@@ -179,8 +220,9 @@ export function LazurCursor() {
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, []);
+  }, [isReduced]);
 
   return (
     <div

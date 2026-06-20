@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { AppleIcon } from "@/components/icons/AppleIcon";
 import { SoftCard } from "./SoftCard";
 
 export function DownloadCTA() {
@@ -33,13 +33,7 @@ export function DownloadCTA() {
               href="/download"
               className="btn-dark inline-flex items-center gap-2.5 px-7 py-3.5 text-[15px]"
             >
-              <Image
-                src="/apple-icon.png"
-                alt=""
-                width={16}
-                height={16}
-                className="h-4 w-4 object-contain brightness-0 invert"
-              />
+              <AppleIcon />
               Download for Mac
             </Link>
             <Link

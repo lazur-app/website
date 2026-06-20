@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
 type HeroDownloadCtaProps = {
@@ -42,13 +42,7 @@ export function HeroDownloadCta({
           href="/download"
           className="btn-dark inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
         >
-          <Image
-            src="/apple-icon.png"
-            alt=""
-            width={16}
-            height={16}
-            className="h-4 w-4 object-contain brightness-0 invert"
-          />
+          <AppleIcon />
           Download for Mac
         </Link>
       </div>
@@ -62,13 +56,7 @@ export function HeroDownloadCta({
           href="/download"
           className="btn-dark inline-flex items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
         >
-          <Image
-            src="/apple-icon.png"
-            alt=""
-            width={16}
-            height={16}
-            className="h-4 w-4 object-contain brightness-0 invert"
-          />
+          <AppleIcon />
           Download for Mac
         </Link>
       </div>
@@ -83,13 +71,7 @@ export function HeroDownloadCta({
         href="/download"
         className="btn-dark inline-flex items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
       >
-        <Image
-          src="/apple-icon.png"
-          alt=""
-          width={16}
-          height={16}
-          className="h-4 w-4 object-contain brightness-0 invert"
-        />
+        <AppleIcon />
         Download for Mac
       </Link>
       <Link

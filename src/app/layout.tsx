@@ -10,6 +10,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.lazur.app"),
   title: "Lazur — Your voice, upgraded",
   description:
     "Speak naturally. Lazur reads what you meant and writes it where you're typing — in any app.",
@@ -18,6 +19,22 @@ export const metadata: Metadata = {
     description:
       "What you said, what you meant. Lazur turns messy speech into writing you'd actually send.",
     type: "website",
+    url: "https://www.lazur.app",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 680,
+        alt: "Lazur — Typing is optional now",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lazur — Your voice, upgraded",
+    description:
+      "What you said, what you meant. Lazur turns messy speech into writing you'd actually send.",
+    images: ["/og-image.png"],
   },
 };
 

@@ -8,7 +8,7 @@ import { SoftCard } from "./SoftCard";
 
 export function DownloadCTA() {
   return (
-    <section className="landing-section landing-section--cta relative px-6 py-16 md:py-24">
+    <section className="landing-section landing-section--cta relative px-6 py-10 md:py-14">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

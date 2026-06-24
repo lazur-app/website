@@ -11,6 +11,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lazur.app"),
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   title: "Lazur — Your voice, upgraded",
   description:
     "Speak naturally. Lazur reads what you meant and writes it where you're typing — in any app.",

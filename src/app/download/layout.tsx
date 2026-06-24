@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Download Lazur for macOS",
   description:
-    "Download Lazur for Mac. Install steps for the unsigned beta build, including Gatekeeper and permissions.",
+    "Download Lazur for Mac. Install, sign in, and start dictating in any app.",
 };
 
 export default function DownloadLayout({

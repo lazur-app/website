@@ -4,6 +4,7 @@ import { ReferralCapture } from "@/components/ReferralCapture";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { LandingLowerFlow } from "@/components/landing/LandingLowerFlow";
+import { SectionShell } from "@/components/landing/SectionShell";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 
 const LandingAtmosphere = dynamic(() =>
@@ -39,14 +40,28 @@ export default function Home() {
       <main className="relative">
         <LandingAtmosphere />
         <Hero />
-        <SpeedRace />
+        <SectionShell variant="speed" overlap>
+          <SpeedRace />
+        </SectionShell>
         <LandingLowerFlow>
-          <TypingTaxSection />
-          <FluidTransform />
-          <PersonaSection />
-          <TestimonialWall />
-          <AppsStrip />
-          <DownloadCTA />
+          <SectionShell variant="speech" overlap>
+            <TypingTaxSection />
+          </SectionShell>
+          <SectionShell variant="transform" overlap>
+            <FluidTransform />
+          </SectionShell>
+          <SectionShell variant="personas">
+            <PersonaSection />
+          </SectionShell>
+          <SectionShell variant="social" overlap>
+            <TestimonialWall />
+          </SectionShell>
+          <SectionShell variant="apps">
+            <AppsStrip />
+          </SectionShell>
+          <SectionShell variant="cta">
+            <DownloadCTA />
+          </SectionShell>
         </LandingLowerFlow>
       </main>
       <Footer />

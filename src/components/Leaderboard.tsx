@@ -13,15 +13,15 @@ import {
 } from "@/lib/referrals";
 
 const PRIZES: Record<number, string> = {
-  1: "$100",
-  2: "$50",
-  3: "$10",
+  1: "$60 + 3 months",
+  2: "$40 + 3 months",
+  3: "$20 + 3 months",
 };
 
-const WEEKLY_PRIZES = [
-  { place: "1st", amount: "$100" },
-  { place: "2nd", amount: "$50" },
-  { place: "3rd", amount: "$10" },
+const MONTHLY_PRIZES = [
+  { place: "1st", amount: "$60 + 3 months" },
+  { place: "2nd", amount: "$40 + 3 months" },
+  { place: "3rd", amount: "$20 + 3 months" },
 ];
 
 function initials(name: string) {
@@ -147,14 +147,14 @@ export function LeaderboardTable() {
           value={(data?.active_referrers ?? 0).toLocaleString()}
           icon={TrendingUp}
         />
-        <StatCard label="Prize pool" value="$160" icon={Medal} />
+        <StatCard label="Prize pool" value="$120" icon={Medal} />
 
         <SoftCard hover={false} className="px-5 py-4">
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
-            Weekly prizes
+            Monthly prizes
           </p>
           <div className="mt-3 space-y-2">
-            {WEEKLY_PRIZES.map((p) => (
+            {MONTHLY_PRIZES.map((p) => (
               <div key={p.place} className="flex items-center justify-between text-[13px]">
                 <span className="font-medium text-[var(--foreground-muted)]">{p.place}</span>
                 <span className="font-display font-semibold text-[var(--foreground)]">

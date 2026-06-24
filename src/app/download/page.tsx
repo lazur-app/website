@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ChevronDown, Download } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Download, Mic, Shield, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SoftCard } from "@/components/SoftCard";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import {
   MAC_DOWNLOAD_FILENAME,
@@ -14,23 +15,21 @@ import {
 } from "@/lib/download";
 import { detectPlatform } from "@/lib/platform";
 
-const installSteps = [
+const highlights = [
   {
-    title: "Install Lazur",
-    detail: `Open ${MAC_DOWNLOAD_FILENAME} from Downloads and drag Lazur into Applications.`,
+    icon: Mic,
+    label: "Dictate anywhere",
+    detail: "Works in every app on your Mac",
   },
   {
-    title: "Open it once",
-    detail:
-      "Right-click Lazur → Open. macOS may warn you — this beta isn't notarized yet. Choose Open.",
+    icon: Sparkles,
+    label: "Polished output",
+    detail: "Rewrites that sound like you",
   },
   {
-    title: "Allow permissions",
-    detail: "Grant Microphone and Accessibility when prompted so Lazur can hear you and type anywhere.",
-  },
-  {
-    title: "Sign in",
-    detail: "Launch Lazur and sign in with Google to finish setup.",
+    icon: Shield,
+    label: "Privacy first",
+    detail: "On-device speech, cloud polish when needed",
   },
 ];
 
@@ -39,7 +38,6 @@ export default function DownloadPage() {
     null
   );
   const [downloadStarted, setDownloadStarted] = useState(false);
-  const [showTroubleshooting, setShowTroubleshooting] = useState(false);
 
   useEffect(() => {
     setPlatform(detectPlatform());
@@ -114,51 +112,102 @@ export default function DownloadPage() {
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative mx-auto max-w-xl px-6 pb-24 pt-28 md:pt-32">
+      <main className="relative mx-auto max-w-2xl px-6 pb-24 pt-24 md:pt-28">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-8 -z-10 h-72 opacity-70"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(107,75,252,0.1) 0%, rgba(168,85,247,0.04) 45%, transparent 72%)",
+          }}
+          aria-hidden
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="mb-8 text-center">
-            <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
-              macOS · beta
-            </span>
-            <h1 className="mt-5 font-display text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-              Downloading Lazur
-            </h1>
-            <p className="mt-3 text-sm text-[var(--foreground-muted)]">
+          <div className="mb-10 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]"
+            >
+              macOS
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.04 }}
+              className="font-display text-balance text-3xl font-semibold tracking-[-0.03em] md:text-[2.75rem]"
+            >
+              Thanks for downloading
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08 }}
+              className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]"
+            >
               {downloadStarted
-                ? "Your download should start automatically. Follow the steps below."
+                ? "Your download should start automatically. Open the installer, then sign in to get started."
                 : MAC_DOWNLOAD_URL
                   ? "Starting your download…"
                   : "Download link is not configured yet."}
-            </p>
+            </motion.p>
+
+            {downloadStarted && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.15 }}
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-4 py-2 text-[13px] font-medium text-[var(--foreground-muted)]"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand)] opacity-40" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand)]" />
+                </span>
+                {MAC_DOWNLOAD_FILENAME}
+              </motion.div>
+            )}
           </div>
 
-          <div className="glass rounded-[var(--radius-card)] px-6 py-8 md:px-8">
-            <ol className="space-y-6">
-              {installSteps.map((step, i) => (
-                <li key={step.title} className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--brand-soft)] text-sm font-semibold text-[var(--brand-ink)]">
-                    {i + 1}
-                  </span>
-                  <div className="pt-0.5">
-                    <p className="font-medium text-[var(--foreground)]">{step.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-[var(--foreground-muted)]">
-                      {step.detail}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <div className="mb-6 grid gap-3 sm:grid-cols-3">
+            {highlights.map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12 + i * 0.06 }}
+              >
+                <SoftCard hover={false} className="h-full px-4 py-4">
+                  <item.icon
+                    className="mb-2 h-4 w-4 text-[var(--brand-ink)]"
+                    strokeWidth={1.75}
+                  />
+                  <p className="text-[13px] font-semibold text-[var(--foreground)]">
+                    {item.label}
+                  </p>
+                  <p className="mt-0.5 text-[12px] leading-snug text-[var(--foreground-muted)]">
+                    {item.detail}
+                  </p>
+                </SoftCard>
+              </motion.div>
+            ))}
+          </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <SoftCard hover={false} className="p-6 text-center md:p-8">
+            <p className="text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+              Install Lazur from your Downloads folder, then sign in with Google to
+              finish setup.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/login/app"
-                className="btn-primary inline-flex flex-1 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+                className="btn-dark inline-flex flex-1 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
               >
-                Sign in after install
+                Sign in
               </Link>
               <button
                 type="button"
@@ -169,58 +218,19 @@ export default function DownloadPage() {
                 Download again
               </button>
             </div>
-          </div>
+          </SoftCard>
 
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={() => setShowTroubleshooting((open) => !open)}
-              className="flex w-full items-center justify-between rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)]/60 px-5 py-4 text-left text-sm font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
-              aria-expanded={showTroubleshooting}
+          <p className="mt-8 text-center text-[13px] text-[var(--foreground-faint)]">
+            Need more words or Voice Commands?{" "}
+            <Link
+              href="/pricing"
+              className="font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
             >
-              Blocked by macOS?
-              <ChevronDown
-                className={`h-4 w-4 shrink-0 transition-transform ${showTroubleshooting ? "rotate-180" : ""}`}
-              />
-            </button>
+              View pricing
+            </Link>
+          </p>
 
-            <AnimatePresence initial={false}>
-              {showTroubleshooting && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] px-5 py-5 text-sm leading-relaxed text-[var(--foreground-muted)]">
-                    <p className="font-medium text-[var(--foreground)]">
-                      &ldquo;Lazur is damaged&rdquo; or won&apos;t open?
-                    </p>
-                    <p className="mt-2">
-                      Click Cancel if macOS warns you — the file is fine. In Terminal,
-                      run:
-                    </p>
-                    <code className="mt-3 block overflow-x-auto rounded-xl bg-[var(--background-deep)] px-3 py-2.5 font-mono text-[11px] text-[var(--foreground)]">
-                      xattr -cr ~/Downloads/{MAC_DOWNLOAD_FILENAME}
-                    </code>
-                    <p className="mt-3">
-                      Then open the DMG again. If Lazur still won&apos;t launch after
-                      installing:
-                    </p>
-                    <code className="mt-2 block overflow-x-auto rounded-xl bg-[var(--background-deep)] px-3 py-2.5 font-mono text-[11px] text-[var(--foreground)]">
-                      xattr -cr /Applications/Lazur.app
-                    </code>
-                    <p className="mt-3">
-                      Right-click Lazur → Open one more time.
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <p className="mt-8 text-center">
+          <p className="mt-4 text-center">
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--foreground-faint)] transition-colors hover:text-[var(--foreground-muted)]"

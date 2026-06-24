@@ -1,7 +1,7 @@
 "use client";
 
 import { motion as m } from "framer-motion";
-import { Check, ShieldCheck, Zap, Globe, Cpu } from "lucide-react";
+import { Check, ShieldCheck, Zap, Globe, Cpu, X } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SoftCard } from "@/components/SoftCard";
@@ -9,20 +9,26 @@ import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { hasValidSessionToken } from "@/lib/auth";
 import { loginPathWithReturn } from "@/lib/returnTo";
 
+type PlanFeature = {
+  text: string;
+  included: boolean;
+};
+
 const plans = [
   {
     name: "Free",
     price: "$0",
     planType: null,
-    description:
-      "Try Lazur without a meter running on minutes — a generous monthly word budget for light use.",
+    description: "Perfect for getting started.",
     buttonText: "Current Plan",
     features: [
-      "5,000 AI-polished words / month",
-      "Standard rewriting & formatting",
-      "Smart Rewrite preview (included in word budget)",
-      "1 Mac · community support",
-    ],
+      { text: "5,000 words per month", included: true },
+      { text: "5 Clipboards", included: true },
+      { text: "Standard dictation", included: true },
+      { text: "Voice Commands", included: false },
+      { text: "Zen Mode", included: false },
+      { text: "Voice Profiling (coming soon)", included: false },
+    ] satisfies PlanFeature[],
     icon: Zap,
     featured: false,
   },
@@ -31,16 +37,18 @@ const plans = [
     price: "$10",
     period: "/ month",
     planType: "pro",
-    description:
-      "For daily knowledge workers — large word allowance plus Command Mode for voice-driven writing.",
+    description: "For professionals who dictate daily.",
     buttonText: "Upgrade to Pro",
     features: [
-      "150,000 AI-polished words / month",
-      "Command Mode — 30 voice commands / month",
-      "Smart Rewrite — context-aware rewrites",
-      "Unlimited devices",
-      "Priority support",
-    ],
+      {
+        text: "Unlimited words* (fair usage limit: 150,000 words/month)",
+        included: true,
+      },
+      { text: "9 Clipboards", included: true },
+      { text: "30 Voice Commands per month", included: true },
+      { text: "Zen Mode", included: true },
+      { text: "Voice Profiling (coming soon)", included: false },
+    ] satisfies PlanFeature[],
     icon: Zap,
     featured: true,
   },
@@ -49,20 +57,49 @@ const plans = [
     price: "$25",
     period: "/ month",
     planType: "power",
-    description:
-      "For heavy writers and engineers — maximum words and Command Mode for all-day use.",
+    description: "Built for power users and heavy workflows.",
     buttonText: "Upgrade to Power",
     features: [
-      "500,000 AI-polished words / month",
-      "Command Mode — 200 voice commands / month",
-      "Smart Rewrite — context-aware rewrites",
-      "Unlimited devices",
-      "Priority support",
-    ],
+      {
+        text: "Unlimited words* (fair usage limit: 500,000 words/month)",
+        included: true,
+      },
+      { text: "9 Clipboards", included: true },
+      { text: "200 Voice Commands per month", included: true },
+      { text: "Zen Mode", included: true },
+      { text: "Voice Profiling (coming soon)", included: true },
+    ] satisfies PlanFeature[],
     icon: Cpu,
     featured: false,
   },
 ];
+
+function FeatureRow({ feature }: { feature: PlanFeature }) {
+  const Icon = feature.included ? Check : X;
+
+  return (
+    <div className="flex items-start gap-2.5">
+      <div
+        className={`mt-0.5 rounded-full p-0.5 ${
+          feature.included
+            ? "bg-[var(--background-deep)] text-[var(--foreground-muted)]"
+            : "text-[var(--foreground-faint)]"
+        }`}
+      >
+        <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+      </div>
+      <span
+        className={`text-[13px] font-medium leading-snug ${
+          feature.included
+            ? "text-[var(--foreground-muted)]"
+            : "text-[var(--foreground-faint)]"
+        }`}
+      >
+        {feature.text}
+      </span>
+    </div>
+  );
+}
 
 export default function PricingPage() {
   const handleUpgrade = (planType: string | null) => {
@@ -95,8 +132,8 @@ export default function PricingPage() {
             transition={{ delay: 0.1 }}
             className="mx-auto max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)] md:text-base"
           >
-            Pay for polished output — word counts reset each month so you always
-            know where you stand.
+            Start free, upgrade when you need more words, commands, and advanced
+            features.
           </m.p>
         </div>
 
@@ -147,14 +184,7 @@ export default function PricingPage() {
 
                 <div className="mb-6 flex-1 space-y-2.5">
                   {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-2.5">
-                      <div className="mt-0.5 rounded-full bg-[var(--background-deep)] p-0.5 text-[var(--foreground-muted)]">
-                        <Check className="h-3.5 w-3.5" strokeWidth={2} />
-                      </div>
-                      <span className="text-[13px] font-medium leading-snug text-[var(--foreground-muted)]">
-                        {feature}
-                      </span>
-                    </div>
+                    <FeatureRow key={feature.text} feature={feature} />
                   ))}
                 </div>
 
@@ -174,11 +204,20 @@ export default function PricingPage() {
           ))}
         </div>
 
+        <m.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.45 }}
+          className="mt-6 text-center text-[12px] text-[var(--foreground-faint)]"
+        >
+          * Unlimited within fair usage limits.
+        </m.p>
+
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-12 flex flex-wrap justify-center gap-8 text-[var(--foreground-faint)]"
+          className="mt-10 flex flex-wrap justify-center gap-8 text-[var(--foreground-faint)]"
         >
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />

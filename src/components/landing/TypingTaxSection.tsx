@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { CursorMuseDemo } from "./CursorMuseDemo";
+import { SoftCard } from "../SoftCard";
 
 const APPS = [
   { name: "Slack", icon: "/slack-new-50.png" },
@@ -132,8 +133,9 @@ export function TypingTaxSection() {
   };
 
   return (
-    <section id="voice-era" ref={ref} className="landing-section landing-section--speech px-6 py-12 md:py-16">
+    <section id="voice-era" ref={ref} className="landing-section landing-section--speech px-6 py-6 md:py-8">
       <div className="mx-auto max-w-5xl">
+        <SoftCard hover={false} className="px-8 py-10 md:px-12 md:py-14 lg:px-14 lg:py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -148,12 +150,7 @@ export function TypingTaxSection() {
             <br />
             Apps still ask you to type.
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            The keyboard made sense when writing meant sitting at a desk. Now you
-            jump between a dozen apps — and retype the same idea every time.
-            Voice is the faster input. Lazur writes what you meant — not just
-            what you said.
-          </p>
+          
         </motion.div>
 
         <motion.div
@@ -235,6 +232,7 @@ export function TypingTaxSection() {
           The keyboard isn&apos;t wrong — it&apos;s just outdated for how you work
           today.
         </motion.p>
+        </SoftCard>
       </div>
     </section>
   );

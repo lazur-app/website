@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { HalftoneBackdrop } from "./HalftoneBackdrop";
+import { MarketingBackdrop } from "./MarketingBackdrop";
 import { LazurCursor } from "./LazurCursor";
 import { ScrollIndicator } from "./ScrollIndicator";
 import {
@@ -18,7 +18,7 @@ function MarketingPageShellInner({ children }: MarketingPageShellProps) {
 
   return (
     <div className="lazur-cursor-scope relative min-h-screen">
-      <HalftoneBackdrop />
+      <MarketingBackdrop />
       <LazurCursor />
       {!isReduced && <ScrollIndicator />}
       {children}
@@ -26,7 +26,7 @@ function MarketingPageShellInner({ children }: MarketingPageShellProps) {
   );
 }
 
-/** Shared halftone backdrop for marketing pages (landing, pricing, leaderboard). */
+/** Shared backdrop for marketing pages (landing, pricing, leaderboard). */
 export function MarketingPageShell({ children }: MarketingPageShellProps) {
   return (
     <PerformanceTierProvider>

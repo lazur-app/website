@@ -27,7 +27,7 @@ type WaveConfig = {
 
 const WAVES_FULL: WaveConfig[] = [
   {
-    baseY: 0.52,
+    baseY: 0.44,
     amp: 0.1,
     freq: 1.1,
     speed: 0.35,
@@ -40,7 +40,7 @@ const WAVES_FULL: WaveConfig[] = [
     size: 1.35,
   },
   {
-    baseY: 0.48,
+    baseY: 0.4,
     amp: 0.082,
     freq: 1.45,
     speed: 0.48,
@@ -53,7 +53,7 @@ const WAVES_FULL: WaveConfig[] = [
     size: 1.2,
   },
   {
-    baseY: 0.54,
+    baseY: 0.46,
     amp: 0.066,
     freq: 1.75,
     speed: 0.4,
@@ -66,7 +66,7 @@ const WAVES_FULL: WaveConfig[] = [
     size: 1.1,
   },
   {
-    baseY: 0.46,
+    baseY: 0.38,
     amp: 0.05,
     freq: 2.1,
     speed: 0.52,
@@ -82,7 +82,7 @@ const WAVES_FULL: WaveConfig[] = [
 
 const WAVES_REDUCED: WaveConfig[] = [
   {
-    baseY: 0.52,
+    baseY: 0.44,
     amp: 0.1,
     freq: 1.1,
     speed: 0.35,
@@ -95,7 +95,7 @@ const WAVES_REDUCED: WaveConfig[] = [
     size: 1.2,
   },
   {
-    baseY: 0.48,
+    baseY: 0.4,
     amp: 0.082,
     freq: 1.45,
     speed: 0.48,
@@ -333,7 +333,7 @@ export function HeroFluidWaves() {
   return (
     <div
       ref={containerRef}
-      className="hero-fluid-waves pointer-events-none absolute inset-x-0 top-1/2 z-[2] h-[min(360px,44vh)] -translate-y-1/2"
+      className="hero-fluid-waves pointer-events-none absolute inset-x-0 top-[30%] z-[1] h-[min(460px,52vh)] w-full -translate-y-1/2"
       aria-hidden
     >
       <canvas ref={canvasRef} className="h-full w-full" />

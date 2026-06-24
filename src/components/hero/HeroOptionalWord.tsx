@@ -10,7 +10,7 @@ const HIGHLIGHT_DELAY = WORD_DELAY + 0.5;
 export function HeroOptionalWord() {
   return (
     <motion.span
-      className="relative mr-[0.22em] inline-block italic"
+      className="relative inline-block shrink-0 italic"
       initial={{ y: 20 }}
       animate={{ y: 0 }}
       transition={{

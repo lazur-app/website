@@ -43,7 +43,7 @@ export function HeroDownloadCta({
           className="btn-dark inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
         >
           <AppleIcon />
-          Download for Mac
+          Download Free for Mac
         </Link>
       </div>
     );
@@ -57,7 +57,7 @@ export function HeroDownloadCta({
           className="btn-dark inline-flex items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
         >
           <AppleIcon />
-          Download for Mac
+          Download Free for Mac
         </Link>
       </div>
     );

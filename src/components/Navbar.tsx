@@ -96,7 +96,7 @@ export function Navbar() {
                     href="/download"
                     className="btn-dark !min-h-8 rounded-full px-4 py-1.5 text-[13px]"
                   >
-                    Download
+                    Try Lazur Free
                   </Link>
                 </>
               )}
@@ -163,7 +163,7 @@ export function Navbar() {
                         href="/download"
                         className="btn-dark w-fit rounded-full px-5 py-2.5 text-[14px]"
                       >
-                        Download for Mac
+                        Try Lazur Free
                       </Link>
                     </>
                   )}

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { LogoWordmark } from "./LogoWordmark";
 
+import { EXCLUSIVE_ACCESS_PATH } from "@/lib/exclusiveAccess";
+
 const footerLinks = {
   Product: [
     { href: "/pricing", label: "Pricing" },
     { href: "/leaderboard", label: "Leaderboard" },
-    { href: "/download", label: "Download" },
+    { href: EXCLUSIVE_ACCESS_PATH, label: "Exclusive access" },
   ],
   Account: [
     { href: "/login", label: "Log in" },

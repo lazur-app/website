@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { LogoWordmark } from "./LogoWordmark";
 import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
+import { EXCLUSIVE_ACCESS_PATH } from "@/lib/exclusiveAccess";
 
 const navLinks = [
   { href: "/pricing", label: "Pricing", match: "/pricing" },
@@ -93,10 +94,10 @@ export function Navbar() {
                     Log in
                   </Link>
                   <Link
-                    href="/download"
+                    href={EXCLUSIVE_ACCESS_PATH}
                     className="btn-dark !min-h-8 rounded-full px-4 py-1.5 text-[13px]"
                   >
-                    Try Lazur Free
+                    Exclusive access
                   </Link>
                 </>
               )}
@@ -160,10 +161,10 @@ export function Navbar() {
                         Log in
                       </Link>
                       <Link
-                        href="/download"
+                        href={EXCLUSIVE_ACCESS_PATH}
                         className="btn-dark w-fit rounded-full px-5 py-2.5 text-[14px]"
                       >
-                        Try Lazur Free
+                        Exclusive access
                       </Link>
                     </>
                   )}

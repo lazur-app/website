@@ -99,10 +99,10 @@ function BillingSuccessContent() {
                 Go to dashboard
               </Link>
               <Link
-                href="/download"
+                href="/exclusive-access"
                 className="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] px-5 py-3 text-sm font-semibold text-[var(--foreground)]"
               >
-                Download app
+                Exclusive access
               </Link>
             </div>
           </>

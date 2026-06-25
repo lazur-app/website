@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { AppleIcon } from "@/components/icons/AppleIcon";
+import { EXCLUSIVE_ACCESS_PATH } from "@/lib/exclusiveAccess";
 
 export function FinalCtaSection() {
   return (
@@ -28,7 +28,8 @@ export function FinalCtaSection() {
           Never break your flow.
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-white/60">
-          Try free on macOS — speak naturally, write everywhere.
+          We&apos;re building Lazur for macOS — request exclusive access to be
+          first in line.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <div className="final-cta-btn-wrap">
@@ -38,9 +39,8 @@ export function FinalCtaSection() {
                 <div className="final-cta-orbit__spin final-cta-orbit__spin--dot" />
               </div>
             </div>
-            <Link href="/download" className="final-cta-btn">
-              <AppleIcon className="h-5 w-5" />
-              Download Free for Mac
+            <Link href={EXCLUSIVE_ACCESS_PATH} className="final-cta-btn">
+              Exclusive access
             </Link>
           </div>
           <Link

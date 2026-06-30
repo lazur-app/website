@@ -1,7 +1,22 @@
 export const MAC_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_MAC_DOWNLOAD_URL?.trim() ?? "";
 
-export const MAC_DOWNLOAD_FILENAME = "Lazur_0.1.1_aarch64.dmg";
+function filenameFromDownloadUrl(url: string): string | null {
+  if (!url) return null;
+
+  try {
+    const segment = new URL(url).pathname.split("/").filter(Boolean).pop();
+    return segment ? decodeURIComponent(segment) : null;
+  } catch {
+    const segment = url.split("/").filter(Boolean).pop()?.split("?")[0];
+    return segment ? decodeURIComponent(segment) : null;
+  }
+}
+
+export const MAC_DOWNLOAD_FILENAME =
+  process.env.NEXT_PUBLIC_MAC_DOWNLOAD_FILENAME?.trim() ||
+  filenameFromDownloadUrl(MAC_DOWNLOAD_URL) ||
+  "Lazur.dmg";
 
 export function triggerMacDownload() {
   if (!MAC_DOWNLOAD_URL) return false;

@@ -143,7 +143,6 @@ export function ScrollIndicator() {
   return (
     <div
       className="fixed inset-y-0 right-0 z-[100] hidden w-14 md:block"
-      data-lazur-cursor="native"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => {
         if (!dragging) setHovered(false);

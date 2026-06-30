@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Exclusive access — Lazur",
+  title: "Download Lazur for macOS",
   description:
-    "Request exclusive access to Lazur while we finish building the app.",
+    "Download Lazur for Mac. Install, sign in, and start dictating in any app.",
 };
 
 export default function DownloadLayout({

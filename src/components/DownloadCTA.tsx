@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { EXCLUSIVE_ACCESS_PATH } from "@/lib/exclusiveAccess";
+import { AppleIcon } from "@/components/icons/AppleIcon";
 import { SoftCard } from "./SoftCard";
 
 export function DownloadCTA() {
@@ -24,16 +24,17 @@ export function DownloadCTA() {
             Your voice, upgraded.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Request exclusive access for macOS. Speak naturally — lazur lands
-            what you meant at your cursor.
+            Download for macOS. Speak naturally — lazur lands what you meant at
+            your cursor.
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3">
             <Link
-              href={EXCLUSIVE_ACCESS_PATH}
+              href="/download"
               className="btn-dark inline-flex items-center gap-2.5 px-7 py-3.5 text-[15px]"
             >
-              Exclusive access
+              <AppleIcon />
+              Download for Mac
             </Link>
             <Link
               href="/login"

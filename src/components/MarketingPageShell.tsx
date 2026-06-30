@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import { MarketingBackdrop } from "./MarketingBackdrop";
-import { LazurCursor } from "./LazurCursor";
 import { ScrollIndicator } from "./ScrollIndicator";
 import {
   PerformanceTierProvider,
@@ -17,9 +16,8 @@ function MarketingPageShellInner({ children }: MarketingPageShellProps) {
   const { isReduced } = usePerformanceTier();
 
   return (
-    <div className="lazur-cursor-scope relative min-h-screen">
+    <div className="relative min-h-screen">
       <MarketingBackdrop />
-      <LazurCursor />
       {!isReduced && <ScrollIndicator />}
       {children}
     </div>

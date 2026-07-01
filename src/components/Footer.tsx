@@ -4,6 +4,7 @@ import { LogoWordmark } from "./LogoWordmark";
 const footerLinks = {
   Product: [
     { href: "/pricing", label: "Pricing" },
+    { href: "/blog", label: "Blog" },
     { href: "/leaderboard", label: "Leaderboard" },
     { href: "/download", label: "Download" },
   ],

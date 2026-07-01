@@ -36,33 +36,57 @@ import {
   isPaidPlan,
   type BillingActivityItem,
   type BillingInvoiceItem,
+  type BillingInterval,
   type BillingStatus,
   type PlanType,
 } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
+import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggle";
+import { usePricingRegion } from "@/hooks/usePricingRegion";
+import {
+  INDIA_GST_NOTE,
+  maxAnnualSavings,
+  planPrices,
+  WEBSITE_PLANS,
+} from "@/lib/pricingPlans";
 import {
   formatSubscriptionDate,
   periodEndDescription,
   periodEndLabel,
 } from "@/lib/subscriptionDates";
 
-const UPGRADE_PLANS = [
+const UPGRADE_PLAN_META: {
+  name: string;
+  planType: PlanType;
+  planId: "pro" | "power";
+  description: string;
+  features: string[];
+  popular: boolean;
+}[] = [
   {
     name: "Pro",
-    planType: "pro" as PlanType,
-    price: "$10",
-    period: "/ month",
-    description: "150,000 words / month plus Command Mode for daily use.",
-    features: ["Command Mode", "Smart Rewrite", "Unlimited devices", "Priority support"],
+    planType: "pro",
+    planId: "pro",
+    description: "150,000 words / month and 50 Command Mode uses.",
+    features: [
+      "50 Command Mode uses",
+      "Smart Rewrite + Zen Mode",
+      "9 clipboard slots",
+      "Dictionary & snippets",
+    ],
     popular: true,
   },
   {
     name: "Power",
-    planType: "power" as PlanType,
-    price: "$25",
-    period: "/ month",
-    description: "500,000 words / month for heavy writers and engineers.",
-    features: ["200 Command Mode uses", "Maximum word budget", "Priority support"],
+    planType: "power",
+    planId: "power",
+    description: "500,000 words / month and 300 Command Mode uses.",
+    features: [
+      "300 Command Mode uses",
+      "Voice Profiling (coming soon)",
+      "Priority support",
+      "Everything in Pro",
+    ],
     popular: false,
   },
 ];
@@ -84,6 +108,7 @@ function BillingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
+  const { region } = usePricingRegion();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
   const [activity, setActivity] = useState<BillingActivityItem[]>([]);
@@ -92,9 +117,13 @@ function BillingContent() {
   const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
   const [portalLoading, setPortalLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [interval, setInterval] = useState<BillingInterval>(
+    searchParams.get("interval") === "year" ? "year" : "month",
+  );
   const fromApp = searchParams.get("source") === "app";
   const preselectedPlan = searchParams.get("plan");
   const preselectStarted = useRef(false);
+  const maxSavings = maxAnnualSavings(region);
 
   useEffect(() => {
     const accessToken = searchParams.get("access_token");
@@ -138,22 +167,26 @@ function BillingContent() {
     load();
   }, [router, refresh]);
 
-  const handleCheckout = useCallback(async (planType: PlanType) => {
-    setError(null);
-    setCheckoutPlan(planType);
-    try {
-      const url = await createCheckoutSession(planType);
-      if (url) {
-        window.location.href = url;
-        return;
+  const handleCheckout = useCallback(
+    async (planType: PlanType) => {
+      setError(null);
+      setCheckoutPlan(planType);
+      try {
+        const country = region === "india" ? "IN" : "US";
+        const url = await createCheckoutSession(planType, interval, country);
+        if (url) {
+          window.location.href = url;
+          return;
+        }
+        setError("Could not start checkout. Please try again.");
+      } catch {
+        setError("Could not start checkout. Please try again.");
+      } finally {
+        setCheckoutPlan(null);
       }
-      setError("Could not start checkout. Please try again.");
-    } catch {
-      setError("Could not start checkout. Please try again.");
-    } finally {
-      setCheckoutPlan(null);
-    }
-  }, []);
+    },
+    [interval, region],
+  );
 
   useEffect(() => {
     if (loading || !user || preselectStarted.current) return;
@@ -187,6 +220,10 @@ function BillingContent() {
 
   const periodEnd = billingStatus?.current_period_end ?? user.current_period_end ?? user.trial_ends_at;
   const paid = isPaidPlan(user.plan);
+  const trialExpired =
+    user.requires_subscription ||
+    user.trial_status === "expired" ||
+    user.plan_slug === "expired";
   const isComp = billingStatus?.billing_source === "admin_comp";
   const canManagePortal = billingStatus?.can_manage_in_portal ?? (paid && !isComp);
   const cancelScheduled = billingStatus?.cancel_at_period_end ?? user.cancel_at_period_end;
@@ -220,6 +257,16 @@ function BillingContent() {
               billingSource: billingStatus?.billing_source ?? user.billing_source,
             })}
           </p>
+          {trialExpired && !paid && (
+            <SoftCard hover={false} className="mt-4 border border-amber-200/80 bg-amber-50/80 px-4 py-3">
+              <p className="text-[13px] font-medium text-amber-950">
+                Your 7-day Pro trial has ended. Subscribe to keep dictating with Lazur.
+              </p>
+              {region === "india" ? (
+                <p className="mt-1 text-[12px] text-amber-900/80">{INDIA_GST_NOTE}</p>
+              ) : null}
+            </SoftCard>
+          )}
           {fromApp && (
             <SoftCard hover={false} className="mt-4 px-4 py-3">
               <p className="text-[13px] text-[var(--foreground-muted)]">
@@ -290,6 +337,16 @@ function BillingContent() {
           <p className="mb-4 rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-800">
             {error}
           </p>
+        )}
+
+        {!paid && (
+          <div className="mb-6 flex justify-center">
+            <BillingIntervalToggle
+              interval={interval === "year" ? "annual" : "monthly"}
+              maxSavings={maxSavings}
+              onChange={(next) => setInterval(next === "annual" ? "year" : "month")}
+            />
+          </div>
         )}
 
         {(activity.length > 0 || invoices.length > 0) && (
@@ -389,11 +446,19 @@ function BillingContent() {
         )}
 
         <div className="space-y-4">
-          {UPGRADE_PLANS.map((plan, idx) => {
+          {UPGRADE_PLAN_META.map((plan, idx) => {
             const eligible = canUpgradeTo(user.plan, plan.planType);
             const normalizedPlan = user.plan.toLowerCase();
             const isCurrent =
               normalizedPlan === plan.planType && !normalizedPlan.includes("trial");
+            const websitePlan = WEBSITE_PLANS.find((p) => p.id === plan.planId);
+            const priceDisplay = websitePlan
+              ? planPrices(
+                  websitePlan,
+                  region,
+                  interval === "year" ? "annual" : "monthly",
+                )
+              : null;
 
             return (
               <motion.div
@@ -425,11 +490,19 @@ function BillingContent() {
                     </div>
                     <div className="text-right">
                       <span className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-                        {plan.price}
+                        {priceDisplay?.price ?? "—"}
                       </span>
-                      <span className="text-[14px] text-[var(--foreground-muted)]">
-                        {plan.period}
-                      </span>
+                      {priceDisplay?.period ? (
+                        <span className="text-[14px] text-[var(--foreground-muted)]">
+                          {" "}
+                          {priceDisplay.period}
+                        </span>
+                      ) : null}
+                      {priceDisplay?.equivMonthly ? (
+                        <p className="mt-1 text-[12px] text-[var(--foreground-faint)]">
+                          {priceDisplay.equivMonthly}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
 

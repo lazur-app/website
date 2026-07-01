@@ -1,6 +1,7 @@
 import { getAccessToken } from "./auth";
 
 export type PlanType = "pro" | "power";
+export type BillingInterval = "month" | "year";
 
 export type BillingSource = "polar" | "admin_comp" | "trial" | null;
 
@@ -32,7 +33,28 @@ export type BillingStatus = {
   cancel_at_period_end: boolean;
   comp_reason: string | null;
   current_period_end: string | null;
+  billing_interval: BillingInterval | null;
+  presentment_currency: string | null;
+  billing_region: string | null;
   can_manage_in_portal: boolean;
+};
+
+export type PriceInterval = {
+  amount: number;
+  amount_cents: number;
+  currency: string;
+  equiv_monthly?: number;
+  savings_percent?: number;
+};
+
+export type PriceCatalog = {
+  region: "IN" | "INTL";
+  currency: string;
+  gst_exclusive: boolean;
+  plans: {
+    pro: { month: PriceInterval; year: PriceInterval };
+    power: { month: PriceInterval; year: PriceInterval };
+  };
 };
 
 function apiBase() {
@@ -72,25 +94,52 @@ export function isPaidPlan(plan: string): boolean {
   return normalized === "pro" || normalized === "power";
 }
 
-export function isFreeTierPlan(plan: string): boolean {
+export function isTrialOrUnpaid(plan: string): boolean {
   const normalized = plan.toLowerCase();
-  return normalized.includes("free") || normalized.includes("trial");
+  return (
+    normalized.includes("trial") ||
+    normalized.includes("subscription required") ||
+    normalized.includes("expired")
+  );
+}
+
+/** @deprecated use isTrialOrUnpaid */
+export function isFreeTierPlan(plan: string): boolean {
+  return isTrialOrUnpaid(plan);
 }
 
 export function canUpgradeTo(plan: string, target: PlanType): boolean {
   const normalized = plan.toLowerCase();
+  if (normalized === "power") return false;
   if (target === "pro") {
-    return isFreeTierPlan(plan);
+    return !isPaidPlan(plan) || normalized.includes("trial");
   }
   return normalized !== "power";
 }
 
-export async function createCheckoutSession(planType: PlanType): Promise<string | null> {
+export async function fetchPrices(country?: string): Promise<PriceCatalog | null> {
+  const query = country ? `?country=${encodeURIComponent(country)}` : "";
+  const response = await fetch(`${apiBase()}/billing/prices${query}`);
+  if (!response.ok) return null;
+  return (await response.json()) as PriceCatalog;
+}
+
+export async function createCheckoutSession(
+  planType: PlanType,
+  interval: BillingInterval = "month",
+  country?: string,
+): Promise<string | null> {
   const token = getAccessToken();
   if (!token) return null;
 
+  const params = new URLSearchParams({
+    plan_type: planType,
+    interval,
+  });
+  if (country) params.set("country", country);
+
   const response = await fetch(
-    `${apiBase()}/billing/create-checkout-session?plan_type=${planType}`,
+    `${apiBase()}/billing/create-checkout-session?${params.toString()}`,
     {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },

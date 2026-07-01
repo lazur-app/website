@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { useRef } from "react";
-import { HeroDownloadCta } from "../HeroDownloadCta";
 import { LogoWordmark } from "../LogoWordmark";
 import { SoftCard } from "../SoftCard";
 
@@ -160,9 +159,6 @@ export function CompetitorComparison() {
                 </span>
               </div>
             ))}
-            <div className="border-t border-[var(--border)] py-6">
-              <HeroDownloadCta align="center" variant="minimal" />
-            </div>
           </SoftCard>
 
           {/* Right — others */}
@@ -197,9 +193,6 @@ export function CompetitorComparison() {
             <p className="mt-2 text-[13px] text-[var(--foreground-muted)]">
               What you meant — not just what you said.
             </p>
-            <div className="mt-5">
-              <HeroDownloadCta align="center" variant="minimal" />
-            </div>
           </SoftCard>
 
           {ROWS.map((row, i) => (

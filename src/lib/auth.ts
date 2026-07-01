@@ -11,8 +11,13 @@ export type UserProfile = {
   name: string | null;
   avatar_url: string | null;
   plan: string;
+  plan_slug?: string;
   word_quota_limit: number;
   word_quota_used: number;
+  command_quota_limit?: number;
+  command_quota_used?: number;
+  command_mode_enabled?: boolean;
+  requires_subscription?: boolean;
   onboarding_completed: boolean;
   trial_status?: string;
   trial_started_at?: string | null;

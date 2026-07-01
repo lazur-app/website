@@ -91,7 +91,7 @@ export function Hero() {
           transition={{ delay: 0.58, duration: 0.45 }}
           className="mt-3 text-[12px] text-[var(--foreground-faint)] md:text-[13px]"
         >
-          Free tier · No credit card · macOS
+          7-day Pro trial · macOS
         </motion.p>
 
         <motion.div

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ShieldCheck, Globe, Cpu } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
@@ -11,6 +11,12 @@ import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggl
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
 import { usePricingRegion } from "@/hooks/usePricingRegion";
 import { hasValidSessionToken } from "@/lib/auth";
+import {
+  consumeCheckoutIntent,
+  redirectToCheckout,
+  storeCheckoutIntent,
+  type PlanType,
+} from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
 import {
   FAIR_USE_FOOTNOTE,
@@ -19,29 +25,65 @@ import {
   regionCurrencyLabel,
   WEBSITE_PLANS,
   type BillingInterval,
+  type PricingRegion,
 } from "@/lib/pricingPlans";
+
+function toBillingInterval(interval: BillingInterval): "month" | "year" {
+  return interval === "annual" ? "year" : "month";
+}
 
 export default function PricingPage() {
   const { region, loading: regionLoading } = usePricingRegion();
   const [interval, setInterval] = useState<BillingInterval>("monthly");
+  const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const intentHandled = useRef(false);
   const maxSavings = maxAnnualSavings(region);
 
-  const handlePlanAction = (planType: "pro" | "power" | null) => {
+  const startCheckout = useCallback(
+    async (planType: PlanType, billingInterval: "month" | "year", pricingRegion: PricingRegion) => {
+      setError(null);
+      setCheckoutPlan(planType);
+      const result = await redirectToCheckout(planType, billingInterval, pricingRegion);
+      if (!result.ok) {
+        setError(result.error);
+        setCheckoutPlan(null);
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (regionLoading || intentHandled.current) return;
+    if (!hasValidSessionToken()) return;
+
+    const intent = consumeCheckoutIntent();
+    if (!intent) return;
+
+    intentHandled.current = true;
+    void startCheckout(intent.plan, intent.interval, region);
+  }, [regionLoading, region, startCheckout]);
+
+  const handlePlanAction = async (planType: "pro" | "power" | null) => {
     if (!planType) {
       window.location.href = "/download";
       return;
     }
 
-    const query = new URLSearchParams({ plan: planType });
-    if (interval === "annual") query.set("interval", "year");
+    if (regionLoading) return;
+
+    const billingInterval = toBillingInterval(interval);
 
     if (!hasValidSessionToken()) {
-      window.location.href = loginPathWithReturn(`/billing?${query.toString()}`);
+      storeCheckoutIntent({ plan: planType, interval: billingInterval });
+      window.location.href = loginPathWithReturn("/pricing");
       return;
     }
 
-    window.location.href = `/billing?${query.toString()}`;
+    await startCheckout(planType, billingInterval, region);
   };
+
+  const checkoutBusy = checkoutPlan !== null;
 
   return (
     <MarketingPageShell>
@@ -100,6 +142,12 @@ export default function PricingPage() {
           </m.p>
         ) : null}
 
+        {error ? (
+          <p className="mb-6 w-full max-w-2xl rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-center text-[13px] text-red-800">
+            {error}
+          </p>
+        ) : null}
+
         <div className="grid w-full items-stretch gap-4 md:grid-cols-3 md:gap-5">
           {WEBSITE_PLANS.map((plan, idx) => (
             <m.div
@@ -113,7 +161,11 @@ export default function PricingPage() {
                 plan={plan}
                 region={region}
                 interval={interval}
-                onAction={() => handlePlanAction(plan.planType)}
+                onAction={() => void handlePlanAction(plan.planType)}
+                actionLoading={
+                  plan.planType !== null && checkoutPlan === plan.planType
+                }
+                actionDisabled={checkoutBusy && plan.planType !== null}
               />
             </m.div>
           ))}

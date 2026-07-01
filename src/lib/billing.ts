@@ -3,6 +3,37 @@ import { getAccessToken } from "./auth";
 export type PlanType = "pro" | "power";
 export type BillingInterval = "month" | "year";
 
+const CHECKOUT_INTENT_KEY = "lazur_checkout_intent";
+
+export type CheckoutIntent = {
+  plan: PlanType;
+  interval: BillingInterval;
+};
+
+export function storeCheckoutIntent(intent: CheckoutIntent) {
+  if (typeof window === "undefined") return;
+  sessionStorage.setItem(CHECKOUT_INTENT_KEY, JSON.stringify(intent));
+}
+
+export function consumeCheckoutIntent(): CheckoutIntent | null {
+  if (typeof window === "undefined") return null;
+  const raw = sessionStorage.getItem(CHECKOUT_INTENT_KEY);
+  sessionStorage.removeItem(CHECKOUT_INTENT_KEY);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as CheckoutIntent;
+    if (
+      (parsed.plan === "pro" || parsed.plan === "power") &&
+      (parsed.interval === "month" || parsed.interval === "year")
+    ) {
+      return parsed;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
 export type BillingSource = "polar" | "admin_comp" | "trial" | null;
 
 export type BillingActivityItem = {
@@ -149,6 +180,20 @@ export async function createCheckoutSession(
   if (!response.ok) return null;
   const data = (await response.json()) as { url?: string };
   return data.url ?? null;
+}
+
+export async function redirectToCheckout(
+  planType: PlanType,
+  interval: BillingInterval,
+  region: "international" | "india",
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const country = region === "india" ? "IN" : "US";
+  const url = await createCheckoutSession(planType, interval, country);
+  if (!url) {
+    return { ok: false, error: "Could not start checkout. Please try again." };
+  }
+  window.location.href = url;
+  return { ok: true };
 }
 
 export async function fetchCustomerPortalUrl(): Promise<{

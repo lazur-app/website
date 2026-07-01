@@ -1,7 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { Check, Gauge, Mic, Sparkles, X } from "lucide-react";
+import { Check, Gauge, Loader2, Mic, Sparkles, X } from "lucide-react";
 import { SoftCard } from "@/components/SoftCard";
 import {
   planPrices,
@@ -50,6 +50,8 @@ type PricingPlanCardProps = {
   interval: BillingInterval;
   onAction: () => void;
   compact?: boolean;
+  actionLoading?: boolean;
+  actionDisabled?: boolean;
 };
 
 export function PricingPlanCard({
@@ -58,6 +60,8 @@ export function PricingPlanCard({
   interval,
   onAction,
   compact = false,
+  actionLoading = false,
+  actionDisabled = false,
 }: PricingPlanCardProps) {
   const Icon = PLAN_ICONS[plan.id];
   const prices = planPrices(plan, region, interval, { includeAlternate: true });
@@ -148,13 +152,21 @@ export function PricingPlanCard({
         <button
           type="button"
           onClick={onAction}
-          className={`w-full rounded-full py-3 text-sm font-semibold transition-all active:scale-[0.98] ${
+          disabled={actionDisabled || actionLoading}
+          className={`w-full rounded-full py-3 text-sm font-semibold transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 ${
             plan.isTrial
               ? "border border-[var(--border-strong)] bg-white text-[var(--foreground)] hover:border-[var(--brand)]/30"
               : "btn-dark"
           }`}
         >
-          {plan.buttonText}
+          {actionLoading ? (
+            <span className="inline-flex items-center justify-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Redirecting…
+            </span>
+          ) : (
+            plan.buttonText
+          )}
         </button>
     </SoftCard>
   );

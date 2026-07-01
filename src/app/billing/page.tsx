@@ -6,15 +6,16 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
-  Check,
   CreditCard,
   ExternalLink,
+  Gauge,
   History,
   Loader2,
   Receipt,
   Sparkles,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { BillingPlanCard } from "@/components/billing/BillingPlanCard";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { SoftCard } from "@/components/SoftCard";
@@ -47,9 +48,11 @@ import {
   INDIA_GST_NOTE,
   maxAnnualSavings,
   planPrices,
+  regionCurrencyLabel,
   WEBSITE_PLANS,
 } from "@/lib/pricingPlans";
 import {
+  daysRemaining,
   formatSubscriptionDate,
   periodEndDescription,
   periodEndLabel,
@@ -102,6 +105,46 @@ function formatDateTime(iso?: string | null): string {
     hour: "numeric",
     minute: "2-digit",
   });
+}
+
+function planStatusLabel(plan: string, paid: boolean, trialExpired: boolean) {
+  const normalized = plan.toLowerCase();
+  if (trialExpired && !paid) return "Trial ended";
+  if (normalized.includes("trial")) return "Trial active";
+  if (paid) return "Subscribed";
+  return "Free";
+}
+
+function ActivityTimeline({ items }: { items: BillingActivityItem[] }) {
+  return (
+    <ul className="space-y-0">
+      {items.map((item, i) => (
+        <li key={item.id} className="relative flex gap-4 pb-5 last:pb-0">
+          {i < items.length - 1 ? (
+            <span
+              aria-hidden
+              className="absolute left-[7px] top-4 h-[calc(100%-4px)] w-px bg-[var(--border)]"
+            />
+          ) : null}
+          <span className="relative z-[1] mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full border-2 border-[var(--foreground)]/20 bg-white" />
+          <div className="min-w-0 flex-1 pt-0.5">
+            <p className="text-[14px] font-medium text-[var(--foreground)]">
+              {item.label}
+              {item.detail ? (
+                <span className="font-normal text-[var(--foreground-muted)]">
+                  {" "}
+                  · {item.detail}
+                </span>
+              ) : null}
+            </p>
+            <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
+              {formatDateTime(item.occurred_at)}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 function BillingContent() {
@@ -227,11 +270,16 @@ function BillingContent() {
   const isComp = billingStatus?.billing_source === "admin_comp";
   const canManagePortal = billingStatus?.can_manage_in_portal ?? (paid && !isComp);
   const cancelScheduled = billingStatus?.cancel_at_period_end ?? user.cancel_at_period_end;
+  const onTrial = user.plan.toLowerCase().includes("trial") && !trialExpired;
+  const trialDays = onTrial ? daysRemaining(periodEnd) : null;
+  const trialProgress =
+    trialDays !== null && trialDays <= 7 ? Math.max(0, ((7 - trialDays) / 7) * 100) : null;
+  const statusLabel = planStatusLabel(user.plan, paid, trialExpired);
 
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative mx-auto max-w-4xl px-6 pb-20 pt-24 md:pt-28">
+      <main className="relative mx-auto max-w-5xl px-6 pb-20 pt-24 md:pt-28">
         <motion.header
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -248,308 +296,303 @@ function BillingContent() {
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
             Billing
           </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.5rem]">
+          <h1 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]">
             Plans & billing
           </h1>
-          <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            {periodEndDescription(user.plan, periodEnd, {
-              cancelAtPeriodEnd: cancelScheduled,
-              billingSource: billingStatus?.billing_source ?? user.billing_source,
-            })}
-          </p>
-          {trialExpired && !paid && (
-            <SoftCard hover={false} className="mt-4 border border-amber-200/80 bg-amber-50/80 px-4 py-3">
-              <p className="text-[13px] font-medium text-amber-950">
-                Your 7-day Pro trial has ended. Subscribe to keep dictating with Lazur.
-              </p>
-              {region === "india" ? (
-                <p className="mt-1 text-[12px] text-amber-900/80">{INDIA_GST_NOTE}</p>
-              ) : null}
-            </SoftCard>
-          )}
-          {fromApp && (
-            <SoftCard hover={false} className="mt-4 px-4 py-3">
-              <p className="text-[13px] text-[var(--foreground-muted)]">
-                After upgrading, return to the Lazur desktop app — your plan updates
-                automatically.
-              </p>
-            </SoftCard>
-          )}
         </motion.header>
+
+        {error ? (
+          <p className="mb-6 rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-800">
+            {error}
+          </p>
+        ) : null}
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.45 }}
+          transition={{ delay: 0.04, duration: 0.45 }}
+          className="mb-8"
         >
-          <SoftCard hover={false} className="mb-6 p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-                Current plan
-              </h2>
-              <Sparkles className="h-4 w-4 text-[var(--foreground-faint)]" strokeWidth={1.75} />
+          <SoftCard hover={false} className="overflow-hidden p-0">
+            <div className="border-b border-[var(--border)] bg-gradient-to-br from-[var(--brand-soft)]/55 via-white to-white px-6 py-6 md:px-7 md:py-7">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${
+                        trialExpired && !paid
+                          ? "bg-amber-100 text-amber-900"
+                          : onTrial
+                            ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
+                            : "bg-white/90 text-[var(--foreground-muted)]"
+                      }`}
+                    >
+                      {statusLabel}
+                    </span>
+                    <span className="text-[11px] font-medium text-[var(--foreground-faint)]">
+                      {regionCurrencyLabel(region)}
+                    </span>
+                  </div>
+                  <p className="mt-3 font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] md:text-[2rem]">
+                    {user.plan}
+                  </p>
+                  <p className="mt-2 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+                    {periodEndDescription(user.plan, periodEnd, {
+                      cancelAtPeriodEnd: cancelScheduled,
+                      billingSource: billingStatus?.billing_source ?? user.billing_source,
+                    })}
+                  </p>
+                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--border)] bg-white/80 text-[var(--foreground-muted)] shadow-sm">
+                  {onTrial ? (
+                    <Sparkles className="h-5 w-5" strokeWidth={1.5} />
+                  ) : (
+                    <Gauge className="h-5 w-5" strokeWidth={1.5} />
+                  )}
+                </div>
+              </div>
+
+              {trialProgress !== null ? (
+                <div className="mt-5">
+                  <div className="mb-2 flex items-center justify-between text-[12px]">
+                    <span className="font-medium text-[var(--foreground-muted)]">
+                      Trial progress
+                    </span>
+                    <span className="tabular-nums text-[var(--foreground-faint)]">
+                      {trialDays} {trialDays === 1 ? "day" : "days"} left
+                    </span>
+                  </div>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/80">
+                    <div
+                      className="h-full rounded-full bg-[var(--foreground)] transition-all"
+                      style={{ width: `${trialProgress}%` }}
+                    />
+                  </div>
+                </div>
+              ) : null}
             </div>
-            <p className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-              {user.plan}
-            </p>
-            {isComp && billingStatus?.comp_reason && (
-              <p className="mt-1 text-[13px] text-[var(--foreground-muted)]">
-                {billingStatus.comp_reason}
+
+            <div className="space-y-3 px-6 py-5 md:px-7">
+              <p className="text-[14px] text-[var(--foreground-muted)]">
+                {periodEndLabel(user.plan, { cancelAtPeriodEnd: cancelScheduled })}:{" "}
+                <span className="font-medium text-[var(--foreground)]">
+                  {formatSubscriptionDate(periodEnd)}
+                </span>
               </p>
-            )}
-            <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
-              {periodEndLabel(user.plan, { cancelAtPeriodEnd: cancelScheduled })}:{" "}
-              {formatSubscriptionDate(periodEnd)}
-            </p>
-            {cancelScheduled && (
-              <p className="mt-2 text-[13px] text-amber-800">
-                Cancellation scheduled — you keep access until the date above.
-              </p>
-            )}
-            {canManagePortal && (
-              <button
-                type="button"
-                onClick={handleManageBilling}
-                disabled={portalLoading}
-                className="btn-outline-dark mt-5 inline-flex items-center gap-2 disabled:opacity-50"
-              >
-                {portalLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <CreditCard className="h-4 w-4" />
-                )}
-                Manage subscription
-              </button>
-            )}
-            {paid && isComp && (
-              <p className="mt-4 text-[13px] text-[var(--foreground-muted)]">
-                Complimentary access — contact{" "}
-                <a href="mailto:hello@lazur.app" className="font-medium underline">
-                  support
-                </a>{" "}
-                to change your plan.
-              </p>
-            )}
+
+              {isComp && billingStatus?.comp_reason ? (
+                <p className="text-[13px] text-[var(--foreground-muted)]">
+                  {billingStatus.comp_reason}
+                </p>
+              ) : null}
+
+              {cancelScheduled ? (
+                <p className="rounded-lg border border-amber-200/80 bg-amber-50/70 px-3 py-2 text-[13px] text-amber-900">
+                  Cancellation scheduled — you keep access until the date above.
+                </p>
+              ) : null}
+
+              {trialExpired && !paid ? (
+                <p className="rounded-lg border border-amber-200/80 bg-amber-50/70 px-3 py-2 text-[13px] font-medium text-amber-950">
+                  Your 7-day Pro trial has ended. Subscribe to keep dictating with Lazur.
+                </p>
+              ) : null}
+
+              {fromApp ? (
+                <p className="text-[13px] text-[var(--foreground-muted)]">
+                  After upgrading, return to the Lazur desktop app — your plan updates
+                  automatically.
+                </p>
+              ) : null}
+
+              {canManagePortal ? (
+                <button
+                  type="button"
+                  onClick={handleManageBilling}
+                  disabled={portalLoading}
+                  className="btn-outline-dark mt-1 inline-flex items-center gap-2 disabled:opacity-50"
+                >
+                  {portalLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <CreditCard className="h-4 w-4" />
+                  )}
+                  Manage subscription
+                </button>
+              ) : null}
+
+              {paid && isComp ? (
+                <p className="text-[13px] text-[var(--foreground-muted)]">
+                  Complimentary access — contact{" "}
+                  <a href="mailto:hello@lazur.app" className="font-medium underline">
+                    support
+                  </a>{" "}
+                  to change your plan.
+                </p>
+              ) : null}
+            </div>
           </SoftCard>
         </motion.div>
 
-        {error && (
-          <p className="mb-4 rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-800">
-            {error}
-          </p>
-        )}
+        {!paid ? (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08, duration: 0.45 }}
+            className="mb-10"
+          >
+            <div className="mb-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="font-display text-xl font-semibold tracking-tight text-[var(--foreground)] md:text-2xl">
+                  Choose a plan
+                </h2>
+                <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+                  {onTrial
+                    ? "Lock in Pro or Power before your trial ends — checkout is handled securely via Polar."
+                    : "Subscribe to keep full access to dictation, Command Mode, and polish."}
+                </p>
+                {region === "india" ? (
+                  <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">
+                    {INDIA_GST_NOTE}
+                  </p>
+                ) : null}
+              </div>
+              <BillingIntervalToggle
+                interval={interval === "year" ? "annual" : "monthly"}
+                maxSavings={maxSavings}
+                onChange={(next) => setInterval(next === "annual" ? "year" : "month")}
+              />
+            </div>
 
-        {!paid && (
-          <div className="mb-6 flex justify-center">
-            <BillingIntervalToggle
-              interval={interval === "year" ? "annual" : "monthly"}
-              maxSavings={maxSavings}
-              onChange={(next) => setInterval(next === "annual" ? "year" : "month")}
-            />
-          </div>
-        )}
+            <div className="grid items-stretch gap-5 md:grid-cols-2">
+              {UPGRADE_PLAN_META.map((plan) => {
+                const eligible = canUpgradeTo(user.plan, plan.planType);
+                const normalizedPlan = user.plan.toLowerCase();
+                const isCurrent =
+                  normalizedPlan === plan.planType && !normalizedPlan.includes("trial");
+                const websitePlan = WEBSITE_PLANS.find((p) => p.id === plan.planId);
+                const priceDisplay = websitePlan
+                  ? planPrices(
+                      websitePlan,
+                      region,
+                      interval === "year" ? "annual" : "monthly",
+                    )
+                  : null;
 
-        {(activity.length > 0 || invoices.length > 0) && (
-          <div className="mb-8 grid gap-6 lg:grid-cols-2">
-            {activity.length > 0 && (
-              <motion.section
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.08, duration: 0.45 }}
-              >
-                <SoftCard hover={false} className="p-6">
-                  <div className="mb-4 flex items-center gap-2">
-                    <History className="h-4 w-4 text-[var(--foreground-faint)]" />
-                    <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-                      Billing activity
-                    </h2>
-                  </div>
-                  <ul className="space-y-3">
-                    {activity.map((item) => (
-                      <li
-                        key={item.id}
-                        className="border-b border-[var(--foreground)]/5 pb-3 last:border-0 last:pb-0"
-                      >
-                        <p className="text-[14px] font-medium text-[var(--foreground)]">
-                          {item.label}
-                          {item.detail ? (
-                            <span className="font-normal text-[var(--foreground-muted)]">
-                              {" "}
-                              · {item.detail}
-                            </span>
-                          ) : null}
-                        </p>
-                        <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
-                          {formatDateTime(item.occurred_at)}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </SoftCard>
-              </motion.section>
-            )}
+                return (
+                  <BillingPlanCard
+                    key={plan.planType}
+                    name={plan.name}
+                    planType={plan.planType}
+                    description={plan.description}
+                    features={plan.features}
+                    popular={plan.popular}
+                    priceDisplay={priceDisplay}
+                    eligible={eligible}
+                    isCurrent={isCurrent}
+                    checkoutLoading={checkoutPlan === plan.planType}
+                    onCheckout={() => handleCheckout(plan.planType)}
+                  />
+                );
+              })}
+            </div>
+          </motion.section>
+        ) : null}
 
-            <motion.section
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.45 }}
-            >
-              <SoftCard hover={false} className="p-6">
-                <div className="mb-4 flex items-center gap-2">
-                  <Receipt className="h-4 w-4 text-[var(--foreground-faint)]" />
-                  <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+        <div className="grid gap-5 lg:grid-cols-2">
+          <motion.section
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.45 }}
+          >
+            <SoftCard hover={false} className="h-full p-6">
+              <div className="mb-5 flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--background-deep)]/50">
+                  <History className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
+                </div>
+                <div>
+                  <h2 className="text-[14px] font-semibold text-[var(--foreground)]">
+                    Billing activity
+                  </h2>
+                  <p className="text-[12px] text-[var(--foreground-faint)]">
+                    Account and checkout events
+                  </p>
+                </div>
+              </div>
+              {activity.length === 0 ? (
+                <p className="text-[13px] text-[var(--foreground-muted)]">
+                  No activity yet.
+                </p>
+              ) : (
+                <ActivityTimeline items={activity} />
+              )}
+            </SoftCard>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.14, duration: 0.45 }}
+          >
+            <SoftCard hover={false} className="h-full p-6">
+              <div className="mb-5 flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--background-deep)]/50">
+                  <Receipt className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
+                </div>
+                <div>
+                  <h2 className="text-[14px] font-semibold text-[var(--foreground)]">
                     Billing history
                   </h2>
-                </div>
-                {invoices.length === 0 ? (
-                  <p className="text-[13px] text-[var(--foreground-muted)]">
-                    No invoices yet. Payments through Polar will appear here.
+                  <p className="text-[12px] text-[var(--foreground-faint)]">
+                    Invoices from Polar
                   </p>
-                ) : (
-                  <ul className="space-y-3">
-                    {invoices.map((item) => (
-                      <li
-                        key={item.id}
-                        className="flex items-start justify-between gap-3 border-b border-[var(--foreground)]/5 pb-3 last:border-0 last:pb-0"
-                      >
-                        <div>
-                          <p className="text-[14px] font-medium text-[var(--foreground)]">
-                            {invoiceLabel(item)}
-                          </p>
-                          <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
-                            {formatDateTime(item.paid_at ?? item.created_at)} · {item.status}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-[14px] font-semibold text-[var(--foreground)]">
-                            {formatMoney(item.amount_cents, item.currency)}
-                          </p>
-                          {item.invoice_url && (
-                            <a
-                              href={item.invoice_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-                            >
-                              Invoice
-                              <ExternalLink className="h-3 w-3" />
-                            </a>
-                          )}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </SoftCard>
-            </motion.section>
-          </div>
-        )}
-
-        <div className="space-y-4">
-          {UPGRADE_PLAN_META.map((plan, idx) => {
-            const eligible = canUpgradeTo(user.plan, plan.planType);
-            const normalizedPlan = user.plan.toLowerCase();
-            const isCurrent =
-              normalizedPlan === plan.planType && !normalizedPlan.includes("trial");
-            const websitePlan = WEBSITE_PLANS.find((p) => p.id === plan.planId);
-            const priceDisplay = websitePlan
-              ? planPrices(
-                  websitePlan,
-                  region,
-                  interval === "year" ? "annual" : "monthly",
-                )
-              : null;
-
-            return (
-              <motion.div
-                key={plan.planType}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + idx * 0.06, duration: 0.45 }}
-              >
-                <SoftCard
-                  hover={false}
-                  className={`relative p-6 md:p-7 ${
-                    plan.popular ? "ring-1 ring-[var(--foreground)]/10" : ""
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-6 rounded-full bg-[var(--foreground)] px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--background)]">
-                      Popular
-                    </div>
-                  )}
-
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-display text-xl font-semibold text-[var(--foreground)]">
-                        {plan.name}
-                      </h3>
-                      <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
-                        {plan.description}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <span className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-                        {priceDisplay?.price ?? "—"}
-                      </span>
-                      {priceDisplay?.period ? (
-                        <span className="text-[14px] text-[var(--foreground-muted)]">
-                          {" "}
-                          {priceDisplay.period}
-                        </span>
-                      ) : null}
-                      {priceDisplay?.equivMonthly ? (
-                        <p className="mt-1 text-[12px] text-[var(--foreground-faint)]">
-                          {priceDisplay.equivMonthly}
+                </div>
+              </div>
+              {invoices.length === 0 ? (
+                <p className="text-[13px] leading-relaxed text-[var(--foreground-muted)]">
+                  No invoices yet. Payments through Polar will appear here once you
+                  subscribe.
+                </p>
+              ) : (
+                <ul className="space-y-3">
+                  {invoices.map((item) => (
+                    <li
+                      key={item.id}
+                      className="flex items-start justify-between gap-3 rounded-xl border border-[var(--border)] bg-[var(--background-deep)]/25 px-4 py-3"
+                    >
+                      <div className="min-w-0">
+                        <p className="text-[14px] font-medium text-[var(--foreground)]">
+                          {invoiceLabel(item)}
                         </p>
-                      ) : null}
-                    </div>
-                  </div>
-
-                  <ul className="mt-5 space-y-2.5">
-                    {plan.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-start gap-2.5 text-[13px] text-[var(--foreground-muted)]"
-                      >
-                        <div className="mt-0.5 rounded-full bg-[var(--background-deep)] p-0.5 text-[var(--foreground-muted)]">
-                          <Check className="h-3.5 w-3.5" strokeWidth={2} />
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    type="button"
-                    onClick={() => handleCheckout(plan.planType)}
-                    disabled={!eligible || isCurrent || checkoutPlan !== null}
-                    className={`mt-6 w-full rounded-full py-3 text-[14px] font-semibold transition-opacity active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${
-                      isCurrent || !eligible
-                        ? "bg-[var(--background-deep)] text-[var(--foreground-faint)]"
-                        : "btn-dark"
-                    }`}
-                  >
-                    {checkoutPlan === plan.planType ? (
-                      <span className="inline-flex items-center justify-center gap-2">
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        Redirecting…
-                      </span>
-                    ) : isCurrent ? (
-                      "Current plan"
-                    ) : eligible ? (
-                      `Upgrade to ${plan.name}`
-                    ) : (
-                      "Not available"
-                    )}
-                  </button>
-                </SoftCard>
-              </motion.div>
-            );
-          })}
+                        <p className="mt-0.5 text-[12px] text-[var(--foreground-faint)]">
+                          {formatDateTime(item.paid_at ?? item.created_at)} · {item.status}
+                        </p>
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <p className="font-display text-base font-semibold tabular-nums text-[var(--foreground)]">
+                          {formatMoney(item.amount_cents, item.currency)}
+                        </p>
+                        {item.invoice_url ? (
+                          <a
+                            href={item.invoice_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                          >
+                            Invoice
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        ) : null}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </SoftCard>
+          </motion.section>
         </div>
 
-        <p className="mt-8 text-center text-[12px] text-[var(--foreground-faint)]">
+        <p className="mt-10 text-center text-[12px] text-[var(--foreground-faint)]">
           Questions?{" "}
           <a
             href="mailto:hello@lazur.app"

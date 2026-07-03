@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Monitor } from "lucide-react";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
@@ -25,41 +26,37 @@ export function HeroDownloadCta({
       ? "justify-center lg:justify-start"
       : "justify-center";
 
+  if (platform === null) {
+    return (
+      <div className={`flex ${rowAlign}`} aria-hidden>
+        <span className="btn-dark inline-flex min-h-[48px] min-w-[12.5rem] px-6 opacity-0">
+          &nbsp;
+        </span>
+      </div>
+    );
+  }
+
   if (platform === "windows") {
     return (
-      <div
-        className={`flex flex-col gap-3 sm:flex-row sm:items-center ${rowAlign}`}
+      <Link
+        href="/exclusive-access"
+        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
       >
-        <div className="rounded-lg border border-[var(--border)] bg-white px-4 py-2 text-center sm:text-left">
-          <p className="text-[var(--text-sm)] font-semibold text-[var(--foreground)]">
-            Coming to Windows soon
-          </p>
-          <p className="mt-1 text-[var(--text-xs)] text-[var(--foreground-muted)]">
-            macOS is available now
-          </p>
-        </div>
-        <Link
-          href="/download"
-          className="btn-dark inline-flex items-center gap-2 px-6 text-[var(--text-base)] font-semibold"
-        >
-          <AppleIcon />
-          Download Free for Mac
-        </Link>
-      </div>
+        <Monitor className="h-4 w-4" strokeWidth={2} />
+        Get notified for Windows
+      </Link>
     );
   }
 
   if (variant === "minimal") {
     return (
-      <div className={`flex ${rowAlign}`}>
-        <Link
-          href="/download"
-          className="btn-dark inline-flex items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
-        >
-          <AppleIcon />
-          Download Free for Mac
-        </Link>
-      </div>
+      <Link
+        href="/download"
+        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
+      >
+        <AppleIcon />
+        Download Free for Mac
+      </Link>
     );
   }
 
@@ -69,7 +66,7 @@ export function HeroDownloadCta({
     >
       <Link
         href="/download"
-        className="btn-dark inline-flex items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
       >
         <AppleIcon />
         Download for Mac

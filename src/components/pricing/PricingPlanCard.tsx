@@ -1,7 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { Check, Gauge, Loader2, Mic, Sparkles, X } from "lucide-react";
+import { Check, Gauge, Loader2, Mic, X } from "lucide-react";
 import { SoftCard } from "@/components/SoftCard";
 import {
   planPrices,
@@ -12,7 +12,6 @@ import {
 } from "@/lib/pricingPlans";
 
 const PLAN_ICONS: Record<WebsitePlan["id"], LucideIcon> = {
-  pro_trial: Sparkles,
   pro: Mic,
   power: Gauge,
 };
@@ -64,7 +63,7 @@ export function PricingPlanCard({
   actionDisabled = false,
 }: PricingPlanCardProps) {
   const Icon = PLAN_ICONS[plan.id];
-  const prices = planPrices(plan, region, interval, { includeAlternate: true });
+  const prices = planPrices(plan, region, interval);
 
   return (
     <SoftCard
@@ -89,21 +88,18 @@ export function PricingPlanCard({
                 </span>
               ) : null}
             </div>
-            <div className="mt-2 min-h-[2.75rem] space-y-0.5">
-              {plan.descriptionLines.map((line) => (
-                <p
-                  key={line}
-                  className="text-[13px] leading-snug text-[var(--foreground-muted)]"
-                >
-                  {line}
-                </p>
-              ))}
-              {plan.descriptionLines.length === 1 ? (
-                <p className="text-[13px] leading-snug text-transparent" aria-hidden>
-                  &nbsp;
-                </p>
-              ) : null}
-            </div>
+            {plan.descriptionLines.length > 0 ? (
+              <div className="mt-2 space-y-0.5">
+                {plan.descriptionLines.map((line) => (
+                  <p
+                    key={line}
+                    className="text-[13px] leading-snug text-[var(--foreground-muted)]"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="shrink-0 rounded-xl border border-[var(--border)] bg-[var(--background)] p-2 text-[var(--foreground-muted)]">
             <Icon className="h-4 w-4" strokeWidth={1.5} />
@@ -132,13 +128,11 @@ export function PricingPlanCard({
             ) : null}
           </div>
           <p className="mt-1.5 min-h-[1.125rem] text-[12px] text-[var(--foreground-muted)]">
-            {prices.equivMonthly ??
-              prices.annualTeaser ??
-              (plan.isTrial ? "" : "\u00a0")}
+            {prices.savingsNote ?? "\u00a0"}
           </p>
-          {prices.alternateHint ? (
-            <p className="mt-1 text-[11px] leading-snug text-[var(--foreground-faint)]">
-              {prices.alternateHint}
+          {plan.trialNote ? (
+            <p className="mt-2 text-[12px] font-semibold text-[var(--brand-ink)]">
+              {plan.trialNote}
             </p>
           ) : null}
         </div>
@@ -154,7 +148,7 @@ export function PricingPlanCard({
           onClick={onAction}
           disabled={actionDisabled || actionLoading}
           className={`w-full rounded-full py-3 text-sm font-semibold transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 ${
-            plan.isTrial
+            plan.cta === "download"
               ? "border border-[var(--border-strong)] bg-white text-[var(--foreground)] hover:border-[var(--brand)]/30"
               : "btn-dark"
           }`}

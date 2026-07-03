@@ -9,6 +9,8 @@ import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggle";
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
+import { PricingTimeCalculator } from "@/components/pricing/PricingTimeCalculator";
+import { PricingStatsStrip } from "@/components/pricing/PricingStatsStrip";
 import { usePricingRegion } from "@/hooks/usePricingRegion";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
@@ -20,9 +22,7 @@ import {
 import { loginPathWithReturn } from "@/lib/returnTo";
 import {
   FAIR_USE_FOOTNOTE,
-  INDIA_GST_NOTE,
   maxAnnualSavings,
-  regionCurrencyLabel,
   WEBSITE_PLANS,
   type BillingInterval,
   type PricingRegion,
@@ -64,12 +64,13 @@ export default function PricingPage() {
     void startCheckout(intent.plan, intent.interval, region);
   }, [regionLoading, region, startCheckout]);
 
-  const handlePlanAction = async (planType: "pro" | "power" | null) => {
-    if (!planType) {
+  const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
+    if (plan.cta === "download") {
       window.location.href = "/download";
       return;
     }
 
+    const planType = plan.planType;
     if (regionLoading) return;
 
     const billingInterval = toBillingInterval(interval);
@@ -90,40 +91,21 @@ export default function PricingPage() {
       <Navbar />
 
       <main className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-16 pt-24 md:pt-28">
-        <div className="mb-8 space-y-3 text-center md:mb-10">
+        <div className="mb-8 text-center md:mb-10">
           <m.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
           >
-            Pro and Power. Try Pro free first.
+            Simple Pricing. Try Pro free first.
           </m.h1>
-          <m.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto max-w-xl text-[15px] leading-relaxed text-[var(--foreground-muted)] md:text-base"
-          >
-            Every new account starts with a 7-day Pro trial — full features, same
-            quotas as Pro. After that, choose Pro or Power to keep going.
-          </m.p>
-          {!regionLoading ? (
-            <m.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-[12px] text-[var(--foreground-faint)]"
-            >
-              Showing {regionCurrencyLabel(region)} · INR + USD listed on each
-              plan
-            </m.p>
-          ) : null}
         </div>
 
         <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="mb-8"
+          transition={{ delay: 0.1 }}
+          className="mb-8 flex w-full justify-center overflow-visible"
         >
           <BillingIntervalToggle
             interval={interval}
@@ -132,23 +114,13 @@ export default function PricingPage() {
           />
         </m.div>
 
-        {region === "india" ? (
-          <m.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mb-8 max-w-xl text-center text-[13px] leading-relaxed text-[var(--foreground-muted)]"
-          >
-            {INDIA_GST_NOTE}
-          </m.p>
-        ) : null}
-
         {error ? (
           <p className="mb-6 w-full max-w-2xl rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-center text-[13px] text-red-800">
             {error}
           </p>
         ) : null}
 
-        <div className="grid w-full items-stretch gap-4 md:grid-cols-3 md:gap-5">
+        <div className="grid w-full max-w-4xl items-stretch gap-4 md:grid-cols-2 md:gap-6">
           {WEBSITE_PLANS.map((plan, idx) => (
             <m.div
               key={plan.id}
@@ -161,11 +133,11 @@ export default function PricingPage() {
                 plan={plan}
                 region={region}
                 interval={interval}
-                onAction={() => void handlePlanAction(plan.planType)}
+                onAction={() => void handlePlanAction(plan)}
                 actionLoading={
-                  plan.planType !== null && checkoutPlan === plan.planType
+                  plan.cta === "checkout" && checkoutPlan === plan.planType
                 }
-                actionDisabled={checkoutBusy && plan.planType !== null}
+                actionDisabled={checkoutBusy && plan.cta === "checkout"}
               />
             </m.div>
           ))}
@@ -177,8 +149,7 @@ export default function PricingPage() {
           transition={{ delay: 0.45 }}
           className="mt-6 max-w-2xl text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
         >
-          {FAIR_USE_FOOTNOTE}
-          {region === "india" ? ` ${INDIA_GST_NOTE}` : null}{" "}
+          {FAIR_USE_FOOTNOTE}{" "}
           <Link
             href="/download"
             className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"
@@ -189,9 +160,19 @@ export default function PricingPage() {
         </m.p>
 
         <m.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.48 }}
+          className="mt-14 w-full max-w-4xl"
+        >
+          <PricingStatsStrip />
+          <PricingTimeCalculator className="mt-14 md:mt-16" />
+        </m.div>
+
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.55 }}
           className="mt-10 flex flex-wrap justify-center gap-8 text-[var(--foreground-faint)]"
         >
           <div className="flex items-center gap-2">

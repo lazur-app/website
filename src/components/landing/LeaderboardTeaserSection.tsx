@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Gift, Loader2, Share2, Trophy, Users } from "lucide-react";
 import { SoftCard } from "@/components/SoftCard";
+import { SectionDownloadCta } from "@/components/landing/SectionDownloadCta";
+import { TRIAL_LABEL } from "@/lib/pricingPlans";
 import {
   fetchLeaderboard,
   type LeaderboardData,
@@ -239,6 +241,8 @@ export function LeaderboardTeaserSection() {
             )}
           </div>
         </div>
+
+        <SectionDownloadCta note={`Download, sign in, and start your ${TRIAL_LABEL.toLowerCase()}`} />
       </div>
     </section>
   );

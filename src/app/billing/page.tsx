@@ -57,6 +57,7 @@ import {
   periodEndDescription,
   periodEndLabel,
 } from "@/lib/subscriptionDates";
+import { LAZUR_APP_OPEN_URL } from "@/lib/appDeepLink";
 
 const UPGRADE_PLAN_META: {
   name: string;
@@ -286,13 +287,23 @@ function BillingContent() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="mb-8"
         >
-          <Link
-            href={fromApp ? "/download" : "/dashboard"}
-            className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            {fromApp ? "Back to app" : "Back to dashboard"}
-          </Link>
+          {fromApp ? (
+            <a
+              href={LAZUR_APP_OPEN_URL}
+              className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Back to app
+            </a>
+          ) : (
+            <Link
+              href="/dashboard"
+              className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Back to dashboard
+            </Link>
+          )}
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
             Billing
           </p>
@@ -448,7 +459,7 @@ function BillingContent() {
                 </h2>
                 <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {onTrial
-                    ? "Lock in Pro or Power before your trial ends — checkout is handled securely via Polar."
+                    ? "Lock in Pro or Power before your trial ends — checkout is handled securely."
                     : "Subscribe to keep full access to dictation, Command Mode, and polish."}
                 </p>
                 {region === "india" ? (
@@ -544,13 +555,13 @@ function BillingContent() {
                     Billing history
                   </h2>
                   <p className="text-[12px] text-[var(--foreground-faint)]">
-                    Invoices from Polar
+                    Invoices
                   </p>
                 </div>
               </div>
               {invoices.length === 0 ? (
                 <p className="text-[13px] leading-relaxed text-[var(--foreground-muted)]">
-                  No invoices yet. Payments through Polar will appear here once you
+                  No invoices yet. Paid subscriptions will appear here once you
                   subscribe.
                 </p>
               ) : (

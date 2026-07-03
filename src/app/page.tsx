@@ -4,7 +4,7 @@ import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
-import { MetricsStrip } from "@/components/landing/MetricsStrip";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
 import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
 
@@ -16,7 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <HowItWorksSection />
-        <MetricsStrip />
+        <TestimonialsSection />
         <LandingPageSections />
         <FinalCtaSection />
       </main>

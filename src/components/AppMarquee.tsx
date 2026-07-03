@@ -18,6 +18,8 @@ type AppMarqueeProps = {
   iconSize?: number;
   iconClassName?: string;
   groupClassName?: string;
+  /** Fade mask: both edges, or only the trailing edge for left/right alignment */
+  maskVariant?: "both" | "right" | "left";
 };
 
 function AppIcon({
@@ -73,15 +75,22 @@ function AppGroup({
   );
 }
 
+const MASK_CLASS = {
+  both: "app-marquee-mask",
+  right: "app-marquee-mask-right",
+  left: "app-marquee-mask-left",
+} as const;
+
 export function AppMarquee({
   className = "",
   iconSize = 24,
   iconClassName = "h-6 w-6 shrink-0 object-contain opacity-70",
   groupClassName = "gap-8 pr-8",
+  maskVariant = "both",
 }: AppMarqueeProps) {
   return (
     <div
-      className={`app-marquee-mask relative w-full overflow-hidden py-1 ${className}`}
+      className={`${MASK_CLASS[maskVariant]} relative w-full overflow-hidden py-1 ${className}`}
     >
       <div className="animate-app-marquee flex w-max items-center">
         {Array.from({ length: MARQUEE_COPIES }, (_, i) => (

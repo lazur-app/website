@@ -57,7 +57,7 @@ export function PricingSnapshotSection() {
           ) : null}
         </motion.div>
 
-        <div className="grid items-stretch gap-4 md:grid-cols-3">
+        <div className="grid items-stretch gap-4 md:grid-cols-2">
           {PRICING_SNAPSHOT.map((plan, i) => (
             <motion.div
               key={plan.id}
@@ -73,7 +73,8 @@ export function PricingSnapshotSection() {
                 interval={interval}
                 compact
                 onAction={() => {
-                  window.location.href = plan.isTrial ? "/download" : "/pricing";
+                  window.location.href =
+                    plan.cta === "download" ? "/download" : "/pricing";
                 }}
               />
             </motion.div>

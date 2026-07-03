@@ -83,7 +83,7 @@ export function BillingPlanCard({
           ) : null}
         </div>
         <p className="mt-1.5 min-h-[1.125rem] text-[12px] text-[var(--foreground-muted)]">
-          {priceDisplay?.equivMonthly ?? priceDisplay?.annualTeaser ?? "\u00a0"}
+          {priceDisplay?.savingsNote ?? "\u00a0"}
         </p>
       </div>
 

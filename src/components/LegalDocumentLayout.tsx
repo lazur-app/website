@@ -15,6 +15,7 @@ type LegalDocumentLayoutProps = {
   label: string;
   title: string;
   updated: string;
+  intro?: ReactNode;
   sections: LegalSection[];
 };
 
@@ -22,6 +23,7 @@ export function LegalDocumentLayout({
   label,
   title,
   updated,
+  intro,
   sections,
 }: LegalDocumentLayoutProps) {
   return (
@@ -41,6 +43,11 @@ export function LegalDocumentLayout({
         </p>
 
         <SoftCard hover={false} className="mt-8 p-6 md:p-8">
+          {intro ? (
+            <div className="mb-8 rounded-xl border border-[var(--border)] bg-[var(--background-deep)]/40 px-5 py-4 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+              {intro}
+            </div>
+          ) : null}
           <div className="space-y-8">
             {sections.map((section) => (
               <section key={section.title}>

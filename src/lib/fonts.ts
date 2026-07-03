@@ -1,4 +1,13 @@
 import localFont from "next/font/local";
+import { Caveat } from "next/font/google";
+
+/** Hand-drawn callouts — pricing graffiti, savings badges */
+export const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-caveat",
+  display: "swap",
+});
 
 /** Body/UI — SIL Open Font License 1.1 (see src/fonts/open-sauce-one/OFL.txt) */
 export const openSauceOne = localFont({

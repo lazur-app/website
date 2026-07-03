@@ -65,15 +65,15 @@ export default function DownloadPage() {
               Coming soon
             </h1>
             <p className="mt-4 text-base leading-relaxed text-[var(--foreground-muted)]">
-              Lazur is available on macOS today. Refer a friend to join the waitlist
-              for Windows.
+              Lazur is available on macOS today. Join the waitlist to be first
+              when we ship on Windows.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3">
               <Link
-                href="/#refer"
+                href="/exclusive-access"
                 className="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold"
               >
-                Refer a friend
+                Join the Windows waitlist
               </Link>
               <Link
                 href="/"

@@ -17,14 +17,13 @@ export type PlanPriceDisplay = {
   price: string;
   period?: string;
   savingsLabel?: string;
-  equivMonthly?: string;
+  /** Total $/₹ saved vs paying monthly for 12 months — shown under the price */
+  savingsNote?: string;
   alternateHint?: string;
-  /** Shown on monthly view so users see the annual option. */
-  annualTeaser?: string;
 };
 
 export type WebsitePlan = {
-  id: "pro_trial" | "pro" | "power";
+  id: "pro" | "power";
   name: string;
   international: RegionalPricing | null;
   india: RegionalPricing | null;
@@ -32,8 +31,11 @@ export type WebsitePlan = {
   descriptionLines: string[];
   featured?: boolean;
   featuredBadge?: string;
-  planType: "pro" | "power" | null;
-  isTrial?: boolean;
+  planType: "pro" | "power";
+  /** Shown under the price — e.g. trial callout */
+  trialNote?: string;
+  /** Primary button destination */
+  cta: "download" | "checkout";
   buttonText: string;
   features: PlanFeature[];
 };
@@ -43,38 +45,8 @@ export const INDIA_GST_SUFFIX = "+ GST";
 export const INDIA_GST_NOTE =
   "India pricing is tax-exclusive. GST is added at checkout on top of listed INR amounts (Polar).";
 
-const TRIAL_PRICING: RegionalPricing = {
-  currency: "USD",
-  monthly: 0,
-  annual: 0,
-};
 
 export const WEBSITE_PLANS: WebsitePlan[] = [
-  {
-    id: "pro_trial",
-    name: "Pro Trial",
-    international: { ...TRIAL_PRICING },
-    india: { currency: "INR", monthly: 0, annual: 0, gstExclusive: true },
-    descriptionLines: [
-      "Full Pro experience when you sign up.",
-      "No credit card to start.",
-    ],
-    planType: null,
-    isTrial: true,
-    buttonText: "Start 7-day trial",
-    features: [
-      {
-        text: "Unlimited words* (150,000 words/month fair-use cap)",
-        included: true,
-      },
-      { text: "50 Command Mode uses per month", included: true },
-      { text: "Polish + style matching", included: true },
-      { text: "Zen Mode + 9 clipboard slots", included: true },
-      { text: "Dictionary, snippets, and history", included: true },
-      { text: "Voice Profiling (coming soon)", included: false },
-      { text: "Priority support", included: false },
-    ],
-  },
   {
     id: "pro",
     name: "Pro",
@@ -85,16 +57,15 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
       annual: 3000,
       gstExclusive: true,
     },
-    descriptionLines: ["For professionals who dictate every day."],
+    descriptionLines: [],
+    trialNote: "7-day free trial · no credit card to start",
     featured: true,
     featuredBadge: "Most popular",
     planType: "pro",
-    buttonText: "Get Pro",
+    cta: "download",
+    buttonText: "Start 7-day free trial",
     features: [
-      {
-        text: "Unlimited words* (150,000 words/month fair-use cap)",
-        included: true,
-      },
+      { text: "Unlimited words", included: true },
       { text: "50 Command Mode uses per month", included: true },
       { text: "Polish + style matching", included: true },
       { text: "Zen Mode + 9 clipboard slots", included: true },
@@ -113,16 +84,12 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
       annual: 7500,
       gstExclusive: true,
     },
-    descriptionLines: [
-      "Built for power users and heavy daily workflows.",
-    ],
+    descriptionLines: [],
     planType: "power",
+    cta: "checkout",
     buttonText: "Get Power",
     features: [
-      {
-        text: "Unlimited words* (500,000 words/month fair-use cap)",
-        included: true,
-      },
+      { text: "Unlimited words", included: true },
       { text: "300 Command Mode uses per month", included: true },
       { text: "Polish + style matching", included: true },
       { text: "Zen Mode + 9 clipboard slots", included: true },
@@ -146,6 +113,19 @@ export function formatAmount(amount: number, currency: "USD" | "INR"): string {
   return `$${amount.toFixed(2)}`;
 }
 
+function formatTotalAnnualSavings(
+  monthly: number,
+  annual: number,
+  currency: "USD" | "INR",
+): string {
+  const saved = monthly * 12 - annual;
+  if (currency === "INR") {
+    return `Save ₹${saved.toLocaleString("en-IN")} per year vs monthly billing`;
+  }
+  const dollars = Number.isInteger(saved) ? `$${saved}` : `$${saved.toFixed(2)}`;
+  return `Save ${dollars} per year vs monthly billing`;
+}
+
 function regionalPricing(
   plan: WebsitePlan,
   region: PricingRegion,
@@ -165,15 +145,19 @@ export function planPrices(
 ): PlanPriceDisplay {
   const pricing = regionalPricing(plan, region);
 
-  if (!pricing || plan.isTrial) {
-    const symbol = region === "india" ? "₹" : "$";
+  if (!pricing) {
     return {
       price: region === "india" ? "₹0" : "$0.00",
-      period: "for 7 days",
+      period: "",
     };
   }
 
   const gst = pricing.gstExclusive ? ` ${INDIA_GST_SUFFIX}` : "";
+  const savingsNote = formatTotalAnnualSavings(
+    pricing.monthly,
+    pricing.annual,
+    pricing.currency,
+  );
 
   let display: PlanPriceDisplay;
 
@@ -181,17 +165,15 @@ export function planPrices(
     display = {
       price: formatAmount(pricing.monthly, pricing.currency),
       period: `/ month${gst}`,
+      savingsNote,
     };
-    const annual = planPrices(plan, region, "annual");
-    display.annualTeaser = `or ${annual.price}/year (${annual.equivMonthly})`;
   } else {
     const savings = annualSavingsPercent(pricing.monthly, pricing.annual);
-    const equiv = pricing.annual / 12;
     display = {
       price: formatAmount(pricing.annual, pricing.currency),
       period: `/ year${gst}`,
       savingsLabel: `Save ${savings}%`,
-      equivMonthly: `${formatAmount(equiv, pricing.currency)}/mo billed annually`,
+      savingsNote,
     };
   }
 
@@ -199,7 +181,7 @@ export function planPrices(
     const alt = planPrices(plan, alternateRegion(region), interval);
     const altLabel = alternateRegion(region) === "india" ? "India" : "International";
     display.alternateHint = `${altLabel}: ${alt.price}${alt.period ? ` ${alt.period}` : ""}${
-      alt.equivMonthly ? ` (${alt.equivMonthly})` : ""
+      alt.savingsNote ? ` · ${alt.savingsNote}` : ""
     }`;
   }
 
@@ -209,7 +191,7 @@ export function planPrices(
 export function maxAnnualSavings(region: PricingRegion): number {
   return WEBSITE_PLANS.reduce((max, plan) => {
     const pricing = regionalPricing(plan, region);
-    if (!pricing || plan.isTrial) return max;
+    if (!pricing) return max;
     return Math.max(max, annualSavingsPercent(pricing.monthly, pricing.annual));
   }, 0);
 }

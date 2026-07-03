@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/Providers";
-import { clashDisplay, openSauceOne } from "@/lib/fonts";
+import { clashDisplay, caveat, openSauceOne } from "@/lib/fonts";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSauceOne.variable} ${clashDisplay.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -2,10 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Monitor } from "lucide-react";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { detectPlatform, type Platform } from "@/lib/platform";
 
 export function FinalCtaSection() {
+  const [platform, setPlatform] = useState<Platform | null>(null);
+
+  useEffect(() => {
+    setPlatform(detectPlatform());
+  }, []);
+
+  const isWindows = platform === "windows";
+
   return (
     <section className="bg-[var(--foreground)] px-6 py-20 text-center md:py-28">
       <motion.div
@@ -28,7 +39,9 @@ export function FinalCtaSection() {
           Never break your flow.
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-white/60">
-          Try free on macOS — speak naturally, write everywhere.
+          {isWindows
+            ? "Join the Windows waitlist — macOS is live today."
+            : "Try free on macOS — speak naturally, write everywhere."}
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <div className="final-cta-btn-wrap">
@@ -38,17 +51,38 @@ export function FinalCtaSection() {
                 <div className="final-cta-orbit__spin final-cta-orbit__spin--dot" />
               </div>
             </div>
-            <Link href="/download" className="final-cta-btn">
-              <AppleIcon className="h-5 w-5" />
-              Download Free for Mac
+            <Link
+              href={isWindows ? "/exclusive-access" : "/download"}
+              className="final-cta-btn"
+            >
+              {isWindows ? (
+                <>
+                  <Monitor className="h-5 w-5" strokeWidth={2} />
+                  Get notified for Windows
+                </>
+              ) : (
+                <>
+                  <AppleIcon className="h-5 w-5" />
+                  Download Free for Mac
+                </>
+              )}
             </Link>
           </div>
-          <Link
-            href="/pricing"
-            className="text-[13px] font-medium text-white/50 transition-colors hover:text-white/80"
-          >
-            View pricing →
-          </Link>
+          {isWindows ? (
+            <Link
+              href="/download"
+              className="text-[13px] font-medium text-white/50 transition-colors hover:text-white/80"
+            >
+              Have a Mac? Download →
+            </Link>
+          ) : (
+            <Link
+              href="/pricing"
+              className="text-[13px] font-medium text-white/50 transition-colors hover:text-white/80"
+            >
+              View pricing →
+            </Link>
+          )}
         </div>
       </motion.div>
     </section>

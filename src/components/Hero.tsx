@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AppMarquee } from "@/components/AppMarquee";
 import { HeroDemoGrid } from "./hero/HeroDemoGrid";
@@ -8,10 +9,19 @@ import { HeroFluidWaves } from "./hero/HeroFluidWaves";
 import { HeroOptionalWord } from "./hero/HeroOptionalWord";
 import { HeroDownloadCta } from "./HeroDownloadCta";
 import { HeroLiveDemo } from "./landing/HeroLiveDemo";
+import { detectPlatform, type Platform } from "@/lib/platform";
 
 const headline = ["Typing", "is", "optional", "now."];
 
 export function Hero() {
+  const [platform, setPlatform] = useState<Platform | null>(null);
+
+  useEffect(() => {
+    setPlatform(detectPlatform());
+  }, []);
+
+  const isWindows = platform === "windows";
+
   return (
     <section className="relative min-h-[100dvh] overflow-hidden bg-[var(--background)]">
       <HeroFluidWaves />
@@ -91,7 +101,19 @@ export function Hero() {
           transition={{ delay: 0.58, duration: 0.45 }}
           className="mt-3 text-[12px] text-[var(--foreground-faint)] md:text-[13px]"
         >
-          7-day Pro trial · macOS
+          {isWindows ? (
+            <>
+              Windows waitlist open ·{" "}
+              <Link
+                href="/download"
+                className="font-medium text-[var(--foreground-muted)] underline-offset-2 transition-colors hover:text-[var(--foreground)] hover:underline"
+              >
+                macOS available now
+              </Link>
+            </>
+          ) : (
+            "7-day Pro trial · macOS"
+          )}
         </motion.p>
 
         <motion.div

@@ -10,6 +10,7 @@ import { MarketingPageShell } from "@/components/MarketingPageShell";
 import {
   MAC_DOWNLOAD_FILENAME,
   MAC_DOWNLOAD_URL,
+  resolveMacDownloadUrl,
   triggerMacDownload,
 } from "@/lib/download";
 import { detectPlatform } from "@/lib/platform";
@@ -27,12 +28,17 @@ export default function DownloadPage() {
   useEffect(() => {
     if (platform !== "mac" || !MAC_DOWNLOAD_URL) return;
 
-    const started = triggerMacDownload();
-    setDownloadStarted(started);
+    void (async () => {
+      const url = await resolveMacDownloadUrl();
+      if (!url) return;
+      const started = triggerMacDownload(url);
+      setDownloadStarted(started);
+    })();
   }, [platform]);
 
-  const handleRetry = () => {
-    if (triggerMacDownload()) {
+  const handleRetry = async () => {
+    const url = await resolveMacDownloadUrl();
+    if (url && triggerMacDownload(url)) {
       setDownloadStarted(true);
     }
   };
@@ -131,7 +137,7 @@ export default function DownloadPage() {
             className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]"
           >
             {downloadStarted
-              ? "Your download should start automatically. Open the installer, then sign in to get started. Not available for Intel Macs."
+              ? "Your download should start automatically. Open the installer, then sign in to get started."
               : MAC_DOWNLOAD_URL
                 ? "Starting your download…"
                 : "Download link is not configured yet."}

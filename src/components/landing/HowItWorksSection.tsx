@@ -14,9 +14,9 @@ const PHASE_LABELS = ["Hold", "Speak", "Release"] as const;
 type DemoPhase = "hold" | "speak" | "release" | "polished";
 
 const RAW =
-  "um I think we should say no because they want everything done for like half what it actually costs";
+  "um hey just checking in uh did you get a chance to look at the doc i shared";
 const POLISHED =
-  "I'd recommend declining. The scope doesn't match what they're willing to pay.";
+  "Just checking in — did you get a chance to review the document I shared?";
 
 const WAVE_FILL = "#141210";
 const WAVE_RIM_OPACITY = 0.11;
@@ -203,7 +203,7 @@ export function HowItWorksSection() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="relative -mt-[195px] overflow-hidden px-6 pb-32 pt-[188px] text-[var(--background)] md:pb-36 md:pt-[222px]"
+      className="relative -mt-[195px] overflow-hidden pb-32 pt-[188px] text-[var(--background)] md:pb-36 md:pt-[222px]"
     >
       {/* Layered wave rims + main dark body (single SVG, back → front paint order) */}
       <div className="absolute inset-0 z-[1] overflow-hidden">
@@ -242,7 +242,7 @@ export function HowItWorksSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto -mt-8 max-w-xl md:-mt-10">
+      <div className="relative z-10 landing-container -mt-8 md:-mt-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -283,7 +283,7 @@ export function HowItWorksSection() {
           </p>
         </motion.div>
 
-        <div className="mt-9 md:mt-10">
+        <div className="mx-auto mt-9 max-w-xl md:mt-10">
           <div className="relative pt-5">
             <AnimatePresence>
               {showCapsule ? (

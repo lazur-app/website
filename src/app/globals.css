@@ -57,6 +57,9 @@
   --shadow-card-hover:
     0 2px 4px rgba(28, 25, 23, 0.04),
     0 8px 28px rgba(28, 25, 23, 0.08);
+
+  /* Landing page content column — ~125% of prior max-w-5xl (1024px → 1280px) */
+  --landing-max: 80rem;
 }
 
 body {
@@ -144,6 +147,13 @@ html.hide-native-scrollbar::-webkit-scrollbar {
 }
 
 @layer utilities {
+  .landing-container {
+    width: 100%;
+    max-width: var(--landing-max);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -556,6 +566,82 @@ html.hide-native-scrollbar::-webkit-scrollbar {
     }
   }
 
+  /* Faded line grid — landing sections (stronger side gutters, emphasis on right) */
+  .landing-side-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--foreground) 10%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--foreground) 10%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 28px 28px;
+    background-position: center center;
+    opacity: 0.8;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.58) 8%,
+        rgba(0, 0, 0, 0.32) 16%,
+        rgba(0, 0, 0, 0.1) 28%,
+        transparent 38%,
+        transparent 62%,
+        rgba(0, 0, 0, 0.14) 72%,
+        rgba(0, 0, 0, 0.42) 82%,
+        rgba(0, 0, 0, 0.68) 90%,
+        rgba(0, 0, 0, 0.88) 96%,
+        rgba(0, 0, 0, 0.96) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 12%,
+        rgba(0, 0, 0, 0.88) 28%,
+        rgba(0, 0, 0, 0.88) 72%,
+        rgba(0, 0, 0, 0.35) 88%,
+        transparent 100%
+      );
+    mask-image:
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.58) 8%,
+        rgba(0, 0, 0, 0.32) 16%,
+        rgba(0, 0, 0, 0.1) 28%,
+        transparent 38%,
+        transparent 62%,
+        rgba(0, 0, 0, 0.14) 72%,
+        rgba(0, 0, 0, 0.42) 82%,
+        rgba(0, 0, 0, 0.68) 90%,
+        rgba(0, 0, 0, 0.88) 96%,
+        rgba(0, 0, 0, 0.96) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.35) 12%,
+        rgba(0, 0, 0, 0.88) 28%,
+        rgba(0, 0, 0, 0.88) 72%,
+        rgba(0, 0, 0, 0.35) 88%,
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .landing-side-grid {
+      opacity: 0.32;
+    }
+  }
+
   /* Soft vertical fade — avoids hard bands at glow top/bottom */
   .voice-morph-aura-mask {
     -webkit-mask-image: linear-gradient(
@@ -601,9 +687,10 @@ html.hide-native-scrollbar::-webkit-scrollbar {
     );
   }
 
-  /* Lower landing — structural wrapper only; wash lives in LandingAtmosphere */
+  /* Lower landing — shared canvas below testimonials */
   .landing-lower-flow {
     position: relative;
+    background: var(--background);
   }
 
   .landing-section-shell {

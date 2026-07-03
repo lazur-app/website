@@ -27,26 +27,26 @@ function KeyCap({
   return (
     <motion.div
       animate={{
-        scale: pressed ? 0.95 : 1,
-        y: pressed ? 3 : 0,
+        scale: pressed ? 0.96 : 1,
+        y: pressed ? 2 : 0,
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      className={`relative flex items-center justify-center rounded-xl border bg-white font-mono font-semibold text-[var(--foreground)] ${
-        wide ? "min-w-[7.5rem] px-5 py-3.5 text-[15px]" : "h-14 w-14 text-xl"
+      className={`relative flex items-center justify-center rounded-[10px] border font-mono font-semibold text-[var(--foreground)] ${
+        wide ? "min-w-[6.75rem] px-4 py-3 text-[14px]" : "h-[3.25rem] w-[3.25rem] text-lg"
       } ${
         pressed
-          ? "border-[var(--brand)] bg-[var(--brand-soft)] shadow-[inset_0_2px_6px_rgba(0,0,0,0.12)]"
-          : "border-[var(--border-strong)] shadow-[0_3px_0_rgba(28,25,23,0.14),0_6px_16px_rgba(28,25,23,0.06)]"
+          ? "border-[var(--brand)] bg-[var(--brand-soft)] shadow-[inset_0_2px_5px_rgba(0,0,0,0.1)]"
+          : "border-[var(--border-strong)] bg-white shadow-[0_2px_0_rgba(28,25,23,0.12),0_4px_12px_rgba(28,25,23,0.05)]"
       }`}
     >
       <AnimatePresence>
         {pressed ? (
           <motion.span
             key="ring"
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            className="pointer-events-none absolute inset-0 rounded-xl ring-2 ring-[var(--brand)] ring-offset-2"
+            exit={{ opacity: 0 }}
+            className="pointer-events-none absolute inset-0 rounded-[10px] ring-2 ring-[var(--brand)]/80 ring-offset-1"
           />
         ) : null}
       </AnimatePresence>
@@ -55,9 +55,13 @@ function KeyCap({
   );
 }
 
-export function HotkeyPressDemo() {
+type HotkeyPressDemoProps = {
+  className?: string;
+};
+
+export function HotkeyPressDemo({ className = "" }: HotkeyPressDemoProps) {
   const [pressed, setPressed] = useState<PressState>({ ctrl: false, space: false });
-  const holding = pressed.ctrl || pressed.space;
+  const holding = pressed.ctrl && pressed.space;
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -81,49 +85,45 @@ export function HotkeyPressDemo() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-5 lg:items-end">
-      <div className="flex items-center gap-2">
-        <motion.span
-          animate={{ opacity: holding ? 1 : 0.45 }}
-          className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--brand-ink)]"
-        >
-          {holding ? "Holding…" : "Hold to speak"}
-        </motion.span>
-      </div>
+    <div className={`flex flex-col items-center ${className}`}>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+        System-wide hotkey
+      </p>
 
-      <div className="flex items-end gap-2.5">
-        <div className="flex flex-col items-center gap-2">
-          <KeyCap label="⌃" pressed={pressed.ctrl} />
-          <span className="text-[10px] font-medium text-[var(--foreground-faint)]">
-            control
-          </span>
-        </div>
-
-        <span className="mb-8 text-sm font-medium text-[var(--foreground-faint)]">
-          +
-        </span>
-
-        <div className="flex flex-col items-center gap-2">
-          <KeyCap label="space" pressed={pressed.space} wide />
-          <span className="text-[10px] font-medium text-[var(--foreground-faint)]">
-            spacebar
-          </span>
-        </div>
-      </div>
-
-      <motion.div
-        animate={{ opacity: pressed.ctrl && pressed.space ? 1 : 0 }}
-        className="flex items-center gap-2 rounded-full border border-[var(--brand)]/25 bg-[var(--brand-soft)] px-3 py-1.5"
+      <motion.p
+        animate={{ opacity: pressed.ctrl || pressed.space ? 1 : 0.5 }}
+        className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--brand-ink)]"
       >
-        <motion.span
-          animate={{ scale: [1, 1.25, 1] }}
-          transition={{ repeat: Infinity, duration: 1.2 }}
-          className="h-2 w-2 rounded-full bg-[var(--brand)]"
-        />
-        <span className="text-[11px] font-semibold text-[var(--brand-ink)]">
-          Dictating in any app
-        </span>
-      </motion.div>
+        {pressed.ctrl && pressed.space ? "Holding — speak now" : "Hold both keys to dictate"}
+      </motion.p>
+
+      <div className="mt-5 flex items-end justify-center gap-2">
+        <div className="flex flex-col items-center gap-1.5">
+          <KeyCap label="⌃" pressed={pressed.ctrl} />
+          <span className="text-[10px] text-[var(--foreground-faint)]">control</span>
+        </div>
+        <span className="mb-7 text-[13px] text-[var(--foreground-faint)]">+</span>
+        <div className="flex flex-col items-center gap-1.5">
+          <KeyCap label="space" pressed={pressed.space} wide />
+          <span className="text-[10px] text-[var(--foreground-faint)]">spacebar</span>
+        </div>
+      </div>
+
+      <div className="mt-5 flex h-8 items-center justify-center">
+        <motion.div
+          animate={{ opacity: holding ? 1 : 0, y: holding ? 0 : 4 }}
+          className="flex items-center gap-2 rounded-full border border-[var(--brand)]/20 bg-[var(--brand-soft)] px-3 py-1"
+        >
+          <motion.span
+            animate={{ scale: holding ? [1, 1.2, 1] : 1 }}
+            transition={{ repeat: holding ? Infinity : 0, duration: 1.2 }}
+            className="h-1.5 w-1.5 rounded-full bg-[var(--brand)]"
+          />
+          <span className="text-[10px] font-semibold text-[var(--brand-ink)]">
+            Dictating in any app
+          </span>
+        </motion.div>
+      </div>
     </div>
   );
 }

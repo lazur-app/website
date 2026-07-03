@@ -56,18 +56,14 @@ export function GraffitiArrowCallout({
           className="mt-1.5 shrink-0"
           aria-hidden
         >
-          {/* Shaft — stops before the head so the tip reads clearly */}
+          {/* Single path — curve flows into chevron tip with no seam */}
           <path
-            d="M38 3.5C28 3.5 17 8 11 14.5"
+            d="M38 3.5 C28 3.5 18 7 12 11 L4 14.5 L12 18"
             stroke="currentColor"
-            strokeWidth="1.6"
+            strokeWidth="1.65"
             strokeLinecap="round"
+            strokeLinejoin="round"
             fill="none"
-          />
-          {/* Filled arrowhead pointing left */}
-          <path
-            d="M11 9.5 L3.5 14.5 L11 19.5 Z"
-            fill="currentColor"
           />
         </svg>
         <GraffitiText

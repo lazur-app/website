@@ -19,7 +19,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "I was skeptical at first because I tried other dictation apps. But genuinely, Lazur feels different — it's less about transcription and more about capturing intent. It genuinely saves me time.",
+      "I was skeptical at first because I tried other dictation apps. But genuinely, Lazur feels different.. it's less about transcription and more about capturing intent. It genuinely saves me time.",
     name: "Veer Adyani",
     role: "Founder",
     company: { label: "Preffer", href: "https://preffer.me" },
@@ -27,17 +27,18 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "Using Lazur for 3 months now. It's one of those tools that quietly becomes part of your daily workflow — not just dictation, but Command Mode is such an underrated feature!",
+      "Using Lazur for 3 months now. It's one of those tools that quietly becomes part of your daily workflow. not just dictation, but Command Mode is such an underrated feature!",
     name: "Akshat Thakur",
     role: "Founder",
     company: { label: "SafeExam", href: "https://safexam.in" },
     image: "/akshat-img.jpeg",
   },
   {
-    quote: "",
-    name: "More coming soon",
-    role: "Early Lazur users",
-    placeholder: true,
+    quote:
+      "I live in Slack and Figma comments all day. I didn't think voice would stick. Lazur won me over in a few days. It's faster than typing, and I barely edit what it pastes.",
+    name: "Sloane Park",
+    role: "Product Designer",
+    image: "/sloane-img.jpeg",
   },
 ];
 
@@ -74,8 +75,8 @@ function TestimonialAvatar({ testimonial }: { testimonial: Testimonial }) {
 
 export function TestimonialsSection() {
   return (
-    <section className="relative -mt-[100px] px-6 pt-[140px] pb-14 md:pt-[160px] md:pb-16">
-      <div className="mx-auto max-w-5xl">
+    <section className="relative -mt-[100px] pt-[140px] pb-14 md:pt-[160px] md:pb-16">
+      <div className="landing-container">
         <div className="mb-8 text-center md:mb-10">
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
             Early users

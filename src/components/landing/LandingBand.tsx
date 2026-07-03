@@ -42,7 +42,7 @@ export function LandingBandInner({
   className?: string;
 }) {
   return (
-    <div className={`mx-auto max-w-5xl px-6 ${className}`}>{children}</div>
+    <div className={`landing-container ${className}`}>{children}</div>
   );
 }
 

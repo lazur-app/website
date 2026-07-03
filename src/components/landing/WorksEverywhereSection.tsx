@@ -2,75 +2,91 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { AppMarquee, MARQUEE_APPS } from "@/components/AppMarquee";
+import { MARQUEE_APPS } from "@/components/AppMarquee";
 import { HotkeyPressDemo } from "@/components/landing/HotkeyPressDemo";
+import { SoftCard } from "@/components/SoftCard";
 import { LandingBand, LandingBandInner } from "@/components/landing/LandingBand";
 
 export function WorksEverywhereSection() {
   return (
-    <LandingBand id="works-everywhere" variant="muted" className="py-16 md:py-24">
+    <LandingBand
+      id="works-everywhere"
+      variant="light"
+      className="py-16 md:py-24"
+    >
       <LandingBandInner>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          className="text-center lg:text-left"
-        >
-          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-            Anywhere you have a cursor
-          </p>
-          <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-            One hotkey. Every app.
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)] lg:mx-0">
-            System-wide on macOS. Hold ⌃ Space, speak, release — polished text
-            lands where you&apos;re already working.
-          </p>
-        </motion.div>
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+          >
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+              Anywhere you have a cursor
+            </p>
+            <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
+              One hotkey. Every app.
+            </h2>
+            <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+              System-wide on macOS. Hold ⌃ Space, speak, release — polished text
+              lands where you&apos;re already working.
+            </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.08, duration: 0.45 }}
-          className="mt-10 grid items-center gap-10 lg:mt-12 lg:grid-cols-[1fr_auto] lg:gap-12"
-        >
-          <div className="min-w-0 overflow-hidden">
-            <AppMarquee
-              maskVariant="right"
-              iconSize={32}
-              iconClassName="h-8 w-8 shrink-0 object-contain opacity-75"
-              groupClassName="gap-12 pr-12"
-            />
-          </div>
+            <SoftCard hover={false} className="mt-8 p-5 md:p-6">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+                  Works in your stack
+                </p>
+                <p className="text-[11px] text-[var(--foreground-faint)]">
+                  No plugins required
+                </p>
+              </div>
+              <ul className="grid grid-cols-4 gap-2 sm:grid-cols-4 sm:gap-3">
+                {MARQUEE_APPS.map((app, i) => (
+                  <motion.li
+                    key={app.name}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.04, duration: 0.35 }}
+                  >
+                    <div
+                      className="flex flex-col items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--background-deep)]/35 px-2 py-3 transition-colors hover:border-[var(--border-strong)] hover:bg-white"
+                      title={app.name}
+                    >
+                      <Image
+                        src={app.icon}
+                        alt={app.name}
+                        width={28}
+                        height={28}
+                        className="h-7 w-7 object-contain"
+                      />
+                      <span className="w-full truncate text-center text-[10px] font-medium text-[var(--foreground-muted)]">
+                        {app.name}
+                      </span>
+                    </div>
+                  </motion.li>
+                ))}
+              </ul>
+            </SoftCard>
+          </motion.div>
 
-          <HotkeyPressDemo />
-        </motion.div>
-
-        <motion.ul
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.12, duration: 0.45 }}
-          className="mt-10 grid grid-cols-4 gap-3 sm:grid-cols-8 sm:gap-4 md:mt-12"
-        >
-          {MARQUEE_APPS.map((app) => (
-            <li
-              key={app.name}
-              className="flex aspect-square items-center justify-center rounded-2xl border border-[var(--border)] bg-white/90 shadow-sm transition-transform hover:scale-105"
-              title={app.name}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08, duration: 0.45 }}
+            className="lg:pt-2"
+          >
+            <SoftCard
+              hover={false}
+              className="mx-auto max-w-sm border-[var(--border-strong)]/60 bg-white/95 p-6 md:p-8 lg:max-w-none"
             >
-              <Image
-                src={app.icon}
-                alt={app.name}
-                width={32}
-                height={32}
-                className="h-8 w-8 object-contain opacity-80"
-              />
-            </li>
-          ))}
-        </motion.ul>
+              <HotkeyPressDemo />
+            </SoftCard>
+          </motion.div>
+        </div>
       </LandingBandInner>
     </LandingBand>
   );

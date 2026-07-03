@@ -37,7 +37,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-6xl flex-col items-center justify-center px-5 pb-12 pt-36 text-center sm:px-8 md:pb-16 md:pt-44 lg:px-12 lg:pt-48">
+      <div className="relative z-10 landing-container flex min-h-[100dvh] flex-col items-center justify-center pb-12 pt-36 text-center md:pb-16 md:pt-44 lg:pt-48">
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.65, duration: 0.5 }}
-          className="mt-12 w-full max-w-3xl md:mt-14"
+          className="mt-12 w-full max-w-4xl md:mt-14"
         >
           <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
             Works in the tools you already use
@@ -136,9 +136,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mt-10 w-full max-w-6xl px-1 md:mt-11 md:px-2"
+          className="relative mt-10 w-full px-1 md:mt-11 md:px-2"
         >
-          <div className="relative z-10 mx-auto w-full max-w-4xl">
+          <div className="relative z-10 mx-auto w-full max-w-5xl">
             <HeroLiveDemo />
           </div>
         </motion.div>

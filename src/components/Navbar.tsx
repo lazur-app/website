@@ -43,12 +43,12 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-5 md:px-8 md:pt-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 md:px-6 md:pt-6">
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-glass-pill mx-auto max-w-3xl rounded-full ${
+        className={`nav-glass-pill mx-auto w-full max-w-4xl rounded-full ${
           mobileOpen ? "overflow-hidden" : "overflow-visible"
         } ${scrolled || mobileOpen ? "nav-glass-pill--scrolled" : ""}`}
       >

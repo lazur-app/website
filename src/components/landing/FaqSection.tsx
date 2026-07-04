@@ -3,30 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-
-const FAQ = [
-  {
-    q: "Does it work in every app?",
-    a: "Yes — lazur is system-wide. It pastes at your cursor in Slack, email, IDEs, browsers, and docs. One hotkey: ⌃ Space.",
-  },
-  {
-    q: "Is my voice sent to the cloud?",
-    a: "Speech-to-text runs locally on your Mac (Whisper). Cloud AI is used only for Smart Rewrite polish when you enable it.",
-  },
-  {
-    q: "What permissions do I need?",
-    a: "Microphone and Accessibility. We guide you through both on first launch.",
-  },
-  {
-    q: "Is there a free tier?",
-    a: "Yes — start free with 5,000 words per month.",
-    link: { href: "/pricing", label: "View pricing" },
-  },
-  {
-    q: "Windows?",
-    a: "Coming soon. macOS is available now.",
-  },
-] as const;
+import { HOMEPAGE_FAQ } from "@/lib/seo/faq";
 
 export function FaqSection() {
   return (
@@ -47,8 +24,8 @@ export function FaqSection() {
               Straight answers.
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Privacy, permissions, pricing — the stuff you&apos;d ask before
-              installing anything on your Mac.
+              AI voice dictation, privacy, pricing — the stuff you&apos;d ask
+              before installing anything on your Mac.
             </p>
             <Link
               href="/download"
@@ -61,9 +38,9 @@ export function FaqSection() {
 
           <div className="lg:col-span-8">
             <dl className="divide-y divide-[var(--border)]">
-              {FAQ.map((item, i) => (
+              {HOMEPAGE_FAQ.map((item, i) => (
                 <motion.div
-                  key={item.q}
+                  key={item.question}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-20px" }}
@@ -71,11 +48,11 @@ export function FaqSection() {
                   className="py-6 first:pt-0 last:pb-0"
                 >
                   <dt className="font-display text-[17px] font-semibold tracking-tight text-[var(--foreground)] md:text-[18px]">
-                    {item.q}
+                    {item.question}
                   </dt>
                   <dd className="mt-2 max-w-xl text-[14px] leading-relaxed text-[var(--foreground-muted)]">
-                    {item.a}
-                    {"link" in item && item.link ? (
+                    {item.answer}
+                    {item.link ? (
                       <>
                         {" "}
                         <Link

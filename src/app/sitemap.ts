@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getAllPostSlugs } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/seo/constants";
+
+/** Static marketing pages — bump when content meaningfully changes. */
+const STATIC_LAST_MODIFIED = new Date("2026-07-04");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.lazur.app";
-
   const staticRoutes = [
     "",
     "/pricing",
@@ -13,15 +15,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms",
     "/privacy",
   ].map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: new Date(),
+    url: `${SITE_URL}${path}`,
+    lastModified: STATIC_LAST_MODIFIED,
     changeFrequency: "weekly" as const,
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const blogRoutes = getAllPostSlugs().map((slug) => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date(),
+  const blogRoutes = getAllPosts().map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt ?? post.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

@@ -71,9 +71,9 @@ export function Hero() {
           transition={{ delay: 0.35, duration: 0.55 }}
           className="mt-5 max-w-xl text-[16px] leading-relaxed text-[var(--foreground-muted)] md:mt-6 md:max-w-2xl md:text-[17px] md:leading-[1.55]"
         >
-          <p>Hold a key. Speak naturally.</p>
+          <p>AI voice dictation for ambient writing on Mac.</p>
           <p className="mt-1">
-            Lazur writes exactly what you mean{" "}
+            Hold a key. Speak naturally. Lazur writes exactly what you mean{" "}
             <strong className="font-semibold text-[var(--foreground)]">
               in any app.
             </strong>

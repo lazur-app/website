@@ -49,7 +49,7 @@ export const bestAiDictationApps2026: BlogPost = {
       items: [
         "Strengths: Intent-aware rewrite, Command Mode, personal dictionary, works everywhere on macOS.",
         "Best for: Daily dictation across Slack, email, docs, and IDEs where edit time matters.",
-        "Pricing: Free (5,000 words/month), Pro $10/month, Power $25/month.",
+        "Pricing: Free (5,000 words/month), Pro $14/month, Power $35/month.",
         "Platform: macOS (Windows coming soon).",
       ],
     },

@@ -18,6 +18,7 @@ export type UserProfile = {
   command_quota_used?: number;
   command_mode_enabled?: boolean;
   requires_subscription?: boolean;
+  transcript_only?: boolean;
   onboarding_completed: boolean;
   trial_status?: string;
   trial_started_at?: string | null;
@@ -171,7 +172,7 @@ export async function fetchMe(options?: { force?: boolean }): Promise<UserProfil
     if (cached) return cached;
   }
 
-  if (inflightMeRequest && !options?.force) {
+  if (inflightMeRequest) {
     return inflightMeRequest;
   }
 

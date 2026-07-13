@@ -7,6 +7,7 @@ import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { useAuth } from "@/components/AuthProvider";
 import { hasValidSessionToken, type UserProfile } from "@/lib/auth";
+import { syncBillingSubscription } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
 
 const POLL_INTERVAL_MS = 2000;
@@ -14,12 +15,12 @@ const MAX_POLLS = 30;
 
 function planMatchesExpected(profile: UserProfile, expected: string | null): boolean {
   if (!expected) return true;
-  const normalized = profile.plan.toLowerCase();
+  const slug = (profile.plan_slug || profile.plan).toLowerCase();
   if (expected === "pro") {
-    return normalized === "pro" || normalized.includes("trial");
+    return slug === "pro";
   }
   if (expected === "power") {
-    return normalized === "power";
+    return slug === "power";
   }
   return true;
 }
@@ -44,6 +45,7 @@ function BillingSuccessContent() {
     const poll = async () => {
       while (!cancelled && attempts < MAX_POLLS) {
         attempts += 1;
+        await syncBillingSubscription().catch(() => null);
         const next = await refresh({ force: true });
         if (next && planMatchesExpected(next, expectedPlan)) {
           setProfile(next);

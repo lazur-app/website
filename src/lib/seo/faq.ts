@@ -15,7 +15,7 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
     question: "How is Lazur different from Wispr Flow?",
     answer:
       "Wispr Flow focuses on fast speech-to-text. Lazur goes further with intent-aware Smart Rewrite that shapes your speech into finished, app-appropriate writing. See our full comparison for pricing, privacy, and feature details.",
-    link: { href: "/blog/lazur-vs-wispr-flow", label: "Lazur vs Wispr Flow" },
+    link: { href: "/compare/lazur-vs-wispr-flow", label: "Lazur vs Wispr Flow" },
   },
   {
     question: "Does Lazur work in Cursor and VS Code?",

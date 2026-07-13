@@ -1,11 +1,9 @@
 import type { BlogPost } from "./types";
 import { whyTeamsSwitchingFromWisprFlowToLazur } from "./posts/why-teams-switching-from-wispr-flow-to-lazur";
-import { lazurVsWisprFlow } from "./posts/lazur-vs-wispr-flow";
 import { bestAiDictationApps2026 } from "./posts/best-ai-dictation-apps-2026";
 
 const allPosts: BlogPost[] = [
   whyTeamsSwitchingFromWisprFlowToLazur,
-  lazurVsWisprFlow,
   bestAiDictationApps2026,
 ];
 

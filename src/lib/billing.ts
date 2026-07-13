@@ -205,6 +205,22 @@ export async function fetchCustomerPortalUrl(): Promise<{
   return { url: null, error: result.detail ?? "Could not open billing portal." };
 }
 
+export async function syncBillingSubscription(): Promise<{
+  synced: boolean;
+  plan_slug?: string;
+} | null> {
+  const token = getAccessToken();
+  if (!token) return null;
+
+  const response = await fetch(`${apiBase()}/billing/sync-subscription`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) return null;
+  return (await response.json()) as { synced: boolean; plan_slug?: string };
+}
+
 export async function fetchBillingStatus(): Promise<BillingStatus | null> {
   return billingFetch<BillingStatus>("/billing/status");
 }

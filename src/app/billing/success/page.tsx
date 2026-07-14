@@ -6,22 +6,27 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { useAuth } from "@/components/AuthProvider";
-import { hasValidSessionToken, type UserProfile } from "@/lib/auth";
-import { syncBillingSubscription } from "@/lib/billing";
+import { hasValidSessionToken } from "@/lib/auth";
+import {
+  fetchBillingStatus,
+  syncBillingSubscription,
+  type BillingStatus,
+} from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
 
 const POLL_INTERVAL_MS = 2000;
 const MAX_POLLS = 30;
+/** Sync is a fallback only — webhooks should unlock first. */
+const SYNC_ON_ATTEMPTS = new Set([1, 5, 15]);
 
-function planMatchesExpected(profile: UserProfile, expected: string | null): boolean {
-  if (!expected) return true;
-  const slug = (profile.plan_slug || profile.plan).toLowerCase();
-  if (expected === "pro") {
-    return slug === "pro";
+function planMatchesExpected(status: BillingStatus, expected: string | null): boolean {
+  if (!expected) {
+    return (status.plan_slug || "").toLowerCase() === "pro"
+      || (status.plan_slug || "").toLowerCase() === "power";
   }
-  if (expected === "power") {
-    return slug === "power";
-  }
+  const slug = (status.plan_slug || "").toLowerCase();
+  if (expected === "pro") return slug === "pro";
+  if (expected === "power") return slug === "power";
   return true;
 }
 
@@ -31,7 +36,7 @@ function BillingSuccessContent() {
   const { refresh } = useAuth();
   const expectedPlan = searchParams.get("plan");
   const [status, setStatus] = useState<"polling" | "done" | "timeout">("polling");
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [billing, setBilling] = useState<BillingStatus | null>(null);
 
   useEffect(() => {
     if (!hasValidSessionToken()) {
@@ -45,18 +50,25 @@ function BillingSuccessContent() {
     const poll = async () => {
       while (!cancelled && attempts < MAX_POLLS) {
         attempts += 1;
-        await syncBillingSubscription().catch(() => null);
-        const next = await refresh({ force: true });
+
+        if (SYNC_ON_ATTEMPTS.has(attempts)) {
+          await syncBillingSubscription().catch(() => null);
+        }
+
+        const next = await fetchBillingStatus();
         if (next && planMatchesExpected(next, expectedPlan)) {
-          setProfile(next);
+          setBilling(next);
           setStatus("done");
+          await refresh({ force: true }).catch(() => null);
           return;
         }
         await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
       }
       if (!cancelled) {
-        const last = await refresh({ force: true });
-        if (last) setProfile(last);
+        await syncBillingSubscription().catch(() => null);
+        const last = await fetchBillingStatus();
+        if (last) setBilling(last);
+        await refresh({ force: true }).catch(() => null);
         setStatus("timeout");
       }
     };
@@ -78,16 +90,16 @@ function BillingSuccessContent() {
               Confirming your upgrade…
             </h1>
             <p className="mt-3 text-sm text-[var(--foreground-muted)]">
-              This usually takes a few seconds. Please keep this tab open.
+              Finalizing your subscription. This usually takes a few seconds — keep this tab open.
             </p>
           </>
         )}
 
-        {status === "done" && profile && (
+        {status === "done" && billing && (
           <>
             <CheckCircle2 className="mb-6 h-12 w-12 text-emerald-600" />
             <h1 className="font-display text-2xl font-semibold text-[var(--foreground)]">
-              You&apos;re on {profile.plan}
+              You&apos;re on {billing.plan}
             </h1>
             <p className="mt-3 text-sm text-[var(--foreground-muted)]">
               Your subscription is active. Open Lazur on your Mac to use your new limits right away.
@@ -117,8 +129,8 @@ function BillingSuccessContent() {
               Payment received
             </h1>
             <p className="mt-3 text-sm text-[var(--foreground-muted)]">
-              {profile
-                ? `Your account shows ${profile.plan}. If limits haven't updated yet, refresh the app or check back in a minute.`
+              {billing
+                ? `Your account shows ${billing.plan}. If limits haven't updated yet, refresh the app or check back in a minute.`
                 : "We're still syncing your subscription. Check your dashboard in a minute."}
             </p>
             <Link

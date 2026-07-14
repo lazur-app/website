@@ -35,6 +35,7 @@ import {
   formatMoney,
   invoiceLabel,
   isPaidPlan,
+  syncBillingSubscription,
   type BillingActivityItem,
   type BillingInvoiceItem,
   type BillingInterval,
@@ -108,9 +109,15 @@ function formatDateTime(iso?: string | null): string {
   });
 }
 
-function planStatusLabel(plan: string, paid: boolean, trialExpired: boolean) {
+function planStatusLabel(
+  plan: string,
+  paid: boolean,
+  trialExpired: boolean,
+  cancelScheduled?: boolean,
+) {
   const normalized = plan.toLowerCase();
   if (trialExpired && !paid) return "Trial ended";
+  if (cancelScheduled && paid) return "Canceling";
   if (normalized.includes("trial")) return "Trial active";
   if (paid) return "Subscribed";
   return "Free";
@@ -189,6 +196,8 @@ function BillingContent() {
         return;
       }
 
+      // Pull latest cancel/renew state from Polar when webhooks are delayed.
+      await syncBillingSubscription().catch(() => null);
       const profile = await refresh({ force: true });
       if (!profile) {
         router.replace(loginPathWithReturn("/billing"));
@@ -275,7 +284,7 @@ function BillingContent() {
   const trialDays = onTrial ? daysRemaining(periodEnd) : null;
   const trialProgress =
     trialDays !== null && trialDays <= 7 ? Math.max(0, ((7 - trialDays) / 7) * 100) : null;
-  const statusLabel = planStatusLabel(user.plan, paid, trialExpired);
+  const statusLabel = planStatusLabel(user.plan, paid, trialExpired, cancelScheduled);
 
   return (
     <MarketingPageShell>

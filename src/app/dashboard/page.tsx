@@ -114,7 +114,8 @@ function DashboardContent() {
   const pct = usagePercent(user.word_quota_used, user.word_quota_limit);
   const periodEnd = user.current_period_end ?? user.trial_ends_at;
   const daysLeft = daysRemaining(periodEnd);
-  const endLabel = periodEndLabel(user.plan);
+  const cancelScheduled = Boolean(user.cancel_at_period_end);
+  const endLabel = periodEndLabel(user.plan, { cancelAtPeriodEnd: cancelScheduled });
   const endDate = formatSubscriptionDate(periodEnd);
   const isTrial = user.plan.toLowerCase().includes("trial");
   const referralLink = user.referral_link ?? referrals?.referral_link ?? "";
@@ -136,7 +137,10 @@ function DashboardContent() {
             Welcome back{user.name ? `, ${user.name.split(" ")[0]}` : ""}
           </h1>
           <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            {periodEndDescription(user.plan, periodEnd)}
+            {periodEndDescription(user.plan, periodEnd, {
+              cancelAtPeriodEnd: cancelScheduled,
+              billingSource: user.billing_source,
+            })}
           </p>
         </motion.header>
 

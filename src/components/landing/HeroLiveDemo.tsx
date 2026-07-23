@@ -62,7 +62,7 @@ export function HeroLiveDemo() {
       <div className="overflow-hidden rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface-solid)] shadow-[var(--shadow-card)] ring-1 ring-[rgba(28,25,23,0.04)]">
         <div className="border-b border-[var(--border)] bg-[var(--background)]/80 px-4 py-4 sm:px-5">
           <p className="mb-3 text-center text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
-            Same thought · lands in the app you&apos;re in
+            No prompts · understands the context you&apos;re in
           </p>
           <div
             className="relative flex gap-1 rounded-full bg-[var(--background-deep)]/80 p-1"

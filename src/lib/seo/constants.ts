@@ -3,10 +3,10 @@ export const SITE_URL = "https://www.lazur.app";
 export const SITE_NAME = "Lazur";
 
 export const DEFAULT_TITLE =
-  "Lazur | AI Voice Dictation for Mac — Ambient Writing in Any App";
+  "Lazur | Work by Voice — Context-Aware Writing for Mac";
 
 export const DEFAULT_DESCRIPTION =
-  "AI voice dictation for Mac. Hold a key, speak naturally, and get polished text in Slack, email, Cursor, and any app. Local Whisper STT. 7-day free trial.";
+  "Work by voice, not by prompts. Lazur understands your work on Mac—speak naturally and get polished text in Slack, email, Cursor, and any app. 7-day free trial.";
 
 export const OG_DESCRIPTION =
-  "Ambient writing meets AI voice dictation. Lazur turns messy speech into writing you'd actually send — system-wide on macOS.";
+  "Work by voice. Not by prompts. AI that understands your work—so you don't have to explain it. System-wide on macOS.";

@@ -136,7 +136,6 @@ export function HeroClipWindow({
                 className="absolute inset-0 h-full w-full object-cover"
                 src={clip.src}
                 poster={clip.poster}
-                muted
                 playsInline
                 loop
                 preload="metadata"

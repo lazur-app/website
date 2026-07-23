@@ -14,11 +14,29 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
   const main = HERO_CLIPS.find((c) => c.role === "main");
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hovering, setHovering] = useState(false);
+  /** Browsers block unmuted play until a real gesture — track when we've had one. */
+  const [audioUnlocked, setAudioUnlocked] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) video.muted = true;
+  }, []);
+
+  useEffect(() => {
+    const unlock = () => setAudioUnlocked(true);
+    window.addEventListener("pointerdown", unlock, { capture: true });
+    window.addEventListener("keydown", unlock, { capture: true });
+    return () => {
+      window.removeEventListener("pointerdown", unlock, { capture: true });
+      window.removeEventListener("keydown", unlock, { capture: true });
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Never put `muted` in JSX — React re-applies it every render and kills unmute.
     if (paused) {
       video.pause();
       video.muted = true;
@@ -26,15 +44,32 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
     }
 
     if (hovering) {
-      video.muted = false;
-      const play = video.play();
-      if (play && typeof play.catch === "function") {
-        play.catch(() => {
-          // Some browsers block unmuted hover autoplay; retry muted.
-          video.muted = true;
-          void video.play().catch(() => {});
-        });
-      }
+      const tryPlay = async (withSound: boolean) => {
+        video.muted = !withSound;
+        try {
+          await video.play();
+          return !video.paused;
+        } catch {
+          return false;
+        }
+      };
+
+      void (async () => {
+        // Always try with sound first (works after any click / high MEI).
+        const unmutedOk = await tryPlay(true);
+        if (!unmutedOk || video.muted) {
+          if (audioUnlocked) {
+            video.muted = false;
+            try {
+              await video.play();
+            } catch {
+              await tryPlay(false);
+            }
+          } else {
+            await tryPlay(false);
+          }
+        }
+      })();
     } else {
       video.pause();
       video.muted = true;
@@ -44,7 +79,7 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
         /* ignore seek before metadata */
       }
     }
-  }, [hovering, paused]);
+  }, [hovering, paused, audioUnlocked]);
 
   if (!main?.src) return null;
 
@@ -89,7 +124,6 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
               className="absolute inset-0 h-full w-full object-contain"
               src={main.src}
               poster={main.poster}
-              muted
               playsInline
               loop
               preload="metadata"

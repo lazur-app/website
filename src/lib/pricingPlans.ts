@@ -67,6 +67,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     features: [
       { text: "Unlimited words", included: true },
       { text: "50 Command Mode uses per month", included: true },
+      { text: "25 Agent Mode uses per month", included: true },
       { text: "Polish + style matching", included: true },
       { text: "Zen Mode + 9 clipboard slots", included: true },
       { text: "Dictionary, snippets, and history", included: true },
@@ -91,6 +92,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     features: [
       { text: "Unlimited words", included: true },
       { text: "300 Command Mode uses per month", included: true },
+      { text: "150 Agent Mode uses per month", included: true },
       { text: "Polish + style matching", included: true },
       { text: "Zen Mode + 9 clipboard slots", included: true },
       { text: "Dictionary, snippets, and history", included: true },

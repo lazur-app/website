@@ -1,9 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
-const VOICE_INDEX = 2;
-const PROMPTS_INDEX = 6;
+const HIGHLIGHT_INDEX = 2;
 const WORD_STAGGER = 0.1;
 const BASE_DELAY = 0.15;
 
@@ -11,9 +11,9 @@ function wordDelay(index: number) {
   return BASE_DELAY + index * WORD_STAGGER;
 }
 
-/** "voice" — italic with a left-to-right marker stroke reveal. */
-export function HeroVoiceWord() {
-  const delay = wordDelay(VOICE_INDEX);
+/** Highlighted motto word — italic with a left-to-right marker stroke reveal. */
+export function HeroVoiceWord({ children }: { children: ReactNode }) {
+  const delay = wordDelay(HIGHLIGHT_INDEX);
   const highlightDelay = delay + 0.5;
 
   return (
@@ -57,40 +57,7 @@ export function HeroVoiceWord() {
           </svg>
         </motion.span>
       </span>
-      voice
-    </motion.span>
-  );
-}
-
-/** "prompts" — muted, soft strikethrough so the motto reads as a stance. */
-export function HeroPromptsWord() {
-  const delay = wordDelay(PROMPTS_INDEX);
-
-  return (
-    <motion.span
-      className="relative inline-block shrink-0 text-[var(--foreground-muted)]"
-      initial={{ y: 16, opacity: 0.55 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{
-        delay,
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-    >
-      <span className="relative">
-        prompts
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute left-0 right-0 top-[0.58em] h-[0.06em] origin-left rounded-full bg-[var(--foreground-faint)]"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{
-            delay: delay + 0.55,
-            duration: 0.45,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
-      </span>
+      {children}
     </motion.span>
   );
 }

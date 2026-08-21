@@ -9,11 +9,13 @@ import { detectPlatform, type Platform } from "@/lib/platform";
 type HeroDownloadCtaProps = {
   align?: "center" | "start";
   variant?: "default" | "minimal";
+  className?: string;
 };
 
 export function HeroDownloadCta({
   align = "center",
   variant = "default",
+  className = "",
 }: HeroDownloadCtaProps) {
   const [platform, setPlatform] = useState<Platform | null>(null);
 
@@ -28,8 +30,10 @@ export function HeroDownloadCta({
 
   if (platform === null) {
     return (
-      <div className={`flex ${rowAlign}`} aria-hidden>
-        <span className="btn-dark inline-flex min-h-[48px] min-w-[12.5rem] px-6 opacity-0">
+      <div className={`flex w-full ${rowAlign}`} aria-hidden>
+        <span
+          className={`btn-dark inline-flex min-h-[44px] min-w-[12.5rem] px-6 opacity-0 sm:min-h-[48px] ${className}`}
+        >
           &nbsp;
         </span>
       </div>
@@ -40,7 +44,7 @@ export function HeroDownloadCta({
     return (
       <Link
         href="/exclusive-access"
-        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+        className={`btn-dark inline-flex min-h-[44px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold sm:min-h-[48px] ${className}`}
       >
         <Monitor className="h-4 w-4" strokeWidth={2} />
         Get notified for Windows
@@ -52,7 +56,7 @@ export function HeroDownloadCta({
     return (
       <Link
         href="/download"
-        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold"
+        className={`btn-dark inline-flex min-h-[44px] items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold sm:min-h-[48px] ${className}`}
       >
         <AppleIcon />
         Download Free for Mac

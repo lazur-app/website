@@ -22,7 +22,13 @@ function CallbackContent() {
 
       try {
         const params = `access_token=${accessToken}&refresh_token=${refreshToken}`;
-        await fetch(`http://127.0.0.1:1421?${params}`, { mode: "no-cors" });
+        await fetch(`http://127.0.0.1:1421/?${params}`, { mode: "no-cors" });
+        await fetch("http://127.0.0.1:1421/", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params,
+        });
       } catch {
         /* local auth server optional */
       }

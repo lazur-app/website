@@ -22,7 +22,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] py-16">
+    <footer className="border-t border-[var(--border)] py-16 md:py-20">
       <div className="landing-container">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>

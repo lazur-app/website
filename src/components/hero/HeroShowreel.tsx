@@ -88,7 +88,7 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.7, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      className="relative z-20 mx-auto mt-8 w-full max-w-5xl px-2 lg:mt-9"
+      className="relative z-20 mx-auto mt-4 w-full max-w-5xl md:mt-8 md:px-2 lg:mt-9"
       style={{ width: main.desktop.width, maxWidth: "100%" }}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
@@ -130,14 +130,14 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
               aria-hidden
             />
 
-            <span className="pointer-events-none absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-[rgba(28,25,23,0.82)] px-3 py-1.5 text-[12px] font-medium tracking-tight text-white shadow-[0_4px_16px_rgba(28,25,23,0.25)] backdrop-blur-sm transition-[transform,background-color] duration-200 group-hover/showreel:bg-[rgba(28,25,23,0.92)] group-hover/showreel:scale-[1.02]">
+            <span className="pointer-events-none absolute right-2 top-2 z-10 inline-flex items-center gap-1.5 rounded-full bg-[rgba(28,25,23,0.82)] px-2.5 py-1 text-[11px] font-medium tracking-tight text-white shadow-[0_4px_16px_rgba(28,25,23,0.25)] backdrop-blur-sm transition-[transform,background-color] duration-200 group-hover/showreel:bg-[rgba(28,25,23,0.92)] group-hover/showreel:scale-[1.02] sm:right-3 sm:top-3 sm:px-3 sm:py-1.5 sm:text-[12px]">
               <PlayGlyph />
               Open video
             </span>
           </div>
         </div>
 
-        <p className="mt-1.5 text-center font-mono text-[10px] tracking-wide text-[var(--foreground-faint)]">
+        <p className="mt-1.5 hidden text-center font-mono text-[10px] tracking-wide text-[var(--foreground-faint)] sm:block">
           {main.label}
         </p>
       </button>

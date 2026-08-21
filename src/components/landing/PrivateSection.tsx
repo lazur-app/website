@@ -24,57 +24,51 @@ const ASSURANCES = [
 
 export function PrivateSection() {
   return (
-    <LandingBand id="privacy" variant="dark" className="py-16 md:py-24">
+    <LandingBand id="privacy" variant="light" className="py-16 md:py-24">
       <LandingBandInner>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-14">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="text-center lg:text-left"
-          >
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/45">
-              Private by default
-            </p>
-            <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--background)] md:text-[2.75rem]">
-              Your voice stays on your Mac.
-            </h2>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/60 lg:mx-0 mx-auto">
-              Speech-to-text runs on your device. Your voice isn&apos;t stored in
-              the cloud — and we don&apos;t train generalized models on what you
-              say.
-            </p>
-            <Link
-              href="/privacy"
-              className="mt-6 inline-block text-[13px] font-medium text-white/50 transition-colors hover:text-white/80"
-            >
-              Read the privacy policy →
-            </Link>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="mx-auto mb-12 max-w-2xl text-center md:mb-14"
+        >
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
+            · Private by default ·
+          </p>
+          <h2 className="mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
+            Your voice stays on your Mac.
+          </h2>
+        </motion.div>
 
-          <motion.ul
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.06, duration: 0.45 }}
-            className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:gap-4"
+        <ul className="grid gap-4 md:grid-cols-3 md:gap-5">
+          {ASSURANCES.map((item, i) => (
+            <motion.li
+              key={item.title}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              className="rounded-[1.5rem] bg-white px-6 py-7 shadow-[0_12px_40px_rgba(28,25,23,0.05)]"
+            >
+              <p className="text-[15px] font-semibold text-[var(--foreground)]">
+                {item.title}
+              </p>
+              <p className="mt-2 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+                {item.detail}
+              </p>
+            </motion.li>
+          ))}
+        </ul>
+
+        <p className="mt-8 text-center">
+          <Link
+            href="/privacy"
+            className="text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
           >
-            {ASSURANCES.map((item) => (
-              <li
-                key={item.title}
-                className="rounded-2xl border border-white/12 bg-white/5 px-4 py-4 md:px-5 md:py-5"
-              >
-                <p className="text-[14px] font-semibold text-white/90">
-                  {item.title}
-                </p>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-white/50">
-                  {item.detail}
-                </p>
-              </li>
-            ))}
-          </motion.ul>
-        </div>
+            Read the privacy policy →
+          </Link>
+        </p>
       </LandingBandInner>
     </LandingBand>
   );

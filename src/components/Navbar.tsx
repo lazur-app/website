@@ -43,13 +43,31 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 md:px-6 md:pt-6">
+    <>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.button
+            type="button"
+            aria-label="Close menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 z-40 bg-[rgba(28,25,23,0.22)] md:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4 md:px-6 md:pt-6">
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-glass-pill mx-auto w-full max-w-4xl rounded-full ${
-          mobileOpen ? "overflow-hidden" : "overflow-visible"
+        className={`nav-glass-pill mx-auto w-full max-w-4xl ${
+          mobileOpen
+            ? "overflow-hidden rounded-[22px]"
+            : "overflow-visible rounded-full"
         } ${scrolled || mobileOpen ? "nav-glass-pill--scrolled" : ""}`}
       >
         <div className="flex h-[48px] items-center justify-between gap-4 px-5 md:px-6">
@@ -126,13 +144,14 @@ export function Navbar() {
               transition={{ duration: 0.22 }}
               className="overflow-hidden border-t border-[var(--border)]/50 md:hidden"
             >
-              <nav className="flex flex-col px-5 py-4" aria-label="Mobile">
+              <nav className="flex flex-col px-5 pb-5 pt-2" aria-label="Mobile">
                 {navLinks.map((link) => {
                   const active = isActive(pathname, link.match, link.href);
                   return (
                     <Link
                       key={link.href}
                       href={link.href}
+                      onClick={() => setMobileOpen(false)}
                       className={`py-2.5 text-[15px] font-medium ${
                         active
                           ? "text-[var(--foreground)]"
@@ -143,7 +162,7 @@ export function Navbar() {
                     </Link>
                   );
                 })}
-                <div className="mt-3 flex flex-col gap-3 border-t border-[var(--border)]/50 pt-4">
+                <div className="mt-2 flex flex-col gap-3 border-t border-[var(--border)]/50 pt-3">
                   {loading ? null : isAuthenticated && user ? (
                     <UserMenu
                       user={user}
@@ -154,13 +173,15 @@ export function Navbar() {
                     <>
                       <Link
                         href="/login"
+                        onClick={() => setMobileOpen(false)}
                         className="py-1 text-[15px] font-medium text-[var(--foreground-muted)]"
                       >
                         Log in
                       </Link>
                       <Link
                         href="/download"
-                        className="btn-dark w-fit rounded-full px-5 py-2.5 text-[14px]"
+                        onClick={() => setMobileOpen(false)}
+                        className="btn-dark w-full rounded-full px-5 py-2.5 text-center text-[14px]"
                       >
                         Try Lazur Free
                       </Link>
@@ -173,5 +194,6 @@ export function Navbar() {
         </AnimatePresence>
       </motion.div>
     </header>
+    </>
   );
 }

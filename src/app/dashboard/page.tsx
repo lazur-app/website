@@ -202,6 +202,28 @@ function DashboardContent() {
               <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">
                 {pct}% of monthly word budget used
               </p>
+              {(user.command_mode_enabled || user.agent_mode_enabled) && (
+                <div className="mt-4 space-y-1.5 border-t border-[var(--border)] pt-4 text-[13px] text-[var(--foreground-muted)]">
+                  {user.command_mode_enabled && (
+                    <p>
+                      Commands{" "}
+                      <span className="font-medium text-[var(--foreground)]">
+                        {(user.command_quota_used ?? 0).toLocaleString()} /{" "}
+                        {(user.command_quota_limit ?? 0).toLocaleString()}
+                      </span>
+                    </p>
+                  )}
+                  {user.agent_mode_enabled && (
+                    <p>
+                      Agents{" "}
+                      <span className="font-medium text-[var(--foreground)]">
+                        {(user.agent_quota_used ?? 0).toLocaleString()} /{" "}
+                        {(user.agent_quota_limit ?? 0).toLocaleString()}
+                      </span>
+                    </p>
+                  )}
+                </div>
+              )}
             </SoftCard>
           </motion.div>
         </div>

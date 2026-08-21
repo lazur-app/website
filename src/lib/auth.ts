@@ -17,6 +17,9 @@ export type UserProfile = {
   command_quota_limit?: number;
   command_quota_used?: number;
   command_mode_enabled?: boolean;
+  agent_quota_limit?: number;
+  agent_quota_used?: number;
+  agent_mode_enabled?: boolean;
   requires_subscription?: boolean;
   transcript_only?: boolean;
   onboarding_completed: boolean;

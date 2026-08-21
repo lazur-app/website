@@ -2,74 +2,58 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { AppleIcon } from "@/components/icons/AppleIcon";
 import { HOMEPAGE_FAQ } from "@/lib/seo/faq";
 
 export function FaqSection() {
   return (
-    <section id="faq" className="px-6 py-16 md:py-24">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start"
-          >
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-              FAQ
-            </p>
-            <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.25rem]">
-              Straight answers.
-            </h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              AI voice dictation, privacy, pricing — the stuff you&apos;d ask
-              before installing anything on your Mac.
-            </p>
-            <Link
-              href="/download"
-              className="btn-dark mt-8 inline-flex items-center gap-2 px-6 text-[14px]"
-            >
-              <AppleIcon />
-              Download for Mac
-            </Link>
-          </motion.div>
+    <section id="faq" className="px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 text-center md:mb-16"
+        >
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
+            · FAQ ·
+          </p>
+          <h2 className="mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
+            Straight answers.
+          </h2>
+        </motion.div>
 
-          <div className="lg:col-span-8">
-            <dl className="divide-y divide-[var(--border)]">
-              {HOMEPAGE_FAQ.map((item, i) => (
-                <motion.div
-                  key={item.question}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ duration: 0.35, delay: i * 0.04 }}
-                  className="py-6 first:pt-0 last:pb-0"
-                >
-                  <dt className="font-display text-[17px] font-semibold tracking-tight text-[var(--foreground)] md:text-[18px]">
-                    {item.question}
-                  </dt>
-                  <dd className="mt-2 max-w-xl text-[14px] leading-relaxed text-[var(--foreground-muted)]">
-                    {item.answer}
-                    {item.link ? (
-                      <>
-                        {" "}
-                        <Link
-                          href={item.link.href}
-                          className="font-medium text-[var(--brand-ink)] underline decoration-[var(--brand)]/30 underline-offset-2 transition-colors hover:text-[var(--brand)]"
-                        >
-                          {item.link.label}
-                        </Link>
-                        .
-                      </>
-                    ) : null}
-                  </dd>
-                </motion.div>
-              ))}
-            </dl>
-          </div>
-        </div>
+        <dl className="divide-y divide-[var(--border)]">
+          {HOMEPAGE_FAQ.map((item, i) => (
+            <motion.div
+              key={item.question}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.35, delay: i * 0.03 }}
+              className="py-7 first:pt-0 last:pb-0"
+            >
+              <dt className="font-display text-[17px] font-semibold tracking-tight text-[var(--foreground)] md:text-[19px]">
+                {item.question}
+              </dt>
+              <dd className="mt-2.5 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+                {item.answer}
+                {item.link ? (
+                  <>
+                    {" "}
+                    <Link
+                      href={item.link.href}
+                      className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/20 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
+                    >
+                      {item.link.label}
+                    </Link>
+                    .
+                  </>
+                ) : null}
+              </dd>
+            </motion.div>
+          ))}
+        </dl>
       </div>
     </section>
   );

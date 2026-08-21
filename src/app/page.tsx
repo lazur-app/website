@@ -9,6 +9,7 @@ import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
+import { HappyUsersBar } from "@/components/landing/HappyUsersBar";
 import { HomePageStructuredData } from "@/components/seo/HomePageStructuredData";
 import {
   DEFAULT_DESCRIPTION,
@@ -38,7 +39,9 @@ export default function Home() {
         <FaqSection />
         <FinalCtaSection />
       </main>
+      <HappyUsersBar />
       <Footer />
+      <div className="h-20" aria-hidden />
     </MarketingPageShell>
   );
 }

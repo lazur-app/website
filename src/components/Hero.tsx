@@ -8,29 +8,21 @@ import { HeroDemoGrid } from "./hero/HeroDemoGrid";
 import { HeroDemoModal } from "./hero/HeroDemoModal";
 import { HeroShowreel } from "./hero/HeroShowreel";
 import { HeroFluidWaves } from "./hero/HeroFluidWaves";
-import {
-  HeroPromptsWord,
-  HeroVoiceWord,
-} from "./hero/HeroMottoWords";
+import { HeroVoiceWord } from "./hero/HeroMottoWords";
 import { HeroDownloadCta } from "./HeroDownloadCta";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
 type HeadlinePart =
   | { type: "word"; text: string }
-  | { type: "voice" }
-  | { type: "prompts" }
+  | { type: "highlight"; text: string }
   | { type: "break" };
 
 const headline: HeadlinePart[] = [
-  { type: "word", text: "Work" },
-  { type: "word", text: "by" },
-  { type: "voice" },
-  { type: "word", text: "." },
+  { type: "word", text: "Typing" },
+  { type: "word", text: "is" },
   { type: "break" },
-  { type: "word", text: "Not" },
-  { type: "word", text: "by" },
-  { type: "prompts" },
-  { type: "word", text: "." },
+  { type: "highlight", text: "optional" },
+  { type: "word", text: "now." },
 ];
 
 export function Hero() {
@@ -46,14 +38,14 @@ export function Hero() {
   let wordIndex = 0;
 
   return (
-    <section className="relative min-h-[100dvh] overflow-hidden bg-[var(--background)]">
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+    <section className="relative min-h-[100svh] overflow-x-clip bg-[var(--background)] md:min-h-[100dvh] md:overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <HeroFluidWaves />
         <HeroDemoGrid />
       </div>
 
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[clamp(7rem,22vh,11rem)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[clamp(4.5rem,16vh,11rem)] md:h-[clamp(7rem,22vh,11rem)]"
         aria-hidden
         style={{
           background:
@@ -61,29 +53,29 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 landing-container flex min-h-[100dvh] flex-col items-center justify-center pb-16 pt-28 text-center md:pb-20 md:pt-32 lg:pb-24 lg:pt-36">
-        <div className="flex w-full flex-col items-center">
+      <div className="relative z-10 landing-container flex flex-col items-center pb-10 pt-24 text-center md:min-h-[100dvh] md:justify-center md:pb-20 md:pt-32 lg:pb-24 lg:pt-36">
+        <div className="flex min-h-[78svh] w-full flex-col items-center justify-center md:min-h-0">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="flex max-w-[18ch] flex-wrap items-baseline justify-center gap-x-[0.22em] font-display text-[clamp(2.05rem,5.4vw,4.5rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[var(--foreground)] sm:max-w-none"
+            transition={{ delay: 0.08, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="flex max-w-[7.2em] flex-wrap items-baseline justify-center gap-x-[0.2em] font-display text-[clamp(2.9rem,11vw,4.5rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-[var(--foreground)] md:max-w-none md:leading-[1.08]"
           >
             {headline.map((part, i) => {
               if (part.type === "break") {
                 return (
-                  <span key={`br-${i}`} className="basis-full h-0" aria-hidden />
+                  <span
+                    key={`br-${i}`}
+                    className="h-0 basis-full md:hidden"
+                    aria-hidden
+                  />
                 );
               }
 
               const index = wordIndex++;
 
-              if (part.type === "voice") {
-                return <HeroVoiceWord key="voice" />;
-              }
-
-              if (part.type === "prompts") {
-                return <HeroPromptsWord key="prompts" />;
+              if (part.type === "highlight") {
+                return <HeroVoiceWord key={part.text}>{part.text}</HeroVoiceWord>;
               }
 
               return (
@@ -96,9 +88,7 @@ export function Hero() {
                     duration: 0.7,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className={`inline-block shrink-0 ${
-                    part.text === "." ? "-ml-[0.12em]" : ""
-                  }`}
+                  className="inline-block shrink-0"
                 >
                   {part.text}
                 </motion.span>
@@ -109,23 +99,27 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.55 }}
-            className="mt-5 max-w-xl text-[16px] leading-relaxed text-[var(--foreground-muted)] md:mt-6 md:max-w-2xl md:text-[17px] md:leading-[1.55]"
+            transition={{ delay: 0.32, duration: 0.55 }}
+            className="mt-5 max-w-[18rem] text-[16px] leading-relaxed text-[var(--foreground-muted)] md:mt-6 md:max-w-xl md:text-[17px] md:leading-[1.55]"
           >
-            AI should understand your work—not make you explain it.
+            Turn your voice into clear, polished writing in any app.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.48, duration: 0.5 }}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:mt-10"
+            transition={{ delay: 0.45, duration: 0.5 }}
+            className="mt-8 flex w-full max-w-[17rem] flex-col items-center gap-3 md:mt-10 md:max-w-none md:flex-row md:justify-center"
           >
-            <HeroDownloadCta align="center" variant="minimal" />
+            <HeroDownloadCta
+              align="center"
+              variant="minimal"
+              className="w-full md:w-auto"
+            />
             <button
               type="button"
               onClick={() => setDemoOpen(true)}
-              className="btn-outline-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-5 text-[14px]"
+              className="btn-outline-dark hidden min-h-[48px] items-center justify-center gap-2 px-5 text-[14px] md:inline-flex"
             >
               See how it works
             </button>
@@ -134,7 +128,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.58, duration: 0.45 }}
+            transition={{ delay: 0.55, duration: 0.45 }}
             className="mt-3 text-[12px] text-[var(--foreground-faint)] md:text-[13px]"
           >
             {isWindows ? (
@@ -151,28 +145,28 @@ export function Hero() {
               "7-day Pro trial · macOS"
             )}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.65, duration: 0.5 }}
-            className="mt-10 w-full max-w-4xl md:mt-12"
-          >
-            <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
-              Understands the app you&apos;re already in
-            </p>
-            <AppMarquee
-              iconSize={20}
-              iconClassName="h-5 w-5 shrink-0 object-contain opacity-45 grayscale"
-              groupClassName="gap-7 pr-7"
-            />
-          </motion.div>
-
-          <HeroShowreel
-            onOpen={() => setDemoOpen(true)}
-            paused={demoOpen}
-          />
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.65, duration: 0.5 }}
+          className="mt-10 hidden w-full max-w-4xl md:mt-12 md:block"
+        >
+          <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
+            Understands the app you&apos;re already in
+          </p>
+          <AppMarquee
+            iconSize={20}
+            iconClassName="h-5 w-5 shrink-0 object-contain opacity-45 grayscale"
+            groupClassName="gap-7 pr-7"
+          />
+        </motion.div>
+
+        <HeroShowreel
+          onOpen={() => setDemoOpen(true)}
+          paused={demoOpen}
+        />
       </div>
 
       <HeroDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />

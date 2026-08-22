@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 
 export function BlogCta() {
@@ -11,13 +12,10 @@ export function BlogCta() {
         Speak naturally. Get finished writing in any app, not just a transcript.
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link
-          href="/download"
-          className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-white px-5 text-[14px] font-semibold text-[var(--foreground)] transition-transform hover:scale-[1.02]"
-        >
+        <GlowCta href="/download" variant="light">
           <AppleIcon className="h-4 w-4" />
           Download for Mac
-        </Link>
+        </GlowCta>
         <Link
           href="/pricing"
           className="text-[14px] font-medium text-white/70 transition-colors hover:text-white"

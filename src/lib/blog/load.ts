@@ -116,7 +116,12 @@ export function loadAllPosts(): BlogPost[] {
 
   const files = fs
     .readdirSync(dir)
-    .filter((file) => file.endsWith(".md") && !file.startsWith("_"));
+    .filter(
+      (file) =>
+        file.endsWith(".md") &&
+        !file.startsWith("_") &&
+        file.toLowerCase() !== "readme.md",
+    );
 
   cache = files
     .map((file) =>

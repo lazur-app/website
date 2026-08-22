@@ -8,7 +8,7 @@ cover: "apps"
 targetKeyword: "Typeless vs Lazur"
 tldr:
   - "Typeless shows up on Wispr Flow alternative lists as a heavy everyday dictation app that polishes natural speech."
-  - "Lazur is the Mac ambient writing option: local Whisper STT, Smart Rewrite, Command Mode, system-wide paste."
+  - "Lazur is the Mac ambient writing option: on-device NVIDIA Parakeet STT, Smart Rewrite, Command Mode, system-wide paste."
   - "If you want ‘nicer dictation,’ try both. If you want intent plus privacy-shaped STT, Lazur is the tighter fit."
 faq:
   - question: "Is Typeless a Wispr Flow alternative?"
@@ -16,7 +16,7 @@ faq:
   - question: "What is the difference between Typeless and Lazur?"
     answer: "Typeless is positioned as everyday dictation with polished output. Lazur is positioned as a voice interface for work: understand intent, use app context, Command Mode, and run speech-to-text on the Mac. Overlap is ‘speech that doesn’t sound spoken.’ The split is actions, context, and STT architecture."
   - question: "Should I switch from Typeless to Lazur?"
-    answer: "Switch if you need system-wide Mac paste with Command Mode (‘reply to this’) and on-device Whisper, or if leftover editing is still high. Stay if Typeless already hits zero-edit for your apps and devices."
+    answer: "Switch if you need system-wide Mac paste with Command Mode (‘reply to this’) and on-device NVIDIA Parakeet, or if leftover editing is still high. Stay if Typeless already hits zero-edit for your apps and devices."
 relatedSlugs:
   - "wispr-flow-alternatives"
   - "messy-speech-to-finished-writing"
@@ -32,7 +32,7 @@ Both reject “raw speech on the page.” That is table stakes next to Wispr cle
 | --- | --- | --- |
 | Everyday polished dictation | Core pitch | Smart Rewrite |
 | Intent / commands on current context | Confirm in-product | Command Mode |
-| On-device STT | Confirm vendor docs | Whisper on Mac |
+| On-device STT | Confirm vendor docs | NVIDIA Parakeet on Mac |
 | System-wide Mac | Confirm | Yes |
 | Windows / mobile | Confirm | Windows coming; no mobile yet |
 

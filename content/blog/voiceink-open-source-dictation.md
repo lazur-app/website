@@ -9,14 +9,14 @@ targetKeyword: "VoiceInk dictation"
 tldr:
   - "VoiceInk is a Wispr Flow alternative for people who want open-source, local voice-to-text they can own."
   - "It is closer to Superwhisper than to Lazur: control and privacy first, not intent-aware finished writing."
-  - "Choose VoiceInk if you want to run the stack yourself. Choose Lazur if you want send-ready paste in Slack and email with on-device Whisper and Smart Rewrite."
+  - "Choose VoiceInk if you want to run the stack yourself. Choose Lazur if you want send-ready paste in Slack and email with on-device NVIDIA Parakeet and Smart Rewrite."
 faq:
   - question: "What is VoiceInk?"
     answer: "VoiceInk is an open-source dictation app that processes speech locally. It shows up on 2026 Wispr Flow alternative lists next to Aqua Voice, Superwhisper, Willow, and MacWhisper for people who want to own their voice-to-text stack."
   - question: "Is VoiceInk better than Wispr Flow for privacy?"
     answer: "If your requirement is local processing and an open codebase, VoiceInk is a stronger privacy-shaped alternative than a cloud-first dictation app. Confirm each project’s current model download, network calls, and rewrite behavior before you treat it as fully air-gapped."
   - question: "Should I use VoiceInk or Lazur?"
-    answer: "Use VoiceInk if you want open-source local STT and you are comfortable assembling workflow around it. Use Lazur if you want a productized voice writing loop: local Whisper, Smart Rewrite, Command Mode, and paste at the cursor in any Mac app."
+    answer: "Use VoiceInk if you want open-source local STT and you are comfortable assembling workflow around it. Use Lazur if you want a productized voice writing loop: NVIDIA Parakeet on-device, Smart Rewrite, Command Mode, and paste at the cursor in any Mac app."
 relatedSlugs:
   - "on-device-speech-to-text-mac"
   - "wispr-flow-alternatives"
@@ -40,7 +40,7 @@ The thesis, in one line: *own your voice-to-text stack.* That is a real category
 
 Local STT is the right starting point for legal, health, and locked-down laptops. Read [on-device speech to text on Mac](/blog/on-device-speech-to-text-mac) for the questions to ask any vendor (or any GitHub README): is audio stored, is rewrite a separate cloud call, can you disable it.
 
-Lazur’s split is explicit: Whisper on the Mac for STT; Smart Rewrite can use cloud **text** when enabled. VoiceInk’s pitch is to keep more of that loop under your control. Verify the build you actually run.
+Lazur’s split is explicit: NVIDIA Parakeet on the Mac for STT; Smart Rewrite can use cloud **text** when enabled. VoiceInk’s pitch is to keep more of that loop under your control. Verify the build you actually run.
 
 ## When not to choose VoiceInk
 

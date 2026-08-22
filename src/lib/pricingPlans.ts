@@ -23,7 +23,7 @@ export type PlanPriceDisplay = {
 };
 
 export type WebsitePlan = {
-  id: "pro" | "power";
+  id: "free" | "pro" | "power";
   name: string;
   international: RegionalPricing | null;
   india: RegionalPricing | null;
@@ -31,7 +31,7 @@ export type WebsitePlan = {
   descriptionLines: string[];
   featured?: boolean;
   featuredBadge?: string;
-  planType: "pro" | "power";
+  planType?: "pro" | "power";
   /** Shown under the price, e.g. trial callout */
   trialNote?: string;
   /** Primary button destination */
@@ -48,6 +48,20 @@ export const INDIA_GST_NOTE =
 
 export const WEBSITE_PLANS: WebsitePlan[] = [
   {
+    id: "free",
+    name: "Free",
+    international: { currency: "USD", monthly: 0, annual: 0 },
+    india: { currency: "INR", monthly: 0, annual: 0 },
+    descriptionLines: ["see if voice actually sticks.", "best for trying it out"],
+    cta: "download",
+    buttonText: "start free",
+    features: [
+      { text: "Plenty of dictation (5,000 words/month)", included: true },
+      { text: "Dictation Mode in every Mac app", included: true },
+      { text: "On-device speech-to-text", included: true },
+    ],
+  },
+  {
     id: "pro",
     name: "Pro",
     international: { currency: "USD", monthly: 14, annual: 108 },
@@ -57,22 +71,16 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
       annual: 3000,
       gstExclusive: true,
     },
-    descriptionLines: [],
-    trialNote: "7-day free trial · no credit card to start",
+    descriptionLines: ["speak all day. no word math.", "best for everyday use"],
     featured: true,
-    featuredBadge: "Most popular",
+    featuredBadge: "Popular",
     planType: "pro",
     cta: "download",
-    buttonText: "Start 7-day free trial",
+    buttonText: "get pro",
     features: [
-      { text: "Unlimited words", included: true },
+      { text: "Unlimited dictation", included: true },
       { text: "50 Command Mode uses per month", included: true },
-      { text: "25 Agent Mode uses per month", included: true },
       { text: "Polish + style matching", included: true },
-      { text: "Zen Mode + 9 clipboard slots", included: true },
-      { text: "Dictionary, snippets, and history", included: true },
-      { text: "Voice Profiling (coming soon)", included: false },
-      { text: "Priority support", included: false },
     ],
   },
   {
@@ -85,18 +93,13 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
       annual: 7500,
       gstExclusive: true,
     },
-    descriptionLines: [],
+    descriptionLines: ["command mode on tap.", "best for people who live in it"],
     planType: "power",
     cta: "checkout",
-    buttonText: "Get Power",
+    buttonText: "get power",
     features: [
-      { text: "Unlimited words", included: true },
+      { text: "True unlimited dictation", included: true },
       { text: "300 Command Mode uses per month", included: true },
-      { text: "150 Agent Mode uses per month", included: true },
-      { text: "Polish + style matching", included: true },
-      { text: "Zen Mode + 9 clipboard slots", included: true },
-      { text: "Dictionary, snippets, and history", included: true },
-      { text: "Voice Profiling (coming soon)", included: true },
       { text: "Priority support", included: true },
     ],
   },
@@ -115,17 +118,17 @@ export function formatAmount(amount: number, currency: "USD" | "INR"): string {
   return `$${amount.toFixed(2)}`;
 }
 
-function formatTotalAnnualSavings(
+function formatMonthlyAnnualNudge(
   monthly: number,
   annual: number,
   currency: "USD" | "INR",
 ): string {
   const saved = monthly * 12 - annual;
   if (currency === "INR") {
-    return `Save ₹${saved.toLocaleString("en-IN")} per year vs monthly billing`;
+    return `Save ₹${saved.toLocaleString("en-IN")} billed annually`;
   }
   const dollars = Number.isInteger(saved) ? `$${saved}` : `$${saved.toFixed(2)}`;
-  return `Save ${dollars} per year vs monthly billing`;
+  return `Save ${dollars} billed annually`;
 }
 
 function regionalPricing(
@@ -154,12 +157,14 @@ export function planPrices(
     };
   }
 
+  if (pricing.monthly === 0) {
+    return {
+      price: "Free",
+      period: "forever",
+    };
+  }
+
   const gst = pricing.gstExclusive ? ` ${INDIA_GST_SUFFIX}` : "";
-  const savingsNote = formatTotalAnnualSavings(
-    pricing.monthly,
-    pricing.annual,
-    pricing.currency,
-  );
 
   let display: PlanPriceDisplay;
 
@@ -167,7 +172,11 @@ export function planPrices(
     display = {
       price: formatAmount(pricing.monthly, pricing.currency),
       period: `/ month${gst}`,
-      savingsNote,
+      savingsNote: formatMonthlyAnnualNudge(
+        pricing.monthly,
+        pricing.annual,
+        pricing.currency,
+      ),
     };
   } else {
     const savings = annualSavingsPercent(pricing.monthly, pricing.annual);
@@ -175,7 +184,6 @@ export function planPrices(
       price: formatAmount(pricing.annual, pricing.currency),
       period: `/ year${gst}`,
       savingsLabel: `Save ${savings}%`,
-      savingsNote,
     };
   }
 

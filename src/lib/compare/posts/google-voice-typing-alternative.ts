@@ -12,7 +12,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
   tldr: [
     "Google Voice Typing is free and fine inside Google Docs and some Google surfaces.",
     "It is not a Mac-wide writing tool. Outside Docs, you are back to Apple Dictation or typing.",
-    "Lazur is the Mac alternative: one shortcut, finished writing in any app, Whisper on-device.",
+    "Lazur is the Mac alternative: one shortcut, finished writing in any app, NVIDIA Parakeet on-device.",
   ],
   chooseLazur: [
     "You write in Slack, Gmail in Chrome, Cursor, Notion, and Linear, not only Docs.",
@@ -42,7 +42,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "Local Whisper on your Mac",
+      lazur: "NVIDIA Parakeet on your Mac",
       competitor: "Google’s voice typing (account / cloud path)",
     },
     {
@@ -75,7 +75,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
     {
       question: "Is Lazur more private than Google Voice Typing?",
       answer:
-        "Lazur runs Whisper on your Mac and only sends text for optional polish. Google Voice Typing is tied to a Google account. Review both privacy policies if that is the reason you are switching.",
+        "Lazur runs NVIDIA Parakeet on your Mac and only sends text for optional polish. Google Voice Typing is tied to a Google account. Review both privacy policies if that is the reason you are switching.",
     },
     {
       question: "Can I still use Docs if I switch?",

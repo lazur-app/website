@@ -12,7 +12,7 @@ tldr:
   - "If Wispr, Aqua, and Lazur all ‘clean up’ speech, the remaining gap is whether the tool understands the *job* (reply, tone, app) or only the *sentence*."
 faq:
   - question: "Should I choose Wispr Flow, Aqua Voice, or Lazur?"
-    answer: "Choose Wispr Flow if you like its workflow and mainly need fast speech-to-text. Choose Aqua Voice if you want a faster, more accurate Wispr-like product on Mac, Windows, and iPhone. Choose Lazur if you want messy speech turned into finished writing and actions, with Whisper speech-to-text on your Mac."
+    answer: "Choose Wispr Flow if you like its workflow and mainly need fast speech-to-text. Choose Aqua Voice if you want a faster, more accurate Wispr-like product on Mac, Windows, and iPhone. Choose Lazur if you want messy speech turned into finished writing and actions, with NVIDIA Parakeet speech-to-text on your Mac."
   - question: "Is Aqua Voice better than Wispr Flow?"
     answer: "Many 2026 alternative roundups treat Aqua Voice as the closest ‘better Wispr’ competitor, speed, live text, technical vocabulary. Whether it is better for you depends on devices and how much you still edit. It is not the same product as Lazur, which is built around intent and context rather than live transcription."
   - question: "Where does Lazur sit between Wispr and Aqua?"
@@ -38,7 +38,7 @@ The [Wispr Flow alternatives](/blog/wispr-flow-alternatives) list is longer (Sup
 | Live text / speed | Strong | Core pitch | Strong enough; not the headline |
 | Intent / Command Mode | Shipping in this direction | Edit-by-voice, send-by-voice | Core: reply, tone, structure |
 | App context | Expanding | Strong polish | Smart Rewrite for the field you are in |
-| Local STT | Cloud-first (verify current docs) | Confirm vendor docs | Whisper on the Mac |
+| Local STT | Cloud-first (verify current docs) | Confirm vendor docs | NVIDIA Parakeet on the Mac |
 | Mac | Yes | Yes | Yes |
 | Windows | Yes | Yes | Coming |
 | Mobile | Yes | iPhone | - |

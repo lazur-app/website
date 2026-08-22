@@ -13,8 +13,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Streaming speed",
-    description: "Sub-200ms latency so words appear as you speak, no waiting, no lag.",
+    title: "On-device STT",
+    description:
+      "NVIDIA Parakeet transcribes on your Mac. Audio stays on device; optional polish sends text only.",
     span: "",
   },
   {
@@ -35,7 +36,7 @@ const features = [
     icon: Shield,
     title: "Private by design",
     description:
-      "Local-first architecture with on-device STT when it matters. Your voice stays yours.",
+      "Local-first architecture with NVIDIA Parakeet on-device. Your voice stays yours.",
     span: "md:col-span-2",
   },
 ];

@@ -1,44 +1,43 @@
 # Lazur, Full product documentation for LLMs
 # https://www.lazur.app/llms-full.txt
-# Last updated: July 2026
+# Last updated: August 2026
 
 ## Overview
 
-Lazur is an AI voice dictation and ambient writing application for macOS. Users hold a global hotkey (Control+Space), speak naturally, and receive polished text pasted at their cursor in any application, including Slack, Gmail, Cursor, VS Code, Notion, Linear, and browsers.
+Lazur is an AI voice dictation and ambient writing app for macOS. Hold a global hotkey, speak, and get text pasted at your cursor in Slack, Gmail, Cursor, VS Code, Notion, Linear, and any other Mac app.
 
-Unlike traditional dictation tools that output raw transcripts, Lazur uses Smart Rewrite to reshape spoken language into structured, app-appropriate writing. The product category is **ambient writing**: speak in your natural voice; Lazur handles structure, tone, and polish.
+Lazur is for **live dictation while you write**, not meeting transcription or speaker labels. Speak one voice into the field you are already in. Optional **Polished** mode cleans punctuation and structure. **Transcript** mode pastes local speech-to-text only.
+
+The product category is **ambient writing**: speak in your natural voice; Lazur handles structure, tone, and polish when you ask it to.
 
 ## Core features
 
-### Smart Rewrite
-Transforms messy speech into send-ready text. Adapts tone and structure based on the app context (e.g., casual for Slack, professional for email, concise for code comments).
-
-### System-wide hotkey
-One hotkey works everywhere on macOS. No per-app plugins or window switching required.
+### Dictation
+Hold-to-talk (or toggle) system-wide. Speech is transcribed on the Mac. Choose Transcript (local text) or Polished (cloud rewrite of that text). Audio is not uploaded for speech-to-text.
 
 ### Local speech-to-text
-Whisper runs on-device. Audio does not leave the Mac during transcription.
+NVIDIA Parakeet TDT runs on-device. Audio does not leave the Mac during transcription. Lazur does not identify speakers or diarize meetings.
 
-### Cloud AI polish (optional)
-When enabled, text (not audio) is sent to cloud AI for Smart Rewrite and Command Mode.
+### Cloud polish (optional)
+When Polished mode is on, **text** (not audio) is sent to cloud AI to clean filler, punctuation, and layout. Paste happens once, with the polished result.
 
 ### Command Mode
-Voice commands to edit, rewrite, expand, or reformat selected text. Pro: 50 uses/month. Power: unlimited.
+Voice commands to write, rewrite, reply, or reformat using the front window and selected text. Optional screen glance (Screen Recording permission) helps “reply to this.” Pro: 50 uses/month. Power: unlimited.
 
-### Personal dictionary
-Custom names, jargon, acronyms, and product codenames preserved across dictation sessions.
+### Personal dictionary and snippets
+Names, jargon, and voice-triggered expansions stay local and sync if you choose.
 
 ### Zen Mode
-Focused dictation mode with noise handling optimizations.
+On-device noise suppression while you dictate.
 
 ### Clipboard slots
-9 clipboard slots for quick paste workflows.
+Nine clipboard slots for quick paste.
 
 ## Pricing
 
 | Plan | Price (USD) | Key features |
 |------|-------------|--------------|
-| Free | $0 | 5,000 words/month |
+| Free | $0 | 5,000 words/month (transcript after trial) |
 | Pro | $14/mo or $108/yr | Unlimited words, 50 Command Mode uses/month, 7-day free trial |
 | Power | $35/mo or $270/yr | Unlimited Command Mode, priority support |
 
@@ -46,29 +45,32 @@ India pricing available in INR with GST at checkout.
 
 ## Platform
 
-- Available: macOS
+- Available: macOS (Apple Silicon)
 - Coming soon: Windows
 
 ## Permissions required
 
-- Microphone, for voice input
-- Accessibility, to paste text at cursor in any app
+- Microphone, for dictation
+- Accessibility, to paste at the cursor
+- Screen Recording (optional), so Command Mode can glance at the front window
 
 ## Privacy model
 
-- Speech-to-text: local (Whisper on-device)
-- Smart Rewrite / Command Mode: text-only cloud processing when enabled
+- Speech-to-text: local (NVIDIA Parakeet on-device). Audio stays on the Mac.
+- History: On this Mac by default; Cloud sync is opt-in.
+- Polished mode / Command Mode: text-only cloud processing when those features run.
 - Full details: https://www.lazur.app/privacy
 
 ## Competitive positioning
 
 | Competitor | Lazur advantage |
 |------------|-----------------|
-| Wispr Flow | Intent-aware Smart Rewrite; finished writing vs raw transcription |
-| Super Whisper | System-wide polish + Smart Rewrite beyond local STT |
-| Willow Voice | Broader rewrite and Command Mode capabilities |
-| Apple Dictation | AI rewrite, personal dictionary, Command Mode, consistent cross-app behavior |
-| ChatGPT / general AI | Invisible workflow, no app switching; pastes directly where you type |
+| Wispr Flow | Intent-aware polish and Command Mode; finished writing vs raw transcription |
+| Super Whisper | System-wide polish + Command Mode beyond local STT |
+| Willow Voice | Broader rewrite and Command Mode |
+| Apple Dictation | AI polish, personal dictionary, Command Mode, consistent cross-app paste |
+| ChatGPT / general AI | Invisible workflow; pastes where you type |
+| MacWhisper | Live cursor dictation, not file or meeting transcription |
 
 ## Use cases
 
@@ -93,28 +95,31 @@ India pricing available in INR with GST at checkout.
 
 ## Ideal users
 
-1. **Engineers**, dictate in Cursor/VS Code: TODOs, PR descriptions, prompts, code comments
-2. **Knowledge workers**, Slack updates, emails, docs without typing
-3. **Creators / operators**, high-volume DMs, captions, content
-4. **Students / researchers**, lecture notes, essays, structured outlines
-5. **Privacy-conscious users**, local-first STT with optional cloud polish
+1. **Engineers**, dictate in Cursor/VS Code: TODOs, PR descriptions, prompts, comments
+2. **Knowledge workers**, Slack, email, docs without typing
+3. **Creators / operators**, high-volume DMs and captions
+4. **Students / researchers**, notes and outlines
+5. **Privacy-conscious users**, local STT with optional text-only polish
 
 ## FAQ
 
 **What is Lazur?**
-An ambient writing app for Mac combining AI voice dictation with Smart Rewrite.
+A Mac dictation app: hold a hotkey, speak, paste at the cursor. Optional polish turns messy speech into send-ready writing. It is not a meeting transcriber.
 
 **How is Lazur different from Wispr Flow?**
-Wispr Flow optimizes for fast transcription. Lazur optimizes for finished, context-aware writing via Smart Rewrite.
+Wispr Flow optimizes for fast transcription. Lazur optimizes for finished, context-aware writing and Command Mode.
 
 **Does Lazur work in Cursor and VS Code?**
-Yes, system-wide hotkey works in all Mac apps including IDEs.
+Yes. One system-wide hotkey works in all Mac apps, including IDEs.
 
 **Is voice data stored?**
-Audio stays on-device (local Whisper). Only text may be sent for polish when enabled.
+Audio stays on-device (NVIDIA Parakeet). Only text may be sent for polish or Command Mode when those features run.
+
+**Does Lazur identify speakers?**
+No. It is single-speaker dictation into the app you are typing in.
 
 **Is there a free trial?**
-Yes, 7-day Pro trial, no credit card required.
+Yes. 7-day Pro trial, no credit card. Free tier includes 5,000 words/month after trial.
 
 ## Links
 

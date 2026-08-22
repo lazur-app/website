@@ -1,63 +1,50 @@
-import Link from "next/link";
+import { EditorialIndexRow } from "@/components/editorial/EditorialIndexRow";
 import {
   getAllComparisons,
   getComparisonBySlug,
   type ComparisonPage,
 } from "@/lib/compare";
+import { formatBlogDateLong } from "@/lib/blog/format";
 
-type CompareRelatedLinksProps = {
-  page: ComparisonPage;
-};
-
-export function CompareRelatedLinks({ page }: CompareRelatedLinksProps) {
+export function CompareRelatedLinks({ page }: { page: ComparisonPage }) {
   const related = page.relatedSlugs
     .map((slug) => getComparisonBySlug(slug))
     .filter(Boolean) as ComparisonPage[];
 
   const others = getAllComparisons()
-    .filter(
-      (c) => c.slug !== page.slug && !page.relatedSlugs.includes(c.slug),
-    )
+    .filter((c) => c.slug !== page.slug && !page.relatedSlugs.includes(c.slug))
     .slice(0, 2);
 
-  const links = [...related, ...others].slice(0, 4);
+  const links = [...related, ...others].slice(0, 3);
+
+  if (links.length === 0) return null;
 
   return (
-    <aside className="mt-10 border-t border-[var(--border)] pt-8">
+    <section className="mx-auto mt-16 w-full max-w-4xl px-6">
       <h2 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
         More comparisons
       </h2>
-      <ul className="mt-4 space-y-2">
-        {links.map((item) => (
-          <li key={item.slug}>
-            <Link
+      <div className="mt-2 divide-y divide-[var(--border)]">
+        {links.map((item) => {
+          const date = item.updatedAt ?? item.publishedAt;
+          return (
+            <EditorialIndexRow
+              key={item.slug}
               href={`/compare/${item.slug}`}
-              className="text-[14px] font-medium text-[var(--brand-ink)] underline decoration-[var(--brand)]/30 underline-offset-2 transition-colors hover:text-[var(--brand)]"
-            >
-              {item.title}
-            </Link>
-          </li>
-        ))}
-        <li>
-          <Link
-            href="/blog/best-ai-dictation-apps-2026"
-            className="text-[14px] font-medium text-[var(--brand-ink)] underline decoration-[var(--brand)]/30 underline-offset-2 transition-colors hover:text-[var(--brand)]"
-          >
-            Best AI dictation apps in 2026
-          </Link>
-        </li>
-      </ul>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link href="/download" className="btn-dark px-5 py-2 text-[13px]">
-          Download for Mac
-        </Link>
-        <Link
-          href="/pricing"
-          className="btn-outline-dark px-5 py-2 text-[13px]"
-        >
-          View pricing
-        </Link>
+              kicker="Comparison"
+              title={item.title}
+              description={item.description}
+              cta="Read comparison"
+              meta={
+                <>
+                  <time dateTime={date}>{formatBlogDateLong(date)}</time>
+                  <p className="mt-2">{item.competitorName}</p>
+                </>
+              }
+            />
+          );
+        })}
       </div>
-    </aside>
+    </section>
   );
 }

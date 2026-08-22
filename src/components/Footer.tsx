@@ -7,7 +7,6 @@ const footerLinks = {
     { href: "/use-cases", label: "Use cases" },
     { href: "/compare", label: "Comparisons" },
     { href: "/blog", label: "Blog" },
-    { href: "/leaderboard", label: "Leaderboard" },
     { href: "/download", label: "Download" },
   ],
   Account: [
@@ -20,6 +19,17 @@ const footerLinks = {
     { href: "/privacy", label: "Privacy" },
   ],
 };
+
+const connectLinks: {
+  href: string;
+  label: string;
+  external?: boolean;
+}[] = [
+  { href: "mailto:hello@lazur.app", label: "email" },
+  { href: "https://www.instagram.com/heylazur", label: "instagram", external: true },
+  { href: "https://x.com/heylazur", label: "x (twitter)", external: true },
+  { href: "https://www.linkedin.com/company/lazur-app", label: "linkedin", external: true },
+];
 
 export function Footer() {
   return (
@@ -53,6 +63,26 @@ export function Footer() {
                 </ul>
               </div>
             ))}
+            <div>
+              <p className="mb-3 text-sm font-medium text-[var(--foreground)]">
+                connect
+              </p>
+              <ul className="space-y-2">
+                {connectLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      {...(link.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="text-sm lowercase text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

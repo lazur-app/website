@@ -42,7 +42,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "Local Whisper on-device",
+      lazur: "NVIDIA Parakeet on-device",
       competitor: "Apple on-device / cloud hybrid",
     },
     {
@@ -80,7 +80,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     {
       question: "Is Lazur more private than Apple Dictation?",
       answer:
-        "Both can process speech on-device. Lazur uses local Whisper for STT and only sends text (not audio) for optional Smart Rewrite. Review both privacy policies for your organization's requirements.",
+        "Both can process speech on-device. Lazur uses NVIDIA Parakeet for STT and only sends text (not audio) for optional Smart Rewrite. Review both privacy policies for your organization's requirements.",
     },
   ],
   blocks: [

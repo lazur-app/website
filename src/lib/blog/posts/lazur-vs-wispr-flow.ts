@@ -113,7 +113,7 @@ export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
     },
     {
       type: "paragraph",
-      text: "Lazur runs Whisper speech-to-text on-device. Cloud processing is used for Smart Rewrite when enabled. Wispr Flow’s architecture varies by feature and plan; teams evaluating either product should confirm current data handling in each vendor’s privacy documentation. For security reviews, local STT with optional cloud polish is often easier to approve than cloud-only audio pipelines.",
+      text: "Lazur runs NVIDIA Parakeet speech-to-text on-device. Cloud processing is used for Smart Rewrite when enabled, and only text is sent. Wispr Flow’s architecture varies by feature and plan; teams evaluating either product should confirm current data handling in each vendor’s privacy documentation. For security reviews, local STT with optional cloud polish is often easier to approve than cloud-only audio pipelines.",
     },
     {
       type: "heading",

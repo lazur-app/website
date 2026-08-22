@@ -56,7 +56,7 @@ const items: BulletItem[] = [
   {
     id: "speed",
     label: "Instant at cursor",
-    summary: "Sub-200ms streaming, words appear as you speak.",
+    summary: "Speak, release, paste where you type. Live dictation, not a meeting transcript.",
     preview: {
       app: "Any app",
       before: "…",

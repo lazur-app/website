@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Monitor } from "lucide-react";
+import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
@@ -42,25 +43,29 @@ export function HeroDownloadCta({
 
   if (platform === "windows") {
     return (
-      <Link
+      <GlowCta
         href="/exclusive-access"
-        className={`btn-dark inline-flex min-h-[44px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold sm:min-h-[48px] ${className}`}
+        variant="dark"
+        wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
+        className={className}
       >
         <Monitor className="h-4 w-4" strokeWidth={2} />
         Get notified for Windows
-      </Link>
+      </GlowCta>
     );
   }
 
   if (variant === "minimal") {
     return (
-      <Link
+      <GlowCta
         href="/download"
-        className={`btn-dark inline-flex min-h-[44px] items-center justify-center gap-2 px-7 text-[var(--text-base)] font-semibold sm:min-h-[48px] ${className}`}
+        variant="dark"
+        wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
+        className={className}
       >
         <AppleIcon />
-        Download Free for Mac
-      </Link>
+        Download for Mac. Free
+      </GlowCta>
     );
   }
 
@@ -68,13 +73,14 @@ export function HeroDownloadCta({
     <div
       className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${rowAlign}`}
     >
-      <Link
+      <GlowCta
         href="/download"
-        className="btn-dark inline-flex min-h-[48px] items-center justify-center gap-2 px-6 text-[var(--text-base)] font-semibold"
+        variant="dark"
+        wrapClassName="final-cta-btn-wrap--subtle"
       >
         <AppleIcon />
-        Download for Mac
-      </Link>
+        Download for Mac. Free
+      </GlowCta>
       <Link
         href="#refer"
         className="text-[var(--text-sm)] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"

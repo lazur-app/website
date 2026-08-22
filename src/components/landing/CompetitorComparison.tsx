@@ -51,7 +51,7 @@ const ROWS = [
   },
   {
     label: "Privacy & speed",
-    lazur: "On-device Whisper STT; cloud polish when you need it",
+    lazur: "On-device NVIDIA Parakeet STT; cloud polish of text when you need it",
     others: "Often cloud-only or transcript-only local",
   },
 ] as const;

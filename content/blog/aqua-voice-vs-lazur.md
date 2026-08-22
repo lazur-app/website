@@ -8,7 +8,7 @@ cover: "compare"
 targetKeyword: "Aqua Voice vs Lazur"
 tldr:
   - "Aqua Voice is the closest ‘better Wispr’ product: fast, live text, strong technical vocabulary, Mac + Windows + iPhone."
-  - "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Command Mode, with Whisper STT on the Mac."
+  - "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Command Mode, with NVIDIA Parakeet STT on the Mac."
   - "Pick Aqua for throughput across devices. Pick Lazur if leftover editing and intent are the actual pain."
 faq:
   - question: "Is Lazur an Aqua Voice alternative?"
@@ -31,7 +31,7 @@ Canonical head-to-head: [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).
 | | Aqua Voice | Lazur |
 | --- | --- | --- |
 | Thesis | Speak and get high-quality text, fast | Speak and get finished work |
-| STT posture | Speed / live text first | Whisper on-device on Mac |
+| STT posture | Speed / live text first | NVIDIA Parakeet on-device on Mac |
 | After transcription | Polish, live edit by voice | Smart Rewrite + Command Mode (reply, tone, structure) |
 | Platforms | Mac, Windows, iPhone | macOS (Windows coming) |
 | Best if | You measure words per minute | You measure edits before send |

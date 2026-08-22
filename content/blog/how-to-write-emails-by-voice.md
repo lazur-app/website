@@ -37,7 +37,7 @@ You write emails by voice by dictating **what the email needs to do**, then lett
 
 ## The workflow
 
-1. Open the real compose field in Gmail, Outlook, or Mail. [How to dictate on a Mac](/blog/how-to-dictate-on-mac) covers permissions and the hotkey.
+1. Open the real compose field in Gmail, Outlook, or Mail. [How to use dictation on a Mac](/blog/how-to-dictate-on-mac) covers permissions and the hotkey.
 2. Hold the hotkey. Say the brief, not the novel.
 3. Release. Scan the greeting, names, and the ask.
 4. Send.

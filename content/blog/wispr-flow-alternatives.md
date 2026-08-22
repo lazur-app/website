@@ -15,7 +15,7 @@ faq:
   - question: "What is the best Wispr Flow alternative in 2026?"
     answer: "It depends on why you are switching. Aqua Voice is the closest speed-and-accuracy competitor. Lazur is the best pick if you want intent-aware, send-ready writing with on-device speech-to-text. Superwhisper is the best pick if local/offline models are the reason you are leaving."
   - question: "Is Lazur a Wispr Flow alternative?"
-    answer: "Yes. Lazur is a system-wide macOS voice writing app: hotkey dictation, Smart Rewrite, Command Mode, and Whisper speech-to-text on device. It is not positioned as cheaper Wispr, it is positioned as voice to finished work, not voice to a transcript."
+    answer: "Yes. Lazur is a system-wide macOS voice writing app: hotkey dictation, Smart Rewrite, Command Mode, and NVIDIA Parakeet speech-to-text on device. It is not positioned as cheaper Wispr, it is positioned as voice to finished work, not voice to a transcript."
   - question: "What are the main Wispr Flow alternatives besides Lazur?"
     answer: "Current comparisons consistently include Aqua Voice, Superwhisper, Willow Voice, VoiceInk, and MacWhisper. Apple Dictation and Typeless also appear for casual users and heavy everyday dictation."
   - question: "Is MacWhisper a Wispr Flow replacement?"
@@ -54,7 +54,7 @@ Investigate this first if you want the same category, faster. Aqua focuses on ac
 
 ### 2. Lazur, best if the problem is *what you meant*, not how fast it typed
 
-Lazur is system-wide on Mac: one hotkey, paste at the cursor in Slack, Gmail, Notion, Cursor. Speech-to-text runs locally with Whisper. Smart Rewrite and Command Mode turn messy speech into the reply, email, or prompt you actually wanted. Free 5,000 words/month, Pro $14/month. [Why teams switch from Wispr to Lazur](/blog/why-teams-switching-from-wispr-flow-to-lazur).
+Lazur is system-wide on Mac: one hotkey, paste at the cursor in Slack, Gmail, Notion, Cursor. Speech-to-text runs locally with NVIDIA Parakeet. Smart Rewrite and Command Mode turn messy speech into the reply, email, or prompt you actually wanted. Free 5,000 words/month, Pro $14/month. [Why teams switch from Wispr to Lazur](/blog/why-teams-switching-from-wispr-flow-to-lazur).
 
 ### 3. Superwhisper, best if privacy is the reason you are leaving
 
@@ -85,7 +85,7 @@ The biggest gap is no longer another transcription engine. Differentiation is **
 | AI cleanup | Yes | Yes (Smart Rewrite) |
 | Context-aware writing | Yes (expanding) | Core focus |
 | Command Mode | Yes | Yes, tell it what to *do* with the current message |
-| Local speech-to-text | Cloud-first STT (confirm their current docs) | Whisper on the Mac |
+| Local speech-to-text | Cloud-first STT (confirm their current docs) | NVIDIA Parakeet on the Mac |
 | Voice stored for STT | Cloud pipeline | Audio stays on device for STT |
 | Mac | Yes | Yes |
 | Windows | Yes | Coming |

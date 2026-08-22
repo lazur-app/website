@@ -6,7 +6,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight,
   Copy,
   Check,
   Download,
@@ -303,13 +302,6 @@ function DashboardContent() {
                 </div>
               </div>
 
-              <Link
-                href="/leaderboard"
-                className="inline-flex items-center gap-1 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
-              >
-                View leaderboard
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
             </div>
           </SoftCard>
         </motion.div>

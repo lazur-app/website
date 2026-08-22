@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Monitor } from "lucide-react";
+import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import {
   LandingBand,
@@ -26,9 +27,9 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "5,000 words every month", featured: false },
-    { name: "Pro", detail: `${proPrice} after a 7-day trial`, featured: true },
-    { name: "Power", detail: powerPrice, featured: false },
+    { name: "Free", detail: "Plenty of dictation · 5,000 words/month", featured: false },
+    { name: "Pro", detail: `Unlimited dictation · ${proPrice}`, featured: true },
+    { name: "Power", detail: `True unlimited dictation · ${powerPrice}`, featured: false },
   ] as const;
 
   return (
@@ -39,8 +40,9 @@ export function LandingPricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="grid items-start gap-10 border-t border-[var(--border)] pt-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:gap-16 md:pt-16"
+          className="aura-stage px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-14"
         >
+          <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:gap-16">
           <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
               Simple pricing
@@ -52,10 +54,11 @@ export function LandingPricingSection() {
               No credit card to download. Cancel anytime.
             </p>
 
-            <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row">
-              <Link
+            <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <GlowCta
                 href={isWindows ? "/exclusive-access" : "/download"}
-                className="btn-dark inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-[14px] sm:w-auto"
+                variant="light"
+                className="final-cta-btn--on-light"
               >
                 {isWindows ? (
                   <>
@@ -65,10 +68,10 @@ export function LandingPricingSection() {
                 ) : (
                   <>
                     <AppleIcon className="h-4 w-4" />
-                    Download Free for Mac
+                    Download for Mac. Free
                   </>
                 )}
-              </Link>
+              </GlowCta>
               <Link
                 href="/pricing"
                 className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[var(--border)] px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--border-strong)] sm:w-auto"
@@ -103,6 +106,7 @@ export function LandingPricingSection() {
               </li>
             ))}
           </ul>
+          </div>
         </motion.div>
       </LandingBandInner>
     </LandingBand>

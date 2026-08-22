@@ -60,7 +60,7 @@ Wispr Flow is strong at dictation. Lazur adds Command Mode, a voice layer for re
 
 ## Privacy and pricing teams can defend
 
-Lazur runs speech-to-text locally on the Mac using Whisper. Cloud AI is used for Smart Rewrite polish when enabled, not as the default path for every utterance. See [on-device speech to text on Mac](/blog/on-device-speech-to-text-mac) for the architecture.
+Lazur runs speech-to-text locally on the Mac using NVIDIA Parakeet. Cloud AI is used for Smart Rewrite polish when enabled, not as the default path for every utterance. See [on-device speech to text on Mac](/blog/on-device-speech-to-text-mac) for the architecture.
 
 Lazur starts free with 5,000 words per month. Pro is $14/month and Power is $35/month. [Pricing](/pricing) scales from a personal trial to daily power use.
 

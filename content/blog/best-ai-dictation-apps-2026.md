@@ -39,7 +39,7 @@ If you are new to the category, start with [what voice writing is](/blog/what-is
 
 ## 1. Lazur, best for finished writing, system-wide
 
-Lazur is our pick for professionals who want dictation to end at send-ready text. Smart Rewrite shapes spoken language into structured writing that matches the app you are in. On-device Whisper handles speech-to-text locally; cloud AI polishes output when you need it.
+Lazur is our pick for professionals who want dictation to end at send-ready text. Smart Rewrite shapes spoken language into structured writing that matches the app you are in. On-device NVIDIA Parakeet handles speech-to-text locally; cloud AI polishes output when you need it.
 
 - **Strengths:** Intent-aware rewrite, Command Mode, personal dictionary, works everywhere on macOS.
 - **Best for:** Daily dictation across Slack, email, docs, and IDEs where edit time matters.
@@ -109,7 +109,7 @@ We ran each tool through the same scenarios: a customer support reply, an intern
 
 **Engineers.** IDE coverage matters. Lazur pulls ahead when PR descriptions and comments need to read cleanly. See [AI dictation for developers](/blog/ai-dictation-for-developers).
 
-**Privacy-first individuals.** Super Whisper and Lazur’s on-device Whisper STT are the starting points.
+**Privacy-first individuals.** Super Whisper and Lazur’s on-device NVIDIA Parakeet STT are the starting points.
 
 **Casual users.** Apple dictation or Willow Voice may be enough until edit friction appears.
 

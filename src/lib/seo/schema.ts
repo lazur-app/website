@@ -13,7 +13,11 @@ export function buildOrganizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    sameAs: [],
+    sameAs: [
+      "https://www.instagram.com/heylazur",
+      "https://x.com/heylazur",
+      "https://www.linkedin.com/company/lazur-app",
+    ],
   };
 }
 

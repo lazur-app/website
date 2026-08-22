@@ -5,9 +5,9 @@ import { Zap, Shield, Wand2 } from "lucide-react";
 import { SoftCard } from "./SoftCard";
 
 const items = [
-  { icon: Zap, stat: "<200ms", label: "Streaming latency" },
-  { icon: Shield, stat: "Local-first", label: "Privacy by design" },
-  { icon: Wand2, stat: "On-device", label: "STT when it matters" },
+  { icon: Zap, stat: "Parakeet", label: "On-device speech-to-text" },
+  { icon: Shield, stat: "Local-first", label: "Audio stays on your Mac" },
+  { icon: Wand2, stat: "Text-only", label: "Cloud polish when you want it" },
 ];
 
 export function TrustStrip() {

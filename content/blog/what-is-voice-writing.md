@@ -9,7 +9,7 @@ targetKeyword: "what is voice writing"
 tldr:
   - "Voice writing is speaking to produce finished text: punctuation, structure, and tone as if you typed."
   - "Speech-to-text only gives you words. Voice writing adds intent-aware rewrite for the app you are in."
-  - "Lazur is a voice writing app for Mac: local Whisper STT, Smart Rewrite, system-wide paste."
+  - "Lazur is a voice writing app for Mac: on-device NVIDIA Parakeet STT, Smart Rewrite, system-wide paste."
 faq:
   - question: "What is voice writing?"
     answer: "Voice writing is using your voice to produce send-ready text, not a transcript. It combines speech-to-text with rewrite so the result has punctuation, structure, and the right tone for email, chat, or docs."
@@ -44,7 +44,7 @@ Intent-aware rewrite looks at more than audio: the app (Slack vs Gmail vs Cursor
 
 ## What a voice writing loop looks like
 
-1. Cursor in the real field, see [how to dictate on a Mac](/blog/how-to-dictate-on-mac).
+1. Cursor in the real field, see [how to use dictation on a Mac](/blog/how-to-dictate-on-mac).
 2. Speak the thought or the brief ([emails by voice](/blog/how-to-write-emails-by-voice) is the canonical example).
 3. Paste arrives structured.
 4. You fix proper nouns and send.
@@ -57,6 +57,6 @@ Transcription can run [on-device](/blog/on-device-speech-to-text-mac). Rewrite m
 
 ## Lazur’s place in the category
 
-Lazur is a voice writing app for macOS: Whisper STT on device, Smart Rewrite for finished output, Command Mode for edits, system-wide hotkey. Transcription-first apps remain useful if you like editing. If you want the category definition in a roundup, see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).
+Lazur is a voice writing app for macOS: NVIDIA Parakeet STT on device, Smart Rewrite for finished output, Command Mode for edits, system-wide hotkey. Transcription-first apps remain useful if you like editing. If you want the category definition in a roundup, see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).
 
 [Download Lazur](/download) and judge it on whether the paste looks typed.

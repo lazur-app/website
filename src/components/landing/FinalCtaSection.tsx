@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Monitor } from "lucide-react";
+import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
@@ -34,9 +35,9 @@ export function FinalCtaSection() {
           Cursor, anywhere you type.
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
-          <Link
+          <GlowCta
             href={isWindows ? "/exclusive-access" : "/download"}
-            className="inline-flex min-h-[48px] w-full max-w-sm items-center justify-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-[var(--foreground)] transition-opacity hover:opacity-90 sm:w-auto"
+            variant="light"
           >
             {isWindows ? (
               <>
@@ -49,7 +50,7 @@ export function FinalCtaSection() {
                 Download for Mac. Free
               </>
             )}
-          </Link>
+          </GlowCta>
           <p className="text-[12px] text-white/40">
             {isWindows ? (
               <Link

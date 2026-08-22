@@ -16,7 +16,7 @@ faq:
   - question: "How is ambient writing different from dictation?"
     answer: "Dictation is speech-to-text. Ambient writing includes intent, app context, and actions, reply, tone, structure, without a workflow change. Lazur uses that name for system-wide voice writing on macOS."
   - question: "What is the best ambient writing app?"
-    answer: "Lazur is built as an ambient writing app: one hotkey everywhere you type on Mac, no plugin per app, local Whisper STT, Smart Rewrite and Command Mode. Transcription-first tools can be system-wide without being ambient in this sense."
+    answer: "Lazur is built as an ambient writing app: one hotkey everywhere you type on Mac, no plugin per app, on-device NVIDIA Parakeet STT, Smart Rewrite and Command Mode. Transcription-first tools can be system-wide without being ambient in this sense."
 relatedSlugs:
   - "what-is-voice-writing"
   - "command-mode-voice-writing"
@@ -49,7 +49,7 @@ Privacy is proof, not the headline. On-device speech recognition, no voice recor
 
 Press. Speak. Continue working.
 
-That is why system-wide paste matters more than a beautiful editor. [How to dictate on a Mac](/blog/how-to-dictate-on-mac). [Messy speech](/blog/messy-speech-to-finished-writing) is the content that belongs in the demo.
+That is why system-wide paste matters more than a beautiful editor. [How to use dictation on a Mac](/blog/how-to-dictate-on-mac). [Messy speech](/blog/messy-speech-to-finished-writing) is the content that belongs in the demo.
 
 Wispr’s own arc (reliable input → voice to action → ubiquity) is walking toward this category. Do not position Lazur as a rewrite skin on Wispr. Position it as: **the computer shouldn’t make you speak like a computer.**
 

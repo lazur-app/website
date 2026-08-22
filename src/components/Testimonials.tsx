@@ -67,9 +67,9 @@ export function Testimonials() {
               detail: "Dictate commit messages, PRs, and Slack updates without leaving your editor.",
             },
             {
-              stat: "<200ms",
-              label: "Streaming latency",
-              detail: "Local Whisper STT on-device, cloud polish only when you want it.",
+              stat: "On-device",
+              label: "Speech-to-text",
+              detail: "NVIDIA Parakeet on the Mac. Cloud polish of text only when you want it.",
             },
             {
               stat: "One hotkey",

@@ -22,7 +22,7 @@ relatedSlugs:
   - "wispr-flow-alternatives"
 ---
 
-**Apple dictation vs AI dictation** is a workflow split, not a brand war. Apple dictation is built into macOS and is enough for many Notes and Mail users. AI dictation apps are better when you need **the same hotkey in every work app** and text that does not sound spoken. Full product table: [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation).
+**Apple dictation vs AI dictation** is a workflow split, not a brand war. People searching “speech to text free” or “voice typing on Mac” usually land on Apple’s built-in dictation first. It is enough for many Notes and Mail users. AI dictation apps are better when you need **the same hotkey in every work app** and text that does not sound spoken. Full product table: [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation).
 
 ## Where Apple dictation is enough
 
@@ -31,7 +31,7 @@ relatedSlugs:
 - Mail, if you already edit heavily.
 - You want zero extra apps and zero extra permissions.
 
-Setup is in System Settings → Keyboard → Dictation. [How to dictate on a Mac](/blog/how-to-dictate-on-mac) walks through the shared microphone step.
+Setup is in System Settings → Keyboard → Dictation. [How to use dictation on a Mac](/blog/how-to-dictate-on-mac) walks through the shared microphone step.
 
 ## Where AI dictation apps pull ahead
 

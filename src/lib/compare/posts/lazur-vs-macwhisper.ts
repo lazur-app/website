@@ -42,7 +42,7 @@ export const lazurVsMacwhisper: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "Local Whisper on-device",
+      lazur: "NVIDIA Parakeet on-device",
       competitor: "Local Whisper on-device",
     },
     {
@@ -80,7 +80,7 @@ export const lazurVsMacwhisper: ComparisonPage = {
     {
       question: "Do both keep speech on the Mac?",
       answer:
-        "Both can run Whisper locally. Lazur’s optional polish sends text, not audio. Confirm MacWhisper’s current export and iCloud options if that matters for your team.",
+        "Lazur transcribes with NVIDIA Parakeet on the Mac. MacWhisper typically runs Whisper locally on files. Lazur’s optional polish sends text, not audio. Confirm MacWhisper’s current export and iCloud options if that matters for your team.",
     },
   ],
   blocks: [

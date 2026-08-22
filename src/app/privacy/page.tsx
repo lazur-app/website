@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "How Lazur handles your voice, text, account data, and privacy choices.",
 };
 
-const UPDATED = "July 3, 2026";
+const UPDATED = "August 13, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
@@ -33,8 +33,8 @@ export default function PrivacyPage() {
           <strong className="font-semibold text-[var(--foreground)]">
             In short:
           </strong>{" "}
-          Your voice is transcribed on your Mac, we do not store voice
-          recordings in the cloud. Some features send <em>text</em> to our
+          Your voice is transcribed on your Mac with NVIDIA Parakeet. We do
+          not store voice recordings in the cloud. Some features send <em>text</em> to our
           servers so we can deliver the service (for example, polished output,
           commands, and account sync). We do not sell your personal data.
         </>
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
               </p>
               <List
                 items={[
-                  "Voice audio is processed on your device for speech-to-text. We do not upload or store voice recordings in the cloud.",
+                  "Voice audio is processed on your device with NVIDIA Parakeet for speech-to-text. We do not upload or store voice recordings in the cloud.",
                   "Speech recognition resources used by the app are kept in local storage on your device.",
                   "Clipboard shortcuts and similar on-device tools remain in local app storage unless you separately copy content elsewhere.",
                 ]}

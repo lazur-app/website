@@ -25,7 +25,7 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "Is my voice stored?",
     answer:
-      "No. Speech-to-text runs on your Mac. Audio never leaves the device. Cloud AI is used only for rewrite polish, and only text is sent.",
+      "No. Speech-to-text runs on your Mac with NVIDIA Parakeet. Audio never leaves the device. Cloud AI is used only for rewrite polish, and only text is sent.",
     link: { href: "/privacy", label: "Privacy policy" },
   },
   {

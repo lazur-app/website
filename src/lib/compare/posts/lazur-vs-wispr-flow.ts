@@ -44,7 +44,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "Local Whisper on-device",
+      lazur: "NVIDIA Parakeet on-device",
       competitor: "Cloud AI transcription (varies by plan)",
     },
     {
@@ -87,7 +87,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
     {
       question: "Which has better privacy?",
       answer:
-        "Lazur runs Whisper speech-to-text locally on your Mac. Cloud is used only for Smart Rewrite polish when enabled. Compare each vendor's current privacy documentation for your team's requirements.",
+        "Lazur runs NVIDIA Parakeet speech-to-text locally on your Mac. Audio stays on device. Cloud is used only for Smart Rewrite polish when enabled, and only text is sent. Compare each vendor's current privacy documentation for your team's requirements.",
     },
     {
       question: "Can I switch from Wispr Flow to Lazur?",

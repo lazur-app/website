@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
-import { ShieldCheck, Globe, Cpu } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggle";
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
+import { PricingStudentOffer } from "@/components/pricing/PricingStudentOffer";
 import { PricingTimeCalculator } from "@/components/pricing/PricingTimeCalculator";
-import { PricingStatsStrip } from "@/components/pricing/PricingStatsStrip";
 import { usePricingRegion } from "@/hooks/usePricingRegion";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
@@ -71,7 +70,7 @@ export default function PricingPage() {
     }
 
     const planType = plan.planType;
-    if (regionLoading) return;
+    if (!planType || regionLoading) return;
 
     const billingInterval = toBillingInterval(interval);
 
@@ -97,8 +96,11 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
           >
-            Simple Pricing. Try Pro free first.
+            Simple pricing. Try Pro free first.
           </m.h1>
+          <p className="mx-auto mt-3 max-w-md text-[15px] lowercase leading-relaxed text-[var(--foreground-muted)]">
+            three plans. no weird add-ons. start talking.
+          </p>
         </div>
 
         <m.div
@@ -120,14 +122,14 @@ export default function PricingPage() {
           </p>
         ) : null}
 
-        <div className="grid w-full max-w-4xl items-stretch gap-4 md:grid-cols-2 md:gap-6">
+        <div className="grid w-full max-w-5xl items-stretch gap-4 md:grid-cols-3 md:gap-5">
           {WEBSITE_PLANS.map((plan, idx) => (
             <m.div
               key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 + idx * 0.08 }}
-              className="h-full"
+              className="h-full overflow-visible"
             >
               <PricingPlanCard
                 plan={plan}
@@ -163,36 +165,18 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48 }}
-          className="mt-14 w-full max-w-4xl"
+          className="mt-16 w-full max-w-5xl"
         >
-          <PricingStatsStrip />
-          <PricingTimeCalculator className="mt-14 md:mt-16" />
+          <PricingStudentOffer />
         </m.div>
 
         <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
-          className="mt-10 flex flex-wrap justify-center gap-8 text-[var(--foreground-faint)]"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.56 }}
+          className="mt-16 flex w-full justify-center md:mt-20"
         >
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
-              Secure SSL Encryption
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Cpu className="h-4 w-4" strokeWidth={1.5} />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
-              Privacy First AI
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Globe className="h-4 w-4" strokeWidth={1.5} />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">
-              Worldwide Support
-            </span>
-          </div>
+          <PricingTimeCalculator />
         </m.div>
       </main>
 

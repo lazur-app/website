@@ -52,7 +52,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     },
     {
       feature: "Local STT",
-      lazur: "Whisper on-device",
+      lazur: "NVIDIA Parakeet on-device",
       competitor: "Varies, verify on site",
     },
     {

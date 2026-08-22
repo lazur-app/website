@@ -4,7 +4,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
   slug: "lazur-vs-super-whisper",
   title: "Lazur vs Super Whisper",
   description:
-    "Lazur vs Super Whisper for Mac, local Whisper STT, Smart Rewrite, system-wide polish, and pricing compared. Best Super Whisper alternative for finished writing.",
+    "Lazur vs Super Whisper for Mac, on-device NVIDIA Parakeet STT, Smart Rewrite, system-wide polish, and pricing compared. Best Super Whisper alternative for finished writing.",
   competitorName: "Super Whisper",
   targetKeyword: "super whisper alternative",
   publishedAt: "2026-07-05",
@@ -32,7 +32,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "Local Whisper on-device",
+      lazur: "NVIDIA Parakeet on-device",
       competitor: "Local on-device processing",
     },
     {
@@ -70,7 +70,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     {
       question: "Is Lazur a good Super Whisper alternative?",
       answer:
-        "Yes, if you need more than local transcription. Lazur keeps on-device Whisper STT and adds Smart Rewrite for polished output. Super Whisper fits users who prioritize minimal cloud exposure and handle formatting themselves.",
+        "Yes, if you need more than local transcription. Lazur keeps on-device NVIDIA Parakeet STT and adds Smart Rewrite for polished output. Super Whisper fits users who prioritize minimal cloud exposure and handle formatting themselves.",
     },
     {
       question: "Do both use local speech-to-text?",
@@ -95,7 +95,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Both products understand that sending raw audio to the cloud is a non-starter for many professionals. Lazur runs Whisper on your Mac. Super Whisper built its reputation on the same local-first posture. If privacy architecture is your only criterion, both deserve consideration.",
+      text: "Both products understand that sending raw audio to the cloud is a non-starter for many professionals. Lazur runs NVIDIA Parakeet on your Mac. Super Whisper built its reputation on the same local-first posture. If privacy architecture is your only criterion, both deserve consideration.",
     },
     {
       type: "heading",

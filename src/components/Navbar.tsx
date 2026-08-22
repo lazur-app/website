@@ -5,12 +5,16 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { GlowCta } from "./GlowCta";
 import { LogoWordmark } from "./LogoWordmark";
 import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
+
 const navLinks = [
   { href: "/pricing", label: "Pricing", match: "/pricing" },
-  { href: "/leaderboard", label: "Leaderboard", match: "/leaderboard" },
+  { href: "/blog", label: "Blog", match: "/blog" },
+  { href: "/use-cases", label: "Use cases", match: "/use-cases" },
+  { href: "/compare", label: "Compare", match: "/compare" },
 ];
 
 function isActive(pathname: string, match: string, href: string) {
@@ -64,7 +68,7 @@ export function Navbar() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-glass-pill mx-auto w-full max-w-4xl ${
+        className={`nav-glass-pill mx-auto w-full max-w-5xl ${
           mobileOpen
             ? "overflow-hidden rounded-[22px]"
             : "overflow-visible rounded-full"
@@ -74,7 +78,7 @@ export function Navbar() {
           <LogoWordmark height={32} />
 
           <nav
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex"
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex"
             aria-label="Main"
           >
             {navLinks.map((link) => {
@@ -96,7 +100,7 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className="hidden items-center gap-4 md:flex">
+            <div className="hidden items-center gap-4 lg:flex">
               {loading ? (
                 <span className="h-3 w-14 rounded-full bg-[var(--foreground)]/5" />
               ) : isAuthenticated && user ? (
@@ -109,12 +113,9 @@ export function Navbar() {
                   >
                     Log in
                   </Link>
-                  <Link
-                    href="/download"
-                    className="btn-dark !min-h-8 rounded-full px-4 py-1.5 text-[13px]"
-                  >
+                  <GlowCta href="/download" size="sm">
                     Try Lazur Free
-                  </Link>
+                  </GlowCta>
                 </>
               )}
             </div>
@@ -124,7 +125,7 @@ export function Navbar() {
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex h-8 w-8 items-center justify-center text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)] md:hidden"
+              className="flex h-8 w-8 items-center justify-center text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)] lg:hidden"
             >
               {mobileOpen ? (
                 <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
@@ -142,7 +143,7 @@ export function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.22 }}
-              className="overflow-hidden border-t border-[var(--border)]/50 md:hidden"
+              className="overflow-hidden border-t border-[var(--border)]/50 lg:hidden"
             >
               <nav className="flex flex-col px-5 pb-5 pt-2" aria-label="Mobile">
                 {navLinks.map((link) => {
@@ -178,13 +179,13 @@ export function Navbar() {
                       >
                         Log in
                       </Link>
-                      <Link
+                      <GlowCta
                         href="/download"
+                        block
                         onClick={() => setMobileOpen(false)}
-                        className="btn-dark w-full rounded-full px-5 py-2.5 text-center text-[14px]"
                       >
                         Try Lazur Free
-                      </Link>
+                      </GlowCta>
                     </>
                   )}
                 </div>

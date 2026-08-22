@@ -51,7 +51,7 @@ Hybrid is normal: voice for the paragraph, keyboard for the tweak.
 
 ## Why “I tried dictation and it was slower” is common
 
-People test Apple dictation or a transcription-first app, get a wall of speech, and conclude voice is a gimmick. They tested **speech-to-text**, not finished writing. [How to dictate on a Mac](/blog/how-to-dictate-on-mac) covers the workflow. [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow) covers the product split: fast transcript vs send-ready paste.
+People test Apple dictation or a transcription-first app, get a wall of speech, and conclude voice is a gimmick. They tested **speech-to-text**, not finished writing. [How to use dictation on a Mac](/blog/how-to-dictate-on-mac) covers the workflow. [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow) covers the product split: fast transcript vs send-ready paste.
 
 > Speed is not words on screen. Speed is words you would actually send.
 

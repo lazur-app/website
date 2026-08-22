@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Terms of Service for the Lazur macOS voice-to-text application, subscriptions, and website.",
 };
 
-const UPDATED = "July 3, 2026";
+const UPDATED = "August 13, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {

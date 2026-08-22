@@ -3,9 +3,15 @@ import { lazurVsWisprFlow } from "./posts/lazur-vs-wispr-flow";
 import { lazurVsSuperWhisper } from "./posts/lazur-vs-super-whisper";
 import { lazurVsWillowVoice } from "./posts/lazur-vs-willow-voice";
 import { lazurVsAppleDictation } from "./posts/lazur-vs-apple-dictation";
+import { lazurVsAquaVoice } from "./posts/lazur-vs-aqua-voice";
+import { lazurVsMacwhisper } from "./posts/lazur-vs-macwhisper";
+import { googleVoiceTypingAlternative } from "./posts/google-voice-typing-alternative";
 
 const allComparisons: ComparisonPage[] = [
   lazurVsWisprFlow,
+  lazurVsAquaVoice,
+  lazurVsMacwhisper,
+  googleVoiceTypingAlternative,
   lazurVsSuperWhisper,
   lazurVsWillowVoice,
   lazurVsAppleDictation,

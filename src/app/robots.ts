@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
-        allow: ["/", "/blog/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/blog/", "/compare/", "/use-cases/", "/llms.txt", "/llms-full.txt"],
         disallow: ["/dashboard", "/billing", "/auth/", "/api/"],
       },
       {

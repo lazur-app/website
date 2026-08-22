@@ -31,6 +31,8 @@ relatedSlugs:
   - "is-dictation-faster-than-typing"
 ---
 
+App page: [Write email by voice on Mac](/use-cases/gmail).
+
 You write emails by voice by dictating **what the email needs to do**, then letting rewrite turn that into something you would actually send. If you speak a full letter word for word, you will get a transcript. If you speak intent, recipient, ask, tone, deadline, [voice writing](/blog/what-is-voice-writing) can look like you typed it.
 
 ## The workflow

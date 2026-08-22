@@ -97,6 +97,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
   ],
   blocks: wisprBlogBlocks.blocks,
   relatedSlugs: [
+    "lazur-vs-aqua-voice",
     "lazur-vs-super-whisper",
     "lazur-vs-apple-dictation",
   ],

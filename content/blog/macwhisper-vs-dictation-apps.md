@@ -22,6 +22,8 @@ relatedSlugs:
   - "how-to-write-emails-by-voice"
 ---
 
+Canonical head-to-head: [Lazur vs MacWhisper](/compare/lazur-vs-macwhisper).
+
 **MacWhisper vs dictation apps** is a category error people make when they search “Wispr Flow alternatives.” MacWhisper is excellent at **transcription of recordings**. Wispr Flow, Aqua Voice, Lazur, and Willow are **live voice typing** into the field where the cursor is. 2026 lists include MacWhisper in the alternative set, then correctly note it is not a direct Wispr replacement.
 
 ## Two jobs

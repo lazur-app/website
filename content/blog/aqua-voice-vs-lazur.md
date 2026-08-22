@@ -22,6 +22,8 @@ relatedSlugs:
   - "wispr-flow-alternatives"
 ---
 
+Canonical head-to-head: [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).
+
 **Aqua Voice vs Lazur** is the comparison to run if you already know you are leaving Wispr Flow and you are deciding *which* replacement thesis to buy. Aqua is the closest “better Wispr”: speed, accuracy, live text, developer vocabulary. Lazur is the [voice writing](/blog/what-is-voice-writing) bet: understand what you meant, use the app in front of you, paste something you would send.
 
 ## The one-line split

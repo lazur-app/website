@@ -33,16 +33,16 @@ Wispr Flow’s promise is still the classic one: *speak and I will type it for y
 
 | Tool | Best for | Main reason to choose it |
 | --- | --- | --- |
-| [Aqua Voice](/blog/aqua-voice-vs-lazur) | Developers + heavy dictation | Very fast, polished output, strong technical vocabulary, live text |
+| [Aqua Voice](/compare/lazur-vs-aqua-voice) | Developers + heavy dictation | Very fast, polished output, strong technical vocabulary, live text |
 | [Lazur](/download) | Intent + contextual writing | Smart Rewrite, app context, Command Mode, on-device STT |
 | [Superwhisper](/compare/lazur-vs-super-whisper) | Privacy / power users | Local/offline models + customizable modes |
 | [Willow](/compare/lazur-vs-willow-voice) | Simple Wispr replacement | Minimal, cross-platform “talk anywhere” |
 | [VoiceInk](/blog/voiceink-open-source-dictation) | Open-source / privacy | Local processing, open source |
-| [MacWhisper](/blog/macwhisper-vs-dictation-apps) | Audio transcription | Recordings, meetings, files, not live cursor paste |
+| [MacWhisper](/compare/lazur-vs-macwhisper) | Audio transcription | Recordings, meetings, files, not live cursor paste |
 | [Apple Dictation](/blog/apple-dictation-vs-ai-dictation) | Casual users | Free and built into Apple devices |
 | Typeless | Heavy everyday dictation | AI turns natural speech into polished writing |
 
-Head-to-heads we already publish: [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow), [Lazur vs Super Whisper](/compare/lazur-vs-super-whisper), [Lazur vs Willow](/compare/lazur-vs-willow-voice), [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation). Three-way landscape: [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
+Head-to-heads we already publish: [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow), [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice), [Lazur vs MacWhisper](/compare/lazur-vs-macwhisper), [Google Voice Typing alternative](/compare/google-voice-typing-alternative), [Lazur vs Super Whisper](/compare/lazur-vs-super-whisper), [Lazur vs Willow](/compare/lazur-vs-willow-voice), [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation). Three-way landscape: [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
 
 ## If you are specifically trying to replace Wispr Flow
 
@@ -50,7 +50,7 @@ Shortlist three.
 
 ### 1. Aqua Voice, closest “better Wispr” competitor
 
-Investigate this first if you want the same category, faster. Aqua focuses on accuracy, live text, editing by voice, and technical/developer vocabulary. It supports Mac, Windows, and iPhone. See [Aqua Voice vs Lazur](/blog/aqua-voice-vs-lazur).
+Investigate this first if you want the same category, faster. Aqua focuses on accuracy, live text, editing by voice, and technical/developer vocabulary. It supports Mac, Windows, and iPhone. See [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).
 
 ### 2. Lazur, best if the problem is *what you meant*, not how fast it typed
 

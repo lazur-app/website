@@ -22,6 +22,8 @@ relatedSlugs:
   - "how-to-dictate-on-mac"
 ---
 
+App pages: [Voice writing in Cursor](/use-cases/cursor) and [voice prompting for ChatGPT](/use-cases/chatgpt).
+
 AI dictation for developers is for the **writing around the code**: pull requests, tickets, design docs, Slack, and prompts into Cursor or ChatGPT. It is not a replacement for typing syntax. Used that way, voice is one of the highest-leverage habits you can add to a Mac engineering setup.
 
 ## What to dictate (and what not to)

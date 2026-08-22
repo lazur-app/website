@@ -26,9 +26,9 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "5,000 words every month" },
+    { name: "Free", detail: "5,000 words every month", featured: false },
     { name: "Pro", detail: `${proPrice} after a 7-day trial`, featured: true },
-    { name: "Power", detail: powerPrice },
+    { name: "Power", detail: powerPrice, featured: false },
   ] as const;
 
   return (

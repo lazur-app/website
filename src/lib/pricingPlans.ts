@@ -125,10 +125,10 @@ function formatMonthlyAnnualNudge(
 ): string {
   const saved = monthly * 12 - annual;
   if (currency === "INR") {
-    return `Save ₹${saved.toLocaleString("en-IN")} billed annually`;
+    return `Save ₹${saved.toLocaleString("en-IN")} if billed annually`;
   }
   const dollars = Number.isInteger(saved) ? `$${saved}` : `$${saved.toFixed(2)}`;
-  return `Save ${dollars} billed annually`;
+  return `Save ${dollars} if billed annually`;
 }
 
 function regionalPricing(

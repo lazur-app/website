@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Hero clip config — swap `src` / `poster` when CDN videos land.
+ * Hero clip config, swap `src` / `poster` when CDN videos land.
  * Shell uses posters + chrome only until `src` is set.
  */
 export type HeroClip = {

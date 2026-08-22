@@ -1,18 +1,10 @@
-import type { BlogPost } from "../types";
+import type { BlogBlock } from "../types";
 
-export const lazurVsWisprFlow: BlogPost = {
-  slug: "lazur-vs-wispr-flow",
-  title: "Lazur vs Wispr Flow",
-  description:
-    "A practical comparison of Lazur and Wispr Flow — dictation accuracy, rewrite quality, system-wide support, voice commands, privacy, and pricing for macOS power users.",
-  publishedAt: "2026-07-01",
-  author: "Lazur Team",
-  category: "Comparison",
-  readingTimeMinutes: 8,
+export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
   blocks: [
     {
       type: "paragraph",
-      text: "Wispr Flow and Lazur both promise faster writing through voice. They overlap on the surface — macOS app, hotkey dictation, AI-assisted output — but they optimize for different outcomes. Wispr Flow is built around fast transcription. Lazur is built around finished text that reads what you meant.",
+      text: "Wispr Flow and Lazur both promise faster writing through voice. They overlap on the surface, macOS app, hotkey dictation, AI-assisted output, but they optimize for different outcomes. Wispr Flow is built around fast transcription. Lazur is built around finished text that reads what you meant.",
     },
     {
       type: "paragraph",
@@ -53,7 +45,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Lazur assumes you are dictating because you want to avoid typing — not because you want to avoid thinking. Smart Rewrite reshapes speech into structured, app-appropriate writing. The goal is text you would have typed yourself, faster.",
+      text: "Lazur assumes you are dictating because you want to avoid typing, not because you want to avoid thinking. Smart Rewrite reshapes speech into structured, app-appropriate writing. The goal is text you would have typed yourself, faster.",
     },
     {
       type: "heading",
@@ -67,7 +59,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Real speech is messy. You change direction, backtrack, and refine as you talk. Lazur adapts in real time so you can keep speaking without restarting. Many traditional dictation tools — Wispr Flow included, depending on mode and context — lock in phrasing after the first pass, which pushes correction work back to the keyboard.",
+      text: "Real speech is messy. You change direction, backtrack, and refine as you talk. Lazur adapts in real time so you can keep speaking without restarting. Many traditional dictation tools, Wispr Flow included, depending on mode and context, lock in phrasing after the first pass, which pushes correction work back to the keyboard.",
     },
     {
       type: "heading",
@@ -85,7 +77,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "This is the largest practical gap. Wispr Flow output can still feel like spoken language transferred to text. Lazur Smart Rewrite targets your natural written voice — tighter sentences in Slack, fuller structure in email, cleaner phrasing in docs. If you currently spend two to five minutes editing every dictation, that difference compounds across a workday.",
+      text: "This is the largest practical gap. Wispr Flow output can still feel like spoken language transferred to text. Lazur Smart Rewrite targets your natural written voice, tighter sentences in Slack, fuller structure in email, cleaner phrasing in docs. If you currently spend two to five minutes editing every dictation, that difference compounds across a workday.",
     },
     {
       type: "heading",
@@ -94,7 +86,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Lazur formats lists, email structure, and paragraph breaks as part of the rewrite step. Wispr Flow improves on raw STT, but users often still fix commas, line breaks, and bullet layout manually — especially in longer messages.",
+      text: "Lazur formats lists, email structure, and paragraph breaks as part of the rewrite step. Wispr Flow improves on raw STT, but users often still fix commas, line breaks, and bullet layout manually, especially in longer messages.",
     },
     {
       type: "heading",
@@ -112,7 +104,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Lazur includes Command Mode on paid plans — voice-driven editing and rewriting beyond straight dictation. Wispr Flow is primarily a dictation product. If you want voice to replace formatting shortcuts and rewrite passes, Lazur goes further.",
+      text: "Lazur includes Command Mode on paid plans, voice-driven editing and rewriting beyond straight dictation. Wispr Flow is primarily a dictation product. If you want voice to replace formatting shortcuts and rewrite passes, Lazur goes further.",
     },
     {
       type: "heading",
@@ -130,7 +122,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of mid-2026, Lazur offers a free tier (5,000 words/month), Pro at $10/month, and Power at $25/month with higher limits and Command Mode allowances. Wispr Flow uses its own tier structure — compare word limits, team features, and overage rules against your monthly dictation volume.",
+      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of mid-2026, Lazur offers a free tier (5,000 words/month), Pro at $10/month, and Power at $25/month with higher limits and Command Mode allowances. Wispr Flow uses its own tier structure, compare word limits, team features, and overage rules against your monthly dictation volume.",
     },
     {
       type: "heading",
@@ -160,13 +152,13 @@ export const lazurVsWisprFlow: BlogPost = {
       items: [
         "You dictate across many apps and want consistent, polished output.",
         "Edit time after dictation is your bottleneck.",
-        "You need tone and structure that match email, Slack, and docs — not one generic transcript style.",
+        "You need tone and structure that match email, Slack, and docs, not one generic transcript style.",
         "You want voice commands for rewriting without leaving the keyboard flow entirely.",
       ],
     },
     {
       type: "blockquote",
-      text: "The right tool is the one that minimizes total time to send — not just time to first draft.",
+      text: "The right tool is the one that minimizes total time to send, not just time to first draft.",
     },
     {
       type: "heading",
@@ -175,7 +167,7 @@ export const lazurVsWisprFlow: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Wispr Flow and Lazur are not interchangeable. They sit at different points on the spectrum from speech to finished work. If transcription alone solves your problem, Wispr Flow remains a capable option. If your problem is writing — accurate, contextual, ready to share — Lazur is built for that outcome.",
+      text: "Wispr Flow and Lazur are not interchangeable. They sit at different points on the spectrum from speech to finished work. If transcription alone solves your problem, Wispr Flow remains a capable option. If your problem is writing, accurate, contextual, ready to share, Lazur is built for that outcome.",
     },
     {
       type: "paragraph",

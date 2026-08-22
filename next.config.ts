@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  outputFileTracingIncludes: {
+    "/blog/[slug]": ["./content/blog/**/*"],
+    "/blog": ["./content/blog/**/*"],
+  },
 };
 
 export default nextConfig;

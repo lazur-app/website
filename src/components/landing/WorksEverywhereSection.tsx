@@ -29,7 +29,7 @@ export function WorksEverywhereSection() {
               One hotkey. Every app.
             </h2>
             <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              System-wide on macOS. Hold ⌃ Space, speak, release — polished text
+              System-wide on macOS. Hold ⌃ Space, speak, release, polished text
               lands where you&apos;re already working.
             </p>
 

@@ -24,7 +24,7 @@ export function DownloadCTA() {
             Your voice, upgraded.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Download for macOS. Speak naturally — lazur lands what you meant at
+            Download for macOS. Speak naturally, lazur lands what you meant at
             your cursor.
           </p>
 

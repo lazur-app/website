@@ -1,5 +1,5 @@
 /**
- * Asymmetric color washes + scattered marks — breaks centered monotony on the landing page.
+ * Asymmetric color washes + scattered marks, breaks centered monotony on the landing page.
  * Static, pointer-events-none, sits behind content.
  */
 export function LandingAtmosphere() {
@@ -8,7 +8,7 @@ export function LandingAtmosphere() {
       className="landing-atmosphere pointer-events-none absolute inset-x-0 top-0 -z-[1] min-h-full w-full overflow-hidden"
       aria-hidden
     >
-      {/* Hero band — purple left, warm yellow right */}
+      {/* Hero band, purple left, warm yellow right */}
       <div
         className="absolute -left-[14%] top-[8vh] h-[min(480px,42vw)] w-[min(480px,42vw)] rounded-full opacity-[0.28] blur-[100px]"
         style={{
@@ -24,7 +24,7 @@ export function LandingAtmosphere() {
         }}
       />
 
-      {/* Speed race — coral peek from left only (no right blob — avoids seam at section break) */}
+      {/* Speed race, coral peek from left only (no right blob, avoids seam at section break) */}
       <div
         className="absolute -left-[6%] top-[95vh] h-[320px] w-[280px] rounded-full opacity-[0.2] blur-[80px]"
         style={{
@@ -33,7 +33,7 @@ export function LandingAtmosphere() {
         }}
       />
 
-      {/* Lower-page wash — spans the speed → speech transition (no hard box edge) */}
+      {/* Lower-page wash, spans the speed → speech transition (no hard box edge) */}
       <div
         className="absolute -right-[8%] top-[88vh] h-[min(520px,48vh)] w-[min(420px,38vw)] rounded-full opacity-[0.055] blur-[110px]"
         style={{
@@ -42,7 +42,7 @@ export function LandingAtmosphere() {
         }}
       />
 
-      {/* Mid page — mint + violet, offset (softened) */}
+      {/* Mid page, mint + violet, offset (softened) */}
       <div
         className="absolute left-[8%] top-[175vh] h-[240px] w-[220px] rounded-full opacity-[0.1] blur-[70px]"
         style={{
@@ -67,7 +67,7 @@ export function LandingAtmosphere() {
         }}
       />
 
-      {/* Scattered marks — voice ghost on left, intent on right */}
+      {/* Scattered marks, voice ghost on left, intent on right */}
       <span className="absolute left-[5%] top-[32vh] hidden max-w-[7rem] rotate-[-11deg] font-display text-[13px] italic leading-snug text-[var(--brand)]/[0.07] sm:block">
         um so like…
       </span>

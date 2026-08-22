@@ -219,7 +219,7 @@ function drawFrame(
   }
 }
 
-/** Wide particle waves — flowing dots that blend into ribbons, lazur purple palette. */
+/** Wide particle waves, flowing dots that blend into ribbons, lazur purple palette. */
 export function HeroFluidWaves() {
   const { isReduced } = usePerformanceTier();
   const containerRef = useRef<HTMLDivElement>(null);

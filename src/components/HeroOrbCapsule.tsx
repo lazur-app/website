@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import { CapsulePopShow } from "./hero/CapsulePopShow";
 import { OrbCapsule } from "./orb/OrbCapsule";
 
-/** Animation stage height — overflows upward so layout stays tight. */
+/** Animation stage height, overflows upward so layout stays tight. */
 const CAPSULE_STAGE_HEIGHT = 176;
 const CAPSULE_LAYOUT_HEIGHT = 56;
 
@@ -14,7 +14,7 @@ type HeroOrbCapsuleProps = {
   scale?: number;
 };
 
-/** Interactive hero capsule — click to trigger letter burst demo. */
+/** Interactive hero capsule, click to trigger letter burst demo. */
 export function HeroOrbCapsule({
   className = "",
   scale = 1.05,

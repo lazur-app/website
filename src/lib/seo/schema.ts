@@ -32,19 +32,19 @@ export function buildSoftwareApplicationSchema() {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free tier — 5,000 words per month",
+        description: "Free tier, 5,000 words per month",
       },
       {
         "@type": "Offer",
         price: "14.00",
         priceCurrency: "USD",
-        description: "Pro plan — monthly",
+        description: "Pro plan, monthly",
       },
       {
         "@type": "Offer",
         price: "35.00",
         priceCurrency: "USD",
-        description: "Power plan — monthly",
+        description: "Power plan, monthly",
       },
     ],
   };
@@ -91,5 +91,42 @@ export function buildArticleSchema(post: BlogPost) {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
+    keywords: post.targetKeyword,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".blog-tldr", ".blog-prose"],
+    },
+  };
+}
+
+export function buildBlogFaqSchema(post: BlogPost) {
+  if (post.faq.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: post.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function buildBlogHowToSchema(post: BlogPost) {
+  if (!post.howto) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: post.howto.name,
+    description: post.description,
+    step: post.howto.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
   };
 }

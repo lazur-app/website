@@ -5,10 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
-import { FaqSection } from "@/components/landing/FaqSection";
-import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
 import { HappyUsersBar } from "@/components/landing/HappyUsersBar";
 import { HomePageStructuredData } from "@/components/seo/HomePageStructuredData";
 import {
@@ -31,13 +28,10 @@ export default function Home() {
       <HomePageStructuredData />
       <ReferralCapture />
       <Navbar />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <HowItWorksSection />
-        <TestimonialsSection />
         <LandingPageSections />
-        <FaqSection />
-        <FinalCtaSection />
       </main>
       <HappyUsersBar />
       <Footer />

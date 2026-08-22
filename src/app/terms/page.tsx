@@ -138,31 +138,31 @@ export default function TermsPage() {
                 items={[
                   <>
                     <strong className="text-[var(--foreground)]">7-day Pro
-                    trial</strong> — Starts when you create an account. No
+                    trial</strong>, Starts when you create an account. No
                     credit card is required to download and begin the trial.
                     After seven days, paid features stop until you subscribe.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Paid
-                    subscriptions</strong> — Pro and Power are billed monthly
+                    subscriptions</strong>, Pro and Power are billed monthly
                     or annually through our secure checkout provider. Prices,
                     applicable taxes (including GST where shown as
                     tax-exclusive), and currency are displayed before you pay.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Renewal</strong>{" "}
-                    — Subscriptions renew automatically until you cancel through
+                   , Subscriptions renew automatically until you cancel through
                     your billing settings.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Cancellation</strong>{" "}
-                    — You may cancel at any time; access typically continues
+                   , You may cancel at any time; access typically continues
                     until the end of the current billing period unless stated
                     otherwise at checkout.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Refunds</strong>{" "}
-                    — Fees are non-refundable except where required by applicable
+                   , Fees are non-refundable except where required by applicable
                     law or explicitly stated by us.
                   </>,
                 ]}

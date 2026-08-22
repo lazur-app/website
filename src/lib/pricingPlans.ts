@@ -17,7 +17,7 @@ export type PlanPriceDisplay = {
   price: string;
   period?: string;
   savingsLabel?: string;
-  /** Total $/₹ saved vs paying monthly for 12 months — shown under the price */
+  /** Total $/₹ saved vs paying monthly for 12 months, shown under the price */
   savingsNote?: string;
   alternateHint?: string;
 };
@@ -32,7 +32,7 @@ export type WebsitePlan = {
   featured?: boolean;
   featuredBadge?: string;
   planType: "pro" | "power";
-  /** Shown under the price — e.g. trial callout */
+  /** Shown under the price, e.g. trial callout */
   trialNote?: string;
   /** Primary button destination */
   cta: "download" | "checkout";

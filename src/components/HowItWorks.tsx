@@ -10,7 +10,7 @@ const steps = [
     step: "01",
     title: "Hold & speak",
     description:
-      "Press ⌃ Space anywhere on your Mac. Talk like you're explaining to a friend — messy is fine.",
+      "Press ⌃ Space anywhere on your Mac. Talk like you're explaining to a friend, messy is fine.",
   },
   {
     icon: Wand2,
@@ -24,7 +24,7 @@ const steps = [
     step: "03",
     title: "Release & paste",
     description:
-      "Let go of the key. Polished text lands at your cursor — no copy-paste, no app switching.",
+      "Let go of the key. Polished text lands at your cursor, no copy-paste, no app switching.",
   },
 ];
 

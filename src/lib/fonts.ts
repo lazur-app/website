@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import { Caveat } from "next/font/google";
 
-/** Hand-drawn callouts — pricing graffiti, savings badges */
+/** Hand-drawn callouts, pricing graffiti, savings badges */
 export const caveat = Caveat({
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -9,7 +9,7 @@ export const caveat = Caveat({
   display: "swap",
 });
 
-/** Body/UI — SIL Open Font License 1.1 (see src/fonts/open-sauce-one/OFL.txt) */
+/** Body/UI, SIL Open Font License 1.1 (see src/fonts/open-sauce-one/OFL.txt) */
 export const openSauceOne = localFont({
   src: [
     {
@@ -37,7 +37,7 @@ export const openSauceOne = localFont({
   display: "swap",
 });
 
-/** Headlines — ITF Free Font License (see src/fonts/clash-display/LICENSE.txt) */
+/** Headlines, ITF Free Font License (see src/fonts/clash-display/LICENSE.txt) */
 export const clashDisplay = localFont({
   src: [
     {

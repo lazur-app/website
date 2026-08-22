@@ -1,4 +1,4 @@
-/** Soft washes behind the post-testimonial landing — no hard section edges. */
+/** Soft washes behind the post-testimonial landing, no hard section edges. */
 export function LandingLowerAtmosphere() {
   return (
     <div

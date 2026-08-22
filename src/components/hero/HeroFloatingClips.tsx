@@ -9,7 +9,7 @@ type Props = {
   onClear: () => void;
 };
 
-/** Side float windows only — showreel is in-flow via HeroShowreel. */
+/** Side float windows only, showreel is in-flow via HeroShowreel. */
 export function HeroFloatingClipsDesktop({
   focusedId,
   onFocus,

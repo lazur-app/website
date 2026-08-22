@@ -97,9 +97,9 @@ const UPGRADE_PLAN_META: {
 ];
 
 function formatDateTime(iso?: string | null): string {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "-";
   return d.toLocaleString(undefined, {
     month: "short",
     day: "numeric",
@@ -408,7 +408,7 @@ function BillingContent() {
 
               {cancelScheduled ? (
                 <p className="rounded-lg border border-amber-200/80 bg-amber-50/70 px-3 py-2 text-[13px] text-amber-900">
-                  Cancellation scheduled — you keep access until the date above.
+                  Cancellation scheduled, you keep access until the date above.
                 </p>
               ) : null}
 
@@ -420,7 +420,7 @@ function BillingContent() {
 
               {fromApp ? (
                 <p className="text-[13px] text-[var(--foreground-muted)]">
-                  After upgrading, return to the Lazur desktop app — your plan updates
+                  After upgrading, return to the Lazur desktop app, your plan updates
                   automatically.
                 </p>
               ) : null}
@@ -443,7 +443,7 @@ function BillingContent() {
 
               {paid && isComp ? (
                 <p className="text-[13px] text-[var(--foreground-muted)]">
-                  Complimentary access — contact{" "}
+                  Complimentary access, contact{" "}
                   <a href="mailto:hello@lazur.app" className="font-medium underline">
                     support
                   </a>{" "}
@@ -468,7 +468,7 @@ function BillingContent() {
                 </h2>
                 <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {onTrial
-                    ? "Lock in Pro or Power before your trial ends — checkout is handled securely."
+                    ? "Lock in Pro or Power before your trial ends, checkout is handled securely."
                     : "Subscribe to keep full access to dictation, Command Mode, and polish."}
                 </p>
                 {region === "india" ? (

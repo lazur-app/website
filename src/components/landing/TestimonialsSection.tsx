@@ -140,10 +140,10 @@ export function TestimonialsSection() {
   return (
     <section
       id="love"
-      className="relative -mt-[100px] pt-[160px] pb-20 md:pt-[180px] md:pb-28"
+      className="relative scroll-mt-24 pt-[140px] pb-24 md:pt-[160px] md:pb-28"
     >
       <div className="landing-container">
-        <div className="mb-12 text-center md:mb-16">
+        <div className="mb-10 text-center md:mb-16">
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--brand-ink)]">
             · Early users ·
           </p>
@@ -158,7 +158,7 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45 }}
-            className="flex flex-col rounded-[1.5rem] bg-[#f6e9a8] px-6 py-7 md:col-span-2 md:px-8 md:py-8"
+            className="flex flex-col rounded-[1.25rem] bg-[#f6e9a8] px-5 py-6 md:col-span-2 md:rounded-[1.5rem] md:px-8 md:py-8"
           >
             <p className="flex-1 font-display text-[1.2rem] leading-snug tracking-tight text-[var(--foreground)] md:text-[1.45rem]">
               &ldquo;
@@ -175,7 +175,7 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.06, duration: 0.45 }}
-            className="flex flex-col justify-between rounded-[1.5rem] bg-[var(--foreground)] px-6 py-7 text-[var(--background)] md:px-7"
+            className="flex flex-col justify-between rounded-[1.25rem] bg-[var(--foreground)] px-5 py-6 text-[var(--background)] md:rounded-[1.5rem] md:px-7 md:py-7"
           >
             <div>
               <span
@@ -201,7 +201,7 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.08 + i * 0.06, duration: 0.45 }}
-              className="flex flex-col rounded-[1.5rem] bg-white px-6 py-7 shadow-[0_12px_40px_rgba(28,25,23,0.06)] md:py-8"
+              className="flex flex-col rounded-[1.25rem] bg-white px-5 py-6 shadow-[0_12px_40px_rgba(28,25,23,0.06)] md:rounded-[1.5rem] md:px-6 md:py-8"
             >
               <p className="flex-1 text-[15px] leading-relaxed text-[var(--foreground)]">
                 &ldquo;
@@ -215,8 +215,8 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center md:mt-14">
-          <HeroDownloadCta variant="minimal" />
+        <div className="mt-10 flex justify-center md:mt-14">
+          <HeroDownloadCta variant="minimal" className="w-full max-w-sm sm:w-auto" />
         </div>
       </div>
     </section>

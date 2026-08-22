@@ -69,12 +69,12 @@ export function Testimonials() {
             {
               stat: "<200ms",
               label: "Streaming latency",
-              detail: "Local Whisper STT on-device — cloud polish only when you want it.",
+              detail: "Local Whisper STT on-device, cloud polish only when you want it.",
             },
             {
               stat: "One hotkey",
               label: "Everywhere you work",
-              detail: "No plugins. Hold ⌃ Space, speak, release — text lands at your cursor.",
+              detail: "No plugins. Hold ⌃ Space, speak, release, text lands at your cursor.",
             },
           ].map((h, i) => (
             <motion.div

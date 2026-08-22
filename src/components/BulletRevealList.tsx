@@ -50,13 +50,13 @@ const items: BulletItem[] = [
       app: "Gmail",
       before: "just following up on my last email",
       after:
-        "Following up on my previous email — wanted to check if you had a chance to review.",
+        "Following up on my previous email, wanted to check if you had a chance to review.",
     },
   },
   {
     id: "speed",
     label: "Instant at cursor",
-    summary: "Sub-200ms streaming — words appear as you speak.",
+    summary: "Sub-200ms streaming, words appear as you speak.",
     preview: {
       app: "Any app",
       before: "…",

@@ -9,7 +9,7 @@ import { getAllComparisons } from "@/lib/compare";
 import { SITE_URL } from "@/lib/seo/constants";
 
 export const metadata: Metadata = {
-  title: "Compare Lazur — AI Voice Dictation Alternatives for Mac",
+  title: "Compare Lazur, AI Voice Dictation Alternatives for Mac",
   description:
     "Compare Lazur with Wispr Flow, Super Whisper, Willow Voice, and Apple Dictation. Find the best AI voice dictation app for your Mac workflow.",
   alternates: {
@@ -34,7 +34,7 @@ export default function CompareHubPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--foreground-muted)] md:text-base">
           Honest head-to-head guides for AI voice dictation on Mac. Lazur focuses
-          on ambient writing — Smart Rewrite that turns speech into finished
+          on ambient writing, Smart Rewrite that turns speech into finished
           text, not raw transcripts.
         </p>
 

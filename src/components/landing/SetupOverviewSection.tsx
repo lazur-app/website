@@ -10,7 +10,7 @@ const STEPS = [
     icon: Download,
     step: "01",
     title: "Download",
-    body: "Install the macOS app — under a minute on Apple Silicon.",
+    body: "Install the macOS app, under a minute on Apple Silicon.",
   },
   {
     icon: Shield,

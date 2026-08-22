@@ -7,7 +7,7 @@ const contexts = [
   {
     label: "Slack tone",
     raw: "yeah so basically the deploy failed again lol",
-    out: "Heads up — the deploy failed again. Investigating now.",
+    out: "Heads up, the deploy failed again. Investigating now.",
   },
   {
     label: "Email tone",
@@ -17,7 +17,7 @@ const contexts = [
   {
     label: "Code comment",
     raw: "this function is kinda broken when input is empty",
-    out: "Returns undefined when input is empty — needs a guard clause.",
+    out: "Returns undefined when input is empty, needs a guard clause.",
   },
 ];
 
@@ -48,11 +48,11 @@ export function ProductDemo() {
           <span className="gradient-word">like you.</span>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-pretty text-base text-[var(--foreground-muted)]">
-          Not a transcript. Lazur reads the room — Slack, email, docs — and
+          Not a transcript. Lazur reads the room, Slack, email, docs, and
           delivers text you&apos;d actually send.
         </p>
 
-        {/* Context tabs — pills, not cards */}
+        {/* Context tabs, pills, not cards */}
         <div className="mt-12 flex justify-center gap-2">
           {contexts.map((c, i) => (
             <button

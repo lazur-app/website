@@ -143,7 +143,7 @@ export function startOAuth(
   window.location.href = `${apiBase()}/auth/login/${provider}?${params.toString()}`;
 }
 
-/** Instant session read for navbar — no network. */
+/** Instant session read for navbar, no network. */
 export function getCachedUser(): UserProfile | null {
   const token = getAccessToken();
   if (!token || isTokenExpired(token)) return null;

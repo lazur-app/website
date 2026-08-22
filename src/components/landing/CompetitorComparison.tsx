@@ -16,7 +16,7 @@ const COMPETITORS = [
 const ROWS = [
   {
     label: "Handles mid-sentence changes",
-    lazur: "Adapts in real time — keep talking, it catches up",
+    lazur: "Adapts in real time, keep talking, it catches up",
     others: "Mostly locked after the first pass",
   },
   {
@@ -26,13 +26,13 @@ const ROWS = [
   },
   {
     label: "Writing style",
-    lazur: "Smart Rewrite — output sounds like you wrote it",
+    lazur: "Smart Rewrite, output sounds like you wrote it",
     others: "Reads like a transcript, not your voice",
   },
   {
     label: "Formatting & punctuation",
     lazur: "Lists, emails, and structure as you speak",
-    others: "Raw speech — you fix commas and layout",
+    others: "Raw speech, you fix commas and layout",
   },
   {
     label: "Tone awareness",
@@ -41,13 +41,13 @@ const ROWS = [
   },
   {
     label: "Works in any app",
-    lazur: "System-wide — polished text at your cursor",
+    lazur: "System-wide, polished text at your cursor",
     others: "Varies by tool; often one app or ecosystem",
   },
   {
     label: "Voice commands",
-    lazur: "Command Mode — edit, rewrite, and act by voice",
-    others: "Dictation only — no command layer",
+    lazur: "Command Mode, edit, rewrite, and act by voice",
+    others: "Dictation only, no command layer",
   },
   {
     label: "Privacy & speed",
@@ -88,12 +88,12 @@ export function CompetitorComparison() {
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
             Whisper Flow, Super Whisper, Willow, and Apple Intelligence get you
-            words. Lazur gets you finished text — in the app you&apos;re already
+            words. Lazur gets you finished text, in the app you&apos;re already
             in.
           </p>
         </motion.div>
 
-        {/* Desktop — full-width 3 columns */}
+        {/* Desktop, full-width 3 columns */}
         <div className="hidden w-full lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-x-12 xl:gap-x-20 2xl:gap-x-28">
           {/* Column headers */}
           <div className="pb-5 pt-2 pl-2">
@@ -120,7 +120,7 @@ export function CompetitorComparison() {
             </div>
           </div>
 
-          {/* Left — row labels */}
+          {/* Left, row labels */}
           <div className="flex flex-col pl-2 xl:pl-4">
             {ROWS.map((row, i) => (
               <motion.div
@@ -141,7 +141,7 @@ export function CompetitorComparison() {
             ))}
           </div>
 
-          {/* Center — single lazur card */}
+          {/* Center, single lazur card */}
           <SoftCard
             hover={false}
             className="overflow-hidden px-6 py-2 shadow-[0_8px_40px_rgba(107,75,252,0.1)] md:px-8 lg:px-10"
@@ -161,7 +161,7 @@ export function CompetitorComparison() {
             ))}
           </SoftCard>
 
-          {/* Right — others */}
+          {/* Right, others */}
           <div className="flex flex-col pr-2 xl:pr-4">
             {ROWS.map((row, i) => (
               <motion.div
@@ -191,7 +191,7 @@ export function CompetitorComparison() {
           <SoftCard hover={false} className="p-5">
             <LogoWordmark height={26} href="" className="pointer-events-none" />
             <p className="mt-2 text-[13px] text-[var(--foreground-muted)]">
-              What you meant — not just what you said.
+              What you meant, not just what you said.
             </p>
           </SoftCard>
 
@@ -240,7 +240,7 @@ export function CompetitorComparison() {
           className="mt-8 text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
         >
           Competitor capabilities vary by plan and platform. Lazur focuses on
-          intent-aware rewrite, system-wide paste, and Command Mode — not raw
+          intent-aware rewrite, system-wide paste, and Command Mode, not raw
           transcription alone.
         </motion.p>
       </div>

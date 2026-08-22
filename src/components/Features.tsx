@@ -20,7 +20,7 @@ export const Features = () => {
             <FeatureBlock
                 label="Rewrite"
                 title="AI-Powered Precision"
-                description="Our model analyzes your flow and transforms it into the format you need. Emails, slack messages, or documentation—instantly."
+                description="Our model analyzes your flow and transforms it into the format you need. Emails, slack messages, or documentation-instantly."
                 image="/features/rewrite.png"
                 reverse
             />

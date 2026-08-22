@@ -11,7 +11,7 @@ function wordDelay(index: number) {
   return BASE_DELAY + index * WORD_STAGGER;
 }
 
-/** Highlighted motto word — italic with a left-to-right marker stroke reveal. */
+/** Highlighted motto word, italic with a left-to-right marker stroke reveal. */
 export function HeroVoiceWord({ children }: { children: ReactNode }) {
   const delay = wordDelay(HIGHLIGHT_INDEX);
   const highlightDelay = delay + 0.5;

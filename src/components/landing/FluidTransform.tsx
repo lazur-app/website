@@ -8,7 +8,7 @@ const raw =
   "So umm yeah I was talking to Cheyene earlier and the reception was like really bad, and I think they're gonna handle the first part of the project but I'm not totally sure? And also I told the team the new timeline should be ready by Friday but it's probably gonna slip.";
 
 const polished =
-  "Hope your week is off to a good start. I spoke with Cheyene earlier — reception was poor. They'll likely handle the first part of the project, though I'm not entirely sure yet. I also let the team know the new timeline should be ready by Friday, though it may slip.";
+  "Hope your week is off to a good start. I spoke with Cheyene earlier, reception was poor. They'll likely handle the first part of the project, though I'm not entirely sure yet. I also let the team know the new timeline should be ready by Friday, though it may slip.";
 
 const RAW_WORDS = raw.split(" ");
 const POLISHED_WORDS = polished.split(" ");
@@ -275,8 +275,8 @@ export function FluidTransform() {
             What you meant.
           </h2>
           <p className="mt-4 text-[15px] leading-[1.7] text-[var(--foreground-muted)]">
-            Lazur reads your intent — strips filler, fixes grammar, shapes tone
-            — while you keep talking. Not a transcript. Writing you&apos;d
+            Lazur reads your intent, strips filler, fixes grammar, shapes tone
+           , while you keep talking. Not a transcript. Writing you&apos;d
             actually hit send on.
           </p>
         </motion.div>

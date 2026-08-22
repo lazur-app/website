@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostLayout } from "@/components/blog/BlogPostLayout";
-import { BlogRenderer } from "@/components/blog/BlogRenderer";
+import { BlogMarkdown } from "@/components/blog/BlogMarkdown";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import { SITE_URL } from "@/lib/seo/constants";
-import { buildArticleSchema } from "@/lib/seo/schema";
+import {
+  buildArticleSchema,
+  buildBlogFaqSchema,
+  buildBlogHowToSchema,
+} from "@/lib/seo/schema";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -30,6 +34,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Lazur Blog`,
     description: post.description,
+    keywords: post.targetKeyword ? [post.targetKeyword] : undefined,
     alternates: {
       canonical,
     },
@@ -53,18 +58,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const faqSchema = buildBlogFaqSchema(post);
+  const howtoSchema = buildBlogHowToSchema(post);
+
   return (
     <>
       <JsonLd data={buildArticleSchema(post)} />
+      {faqSchema ? <JsonLd data={faqSchema} /> : null}
+      {howtoSchema ? <JsonLd data={howtoSchema} /> : null}
       <BlogPostLayout
+        slug={post.slug}
         title={post.title}
         description={post.description}
         publishedAt={post.publishedAt}
         author={post.author}
         category={post.category}
         readingTimeMinutes={post.readingTimeMinutes}
+        tldr={post.tldr}
+        faq={post.faq}
       >
-        <BlogRenderer blocks={post.blocks} />
+        <BlogMarkdown source={post.body} />
       </BlogPostLayout>
     </>
   );

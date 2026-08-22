@@ -15,7 +15,7 @@ type HeroAppLogosProps = {
   className?: string;
 };
 
-/** Icon-only app row for hero — no heading text. */
+/** Icon-only app row for hero, no heading text. */
 export function HeroAppLogos({ className = "" }: HeroAppLogosProps) {
   return (
     <ul

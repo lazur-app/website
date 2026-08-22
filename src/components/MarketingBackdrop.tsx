@@ -1,4 +1,4 @@
-/** Fixed side washes — no grain or texture. */
+/** Fixed side washes, no grain or texture. */
 export function MarketingBackdrop() {
   return (
     <div

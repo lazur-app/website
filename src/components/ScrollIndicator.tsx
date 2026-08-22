@@ -160,7 +160,7 @@ export function ScrollIndicator() {
         style={{ width: RAIL_W }}
         onClick={onTrackClick}
       >
-        {/* Rail — glass track on hover */}
+        {/* Rail, glass track on hover */}
         <motion.div
           animate={{
             opacity: expanded ? 1 : 0,
@@ -178,7 +178,7 @@ export function ScrollIndicator() {
             />
           ))}
 
-          {/* Progress fill — glides with scroll */}
+          {/* Progress fill, glides with scroll */}
           <motion.div
             animate={{ height: fillHeightPx }}
             transition={springConfig}
@@ -208,7 +208,7 @@ export function ScrollIndicator() {
           onPointerDown={onThumbDown}
           className="absolute left-1/2 top-0 flex -translate-x-1/2 cursor-grab flex-col items-center justify-center gap-[5px] rounded-full bg-[var(--foreground)] shadow-[0_2px_12px_rgba(0,0,0,0.18)] active:cursor-grabbing"
         >
-          {/* Grip lines — visible when expanded */}
+          {/* Grip lines, visible when expanded */}
           <motion.span
             animate={{ opacity: expanded ? 1 : 0, scale: expanded ? 1 : 0.4 }}
             transition={{ duration: 0.2 }}
@@ -220,7 +220,7 @@ export function ScrollIndicator() {
           </motion.span>
         </motion.div>
 
-        {/* Scroll hint — fades in on hover */}
+        {/* Scroll hint, fades in on hover */}
         <motion.div
           animate={{ opacity: expanded ? 1 : 0, y: expanded ? 0 : 4 }}
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}

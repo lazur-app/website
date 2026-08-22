@@ -3,7 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllComparisons } from "@/lib/compare";
 import { SITE_URL } from "@/lib/seo/constants";
 
-/** Static marketing pages — bump when content meaningfully changes. */
+/** Static marketing pages, bump when content meaningfully changes. */
 const STATIC_LAST_MODIFIED = new Date("2026-07-05");
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -33,8 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = getAllPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.updatedAt ?? post.publishedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
   }));
 
   return [...staticRoutes, ...compareRoutes, ...blogRoutes];

@@ -28,7 +28,7 @@ export function WorksEverywhere() {
         </h2>
         <p className="mx-auto mt-5 max-w-md text-pretty text-base text-[var(--foreground-muted)]">
           Lazur lives in your menu bar and writes wherever you&apos;re already
-          working — hold a key, speak, release.
+          working, hold a key, speak, release.
         </p>
 
         <div className="relative mx-auto mt-16 h-[22rem] max-w-2xl md:h-[26rem]">

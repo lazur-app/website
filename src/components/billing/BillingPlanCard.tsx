@@ -69,7 +69,7 @@ export function BillingPlanCard({
       <div className="mb-6 min-h-[4.5rem]">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="font-display text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-            {priceDisplay?.price ?? "—"}
+            {priceDisplay?.price ?? "-"}
           </span>
           {priceDisplay?.period ? (
             <span className="text-sm font-medium text-[var(--foreground-faint)]">

@@ -11,7 +11,7 @@ type AuthFlowShellProps = {
   contentClassName?: string;
 };
 
-/** Shared layout for sign-in and OAuth callback — matches download/dashboard shell. */
+/** Shared layout for sign-in and OAuth callback, matches download/dashboard shell. */
 export function AuthFlowShell({
   children,
   contentClassName = "w-full max-w-sm",

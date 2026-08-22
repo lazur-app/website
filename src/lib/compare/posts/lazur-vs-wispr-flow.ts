@@ -5,7 +5,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
   slug: "lazur-vs-wispr-flow",
   title: "Lazur vs Wispr Flow",
   description:
-    "Comparing Lazur and Wispr Flow for macOS — AI voice dictation, Smart Rewrite vs fast transcription, privacy, Command Mode, and pricing. Which dictation app fits your workflow?",
+    "Comparing Lazur and Wispr Flow for macOS, AI voice dictation, Smart Rewrite vs fast transcription, privacy, Command Mode, and pricing. Which dictation app fits your workflow?",
   competitorName: "Wispr Flow",
   targetKeyword: "wispr flow alternative",
   publishedAt: "2026-07-01",
@@ -29,7 +29,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
   table: [
     {
       feature: "Core focus",
-      lazur: "Ambient writing — finished text via Smart Rewrite",
+      lazur: "Ambient writing, finished text via Smart Rewrite",
       competitor: "Fast AI transcription with light cleanup",
     },
     {
@@ -39,8 +39,8 @@ export const lazurVsWisprFlow: ComparisonPage = {
     },
     {
       feature: "System-wide",
-      lazur: "Yes — ⌃ Space in any Mac app",
-      competitor: "Yes — broad macOS app coverage",
+      lazur: "Yes, ⌃ Space in any Mac app",
+      competitor: "Yes, broad macOS app coverage",
     },
     {
       feature: "Speech-to-text",
@@ -82,7 +82,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
     {
       question: "Does Lazur work on more apps than Wispr Flow?",
       answer:
-        "Both aim for system-wide macOS coverage. The practical difference is output quality per context — Lazur adapts tone for Slack, email, and docs rather than delivering one transcript style.",
+        "Both aim for system-wide macOS coverage. The practical difference is output quality per context, Lazur adapts tone for Slack, email, and docs rather than delivering one transcript style.",
     },
     {
       question: "Which has better privacy?",

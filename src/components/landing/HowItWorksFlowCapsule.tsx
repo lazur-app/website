@@ -6,7 +6,7 @@ import { OrbCapsule } from "@/components/orb/OrbCapsule";
 
 type HowItWorksFlowCapsuleProps = {
   processing?: boolean;
-  /** True while dictation is active — drives the listening waveform. */
+  /** True while dictation is active, drives the listening waveform. */
   listening?: boolean;
 };
 

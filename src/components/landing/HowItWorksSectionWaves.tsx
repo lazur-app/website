@@ -2,15 +2,15 @@
 
 import type { CSSProperties } from "react";
 
-/** Layered wave channels — reusable for landing section & future promo video captures */
+/** Layered wave channels, reusable for landing section & future promo video captures */
 
 export const HOW_IT_WORKS_WAVE_VIEWBOX = "0 0 1440 120";
 
-/** 2-period smooth sine — amp ±22, baseline y=72, horizontal tangents at extrema */
+/** 2-period smooth sine, amp ±22, baseline y=72, horizontal tangents at extrema */
 const WAVE_LINE =
   "M0,72 C60,72 120,50 180,50 C240,50 300,72 360,72 C420,72 480,94 540,94 C600,94 660,72 720,72 C780,72 840,50 900,50 C960,50 1020,72 1080,72 C1140,72 1200,94 1260,94 C1320,94 1380,72 1440,72";
 
-/** Fills outward from the dark section — up into hero, down into next section */
+/** Fills outward from the dark section, up into hero, down into next section */
 export const HOW_IT_WORKS_WAVE_PATH_TOP = `${WAVE_LINE} L1440,0 L0,0 Z`;
 export const HOW_IT_WORKS_WAVE_PATH_BOTTOM = `${WAVE_LINE} L1440,120 L0,120 Z`;
 

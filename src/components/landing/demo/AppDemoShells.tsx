@@ -20,7 +20,7 @@ type ShellProps = {
 
 export const DEMO_SHELL_HEIGHT = "h-[340px]";
 
-/** Shared typography — overlay + polished text stay in sync across tabs */
+/** Shared typography, overlay + polished text stay in sync across tabs */
 const DEMO_BODY = "text-[12px] leading-[1.55]";
 const DEMO_LABEL =
   "text-[9px] font-semibold uppercase tracking-[0.14em]";
@@ -88,7 +88,7 @@ function YouSaidPanel({
   );
 }
 
-/** Centered in open space — keeps polished text visible around the edges */
+/** Centered in open space, keeps polished text visible around the edges */
 const OVERLAY_BLANK_CENTER =
   "left-1/2 top-[46%] w-[min(92%,320px)] -translate-x-1/2 -translate-y-1/2 sm:w-[300px]";
 
@@ -254,7 +254,7 @@ export function GmailDemoShell({ scenario }: ShellProps) {
     <ShellChrome className="border border-[#dadce0] bg-[#f6f8fc] text-left">
       <div className="flex h-8 shrink-0 items-center gap-2 border-b border-[#dadce0] bg-white px-3">
         <MacWindowDots />
-        <span className="ml-2 text-[10px] text-[#5f6368]">Gmail — Compose</span>
+        <span className="ml-2 text-[10px] text-[#5f6368]">Gmail, Compose</span>
       </div>
 
       <div className="relative flex h-[calc(100%-2rem)]">
@@ -281,7 +281,7 @@ export function GmailDemoShell({ scenario }: ShellProps) {
                 New Message
               </span>
               <div className="flex gap-2 text-[#5f6368]">
-                <span className="text-[11px]">—</span>
+                <span className="text-[11px]">-</span>
                 <span className="text-[11px]">□</span>
                 <span className="text-[11px]">×</span>
               </div>
@@ -334,7 +334,7 @@ export function CodeDemoShell({ scenario }: ShellProps) {
     <ShellChrome className="border border-[#2b2b2b] bg-[#1e1e1e] text-left">
       <div className="flex h-8 shrink-0 items-center gap-2 border-b border-[#2b2b2b] bg-[#252526] px-3">
         <MacWindowDots />
-        <span className="text-[10px] text-[#858585]">Cursor — lazur-app</span>
+        <span className="text-[10px] text-[#858585]">Cursor, lazur-app</span>
       </div>
 
       <div className="relative flex h-[calc(100%-2rem)]">

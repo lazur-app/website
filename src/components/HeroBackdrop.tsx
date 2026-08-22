@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-/** Ghost fragments — speech on the left, polished on the right. Kept sparse so the hero stays readable. */
+/** Ghost fragments, speech on the left, polished on the right. Kept sparse so the hero stays readable. */
 const rawFragments = [
   { text: "um…", top: "18%", left: "4%", rotate: -8 },
   { text: "like,", top: "32%", left: "8%", rotate: 4 },
@@ -24,7 +24,7 @@ export function HeroBackdrop() {
       className="hero-backdrop pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
       aria-hidden
     >
-      {/* Loose sketch arrow — voice → polish */}
+      {/* Loose sketch arrow, voice → polish */}
       <svg
         className="hero-backdrop-arrow absolute left-[12%] top-[28%] h-[38%] w-[76%] text-[var(--brand)]"
         viewBox="0 0 800 320"
@@ -49,7 +49,7 @@ export function HeroBackdrop() {
         />
       </svg>
 
-      {/* Raw speech — scribbly, faded */}
+      {/* Raw speech, scribbly, faded */}
       {rawFragments.map((f, i) => (
         <motion.span
           key={f.text}
@@ -67,7 +67,7 @@ export function HeroBackdrop() {
         </motion.span>
       ))}
 
-      {/* Polished — cleaner, slightly sharper */}
+      {/* Polished, cleaner, slightly sharper */}
       {polishedFragments.map((f, i) => (
         <motion.span
           key={f.text}
@@ -88,7 +88,7 @@ export function HeroBackdrop() {
         </motion.span>
       ))}
 
-      {/* Tiny graffiti marks — crossed filler, wave doodle */}
+      {/* Tiny graffiti marks, crossed filler, wave doodle */}
       <svg
         className="absolute left-[14%] top-[30%] h-8 w-10 text-[var(--brand)] opacity-[0.14]"
         viewBox="0 0 40 32"

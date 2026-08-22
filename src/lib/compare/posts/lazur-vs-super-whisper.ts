@@ -4,14 +4,14 @@ export const lazurVsSuperWhisper: ComparisonPage = {
   slug: "lazur-vs-super-whisper",
   title: "Lazur vs Super Whisper",
   description:
-    "Lazur vs Super Whisper for Mac — local Whisper STT, Smart Rewrite, system-wide polish, and pricing compared. Best Super Whisper alternative for finished writing.",
+    "Lazur vs Super Whisper for Mac, local Whisper STT, Smart Rewrite, system-wide polish, and pricing compared. Best Super Whisper alternative for finished writing.",
   competitorName: "Super Whisper",
   targetKeyword: "super whisper alternative",
   publishedAt: "2026-07-05",
   readingTimeMinutes: 7,
   tldr: [
     "Super Whisper excels at local, privacy-focused speech-to-text on Mac.",
-    "Lazur adds Smart Rewrite — reshaping speech into polished, app-appropriate writing, not just accurate transcription.",
+    "Lazur adds Smart Rewrite, reshaping speech into polished, app-appropriate writing, not just accurate transcription.",
     "Choose Super Whisper for minimal cloud exposure and short capture. Choose Lazur when edit time after dictation is the problem.",
   ],
   chooseLazur: [
@@ -37,13 +37,13 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       feature: "AI rewrite / polish",
-      lazur: "Smart Rewrite — app-aware finished text",
+      lazur: "Smart Rewrite, app-aware finished text",
       competitor: "Light cleanup; more manual editing",
     },
     {
       feature: "System-wide",
-      lazur: "Yes — ⌃ Space in any Mac app",
-      competitor: "Yes — works across macOS apps",
+      lazur: "Yes, ⌃ Space in any Mac app",
+      competitor: "Yes, works across macOS apps",
     },
     {
       feature: "Voice commands",
@@ -80,7 +80,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     {
       question: "Which is better for engineers?",
       answer:
-        "Lazur targets developers who dictate in Cursor, VS Code, and Slack — Smart Rewrite adapts tone per app. Super Whisper works for quick capture but may require more cleanup for PR descriptions and client-facing writing.",
+        "Lazur targets developers who dictate in Cursor, VS Code, and Slack, Smart Rewrite adapts tone per app. Super Whisper works for quick capture but may require more cleanup for PR descriptions and client-facing writing.",
     },
   ],
   blocks: [
@@ -90,7 +90,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "heading",
-      text: "Local STT — shared ground",
+      text: "Local STT, shared ground",
       level: 2,
     },
     {
@@ -104,7 +104,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "The gap shows up in daily volume. Dictate five Slack updates, three emails, and a PR description — Super Whisper gives you accurate transcripts. Lazur gives you messages that match each context: casual in chat, structured in email, concise in code comments. That difference is Smart Rewrite, not raw WER.",
+      text: "The gap shows up in daily volume. Dictate five Slack updates, three emails, and a PR description, Super Whisper gives you accurate transcripts. Lazur gives you messages that match each context: casual in chat, structured in email, concise in code comments. That difference is Smart Rewrite, not raw WER.",
     },
     {
       type: "heading",
@@ -113,7 +113,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Lazur Command Mode lets you edit and rewrite selected text with voice — expand a paragraph, tighten tone, fix structure. Super Whisper is optimized for capture, not post-dictation editing workflows.",
+      text: "Lazur Command Mode lets you edit and rewrite selected text with voice, expand a paragraph, tighten tone, fix structure. Super Whisper is optimized for capture, not post-dictation editing workflows.",
     },
     {
       type: "heading",
@@ -122,7 +122,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Super Whisper is a strong Super Whisper — local, fast, private STT. Lazur is for users who tried local dictation and quit because of cleanup work. If that sounds familiar, Lazur is the upgrade path.",
+      text: "Super Whisper is a strong Super Whisper, local, fast, private STT. Lazur is for users who tried local dictation and quit because of cleanup work. If that sounds familiar, Lazur is the upgrade path.",
     },
   ],
   relatedSlugs: ["lazur-vs-wispr-flow", "lazur-vs-apple-dictation"],

@@ -4,18 +4,18 @@ export const lazurVsAppleDictation: ComparisonPage = {
   slug: "lazur-vs-apple-dictation",
   title: "Lazur vs Apple Dictation",
   description:
-    "Lazur vs Apple Dictation on Mac — free built-in voice typing vs AI Smart Rewrite, system-wide polish, Command Mode, and personal dictionary. Best Apple dictation alternative.",
+    "Lazur vs Apple Dictation on Mac, free built-in voice typing vs AI Smart Rewrite, system-wide polish, Command Mode, and personal dictionary. Best Apple dictation alternative.",
   competitorName: "Apple Dictation",
   targetKeyword: "apple dictation alternative mac",
   publishedAt: "2026-07-05",
   readingTimeMinutes: 7,
   tldr: [
     "Apple Dictation is free, built into macOS, and works well in Apple apps.",
-    "Lazur adds Smart Rewrite, consistent system-wide polish, Command Mode, and a personal dictionary — especially in third-party apps like Cursor, Slack, and Notion.",
+    "Lazur adds Smart Rewrite, consistent system-wide polish, Command Mode, and a personal dictionary, especially in third-party apps like Cursor, Slack, and Notion.",
     "Choose Apple if you live entirely in Mail and Notes. Choose Lazur for cross-app professional writing.",
   ],
   chooseLazur: [
-    "You work in Cursor, Slack, Linear, Notion, or Gmail — not just Apple apps.",
+    "You work in Cursor, Slack, Linear, Notion, or Gmail, not just Apple apps.",
     "You want AI rewrite, not raw transcription with basic punctuation.",
     "You dictate professionally and need tone matching plus Command Mode.",
   ],
@@ -37,7 +37,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     },
     {
       feature: "Third-party apps",
-      lazur: "Full support — Cursor, Slack, IDEs",
+      lazur: "Full support, Cursor, Slack, IDEs",
       competitor: "Inconsistent outside Apple apps",
     },
     {
@@ -57,8 +57,8 @@ export const lazurVsAppleDictation: ComparisonPage = {
     },
     {
       feature: "Hotkey workflow",
-      lazur: "Global ⌃ Space — one workflow everywhere",
-      competitor: "Fn key / mic button — varies by app",
+      lazur: "Global ⌃ Space, one workflow everywhere",
+      competitor: "Fn key / mic button, varies by app",
     },
     {
       feature: "Best for",
@@ -70,7 +70,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     {
       question: "Why pay for Lazur when Apple Dictation is free?",
       answer:
-        "Apple Dictation handles basic speech-to-text. Lazur adds Smart Rewrite that turns messy speech into polished writing, works consistently in third-party apps, and includes Command Mode — saving edit time that free dictation doesn't address.",
+        "Apple Dictation handles basic speech-to-text. Lazur adds Smart Rewrite that turns messy speech into polished writing, works consistently in third-party apps, and includes Command Mode, saving edit time that free dictation doesn't address.",
     },
     {
       question: "Does Lazur work better in Cursor than Apple Dictation?",
@@ -86,7 +86,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
   blocks: [
     {
       type: "paragraph",
-      text: "Apple Dictation is the default answer when someone asks about voice typing on Mac — it's free, built in, and improving with Apple Intelligence. Lazur exists for users who've tried it and hit the ceiling: raw transcripts, inconsistent third-party app behavior, and no rewrite layer.",
+      text: "Apple Dictation is the default answer when someone asks about voice typing on Mac, it's free, built in, and improving with Apple Intelligence. Lazur exists for users who've tried it and hit the ceiling: raw transcripts, inconsistent third-party app behavior, and no rewrite layer.",
     },
     {
       type: "heading",
@@ -104,7 +104,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Cross-app consistency. Modern knowledge work happens in Slack, Linear, Cursor, Notion, and Gmail — not just Apple apps. Lazur Smart Rewrite adapts output per context. Command Mode replaces formatting shortcuts. Personal dictionary preserves customer names and product jargon that Apple's generic vocabulary misses.",
+      text: "Cross-app consistency. Modern knowledge work happens in Slack, Linear, Cursor, Notion, and Gmail, not just Apple apps. Lazur Smart Rewrite adapts output per context. Command Mode replaces formatting shortcuts. Personal dictionary preserves customer names and product jargon that Apple's generic vocabulary misses.",
     },
     {
       type: "heading",
@@ -122,7 +122,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Apple Dictation is the baseline. Lazur is the upgrade when dictation becomes daily infrastructure — not a party trick.",
+      text: "Apple Dictation is the baseline. Lazur is the upgrade when dictation becomes daily infrastructure, not a party trick.",
     },
   ],
   relatedSlugs: ["lazur-vs-wispr-flow", "lazur-vs-super-whisper"],

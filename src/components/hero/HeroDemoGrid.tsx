@@ -1,4 +1,4 @@
-/** Faded line grid — side gutters with lower-left/right visibility. */
+/** Faded line grid, side gutters with lower-left/right visibility. */
 export function HeroDemoGrid() {
   return (
     <div

@@ -14,7 +14,7 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
   const main = HERO_CLIPS.find((c) => c.role === "main");
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hovering, setHovering] = useState(false);
-  /** Browsers block unmuted play until a real gesture — track when we've had one. */
+  /** Browsers block unmuted play until a real gesture, track when we've had one. */
   const [audioUnlocked, setAudioUnlocked] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function HeroShowreel({ onOpen, paused = false }: Props) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Never put `muted` in JSX — React re-applies it every render and kills unmute.
+    // Never put `muted` in JSX, React re-applies it every render and kills unmute.
     if (paused) {
       video.pause();
       video.muted = true;

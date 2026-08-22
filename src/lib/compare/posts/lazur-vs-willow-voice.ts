@@ -4,7 +4,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
   slug: "lazur-vs-willow-voice",
   title: "Lazur vs Willow Voice",
   description:
-    "Lazur vs Willow Voice on Mac — AI voice dictation compared for rewrite quality, system-wide support, commands, and pricing. Find the best Willow Voice alternative.",
+    "Lazur vs Willow Voice on Mac, AI voice dictation compared for rewrite quality, system-wide support, commands, and pricing. Find the best Willow Voice alternative.",
   competitorName: "Willow Voice",
   targetKeyword: "willow voice alternative",
   publishedAt: "2026-07-05",
@@ -21,13 +21,13 @@ export const lazurVsWillowVoice: ComparisonPage = {
   ],
   chooseCompetitor: [
     "You want the simplest possible voice-to-text layer.",
-    "You dictate occasionally — quick notes, short messages.",
+    "You dictate occasionally, quick notes, short messages.",
     "You don't need app-aware rewrite or voice commands.",
   ],
   table: [
     {
       feature: "Core focus",
-      lazur: "Ambient writing — finished text",
+      lazur: "Ambient writing, finished text",
       competitor: "Lightweight voice capture",
     },
     {
@@ -37,8 +37,8 @@ export const lazurVsWillowVoice: ComparisonPage = {
     },
     {
       feature: "System-wide",
-      lazur: "Yes — ⌃ Space everywhere",
-      competitor: "Yes — macOS apps",
+      lazur: "Yes, ⌃ Space everywhere",
+      competitor: "Yes, macOS apps",
     },
     {
       feature: "Command Mode",
@@ -53,7 +53,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     {
       feature: "Local STT",
       lazur: "Whisper on-device",
-      competitor: "Varies — verify on site",
+      competitor: "Varies, verify on site",
     },
     {
       feature: "Best for",
@@ -75,7 +75,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     {
       question: "Is Willow Voice easier to start with?",
       answer:
-        "Willow Voice optimizes for simplicity — fewer features, lower learning curve. Lazur has a short onboarding (microphone + accessibility permissions) but pays off when dictation volume is high.",
+        "Willow Voice optimizes for simplicity, fewer features, lower learning curve. Lazur has a short onboarding (microphone + accessibility permissions) but pays off when dictation volume is high.",
     },
     {
       question: "Which is better for Cursor and VS Code?",
@@ -95,7 +95,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "Willow Voice fits the occasional dictator — a quick note, a short reply, a caption. Lazur fits the daily dictator — dozens of Slack messages, email threads, specs, and code comments where each minute of edit time compounds.",
+      text: "Willow Voice fits the occasional dictator, a quick note, a short reply, a caption. Lazur fits the daily dictator, dozens of Slack messages, email threads, specs, and code comments where each minute of edit time compounds.",
     },
     {
       type: "heading",
@@ -104,7 +104,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     },
     {
       type: "paragraph",
-      text: "This is the core split. Willow Voice gets words on screen. Lazur Smart Rewrite reshapes those words into structured writing that matches where you are — tighter in chat, fuller in email, cleaner in docs.",
+      text: "This is the core split. Willow Voice gets words on screen. Lazur Smart Rewrite reshapes those words into structured writing that matches where you are, tighter in chat, fuller in email, cleaner in docs.",
     },
     {
       type: "heading",

@@ -20,7 +20,7 @@ const EXAMPLES = [
     title: "Follow-up",
     before: "just following up on my last email wanted to check in",
     after:
-      "Following up on my previous email — wanted to check if you had a chance to review.",
+      "Following up on my previous email, wanted to check if you had a chance to review.",
   },
   {
     id: "cursor",
@@ -116,7 +116,7 @@ export function RealExamplesSection() {
               Messy speech becomes writing you&apos;d actually send.
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Hold the key, ramble naturally, release — lazur lands polished
+              Hold the key, ramble naturally, release, lazur lands polished
               text in whatever app you&apos;re already in.
             </p>
             <p className="mt-6 hidden text-[12px] font-medium uppercase tracking-[0.12em] text-[var(--foreground-faint)] lg:block">

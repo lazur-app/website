@@ -267,7 +267,7 @@ export function LeaderboardTable() {
             No referrals yet
           </p>
           <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
-            Share your link — you&apos;ll appear here when friends sign up.
+            Share your link, you&apos;ll appear here when friends sign up.
           </p>
           <Link href="/login" className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]">
             Get referral link

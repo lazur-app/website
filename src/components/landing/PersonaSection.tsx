@@ -31,10 +31,10 @@ const personas = [
     label: "Sales",
     icon: "/gmail-50.png",
     title: "For people who live in email",
-    body: "Follow-ups, proposals, and replies — fast, clear, on-brand.",
+    body: "Follow-ups, proposals, and replies, fast, clear, on-brand.",
     context: "Gmail · follow-up",
     snippet:
-      "Following up on my previous email — wanted to check if you had a chance to review.",
+      "Following up on my previous email, wanted to check if you had a chance to review.",
     accent: "from-sky-500/10 to-blue-500/5",
   },
   {
@@ -68,7 +68,7 @@ export function PersonaSection() {
             For different people
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Same hotkey — tuned to how you actually write.
+            Same hotkey, tuned to how you actually write.
           </p>
         </motion.div>
 

@@ -12,7 +12,7 @@ type GmailCycle = {
   to: string;
   subject: string;
   raw: string;
-  /** Full pasted email — one cohesive message, not preamble + rewrite stacked */
+  /** Full pasted email, one cohesive message, not preamble + rewrite stacked */
   done: string;
 };
 
@@ -35,7 +35,7 @@ type CursorCycle = {
 
 type Cycle = GmailCycle | SlackCycle | CursorCycle;
 
-/** Fixed scene height — keeps demo window stable across Gmail / Slack / Cursor */
+/** Fixed scene height, keeps demo window stable across Gmail / Slack / Cursor */
 const SCENE_BODY_H = 184;
 const SCENE_ORB_H = 46;
 
@@ -54,7 +54,7 @@ const cycles: Cycle[] = [
     channel: "#product",
     raw: "hey team uh I was thinking we should maybe push the sync to tuesday instead because monday is totally packed",
     polished:
-      "Suggest moving the sync to Tuesday — Monday is packed and half of eng is out. Does that work?",
+      "Suggest moving the sync to Tuesday, Monday is packed and half of eng is out. Does that work?",
   },
   {
     kind: "cursor",
@@ -63,7 +63,7 @@ const cycles: Cycle[] = [
     preamble: "// TODO: handle token refresh edge cases\n",
     raw: "so um basically the save button like doesn't actually save anything when you edit and click save",
     polished:
-      "// Bug: Save action does not persist changes after editing — users lose work on every save attempt.",
+      "// Bug: Save action does not persist changes after editing, users lose work on every save attempt.",
   },
 ];
 

@@ -26,7 +26,7 @@ const useCases = [
     context: "Gmail · compose",
     raw: "just following up on my last email about the proposal",
     polished:
-      "Following up on my previous email — wanted to check if you had a chance to review the proposal.",
+      "Following up on my previous email, wanted to check if you had a chance to review the proposal.",
     mono: false,
   },
   {
@@ -53,7 +53,7 @@ export function UseCaseTabs() {
             Built for how you actually work
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-[16px] leading-[1.65] text-[var(--foreground-muted)]">
-            Lazur adapts to the app you&apos;re in — terse in code, casual in
+            Lazur adapts to the app you&apos;re in, terse in code, casual in
             Slack, formal in email.
           </p>
         </div>

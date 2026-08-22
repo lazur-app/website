@@ -1,28 +1,30 @@
 import Link from "next/link";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-import { SoftCard } from "@/components/SoftCard";
 
 export function BlogCta() {
   return (
-    <SoftCard hover={false} className="mt-10 p-6 text-center md:p-8">
-      <p className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)] md:text-xl">
+    <div className="rounded-[1.5rem] bg-[var(--foreground)] px-6 py-8 text-center md:px-10 md:py-10">
+      <p className="font-display text-[1.35rem] font-semibold tracking-tight text-white md:text-[1.6rem]">
         Try Lazur free on macOS
       </p>
-      <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
-        Speak naturally. Get finished writing in any app — not just a transcript.
+      <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-white/70 md:text-[16px]">
+        Speak naturally. Get finished writing in any app, not just a transcript.
       </p>
-      <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link href="/download" className="btn-dark inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px]">
+      <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <Link
+          href="/download"
+          className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-white px-5 text-[14px] font-semibold text-[var(--foreground)] transition-transform hover:scale-[1.02]"
+        >
           <AppleIcon className="h-4 w-4" />
           Download for Mac
         </Link>
         <Link
           href="/pricing"
-          className="text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+          className="text-[14px] font-medium text-white/70 transition-colors hover:text-white"
         >
           View pricing →
         </Link>
       </div>
-    </SoftCard>
+    </div>
   );
 }

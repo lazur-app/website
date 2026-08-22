@@ -13,7 +13,7 @@ function isWindows(): boolean {
   return /Windows/i.test(navigator.userAgent);
 }
 
-/** Client-only capability probe — returns a lighter rendering path when needed. */
+/** Client-only capability probe, returns a lighter rendering path when needed. */
 export function detectPerformanceTier(): PerformanceTier {
   if (typeof window === "undefined") return "full";
 

@@ -10,7 +10,7 @@ const pillars = [
     icon: Mic,
     step: "01",
     title: "Hold & speak",
-    body: "Press ⌃ Space anywhere. Talk naturally — messy is fine.",
+    body: "Press ⌃ Space anywhere. Talk naturally, messy is fine.",
   },
   {
     icon: Sparkles,
@@ -41,7 +41,7 @@ export function ScrollStory() {
             Your voice, anywhere you type.
           </p>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.7] text-[var(--foreground-muted)]">
-            Lazur lives in your menu bar. Speak once — polished text appears at
+            Lazur lives in your menu bar. Speak once, polished text appears at
             your cursor.
           </p>
         </motion.div>

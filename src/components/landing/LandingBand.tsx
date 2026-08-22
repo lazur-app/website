@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type BandVariant = "light" | "dark" | "tint" | "muted";
 
 const VARIANT_CLASS: Record<BandVariant, string> = {
-  light: "bg-[var(--background)]",
+  light: "bg-transparent",
   dark: "bg-[var(--foreground)] text-[var(--background)]",
   tint: "bg-[var(--brand-soft)]/30",
   muted: "bg-[var(--background-deep)]/40",
@@ -16,7 +16,7 @@ type LandingBandProps = {
   children: ReactNode;
 };
 
-/** Full-bleed landing section — background spans viewport width. */
+/** Full-bleed landing section, background spans viewport width. */
 export function LandingBand({
   variant = "light",
   id,
@@ -26,7 +26,7 @@ export function LandingBand({
   return (
     <section
       id={id}
-      className={`w-full py-14 md:py-20 ${VARIANT_CLASS[variant]} ${className}`}
+      className={`w-full scroll-mt-24 py-14 md:py-20 ${VARIANT_CLASS[variant]} ${className}`}
     >
       {children}
     </section>

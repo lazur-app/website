@@ -58,7 +58,7 @@ export function SpeedComparison() {
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-[16px] leading-[1.65] text-[var(--foreground-muted)]">
             Voice that finally works. Create, code, message, and write at the
-            speed of thought — without breaking your flow.
+            speed of thought, without breaking your flow.
           </p>
         </div>
 

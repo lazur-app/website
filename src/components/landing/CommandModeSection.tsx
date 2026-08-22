@@ -8,21 +8,21 @@ import {
 } from "@/components/landing/LandingBand";
 
 const INCOMING_EMAIL =
-  "Hey — quick update on the launch. We pushed the beta to about forty users last week and feedback has been mostly positive, but a few people are confused about onboarding. Can you review when you get a chance?";
+  "Hey, quick update on the launch. We pushed the beta to about forty users last week and feedback has been mostly positive, but a few people are confused about onboarding. Can you review when you get a chance?";
 
 const EXAMPLES = {
   with_context: {
     label: "With context",
-    command: "Reply to this — keep it brief and professional",
+    command: "Reply to this, keep it brief and professional",
     output:
-      "Thanks for the update — I'll review the onboarding feedback and mockups today. Let's sync tomorrow on the Friday timeline.",
+      "Thanks for the update, I'll review the onboarding feedback and mockups today. Let's sync tomorrow on the Friday timeline.",
     showIncoming: true,
   },
   without_context: {
     label: "Without context",
     command: "Draft a two-line follow-up asking to confirm the Friday deadline",
     output:
-      "Hi Alex — just following up on the launch timeline. Can you confirm we're still targeting Friday for the lock-in?",
+      "Hi Alex, just following up on the launch timeline. Can you confirm we're still targeting Friday for the lock-in?",
     showIncoming: false,
   },
 } as const;
@@ -71,7 +71,7 @@ export function CommandModeSection() {
                 </p>
               ) : (
                 <p className="text-[13px] italic text-[var(--foreground-faint)]">
-                  No selection — your command carries the intent.
+                  No selection, your command carries the intent.
                 </p>
               )}
 
@@ -99,7 +99,7 @@ export function CommandModeSection() {
               Speak to edit.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)] lg:mx-0 mx-auto">
-              Select any text, say what you need, and Lazur pastes the result —
+              Select any text, say what you need, and Lazur pastes the result -
               reply to a thread, refactor a paragraph, or tighten a message.
             </p>
           </div>

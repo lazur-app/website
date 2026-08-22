@@ -45,7 +45,7 @@ const SCENARIOS = [
     spoken:
       "hey everyone so quick update uh from todays sync so we finished the onboarding flow the analytics dashboard is mostly done and we're still waiting on the final designs for billing so assuming nothing changes we should be on track for friday",
     output:
-      "Quick update from today's sync:\n\n• Onboarding flow — completed\n• Analytics dashboard — nearly finished\n• Billing designs — waiting on final assets\n\nOn track for Friday, assuming nothing changes.",
+      "Quick update from today's sync:\n\n• Onboarding flow, completed\n• Analytics dashboard, nearly finished\n• Billing designs, waiting on final assets\n\nOn track for Friday, assuming nothing changes.",
   },
 ] as const;
 

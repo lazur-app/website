@@ -16,7 +16,7 @@ export function SeeItInAction() {
             Write faster in all your apps
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-[16px] leading-[1.65] text-[var(--foreground-muted)]">
-            Seamless speech-to-text in every application on your Mac — Gmail,
+            Seamless speech-to-text in every application on your Mac, Gmail,
             Slack, Cursor, and everywhere else you type.
           </p>
         </div>

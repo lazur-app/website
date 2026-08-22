@@ -6,38 +6,59 @@ import {
   LandingBandInner,
 } from "@/components/landing/LandingBand";
 
-const WORDS_PER_WEEK = 15_000;
-const TYPING_WPM = 40;
-const VOICE_WPM = 230;
-
-function hoursSavedPerWeek(words: number): number {
-  return words / TYPING_WPM / 60 - words / VOICE_WPM / 60;
-}
-
-const WEEKLY_HOURS_SAVED = hoursSavedPerWeek(WORDS_PER_WEEK);
-const HOURS_LABEL =
-  WEEKLY_HOURS_SAVED >= 5 ? "5+" : `${Math.round(WEEKLY_HOURS_SAVED)}`;
+const MODES = [
+  {
+    label: "Dictation Mode",
+    detail: "Writes what you said.",
+  },
+  {
+    label: "Command Mode",
+    detail: "Does what you meant.",
+  },
+] as const;
 
 export function HoursBackSection() {
   return (
-    <LandingBand id="hours-back" variant="light" className="py-10 md:py-16">
+    <LandingBand id="hours-back" variant="light" className="py-16 md:py-24">
       <LandingBandInner>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="aura-stage px-6 py-16 text-center md:px-12 md:py-24"
+          className="border-t border-[var(--border)] pt-12 md:pt-16"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground)]/45">
-            · Your time, back ·
-          </p>
-          <h2 className="mt-4 font-display text-[2.15rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[3.25rem]">
-            {HOURS_LABEL} hours every week.
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground)]/65">
-            Same emails, same docs, same prompts — spoken instead of typed.
-          </p>
+          <div className="flex flex-wrap items-end gap-x-4 gap-y-1 sm:gap-x-6">
+            <p className="font-display text-[5.25rem] font-semibold leading-[0.78] tracking-tight text-[var(--foreground)] sm:text-[7rem] md:text-[8.5rem]">
+              14+
+            </p>
+            <div className="pb-1.5 sm:pb-2.5">
+              <p className="font-display text-[2.15rem] font-semibold leading-[0.9] tracking-tight text-[var(--foreground)] sm:text-[3.25rem] md:text-[4rem]">
+                hours
+              </p>
+              <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
+                Back every week
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-8 border-t border-[var(--border)] pt-10 md:mt-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16 md:pt-12">
+            <h2 className="max-w-xl font-display text-[1.55rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.15rem]">
+              Same emails, same docs, same prompts. Spoken instead of typed.
+            </h2>
+            <div className="grid gap-8 sm:grid-cols-2">
+              {MODES.map((mode) => (
+                <div key={mode.label}>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
+                    {mode.label}
+                  </p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+                    {mode.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </LandingBandInner>
     </LandingBand>

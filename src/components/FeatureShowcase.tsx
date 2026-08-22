@@ -14,7 +14,7 @@ const features = [
   {
     icon: Zap,
     title: "Streaming speed",
-    description: "Sub-200ms latency so words appear as you speak — no waiting, no lag.",
+    description: "Sub-200ms latency so words appear as you speak, no waiting, no lag.",
     span: "",
   },
   {
@@ -50,7 +50,7 @@ export function FeatureShowcase() {
             Everything you need to stay in flow
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-[16px] leading-[1.65] text-[var(--foreground-muted)]">
-            Voice dictation that feels invisible — fast, accurate, and tuned to
+            Voice dictation that feels invisible, fast, accurate, and tuned to
             every app you use.
           </p>
         </div>

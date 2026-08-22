@@ -106,7 +106,7 @@ export function PricingPlanCard({
           </div>
         </div>
 
-        {/* Fixed-height price block — aligned across monthly / annual */}
+        {/* Fixed-height price block, aligned across monthly / annual */}
         <div className="mb-6 min-h-[5.25rem]">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <span

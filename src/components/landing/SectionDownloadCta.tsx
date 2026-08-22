@@ -5,7 +5,7 @@ type SectionDownloadCtaProps = {
   className?: string;
 };
 
-/** Inline download CTA — lives at the bottom of a landing section, not between sections. */
+/** Inline download CTA, lives at the bottom of a landing section, not between sections. */
 export function SectionDownloadCta({ note, className = "" }: SectionDownloadCtaProps) {
   return (
     <div

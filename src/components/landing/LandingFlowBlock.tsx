@@ -6,7 +6,7 @@ type LandingFlowBlockProps = {
   children: ReactNode;
 };
 
-/** Single beat in the lower landing story — no band background, uneven spacing via className. */
+/** Single beat in the lower landing story, no band background, uneven spacing via className. */
 export function LandingFlowBlock({
   id,
   className = "",

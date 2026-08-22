@@ -94,7 +94,7 @@ export function HotkeyPressDemo({ className = "" }: HotkeyPressDemoProps) {
         animate={{ opacity: pressed.ctrl || pressed.space ? 1 : 0.5 }}
         className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--brand-ink)]"
       >
-        {pressed.ctrl && pressed.space ? "Holding — speak now" : "Hold both keys to dictate"}
+        {pressed.ctrl && pressed.space ? "Holding, speak now" : "Hold both keys to dictate"}
       </motion.p>
 
       <div className="mt-5 flex items-end justify-center gap-2">

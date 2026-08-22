@@ -6,7 +6,7 @@ export function parseApiDate(iso?: string | null): Date | null {
 
 export function formatSubscriptionDate(iso?: string | null): string {
   const d = parseApiDate(iso);
-  if (!d) return "—";
+  if (!d) return "-";
   return d.toLocaleDateString(undefined, {
     month: "long",
     day: "numeric",
@@ -48,11 +48,11 @@ export function periodEndDescription(
   }
 
   if (options?.cancelAtPeriodEnd && iso) {
-    return `Cancels on ${date} — access remains until then`;
+    return `Cancels on ${date}, access remains until then`;
   }
 
   if (normalized.includes("free")) {
-    return "Free tier — upgrade anytime";
+    return "Free tier, upgrade anytime";
   }
   if (normalized.includes("trial") && days !== null) {
     return days === 0

@@ -1,4 +1,4 @@
-/** Full-bleed faded line grid — side gutters for landing bands (mirrors hero). */
+/** Full-bleed faded line grid, side gutters for landing bands (mirrors hero). */
 export function LandingSideGrid() {
   return (
     <div

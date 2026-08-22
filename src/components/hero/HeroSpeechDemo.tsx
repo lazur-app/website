@@ -7,11 +7,11 @@ import { ArrowRight } from "lucide-react";
 const demos = [
   {
     raw: `Umm, hope your week has started well… I was talking to Cheyene earlier but reception was really bad and I think their going to handle the first part of the project, but I'm not totally sure. Also, I told the team the the new timeline should be ready by Friday, although it's probably going to slip.`,
-    polished: `Hope your week is off to a good start. I was talking to Cheyene earlier, but the reception was really bad. I think they're going to handle the first part of the project, but I'm not totally sure. I also told the team the new timeline should be ready by Friday — although it might slip.`,
+    polished: `Hope your week is off to a good start. I was talking to Cheyene earlier, but the reception was really bad. I think they're going to handle the first part of the project, but I'm not totally sure. I also told the team the new timeline should be ready by Friday, although it might slip.`,
   },
   {
     raw: `hey so um I need to follow up on the thing from yesterday's meeting like can someone send the notes or are we still waiting on that`,
-    polished: `Quick follow-up from yesterday's meeting — could someone confirm whether the notes were sent out, or if we're still waiting on them?`,
+    polished: `Quick follow-up from yesterday's meeting, could someone confirm whether the notes were sent out, or if we're still waiting on them?`,
   },
 ];
 
@@ -121,7 +121,7 @@ export function HeroSpeechDemo() {
           ))}
         </div>
         <span className="text-[11px] text-[var(--foreground-muted)]">
-          Hold ⌃ Space anywhere — release to paste
+          Hold ⌃ Space anywhere, release to paste
         </span>
       </div>
     </div>

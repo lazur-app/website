@@ -7,7 +7,7 @@ type SoftCardProps = {
   children: ReactNode;
   className?: string;
   hover?: boolean;
-  /** Richer hover — lift, border glow, inner shine */
+  /** Richer hover, lift, border glow, inner shine */
   interactive?: boolean;
 } & Omit<HTMLMotionProps<"div">, "children">;
 

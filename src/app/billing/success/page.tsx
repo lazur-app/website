@@ -16,7 +16,7 @@ import { loginPathWithReturn } from "@/lib/returnTo";
 
 const POLL_INTERVAL_MS = 2000;
 const MAX_POLLS = 30;
-/** Sync is a fallback only — webhooks should unlock first. */
+/** Sync is a fallback only, webhooks should unlock first. */
 const SYNC_ON_ATTEMPTS = new Set([1, 5, 15]);
 
 function planMatchesExpected(status: BillingStatus, expected: string | null): boolean {
@@ -90,7 +90,7 @@ function BillingSuccessContent() {
               Confirming your upgrade…
             </h1>
             <p className="mt-3 text-sm text-[var(--foreground-muted)]">
-              Finalizing your subscription. This usually takes a few seconds — keep this tab open.
+              Finalizing your subscription. This usually takes a few seconds, keep this tab open.
             </p>
           </>
         )}

@@ -64,7 +64,7 @@ export function MetricsStrip() {
           ))}
         </div>
         <p className="mt-6 text-[12px] text-[var(--foreground-faint)]">
-          Real usage from our early-access cohort — updated as we grow.
+          Real usage from our early-access cohort, updated as we grow.
         </p>
       </div>
     </section>

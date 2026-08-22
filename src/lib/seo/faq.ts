@@ -4,40 +4,39 @@ export type FaqItem = {
   link?: { href: string; label: string };
 };
 
-/** Homepage FAQ — shared by FaqSection UI and FAQPage JSON-LD. */
+/** Homepage FAQ, shared by FaqSection UI and FAQPage JSON-LD. */
 export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "What is Lazur?",
     answer:
-      "Lazur is an ambient writing app for Mac that combines AI voice dictation with Smart Rewrite. Hold a hotkey, speak naturally, and get polished text pasted at your cursor in any app — Slack, email, Cursor, Notion, and more.",
+      "An ambient writing app for Mac. Hold a hotkey, speak, and get finished text at your cursor in Slack, email, Cursor, anywhere you type.",
   },
   {
     question: "How is Lazur different from Wispr Flow?",
     answer:
-      "Wispr Flow focuses on fast speech-to-text. Lazur goes further with intent-aware Smart Rewrite that shapes your speech into finished, app-appropriate writing. See our full comparison for pricing, privacy, and feature details.",
-    link: { href: "/compare/lazur-vs-wispr-flow", label: "Lazur vs Wispr Flow" },
+      "Wispr Flow is fast speech-to-text. Lazur turns what you meant into send-ready writing, including Command Mode.",
+    link: { href: "/compare/lazur-vs-wispr-flow", label: "Full comparison" },
   },
   {
-    question: "Does Lazur work in Cursor and VS Code?",
+    question: "Does it work in Cursor and VS Code?",
     answer:
-      "Yes. Lazur is system-wide — one hotkey (Control+Space) works everywhere you type, including Cursor, VS Code, Xcode, and any Mac app. Dictate commit messages, PR descriptions, prompts, and code comments without leaving your editor.",
+      "Yes. One hotkey (Control+Space) works in every Mac app: Cursor, VS Code, Xcode, Slack, Gmail, Notion.",
   },
   {
-    question: "Is my voice data stored?",
+    question: "Is my voice stored?",
     answer:
-      "Speech-to-text runs locally on your Mac using Whisper — your audio does not leave your device. Cloud AI is used only for Smart Rewrite polish when enabled, and only text (not audio) is sent. Read our privacy policy for full details.",
+      "No. Speech-to-text runs on your Mac. Audio never leaves the device. Cloud AI is used only for rewrite polish, and only text is sent.",
     link: { href: "/privacy", label: "Privacy policy" },
   },
   {
-    question: "How much does Lazur cost?",
+    question: "How much does it cost?",
     answer:
-      "Free tier includes 5,000 words per month. Pro is $14/month (or $108/year) with unlimited words and 50 Command Mode uses. Power is $35/month (or $270/year) with unlimited Command Mode and priority support.",
-    link: { href: "/pricing", label: "View pricing" },
+      "Free: 5,000 words/month. Pro: $14/month. Power: $35/month. 7-day Pro trial, no credit card.",
+    link: { href: "/pricing", label: "See plans" },
   },
   {
-    question: "Is there a free trial?",
+    question: "What's the difference between Dictation and Command Mode?",
     answer:
-      "Yes — start a 7-day Pro trial with no credit card required. Download Lazur for macOS and get unlimited words plus Command Mode during your trial.",
-    link: { href: "/download", label: "Download for Mac" },
+      "Dictation Mode writes what you said, cleaned up. Command Mode does what you meant: reply to this, rewrite that, keep it brief, using the text in front of you.",
   },
 ];

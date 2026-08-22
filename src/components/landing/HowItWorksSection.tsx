@@ -16,12 +16,12 @@ type DemoPhase = "hold" | "speak" | "release" | "polished";
 const RAW =
   "um hey just checking in uh did you get a chance to look at the doc i shared";
 const POLISHED =
-  "Just checking in — did you get a chance to review the document I shared?";
+  "Just checking in, did you get a chance to review the document I shared?";
 
 const WAVE_FILL = "#141210";
 const WAVE_RIM_OPACITY = 0.11;
 
-/** Same opacity, distinct paths — large/medium/small amplitude + phase offsets. */
+/** Same opacity, distinct paths, large/medium/small amplitude + phase offsets. */
 const WAVE_RIMS = {
   top: [
     {
@@ -59,7 +59,7 @@ const WAVE_RIMS = {
   ],
 } as const;
 
-/** Dominant dark body — asymmetric top, bottom hugs front rim. */
+/** Dominant dark body, asymmetric top, bottom hugs front rim. */
 const WAVE_MAIN =
   "M0,180 C180,90 420,260 720,220 C980,190 1180,300 1440,140 L1440,1252 C1280,1212 1060,1212 820,1252 C560,1292 280,1292 0,1252 Z";
 

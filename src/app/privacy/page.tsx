@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           <strong className="font-semibold text-[var(--foreground)]">
             In short:
           </strong>{" "}
-          Your voice is transcribed on your Mac — we do not store voice
+          Your voice is transcribed on your Mac, we do not store voice
           recordings in the cloud. Some features send <em>text</em> to our
           servers so we can deliver the service (for example, polished output,
           commands, and account sync). We do not sell your personal data.
@@ -74,39 +74,39 @@ export default function PrivacyPage() {
                 items={[
                   <>
                     <strong className="text-[var(--foreground)]">Account
-                    information</strong> — such as your email address, display
+                    information</strong>, such as your email address, display
                     name, and profile image when you create an account or sign
                     in.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Subscription
-                    and billing information</strong> — plan status, trial dates,
+                    and billing information</strong>, plan status, trial dates,
                     usage quotas, and transaction records. Payment card details
                     are handled by our payment provider; we do not store full
                     card numbers.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Content you
-                    create</strong> — text from dictation and related features,
+                    create</strong>, text from dictation and related features,
                     including items you choose to save to your account (such as
                     history, dictionary entries, snippets, and style
                     preferences).
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Usage
-                    information</strong> — aggregated metrics like word counts,
+                    information</strong>, aggregated metrics like word counts,
                     feature usage, session duration, device type, app version,
                     and similar data needed to run quotas, billing, and the
                     service reliably.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Communications</strong>{" "}
-                    — support messages, feedback, and optional attachments you
+                   , support messages, feedback, and optional attachments you
                     send us.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Referral
-                    information</strong> — if you use our referral program,
+                    information</strong>, if you use our referral program,
                     referral codes and referral relationships.
                   </>,
                 ]}
@@ -199,7 +199,7 @@ export default function PrivacyPage() {
                 items={[
                   <>
                     <strong className="text-[var(--foreground)]">Service
-                    providers</strong> — trusted companies that help us run
+                    providers</strong>, trusted companies that help us run
                     Lazur (for example, authentication, payments, hosting,
                     security, and cloud text processing). They may access
                     information only to perform services for us and must protect
@@ -207,17 +207,17 @@ export default function PrivacyPage() {
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Legal
-                    requirements</strong> — when required by law, regulation,
+                    requirements</strong>, when required by law, regulation,
                     legal process, or to protect rights, safety, and security.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Business
-                    transfers</strong> — in connection with a merger,
+                    transfers</strong>, in connection with a merger,
                     acquisition, or sale of assets, subject to this policy.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">With your
-                    direction</strong> — when you ask us to or clearly consent.
+                    direction</strong>, when you ask us to or clearly consent.
                   </>,
                 ]}
               />

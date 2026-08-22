@@ -98,7 +98,7 @@ type CursorMuseDemoProps = {
   runKey: number;
 };
 
-/** Text caret gets devoured by a voice wave — then "what you meant" lands. */
+/** Text caret gets devoured by a voice wave, then "what you meant" lands. */
 export function CursorMuseDemo({ runKey }: CursorMuseDemoProps) {
   const [phase, setPhase] = useState<Phase>("typing");
   const [charCount, setCharCount] = useState(0);

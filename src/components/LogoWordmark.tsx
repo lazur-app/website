@@ -4,7 +4,7 @@ import Link from "next/link";
 type LogoWordmarkProps = {
   href?: string;
   className?: string;
-  /** Logo height in px — maps to type size on 4px grid. */
+  /** Logo height in px, maps to type size on 4px grid. */
   height?: number;
 };
 

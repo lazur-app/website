@@ -97,7 +97,7 @@ function KeyboardDemo({ runKey }: { runKey: number }) {
           {step + 1}.
         </span>
         {KEYBOARD_STEPS[step]}
-        <span className="text-[var(--foreground-faint)]"> — {APPS[step].name}</span>
+        <span className="text-[var(--foreground-faint)]">, {APPS[step].name}</span>
       </motion.p>
 
       <div className="mt-6 flex-1 rounded-lg bg-[var(--background-deep)]/55 p-4">
@@ -159,7 +159,7 @@ export function TypingTaxSection() {
           transition={{ delay: 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-stretch lg:gap-14"
         >
-          {/* Left — hover labels */}
+          {/* Left, hover labels */}
           <div className="flex flex-col justify-center gap-1 md:gap-2">
             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--foreground-faint)] md:mb-4">
               Hover to compare
@@ -201,7 +201,7 @@ export function TypingTaxSection() {
             </button>
           </div>
 
-          {/* Right — animated explainer */}
+          {/* Right, animated explainer */}
           <div className="relative min-h-[380px] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface-solid)]/90 p-6 shadow-[0_4px_24px_rgba(28,25,23,0.04)] md:min-h-[400px] md:p-8">
             <div
               className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-40 blur-3xl"
@@ -229,7 +229,7 @@ export function TypingTaxSection() {
           transition={{ delay: 0.55, duration: 0.5 }}
           className="mt-10 text-center text-[14px] font-medium text-[var(--foreground)]/70"
         >
-          The keyboard isn&apos;t wrong — it&apos;s just outdated for how you work
+          The keyboard isn&apos;t wrong, it&apos;s just outdated for how you work
           today.
         </motion.p>
         </SoftCard>

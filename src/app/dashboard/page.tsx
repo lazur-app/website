@@ -1,16 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Copy,
   Check,
   Download,
   Gift,
-  Loader2,
   Sparkles,
   TrendingUp,
 } from "lucide-react";
@@ -21,6 +19,7 @@ import { SoftCard } from "@/components/SoftCard";
 import { useAuth } from "@/components/AuthProvider";
 import {
   getAccessToken,
+  getCachedUser,
   hasValidSessionToken,
   storeTokens,
   type UserProfile,
@@ -53,49 +52,74 @@ function displayWordsUsed(used: number, limit: number) {
 
 function DashboardContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { refresh } = useAuth();
-  const [user, setUser] = useState<UserProfile | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(() => getCachedUser());
   const [referrals, setReferrals] = useState<ReferralMe | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !getCachedUser());
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const accessToken = searchParams.get("access_token");
-    const refreshToken = searchParams.get("refresh_token");
+  useLayoutEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const accessToken = params.get("access_token");
+    const refreshToken = params.get("refresh_token");
     if (accessToken) {
       storeTokens(accessToken, refreshToken);
-      router.replace("/dashboard");
+      window.history.replaceState({}, "", "/dashboard");
     }
-  }, [searchParams, router]);
+
+    const cached = getCachedUser();
+    if (cached) {
+      setUser(cached);
+      setLoading(false);
+      if (cached.referral_code) {
+        storeMyReferralCode(cached.referral_code);
+      }
+    }
+  }, []);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function load() {
       if (!hasValidSessionToken()) {
         router.replace("/login");
         return;
       }
 
+      const cached = getCachedUser();
+      if (cached) {
+        setUser(cached);
+        setLoading(false);
+      }
+
+      const token = getAccessToken();
+      const referralsPromise = token
+        ? fetchReferralMe(token).catch(() => null)
+        : Promise.resolve(null);
+
       const profile = await refresh({ force: true });
+      if (cancelled) return;
       if (!profile) {
         router.replace("/login");
         return;
       }
 
       setUser(profile);
+      setLoading(false);
       if (profile.referral_code) {
         storeMyReferralCode(profile.referral_code);
       }
 
-      const token = getAccessToken();
-      if (token) {
-        const ref = await fetchReferralMe(token);
+      const ref = await referralsPromise;
+      if (!cancelled) {
         setReferrals(ref);
       }
-      setLoading(false);
     }
 
     load();
+    return () => {
+      cancelled = true;
+    };
   }, [router, refresh]);
 
   const handleCopyReferral = async () => {
@@ -353,9 +377,5 @@ function DashboardContent() {
 }
 
 export default function DashboardPage() {
-  return (
-    <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardContent />
-    </Suspense>
-  );
+  return <DashboardContent />;
 }

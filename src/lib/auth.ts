@@ -192,11 +192,12 @@ export async function fetchMe(options?: { force?: boolean }): Promise<UserProfil
     const profile = (await res.json()) as UserProfile;
     writeCachedSession(profile, token);
 
-    const { claimStoredReferral, storeMyReferralCode } = await import("./referrals");
-    await claimStoredReferral(token).catch(() => {});
-    if (profile.referral_code) {
-      storeMyReferralCode(profile.referral_code);
-    }
+    void import("./referrals").then(({ claimStoredReferral, storeMyReferralCode }) => {
+      if (profile.referral_code) {
+        storeMyReferralCode(profile.referral_code);
+      }
+      void claimStoredReferral(token).catch(() => {});
+    });
 
     return profile;
   })();

@@ -40,16 +40,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return null;
     }
 
-    if (!options?.force) {
-      const cached = getCachedUser();
-      if (cached) {
-        setUser(cached);
-        setLoading(false);
-        return cached;
-      }
+    const cached = getCachedUser();
+    if (!options?.force && cached) {
+      setUser(cached);
+      setLoading(false);
+      return cached;
     }
 
-    setLoading(true);
+    if (!cached) {
+      setLoading(true);
+    }
     const profile = await fetchMe(options);
     setUser(profile);
     setLoading(false);

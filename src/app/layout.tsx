@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Geist_Mono } from "next/font/google";
+import { DataFast } from "@/components/analytics/DataFast";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { GoogleAnalyticsRouteTracker } from "@/components/analytics/GoogleAnalyticsRouteTracker";
 import { Providers } from "@/components/Providers";
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <GoogleAnalytics />
+        <DataFast />
       </head>
       <body
         className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${geistMono.variable} font-sans antialiased`}

@@ -32,7 +32,7 @@ const menuList = {
 
 const menuItem = {
   open: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
-  closed: { opacity: 0, y: -6, transition: { duration: 0.12, ease: "easeOut" } },
+  closed: { opacity: 0, y: -6, transition: { duration: 0.12, ease: EASE } },
 };
 
 export function Navbar() {

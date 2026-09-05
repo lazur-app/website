@@ -22,7 +22,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
   chooseCompetitor: [
     "You live in Google Docs and rarely leave it.",
     "Free, no install, and “period” / “comma” commands are enough.",
-    "You do not need Command Mode or system-wide paste.",
+    "You do not need Intent Mode or system-wide paste.",
   ],
   table: [
     {
@@ -37,7 +37,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
     },
     {
       feature: "Output",
-      lazur: "Smart Rewrite and Command Mode",
+      lazur: "Smart Rewrite and Intent Mode",
       competitor: "Speech plus spoken punctuation",
     },
     {
@@ -47,7 +47,7 @@ export const googleVoiceTypingAlternative: ComparisonPage = {
     },
     {
       feature: "Reply / rewrite",
-      lazur: "Command Mode uses the text on screen",
+      lazur: "Intent Mode uses the text on screen",
       competitor: "Not built for “reply, keep it warm”",
     },
     {

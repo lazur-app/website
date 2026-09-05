@@ -41,7 +41,7 @@ If you are new to the category, start with [what voice writing is](/blog/what-is
 
 Lazur is our pick for professionals who want dictation to end at send-ready text. Smart Rewrite shapes spoken language into structured writing that matches the app you are in. On-device NVIDIA Parakeet handles speech-to-text locally; cloud AI polishes output when you need it.
 
-- **Strengths:** Intent-aware rewrite, Command Mode, personal dictionary, works everywhere on macOS.
+- **Strengths:** Smart Rewrite, Intent Mode, personal dictionary, works everywhere on macOS.
 - **Best for:** Daily dictation across Slack, email, docs, and IDEs where edit time matters.
 - **Pricing:** Free (5,000 words/month), Pro $14/month, Power $35/month.
 - **Platform:** macOS (Windows coming soon).

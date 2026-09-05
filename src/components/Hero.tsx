@@ -18,11 +18,14 @@ type HeadlinePart =
   | { type: "break" };
 
 const headline: HeadlinePart[] = [
-  { type: "word", text: "Typing" },
-  { type: "word", text: "is" },
+  { type: "word", text: "Stop" },
+  { type: "word", text: "explaining" },
   { type: "break" },
-  { type: "highlight", text: "optional" },
-  { type: "word", text: "now." },
+  { type: "word", text: "your" },
+  { type: "highlight", text: "screen" },
+  { type: "break" },
+  { type: "word", text: "to" },
+  { type: "word", text: "AI." },
 ];
 
 export function Hero() {
@@ -102,7 +105,8 @@ export function Hero() {
             transition={{ delay: 0.32, duration: 0.55 }}
             className="mt-5 max-w-[18rem] text-[16px] leading-relaxed text-[var(--foreground-muted)] md:mt-6 md:max-w-xl md:text-[17px] md:leading-[1.55]"
           >
-            Turn your voice into clear, polished writing in any app.
+            Lazur can see it. Say what you want, and the finished text lands at
+            your cursor &mdash; in any app.
           </motion.p>
 
           <motion.div
@@ -121,7 +125,7 @@ export function Hero() {
               onClick={() => setDemoOpen(true)}
               className="btn-outline-dark hidden min-h-[48px] items-center justify-center gap-2 px-5 text-[14px] md:inline-flex"
             >
-              See how it works
+              Watch it read a screen
             </button>
           </motion.div>
 
@@ -131,18 +135,16 @@ export function Hero() {
             transition={{ delay: 0.55, duration: 0.45 }}
             className="mt-3 text-[12px] text-[var(--foreground-faint)] md:text-[13px]"
           >
+            Hold a key, speak, release · Your voice never leaves your computer ·{" "}
             {isWindows ? (
-              <>
-                Windows waitlist open ·{" "}
-                <Link
-                  href="/download"
-                  className="font-medium text-[var(--foreground-muted)] underline-offset-2 transition-colors hover:text-[var(--foreground)] hover:underline"
-                >
-                  macOS available now
-                </Link>
-              </>
+              <Link
+                href="/download"
+                className="font-medium text-[var(--foreground-muted)] underline-offset-2 transition-colors hover:text-[var(--foreground)] hover:underline"
+              >
+                Windows waitlist open
+              </Link>
             ) : (
-              "7-day Pro trial · macOS"
+              "macOS today, Windows soon"
             )}
           </motion.p>
         </div>
@@ -154,7 +156,7 @@ export function Hero() {
           className="mt-10 hidden w-full max-w-4xl md:mt-12 md:block"
         >
           <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
-            Understands the app you&apos;re already in
+            It reads the app you&apos;re already in
           </p>
           <AppMarquee
             iconSize={20}

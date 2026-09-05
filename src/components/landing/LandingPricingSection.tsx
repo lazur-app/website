@@ -27,9 +27,13 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "Plenty of dictation · 5,000 words/month", featured: false },
-    { name: "Pro", detail: `Unlimited dictation · ${proPrice}`, featured: true },
-    { name: "Power", detail: `True unlimited dictation · ${powerPrice}`, featured: false },
+    { name: "Free", detail: "Dictation only · 5,000 words/month", featured: false },
+    {
+      name: "Pro",
+      detail: `Unlimited dictation · 300 Intent · ${proPrice}`,
+      featured: true,
+    },
+    { name: "Power", detail: `Unlimited everything · ${powerPrice}`, featured: false },
   ] as const;
 
   return (
@@ -51,7 +55,8 @@ export function LandingPricingSection() {
               {TRIAL_LABEL}. Then {proPrice}.
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              No credit card to download. Cancel anytime.
+              Full Intent access for the whole trial. No credit card to
+              download. Cancel anytime.
             </p>
 
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">

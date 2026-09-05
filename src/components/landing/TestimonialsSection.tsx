@@ -27,8 +27,8 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "using lazur for 3 months now. it's one of those tools that quietly becomes part of your daily workflow. not just dictation.. command mode is such an underrated feature.",
-    highlight: "underrated feature",
+      "using lazur for 3 months now. it's one of those tools that quietly becomes part of your daily workflow. not just dictation.. intent mode is such an underrated feature.",
+    highlight: "not just dictation",
     name: "Akshat Thakur",
     role: "Founder",
     company: { label: "SafeExam", href: "https://safexam.in" },

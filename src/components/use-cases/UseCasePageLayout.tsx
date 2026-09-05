@@ -135,7 +135,7 @@ export function UseCasePageLayout({
                   key={item.slug}
                   href={`/use-cases/${item.slug}`}
                   kicker={
-                    item.mode === "command" ? "Command Mode" : "Dictation Mode"
+                    item.mode === "command" ? "Intent Mode" : "Dictation Mode"
                   }
                   title={item.title}
                   description={item.description}

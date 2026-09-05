@@ -16,7 +16,7 @@ faq:
   - question: "Is Aqua Voice better than Wispr Flow?"
     answer: "Many 2026 alternative roundups treat Aqua Voice as the closest ‘better Wispr’ competitor, speed, live text, technical vocabulary. Whether it is better for you depends on devices and how much you still edit. It is not the same product as Lazur, which is built around intent and context rather than live transcription."
   - question: "Where does Lazur sit between Wispr and Aqua?"
-    answer: "Wispr and Aqua are in a transcription-quality race. Lazur sits one layer up: Command Mode, app context, and send-ready paste. That only matters if your bottleneck is cleanup and ‘what I meant,’ not raw STT speed."
+    answer: "Wispr and Aqua are in a transcription-quality race. Lazur sits one layer up: Intent Mode, app context, and send-ready paste. That only matters if your bottleneck is cleanup and ‘what I meant,’ not raw STT speed."
 relatedSlugs:
   - "aqua-voice-vs-lazur"
   - "wispr-flow-alternatives"
@@ -36,7 +36,7 @@ The [Wispr Flow alternatives](/blog/wispr-flow-alternatives) list is longer (Sup
 | --- | --- | --- | --- |
 | Job to be done | Fast dictation | Faster, nicer dictation | Voice interface for work |
 | Live text / speed | Strong | Core pitch | Strong enough; not the headline |
-| Intent / Command Mode | Shipping in this direction | Edit-by-voice, send-by-voice | Core: reply, tone, structure |
+| Intent / voice commands | Shipping in this direction | Edit-by-voice, send-by-voice | Core: reply, tone, structure |
 | App context | Expanding | Strong polish | Smart Rewrite for the field you are in |
 | Local STT | Cloud-first (verify current docs) | Confirm vendor docs | NVIDIA Parakeet on the Mac |
 | Mac | Yes | Yes | Yes |

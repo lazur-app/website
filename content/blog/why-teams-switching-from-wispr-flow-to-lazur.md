@@ -8,7 +8,7 @@ cover: "waveform"
 targetKeyword: "switch from Wispr Flow to Lazur"
 tldr:
   - "Teams leave Wispr Flow when transcription is fast but editing still eats the time they saved."
-  - "Lazur is built for finished writing: Smart Rewrite, app context, and Command Mode on macOS."
+  - "Lazur is built for finished writing: Smart Rewrite, app context, and Intent Mode on macOS."
   - "Compare edit time on a real email and Slack thread, not words per minute."
 faq:
   - question: "Why do teams switch from Wispr Flow to Lazur?"
@@ -51,7 +51,7 @@ The same sentence spoken in a customer email and an internal Slack thread should
 
 ## Voice commands, not just voice typing
 
-Wispr Flow is strong at dictation. Lazur adds Command Mode, a voice layer for rewriting, editing, and acting on text without reaching for the keyboard.
+Wispr Flow is strong at dictation. Lazur adds Intent Mode, a voice layer for rewriting, editing, and acting on text without reaching for the keyboard.
 
 - Rewrite a selection for clarity or brevity.
 - Adjust tone for a different audience.

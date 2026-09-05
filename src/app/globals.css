@@ -278,7 +278,7 @@ html.hide-native-scrollbar::-webkit-scrollbar {
       background 0.45s ease,
       box-shadow 0.45s ease,
       border-color 0.45s ease,
-      border-radius 0.22s ease;
+      border-radius 0.36s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav-glass-pill--scrolled {
@@ -1284,4 +1284,235 @@ html {
 /* Legacy, removed */
 .film-grain-overlay {
   display: none;
+}
+
+.cemetery-page {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120, 130, 90, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(90, 80, 60, 0.08), transparent 50%),
+    #f4f0e6;
+}
+
+.cemetery-chip {
+  border: 1px solid rgba(55, 48, 40, 0.14);
+  background: rgba(255, 252, 246, 0.86);
+  border-radius: 999px;
+}
+
+.cemetery-yard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(244, 240, 230, 0.55), transparent 58%),
+    linear-gradient(180deg, #e6e2d4 0%, #b7b59a 28%, #7d8a5c 68%, #4f5c38 100%);
+}
+
+.cemetery-yard::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 56px;
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 9px,
+      rgba(40, 48, 28, 0.07) 9px,
+      rgba(40, 48, 28, 0.07) 11px
+    ),
+    linear-gradient(180deg, transparent, rgba(36, 46, 26, 0.38));
+  pointer-events: none;
+}
+
+.cemetery-plots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  gap: 2.4rem 1.2rem;
+  align-items: end;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .cemetery-plots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem 1.5rem;
+  }
+}
+
+.cemetery-plot--offset {
+  transform: translateY(2rem);
+}
+
+.monument-link {
+  display: block;
+}
+
+.monument {
+  --stone: #b4ada4;
+  --stone-ink: #2c2823;
+  display: flex;
+  width: 168px;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 200ms ease;
+}
+
+.monument--1 {
+  --stone: #c0b49c;
+}
+
+.monument--2 {
+  --stone: #a8aeb4;
+}
+
+.monument--lead {
+  width: 184px;
+}
+
+.monument--form {
+  width: 228px;
+}
+
+.monument-link:hover .monument,
+.monument-link:focus-visible .monument {
+  transform: translateY(-2px);
+}
+
+.monument__tablet {
+  position: relative;
+  z-index: 1;
+  width: 142px;
+  overflow: hidden;
+  border-radius: 71px 71px 3px 3px;
+  background: var(--stone);
+}
+
+.monument--lead .monument__tablet {
+  width: 156px;
+  border-radius: 78px 78px 3px 3px;
+}
+
+.monument--form .monument__tablet {
+  width: 212px;
+  border-radius: 80px 80px 3px 3px;
+}
+
+.monument__face {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 236px;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.35rem 0.9rem 1.35rem;
+  text-align: center;
+  color: var(--stone-ink);
+}
+
+.monument--lead .monument__face {
+  min-height: 268px;
+}
+
+.monument__face--form {
+  align-items: stretch;
+  min-height: 236px;
+  padding: 1.7rem 1rem 1.15rem;
+}
+
+.monument__name,
+.monument__words {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--stone-ink);
+}
+
+.monument__name {
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+
+.monument--lead .monument__name {
+  font-size: 1.15rem;
+}
+
+.monument__date {
+  margin-top: 0.35rem;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(44, 40, 35, 0.58);
+}
+
+.monument__rule {
+  display: block;
+  width: 36%;
+  height: 1px;
+  margin: 0.75rem 0 0.55rem;
+  background: rgba(44, 40, 35, 0.22);
+}
+
+.monument__words {
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.monument--lead .monument__words {
+  font-size: 1.42rem;
+}
+
+.monument__epitaph {
+  margin-top: auto;
+  padding-top: 0.7rem;
+  max-width: 8.4rem;
+  font-family: var(--font-caveat), cursive;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: rgba(44, 40, 35, 0.72);
+}
+
+.monument__plinth {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -1px;
+}
+
+.monument__plinth-cap,
+.monument__plinth-base {
+  display: block;
+  background: var(--stone);
+}
+
+.monument__plinth-cap {
+  width: 88%;
+  height: 11px;
+  border-radius: 2px 2px 0 0;
+}
+
+.monument__plinth-base {
+  width: 100%;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.monument--empty .monument__tablet,
+.monument--empty .monument__plinth-cap,
+.monument--empty .monument__plinth-base {
+  background: transparent;
+  background-image: none;
+  border: 1.5px dashed rgba(55, 48, 40, 0.38);
+}
+
+.monument--empty .monument__plinth-cap {
+  border-bottom: 0;
+}
+
+.monument--empty .monument__name,
+.monument--empty .monument__date {
+  color: rgba(59, 52, 44, 0.62);
 }

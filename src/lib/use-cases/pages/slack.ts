@@ -52,9 +52,9 @@ export const slackUseCase: UseCasePage = {
         "Most tools paste speech. Slack wants short lines, a clear update, and no filler. Lazur Dictation Mode is built for that cleanup so the paste is sendable.",
     },
     {
-      question: "When should I use Command Mode in Slack instead?",
+      question: "When should I use Intent Mode in Slack instead?",
       answer:
-        "Use Command Mode when you are looking at a thread and you want an action: reply, shorten this, make it warmer. Use Dictation Mode when you are writing a new update from scratch.",
+        "Use Intent Mode when you are looking at a thread and you want an action: reply, shorten this, make it warmer. Use Dictation Mode when you are writing a new update from scratch.",
     },
     {
       question: "Does this work in Slack desktop and the browser?",
@@ -92,12 +92,12 @@ export const slackUseCase: UseCasePage = {
     },
     {
       type: "heading",
-      text: "Threads need Command Mode",
+      text: "Threads need Intent Mode",
       level: 2,
     },
     {
       type: "paragraph",
-      text: "If someone asked a question above your cursor, do not re-dictate the whole reply. Hold Command Mode and say “reply, yes Thursday works, keep it short.” That is the same habit as email. Slack is just faster.",
+      text: "If someone asked a question above your cursor, do not re-dictate the whole reply. Hold the shortcut and say “reply, yes Thursday works, keep it short.” That is the same habit as email. Slack is just faster.",
     },
     {
       type: "heading",

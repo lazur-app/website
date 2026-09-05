@@ -15,7 +15,7 @@ faq:
   - question: "What is the best Wispr Flow alternative in 2026?"
     answer: "It depends on why you are switching. Aqua Voice is the closest speed-and-accuracy competitor. Lazur is the best pick if you want intent-aware, send-ready writing with on-device speech-to-text. Superwhisper is the best pick if local/offline models are the reason you are leaving."
   - question: "Is Lazur a Wispr Flow alternative?"
-    answer: "Yes. Lazur is a system-wide macOS voice writing app: hotkey dictation, Smart Rewrite, Command Mode, and NVIDIA Parakeet speech-to-text on device. It is not positioned as cheaper Wispr, it is positioned as voice to finished work, not voice to a transcript."
+    answer: "Yes. Lazur is a system-wide macOS voice writing app: hotkey dictation, Smart Rewrite, Intent Mode, and NVIDIA Parakeet speech-to-text on device. It is not positioned as cheaper Wispr, it is positioned as voice to finished work, not voice to a transcript."
   - question: "What are the main Wispr Flow alternatives besides Lazur?"
     answer: "Current comparisons consistently include Aqua Voice, Superwhisper, Willow Voice, VoiceInk, and MacWhisper. Apple Dictation and Typeless also appear for casual users and heavy everyday dictation."
   - question: "Is MacWhisper a Wispr Flow replacement?"
@@ -34,7 +34,7 @@ Wispr Flow’s promise is still the classic one: *speak and I will type it for y
 | Tool | Best for | Main reason to choose it |
 | --- | --- | --- |
 | [Aqua Voice](/compare/lazur-vs-aqua-voice) | Developers + heavy dictation | Very fast, polished output, strong technical vocabulary, live text |
-| [Lazur](/download) | Intent + contextual writing | Smart Rewrite, app context, Command Mode, on-device STT |
+| [Lazur](/download) | Intent + contextual writing | Smart Rewrite, app context, Intent Mode, on-device STT |
 | [Superwhisper](/compare/lazur-vs-super-whisper) | Privacy / power users | Local/offline models + customizable modes |
 | [Willow](/compare/lazur-vs-willow-voice) | Simple Wispr replacement | Minimal, cross-platform “talk anywhere” |
 | [VoiceInk](/blog/voiceink-open-source-dictation) | Open-source / privacy | Local processing, open source |
@@ -54,7 +54,7 @@ Investigate this first if you want the same category, faster. Aqua focuses on ac
 
 ### 2. Lazur, best if the problem is *what you meant*, not how fast it typed
 
-Lazur is system-wide on Mac: one hotkey, paste at the cursor in Slack, Gmail, Notion, Cursor. Speech-to-text runs locally with NVIDIA Parakeet. Smart Rewrite and Command Mode turn messy speech into the reply, email, or prompt you actually wanted. Free 5,000 words/month, Pro $14/month. [Why teams switch from Wispr to Lazur](/blog/why-teams-switching-from-wispr-flow-to-lazur).
+Lazur is system-wide on Mac: one hotkey, paste at the cursor in Slack, Gmail, Notion, Cursor. Speech-to-text runs locally with NVIDIA Parakeet. Smart Rewrite and Intent Mode turn messy speech into the reply, email, or prompt you actually wanted. Free 5,000 words/month, Pro $14/month. [Why teams switch from Wispr to Lazur](/blog/why-teams-switching-from-wispr-flow-to-lazur).
 
 ### 3. Superwhisper, best if privacy is the reason you are leaving
 
@@ -84,7 +84,7 @@ The biggest gap is no longer another transcription engine. Differentiation is **
 | System-wide hotkey | Yes | Yes |
 | AI cleanup | Yes | Yes (Smart Rewrite) |
 | Context-aware writing | Yes (expanding) | Core focus |
-| Command Mode | Yes | Yes, tell it what to *do* with the current message |
+| Voice commands on current context | Yes | Yes, tell it what to *do* with the current message |
 | Local speech-to-text | Cloud-first STT (confirm their current docs) | NVIDIA Parakeet on the Mac |
 | Voice stored for STT | Cloud pipeline | Audio stays on device for STT |
 | Mac | Yes | Yes |
@@ -93,7 +93,7 @@ The biggest gap is no longer another transcription engine. Differentiation is **
 | Slack / Gmail / Notion / Cursor | Yes | Yes |
 | Price | Plan/region dependent (~$15/mo often cited) | Free tier; Pro $14/mo |
 
-Lazur’s Command Mode example: you are looking at a message and say “Reply to this, keep it brief and professional.” It generates the response, not a prettier transcript of your ramble. More on that in [Command Mode](/blog/command-mode-voice-writing) and [messy speech to finished writing](/blog/messy-speech-to-finished-writing).
+Lazur’s Intent Mode example: you are looking at a message and say “Reply to this, keep it brief and professional.” It generates the response, not a prettier transcript of your ramble. More on that in [Intent Mode](/blog/command-mode-voice-writing) and [messy speech to finished writing](/blog/messy-speech-to-finished-writing).
 
 Privacy is a real switch trigger alongside price and offline use. Lazur does not lead with “private dictation” as the whole brand, it is proof: on-device STT, no voice recordings stored for transcription, dictation not used to train generalized models. Details: [privacy policy](/privacy).
 

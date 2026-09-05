@@ -9,16 +9,18 @@ import {
 
 const ASSURANCES = [
   {
-    title: "On-device speech",
-    detail: "Transcription runs locally on your Mac, not sent as audio.",
+    title: "Your voice never leaves your computer",
+    detail:
+      "Speech becomes text on your own machine. No recording is ever uploaded.",
   },
   {
-    title: "No voice storage",
-    detail: "We don't keep recordings of what you say in the cloud.",
+    title: "It looks once, when you ask",
+    detail:
+      "One look at your window the moment you speak. Used, then thrown away. It is never watching in the background.",
   },
   {
-    title: "No training on your content",
-    detail: "Your dictation isn't used to train generalized AI models.",
+    title: "Nothing you write trains anything",
+    detail: "Your work is never used to improve anyone's AI.",
   },
 ] as const;
 
@@ -38,8 +40,12 @@ export function PrivateSection() {
               Private by default
             </p>
             <h2 className="mt-3 max-w-sm font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-              Your voice stays on your Mac.
+              Safe to use with real work.
             </h2>
+            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+              What&apos;s on your screen is usually someone else&apos;s business
+              too.
+            </p>
           </div>
 
           <div>

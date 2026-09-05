@@ -21,7 +21,7 @@ export const chatgptUseCase: UseCasePage = {
     caption:
       "You talk through the messy brief. Dictation Mode writes the prompt you'd paste.",
     output:
-      "Compare Wispr Flow, Aqua Voice, and Lazur for a founder who works all day in Slack and Cursor. Give me a table of what actually differs (speed, rewrite, Command Mode, privacy, pricing), skip marketing claims. End with one recommendation and why.",
+      "Compare Wispr Flow, Aqua Voice, and Lazur for a founder who works all day in Slack and Cursor. Give me a table of what actually differs (speed, rewrite, command-style features, privacy, pricing), skip marketing claims. End with one recommendation and why.",
   },
   howto: {
     name: "How to voice-prompt ChatGPT",
@@ -52,9 +52,9 @@ export const chatgptUseCase: UseCasePage = {
         "A typed prompt is often one sentence. A spoken brief includes the audience, the format, and the constraint. That extra context is usually the difference between a generic answer and a useful one.",
     },
     {
-      question: "Should I use Command Mode or Dictation Mode in ChatGPT?",
+      question: "Should I use Intent Mode or Dictation Mode in ChatGPT?",
       answer:
-        "Use Dictation Mode for a new prompt from a spoken brief. Use Command Mode when you want to rewrite the last prompt: make it stricter, add a table, keep it shorter.",
+        "Use Dictation Mode for a new prompt from a spoken brief. Use Intent Mode when you want to rewrite the last prompt: make it stricter, add a table, keep it shorter.",
     },
     {
       question: "Does this work in the ChatGPT Mac app and the browser?",
@@ -97,7 +97,7 @@ export const chatgptUseCase: UseCasePage = {
     },
     {
       type: "paragraph",
-      text: "In ChatGPT you usually start from a blank box, so Dictation Mode fits. In Cursor you are often looking at a file, so Command Mode writes the agent instruction from that context. Same product, two surfaces.",
+      text: "In ChatGPT you usually start from a blank box, so Dictation Mode fits. In Cursor you are often looking at a file, so Intent Mode writes the agent instruction from that context. Same product, two surfaces.",
     },
     {
       type: "heading",

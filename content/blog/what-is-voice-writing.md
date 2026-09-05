@@ -57,6 +57,6 @@ Transcription can run [on-device](/blog/on-device-speech-to-text-mac). Rewrite m
 
 ## Lazur’s place in the category
 
-Lazur is a voice writing app for macOS: NVIDIA Parakeet STT on device, Smart Rewrite for finished output, Command Mode for edits, system-wide hotkey. Transcription-first apps remain useful if you like editing. If you want the category definition in a roundup, see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).
+Lazur is a voice writing app for macOS: NVIDIA Parakeet STT on device, Smart Rewrite for finished output, Intent Mode for edits, system-wide hotkey. Transcription-first apps remain useful if you like editing. If you want the category definition in a roundup, see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).
 
 [Download Lazur](/download) and judge it on whether the paste looks typed.

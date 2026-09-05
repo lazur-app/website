@@ -33,8 +33,8 @@ export default function UseCasesHubPage() {
           Finished writing, in the app you are in.
         </h1>
         <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[#5c564f] md:text-[17px]">
-          Dictation Mode writes what you said. Command Mode does what you
-          meant. Same shortcut on Mac, different job per surface.
+          Dictation Mode writes what you said. Intent Mode does what you meant.
+          Same shortcut on Mac, different job per surface.
         </p>
 
         <div className="mt-6 divide-y divide-[var(--border)]">
@@ -43,7 +43,7 @@ export default function UseCasesHubPage() {
               key={page.slug}
               href={`/use-cases/${page.slug}`}
               kicker={
-                page.mode === "command" ? "Command Mode" : "Dictation Mode"
+                page.mode === "command" ? "Intent Mode" : "Dictation Mode"
               }
               title={page.title}
               description={page.description}

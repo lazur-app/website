@@ -56,9 +56,10 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "start free",
     features: [
-      { text: "Plenty of dictation (5,000 words/month)", included: true },
-      { text: "Dictation Mode in every Mac app", included: true },
-      { text: "On-device speech-to-text", included: true },
+      { text: "5,000 words a month", included: true },
+      { text: "Dictation in every app", included: true },
+      { text: "On-device speech, nothing uploaded", included: true },
+      { text: "Intent, which reads your screen", included: false },
     ],
   },
   {
@@ -79,7 +80,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     buttonText: "get pro",
     features: [
       { text: "Unlimited dictation", included: true },
-      { text: "50 Command Mode uses per month", included: true },
+      { text: "300 Intent requests a month", included: true },
       { text: "Polish + style matching", included: true },
     ],
   },
@@ -93,13 +94,13 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
       annual: 7500,
       gstExclusive: true,
     },
-    descriptionLines: ["command mode on tap.", "best for people who live in it"],
+    descriptionLines: ["intent on tap.", "best for people who live in it"],
     planType: "power",
     cta: "checkout",
     buttonText: "get power",
     features: [
       { text: "True unlimited dictation", included: true },
-      { text: "300 Command Mode uses per month", included: true },
+      { text: "Unlimited Intent, fair use", included: true },
       { text: "Priority support", included: true },
     ],
   },
@@ -220,8 +221,8 @@ export const PRO_PRICE_NOTE = "Pro $14/mo · $108/yr";
 export const PRO_PRICE_NOTE_IN = "Pro ₹300/mo + GST · ₹3,000/yr + GST";
 export const POWER_FROM_LABEL = "From $35/mo";
 export const POWER_FROM_LABEL_IN = "From ₹750/mo + GST";
-export const POWER_PRICE_NOTE = "Power $35/mo · 300 Command Mode uses";
-export const POWER_PRICE_NOTE_IN = "Power ₹750/mo + GST · 300 Command Mode uses";
+export const POWER_PRICE_NOTE = "Power $35/mo · unlimited Intent";
+export const POWER_PRICE_NOTE_IN = "Power ₹750/mo + GST · unlimited Intent";
 
 export const FAIR_USE_FOOTNOTE =
   "* Marketed as unlimited with fair-usage limits enforced per plan.";

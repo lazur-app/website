@@ -16,7 +16,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
   ],
   chooseLazur: [
     "Dictation is a daily habit across Slack, email, and IDEs.",
-    "You need Smart Rewrite and Command Mode, not just STT.",
+    "You need Smart Rewrite and Intent Mode, not just STT.",
     "Output quality and tone matching matter for your work.",
   ],
   chooseCompetitor: [
@@ -41,7 +41,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
       competitor: "Yes, macOS apps",
     },
     {
-      feature: "Command Mode",
+      feature: "Intent Mode",
       lazur: "Voice edit, rewrite, expand",
       competitor: "Not a primary feature",
     },
@@ -70,7 +70,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     {
       question: "Is Lazur a good Willow Voice alternative?",
       answer:
-        "Yes, if you've outgrown lightweight capture tools. Lazur adds Smart Rewrite, Command Mode, and a personal dictionary for users who dictate professionally every day.",
+        "Yes, if you've outgrown lightweight capture tools. Lazur adds Smart Rewrite, Intent Mode, and a personal dictionary for users who dictate professionally every day.",
     },
     {
       question: "Is Willow Voice easier to start with?",

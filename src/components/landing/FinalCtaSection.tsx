@@ -60,7 +60,7 @@ export function FinalCtaSection() {
                 Have a Mac? Download →
               </Link>
             ) : (
-              "macOS · 7-day Pro trial · no credit card"
+              "macOS today, Windows soon · 7-day Pro trial · no credit card"
             )}
           </p>
         </div>

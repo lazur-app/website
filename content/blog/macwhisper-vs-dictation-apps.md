@@ -45,7 +45,7 @@ If you speak a follow-up in Gmail, you want the second row. If you dropped an M4
 
 - Slack, Linear, Notion, Cursor, Gmail, [how to use dictation on a Mac](/blog/how-to-dictate-on-mac).
 - You measure leftover **edits**, not transcript accuracy of a file.
-- You want Command Mode or rewrite: [Lazur](/download), or speed-first [Aqua](/blog/aqua-voice-vs-lazur).
+- You want Intent Mode or rewrite: [Lazur](/download), or speed-first [Aqua](/blog/aqua-voice-vs-lazur).
 
 ## Can you use both?
 

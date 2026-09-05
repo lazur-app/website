@@ -5,7 +5,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
   slug: "lazur-vs-wispr-flow",
   title: "Lazur vs Wispr Flow",
   description:
-    "Comparing Lazur and Wispr Flow for macOS, AI voice dictation, Smart Rewrite vs fast transcription, privacy, Command Mode, and pricing. Which dictation app fits your workflow?",
+    "Comparing Lazur and Wispr Flow for macOS, AI voice dictation, Smart Rewrite vs fast transcription, privacy, Intent Mode, and pricing. Which dictation app fits your workflow?",
   competitorName: "Wispr Flow",
   targetKeyword: "wispr flow alternative",
   publishedAt: "2026-07-01",
@@ -19,7 +19,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
   chooseLazur: [
     "You dictate across Slack, email, docs, and IDEs and want consistent polished output.",
     "Edit time after dictation is eating your day.",
-    "You want Command Mode for voice-driven rewriting.",
+    "You want Intent Mode for voice-driven rewriting.",
   ],
   chooseCompetitor: [
     "You mainly need fast speech-to-text and are comfortable editing afterward.",
@@ -49,7 +49,7 @@ export const lazurVsWisprFlow: ComparisonPage = {
     },
     {
       feature: "Voice commands",
-      lazur: "Command Mode (edit, rewrite, expand)",
+      lazur: "Intent Mode (edit, rewrite, expand)",
       competitor: "Primarily dictation-focused",
     },
     {

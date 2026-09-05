@@ -25,6 +25,34 @@ type UseCase = {
 
 const CASES: UseCase[] = [
   {
+    id: "email",
+    label: "Email",
+    icon: "/gmail-50.png",
+    mode: "command",
+    context:
+      "Hey, can you review the onboarding feedback by Friday? A few people are getting stuck.",
+    spoken: "reply, yes I'll have notes by Thursday, keep it warm",
+    caption:
+      "You don't dictate the email. Lazur reads the thread in front of you and writes the reply.",
+    output:
+      "Hi Alex, yes, I'll have notes on the onboarding feedback by Thursday. Talk soon.",
+    app: "Gmail",
+  },
+  {
+    id: "cursor",
+    label: "Cursor",
+    icon: "/cursor-ai-48.png",
+    mode: "command",
+    context: "auth-handler.ts  ·  React Context",
+    spoken:
+      "refactor this to use zustand instead of context and add error handling for failed logins",
+    caption:
+      "Speak the change. Lazur reads the file and writes the instruction your agent can actually run.",
+    output:
+      "Refactor the auth handler to use Zustand instead of React Context. Add error handling for failed login attempts with user-facing messages.",
+    app: "Cursor",
+  },
+  {
     id: "chatgpt",
     label: "ChatGPT",
     icon: null,
@@ -32,9 +60,9 @@ const CASES: UseCase[] = [
     spoken:
       "okay so I need a competitive teardown of Wispr Flow, Aqua Voice, and us, a table of what's actually different, not marketing fluff, plus a rec for a founder who lives in Slack and Cursor",
     caption:
-      "You talk through the messy brief. Dictation Mode writes the prompt you'd paste.",
+      "You talk through the messy brief. Lazur writes the prompt you'd have typed.",
     output:
-      "Compare Wispr Flow, Aqua Voice, and Lazur for a founder who works all day in Slack and Cursor. Give me a table of what actually differs (speed, rewrite, Command Mode, privacy, pricing), skip marketing claims. End with one recommendation and why.",
+      "Compare Wispr Flow, Aqua Voice, and Lazur for a founder who works all day in Slack and Cursor. Give me a table of what actually differs (speed, rewrite, screen context, privacy, pricing), skip marketing claims. End with one recommendation and why.",
     app: "New chat",
   },
   {
@@ -50,41 +78,12 @@ const CASES: UseCase[] = [
       "Standup:\n• Shipped the invite flow last night\n• Two bugs in the share modal, pairing with Priya after lunch\n• Still on track for Thursday",
     app: "#eng-standup",
   },
-  {
-    id: "email",
-    label: "Email",
-    icon: "/gmail-50.png",
-    mode: "command",
-    context:
-      "Hey, can you review the onboarding feedback by Friday? A few people are getting stuck.",
-    spoken:
-      "reply, yes I'll have notes by Thursday, keep it warm",
-    caption:
-      "You don't dictate the email. Command Mode writes the reply from what you meant.",
-    output:
-      "Hi Alex, yes, I'll have notes on the onboarding feedback by Thursday. Talk soon.",
-    app: "Gmail",
-  },
-  {
-    id: "cursor",
-    label: "Cursor",
-    icon: "/cursor-ai-48.png",
-    mode: "command",
-    context: "auth-handler.ts  ·  React Context",
-    spoken:
-      "refactor this to use zustand instead of context and add error handling for failed logins",
-    caption:
-      "Speak the change. Command Mode writes the instruction your agent can actually run.",
-    output:
-      "Refactor the auth handler to use Zustand instead of React Context. Add error handling for failed login attempts with user-facing messages.",
-    app: "Cursor",
-  },
 ];
 
 function ModeBadge({ mode }: { mode: Mode }) {
   return (
     <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground)]/45">
-      {mode === "command" ? "Command Mode" : "Dictation Mode"}
+      {mode === "command" ? "Intent" : "Dictation"}
     </p>
   );
 }
@@ -167,7 +166,7 @@ function OutputWindow({ useCase }: { useCase: UseCase }) {
             Send
           </span>
           <span className="text-[10px] uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
-            Command Mode
+            Intent
           </span>
         </div>
       </div>

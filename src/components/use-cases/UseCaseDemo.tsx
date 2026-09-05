@@ -3,7 +3,7 @@ import type { UseCaseDemo, UseCasePage } from "@/lib/use-cases";
 function ModeLabel({ mode }: { mode: UseCasePage["mode"] }) {
   return (
     <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
-      {mode === "command" ? "Command Mode" : "Dictation Mode"}
+      {mode === "command" ? "Intent Mode" : "Dictation Mode"}
     </p>
   );
 }

@@ -32,7 +32,7 @@ export async function generateMetadata({
   const canonical = `${SITE_URL}/blog/${slug}`;
 
   return {
-    title: `${post.title} | Lazur Blog`,
+    title: `${post.title} | Lazur`,
     description: post.description,
     keywords: post.targetKeyword ? [post.targetKeyword] : undefined,
     alternates: {

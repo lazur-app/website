@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/use-cases",
     "/terms",
     "/privacy",
+    "/cemetery",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: STATIC_LAST_MODIFIED,

@@ -104,7 +104,7 @@ export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
     },
     {
       type: "paragraph",
-      text: "Lazur includes Command Mode on paid plans, voice-driven editing and rewriting beyond straight dictation. Wispr Flow is primarily a dictation product. If you want voice to replace formatting shortcuts and rewrite passes, Lazur goes further.",
+      text: "Lazur includes Intent Mode on paid plans, voice-driven editing and rewriting beyond straight dictation. Wispr Flow is primarily a dictation product. If you want voice to replace formatting shortcuts and rewrite passes, Lazur goes further.",
     },
     {
       type: "heading",
@@ -122,7 +122,7 @@ export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
     },
     {
       type: "paragraph",
-      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of mid-2026, Lazur offers a free tier (5,000 words/month), Pro at $10/month, and Power at $25/month with higher limits and Command Mode allowances. Wispr Flow uses its own tier structure, compare word limits, team features, and overage rules against your monthly dictation volume.",
+      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of mid-2026, Lazur offers a free tier (5,000 words/month), Pro at $14/month, and Power at $35/month with higher limits and Intent Mode allowances. Wispr Flow uses its own tier structure, compare word limits, team features, and overage rules against your monthly dictation volume.",
     },
     {
       type: "heading",

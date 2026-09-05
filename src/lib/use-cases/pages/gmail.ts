@@ -4,14 +4,14 @@ export const gmailUseCase: UseCasePage = {
   slug: "gmail",
   title: "Write email by voice on Mac",
   description:
-    "Write Gmail by voice on a Mac from intent, not a spoken letter. Command Mode replies from the thread: yes, notes by Thursday, keep it warm.",
+    "Write Gmail by voice on a Mac from intent, not a spoken letter. Intent Mode replies from the thread: yes, notes by Thursday, keep it warm.",
   appName: "Gmail",
   mode: "command",
   targetKeyword: "voice to email Mac",
   publishedAt: "2026-08-23",
   readingTimeMinutes: 6,
   tldr: [
-    "Speak the job of the email. Command Mode writes the reply from the thread in front of you.",
+    "Speak the job of the email. Intent Mode writes the reply from the thread in front of you.",
     "“Yes, notes by Thursday, keep it warm” is enough. You do not dictate the whole letter.",
     "Paste in the Gmail compose window. Do not dictate in Notes and copy.",
   ],
@@ -20,7 +20,7 @@ export const gmailUseCase: UseCasePage = {
       "Hey, can you review the onboarding feedback by Friday? A few people are getting stuck.",
     spoken: "reply, yes I'll have notes by Thursday, keep it warm",
     caption:
-      "You do not dictate the email. Command Mode writes the reply from what you meant.",
+      "You do not dictate the email. Intent Mode writes the reply from what you meant.",
     output:
       "Hi Alex, yes, I'll have notes on the onboarding feedback by Thursday. Talk soon.",
   },
@@ -33,7 +33,7 @@ export const gmailUseCase: UseCasePage = {
       },
       {
         name: "Speak intent, not the letter",
-        text: "Say the answer, the date, and the tone. Command Mode uses the thread you are looking at.",
+        text: "Say the answer, the date, and the tone. Intent Mode uses the thread you are looking at.",
       },
       {
         name: "Scan names and the ask",
@@ -45,7 +45,7 @@ export const gmailUseCase: UseCasePage = {
     {
       question: "Can you write Gmail by voice on a Mac?",
       answer:
-        "Yes. Click into the Gmail compose box, hold the Lazur shortcut, and speak the point of the email. Command Mode writes a reply from the thread and your intent so it does not read like a transcript.",
+        "Yes. Click into the Gmail compose box, hold the Lazur shortcut, and speak the point of the email. Intent Mode writes a reply from the thread and your intent so it does not read like a transcript.",
     },
     {
       question: "Why do dictated emails sound weird?",
@@ -66,7 +66,7 @@ export const gmailUseCase: UseCasePage = {
   blocks: [
     {
       type: "paragraph",
-      text: "Write email by voice on a Mac by dictating what the email needs to do, then letting Command Mode finish it. If you speak a full letter word for word, you get a transcript. If you speak intent, you get something you would send.",
+      text: "Write email by voice on a Mac by dictating what the email needs to do, then letting Intent Mode finish it. If you speak a full letter word for word, you get a transcript. If you speak intent, you get something you would send.",
     },
     {
       type: "heading",
@@ -75,7 +75,7 @@ export const gmailUseCase: UseCasePage = {
     },
     {
       type: "paragraph",
-      text: "The useful case is not a blank compose window. It is a message already on screen. Command Mode can see that you were asked for Friday and you said Thursday, warm. The paste should mention the feedback and land like you typed it.",
+      text: "The useful case is not a blank compose window. It is a message already on screen. Intent Mode can see that you were asked for Friday and you said Thursday, warm. The paste should mention the feedback and land like you typed it.",
     },
     {
       type: "heading",
@@ -97,7 +97,7 @@ export const gmailUseCase: UseCasePage = {
     },
     {
       type: "paragraph",
-      text: "Blank compose is closer to Dictation Mode: speak the brief, get a structured email. A thread is Command Mode: speak the action. Same shortcut, different job. Slack uses the same split.",
+      text: "Blank compose is closer to Dictation Mode: speak the brief, get a structured email. A thread is Intent Mode: speak the action. Same shortcut, different job. Slack uses the same split.",
     },
     {
       type: "heading",

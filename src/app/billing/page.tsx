@@ -72,9 +72,9 @@ const UPGRADE_PLAN_META: {
     name: "Pro",
     planType: "pro",
     planId: "pro",
-    description: "150,000 words / month and 50 Command Mode uses.",
+    description: "150,000 words / month and 300 Intent requests.",
     features: [
-      "50 Command Mode uses",
+      "300 Intent requests",
       "Smart Rewrite + Zen Mode",
       "9 clipboard slots",
       "Dictionary & snippets",
@@ -85,9 +85,9 @@ const UPGRADE_PLAN_META: {
     name: "Power",
     planType: "power",
     planId: "power",
-    description: "500,000 words / month and 300 Command Mode uses.",
+    description: "500,000 words / month and unlimited Intent, fair use.",
     features: [
-      "300 Command Mode uses",
+      "Unlimited Intent, fair use",
       "Voice Profiling (coming soon)",
       "Priority support",
       "Everything in Pro",
@@ -469,7 +469,7 @@ function BillingContent() {
                 <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {onTrial
                     ? "Lock in Pro or Power before your trial ends, checkout is handled securely."
-                    : "Subscribe to keep full access to dictation, Command Mode, and polish."}
+                    : "Subscribe to keep full access to dictation, Intent, and polish."}
                 </p>
                 {region === "india" ? (
                   <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">

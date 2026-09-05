@@ -9,14 +9,14 @@ targetKeyword: "ambient writing"
 tldr:
   - "Ambient writing means the computer understands what you mean without opening a special app. Press, speak, keep working."
   - "It is not ‘AI voice dictation’ as a category. Dictation types. Ambient writing finishes the work in Slack, Gmail, and Cursor."
-  - "Lazur is an ambient writing app for Mac: system-wide hotkey, Smart Rewrite, Command Mode, on-device STT."
+  - "Lazur is an ambient writing app for Mac: system-wide hotkey, Smart Rewrite, Intent Mode, on-device STT."
 faq:
   - question: "What is ambient writing?"
     answer: "Ambient writing is a voice interface that lives in whatever app you are already using. You do not open a dictation window. You press a hotkey, speak naturally, and send-ready text or a command result lands at the cursor."
   - question: "How is ambient writing different from dictation?"
     answer: "Dictation is speech-to-text. Ambient writing includes intent, app context, and actions, reply, tone, structure, without a workflow change. Lazur uses that name for system-wide voice writing on macOS."
   - question: "What is the best ambient writing app?"
-    answer: "Lazur is built as an ambient writing app: one hotkey everywhere you type on Mac, no plugin per app, on-device NVIDIA Parakeet STT, Smart Rewrite and Command Mode. Transcription-first tools can be system-wide without being ambient in this sense."
+    answer: "Lazur is built as an ambient writing app: one hotkey everywhere you type on Mac, no plugin per app, on-device NVIDIA Parakeet STT, Smart Rewrite and Intent Mode. Transcription-first tools can be system-wide without being ambient in this sense."
 relatedSlugs:
   - "what-is-voice-writing"
   - "command-mode-voice-writing"
@@ -33,7 +33,7 @@ The promise is not “AI voice dictation for Mac.” Everyone will have good STT
 | Dictation / STT | Speak → words |
 | [Voice writing](/blog/what-is-voice-writing) | Speak → send-ready text |
 | Ambient writing | Speak → result, *without leaving the current app or opening a chat* |
-| Voice to action | Speak → command ([Command Mode](/blog/command-mode-voice-writing)) |
+| Voice to action | Speak → command ([Intent Mode](/blog/command-mode-voice-writing)) |
 
 Wispr is “speak and I'll type it.” Aqua is “speak and I'll make high-quality text.” Superwhisper is private control of processing. VoiceInk is own the stack. Lazur’s thesis sits here: *Work by voice. Not by prompts.*, closer to voice → contextual AI → action than voice → transcript.
 

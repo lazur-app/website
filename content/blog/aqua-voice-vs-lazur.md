@@ -8,7 +8,7 @@ cover: "compare"
 targetKeyword: "Aqua Voice vs Lazur"
 tldr:
   - "Aqua Voice is the closest ‘better Wispr’ product: fast, live text, strong technical vocabulary, Mac + Windows + iPhone."
-  - "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Command Mode, with NVIDIA Parakeet STT on the Mac."
+  - "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Intent Mode, with NVIDIA Parakeet STT on the Mac."
   - "Pick Aqua for throughput across devices. Pick Lazur if leftover editing and intent are the actual pain."
 faq:
   - question: "Is Lazur an Aqua Voice alternative?"
@@ -32,7 +32,7 @@ Canonical head-to-head: [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).
 | --- | --- | --- |
 | Thesis | Speak and get high-quality text, fast | Speak and get finished work |
 | STT posture | Speed / live text first | NVIDIA Parakeet on-device on Mac |
-| After transcription | Polish, live edit by voice | Smart Rewrite + Command Mode (reply, tone, structure) |
+| After transcription | Polish, live edit by voice | Smart Rewrite + Intent Mode (reply, tone, structure) |
 | Platforms | Mac, Windows, iPhone | macOS (Windows coming) |
 | Best if | You measure words per minute | You measure edits before send |
 
@@ -46,13 +46,13 @@ It also covers **Windows and iPhone**, which Lazur does not yet. If your day spa
 
 ## Where Lazur wins
 
-Transcription plus cleanup is becoming table stakes. Wispr has been adding Command Mode and context awareness. Aqua has edit-by-voice and even voice-triggered sending in the same race.
+Transcription plus cleanup is becoming table stakes. Wispr has been adding command-style features and context awareness. Aqua has edit-by-voice and even voice-triggered sending in the same race.
 
 Lazur should not enter a 4×-faster-than-typing fight. The product is built for the sentence you actually said:
 
 > “uh, can you reply to this and basically say yeah Thursday works but I'm not sure about the time yet, keep it casual”
 
-Aqua (and Wispr) will get a high-quality version of that *sentence*. Lazur’s job is to treat it as a **task**: reply, casual, Thursday works, time TBD, using the message on screen. That is [Command Mode](/blog/command-mode-voice-writing) and [messy speech](/blog/messy-speech-to-finished-writing).
+Aqua (and Wispr) will get a high-quality version of that *sentence*. Lazur’s job is to treat it as a **task**: reply, casual, Thursday works, time TBD, using the message on screen. That is [Intent Mode](/blog/command-mode-voice-writing) and [messy speech](/blog/messy-speech-to-finished-writing).
 
 Privacy is the second wedge. Speech-to-text runs on the Mac. Audio is not the cloud STT default. Confirm Aqua’s current audio pipeline if that is why you are switching. Ours: [on-device STT](/blog/on-device-speech-to-text-mac).
 

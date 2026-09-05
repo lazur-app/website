@@ -17,7 +17,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
   chooseLazur: [
     "You want dictation to end at send-ready text, not raw transcripts.",
     "You dictate long emails, Slack threads, and docs daily.",
-    "You need Command Mode for voice-driven editing and rewrites.",
+    "You need Intent Mode for voice-driven editing and rewrites.",
   ],
   chooseCompetitor: [
     "Local-only STT is your top priority with minimal feature overhead.",
@@ -47,7 +47,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       feature: "Voice commands",
-      lazur: "Command Mode on Pro/Power",
+      lazur: "Intent Mode on Pro/Power",
       competitor: "Limited command layer",
     },
     {
@@ -108,12 +108,12 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       type: "heading",
-      text: "Command Mode",
+      text: "Intent Mode",
       level: 2,
     },
     {
       type: "paragraph",
-      text: "Lazur Command Mode lets you edit and rewrite selected text with voice, expand a paragraph, tighten tone, fix structure. Super Whisper is optimized for capture, not post-dictation editing workflows.",
+      text: "Lazur Intent Mode lets you edit and rewrite selected text with voice, expand a paragraph, tighten tone, fix structure. Super Whisper is optimized for capture, not post-dictation editing workflows.",
     },
     {
       type: "heading",

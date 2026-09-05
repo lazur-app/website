@@ -9,6 +9,7 @@ import {
   Check,
   Download,
   Gift,
+  PencilOff,
   Sparkles,
   TrendingUp,
 } from "lucide-react";
@@ -97,7 +98,7 @@ function DashboardContent() {
         ? fetchReferralMe(token).catch(() => null)
         : Promise.resolve(null);
 
-      const profile = await refresh({ force: true });
+      const profile = await refresh();
       if (cancelled) return;
       if (!profile) {
         router.replace("/login");
@@ -229,7 +230,7 @@ function DashboardContent() {
                 <div className="mt-4 space-y-1.5 border-t border-[var(--border)] pt-4 text-[13px] text-[var(--foreground-muted)]">
                   {user.command_mode_enabled && (
                     <p>
-                      Commands{" "}
+                      Intent{" "}
                       <span className="font-medium text-[var(--foreground)]">
                         {(user.command_quota_used ?? 0).toLocaleString()} /{" "}
                         {(user.command_quota_limit ?? 0).toLocaleString()}
@@ -330,7 +331,29 @@ function DashboardContent() {
           </SoftCard>
         </motion.div>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18, duration: 0.45 }}
+          >
+            <Link href="/cemetery" className="block">
+              <SoftCard hover={false} className="flex items-center gap-4 p-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
+                  <PencilOff className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
+                </div>
+                <div>
+                  <p className="text-[14px] font-semibold text-[var(--foreground)]">
+                    Keyboard Cemetery
+                  </p>
+                  <p className="text-[13px] text-[var(--foreground-muted)]">
+                    Retire your keyboard on the public yard
+                  </p>
+                </div>
+              </SoftCard>
+            </Link>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

@@ -12,9 +12,9 @@ tldr:
   - "The demo is always the same: you say the messy version, Lazur pastes the send-ready version, you hit send."
 faq:
   - question: "Can dictation handle messy speech?"
-    answer: "Basic dictation will type the mess, maybe with punctuation. Voice writing and Command Mode extract task, tone, and facts, then write the message you would have typed. That is how Lazur is built."
+    answer: "Basic dictation will type the mess, maybe with punctuation. Voice writing and Intent Mode extract task, tone, and facts, then write the message you would have typed. That is how Lazur is built."
   - question: "How do I dictate without sounding like a transcript?"
-    answer: "Stop dictating the letter. Speak the brief: who, ask, tone, constraint. Let rewrite or Command Mode produce the prose. See how to write emails by voice for the same pattern."
+    answer: "Stop dictating the letter. Speak the brief: who, ask, tone, constraint. Let rewrite or Intent Mode produce the prose. See how to write emails by voice for the same pattern."
   - question: "What is an example of messy speech vs finished writing?"
     answer: "You say: ‘uh can you tell Sarah that I looked at the deck and the second section needs another pass but overall it's looking good, keep it positive.’ Lazur pastes: ‘Hey Sarah, I reviewed the deck. The second section could use another pass, but overall it’s looking really good.’"
 relatedSlugs:
@@ -50,7 +50,7 @@ Another one, Slack:
 
 > Hey Mike, could we move our meeting to Thursday afternoon? Same agenda works for me.
 
-Gmail: “reply and say I'll review it tomorrow, keep it warm.” Cursor: “refactor this to use zustand and add error handling for failed logins.” Same loop. [Command Mode](/blog/command-mode-voice-writing) is when the speech is an instruction about *this* thread, not a draft of the reply.
+Gmail: “reply and say I'll review it tomorrow, keep it warm.” Cursor: “refactor this to use zustand and add error handling for failed logins.” Same loop. [Intent Mode](/blog/command-mode-voice-writing) is when the speech is an instruction about *this* thread, not a draft of the reply.
 
 ## Why “sounding spoken” is not a user failure
 

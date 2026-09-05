@@ -39,6 +39,16 @@ const nextConfig: NextConfig = {
         destination: "/compare/google-voice-typing-alternative",
         permanent: true,
       },
+      {
+        source: "/blog/README",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/readme",
+        destination: "/blog",
+        permanent: true,
+      },
     ];
   },
   outputFileTracingIncludes: {

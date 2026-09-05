@@ -8,12 +8,14 @@ import {
 
 const MODES = [
   {
-    label: "Dictation Mode",
-    detail: "Writes what you said.",
+    label: "Dictation",
+    detail:
+      "Say it, and it writes it down properly — cleaned up and formatted for wherever you're typing.",
   },
   {
-    label: "Command Mode",
-    detail: "Does what you meant.",
+    label: "Intent",
+    detail:
+      "Say what you want, and it writes it for you — from whatever is already on your screen.",
   },
 ] as const;
 
@@ -43,9 +45,14 @@ export function HoursBackSection() {
           </div>
 
           <div className="mt-10 grid gap-8 border-t border-[var(--border)] pt-10 md:mt-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16 md:pt-12">
-            <h2 className="max-w-xl font-display text-[1.55rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.15rem]">
-              Same emails, same docs, same prompts. Spoken instead of typed.
-            </h2>
+            <div className="max-w-xl">
+              <h2 className="font-display text-[1.55rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.15rem]">
+                One key. Two ways to use it.
+              </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+                Same emails, same docs, same prompts. You just stop typing them.
+              </p>
+            </div>
             <div className="grid gap-8 sm:grid-cols-2">
               {MODES.map((mode) => (
                 <div key={mode.label}>

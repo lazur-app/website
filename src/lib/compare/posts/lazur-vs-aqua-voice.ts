@@ -11,12 +11,12 @@ export const lazurVsAquaVoice: ComparisonPage = {
   readingTimeMinutes: 7,
   tldr: [
     "Aqua Voice is the closest “better Wispr” product: fast, live text, strong technical vocabulary, Mac plus Windows plus iPhone.",
-    "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Command Mode, with NVIDIA Parakeet STT on the Mac.",
+    "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Intent Mode, with NVIDIA Parakeet STT on the Mac.",
     "Pick Aqua for throughput across devices. Pick Lazur if leftover editing and intent are the actual pain.",
   ],
   chooseLazur: [
     "The paste still needs rewriting in Slack, Gmail, and Cursor.",
-    "You want Command Mode: reply, rewrite, keep it brief, using the text on screen.",
+    "You want Intent Mode: reply, rewrite, keep it brief, using the text on screen.",
     "Speech-to-text should run on the Mac. Audio is not the cloud STT default.",
   ],
   chooseCompetitor: [
@@ -37,7 +37,7 @@ export const lazurVsAquaVoice: ComparisonPage = {
     },
     {
       feature: "After transcription",
-      lazur: "Smart Rewrite plus Command Mode (reply, tone, structure)",
+      lazur: "Smart Rewrite plus Intent Mode (reply, tone, structure)",
       competitor: "Polish and live edit by voice",
     },
     {

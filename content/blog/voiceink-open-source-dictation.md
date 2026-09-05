@@ -16,7 +16,7 @@ faq:
   - question: "Is VoiceInk better than Wispr Flow for privacy?"
     answer: "If your requirement is local processing and an open codebase, VoiceInk is a stronger privacy-shaped alternative than a cloud-first dictation app. Confirm each project’s current model download, network calls, and rewrite behavior before you treat it as fully air-gapped."
   - question: "Should I use VoiceInk or Lazur?"
-    answer: "Use VoiceInk if you want open-source local STT and you are comfortable assembling workflow around it. Use Lazur if you want a productized voice writing loop: NVIDIA Parakeet on-device, Smart Rewrite, Command Mode, and paste at the cursor in any Mac app."
+    answer: "Use VoiceInk if you want open-source local STT and you are comfortable assembling workflow around it. Use Lazur if you want a productized voice writing loop: NVIDIA Parakeet on-device, Smart Rewrite, Intent Mode, and paste at the cursor in any Mac app."
 relatedSlugs:
   - "on-device-speech-to-text-mac"
   - "wispr-flow-alternatives"
@@ -30,7 +30,7 @@ relatedSlugs:
 | --- | --- |
 | Open-source local STT | VoiceInk |
 | Offline models + power-user modes, still a product | [Superwhisper](/compare/lazur-vs-super-whisper) |
-| Send-ready writing, Command Mode, app context | [Lazur](/download) |
+| Send-ready writing, Intent Mode, app context | [Lazur](/download) |
 | Fast live text like Wispr | [Aqua Voice](/blog/aqua-voice-vs-lazur) |
 | Transcribe a meeting file | [MacWhisper](/blog/macwhisper-vs-dictation-apps) |
 
@@ -45,7 +45,7 @@ Lazur’s split is explicit: NVIDIA Parakeet on the Mac for STT; Smart Rewrite c
 ## When not to choose VoiceInk
 
 - You want “press hotkey, get a client-ready email” with almost no setup.
-- You need Command Mode (“reply to this, keep it brief”) as a product, not a script you maintain.
+- You need Intent Mode (“reply to this, keep it brief”) as a product, not a script you maintain.
 - You are not going to read release notes and model licenses.
 
 Then you want a product: Lazur, Aqua, or Wispr. See [Wispr Flow alternatives](/blog/wispr-flow-alternatives).

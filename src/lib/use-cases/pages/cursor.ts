@@ -4,14 +4,14 @@ export const cursorUseCase: UseCasePage = {
   slug: "cursor",
   title: "Voice writing in Cursor",
   description:
-    "Dictate Cursor prompts on Mac without pasting a ramble. Command Mode writes the agent instruction from what you meant, using the file in front of you.",
+    "Dictate Cursor prompts on Mac without pasting a ramble. Intent Mode writes the agent instruction from what you meant, using the file in front of you.",
   appName: "Cursor",
   mode: "command",
   targetKeyword: "voice typing Cursor Mac",
   publishedAt: "2026-08-23",
   readingTimeMinutes: 6,
   tldr: [
-    "In Cursor, speak the change. Command Mode writes the instruction your agent can run.",
+    "In Cursor, speak the change. Intent Mode writes the instruction your agent can run.",
     "You do not dictate source syntax. You dictate PRs, review notes, and agent prompts.",
     "Same shortcut as Slack and Gmail. Lazur pastes at the cursor in the Composer.",
   ],
@@ -20,7 +20,7 @@ export const cursorUseCase: UseCasePage = {
     spoken:
       "refactor this to use zustand instead of context and add error handling for failed logins",
     caption:
-      "You do not dictate the prompt word for word. Command Mode writes the instruction from the file and the intent.",
+      "You do not dictate the prompt word for word. Intent Mode writes the instruction from the file and the intent.",
     output:
       "Refactor the auth handler to use Zustand instead of React Context. Add error handling for failed login attempts with user-facing messages.",
   },
@@ -50,12 +50,12 @@ export const cursorUseCase: UseCasePage = {
     {
       question: "Should I dictate code with voice in Cursor?",
       answer:
-        "Dictate the writing around the code: agent prompts, PR descriptions, comments, and review replies. Typing still wins for syntax. Command Mode is for the instruction, not the brackets.",
+        "Dictate the writing around the code: agent prompts, PR descriptions, comments, and review replies. Typing still wins for syntax. Intent Mode is for the instruction, not the brackets.",
     },
     {
       question: "How is this different from dictating a ChatGPT prompt?",
       answer:
-        "Same idea, different surface. In Cursor, Command Mode can use the file or selection you are looking at. In ChatGPT, Dictation Mode turns a spoken brief into a paste-ready prompt.",
+        "Same idea, different surface. In Cursor, Intent Mode can use the file or selection you are looking at. In ChatGPT, Dictation Mode turns a spoken brief into a paste-ready prompt.",
     },
     {
       question: "Is speech sent to the cloud when I dictate in Cursor?",
@@ -66,7 +66,7 @@ export const cursorUseCase: UseCasePage = {
   blocks: [
     {
       type: "paragraph",
-      text: "Voice writing in Cursor is for the prompt, not the source file. You talk through the bug, the file, and the constraint. Command Mode turns that into an instruction the agent can actually run.",
+      text: "Voice writing in Cursor is for the prompt, not the source file. You talk through the bug, the file, and the constraint. Intent Mode turns that into an instruction the agent can actually run.",
     },
     {
       type: "heading",
@@ -107,7 +107,7 @@ export const cursorUseCase: UseCasePage = {
     },
     {
       type: "paragraph",
-      text: "When you leave Cursor for GitHub or Linear, hold the same shortcut. Dictate the PR body. Command Mode can rewrite a messy review comment into something you would post. See AI dictation for developers for the wider stack.",
+      text: "When you leave Cursor for GitHub or Linear, hold the same shortcut. Dictate the PR body. Intent Mode can rewrite a messy review comment into something you would post. See AI dictation for developers for the wider stack.",
     },
     {
       type: "heading",

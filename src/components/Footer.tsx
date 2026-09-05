@@ -8,6 +8,7 @@ const footerLinks = {
     { href: "/compare", label: "Comparisons" },
     { href: "/blog", label: "Blog" },
     { href: "/download", label: "Download" },
+    { href: "/cemetery", label: "Keyboard Cemetery" },
   ],
   Account: [
     { href: "/login", label: "Log in" },

@@ -17,7 +17,7 @@ export const lazurVsMacwhisper: ComparisonPage = {
   chooseLazur: [
     "You are in Gmail, Slack, or Cursor and you want to speak the next message.",
     "You measure leftover edits, not transcript accuracy of a file.",
-    "You want Command Mode or rewrite on the text in front of you.",
+    "You want Intent Mode or rewrite on the text in front of you.",
   ],
   chooseCompetitor: [
     "The input is a recording, interview, lecture, or podcast file.",
@@ -46,8 +46,8 @@ export const lazurVsMacwhisper: ComparisonPage = {
       competitor: "Local Whisper on-device",
     },
     {
-      feature: "Rewrite / Command Mode",
-      lazur: "Smart Rewrite and Command Mode",
+      feature: "Rewrite / Intent Mode",
+      lazur: "Smart Rewrite and Intent Mode",
       competitor: "Transcript editing, not live voice commands",
     },
     {

@@ -22,11 +22,34 @@ function isActive(pathname: string, match: string, href: string) {
   return pathname === match || pathname.startsWith(`${match}/`);
 }
 
+/** Site-wide expo-out easing, keeps nav motion consistent with the landing page. */
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const menuList = {
+  open: { transition: { staggerChildren: 0.04, delayChildren: 0.07 } },
+  closed: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
+};
+
+const menuItem = {
+  open: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
+  closed: { opacity: 0, y: -6, transition: { duration: 0.12, ease: "easeOut" } },
+};
+
 export function Navbar() {
   const pathname = usePathname();
   const { user, loading, isAuthenticated } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  /**
+   * Stays true through the collapse animation. Without this the pill would
+   * un-clip and round off while the panel is still animating out, letting a
+   * square-cornered sheet spill past the rounded corners.
+   */
+  const [panelExpanded, setPanelExpanded] = useState(false);
+
+  useEffect(() => {
+    if (mobileOpen) setPanelExpanded(true);
+  }, [mobileOpen]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -46,6 +69,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Once the desktop nav takes over, the panel is display:none but still open,
+  // which would keep the pill clipped and cut off the account dropdown.
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => {
+      if (desktop.matches) setMobileOpen(false);
+    };
+    onChange();
+    desktop.addEventListener("change", onChange);
+    return () => desktop.removeEventListener("change", onChange);
+  }, []);
+
   return (
     <>
       <AnimatePresence>
@@ -56,9 +91,9 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.32, ease: EASE }}
             onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 z-40 bg-[rgba(28,25,23,0.22)] md:hidden"
+            className="fixed inset-0 z-40 bg-[rgba(28,25,23,0.22)] backdrop-blur-[2px] lg:hidden"
           />
         )}
       </AnimatePresence>
@@ -69,10 +104,10 @@ export function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className={`nav-glass-pill mx-auto w-full max-w-5xl ${
-          mobileOpen
+          panelExpanded
             ? "overflow-hidden rounded-[22px]"
             : "overflow-visible rounded-full"
-        } ${scrolled || mobileOpen ? "nav-glass-pill--scrolled" : ""}`}
+        } ${scrolled || panelExpanded ? "nav-glass-pill--scrolled" : ""}`}
       >
         <div className="flex h-[48px] items-center justify-between gap-4 px-5 md:px-6">
           <LogoWordmark height={32} />
@@ -127,43 +162,75 @@ export function Navbar() {
               onClick={() => setMobileOpen((o) => !o)}
               className="flex h-8 w-8 items-center justify-center text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)] lg:hidden"
             >
-              {mobileOpen ? (
-                <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
-              ) : (
-                <Menu className="h-[18px] w-[18px]" strokeWidth={1.75} />
-              )}
+              <span className="relative block h-[18px] w-[18px]">
+                <motion.span
+                  className="absolute inset-0"
+                  aria-hidden
+                  animate={{
+                    opacity: mobileOpen ? 0 : 1,
+                    rotate: mobileOpen ? -90 : 0,
+                    scale: mobileOpen ? 0.65 : 1,
+                  }}
+                  transition={{ duration: 0.26, ease: EASE }}
+                >
+                  <Menu className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </motion.span>
+                <motion.span
+                  className="absolute inset-0"
+                  aria-hidden
+                  animate={{
+                    opacity: mobileOpen ? 1 : 0,
+                    rotate: mobileOpen ? 0 : 90,
+                    scale: mobileOpen ? 1 : 0.65,
+                  }}
+                  transition={{ duration: 0.26, ease: EASE }}
+                >
+                  <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </motion.span>
+              </span>
             </button>
           </div>
         </div>
 
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={() => setPanelExpanded(false)}>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.22 }}
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              transition={{ duration: 0.36, ease: EASE }}
               className="overflow-hidden border-t border-[var(--border)]/50 lg:hidden"
             >
-              <nav className="flex flex-col px-5 pb-5 pt-2" aria-label="Mobile">
+              <motion.nav
+                className="flex flex-col px-5 pb-5 pt-2"
+                aria-label="Mobile"
+                variants={menuList}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              >
                 {navLinks.map((link) => {
                   const active = isActive(pathname, link.match, link.href);
                   return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`py-2.5 text-[15px] font-medium ${
-                        active
-                          ? "text-[var(--foreground)]"
-                          : "text-[var(--foreground-muted)]"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
+                    <motion.div key={link.href} variants={menuItem}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-2.5 text-[15px] font-medium ${
+                          active
+                            ? "text-[var(--foreground)]"
+                            : "text-[var(--foreground-muted)]"
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   );
                 })}
-                <div className="mt-2 flex flex-col gap-3 border-t border-[var(--border)]/50 pt-3">
+                <motion.div
+                  variants={menuItem}
+                  className="mt-2 flex flex-col gap-3 border-t border-[var(--border)]/50 pt-3"
+                >
                   {loading ? null : isAuthenticated && user ? (
                     <UserMenu
                       user={user}
@@ -175,7 +242,7 @@ export function Navbar() {
                       <Link
                         href="/login"
                         onClick={() => setMobileOpen(false)}
-                        className="py-1 text-[15px] font-medium text-[var(--foreground-muted)]"
+                        className="block py-1 text-[15px] font-medium text-[var(--foreground-muted)]"
                       >
                         Log in
                       </Link>
@@ -188,8 +255,8 @@ export function Navbar() {
                       </GlowCta>
                     </>
                   )}
-                </div>
-              </nav>
+                </motion.div>
+              </motion.nav>
             </motion.div>
           )}
         </AnimatePresence>

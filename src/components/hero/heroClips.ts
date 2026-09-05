@@ -70,7 +70,7 @@ export const HERO_CLIPS: HeroClip[] = [
   },
   {
     id: "command-mode",
-    label: "command-mode.mov",
+    label: "intent-mode.mov",
     caption: "Speak to edit, not just write",
     icon: "/notion.png",
     aspect: "portrait",

@@ -7,19 +7,19 @@ import {
   LandingBandInner,
 } from "@/components/landing/LandingBand";
 
-const INCOMING_EMAIL =
-  "Hey, quick update on the launch. We pushed the beta to about forty users last week and feedback has been mostly positive, but a few people are confused about onboarding. Can you review when you get a chance?";
+const INCOMING_MESSAGE =
+  "Priya: we're seeing a spike in failed logins since this morning's deploy. do we roll back or patch forward? need a call in the next 20 minutes.";
 
 const EXAMPLES = {
   with_context: {
-    label: "With context",
-    command: "Reply to this, keep it brief and professional",
+    label: "Replying to something",
+    command: "Reply, let's patch forward, I'll own it, ETA an hour",
     output:
-      "Thanks for the update, I'll review the onboarding feedback and mockups today. Let's sync tomorrow on the Friday timeline.",
+      "Let's patch forward rather than roll back. I'll own the fix and have it out within the hour, and I'll update this thread as soon as it's deployed.",
     showIncoming: true,
   },
   without_context: {
-    label: "Without context",
+    label: "Starting fresh",
     command: "Draft a two-line follow-up asking to confirm the Friday deadline",
     output:
       "Hi Alex, just following up on the launch timeline. Can you confirm we're still targeting Friday for the lock-in?",
@@ -41,7 +41,7 @@ export function CommandModeSection() {
             <div
               className="mb-4 inline-flex gap-1 rounded-full border border-[var(--border)] bg-white/80 p-1"
               role="tablist"
-              aria-label="Command Mode examples"
+              aria-label="Intent examples"
             >
               {(Object.keys(EXAMPLES) as ExampleMode[]).map((key) => {
                 const active = mode === key;
@@ -67,11 +67,12 @@ export function CommandModeSection() {
             <div className="rounded-2xl border border-[var(--border)] bg-white/90 p-5 text-left shadow-sm md:p-6">
               {example.showIncoming ? (
                 <p className="rounded-lg bg-[var(--brand-soft)]/60 px-3.5 py-2.5 text-[13px] leading-relaxed text-[var(--foreground-muted)]">
-                  {INCOMING_EMAIL}
+                  {INCOMING_MESSAGE}
                 </p>
               ) : (
                 <p className="text-[13px] italic text-[var(--foreground-faint)]">
-                  No selection, your command carries the intent.
+                  Nothing on screen to work from &mdash; so it writes from what
+                  you asked for.
                 </p>
               )}
 
@@ -91,16 +92,17 @@ export function CommandModeSection() {
 
           <div className="order-1 text-center lg:order-2 lg:text-left">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-              Beyond dictation
+              Intent
             </p>
             <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-              Speak to write.
+              It reads the thing
               <br />
-              Speak to edit.
+              you&apos;re looking at.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)] lg:mx-0 mx-auto">
-              Select any text, say what you need, and Lazur pastes the result -
-              reply to a thread, refactor a paragraph, or tighten a message.
+              Say what you want done. Lazur works out who you&apos;re replying
+              to, what they asked for, and how it should sound &mdash; then
+              writes it. Nothing to select. Nothing to paste.
             </p>
           </div>
         </div>

@@ -13,10 +13,13 @@ const PHASE_LABELS = ["Hold", "Speak", "Release"] as const;
 
 type DemoPhase = "hold" | "speak" | "release" | "polished";
 
-const RAW =
-  "um hey just checking in uh did you get a chance to look at the doc i shared";
+/** What's already open on screen when the user speaks. Never pasted, never explained. */
+const INCOMING =
+  "Hey, quick update on the launch. Can we sync this week to go through the onboarding feedback? I'll bring the deck.";
+
+const RAW = "reply, Thursday afternoon works, ask them to send the deck first";
 const POLISHED =
-  "Just checking in, did you get a chance to review the document I shared?";
+  "Thursday afternoon works on my end. Could you send the deck across beforehand so I have time to review it? Thanks.";
 
 const WAVE_FILL = "#141210";
 const WAVE_RIM_OPACITY = 0.11;
@@ -251,13 +254,14 @@ export function HowItWorksSection() {
           className="text-center"
         >
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/40">
-            How it works
+            Intent, not transcription
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-white md:text-[2.5rem]">
-            Three beats to flow state.
+            You said eleven words. It wrote the email.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-white/55">
-            No plugins. No app switching. One hotkey everywhere you type.
+            You didn&apos;t paste the thread. You didn&apos;t say who it was to.
+            It was already looking at it.
           </p>
 
           <p className="mt-4 flex items-center justify-center gap-2 text-[13px] font-medium tracking-[0.04em]">
@@ -304,6 +308,19 @@ export function HowItWorksSection() {
             </AnimatePresence>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 pt-7 backdrop-blur-sm sm:p-5 sm:pt-8">
+              <div className="mb-4 rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-3 text-left">
+                <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">
+                  Already open on your screen
+                </p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-white/45">
+                  {INCOMING}
+                </p>
+              </div>
+
+              <p className="mb-2 text-left text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">
+                {isPolished ? "What Lazur wrote" : "What you said"}
+              </p>
+
               <div className="min-h-[5.5rem] text-left">
                 <AnimatePresence mode="wait">
                   {displayText ? (
@@ -357,6 +374,11 @@ export function HowItWorksSection() {
               </div>
             </div>
           </div>
+
+          <p className="mt-5 text-center text-[13px] leading-relaxed text-white/40">
+            A dictation app would have typed the first line and left the rest to
+            you.
+          </p>
         </div>
       </div>
     </section>

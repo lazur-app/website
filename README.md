@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![AI Searchable — AI crawler access badge for lazur.app](https://amisearchable.cc/badge/lazur.app?style=outline)](https://amisearchable.cc/report/lazur.app)
+[![AI Searchable — AI crawler access badge for lazur.app](https://amisearchable.cc/badge/lazur.app?v=12&show=score%2Cready&engines=gemini%2Cchatgpt&overall=1)](https://amisearchable.cc/report/lazur.app)
 
 ## Getting Started
 

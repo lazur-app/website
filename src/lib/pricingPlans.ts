@@ -54,7 +54,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     india: { currency: "INR", monthly: 0, annual: 0 },
     descriptionLines: ["see if voice actually sticks.", "best for trying it out"],
     cta: "download",
-    buttonText: "start free",
+    buttonText: "join waitlist",
     features: [
       { text: "5,000 words a month", included: true },
       { text: "Dictation in every app", included: true },
@@ -77,7 +77,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     featuredBadge: "Popular",
     planType: "pro",
     cta: "download",
-    buttonText: "get pro",
+    buttonText: "join waitlist",
     features: [
       { text: "Unlimited dictation", included: true },
       { text: "300 Intent requests a month", included: true },
@@ -214,7 +214,7 @@ export function regionCurrencyLabel(region: PricingRegion): string {
 export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 
 export const TRIAL_LABEL = "7-day Pro trial";
-export const TRIAL_NOTE = "Full Pro features · no credit card to download";
+export const TRIAL_NOTE = "Full Pro features · early access waitlist open";
 export const PRO_FROM_LABEL = "From $14/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
 export const PRO_PRICE_NOTE = "Pro $14/mo · $108/yr";

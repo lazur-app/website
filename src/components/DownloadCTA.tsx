@@ -24,17 +24,15 @@ export function DownloadCTA() {
             Your voice, upgraded.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Download for macOS. Speak naturally, lazur lands what you meant at
-            your cursor.
+            Speak naturally, Lazur lands what you meant at your cursor.
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3">
             <Link
-              href="/download"
+              href="/exclusive-access"
               className="btn-dark inline-flex items-center gap-2.5 px-7 py-3.5 text-[15px]"
             >
-              <AppleIcon />
-              Download for Mac
+              Get Early Access
             </Link>
             <Link
               href="/login"

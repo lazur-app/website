@@ -43,6 +43,6 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
     question: "Is there a Windows version?",
     answer:
       "macOS today, Windows soon. Join the waitlist and we'll email you the moment it's ready.",
-    link: { href: "/download", label: "Join the Windows waitlist" },
+    link: { href: "/exclusive-access", label: "Join the waitlist" },
   },
 ];

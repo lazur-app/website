@@ -187,10 +187,10 @@ export function TestimonialsSection() {
               </p>
             </div>
             <Link
-              href="/download"
+              href="/exclusive-access"
               className="mt-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-[rgba(250,204,21,0.95)] transition-opacity hover:opacity-80"
             >
-              Try it free →
+              Join waitlist →
             </Link>
           </motion.div>
 

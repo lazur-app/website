@@ -65,7 +65,7 @@ export default function PricingPage() {
 
   const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
     if (plan.cta === "download") {
-      window.location.href = "/download";
+      window.location.href = "/exclusive-access";
       return;
     }
 
@@ -153,12 +153,12 @@ export default function PricingPage() {
         >
           {FAIR_USE_FOOTNOTE}{" "}
           <Link
-            href="/download"
+            href="/exclusive-access"
             className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"
           >
-            Download the app
+            Join the waitlist
           </Link>{" "}
-          to start your trial.
+          for early access.
         </m.p>
 
         <m.div

@@ -30,7 +30,7 @@ export function buildSoftwareApplicationSchema() {
     operatingSystem: "macOS",
     description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
-    downloadUrl: `${SITE_URL}/download`,
+    downloadUrl: `${SITE_URL}/exclusive-access`,
     offers: [
       {
         "@type": "Offer",

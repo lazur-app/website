@@ -7,7 +7,7 @@ const footerLinks = {
     { href: "/use-cases", label: "Use cases" },
     { href: "/compare", label: "Comparisons" },
     { href: "/blog", label: "Blog" },
-    { href: "/download", label: "Download" },
+    { href: "/exclusive-access", label: "Waitlist" },
     { href: "/cemetery", label: "Keyboard Cemetery" },
   ],
   Account: [

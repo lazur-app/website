@@ -68,10 +68,10 @@ export default function UseCasesHubPage() {
           </Link>
           , or{" "}
           <Link
-            href="/download"
+            href="/exclusive-access"
             className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:decoration-[var(--foreground)]"
           >
-            download for Mac
+            join the waitlist
           </Link>
           .
         </p>

@@ -61,21 +61,11 @@ export function LandingPricingSection() {
 
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <GlowCta
-                href={isWindows ? "/exclusive-access" : "/download"}
+                href="/exclusive-access"
                 variant="light"
                 className="final-cta-btn--on-light"
               >
-                {isWindows ? (
-                  <>
-                    <Monitor className="h-4 w-4" strokeWidth={2} />
-                    Get notified for Windows
-                  </>
-                ) : (
-                  <>
-                    <AppleIcon className="h-4 w-4" />
-                    Download for Mac. Free
-                  </>
-                )}
+                Join Waitlist
               </GlowCta>
               <Link
                 href="/pricing"

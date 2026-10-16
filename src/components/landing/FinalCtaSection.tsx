@@ -36,32 +36,13 @@ export function FinalCtaSection() {
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <GlowCta
-            href={isWindows ? "/exclusive-access" : "/download"}
+            href="/exclusive-access"
             variant="light"
           >
-            {isWindows ? (
-              <>
-                <Monitor className="h-5 w-5" strokeWidth={2} />
-                Get notified for Windows
-              </>
-            ) : (
-              <>
-                <AppleIcon className="h-5 w-5" />
-                Download for Mac. Free
-              </>
-            )}
+            Get Early Access
           </GlowCta>
           <p className="text-[12px] text-white/40">
-            {isWindows ? (
-              <Link
-                href="/download"
-                className="font-medium text-white/60 hover:text-white"
-              >
-                Have a Mac? Download →
-              </Link>
-            ) : (
-              "macOS today, Windows soon · 7-day Pro trial · no credit card"
-            )}
+            Early access waitlist open · Be the first to try Lazur
           </p>
         </div>
       </motion.div>

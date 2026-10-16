@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/pricing",
-    "/download",
+    "/exclusive-access",
     "/blog",
     "/compare",
     "/use-cases",

@@ -8,25 +8,8 @@ import { HeroDemoGrid } from "./hero/HeroDemoGrid";
 import { HeroDemoModal } from "./hero/HeroDemoModal";
 import { HeroShowreel } from "./hero/HeroShowreel";
 import { HeroFluidWaves } from "./hero/HeroFluidWaves";
-import { HeroVoiceWord } from "./hero/HeroMottoWords";
 import { HeroDownloadCta } from "./HeroDownloadCta";
 import { detectPlatform, type Platform } from "@/lib/platform";
-
-type HeadlinePart =
-  | { type: "word"; text: string }
-  | { type: "highlight"; text: string }
-  | { type: "break" };
-
-const headline: HeadlinePart[] = [
-  { type: "word", text: "Stop" },
-  { type: "word", text: "explaining" },
-  { type: "break" },
-  { type: "word", text: "your" },
-  { type: "highlight", text: "screen" },
-  { type: "break" },
-  { type: "word", text: "to" },
-  { type: "word", text: "AI." },
-];
 
 export function Hero() {
   const [platform, setPlatform] = useState<Platform | null>(null);
@@ -37,8 +20,6 @@ export function Hero() {
   }, []);
 
   const isWindows = platform === "windows";
-
-  let wordIndex = 0;
 
   return (
     <section className="relative min-h-[100svh] overflow-x-clip bg-[var(--background)] md:min-h-[100dvh] md:overflow-hidden">
@@ -62,52 +43,29 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="flex max-w-[7.2em] flex-wrap items-baseline justify-center gap-x-[0.2em] font-display text-[clamp(2.9rem,11vw,4.5rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-[var(--foreground)] md:max-w-none md:leading-[1.08]"
+            className="font-display text-[clamp(4rem,13vw,7.5rem)] font-medium leading-[0.92] tracking-[-0.04em] text-[var(--foreground)]"
           >
-            {headline.map((part, i) => {
-              if (part.type === "break") {
-                return (
-                  <span
-                    key={`br-${i}`}
-                    className="h-0 basis-full md:hidden"
-                    aria-hidden
-                  />
-                );
-              }
-
-              const index = wordIndex++;
-
-              if (part.type === "highlight") {
-                return <HeroVoiceWord key={part.text}>{part.text}</HeroVoiceWord>;
-              }
-
-              return (
-                <motion.span
-                  key={`${part.text}-${i}`}
-                  initial={{ y: 16 }}
-                  animate={{ y: 0 }}
-                  transition={{
-                    delay: 0.15 + index * 0.1,
-                    duration: 0.7,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="inline-block shrink-0"
-                >
-                  {part.text}
-                </motion.span>
-              );
-            })}
+            lazur
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.55 }}
+            className="mt-5 max-w-[18rem] text-[clamp(1.25rem,3.2vw,1.8rem)] font-medium leading-tight tracking-[-0.015em] text-[var(--foreground)] md:mt-6 md:max-w-none"
+          >
+            meet your new ai sidekick.
+          </motion.p>
+
+          {/* <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.32, duration: 0.55 }}
             className="mt-5 max-w-[18rem] text-[16px] leading-relaxed text-[var(--foreground-muted)] md:mt-6 md:max-w-xl md:text-[17px] md:leading-[1.55]"
           >
-            Lazur can see it. Say what you want, and the finished text lands at
-            your cursor &mdash; in any app.
-          </motion.p>
+            Honestly? Just talk. Lazur already sees your screen, gets what you mean,
+            and drops finished text right at your cursor in any app.
+          </motion.p> */}
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -120,33 +78,7 @@ export function Hero() {
               variant="minimal"
               className="w-full md:w-auto"
             />
-            <button
-              type="button"
-              onClick={() => setDemoOpen(true)}
-              className="btn-outline-dark hidden min-h-[48px] items-center justify-center gap-2 px-5 text-[14px] md:inline-flex"
-            >
-              Watch it read a screen
-            </button>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.55, duration: 0.45 }}
-            className="mt-3 text-[12px] text-[var(--foreground-faint)] md:text-[13px]"
-          >
-            Hold a key, speak, release · Your voice never leaves your computer ·{" "}
-            {isWindows ? (
-              <Link
-                href="/download"
-                className="font-medium text-[var(--foreground-muted)] underline-offset-2 transition-colors hover:text-[var(--foreground)] hover:underline"
-              >
-                Windows waitlist open
-              </Link>
-            ) : (
-              "macOS today, Windows soon"
-            )}
-          </motion.p>
         </div>
 
         <motion.div
@@ -155,9 +87,9 @@ export function Hero() {
           transition={{ delay: 0.65, duration: 0.5 }}
           className="mt-10 hidden w-full max-w-4xl md:mt-12 md:block"
         >
-          <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
+          {/* <p className="mb-3 text-center text-[12px] text-[var(--foreground-faint)] md:text-[13px]">
             It reads the app you&apos;re already in
-          </p>
+          </p> */}
           <AppMarquee
             iconSize={20}
             iconClassName="h-5 w-5 shrink-0 object-contain opacity-45 grayscale"

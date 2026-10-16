@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/download",
+        destination: "/exclusive-access",
+        permanent: false,
+      },
+      {
         source: "/blog/lazur-vs-wispr-flow",
         destination: "/compare/lazur-vs-wispr-flow",
         permanent: true,

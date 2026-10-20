@@ -1,5 +1,5 @@
-import { CommandModeSection } from "@/components/landing/CommandModeSection";
-import { PrivateSection } from "@/components/landing/PrivateSection";
+// import { CommandModeSection } from "@/components/landing/CommandModeSection";
+// import { PrivateSection } from "@/components/landing/PrivateSection";
 import { HoursBackSection } from "@/components/landing/HoursBackSection";
 import { SeeItWorkSection } from "@/components/landing/SeeItWorkSection";
 import { WorksAnywhereSection } from "@/components/landing/WorksAnywhereSection";
@@ -18,8 +18,8 @@ import { LandingLowerFlow } from "@/components/landing/LandingLowerFlow";
 export function LandingPageSections() {
   return (
     <LandingLowerFlow>
-      <CommandModeSection />
-      <PrivateSection />
+      {/* <CommandModeSection /> */}
+      {/* <PrivateSection /> */}
       <HoursBackSection />
       <SeeItWorkSection />
       <WorksAnywhereSection />

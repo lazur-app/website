@@ -12,17 +12,18 @@ const COMPETITORS = [
   "Apple Dictation",
 ];
 
-const DICTATION_STEPS = [
-  "Read the thread again",
+const BASIC_VOICE_STEPS = [
+  "Open the thread",
   "Work out what you want to say",
-  "Dictate the whole reply, sentence by sentence",
-  "Fix the tone so it stops reading like speech",
-  "Fix the bullets and the line breaks",
+  "Write the reply from scratch",
+  "Re-read it for tone",
+  "Fix the structure and wording",
   "Send",
 ] as const;
 
 const LAZUR_STEPS = [
   "\u201creply, Thursday works, ask for the deck first\u201d",
+  "Lazur uses the thread and your tone",
   "Send",
 ] as const;
 
@@ -88,16 +89,16 @@ export function CompetitorComparison() {
             Why lazur
           </p>
           <h2 className="mx-auto mt-2 font-display text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.03em] text-[var(--foreground)] md:text-[2.5rem]">
-            The difference shows up after it types.
+            The difference is having context.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            Every voice tool gets words onto the screen. The only question that
-            matters is how much work is left when it&apos;s done.
+            Most tools wait for instructions. Lazur already understands the
+            work in front of you and helps move it forward.
           </p>
         </motion.div>
 
         <p className="mb-5 text-center text-[12px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-          Replying to one client email
+          One email. The whole context already there.
         </p>
 
         <div className="grid gap-5 md:grid-cols-2 md:gap-6">
@@ -108,9 +109,9 @@ export function CompetitorComparison() {
             className="rounded-[14px] border border-[var(--border)] bg-white/60 p-6 md:p-7"
           >
             <p className="text-[13px] font-semibold tracking-tight text-[var(--foreground-muted)]">
-              With a dictation app
+              Without Lazur
             </p>
-            <StepList steps={DICTATION_STEPS} tone="muted" />
+            <StepList steps={BASIC_VOICE_STEPS} tone="muted" />
             <p className="mt-5 border-t border-[var(--border)] pt-4 text-[14px] font-medium text-[var(--foreground-muted)]">
               Six steps. Five of them yours.
             </p>
@@ -132,7 +133,7 @@ export function CompetitorComparison() {
               />
               <StepList steps={LAZUR_STEPS} tone="strong" />
               <p className="mt-5 border-t border-[var(--border)] pt-4 text-[14px] font-medium text-[var(--foreground)]">
-                Two steps. One of them is Send.
+                Three steps. One of them is Send.
               </p>
             </SoftCard>
           </motion.div>
@@ -145,8 +146,8 @@ export function CompetitorComparison() {
           className="mt-8 text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
         >
           Compared with {COMPETITORS.join(", ")}. Capabilities vary by plan and
-          platform, and every one of them is good at getting words down. Lazur
-          is built for what happens after.
+          platform. Lazur is built to understand the context and help with what
+          happens next.
         </motion.p>
       </div>
     </section>

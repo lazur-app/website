@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AppMarquee } from "@/components/AppMarquee";
 import { HeroDemoGrid } from "./hero/HeroDemoGrid";
 import { HeroDemoModal } from "./hero/HeroDemoModal";
@@ -11,13 +11,45 @@ import { HeroFluidWaves } from "./hero/HeroFluidWaves";
 import { HeroDownloadCta } from "./HeroDownloadCta";
 import { detectPlatform, type Platform } from "@/lib/platform";
 
+const ROTATING_HEADLINES = [
+  "Learn anything.",
+  "Present with confidence.",
+  "Debug your code.",
+  "Translate instantly.",
+  "Create better docs.",
+  "Structure your ideas.",
+];
+
 export function Hero() {
   const [platform, setPlatform] = useState<Platform | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     setPlatform(detectPlatform());
   }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const interval = window.setInterval(() => {
+      setHeadlineIndex((currentIndex) =>
+        (currentIndex + 1) % ROTATING_HEADLINES.length,
+      );
+    }, 2800);
+
+    return () => window.clearInterval(interval);
+  }, [prefersReducedMotion]);
 
   const isWindows = platform === "windows";
 
@@ -43,18 +75,50 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[clamp(4rem,13vw,7.5rem)] font-medium leading-[0.92] tracking-[-0.04em] text-[var(--foreground)]"
+            className="max-w-4xl font-display text-[clamp(2.5rem,5vw,4.75rem)] font-medium leading-[0.96] tracking-[-0.04em] text-[var(--foreground)]"
           >
-            lazur
+            <span className="block">Talk to your computer.</span>
+            <span
+              className="relative mt-1 block min-h-[1em] [perspective:900px]"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={ROTATING_HEADLINES[headlineIndex]}
+                  className="block origin-bottom"
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : { opacity: 0, y: 16, rotateX: -12, scale: 0.985 }
+                  }
+                  animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  exit={
+                    prefersReducedMotion
+                      ? undefined
+                      : { opacity: 0, y: -16, rotateX: 12, scale: 0.985 }
+                  }
+                  transition={{
+                    duration: 0.52,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {ROTATING_HEADLINES[headlineIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.55 }}
-            className="mt-5 max-w-[18rem] text-[clamp(1.25rem,3.2vw,1.8rem)] font-medium leading-tight tracking-[-0.015em] text-[var(--foreground)] md:mt-6 md:max-w-none"
+            className="mt-5 max-w-[52rem] text-[clamp(1.15rem,2.6vw,1.55rem)] font-medium leading-tight tracking-[-0.015em] text-[var(--foreground)] md:mt-6"
           >
-            meet your new ai sidekick.
+            <span className="block">
+              Your AI buddy that understands your screen, helps you think
+            </span>
+            <span className="block">and turns what you say into actions in any app.</span>
           </motion.p>
 
           {/* <motion.p
@@ -97,10 +161,8 @@ export function Hero() {
           />
         </motion.div>
 
-        <HeroShowreel
-          onOpen={() => setDemoOpen(true)}
-          paused={demoOpen}
-        />
+        {/* Temporarily hidden while the product story is being repositioned around the AI buddy. */}
+        {/* <HeroShowreel onOpen={() => setDemoOpen(true)} paused={demoOpen} /> */}
       </div>
 
       <HeroDemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />

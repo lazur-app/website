@@ -8,14 +8,14 @@ import {
 
 const MODES = [
   {
-    label: "Dictation",
+    label: "Get unstuck",
     detail:
-      "Say it, and it writes it down properly — cleaned up and formatted for wherever you're typing.",
+      "Start with the rough version. Lazur helps turn it into something clear and ready to use.",
   },
   {
-    label: "Intent",
+    label: "Stay in flow",
     detail:
-      "Say what you want, and it writes it for you — from whatever is already on your screen.",
+      "Move from idea to reply to finished task without losing your train of thought.",
   },
 ] as const;
 
@@ -47,10 +47,11 @@ export function HoursBackSection() {
           <div className="mt-10 grid gap-8 border-t border-[var(--border)] pt-10 md:mt-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16 md:pt-12">
             <div className="max-w-xl">
               <h2 className="font-display text-[1.55rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.15rem]">
-                One key. Two ways to use it.
+                More time for the work that matters.
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-                Same emails, same docs, same prompts. You just stop typing them.
+                Lazur handles the small translations between what you mean and
+                what needs to happen next.
               </p>
             </div>
             <div className="grid gap-8 sm:grid-cols-2">

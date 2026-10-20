@@ -27,8 +27,8 @@ export function FinalCtaSection() {
         className="mx-auto max-w-xl text-center"
       >
         <h2 className="font-display text-[1.7rem] font-semibold tracking-tight sm:text-[2.15rem] md:text-[2.6rem]">
-          Your voice is your most powerful tool.{" "}
-          <em className="italic font-medium text-white/80">Start using it.</em>
+           Your AI buddy is your most powerful tool at work.{" "}
+           <em className="italic font-medium text-white/80">Start collaborating with it.</em>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/55">
           Hold a hotkey. Speak. Get the finished thing in Slack, email,

@@ -14,6 +14,8 @@ import { detectPlatform } from "@/lib/platform";
 
 export default function ExclusiveAccessPage() {
   const [email, setEmail] = useState("");
+  const [excitedToUseFor, setExcitedToUseFor] = useState("");
+  const [aboutYourself, setAboutYourself] = useState("");
   const [platform, setPlatform] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,6 +34,8 @@ export default function ExclusiveAccessPage() {
       const response = await submitExclusiveAccessRequest(email, {
         platform: platform ?? undefined,
         source: "website",
+        excitedToUseFor,
+        aboutYourself: aboutYourself || undefined,
       });
       setResult(response);
     } catch (err) {
@@ -58,7 +62,7 @@ export default function ExclusiveAccessPage() {
           </span>
         </div>
 
-        <div className="glass rounded-[var(--radius-card)] px-6 py-8 md:px-8">
+        <div className="pricing-bevel-card px-6 py-8 md:px-8">
           {result ? (
             <div className="text-center">
               <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--brand)]/10 text-[var(--brand)]">
@@ -93,7 +97,7 @@ export default function ExclusiveAccessPage() {
                     htmlFor="exclusive-access-email"
                     className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
                   >
-                    Email address
+                    Email address *
                   </label>
                   <input
                     id="exclusive-access-email"
@@ -103,7 +107,40 @@ export default function ExclusiveAccessPage() {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="you@company.com"
-                    className="soft-card w-full px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                    className="pricing-bevel-field w-full px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="exclusive-access-excitement"
+                    className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
+                  >
+                    What are you excited to use Lazur for? *
+                  </label>
+                  <textarea
+                    id="exclusive-access-excitement"
+                    required
+                    value={excitedToUseFor}
+                    onChange={(event) => setExcitedToUseFor(event.target.value)}
+                    rows={3}
+                    className="pricing-bevel-field w-full resize-y px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="exclusive-access-about"
+                    className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
+                  >
+                    Tell me about yourself. <span className="text-[var(--foreground-faint)]">(optional)</span>
+                  </label>
+                  <textarea
+                    id="exclusive-access-about"
+                    value={aboutYourself}
+                    onChange={(event) => setAboutYourself(event.target.value)}
+                    rows={3}
+                    className="pricing-bevel-field w-full resize-y px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
                   />
                 </div>
 
@@ -114,7 +151,7 @@ export default function ExclusiveAccessPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="btn-dark w-full rounded-xl px-4 py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
+                  className="pricing-bevel-button w-full rounded-xl bg-[var(--foreground)] px-4 py-3.5 text-sm font-semibold text-[var(--background)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? "Submitting…" : "Ask for exclusive access"}
                 </button>

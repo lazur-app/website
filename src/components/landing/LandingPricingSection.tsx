@@ -10,14 +10,12 @@ import {
   LandingBand,
   LandingBandInner,
 } from "@/components/landing/LandingBand";
-import { usePricingRegion } from "@/hooks/usePricingRegion";
 import { detectPlatform, type Platform } from "@/lib/platform";
 import { TRIAL_LABEL } from "@/lib/pricingPlans";
 
 export function LandingPricingSection() {
-  const { region } = usePricingRegion();
-  const proPrice = region === "india" ? "₹300/mo" : "$14/mo";
-  const powerPrice = region === "india" ? "₹750/mo" : "$35/mo";
+  const proPrice = "$18/mo";
+  const powerPrice = "$120/mo";
   const [platform, setPlatform] = useState<Platform | null>(null);
 
   useEffect(() => {
@@ -27,13 +25,13 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "Dictation only · 5,000 words/month", featured: false },
+    { name: "Free", detail: "Pro access for 7 days · no card needed", featured: false },
     {
       name: "Pro",
-      detail: `Unlimited dictation · 300 Intent · ${proPrice}`,
+      detail: `Unlimited talk · 150 agent messages · ${proPrice}`,
       featured: true,
     },
-    { name: "Power", detail: `Unlimited everything · ${powerPrice}`, featured: false },
+    { name: "Power", detail: `Unlimited talk · 1,000 agent messages · ${powerPrice}`, featured: false },
   ] as const;
 
   return (
@@ -55,7 +53,7 @@ export function LandingPricingSection() {
               {TRIAL_LABEL}. Then {proPrice}.
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Full Intent access for the whole trial. No credit card to
+              Full AI buddy access for the whole trial. No credit card to
               download. Cancel anytime.
             </p>
 
@@ -75,11 +73,6 @@ export function LandingPricingSection() {
               </Link>
             </div>
 
-            {region === "india" ? (
-              <p className="mt-4 text-[12px] text-[var(--foreground-faint)]">
-                India pricing is tax-exclusive. GST added at checkout.
-              </p>
-            ) : null}
           </div>
 
           <ul className="border-t border-[var(--border)]">

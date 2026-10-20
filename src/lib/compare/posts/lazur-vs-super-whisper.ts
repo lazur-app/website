@@ -62,7 +62,7 @@ export const lazurVsSuperWhisper: ComparisonPage = {
     },
     {
       feature: "Pricing",
-      lazur: "Free 5k words/mo · Pro $14/mo · Power $35/mo",
+      lazur: "7-day Pro trial · Pro $18/mo · Power $120/mo",
       competitor: "One-time / subscription (verify on site)",
     },
   ],

@@ -5,19 +5,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggle";
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
-import { usePricingRegion } from "@/hooks/usePricingRegion";
 import {
-  INDIA_GST_NOTE,
   maxAnnualSavings,
   PRICING_SNAPSHOT,
-  regionCurrencyLabel,
   type BillingInterval,
 } from "@/lib/pricingPlans";
 
 export function PricingSnapshotSection() {
-  const { region, loading: regionLoading } = usePricingRegion();
   const [interval, setInterval] = useState<BillingInterval>("monthly");
-  const maxSavings = maxAnnualSavings(region);
+  const maxSavings = maxAnnualSavings("international");
 
   return (
     <section id="pricing-snapshot" className="px-6 py-14 md:py-20">
@@ -33,16 +29,11 @@ export function PricingSnapshotSection() {
             Pricing
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-            Try Pro free. Stay on Pro or Power.
+            Choose Pro or Power.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[15px] text-[var(--foreground-muted)]">
-            7-day Pro trial · then Pro or Power
+            Start with a 7-day Pro trial · then choose Pro or Power
           </p>
-          {!regionLoading ? (
-            <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">
-              {regionCurrencyLabel(region)} + alternate currency on each card
-            </p>
-          ) : null}
           <div className="mt-6 flex justify-center">
             <BillingIntervalToggle
               interval={interval}
@@ -50,14 +41,9 @@ export function PricingSnapshotSection() {
               onChange={setInterval}
             />
           </div>
-          {region === "india" ? (
-            <p className="mx-auto mt-4 max-w-md text-[12px] leading-relaxed text-[var(--foreground-faint)]">
-              {INDIA_GST_NOTE}
-            </p>
-          ) : null}
         </motion.div>
 
-        <div className="grid items-stretch gap-4 md:grid-cols-2">
+        <div className="grid items-stretch gap-4 md:grid-cols-3">
           {PRICING_SNAPSHOT.map((plan, i) => (
             <motion.div
               key={plan.id}
@@ -69,7 +55,7 @@ export function PricingSnapshotSection() {
             >
               <PricingPlanCard
                 plan={plan}
-                region={region}
+                region="international"
                 interval={interval}
                 compact
                 onAction={() => {

@@ -29,8 +29,8 @@ export function WorksEverywhereSection() {
               One hotkey. Every app.
             </h2>
             <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              System-wide on macOS. Hold ⌃ Space, speak, release, polished text
-              lands where you&apos;re already working.
+              System-wide on macOS. Hold ⌃ Space, ask for help, and get the
+              next useful thing where you&apos;re already working.
             </p>
 
             <SoftCard hover={false} className="mt-8 p-5 md:p-6">

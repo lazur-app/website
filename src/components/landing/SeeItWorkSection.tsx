@@ -33,7 +33,7 @@ const CASES: UseCase[] = [
       "Hey, can you review the onboarding feedback by Friday? A few people are getting stuck.",
     spoken: "reply, yes I'll have notes by Thursday, keep it warm",
     caption:
-      "You don't dictate the email. Lazur reads the thread in front of you and writes the reply.",
+      "Your AI buddy reads the thread in front of you and drafts the reply with the right context.",
     output:
       "Hi Alex, yes, I'll have notes on the onboarding feedback by Thursday. Talk soon.",
     app: "Gmail",
@@ -47,7 +47,7 @@ const CASES: UseCase[] = [
     spoken:
       "refactor this to use zustand instead of context and add error handling for failed logins",
     caption:
-      "Speak the change. Lazur reads the file and writes the instruction your agent can actually run.",
+      "Describe the change. Lazur reads the file and gives your coding agent an instruction it can actually run.",
     output:
       "Refactor the auth handler to use Zustand instead of React Context. Add error handling for failed login attempts with user-facing messages.",
     app: "Cursor",
@@ -60,7 +60,7 @@ const CASES: UseCase[] = [
     spoken:
       "okay so I need a competitive teardown of Wispr Flow, Aqua Voice, and us, a table of what's actually different, not marketing fluff, plus a rec for a founder who lives in Slack and Cursor",
     caption:
-      "You talk through the messy brief. Lazur writes the prompt you'd have typed.",
+      "Talk through the messy brief. Lazur turns your thinking into a prompt you can actually use.",
     output:
       "Compare Wispr Flow, Aqua Voice, and Lazur for a founder who works all day in Slack and Cursor. Give me a table of what actually differs (speed, rewrite, screen context, privacy, pricing), skip marketing claims. End with one recommendation and why.",
     app: "New chat",
@@ -73,7 +73,7 @@ const CASES: UseCase[] = [
     spoken:
       "standup update we shipped the invite flow last night two bugs in the share modal I'll pair with Priya after lunch otherwise on track for Thursday",
     caption:
-      "Rambling standup notes become a message you can send without editing.",
+      "A scattered update becomes a clear message your team can act on.",
     output:
       "Standup:\n• Shipped the invite flow last night\n• Two bugs in the share modal, pairing with Priya after lunch\n• Still on track for Thursday",
     app: "#eng-standup",
@@ -241,7 +241,7 @@ export function SeeItWorkSection() {
             See it work
           </p>
           <h2 className="mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-            The finished thing.
+            From thought to done.
           </h2>
         </div>
 

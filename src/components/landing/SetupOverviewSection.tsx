@@ -22,7 +22,7 @@ const STEPS = [
     icon: KeyRound,
     step: "03",
     title: "Hold ⌃ Space",
-    body: "Speak in any app. Release to paste polished text at your cursor.",
+    body: "Ask for help in any app. Release to put the finished result at your cursor.",
   },
 ] as const;
 
@@ -41,7 +41,7 @@ export function SetupOverviewSection() {
             60-second setup
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-            Up and dictating in three steps.
+            Your AI buddy, ready in three steps.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[15px] text-[var(--foreground-muted)]">
             No plugins. No per-app extensions. One menu bar app for your whole Mac.

@@ -9,17 +9,17 @@ import {
 } from "framer-motion";
 import { HowItWorksFlowCapsule } from "./HowItWorksFlowCapsule";
 
-const PHASE_LABELS = ["Hold", "Speak", "Release"] as const;
+const PHASE_LABELS = ["Notice", "Ask", "Done"] as const;
 
 type DemoPhase = "hold" | "speak" | "release" | "polished";
 
-/** What's already open on screen when the user speaks. Never pasted, never explained. */
+/** What's already open on screen when the user asks for help. */
 const INCOMING =
-  "Hey, quick update on the launch. Can we sync this week to go through the onboarding feedback? I'll bring the deck.";
+  "The launch thread is open, the onboarding feedback is in the doc, and the deck is ready to share.";
 
-const RAW = "reply, Thursday afternoon works, ask them to send the deck first";
+const RAW = "reply to the thread, suggest Thursday afternoon, and ask for the deck";
 const POLISHED =
-  "Thursday afternoon works on my end. Could you send the deck across beforehand so I have time to review it? Thanks.";
+  "Thursday afternoon works for me. Could you send the deck across beforehand so I can review it? Thanks.";
 
 const WAVE_FILL = "#141210";
 const WAVE_RIM_OPACITY = 0.11;
@@ -86,8 +86,8 @@ function phaseLabelActive(
   label: (typeof PHASE_LABELS)[number],
   phase: DemoPhase,
 ): boolean {
-  if (label === "Hold") return phase === "hold";
-  if (label === "Speak") return phase === "speak";
+  if (label === "Notice") return phase === "hold";
+  if (label === "Ask") return phase === "speak";
   return phase === "release";
 }
 
@@ -254,14 +254,14 @@ export function HowItWorksSection() {
           className="text-center"
         >
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/40">
-            Intent, not transcription
+            An AI buddy, not a blank text box
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-white md:text-[2.5rem]">
-            You said eleven words. It wrote the email.
+            It sees the context. You just say what you need.
           </h2>
           <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-white/55">
-            You didn&apos;t paste the thread. You didn&apos;t say who it was to.
-            It was already looking at it.
+            Lazur understands what&apos;s open, follows the thread, and turns a
+            quick request into the next useful action.
           </p>
 
           <p className="mt-4 flex items-center justify-center gap-2 text-[13px] font-medium tracking-[0.04em]">
@@ -318,7 +318,7 @@ export function HowItWorksSection() {
               </div>
 
               <p className="mb-2 text-left text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">
-                {isPolished ? "What Lazur wrote" : "What you said"}
+                {isPolished ? "What your AI buddy did" : "What you asked"}
               </p>
 
               <div className="min-h-[5.5rem] text-left">
@@ -376,8 +376,8 @@ export function HowItWorksSection() {
           </div>
 
           <p className="mt-5 text-center text-[13px] leading-relaxed text-white/40">
-            A dictation app would have typed the first line and left the rest to
-            you.
+            A basic voice tool would have typed your request and left the work
+            to you.
           </p>
         </div>
       </div>

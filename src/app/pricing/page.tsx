@@ -10,7 +10,6 @@ import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggl
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
 import { PricingStudentOffer } from "@/components/pricing/PricingStudentOffer";
 import { PricingTimeCalculator } from "@/components/pricing/PricingTimeCalculator";
-import { usePricingRegion } from "@/hooks/usePricingRegion";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
   consumeCheckoutIntent,
@@ -24,7 +23,6 @@ import {
   maxAnnualSavings,
   WEBSITE_PLANS,
   type BillingInterval,
-  type PricingRegion,
 } from "@/lib/pricingPlans";
 
 function toBillingInterval(interval: BillingInterval): "month" | "year" {
@@ -32,18 +30,17 @@ function toBillingInterval(interval: BillingInterval): "month" | "year" {
 }
 
 export default function PricingPage() {
-  const { region, loading: regionLoading } = usePricingRegion();
   const [interval, setInterval] = useState<BillingInterval>("monthly");
   const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const intentHandled = useRef(false);
-  const maxSavings = maxAnnualSavings(region);
+  const maxSavings = maxAnnualSavings("international");
 
   const startCheckout = useCallback(
-    async (planType: PlanType, billingInterval: "month" | "year", pricingRegion: PricingRegion) => {
+    async (planType: PlanType, billingInterval: "month" | "year") => {
       setError(null);
       setCheckoutPlan(planType);
-      const result = await redirectToCheckout(planType, billingInterval, pricingRegion);
+      const result = await redirectToCheckout(planType, billingInterval, "international");
       if (!result.ok) {
         setError(result.error);
         setCheckoutPlan(null);
@@ -53,15 +50,15 @@ export default function PricingPage() {
   );
 
   useEffect(() => {
-    if (regionLoading || intentHandled.current) return;
+    if (intentHandled.current) return;
     if (!hasValidSessionToken()) return;
 
     const intent = consumeCheckoutIntent();
     if (!intent) return;
 
     intentHandled.current = true;
-    void startCheckout(intent.plan, intent.interval, region);
-  }, [regionLoading, region, startCheckout]);
+    void startCheckout(intent.plan, intent.interval);
+  }, [startCheckout]);
 
   const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
     if (plan.cta === "download") {
@@ -70,7 +67,7 @@ export default function PricingPage() {
     }
 
     const planType = plan.planType;
-    if (!planType || regionLoading) return;
+    if (!planType) return;
 
     const billingInterval = toBillingInterval(interval);
 
@@ -80,7 +77,7 @@ export default function PricingPage() {
       return;
     }
 
-    await startCheckout(planType, billingInterval, region);
+    await startCheckout(planType, billingInterval);
   };
 
   const checkoutBusy = checkoutPlan !== null;
@@ -96,7 +93,7 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
           >
-            Simple pricing. Try Pro free first.
+            Try Pro free for 7 days. Then choose your plan.
           </m.h1>
           <p className="mx-auto mt-3 max-w-md text-[15px] lowercase leading-relaxed text-[var(--foreground-muted)]">
             three plans. no weird add-ons. start talking.
@@ -133,7 +130,7 @@ export default function PricingPage() {
             >
               <PricingPlanCard
                 plan={plan}
-                region={region}
+                region="international"
                 interval={interval}
                 onAction={() => void handlePlanAction(plan)}
                 actionLoading={

@@ -52,20 +52,19 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     name: "Free",
     international: { currency: "USD", monthly: 0, annual: 0 },
     india: { currency: "INR", monthly: 0, annual: 0 },
-    descriptionLines: ["see if voice actually sticks.", "best for trying it out"],
+    descriptionLines: ["try Pro free for 7 days", "no credit card needed"],
     cta: "download",
     buttonText: "join waitlist",
     features: [
-      { text: "5,000 words a month", included: true },
-      { text: "Dictation in every app", included: true },
-      { text: "On-device speech, nothing uploaded", included: true },
-      { text: "Intent, which reads your screen", included: false },
+      { text: "Full Pro access for 7 days", included: true },
+      { text: "Unlimited talk", included: true },
+      { text: "No credit card required", included: true },
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    international: { currency: "USD", monthly: 14, annual: 108 },
+    international: { currency: "USD", monthly: 18, annual: 180 },
     india: {
       currency: "INR",
       monthly: 300,
@@ -79,15 +78,15 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "join waitlist",
     features: [
-      { text: "Unlimited dictation", included: true },
-      { text: "300 Intent requests a month", included: true },
-      { text: "Polish + style matching", included: true },
+      { text: "Unlimited talk", included: true },
+      { text: "Unlimited voice input", included: true },
+      { text: "150 agent messages a month", included: true },
     ],
   },
   {
     id: "power",
     name: "Power",
-    international: { currency: "USD", monthly: 35, annual: 270 },
+    international: { currency: "USD", monthly: 120, annual: 1152 },
     india: {
       currency: "INR",
       monthly: 750,
@@ -97,11 +96,11 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     descriptionLines: ["intent on tap.", "best for people who live in it"],
     planType: "power",
     cta: "checkout",
-    buttonText: "get power",
+    buttonText: "join waitlist",
     features: [
-      { text: "True unlimited dictation", included: true },
-      { text: "Unlimited Intent, fair use", included: true },
-      { text: "Priority support", included: true },
+      { text: "Unlimited talk", included: true },
+      { text: "Unlimited voice input", included: true },
+      { text: "1,000 agent messages a month", included: true },
     ],
   },
 ];
@@ -161,7 +160,7 @@ export function planPrices(
   if (pricing.monthly === 0) {
     return {
       price: "Free",
-      period: "forever",
+      period: "for 7 days",
     };
   }
 
@@ -182,8 +181,8 @@ export function planPrices(
   } else {
     const savings = annualSavingsPercent(pricing.monthly, pricing.annual);
     display = {
-      price: formatAmount(pricing.annual, pricing.currency),
-      period: `/ year${gst}`,
+      price: formatAmount(pricing.annual / 12, pricing.currency),
+      period: `/ month, billed annually${gst}`,
       savingsLabel: `Save ${savings}%`,
     };
   }
@@ -215,13 +214,13 @@ export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 
 export const TRIAL_LABEL = "7-day Pro trial";
 export const TRIAL_NOTE = "Full Pro features · early access waitlist open";
-export const PRO_FROM_LABEL = "From $14/mo";
+export const PRO_FROM_LABEL = "From $18/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
-export const PRO_PRICE_NOTE = "Pro $14/mo · $108/yr";
+export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";
 export const PRO_PRICE_NOTE_IN = "Pro ₹300/mo + GST · ₹3,000/yr + GST";
-export const POWER_FROM_LABEL = "From $35/mo";
+export const POWER_FROM_LABEL = "From $120/mo";
 export const POWER_FROM_LABEL_IN = "From ₹750/mo + GST";
-export const POWER_PRICE_NOTE = "Power $35/mo · unlimited Intent";
+export const POWER_PRICE_NOTE = "Power $120/mo · unlimited AI buddy requests";
 export const POWER_PRICE_NOTE_IN = "Power ₹750/mo + GST · unlimited Intent";
 
 export const FAIR_USE_FOOTNOTE =

@@ -8,11 +8,11 @@ import { getAllPosts, getBlogCategories } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog | Lazur",
   description:
-    "Guides, comparisons, and product updates on AI dictation, voice writing, and getting more done with Lazur.",
+    "Guides, comparisons, and product updates on personal AI assistants, context-aware writing, voice actions, and getting more done with Lazur.",
   openGraph: {
     title: "Blog | Lazur",
     description:
-      "Guides, comparisons, and product updates on AI dictation, voice writing, and getting more done with Lazur.",
+      "Guides, comparisons, and product updates on personal AI assistants, context-aware writing, voice actions, and getting more done with Lazur.",
   },
 };
 

@@ -11,7 +11,12 @@ export type ExclusiveAccessResult = {
 
 export async function submitExclusiveAccessRequest(
   email: string,
-  options?: { platform?: string; source?: string }
+  options?: {
+    platform?: string;
+    source?: string;
+    excitedToUseFor?: string;
+    aboutYourself?: string;
+  }
 ): Promise<ExclusiveAccessResult> {
   const res = await fetch(`${apiBase()}/exclusive-access`, {
     method: "POST",
@@ -20,6 +25,8 @@ export async function submitExclusiveAccessRequest(
       email,
       platform: options?.platform,
       source: options?.source,
+      excited_to_use_for: options?.excitedToUseFor,
+      about_yourself: options?.aboutYourself,
     }),
   });
 

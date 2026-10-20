@@ -70,11 +70,11 @@ export function WorksAnywhereSection() {
     <LandingBand className="py-20 md:py-28">
       <LandingBandInner>
         <div className="text-center">
-          <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
+          {/* <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
             Works anywhere
-          </p>
+          </p> */}
           <h2 className="mt-3 font-display text-[2rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-            Works anywhere you can type
+            Works anywhere.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[16px] text-[var(--foreground-muted)] md:text-[17px]">
             Slack, Cursor, Notion, and every other Mac app.

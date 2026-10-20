@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 680,
-        alt: "Lazur, AI voice dictation for Mac",
+        alt: "Lazur, a context-aware AI work assistant for Mac",
       },
     ],
   },

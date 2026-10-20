@@ -6,7 +6,6 @@ import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
-import { HappyUsersBar } from "@/components/landing/HappyUsersBar";
 import { HomePageStructuredData } from "@/components/seo/HomePageStructuredData";
 import {
   DEFAULT_DESCRIPTION,
@@ -33,7 +32,6 @@ export default function Home() {
         <HowItWorksSection />
         <LandingPageSections />
       </main>
-      <HappyUsersBar />
       <Footer />
       <div className="h-20" aria-hidden />
     </MarketingPageShell>

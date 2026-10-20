@@ -44,12 +44,9 @@ import {
 } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
 import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggle";
-import { usePricingRegion } from "@/hooks/usePricingRegion";
 import {
-  INDIA_GST_NOTE,
   maxAnnualSavings,
   planPrices,
-  regionCurrencyLabel,
   WEBSITE_PLANS,
 } from "@/lib/pricingPlans";
 import {
@@ -159,7 +156,6 @@ function BillingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
-  const { region } = usePricingRegion();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
   const [activity, setActivity] = useState<BillingActivityItem[]>([]);
@@ -174,7 +170,7 @@ function BillingContent() {
   const fromApp = searchParams.get("source") === "app";
   const preselectedPlan = searchParams.get("plan");
   const preselectStarted = useRef(false);
-  const maxSavings = maxAnnualSavings(region);
+  const maxSavings = maxAnnualSavings("international");
 
   useEffect(() => {
     const accessToken = searchParams.get("access_token");
@@ -225,8 +221,7 @@ function BillingContent() {
       setError(null);
       setCheckoutPlan(planType);
       try {
-        const country = region === "india" ? "IN" : "US";
-        const url = await createCheckoutSession(planType, interval, country);
+        const url = await createCheckoutSession(planType, interval, "US");
         if (url) {
           window.location.href = url;
           return;
@@ -238,7 +233,7 @@ function BillingContent() {
         setCheckoutPlan(null);
       }
     },
-    [interval, region],
+    [interval],
   );
 
   useEffect(() => {
@@ -350,7 +345,6 @@ function BillingContent() {
                       {statusLabel}
                     </span>
                     <span className="text-[11px] font-medium text-[var(--foreground-faint)]">
-                      {regionCurrencyLabel(region)}
                     </span>
                   </div>
                   <p className="mt-3 font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] md:text-[2rem]">
@@ -471,11 +465,6 @@ function BillingContent() {
                     ? "Lock in Pro or Power before your trial ends, checkout is handled securely."
                     : "Subscribe to keep full access to dictation, Intent, and polish."}
                 </p>
-                {region === "india" ? (
-                  <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">
-                    {INDIA_GST_NOTE}
-                  </p>
-                ) : null}
               </div>
               <BillingIntervalToggle
                 interval={interval === "year" ? "annual" : "monthly"}
@@ -494,7 +483,7 @@ function BillingContent() {
                 const priceDisplay = websitePlan
                   ? planPrices(
                       websitePlan,
-                      region,
+                      "international",
                       interval === "year" ? "annual" : "monthly",
                     )
                   : null;

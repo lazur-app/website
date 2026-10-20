@@ -36,7 +36,7 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Free: 5,000 words a month, dictation only. Pro: $14/month with 300 Intent requests. Power: $35/month with unlimited Intent. Every download starts with a 7-day Pro trial, no credit card.",
+      "Try Pro free for 7 days with no credit card. After the trial, Pro is $18/month with 150 agent messages, or Power is $120/month with 1,000 agent messages. Annual billing is $15/month for Pro and $96/month for Power.",
     link: { href: "/pricing", label: "See plans" },
   },
   {

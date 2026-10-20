@@ -58,16 +58,14 @@ export function PricingPlanCard({
 
   return (
     <article
-      className={`relative flex h-full flex-col rounded-2xl border bg-white ${
+      className={`pricing-bevel-card relative flex h-full flex-col ${
         compact ? "p-6" : "p-6 md:p-7"
       } ${
-        plan.featured
-          ? "border-[var(--foreground)]/18"
-          : "border-[var(--border)]"
+        plan.featured ? "pricing-bevel-card--featured" : ""
       }`}
     >
-      <div className="mb-5">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="mb-6">
+        <div className="flex items-center gap-2">
           <h3 className="font-display text-lg font-semibold text-[var(--foreground)]">
             {plan.name}
           </h3>
@@ -77,25 +75,9 @@ export function PricingPlanCard({
             </span>
           ) : null}
         </div>
-        {plan.descriptionLines.length > 0 ? (
-          <div className="mt-1.5 space-y-0.5">
-            {plan.descriptionLines.map((line, index) => (
-              <p
-                key={line}
-                className={`lowercase leading-snug ${
-                  index === 0
-                    ? "text-[14px] text-[var(--foreground-muted)]"
-                    : "text-[13px] text-[var(--foreground-faint)]"
-                }`}
-              >
-                {line}
-              </p>
-            ))}
-          </div>
-        ) : null}
       </div>
 
-      <div className="mb-6 min-h-[4.5rem]">
+      <div className="mb-6 border-t border-[var(--border)] pt-6">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span
             className={`font-display font-semibold tracking-tight text-[var(--foreground)] ${
@@ -110,35 +92,27 @@ export function PricingPlanCard({
             </span>
           ) : null}
         </div>
-        {prices.savingsNote ? (
-          <p className="mt-1.5 text-[12px] text-[var(--foreground-muted)]">
-            {prices.savingsNote}
-          </p>
-        ) : null}
-        {plan.trialNote ? (
-          <p className="mt-1.5 text-[12px] text-[var(--foreground-faint)]">
-            {plan.trialNote}
-          </p>
-        ) : null}
       </div>
 
-      <div className="mb-6 flex-1 space-y-2.5">
-        <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
+      <div className="mb-6 flex-1 border-t border-[var(--border)] pt-5">
+        <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
           Includes
         </p>
-        {plan.features.map((feature) => (
-          <FeatureRow key={feature.text} feature={feature} />
-        ))}
+        <div className="space-y-2.5">
+          {plan.features.map((feature) => (
+            <FeatureRow key={feature.text} feature={feature} />
+          ))}
+        </div>
       </div>
 
       <button
         type="button"
         onClick={onAction}
         disabled={actionDisabled || actionLoading}
-        className={`w-full rounded-full py-3 text-sm font-semibold transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${
+        className={`pricing-bevel-button w-full rounded-full py-3 text-sm font-semibold transition-[opacity,transform] hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${
           plan.featured || plan.cta === "checkout"
             ? "bg-[var(--foreground)] text-[var(--background)]"
-            : "border border-[var(--border-strong)] bg-white text-[var(--foreground)]"
+            : "bg-white text-[var(--foreground)]"
         }`}
       >
         {actionLoading ? (

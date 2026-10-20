@@ -10,11 +10,11 @@ const footerLinks = {
     { href: "/exclusive-access", label: "Waitlist" },
     { href: "/cemetery", label: "Keyboard Cemetery" },
   ],
-  Account: [
-    { href: "/login", label: "Log in" },
-    { href: "/dashboard", label: "Dashboard" },
-    { href: "/login", label: "Refer a friend" },
-  ],
+  // Account: [
+  //   { href: "/login", label: "Log in" },
+  //   { href: "/dashboard", label: "Dashboard" },
+  //   { href: "/login", label: "Refer a friend" },
+  // ],
   Legal: [
     { href: "/terms", label: "Terms" },
     { href: "/privacy", label: "Privacy" },

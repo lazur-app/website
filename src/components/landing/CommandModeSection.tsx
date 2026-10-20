@@ -8,19 +8,19 @@ import {
 } from "@/components/landing/LandingBand";
 
 const INCOMING_MESSAGE =
-  "Priya: we're seeing a spike in failed logins since this morning's deploy. do we roll back or patch forward? need a call in the next 20 minutes.";
+  "Priya: we're seeing a spike in failed logins since this morning's deploy. do we roll back or patch forward?";
 
 const EXAMPLES = {
   with_context: {
-    label: "Replying to something",
-    command: "Reply, let's patch forward, I'll own it, ETA an hour",
+    label: "Work from context",
+    command: "Reply, let's patch forward, I'll own it, and keep Priya posted",
     output:
       "Let's patch forward rather than roll back. I'll own the fix and have it out within the hour, and I'll update this thread as soon as it's deployed.",
     showIncoming: true,
   },
   without_context: {
-    label: "Starting fresh",
-    command: "Draft a two-line follow-up asking to confirm the Friday deadline",
+    label: "Start with a thought",
+    command: "Turn this into a clear two-line follow-up for the Friday deadline",
     output:
       "Hi Alex, just following up on the launch timeline. Can you confirm we're still targeting Friday for the lock-in?",
     showIncoming: false,
@@ -95,14 +95,14 @@ export function CommandModeSection() {
               Intent
             </p>
             <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-              It reads the thing
+              Your AI buddy reads the thing
               <br />
               you&apos;re looking at.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--foreground-muted)] lg:mx-0 mx-auto">
-              Say what you want done. Lazur works out who you&apos;re replying
-              to, what they asked for, and how it should sound &mdash; then
-              writes it. Nothing to select. Nothing to paste.
+              Say what you want done. Lazur understands the app you&apos;re in,
+              works out the next step, and gets it moving. No context dump. No
+              prompt engineering.
             </p>
           </div>
         </div>

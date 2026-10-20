@@ -6,7 +6,7 @@ import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 export const metadata: Metadata = {
   title: "Terms of Service | Lazur",
   description:
-    "Terms of Service for the Lazur macOS voice-to-text application, subscriptions, and website.",
+    "Terms of Service for Lazur, a context-aware AI work assistant for macOS, including writing, rewriting, voice actions, subscriptions, and website use.",
 };
 
 const UPDATED = "August 13, 2026";
@@ -50,10 +50,11 @@ export default function TermsPage() {
           content: (
             <>
               <p>
-                Lazur provides voice dictation software for macOS that helps you
-                turn speech into text in the applications you already use. Paid
-                plans may include usage quotas and additional features described
-                on our website and in the app.
+                Lazur provides a context-aware AI work assistant for macOS. It
+                can use voice input, app and screen context, writing, rewriting,
+                and voice actions to help you complete work in the applications
+                you already use. Paid plans may include usage quotas and
+                additional features described on our website and in the app.
               </p>
               <p className="mt-3">
                 We may add, change, or remove features over time. Lazur is

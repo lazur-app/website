@@ -122,7 +122,7 @@ export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
     },
     {
       type: "paragraph",
-      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of mid-2026, Lazur offers a free tier (5,000 words/month), Pro at $14/month, and Power at $35/month with higher limits and Intent Mode allowances. Wispr Flow uses its own tier structure, compare word limits, team features, and overage rules against your monthly dictation volume.",
+      text: "Pricing changes over time; verify current plans on each vendor’s site before purchasing. As of October 2026, Lazur offers a 7-day Pro trial, Pro at $18/month, and Power at $120/month with higher agent-message limits. Wispr Flow uses its own tier structure, so compare assistant actions, context handling, team features, and overage rules against your workflow.",
     },
     {
       type: "heading",

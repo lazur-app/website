@@ -10,9 +10,9 @@ import { formatBlogDateLong } from "@/lib/blog/format";
 import { SITE_URL } from "@/lib/seo/constants";
 
 export const metadata: Metadata = {
-  title: "Compare Lazur, AI Voice Dictation Alternatives for Mac",
+  title: "Compare Lazur, AI Work Assistants for Mac",
   description:
-    "Compare Lazur with Wispr Flow, Aqua Voice, MacWhisper, Google Voice Typing, Super Whisper, Willow Voice, and Apple Dictation.",
+    "Compare Lazur with Wispr Flow, Aqua Voice, MacWhisper, Google Voice Typing, Super Whisper, Willow Voice, and Apple Dictation for context-aware writing and voice actions on Mac.",
   alternates: {
     canonical: `${SITE_URL}/compare`,
   },

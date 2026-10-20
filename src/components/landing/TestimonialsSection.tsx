@@ -18,8 +18,8 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "i was skeptical at first because i tried other dictation apps. but genuinely, lazur feels different.. it's less about transcription and more about capturing intent. it genuinely saves me time.",
-    highlight: "capturing intent",
+      "i was skeptical at first because i tried other voice tools. but genuinely, lazur feels different.. it understands what i'm looking at and helps me move faster.",
+    highlight: "helps me move faster",
     name: "Veer Adyani",
     role: "Founder",
     company: { label: "Preffer", href: "https://preffer.me" },
@@ -27,8 +27,8 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "using lazur for 3 months now. it's one of those tools that quietly becomes part of your daily workflow. not just dictation.. intent mode is such an underrated feature.",
-    highlight: "not just dictation",
+      "using lazur for 3 months now. it's one of those tools that quietly becomes part of your daily workflow. it feels like having a smart teammate in every app.",
+    highlight: "smart teammate in every app",
     name: "Akshat Thakur",
     role: "Founder",
     company: { label: "SafeExam", href: "https://safexam.in" },
@@ -36,16 +36,16 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "didn't think i'd ever use voice for work. i'm always bouncing between slack threads and figma comments. a few days with lazur and yeah.. it's just faster than typing. i barely even edit what it pastes.",
-    highlight: "faster than typing",
+      "didn't think i'd ever use an AI buddy for work. i'm always bouncing between slack threads and figma comments. a few days with lazur and yeah.. it already knows what i need next.",
+    highlight: "knows what i need next",
     name: "Sloane Park",
     role: "Product Designer",
     image: "/sloane-img.jpeg",
   },
   {
     quote:
-      "I use Lazur every day for 95% of what I do. I can’t see myself going back to typing.",
-    highlight: "going back to typing",
+      "I use Lazur every day for 95% of what I do. It feels like having a second brain across my work apps.",
+    highlight: "second brain",
     name: "Kai",
     role: "Engineer",
   },
@@ -148,7 +148,7 @@ export function TestimonialsSection() {
             · Early users ·
           </p>
           <h2 className="mt-3 font-display text-[1.85rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[3rem]">
-            Nobody goes <em className="italic font-medium">back</em> to typing
+            Work feels lighter with a buddy beside you
           </h2>
         </div>
 

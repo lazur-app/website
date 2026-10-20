@@ -167,14 +167,14 @@ export default function PricingPage() {
           <PricingStudentOffer />
         </m.div>
 
-        <m.div
+        {/* <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.56 }}
           className="mt-16 flex w-full justify-center md:mt-20"
         >
           <PricingTimeCalculator />
-        </m.div>
+        </m.div> */}
       </main>
 
       <Footer />

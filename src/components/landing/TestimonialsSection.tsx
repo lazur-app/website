@@ -187,10 +187,10 @@ export function TestimonialsSection() {
               </p>
             </div>
             <Link
-              href="/exclusive-access"
+              href="/download"
               className="mt-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-[rgba(250,204,21,0.95)] transition-opacity hover:opacity-80"
             >
-              Join waitlist →
+              Try Lazur free →
             </Link>
           </motion.div>
 

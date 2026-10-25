@@ -9,6 +9,8 @@ import { SoftCard } from "@/components/SoftCard";
 type LegalSection = {
   title: string;
   content: ReactNode;
+  /** Anchor for deep links, e.g. /privacy#extension */
+  id?: string;
 };
 
 type LegalDocumentLayoutProps = {
@@ -50,7 +52,7 @@ export function LegalDocumentLayout({
           ) : null}
           <div className="space-y-8">
             {sections.map((section) => (
-              <section key={section.title}>
+              <section key={section.title} id={section.id} className="scroll-mt-28">
                 <h2 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
                   {section.title}
                 </h2>

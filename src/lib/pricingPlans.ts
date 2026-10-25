@@ -51,13 +51,14 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     id: "free",
     name: "Free",
     international: { currency: "USD", monthly: 0, annual: 0 },
-    india: { currency: "INR", monthly: 0, annual: 0 },
+    india: null,
     descriptionLines: ["try Pro free for 7 days", "no credit card needed"],
+    trialNote: "Starts when you first open Lazur on your Mac",
     cta: "download",
-    buttonText: "join waitlist",
+    buttonText: "Download for Mac",
     features: [
-      { text: "Full Pro access for 7 days", included: true },
-      { text: "Unlimited talk", included: true },
+      { text: "Full Pro for 7 days", included: true },
+      { text: "Starts when you open the app", included: true },
       { text: "No credit card required", included: true },
     ],
   },
@@ -65,42 +66,32 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     id: "pro",
     name: "Pro",
     international: { currency: "USD", monthly: 18, annual: 180 },
-    india: {
-      currency: "INR",
-      monthly: 300,
-      annual: 3000,
-      gstExclusive: true,
-    },
+    india: null,
     descriptionLines: ["speak all day. no word math.", "best for everyday use"],
     featured: true,
     featuredBadge: "Popular",
     planType: "pro",
     cta: "download",
-    buttonText: "join waitlist",
+    buttonText: "Start free trial",
     features: [
-      { text: "Unlimited talk", included: true },
-      { text: "Unlimited voice input", included: true },
-      { text: "150 agent messages a month", included: true },
+      { text: "Unlimited dictation", included: true },
+      { text: "150 AI actions a month (commands and background jobs)", included: true },
+      { text: "Agents in Chrome, reports, reminders and app control", included: true },
     ],
   },
   {
     id: "power",
     name: "Power",
     international: { currency: "USD", monthly: 120, annual: 1152 },
-    india: {
-      currency: "INR",
-      monthly: 750,
-      annual: 7500,
-      gstExclusive: true,
-    },
+    india: null,
     descriptionLines: ["intent on tap.", "best for people who live in it"],
     planType: "power",
     cta: "checkout",
-    buttonText: "join waitlist",
+    buttonText: "Get Power",
     features: [
-      { text: "Unlimited talk", included: true },
-      { text: "Unlimited voice input", included: true },
-      { text: "1,000 agent messages a month", included: true },
+      { text: "Unlimited dictation", included: true },
+      { text: "1,000 AI actions a month (commands and background jobs)", included: true },
+      { text: "Everything in Pro, for people who live in it", included: true },
     ],
   },
 ];
@@ -213,7 +204,7 @@ export function regionCurrencyLabel(region: PricingRegion): string {
 export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 
 export const TRIAL_LABEL = "7-day Pro trial";
-export const TRIAL_NOTE = "Full Pro features · early access waitlist open";
+export const TRIAL_NOTE = "Full Pro for 7 days · starts when you open the app";
 export const PRO_FROM_LABEL = "From $18/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
 export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";

@@ -52,7 +52,7 @@ export function HappyUsersBar() {
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
             <Link
-              href="/exclusive-access"
+              href="/download"
               className="pointer-events-auto flex items-center gap-3 rounded-[1.15rem] border border-white/80 bg-white/90 py-2.5 pl-2.5 pr-4 shadow-[0_10px_36px_rgba(28,25,23,0.1)] backdrop-blur-xl transition-[transform,background-color] hover:bg-white hover:scale-[1.01] sm:gap-3.5 sm:py-2.5 sm:pr-5"
             >
               <span className="flex shrink-0" aria-hidden>

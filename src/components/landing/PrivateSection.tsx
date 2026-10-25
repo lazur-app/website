@@ -9,18 +9,18 @@ import {
 
 const ASSURANCES = [
   {
-    title: "Your voice never leaves your computer",
+    title: "It only listens while you hold the key",
     detail:
-      "Speech becomes text on your own machine. No recording is ever uploaded.",
+      "Lazur hears you while you hold the shortcut, turns it into text, and keeps no recording.",
   },
   {
     title: "It looks once, when you ask",
     detail:
-      "One look at your window the moment you speak. Used, then thrown away. It is never watching in the background.",
+      "One look at your screen the moment you ask. Used to answer you, then thrown away. It is never watching in the background.",
   },
   {
     title: "Nothing you write trains anything",
-    detail: "Your work is never used to improve anyone's AI.",
+    detail: "We never sell your data or use your work to train AI. Your history stays on your Mac unless you choose to sync it.",
   },
 ] as const;
 

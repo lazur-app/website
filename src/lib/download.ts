@@ -1,3 +1,4 @@
+import { track } from "@/lib/productAnalytics";
 import { detectMacChip, type MacChip } from "@/lib/platform";
 
 export const MAC_DOWNLOAD_URL =
@@ -69,6 +70,7 @@ export function triggerFileDownload(url: string, saveAs: string) {
 export async function triggerMacDownload(
   urlOrChip?: string | MacChip,
 ) {
+  track("download_clicked", { platform: "mac", chip: typeof urlOrChip === "string" && !urlOrChip.startsWith("http") ? urlOrChip : "auto" });
   let url = MAC_DOWNLOAD_URL;
   if (typeof urlOrChip === "string" && urlOrChip.startsWith("http")) {
     url = urlOrChip;

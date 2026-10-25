@@ -52,7 +52,7 @@ export const lazurVsWillowVoice: ComparisonPage = {
     },
     {
       feature: "Local STT",
-      lazur: "NVIDIA Parakeet on-device",
+      lazur: "Fast cloud speech-to-text; recordings aren't kept",
       competitor: "Varies, verify on site",
     },
     {

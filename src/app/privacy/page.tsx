@@ -6,10 +6,10 @@ import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 export const metadata: Metadata = {
   title: "Privacy Policy | Lazur",
   description:
-    "How Lazur handles your voice, text, account data, and privacy choices.",
+    "What Lazur sends, to whom, and why: your voice, your screen when you ask, account data, and your choices.",
 };
 
-const UPDATED = "August 13, 2026";
+const UPDATED = "October 25, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
@@ -33,10 +33,12 @@ export default function PrivacyPage() {
           <strong className="font-semibold text-[var(--foreground)]">
             In short:
           </strong>{" "}
-          Your voice is transcribed on your Mac with NVIDIA Parakeet. We do
-          not store voice recordings in the cloud. Some features send <em>text</em> to our
-          servers so we can deliver the service (for example, polished output,
-          commands, and account sync). We do not sell your personal data.
+          Lazur only sends what it needs to do what you ask, at the moment you
+          ask. When you dictate, your audio goes to our speech-to-text providers
+          to become text. When you ask Lazur something, your voice and one
+          picture of your screen go to our AI provider to answer you. We don&apos;t
+          keep your recordings or screenshots, we never sell your data, and we
+          never use your content to train AI models.
         </>
       }
       sections={[
@@ -115,46 +117,68 @@ export default function PrivacyPage() {
           ),
         },
         {
-          title: "3. What stays on your device",
+          title: "3. What Lazur sends, and when",
           content: (
             <>
               <p>
-                Lazur is designed so voice input is handled on your Mac
-                whenever possible:
+                Lazur works only while you use it: it listens while you hold a
+                shortcut, and looks at your screen only when you ask it
+                something. It never records or watches in the background.
               </p>
               <List
                 items={[
-                  "Voice audio is processed on your device with NVIDIA Parakeet for speech-to-text. We do not upload or store voice recordings in the cloud.",
-                  "Speech recognition resources used by the app are kept in local storage on your device.",
-                  "Clipboard shortcuts and similar on-device tools remain in local app storage unless you separately copy content elsewhere.",
+                  <>
+                    <strong className="text-[var(--foreground)]">Dictation.</strong>{" "}
+                    While you hold the dictation shortcut, your audio is sent to
+                    our speech-to-text providers (Groq and OpenAI) to be
+                    transcribed, and the text is tidied up by a language model
+                    from the same providers. Lazur does not store the audio.
+                  </>,
+                  <>
+                    <strong className="text-[var(--foreground)]">Asking Lazur.</strong>{" "}
+                    While you hold the command shortcut, your voice, one
+                    screenshot of your screen at that moment, any text you have
+                    selected, the name of the app in front, and your local time
+                    are sent to Google&apos;s Gemini to understand and answer you.
+                    Lazur does not store the screenshot or the audio.
+                  </>,
+                  <>
+                    <strong className="text-[var(--foreground)]">Background jobs and Lazur for Chrome.</strong>{" "}
+                    When you ask for a job such as research or reading a feed,
+                    the text of the web pages the job opens (in its own tabs) is
+                    sent to Gemini to do the work. See section 7.
+                  </>,
+                  <>
+                    <strong className="text-[var(--foreground)]">Actions on your Mac.</strong>{" "}
+                    Reminders, notes, calendar events, opening apps and moving
+                    files happen on your Mac. For &ldquo;play a song&rdquo;, the
+                    song name is looked up with Spotify.
+                  </>,
+                  <>
+                    <strong className="text-[var(--foreground)]">Usage records.</strong>{" "}
+                    For billing and plan limits we record counts (words
+                    dictated, AI actions used) and, per request, which AI model
+                    was used and how much it cost. These records contain no
+                    audio, screenshots or text you dictated.
+                  </>,
                 ]}
               />
-              <p className="mt-3">
-                If you use transcript-style output (without cloud rewriting),
-                dictation text may remain on your device only. When signed in,
-                you may still choose to save results to your account history.
-              </p>
             </>
           ),
         },
         {
-          title: "4. Cloud processing and account data",
+          title: "4. What stays on your Mac, and what's in your account",
           content: (
             <>
-              <p>
-                Certain features require sending <em>text</em> (not voice
-                recordings) to our servers, including when you use polished
-                output, voice commands, spelling assistance, or other
-                cloud-assisted features. We use this information solely to
-                provide the feature you requested.
-              </p>
-              <p className="mt-3">
-                When you are signed in, we may store text and settings in your
-                Lazur account so you can sync across devices and recover data if
-                you reinstall the app. This can include dictation history,
-                dictionary entries, snippets, and tone preferences. You can
-                delete history items or clear your history from within the app.
-              </p>
+              <List
+                items={[
+                  "Your dictation and command history stays on your Mac by default. If you turn on cloud history, the text of your dictations and commands is saved to your account so it syncs across devices; you can delete it anytime.",
+                  "Reports and files made by background jobs are saved in your agent folder (Documents/Lazur by default), and your recent jobs list is kept on your Mac.",
+                  "Clipboard slots stay on your Mac.",
+                  "Your dictionary, snippets and preferences are saved to your account so they work on every Mac you sign in to.",
+                  "To prevent repeat free trials, Lazur sends a scrambled (hashed) identifier of your Mac; the real hardware ID never leaves your computer.",
+                ]}
+              />
             </>
           ),
         },
@@ -199,11 +223,12 @@ export default function PrivacyPage() {
                 items={[
                   <>
                     <strong className="text-[var(--foreground)]">Service
-                    providers</strong>, trusted companies that help us run
-                    Lazur (for example, authentication, payments, hosting,
-                    security, and cloud text processing). They may access
-                    information only to perform services for us and must protect
-                    it under contractual obligations.
+                    providers</strong> that help us run Lazur: Google (Gemini, for
+                    answering you and background jobs), Groq and OpenAI
+                    (speech-to-text and text clean-up), Polar (payments), and our
+                    hosting, database and analytics providers. They process
+                    information only to provide their service to us, under
+                    their business terms.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Legal
@@ -225,17 +250,44 @@ export default function PrivacyPage() {
           ),
         },
         {
-          title: "7. Analytics",
-          content:
-            "We collect limited usage analytics to understand how Lazur is used, diagnose problems, and improve the product. Analytics are designed to avoid including full transcript content. We do not use analytics to sell your data.",
+          id: "extension",
+          title: "7. Background agents and Lazur for Chrome",
+          content: (
+            <>
+              <p>
+                When you ask Lazur for a task that needs the web, its agents can
+                use Chrome through the Lazur for Chrome extension:
+              </p>
+              <List
+                items={[
+                  "Agents open their own tabs (in a \"Lazur\" tab group, marked [Lazur]) and only read, scroll, click or type in those tabs, to do what you asked.",
+                  "They use the sites you are already signed into. The extension never reads or stores your passwords or cookies.",
+                  "The extension talks only to the Lazur app on your own Mac (localhost). Text from the pages an agent reads is sent to our servers and our AI provider only to carry out your request.",
+                  "If you ask about a tab you have open, the agent can read the titles and addresses of your open tabs. It does not read your browsing history.",
+                  "Reports and files agents make are saved on your Mac in your agent folder (Documents/Lazur by default). Recent jobs are listed in the app on your Mac.",
+                  "Page content is not sold, not used for advertising, and not used to train AI models.",
+                ]}
+              />
+              <p className="mt-3">
+                You can stop any job from the notch or the extension&apos;s
+                toolbar popup, and remove the extension at any time from
+                chrome://extensions.
+              </p>
+            </>
+          ),
         },
         {
-          title: "8. Data security",
+          title: "8. Analytics",
+          content:
+            "We use product analytics (PostHog) to understand how Lazur is used and where it falls short: for example that a dictation finished, how many words it had, which kind of action a command used, or that a background job failed. These events are tied to your account but never contain what you said, typed or saw on screen, and are sent from our servers without your IP address. On our website we also use Google Analytics, DataFast and PostHog to measure visits and downloads. We do not record your screen or sessions for analytics, and we never sell analytics data.",
+        },
+        {
+          title: "9. Data security",
           content:
             "We use reasonable technical and organizational measures to protect personal information, including encryption in transit, access controls, and secure credential storage on your device. No system is perfectly secure; please keep your account credentials safe and contact us if you suspect unauthorized access.",
         },
         {
-          title: "9. Data retention",
+          title: "10. Data retention",
           content: (
             <>
               <List
@@ -250,7 +302,7 @@ export default function PrivacyPage() {
           ),
         },
         {
-          title: "10. Your rights and choices",
+          title: "11. Your rights and choices",
           content: (
             <>
               <p>Depending on your location, you may have the right to:</p>
@@ -287,22 +339,22 @@ export default function PrivacyPage() {
           ),
         },
         {
-          title: "11. Children",
+          title: "12. Children",
           content:
             "Lazur is not intended for anyone under 16. We do not knowingly collect personal information from children. If you believe a child has provided us information, contact us and we will take appropriate steps to delete it.",
         },
         {
-          title: "12. International transfers",
+          title: "13. International transfers",
           content:
             "We may process and store information in countries other than where you live. Where required by law, we use appropriate safeguards for cross-border transfers of personal information.",
         },
         {
-          title: "13. Changes to this policy",
+          title: "14. Changes to this policy",
           content:
             "We may update this Privacy Policy from time to time. The revised version will be posted on this page with an updated date. Material changes may be communicated through the app or by email where appropriate. Continued use after changes take effect constitutes acceptance of the updated policy.",
         },
         {
-          title: "14. Related documents",
+          title: "15. Related documents",
           content: (
             <>
               Your use of Lazur is also governed by our{" "}

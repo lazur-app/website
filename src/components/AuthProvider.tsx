@@ -1,4 +1,5 @@
 "use client";
+import { identifyUser } from "@/lib/productAnalytics";
 
 import {
   createContext,
@@ -31,6 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(
     () => hasValidSessionToken() && !getCachedUser(),
   );
+
+  // Link this browser's analytics to the account (same id as the app), so web → app funnels connect.
+  useEffect(() => {
+    if (user?.id) identifyUser(String(user.id));
+  }, [user?.id]);
 
   const refresh = useCallback(async (options?: { force?: boolean }) => {
     if (!hasValidSessionToken()) {

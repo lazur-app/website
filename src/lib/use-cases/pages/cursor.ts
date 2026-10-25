@@ -60,7 +60,7 @@ export const cursorUseCase: UseCasePage = {
     {
       question: "Is speech sent to the cloud when I dictate in Cursor?",
       answer:
-        "Speech-to-text runs on your Mac. Optional polish sends text, not audio. Do not dictate secrets. Treat the mic like a Slack channel.",
+        "Audio is transcribed in the cloud while you hold the shortcut and isn't kept. Do not dictate secrets. Treat the mic like a Slack channel.",
     },
   ],
   blocks: [

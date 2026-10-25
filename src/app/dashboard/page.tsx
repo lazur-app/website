@@ -9,7 +9,6 @@ import {
   Check,
   Download,
   Gift,
-  PencilOff,
   Sparkles,
   TrendingUp,
 } from "lucide-react";
@@ -164,6 +163,7 @@ function DashboardContent() {
             {periodEndDescription(user.plan, periodEnd, {
               cancelAtPeriodEnd: cancelScheduled,
               billingSource: user.billing_source,
+              trialStatus: user.trial_status,
             })}
           </p>
         </motion.header>
@@ -332,27 +332,6 @@ function DashboardContent() {
         </motion.div>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.18, duration: 0.45 }}
-          >
-            <Link href="/cemetery" className="block">
-              <SoftCard hover={false} className="flex items-center gap-4 p-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
-                  <PencilOff className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[var(--foreground)]">
-                    Keyboard Cemetery
-                  </p>
-                  <p className="text-[13px] text-[var(--foreground-muted)]">
-                    Retire your keyboard on the public yard
-                  </p>
-                </div>
-              </SoftCard>
-            </Link>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 12 }}

@@ -62,7 +62,7 @@ export default function PricingPage() {
 
   const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
     if (plan.cta === "download") {
-      window.location.href = "/exclusive-access";
+      window.location.href = "/download";
       return;
     }
 
@@ -150,12 +150,12 @@ export default function PricingPage() {
         >
           {FAIR_USE_FOOTNOTE}{" "}
           <Link
-            href="/exclusive-access"
+            href="/download"
             className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"
           >
-            Join the waitlist
+            Download Lazur
           </Link>{" "}
-          for early access.
+          to start your 7-day Pro trial.
         </m.p>
 
         <m.div

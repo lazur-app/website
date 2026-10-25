@@ -4,14 +4,14 @@ export const lazurVsAquaVoice: ComparisonPage = {
   slug: "lazur-vs-aqua-voice",
   title: "Lazur vs Aqua Voice",
   description:
-    "Lazur vs Aqua Voice in 2026. Aqua wins on speed, live text, and devices. Lazur wins on intent, on-device STT, and send-ready writing. How to choose.",
+    "Lazur vs Aqua Voice in 2026. Aqua wins on speed, live text, and devices. Lazur wins on intent, screen awareness, and send-ready writing. How to choose.",
   competitorName: "Aqua Voice",
   targetKeyword: "Aqua Voice vs Lazur",
   publishedAt: "2026-08-23",
   readingTimeMinutes: 7,
   tldr: [
     "Aqua Voice is the closest “better Wispr” product: fast, live text, strong technical vocabulary, Mac plus Windows plus iPhone.",
-    "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Intent Mode, with NVIDIA Parakeet STT on the Mac.",
+    "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context, what's on your screen, and Intent Mode.",
     "Pick Aqua for throughput across devices. Pick Lazur if leftover editing and intent are the actual pain.",
   ],
   chooseLazur: [
@@ -32,7 +32,7 @@ export const lazurVsAquaVoice: ComparisonPage = {
     },
     {
       feature: "Speech-to-text",
-      lazur: "NVIDIA Parakeet on-device on Mac",
+      lazur: "Fast cloud speech-to-text; recordings aren't kept",
       competitor: "Speed and live text first (verify their current pipeline)",
     },
     {
@@ -70,12 +70,12 @@ export const lazurVsAquaVoice: ComparisonPage = {
     {
       question: "Is Lazur an Aqua Voice alternative?",
       answer:
-        "Yes. Both are Wispr Flow alternatives for system-wide dictation. Aqua Voice optimizes for speed, live text, and polished transcription. Lazur optimizes for intent-aware rewrite and actions, reply, reformat, send-ready text, with on-device speech-to-text.",
+        "Yes. Both are Wispr Flow alternatives for system-wide dictation. Aqua Voice optimizes for speed, live text, and polished transcription. Lazur optimizes for intent-aware rewrite and actions, reply, reformat, send-ready text, plus an assistant that sees your screen when you ask.",
     },
     {
       question: "Which is better, Aqua Voice or Lazur?",
       answer:
-        "Aqua Voice is better if you want the fastest live dictation and you already work on Mac, Windows, and iPhone. Lazur is better if you want the paste to read like finished writing in Slack, Gmail, and Cursor, and you want audio transcribed locally on the Mac.",
+        "Aqua Voice is better if you want the fastest live dictation and you already work on Mac, Windows, and iPhone. Lazur is better if you want the paste to read like finished writing in Slack, Gmail, and Cursor, and you want an assistant that can act on what's on your screen.",
     },
     {
       question: "Does Aqua Voice work on Windows?",

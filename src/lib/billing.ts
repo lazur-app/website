@@ -1,3 +1,4 @@
+import { track } from "@/lib/productAnalytics";
 import { getAccessToken } from "./auth";
 
 export type PlanType = "pro" | "power";
@@ -188,6 +189,7 @@ export async function redirectToCheckout(
   region: "international" | "india",
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const country = region === "india" ? "IN" : "US";
+  track("checkout_started", { plan: planType, interval, source: "website" });
   const url = await createCheckoutSession(planType, interval, country);
   if (!url) {
     return { ok: false, error: "Could not start checkout. Please try again." };

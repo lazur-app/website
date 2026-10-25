@@ -25,13 +25,13 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "Pro access for 7 days · no card needed", featured: false },
+    { name: "Free", detail: "Full Pro for 7 days · starts when you open the app · no card", featured: false },
     {
       name: "Pro",
-      detail: `Unlimited talk · 150 agent messages · ${proPrice}`,
+      detail: `Unlimited dictation · 150 AI actions · ${proPrice}`,
       featured: true,
     },
-    { name: "Power", detail: `Unlimited talk · 1,000 agent messages · ${powerPrice}`, featured: false },
+    { name: "Power", detail: `Unlimited dictation · 1,000 AI actions · ${powerPrice}`, featured: false },
   ] as const;
 
   return (
@@ -59,11 +59,11 @@ export function LandingPricingSection() {
 
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <GlowCta
-                href="/exclusive-access"
+                href="/download"
                 variant="light"
                 className="final-cta-btn--on-light"
               >
-                Join Waitlist
+                Download for Mac
               </GlowCta>
               <Link
                 href="/pricing"

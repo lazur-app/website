@@ -77,10 +77,10 @@ export default function CompareHubPage() {
           </Link>
           , or{" "}
           <Link
-            href="/exclusive-access"
+            href="/download"
             className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:decoration-[var(--foreground)]"
           >
-            join the waitlist
+            download Lazur for Mac
           </Link>
           .
         </p>

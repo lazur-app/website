@@ -232,17 +232,17 @@ export function LeaderboardTeaserSection() {
                   lock in early momentum before prizes reset each month.
                 </p>
                 <Link
-                  href="/exclusive-access"
+                  href="/download"
                   className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]"
                 >
-                  Join Waitlist
+                  Start your trial
                 </Link>
               </SoftCard>
             )}
           </div>
         </div>
 
-        <SectionDownloadCta note="Join the waitlist for early access to Lazur" />
+        <SectionDownloadCta note={`Download, sign in, and start your ${TRIAL_LABEL.toLowerCase()}`} />
       </div>
     </section>
   );

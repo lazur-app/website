@@ -60,7 +60,7 @@ export function PricingSnapshotSection() {
                 compact
                 onAction={() => {
                   window.location.href =
-                    plan.cta === "download" ? "/exclusive-access" : "/pricing";
+                    plan.cta === "download" ? "/download" : "/pricing";
                 }}
               />
             </motion.div>

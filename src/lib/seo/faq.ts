@@ -36,13 +36,13 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Try Pro free for 7 days with no credit card. After the trial, Pro is $18/month with 150 agent messages, or Power is $120/month with 1,000 agent messages. Annual billing is $15/month for Pro and $96/month for Power.",
+      "Try Pro free for 7 days with no credit card; the trial starts when you first open Lazur on your Mac. After that, Pro is $18/month with unlimited dictation and 150 AI actions, or Power is $120/month with 1,000 AI actions. Annual billing is $15/month for Pro and $96/month for Power.",
     link: { href: "/pricing", label: "See plans" },
   },
   {
     question: "Is there a Windows version?",
     answer:
-      "macOS today, Windows soon. Join the waitlist and we'll email you the moment it's ready.",
-    link: { href: "/exclusive-access", label: "Join the waitlist" },
+      "macOS today (Apple Silicon and Intel). Windows is on the way; leave your email on the download page and we'll tell you when it's ready.",
+    link: { href: "/download", label: "Download for Mac" },
   },
 ];

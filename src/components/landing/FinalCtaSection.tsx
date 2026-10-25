@@ -36,13 +36,13 @@ export function FinalCtaSection() {
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
           <GlowCta
-            href="/exclusive-access"
+            href="/download"
             variant="light"
           >
-            Get Early Access
+            Download for Mac
           </GlowCta>
           <p className="text-[12px] text-white/40">
-            Early access waitlist open · Be the first to try Lazur
+            7-day Pro trial · starts when you open the app · no card needed
           </p>
         </div>
       </motion.div>

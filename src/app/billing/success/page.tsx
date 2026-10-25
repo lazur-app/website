@@ -39,6 +39,11 @@ function BillingSuccessContent() {
   const [billing, setBilling] = useState<BillingStatus | null>(null);
 
   useEffect(() => {
+    if (searchParams.get("desktop") === "1") {
+      window.location.replace("lazur://billing/complete");
+      return;
+    }
+
     if (!hasValidSessionToken()) {
       router.replace(loginPathWithReturn("/billing/success"));
       return;
@@ -113,10 +118,10 @@ function BillingSuccessContent() {
                 Go to dashboard
               </Link>
               <Link
-                href="/exclusive-access"
+                href="/download"
                 className="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] px-5 py-3 text-sm font-semibold text-[var(--foreground)]"
               >
-                Join waitlist
+                Download for Mac
               </Link>
             </div>
           </>

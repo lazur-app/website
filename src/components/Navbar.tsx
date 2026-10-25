@@ -113,7 +113,7 @@ export function Navbar() {
           <LogoWordmark height={32} />
 
           <nav
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex"
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex"
             aria-label="Main"
           >
             {navLinks.map((link) => {
@@ -141,9 +141,17 @@ export function Navbar() {
               ) : isAuthenticated && user ? (
                 <UserMenu user={user} />
               ) : (
-                <GlowCta href="/exclusive-access" size="sm">
-                  Join Early Access
-                </GlowCta>
+                <>
+                  <Link
+                    href="/login"
+                    className="text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                  >
+                    Log in
+                  </Link>
+                  <GlowCta href="/download" size="sm">
+                    Try Lazur Free
+                  </GlowCta>
+                </>
               )}
             </div>
 
@@ -230,13 +238,22 @@ export function Navbar() {
                       onNavigate={() => setMobileOpen(false)}
                     />
                   ) : (
-                    <GlowCta
-                      href="/exclusive-access"
-                      block
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      Join Early Access
-                    </GlowCta>
+                    <>
+                      <Link
+                        href="/login"
+                        onClick={() => setMobileOpen(false)}
+                        className="block py-1 text-[15px] font-medium text-[var(--foreground-muted)]"
+                      >
+                        Log in
+                      </Link>
+                      <GlowCta
+                        href="/download"
+                        block
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        Try Lazur Free
+                      </GlowCta>
+                    </>
                   )}
                 </motion.div>
               </motion.nav>

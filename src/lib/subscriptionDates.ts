@@ -35,9 +35,15 @@ export function periodEndLabel(
 export function periodEndDescription(
   plan: string,
   iso?: string | null,
-  options?: { cancelAtPeriodEnd?: boolean; billingSource?: string | null },
+  options?: { cancelAtPeriodEnd?: boolean; billingSource?: string | null; trialStatus?: string | null },
 ): string {
   const date = formatSubscriptionDate(iso);
+  if (options?.trialStatus === "none" && plan.toLowerCase().includes("subscription required")) {
+    return "Your 7-day Pro trial starts when you open Lazur on your Mac.";
+  }
+  if (plan.toLowerCase().includes("subscription required")) {
+    return "Your trial has ended. Choose Pro or Power to keep using Lazur.";
+  }
   const days = daysRemaining(iso);
   const normalized = plan.toLowerCase();
 

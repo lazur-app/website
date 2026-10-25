@@ -113,7 +113,7 @@ export const lazurVsWisprFlow: { blocks: BlogBlock[] } = {
     },
     {
       type: "paragraph",
-      text: "Lazur runs NVIDIA Parakeet speech-to-text on-device. Cloud processing is used for Smart Rewrite when enabled, and only text is sent. Wispr Flow’s architecture varies by feature and plan; teams evaluating either product should confirm current data handling in each vendor’s privacy documentation. For security reviews, local STT with optional cloud polish is often easier to approve than cloud-only audio pipelines.",
+      text: "Lazur sends audio to its speech-to-text providers only while you hold the shortcut, and keeps no recordings. It looks at your screen only when you ask, and never trains AI on your content. Wispr Flow’s architecture varies by feature and plan; teams evaluating either product should confirm current data handling in each vendor’s privacy documentation.",
     },
     {
       type: "heading",

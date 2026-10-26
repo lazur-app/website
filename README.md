@@ -1,39 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lazur website
 
-[![AI Searchable — AI crawler access badge for lazur.app](https://amisearchable.cc/badge/lazur.app?v=12&show=score%2Cready&engines=gemini%2Cchatgpt&overall=1)](https://amisearchable.cc/report/lazur.app)
+The marketing site, account pages and app sign-in for [lazur.app](https://lazur.app). Next.js, deployed on Vercel from `main`.
 
-## Getting Started
-
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (also the pre-push check)
+npm run lint
 ```
 
+Create `.env.local`:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Variable | What it is |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | Backend, e.g. `https://api.lazur.app` or `http://localhost:8000` |
+| `NEXT_PUBLIC_MAC_DOWNLOAD_URL` | Apple Silicon DMG, e.g. `https://releases.lazur.app/Lazur_<version>_aarch64.dmg` |
+| `NEXT_PUBLIC_MAC_DOWNLOAD_URL_INTEL` | Intel DMG (`…_x64.dmg`). Optional; the Intel option hides without it |
+| `NEXT_PUBLIC_POSTHOG_KEY` / `NEXT_PUBLIC_POSTHOG_HOST` | Product analytics |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+On Vercel these live in the project's Production environment. **After each app release, update both download URLs and redeploy** (see `app-macOS/RELEASE.md`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things are
 
-## Learn More
+| Path | What |
+|---|---|
+| `src/app/page.tsx` | Homepage (`src/components/hero`, `src/components/landing`) |
+| `src/app/pricing`, `src/lib/pricingPlans.ts` | Pricing page and plan copy. Charged prices come from Polar via the backend |
+| `src/app/download`, `src/lib/download.ts` | Download page; picks the Apple Silicon or Intel DMG |
+| `src/app/login`, `src/app/auth/callback`, `src/lib/appDeepLink.ts` | Sign-in, including the hand-off back to the Mac app |
+| `src/app/dashboard`, `src/app/billing` | Signed-in account and billing pages |
+| `src/app/compare`, `src/lib/compare` | `/compare/lazur-vs-*` head-to-head pages |
+| `src/app/use-cases`, `src/lib/use-cases` | Use-case pages |
+| `content/blog/` | Blog posts as markdown, one file per URL. See `content/blog/README.md` |
+| `src/lib/seo` | Titles, descriptions, structured data, sitemap helpers |
+| `src/app/support`, `privacy`, `terms` | Support (also the Chrome Web Store support URL) and legal pages |
 
-To learn more about Next.js, take a look at the following resources:
+## Positioning
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Copy should match `ICP_AND_DISCOVERY.md` and `brand-description.txt` in the parent folder: Lazur is a voice assistant for the Mac that sees your screen, talks back and does the work. Dictation is included, not the headline.

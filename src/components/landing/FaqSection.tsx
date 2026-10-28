@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useGuideStep } from "@/lib/guide";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { HOMEPAGE_FAQ } from "@/lib/seo/faq";
 
 export function FaqSection() {
   const [open, setOpen] = useState<number | null>(null);
+  const guideStep = useGuideStep("faq");
 
   return (
-    <section id="faq" className="landing-container scroll-mt-24 py-16 md:py-24">
+    <section id="faq" data-guide-section="faq" className="landing-container scroll-mt-24 py-16 md:py-24">
       <div className="grid gap-10 border-t border-[var(--border)] pt-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16 md:pt-16">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
@@ -22,7 +24,8 @@ export function FaqSection() {
 
         <div className="border-t border-[var(--border)]">
           {HOMEPAGE_FAQ.map((item, i) => {
-            const isOpen = open === i;
+            // The page guide opens "Is it always listening…" when it points at it.
+            const isOpen = open === i || (open === null && guideStep === 1 && i === 4);
             const panelId = `faq-panel-${i}`;
             const buttonId = `faq-button-${i}`;
 
@@ -31,6 +34,7 @@ export function FaqSection() {
                 <h3>
                   <button
                     id={buttonId}
+                    data-guide={`faq-${i}`}
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={panelId}

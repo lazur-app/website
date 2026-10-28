@@ -42,6 +42,7 @@ export function LandingPricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
+          data-guide-section="pricing"
           className="aura-stage px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-14"
         >
           <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:gap-16">
@@ -79,6 +80,7 @@ export function LandingPricingSection() {
             {plans.map((plan) => (
               <li
                 key={plan.name}
+                data-guide={plan.featured ? "pricing-pro" : plan.name === "Free" ? "pricing-trial" : undefined}
                 className="flex items-baseline justify-between gap-6 border-b border-[var(--border)] py-4 last:border-b-0"
               >
                 <span

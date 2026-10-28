@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { BuddyHero } from "@/components/buddy/BuddyHero";
+import { Guide } from "@/components/buddy/Guide";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
@@ -31,6 +32,7 @@ export default function Home() {
         <LandingPageSections />
       </main>
       <Footer />
+      <Guide />
       <div className="h-20" aria-hidden />
     </MarketingPageShell>
   );

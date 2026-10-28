@@ -1,0 +1,325 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { X } from "lucide-react";
+import { setGuide, useGuide } from "@/lib/guide";
+import { usePersona, type PersonaId } from "@/lib/personas";
+
+/**
+ * Lazur's sparkle, travelling down the homepage. Each section is a stop (data-guide-section) with
+ * a few steps: where to point (data-guide targets), what to say, whether to circle it. The section
+ * whose box crosses the middle of the screen is the active stop; its steps play once on arrival.
+ * Sections read the current step from lib/guide to animate their own content.
+ */
+
+const INK = "#2563eb";
+const OFF_KEY = "lazur.guide.off";
+
+type Step = { target: string; say: string; ms?: number; circle?: boolean };
+type Stop = { id: string; steps: (ctx: { persona: PersonaId; scene: string }) => Step[] };
+
+const DEMO_INTRO: Record<PersonaId, string> = {
+  everyone: "let me show you what I do",
+  founder: "here's how I take things off your plate",
+  developer: "here's how I help while you code",
+  student: "here's how I help you study",
+  lawyer: "here's how I help with the paperwork",
+};
+
+const DEMO_SCENE: Record<string, string> = {
+  point: "watch: I'll find the Share button",
+  timer: "I'll start your timer, right in the notch",
+  job: "this one I do in the background",
+  type: "now I'll type it for you, as a list",
+};
+
+const STOPS: Stop[] = [
+  {
+    id: "demo",
+    steps: ({ persona, scene }) => [
+      { target: "[data-guide=demo-screen]", say: DEMO_INTRO[persona], ms: 3200 },
+      { target: "[data-guide=demo-screen]", say: DEMO_SCENE[scene] ?? DEMO_SCENE.point },
+    ],
+  },
+  {
+    id: "guide",
+    steps: () => [
+      { target: "[data-guide=guide-start]", say: "stuck? I'll walk you through it", ms: 2000 },
+      { target: "[data-guide=guide-appearance]", say: "click here first", ms: 1700 },
+      { target: "[data-guide=guide-dark]", say: "now this one", ms: 1700 },
+      { target: "[data-guide=guide-done]", say: "done. that's it" },
+    ],
+  },
+  {
+    id: "everyday",
+    steps: () => [
+      { target: "[data-guide=chip-0]", say: "try saying this", ms: 1500 },
+      { target: "[data-guide=chip-1]", say: "or this", ms: 1300 },
+      { target: "[data-guide=chip-2]", say: "or this one", ms: 1300 },
+      { target: "[data-guide-section=everyday] h2", say: "I do all of these, out loud" },
+    ],
+  },
+  {
+    id: "privacy",
+    steps: () => [
+      { target: "[data-guide=privacy-key]", say: "I only listen while you hold the key", ms: 2600 },
+      { target: "[data-guide=privacy-stored]", say: "and I don't keep anything" },
+    ],
+  },
+  {
+    id: "love",
+    steps: () => [{ target: "[data-guide-section=love] mark", say: "don't take my word for it", circle: true }],
+  },
+  {
+    id: "pricing",
+    steps: () => [
+      { target: "[data-guide=pricing-pro]", say: "most people pick this one", ms: 2600, circle: true },
+      { target: "[data-guide=pricing-trial]", say: "and the first 3 days are free" },
+    ],
+  },
+  {
+    id: "faq",
+    steps: () => [
+      { target: "[data-guide=faq-0]", say: "ask me anything", ms: 1800 },
+      { target: "[data-guide=faq-4]", say: "this one comes up a lot" },
+    ],
+  },
+  {
+    id: "cta",
+    steps: () => [{ target: "[data-guide-section=cta] a[href='/download']", say: "ready? let's go", circle: true }],
+  },
+];
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+
+function useIsPhone() {
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setPhone(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return phone;
+}
+
+function Sparkle({ size = 22 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.55))" }} aria-hidden>
+      <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={INK} />
+    </svg>
+  );
+}
+
+export function Guide() {
+  const g = useGuide();
+  const persona = usePersona();
+  const reduced = usePrefersReducedMotion();
+  const phone = useIsPhone();
+
+  // Hidden for this visit?
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(OFF_KEY)) setGuide({ dismissed: true });
+    } catch {
+      /* fine */
+    }
+  }, []);
+  const dismiss = () => {
+    try {
+      sessionStorage.setItem(OFF_KEY, "1");
+    } catch {
+      /* fine */
+    }
+    setGuide({ dismissed: true });
+  };
+
+  // Which section is under the middle of the screen (only after the hero's intro is done).
+  const ready = g.heroDone || reduced;
+  useEffect(() => {
+    if (!ready) return;
+    let frame = 0;
+    let last: string | null = null;
+    const tick = () => {
+      const mid = window.innerHeight * 0.5;
+      let found: string | null = null;
+      for (const stop of STOPS) {
+        const el = document.querySelector(`[data-guide-section=${stop.id}]`);
+        const r = el?.getBoundingClientRect();
+        if (r && r.top < mid && r.bottom > mid) {
+          found = stop.id;
+          break;
+        }
+      }
+      if (found !== last) {
+        last = found;
+        setGuide({ stop: found, step: 0 });
+      }
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [ready]);
+
+  const stop = STOPS.find((s) => s.id === g.stop);
+  const steps = stop ? stop.steps({ persona: persona.id, scene: g.demoScene }) : [];
+  const step = steps[Math.min(g.step, steps.length - 1)];
+
+  // Play the stop's steps once, in order; the last one stays.
+  const count = steps.length;
+  const holdMs = steps[g.step]?.ms ?? 1800;
+  useEffect(() => {
+    if (!g.stop || g.step >= count - 1) return;
+    const t = window.setTimeout(() => setGuide({ step: g.step + 1 }), holdMs);
+    return () => window.clearTimeout(t);
+  }, [g.stop, g.step, count, holdMs]);
+
+  // Follow the target every frame: springs make the sparkle trail behind when you scroll fast.
+  const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 140, damping: 20, mass: 0.8 };
+  const x = useSpring(useMotionValue(-100), spring);
+  const y = useSpring(useMotionValue(-100), spring);
+  const ring = { l: useMotionValue(0), t: useMotionValue(0), w: useMotionValue(0), h: useMotionValue(0) };
+  const [labelLeft, setLabelLeft] = useState(false);
+  const target = step?.target;
+  const placed = useRef(false);
+  useEffect(() => {
+    if (!target || phone) return;
+    let frame = 0;
+    const tick = () => {
+      const el = document.querySelector(target);
+      const r = el?.getBoundingClientRect();
+      if (r) {
+        const vw = window.innerWidth;
+        // Wide targets (the demo screen): sit on the top-left corner. Others: just past the right edge,
+        // or before the left edge when there's no room on the right.
+        const wide = r.width > vw * 0.5;
+        const nearRight = !wide && r.right + 260 > vw;
+        const px = wide ? r.left + 18 : nearRight ? r.left - 14 : r.right + 12;
+        const py = wide ? r.top + 14 : r.top - 8;
+        if (!placed.current) {
+          // First appearance: start from the hero's "watch me work" arrow, so it's the same sparkle.
+          const start = document.querySelector("[data-guide-start]")?.getBoundingClientRect();
+          x.jump(start ? start.left : px);
+          y.jump(start ? start.top : py);
+          placed.current = true;
+        }
+        x.set(px);
+        y.set(py);
+        ring.l.set(r.left - 12);
+        ring.t.set(r.top - 10);
+        ring.w.set(r.width + 24);
+        ring.h.set(r.height + 20);
+        setLabelLeft(nearRight);
+      }
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, phone]);
+
+  const visible = Boolean(step) && !g.dismissed;
+
+  if (phone) {
+    // Phones: no flying; a small note docked at the bottom.
+    return (
+      <AnimatePresence>
+        {visible ? (
+          <motion.div
+            key="dock"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            className="fixed inset-x-0 bottom-4 z-[65] flex justify-center px-4"
+          >
+            <div className="flex items-center gap-2 rounded-full border border-black/[0.06] bg-white/90 py-2 pl-3 pr-2 shadow-[0_8px_24px_rgba(28,25,23,0.12)] backdrop-blur-xl">
+              <Sparkle size={16} />
+              <AnimatePresence mode="wait">
+                <motion.span key={step!.say} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-[13px] font-medium text-[var(--foreground)]">
+                  {step!.say}
+                </motion.span>
+              </AnimatePresence>
+              <button type="button" onClick={dismiss} aria-label="Hide Lazur's tips" className="grid h-6 w-6 place-items-center rounded-full text-[var(--foreground-faint)]">
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    );
+  }
+
+  return (
+    <>
+      {/* A loop around the target, when the step calls for it */}
+      <AnimatePresence>
+        {visible && step!.circle ? (
+          <motion.svg
+            key={`${g.stop}-${g.step}`}
+            className="pointer-events-none fixed z-[64] overflow-visible"
+            style={{ left: ring.l, top: ring.t, width: ring.w, height: ring.h }}
+            viewBox="0 0 100 60"
+            preserveAspectRatio="none"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            aria-hidden
+          >
+            <motion.path
+              d="M54 4 C82 3 98 16 97 30 C96 47 74 57 48 56 C22 55 3 45 4 29 C5 14 24 5 60 7"
+              fill="none" stroke={INK} strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ delay: 0.35, duration: 0.7, ease: "easeInOut" }}
+            />
+          </motion.svg>
+        ) : null}
+      </AnimatePresence>
+
+      <motion.div
+        className="pointer-events-none fixed left-0 top-0 z-[65]"
+        style={{ x, y }}
+        initial={false}
+        animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.6 }}
+        transition={{ duration: 0.3 }}
+        aria-hidden={!visible}
+      >
+        <motion.div className="-ml-[11px] -mt-[11px]" animate={reduced ? undefined : { rotate: [0, 14, 0, -14, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+          <Sparkle />
+        </motion.div>
+        <AnimatePresence mode="wait">
+          {visible ? (
+            <motion.div
+              key={`${g.stop}-${step!.say}`}
+              initial={{ opacity: 0, y: 4, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -2 }}
+              transition={{ duration: 0.22 }}
+              className={`pointer-events-auto absolute bottom-3 flex items-center gap-1 whitespace-nowrap rounded-full py-1.5 pl-3 pr-1.5 text-[13px] font-semibold text-white shadow-[0_8px_20px_rgba(37,99,235,0.3)] ${
+                labelLeft ? "right-4" : "left-4"
+              }`}
+              style={{ background: INK }}
+              role="status"
+            >
+              {step!.say}
+              <button type="button" onClick={dismiss} aria-label="Hide Lazur's tips" className="ml-0.5 grid h-5 w-5 place-items-center rounded-full text-white/70 hover:bg-white/15 hover:text-white">
+                <X className="h-3 w-3" />
+              </button>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </motion.div>
+    </>
+  );
+}

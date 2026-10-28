@@ -18,7 +18,7 @@ export function FinalCtaSection() {
   const isWindows = platform === "windows";
 
   return (
-    <section className="mt-8 bg-[var(--foreground)] px-5 py-20 text-[var(--background)] sm:px-6 md:mt-12 md:py-28">
+    <section data-guide-section="cta" className="mt-8 bg-[var(--foreground)] px-5 py-20 text-[var(--background)] sm:px-6 md:mt-12 md:py-28">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}

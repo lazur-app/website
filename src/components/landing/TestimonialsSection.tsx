@@ -140,6 +140,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="love"
+      data-guide-section="love"
       className="relative scroll-mt-24 pt-[140px] pb-24 md:pt-[160px] md:pb-28"
     >
       <div className="landing-container">

@@ -6,6 +6,7 @@ import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
 import { NotchStage } from "./NotchStage";
 import { usePersona } from "@/lib/personas";
+import { setGuide, useGuide } from "@/lib/guide";
 
 /**
  * Lazur's coral sparkle pen introduces itself by drawing on the page: says hi, underlines "in the
@@ -193,6 +194,14 @@ export function BuddyHero() {
     return () => window.clearTimeout(t);
   }, [step, reduced]);
 
+  // The page-wide guide takes over once this intro has played; this pen then steps aside.
+  const introDone = at >= order("rest");
+  useEffect(() => {
+    if (introDone) setGuide({ heroDone: true });
+  }, [introDone]);
+  const guide = useGuide();
+  const handedOff = guide.stop !== null && !guide.dismissed;
+
   const hero = useRef<HTMLElement>(null);
   const underline = useRef<HTMLSpanElement>(null);
   const cta = useRef<HTMLDivElement>(null);
@@ -205,7 +214,7 @@ export function BuddyHero() {
 
   return (
     <section ref={hero} className="relative overflow-x-clip">
-      {spots && !reduced ? <Pen spots={spots} phase={phase} /> : null}
+      {spots && !reduced && !handedOff ? <Pen spots={spots} phase={phase} /> : null}
       {spots ? <ButtonLoop button={spots.button} show={drawCircle} /> : null}
       {spots ? (
         <>
@@ -280,7 +289,7 @@ export function BuddyHero() {
         </motion.div>
 
         {/* The pen's last stop: pointing down at the demo */}
-        <div ref={arrow} className="relative mt-6 h-16 w-40" aria-hidden>
+        <div ref={arrow} data-guide-start className="relative mt-6 h-16 w-40" aria-hidden>
           <Ink show={drawArrow} delay={0.7} duration={0.8} viewBox="0 0 60 64" preserve="xMidYMid meet" className="left-1/2 top-0 h-16 w-14 -translate-x-1/2"
             d="M30 4 C22 20 38 34 30 56 M30 56 L21 46 M30 56 L39 47" />
           <motion.span
@@ -300,6 +309,7 @@ export function BuddyHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          data-guide-section="demo"
           className="relative isolate mt-4 w-full max-w-5xl"
         >
           {/* The faint grid fans out from the demo screen's top corners */}

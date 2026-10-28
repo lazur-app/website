@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView } from "framer-motion";
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 import {
   AppWindow,
   BellRing,
@@ -20,10 +20,13 @@ import {
 } from "lucide-react";
 import { AppMarquee } from "@/components/AppMarquee";
 import { usePersona } from "@/lib/personas";
+import { GUIDE_DONE, useGuideStep } from "@/lib/guide";
 
 
-function Section({ id, eyebrow, title, intro, children, tint = false }: {
+function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
   id?: string;
+  /** This section is a stop for the page guide (components/buddy/Guide.tsx). */
+  guide?: string;
   eyebrow: string;
   title: ReactNode;
   intro?: ReactNode;
@@ -33,6 +36,7 @@ function Section({ id, eyebrow, title, intro, children, tint = false }: {
   return (
     <section
       id={id}
+      data-guide-section={guide}
       className="relative py-20 md:py-28"
       // Tinted sections fade in and out, so the page reads as one flow instead of stacked bands.
       style={tint ? { background: "linear-gradient(to bottom, transparent 0%, var(--background-deep) 18%, var(--background-deep) 82%, transparent 100%)" } : undefined}
@@ -97,100 +101,55 @@ function Loop({ show }: { show: boolean }) {
 }
 
 /**
- * When this section scrolls into view, the blue sparkle walks through it the way Lazur guides you:
- * circles Appearance, then Dark, then Dark switches on. It plays again each time you come back.
+ * The page guide walks through this section (see Guide.tsx): circles Appearance, then Dark, then
+ * Dark switches on. With the guide off, it shows the finished state.
  */
 export function ShowMeHow() {
-  const box = useRef<HTMLDivElement>(null);
-  const targets = useRef<Array<HTMLElement | null>>([]);
-  const inView = useInView(box, { amount: 0.5 });
-  const [stage, setStage] = useState(0); // 0 waiting, 1 Appearance, 2 Dark, 3 done
-  const [spots, setSpots] = useState<Array<[number, number]>>([]);
-
-  useEffect(() => {
-    if (!inView) return;
-    const times = [700, 2300, 3900, 7600];
-    const timers = times.map((t, i) => window.setTimeout(() => setStage(i < 3 ? i + 1 : 0), t));
-    const again = window.setInterval(() => {
-      times.forEach((t, i) => timers.push(window.setTimeout(() => setStage(i < 3 ? i + 1 : 0), t)));
-    }, 8000);
-    return () => {
-      timers.forEach((t) => window.clearTimeout(t));
-      window.clearInterval(again);
-      setStage(0);
-    };
-  }, [inView]);
-
-  useEffect(() => {
-    const measure = () => {
-      const b = box.current?.getBoundingClientRect();
-      if (!b) return;
-      setSpots(targets.current.map((el) => {
-        const r = el?.getBoundingClientRect();
-        return r ? [r.right - b.left + 6, r.top - b.top - 6] : [0, 0];
-      }));
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [inView]);
-
-  // Waiting: just above the first card. Then each target in turn.
-  const at = stage === 0 ? (spots[0] ? [spots[0][0] - 80, -40] : [0, -40]) : spots[stage - 1] ?? [0, 0];
+  const step = useGuideStep("guide");
+  const stage = step === GUIDE_DONE ? 3 : Math.max(0, Math.min(3, step)); // 0 waiting, 1 Appearance, 2 Dark, 3 done
+  const targetIds = ["guide-appearance", "guide-dark", "guide-done"];
 
   return (
     <Section
       tint
+      guide="guide"
       eyebrow="Show me how"
       title="Stuck? It walks you through."
       intro={<>Ask &ldquo;how do I turn on dark mode?&rdquo; It circles each click.</>}
     >
-      <div ref={box} className="relative grid gap-5 md:grid-cols-3">
-        {GUIDE_STEPS.map((step, i) => {
+      <div className="grid gap-5 md:grid-cols-3">
+        {GUIDE_STEPS.map((guideStep, i) => {
           const active = stage >= i + 1;
           return (
-            <Card key={step.label} className="flex flex-col !p-5">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">Step {i + 1}</p>
+            <Card key={guideStep.label} className="flex flex-col !p-5">
+              <p data-guide={i === 0 ? "guide-start" : undefined} className="self-start text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">Step {i + 1}</p>
               <div className="mt-3 rounded-2xl bg-[var(--background-deep)] p-4">
-                <div className={step.row ? "flex gap-2" : "space-y-1.5"}>
-                  {step.items.map((item, j) => {
-                    const hit = j === step.target;
-                    const on = hit && step.done && active;
+                <div className={guideStep.row ? "flex gap-2" : "space-y-1.5"}>
+                  {guideStep.items.map((item, j) => {
+                    const hit = j === guideStep.target;
+                    const on = hit && guideStep.done && active;
                     return (
                       <div
                         key={item}
-                        ref={hit ? (el) => { targets.current[i] = el; } : undefined}
-                        className={`relative rounded-lg px-3 py-2 text-[13px] transition-colors duration-300 ${step.row ? "flex-1 text-center" : ""} ${
+                        data-guide={hit ? targetIds[i] : undefined}
+                        className={`relative rounded-lg px-3 py-2 text-[13px] transition-colors duration-300 ${guideStep.row ? "flex-1 text-center" : ""} ${
                           on ? "bg-[#1c1917] text-white" : "bg-white text-[var(--foreground-muted)]"
                         }`}
                       >
                         {item}
-                        {hit && !step.done ? <Loop show={active} /> : null}
+                        {hit && !guideStep.done ? <Loop show={active} /> : null}
                       </div>
                     );
                   })}
                 </div>
               </div>
               <p className={`mt-auto flex items-center gap-2 pt-4 text-[15px] font-medium transition-opacity duration-300 ${active ? "opacity-100" : "opacity-40"} text-[var(--foreground)]`}>
-                {step.done ? <Check className="h-4 w-4 text-emerald-500" /> : <Hand className="h-4 w-4" style={{ color: INK }} />}
-                {step.label}
+                {guideStep.done ? <Check className="h-4 w-4 text-emerald-500" /> : <Hand className="h-4 w-4" style={{ color: INK }} />}
+                {guideStep.label}
               </p>
             </Card>
           );
         })}
-
-        {/* Lazur's sparkle, flying from step to step */}
-        <motion.svg
-          viewBox="0 0 24 24"
-          className="pointer-events-none absolute left-0 top-0 z-10 -ml-3 -mt-3 h-6 w-6"
-          style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.55))" }}
-          initial={false}
-          animate={{ x: at[0], y: at[1], opacity: inView ? 1 : 0, rotate: stage * 30 }}
-          transition={{ type: "spring", stiffness: 70, damping: 15 }}
-          aria-hidden
-        >
-          <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={INK} />
-        </motion.svg>
       </div>
     </Section>
   );
@@ -215,9 +174,11 @@ function iconFor(say: string): typeof Timer {
 
 export function EverydayThings() {
   const persona = usePersona();
+  const lit = useGuideStep("everyday");
   return (
     <Section
       tint
+      guide="everyday"
       eyebrow="Everyday"
       title="The little things, out loud."
       intro="Say it. Done."
@@ -228,11 +189,14 @@ export function EverydayThings() {
           return (
           <motion.span
             key={say}
+            data-guide={`chip-${i}`}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35, delay: i * 0.04 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-4 py-2.5 text-[15px] text-[var(--foreground)] shadow-[var(--shadow-card)]"
+            className={`inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2.5 text-[15px] text-[var(--foreground)] shadow-[var(--shadow-card)] transition-[border-color,box-shadow] duration-300 ${
+              lit === i ? "border-[#2563eb] shadow-[0_0_0_3px_rgba(37,99,235,0.15)]" : "border-[var(--border)]"
+            }`}
           >
             <Icon className="h-4 w-4 text-[var(--brand)]" />
             &ldquo;{say}&rdquo;
@@ -252,15 +216,15 @@ export function EverydayThings() {
 
 export function YoureInCharge() {
   return (
-    <section className="py-10 md:py-14">
+    <section data-guide-section="privacy" className="py-10 md:py-14">
       <div className="landing-container">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-center gap-x-10 gap-y-4 rounded-[22px] border border-[var(--border)] bg-white/70 px-6 py-5 text-[15px] text-[var(--foreground)] shadow-[var(--shadow-card)] md:flex-row">
           {[
-            { icon: Hand, text: "Only while you hold the key" },
-            { icon: Lock, text: "Nothing stored" },
+            { icon: Hand, text: "Only while you hold the key", guide: "privacy-key" },
+            { icon: Lock, text: "Nothing stored", guide: "privacy-stored" },
             { icon: Check, text: "Asks before the big stuff" },
-          ].map(({ icon: Icon, text }) => (
-            <span key={text} className="flex items-center gap-2 font-medium">
+          ].map(({ icon: Icon, text, guide }) => (
+            <span key={text} data-guide={guide} className="flex items-center gap-2 font-medium">
               <Icon className="h-4 w-4 text-[var(--brand)]" /> {text}
             </span>
           ))}

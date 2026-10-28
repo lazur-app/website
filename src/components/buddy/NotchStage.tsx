@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { setGuide } from "@/lib/guide";
 import { FileText, Keyboard, MousePointerClick, Search, Sparkles, Timer as TimerIcon } from "lucide-react";
 
 /**
@@ -608,11 +609,14 @@ export function NotchStage({ held = false }: { held?: boolean }) {
   const reduced = usePrefersReducedMotion();
   const { scene, sceneIndex, phase, phaseIndex, pick, total, elapsed } = useTimeline(reduced, held);
   const spots = pointerSpots(scene, phase);
+  // Tell the page guide which scene is on, so it can talk about it.
+  useEffect(() => setGuide({ demoScene: scene.id }), [scene.id]);
   const CaptionIcon = scene.icon;
 
   return (
     <div className="w-full">
       <div
+        data-guide="demo-screen"
         className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[clamp(12px,2cqw,24px)] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10 [container-type:inline-size]"
         style={{ background: "linear-gradient(135deg, #c9b8ff 0%, #f3c4dd 45%, #ffd2a8 100%)" }}
         role="img"

@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
+import { setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 import { NotchStage } from "./NotchStage";
 
 /**
- * The hero is the demo: a notch hangs from the top of the page, hears "what is this?", answers,
- * and Lazur's coral pen draws on the page itself, underlining the headline, circling the download
- * button, pointing at the demo below. Click the notch to see it again.
+ * The hero is the demo: the navbar (which is the notch) hears "what is this?" and answers, while
+ * Lazur's coral pen draws on the page itself, underlining the headline, circling the download
+ * button, pointing at the demo below.
  */
 
 const CORAL = "#ef5350";
@@ -37,71 +38,10 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function Bars() {
-  return (
-    <span className="flex h-3 items-end gap-[3px]" aria-hidden>
-      {[0, 1, 2, 3].map((i) => (
-        <motion.span key={i} className="w-[2.5px] rounded-full bg-white"
-          animate={{ height: ["30%", "100%", "45%", "85%", "30%"] }}
-          transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.1 }} />
-      ))}
-    </span>
-  );
-}
-
-/** The notch at the top of the page: at rest a camera cutout, then it listens, thinks, talks. */
-function PageNotch({ phase, onReplay }: { phase: Phase; onReplay: () => void }) {
-  const open = phase === "listening" || phase === "speak1" || phase === "speak2";
-  // At rest it matches the menu bar notch (h-9, w-44); it grows down out of the menu bar.
-  const size = open ? { width: "min(30rem, calc(100vw - 2rem))", height: 80 } : phase === "thinking" ? { width: "min(20rem, calc(100vw - 2rem))", height: 40 } : { width: "11rem", height: 36 };
-  let label = "";
-  let line: ReactNode = null;
-  let right: ReactNode = null;
-  if (phase === "listening") {
-    label = "Listening";
-    line = <span className="text-white/85">&ldquo;hey Lazur, what is this?&rdquo;</span>;
-    right = <span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: CORAL }} />;
-  } else if (phase === "thinking") {
-    label = "Thinking";
-    right = <motion.span className="block h-3 w-3 rounded-full border-[1.5px] border-white/25 border-t-white" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />;
-  } else if (phase === "speak1" || phase === "speak2") {
-    label = "Speaking";
-    right = <Bars />;
-    line = phase === "speak1" ? "I'm your AI buddy. I live up here, in the notch." : "Hold a key and talk to me. Start here.";
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={onReplay}
-      title="Play it again"
-      aria-label="Replay Lazur's introduction"
-      className="fixed left-1/2 top-0 z-[60] -translate-x-1/2"
-    >
-      <motion.div
-        className="overflow-hidden rounded-b-[16px] bg-black text-left text-white shadow-[0_12px_30px_rgba(0,0,0,0.28)]"
-        animate={size}
-        transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.08 }}
-      >
-        <motion.div
-          key={phase}
-          className="px-5"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: label ? 1 : 0, transition: { delay: 0.22, duration: 0.18 } }}
-        >
-          <div className="flex h-[38px] items-center justify-between text-[13px] font-medium">
-            {label}
-            {right}
-          </div>
-          {line ? <p className="truncate pb-3 text-center text-[14.5px] font-medium">{line}</p> : null}
-        </motion.div>
-      </motion.div>
-    </button>
-  );
-}
-
 /** Points (relative to the hero) the pen visits: under the headline, around the button, at the demo. */
-type Spots = { notch: [number, number]; lineStart: [number, number]; lineEnd: [number, number]; cta: [number, number]; arrow: [number, number] };
+type Spots = { notch: [number, number]; lineStart: [number, number]; lineEnd: [number, number]; cta: [number, number]; arrow: [number, number];
+  /** The download button's own box (not its wrapper), for the circle. */
+  button: { x: number; y: number; w: number; h: number } };
 
 function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.RefObject<HTMLElement | null>, cta: React.RefObject<HTMLElement | null>, arrow: React.RefObject<HTMLElement | null>) {
   const [spots, setSpots] = useState<Spots | null>(null);
@@ -109,16 +49,17 @@ function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.Re
     const measure = () => {
       const h = hero.current?.getBoundingClientRect();
       const u = underline.current?.getBoundingClientRect();
-      const c = cta.current?.getBoundingClientRect();
+      const c = (cta.current?.querySelector("a, button") ?? cta.current)?.getBoundingClientRect();
       const a = arrow.current?.getBoundingClientRect();
       if (!h || !u || !c || !a) return;
       const at = (x: number, y: number): [number, number] => [x - h.left, y - h.top];
       setSpots({
-        notch: at(h.left + h.width / 2 + 120, h.top + 64),
+        notch: at(h.left + h.width / 2 + 150, h.top + 70),
         lineStart: at(u.left, u.bottom + 4),
         lineEnd: at(u.right, u.bottom + 2),
         cta: at(c.right + 10, c.top - 6),
         arrow: at(a.left + a.width / 2 - 30, a.top + 36),
+        button: { x: c.left - h.left, y: c.top - h.top, w: c.width, h: c.height },
       });
     };
     const frame = window.requestAnimationFrame(measure);
@@ -144,7 +85,7 @@ function Pen({ spots, phase }: { spots: Spots; phase: Phase }) {
     target = { left: [spots.notch[0], spots.lineStart[0], spots.lineEnd[0]], top: [spots.notch[1], spots.lineStart[1], spots.lineEnd[1]] };
     duration = 2.1;
   } else if (i === order("speak2")) {
-    target = { left: spots.cta[0], top: spots.cta[1] };
+    target = { left: spots.button.x + spots.button.w + 18, top: spots.button.y - 8 };
   } else if (i >= order("rest")) {
     target = { left: spots.arrow[0], top: spots.arrow[1] };
   }
@@ -160,6 +101,46 @@ function Pen({ spots, phase }: { spots: Spots; phase: Phase }) {
     >
       <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={CORAL} />
     </motion.svg>
+  );
+}
+
+/**
+ * A hand-drawn loop around the download button, drawn in real pixels: a stretched SVG makes Chrome
+ * miscount the stroke length and the loop never closes.
+ */
+function ButtonLoop({ button, show }: { button: Spots["button"]; show: boolean }) {
+  const padX = 24;
+  const padY = 15;
+  const w = button.w + padX * 2;
+  const h = button.h + padY * 2;
+  const rx = w / 2 - 3;
+  const ry = h / 2 - 3;
+  const cx = w / 2;
+  const cy = h / 2;
+  const k = 0.5523; // bezier handle for a quarter ellipse
+  // Start a bit right of the top, go round clockwise, and overshoot past the start like a pen does.
+  const d = [
+    `M ${cx + rx * 0.1} ${cy - ry}`,
+    `C ${cx + rx * 0.1 + rx * k} ${cy - ry} ${cx + rx} ${cy - ry * k} ${cx + rx} ${cy}`,
+    `C ${cx + rx} ${cy + ry * k} ${cx + rx * k} ${cy + ry} ${cx} ${cy + ry}`,
+    `C ${cx - rx * k} ${cy + ry} ${cx - rx} ${cy + ry * k} ${cx - rx} ${cy}`,
+    `C ${cx - rx} ${cy - ry * k} ${cx - rx * k} ${cy - ry - 2} ${cx + rx * 0.05} ${cy - ry - 1}`,
+    `C ${cx + rx * 0.25} ${cy - ry - 1} ${cx + rx * 0.4} ${cy - ry + 1} ${cx + rx * 0.5} ${cy - ry + 4}`,
+  ].join(" ");
+  return (
+    <svg
+      className="pointer-events-none absolute z-20 overflow-visible"
+      style={{ left: button.x - padX, top: button.y - padY, width: w, height: h }}
+      viewBox={`0 0 ${w} ${h}`}
+      aria-hidden
+    >
+      <motion.path
+        d={d} fill="none" stroke={CORAL} strokeWidth="3" strokeLinecap="round"
+        initial={false}
+        animate={{ pathLength: show ? 1 : 0, opacity: show ? 1 : 0 }}
+        transition={{ pathLength: { delay: show ? 0.6 : 0, duration: 0.9, ease: "easeInOut" }, opacity: { delay: show ? 0.6 : 0, duration: 0.01 } }}
+      />
+    </svg>
   );
 }
 
@@ -181,7 +162,6 @@ function Ink({ show, d, delay = 0, duration = 0.9, viewBox, className, preserve 
 export function BuddyHero() {
   const reduced = usePrefersReducedMotion();
   const [step, setStep] = useState(0);
-  const [run, setRun] = useState(0);
   const phase: Phase = reduced ? "rest" : TIMELINE[step][0];
   const at = order(phase);
 
@@ -191,12 +171,19 @@ export function BuddyHero() {
     if (!ms) return;
     const t = window.setTimeout(() => setStep((s) => s + 1), ms);
     return () => window.clearTimeout(t);
-  }, [step, run, reduced]);
+  }, [step, reduced]);
 
-  const replay = () => {
-    setStep(0);
-    setRun((r) => r + 1);
-  };
+  // The navbar is the notch: tell it what to say.
+  useEffect(() => {
+    const lines: Partial<Record<Phase, NotchVoice>> = {
+      listening: { state: "listening", line: "“hey Lazur, what is this?”" },
+      thinking: { state: "thinking" },
+      speak1: { state: "speaking", line: "I'm your AI buddy. I live up here, in the notch." },
+      speak2: { state: "speaking", line: "Hold a key and talk to me. Start here." },
+    };
+    setNotchVoice(lines[phase] ?? null);
+  }, [phase]);
+  useEffect(() => () => setNotchVoice(null), []);
 
   const hero = useRef<HTMLElement>(null);
   const underline = useRef<HTMLSpanElement>(null);
@@ -218,8 +205,8 @@ export function BuddyHero() {
             "radial-gradient(ellipse 60% 45% at 50% 0%, rgba(107, 75, 252, 0.12), transparent 70%), radial-gradient(ellipse 40% 35% at 85% 30%, rgba(249, 115, 22, 0.08), transparent 70%)",
         }}
       />
-      <PageNotch phase={phase} onReplay={replay} />
       {spots && !reduced ? <Pen spots={spots} phase={phase} /> : null}
+      {spots ? <ButtonLoop button={spots.button} show={drawCircle} /> : null}
 
       <div className="landing-container relative flex flex-col items-center pt-32 text-center md:pt-44">
         <motion.p
@@ -262,8 +249,7 @@ export function BuddyHero() {
         >
           <div ref={cta} className="relative">
             <HeroDownloadCta align="center" variant="minimal" className="w-full md:w-auto" />
-            <Ink show={drawCircle} delay={0.6} duration={0.9} viewBox="0 0 100 60" className="-inset-x-6 -inset-y-4 h-[calc(100%+2rem)] w-[calc(100%+3rem)]"
-              d="M52 4 C82 3 98 16 97 30 C96 47 74 57 48 56 C22 55 3 45 4 29 C5 14 24 5 60 7" />
+
             <motion.span
               className={`absolute left-[calc(100%+2.6rem)] top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[1.7rem] leading-none sm:block ${HAND}`}
               style={{ color: CORAL }}

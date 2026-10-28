@@ -1,311 +1,163 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { GlowCta } from "./GlowCta";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
+import { useNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 
 const navLinks = [
-  { href: "/pricing", label: "Pricing", match: "/pricing" },
-  { href: "/blog", label: "Blog", match: "/blog" },
-  { href: "/use-cases", label: "Use cases", match: "/use-cases" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/use-cases", label: "Use cases" },
+  { href: "/blog", label: "Blog" },
 ];
 
-function isActive(pathname: string, match: string, href: string) {
-  if (href.startsWith("/#")) return false;
-  return pathname === match || pathname.startsWith(`${match}/`);
-}
-
-/** Site-wide expo-out easing, keeps nav motion consistent with the landing page. */
 const EASE = [0.16, 1, 0.3, 1] as const;
+const CORAL = "#ef5350";
 
-const menuList = {
-  open: { transition: { staggerChildren: 0.04, delayChildren: 0.07 } },
-  closed: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
-};
-
-const menuItem = {
-  open: { opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } },
-  closed: { opacity: 0, y: -6, transition: { duration: 0.12, ease: EASE } },
-};
-
-/** The notch at rest, between the menus and the status items (the homepage's hero draws its own). */
-function RestingNotch() {
+function Bars() {
   return (
-    <span
-      className="pointer-events-none absolute left-1/2 top-0 h-9 w-44 -translate-x-1/2 rounded-b-[16px] bg-black"
-      aria-hidden
-    />
+    <span className="flex h-3 items-end gap-[3px]" aria-hidden>
+      {[0, 1, 2, 3].map((i) => (
+        <motion.span key={i} className="w-[2.5px] rounded-full bg-white"
+          animate={{ height: ["30%", "100%", "45%", "85%", "30%"] }}
+          transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.1 }} />
+      ))}
+    </span>
   );
 }
 
-/** Right side of the menu bar: Lazur's own icon, Wi-Fi, battery and the time, like a real Mac. */
-function StatusItems() {
-  const [time, setTime] = useState("");
-  useEffect(() => {
-    const tick = () =>
-      setTime(new Date().toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" }).replace(",", ""));
-    const first = window.setTimeout(tick, 0);
-    const t = window.setInterval(tick, 15_000);
-    return () => {
-      window.clearTimeout(first);
-      window.clearInterval(t);
-    };
-  }, []);
-  const icon = "h-[14px] w-auto text-[var(--foreground)]/75";
+/** The notch, alone at the top centre. At rest a camera cutout; it grows when Lazur talks. */
+function Notch({ voice }: { voice: NotchVoice | null }) {
+  const label = voice?.state === "listening" ? "Listening" : voice?.state === "thinking" ? "Thinking" : "Speaking";
+  const right =
+    voice?.state === "listening" ? <span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: CORAL }} />
+    : voice?.state === "thinking" ? <motion.span className="block h-3 w-3 rounded-full border-[1.5px] border-white/25 border-t-white" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
+    : <Bars />;
+  const size = !voice
+    ? { width: 176, height: 32 }
+    : voice.line
+      ? { width: "min(30rem, calc(100vw - 7rem))", height: 78 }
+      : { width: 300, height: 38 };
   return (
-    <div className="flex items-center gap-3.5 text-[13px] font-medium text-[var(--foreground)]/80" aria-hidden>
-      <Image src="/logo.png" alt="" width={15} height={15} className="opacity-80" />
-      <svg viewBox="0 0 20 14" className={icon} fill="currentColor">
-        <path d="M10 13.2l2.2-2.6a3.3 3.3 0 00-4.4 0zM5.3 8a7 7 0 019.4 0l1.4-1.6a9.2 9.2 0 00-12.2 0zM1.4 4.4a12.8 12.8 0 0117.2 0L20 2.8a15 15 0 00-20 0z" />
-      </svg>
-      <svg viewBox="0 0 26 13" className={icon} fill="none" stroke="currentColor" strokeWidth="1.4">
-        <rect x="1" y="1" width="21" height="11" rx="3" />
-        <rect x="3" y="3" width="15" height="7" rx="1.5" fill="currentColor" stroke="none" />
-        <path d="M24 5v3" strokeLinecap="round" />
-      </svg>
-      <span className="min-w-[5.5rem] text-right tabular-nums">{time}</span>
+    <motion.div
+      className="pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2 overflow-hidden bg-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)]"
+      style={{ borderRadius: "0 0 18px 18px" }}
+      initial={false}
+      animate={size}
+      transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.08 }}
+      aria-live="polite"
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {voice ? (
+          <motion.div
+            key={`${voice.state}-${voice.line ?? ""}`}
+            className="px-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.22, duration: 0.18 } }}
+            exit={{ opacity: 0, transition: { duration: 0.08 } }}
+          >
+            <div className="flex h-[38px] items-center justify-between text-[12.5px] font-medium text-white/60">
+              {label}
+              {right}
+            </div>
+            {voice.line ? <p className="truncate text-center text-[15px] font-medium">{voice.line}</p> : null}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/** Top left: the logo. Click it for the menu (pricing, use cases, blog, log in, download). */
+function LogoMenu() {
+  const pathname = usePathname();
+  const { user, loading, isAuthenticated } = useAuth();
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (box.current && !box.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  // Close after navigating.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
+
+  return (
+    <div ref={box} className="pointer-events-auto absolute left-4 top-4 md:left-6 md:top-5">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-label="Menu"
+        className="flex items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/80 py-2 pl-3 pr-2.5 shadow-[0_4px_16px_rgba(28,25,23,0.08)] backdrop-blur-xl transition-colors hover:bg-white"
+      >
+        <Image src="/logo.png" alt="" width={20} height={20} />
+        <span className="text-[15px] font-bold tracking-[-0.03em] text-[var(--foreground)]">lazur</span>
+        <ChevronDown className={`h-3.5 w-3.5 text-[var(--foreground-muted)] transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: EASE }}
+            style={{ transformOrigin: "top left" }}
+            className="absolute left-0 top-[calc(100%+8px)] w-60 rounded-2xl border border-black/[0.06] bg-white/95 p-2 shadow-[0_18px_40px_rgba(28,25,23,0.14)] backdrop-blur-xl"
+          >
+            <Link href="/" className="block rounded-xl px-3 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.04]">Home</Link>
+            {navLinks.map((l) => (
+              <Link key={l.href} href={l.href}
+                className={`block rounded-xl px-3 py-2 text-[14px] font-medium hover:bg-black/[0.04] ${pathname.startsWith(l.href) ? "text-[var(--foreground)]" : "text-[var(--foreground-muted)]"}`}>
+                {l.label}
+              </Link>
+            ))}
+            <div className="my-1.5 border-t border-black/[0.06]" />
+            {loading ? null : isAuthenticated && user ? (
+              <UserMenu user={user} variant="mobile" onNavigate={() => setOpen(false)} />
+            ) : (
+              <Link href="/login" className="block rounded-xl px-3 py-2 text-[14px] font-medium text-[var(--foreground-muted)] hover:bg-black/[0.04]">Log in</Link>
+            )}
+            <Link href="/download" className="mt-1 block rounded-xl bg-[var(--foreground)] px-3 py-2.5 text-center text-[14px] font-semibold text-white hover:opacity-90">
+              Download for Mac
+            </Link>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }
 
-/** `notch={false}` on pages that draw their own notch (the homepage hero). */
-export function Navbar({ notch = true }: { notch?: boolean }) {
-  const pathname = usePathname();
-  const { user, loading, isAuthenticated } = useAuth();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  /**
-   * Stays true through the collapse animation. Without this the pill would
-   * un-clip and round off while the panel is still animating out, letting a
-   * square-cornered sheet spill past the rounded corners.
-   */
-  const [panelExpanded, setPanelExpanded] = useState(false);
-
-  useEffect(() => {
-    if (mobileOpen) setPanelExpanded(true);
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Once the desktop nav takes over, the panel is display:none but still open,
-  // which would keep the pill clipped and cut off the account dropdown.
-  useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const onChange = () => {
-      if (desktop.matches) setMobileOpen(false);
-    };
-    onChange();
-    desktop.addEventListener("change", onChange);
-    return () => desktop.removeEventListener("change", onChange);
-  }, []);
-
+/**
+ * The whole header: the logo in the top-left corner (it opens the menu) and the notch, alone, at
+ * the top centre. On the homepage the notch talks while Lazur introduces itself.
+ */
+export function Navbar() {
+  const voice = useNotchVoice();
   return (
-    <>
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.button
-            type="button"
-            aria-label="Close menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.32, ease: EASE }}
-            onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 z-40 bg-[rgba(28,25,23,0.22)] backdrop-blur-[2px] lg:hidden"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* A Mac menu bar: menus on the left, the notch in the middle, status items on the right. */}
-      <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]">
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`menubar w-full ${scrolled || panelExpanded ? "menubar--scrolled" : ""}`}
-      >
-        <div className="relative flex h-9 items-center justify-between gap-4 px-4 md:px-5">
-          <div className="flex items-center gap-5">
-            <Link href="/" className="flex items-center gap-1.5" aria-label="Lazur home">
-              <Image src="/logo.png" alt="" width={18} height={18} className="shrink-0" />
-              <span className="text-[13.5px] font-bold tracking-[-0.02em] text-[var(--foreground)]">Lazur</span>
-            </Link>
-            <nav className="hidden items-center gap-5 lg:flex" aria-label="Main">
-              {navLinks.map((link) => {
-                const active = isActive(pathname, link.match, link.href);
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`rounded-[5px] px-1.5 py-0.5 text-[13px] font-medium transition-colors ${
-                      active
-                        ? "bg-[var(--foreground)]/[0.07] text-[var(--foreground)]"
-                        : "text-[var(--foreground)]/75 hover:bg-[var(--foreground)]/[0.06] hover:text-[var(--foreground)]"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {notch ? <RestingNotch /> : null}
-
-          <div className="flex items-center gap-4">
-            <div className="hidden items-center gap-4 lg:flex">
-              <StatusItems />
-              {loading ? (
-                <span className="h-3 w-14 rounded-full bg-[var(--foreground)]/5" />
-              ) : isAuthenticated && user ? (
-                <UserMenu user={user} />
-              ) : (
-                <>
-                  <Link
-                    href="/login"
-                    className="text-[13px] font-medium text-[var(--foreground)]/75 transition-colors hover:text-[var(--foreground)]"
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    href="/download"
-                    className="rounded-full bg-[var(--foreground)] px-3 py-1 text-[12.5px] font-semibold text-white transition-opacity hover:opacity-85"
-                  >
-                    Download
-                  </Link>
-                </>
-              )}
-            </div>
-
-            <button
-              type="button"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen((o) => !o)}
-              className="flex h-8 w-8 items-center justify-center text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)] lg:hidden"
-            >
-              <span className="relative block h-[18px] w-[18px]">
-                <motion.span
-                  className="absolute inset-0"
-                  aria-hidden
-                  animate={{
-                    opacity: mobileOpen ? 0 : 1,
-                    rotate: mobileOpen ? -90 : 0,
-                    scale: mobileOpen ? 0.65 : 1,
-                  }}
-                  transition={{ duration: 0.26, ease: EASE }}
-                >
-                  <Menu className="h-[18px] w-[18px]" strokeWidth={1.75} />
-                </motion.span>
-                <motion.span
-                  className="absolute inset-0"
-                  aria-hidden
-                  animate={{
-                    opacity: mobileOpen ? 1 : 0,
-                    rotate: mobileOpen ? 0 : 90,
-                    scale: mobileOpen ? 1 : 0.65,
-                  }}
-                  transition={{ duration: 0.26, ease: EASE }}
-                >
-                  <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
-                </motion.span>
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <AnimatePresence onExitComplete={() => setPanelExpanded(false)}>
-          {mobileOpen && (
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{ height: "auto" }}
-              exit={{ height: 0 }}
-              transition={{ duration: 0.36, ease: EASE }}
-              className="overflow-hidden border-t border-[var(--border)] bg-white/90 backdrop-blur-xl lg:hidden"
-            >
-              <motion.nav
-                className="flex flex-col px-5 pb-5 pt-2"
-                aria-label="Mobile"
-                variants={menuList}
-                initial="closed"
-                animate="open"
-                exit="closed"
-              >
-                {navLinks.map((link) => {
-                  const active = isActive(pathname, link.match, link.href);
-                  return (
-                    <motion.div key={link.href} variants={menuItem}>
-                      <Link
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`block py-2.5 text-[15px] font-medium ${
-                          active
-                            ? "text-[var(--foreground)]"
-                            : "text-[var(--foreground-muted)]"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-                <motion.div
-                  variants={menuItem}
-                  className="mt-2 flex flex-col gap-3 border-t border-[var(--border)]/50 pt-3"
-                >
-                  {loading ? null : isAuthenticated && user ? (
-                    <UserMenu
-                      user={user}
-                      variant="mobile"
-                      onNavigate={() => setMobileOpen(false)}
-                    />
-                  ) : (
-                    <>
-                      <Link
-                        href="/login"
-                        onClick={() => setMobileOpen(false)}
-                        className="block py-1 text-[15px] font-medium text-[var(--foreground-muted)]"
-                      >
-                        Log in
-                      </Link>
-                      <GlowCta
-                        href="/download"
-                        block
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        Try Lazur Free
-                      </GlowCta>
-                    </>
-                  )}
-                </motion.div>
-              </motion.nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0">
+      <LogoMenu />
+      <Notch voice={voice} />
     </header>
-    </>
   );
 }

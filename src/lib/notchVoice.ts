@@ -1,0 +1,30 @@
+"use client";
+
+import { useSyncExternalStore } from "react";
+
+/**
+ * What the navbar notch is saying right now. The homepage hero sets it while Lazur introduces
+ * itself; the navbar (which is the notch) grows to show it, then shrinks back when it's cleared.
+ */
+export type NotchVoice = {
+  state: "listening" | "thinking" | "speaking";
+  /** The line under the status row (what was said or what Lazur says). */
+  line?: string;
+};
+
+let current: NotchVoice | null = null;
+const listeners = new Set<() => void>();
+
+export function setNotchVoice(voice: NotchVoice | null) {
+  current = voice;
+  listeners.forEach((l) => l());
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+export function useNotchVoice(): NotchVoice | null {
+  return useSyncExternalStore(subscribe, () => current, () => null);
+}

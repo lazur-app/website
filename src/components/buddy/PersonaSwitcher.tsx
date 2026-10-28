@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { track } from "@/lib/productAnalytics";
 import { PERSONAS, setPersona, usePersona } from "@/lib/personas";
 
-/** Top right of the homepage: "I am a founder ▾". Changes the page to speak to that person. */
+/** In the homepage header: "I am a founder ▾". Changes the page to speak to that person. */
 export function PersonaSwitcher() {
   const persona = usePersona();
   const [open, setOpen] = useState(false);
@@ -27,12 +27,12 @@ export function PersonaSwitcher() {
   }, [open]);
 
   return (
-    <div ref={box} className="fixed right-4 top-4 z-50 md:right-6 md:top-5">
+    <div ref={box} className="relative">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/80 py-2 pl-3.5 pr-2.5 text-[14px] shadow-[0_4px_16px_rgba(28,25,23,0.08)] backdrop-blur-xl transition-colors hover:bg-white"
+        className="flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[14px] transition-colors hover:bg-black/[0.04]"
       >
         <span className="text-[var(--foreground-muted)]">I am</span>
         <span className="font-semibold text-[var(--foreground)]">{persona.id === "everyone" ? "…" : persona.label}</span>

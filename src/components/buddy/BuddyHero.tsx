@@ -4,27 +4,24 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
-import { setNotchIntro, setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 import { NotchStage } from "./NotchStage";
-import { PersonaSwitcher } from "./PersonaSwitcher";
 import { usePersona } from "@/lib/personas";
 
 /**
- * The hero is the demo: the navbar (which is the notch) hears "what is this?" and answers, while
- * Lazur's coral pen draws on the page itself, underlining the headline, circling the download
- * button, pointing at the demo below.
+ * Lazur's coral sparkle pen introduces itself by drawing on the page: says hi, underlines "in the
+ * notch", circles the download button and points at the demo below, with handwritten notes.
  */
 
 const CORAL = "#ef5350";
 const HAND = "font-[family-name:var(--font-caveat)]";
 
-type Phase = "idle" | "listening" | "thinking" | "speak1" | "speak2" | "rest";
+/** hello: the pen appears and says hi; speak1: underlines the headline; speak2: circles Download. */
+type Phase = "idle" | "hello" | "speak1" | "speak2" | "rest";
 const TIMELINE: Array<[Phase, number]> = [
-  ["idle", 700],
-  ["listening", 2000],
-  ["thinking", 1300],
-  ["speak1", 3200],
-  ["speak2", 2900],
+  ["idle", 600],
+  ["hello", 1900],
+  ["speak1", 2700],
+  ["speak2", 2600],
   ["rest", 0],
 ];
 const order = (p: Phase) => TIMELINE.findIndex(([q]) => q === p);
@@ -42,7 +39,7 @@ function usePrefersReducedMotion() {
 }
 
 /** Points (relative to the hero) the pen visits: under the headline, around the button, at the demo. */
-type Spots = { notch: [number, number]; lineStart: [number, number]; lineEnd: [number, number]; cta: [number, number]; arrow: [number, number];
+type Spots = { hello: [number, number]; lineStart: [number, number]; lineEnd: [number, number]; cta: [number, number]; arrow: [number, number];
   /** The download button's own box (not its wrapper), for the circle. */
   button: { x: number; y: number; w: number; h: number } };
 
@@ -57,7 +54,7 @@ function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.Re
       if (!h || !u || !c || !a) return;
       const at = (x: number, y: number): [number, number] => [x - h.left, y - h.top];
       setSpots({
-        notch: at(h.left + h.width / 2 + 150, h.top + 70),
+        hello: at(u.right + 30, u.top - u.height * 1.05),
         lineStart: at(u.left, u.bottom + 4),
         lineEnd: at(u.right, u.bottom + 2),
         cta: at(c.right + 10, c.top - 6),
@@ -82,10 +79,10 @@ function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.Re
 /** Lazur's sparkle pen, flying between the spots it draws at. */
 function Pen({ spots, phase }: { spots: Spots; phase: Phase }) {
   const i = order(phase);
-  let target: { left: number | number[]; top: number | number[] } = { left: spots.notch[0], top: spots.notch[1] };
+  let target: { left: number | number[]; top: number | number[] } = { left: spots.hello[0], top: spots.hello[1] };
   let duration = 0.9;
   if (i === order("speak1")) {
-    target = { left: [spots.notch[0], spots.lineStart[0], spots.lineEnd[0]], top: [spots.notch[1], spots.lineStart[1], spots.lineEnd[1]] };
+    target = { left: [spots.hello[0], spots.lineStart[0], spots.lineEnd[0]], top: [spots.hello[1], spots.lineStart[1], spots.lineEnd[1]] };
     duration = 2.1;
   } else if (i === order("speak2")) {
     target = { left: spots.button.x + spots.button.w + 18, top: spots.button.y - 8 };
@@ -147,6 +144,24 @@ function ButtonLoop({ button, show }: { button: Spots["button"]; show: boolean }
   );
 }
 
+/** A coral handwritten note the pen leaves on the page. */
+function Caption({ at, show, delay = 0.2, className = "", children }: {
+  at: [number, number]; show: boolean; delay?: number; className?: string; children: React.ReactNode;
+}) {
+  return (
+    <motion.span
+      className={`pointer-events-none absolute z-30 whitespace-nowrap text-[1.6rem] leading-none ${HAND} ${className}`}
+      style={{ left: at[0], top: at[1], color: CORAL }}
+      initial={false}
+      animate={{ opacity: show ? 1 : 0, y: show ? 0 : 4 }}
+      transition={{ delay: show ? delay : 0, duration: 0.35 }}
+      aria-hidden
+    >
+      {children}
+    </motion.span>
+  );
+}
+
 function Ink({ show, d, delay = 0, duration = 0.9, viewBox, className, preserve = "none" }: {
   show: boolean; d: string; delay?: number; duration?: number; viewBox: string; className: string; preserve?: string;
 }) {
@@ -177,25 +192,6 @@ export function BuddyHero() {
     return () => window.clearTimeout(t);
   }, [step, reduced]);
 
-  // The navbar is the notch: tell it what to say.
-  useEffect(() => {
-    const lines: Partial<Record<Phase, NotchVoice>> = {
-      listening: { state: "listening", line: "“hey Lazur, what is this?”" },
-      thinking: { state: "thinking" },
-      speak1: { state: "speaking", line: persona.intro },
-      speak2: { state: "speaking", line: "Hold a key and talk to me. Start here." },
-    };
-    setNotchVoice(lines[phase] ?? null);
-  }, [phase, persona.intro]);
-  useEffect(() => () => setNotchVoice(null), []);
-
-  // Once the intro is over the notch may react to hover and peek now and then; clicking it replays.
-  const introDone = at >= order("rest");
-  useEffect(() => {
-    setNotchIntro({ done: introDone, replay: () => setStep(0) });
-  }, [introDone]);
-  useEffect(() => () => setNotchIntro(null), []);
-
   const hero = useRef<HTMLElement>(null);
   const underline = useRef<HTMLSpanElement>(null);
   const cta = useRef<HTMLDivElement>(null);
@@ -208,9 +204,18 @@ export function BuddyHero() {
 
   return (
     <section ref={hero} className="relative overflow-x-clip">
-      <PersonaSwitcher />
       {spots && !reduced ? <Pen spots={spots} phase={phase} /> : null}
       {spots ? <ButtonLoop button={spots.button} show={drawCircle} /> : null}
+      {spots ? (
+        <>
+          <Caption at={[spots.hello[0] + 22, spots.hello[1] - 14]} show={at >= order("hello") && at < order("speak2")} className="hidden md:block">
+            hi, I&apos;m Lazur
+          </Caption>
+          <Caption at={[spots.lineEnd[0] + 18, spots.lineEnd[1] - 6]} show={drawLine} delay={1.2} className="hidden md:block">
+            that&apos;s where I live
+          </Caption>
+        </>
+      ) : null}
 
       <div className="landing-container relative flex flex-col items-center pt-32 text-center md:pt-44">
         <motion.p
@@ -312,7 +317,7 @@ export function BuddyHero() {
               }}
             />
           ))}
-          {/* One notch talking at a time: the demo starts once the intro above is done. */}
+          {/* The demo starts once the pen has finished, so one thing moves at a time. */}
           <NotchStage held={at < order("rest")} />
         </motion.div>
       </div>

@@ -4,7 +4,7 @@ import { BlogPostLayout } from "@/components/blog/BlogPostLayout";
 import { BlogMarkdown } from "@/components/blog/BlogMarkdown";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
-import { SITE_URL } from "@/lib/seo/constants";
+import { OG_IMAGE, SITE_URL } from "@/lib/seo/constants";
 import {
   buildArticleSchema,
   buildBlogFaqSchema,
@@ -39,6 +39,8 @@ export async function generateMetadata({
       canonical,
     },
     openGraph: {
+      // A page's own openGraph replaces the site's, so the preview image is repeated here.
+      images: [OG_IMAGE],
       title: post.title,
       description: post.description,
       type: "article",

@@ -10,6 +10,7 @@ import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
   OG_DESCRIPTION,
+  OG_IMAGE,
   SITE_URL,
 } from "@/lib/seo/constants";
 import "./globals.css";
@@ -36,20 +37,13 @@ export const metadata: Metadata = {
     description: OG_DESCRIPTION,
     type: "website",
     url: SITE_URL,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 680,
-        alt: "Lazur, a context-aware AI work assistant for Mac",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
     description: OG_DESCRIPTION,
-    images: ["/og-image.png"],
+    images: [OG_IMAGE.url],
   },
 };
 

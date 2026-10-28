@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo/constants";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "Guides, comparisons, and product updates on personal AI assistants, context-aware writing, voice actions, and getting more done with Lazur.",
   openGraph: {
+    images: [OG_IMAGE],
     title: "Blog | Lazur",
     description:
       "Guides, comparisons, and product updates on personal AI assistants, context-aware writing, voice actions, and getting more done with Lazur.",

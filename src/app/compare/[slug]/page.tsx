@@ -11,7 +11,7 @@ import {
   buildCompareArticleSchema,
   buildCompareFaqSchema,
 } from "@/lib/seo/compareSchema";
-import { SITE_URL } from "@/lib/seo/constants";
+import { OG_IMAGE, SITE_URL } from "@/lib/seo/constants";
 
 type ComparePageProps = {
   params: Promise<{ slug: string }>;
@@ -38,6 +38,8 @@ export async function generateMetadata({
     description: page.description,
     alternates: { canonical },
     openGraph: {
+      // A page's own openGraph replaces the site's, so the preview image is repeated here.
+      images: [OG_IMAGE],
       title: page.title,
       description: page.description,
       type: "article",

@@ -9,7 +9,7 @@ import {
   buildUseCaseFaqSchema,
   buildUseCaseHowToSchema,
 } from "@/lib/seo/useCaseSchema";
-import { SITE_URL } from "@/lib/seo/constants";
+import { OG_IMAGE, SITE_URL } from "@/lib/seo/constants";
 
 type UseCaseSlugProps = {
   params: Promise<{ slug: string }>;
@@ -37,6 +37,8 @@ export async function generateMetadata({
     alternates: { canonical },
     keywords: page.targetKeyword,
     openGraph: {
+      // A page's own openGraph replaces the site's, so the preview image is repeated here.
+      images: [OG_IMAGE],
       title: page.title,
       description: page.description,
       type: "article",

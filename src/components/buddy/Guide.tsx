@@ -15,7 +15,6 @@ import { loopPath, underlinePath } from "@/lib/handDrawn";
  */
 
 const INK = "#2563eb";
-const OFF_KEY = "lazur.guide.off";
 
 /** circle: a loop around the target; underline: a stroke under it (for words). */
 type Step = { target: string; say: string; ms?: number; mark?: "circle" | "underline" };
@@ -131,22 +130,8 @@ export function Guide() {
   const reduced = usePrefersReducedMotion();
   const phone = useIsPhone();
 
-  // Hidden for this visit?
-  useEffect(() => {
-    try {
-      if (sessionStorage.getItem(OFF_KEY)) setGuide({ dismissed: true });
-    } catch {
-      /* fine */
-    }
-  }, []);
-  const dismiss = () => {
-    try {
-      sessionStorage.setItem(OFF_KEY, "1");
-    } catch {
-      /* fine */
-    }
-    setGuide({ dismissed: true });
-  };
+  // The × hides it until the page is loaded again (it comes back on refresh).
+  const dismiss = () => setGuide({ dismissed: true });
 
   // Which section is under the middle of the screen. Scrolling down takes over from the hero
   // intro straight away, even if it hasn't finished drawing.

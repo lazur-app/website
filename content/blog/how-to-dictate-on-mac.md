@@ -138,4 +138,4 @@ If you are choosing between the two, read [Apple dictation vs AI dictation](/blo
 
 ## Next step
 
-If Apple dictation already covers Mail and Notes, keep it. If you live in Slack, Linear, and Cursor, install a system-wide app. [Download Lazur for Mac](/download), 7-day Pro trial, no credit card.
+If Apple dictation already covers Mail and Notes, keep it. If you live in Slack, Linear, and Cursor, install a system-wide app. [Download Lazur for Mac](/download), 3-day Pro trial, no credit card.

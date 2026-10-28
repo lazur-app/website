@@ -15,7 +15,7 @@ type GuideState = {
   heroDone: boolean;
   /** Which demo scene is on screen, so the guide can talk about it. */
   demoScene: string;
-  /** Hidden for this visit (the × on its label). */
+  /** Hidden until the page is loaded again (the × on its label). */
   dismissed: boolean;
 };
 

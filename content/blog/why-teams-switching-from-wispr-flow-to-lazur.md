@@ -68,4 +68,4 @@ Lazur starts free with 5,000 words per month. Pro is $14/month and Power is $35/
 
 Run your actual Tuesday through Lazur: one customer email, one Slack thread, one doc section. If you are coming from Wispr Flow, compare **edit time**, not word count. That is where the difference shows up.
 
-[Download Lazur for Mac](/download) and start a 7-day Pro trial.
+[Download Lazur for Mac](/download) and start a 3-day Pro trial.

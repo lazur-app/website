@@ -1,129 +1,72 @@
-# Lazur, Full product documentation for LLMs
+# Lazur: full product details for LLMs
 # https://www.lazur.app/llms-full.txt
-# Last updated: October 2026
+# Last updated: October 29, 2026
 
 ## Overview
 
-Lazur is a context-aware personal AI assistant for macOS. Hold a global hotkey, talk naturally, and get help writing, replying, rewriting, prompting, and completing work in Slack, Gmail, Cursor, VS Code, Notion, Linear, and any other Mac app.
+Lazur is an AI buddy for Mac. It lives in the MacBook notch (or the top centre of the screen on Macs without one). You hold a key and talk; Lazur can see your screen when you ask, answers out loud, points at things by drawing on your screen, guides you through apps step by step, does everyday tasks on your Mac, runs longer jobs in the background and types for you in any app.
 
-Lazur uses voice as the interface, but the outcome is **finished work**, not only a transcript. It understands the app and screen context already in front of you, so you can say what you need without restating the whole situation. It is not meeting transcription or speaker labeling.
-
-The product category is **context-aware AI assistance**: talk naturally; Lazur handles structure, tone, context, and the next useful action when you ask it to.
+It is not a chat window: you don't copy, paste or describe your screen. It is not always listening: it only listens and looks while you hold its shortcut.
 
 ## Core features
 
-### Voice input
-Hold-to-talk (or toggle) system-wide. Speech is transcribed on the Mac and can become a message, note, prompt, reply, or other finished output. Audio is not uploaded for speech-to-text.
+### Ask about your screen (hold ⌥ ⌘)
+Ask anything about what's in front of you ("what does this error mean?", "summarise this thread", "what's driving this chart?"). Lazur takes one screenshot at that moment, answers out loud, and doesn't store it.
 
-### Local speech-to-text
-NVIDIA Parakeet TDT runs on-device. Audio does not leave the Mac during transcription. Lazur does not identify speakers or diarize meetings.
+### Pointing
+"Where's the share button?" Lazur finds the exact element (using the Mac's accessibility tree and on-screen text) and draws a hand-drawn circle and label around it, including menu-bar icons with no text such as Control Center or Wi-Fi.
 
-### Cloud polish (optional)
-When Polished mode is on, **text** (not audio) is sent to cloud AI to clean filler, punctuation, and layout. Paste happens once, with the polished result.
+### Step-by-step guidance
+"How do I turn on dark mode?" Lazur circles the first thing to click, waits for your click, looks at the new screen and circles the next step until you're done. It adapts if you click somewhere else.
 
-### AI actions and context
-Voice commands to write, rewrite, reply, summarize, or reformat using the front window and selected text. Optional screen glance (Screen Recording permission) helps with requests such as “reply to this.” Pro includes 150 agent messages/month. Power includes 1,000 agent messages/month.
+### Everyday actions
+Timers that tick in the notch (and ring until you stop them), Apple Reminders, Calendar events, notes, music and volume (Spotify or Music), opening apps and links, web search, running Shortcuts, clicking app menu items.
 
-### Personal dictionary and snippets
-Names, jargon, and voice-triggered expansions stay local and sync if you choose.
+### Background jobs
+Multi-step work such as research, comparisons or reading a feed runs as a background job in Lazur's own Chrome tabs through the Lazur for Chrome extension. Jobs can use sites the user is already signed into, stop to ask before anything that can't be undone, and finish with a spoken summary and a full report. Routines (for example "always move new screenshots to a folder") run locally on the Mac.
 
-### Zen Mode
-On-device noise suppression while you dictate.
+### Dictation (hold fn)
+Clean, punctuated text at the cursor in any app. Removes filler words, applies spoken corrections ("Friday, no, Thursday" becomes "Thursday"), formats lists. Includes snippets (say a short phrase, get saved text), Words (a personal dictionary for names and terms) and clipboard slots.
 
-### Clipboard slots
-Nine clipboard slots for quick paste.
+### Notch and app
+Lazur's panel grows out of the notch. Hover it for jobs and status. Settings include cursor styles (Classic, Bubble, Halo, Sparkle), shortcuts, microphone and timer sound. Updates install automatically when the Mac is idle (from version 0.1.11).
 
-## Pricing
-
-| Plan | Price (USD) | Key features |
-|------|-------------|--------------|
-| Free trial | 7 days | Full Pro access, no credit card required |
-| Pro | $18/mo or $15/mo billed annually | Unlimited talk, 150 agent messages/month |
-| Power | $120/mo or $96/mo billed annually | Unlimited talk, 1,000 agent messages/month |
+## Pricing (October 2026)
+- 3-day Pro trial for every new user, no credit card; starts on first app launch.
+- Pro: $18/month, or $15/month billed annually. 150 AI actions a month, unlimited dictation.
+- Power: $120/month, or $96/month billed annually. 1,000 AI actions a month, unlimited dictation.
+- AI action = one request to Lazur (question, pointing, action, or background job). Dictation is not counted.
+- Students can contact Lazur for a student offer.
 
 ## Platform
-
-- Available: macOS (Apple Silicon)
-- Coming soon: Windows
-
-## Permissions required
-
-- Microphone, for voice input
-- Accessibility, to paste at the cursor
-- Screen Recording (optional), so Intent Mode can glance at the front window
+- macOS, Apple silicon and Intel builds.
+- Needs Microphone, Accessibility and Screen Recording permissions.
+- Windows is planned; there is a waitlist on the download page.
 
 ## Privacy model
+- Listens and captures the screen only while the user holds the shortcut.
+- Audio, one screenshot, selected text, the frontmost app's name and local time are sent to AI providers to answer the request; Lazur does not store the audio or screenshot.
+- Dictation audio is sent to speech-to-text providers and not stored.
+- Content is not sold and not used to train AI models.
+- Full policy: https://www.lazur.app/privacy
 
-- Speech-to-text: local (NVIDIA Parakeet on-device). Audio stays on the Mac.
-- History: On this Mac by default; Cloud sync is opt-in.
-- Polished mode / Intent Mode: text-only cloud processing when those features run.
-- Full details: https://www.lazur.app/privacy
-
-## Competitive positioning
-
-| Competitor | Lazur advantage |
-|------------|-----------------|
-| Wispr Flow | Context-aware polish and Intent Mode; finished writing vs raw transcription |
-| Super Whisper | System-wide polish + Intent Mode beyond local STT |
-| Willow Voice | Broader rewrite and Intent Mode |
-| Apple Dictation | AI polish, personal dictionary, Intent Mode, consistent cross-app paste |
-| ChatGPT / general AI | Invisible workflow; pastes where you type |
-| MacWhisper | Live cursor dictation, not file or meeting transcription |
-
-## Use cases
-
-- Hub: https://www.lazur.app/use-cases
-- Cursor: https://www.lazur.app/use-cases/cursor
-- Slack: https://www.lazur.app/use-cases/slack
-- Gmail: https://www.lazur.app/use-cases/gmail
-- ChatGPT: https://www.lazur.app/use-cases/chatgpt
-
-## Comparison pages
-
-- Compare hub: https://www.lazur.app/compare
-- Lazur vs Wispr Flow: https://www.lazur.app/compare/lazur-vs-wispr-flow
-- Lazur vs Aqua Voice: https://www.lazur.app/compare/lazur-vs-aqua-voice
-- Lazur vs MacWhisper: https://www.lazur.app/compare/lazur-vs-macwhisper
-- Google Voice Typing alternative: https://www.lazur.app/compare/google-voice-typing-alternative
-- Lazur vs Super Whisper: https://www.lazur.app/compare/lazur-vs-super-whisper
-- Lazur vs Willow Voice: https://www.lazur.app/compare/lazur-vs-willow-voice
-- Lazur vs Apple Dictation: https://www.lazur.app/compare/lazur-vs-apple-dictation
-- Best AI dictation apps 2026: https://www.lazur.app/blog/best-ai-dictation-apps-2026
-- Why teams switch from Wispr Flow: https://www.lazur.app/blog/why-teams-switching-from-wispr-flow-to-lazur
-
-## Ideal users
-
-1. **Engineers**, dictate in Cursor/VS Code: TODOs, PR descriptions, prompts, comments
-2. **Knowledge workers**, Slack, email, docs without typing
-3. **Creators / operators**, high-volume DMs and captions
-4. **Students / researchers**, notes and outlines
-5. **Privacy-conscious users**, local STT with optional text-only polish
+## How Lazur compares
+- vs Clicky (HeyClicky): both are voice-first AI buddies for Mac that see the screen. Lazur lives in the notch and emphasises drawing on screen, step-by-step guidance, everyday Mac actions and dictation; Clicky sits beside the cursor and emphasises agents and SaaS connectors. https://www.lazur.app/blog/lazur-vs-heyclicky
+- vs Meta's Muse for Mac: Muse is a task agent working across files and Apple apps; Lazur is a buddy for live help in the app you're using. https://www.lazur.app/blog/lazur-vs-muse-for-mac
+- vs ChatGPT / Claude desktop apps: those live in a window and need you to share or describe your screen; Lazur works on top of any app and acts on the Mac.
+- vs dictation apps (Wispr Flow, Superwhisper, Aqua Voice): Lazur includes full dictation but is mainly an assistant that answers, points and acts. https://www.lazur.app/compare
 
 ## FAQ
-
-**What is Lazur?**
-A context-aware AI work assistant for Mac: hold a hotkey, talk naturally, and get finished writing or useful actions based on what is already on screen. It is not a meeting transcriber.
-
-**How is Lazur different from Wispr Flow?**
-Wispr Flow optimizes for fast transcription. Lazur optimizes for finished, context-aware writing and Intent Mode.
-
-**Does Lazur work in Cursor and VS Code?**
-Yes. One system-wide hotkey works in all Mac apps, including IDEs.
-
-**Is voice data stored?**
-Audio stays on-device (NVIDIA Parakeet). Only text may be sent for polish or Intent Mode when those features run.
-
-**Does Lazur identify speakers?**
-No. It is single-speaker dictation into the app you are typing in.
-
-**Is there a free trial?**
-Yes. Lazur includes a 7-day Pro trial with no credit card required. After the trial, choose Pro or Power.
+- What is Lazur? An AI buddy for Mac that lives in the notch: it sees your screen when you ask, talks back, points at things, gets things done and types for you.
+- Is it always listening? No. Only while you hold ⌥ ⌘ (ask) or fn (dictate).
+- Does it work in every app? Yes, on top of any Mac app, including web apps.
+- How much is it? A free 3-day Pro trial, then Pro at $18/month or Power at $120/month.
+- Does it update itself? Yes, from version 0.1.11.
 
 ## Links
-
-- Homepage: https://www.lazur.app
+- Website: https://www.lazur.app
 - Download: https://www.lazur.app/download
 - Pricing: https://www.lazur.app/pricing
+- Changelog: https://www.lazur.app/changelog
 - Blog: https://www.lazur.app/blog
-- Privacy: https://www.lazur.app/privacy
-- Terms: https://www.lazur.app/terms
+- Support: support@lazur.app

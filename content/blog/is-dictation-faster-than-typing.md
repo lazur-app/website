@@ -59,4 +59,4 @@ People test Apple dictation or a transcription-first app, get a wall of speech, 
 
 Pick five real messages. Write two by typing, three by voice. Time start-to-send, including edits. If voice is not faster, the tool is adding work, switch, or keep typing.
 
-[Try Lazur on Mac](/download) and use that test. The 7-day trial is enough to know.
+[Try Lazur on Mac](/download) and use that test. The 3-day trial is enough to know.

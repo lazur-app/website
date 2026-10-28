@@ -5,7 +5,7 @@ import { getAllUseCases } from "@/lib/use-cases";
 import { SITE_URL } from "@/lib/seo/constants";
 
 /** Static marketing pages, bump when content meaningfully changes. */
-const STATIC_LAST_MODIFIED = new Date("2026-07-05");
+const STATIC_LAST_MODIFIED = new Date("2026-10-29");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: STATIC_LAST_MODIFIED,
     changeFrequency: "weekly" as const,
     priority:
-      path === "" ? 1 : path === "/compare" || path === "/use-cases" ? 0.9 : 0.8,
+      path === "" ? 1 : path === "/download" || path === "/pricing" || path === "/blog" ? 0.9 : 0.7,
   }));
 
   const compareRoutes = getAllComparisons().map((page) => ({

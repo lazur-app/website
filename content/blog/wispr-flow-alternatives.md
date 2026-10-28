@@ -105,4 +105,4 @@ Privacy is a real switch trigger alongside price and offline use. Lazur does not
 
 If the leftover work is editing, try Lazur. If the leftover work is “I need it even faster and on iPhone too,” try Aqua. If the leftover work is “I will not send audio off this machine,” try Superwhisper or VoiceInk.
 
-[Download Lazur for Mac](/download), 7-day Pro trial. For a wider roundup see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).
+[Download Lazur for Mac](/download), 3-day Pro trial. For a wider roundup see [best AI dictation apps in 2026](/blog/best-ai-dictation-apps-2026).

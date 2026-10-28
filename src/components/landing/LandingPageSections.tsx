@@ -1,29 +1,19 @@
-import {
-  BackgroundJobs,
-  EverydayThings,
-  SeesPointsDoes,
-  ShowMeHow,
-  TypesForYou,
-  YoureInCharge,
-} from "@/components/buddy/BuddySections";
+import { EverydayThings, ShowMeHow, YoureInCharge } from "@/components/buddy/BuddySections";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { LandingPricingSection } from "@/components/landing/LandingPricingSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
 
 /**
- * The AI buddy story, in the visitor's question order: what is it (hero demo) → what can it do
- * (see, point, do; guide; jobs; everyday; typing) → can I trust it → do others like it → what does
- * it cost. The dictation comparisons live on /compare, off the homepage.
+ * Short on purpose: the hero demo already shows pointing, timers, jobs and typing. After it, only
+ * what it doesn't show (step-by-step guiding, the everyday commands), one line of privacy, then
+ * proof and price. The dictation comparisons live on /compare, off the homepage.
  */
 export function LandingPageSections() {
   return (
     <>
-      <SeesPointsDoes />
       <ShowMeHow />
-      <BackgroundJobs />
       <EverydayThings />
-      <TypesForYou />
       <YoureInCharge />
       <TestimonialsSection />
       <LandingPricingSection />

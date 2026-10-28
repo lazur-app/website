@@ -28,3 +28,26 @@ function subscribe(listener: () => void) {
 export function useNotchVoice(): NotchVoice | null {
   return useSyncExternalStore(subscribe, () => current, () => null);
 }
+
+/**
+ * The homepage intro, if this page has one: whether it has finished (so hover and idle peeks may
+ * start without talking over it) and how to play it again.
+ */
+export type NotchIntro = { done: boolean; replay: () => void };
+
+let intro: NotchIntro | null = null;
+const introListeners = new Set<() => void>();
+
+export function setNotchIntro(next: NotchIntro | null) {
+  intro = next;
+  introListeners.forEach((l) => l());
+}
+
+function subscribeIntro(listener: () => void) {
+  introListeners.add(listener);
+  return () => introListeners.delete(listener);
+}
+
+export function useNotchIntro(): NotchIntro | null {
+  return useSyncExternalStore(subscribeIntro, () => intro, () => null);
+}

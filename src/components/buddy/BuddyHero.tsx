@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
-import { setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
+import { setNotchIntro, setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 import { NotchStage } from "./NotchStage";
 
 /**
@@ -184,6 +184,13 @@ export function BuddyHero() {
     setNotchVoice(lines[phase] ?? null);
   }, [phase]);
   useEffect(() => () => setNotchVoice(null), []);
+
+  // Once the intro is over the notch may react to hover and peek now and then; clicking it replays.
+  const introDone = at >= order("rest");
+  useEffect(() => {
+    setNotchIntro({ done: introDone, replay: () => setStep(0) });
+  }, [introDone]);
+  useEffect(() => () => setNotchIntro(null), []);
 
   const hero = useRef<HTMLElement>(null);
   const underline = useRef<HTMLSpanElement>(null);

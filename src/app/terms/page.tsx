@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Terms of Service for Lazur, a context-aware AI work assistant for macOS, including writing, rewriting, voice actions, subscriptions, and website use.",
 };
 
-const UPDATED = "August 13, 2026";
+const UPDATED = "October 28, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
@@ -31,7 +31,7 @@ export default function TermsPage() {
       intro={
         <>
           These Terms govern your use of Lazur&apos;s macOS application, website,
-          and related services. Every new account starts with a 7-day Pro trial;
+          and related services. Every new account starts with a 3-day Pro trial;
           after that, Lazur requires a paid Pro or Power subscription. By
           creating an account, downloading the app, or using Lazur, you agree to
           these Terms and our{" "}
@@ -122,7 +122,7 @@ export default function TermsPage() {
             <>
               <p>
                 Lazur is a paid service. We do not offer a permanent free plan.
-                New accounts receive a <strong className="text-[var(--foreground)]">one-time 7-day Pro trial</strong> with
+                New accounts receive a <strong className="text-[var(--foreground)]">one-time 3-day Pro trial</strong> with
                 the same features and quotas as Pro. When the trial ends,
                 continued use requires a paid <strong className="text-[var(--foreground)]">Pro</strong> or{" "}
                 <strong className="text-[var(--foreground)]">Power</strong> subscription.
@@ -138,10 +138,10 @@ export default function TermsPage() {
               <List
                 items={[
                   <>
-                    <strong className="text-[var(--foreground)]">7-day Pro
+                    <strong className="text-[var(--foreground)]">3-day Pro
                     trial</strong>, Starts when you create an account. No
                     credit card is required to download and begin the trial.
-                    After seven days, paid features stop until you subscribe.
+                    After three days, paid features stop until you subscribe.
                   </>,
                   <>
                     <strong className="text-[var(--foreground)]">Paid

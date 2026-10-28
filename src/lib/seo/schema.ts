@@ -36,7 +36,7 @@ export function buildSoftwareApplicationSchema() {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "7-day Pro trial, no credit card required",
+        description: "3-day Pro trial, no credit card required",
       },
       {
         "@type": "Offer",

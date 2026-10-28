@@ -93,7 +93,7 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
           >
-            Try Pro free for 7 days. Then choose your plan.
+            Try Pro free for 3 days. Then choose your plan.
           </m.h1>
           <p className="mx-auto mt-3 max-w-md text-[15px] lowercase leading-relaxed text-[var(--foreground-muted)]">
             three plans. no weird add-ons. start talking.
@@ -155,7 +155,7 @@ export default function PricingPage() {
           >
             Download Lazur
           </Link>{" "}
-          to start your 7-day Pro trial.
+          to start your 3-day Pro trial.
         </m.p>
 
         <m.div

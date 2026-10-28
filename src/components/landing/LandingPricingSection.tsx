@@ -25,7 +25,7 @@ export function LandingPricingSection() {
   const isWindows = platform === "windows";
 
   const plans = [
-    { name: "Free", detail: "Full Pro for 7 days · starts when you open the app · no card", featured: false },
+    { name: "Free", detail: "Full Pro for 3 days · starts when you open the app · no card", featured: false },
     {
       name: "Pro",
       detail: `150 AI actions · Unlimited dictation · ${proPrice}`,

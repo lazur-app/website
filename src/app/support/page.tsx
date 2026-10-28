@@ -84,7 +84,7 @@ export default function SupportPage() {
           content: (
             <List
               items={[
-                "Your 7-day Pro trial starts the first time you use the Mac app.",
+                "Your 3-day Pro trial starts the first time you use the Mac app.",
                 <>
                   Plans and prices are on the{" "}
                   <Link href="/pricing" className={linkClass}>

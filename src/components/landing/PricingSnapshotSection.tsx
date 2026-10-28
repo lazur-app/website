@@ -32,7 +32,7 @@ export function PricingSnapshotSection() {
             Choose Pro or Power.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[15px] text-[var(--foreground-muted)]">
-            Start with a 7-day Pro trial · then choose Pro or Power
+            Start with a 3-day Pro trial · then choose Pro or Power
           </p>
           <div className="mt-6 flex justify-center">
             <BillingIntervalToggle

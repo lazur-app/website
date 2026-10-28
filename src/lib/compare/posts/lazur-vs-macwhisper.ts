@@ -57,7 +57,7 @@ export const lazurVsMacwhisper: ComparisonPage = {
     },
     {
       feature: "Pricing",
-      lazur: "7-day Pro trial · Pro $18/mo · Power $120/mo",
+      lazur: "3-day Pro trial · Pro $18/mo · Power $120/mo",
       competitor: "One-time or paid tiers (verify on their site)",
     },
   ],

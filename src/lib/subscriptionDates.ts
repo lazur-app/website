@@ -39,7 +39,7 @@ export function periodEndDescription(
 ): string {
   const date = formatSubscriptionDate(iso);
   if (options?.trialStatus === "none" && plan.toLowerCase().includes("subscription required")) {
-    return "Your 7-day Pro trial starts when you open Lazur on your Mac.";
+    return "Your 3-day Pro trial starts when you open Lazur on your Mac.";
   }
   if (plan.toLowerCase().includes("subscription required")) {
     return "Your trial has ended. Choose Pro or Power to keep using Lazur.";

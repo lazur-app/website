@@ -52,12 +52,12 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     name: "Free",
     international: { currency: "USD", monthly: 0, annual: 0 },
     india: null,
-    descriptionLines: ["try Pro free for 7 days", "no credit card needed"],
+    descriptionLines: ["try Pro free for 3 days", "no credit card needed"],
     trialNote: "Starts when you first open Lazur on your Mac",
     cta: "download",
     buttonText: "Download for Mac",
     features: [
-      { text: "Full Pro for 7 days", included: true },
+      { text: "Full Pro for 3 days", included: true },
       { text: "Starts when you open the app", included: true },
       { text: "No credit card required", included: true },
     ],
@@ -151,7 +151,7 @@ export function planPrices(
   if (pricing.monthly === 0) {
     return {
       price: "Free",
-      period: "for 7 days",
+      period: "for 3 days",
     };
   }
 
@@ -203,8 +203,10 @@ export function regionCurrencyLabel(region: PricingRegion): string {
 
 export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 
-export const TRIAL_LABEL = "7-day Pro trial";
-export const TRIAL_NOTE = "Full Pro for 7 days · starts when you open the app";
+/** Length of a new Pro trial (backend: PRO_TRIAL_DAYS). */
+export const TRIAL_DAYS = 3;
+export const TRIAL_LABEL = "3-day Pro trial";
+export const TRIAL_NOTE = "Full Pro for 3 days · starts when you open the app";
 export const PRO_FROM_LABEL = "From $18/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
 export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";

@@ -35,7 +35,7 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Try Pro free for 7 days with no credit card; the trial starts when you first open Lazur on your Mac. After that, Pro is $18/month with 150 AI actions and unlimited dictation, or Power is $120/month with 1,000 AI actions. Annual billing is $15/month for Pro and $96/month for Power.",
+      "Try Pro free for 3 days with no credit card; the trial starts when you first open Lazur on your Mac. After that, Pro is $18/month with 150 AI actions and unlimited dictation, or Power is $120/month with 1,000 AI actions. Annual billing is $15/month for Pro and $96/month for Power.",
     link: { href: "/pricing", label: "See plans" },
   },
   {

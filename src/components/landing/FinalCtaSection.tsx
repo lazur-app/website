@@ -42,7 +42,7 @@ export function FinalCtaSection() {
             Download for Mac
           </GlowCta>
           <p className="text-[12px] text-white/40">
-            7-day Pro trial · starts when you open the app · no card needed
+            3-day Pro trial · starts when you open the app · no card needed
           </p>
         </div>
       </motion.div>

@@ -47,6 +47,7 @@ import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggl
 import {
   maxAnnualSavings,
   planPrices,
+  TRIAL_DAYS,
   WEBSITE_PLANS,
 } from "@/lib/pricingPlans";
 import {
@@ -278,7 +279,7 @@ function BillingContent() {
   const onTrial = user.plan.toLowerCase().includes("trial") && !trialExpired;
   const trialDays = onTrial ? daysRemaining(periodEnd) : null;
   const trialProgress =
-    trialDays !== null && trialDays <= 7 ? Math.max(0, ((7 - trialDays) / 7) * 100) : null;
+    trialDays !== null && trialDays <= TRIAL_DAYS ? Math.max(0, ((TRIAL_DAYS - trialDays) / TRIAL_DAYS) * 100) : null;
   const statusLabel = planStatusLabel(user.plan, paid, trialExpired, cancelScheduled);
 
   return (
@@ -408,7 +409,7 @@ function BillingContent() {
 
               {trialExpired && !paid ? (
                 <p className="rounded-lg border border-amber-200/80 bg-amber-50/70 px-3 py-2 text-[13px] font-medium text-amber-950">
-                  Your 7-day Pro trial has ended. Subscribe to keep dictating with Lazur.
+                  Your Pro trial has ended. Subscribe to keep using Lazur.
                 </p>
               ) : null}
 

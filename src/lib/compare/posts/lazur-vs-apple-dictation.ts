@@ -27,7 +27,7 @@ export const lazurVsAppleDictation: ComparisonPage = {
   table: [
     {
       feature: "Price",
-      lazur: "7-day Pro trial · Pro $18/mo · Power $120/mo",
+      lazur: "3-day Pro trial · Pro $18/mo · Power $120/mo",
       competitor: "Free (built into macOS)",
     },
     {

@@ -57,12 +57,12 @@ export const lazurVsAquaVoice: ComparisonPage = {
     },
     {
       feature: "Pricing",
-      lazur: "7-day Pro trial · Pro $18/mo · Power $120/mo",
+      lazur: "3-day Pro trial · Pro $18/mo · Power $120/mo",
       competitor: "Check current pricing on their site",
     },
     {
       feature: "Trial",
-      lazur: "7-day Pro trial, no credit card",
+      lazur: "3-day Pro trial, no credit card",
       competitor: "Check current trial on their site",
     },
   ],

@@ -64,12 +64,12 @@ export const lazurVsWisprFlow: ComparisonPage = {
     },
     {
       feature: "Pricing",
-      lazur: "7-day Pro trial · Pro $18/mo · Power $120/mo",
+      lazur: "3-day Pro trial · Pro $18/mo · Power $120/mo",
       competitor: "Free tier · Pro ~$12–15/mo (verify on site)",
     },
     {
       feature: "Free trial",
-      lazur: "7-day Pro trial, no credit card",
+      lazur: "3-day Pro trial, no credit card",
       competitor: "Free tier available",
     },
   ],

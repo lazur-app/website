@@ -553,6 +553,47 @@ function SceneWindow({ scene, phase }: { scene: Scene; phase: Phase }) {
   }
 }
 
+/** One key on the keyboard, pushed down while it's held. */
+function Keycap({ children, wide = false, down }: { children: ReactNode; wide?: boolean; down: boolean }) {
+  return (
+    <motion.span
+      className={`grid h-[4.2cqw] place-items-center rounded-[0.9cqw] border text-[1.5cqw] font-semibold ${wide ? "min-w-[6.4cqw] px-[1cqw]" : "w-[4.2cqw]"}`}
+      animate={
+        down
+          ? { y: "0.35cqw", backgroundColor: "#1c1917", color: "#ffffff", borderColor: "#1c1917", boxShadow: "0 0 0 0.35cqw rgba(239,83,80,0.35)" }
+          : { y: "0cqw", backgroundColor: "#ffffff", color: "#1c1917", borderColor: "rgba(28,25,23,0.15)", boxShadow: "0 0.35cqw 0 rgba(28,25,23,0.18)" }
+      }
+      transition={{ duration: 0.15 }}
+    >
+      {children}
+    </motion.span>
+  );
+}
+
+/** Bottom-left of the screen: the shortcut for this scene, held while you speak. */
+function HeldKeys({ scene, phase }: { scene: Scene; phase: Phase }) {
+  const dictation = scene.id === "type";
+  const down = phase === "listening";
+  return (
+    <div className="absolute bottom-[3.5%] left-[2.5%] z-30 flex items-center gap-[1cqw] rounded-[1.4cqw] bg-white/80 px-[1.2cqw] py-[1cqw] shadow-lg backdrop-blur">
+      <div className="flex gap-[0.6cqw]">
+        {dictation ? (
+          <Keycap wide down={down}>fn</Keycap>
+        ) : (
+          <>
+            <Keycap down={down}>⌥</Keycap>
+            <Keycap down={down}>⌘</Keycap>
+          </>
+        )}
+      </div>
+      <div className="text-left leading-tight">
+        <p className="text-[1.15cqw] font-semibold text-[#1c1917]">{down ? "Holding…" : "Hold"} {dictation ? "fn" : "⌥ ⌘"}</p>
+        <p className="text-[1cqw] text-black/50">{dictation ? "to dictate" : "to ask Lazur"}</p>
+      </div>
+    </div>
+  );
+}
+
 /** Where the pointer and the sparkle sit in each scene (the sparkle flies to the target). */
 function pointerSpots(scene: Scene, phase: Phase) {
   const [px, py] = ({ point: [52, 56], timer: [60, 52], job: [48, 60], type: [40, 62] } as const)[scene.id];
@@ -581,16 +622,17 @@ export function NotchStage() {
           <motion.div
             key={scene.id}
             className="absolute inset-0"
-            initial={reduced ? false : { opacity: 0, y: "2%", scale: 0.985 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduced ? undefined : { opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            initial={reduced ? false : { x: "105%", opacity: 0.6, scale: 0.94, filter: "blur(6px)" }}
+            animate={{ x: "0%", opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={reduced ? undefined : { x: "-105%", opacity: 0.6, scale: 0.94, filter: "blur(6px)" }}
+            transition={{ type: "spring", stiffness: 170, damping: 24, mass: 0.9 }}
           >
             <SceneWindow scene={scene} phase={phase} />
           </motion.div>
         </AnimatePresence>
         <Notch scene={scene} phase={phase} reduced={reduced} />
         <Pointer at={spots.pointer} sparkleAt={spots.sparkle} />
+        <HeldKeys scene={scene} phase={phase} />
 
         {/* What this scene shows, big enough to read at a glance */}
         <AnimatePresence initial={false}>

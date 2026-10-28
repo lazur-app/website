@@ -3,6 +3,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
+import { HeroDemoGrid } from "@/components/hero/HeroDemoGrid";
+import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
 import { setNotchIntro, setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 import { NotchStage } from "./NotchStage";
 
@@ -204,14 +206,11 @@ export function BuddyHero() {
 
   return (
     <section ref={hero} className="relative overflow-x-clip">
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 45% at 50% 0%, rgba(107, 75, 252, 0.12), transparent 70%), radial-gradient(ellipse 40% 35% at 85% 30%, rgba(249, 115, 22, 0.08), transparent 70%)",
-        }}
-      />
+      {/* The floating particle wave (and its faint grid) behind the headline */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[100svh] overflow-hidden" aria-hidden>
+        <HeroFluidWaves />
+        <HeroDemoGrid />
+      </div>
       {spots && !reduced ? <Pen spots={spots} phase={phase} /> : null}
       {spots ? <ButtonLoop button={spots.button} show={drawCircle} /> : null}
 

@@ -3,10 +3,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
-import { HeroDemoGrid } from "@/components/hero/HeroDemoGrid";
 import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
 import { setNotchIntro, setNotchVoice, type NotchVoice } from "@/lib/notchVoice";
 import { NotchStage } from "./NotchStage";
+import { PersonaSwitcher } from "./PersonaSwitcher";
+import { usePersona } from "@/lib/personas";
 
 /**
  * The hero is the demo: the navbar (which is the notch) hears "what is this?" and answers, while
@@ -45,7 +46,7 @@ type Spots = { notch: [number, number]; lineStart: [number, number]; lineEnd: [n
   /** The download button's own box (not its wrapper), for the circle. */
   button: { x: number; y: number; w: number; h: number } };
 
-function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.RefObject<HTMLElement | null>, cta: React.RefObject<HTMLElement | null>, arrow: React.RefObject<HTMLElement | null>) {
+function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.RefObject<HTMLElement | null>, cta: React.RefObject<HTMLElement | null>, arrow: React.RefObject<HTMLElement | null>, version: string) {
   const [spots, setSpots] = useState<Spots | null>(null);
   useLayoutEffect(() => {
     const measure = () => {
@@ -74,7 +75,7 @@ function useSpots(hero: React.RefObject<HTMLElement | null>, underline: React.Re
       window.removeEventListener("resize", measure);
       window.clearTimeout(settled);
     };
-  }, [hero, underline, cta, arrow]);
+  }, [hero, underline, cta, arrow, version]);
   return spots;
 }
 
@@ -163,6 +164,7 @@ function Ink({ show, d, delay = 0, duration = 0.9, viewBox, className, preserve 
 
 export function BuddyHero() {
   const reduced = usePrefersReducedMotion();
+  const persona = usePersona();
   const [step, setStep] = useState(0);
   const phase: Phase = reduced ? "rest" : TIMELINE[step][0];
   const at = order(phase);
@@ -180,11 +182,11 @@ export function BuddyHero() {
     const lines: Partial<Record<Phase, NotchVoice>> = {
       listening: { state: "listening", line: "“hey Lazur, what is this?”" },
       thinking: { state: "thinking" },
-      speak1: { state: "speaking", line: "I'm your AI buddy. I live up here, in the notch." },
+      speak1: { state: "speaking", line: persona.intro },
       speak2: { state: "speaking", line: "Hold a key and talk to me. Start here." },
     };
     setNotchVoice(lines[phase] ?? null);
-  }, [phase]);
+  }, [phase, persona.intro]);
   useEffect(() => () => setNotchVoice(null), []);
 
   // Once the intro is over the notch may react to hover and peek now and then; clicking it replays.
@@ -198,7 +200,7 @@ export function BuddyHero() {
   const underline = useRef<HTMLSpanElement>(null);
   const cta = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLDivElement>(null);
-  const spots = useSpots(hero, underline, cta, arrow);
+  const spots = useSpots(hero, underline, cta, arrow, persona.id);
 
   const drawLine = at >= order("speak1");
   const drawCircle = at >= order("speak2");
@@ -206,11 +208,7 @@ export function BuddyHero() {
 
   return (
     <section ref={hero} className="relative overflow-x-clip">
-      {/* The floating particle wave (and its faint grid) behind the headline */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[100svh] overflow-hidden" aria-hidden>
-        <HeroFluidWaves />
-        <HeroDemoGrid />
-      </div>
+      <PersonaSwitcher />
       {spots && !reduced ? <Pen spots={spots} phase={phase} /> : null}
       {spots ? <ButtonLoop button={spots.button} show={drawCircle} /> : null}
 
@@ -223,13 +221,19 @@ export function BuddyHero() {
         >
           AI buddy for Mac
         </motion.p>
+        <div className="relative isolate">
+        {/* The floating particle wave, centred behind the headline */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[34rem] w-screen -translate-x-1/2 -translate-y-[30%]" aria-hidden>
+          <HeroFluidWaves />
+        </div>
         <motion.h1
+          key={persona.id}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.08, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="mt-5 max-w-4xl font-display text-[clamp(2.5rem,5.4vw,5rem)] font-medium leading-[0.98] tracking-[-0.04em] text-[var(--foreground)]"
         >
-          Your AI buddy,
+          {persona.title}
           <br />
           right{" "}
           <span ref={underline} className="relative inline-block">
@@ -238,14 +242,15 @@ export function BuddyHero() {
               d="M3 12 C60 5 110 16 160 9 C205 3 250 14 297 7" />
           </span>
         </motion.h1>
+        </div>
         <motion.p
+          key={`sub-${persona.id}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.55 }}
           className="mt-6 max-w-[40rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-snug text-[var(--foreground-muted)]"
         >
-          Hold a key and talk. Lazur sees your screen, points at things, answers out loud and gets
-          things done, in any app.
+          {persona.sub}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -289,8 +294,24 @@ export function BuddyHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-4 w-full max-w-5xl"
+          className="relative isolate mt-4 w-full max-w-5xl"
         >
+          {/* The faint grid fans out from the demo screen's top corners */}
+          {(["left-0", "right-0"] as const).map((side) => (
+            <div
+              key={side}
+              aria-hidden
+              className={`pointer-events-none absolute top-0 -z-10 h-[34rem] w-[34rem] -translate-y-1/2 ${side === "left-0" ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"}`}
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(28,25,23,0.09) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,25,23,0.09) 1px, transparent 1px)",
+                backgroundSize: "28px 28px",
+                backgroundPosition: "center",
+                maskImage: "radial-gradient(circle at center, black 0%, transparent 68%)",
+                WebkitMaskImage: "radial-gradient(circle at center, black 0%, transparent 68%)",
+              }}
+            />
+          ))}
           {/* One notch talking at a time: the demo starts once the intro above is done. */}
           <NotchStage held={at < order("rest")} />
         </motion.div>

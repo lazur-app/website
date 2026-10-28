@@ -10,6 +10,7 @@ import {
   Hand,
   Link2,
   Lock,
+  MessageCircle,
   Music,
   Search,
   StickyNote,
@@ -18,6 +19,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { AppMarquee } from "@/components/AppMarquee";
+import { usePersona } from "@/lib/personas";
 
 const CORAL = "#ef5350";
 
@@ -131,20 +133,23 @@ export function ShowMeHow() {
 
 // --- Everyday ------------------------------------------------------------------------------
 
-const EVERYDAY: Array<{ icon: typeof Timer; say: string }> = [
-  { icon: Timer, say: "Set a timer for 10 minutes" },
-  { icon: BellRing, say: "Remind me to call Mom at 6" },
-  { icon: CalendarPlus, say: "Lunch with Sam on Friday at 1" },
-  { icon: Music, say: "Play something calm" },
-  { icon: Volume2, say: "Turn it down a bit" },
-  { icon: AppWindow, say: "Open Figma" },
-  { icon: Link2, say: "Open my Linear inbox" },
-  { icon: Search, say: "Search flights to Goa" },
-  { icon: StickyNote, say: "Note: try the new onboarding copy" },
-  { icon: Workflow, say: "Run my Morning shortcut" },
-];
+/** A fitting icon for an everyday command, from its words. */
+function iconFor(say: string): typeof Timer {
+  const t = say.toLowerCase();
+  if (t.includes("timer")) return Timer;
+  if (t.includes("remind")) return BellRing;
+  if (/(lunch|call with|meeting|friday at|thursday at)/.test(t)) return CalendarPlus;
+  if (t.includes("play")) return Music;
+  if (t.includes("turn it")) return Volume2;
+  if (t.startsWith("note")) return StickyNote;
+  if (t.includes("search") || t.includes("research")) return Search;
+  if (t.includes("shortcut")) return Workflow;
+  if (t.includes("open")) return t.includes("my ") ? Link2 : AppWindow;
+  return MessageCircle;
+}
 
 export function EverydayThings() {
+  const persona = usePersona();
   return (
     <Section
       tint
@@ -153,7 +158,9 @@ export function EverydayThings() {
       intro="Say it. Done."
     >
       <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3">
-        {EVERYDAY.map(({ icon: Icon, say }, i) => (
+        {persona.everyday.map((say, i) => {
+          const Icon = iconFor(say);
+          return (
           <motion.span
             key={say}
             initial={{ opacity: 0, y: 10 }}
@@ -165,7 +172,8 @@ export function EverydayThings() {
             <Icon className="h-4 w-4 text-[var(--brand)]" />
             &ldquo;{say}&rdquo;
           </motion.span>
-        ))}
+          );
+        })}
       </div>
       <div className="mx-auto mt-14 max-w-4xl">
         <p className="mb-4 text-center text-[13px] text-[var(--foreground-faint)]">Works in every Mac app</p>

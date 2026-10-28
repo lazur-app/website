@@ -86,13 +86,13 @@ function usePrefersReducedMotion() {
 }
 
 /** Drives scene → phase on a timeline; picking a tab restarts that scene. */
-function useTimeline(reduced: boolean) {
+function useTimeline(reduced: boolean, held: boolean) {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [phaseIndex, setPhaseIndex] = useState(0);
   const scene = SCENES[sceneIndex];
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || held) return;
     const [, duration] = scene.phases[phaseIndex];
     const t = window.setTimeout(() => {
       if (phaseIndex + 1 < scene.phases.length) {
@@ -103,7 +103,7 @@ function useTimeline(reduced: boolean) {
       }
     }, duration);
     return () => window.clearTimeout(t);
-  }, [reduced, scene, sceneIndex, phaseIndex]);
+  }, [reduced, held, scene, sceneIndex, phaseIndex]);
 
   const pick = (i: number) => {
     setSceneIndex(i);
@@ -603,9 +603,10 @@ function pointerSpots(scene: Scene, phase: Phase) {
   return { pointer, sparkle: { x: `${px + 1.6}%`, y: `${py + 2.9}%` } };
 }
 
-export function NotchStage() {
+/** `held`: stay on the first frame (e.g. while the hero's own notch is talking). */
+export function NotchStage({ held = false }: { held?: boolean }) {
   const reduced = usePrefersReducedMotion();
-  const { scene, sceneIndex, phase, phaseIndex, pick, total, elapsed } = useTimeline(reduced);
+  const { scene, sceneIndex, phase, phaseIndex, pick, total, elapsed } = useTimeline(reduced, held);
   const spots = pointerSpots(scene, phase);
   const CaptionIcon = scene.icon;
 
@@ -664,7 +665,7 @@ export function NotchStage() {
                 active ? "bg-[var(--foreground)] text-white" : "bg-black/[0.05] text-[var(--foreground-muted)] hover:bg-black/[0.08]"
               }`}
             >
-              {active && !reduced ? (
+              {active && !reduced && !held ? (
                 <motion.span
                   key={`${s.id}-${phaseIndex === 0 ? "start" : "run"}`}
                   className="absolute inset-y-0 left-0 bg-white/15"

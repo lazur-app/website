@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useInView } from "framer-motion";
 import {
   AppWindow,
   BellRing,
@@ -21,7 +21,6 @@ import {
 import { AppMarquee } from "@/components/AppMarquee";
 import { usePersona } from "@/lib/personas";
 
-const CORAL = "#ef5350";
 
 function Section({ id, eyebrow, title, intro, children, tint = false }: {
   id?: string;
@@ -80,7 +79,65 @@ const GUIDE_STEPS = [
   { label: "That's it", items: ["Light", "Dark", "Auto"], target: 1, row: true, done: true },
 ];
 
+const INK = "#2563eb";
+
+/** A hand-drawn loop around the box it sits in, drawn when `show` turns on. */
+function Loop({ show }: { show: boolean }) {
+  return (
+    <svg className="pointer-events-none absolute -inset-2 h-[calc(100%+16px)] w-[calc(100%+16px)] overflow-visible" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden>
+      <motion.path
+        d="M54 4 C82 3 98 16 97 30 C96 47 74 57 48 56 C22 55 3 45 4 29 C5 14 24 5 60 7"
+        fill="none" stroke={INK} strokeWidth="2.4" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+        initial={false}
+        animate={{ pathLength: show ? 1 : 0, opacity: show ? 1 : 0 }}
+        transition={{ pathLength: { duration: show ? 0.6 : 0, ease: "easeInOut" }, opacity: { duration: 0.15 } }}
+      />
+    </svg>
+  );
+}
+
+/**
+ * When this section scrolls into view, the blue sparkle walks through it the way Lazur guides you:
+ * circles Appearance, then Dark, then Dark switches on. It plays again each time you come back.
+ */
 export function ShowMeHow() {
+  const box = useRef<HTMLDivElement>(null);
+  const targets = useRef<Array<HTMLElement | null>>([]);
+  const inView = useInView(box, { amount: 0.5 });
+  const [stage, setStage] = useState(0); // 0 waiting, 1 Appearance, 2 Dark, 3 done
+  const [spots, setSpots] = useState<Array<[number, number]>>([]);
+
+  useEffect(() => {
+    if (!inView) return;
+    const times = [700, 2300, 3900, 7600];
+    const timers = times.map((t, i) => window.setTimeout(() => setStage(i < 3 ? i + 1 : 0), t));
+    const again = window.setInterval(() => {
+      times.forEach((t, i) => timers.push(window.setTimeout(() => setStage(i < 3 ? i + 1 : 0), t)));
+    }, 8000);
+    return () => {
+      timers.forEach((t) => window.clearTimeout(t));
+      window.clearInterval(again);
+      setStage(0);
+    };
+  }, [inView]);
+
+  useEffect(() => {
+    const measure = () => {
+      const b = box.current?.getBoundingClientRect();
+      if (!b) return;
+      setSpots(targets.current.map((el) => {
+        const r = el?.getBoundingClientRect();
+        return r ? [r.right - b.left + 6, r.top - b.top - 6] : [0, 0];
+      }));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [inView]);
+
+  // Waiting: just above the first card. Then each target in turn.
+  const at = stage === 0 ? (spots[0] ? [spots[0][0] - 80, -40] : [0, -40]) : spots[stage - 1] ?? [0, 0];
+
   return (
     <Section
       tint
@@ -88,44 +145,52 @@ export function ShowMeHow() {
       title="Stuck? It walks you through."
       intro={<>Ask &ldquo;how do I turn on dark mode?&rdquo; It circles each click.</>}
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {GUIDE_STEPS.map((step, i) => (
-          <Card key={step.label} className="flex flex-col !p-5">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">Step {i + 1}</p>
-            <div className="mt-3 rounded-2xl bg-[var(--background-deep)] p-4">
-              <div className={step.row ? "flex gap-2" : "space-y-1.5"}>
-                {step.items.map((item, j) => {
-                  const hit = j === step.target;
-                  return (
-                    <div
-                      key={item}
-                      className={`relative rounded-lg px-3 py-2 text-[13px] ${step.row ? "flex-1 text-center" : ""} ${
-                        hit && step.done ? "bg-[#1c1917] text-white" : "bg-white text-[var(--foreground-muted)]"
-                      }`}
-                    >
-                      {item}
-                      {hit && !step.done ? (
-                        <motion.span
-                          className="pointer-events-none absolute -inset-1.5 rounded-xl border-2 border-dashed"
-                          style={{ borderColor: CORAL }}
-                          initial={{ opacity: 0, scale: 1.08 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.45, delay: 0.2 + i * 0.3 }}
-                          aria-hidden
-                        />
-                      ) : null}
-                    </div>
-                  );
-                })}
+      <div ref={box} className="relative grid gap-5 md:grid-cols-3">
+        {GUIDE_STEPS.map((step, i) => {
+          const active = stage >= i + 1;
+          return (
+            <Card key={step.label} className="flex flex-col !p-5">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">Step {i + 1}</p>
+              <div className="mt-3 rounded-2xl bg-[var(--background-deep)] p-4">
+                <div className={step.row ? "flex gap-2" : "space-y-1.5"}>
+                  {step.items.map((item, j) => {
+                    const hit = j === step.target;
+                    const on = hit && step.done && active;
+                    return (
+                      <div
+                        key={item}
+                        ref={hit ? (el) => { targets.current[i] = el; } : undefined}
+                        className={`relative rounded-lg px-3 py-2 text-[13px] transition-colors duration-300 ${step.row ? "flex-1 text-center" : ""} ${
+                          on ? "bg-[#1c1917] text-white" : "bg-white text-[var(--foreground-muted)]"
+                        }`}
+                      >
+                        {item}
+                        {hit && !step.done ? <Loop show={active} /> : null}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <p className="mt-auto flex items-center gap-2 pt-4 text-[15px] font-medium text-[var(--foreground)]">
-              {step.done ? <Check className="h-4 w-4 text-emerald-500" /> : <Hand className="h-4 w-4" style={{ color: CORAL }} />}
-              {step.label}
-            </p>
-          </Card>
-        ))}
+              <p className={`mt-auto flex items-center gap-2 pt-4 text-[15px] font-medium transition-opacity duration-300 ${active ? "opacity-100" : "opacity-40"} text-[var(--foreground)]`}>
+                {step.done ? <Check className="h-4 w-4 text-emerald-500" /> : <Hand className="h-4 w-4" style={{ color: INK }} />}
+                {step.label}
+              </p>
+            </Card>
+          );
+        })}
+
+        {/* Lazur's sparkle, flying from step to step */}
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="pointer-events-none absolute left-0 top-0 z-10 -ml-3 -mt-3 h-6 w-6"
+          style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.55))" }}
+          initial={false}
+          animate={{ x: at[0], y: at[1], opacity: inView ? 1 : 0, rotate: stage * 30 }}
+          transition={{ type: "spring", stiffness: 70, damping: 15 }}
+          aria-hidden
+        >
+          <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={INK} />
+        </motion.svg>
       </div>
     </Section>
   );

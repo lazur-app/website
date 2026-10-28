@@ -329,7 +329,7 @@ export function BuddyHero() {
             />
           ))}
           {/* The demo starts once the pen has finished, so one thing moves at a time. */}
-          <NotchStage held={at < order("rest")} />
+          <NotchStage held={at < order("rest") && !handedOff} />
         </motion.div>
       </div>
     </section>

@@ -148,10 +148,9 @@ export function Guide() {
     setGuide({ dismissed: true });
   };
 
-  // Which section is under the middle of the screen (only after the hero's intro is done).
-  const ready = g.heroDone || reduced;
+  // Which section is under the middle of the screen. Scrolling down takes over from the hero
+  // intro straight away, even if it hasn't finished drawing.
   useEffect(() => {
-    if (!ready) return;
     let frame = 0;
     let last: string | null = null;
     const tick = () => {
@@ -173,7 +172,7 @@ export function Guide() {
     };
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
-  }, [ready]);
+  }, []);
 
   const stop = STOPS.find((s) => s.id === g.stop);
   const steps = stop ? stop.steps({ persona: persona.id, scene: g.demoScene }) : [];
@@ -190,7 +189,7 @@ export function Guide() {
 
   // Follow the target every frame: springs make the sparkle trail behind when you scroll fast.
   // Over-damped: it glides into place and settles, never bounces past.
-  const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 90, damping: 22, mass: 1 };
+  const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 220, damping: 42, mass: 1 };
   const x = useSpring(useMotionValue(-100), spring);
   const y = useSpring(useMotionValue(-100), spring);
   const ring = { l: useMotionValue(0), t: useMotionValue(0) };

@@ -312,7 +312,7 @@ function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: {
       <motion.div
         className="pointer-events-none absolute z-40"
         animate={{ left: at.x, top: at.y }}
-        transition={{ type: "spring", stiffness: 60, damping: 18, mass: 0.9 }}
+        transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
         aria-hidden
       >
         <svg viewBox="0 0 12 18" className="h-[1.7cqw] w-auto drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
@@ -322,7 +322,7 @@ function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: {
       <motion.div
         className="pointer-events-none absolute z-40"
         animate={{ left: sparkleAt.x, top: sparkleAt.y }}
-        transition={{ type: "spring", stiffness: 55, damping: 16, mass: 0.9 }}
+        transition={{ duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
         aria-hidden
       >
         <motion.svg

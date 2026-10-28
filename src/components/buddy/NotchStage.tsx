@@ -40,7 +40,7 @@ const SCENES: Scene[] = [
     app: "Keynote",
     said: "Where's the share button?",
     reply: "Top right. Right here.",
-    phases: [["idle", 350], ["listening", 1100], ["thinking", 450], ["speaking", 1300], ["result", 2600]],
+    phases: [["idle", 300], ["listening", 1100], ["thinking", 400], ["speaking", 1600], ["result", 1500]],
   },
   {
     id: "timer",
@@ -50,7 +50,7 @@ const SCENES: Scene[] = [
     app: "Safari",
     said: "Set a timer for 10 minutes.",
     reply: "Ten minutes, starting now.",
-    phases: [["idle", 350], ["listening", 1100], ["thinking", 400], ["speaking", 1500], ["result", 2800]],
+    phases: [["idle", 300], ["listening", 1100], ["thinking", 400], ["speaking", 1400], ["result", 2100]],
   },
   {
     id: "job",
@@ -60,7 +60,7 @@ const SCENES: Scene[] = [
     app: "Chrome",
     said: "Compare standing desks under $300.",
     reply: "On it. I'll do that in the background.",
-    phases: [["idle", 350], ["listening", 1200], ["thinking", 400], ["speaking", 1500], ["working", 2400], ["done", 2600]],
+    phases: [["idle", 300], ["listening", 1200], ["thinking", 400], ["speaking", 1400], ["working", 2200], ["done", 1800]],
   },
   {
     id: "type",
@@ -69,7 +69,7 @@ const SCENES: Scene[] = [
     icon: Keyboard,
     app: "Mail",
     said: "um so thursday works no actually friday works better for me",
-    phases: [["idle", 350], ["listening", 1500], ["thinking", 550], ["result", 2600]],
+    phases: [["idle", 300], ["listening", 1500], ["thinking", 500], ["result", 1900]],
   },
 ];
 
@@ -89,11 +89,10 @@ function usePrefersReducedMotion() {
 function useTimeline(reduced: boolean) {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [phaseIndex, setPhaseIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const scene = SCENES[sceneIndex];
 
   useEffect(() => {
-    if (reduced || paused) return;
+    if (reduced) return;
     const [, duration] = scene.phases[phaseIndex];
     const t = window.setTimeout(() => {
       if (phaseIndex + 1 < scene.phases.length) {
@@ -104,7 +103,7 @@ function useTimeline(reduced: boolean) {
       }
     }, duration);
     return () => window.clearTimeout(t);
-  }, [reduced, paused, scene, sceneIndex, phaseIndex]);
+  }, [reduced, scene, sceneIndex, phaseIndex]);
 
   const pick = (i: number) => {
     setSceneIndex(i);
@@ -115,7 +114,7 @@ function useTimeline(reduced: boolean) {
   const shownIndex = reduced ? scene.phases.length - 1 : phaseIndex;
   const total = scene.phases.reduce((n, [, d]) => n + d, 0);
   const elapsed = scene.phases.slice(0, shownIndex).reduce((n, [, d]) => n + d, 0);
-  return { scene, sceneIndex, phase: scene.phases[shownIndex][0], phaseIndex: shownIndex, pick, setPaused, total, elapsed };
+  return { scene, sceneIndex, phase: scene.phases[shownIndex][0], phaseIndex: shownIndex, pick, total, elapsed };
 }
 
 /** Words appear quickly, like live transcription, filling most of the listening time. */
@@ -265,14 +264,14 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
       transition={{ type: "spring", stiffness: 320, damping: 30 }}
       aria-hidden
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false}>
         <motion.div
           key={`${scene.id}-${phase}`}
-          className="h-full"
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.14 }}
+          transition={{ duration: 0.18 }}
         >
           {body}
         </motion.div>
@@ -322,7 +321,7 @@ function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: {
       <motion.div
         className="pointer-events-none absolute z-40"
         animate={{ left: at.x, top: at.y }}
-        transition={{ type: "spring", stiffness: 90, damping: 18 }}
+        transition={{ type: "spring", stiffness: 60, damping: 18, mass: 0.9 }}
         aria-hidden
       >
         <svg viewBox="0 0 12 18" className="h-[1.7cqw] w-auto drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
@@ -332,7 +331,7 @@ function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: {
       <motion.div
         className="pointer-events-none absolute z-40"
         animate={{ left: sparkleAt.x, top: sparkleAt.y }}
-        transition={{ type: "spring", stiffness: 70, damping: 15 }}
+        transition={{ type: "spring", stiffness: 55, damping: 16, mass: 0.9 }}
         aria-hidden
       >
         <motion.svg
@@ -543,15 +542,16 @@ function SceneWindow({ scene, phase }: { scene: Scene; phase: Phase }) {
 
 /** Where the pointer and the sparkle sit in each scene (the sparkle flies to the target). */
 function pointerSpots(scene: Scene, phase: Phase) {
-  const pointer = { point: { x: "52%", y: "56%" }, timer: { x: "60%", y: "52%" }, job: { x: "48%", y: "60%" }, type: { x: "40%", y: "62%" } }[scene.id];
-  const near = { x: `calc(${pointer.x} + 1.6cqw)`, y: `calc(${pointer.y} + 1.8cqw)` };
+  const [px, py] = ({ point: [52, 56], timer: [60, 52], job: [48, 60], type: [40, 62] } as const)[scene.id];
+  const pointer = { x: `${px}%`, y: `${py}%` };
   if (scene.id === "point" && (phase === "speaking" || phase === "result")) return { pointer, sparkle: { x: "79.5%", y: "14%" } };
-  return { pointer, sparkle: near };
+  // Just below-right of the pointer, like the cursor buddy in the app.
+  return { pointer, sparkle: { x: `${px + 1.6}%`, y: `${py + 2.9}%` } };
 }
 
 export function NotchStage() {
   const reduced = usePrefersReducedMotion();
-  const { scene, sceneIndex, phase, phaseIndex, pick, setPaused, total, elapsed } = useTimeline(reduced);
+  const { scene, sceneIndex, phase, phaseIndex, pick, total, elapsed } = useTimeline(reduced);
   const spots = pointerSpots(scene, phase);
   const CaptionIcon = scene.icon;
 
@@ -560,20 +560,18 @@ export function NotchStage() {
       <div
         className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[clamp(12px,2cqw,24px)] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10 [container-type:inline-size]"
         style={{ background: "linear-gradient(135deg, #c9b8ff 0%, #f3c4dd 45%, #ffd2a8 100%)" }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
         role="img"
         aria-label={`Lazur demo, ${scene.caption.toLowerCase()}: you say "${scene.said}"${scene.reply ? ` and Lazur answers "${scene.reply}"` : ", and the cleaned-up text is typed into the reply"}.`}
       >
         <MenuBar app={scene.app} />
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           <motion.div
             key={scene.id}
             className="absolute inset-0"
-            initial={reduced ? false : { opacity: 0, y: "3%", scale: 0.97 }}
+            initial={reduced ? false : { opacity: 0, y: "2%", scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduced ? undefined : { opacity: 0, y: "-2%", scale: 0.98 }}
-            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            exit={reduced ? undefined : { opacity: 0, scale: 1.01 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             <SceneWindow scene={scene} phase={phase} />
           </motion.div>
@@ -582,7 +580,7 @@ export function NotchStage() {
         <Pointer at={spots.pointer} sparkleAt={spots.sparkle} />
 
         {/* What this scene shows, big enough to read at a glance */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false}>
           <motion.div
             key={scene.id}
             className="absolute bottom-[3.5%] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[0.8cqw] rounded-full bg-black/80 px-[1.8cqw] py-[0.8cqw] text-[1.5cqw] font-semibold text-white shadow-lg backdrop-blur"

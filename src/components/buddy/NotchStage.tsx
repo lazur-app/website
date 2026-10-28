@@ -1,31 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FileText, Search, Timer as TimerIcon } from "lucide-react";
+import { FileText, Keyboard, MousePointerClick, Search, Sparkles, Timer as TimerIcon } from "lucide-react";
 
 /**
- * The hero demo: a Mac screen whose notch does what Lazur does. Four short scenes loop (or are
- * picked from the tabs): point at something, start a timer, hand off a job, type a reply.
- * Everything is drawn in code, so it stays crisp and loads instantly.
+ * The hero demo: a Mac screen whose notch does what Lazur does. Each scene has its own app on
+ * screen: point at a button in Keynote, start a timer from a recipe in Safari, hand off research
+ * in Chrome, dictate a reply in Mail. Scenes loop (or are picked from the tabs). Drawn in code, so
+ * it stays crisp and loads instantly.
  */
 
 const CORAL = "#ef5350";
 
 type SceneId = "point" | "timer" | "job" | "type";
 
-type Phase =
-  | "idle"
-  | "listening"
-  | "thinking"
-  | "speaking"
-  | "result"
-  | "working"
-  | "done";
+type Phase = "idle" | "listening" | "thinking" | "speaking" | "result" | "working" | "done";
 
 type Scene = {
   id: SceneId;
   tab: string;
+  /** Shown on the screen as the scene starts. */
+  caption: string;
+  icon: typeof Sparkles;
+  app: string;
   /** What you say. */
   said: string;
   /** What Lazur says back (none for dictation). */
@@ -37,29 +35,41 @@ const SCENES: Scene[] = [
   {
     id: "point",
     tab: "Point",
-    said: "Where's Control Center?",
-    reply: "It's this switch, top right.",
-    phases: [["idle", 700], ["listening", 1900], ["thinking", 700], ["speaking", 1500], ["result", 3200]],
+    caption: "Points at anything",
+    icon: MousePointerClick,
+    app: "Keynote",
+    said: "Where's the share button?",
+    reply: "Top right. Right here.",
+    phases: [["idle", 350], ["listening", 1100], ["thinking", 450], ["speaking", 1300], ["result", 2600]],
   },
   {
     id: "timer",
     tab: "Timer",
-    said: "Set a timer for 5 minutes.",
-    reply: "Five minutes, starting now.",
-    phases: [["idle", 600], ["listening", 1800], ["thinking", 600], ["speaking", 1500], ["result", 4200]],
+    caption: "Timers in the notch",
+    icon: TimerIcon,
+    app: "Safari",
+    said: "Set a timer for 10 minutes.",
+    reply: "Ten minutes, starting now.",
+    phases: [["idle", 350], ["listening", 1100], ["thinking", 400], ["speaking", 1500], ["result", 2800]],
   },
   {
     id: "job",
     tab: "Jobs",
-    said: "Find the best standing desks under $300.",
+    caption: "Jobs in the background",
+    icon: Sparkles,
+    app: "Chrome",
+    said: "Compare standing desks under $300.",
     reply: "On it. I'll do that in the background.",
-    phases: [["idle", 600], ["listening", 2100], ["thinking", 600], ["speaking", 1600], ["working", 2600], ["done", 3000]],
+    phases: [["idle", 350], ["listening", 1200], ["thinking", 400], ["speaking", 1500], ["working", 2400], ["done", 2600]],
   },
   {
     id: "type",
     tab: "Type",
+    caption: "Types for you, anywhere",
+    icon: Keyboard,
+    app: "Mail",
     said: "um so thursday works no actually friday works better for me",
-    phases: [["idle", 600], ["listening", 2600], ["thinking", 900], ["result", 3600]],
+    phases: [["idle", 350], ["listening", 1500], ["thinking", 550], ["result", 2600]],
   },
 ];
 
@@ -108,28 +118,28 @@ function useTimeline(reduced: boolean) {
   return { scene, sceneIndex, phase: scene.phases[shownIndex][0], phaseIndex: shownIndex, pick, setPaused, total, elapsed };
 }
 
-/** Words appear one by one while you "speak". */
-function Spoken({ text, active }: { text: string; active: boolean }) {
+/** Words appear quickly, like live transcription, filling most of the listening time. */
+function Spoken({ text, active, within }: { text: string; active: boolean; within: number }) {
   const words = text.split(" ");
-  const [shown, setShown] = useState(active ? 0 : words.length);
+  const [shown, setShown] = useState(active ? 1 : words.length);
   useEffect(() => {
     if (!active) return;
-    const step = Math.max(90, 1500 / words.length);
+    const step = Math.max(45, (within * 0.75) / words.length);
     const t = window.setInterval(() => setShown((n) => (n >= words.length ? n : n + 1)), step);
     return () => window.clearInterval(t);
-  }, [active, text, words.length]);
+  }, [active, within, words.length]);
   return <>{words.slice(0, shown).join(" ")}</>;
 }
 
 function Dots() {
   return (
-    <span className="flex items-center gap-[3px]" aria-hidden>
+    <span className="flex items-center gap-[0.25cqw]" aria-hidden>
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="h-[4px] w-[4px] rounded-full bg-white/80"
+          className="h-[0.4cqw] w-[0.4cqw] rounded-full bg-white/80"
           animate={{ opacity: [0.25, 1, 0.25] }}
-          transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
+          transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.13 }}
         />
       ))}
     </span>
@@ -138,13 +148,13 @@ function Dots() {
 
 function Bars() {
   return (
-    <span className="flex h-3 items-end gap-[2px]" aria-hidden>
+    <span className="flex h-[1.1cqw] items-end gap-[0.2cqw]" aria-hidden>
       {[0, 1, 2, 3].map((i) => (
         <motion.span
           key={i}
-          className="w-[2.5px] rounded-full bg-white"
-          animate={{ height: ["30%", "100%", "45%", "80%", "30%"] }}
-          transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.12 }}
+          className="w-[0.25cqw] rounded-full bg-white"
+          animate={{ height: ["30%", "100%", "45%", "85%", "30%"] }}
+          transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.1 }}
         />
       ))}
     </span>
@@ -154,7 +164,7 @@ function Bars() {
 function Spinner() {
   return (
     <motion.span
-      className="block h-3 w-3 rounded-full border-[1.5px] border-white/25 border-t-white"
+      className="block h-[1.1cqw] w-[1.1cqw] rounded-full border-[0.15cqw] border-white/25 border-t-white"
       animate={{ rotate: 360 }}
       transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
       aria-hidden
@@ -162,7 +172,7 @@ function Spinner() {
   );
 }
 
-/** "5:00", then ticking down a second at a time (still when motion is reduced). */
+/** "10:00", then ticking down a second at a time (still when motion is reduced). */
 function Countdown({ from, ticking }: { from: number; ticking: boolean }) {
   const [left, setLeft] = useState(from);
   useEffect(() => {
@@ -173,18 +183,37 @@ function Countdown({ from, ticking }: { from: number; ticking: boolean }) {
   return <>{Math.floor(left / 60)}:{String(left % 60).padStart(2, "0")}</>;
 }
 
+const TEXT = "text-[1.05cqw]";
+
+function Pill({ label, right, children }: { label: string; right?: ReactNode; children?: ReactNode }) {
+  return (
+    <div className="flex h-full flex-col">
+      <div className="flex h-[2.625cqw] shrink-0 items-center justify-between px-[4%]">
+        <span className={`${TEXT} font-medium text-white`}>{label}</span>
+        {right}
+      </div>
+      {children ? (
+        <div className={`flex flex-1 items-center justify-center overflow-hidden px-[5%] pb-[2%] text-center ${TEXT} leading-tight text-white/85`}>
+          <span className="truncate">{children}</span>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 /** The notch: a camera cutout at rest, a live pill or card while Lazur works. */
 function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced: boolean }) {
   const dictation = scene.id === "type";
+  const listenFor = scene.phases.find(([p]) => p === "listening")?.[1] ?? 1200;
 
-  let body: React.ReactNode = null;
+  let body: ReactNode = null;
   let size = { w: "19%", h: "3.4%" };
 
   if (phase === "listening") {
     size = { w: "46%", h: "8.4%" };
     body = (
-      <Pill label={dictation ? "Dictating" : "Listening"} right={<span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: CORAL }} />}>
-        <Spoken text={scene.said} active={!reduced} />
+      <Pill label={dictation ? "Dictating" : "Listening"} right={<span className="h-[0.55cqw] w-[0.55cqw] animate-pulse rounded-full" style={{ background: CORAL }} />}>
+        <Spoken text={scene.said} active={!reduced} within={listenFor} />
       </Pill>
     );
   } else if (phase === "thinking") {
@@ -194,36 +223,36 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
     size = { w: "46%", h: "8.4%" };
     body = (
       <Pill label="Speaking" right={<Bars />}>
-        <span className="text-white/90">{scene.reply}</span>
+        <span className="font-medium text-white">{scene.reply}</span>
       </Pill>
     );
   } else if (phase === "result" && scene.id === "timer") {
     size = { w: "34%", h: "4.2%" };
     body = (
       <div className="relative flex h-full items-center justify-between px-[4%]">
-        <span className="flex items-center gap-1 text-[clamp(7px,1.05cqw,11px)] font-medium text-white">
-          <TimerIcon className="h-[1.1em] w-[1.1em]" style={{ color: "#ff8a80" }} /> Timer
+        <span className={`flex items-center gap-[0.5cqw] ${TEXT} font-medium text-white`}>
+          <TimerIcon className="h-[1.2cqw] w-[1.2cqw]" style={{ color: "#ff8a80" }} /> Pasta
         </span>
-        <span className="text-[clamp(7.5px,1.15cqw,12px)] font-semibold tabular-nums text-white"><Countdown from={300} ticking={!reduced} /></span>
+        <span className="text-[1.2cqw] font-semibold tabular-nums text-white"><Countdown from={600} ticking={!reduced} /></span>
         <motion.span
-          className="absolute bottom-0 left-[4%] h-[2px] rounded-full"
+          className="absolute bottom-0 left-[4%] h-[0.2cqw] rounded-full"
           style={{ background: CORAL }}
           initial={{ width: "92%" }}
-          animate={{ width: reduced ? "80%" : "70%" }}
-          transition={{ duration: 4, ease: "linear" }}
+          animate={{ width: reduced ? "88%" : "84%" }}
+          transition={{ duration: 3, ease: "linear" }}
         />
       </div>
     );
   } else if (phase === "working") {
     size = { w: "34%", h: "4.2%" };
-    body = <Pill label="Working" right={<Spinner />} />;
+    body = <Pill label="Working on desk research" right={<Spinner />} />;
   } else if (phase === "done") {
     size = { w: "46%", h: "4.2%" };
     body = (
       <div className="flex h-full items-center justify-between px-[4%]">
-        <span className="truncate text-[clamp(7px,1.05cqw,11px)] font-medium text-white">Desk research is done</span>
-        <span className="flex items-center gap-1 rounded-full bg-white px-[0.6em] py-[0.15em] text-[clamp(6.5px,0.95cqw,10px)] font-semibold text-black">
-          <FileText className="h-[1em] w-[1em]" /> Full report
+        <span className={`truncate ${TEXT} font-medium text-white`}>Desk research is done</span>
+        <span className="flex items-center gap-[0.4cqw] rounded-full bg-white px-[0.8cqw] py-[0.15cqw] text-[0.95cqw] font-semibold text-black">
+          <FileText className="h-[1cqw] w-[1cqw]" /> Full report
         </span>
       </div>
     );
@@ -231,9 +260,9 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
 
   return (
     <motion.div
-      className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[clamp(8px,1.4cqw,16px)] bg-black shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+      className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[1.4cqw] bg-black shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
       animate={{ width: size.w, height: size.h }}
-      transition={{ type: "spring", stiffness: 260, damping: 28 }}
+      transition={{ type: "spring", stiffness: 320, damping: 30 }}
       aria-hidden
     >
       <AnimatePresence mode="wait">
@@ -243,7 +272,7 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
+          transition={{ duration: 0.14 }}
         >
           {body}
         </motion.div>
@@ -252,48 +281,33 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
   );
 }
 
-function Pill({ label, right, children }: { label: string; right?: React.ReactNode; children?: React.ReactNode }) {
-  return (
-    <div className="flex h-full flex-col">
-      <div className="flex h-[2.625cqw] shrink-0 items-center justify-between px-[4%]">
-        <span className="text-[clamp(7px,1.05cqw,11px)] font-medium text-white">{label}</span>
-        {right}
-      </div>
-      {children ? (
-        <div className="flex flex-1 items-center justify-center overflow-hidden px-[5%] pb-[2%] text-center text-[clamp(7px,1.05cqw,11.5px)] leading-tight text-white/80">
-          <span className="truncate">{children}</span>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-/** Hand-drawn circle around the icon it's placed in, with the icon's name underneath. */
-function PointCircle({ show }: { show: boolean }) {
+/** Hand-drawn circle around whatever it's placed in, with a label underneath. */
+function PointCircle({ show, label }: { show: boolean; label: string }) {
   return (
     <AnimatePresence>
       {show ? (
-        <motion.div className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-[4.4cqw] -translate-x-1/2 -translate-y-1/2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <svg viewBox="0 0 60 60" className="w-full overflow-visible">
+        <motion.div className="pointer-events-none absolute -inset-[0.9cqw] z-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <svg viewBox="0 0 100 60" preserveAspectRatio="none" className="h-full w-full overflow-visible">
             <motion.path
-              d="M30 6 C46 5 55 17 54 31 C53 46 41 55 28 54 C14 53 5 43 6 29 C7 16 17 7 33 8"
+              d="M52 4 C80 3 97 15 96 30 C95 47 74 57 49 56 C24 55 4 45 5 29 C6 14 25 5 58 6"
               fill="none"
               stroke={CORAL}
-              strokeWidth="3.2"
+              strokeWidth="2.6"
               strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             />
           </svg>
           <motion.span
-            className="absolute right-0 top-[105%] whitespace-nowrap rounded-full border px-[0.7em] py-[0.2em] text-[clamp(7px,1cqw,11px)] font-semibold"
+            className="absolute right-0 top-[108%] whitespace-nowrap rounded-full border px-[0.8cqw] py-[0.2cqw] text-[1cqw] font-semibold"
             style={{ background: "#ffdcdc", color: "#381212", borderColor: "rgba(239,83,80,0.35)" }}
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55 }}
+            transition={{ delay: 0.45 }}
           >
-            Control Center
+            {label}
           </motion.span>
         </motion.div>
       ) : null}
@@ -301,50 +315,62 @@ function PointCircle({ show }: { show: boolean }) {
   );
 }
 
-/** Lazur's cursor buddy: a small coral triangle that follows the pointer and flies to targets. */
-function Buddy({ at }: { at: { x: string; y: string } }) {
+/** The Mac pointer, with Lazur's sparkle buddy beside it (the "Sparkle" cursor style). */
+function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: { x: string; y: string } }) {
   return (
-    <motion.div
-      className="pointer-events-none absolute z-40"
-      animate={{ left: at.x, top: at.y }}
-      transition={{ type: "spring", stiffness: 70, damping: 16 }}
-      aria-hidden
-    >
-      <svg width="13" height="13" viewBox="0 0 12 12" style={{ transform: "rotate(-28deg)" }}>
-        <path d="M6 1 L11 10.5 L1 10.5 Z" fill={CORAL} />
-      </svg>
-    </motion.div>
+    <>
+      <motion.div
+        className="pointer-events-none absolute z-40"
+        animate={{ left: at.x, top: at.y }}
+        transition={{ type: "spring", stiffness: 90, damping: 18 }}
+        aria-hidden
+      >
+        <svg viewBox="0 0 12 18" className="h-[1.7cqw] w-auto drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]">
+          <path d="M1 1 L1 15 L4.5 11.6 L7 17 L9.2 16 L6.8 10.8 L11.5 10.8 Z" fill="#111" stroke="#fff" strokeWidth="1" strokeLinejoin="round" />
+        </svg>
+      </motion.div>
+      <motion.div
+        className="pointer-events-none absolute z-40"
+        animate={{ left: sparkleAt.x, top: sparkleAt.y }}
+        transition={{ type: "spring", stiffness: 70, damping: 15 }}
+        aria-hidden
+      >
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="h-[1.5cqw] w-[1.5cqw]"
+          style={{ filter: "drop-shadow(0 0 0.35cqw rgba(239,83,80,0.65))" }}
+          animate={{ rotate: [0, 12, 0, -12, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={CORAL} />
+        </motion.svg>
+      </motion.div>
+    </>
   );
 }
 
-function MenuBar({ pointing }: { pointing: boolean }) {
-  const icon = "h-[clamp(7px,1.1cqw,12px)] w-auto text-black/75";
+function MenuBar({ app }: { app: string }) {
+  const icon = "h-[1.1cqw] w-auto text-black/75";
   return (
-    <div className="absolute inset-x-0 top-0 z-20 flex h-[clamp(12px,2.1cqw,22px)] items-center justify-between bg-white/55 px-[2.2%] text-[clamp(6px,0.95cqw,10.5px)] font-medium text-black/80 backdrop-blur-md">
+    <div className="absolute inset-x-0 top-0 z-20 flex h-[2.1cqw] items-center justify-between bg-white/55 px-[2.2%] text-[0.95cqw] font-medium text-black/80 backdrop-blur-md">
       <div className="flex items-center gap-[1.6em]">
         <svg viewBox="0 0 14 17" className={icon} fill="currentColor" aria-hidden>
           <path d="M11.6 9c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.7-1.4 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.8.7 1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.4s-2.6-1-2.6-3.6zM9.5 2.8c.6-.7 1-1.7.9-2.8-.9 0-2 .6-2.6 1.4-.6.6-1.1 1.7-.9 2.7 1 .1 2-.5 2.6-1.3z" />
         </svg>
-        <span className="font-semibold">Mail</span>
-        <span className="hidden sm:inline">File</span>
-        <span className="hidden sm:inline">Edit</span>
-        <span className="hidden md:inline">View</span>
+        <AnimatePresence mode="wait">
+          <motion.span key={app} className="font-semibold" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+            {app}
+          </motion.span>
+        </AnimatePresence>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
       </div>
       <div className="flex items-center gap-[1.4em]">
         <Search className={icon} />
         <svg viewBox="0 0 20 14" className={icon} fill="currentColor" aria-hidden>
           <path d="M10 13.2l2.2-2.6a3.3 3.3 0 00-4.4 0zM5.3 8a7 7 0 019.4 0l1.4-1.6a9.2 9.2 0 00-12.2 0zM1.4 4.4a12.8 12.8 0 0117.2 0L20 2.8a15 15 0 00-20 0z" />
         </svg>
-        {/* Control Center: two toggles (what the Point scene circles) */}
-        <span className="relative flex items-center">
-          <svg viewBox="0 0 18 14" className={icon} fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
-            <rect x="1" y="1" width="16" height="5" rx="2.5" />
-            <circle cx="13.5" cy="3.5" r="1.3" fill="currentColor" />
-            <rect x="1" y="8" width="16" height="5" rx="2.5" />
-            <circle cx="4.5" cy="10.5" r="1.3" fill="currentColor" />
-          </svg>
-          <PointCircle show={pointing} />
-        </span>
         <svg viewBox="0 0 26 13" className={icon} fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
           <rect x="1" y="1" width="21" height="11" rx="3" />
           <rect x="3" y="3" width="15" height="7" rx="1.5" fill="currentColor" stroke="none" />
@@ -356,28 +382,137 @@ function MenuBar({ pointing }: { pointing: boolean }) {
   );
 }
 
-/** A Mail window: an email from Maya, and the reply that dictation fills in. */
-function MailWindow({ typed }: { typed: boolean }) {
+// --- App windows, one per scene -------------------------------------------------------------
+
+function Window({ title, toolbar, children, dark = false }: { title?: string; toolbar?: ReactNode; children: ReactNode; dark?: boolean }) {
   return (
-    <div className="absolute left-[14%] right-[14%] top-[17%] bottom-[30%] z-0 overflow-hidden rounded-[clamp(6px,1cqw,12px)] bg-white shadow-[0_20px_60px_rgba(28,25,23,0.18)] ring-1 ring-black/5">
-      <div className="flex h-[11%] items-center gap-[1.2%] border-b border-black/5 px-[2.5%]">
+    <div className={`absolute inset-x-[11%] top-[13%] bottom-[16%] overflow-hidden rounded-[1.1cqw] shadow-[0_20px_60px_rgba(28,25,23,0.2)] ring-1 ring-black/5 ${dark ? "bg-[#1f1f22]" : "bg-white"}`}>
+      <div className={`flex h-[3.6cqw] items-center gap-[0.7cqw] border-b px-[1.6cqw] ${dark ? "border-white/10" : "border-black/5"}`}>
         {["#ff5f57", "#febc2e", "#28c840"].map((c) => (
-          <span key={c} className="h-[clamp(5px,0.8cqw,9px)] w-[clamp(5px,0.8cqw,9px)] rounded-full" style={{ background: c }} />
+          <span key={c} className="h-[0.85cqw] w-[0.85cqw] rounded-full" style={{ background: c }} />
+        ))}
+        {title ? <span className={`ml-[1cqw] text-[1cqw] font-medium ${dark ? "text-white/70" : "text-black/60"}`}>{title}</span> : null}
+        <div className="ml-auto flex items-center gap-[0.8cqw]">{toolbar}</div>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function KeynoteWindow({ pointing }: { pointing: boolean }) {
+  const tool = "rounded-[0.5cqw] px-[0.9cqw] py-[0.35cqw] text-[1cqw] text-black/60";
+  return (
+    <Window
+      title="Launch deck"
+      toolbar={
+        <>
+          <span className={tool}>Play</span>
+          <span className={tool}>Insert</span>
+          <span className="relative">
+            <span className={`${tool} bg-black/[0.05] font-medium text-black/75`}>Share</span>
+            <PointCircle show={pointing} label="Share" />
+          </span>
+        </>
+      }
+    >
+      <div className="flex h-full">
+        <div className="w-[16%] space-y-[0.8cqw] border-r border-black/5 bg-black/[0.02] p-[1cqw]">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className={`aspect-video rounded-[0.4cqw] ${i === 0 ? "ring-2 ring-[#6b4bfc]" : ""}`} style={{ background: i === 0 ? "linear-gradient(135deg,#6b4bfc,#f97316)" : "#ece9f6" }} />
+          ))}
+        </div>
+        <div className="flex flex-1 items-center justify-center p-[3cqw]">
+          <div className="flex aspect-video w-[78%] flex-col justify-end rounded-[0.8cqw] p-[2.4cqw] text-left text-white" style={{ background: "linear-gradient(135deg,#6b4bfc 0%,#a855f7 50%,#f97316 100%)" }}>
+            <p className="text-[2.6cqw] font-semibold leading-none">Q4 Launch</p>
+            <p className="mt-[0.6cqw] text-[1.1cqw] opacity-80">What we shipped, and what&apos;s next</p>
+          </div>
+        </div>
+      </div>
+    </Window>
+  );
+}
+
+function RecipeWindow() {
+  return (
+    <Window title="Spaghetti carbonara · Safari">
+      <div className="grid h-full grid-cols-[1fr_1.3fr] gap-[2cqw] p-[2.4cqw] text-left">
+        <div className="rounded-[0.8cqw]" style={{ background: "radial-gradient(circle at 40% 40%, #ffe3a3, #f6b65b 55%, #d98a3c)" }} />
+        <div>
+          <p className="text-[2cqw] font-semibold leading-tight text-[#1c1917]">Spaghetti carbonara</p>
+          <p className="mt-[0.4cqw] text-[1cqw] text-black/45">Serves 2 · 20 minutes</p>
+          <ol className="mt-[1.4cqw] space-y-[0.8cqw] text-[1.1cqw] text-black/70">
+            <li>1. Whisk eggs, pecorino and pepper.</li>
+            <li className="rounded-[0.4cqw] bg-[#fff4d6] px-[0.6cqw] py-[0.3cqw] font-medium text-black/85">2. Boil the pasta for 10 minutes.</li>
+            <li>3. Crisp the guanciale in a pan.</li>
+            <li>4. Toss everything off the heat.</li>
+          </ol>
+        </div>
+      </div>
+    </Window>
+  );
+}
+
+const TABS = ["Wirecutter", "Reddit", "Amazon", "The Verge", "YouTube"];
+
+function ChromeWindow({ phase }: { phase: Phase }) {
+  const opened = phase === "working" ? 3 : phase === "done" ? TABS.length : 0;
+  return (
+    <Window
+      dark
+      toolbar={
+        <div className="flex items-center gap-[0.5cqw]">
+          <AnimatePresence>
+            {TABS.slice(0, opened).map((t, i) => (
+              <motion.span
+                key={t}
+                initial={{ opacity: 0, x: -8, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: phase === "working" ? i * 0.45 : 0, duration: 0.25 }}
+                className="flex items-center gap-[0.4cqw] rounded-[0.5cqw] bg-white/10 px-[0.8cqw] py-[0.3cqw] text-[0.9cqw] text-white/80"
+              >
+                <Sparkles className="h-[0.9cqw] w-[0.9cqw]" style={{ color: CORAL }} /> {t}
+              </motion.span>
+            ))}
+          </AnimatePresence>
+        </div>
+      }
+    >
+      <div className="space-y-[1.2cqw] p-[2.4cqw] text-left">
+        <p className="text-[1cqw] font-semibold uppercase tracking-[0.12em] text-white/40">Lazur is researching</p>
+        {["Flexispot E7", "Uplift V2", "Fully Jarvis", "IKEA Bekant"].map((desk, i) => (
+          <div key={desk} className="flex items-center justify-between rounded-[0.6cqw] bg-white/[0.06] px-[1.2cqw] py-[0.9cqw]">
+            <span className="text-[1.15cqw] text-white/85">{desk}</span>
+            <motion.span
+              className="h-[0.4cqw] rounded-full"
+              style={{ background: phase === "done" ? "#34d399" : CORAL }}
+              initial={{ width: "0cqw" }}
+              animate={{ width: phase === "done" ? "12cqw" : phase === "working" ? `${3 + i * 2.4}cqw` : "0cqw" }}
+              transition={{ duration: 1.2, delay: i * 0.2 }}
+            />
+          </div>
         ))}
       </div>
-      <div className="space-y-[2.5%] px-[5%] py-[3.5%] text-left text-[clamp(7px,1.1cqw,12.5px)] leading-snug text-[#1c1917]">
-        <div className="flex items-center gap-[2%]">
-          <span className="grid h-[clamp(14px,2.4cqw,26px)] w-[clamp(14px,2.4cqw,26px)] place-items-center rounded-full bg-[#ede9fe] text-[0.85em] font-semibold text-[#5b3fd6]">M</span>
+    </Window>
+  );
+}
+
+function MailWindow({ typed }: { typed: boolean }) {
+  return (
+    <Window title="Re: Design review">
+      <div className="space-y-[1.6cqw] p-[2.6cqw] text-left text-[1.2cqw] leading-snug text-[#1c1917]">
+        <div className="flex items-center gap-[1cqw]">
+          <span className="grid h-[2.6cqw] w-[2.6cqw] place-items-center rounded-full bg-[#ede9fe] text-[1cqw] font-semibold text-[#5b3fd6]">M</span>
           <div>
             <p className="font-semibold">Maya Chen</p>
-            <p className="text-[0.85em] text-black/45">Design review: does Thursday work?</p>
+            <p className="text-[1cqw] text-black/45">Design review: does Thursday work?</p>
           </div>
         </div>
         <p className="text-black/70">Hey! Can we move the design review to later this week? Thursday afternoon works for me.</p>
-        <div className="rounded-[0.6em] border border-black/10 px-[3%] py-[2.5%]">
+        <div className="rounded-[0.7cqw] border border-black/10 px-[1.6cqw] py-[1.3cqw]">
           <AnimatePresence mode="wait">
             {typed ? (
-              <motion.p key="typed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-black/85">
+              <motion.p key="typed" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="font-medium text-black/85">
                 Friday works better for me.
                 <span className="ml-[1px] inline-block h-[1em] w-[1.5px] translate-y-[2px] animate-pulse bg-black/60" />
               </motion.p>
@@ -389,34 +524,77 @@ function MailWindow({ typed }: { typed: boolean }) {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </Window>
   );
+}
+
+function SceneWindow({ scene, phase }: { scene: Scene; phase: Phase }) {
+  switch (scene.id) {
+    case "point":
+      return <KeynoteWindow pointing={phase === "speaking" || phase === "result"} />;
+    case "timer":
+      return <RecipeWindow />;
+    case "job":
+      return <ChromeWindow phase={phase} />;
+    case "type":
+      return <MailWindow typed={phase === "result"} />;
+  }
+}
+
+/** Where the pointer and the sparkle sit in each scene (the sparkle flies to the target). */
+function pointerSpots(scene: Scene, phase: Phase) {
+  const pointer = { point: { x: "52%", y: "56%" }, timer: { x: "60%", y: "52%" }, job: { x: "48%", y: "60%" }, type: { x: "40%", y: "62%" } }[scene.id];
+  const near = { x: `calc(${pointer.x} + 1.6cqw)`, y: `calc(${pointer.y} + 1.8cqw)` };
+  if (scene.id === "point" && (phase === "speaking" || phase === "result")) return { pointer, sparkle: { x: "79.5%", y: "14%" } };
+  return { pointer, sparkle: near };
 }
 
 export function NotchStage() {
   const reduced = usePrefersReducedMotion();
   const { scene, sceneIndex, phase, phaseIndex, pick, setPaused, total, elapsed } = useTimeline(reduced);
-  const stageRef = useRef<HTMLDivElement>(null);
-
-  const pointing = scene.id === "point" && (phase === "speaking" || phase === "result");
-  const buddyAt = pointing ? { x: "85.5%", y: "5.5%" } : scene.id === "type" ? { x: "40%", y: "53%" } : { x: "58%", y: "40%" };
-  const typed = scene.id === "type" && phase === "result";
+  const spots = pointerSpots(scene, phase);
+  const CaptionIcon = scene.icon;
 
   return (
     <div className="w-full">
       <div
-        ref={stageRef}
-        className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[clamp(12px,2cqw,24px)] [container-type:inline-size] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10"
+        className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[clamp(12px,2cqw,24px)] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10 [container-type:inline-size]"
         style={{ background: "linear-gradient(135deg, #c9b8ff 0%, #f3c4dd 45%, #ffd2a8 100%)" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         role="img"
-        aria-label={`Lazur demo: you say "${scene.said}"${scene.reply ? ` and Lazur answers "${scene.reply}"` : ", and the cleaned-up text is typed into the reply"}.`}
+        aria-label={`Lazur demo, ${scene.caption.toLowerCase()}: you say "${scene.said}"${scene.reply ? ` and Lazur answers "${scene.reply}"` : ", and the cleaned-up text is typed into the reply"}.`}
       >
-        <MenuBar pointing={pointing} />
-        <MailWindow typed={typed} />
+        <MenuBar app={scene.app} />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={scene.id}
+            className="absolute inset-0"
+            initial={reduced ? false : { opacity: 0, y: "3%", scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduced ? undefined : { opacity: 0, y: "-2%", scale: 0.98 }}
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <SceneWindow scene={scene} phase={phase} />
+          </motion.div>
+        </AnimatePresence>
         <Notch scene={scene} phase={phase} reduced={reduced} />
-        <Buddy at={buddyAt} />
+        <Pointer at={spots.pointer} sparkleAt={spots.sparkle} />
+
+        {/* What this scene shows, big enough to read at a glance */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={scene.id}
+            className="absolute bottom-[3.5%] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[0.8cqw] rounded-full bg-black/80 px-[1.8cqw] py-[0.8cqw] text-[1.5cqw] font-semibold text-white shadow-lg backdrop-blur"
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduced ? undefined : { opacity: 0, y: 6 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CaptionIcon className="h-[1.6cqw] w-[1.6cqw]" style={{ color: "#ff8a80" }} />
+            {scene.caption}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <div className="mt-5 flex flex-wrap items-center justify-center gap-2" role="tablist" aria-label="Demo">

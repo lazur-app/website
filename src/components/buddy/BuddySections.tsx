@@ -34,7 +34,12 @@ function Section({ id, eyebrow, title, intro, children, tint = false }: {
   tint?: boolean;
 }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${tint ? "bg-[var(--background-deep)]" : ""}`}>
+    <section
+      id={id}
+      className="relative py-20 md:py-28"
+      // Tinted sections fade in and out, so the page reads as one flow instead of stacked bands.
+      style={tint ? { background: "linear-gradient(to bottom, transparent 0%, var(--background-deep) 18%, var(--background-deep) 82%, transparent 100%)" } : undefined}
+    >
       <div className="landing-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -6,7 +6,7 @@ import { NotchStage } from "./NotchStage";
 
 export function BuddyHero() {
   return (
-    <section className="relative overflow-x-clip bg-[var(--background)]">
+    <section className="relative overflow-x-clip">
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden

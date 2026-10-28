@@ -13,6 +13,8 @@ import { usePersona } from "@/lib/personas";
  */
 
 const CORAL = "#ef5350";
+/** The pen draws in coral; its handwritten notes are blue. */
+const NOTE = "#2563eb";
 const HAND = "font-[family-name:var(--font-caveat)]";
 
 /** hello: the pen appears and says hi; speak1: underlines the headline; speak2: circles Download. */
@@ -151,7 +153,7 @@ function Caption({ at, show, delay = 0.2, className = "", children }: {
   return (
     <motion.span
       className={`pointer-events-none absolute z-30 whitespace-nowrap text-[1.6rem] leading-none ${HAND} ${className}`}
-      style={{ left: at[0], top: at[1], color: CORAL }}
+      style={{ left: at[0], top: at[1], color: NOTE }}
       initial={false}
       animate={{ opacity: show ? 1 : 0, y: show ? 0 : 4 }}
       transition={{ delay: show ? delay : 0, duration: 0.35 }}
@@ -268,7 +270,7 @@ export function BuddyHero() {
 
             <motion.span
               className={`absolute left-[calc(100%+2.6rem)] top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[1.7rem] leading-none sm:block ${HAND}`}
-              style={{ color: CORAL }}
+              style={{ color: NOTE }}
               initial={false}
               animate={{ opacity: drawCircle ? 1 : 0, x: drawCircle ? 0 : -6 }}
               transition={{ delay: drawCircle ? 1.4 : 0, duration: 0.35 }}
@@ -284,7 +286,7 @@ export function BuddyHero() {
             d="M30 4 C22 20 38 34 30 56 M30 56 L21 46 M30 56 L39 47" />
           <motion.span
             className={`absolute left-[calc(50%+2.2rem)] top-5 whitespace-nowrap text-[1.6rem] leading-none ${HAND}`}
-            style={{ color: CORAL }}
+            style={{ color: NOTE }}
             initial={false}
             animate={{ opacity: drawArrow ? 1 : 0 }}
             transition={{ delay: drawArrow ? 1.3 : 0, duration: 0.35 }}

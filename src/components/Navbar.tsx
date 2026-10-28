@@ -12,8 +12,8 @@ import { PersonaSwitcher } from "@/components/buddy/PersonaSwitcher";
 
 const navLinks = [
   { href: "/pricing", label: "Pricing" },
-  // What Lazur sees, sends and keeps lives in the privacy policy for now.
-  { href: "/privacy", label: "Trust" },
+  // What people say about Lazur (the reviews section on the homepage).
+  { href: "/#love", label: "Trust" },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -34,19 +34,19 @@ export function Navbar() {
 
   const linkClass = (href: string) =>
     `rounded-full px-3.5 py-1.5 text-[14px] font-medium transition-colors ${
-      pathname.startsWith(href) ? "text-[var(--foreground)]" : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+      (href.startsWith("/#") ? false : pathname.startsWith(href)) ? "text-[var(--foreground)]" : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
     }`;
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 md:pt-4">
-      <div className="pointer-events-auto mx-auto w-full max-w-3xl rounded-[28px] border border-white/60 bg-white/60 shadow-[0_8px_30px_rgba(28,25,23,0.08)] backdrop-blur-xl backdrop-saturate-150">
-        <div className="relative flex h-14 items-center justify-between pl-5 pr-2">
+      <div className="pointer-events-auto mx-auto w-full max-w-md rounded-[28px] md:w-fit md:max-w-none border border-white/60 bg-white/60 shadow-[0_8px_30px_rgba(28,25,23,0.08)] backdrop-blur-xl backdrop-saturate-150">
+        <div className="flex h-14 items-center justify-between gap-6 pl-5 pr-2 md:justify-start">
           <Link href="/" className="flex items-center gap-1.5" aria-label="Lazur home">
             <Image src="/logo.png" alt="" width={20} height={20} />
             <span className="text-[17px] font-bold tracking-[-0.03em] text-[var(--foreground)]">lazur</span>
           </Link>
 
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex" aria-label="Main">
+          <nav className="hidden items-center md:flex" aria-label="Main">
             {navLinks.map((l) => (
               <Link key={l.href} href={l.href} className={linkClass(l.href)}>
                 {l.label}
@@ -55,7 +55,7 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-1">
-            {pathname === "/" ? <span className="hidden lg:block"><PersonaSwitcher /></span> : null}
+            {pathname === "/" ? <span className="hidden border-l border-black/[0.08] pl-2 lg:block"><PersonaSwitcher /></span> : null}
             {loading ? null : isAuthenticated && user ? (
               <span className="hidden md:block"><UserMenu user={user} /></span>
             ) : (

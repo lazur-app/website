@@ -14,7 +14,6 @@ const navLinks = [
   { href: "/pricing", label: "Pricing", match: "/pricing" },
   { href: "/blog", label: "Blog", match: "/blog" },
   { href: "/use-cases", label: "Use cases", match: "/use-cases" },
-  { href: "/compare", label: "Compare", match: "/compare" },
 ];
 
 function isActive(pathname: string, match: string, href: string) {

@@ -1,33 +1,34 @@
-// import { CommandModeSection } from "@/components/landing/CommandModeSection";
-// import { PrivateSection } from "@/components/landing/PrivateSection";
-import { HoursBackSection } from "@/components/landing/HoursBackSection";
-import { SeeItWorkSection } from "@/components/landing/SeeItWorkSection";
-import { WorksAnywhereSection } from "@/components/landing/WorksAnywhereSection";
+import {
+  BackgroundJobs,
+  EverydayThings,
+  SeesPointsDoes,
+  ShowMeHow,
+  TypesForYou,
+  YoureInCharge,
+} from "@/components/buddy/BuddySections";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { CompetitorComparison } from "@/components/landing/CompetitorComparison";
 import { LandingPricingSection } from "@/components/landing/LandingPricingSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
-import { LandingLowerFlow } from "@/components/landing/LandingLowerFlow";
 
 /**
- * Order is the visitor's question order: what is this → prove it → is it safe →
- * when would I use it → does it work where I work → do others stay → why not
- * the incumbent → what does it cost.
+ * The AI buddy story, in the visitor's question order: what is it (hero demo) → what can it do
+ * (see, point, do; guide; jobs; everyday; typing) → can I trust it → do others like it → what does
+ * it cost. The dictation comparisons live on /compare, off the homepage.
  */
 export function LandingPageSections() {
   return (
-    <LandingLowerFlow>
-      {/* <CommandModeSection /> */}
-      {/* <PrivateSection /> */}
-      <HoursBackSection />
-      <SeeItWorkSection />
-      <WorksAnywhereSection />
+    <>
+      <SeesPointsDoes />
+      <ShowMeHow />
+      <BackgroundJobs />
+      <EverydayThings />
+      <TypesForYou />
+      <YoureInCharge />
       <TestimonialsSection />
-      <CompetitorComparison />
       <LandingPricingSection />
       <FaqSection />
       <FinalCtaSection />
-    </LandingLowerFlow>
+    </>
   );
 }

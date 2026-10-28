@@ -28,10 +28,10 @@ export function LandingPricingSection() {
     { name: "Free", detail: "Full Pro for 7 days · starts when you open the app · no card", featured: false },
     {
       name: "Pro",
-      detail: `Unlimited dictation · 150 AI actions · ${proPrice}`,
+      detail: `150 AI actions · Unlimited dictation · ${proPrice}`,
       featured: true,
     },
-    { name: "Power", detail: `Unlimited dictation · 1,000 AI actions · ${powerPrice}`, featured: false },
+    { name: "Power", detail: `1,000 AI actions · Unlimited dictation · ${powerPrice}`, featured: false },
   ] as const;
 
   return (

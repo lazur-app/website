@@ -9,34 +9,33 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "What is Lazur?",
     answer:
-      "Lazur writes for you in whatever app you're already in. Hold a key, say what you want, and the finished text lands at your cursor: a reply, an update, a prompt, a commit message. It can see the window you're looking at, so you don't have to explain the situation first.",
+      "An AI buddy that lives in your Mac's notch. Hold a key and talk: it can see your screen, point at things, answer out loud, set timers and reminders, open apps, run longer jobs in the background, and type for you in any app.",
   },
   {
-    question: "How is Lazur different from Wispr Flow?",
+    question: "How is it different from ChatGPT or Siri?",
     answer:
-      "Wispr Flow reads the text field you're typing in. Lazur reads the whole window, the thread, the document, the diff, and writes from it. That's why you can say \"reply, Thursday works\" without selecting or pasting anything. Lazur also runs speech recognition on your own machine instead of in the cloud.",
-    link: { href: "/compare/lazur-vs-wispr-flow", label: "Full comparison" },
+      "You don't have to explain what you're looking at. Lazur sees your screen when you ask, so \"what does this error mean?\" or \"where's the export button?\" just works. It can also point at things on screen, walk you through an app step by step, and do things on your Mac instead of only answering.",
   },
   {
-    question: "What is Intent?",
+    question: "What can I ask it to do?",
     answer:
-      "Dictation writes down what you said, cleaned up. Intent writes what you asked for: \"reply to this\", \"summarise this thread\", \"make it shorter\". It works from whatever is already on your screen, so you never have to describe it first.",
+      "Ask about anything on screen, get pointed to a button or walked through a setting, set timers and reminders, add calendar events and notes, play music and change the volume, open apps and links, search the web, run your Shortcuts, and hand off research or file tidying as a background job. It also types for you: hold fn, talk, and clean text appears at your cursor.",
   },
   {
-    question: "Does it work in Cursor and VS Code?",
+    question: "Does it work in every app?",
     answer:
-      "Yes. One shortcut works in every app on your machine: Cursor, VS Code, Xcode, Slack, Gmail, Notion, and anything else you type into.",
+      "Yes. Lazur works on top of whatever you're using: Mail, Slack, Chrome, Figma, Cursor, VS Code, Notion and the rest. Web jobs run in their own tabs through the Lazur for Chrome extension.",
   },
   {
-    question: "Is my voice stored?",
+    question: "Is it always listening or watching my screen?",
     answer:
-      "No. Speech becomes text on your own machine, so no recording is ever uploaded. When Intent looks at your window it takes one image at the moment you speak, uses it, then discards it. Nothing you write is used to train AI models.",
+      "No. It listens and looks at your screen only while you hold the shortcut. Your audio and that one screenshot are sent to our AI providers to answer you and are not stored, and your content is never used to train AI models.",
     link: { href: "/privacy", label: "Privacy policy" },
   },
   {
     question: "How much does it cost?",
     answer:
-      "Try Pro free for 7 days with no credit card; the trial starts when you first open Lazur on your Mac. After that, Pro is $18/month with unlimited dictation and 150 AI actions, or Power is $120/month with 1,000 AI actions. Annual billing is $15/month for Pro and $96/month for Power.",
+      "Try Pro free for 7 days with no credit card; the trial starts when you first open Lazur on your Mac. After that, Pro is $18/month with 150 AI actions and unlimited dictation, or Power is $120/month with 1,000 AI actions. Annual billing is $15/month for Pro and $96/month for Power.",
     link: { href: "/pricing", label: "See plans" },
   },
   {

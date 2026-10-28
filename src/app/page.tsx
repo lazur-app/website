@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
-import { Hero } from "@/components/Hero";
+import { BuddyHero } from "@/components/buddy/BuddyHero";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
-import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
 import { HomePageStructuredData } from "@/components/seo/HomePageStructuredData";
 import {
@@ -28,8 +27,7 @@ export default function Home() {
       <ReferralCapture />
       <Navbar />
       <main className="overflow-x-clip">
-        <Hero />
-        <HowItWorksSection />
+        <BuddyHero />
         <LandingPageSections />
       </main>
       <Footer />

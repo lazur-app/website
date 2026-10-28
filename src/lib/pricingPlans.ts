@@ -49,7 +49,7 @@ export const INDIA_GST_NOTE =
 export const WEBSITE_PLANS: WebsitePlan[] = [
   {
     id: "free",
-    name: "Free",
+    name: "Trial",
     international: { currency: "USD", monthly: 0, annual: 0 },
     india: null,
     descriptionLines: ["try Pro free for 3 days", "no credit card needed"],
@@ -57,9 +57,9 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "Download for Mac",
     features: [
-      { text: "Full Pro for 3 days", included: true },
+      { text: "Everything in Pro, for 3 days", included: true },
       { text: "Starts when you open the app", included: true },
-      { text: "No credit card required", included: true },
+      { text: "No credit card", included: true },
     ],
   },
   {
@@ -69,14 +69,14 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     india: null,
     descriptionLines: ["speak all day. no word math.", "best for everyday use"],
     featured: true,
-    featuredBadge: "Popular",
+    featuredBadge: "Most popular",
     planType: "pro",
     cta: "download",
     buttonText: "Start free trial",
     features: [
+      { text: "150 AI actions a month", included: true },
       { text: "Unlimited dictation", included: true },
-      { text: "150 AI actions a month (commands and background jobs)", included: true },
-      { text: "Agents in Chrome, reports, reminders and app control", included: true },
+      { text: "Background jobs, Chrome agent, reports", included: true },
     ],
   },
   {
@@ -89,9 +89,9 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "checkout",
     buttonText: "Get Power",
     features: [
+      { text: "1,000 AI actions a month", included: true },
       { text: "Unlimited dictation", included: true },
-      { text: "1,000 AI actions a month (commands and background jobs)", included: true },
-      { text: "Everything in Pro, for people who live in it", included: true },
+      { text: "Everything in Pro", included: true },
     ],
   },
 ];
@@ -106,7 +106,7 @@ export function formatAmount(amount: number, currency: "USD" | "INR"): string {
   if (currency === "INR") {
     return `₹${amount.toLocaleString("en-IN")}`;
   }
-  return `$${amount.toFixed(2)}`;
+  return Number.isInteger(amount) ? `$${amount}` : `$${amount.toFixed(2)}`;
 }
 
 function formatMonthlyAnnualNudge(
@@ -150,7 +150,7 @@ export function planPrices(
 
   if (pricing.monthly === 0) {
     return {
-      price: "Free",
+      price: "$0",
       period: "for 3 days",
     };
   }

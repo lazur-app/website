@@ -112,7 +112,7 @@ function Notch({ voice }: { voice: NotchVoice | null }) {
         else router.push("/download");
       }}
       onKeyDown={(e) => e.key === "Enter" && (e.currentTarget as HTMLElement).click()}
-      className={`pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2 overflow-hidden bg-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] ${free ? "cursor-pointer" : ""}`}
+      className={`pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2 overflow-hidden bg-[#3a3a3c] text-white shadow-[0_10px_26px_rgba(0,0,0,0.16)] ${free ? "cursor-pointer" : ""}`}
       style={{ borderRadius: "0 0 18px 18px" }}
       initial={false}
       animate={size}
@@ -222,9 +222,14 @@ function LogoMenu() {
 export function Navbar() {
   const voice = useNotchVoice();
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0">
-      <LogoMenu />
-      <Notch voice={voice} />
-    </header>
+    <>
+      {/* The notch belongs to the top of the page: it scrolls away with it. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-50 h-0">
+        <Notch voice={voice} />
+      </div>
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0">
+        <LogoMenu />
+      </header>
+    </>
   );
 }

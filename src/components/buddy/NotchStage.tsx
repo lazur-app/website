@@ -260,7 +260,7 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
 
   return (
     <motion.div
-      className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[1.4cqw] bg-black shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+      className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[1.4cqw] bg-[#3a3a3c] shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
       animate={{ width: size.w, height: size.h }}
       // Like the Dynamic Island: old content fades out, then the shape morphs, then new content fades in.
       transition={{ type: "spring", stiffness: 340, damping: 32, delay: 0.08 }}

@@ -91,12 +91,12 @@ export default function PricingPage() {
           <m.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.75rem]"
+            className="font-display text-4xl font-semibold tracking-[-0.035em] text-[var(--foreground)] md:text-[3.5rem]"
           >
-            Try Pro free for 3 days. Then choose your plan.
+            Simple pricing.
           </m.h1>
-          <p className="mx-auto mt-3 max-w-md text-[15px] lowercase leading-relaxed text-[var(--foreground-muted)]">
-            three plans. no weird add-ons. start talking.
+          <p className="mx-auto mt-3 max-w-md text-[17px] leading-relaxed text-[var(--foreground-muted)]">
+            Every plan starts with 3 days of Pro, free.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export default function PricingPage() {
           </p>
         ) : null}
 
-        <div className="grid w-full max-w-5xl items-stretch gap-4 md:grid-cols-3 md:gap-5">
+        <div className="grid w-full max-w-5xl items-center gap-4 md:grid-cols-3 md:gap-5">
           {WEBSITE_PLANS.map((plan, idx) => (
             <m.div
               key={plan.id}
@@ -148,7 +148,8 @@ export default function PricingPage() {
           transition={{ delay: 0.45 }}
           className="mt-6 max-w-2xl text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
         >
-          {FAIR_USE_FOOTNOTE}{" "}
+          An AI action is one thing you ask Lazur to do: a question, a reminder, a pointed-at button
+          or a background job. Dictation doesn&apos;t count. {FAIR_USE_FOOTNOTE}{" "}
           <Link
             href="/download"
             className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"

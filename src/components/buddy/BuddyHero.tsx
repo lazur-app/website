@@ -52,7 +52,8 @@ function Bars() {
 /** The notch at the top of the page: at rest a camera cutout, then it listens, thinks, talks. */
 function PageNotch({ phase, onReplay }: { phase: Phase; onReplay: () => void }) {
   const open = phase === "listening" || phase === "speak1" || phase === "speak2";
-  const size = open ? { width: "min(30rem, calc(100vw - 2rem))", height: 74 } : phase === "thinking" ? { width: "min(20rem, calc(100vw - 2rem))", height: 34 } : { width: "11rem", height: 26 };
+  // At rest it matches the menu bar notch (h-9, w-44); it grows down out of the menu bar.
+  const size = open ? { width: "min(30rem, calc(100vw - 2rem))", height: 80 } : phase === "thinking" ? { width: "min(20rem, calc(100vw - 2rem))", height: 40 } : { width: "11rem", height: 36 };
   let label = "";
   let line: ReactNode = null;
   let right: ReactNode = null;
@@ -75,10 +76,10 @@ function PageNotch({ phase, onReplay }: { phase: Phase; onReplay: () => void }) 
       onClick={onReplay}
       title="Play it again"
       aria-label="Replay Lazur's introduction"
-      className="absolute left-1/2 top-0 z-[60] -translate-x-1/2"
+      className="fixed left-1/2 top-0 z-[60] -translate-x-1/2"
     >
       <motion.div
-        className="overflow-hidden rounded-b-[20px] bg-black text-left text-white shadow-[0_12px_30px_rgba(0,0,0,0.28)]"
+        className="overflow-hidden rounded-b-[16px] bg-black text-left text-white shadow-[0_12px_30px_rgba(0,0,0,0.28)]"
         animate={size}
         transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.08 }}
       >
@@ -88,7 +89,7 @@ function PageNotch({ phase, onReplay }: { phase: Phase; onReplay: () => void }) 
           initial={{ opacity: 0 }}
           animate={{ opacity: label ? 1 : 0, transition: { delay: 0.22, duration: 0.18 } }}
         >
-          <div className="flex h-[34px] items-center justify-between text-[13px] font-medium">
+          <div className="flex h-[38px] items-center justify-between text-[13px] font-medium">
             {label}
             {right}
           </div>

@@ -25,7 +25,7 @@ export default function Home() {
     <MarketingPageShell>
       <HomePageStructuredData />
       <ReferralCapture />
-      <Navbar />
+      <Navbar notch={false} />
       <main className="overflow-x-clip">
         <BuddyHero />
         <LandingPageSections />

@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { GlowCta } from "./GlowCta";
-import { LogoWordmark } from "./LogoWordmark";
 import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
 
@@ -34,7 +34,48 @@ const menuItem = {
   closed: { opacity: 0, y: -6, transition: { duration: 0.12, ease: EASE } },
 };
 
-export function Navbar() {
+/** The notch at rest, between the menus and the status items (the homepage's hero draws its own). */
+function RestingNotch() {
+  return (
+    <span
+      className="pointer-events-none absolute left-1/2 top-0 h-9 w-44 -translate-x-1/2 rounded-b-[16px] bg-black"
+      aria-hidden
+    />
+  );
+}
+
+/** Right side of the menu bar: Lazur's own icon, Wi-Fi, battery and the time, like a real Mac. */
+function StatusItems() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const tick = () =>
+      setTime(new Date().toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" }).replace(",", ""));
+    const first = window.setTimeout(tick, 0);
+    const t = window.setInterval(tick, 15_000);
+    return () => {
+      window.clearTimeout(first);
+      window.clearInterval(t);
+    };
+  }, []);
+  const icon = "h-[14px] w-auto text-[var(--foreground)]/75";
+  return (
+    <div className="flex items-center gap-3.5 text-[13px] font-medium text-[var(--foreground)]/80" aria-hidden>
+      <Image src="/logo.png" alt="" width={15} height={15} className="opacity-80" />
+      <svg viewBox="0 0 20 14" className={icon} fill="currentColor">
+        <path d="M10 13.2l2.2-2.6a3.3 3.3 0 00-4.4 0zM5.3 8a7 7 0 019.4 0l1.4-1.6a9.2 9.2 0 00-12.2 0zM1.4 4.4a12.8 12.8 0 0117.2 0L20 2.8a15 15 0 00-20 0z" />
+      </svg>
+      <svg viewBox="0 0 26 13" className={icon} fill="none" stroke="currentColor" strokeWidth="1.4">
+        <rect x="1" y="1" width="21" height="11" rx="3" />
+        <rect x="3" y="3" width="15" height="7" rx="1.5" fill="currentColor" stroke="none" />
+        <path d="M24 5v3" strokeLinecap="round" />
+      </svg>
+      <span className="min-w-[5.5rem] text-right tabular-nums">{time}</span>
+    </div>
+  );
+}
+
+/** `notch={false}` on pages that draw their own notch (the homepage hero). */
+export function Navbar({ notch = true }: { notch?: boolean }) {
   const pathname = usePathname();
   const { user, loading, isAuthenticated } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -97,44 +138,45 @@ export function Navbar() {
         )}
       </AnimatePresence>
 
-      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:px-4 md:px-6 md:pt-6">
+      {/* A Mac menu bar: menus on the left, the notch in the middle, status items on the right. */}
+      <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]">
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className={`nav-glass-pill mx-auto w-full max-w-5xl ${
-          panelExpanded
-            ? "overflow-hidden rounded-[22px]"
-            : "overflow-visible rounded-full"
-        } ${scrolled || panelExpanded ? "nav-glass-pill--scrolled" : ""}`}
+        className={`menubar w-full ${scrolled || panelExpanded ? "menubar--scrolled" : ""}`}
       >
-        <div className="flex h-[48px] items-center justify-between gap-4 px-5 md:px-6">
-          <LogoWordmark height={32} />
+        <div className="relative flex h-9 items-center justify-between gap-4 px-4 md:px-5">
+          <div className="flex items-center gap-5">
+            <Link href="/" className="flex items-center gap-1.5" aria-label="Lazur home">
+              <Image src="/logo.png" alt="" width={18} height={18} className="shrink-0" />
+              <span className="text-[13.5px] font-bold tracking-[-0.02em] text-[var(--foreground)]">Lazur</span>
+            </Link>
+            <nav className="hidden items-center gap-5 lg:flex" aria-label="Main">
+              {navLinks.map((link) => {
+                const active = isActive(pathname, link.match, link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`rounded-[5px] px-1.5 py-0.5 text-[13px] font-medium transition-colors ${
+                      active
+                        ? "bg-[var(--foreground)]/[0.07] text-[var(--foreground)]"
+                        : "text-[var(--foreground)]/75 hover:bg-[var(--foreground)]/[0.06] hover:text-[var(--foreground)]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
 
-          <nav
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex"
-            aria-label="Main"
-          >
-            {navLinks.map((link) => {
-              const active = isActive(pathname, link.match, link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-[13px] font-medium transition-colors ${
-                    active
-                      ? "text-[var(--foreground)]"
-                      : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+          {notch ? <RestingNotch /> : null}
 
           <div className="flex items-center gap-4">
             <div className="hidden items-center gap-4 lg:flex">
+              <StatusItems />
               {loading ? (
                 <span className="h-3 w-14 rounded-full bg-[var(--foreground)]/5" />
               ) : isAuthenticated && user ? (
@@ -143,13 +185,16 @@ export function Navbar() {
                 <>
                   <Link
                     href="/login"
-                    className="text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                    className="text-[13px] font-medium text-[var(--foreground)]/75 transition-colors hover:text-[var(--foreground)]"
                   >
                     Log in
                   </Link>
-                  <GlowCta href="/download" size="sm">
-                    Try Lazur Free
-                  </GlowCta>
+                  <Link
+                    href="/download"
+                    className="rounded-full bg-[var(--foreground)] px-3 py-1 text-[12.5px] font-semibold text-white transition-opacity hover:opacity-85"
+                  >
+                    Download
+                  </Link>
                 </>
               )}
             </div>
@@ -198,7 +243,7 @@ export function Navbar() {
               animate={{ height: "auto" }}
               exit={{ height: 0 }}
               transition={{ duration: 0.36, ease: EASE }}
-              className="overflow-hidden border-t border-[var(--border)]/50 lg:hidden"
+              className="overflow-hidden border-t border-[var(--border)] bg-white/90 backdrop-blur-xl lg:hidden"
             >
               <motion.nav
                 className="flex flex-col px-5 pb-5 pt-2"

@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { setGuide } from "@/lib/guide";
+import { HandLoop } from "./HandLoop";
 import { FileText, Keyboard, MousePointerClick, Search, Sparkles, Timer as TimerIcon } from "lucide-react";
 
 /**
@@ -264,7 +265,7 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
       className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[1.4cqw] bg-[#3a3a3c] shadow-[0_8px_24px_rgba(0,0,0,0.18)]"
       animate={{ width: size.w, height: size.h }}
       // Like the Dynamic Island: old content fades out, then the shape morphs, then new content fades in.
-      transition={{ type: "spring", stiffness: 340, damping: 32, delay: 0.08 }}
+      transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1], delay: 0.08 }}
       aria-hidden
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -285,34 +286,22 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
 /** Hand-drawn circle around whatever it's placed in, with a label underneath. */
 function PointCircle({ show, label }: { show: boolean; label: string }) {
   return (
-    <AnimatePresence>
-      {show ? (
-        <motion.div className="pointer-events-none absolute -inset-[0.9cqw] z-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <svg viewBox="0 0 100 60" preserveAspectRatio="none" className="h-full w-full overflow-visible">
-            <motion.path
-              d="M52 4 C80 3 97 15 96 30 C95 47 74 57 49 56 C24 55 4 45 5 29 C6 14 25 5 58 6"
-              fill="none"
-              stroke={CORAL}
-              strokeWidth="2.6"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-          </svg>
+    <>
+      <HandLoop show={show} color={CORAL} padX={10} padY={7} />
+      <AnimatePresence>
+        {show ? (
           <motion.span
-            className="absolute right-0 top-[108%] whitespace-nowrap rounded-full border px-[0.8cqw] py-[0.2cqw] text-[1cqw] font-semibold"
+            className="pointer-events-none absolute right-0 top-[calc(100%+0.9cqw)] z-20 whitespace-nowrap rounded-full border px-[0.8cqw] py-[0.2cqw] text-[1cqw] font-semibold"
             style={{ background: "#ffdcdc", color: "#381212", borderColor: "rgba(239,83,80,0.35)" }}
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.55, duration: 0.25 } }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
           >
             {label}
           </motion.span>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -627,10 +616,10 @@ export function NotchStage({ held = false }: { held?: boolean }) {
           <motion.div
             key={scene.id}
             className="absolute inset-0"
-            initial={reduced ? false : { x: "105%", opacity: 0.6, scale: 0.94, filter: "blur(6px)" }}
+            initial={reduced ? false : { x: "100%", opacity: 0.7, scale: 0.96, filter: "blur(3px)" }}
             animate={{ x: "0%", opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={reduced ? undefined : { x: "-105%", opacity: 0.6, scale: 0.94, filter: "blur(6px)" }}
-            transition={{ type: "spring", stiffness: 170, damping: 24, mass: 0.9 }}
+            exit={reduced ? undefined : { x: "-100%", opacity: 0.7, scale: 0.96, filter: "blur(3px)" }}
+            transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
           >
             <SceneWindow scene={scene} phase={phase} />
           </motion.div>

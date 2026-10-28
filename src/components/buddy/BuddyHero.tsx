@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
 import { NotchStage } from "./NotchStage";
+import { HandUnderline } from "./HandLoop";
 import { usePersona } from "@/lib/personas";
 import { setGuide, useGuide } from "@/lib/guide";
 
@@ -253,8 +254,7 @@ export function BuddyHero() {
           right{" "}
           <span ref={underline} className="relative inline-block">
             in the notch.
-            <Ink show={drawLine} delay={0.85} duration={1.1} viewBox="0 0 300 20" className="-bottom-[0.18em] left-0 h-[0.28em] w-full"
-              d="M3 12 C60 5 110 16 160 9 C205 3 250 14 297 7" />
+            <HandUnderline show={drawLine} color={INK} delay={0.85} duration={1.1} offset={2} />
           </span>
         </motion.h1>
         </div>

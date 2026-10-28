@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motio
 import { X } from "lucide-react";
 import { setGuide, useGuide } from "@/lib/guide";
 import { usePersona, type PersonaId } from "@/lib/personas";
+import { loopPath, underlinePath } from "@/lib/handDrawn";
 
 /**
  * Lazur's sparkle, travelling down the homepage. Each section is a stop (data-guide-section) with
@@ -16,7 +17,8 @@ import { usePersona, type PersonaId } from "@/lib/personas";
 const INK = "#2563eb";
 const OFF_KEY = "lazur.guide.off";
 
-type Step = { target: string; say: string; ms?: number; circle?: boolean };
+/** circle: a loop around the target; underline: a stroke under it (for words). */
+type Step = { target: string; say: string; ms?: number; mark?: "circle" | "underline" };
 type Stop = { id: string; steps: (ctx: { persona: PersonaId; scene: string }) => Step[] };
 
 const DEMO_INTRO: Record<PersonaId, string> = {
@@ -69,12 +71,12 @@ const STOPS: Stop[] = [
   },
   {
     id: "love",
-    steps: () => [{ target: "[data-guide-section=love] mark", say: "don't take my word for it", circle: true }],
+    steps: () => [{ target: "[data-guide-section=love] mark", say: "don't take my word for it", mark: "underline" }],
   },
   {
     id: "pricing",
     steps: () => [
-      { target: "[data-guide=pricing-pro]", say: "most people pick this one", ms: 2600, circle: true },
+      { target: "[data-guide=pricing-pro]", say: "most people pick this one", ms: 2600, mark: "circle" },
       { target: "[data-guide=pricing-trial]", say: "and the first 3 days are free" },
     ],
   },
@@ -87,7 +89,7 @@ const STOPS: Stop[] = [
   },
   {
     id: "cta",
-    steps: () => [{ target: "[data-guide-section=cta] a[href='/download']", say: "ready? let's go", circle: true }],
+    steps: () => [{ target: "[data-guide-section=cta] a[href='/download']", say: "ready? let's go", mark: "circle" }],
   },
 ];
 
@@ -187,10 +189,13 @@ export function Guide() {
   }, [g.stop, g.step, count, holdMs]);
 
   // Follow the target every frame: springs make the sparkle trail behind when you scroll fast.
-  const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 140, damping: 20, mass: 0.8 };
+  // Over-damped: it glides into place and settles, never bounces past.
+  const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 90, damping: 22, mass: 1 };
   const x = useSpring(useMotionValue(-100), spring);
   const y = useSpring(useMotionValue(-100), spring);
-  const ring = { l: useMotionValue(0), t: useMotionValue(0), w: useMotionValue(0), h: useMotionValue(0) };
+  const ring = { l: useMotionValue(0), t: useMotionValue(0) };
+  const [ringSize, setRingSize] = useState({ w: 0, h: 0 });
+  const mark = step?.mark;
   const [labelLeft, setLabelLeft] = useState(false);
   const target = step?.target;
   const placed = useRef(false);
@@ -207,7 +212,8 @@ export function Guide() {
         const wide = r.width > vw * 0.5;
         const nearRight = !wide && r.right + 260 > vw;
         const px = wide ? r.left + 18 : nearRight ? r.left - 14 : r.right + 12;
-        const py = wide ? r.top + 14 : r.top - 8;
+        // Keep the label clear of the floating navbar.
+        const py = Math.max(96, wide ? r.top + 14 : r.top - 8);
         if (!placed.current) {
           // First appearance: start from the hero's "watch me work" arrow, so it's the same sparkle.
           const start = document.querySelector("[data-guide-start]")?.getBoundingClientRect();
@@ -217,10 +223,13 @@ export function Guide() {
         }
         x.set(px);
         y.set(py);
-        ring.l.set(r.left - 12);
-        ring.t.set(r.top - 10);
-        ring.w.set(r.width + 24);
-        ring.h.set(r.height + 20);
+        // Marks in real pixels (a stretched loop never finishes drawing).
+        const under = mark === "underline";
+        const w = Math.round(under ? r.width + 4 : r.width + 28);
+        const h = Math.round(under ? 10 : r.height + 22);
+        ring.l.set(under ? r.left - 2 : r.left - 14);
+        ring.t.set(under ? r.bottom - 1 : r.top - 11);
+        setRingSize((old) => (Math.abs(old.w - w) > 1 || Math.abs(old.h - h) > 1 ? { w, h } : old));
         setLabelLeft(nearRight);
       }
       frame = window.requestAnimationFrame(tick);
@@ -228,7 +237,7 @@ export function Guide() {
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, phone]);
+  }, [target, phone, mark]);
 
   const visible = Boolean(step) && !g.dismissed;
 
@@ -263,25 +272,26 @@ export function Guide() {
 
   return (
     <>
-      {/* A loop around the target, when the step calls for it */}
+      {/* A loop or an underline on the target, when the step calls for one */}
       <AnimatePresence>
-        {visible && step!.circle ? (
+        {visible && mark && ringSize.w > 0 ? (
           <motion.svg
             key={`${g.stop}-${g.step}`}
-            className="pointer-events-none fixed z-[64] overflow-visible"
-            style={{ left: ring.l, top: ring.t, width: ring.w, height: ring.h }}
-            viewBox="0 0 100 60"
-            preserveAspectRatio="none"
+            className="pointer-events-none fixed left-0 top-0 z-[64] overflow-visible"
+            style={{ x: ring.l, y: ring.t }}
+            width={ringSize.w}
+            height={ringSize.h}
+            viewBox={`0 0 ${ringSize.w} ${ringSize.h}`}
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.2 } }}
             aria-hidden
           >
             <motion.path
-              d="M54 4 C82 3 98 16 97 30 C96 47 74 57 48 56 C22 55 3 45 4 29 C5 14 24 5 60 7"
-              fill="none" stroke={INK} strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              d={mark === "underline" ? underlinePath(ringSize.w, ringSize.h) : loopPath(ringSize.w, ringSize.h)}
+              fill="none" stroke={INK} strokeWidth="2.6" strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ delay: 0.35, duration: 0.7, ease: "easeInOut" }}
+              transition={{ delay: 0.45, duration: mark === "underline" ? 0.5 : 0.75, ease: [0.65, 0, 0.35, 1] }}
             />
           </motion.svg>
         ) : null}
@@ -291,21 +301,21 @@ export function Guide() {
         className="pointer-events-none fixed left-0 top-0 z-[65]"
         style={{ x, y }}
         initial={false}
-        animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.6 }}
+        animate={{ opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.3 }}
         aria-hidden={!visible}
       >
-        <motion.div className="-ml-[11px] -mt-[11px]" animate={reduced ? undefined : { rotate: [0, 14, 0, -14, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+        <div className="-ml-[11px] -mt-[11px]">
           <Sparkle />
-        </motion.div>
+        </div>
         <AnimatePresence mode="wait">
           {visible ? (
             <motion.div
               key={`${g.stop}-${step!.say}`}
-              initial={{ opacity: 0, y: 4, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -2 }}
-              transition={{ duration: 0.22 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className={`pointer-events-auto absolute bottom-3 flex items-center gap-1 whitespace-nowrap rounded-full py-1.5 pl-3 pr-1.5 text-[13px] font-semibold text-white shadow-[0_8px_20px_rgba(37,99,235,0.3)] ${
                 labelLeft ? "right-4" : "left-4"
               }`}

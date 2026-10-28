@@ -21,6 +21,7 @@ import {
 import { AppMarquee } from "@/components/AppMarquee";
 import { usePersona } from "@/lib/personas";
 import { GUIDE_DONE, useGuideStep } from "@/lib/guide";
+import { HandLoop } from "./HandLoop";
 
 
 function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
@@ -85,21 +86,6 @@ const GUIDE_STEPS = [
 
 const INK = "#2563eb";
 
-/** A hand-drawn loop around the box it sits in, drawn when `show` turns on. */
-function Loop({ show }: { show: boolean }) {
-  return (
-    <svg className="pointer-events-none absolute -inset-2 h-[calc(100%+16px)] w-[calc(100%+16px)] overflow-visible" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden>
-      <motion.path
-        d="M54 4 C82 3 98 16 97 30 C96 47 74 57 48 56 C22 55 3 45 4 29 C5 14 24 5 60 7"
-        fill="none" stroke={INK} strokeWidth="2.4" strokeLinecap="round" vectorEffect="non-scaling-stroke"
-        initial={false}
-        animate={{ pathLength: show ? 1 : 0, opacity: show ? 1 : 0 }}
-        transition={{ pathLength: { duration: show ? 0.6 : 0, ease: "easeInOut" }, opacity: { duration: 0.15 } }}
-      />
-    </svg>
-  );
-}
-
 /**
  * The page guide walks through this section (see Guide.tsx): circles Appearance, then Dark, then
  * Dark switches on. With the guide off, it shows the finished state.
@@ -137,7 +123,7 @@ export function ShowMeHow() {
                         }`}
                       >
                         {item}
-                        {hit && !guideStep.done ? <Loop show={active} /> : null}
+                        {hit && !guideStep.done ? <HandLoop show={active} color={INK} padX={12} padY={9} /> : null}
                       </div>
                     );
                   })}

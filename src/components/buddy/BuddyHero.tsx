@@ -21,10 +21,10 @@ const HAND = "font-[family-name:var(--font-caveat)]";
 /** hello: the pen appears and says hi; speak1: underlines the headline; speak2: circles Download. */
 type Phase = "idle" | "hello" | "speak1" | "speak2" | "rest";
 const TIMELINE: Array<[Phase, number]> = [
-  ["idle", 600],
-  ["hello", 1900],
-  ["speak1", 2700],
-  ["speak2", 2600],
+  ["idle", 500],
+  ["hello", 1500],
+  ["speak1", 2150],
+  ["speak2", 2100],
   ["rest", 0],
 ];
 const order = (p: Phase) => TIMELINE.findIndex(([q]) => q === p);

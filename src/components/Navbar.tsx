@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/pricing", label: "Pricing" },
   // What people say about Lazur (the reviews section on the homepage).
   { href: "/#love", label: "Trust" },
+  { href: "/changelog", label: "Changelog" },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;

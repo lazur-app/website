@@ -42,7 +42,7 @@ const SCENES: Scene[] = [
     app: "Keynote",
     said: "Where's the share button?",
     reply: "Top right. Right here.",
-    phases: [["idle", 300], ["listening", 2100], ["thinking", 1900], ["speaking", 2700], ["result", 1900]],
+    phases: [["idle", 300], ["listening", 1700], ["thinking", 1500], ["speaking", 2150], ["result", 1500]],
   },
   {
     id: "timer",
@@ -52,7 +52,7 @@ const SCENES: Scene[] = [
     app: "Safari",
     said: "Set a timer for 10 minutes.",
     reply: "Ten minutes, starting now.",
-    phases: [["idle", 300], ["listening", 2100], ["thinking", 1900], ["speaking", 2600], ["result", 2400]],
+    phases: [["idle", 300], ["listening", 1700], ["thinking", 1500], ["speaking", 2100], ["result", 1900]],
   },
   {
     id: "job",
@@ -62,7 +62,7 @@ const SCENES: Scene[] = [
     app: "Chrome",
     said: "Compare standing desks under $300.",
     reply: "On it. I'll do that in the background.",
-    phases: [["idle", 300], ["listening", 2200], ["thinking", 1900], ["speaking", 2700], ["working", 2400], ["done", 2200]],
+    phases: [["idle", 300], ["listening", 1750], ["thinking", 1500], ["speaking", 2150], ["working", 1900], ["done", 1750]],
   },
   {
     id: "type",
@@ -71,7 +71,7 @@ const SCENES: Scene[] = [
     icon: Keyboard,
     app: "Notes",
     said: "um so for the offsite tomorrow we need to first book the venue second confirm catering for twenty people and third send everyone the agenda by friday",
-    phases: [["idle", 300], ["listening", 3900], ["thinking", 2000], ["result", 3400]],
+    phases: [["idle", 300], ["listening", 3100], ["thinking", 1600], ["result", 2700]],
   },
 ];
 

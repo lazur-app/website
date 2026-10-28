@@ -12,9 +12,8 @@ import { usePersona } from "@/lib/personas";
  * notch", circles the download button and points at the demo below, with handwritten notes.
  */
 
-const CORAL = "#ef5350";
-/** The pen draws in coral; its handwritten notes are blue. */
-const NOTE = "#2563eb";
+/** The pen draws and writes in blue. */
+const INK = "#2563eb";
 const HAND = "font-[family-name:var(--font-caveat)]";
 
 /** hello: the pen appears and says hi; speak1: underlines the headline; speak2: circles Download. */
@@ -95,13 +94,13 @@ function Pen({ spots, phase }: { spots: Spots; phase: Phase }) {
     <motion.svg
       viewBox="0 0 24 24"
       className="pointer-events-none absolute z-30 -ml-3 -mt-3 h-6 w-6"
-      style={{ filter: "drop-shadow(0 0 8px rgba(239,83,80,0.65))" }}
+      style={{ filter: "drop-shadow(0 0 8px rgba(37,99,235,0.55))" }}
       initial={false}
       animate={target}
       transition={{ duration, ease: [0.45, 0, 0.2, 1], times: Array.isArray(target.left) ? [0, 0.4, 1] : undefined }}
       aria-hidden
     >
-      <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={CORAL} />
+      <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill={INK} />
     </motion.svg>
   );
 }
@@ -137,7 +136,7 @@ function ButtonLoop({ button, show }: { button: Spots["button"]; show: boolean }
       aria-hidden
     >
       <motion.path
-        d={d} fill="none" stroke={CORAL} strokeWidth="3" strokeLinecap="round"
+        d={d} fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round"
         initial={false}
         animate={{ pathLength: show ? 1 : 0, opacity: show ? 1 : 0 }}
         transition={{ pathLength: { delay: show ? 0.6 : 0, duration: 0.9, ease: "easeInOut" }, opacity: { delay: show ? 0.6 : 0, duration: 0.01 } }}
@@ -153,7 +152,7 @@ function Caption({ at, show, delay = 0.2, className = "", children }: {
   return (
     <motion.span
       className={`pointer-events-none absolute z-30 whitespace-nowrap text-[1.6rem] leading-none ${HAND} ${className}`}
-      style={{ left: at[0], top: at[1], color: NOTE }}
+      style={{ left: at[0], top: at[1], color: INK }}
       initial={false}
       animate={{ opacity: show ? 1 : 0, y: show ? 0 : 4 }}
       transition={{ delay: show ? delay : 0, duration: 0.35 }}
@@ -170,7 +169,7 @@ function Ink({ show, d, delay = 0, duration = 0.9, viewBox, className, preserve 
   return (
     <svg viewBox={viewBox} preserveAspectRatio={preserve} className={`pointer-events-none absolute overflow-visible ${className}`} aria-hidden>
       <motion.path
-        d={d} fill="none" stroke={CORAL} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke"
+        d={d} fill="none" stroke={INK} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke"
         initial={false}
         animate={{ pathLength: show ? 1 : 0, opacity: show ? 1 : 0 }}
         transition={{ pathLength: { delay: show ? delay : 0, duration, ease: "easeInOut" }, opacity: { delay: show ? delay : 0, duration: 0.01 } }}
@@ -270,7 +269,7 @@ export function BuddyHero() {
 
             <motion.span
               className={`absolute left-[calc(100%+2.6rem)] top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[1.7rem] leading-none sm:block ${HAND}`}
-              style={{ color: NOTE }}
+              style={{ color: INK }}
               initial={false}
               animate={{ opacity: drawCircle ? 1 : 0, x: drawCircle ? 0 : -6 }}
               transition={{ delay: drawCircle ? 1.4 : 0, duration: 0.35 }}
@@ -286,7 +285,7 @@ export function BuddyHero() {
             d="M30 4 C22 20 38 34 30 56 M30 56 L21 46 M30 56 L39 47" />
           <motion.span
             className={`absolute left-[calc(50%+2.2rem)] top-5 whitespace-nowrap text-[1.6rem] leading-none ${HAND}`}
-            style={{ color: NOTE }}
+            style={{ color: INK }}
             initial={false}
             animate={{ opacity: drawArrow ? 1 : 0 }}
             transition={{ delay: drawArrow ? 1.3 : 0, duration: 0.35 }}

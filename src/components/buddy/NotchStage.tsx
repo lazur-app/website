@@ -40,7 +40,7 @@ const SCENES: Scene[] = [
     app: "Keynote",
     said: "Where's the share button?",
     reply: "Top right. Right here.",
-    phases: [["idle", 300], ["listening", 1100], ["thinking", 400], ["speaking", 1600], ["result", 1500]],
+    phases: [["idle", 250], ["listening", 950], ["thinking", 350], ["speaking", 1300], ["result", 1200]],
   },
   {
     id: "timer",
@@ -50,7 +50,7 @@ const SCENES: Scene[] = [
     app: "Safari",
     said: "Set a timer for 10 minutes.",
     reply: "Ten minutes, starting now.",
-    phases: [["idle", 300], ["listening", 1100], ["thinking", 400], ["speaking", 1400], ["result", 2100]],
+    phases: [["idle", 250], ["listening", 950], ["thinking", 350], ["speaking", 1200], ["result", 1700]],
   },
   {
     id: "job",
@@ -60,16 +60,16 @@ const SCENES: Scene[] = [
     app: "Chrome",
     said: "Compare standing desks under $300.",
     reply: "On it. I'll do that in the background.",
-    phases: [["idle", 300], ["listening", 1200], ["thinking", 400], ["speaking", 1400], ["working", 2200], ["done", 1800]],
+    phases: [["idle", 250], ["listening", 1000], ["thinking", 350], ["speaking", 1200], ["working", 1800], ["done", 1500]],
   },
   {
     id: "type",
     tab: "Type",
     caption: "Types for you, anywhere",
     icon: Keyboard,
-    app: "Mail",
-    said: "um so thursday works no actually friday works better for me",
-    phases: [["idle", 300], ["listening", 1500], ["thinking", 500], ["result", 1900]],
+    app: "Notes",
+    said: "um so for the offsite tomorrow we need to first book the venue second confirm catering for twenty people and third send everyone the agenda by friday",
+    phases: [["idle", 250], ["listening", 2300], ["thinking", 450], ["result", 2600]],
   },
 ];
 
@@ -127,7 +127,8 @@ function Spoken({ text, active, within }: { text: string; active: boolean; withi
     const t = window.setInterval(() => setShown((n) => (n >= words.length ? n : n + 1)), step);
     return () => window.clearInterval(t);
   }, [active, within, words.length]);
-  return <>{words.slice(0, shown).join(" ")}</>;
+  const said = words.slice(0, shown).join(" ");
+  return <>{said.length > 64 ? `…${said.slice(-64)}` : said}</>;
 }
 
 function Dots() {
@@ -261,17 +262,17 @@ function Notch({ scene, phase, reduced }: { scene: Scene; phase: Phase; reduced:
     <motion.div
       className="absolute left-1/2 top-0 z-30 -translate-x-1/2 overflow-hidden rounded-b-[1.4cqw] bg-black shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
       animate={{ width: size.w, height: size.h }}
-      transition={{ type: "spring", stiffness: 320, damping: 30 }}
+      // Like the Dynamic Island: old content fades out, then the shape morphs, then new content fades in.
+      transition={{ type: "spring", stiffness: 340, damping: 32, delay: 0.08 }}
       aria-hidden
     >
-      <AnimatePresence initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={`${scene.id}-${phase}`}
           className="absolute inset-0"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
+          animate={{ opacity: 1, transition: { delay: 0.14, duration: 0.16 } }}
+          exit={{ opacity: 0, transition: { duration: 0.08 } }}
         >
           {body}
         </motion.div>
@@ -496,31 +497,43 @@ function ChromeWindow({ phase }: { phase: Phase }) {
   );
 }
 
-function MailWindow({ typed }: { typed: boolean }) {
+const NOTE_LINES = [
+  { text: "For the offsite tomorrow we need to:", heading: true },
+  { text: "1. Book the venue" },
+  { text: "2. Confirm catering for 20 people" },
+  { text: "3. Send everyone the agenda by Friday" },
+];
+
+/** Notes: the long rambling sentence lands as a heading and a numbered list, line by line. */
+function NotesWindow({ typed }: { typed: boolean }) {
   return (
-    <Window title="Re: Design review">
-      <div className="space-y-[1.6cqw] p-[2.6cqw] text-left text-[1.2cqw] leading-snug text-[#1c1917]">
-        <div className="flex items-center gap-[1cqw]">
-          <span className="grid h-[2.6cqw] w-[2.6cqw] place-items-center rounded-full bg-[#ede9fe] text-[1cqw] font-semibold text-[#5b3fd6]">M</span>
-          <div>
-            <p className="font-semibold">Maya Chen</p>
-            <p className="text-[1cqw] text-black/45">Design review: does Thursday work?</p>
-          </div>
+    <Window title="Offsite plan · Notes">
+      <div className="flex h-full">
+        <div className="w-[22%] space-y-[0.6cqw] border-r border-black/5 bg-[#fbf7ea] p-[1.2cqw] text-left">
+          {["Offsite plan", "Groceries", "Book ideas"].map((n, i) => (
+            <div key={n} className={`rounded-[0.5cqw] px-[0.8cqw] py-[0.6cqw] text-[1cqw] ${i === 0 ? "bg-[#f5d76e]/60 font-semibold text-black/80" : "text-black/50"}`}>{n}</div>
+          ))}
         </div>
-        <p className="text-black/70">Hey! Can we move the design review to later this week? Thursday afternoon works for me.</p>
-        <div className="rounded-[0.7cqw] border border-black/10 px-[1.6cqw] py-[1.3cqw]">
-          <AnimatePresence mode="wait">
+        <div className="flex-1 p-[2.4cqw] text-left">
+          <p className="text-[1.8cqw] font-semibold text-[#1c1917]">Offsite plan</p>
+          <div className="mt-[1.4cqw] space-y-[0.7cqw] text-[1.3cqw] leading-snug text-black/80">
             {typed ? (
-              <motion.p key="typed" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="font-medium text-black/85">
-                Friday works better for me.
-                <span className="ml-[1px] inline-block h-[1em] w-[1.5px] translate-y-[2px] animate-pulse bg-black/60" />
-              </motion.p>
+              NOTE_LINES.map((line, i) => (
+                <motion.p
+                  key={line.text}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.28, duration: 0.25 }}
+                  className={line.heading ? "font-medium text-black/85" : "pl-[1cqw]"}
+                >
+                  {line.text}
+                  {i === NOTE_LINES.length - 1 ? <span className="ml-[2px] inline-block h-[1em] w-[1.5px] translate-y-[2px] animate-pulse bg-black/60" /> : null}
+                </motion.p>
+              ))
             ) : (
-              <motion.p key="empty" exit={{ opacity: 0 }} className="text-black/25">
-                Reply…
-              </motion.p>
+              <p className="text-black/25">Start typing…</p>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </Window>
@@ -536,7 +549,7 @@ function SceneWindow({ scene, phase }: { scene: Scene; phase: Phase }) {
     case "job":
       return <ChromeWindow phase={phase} />;
     case "type":
-      return <MailWindow typed={phase === "result"} />;
+      return <NotesWindow typed={phase === "result"} />;
   }
 }
 
@@ -561,7 +574,7 @@ export function NotchStage() {
         className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-[clamp(12px,2cqw,24px)] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10 [container-type:inline-size]"
         style={{ background: "linear-gradient(135deg, #c9b8ff 0%, #f3c4dd 45%, #ffd2a8 100%)" }}
         role="img"
-        aria-label={`Lazur demo, ${scene.caption.toLowerCase()}: you say "${scene.said}"${scene.reply ? ` and Lazur answers "${scene.reply}"` : ", and the cleaned-up text is typed into the reply"}.`}
+        aria-label={`Lazur demo, ${scene.caption.toLowerCase()}: you say "${scene.said}"${scene.reply ? ` and Lazur answers "${scene.reply}"` : ", and Lazur types it as a clean list"}.`}
       >
         <MenuBar app={scene.app} />
         <AnimatePresence initial={false}>
@@ -624,7 +637,7 @@ export function NotchStage() {
         })}
       </div>
       <p className="mt-3 text-center text-[13px] text-[var(--foreground-faint)]" aria-live="polite">
-        You say <span className="text-[var(--foreground-muted)]">&ldquo;{scene.id === "type" ? "Friday works better for me" : scene.said}&rdquo;</span>
+        You say <span className="text-[var(--foreground-muted)]">&ldquo;{scene.id === "type" ? "first book the venue, second confirm catering…" : scene.said}&rdquo;</span>
       </p>
     </div>
   );

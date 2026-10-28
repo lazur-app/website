@@ -139,12 +139,12 @@ export function TestimonialsSection() {
 
   return (
     <section
-      id="love"
       data-guide-section="love"
-      className="relative scroll-mt-24 pt-[140px] pb-24 md:pt-[160px] md:pb-28"
+      className="relative pt-[140px] pb-24 md:pt-[160px] md:pb-28"
     >
       <div className="landing-container">
-        <div className="mb-10 text-center md:mb-16">
+        {/* "Trust" in the navbar lands here: the heading, just below the floating navbar. */}
+        <div id="love" className="mb-10 scroll-mt-32 text-center md:mb-16">
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--brand-ink)]">
             · Early users ·
           </p>

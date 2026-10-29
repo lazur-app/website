@@ -1,37 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
-import { AppleIcon } from "@/components/icons/AppleIcon";
 import {
   LandingBand,
   LandingBandInner,
 } from "@/components/landing/LandingBand";
-import { detectPlatform, type Platform } from "@/lib/platform";
 import { TRIAL_LABEL } from "@/lib/pricingPlans";
 
 export function LandingPricingSection() {
   const proPrice = "$18/mo";
-  const powerPrice = "$120/mo";
-  const [platform, setPlatform] = useState<Platform | null>(null);
-
-  useEffect(() => {
-    setPlatform(detectPlatform());
-  }, []);
-
-  const isWindows = platform === "windows";
-
   const plans = [
-    { name: "Free", detail: "Full Pro for 3 days · starts when you open the app · no card", featured: false },
-    {
-      name: "Pro",
-      detail: `150 AI actions · Unlimited dictation · ${proPrice}`,
-      featured: true,
-    },
-    { name: "Power", detail: `1,000 AI actions · Unlimited dictation · ${powerPrice}`, featured: false },
+    { name: "Free trial", price: "$0", per: "3 days", detail: "Full Pro from the moment you open the app. No card.", featured: false },
+    { name: "Pro", price: "$18", per: "/mo", detail: "150 AI actions a month · unlimited dictation", featured: true },
+    { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
   ] as const;
 
   return (
@@ -62,7 +45,8 @@ export function LandingPricingSection() {
               <GlowCta
                 href="/download"
                 variant="light"
-                className="final-cta-btn--on-light"
+                className="final-cta-btn--on-light w-full sm:w-auto"
+                wrapClassName="w-full sm:w-auto"
               >
                 Download for Mac
               </GlowCta>
@@ -76,23 +60,36 @@ export function LandingPricingSection() {
 
           </div>
 
-          <ul className="border-t border-[var(--border)]">
+          <ul className="space-y-2.5 md:space-y-3">
             {plans.map((plan) => (
               <li
                 key={plan.name}
-                data-guide={plan.featured ? "pricing-pro" : plan.name === "Free" ? "pricing-trial" : undefined}
-                className="flex items-baseline justify-between gap-6 border-b border-[var(--border)] py-4 last:border-b-0"
+                data-guide={plan.featured ? "pricing-pro" : plan.name === "Free trial" ? "pricing-trial" : undefined}
+                className={`rounded-2xl border px-4 py-3.5 sm:px-5 sm:py-4 ${
+                  plan.featured
+                    ? "border-transparent bg-[#1c1917] text-white shadow-[0_14px_36px_-18px_rgba(28,25,23,0.55)]"
+                    : "border-[var(--border)] bg-white/60"
+                }`}
               >
-                <span
-                  className={`font-display text-[17px] tracking-tight text-[var(--foreground)] ${
-                    plan.featured ? "font-semibold" : "font-medium"
-                  }`}
-                >
-                  {plan.name}
-                </span>
-                <span className="text-right text-[14px] text-[var(--foreground-muted)]">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="flex items-center gap-2">
+                    <span className={`font-display text-[16px] font-semibold tracking-tight ${plan.featured ? "text-white" : "text-[var(--foreground)]"}`}>
+                      {plan.name}
+                    </span>
+                    {plan.featured ? (
+                      <span className="rounded-full bg-[#ff6b5e] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                        Most popular
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="shrink-0 font-display tabular-nums">
+                    <span className={`text-[20px] font-semibold tracking-tight ${plan.featured ? "text-white" : "text-[var(--foreground)]"}`}>{plan.price}</span>
+                    <span className={`ml-0.5 text-[12px] ${plan.featured ? "text-white/55" : "text-[var(--foreground-faint)]"}`}>{plan.per}</span>
+                  </span>
+                </div>
+                <p className={`mt-1 text-[13px] leading-snug ${plan.featured ? "text-white/70" : "text-[var(--foreground-muted)]"}`}>
                   {plan.detail}
-                </span>
+                </p>
               </li>
             ))}
           </ul>

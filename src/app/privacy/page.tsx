@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "What Lazur sends, to whom, and why: your voice, your screen when you ask, account data, and your choices.",
 };
 
-const UPDATED = "October 25, 2026";
+const UPDATED = "October 30, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
@@ -149,6 +149,17 @@ export default function PrivacyPage() {
                     sent to Gemini to do the work. See section 7.
                   </>,
                   <>
+                    <strong className="text-[var(--foreground)]">Memory and saved files.</strong>{" "}
+                    To write the one-line notes that make memory and saved
+                    files searchable, the text of a finished session (what you
+                    asked Lazur, what it said and what it did) or the start of
+                    a saved file&apos;s text is sent through our servers to
+                    Gemini. We don&apos;t keep it; the note goes back to your Mac.
+                    A saved file itself is only sent anywhere when you ask about
+                    it, or when you ask a job to attach it to a web form (it is
+                    then uploaded to that website).
+                  </>,
+                  <>
                     <strong className="text-[var(--foreground)]">Actions on your Mac.</strong>{" "}
                     Reminders, notes, calendar events, opening apps and moving
                     files happen on your Mac. For &ldquo;play a song&rdquo;, the
@@ -175,6 +186,8 @@ export default function PrivacyPage() {
                   "Your dictation and command history stays on your Mac by default. If you turn on cloud history, the text of your dictations and commands is saved to your account so it syncs across devices; you can delete it anytime.",
                   "Reports and files made by background jobs are saved in your agent folder (Documents/Lazur by default), and your recent jobs list is kept on your Mac.",
                   "Clipboard slots stay on your Mac.",
+                  "Memory stays on your Mac: what you asked Lazur, its answers, the actions and jobs it ran, files you saved and anything you asked it to remember, grouped by session and day with short summaries. It is kept per account and never includes dictation, audio or screenshots. You can see, search and delete any part of it in the Memory tab, and pause it, keep apps out of it, turn it off or erase it all in Settings → Memory.",
+                  "Files you drop on the notch are copied to Lazur's folder on your Mac (the original stays where it was), along with the text Lazur read from them. Delete them anytime in the Artifacts tab.",
                   "Your dictionary, snippets and preferences are saved to your account so they work on every Mac you sign in to.",
                   "To prevent repeat free trials, Lazur sends a scrambled (hashed) identifier of your Mac; the real hardware ID never leaves your computer.",
                 ]}
@@ -262,6 +275,7 @@ export default function PrivacyPage() {
                 items={[
                   "Agents open their own tabs (in a \"Lazur\" tab group, marked [Lazur]) and only read, scroll, click or type in those tabs, to do what you asked.",
                   "They use the sites you are already signed into. The extension never reads or stores your passwords or cookies.",
+                  "When you ask, a job can attach a file you saved in Lazur to an upload field on a page (for example a resume on a job application). It only uses files you saved, and asks before submitting a form.",
                   "The extension talks only to the Lazur app on your own Mac (localhost). Text from the pages an agent reads is sent to our servers and our AI provider only to carry out your request.",
                   "If you ask about a tab you have open, the agent can read the titles and addresses of your open tabs. It does not read your browsing history.",
                   "Reports and files agents make are saved on your Mac in your agent folder (Documents/Lazur by default). Recent jobs are listed in the app on your Mac.",

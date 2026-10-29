@@ -18,6 +18,42 @@ export type Release = {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.1.12",
+    date: "2026-10-30",
+    title: "Lazur remembers, and keeps your files",
+    summary:
+      "Ask \"what were we doing yesterday?\" and Lazur knows. Drop a file on the notch and it's there whenever you need it, even to upload into a web form. All kept on your Mac.",
+    sections: [
+      {
+        label: "New",
+        items: [
+          { name: "Memory", text: "Lazur remembers what you asked it and what it did, session by session and day by day. Ask \"what were we debugging yesterday?\", \"what did I do with Priya last week?\" or \"what did I ask about pricing?\". It follows people, projects and topics across days, and understands that \"invoice\" and \"bill\" mean the same thing." },
+          { name: "\"Remember this\"", text: "Say it while looking at something and Lazur saves the details, word for word, so you can ask for them later." },
+          { name: "A Memory tab", text: "See every day, session and moment Lazur remembers, search it, and delete anything. Pause or turn memory off, keep apps out of it, or erase it all in Settings → Memory. It never includes dictation, audio or screenshots, and it stays on your Mac." },
+          { name: "Drop files on the notch", text: "Drag a resume, an ID or a contract up to the notch and let go. Lazur keeps its own copy (your original stays put), reads it, and you can ask \"what does the contract say about notice?\". Find them all in the new Artifacts tab." },
+          { name: "Uploads in forms", text: "Background jobs can attach a file you saved to a web form, like your resume on a job application. Lazur asks before submitting anything. Needs Lazur for Chrome 0.4." },
+        ],
+      },
+      {
+        label: "Improved",
+        items: [
+          { name: "Hide finished jobs", text: "An × on finished job cards clears them from the notch. They stay in Jobs." },
+          { name: "Ink trail", text: "Lazur's pointer now leaves a soft, tapered coral stroke instead of grey dots." },
+          { name: "Add to Chrome", text: "The button now opens Lazur for Chrome in the Chrome Web Store." },
+          { name: "Leaner conversations", text: "Lazur keeps less of an old conversation in mind at once and looks things up in memory when it needs them, so long sessions stay quick." },
+        ],
+      },
+      {
+        label: "Fixed",
+        items: [
+          { name: "Clicks under the notch", text: "The invisible edge around the open notch no longer blocks the browser tabs or buttons right under it." },
+          { name: "Stray dictation text", text: "Dictating into silence no longer types \"Format with proper punctuation\"." },
+          { name: "\"Paste it here\"", text: "Lazur now pastes what you asked for instead of reading it out loud." },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.1.11",
     date: "2026-10-28",
     title: "Lazur now updates itself",

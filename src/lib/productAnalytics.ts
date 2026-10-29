@@ -27,7 +27,20 @@ export function startProductAnalytics() {
   });
 }
 
+// Website actions that also go to Google Analytics, so GA can count them per traffic source.
+// GA's own names where it has one (begin_checkout, login); mark them as key events in GA.
+const GA_EVENTS: Record<string, string> = {
+  download_clicked: "download_mac",
+  checkout_started: "begin_checkout",
+  login: "login",
+  persona_selected: "persona_selected",
+};
+
 export function track(event: string, properties?: Record<string, string | number | boolean>) {
+  const gaName = GA_EVENTS[event];
+  if (gaName && typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", gaName, properties ?? {});
+  }
   if (!started) return;
   posthog.capture(event, properties);
 }

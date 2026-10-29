@@ -9,6 +9,7 @@ import { Navbar } from "@/components/Navbar";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { track } from "@/lib/productAnalytics";
 import { LAZUR_APP_OPEN_URL } from "@/lib/appDeepLink";
 import { useAuth } from "@/components/AuthProvider";
 import {
@@ -43,6 +44,7 @@ function DashboardContent() {
     const refreshToken = params.get("refresh_token");
     if (accessToken) {
       storeTokens(accessToken, refreshToken);
+      track("login", { method: "google" });
       window.history.replaceState({}, "", "/dashboard");
     }
 

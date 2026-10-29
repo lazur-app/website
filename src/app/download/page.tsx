@@ -17,6 +17,7 @@ import {
   triggerWindowsDownload,
 } from "@/lib/download";
 import { submitExclusiveAccessRequest } from "@/lib/exclusiveAccess";
+import { track } from "@/lib/productAnalytics";
 import { INSTALL_STEPS, InstallDemo, useInstallStep } from "@/components/download/InstallDemo";
 import {
   detectMacChip,
@@ -289,9 +290,12 @@ export default function DownloadPage() {
   const [chip, setChip] = useState<MacChip | null>(null);
   const [started, setStarted] = useState(false);
 
-  const startMacDownload = useCallback(async (nextChip: MacChip) => {
+  // Every Mac download goes through here: it starts by itself when the page opens, and again
+  // if they pick the other chip. Counted in PostHog and GA (download_mac, a key event).
+  const startMacDownload = useCallback(async (nextChip: MacChip, how: "auto" | "switch" | "again") => {
     const url = await resolveMacDownloadUrl(nextChip);
     if (!url) return;
+    track("download_clicked", { platform: "mac", chip: nextChip, how });
     setStarted(triggerFileDownload(url, SAVE_AS));
   }, []);
 
@@ -304,7 +308,7 @@ export default function DownloadPage() {
     void (async () => {
       const nextChip = await detectMacChip();
       setChip(nextChip);
-      await startMacDownload(nextChip);
+      await startMacDownload(nextChip, "auto");
     })();
   }, [startMacDownload]);
 
@@ -316,7 +320,7 @@ export default function DownloadPage() {
 
   const switchChip = (nextChip: MacChip) => {
     setChip(nextChip);
-    void startMacDownload(nextChip);
+    void startMacDownload(nextChip, "switch");
   };
 
   return (
@@ -346,7 +350,7 @@ export default function DownloadPage() {
                 chip={chip}
                 started={started}
                 available={Boolean(MAC_DOWNLOAD_URL)}
-                onAgain={() => chip && void startMacDownload(chip)}
+                onAgain={() => chip && void startMacDownload(chip, "again")}
                 onSwitch={switchChip}
               />
             ) : platform === "windows" && hasWindowsBuild() ? (

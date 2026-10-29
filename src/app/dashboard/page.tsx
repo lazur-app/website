@@ -4,18 +4,12 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import {
-  Copy,
-  Check,
-  Download,
-  Gift,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight, Copy, Check, Download, Gift, Mic, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
-import { SoftCard } from "@/components/SoftCard";
+import { AppleIcon } from "@/components/icons/AppleIcon";
+import { LAZUR_APP_OPEN_URL } from "@/lib/appDeepLink";
 import { useAuth } from "@/components/AuthProvider";
 import {
   getAccessToken,
@@ -33,29 +27,14 @@ import {
   daysRemaining,
   formatSubscriptionDate,
   periodEndDescription,
-  periodEndLabel,
 } from "@/lib/subscriptionDates";
-
-function usagePercent(used: number, limit: number) {
-  if (limit <= 0) return 0;
-  return Math.min(100, Math.round((used / limit) * 100));
-}
-
-function formatWords(n: number) {
-  return n.toLocaleString();
-}
-
-function displayWordsUsed(used: number, limit: number) {
-  if (limit <= 0) return formatWords(used);
-  return formatWords(Math.min(used, limit));
-}
 
 function DashboardContent() {
   const router = useRouter();
   const { refresh } = useAuth();
-  const [user, setUser] = useState<UserProfile | null>(() => getCachedUser());
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [referrals, setReferrals] = useState<ReferralMe | null>(null);
-  const [loading, setLoading] = useState(() => !getCachedUser());
+  const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
 
   useLayoutEffect(() => {
@@ -69,6 +48,7 @@ function DashboardContent() {
 
     const cached = getCachedUser();
     if (cached) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is only readable after hydration
       setUser(cached);
       setLoading(false);
       if (cached.referral_code) {
@@ -134,247 +114,265 @@ function DashboardContent() {
     return <DashboardSkeleton />;
   }
 
-  const pct = usagePercent(user.word_quota_used, user.word_quota_limit);
   const periodEnd = user.current_period_end ?? user.trial_ends_at;
   const daysLeft = daysRemaining(periodEnd);
   const cancelScheduled = Boolean(user.cancel_at_period_end);
-  const endLabel = periodEndLabel(user.plan, { cancelAtPeriodEnd: cancelScheduled });
   const endDate = formatSubscriptionDate(periodEnd);
-  const isTrial = user.plan.toLowerCase().includes("trial");
+  const trialExpired = Boolean(user.requires_subscription) || user.trial_status === "expired";
+  const isTrial = user.plan.toLowerCase().includes("trial") && !trialExpired;
+  const trialTotal =
+    user.trial_started_at && user.trial_ends_at
+      ? Math.max(1, Math.round((new Date(user.trial_ends_at).getTime() - new Date(user.trial_started_at).getTime()) / 86_400_000))
+      : 3;
   const referralLink = user.referral_link ?? referrals?.referral_link ?? "";
+  const firstName = user.name ? user.name.split(" ")[0] : "";
+  const actionsUsed = user.command_quota_used ?? 0;
+  const actionsLimit = user.command_quota_limit ?? 0;
 
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative mx-auto max-w-4xl px-6 pb-20 pt-24 md:pt-28">
+      <main className="relative mx-auto max-w-5xl px-5 pb-24 pt-28 md:pt-36">
+        {/* Who */}
         <motion.header
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
+          transition={{ duration: 0.5, ease: EASE }}
+          className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-            Account
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] md:text-[2.5rem]">
-            Welcome back{user.name ? `, ${user.name.split(" ")[0]}` : ""}
-          </h1>
-          <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-            {periodEndDescription(user.plan, periodEnd, {
-              cancelAtPeriodEnd: cancelScheduled,
-              billingSource: user.billing_source,
-              trialStatus: user.trial_status,
-            })}
-          </p>
+          <div className="flex items-center gap-4">
+            <Avatar user={user} />
+            <div>
+              <h1 className="font-display text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-[var(--foreground)] md:text-[2.5rem]">
+                {greeting()}{firstName ? `, ${firstName}` : ""}
+              </h1>
+              <p className="text-[14px] text-[var(--foreground-muted)]">{user.email}</p>
+            </div>
+          </div>
+          <a
+            href={LAZUR_APP_OPEN_URL}
+            className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--foreground)] px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90 sm:self-auto"
+          >
+            <AppleIcon className="h-4 w-4" /> Open Lazur
+          </a>
         </motion.header>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.45 }}
-          >
-            <SoftCard hover={false} className="p-6">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-                  Your plan
-                </h2>
-                <Sparkles className="h-4 w-4 text-[var(--foreground-faint)]" strokeWidth={1.75} />
-              </div>
-              <p className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-                {user.plan}
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-3 text-[14px] text-[var(--foreground-muted)]">
-                <span>
-                  {endLabel}: {endDate}
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {/* Plan */}
+          <Reveal delay={0.05} className="md:col-span-1">
+            <div className="flex h-full flex-col rounded-[24px] bg-[#1c1917] p-6 text-white shadow-[0_20px_50px_rgba(28,25,23,0.22)]">
+              <div className="flex items-center justify-between">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/45">Your plan</p>
+                <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${trialExpired ? "bg-amber-400/20 text-amber-200" : isTrial ? "bg-[#2563eb] text-white" : "bg-white/10 text-white/80"}`}>
+                  {trialExpired ? "Trial ended" : isTrial ? "Trial" : cancelScheduled ? "Canceling" : "Active"}
                 </span>
-                {isTrial && daysLeft !== null && (
-                  <span className="rounded-full bg-[var(--background-deep)] px-2.5 py-0.5 text-[11px] font-semibold text-[var(--foreground-muted)]">
-                    {daysLeft} {daysLeft === 1 ? "day" : "days"} left
-                  </span>
-                )}
               </div>
-            </SoftCard>
-          </motion.div>
+              <p className="mt-4 font-display text-[1.9rem] font-semibold leading-none tracking-[-0.03em]">{user.plan}</p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.45 }}
-          >
-            <SoftCard hover={false} className="p-6">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-                  Usage this month
-                </h2>
-                <TrendingUp className="h-4 w-4 text-[var(--foreground-faint)]" strokeWidth={1.75} />
-              </div>
-              <p className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-                {displayWordsUsed(user.word_quota_used, user.word_quota_limit)}{" "}
-                <span className="text-base font-normal text-[var(--foreground-muted)]">
-                  / {formatWords(user.word_quota_limit)} words
-                </span>
-              </p>
-              <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--background-deep)]">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${pct}%` }}
-                  transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full rounded-full bg-[var(--foreground)]/70"
-                />
-              </div>
-              <p className="mt-2 text-[12px] text-[var(--foreground-faint)]">
-                {pct}% of monthly word budget used
-              </p>
-              {(user.command_mode_enabled || user.agent_mode_enabled) && (
-                <div className="mt-4 space-y-1.5 border-t border-[var(--border)] pt-4 text-[13px] text-[var(--foreground-muted)]">
-                  {user.command_mode_enabled && (
-                    <p>
-                      Intent{" "}
-                      <span className="font-medium text-[var(--foreground)]">
-                        {(user.command_quota_used ?? 0).toLocaleString()} /{" "}
-                        {(user.command_quota_limit ?? 0).toLocaleString()}
-                      </span>
-                    </p>
-                  )}
-                  {user.agent_mode_enabled && (
-                    <p>
-                      Agents{" "}
-                      <span className="font-medium text-[var(--foreground)]">
-                        {(user.agent_quota_used ?? 0).toLocaleString()} /{" "}
-                        {(user.agent_quota_limit ?? 0).toLocaleString()}
-                      </span>
-                    </p>
-                  )}
+              {isTrial && daysLeft !== null ? (
+                <div className="mt-6">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display text-[2.6rem] font-semibold leading-none tabular-nums">{daysLeft}</span>
+                    <span className="text-[13px] text-white/55">{daysLeft === 1 ? "day" : "days"} left · ends {endDate}</span>
+                  </div>
+                  <div className="mt-3 flex gap-1.5">
+                    {Array.from({ length: trialTotal }, (_, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, scaleY: 0.4 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        transition={{ delay: 0.2 + i * 0.06, duration: 0.3 }}
+                        className={`h-2 flex-1 rounded-full ${i < trialTotal - daysLeft ? "bg-white/15" : "bg-[#2563eb]"}`}
+                      />
+                    ))}
+                  </div>
                 </div>
+              ) : (
+                <p className="mt-4 text-[14px] leading-relaxed text-white/60">
+                  {periodEndDescription(user.plan, periodEnd, {
+                    cancelAtPeriodEnd: cancelScheduled,
+                    billingSource: user.billing_source,
+                    trialStatus: user.trial_status,
+                  })}
+                </p>
               )}
-            </SoftCard>
-          </motion.div>
+
+              <div className="mt-auto pt-6">
+                <Link
+                  href="/billing"
+                  className="flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-[14px] font-semibold text-[#1c1917] transition-opacity hover:opacity-90"
+                >
+                  {isTrial || trialExpired ? "Choose a plan" : "Manage billing"} <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* AI actions */}
+          <Reveal delay={0.1}>
+            <Card>
+              <CardLabel icon={<Sparkles className="h-4 w-4" />}>AI actions this month</CardLabel>
+              <div className="mt-5 flex items-center gap-5">
+                <Ring value={actionsLimit ? actionsUsed / actionsLimit : 0} />
+                <div>
+                  <p className="font-display text-[2rem] font-semibold leading-none tabular-nums text-[var(--foreground)]">
+                    {actionsUsed.toLocaleString()}
+                  </p>
+                  <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">
+                    of {actionsLimit ? actionsLimit.toLocaleString() : "—"} used
+                  </p>
+                </div>
+              </div>
+              <p className="mt-5 text-[13px] leading-relaxed text-[var(--foreground-faint)]">
+                Questions, pointing, reminders and background jobs. Dictation doesn&apos;t count.
+              </p>
+            </Card>
+          </Reveal>
+
+          {/* Dictation */}
+          <Reveal delay={0.15}>
+            <Card>
+              <CardLabel icon={<Mic className="h-4 w-4" />}>Dictation this month</CardLabel>
+              <p className="mt-5 font-display text-[2rem] font-semibold leading-none tabular-nums text-[var(--foreground)]">
+                {user.word_quota_used.toLocaleString()}
+              </p>
+              <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">words typed for you</p>
+              <p className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-700">
+                <Check className="h-3.5 w-3.5" /> Unlimited on your plan
+              </p>
+              <p className="mt-3 text-[13px] text-[var(--foreground-faint)]">
+                That&apos;s about {Math.max(1, Math.round(user.word_quota_used / 40))} minutes of typing saved.
+              </p>
+            </Card>
+          </Reveal>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.45 }}
-        >
-          <SoftCard hover={false} className="mt-4 p-6">
-            <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-                Refer a friend
-              </h2>
-              <Gift className="h-4 w-4 text-[var(--foreground-faint)]" strokeWidth={1.75} />
-            </div>
-
-            <div className="space-y-5">
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
-                    Friends invited
-                  </p>
-                  <p className="mt-1 font-display text-xl font-semibold text-[var(--foreground)]">
-                    {referrals?.referral_count ?? 0}
-                  </p>
-                </div>
-                {referrals?.leaderboard_rank != null && (
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
-                      Leaderboard rank
-                    </p>
-                    <p className="mt-1 font-display text-xl font-semibold text-[var(--foreground)]">
-                      #{referrals.leaderboard_rank}
-                    </p>
-                  </div>
-                )}
-                {user.referral_code && (
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
-                      Your code
-                    </p>
-                    <p className="mt-1 font-mono text-lg font-semibold text-[var(--foreground)]">
-                      {user.referral_code}
-                    </p>
-                  </div>
-                )}
-              </div>
-
+        {/* Your Mac */}
+        <Reveal delay={0.2} className="mt-4">
+          <Card>
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">
-                  Your referral link
+                <CardLabel icon={<AppleIcon className="h-4 w-4" />}>Lazur on your Mac</CardLabel>
+                <p className="mt-3 text-[15px] text-[var(--foreground-muted)]">
+                  Hold <Kbd>⌥ ⌘</Kbd> to ask, <Kbd>fn</Kbd> to dictate. Lazur updates itself.
                 </p>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <input
-                    readOnly
-                    value={referralLink}
-                    className="soft-card min-w-0 flex-1 px-4 py-2.5 text-[13px] text-[var(--foreground-muted)] outline-none"
-                  />
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <a href={LAZUR_APP_OPEN_URL} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Open app</a>
+                <Link href="/login/app" className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Sign in on this Mac</Link>
+                <Link href="/download" className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]"><Download className="h-4 w-4" /> Download</Link>
+              </div>
+            </div>
+          </Card>
+        </Reveal>
+
+        {/* Invite */}
+        <Reveal delay={0.25} className="mt-4">
+          <div className="relative overflow-hidden rounded-[24px] border border-[#2563eb]/15 bg-gradient-to-br from-[#2563eb]/[0.07] via-white to-white p-6 md:p-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:items-center">
+              <div className="min-w-0">
+                <CardLabel icon={<Gift className="h-4 w-4" />}>Invite friends</CardLabel>
+                <p className="mt-3 font-display text-[1.6rem] font-semibold leading-tight tracking-[-0.02em] text-[var(--foreground)]">
+                  Know someone who&apos;d love a buddy?
+                </p>
+                <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
+                  {referrals?.referral_count ? (
+                    <>You&apos;ve invited <span className="font-semibold text-[var(--foreground)]">{referrals.referral_count}</span> {referrals.referral_count === 1 ? "friend" : "friends"}{referrals.leaderboard_rank != null ? <> · #{referrals.leaderboard_rank} on the leaderboard</> : null}.</>
+                  ) : (
+                    "Share your link. Your friends start with three days of Pro, free."
+                  )}
+                </p>
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 rounded-2xl border border-[var(--border-strong)] bg-white p-1.5 pl-4">
+                  <span className="min-w-0 flex-1 truncate font-mono text-[13px] text-[var(--foreground-muted)]">{referralLink || "Your link is on its way…"}</span>
                   <button
                     type="button"
                     onClick={handleCopyReferral}
-                    className="btn-dark inline-flex items-center justify-center gap-1.5 px-5 py-2.5 text-[14px]"
+                    disabled={!referralLink}
+                    className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-[var(--foreground)] px-4 py-2 text-[13px] font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
                   >
-                    {copied ? (
-                      <>
-                        <Check className="h-4 w-4" />
-                        Copied
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-4 w-4" />
-                        Copy link
-                      </>
-                    )}
+                    {copied ? <><Check className="h-4 w-4" /> Copied</> : <><Copy className="h-4 w-4" /> Copy</>}
                   </button>
                 </div>
+                {user.referral_code ? (
+                  <p className="mt-2 pl-1 text-[12.5px] text-[var(--foreground-faint)]">
+                    Or share your code <span className="font-mono font-semibold text-[var(--foreground-muted)]">{user.referral_code}</span>
+                  </p>
+                ) : null}
               </div>
-
             </div>
-          </SoftCard>
-        </motion.div>
+          </div>
+        </Reveal>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.45 }}
-          >
-            <Link href="/login/app" className="block">
-              <SoftCard hover={false} className="flex items-center gap-4 p-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
-                  <Download className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[var(--foreground)]">Desktop app</p>
-                  <p className="text-[13px] text-[var(--foreground-muted)]">
-                    Sign in on Mac to sync your account
-                  </p>
-                </div>
-              </SoftCard>
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.45 }}
-          >
-            <Link href="/billing" className="block">
-              <SoftCard hover={false} className="flex items-center gap-4 p-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70">
-                  <Sparkles className="h-4 w-4 text-[var(--foreground-muted)]" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[var(--foreground)]">Plans & billing</p>
-                  <p className="text-[13px] text-[var(--foreground-muted)]">
-                    Compare tiers and manage subscription
-                  </p>
-                </div>
-              </SoftCard>
-            </Link>
-          </motion.div>
-        </div>
+        <nav className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--foreground-faint)]">
+          <Link href="/changelog" className="hover:text-[var(--foreground-muted)]">What&apos;s new</Link>
+          <Link href="/support" className="hover:text-[var(--foreground-muted)]">Help &amp; support</Link>
+          <Link href="/privacy" className="hover:text-[var(--foreground-muted)]">Privacy</Link>
+        </nav>
       </main>
     </MarketingPageShell>
+  );
+}
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+}
+
+function Avatar({ user }: { user: UserProfile }) {
+  const initial = (user.name || user.email || "?").trim().charAt(0).toUpperCase();
+  return user.avatar_url ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={user.avatar_url} alt="" className="h-14 w-14 rounded-full object-cover ring-4 ring-white shadow-sm" />
+  ) : (
+    <span className="grid h-14 w-14 place-items-center rounded-full bg-[#2563eb] font-display text-[1.4rem] font-semibold text-white ring-4 ring-white shadow-sm">{initial}</span>
+  );
+}
+
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  return (
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay, duration: 0.45, ease: EASE }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+function Card({ children }: { children: React.ReactNode }) {
+  return <div className="h-full rounded-[24px] border border-[var(--border)] bg-white/80 p-6 shadow-[var(--shadow-card)]">{children}</div>;
+}
+
+function CardLabel({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+      <span className="text-[#2563eb]">{icon}</span>
+      {children}
+    </p>
+  );
+}
+
+function Kbd({ children }: { children: React.ReactNode }) {
+  return <kbd className="mx-0.5 rounded-md border border-[var(--border-strong)] bg-white px-1.5 py-0.5 font-sans text-[12.5px] font-semibold text-[var(--foreground)] shadow-[0_1px_0_rgba(28,25,23,0.12)]">{children}</kbd>;
+}
+
+/** Share of the month's AI actions used, as a ring. */
+function Ring({ value }: { value: number }) {
+  const r = 30;
+  const c = 2 * Math.PI * r;
+  const v = Math.max(0, Math.min(1, value));
+  return (
+    <svg width="76" height="76" viewBox="0 0 76 76" className="-rotate-90" aria-hidden>
+      <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(28,25,23,0.08)" strokeWidth="8" />
+      <motion.circle
+        cx="38" cy="38" r={r} fill="none" stroke={v > 0.9 ? "#ef5350" : "#2563eb"} strokeWidth="8" strokeLinecap="round"
+        strokeDasharray={c}
+        initial={{ strokeDashoffset: c }}
+        animate={{ strokeDashoffset: c * (1 - v) }}
+        transition={{ delay: 0.3, duration: 1, ease: EASE }}
+      />
+    </svg>
   );
 }
 

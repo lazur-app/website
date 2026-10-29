@@ -70,12 +70,12 @@ const UPGRADE_PLAN_META: {
     name: "Pro",
     planType: "pro",
     planId: "pro",
-    description: "150,000 words / month and 300 Intent requests.",
+    description: "For everyday help: questions, pointing, reminders and jobs.",
     features: [
-      "300 Intent requests",
-      "Smart Rewrite + Zen Mode",
-      "9 clipboard slots",
-      "Dictionary & snippets",
+      "150 AI actions a month",
+      "Unlimited dictation",
+      "Background jobs, Chrome agent and reports",
+      "Snippets, Words and 9 clipboard slots",
     ],
     popular: true,
   },
@@ -83,10 +83,10 @@ const UPGRADE_PLAN_META: {
     name: "Power",
     planType: "power",
     planId: "power",
-    description: "500,000 words / month and unlimited Intent, fair use.",
+    description: "For people who live in Lazur all day.",
     features: [
-      "Unlimited Intent, fair use",
-      "Voice Profiling (coming soon)",
+      "1,000 AI actions a month",
+      "Unlimited dictation",
       "Priority support",
       "Everything in Pro",
     ],
@@ -285,7 +285,7 @@ function BillingContent() {
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative mx-auto max-w-5xl px-6 pb-20 pt-24 md:pt-28">
+      <main className="relative mx-auto max-w-5xl px-5 pb-24 pt-28 md:pt-36">
         <motion.header
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -306,7 +306,7 @@ function BillingContent() {
               className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
-              Back to dashboard
+              Back to account
             </Link>
           )}
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
@@ -330,7 +330,7 @@ function BillingContent() {
           className="mb-8"
         >
           <SoftCard hover={false} className="overflow-hidden p-0">
-            <div className="border-b border-[var(--border)] bg-gradient-to-br from-[var(--brand-soft)]/55 via-white to-white px-6 py-6 md:px-7 md:py-7">
+            <div className="border-b border-white/10 bg-[#1c1917] px-6 py-7 text-white md:px-8 md:py-8">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -339,8 +339,8 @@ function BillingContent() {
                         trialExpired && !paid
                           ? "bg-amber-100 text-amber-900"
                           : onTrial
-                            ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
-                            : "bg-white/90 text-[var(--foreground-muted)]"
+                            ? "bg-[#2563eb] text-white"
+                            : "bg-white/10 text-white/80"
                       }`}
                     >
                       {statusLabel}
@@ -348,17 +348,17 @@ function BillingContent() {
                     <span className="text-[11px] font-medium text-[var(--foreground-faint)]">
                     </span>
                   </div>
-                  <p className="mt-3 font-display text-2xl font-semibold tracking-tight text-[var(--foreground)] md:text-[2rem]">
+                  <p className="mt-3 font-display text-2xl font-semibold tracking-tight text-white md:text-[2rem]">
                     {user.plan}
                   </p>
-                  <p className="mt-2 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+                  <p className="mt-2 text-[14px] leading-relaxed text-white/60">
                     {periodEndDescription(user.plan, periodEnd, {
                       cancelAtPeriodEnd: cancelScheduled,
                       billingSource: billingStatus?.billing_source ?? user.billing_source,
                     })}
                   </p>
                 </div>
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--border)] bg-white/80 text-[var(--foreground-muted)] shadow-sm">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white">
                   {onTrial ? (
                     <Sparkles className="h-5 w-5" strokeWidth={1.5} />
                   ) : (
@@ -370,16 +370,16 @@ function BillingContent() {
               {trialProgress !== null ? (
                 <div className="mt-5">
                   <div className="mb-2 flex items-center justify-between text-[12px]">
-                    <span className="font-medium text-[var(--foreground-muted)]">
+                    <span className="font-medium text-white/60">
                       Trial progress
                     </span>
-                    <span className="tabular-nums text-[var(--foreground-faint)]">
+                    <span className="tabular-nums text-white/45">
                       {trialDays} {trialDays === 1 ? "day" : "days"} left
                     </span>
                   </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-white/80">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/15">
                     <div
-                      className="h-full rounded-full bg-[var(--foreground)] transition-all"
+                      className="h-full rounded-full bg-[#2563eb] transition-all"
                       style={{ width: `${trialProgress}%` }}
                     />
                   </div>
@@ -463,8 +463,8 @@ function BillingContent() {
                 </h2>
                 <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {onTrial
-                    ? "Lock in Pro or Power before your trial ends, checkout is handled securely."
-                    : "Subscribe to keep full access to dictation, Intent, and polish."}
+                    ? "Pick a plan before your trial ends and nothing changes. Checkout is secure; cancel anytime."
+                    : "Subscribe to keep your AI buddy: questions, pointing, jobs and dictation."}
                 </p>
               </div>
               <BillingIntervalToggle

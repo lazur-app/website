@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -28,10 +29,17 @@ type AuthContextValue = {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<UserProfile | null>(() => getCachedUser());
-  const [loading, setLoading] = useState(
-    () => hasValidSessionToken() && !getCachedUser(),
-  );
+  // Start from what the server rendered, then load the cached session before first paint (no hydration mismatch).
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!hasValidSessionToken()) return;
+    const cached = getCachedUser();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is only readable after hydration
+    setUser(cached);
+    setLoading(!cached);
+  }, []);
 
   // Link this browser's analytics to the account (same id as the app), so web → app funnels connect.
   useEffect(() => {

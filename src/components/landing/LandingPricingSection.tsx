@@ -12,7 +12,7 @@ import { TRIAL_LABEL } from "@/lib/pricingPlans";
 export function LandingPricingSection() {
   const proPrice = "$18/mo";
   const plans = [
-    { name: "Free trial", price: "$0", per: "3 days", detail: "Full Pro from the moment you open the app. No card.", featured: false },
+    { name: "Free trial", price: "$0", per: "3 days", detail: "30 AI actions · 10,000 words of dictation. No card.", featured: false },
     { name: "Pro", price: "$18", per: "/mo", detail: "150 AI actions a month · unlimited dictation", featured: true },
     { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
   ] as const;
@@ -37,8 +37,8 @@ export function LandingPricingSection() {
               {TRIAL_LABEL}. Then {proPrice}.
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Full AI buddy access for the whole trial. No credit card to
-              download. Cancel anytime.
+              Try everything for 3 days: 30 AI actions and 10,000 words. No
+              credit card to download. Cancel anytime.
             </p>
 
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">

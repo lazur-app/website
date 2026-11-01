@@ -96,7 +96,7 @@ export default function PricingPage() {
             Simple pricing.
           </m.h1>
           <p className="mx-auto mt-3 max-w-md text-[17px] leading-relaxed text-[var(--foreground-muted)]">
-            Every plan starts with 3 days of Pro, free.
+            Every plan starts with a free 3-day trial: 30 AI actions and 10,000 words.
           </p>
         </div>
 

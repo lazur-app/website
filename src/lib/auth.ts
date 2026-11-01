@@ -15,6 +15,8 @@ export type UserProfile = {
   word_quota_limit: number;
   word_quota_used: number;
   command_quota_limit?: number;
+  /** Trial only: what Pro adds (backend /auth/me). */
+  upgrade_preview?: { plan: string; commands: number; commands_more: number; words: string } | null;
   command_quota_used?: number;
   command_mode_enabled?: boolean;
   agent_quota_limit?: number;

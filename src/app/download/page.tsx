@@ -266,7 +266,7 @@ function MacWelcome({ chip, started, available, onAgain, onSwitch }: {
       </div>
 
       <p className="mt-6 text-[13px] text-[var(--foreground-faint)]">
-        Your 3 days of Pro start when you first open the app. No card needed.
+        Your free 3-day trial (30 AI actions, 10,000 words) starts when you first open the app. No card needed.
       </p>
 
       {hasIntelMacBuild() ? (

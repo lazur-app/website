@@ -130,6 +130,7 @@ function DashboardContent() {
   const firstName = user.name ? user.name.split(" ")[0] : "";
   const actionsUsed = user.command_quota_used ?? 0;
   const actionsLimit = user.command_quota_limit ?? 0;
+  const preview = user.upgrade_preview ?? null;
 
   return (
     <MarketingPageShell>
@@ -223,6 +224,9 @@ function DashboardContent() {
                   <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">
                     of {actionsLimit ? actionsLimit.toLocaleString() : "—"} used
                   </p>
+                  {preview?.commands_more ? (
+                    <p className="mt-1 text-[13px] font-semibold text-emerald-600">+{preview.commands_more} with Pro</p>
+                  ) : null}
                 </div>
               </div>
               <p className="mt-5 text-[13px] leading-relaxed text-[var(--foreground-faint)]">
@@ -238,9 +242,11 @@ function DashboardContent() {
               <p className="mt-5 font-display text-[2rem] font-semibold leading-none tabular-nums text-[var(--foreground)]">
                 {user.word_quota_used.toLocaleString()}
               </p>
-              <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">words typed for you</p>
+              <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">
+                {preview ? `of ${(user.word_quota_limit ?? 0).toLocaleString()} trial words` : "words typed for you"}
+              </p>
               <p className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-700">
-                <Check className="h-3.5 w-3.5" /> Unlimited on your plan
+                <Check className="h-3.5 w-3.5" /> {preview ? "+unlimited with Pro" : "Unlimited on your plan"}
               </p>
               <p className="mt-3 text-[13px] text-[var(--foreground-faint)]">
                 That&apos;s about {Math.max(1, Math.round(user.word_quota_used / 40))} minutes of typing saved.

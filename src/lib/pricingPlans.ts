@@ -206,7 +206,7 @@ export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 /** Length of a new Pro trial (backend: PRO_TRIAL_DAYS). */
 export const TRIAL_DAYS = 3;
 export const TRIAL_LABEL = "3-day Pro trial";
-export const TRIAL_NOTE = "Full Pro for 3 days · starts when you open the app";
+export const TRIAL_NOTE = "3 days · 30 AI actions · 10,000 words · starts when you open the app";
 export const PRO_FROM_LABEL = "From $18/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
 export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";

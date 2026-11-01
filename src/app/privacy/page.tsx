@@ -160,6 +160,19 @@ export default function PrivacyPage() {
                     then uploaded to that website).
                   </>,
                   <>
+                    <strong className="text-[var(--foreground)]">Connected apps.</strong>{" "}
+                    If you connect an app such as Gmail, Google Calendar, Slack,
+                    Notion, GitHub, Spotify or YouTube, you sign in on that
+                    app&apos;s own page and the connection is kept by our
+                    integrations provider, Composio, linked to your Lazur
+                    account. Lazur only uses it when you ask for something
+                    there; what it reads is sent to Gemini to answer you and is
+                    not stored by Lazur. Lazur asks before sending, posting,
+                    changing or deleting anything. We record which app and
+                    action were used and whether it worked, never the content.
+                    Disconnect any app anytime in Lazur&apos;s Apps tab.
+                  </>,
+                  <>
                     <strong className="text-[var(--foreground)]">Actions on your Mac.</strong>{" "}
                     Reminders, notes, calendar events, opening apps and moving
                     files happen on your Mac. For &ldquo;play a song&rdquo;, the

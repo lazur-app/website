@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { HeroFluidWaves } from "@/components/hero/HeroFluidWaves";
-import { NotchStage } from "./NotchStage";
+import { DemoVideo } from "./DemoVideo";
 import { HandUnderline } from "./HandLoop";
 import { usePersona } from "@/lib/personas";
 import { setGuide, useGuide } from "@/lib/guide";
@@ -329,7 +329,7 @@ export function BuddyHero() {
             />
           ))}
           {/* The demo starts once the pen has finished, so one thing moves at a time. */}
-          <NotchStage held={at < order("rest") && !handedOff} />
+          <DemoVideo held={at < order("rest") && !handedOff} />
         </motion.div>
       </div>
     </section>

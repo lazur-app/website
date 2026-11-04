@@ -33,6 +33,7 @@ const DEMO_SCENE: Record<string, string> = {
   timer: "I'll start your timer, right in the notch",
   job: "this one I do in the background",
   type: "now I'll type it for you, as a list",
+  video: "watch me work, in every app",
 };
 
 const STOPS: Stop[] = [

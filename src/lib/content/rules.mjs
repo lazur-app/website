@@ -237,7 +237,8 @@ export const WRITING_RULES_PROMPT = `WRITING RULES (code checks every string; a 
 - Plain, specific, human. Write like a helpful colleague who uses a Mac every day. Second person ("you").
 - Short sentences. Average under 16 words, never over ${MAX_SENTENCE_WORDS}.
 - Concrete over abstract: real app names, real menu paths written as Menu > Submenu > Item, real keyboard shortcuts (⌘ ⌥ ⌃ ⇧), real version numbers.
-- Headings match what people search ("How to make a pivot table in Excel on Mac"), not clever lines.
+- The H1 (title) is long tail and keyword rich: it contains the exact target keyword phrase, in order, plus qualifiers that match intent (Mac, the version or year, the outcome, who it is for). 8 to 16 words. Example: "How to make a pivot table in Excel on Mac: step by step for Microsoft 365".
+- Other headings match what people search, not clever lines. Put secondary keywords in H2s where they fit naturally.
 - No em dashes or en dashes at all. Not as punctuation, not for ranges ("3 to 5", not "3–5"). Use a comma, a period, or "to".
 - No exclamation marks, no ellipses, at most two semicolons per page.
 - Never use these words or phrases: ${BANNED_PHRASES.filter((p) => !p.includes(",")).slice(0, 80).join(", ")}, and similar marketing filler.

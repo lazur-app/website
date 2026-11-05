@@ -17,6 +17,7 @@ import path from "node:path";
 import { DEFAULT_DAILY_COUNTS } from "../../src/lib/content/sources.mjs";
 import { ROOT, flags, nyDate, openManifest, pool, readType } from "./lib/core.mjs";
 import { SPECS, generateOne } from "./lib/pipeline.mjs";
+import { checkImageEnv } from "./lib/images.mjs";
 
 const f = flags(process.argv.slice(2));
 const date = f.date ?? nyDate();
@@ -32,6 +33,13 @@ const counts = {};
 for (const [k, v] of Object.entries(DEFAULT_DAILY_COUNTS)) counts[k] = f[k] !== undefined ? Number(f[k]) : f["only"] ? 0 : v;
 if (f.only) for (const k of f.only.split(",")) counts[k] = Number(f[k] ?? DEFAULT_DAILY_COUNTS[/** @type {keyof typeof DEFAULT_DAILY_COUNTS} */ (k)] ?? 0);
 const refreshCount = Number(f.refresh ?? 0);
+
+// Fail fast on missing keys before any model call is spent.
+if (images) checkImageEnv();
+if (process.env.CONTENT_AGENT_FAKE !== "1" && process.env.GITHUB_ACTIONS && !process.env.CLAUDE_CODE_OAUTH_TOKEN) {
+  console.error("CLAUDE_CODE_OAUTH_TOKEN is not set (run `claude setup-token` on the seat). See CONTENT-AUTOMATION.md.");
+  process.exit(1);
+}
 
 const manifest = openManifest(runDir);
 manifest.state.targets = { ...counts, refresh: refreshCount };

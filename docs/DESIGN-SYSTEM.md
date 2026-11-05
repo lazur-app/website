@@ -49,7 +49,7 @@ Spacing stays on the 4px grid. Mobile first: 16px side gutter, 24px from 640px. 
 | `BarChart` | CSS bar chart with a screen-reader table and a source line |
 | `CompareGrid`, `ProductCards` | Any number of products; Lazur's column is tinted, never declared the winner |
 | `Callout` | tip, note, warning |
-| `ImageFigure` | `next/image` with keyword alt text and visible Pexels credit |
+| `ImageFigure` | `next/image` with keyword alt text and visible Pixabay credit |
 | `FaqList` | `<details>` FAQ, also FAQPage JSON-LD |
 | `SourcesList` | Numbered sources with check dates |
 | `CtaBand` | Dark closing band: Download for Mac, Pro $18/month after the 3-day trial |

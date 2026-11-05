@@ -35,7 +35,7 @@ export type SeoSource = {
 export type SeoImageCredit = {
   name: string;
   url?: string;
-  source: "Pexels" | "Lazur" | "Screenshot";
+  source: "Pixabay" | "Lazur" | "Screenshot";
   sourceUrl?: string;
 };
 

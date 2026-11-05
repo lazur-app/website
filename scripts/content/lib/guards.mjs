@@ -5,12 +5,12 @@
  * not published. Hand-written pages are checked by the same code in seo-lint.mjs.
  */
 import { checkDeep } from "../../../src/lib/content/rules.mjs";
-import { allText, covers, keywordHits } from "../../../src/lib/content/keywords.mjs";
+import { H1_MAX_WORDS, H1_MIN_WORDS, allText, containsPhrase, covers, keywordHits } from "../../../src/lib/content/keywords.mjs";
 import { LAZUR, LAZUR_CAPABILITY_IDS } from "../../../src/lib/content/lazur-facts.mjs";
 
 /**
  * @typedef {{ errors: string[], warnings: string[] }} GuardResult
- * @typedef {{ allowedPaths: Set<string>, existingTitles?: Set<string>, minImages?: number, type: string }} GuardCtx
+ * @typedef {{ allowedPaths: Set<string>, existingTitles?: Set<string>, minImages?: number, type: string, legacyH1?: boolean }} GuardCtx
  */
 
 /** @param {string} u */
@@ -49,6 +49,12 @@ export function guardPage(page, ctx) {
   if (page.targetKeyword) {
     if (!covers(`${page.metaTitle ?? ""} ${page.title}`, page.targetKeyword)) errors.push(`keyword: title/metaTitle misses words of "${page.targetKeyword}"`);
     if (!covers(page.description, page.targetKeyword)) warnings.push(`keyword: description misses words of "${page.targetKeyword}"`);
+    // H1: long tail and keyword rich. The whole target phrase, in order, plus qualifiers.
+    const h1Words = String(page.title).split(/\s+/).filter(Boolean).length;
+    const h1Issues = [];
+    if (!containsPhrase(page.title, page.targetKeyword)) h1Issues.push(`H1 must contain the exact keyword phrase "${page.targetKeyword}"`);
+    if (h1Words < H1_MIN_WORDS || h1Words > H1_MAX_WORDS) h1Issues.push(`H1 has ${h1Words} words (want ${H1_MIN_WORDS} to ${H1_MAX_WORDS}, long tail)`);
+    (ctx.legacyH1 ? warnings : errors).push(...h1Issues);
   }
   if (page.description && (page.description.length < 100 || page.description.length > 165)) warnings.push(`description is ${page.description.length} chars (aim 120 to 160)`);
   if (page.metaTitle && page.metaTitle.length > 65) warnings.push(`metaTitle is ${page.metaTitle.length} chars (aim under 60)`);
@@ -124,7 +130,7 @@ export function guardPage(page, ctx) {
   if ((images ?? []).length < min) errors.push(`images: ${images?.length ?? 0} of ${min} required`);
   for (const img of images ?? []) {
     if (!img.alt || img.alt.length < 10) errors.push("image without alt text");
-    if (img.credit?.source === "Pexels" && !img.credit.name) errors.push("Pexels image without photographer credit");
+    if (img.credit?.source === "Pixabay" && !img.credit.name) errors.push("Pixabay image without photographer credit");
   }
 
   // Keyword hits are recorded either way.

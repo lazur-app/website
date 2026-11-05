@@ -29,7 +29,7 @@ pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with U
                  ─► write (Haiku, no tools, JSON Schema for that page type)
                  ─► assemble (code adds slug, dates, Lazur's own facts and prices)
                  ─► guards ─fail─► one fix round with the error list ─fail─► refused.jsonl
-                 ─► images (Pexels → re-encode → keyword file name → EXIF/XMP/IPTC → Vercel Blob)
+                 ─► images (Pixabay → re-encode → keyword file name → EXIF/XMP/IPTC → storage)
                  ─► guards again (now with images) ─► content/seo/<type>/<slug>.json
 ```
 
@@ -44,7 +44,7 @@ pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with U
   AI tells, no em/en dashes, no exclamation marks, sentence length, unsupported Lazur claims (user
   counts, results, testimonials, partnerships, "Lazur clicks/builds it for you"), keyword in title,
   every stat and chart sourced, every internal link exists, Lazur prices match `lazur-facts.mjs`,
-  competitor prices need a URL on their own site and a check date, Lazur demos only use real
+  competitor prices need a URL on their own site and a check date, the H1 must be long tail (8 to 16 words) and contain the exact target keyword phrase, Lazur demos only use real
   capabilities, image alt text and credits, no duplicate titles or keywords.
 - **Honesty by construction.** "Faster with Lazur" blocks can only show a capability id from
   `src/lib/content/lazur-facts.mjs` (explain, point, guide, dictate, draft, research, everyday).
@@ -57,18 +57,30 @@ pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with U
 
 ## Images
 
-`scripts/content/lib/images.mjs`, the SRCo pattern: Pexels search per writer query, skip photo ids
-already used anywhere (`content/seo/_plan/pexels-used.json`), download, `sharp` re-encode (max 1600px,
-mozjpeg q78, original metadata stripped), file named from the keyword
-(`how-to-make-a-pivot-table-1-3f9a2c.jpg`), keywords and alt text written to EXIF (ImageDescription,
-Artist, Copyright), XMP (dc:subject, dc:description, dc:creator, AltTextAccessibility) and IPTC (2:25
-keywords, 2:120 caption, 2:80 by-line, via `iptc.mjs`), uploaded to Vercel Blob under
-`seo/<type>/<slug>/`, credited on the page ("Photo: Name on Pexels"). Pages need at least 2 photos
-(`CONTENT_MIN_IMAGES`). Product visuals (the notch capsule and the "you say / Lazur does" window) and
-OG images are drawn in code, so every page has them without a photo.
+`scripts/content/lib/images.mjs`, the SRCo pattern on **Pixabay**:
 
-The seed pages in this branch have no photos yet (no Pexels key here). The weekly refresh adds them,
-or run one manually: `node scripts/content/daily.mjs --refresh=50` with the keys set.
+- Search Pixabay (`PIXABAY_API_KEY`, `safesearch=true`, horizontal photos at least 1200px wide).
+  Results are cached for 24 hours (`content/seo/_plan/pixabay-cache.json`), and the
+  `X-RateLimit-Remaining/Reset` headers are read so the job waits instead of hitting 429s.
+- Photo ids already used on another page are skipped (`pixabay-used.json`). A page that already has
+  a stored image for the same query reuses it (`images-stored.json`), so refreshes do not re-download.
+- Pixabay URLs are never hotlinked: `largeImageURL` is downloaded and re-encoded with `sharp` (max
+  1600px wide, mozjpeg q74, original metadata stripped), renamed from the keyword
+  (`how-to-make-a-pivot-table-1-3f9a2c.jpg`), and tagged in EXIF (ImageDescription, Artist,
+  Copyright), XMP (dc:subject, dc:description, dc:creator, AltTextAccessibility) and IPTC (2:25
+  keywords, 2:120 caption, 2:80 by-line, via `iptc.mjs`).
+- Credit on the page: "Image by <user> from Pixabay", linking to the photo page.
+- **Storage is one function, `store()`**, so the vendor can change later: Vercel Blob when
+  `BLOB_READ_WRITE_TOKEN` is set; otherwise `public/content-images/<type>/<slug>/` for local runs and a
+  handful of sample pages. The daily job in GitHub Actions refuses to write into `public/`.
+- Pages get 3 photos (`CONTENT_MIN_IMAGES` is the minimum, default 2). Product visuals (notch capsule,
+  "you say / Lazur does" window), charts and OG images are drawn in code and need no files.
+- Existing pages without photos: `PIXABAY_API_KEY=... node scripts/content/fill-images.mjs [--blog]`.
+
+**Rate math.** Pixabay allows 100 requests a minute. One search returns up to 30 photos, so with the
+search cache a page costs about 3 searches at most, and fewer as common queries repeat. 100 pages an
+hour is about 300 searches an hour, well under the 6,000 the limit allows; image downloads are
+separate CDN requests.
 
 ## The daily run
 
@@ -104,8 +116,7 @@ the plumbing for free.
 | `CONTENT_CONCURRENCY` | Parallel pages (default 4) |
 
 Env knobs for local runs: `CONTENT_RESEARCH_MODEL`, `CONTENT_WRITE_MODEL` (default `haiku`),
-`CONTENT_MAX_USD_PER_CALL` (default 0.75), `CONTENT_MIN_IMAGES` (2), `CONTENT_IMAGES_MODE=local`
-(write images to `public/seo-img/` instead of Blob; test branches only), `SEO_PRERENDER_LIMIT` (pages
+`CONTENT_MAX_USD_PER_CALL` (default 0.75), `CONTENT_MIN_IMAGES` (2), `SEO_PRERENDER_LIMIT` (pages
 per type rendered at build time, default 1500; the rest render on first visit and are cached).
 
 ## What Veer needs to do to switch it on
@@ -113,7 +124,7 @@ per type rendered at build time, default 1500; the rest render on first visit an
 1. **Secrets** (Settings > Secrets and variables > Actions > Secrets):
    - `CLAUDE_CODE_OAUTH_TOKEN`: run `claude setup-token` on a machine logged in to the Claude Code seat
      that should pay for this.
-   - `PEXELS_API_KEY`: free key from https://www.pexels.com/api/.
+   - `PIXABAY_API_KEY`: free key from https://pixabay.com/api/docs/ (log in, the key is on that page).
    - `BLOB_READ_WRITE_TOKEN`: Vercel > Storage > create a Blob store connected to the website project
      > copy the read-write token.
 2. **Test on a branch:** Actions > content-daily > Run workflow, `target=branch`, small counts

@@ -21,7 +21,8 @@ let warnCount = 0;
 const keywords = new Map();
 
 for (const p of pages) {
-  const ctx = { type: p.type, allowedPaths: paths };
+  // Hand-written blog posts from before the long-tail H1 rule warn instead of failing; the refresh job rewrites them.
+  const ctx = { type: p.type, allowedPaths: paths, legacyH1: p.type === "blog" && !p.generator };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { file, ...page } = p;
   const subject =

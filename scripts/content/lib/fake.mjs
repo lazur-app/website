@@ -9,9 +9,11 @@ import { APPS, COMPETITORS, ROLES, appBySlug, roleBySlug } from "../../../src/li
 const SRC = { title: "Example source for a fake run", url: "https://example.com/fake-source", publisher: "Example", accessedAt: "2026-01-01" };
 const today = new Date().toISOString().slice(0, 10);
 
-const common = (/** @type {string} */ subject, /** @type {string} */ keyword) => ({
-  title: `${subject[0].toUpperCase()}${subject.slice(1)}`,
-  metaTitle: `${subject[0].toUpperCase()}${subject.slice(1)}`.slice(0, 60),
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const common = (/** @type {string} */ _subject, /** @type {string} */ keyword) => ({
+  // Long-tail H1 that contains the exact keyword, like the real rule wants.
+  title: `${keyword[0].toUpperCase()}${keyword.slice(1)}: a fake pipeline test page`,
+  metaTitle: `${keyword[0].toUpperCase()}${keyword.slice(1)}`.slice(0, 60),
   description: `Fake run page about ${keyword}. This text exists only to test the content pipeline end to end and is never published to the site.`.slice(0, 160),
   targetKeyword: keyword,
   secondaryKeywords: [`${keyword} guide`],
@@ -44,7 +46,7 @@ export const fake = {
     topics: Array.from({ length: Math.min(count, 6) }, (_, i) =>
       type === "howto"
         ? { slug: `test-task-${i + 1}-in-${apps[i % apps.length]}`, title: `How to test task ${i + 1} in ${appBySlug(apps[i % apps.length])?.name} on Mac`, targetKeyword: `how to test task ${i + 1} in ${appBySlug(apps[i % apps.length])?.name.toLowerCase()} on mac`, app: apps[i % apps.length], task: `test task ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url }
-        : { slug: `test-blog-topic-${today}-${i + 1}`, title: `Test blog topic ${today} number ${i + 1}`, targetKeyword: `test blog topic ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url },
+        : { slug: `test-blog-topic-${today}-${i + 1}`, title: `Test blog topic ${i + 1}: a fake pipeline post for checking`, targetKeyword: `test blog topic ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url },
     ),
   }),
 

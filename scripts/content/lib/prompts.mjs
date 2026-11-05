@@ -22,7 +22,7 @@ const RESEARCH_RULES = `RESEARCH RULES:
 const OUTPUT_RULES = `OUTPUT RULES:
 - Return JSON only, matching the schema. Use only facts from the research notes. Every number in stats, chart and text must come from the notes, and its URL must be in sources.
 - Internal links: you may link with markdown [text](/path) only to these paths: /download, /pricing, /tools/typing-speed-test, /tools/speaking-vs-typing-test, /tools/typing-tax-calculator, /tools/dictation-accuracy-checker, and the paths listed under INTERNAL PAGES. Related pages are added by code; do not list them.
-- imageQueries: 2 to 4 Pexels searches for real photos that fit the page (people at a Mac, the kind of work, the setting). Not screenshots, not logos, not text. Alt text describes the photo and includes the keyword naturally.
+- imageQueries: 3 Pixabay searches (short, 2 to 4 words) for real photos that fit the page (people at a Mac, the kind of work, the setting). Not screenshots, not logos, not text. Alt text describes the photo and includes the keyword naturally.
 - blocks may include {"type":"stats"} once, {"type":"chart"} once if you return a chart, {"type":"lazur"} once (a short mid-page nudge rendered by code), {"type":"image","index":N} for imageQueries[N].`;
 
 /**
@@ -39,7 +39,7 @@ ${RESEARCH_RULES}`,
   /** @param {{ app: {name: string, slug: string, shell: string}, task: string, keyword: string, notes: unknown, internal: string[] }} t */
   howtoWrite: (t) => `Write the data for a how-to page on lazur.app: "How to ${t.task} in ${t.app.name} on a Mac". Target keyword: "${t.keyword}".
 The page must genuinely answer the question first: accurate step-by-step instructions for the real ${t.app.name} on Mac (menu paths in menuPath, shortcuts in shortcut). Then, only in the lazur field, show honestly how Lazur helps: the user asks Lazur on their screen ("where's the pivot table button?", "walk me through adding a footnote") and Lazur points at it, guides them or explains. Use capability "point" or "guide" for most how-tos; set pointsAt to the exact button or menu name (max 3 words) and shell to "${t.app.shell}". Do not say Lazur does the task itself.
-title: "How to ${t.task} in ${t.app.name} on Mac" style. metaTitle under 60 characters. description 120 to 160 characters with the keyword. intro: two sentences that fully answer the query.
+title (H1): starts with "How to ${t.task} in ${t.app.name} on Mac" (the exact keyword), then a qualifier, 8 to 16 words. metaTitle under 60 characters. description 120 to 160 characters with the keyword. intro: two sentences that fully answer the query.
 ${WRITING_RULES_PROMPT}
 ${VOICE}
 ${LAZUR_FACTS_PROMPT}

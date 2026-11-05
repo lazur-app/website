@@ -111,7 +111,7 @@ export const SPECS = {
       const have = new Set(readType("app").map((p) => p.slug));
       return APPS.filter((a) => !have.has(a.slug))
         .slice(0, n)
-        .map((a) => ({ key: `app:${a.slug}`, app: a.slug, keyword: fill(KEYWORD_PATTERNS.app[1], { app: a.name.toLowerCase() }) + " mac" }));
+        .map((a) => ({ key: `app:${a.slug}`, app: a.slug, keyword: fill(KEYWORD_PATTERNS.app[0], { app: a.name.toLowerCase() }) }));
     },
     research: (t) => prompts.appResearch({ app: /** @type {any} */ (appBySlug(t.app)) }),
     write: (t, notes, internal) => prompts.appWrite({ app: /** @type {any} */ (appBySlug(t.app)), keyword: t.keyword, notes, internal }),
@@ -187,7 +187,7 @@ export const SPECS = {
       for (const c of COMPETITORS) {
         const s = `lazur-vs-${c.slug}`;
         if (!have.has(`compare:${s}`)) out.push({ key: `compare:${s}`, kind: "lazur-vs", pageType: "compare", slug: s, title: `Lazur vs ${c.name}`, keyword: `lazur vs ${c.name.toLowerCase()}`, products: [c.slug] });
-        if (!have.has(`alternatives:${c.slug}`)) out.push({ key: `alternatives:${c.slug}`, kind: "alternatives", pageType: "alternatives", slug: c.slug, title: `${c.name} alternatives for Mac`, keyword: `${c.name.toLowerCase()} alternatives mac`, products: [c.slug, ...COMPETITORS.filter((x) => x.category === c.category && x.slug !== c.slug).slice(0, 3).map((x) => x.slug)] });
+        if (!have.has(`alternatives:${c.slug}`)) out.push({ key: `alternatives:${c.slug}`, kind: "alternatives", pageType: "alternatives", slug: c.slug, title: `${c.name} alternatives for Mac`, keyword: `${c.name.toLowerCase()} alternatives for mac`, products: [c.slug, ...COMPETITORS.filter((x) => x.category === c.category && x.slug !== c.slug).slice(0, 3).map((x) => x.slug)] });
       }
       const dict = COMPETITORS.filter((c) => c.category === "dictation" || c.category === "os");
       for (const a of dict)

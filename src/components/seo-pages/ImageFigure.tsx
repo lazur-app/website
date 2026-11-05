@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { SeoImage } from "@/lib/seo-pages/types";
 
-/** Photo with keyword alt text and a visible credit (Pexels licence asks for one). */
+/** Photo with keyword alt text and a visible credit: "Image by <user> from Pixabay". */
 export function ImageFigure({ image, priority = false, className = "" }: { image: SeoImage; priority?: boolean; className?: string }) {
   return (
     <figure className={`seo-figure ${className}`}>
@@ -22,7 +22,7 @@ export function ImageFigure({ image, priority = false, className = "" }: { image
           {image.credit ? (
             <span className="seo-figure__credit">
               {image.caption ? " · " : ""}
-              {image.credit.source === "Pexels" ? "Photo: " : ""}
+              {image.credit.source === "Pixabay" ? "Image by " : ""}
               {image.credit.url ? (
                 <a href={image.credit.url} rel="noopener noreferrer nofollow" target="_blank">
                   {image.credit.name}
@@ -30,11 +30,11 @@ export function ImageFigure({ image, priority = false, className = "" }: { image
               ) : (
                 image.credit.name
               )}
-              {image.credit.source === "Pexels" ? (
+              {image.credit.source === "Pixabay" ? (
                 <>
-                  {" on "}
-                  <a href={image.credit.sourceUrl ?? "https://www.pexels.com"} rel="noopener noreferrer nofollow" target="_blank">
-                    Pexels
+                  {" from "}
+                  <a href={image.credit.sourceUrl ?? "https://pixabay.com"} rel="noopener noreferrer nofollow" target="_blank">
+                    Pixabay
                   </a>
                 </>
               ) : null}

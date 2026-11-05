@@ -89,10 +89,10 @@ export const COMPETITORS = [
 /** Keyword patterns per page type. `{app}`, `{task}`, `{role}`, `{x}`, `{y}` are filled in. */
 export const KEYWORD_PATTERNS = {
   howto: ["how to {task} in {app} on mac", "how to {task} in {app}", "{app} {task} mac"],
-  app: ["{app} voice assistant mac", "ai assistant for {app}", "{app} help mac", "dictate in {app} mac"],
+  app: ["ai assistant for {app} on mac", "{app} voice assistant for mac", "{app} help on mac", "dictate in {app} on mac"],
   role: ["ai assistant for {role}", "voice assistant for {role} mac", "dictation for {role}"],
-  "role-app": ["{app} for {role}", "{app} tips for {role}", "ai assistant {app} {role}"],
-  compare: ["lazur vs {x}", "{x} alternative", "{x} alternatives mac", "{x} vs {y}"],
+  "role-app": ["{app} for {role} on mac", "{app} tips for {role} on mac", "ai assistant in {app} for {role}"],
+  compare: ["lazur vs {x}", "{x} alternatives for mac", "{x} vs {y}"],
   blog: [],
 };
 

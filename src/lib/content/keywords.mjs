@@ -25,6 +25,13 @@ export function covers(text, kw) {
   return keyWords(kw).every((w) => hay.includes(` ${w}`));
 }
 
+/** True when the whole keyword phrase appears, in order (case and punctuation ignored). @param {string} text @param {string} kw */
+export const containsPhrase = (text, kw) => ` ${norm(text)} `.includes(` ${norm(kw)} `);
+
+/** H1 rule: long tail and keyword rich. */
+export const H1_MIN_WORDS = 8;
+export const H1_MAX_WORDS = 16;
+
 /** @param {string} text @param {string} phrase */
 export function countPhrase(text, phrase) {
   const p = norm(phrase);

@@ -7,6 +7,7 @@ import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
+import { LoopVideo } from "@/components/buddy/LoopVideo";
 
 export function FinalCtaSection() {
   const [platform, setPlatform] = useState<Platform | null>(null);
@@ -46,6 +47,15 @@ export function FinalCtaSection() {
           </p>
         </div>
       </motion.div>
+      <div className="mx-auto mt-12 max-w-3xl">
+        <LoopVideo
+          className="aspect-video !bg-white/5 !ring-white/10"
+          src="https://releases.lazur.app/videos/lazur-setup.mp4"
+          poster="https://releases.lazur.app/videos/lazur-setup-poster.jpg"
+          label="Setup in under a minute: drag Lazur into Applications, sign in with Google from the notch, and Lazur says hello and starts a short spoken walkthrough."
+        />
+        <p className="mt-3 text-center text-[12px] text-white/40">Install, sign in, and Lazur shows you around. About a minute.</p>
+      </div>
     </section>
   );
 }

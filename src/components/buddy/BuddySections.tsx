@@ -20,8 +20,8 @@ import {
 } from "lucide-react";
 import { AppMarquee } from "@/components/AppMarquee";
 import { usePersona } from "@/lib/personas";
-import { GUIDE_DONE, useGuideStep } from "@/lib/guide";
-import { HandLoop } from "./HandLoop";
+import { useGuideStep } from "@/lib/guide";
+import { LoopVideo } from "./LoopVideo";
 
 
 function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
@@ -62,39 +62,12 @@ function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
   );
 }
 
-function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.45 }}
-      className={`rounded-[22px] border border-[var(--border)] bg-white p-6 shadow-[var(--shadow-card)] md:p-7 ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 // --- Show me how ---------------------------------------------------------------------------
 
-const GUIDE_STEPS = [
-  { label: "Click Appearance", items: ["General", "Appearance", "Displays", "Wallpaper"], target: 1 },
-  { label: "Choose Dark", items: ["Light", "Dark", "Auto"], target: 1, row: true },
-  { label: "That's it", items: ["Light", "Dark", "Auto"], target: 1, row: true, done: true },
-];
+const VIDEOS = "https://releases.lazur.app/videos";
 
-const INK = "#2563eb";
-
-/**
- * The page guide walks through this section (see Guide.tsx): circles Appearance, then Dark, then
- * Dark switches on. With the guide off, it shows the finished state.
- */
+/** A short loop: you ask how to turn on dark mode and Lazur circles each click until it's on. */
 export function ShowMeHow() {
-  const step = useGuideStep("guide");
-  const stage = step === GUIDE_DONE ? 3 : Math.max(0, Math.min(3, step)); // 0 waiting, 1 Appearance, 2 Dark, 3 done
-  const targetIds = ["guide-appearance", "guide-dark", "guide-done"];
-
   return (
     <Section
       tint
@@ -103,40 +76,13 @@ export function ShowMeHow() {
       title="Stuck? It walks you through."
       intro={<>Ask &ldquo;how do I turn on dark mode?&rdquo; It circles each click.</>}
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {GUIDE_STEPS.map((guideStep, i) => {
-          const active = stage >= i + 1;
-          return (
-            <Card key={guideStep.label} className="flex flex-col !p-5">
-              <p data-guide={i === 0 ? "guide-start" : undefined} className="self-start text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-faint)]">Step {i + 1}</p>
-              <div className="mt-3 rounded-2xl bg-[var(--background-deep)] p-4">
-                <div className={guideStep.row ? "flex gap-2" : "space-y-1.5"}>
-                  {guideStep.items.map((item, j) => {
-                    const hit = j === guideStep.target;
-                    const on = hit && guideStep.done && active;
-                    return (
-                      <div
-                        key={item}
-                        data-guide={hit ? targetIds[i] : undefined}
-                        className={`relative rounded-lg px-3 py-2 text-[13px] transition-colors duration-300 ${guideStep.row ? "flex-1 text-center" : ""} ${
-                          on ? "bg-[#1c1917] text-white" : "bg-white text-[var(--foreground-muted)]"
-                        }`}
-                      >
-                        {item}
-                        {hit && !guideStep.done ? <HandLoop show={active} color={INK} padX={12} padY={9} /> : null}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <p className={`mt-auto flex items-center gap-2 pt-4 text-[15px] font-medium transition-opacity duration-300 ${active ? "opacity-100" : "opacity-40"} text-[var(--foreground)]`}>
-                {guideStep.done ? <Check className="h-4 w-4 text-emerald-500" /> : <Hand className="h-4 w-4" style={{ color: INK }} />}
-                {guideStep.label}
-              </p>
-            </Card>
-          );
-        })}
-      </div>
+      <LoopVideo
+        guide="guide-video"
+        className="aspect-video max-w-4xl"
+        src={`${VIDEOS}/lazur-dark.mp4`}
+        poster={`${VIDEOS}/lazur-dark-poster.jpg`}
+        label="You ask how to turn on dark mode. Lazur circles Appearance, then Dark, and the Mac switches to dark mode."
+      />
     </Section>
   );
 }
@@ -169,7 +115,8 @@ export function EverydayThings() {
       title="The little things, out loud."
       intro="Say it. Done."
     >
-      <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
+      <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
         {persona.everyday.map((say, i) => {
           const Icon = iconFor(say);
           return (
@@ -189,6 +136,14 @@ export function EverydayThings() {
           </motion.span>
           );
         })}
+      </div>
+      <LoopVideo
+        guide="everyday-video"
+        className="aspect-[4/3] max-w-xl"
+        src={`${VIDEOS}/lazur-timer.mp4`}
+        poster={`${VIDEOS}/lazur-timer-poster.jpg`}
+        label="You say “set a pasta timer for 10 minutes”. The notch becomes a ticking timer, then rings when the pasta is done."
+      />
       </div>
       <div className="mx-auto mt-14 max-w-4xl">
         <p className="mb-4 text-center text-[13px] text-[var(--foreground-faint)]">Works in every Mac app</p>

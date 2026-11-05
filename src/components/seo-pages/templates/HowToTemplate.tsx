@@ -67,7 +67,7 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
 
         {page.blocks.length > 0 ? (
           <div className="seo-section">
-            <SeoBlocks blocks={page.blocks} page={page} lazurNudge={nudge} />
+            <SeoBlocks blocks={page.blocks} page={page} />
           </div>
         ) : null}
 

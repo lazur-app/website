@@ -1,0 +1,132 @@
+# Daily programmatic SEO content (see CONTENT-AUTOMATION.md).
+#
+# Runs every hour. Each run continues today's (New York date) batch from
+# content-runs/daily-<date>/manifest.json, writes what is still missing up to the per-type counts,
+# lints, builds, and makes ONE commit. Pushing to main deploys on Vercel.
+#
+# OFF by default: scheduled runs do nothing until the repo variable CONTENT_DAILY_ENABLED is "true"
+# (Settings > Secrets and variables > Actions > Variables). Manual runs (Run workflow) always work;
+# use target=branch to push to a test branch instead of main.
+name: content-daily
+
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly: new pages
+    - cron: "41 7 * * 1" # Mondays: refresh the stalest pages
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to push: main (deploys) or branch (content-test/<date>, no deploy)"
+        type: choice
+        options: [branch, main]
+        default: branch
+      howto: { description: "How-to pages", default: "", required: false }
+      apps: { description: "App pages", default: "", required: false }
+      roles: { description: "Role pages", default: "", required: false }
+      role_apps: { description: "Role x app pages", default: "", required: false }
+      compare: { description: "Compare / alternatives pages", default: "", required: false }
+      blog: { description: "Blog posts", default: "", required: false }
+      refresh: { description: "Existing pages to refresh", default: "0", required: false }
+      fake:
+        description: "Fake model (no seat, no cost): tests the plumbing only"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: content-daily
+  cancel-in-progress: false
+
+jobs:
+  content:
+    if: github.event_name == 'workflow_dispatch' || vars.CONTENT_DAILY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    env:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      CONTENT_CONCURRENCY: ${{ vars.CONTENT_CONCURRENCY || '4' }}
+      CONTENT_AGENT_FAKE: ${{ inputs.fake && '1' || '0' }}
+      TZ: America/New_York
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Claude Code CLI
+        if: ${{ !inputs.fake }}
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Check secrets
+        if: ${{ !inputs.fake }}
+        run: |
+          missing=""
+          for s in CLAUDE_CODE_OAUTH_TOKEN PEXELS_API_KEY BLOB_READ_WRITE_TOKEN; do
+            [ -z "${!s}" ] && missing="$missing $s"
+          done
+          if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing (see CONTENT-AUTOMATION.md)"; exit 1; fi
+
+      - name: Pick counts
+        id: counts
+        run: |
+          weekly=${{ github.event.schedule == '41 7 * * 1' && 'true' || 'false' }}
+          args=""
+          if [ "$weekly" = "true" ]; then
+            args="--howto=0 --apps=0 --roles=0 --role-apps=0 --compare=0 --blog=0 --refresh=${{ vars.CONTENT_REFRESH_COUNT || '40' }}"
+          else
+            # Repo variables override sources.mjs defaults; manual inputs override both.
+            for pair in "howto:${{ inputs.howto || vars.CONTENT_COUNT_HOWTO }}" "apps:${{ inputs.apps || vars.CONTENT_COUNT_APPS }}" \
+                        "roles:${{ inputs.roles || vars.CONTENT_COUNT_ROLES }}" "role-apps:${{ inputs.role_apps || vars.CONTENT_COUNT_ROLE_APPS }}" \
+                        "compare:${{ inputs.compare || vars.CONTENT_COUNT_COMPARE }}" "blog:${{ inputs.blog || vars.CONTENT_COUNT_BLOG }}"; do
+              k="${pair%%:*}"; v="${pair#*:}"
+              [ -n "$v" ] && args="$args --$k=$v"
+            done
+            args="$args --refresh=${{ inputs.refresh || '0' }}"
+          fi
+          [ "$CONTENT_AGENT_FAKE" = "1" ] && args="$args --no-images"
+          echo "args=$args" >> "$GITHUB_OUTPUT"
+          echo "date=$(TZ=America/New_York date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate
+        run: node scripts/content/daily.mjs ${{ steps.counts.outputs.args }} --max-minutes=40
+
+      - name: Lint content
+        run: node scripts/content/seo-lint.mjs --quiet
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit and push
+        run: |
+          git config user.name "lazur-content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          git add content content-runs
+          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+          summary="content-runs/daily-${{ steps.counts.outputs.date }}/summary.md"
+          { head -1 "$summary"; echo; tail -n +2 "$summary" | head -60; } > /tmp/msg.txt
+          git commit -F /tmp/msg.txt
+          if [ "${{ inputs.target || 'main' }}" = "main" ]; then
+            git push origin HEAD:main
+          else
+            branch="content-test/${{ steps.counts.outputs.date }}"
+            git push origin "HEAD:refs/heads/$branch" --force-with-lease
+            echo "Pushed to $branch (no production deploy)."
+          fi
+
+      - name: Upload run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-run-${{ steps.counts.outputs.date }}-${{ github.run_id }}
+          path: content-runs/
+          if-no-files-found: ignore

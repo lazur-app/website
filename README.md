@@ -32,8 +32,9 @@ On Vercel these live in the project's Production environment. **After each app r
 | `src/app/download`, `src/lib/download.ts` | Download page; picks the Apple Silicon or Intel DMG |
 | `src/app/login`, `src/app/auth/callback`, `src/lib/appDeepLink.ts` | Sign-in, including the hand-off back to the Mac app |
 | `src/app/dashboard`, `src/app/billing` | Signed-in account and billing pages |
-| `src/app/compare`, `src/lib/compare` | `/compare/lazur-vs-*` head-to-head pages |
-| `src/app/use-cases`, `src/lib/use-cases` | Use-case pages |
+| `src/app/{how-to,apps,for,compare,alternatives}`, `content/seo/` | Programmatic SEO pages, rendered from JSON. See `CONTENT-AUTOMATION.md` and `docs/DESIGN-SYSTEM.md` |
+| `src/app/tools` | Free tools: typing test, speaking vs typing, typing tax calculator, dictation accuracy |
+| `scripts/content`, `.github/workflows/content-daily.yml` | The daily content job (off until `CONTENT_DAILY_ENABLED=true`) |
 | `content/blog/` | Blog posts as markdown, one file per URL. See `content/blog/README.md` |
 | `src/lib/seo` | Titles, descriptions, structured data, sitemap helpers |
 | `src/app/support`, `privacy`, `terms` | Support (also the Chrome Web Store support URL) and legal pages |

@@ -1,5 +1,7 @@
 # Publishing a Lazur blog post
 
+The daily content job (`CONTENT-AUTOMATION.md`) also writes posts here, with `heroImage`, `stats` and `sources` in the frontmatter. Hand-written posts work the same way and are checked by `npm run content:lint`.
+
 Each post is one markdown file. That file becomes one URL (`/blog/your-slug`), which is what Google and answer engines rank.
 
 Do **not** add posts through an admin panel. Copy the template, fill it in, deploy.

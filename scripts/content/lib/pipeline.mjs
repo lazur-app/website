@@ -174,7 +174,14 @@ export const SPECS = {
     type: "compare",
     flag: "compare",
     async next(n) {
-      const have = new Set([...readType("compare"), ...readType("alternatives")].map((p) => `${p.type}:${p.slug}`));
+      const pages = [...readType("compare"), ...readType("alternatives")];
+      const have = new Set(pages.map((p) => `${p.type}:${p.slug}`));
+      // Dedupe by what a page covers, not only its slug (older pages use other slugs, e.g. lazur-vs-super-whisper).
+      for (const p of pages) {
+        const others = (p.products ?? []).filter((/** @type {any} */ x) => !x.isLazur).map((/** @type {any} */ x) => x.slug).sort();
+        if (p.kind === "lazur-vs" && others[0]) have.add(`compare:lazur-vs-${others[0]}`);
+        if (p.kind === "x-vs-y" && others.length >= 2) have.add(`compare:${others[0]}-vs-${others[1]}`);
+      }
       /** @type {Target[]} */
       const out = [];
       for (const c of COMPETITORS) {
@@ -185,7 +192,7 @@ export const SPECS = {
       const dict = COMPETITORS.filter((c) => c.category === "dictation" || c.category === "os");
       for (const a of dict)
         for (const b of dict) {
-          if (a.slug >= b.slug) continue;
+          if (a.slug >= b.slug) continue; // slugs sorted, so a-vs-b and b-vs-a are one page
           const s = `${a.slug}-vs-${b.slug}`;
           if (!have.has(`compare:${s}`)) out.push({ key: `compare:${s}`, kind: "x-vs-y", pageType: "compare", slug: s, title: `${a.name} vs ${b.name}`, keyword: `${a.name.toLowerCase()} vs ${b.name.toLowerCase()}`, products: [a.slug, b.slug] });
         }

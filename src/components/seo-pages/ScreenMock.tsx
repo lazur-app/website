@@ -41,7 +41,7 @@ function Dots() {
 function Body({ shell, tone }: { shell: DemoShell; tone: (typeof TONE)[DemoShell] }) {
   if (shell === "sheet") {
     return (
-      <div className="grid grid-cols-[28px_repeat(5,1fr)] text-[10px]" aria-hidden>
+      <div className="grid grid-cols-[28px_repeat(5,minmax(0,1fr))] overflow-hidden text-[10px]" aria-hidden>
         {Array.from({ length: 36 }).map((_, i) => {
           const row = Math.floor(i / 6);
           const col = i % 6;

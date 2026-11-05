@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import type { SeoImage } from "@/lib/seo-pages/types";
 import type { ReactNode } from "react";
 import { Breadcrumbs, Kicker } from "./Primitives";
 
@@ -15,9 +17,19 @@ export function HubHeader({ crumbs, kicker, title, intro, children }: { crumbs: 
   );
 }
 
-export function HubCard({ href, kicker, title, description, aside }: { href: string; kicker: string; title: string; description?: string; aside?: ReactNode }) {
+export function HubCard({ href, kicker, title, description, aside, image }: { href: string; kicker: string; title: string; description?: string; aside?: ReactNode; image?: SeoImage }) {
   return (
     <Link href={href} className="seo-hubcard group">
+      {image ? (
+        <Image
+          src={image.url}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="(max-width: 640px) 100vw, 360px"
+          className="-mx-5 -mt-[18px] mb-4 aspect-[16/9] w-[calc(100%+40px)] max-w-none rounded-t-[18px] object-cover"
+        />
+      ) : null}
       <span className="seo-related__kicker">{kicker}</span>
       <span className="mt-1 block font-display text-[1.1rem] font-semibold leading-snug tracking-[-0.02em] text-[var(--foreground)] group-hover:text-[var(--brand-ink)]">{title}</span>
       {description ? <span className="mt-2 block text-[14px] leading-relaxed text-[var(--foreground-muted)] line-clamp-3">{description}</span> : null}

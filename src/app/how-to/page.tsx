@@ -38,7 +38,7 @@ export default function HowToHub() {
             more={pages.length > PER_APP ? { href: `/how-to/app/${app.slug}`, label: `All ${pages.length}` } : { href: `/apps/${app.slug}`, label: `Lazur in ${app.name}` }}
           >
             {pages.slice(0, PER_APP).map((p) => (
-              <HubCard key={p.slug} href={`/how-to/${p.slug}`} kicker={`${p.appName} · ${p.timeMinutes} min`} title={p.title} description={p.description} />
+              <HubCard key={p.slug} image={p.images?.[0]} href={`/how-to/${p.slug}`} kicker={`${p.appName} · ${p.timeMinutes} min`} title={p.title} description={p.description} />
             ))}
           </HubSection>
         ))}

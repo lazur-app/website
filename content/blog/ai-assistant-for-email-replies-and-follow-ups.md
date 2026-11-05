@@ -1,35 +1,76 @@
 ---
-title: "AI Assistant for Email Replies and Follow-Ups"
-description: "Use an AI email assistant to reply, follow up, change tone, and summarize threads without copying the conversation into a separate chat."
-publishedAt: "2026-10-14"
-author: "Lazur Team"
-category: "How-to"
-cover: "mail"
-targetKeyword: "AI assistant for email replies"
+title: AI Assistant for Email Replies and Follow-Ups
+description: >-
+  Use an AI email assistant to reply, follow up, change tone, and summarize
+  threads without copying the conversation into a separate chat.
+publishedAt: '2026-10-14'
+author: Lazur Team
+category: How-to
+cover: mail
+targetKeyword: AI assistant for email replies
 tldr:
-  - "An AI email assistant is most useful when it understands the existing thread, recipient, request, and tone."
-  - "Ask for the outcome directly: reply, follow up, shorten, clarify, or make the message warmer."
-  - "Lazur uses voice input and email context on Mac to help produce a ready-to-review reply."
+  - >-
+    An AI email assistant is most useful when it understands the existing
+    thread, recipient, request, and tone.
+  - >-
+    Ask for the outcome directly: reply, follow up, shorten, clarify, or make
+    the message warmer.
+  - >-
+    Lazur uses voice input and email context on Mac to help produce a
+    ready-to-review reply.
 faq:
-  - question: "What is the best AI assistant for email replies?"
-    answer: "The best AI email assistant understands the thread and lets you specify the outcome and tone. Lazur is designed for voice-first replies and follow-ups from the email already open on your Mac."
-  - question: "Can AI write a follow-up email?"
-    answer: "Yes. Give the assistant the goal, timing, and tone, then review the draft before sending. For example: “Follow up politely, mention Thursday, and ask whether the deck is ready.”"
-  - question: "How do I use AI to reply to an email without copying it?"
-    answer: "Use an assistant that can access the active email context. Lazur can use the current app and request so you can say what should happen instead of pasting the full thread into a separate chat."
+  - question: What is the best AI assistant for email replies?
+    answer: >-
+      The best AI email assistant understands the thread and lets you specify
+      the outcome and tone. Lazur is designed for voice-first replies and
+      follow-ups from the email already open on your Mac.
+  - question: Can AI write a follow-up email?
+    answer: >-
+      Yes. Give the assistant the goal, timing, and tone, then review the draft
+      before sending. For example: “Follow up politely, mention Thursday, and
+      ask whether the deck is ready.”
+  - question: How do I use AI to reply to an email without copying it?
+    answer: >-
+      Use an assistant that can access the active email context. Lazur can use
+      the current app and request so you can say what should happen instead of
+      pasting the full thread into a separate chat.
 howto:
-  name: "How to draft an email reply with Lazur"
+  name: How to draft an email reply with Lazur
   steps:
-    - name: "Open the thread"
-      text: "Put the relevant email conversation on screen and place the cursor in the reply field."
-    - name: "State the outcome"
-      text: "Say who you want to reply to, what you want to communicate, and how the message should sound."
-    - name: "Review before sending"
-      text: "Check names, dates, attachments, promises, and the final recipient before sending."
+    - name: Open the thread
+      text: >-
+        Put the relevant email conversation on screen and place the cursor in
+        the reply field.
+    - name: State the outcome
+      text: >-
+        Say who you want to reply to, what you want to communicate, and how the
+        message should sound.
+    - name: Review before sending
+      text: >-
+        Check names, dates, attachments, promises, and the final recipient
+        before sending.
 relatedSlugs:
-  - "what-is-a-context-aware-ai-work-assistant"
-  - "ai-assistant-for-slack-gmail-cursor-notion"
-  - "from-messy-thoughts-to-finished-work"
+  - what-is-a-context-aware-ai-work-assistant
+  - ai-assistant-for-slack-gmail-cursor-notion
+  - from-messy-thoughts-to-finished-work
+heroImage:
+  url: >-
+    /content-images/blog/ai-assistant-for-email-replies-and-follow-ups/ai-assistant-for-email-replies-1-e63336.jpg
+  width: 1280
+  height: 853
+  alt: 'Time, alarm clock and clock. AI Assistant for Email Replies and Follow-Ups'
+  caption: AI Assistant for Email Replies and Follow-Ups
+  keywords:
+    - AI assistant for email replies
+    - How-to
+    - email laptop morning
+    - Mac
+    - Lazur
+  credit:
+    name: JESHOOTS-com
+    url: 'https://pixabay.com/users/JESHOOTS-com-264599/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/time-alarm-clock-clock-watch-hours-2980690/'
 ---
 
 An **AI assistant for email replies** uses the existing thread to help you write the message you mean to send. Instead of dictating the reply sentence by sentence, you can say the outcome: “Reply that Thursday works, ask for the deck, and keep it warm.”

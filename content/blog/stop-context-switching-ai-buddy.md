@@ -1,23 +1,55 @@
 ---
-title: "Stop context switching: get help without leaving your app"
-description: "Every trip to a chat tab costs you focus. Here's how an AI buddy that sees your screen keeps you in flow, and how much time it gives back."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "stop context switching"
+title: 'Stop context switching: get help without leaving your app'
+description: >-
+  Every trip to a chat tab costs you focus. Here's how an AI buddy that sees
+  your screen keeps you in flow, and how much time it gives back.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: stop context switching
 tldr:
-  - "Switching to a chat tab for every small question breaks focus far more than the seconds it seems to take."
-  - "An AI buddy answers where you already are: you hold a key and ask about what's on screen, and it answers out loud or does it."
-  - "Lazur keeps the small stuff (questions, reminders, replies, timers) from pulling you out of your work."
+  - >-
+    Switching to a chat tab for every small question breaks focus far more than
+    the seconds it seems to take.
+  - >-
+    An AI buddy answers where you already are: you hold a key and ask about
+    what's on screen, and it answers out loud or does it.
+  - >-
+    Lazur keeps the small stuff (questions, reminders, replies, timers) from
+    pulling you out of your work.
 faq:
-  - question: "Why is context switching so expensive?"
-    answer: "Each switch means leaving what you were doing, finding the right tab, explaining your situation, then finding your place again. The switch is short; getting your focus back is not."
-  - question: "How does an AI buddy reduce context switching?"
-    answer: "It works on top of the app you're in. With Lazur you hold ⌥ ⌘ and ask about what's on screen; it answers out loud or takes the action, so you never leave the window."
+  - question: Why is context switching so expensive?
+    answer: >-
+      Each switch means leaving what you were doing, finding the right tab,
+      explaining your situation, then finding your place again. The switch is
+      short; getting your focus back is not.
+  - question: How does an AI buddy reduce context switching?
+    answer: >-
+      It works on top of the app you're in. With Lazur you hold ⌥ ⌘ and ask
+      about what's on screen; it answers out loud or takes the action, so you
+      never leave the window.
 relatedSlugs:
-  - "what-is-an-ai-buddy"
-  - "learn-any-mac-app-without-tutorials"
+  - what-is-an-ai-buddy
+  - learn-any-mac-app-without-tutorials
+heroImage:
+  url: >-
+    /content-images/blog/stop-context-switching-ai-buddy/stop-context-switching-1-a0d0c5.jpg
+  width: 1280
+  height: 639
+  alt: 'Writing desk, computer and windows wallpaper. Stop context switching'
+  caption: 'Stop context switching: get help without leaving your app'
+  keywords:
+    - stop context switching
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: Marisa_Sias
+    url: 'https://pixabay.com/users/Marisa_Sias-526173/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/writing-desk-computer-folder-3699960/'
 ---
 
 The real cost of a quick question isn't the question. It's everything around it: leave the window, find the tab, explain the situation, copy the answer back, find your place. Do that thirty times a day and the deep work you meant to do quietly disappears.

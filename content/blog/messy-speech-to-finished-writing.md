@@ -1,25 +1,62 @@
 ---
-title: "Messy speech to finished writing: say it like a human"
-description: "Messy speech is what people actually say. Voice writing should turn rambling intent into send-ready Slack and email, not a cleaned-up transcript of the ramble."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Guide"
-cover: "mail"
-targetKeyword: "messy speech to finished writing"
+title: 'Messy speech to finished writing: say it like a human'
+description: >-
+  Messy speech is what people actually say. Voice writing should turn rambling
+  intent into send-ready Slack and email, not a cleaned-up transcript of the
+  ramble.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Guide
+cover: mail
+targetKeyword: messy speech to finished writing
 tldr:
-  - "People do not speak like writers. ‘Um, tell Sarah the second section needs a pass but keep it positive’ is the input. The email is the output."
-  - "Transcription products treat messy speech as a defect. Lazur treats it as the spec."
-  - "The demo is always the same: you say the messy version, Lazur pastes the send-ready version, you hit send."
+  - >-
+    People do not speak like writers. ‘Um, tell Sarah the second section needs a
+    pass but keep it positive’ is the input. The email is the output.
+  - >-
+    Transcription products treat messy speech as a defect. Lazur treats it as
+    the spec.
+  - >-
+    The demo is always the same: you say the messy version, Lazur pastes the
+    send-ready version, you hit send.
 faq:
-  - question: "Can dictation handle messy speech?"
-    answer: "Basic dictation will type the mess, maybe with punctuation. Voice writing and Intent Mode extract task, tone, and facts, then write the message you would have typed. That is how Lazur is built."
-  - question: "How do I dictate without sounding like a transcript?"
-    answer: "Stop dictating the letter. Speak the brief: who, ask, tone, constraint. Let rewrite or Intent Mode produce the prose. See how to write emails by voice for the same pattern."
-  - question: "What is an example of messy speech vs finished writing?"
-    answer: "You say: ‘uh can you tell Sarah that I looked at the deck and the second section needs another pass but overall it's looking good, keep it positive.’ Lazur pastes: ‘Hey Sarah, I reviewed the deck. The second section could use another pass, but overall it’s looking really good.’"
+  - question: Can dictation handle messy speech?
+    answer: >-
+      Basic dictation will type the mess, maybe with punctuation. Voice writing
+      and Intent Mode extract task, tone, and facts, then write the message you
+      would have typed. That is how Lazur is built.
+  - question: How do I dictate without sounding like a transcript?
+    answer: >-
+      Stop dictating the letter. Speak the brief: who, ask, tone, constraint.
+      Let rewrite or Intent Mode produce the prose. See how to write emails by
+      voice for the same pattern.
+  - question: What is an example of messy speech vs finished writing?
+    answer: >-
+      You say: ‘uh can you tell Sarah that I looked at the deck and the second
+      section needs another pass but overall it's looking good, keep it
+      positive.’ Lazur pastes: ‘Hey Sarah, I reviewed the deck. The second
+      section could use another pass, but overall it’s looking really good.’
 relatedSlugs:
-  - "command-mode-voice-writing"
-  - "how-to-write-emails-by-voice"
+  - command-mode-voice-writing
+  - how-to-write-emails-by-voice
+heroImage:
+  url: >-
+    /content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-9c61f4.jpg
+  width: 1280
+  height: 850
+  alt: 'Office, notes and notepad. Messy speech to finished writing'
+  caption: 'Messy speech to finished writing: say it like a human'
+  keywords:
+    - messy speech to finished writing
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Firmbee
+    url: 'https://pixabay.com/users/Firmbee-663163/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/'
 ---
 
 **Messy speech to finished writing** is the product demo that matters. People do not naturally speak like writers. They say:

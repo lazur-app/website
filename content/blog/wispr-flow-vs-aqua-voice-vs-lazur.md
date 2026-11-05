@@ -1,25 +1,65 @@
 ---
-title: "Wispr Flow vs Aqua Voice vs Lazur"
-description: "Wispr Flow vs Aqua Voice vs Lazur in 2026: transcription vs high-quality live text vs intent-aware finished writing. A three-way guide for people leaving or choosing dictation."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Comparison"
-cover: "compare"
-targetKeyword: "Wispr Flow vs Aqua Voice vs Lazur"
+title: Wispr Flow vs Aqua Voice vs Lazur
+description: >-
+  Wispr Flow vs Aqua Voice vs Lazur in 2026: transcription vs high-quality live
+  text vs intent-aware finished writing. A three-way guide for people leaving or
+  choosing dictation.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Comparison
+cover: compare
+targetKeyword: Wispr Flow vs Aqua Voice vs Lazur
 tldr:
-  - "Wispr Flow: speak, get typed words. Aqua Voice: speak, get high-quality live text fast, including Windows and iPhone. Lazur: speak, get intent + context + send-ready work on Mac, with local STT."
-  - "Do not pick on a feature checklist. Pick on leftover work after the paste."
-  - "If Wispr, Aqua, and Lazur all ‘clean up’ speech, the remaining gap is whether the tool understands the *job* (reply, tone, app) or only the *sentence*."
+  - >-
+    Wispr Flow: speak, get typed words. Aqua Voice: speak, get high-quality live
+    text fast, including Windows and iPhone. Lazur: speak, get intent + context
+    + send-ready work on Mac, with local STT.
+  - Do not pick on a feature checklist. Pick on leftover work after the paste.
+  - >-
+    If Wispr, Aqua, and Lazur all ‘clean up’ speech, the remaining gap is
+    whether the tool understands the *job* (reply, tone, app) or only the
+    *sentence*.
 faq:
-  - question: "Should I choose Wispr Flow, Aqua Voice, or Lazur?"
-    answer: "Choose Wispr Flow if you like its workflow and mainly need fast speech-to-text. Choose Aqua Voice if you want a faster, more accurate Wispr-like product on Mac, Windows, and iPhone. Choose Lazur if you want messy speech turned into finished writing and actions, with NVIDIA Parakeet speech-to-text on your Mac."
-  - question: "Is Aqua Voice better than Wispr Flow?"
-    answer: "Many 2026 alternative roundups treat Aqua Voice as the closest ‘better Wispr’ competitor, speed, live text, technical vocabulary. Whether it is better for you depends on devices and how much you still edit. It is not the same product as Lazur, which is built around intent and context rather than live transcription."
-  - question: "Where does Lazur sit between Wispr and Aqua?"
-    answer: "Wispr and Aqua are in a transcription-quality race. Lazur sits one layer up: Intent Mode, app context, and send-ready paste. That only matters if your bottleneck is cleanup and ‘what I meant,’ not raw STT speed."
+  - question: 'Should I choose Wispr Flow, Aqua Voice, or Lazur?'
+    answer: >-
+      Choose Wispr Flow if you like its workflow and mainly need fast
+      speech-to-text. Choose Aqua Voice if you want a faster, more accurate
+      Wispr-like product on Mac, Windows, and iPhone. Choose Lazur if you want
+      messy speech turned into finished writing and actions, with NVIDIA
+      Parakeet speech-to-text on your Mac.
+  - question: Is Aqua Voice better than Wispr Flow?
+    answer: >-
+      Many 2026 alternative roundups treat Aqua Voice as the closest ‘better
+      Wispr’ competitor, speed, live text, technical vocabulary. Whether it is
+      better for you depends on devices and how much you still edit. It is not
+      the same product as Lazur, which is built around intent and context rather
+      than live transcription.
+  - question: Where does Lazur sit between Wispr and Aqua?
+    answer: >-
+      Wispr and Aqua are in a transcription-quality race. Lazur sits one layer
+      up: Intent Mode, app context, and send-ready paste. That only matters if
+      your bottleneck is cleanup and ‘what I meant,’ not raw STT speed.
 relatedSlugs:
-  - "aqua-voice-vs-lazur"
-  - "wispr-flow-alternatives"
+  - aqua-voice-vs-lazur
+  - wispr-flow-alternatives
+heroImage:
+  url: >-
+    /content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-534f89.jpg
+  width: 1280
+  height: 854
+  alt: 'Laptop, conference table and mouse. Wispr Flow vs Aqua Voice vs Lazur'
+  caption: Wispr Flow vs Aqua Voice vs Lazur
+  keywords:
+    - Wispr Flow vs Aqua Voice vs Lazur
+    - Comparison
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: jhenning
+    url: 'https://pixabay.com/users/jhenning-8658480/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
 ---
 
 **Wispr Flow vs Aqua Voice vs Lazur** is the three-way most people actually mean when they search for a Wispr alternative. They are not three clones. They encode three theses:

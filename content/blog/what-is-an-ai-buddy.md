@@ -1,27 +1,67 @@
 ---
-title: "What is an AI buddy? The assistant that lives on your screen"
-description: "An AI buddy is an assistant that sees your screen, talks with you and does things in any app. Here's what that means, how it differs from a chatbot, and who it's for."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "AI buddy"
+title: What is an AI buddy? The assistant that lives on your screen
+description: >-
+  An AI buddy is an assistant that sees your screen, talks with you and does
+  things in any app. Here's what that means, how it differs from a chatbot, and
+  who it's for.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: AI buddy
 tldr:
-  - "An AI buddy is an assistant that lives on your computer, sees what you see, talks with you out loud and does things for you in any app."
-  - "Unlike a chatbot in a browser tab, you don't copy, paste or explain your screen. You hold a key and ask."
-  - "Lazur is an AI buddy for Mac that lives in the notch; it points at things, answers out loud, runs background jobs and types for you."
+  - >-
+    An AI buddy is an assistant that lives on your computer, sees what you see,
+    talks with you out loud and does things for you in any app.
+  - >-
+    Unlike a chatbot in a browser tab, you don't copy, paste or explain your
+    screen. You hold a key and ask.
+  - >-
+    Lazur is an AI buddy for Mac that lives in the notch; it points at things,
+    answers out loud, runs background jobs and types for you.
 faq:
-  - question: "What is an AI buddy?"
-    answer: "An AI buddy is a personal AI assistant that sits on your computer instead of in a chat window. It can see your screen when you ask, talk back out loud, point at things and take actions in your apps. Lazur is an AI buddy for Mac."
-  - question: "How is an AI buddy different from ChatGPT?"
-    answer: "ChatGPT lives in its own window, so you have to explain your situation and copy things in and out. An AI buddy like Lazur already sees the app you're in, answers by voice and can act on your Mac: set a reminder, open the right page, or circle the button you're looking for."
-  - question: "Is an AI buddy always watching my screen?"
-    answer: "A well-built one isn't. Lazur only listens and looks while you hold its shortcut, uses that one screenshot to answer, and doesn't store it."
-  - question: "Do I need a MacBook with a notch?"
-    answer: "Lazur's panel grows out of the notch on MacBooks that have one, and from the top centre of the screen on Macs that don't."
+  - question: What is an AI buddy?
+    answer: >-
+      An AI buddy is a personal AI assistant that sits on your computer instead
+      of in a chat window. It can see your screen when you ask, talk back out
+      loud, point at things and take actions in your apps. Lazur is an AI buddy
+      for Mac.
+  - question: How is an AI buddy different from ChatGPT?
+    answer: >-
+      ChatGPT lives in its own window, so you have to explain your situation and
+      copy things in and out. An AI buddy like Lazur already sees the app you're
+      in, answers by voice and can act on your Mac: set a reminder, open the
+      right page, or circle the button you're looking for.
+  - question: Is an AI buddy always watching my screen?
+    answer: >-
+      A well-built one isn't. Lazur only listens and looks while you hold its
+      shortcut, uses that one screenshot to answer, and doesn't store it.
+  - question: Do I need a MacBook with a notch?
+    answer: >-
+      Lazur's panel grows out of the notch on MacBooks that have one, and from
+      the top centre of the screen on Macs that don't.
 relatedSlugs:
-  - "best-ai-buddy-apps-for-mac-2026"
-  - "stop-context-switching-ai-buddy"
+  - best-ai-buddy-apps-for-mac-2026
+  - stop-context-switching-ai-buddy
+heroImage:
+  url: /content-images/blog/what-is-an-ai-buddy/ai-buddy-1-a61578.jpg
+  width: 1280
+  height: 720
+  alt: >-
+    Mac, mockup and mac wallpaper. What is an AI buddy? The assistant that lives
+    on your screen
+  caption: What is an AI buddy? The assistant that lives on your screen
+  keywords:
+    - AI buddy
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: mahirdesaindigital
+    url: 'https://pixabay.com/users/mahirdesaindigital-55330130/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/mac-mockup-laptop-computer-mock-10221077/'
 ---
 
 An **AI buddy** is a personal AI assistant that lives on your computer, not in a chat tab. It sees your screen when you ask, talks with you out loud, and does things in whatever app you're using. Think of a smart friend sitting next to you who can see your screen and reach the keyboard.

@@ -55,7 +55,7 @@ function queriesFor(p) {
   const topic = p.type === "role-app" ? `${p.appName} for ${String(p.roleName).toLowerCase()}` : p.appName ?? p.roleName ?? p.title;
   return subjects.slice(0, WANT).map((query, i) => ({
     query,
-    alt: `${query[0].toUpperCase()}${query.slice(1)}, for a guide on ${p.targetKeyword}`.slice(0, 158),
+    alt: `{tags}. ${String(p.title).split(":")[0]}`.slice(0, 158),
     caption: i === 0 ? `${p.title.split(":")[0]}` : `${topic} on a Mac`,
   }));
 }
@@ -89,7 +89,7 @@ if (f.blog) {
     if (done >= limit) break;
     if (p.heroImage) continue;
     const kw = p.targetKeyword ?? p.title;
-    const [img] = await imagesForPage({ type: "blog", slug: p.slug, keyword: kw, extraKeywords: [p.category], queries: [{ query: /dictat|voice|speech/i.test(kw) ? "microphone laptop desk" : "macbook desk workspace", alt: `Mac on a desk, for a post on ${kw}`, caption: p.title }] });
+    const [img] = await imagesForPage({ type: "blog", slug: p.slug, keyword: kw, extraKeywords: [p.category], queries: [{ query: /dictat|voice|speech|wispr|whisper|aqua/i.test(kw) ? "microphone laptop desk" : /student|study/i.test(kw) ? "student studying laptop" : /developer|code|cursor/i.test(kw) ? "programmer code screen" : /founder|chief/i.test(kw) ? "startup founder laptop" : /email|gmail|slack/i.test(kw) ? "email laptop morning" : "macbook desk workspace", alt: `{tags}. ${String(p.title).split(":")[0]}`, caption: p.title }] });
     if (!img) continue;
     const raw = fs.readFileSync(p.file, "utf8");
     const parsed = matter(raw);

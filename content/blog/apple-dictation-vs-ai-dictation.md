@@ -1,25 +1,59 @@
 ---
-title: "Apple dictation vs AI dictation apps"
-description: "Apple dictation vs AI dictation: built-in Mac dictation is fine for Mail and Notes. AI apps win in Slack, Chrome, Cursor, and anywhere you need writing that does not sound spoken."
-publishedAt: "2026-08-19"
-author: "Lazur Team"
-category: "Comparison"
-cover: "apps"
-targetKeyword: "Apple dictation vs AI dictation"
+title: Apple dictation vs AI dictation apps
+description: >-
+  Apple dictation vs AI dictation: built-in Mac dictation is fine for Mail and
+  Notes. AI apps win in Slack, Chrome, Cursor, and anywhere you need writing
+  that does not sound spoken.
+publishedAt: '2026-08-19'
+author: Lazur Team
+category: Comparison
+cover: apps
+targetKeyword: Apple dictation vs AI dictation
 tldr:
-  - "Apple dictation is the right default for light use in Mail, Notes, and Messages."
-  - "AI dictation apps win when you write all day in Slack, Gmail, Linear, and Cursor, or when transcripts need rewrite."
-  - "You can keep Apple dictation installed and add a system-wide app for work."
+  - >-
+    Apple dictation is the right default for light use in Mail, Notes, and
+    Messages.
+  - >-
+    AI dictation apps win when you write all day in Slack, Gmail, Linear, and
+    Cursor, or when transcripts need rewrite.
+  - You can keep Apple dictation installed and add a system-wide app for work.
 faq:
-  - question: "Is Apple dictation good enough in 2026?"
-    answer: "Yes for short notes and Mail if you live in Apple apps. It is usually not enough if your work is in Slack, Google Docs, Linear, or Cursor, or if you need the output to read like typed writing rather than speech."
-  - question: "What is the difference between Apple dictation and AI dictation apps?"
-    answer: "Apple dictation is a system speech-to-text feature. AI dictation apps add rewrite, personal dictionaries, voice commands, and a consistent hotkey that pastes in third-party apps. That extra layer is voice writing."
-  - question: "Should I turn off Apple dictation if I install Lazur?"
-    answer: "No. Leave Apple dictation on for the odd Notes capture. Use Lazur (or another system-wide app) as the daily driver in work apps so you are not fighting two shortcuts in the same field."
+  - question: Is Apple dictation good enough in 2026?
+    answer: >-
+      Yes for short notes and Mail if you live in Apple apps. It is usually not
+      enough if your work is in Slack, Google Docs, Linear, or Cursor, or if you
+      need the output to read like typed writing rather than speech.
+  - question: What is the difference between Apple dictation and AI dictation apps?
+    answer: >-
+      Apple dictation is a system speech-to-text feature. AI dictation apps add
+      rewrite, personal dictionaries, voice commands, and a consistent hotkey
+      that pastes in third-party apps. That extra layer is voice writing.
+  - question: Should I turn off Apple dictation if I install Lazur?
+    answer: >-
+      No. Leave Apple dictation on for the odd Notes capture. Use Lazur (or
+      another system-wide app) as the daily driver in work apps so you are not
+      fighting two shortcuts in the same field.
 relatedSlugs:
-  - "how-to-dictate-on-mac"
-  - "wispr-flow-alternatives"
+  - how-to-dictate-on-mac
+  - wispr-flow-alternatives
+heroImage:
+  url: >-
+    /content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-954d3d.jpg
+  width: 1280
+  height: 853
+  alt: 'Computer, mac and google. Apple dictation vs AI dictation apps'
+  caption: Apple dictation vs AI dictation apps
+  keywords:
+    - Apple dictation vs AI dictation
+    - Comparison
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Philipp_Pistis
+    url: 'https://pixabay.com/users/Philipp_Pistis-3678073/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/computer-mac-google-internet-6963428/'
 ---
 
 **Apple dictation vs AI dictation** is a workflow split, not a brand war. People searching “speech to text free” or “voice typing on Mac” usually land on Apple’s built-in dictation first. It is enough for many Notes and Mail users. AI dictation apps are better when you need **the same hotkey in every work app** and text that does not sound spoken. Full product table: [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation).

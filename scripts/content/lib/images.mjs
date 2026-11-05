@@ -197,7 +197,8 @@ export async function imagesForPage(job) {
   const base = slugify(job.keyword).split("-").slice(0, 7).join("-");
   const takenHere = new Set();
 
-  for (const [i, q] of job.queries.entries()) {
+  for (const [i, q0] of job.queries.entries()) {
+    let q = q0;
     const keywords = [...new Set([job.keyword, ...job.extraKeywords, q.query, "Mac", "Lazur"])].filter(Boolean);
     const reuseKey = `${job.type}/${job.slug}|${q.query}`;
     if (stored[reuseKey]) {
@@ -208,6 +209,10 @@ export async function imagesForPage(job) {
     const photo = hits.find((h) => !used.has(h.id) && !takenHere.has(h.id) && h.width >= 1200) ?? hits.find((h) => !takenHere.has(h.id));
     if (!photo) continue;
     takenHere.add(photo.id);
+    // "{tags}" in alt/caption becomes what is actually in the photo, from Pixabay's tags.
+    const tags = String(photo.tags ?? "").split(",").map((t) => t.trim()).filter(Boolean).slice(0, 3);
+    const seen = tags.length ? `${tags[0][0].toUpperCase()}${tags[0].slice(1)}${tags.length > 1 ? `, ${tags.slice(1).join(" and ")}` : ""}` : "Photo";
+    q = { ...q, alt: q.alt.replace("{tags}", seen), caption: q.caption?.replace("{tags}", seen) };
     const res = await fetch(photo.largeImageURL || photo.webformatURL);
     if (!res.ok) continue;
     const input = Buffer.from(await res.arrayBuffer());

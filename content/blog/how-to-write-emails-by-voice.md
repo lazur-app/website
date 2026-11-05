@@ -1,34 +1,72 @@
 ---
-title: "How to write emails by voice (without sounding like a transcript)"
-description: "How to write emails by voice on a Mac: dictate the intent, let rewrite handle tone and structure, then scan once. Templates for follow-ups, declines, and customer replies."
-publishedAt: "2026-08-05"
-author: "Lazur Team"
-category: "How-to"
-cover: "mail"
-targetKeyword: "write emails by voice"
+title: How to write emails by voice (without sounding like a transcript)
+description: >-
+  How to write emails by voice on a Mac: dictate the intent, let rewrite handle
+  tone and structure, then scan once. Templates for follow-ups, declines, and
+  customer replies.
+publishedAt: '2026-08-05'
+author: Lazur Team
+category: How-to
+cover: mail
+targetKeyword: write emails by voice
 tldr:
-  - "Write emails by voice by dictating intent and outcome, not a word-for-word letter."
-  - "The unreadably ‘spoken’ email is a transcription problem. Rewrite is what makes it look typed."
-  - "Paste in Mail or Gmail at the cursor. Do not dictate in Notes and copy."
+  - >-
+    Write emails by voice by dictating intent and outcome, not a word-for-word
+    letter.
+  - >-
+    The unreadably ‘spoken’ email is a transcription problem. Rewrite is what
+    makes it look typed.
+  - Paste in Mail or Gmail at the cursor. Do not dictate in Notes and copy.
 faq:
-  - question: "Can you write emails by voice on a Mac?"
-    answer: "Yes. Place the cursor in Gmail or Apple Mail, start system-wide dictation, and speak the point of the email. An AI dictation app with rewrite will structure greeting, body, and close so it does not read like a transcript."
-  - question: "Why do dictated emails sound weird?"
-    answer: "Because you spoke them. Speech uses longer sentences, filler, and casual asides. Voice writing tools reshape that into email tone, short paragraphs, a clear ask, and punctuation."
-  - question: "What is the fastest way to dictate a professional email?"
-    answer: "Say the recipient, the ask, the deadline, and the tone in one pass: ‘Email Maya, polite, we can ship Thursday, ask if that works, offer a call.’ Then review names and send."
+  - question: Can you write emails by voice on a Mac?
+    answer: >-
+      Yes. Place the cursor in Gmail or Apple Mail, start system-wide dictation,
+      and speak the point of the email. An AI dictation app with rewrite will
+      structure greeting, body, and close so it does not read like a transcript.
+  - question: Why do dictated emails sound weird?
+    answer: >-
+      Because you spoke them. Speech uses longer sentences, filler, and casual
+      asides. Voice writing tools reshape that into email tone, short
+      paragraphs, a clear ask, and punctuation.
+  - question: What is the fastest way to dictate a professional email?
+    answer: >-
+      Say the recipient, the ask, the deadline, and the tone in one pass: ‘Email
+      Maya, polite, we can ship Thursday, ask if that works, offer a call.’ Then
+      review names and send.
 howto:
-  name: "How to write an email by voice"
+  name: How to write an email by voice
   steps:
-    - name: "Open the real compose window"
-      text: "Click into Gmail, Outlook, or Apple Mail, not a scratch document."
-    - name: "Dictate intent, not prose"
-      text: "Say who it is for, what you need, and the tone. Let rewrite turn that into an email."
-    - name: "Scan names and the ask"
-      text: "Check proper nouns, the call to action, and the greeting. Then send."
+    - name: Open the real compose window
+      text: 'Click into Gmail, Outlook, or Apple Mail, not a scratch document.'
+    - name: 'Dictate intent, not prose'
+      text: >-
+        Say who it is for, what you need, and the tone. Let rewrite turn that
+        into an email.
+    - name: Scan names and the ask
+      text: 'Check proper nouns, the call to action, and the greeting. Then send.'
 relatedSlugs:
-  - "how-to-dictate-on-mac"
-  - "is-dictation-faster-than-typing"
+  - how-to-dictate-on-mac
+  - is-dictation-faster-than-typing
+heroImage:
+  url: >-
+    /content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-ba1766.jpg
+  width: 1280
+  height: 720
+  alt: >-
+    Microphone, audio and radio. How to write emails by voice (without sounding
+    like a transcript)
+  caption: How to write emails by voice (without sounding like a transcript)
+  keywords:
+    - write emails by voice
+    - How-to
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Ivsu
+    url: 'https://pixabay.com/users/Ivsu-776676/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/microphone-audio-radio-computer-639192/'
 ---
 
 App page: [Write email by voice on Mac](/apps/gmail).

@@ -1,26 +1,63 @@
 ---
-title: "AI Work Assistant vs Dictation App vs ChatGPT: What Is the Difference?"
-description: "Compare an AI work assistant, a dictation app, and ChatGPT by context, output, workflow, privacy, and the kind of work each handles best."
-publishedAt: "2026-10-16"
-author: "Lazur Team"
-category: "Comparison"
-cover: "compare"
-targetKeyword: "AI work assistant vs dictation app vs ChatGPT"
+title: 'AI Work Assistant vs Dictation App vs ChatGPT: What Is the Difference?'
+description: >-
+  Compare an AI work assistant, a dictation app, and ChatGPT by context, output,
+  workflow, privacy, and the kind of work each handles best.
+publishedAt: '2026-10-16'
+author: Lazur Team
+category: Comparison
+cover: compare
+targetKeyword: AI work assistant vs dictation app vs ChatGPT
 tldr:
-  - "Dictation turns speech into text, ChatGPT answers in a separate chat, and an AI work assistant helps complete the task in context."
-  - "Choose based on whether you need exact words, exploration, or a finished result in the app already open."
-  - "Lazur combines voice input, app context, and voice actions for Mac workflows."
+  - >-
+    Dictation turns speech into text, ChatGPT answers in a separate chat, and an
+    AI work assistant helps complete the task in context.
+  - >-
+    Choose based on whether you need exact words, exploration, or a finished
+    result in the app already open.
+  - >-
+    Lazur combines voice input, app context, and voice actions for Mac
+    workflows.
 faq:
-  - question: "What is the difference between an AI work assistant and a dictation app?"
-    answer: "A dictation app primarily converts speech into text. An AI work assistant can interpret a goal, use surrounding context, and produce a reply, rewrite, prompt, or action instead of only transcribing the request."
-  - question: "Is Lazur a replacement for ChatGPT?"
-    answer: "No. ChatGPT is useful for open-ended conversation and research. Lazur is designed for in-flow work on Mac, where the relevant email, thread, code, or document is already open and the result should return to that workflow."
-  - question: "Which tool should I use for writing by voice?"
-    answer: "Use dictation when you know the exact words, ChatGPT when you want a separate reasoning conversation, and a context-aware AI work assistant when you want to describe a goal and finish the task in the current app."
+  - question: What is the difference between an AI work assistant and a dictation app?
+    answer: >-
+      A dictation app primarily converts speech into text. An AI work assistant
+      can interpret a goal, use surrounding context, and produce a reply,
+      rewrite, prompt, or action instead of only transcribing the request.
+  - question: Is Lazur a replacement for ChatGPT?
+    answer: >-
+      No. ChatGPT is useful for open-ended conversation and research. Lazur is
+      designed for in-flow work on Mac, where the relevant email, thread, code,
+      or document is already open and the result should return to that workflow.
+  - question: Which tool should I use for writing by voice?
+    answer: >-
+      Use dictation when you know the exact words, ChatGPT when you want a
+      separate reasoning conversation, and a context-aware AI work assistant
+      when you want to describe a goal and finish the task in the current app.
 relatedSlugs:
-  - "what-is-a-context-aware-ai-work-assistant"
-  - "from-messy-thoughts-to-finished-work"
-  - "what-is-ambient-writing"
+  - what-is-a-context-aware-ai-work-assistant
+  - from-messy-thoughts-to-finished-work
+  - what-is-ambient-writing
+heroImage:
+  url: >-
+    /content-images/blog/ai-work-assistant-vs-dictation-app-vs-chatgpt/ai-work-assistant-vs-dictation-app-vs-1-7b0f1a.jpg
+  width: 1280
+  height: 853
+  alt: >-
+    Podcast, microphone and record. AI Work Assistant vs Dictation App vs
+    ChatGPT
+  caption: 'AI Work Assistant vs Dictation App vs ChatGPT: What Is the Difference?'
+  keywords:
+    - AI work assistant vs dictation app vs ChatGPT
+    - Comparison
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: parveender
+    url: 'https://pixabay.com/users/parveender-5611058/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/podcast-microphone-record-audio-7693638/'
 ---
 
 An **AI work assistant**, a dictation app, and ChatGPT solve different problems. Dictation converts speech into words. ChatGPT gives you a general-purpose conversation. A context-aware AI work assistant uses the workflow already in front of you to help produce the finished result.

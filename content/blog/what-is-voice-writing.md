@@ -1,25 +1,64 @@
 ---
-title: "What is voice writing? Dictation that reads like you typed it"
-description: "Voice writing is AI dictation plus rewrite: you speak, and the output is structured, app-aware writing, not a raw transcript. How it differs from speech-to-text."
-publishedAt: "2026-08-08"
-author: "Lazur Team"
-category: "Guide"
-cover: "waveform"
-targetKeyword: "what is voice writing"
+title: What is voice writing? Dictation that reads like you typed it
+description: >-
+  Voice writing is AI dictation plus rewrite: you speak, and the output is
+  structured, app-aware writing, not a raw transcript. How it differs from
+  speech-to-text.
+publishedAt: '2026-08-08'
+author: Lazur Team
+category: Guide
+cover: waveform
+targetKeyword: what is voice writing
 tldr:
-  - "Voice writing is speaking to produce finished text: punctuation, structure, and tone as if you typed."
-  - "Speech-to-text only gives you words. Voice writing adds intent-aware rewrite for the app you are in."
-  - "Lazur is a voice writing app for Mac: on-device NVIDIA Parakeet STT, Smart Rewrite, system-wide paste."
+  - >-
+    Voice writing is speaking to produce finished text: punctuation, structure,
+    and tone as if you typed.
+  - >-
+    Speech-to-text only gives you words. Voice writing adds intent-aware rewrite
+    for the app you are in.
+  - >-
+    Lazur is a voice writing app for Mac: on-device NVIDIA Parakeet STT, Smart
+    Rewrite, system-wide paste.
 faq:
-  - question: "What is voice writing?"
-    answer: "Voice writing is using your voice to produce send-ready text, not a transcript. It combines speech-to-text with rewrite so the result has punctuation, structure, and the right tone for email, chat, or docs."
-  - question: "How is voice writing different from dictation?"
-    answer: "Classic dictation captures speech as words. Voice writing treats speech as a draft and rewrites it into something you would type. The difference shows up as fewer edits before you hit send."
-  - question: "What is the best voice writing app for Mac?"
-    answer: "Lazur is built specifically as a voice writing app: on-device transcription, Smart Rewrite that follows app context, and paste at the cursor in any macOS app. Transcription-first tools such as Wispr Flow are closer to classic dictation."
+  - question: What is voice writing?
+    answer: >-
+      Voice writing is using your voice to produce send-ready text, not a
+      transcript. It combines speech-to-text with rewrite so the result has
+      punctuation, structure, and the right tone for email, chat, or docs.
+  - question: How is voice writing different from dictation?
+    answer: >-
+      Classic dictation captures speech as words. Voice writing treats speech as
+      a draft and rewrites it into something you would type. The difference
+      shows up as fewer edits before you hit send.
+  - question: What is the best voice writing app for Mac?
+    answer: >-
+      Lazur is built specifically as a voice writing app: on-device
+      transcription, Smart Rewrite that follows app context, and paste at the
+      cursor in any macOS app. Transcription-first tools such as Wispr Flow are
+      closer to classic dictation.
 relatedSlugs:
-  - "what-is-ambient-writing"
-  - "messy-speech-to-finished-writing"
+  - what-is-ambient-writing
+  - messy-speech-to-finished-writing
+heroImage:
+  url: >-
+    /content-images/blog/what-is-voice-writing/what-is-voice-writing-1-95bb7a.jpg
+  width: 1280
+  height: 854
+  alt: >-
+    Laptop, conference table and mouse. What is voice writing? Dictation that
+    reads like you typed it
+  caption: What is voice writing? Dictation that reads like you typed it
+  keywords:
+    - what is voice writing
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: jhenning
+    url: 'https://pixabay.com/users/jhenning-8658480/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
 ---
 
 **Voice writing** is using your voice to produce writing that looks like you typed it, complete sentences, structure, and the right tone for the app you are in. It is not the same as dictation. Dictation gives you a transcript. Voice writing gives you a draft you can send.

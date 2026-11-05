@@ -1,35 +1,76 @@
 ---
-title: "From Messy Thoughts to Finished Work: How AI Assistants Help"
-description: "Learn how a context-aware AI assistant turns messy spoken thoughts into clear emails, notes, prompts, replies, and finished work."
-publishedAt: "2026-10-17"
-author: "Lazur Team"
-category: "How-to"
-cover: "waveform"
-targetKeyword: "messy thoughts to finished work"
+title: 'From Messy Thoughts to Finished Work: How AI Assistants Help'
+description: >-
+  Learn how a context-aware AI assistant turns messy spoken thoughts into clear
+  emails, notes, prompts, replies, and finished work.
+publishedAt: '2026-10-17'
+author: Lazur Team
+category: How-to
+cover: waveform
+targetKeyword: messy thoughts to finished work
 tldr:
-  - "The fastest workflow is not speech-to-text; it is expressing the goal and letting the assistant handle structure."
-  - "Give the assistant the outcome, constraints, tone, and context you already have."
-  - "Review the result before sending, especially when the request involves people, money, or production code."
+  - >-
+    The fastest workflow is not speech-to-text; it is expressing the goal and
+    letting the assistant handle structure.
+  - >-
+    Give the assistant the outcome, constraints, tone, and context you already
+    have.
+  - >-
+    Review the result before sending, especially when the request involves
+    people, money, or production code.
 faq:
-  - question: "How do I turn messy thoughts into finished writing?"
-    answer: "Describe the outcome instead of dictating every sentence. A context-aware assistant can use your rough explanation, the app context, and constraints such as tone or length to produce a usable draft."
-  - question: "Is this better than dictation?"
-    answer: "Dictation is useful when you already know the exact words. An AI assistant is more useful when you have the idea or goal but want help with structure, tone, and the next action."
-  - question: "What should I tell an AI assistant?"
-    answer: "State the outcome, important facts, audience, tone, and constraints. You do not need a perfect prompt; a short natural request is often enough when the assistant can use the current context."
+  - question: How do I turn messy thoughts into finished writing?
+    answer: >-
+      Describe the outcome instead of dictating every sentence. A context-aware
+      assistant can use your rough explanation, the app context, and constraints
+      such as tone or length to produce a usable draft.
+  - question: Is this better than dictation?
+    answer: >-
+      Dictation is useful when you already know the exact words. An AI assistant
+      is more useful when you have the idea or goal but want help with
+      structure, tone, and the next action.
+  - question: What should I tell an AI assistant?
+    answer: >-
+      State the outcome, important facts, audience, tone, and constraints. You
+      do not need a perfect prompt; a short natural request is often enough when
+      the assistant can use the current context.
 howto:
-  name: "How to turn a rough thought into finished work"
+  name: How to turn a rough thought into finished work
   steps:
-    - name: "Name the outcome"
-      text: "Say what you want to exist when you are done: a reply, brief, update, outline, or coding task."
-    - name: "Add the constraints"
-      text: "Mention tone, audience, length, deadline, or anything that must not change."
-    - name: "Review and send"
-      text: "Check names, facts, commitments, and sensitive details before using the result."
+    - name: Name the outcome
+      text: >-
+        Say what you want to exist when you are done: a reply, brief, update,
+        outline, or coding task.
+    - name: Add the constraints
+      text: >-
+        Mention tone, audience, length, deadline, or anything that must not
+        change.
+    - name: Review and send
+      text: >-
+        Check names, facts, commitments, and sensitive details before using the
+        result.
 relatedSlugs:
-  - "what-is-a-context-aware-ai-work-assistant"
-  - "ai-assistant-for-email-replies-and-follow-ups"
-  - "ai-assistant-for-developers-and-coding-tasks"
+  - what-is-a-context-aware-ai-work-assistant
+  - ai-assistant-for-email-replies-and-follow-ups
+  - ai-assistant-for-developers-and-coding-tasks
+heroImage:
+  url: >-
+    /content-images/blog/from-messy-thoughts-to-finished-work/messy-thoughts-to-finished-work-1-feb8da.jpg
+  width: 1280
+  height: 853
+  alt: 'Laptop, notebook and startup. From Messy Thoughts to Finished Work'
+  caption: 'From Messy Thoughts to Finished Work: How AI Assistants Help'
+  keywords:
+    - messy thoughts to finished work
+    - How-to
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StartupStockPhotos
+    url: 'https://pixabay.com/users/StartupStockPhotos-690514/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-notebook-startup-computer-849798/'
 ---
 
 Turning messy thoughts into finished work is where an AI assistant becomes more useful than basic dictation. You do not need to speak a perfect email or write a perfect prompt. Explain the outcome, give the important constraints, and let the assistant handle structure.

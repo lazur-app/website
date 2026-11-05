@@ -1,26 +1,63 @@
 ---
-title: "AI Assistants That Understand Your Screen: What They Can Actually Do"
-description: "AI assistants that understand your screen can use the app, thread, selection, or document in front of you to help write and complete work."
-publishedAt: "2026-10-19"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "AI assistants that understand your screen"
+title: 'AI Assistants That Understand Your Screen: What They Can Actually Do'
+description: >-
+  AI assistants that understand your screen can use the app, thread, selection,
+  or document in front of you to help write and complete work.
+publishedAt: '2026-10-19'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: AI assistants that understand your screen
 tldr:
-  - "Screen-aware AI assistants use visible app context to reduce the need to copy, paste, and explain what you mean."
-  - "Useful actions include replying, rewriting, summarizing, formatting, and creating app-specific prompts."
-  - "Privacy depends on permissions, when the screen is read, and whether audio or text leaves the device."
+  - >-
+    Screen-aware AI assistants use visible app context to reduce the need to
+    copy, paste, and explain what you mean.
+  - >-
+    Useful actions include replying, rewriting, summarizing, formatting, and
+    creating app-specific prompts.
+  - >-
+    Privacy depends on permissions, when the screen is read, and whether audio
+    or text leaves the device.
 faq:
-  - question: "Is there an AI assistant that understands your screen?"
-    answer: "Yes. Screen-aware AI assistants can use the active window, selected text, or visible app context to answer a request. Lazur is a Mac AI assistant that combines voice input with optional screen context for writing and voice actions."
-  - question: "Can an AI assistant see everything on my screen?"
-    answer: "It depends on the product and permissions. A trustworthy assistant should explain when screen context is captured, what is processed, and whether the data is retained. Lazur uses screen context for an active request rather than continuous background monitoring."
-  - question: "What can a screen-aware AI assistant do?"
-    answer: "It can draft replies from a thread, rewrite selected text, summarize a page, create a coding prompt from a file, or turn visible context into the next useful action."
+  - question: Is there an AI assistant that understands your screen?
+    answer: >-
+      Yes. Screen-aware AI assistants can use the active window, selected text,
+      or visible app context to answer a request. Lazur is a Mac AI assistant
+      that combines voice input with optional screen context for writing and
+      voice actions.
+  - question: Can an AI assistant see everything on my screen?
+    answer: >-
+      It depends on the product and permissions. A trustworthy assistant should
+      explain when screen context is captured, what is processed, and whether
+      the data is retained. Lazur uses screen context for an active request
+      rather than continuous background monitoring.
+  - question: What can a screen-aware AI assistant do?
+    answer: >-
+      It can draft replies from a thread, rewrite selected text, summarize a
+      page, create a coding prompt from a file, or turn visible context into the
+      next useful action.
 relatedSlugs:
-  - "what-is-a-context-aware-ai-work-assistant"
-  - "private-ai-assistants-on-mac"
-  - "ai-assistant-for-slack-gmail-cursor-notion"
+  - what-is-a-context-aware-ai-work-assistant
+  - private-ai-assistants-on-mac
+  - ai-assistant-for-slack-gmail-cursor-notion
+heroImage:
+  url: >-
+    /content-images/blog/ai-assistants-that-understand-your-screen/ai-assistants-that-understand-your-screen-1-1e2828.jpg
+  width: 1280
+  height: 853
+  alt: 'Laptop, apple and macbook. AI Assistants That Understand Your Screen'
+  caption: 'AI Assistants That Understand Your Screen: What They Can Actually Do'
+  keywords:
+    - AI assistants that understand your screen
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StockSnap
+    url: 'https://pixabay.com/users/StockSnap-894430/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/'
 ---
 
 An **AI assistant that understands your screen** uses the app or content already in front of you to produce a relevant result. That can mean drafting a reply from an email thread, rewriting a selected paragraph, or creating a coding instruction from the file open in your editor.

@@ -1,25 +1,60 @@
 ---
-title: "An AI study buddy that explains what's on your screen"
-description: "Stuck on a diagram, a paragraph or a problem? An AI study buddy on your Mac explains it out loud, in context, and helps you stay organised. Here's how students use Lazur."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "Guide"
-cover: "waveform"
-targetKeyword: "AI study buddy"
+title: An AI study buddy that explains what's on your screen
+description: >-
+  Stuck on a diagram, a paragraph or a problem? An AI study buddy on your Mac
+  explains it out loud, in context, and helps you stay organised. Here's how
+  students use Lazur.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: Guide
+cover: waveform
+targetKeyword: AI study buddy
 tldr:
-  - "An AI study buddy sees what you're studying and explains it in context, out loud, without you copying anything into a chat."
-  - "It helps with the boring parts too: turning notes into lists, keeping deadlines, focus timers."
-  - "Lazur is an AI study buddy for Mac. Use it to understand material, not to skip learning it."
+  - >-
+    An AI study buddy sees what you're studying and explains it in context, out
+    loud, without you copying anything into a chat.
+  - >-
+    It helps with the boring parts too: turning notes into lists, keeping
+    deadlines, focus timers.
+  - >-
+    Lazur is an AI study buddy for Mac. Use it to understand material, not to
+    skip learning it.
 faq:
-  - question: "What is an AI study buddy?"
-    answer: "An AI study buddy is an assistant that helps you learn, not just answer. Lazur sees the page, diagram or problem on your screen when you ask, explains it out loud, and helps with organisation like deadlines, timers and notes."
-  - question: "Is using an AI study buddy cheating?"
-    answer: "Using it to understand material is like asking a tutor. Using it to produce work you hand in as your own may break your school's rules. Follow your course's policy."
-  - question: "Is there a student discount?"
-    answer: "Students can contact Lazur through the pricing page for a student offer."
+  - question: What is an AI study buddy?
+    answer: >-
+      An AI study buddy is an assistant that helps you learn, not just answer.
+      Lazur sees the page, diagram or problem on your screen when you ask,
+      explains it out loud, and helps with organisation like deadlines, timers
+      and notes.
+  - question: Is using an AI study buddy cheating?
+    answer: >-
+      Using it to understand material is like asking a tutor. Using it to
+      produce work you hand in as your own may break your school's rules. Follow
+      your course's policy.
+  - question: Is there a student discount?
+    answer: Students can contact Lazur through the pricing page for a student offer.
 relatedSlugs:
-  - "what-is-an-ai-buddy"
-  - "learn-any-mac-app-without-tutorials"
+  - what-is-an-ai-buddy
+  - learn-any-mac-app-without-tutorials
+heroImage:
+  url: /content-images/blog/ai-study-buddy-for-students/ai-study-buddy-1-7b6681.jpg
+  width: 1280
+  height: 853
+  alt: >-
+    Computer, pc and workplace. An AI study buddy that explains what's on your
+    screen
+  caption: An AI study buddy that explains what's on your screen
+  keywords:
+    - AI study buddy
+    - Guide
+    - student studying laptop
+    - Mac
+    - Lazur
+  credit:
+    name: janeb13
+    url: 'https://pixabay.com/users/janeb13-725943/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/computer-pc-workplace-home-office-1185626/'
 ---
 
 Studying is full of small stuck moments: a diagram you can't parse, a paragraph that reads like fog, a formula with one symbol you don't recognise. Each one tempts you to open a chat, paste it in, and lose twenty minutes somewhere else.

@@ -1,25 +1,64 @@
 ---
-title: "What is ambient writing? A voice interface for work"
-description: "Ambient writing is a voice interface for work: one hotkey, no extra window, messy speech becomes finished text and actions in the app you already have open."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Guide"
-cover: "waveform"
-targetKeyword: "ambient writing"
+title: What is ambient writing? A voice interface for work
+description: >-
+  Ambient writing is a voice interface for work: one hotkey, no extra window,
+  messy speech becomes finished text and actions in the app you already have
+  open.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Guide
+cover: waveform
+targetKeyword: ambient writing
 tldr:
-  - "Ambient writing means the computer understands what you mean without opening a special app. Press, speak, keep working."
-  - "It is not ‘AI voice dictation’ as a category. Dictation types. Ambient writing finishes the work in Slack, Gmail, and Cursor."
-  - "Lazur is an ambient writing app for Mac: system-wide hotkey, Smart Rewrite, Intent Mode, on-device STT."
+  - >-
+    Ambient writing means the computer understands what you mean without opening
+    a special app. Press, speak, keep working.
+  - >-
+    It is not ‘AI voice dictation’ as a category. Dictation types. Ambient
+    writing finishes the work in Slack, Gmail, and Cursor.
+  - >-
+    Lazur is an ambient writing app for Mac: system-wide hotkey, Smart Rewrite,
+    Intent Mode, on-device STT.
 faq:
-  - question: "What is ambient writing?"
-    answer: "Ambient writing is a voice interface that lives in whatever app you are already using. You do not open a dictation window. You press a hotkey, speak naturally, and send-ready text or a command result lands at the cursor."
-  - question: "How is ambient writing different from dictation?"
-    answer: "Dictation is speech-to-text. Ambient writing includes intent, app context, and actions, reply, tone, structure, without a workflow change. Lazur uses that name for system-wide voice writing on macOS."
-  - question: "What is the best ambient writing app?"
-    answer: "Lazur is built as an ambient writing app: one hotkey everywhere you type on Mac, no plugin per app, on-device NVIDIA Parakeet STT, Smart Rewrite and Intent Mode. Transcription-first tools can be system-wide without being ambient in this sense."
+  - question: What is ambient writing?
+    answer: >-
+      Ambient writing is a voice interface that lives in whatever app you are
+      already using. You do not open a dictation window. You press a hotkey,
+      speak naturally, and send-ready text or a command result lands at the
+      cursor.
+  - question: How is ambient writing different from dictation?
+    answer: >-
+      Dictation is speech-to-text. Ambient writing includes intent, app context,
+      and actions, reply, tone, structure, without a workflow change. Lazur uses
+      that name for system-wide voice writing on macOS.
+  - question: What is the best ambient writing app?
+    answer: >-
+      Lazur is built as an ambient writing app: one hotkey everywhere you type
+      on Mac, no plugin per app, on-device NVIDIA Parakeet STT, Smart Rewrite
+      and Intent Mode. Transcription-first tools can be system-wide without
+      being ambient in this sense.
 relatedSlugs:
-  - "what-is-voice-writing"
-  - "command-mode-voice-writing"
+  - what-is-voice-writing
+  - command-mode-voice-writing
+heroImage:
+  url: /content-images/blog/what-is-ambient-writing/ambient-writing-1-d0132f.jpg
+  width: 1280
+  height: 720
+  alt: >-
+    Laptop, computer and dark. What is ambient writing? A voice interface for
+    work
+  caption: What is ambient writing? A voice interface for work
+  keywords:
+    - ambient writing
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StockSnap
+    url: 'https://pixabay.com/users/StockSnap-894430/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-computer-dark-room-modern-2593016/'
 ---
 
 **Ambient writing** is a voice interface for work. You do not open an app called the writer. You stay in Slack, Gmail, or Cursor. You press one hotkey, speak the messy version, and the useful version appears at the cursor. Lazur uses this name on purpose: it should feel like a capability the computer has, not a tool you launch.

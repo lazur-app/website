@@ -1,26 +1,62 @@
 ---
-title: "What Is a Context-Aware AI Work Assistant?"
-description: "A context-aware AI work assistant understands the app, thread, or document in front of you and helps turn a request into finished work."
-publishedAt: "2026-10-20"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "context-aware AI assistant"
+title: What Is a Context-Aware AI Work Assistant?
+description: >-
+  A context-aware AI work assistant understands the app, thread, or document in
+  front of you and helps turn a request into finished work.
+publishedAt: '2026-10-20'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: context-aware AI assistant
 tldr:
-  - "A context-aware AI work assistant uses the task and app already in front of you, not only the words you type into a chatbot."
-  - "It can draft, rewrite, summarize, format, and take voice-directed actions inside your existing workflow."
-  - "Lazur is a context-aware AI work assistant for macOS with voice input, screen context, and app-aware writing."
+  - >-
+    A context-aware AI work assistant uses the task and app already in front of
+    you, not only the words you type into a chatbot.
+  - >-
+    It can draft, rewrite, summarize, format, and take voice-directed actions
+    inside your existing workflow.
+  - >-
+    Lazur is a context-aware AI work assistant for macOS with voice input,
+    screen context, and app-aware writing.
 faq:
-  - question: "What is a context-aware AI assistant?"
-    answer: "A context-aware AI assistant uses information about the app, document, message, or selection you are working with to produce a more useful result. Lazur uses voice input and optional screen context to help write, rewrite, reply, and act in the Mac app already open."
-  - question: "How is a context-aware assistant different from ChatGPT?"
-    answer: "A chatbot usually requires you to move context into a separate conversation. A context-aware work assistant can use the current workflow and return the result where you are working."
-  - question: "Who should use a context-aware AI work assistant?"
-    answer: "It is useful for people who repeatedly turn thoughts into emails, Slack messages, documents, prompts, and code tasks. It is less useful if you only need occasional general questions."
+  - question: What is a context-aware AI assistant?
+    answer: >-
+      A context-aware AI assistant uses information about the app, document,
+      message, or selection you are working with to produce a more useful
+      result. Lazur uses voice input and optional screen context to help write,
+      rewrite, reply, and act in the Mac app already open.
+  - question: How is a context-aware assistant different from ChatGPT?
+    answer: >-
+      A chatbot usually requires you to move context into a separate
+      conversation. A context-aware work assistant can use the current workflow
+      and return the result where you are working.
+  - question: Who should use a context-aware AI work assistant?
+    answer: >-
+      It is useful for people who repeatedly turn thoughts into emails, Slack
+      messages, documents, prompts, and code tasks. It is less useful if you
+      only need occasional general questions.
 relatedSlugs:
-  - "ai-assistants-that-understand-your-screen"
-  - "from-messy-thoughts-to-finished-work"
-  - "private-ai-assistants-on-mac"
+  - ai-assistants-that-understand-your-screen
+  - from-messy-thoughts-to-finished-work
+  - private-ai-assistants-on-mac
+heroImage:
+  url: >-
+    /content-images/blog/what-is-a-context-aware-ai-work-assistant/context-aware-ai-assistant-1-eff4d5.jpg
+  width: 1280
+  height: 853
+  alt: 'Laptop, apple and macbook. What Is a Context-Aware AI Work Assistant?'
+  caption: What Is a Context-Aware AI Work Assistant?
+  keywords:
+    - context-aware AI assistant
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StockSnap
+    url: 'https://pixabay.com/users/StockSnap-894430/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2560866/'
 ---
 
 A **context-aware AI work assistant** understands the work already in front of you and helps complete the next step. Instead of opening a blank chatbot and explaining the entire situation, you can ask for a reply, rewrite, summary, prompt, or action from inside the app you are already using.

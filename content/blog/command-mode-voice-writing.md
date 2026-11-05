@@ -1,25 +1,63 @@
 ---
-title: "Intent Mode: voice commands that finish the work"
-description: "Intent Mode, what most dictation apps call command mode, lets you tell the computer what to do, reply, shorten, change tone, instead of only transcribing speech. How Lazur uses it."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Product"
-cover: "waveform"
-targetKeyword: "voice commands that finish the work"
+title: 'Intent Mode: voice commands that finish the work'
+description: >-
+  Intent Mode, what most dictation apps call command mode, lets you tell the
+  computer what to do, reply, shorten, change tone, instead of only transcribing
+  speech. How Lazur uses it.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Product
+cover: waveform
+targetKeyword: voice commands that finish the work
 tldr:
-  - "Intent Mode is voice as instructions: ‘reply to this, keep it brief and professional,’ not ‘type the words I am saying.’"
-  - "Wispr and Aqua are adding command-like features. Lazur treats Intent Mode as the product, sitting on local STT plus Smart Rewrite."
-  - "If you still translate thoughts into prompts after you dictate, you are using transcription, not a voice interface."
+  - >-
+    Intent Mode is voice as instructions: ‘reply to this, keep it brief and
+    professional,’ not ‘type the words I am saying.’
+  - >-
+    Wispr and Aqua are adding command-like features. Lazur treats Intent Mode as
+    the product, sitting on local STT plus Smart Rewrite.
+  - >-
+    If you still translate thoughts into prompts after you dictate, you are
+    using transcription, not a voice interface.
 faq:
-  - question: "What is Intent Mode in dictation?"
-    answer: "Intent Mode lets you speak an instruction about the current context, reply, rewrite, change tone, shorten, instead of dictating the final sentence word for word. Lazur uses it as a voice layer on top of system-wide paste on macOS."
-  - question: "Does Wispr Flow have a command mode?"
-    answer: "Wispr Flow has been moving from reliable voice input toward voice-to-action, including command and context features. Treat vendor docs as the source of truth for what shipped this month. Lazur’s Intent Mode is built around intent plus the app you are in."
-  - question: "How is Intent Mode different from dictation?"
-    answer: "Dictation captures speech as text. Intent Mode treats speech as a task. You look at a Slack thread and say what should happen. The output is the reply, not a transcript of your instruction."
+  - question: What is Intent Mode in dictation?
+    answer: >-
+      Intent Mode lets you speak an instruction about the current context,
+      reply, rewrite, change tone, shorten, instead of dictating the final
+      sentence word for word. Lazur uses it as a voice layer on top of
+      system-wide paste on macOS.
+  - question: Does Wispr Flow have a command mode?
+    answer: >-
+      Wispr Flow has been moving from reliable voice input toward
+      voice-to-action, including command and context features. Treat vendor docs
+      as the source of truth for what shipped this month. Lazur’s Intent Mode is
+      built around intent plus the app you are in.
+  - question: How is Intent Mode different from dictation?
+    answer: >-
+      Dictation captures speech as text. Intent Mode treats speech as a task.
+      You look at a Slack thread and say what should happen. The output is the
+      reply, not a transcript of your instruction.
 relatedSlugs:
-  - "messy-speech-to-finished-writing"
-  - "what-is-ambient-writing"
+  - messy-speech-to-finished-writing
+  - what-is-ambient-writing
+heroImage:
+  url: >-
+    /content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-61b8ac.jpg
+  width: 1280
+  height: 853
+  alt: 'Isolated, technology and desktop. Intent Mode'
+  caption: 'Intent Mode: voice commands that finish the work'
+  keywords:
+    - voice commands that finish the work
+    - Product
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: artsysolomon
+    url: 'https://pixabay.com/users/artsysolomon-6715447/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/isolated-technology-desktop-3246272/'
 ---
 
 **Intent Mode** is the difference between a dictation app and a [voice interface for work](/blog/what-is-ambient-writing). Dictation types what you said. Intent Mode does what you meant: reply, reformat, change tone, keep it brief, using the message, email, or selection in front of you.

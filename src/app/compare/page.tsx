@@ -31,7 +31,7 @@ export default function CompareHub() {
           {pages
             .filter((p) => p.kind === "lazur-vs")
             .map((p) => (
-              <HubCard key={p.slug} href={`/compare/${p.slug}`} kicker="Comparison" title={p.title} description={p.description} />
+              <HubCard key={p.slug} image={p.images?.[0]} href={`/compare/${p.slug}`} kicker="Comparison" title={p.title} description={p.description} />
             ))}
         </HubSection>
         {pages.some((p) => p.kind === "x-vs-y") ? (
@@ -39,14 +39,14 @@ export default function CompareHub() {
             {pages
               .filter((p) => p.kind === "x-vs-y")
               .map((p) => (
-                <HubCard key={p.slug} href={`/compare/${p.slug}`} kicker="Head to head" title={p.title} description={p.description} />
+                <HubCard key={p.slug} image={p.images?.[0]} href={`/compare/${p.slug}`} kicker="Head to head" title={p.title} description={p.description} />
               ))}
           </HubSection>
         ) : null}
         {alts.length > 0 ? (
           <HubSection title="Alternatives" more={{ href: "/alternatives", label: "All alternatives" }}>
             {alts.map((p) => (
-              <HubCard key={p.slug} href={`/alternatives/${p.slug}`} kicker="Alternatives" title={p.title} description={p.description} />
+              <HubCard key={p.slug} image={p.images?.[0]} href={`/alternatives/${p.slug}`} kicker="Alternatives" title={p.title} description={p.description} />
             ))}
           </HubSection>
         ) : null}

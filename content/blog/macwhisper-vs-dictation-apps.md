@@ -1,25 +1,61 @@
 ---
-title: "MacWhisper vs dictation apps: transcription is not live voice typing"
-description: "MacWhisper vs Wispr Flow, Aqua, and Lazur: MacWhisper is for recordings and files. Dictation apps paste live at your cursor. Do not confuse the two jobs."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "MacWhisper vs dictation"
+title: 'MacWhisper vs dictation apps: transcription is not live voice typing'
+description: >-
+  MacWhisper vs Wispr Flow, Aqua, and Lazur: MacWhisper is for recordings and
+  files. Dictation apps paste live at your cursor. Do not confuse the two jobs.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: MacWhisper vs dictation
 tldr:
-  - "MacWhisper is one of the best Mac apps for transcribing recordings, meetings, and files. It is not a Wispr Flow replacement for live cursor dictation."
-  - "Wispr, Aqua, Lazur, and Willow paste into Slack and email as you speak. MacWhisper turns a file into a transcript."
-  - "Many people need both: MacWhisper for the meeting, a dictation app for the follow-up email."
+  - >-
+    MacWhisper is one of the best Mac apps for transcribing recordings,
+    meetings, and files. It is not a Wispr Flow replacement for live cursor
+    dictation.
+  - >-
+    Wispr, Aqua, Lazur, and Willow paste into Slack and email as you speak.
+    MacWhisper turns a file into a transcript.
+  - >-
+    Many people need both: MacWhisper for the meeting, a dictation app for the
+    follow-up email.
 faq:
-  - question: "Is MacWhisper a Wispr Flow alternative?"
-    answer: "Only in a loose ‘voice to text on Mac’ sense. MacWhisper excels at transcribing audio files and meetings. Wispr Flow, Aqua Voice, and Lazur are live dictation apps that paste at your cursor in other applications."
-  - question: "Should I use MacWhisper or Lazur?"
-    answer: "Use MacWhisper when the input is a recording. Use Lazur when you are in Gmail, Slack, or Cursor and you want to speak the next message. They solve different jobs and often sit on the same Mac."
-  - question: "What is the best tool for meeting notes on Mac?"
-    answer: "For a recorded meeting or an audio file, MacWhisper is a strong specialist. For writing the recap email or Slack update afterward, a live dictation or voice writing app such as Lazur is the better fit."
+  - question: Is MacWhisper a Wispr Flow alternative?
+    answer: >-
+      Only in a loose ‘voice to text on Mac’ sense. MacWhisper excels at
+      transcribing audio files and meetings. Wispr Flow, Aqua Voice, and Lazur
+      are live dictation apps that paste at your cursor in other applications.
+  - question: Should I use MacWhisper or Lazur?
+    answer: >-
+      Use MacWhisper when the input is a recording. Use Lazur when you are in
+      Gmail, Slack, or Cursor and you want to speak the next message. They solve
+      different jobs and often sit on the same Mac.
+  - question: What is the best tool for meeting notes on Mac?
+    answer: >-
+      For a recorded meeting or an audio file, MacWhisper is a strong
+      specialist. For writing the recap email or Slack update afterward, a live
+      dictation or voice writing app such as Lazur is the better fit.
 relatedSlugs:
-  - "wispr-flow-alternatives"
-  - "how-to-write-emails-by-voice"
+  - wispr-flow-alternatives
+  - how-to-write-emails-by-voice
+heroImage:
+  url: >-
+    /content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-213a71.jpg
+  width: 1280
+  height: 853
+  alt: 'Radio, studio and sound. MacWhisper vs dictation apps'
+  caption: 'MacWhisper vs dictation apps: transcription is not live voice typing'
+  keywords:
+    - MacWhisper vs dictation
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Joe007
+    url: 'https://pixabay.com/users/Joe007-3125350/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/radio-studio-sound-broadcasting-1603228/'
 ---
 
 Canonical head-to-head: [Lazur vs MacWhisper](/compare/lazur-vs-macwhisper).

@@ -1,26 +1,62 @@
 ---
-title: "AI Assistant for Slack, Gmail, Cursor, and Notion"
-description: "Use one AI assistant across Slack, Gmail, Cursor, and Notion to draft replies, rewrite text, create prompts, and keep work moving."
-publishedAt: "2026-10-18"
-author: "Lazur Team"
-category: "Guide"
-cover: "apps"
-targetKeyword: "AI assistant for Slack Gmail Cursor Notion"
+title: 'AI Assistant for Slack, Gmail, Cursor, and Notion'
+description: >-
+  Use one AI assistant across Slack, Gmail, Cursor, and Notion to draft replies,
+  rewrite text, create prompts, and keep work moving.
+publishedAt: '2026-10-18'
+author: Lazur Team
+category: Guide
+cover: apps
+targetKeyword: AI assistant for Slack Gmail Cursor Notion
 tldr:
-  - "A cross-app AI assistant should understand the current workflow instead of forcing every task into a separate chat."
-  - "Slack and Gmail need context-aware replies; Cursor needs code-aware prompts; Notion needs structure and synthesis."
-  - "Lazur uses one Mac hotkey and voice interface across these apps."
+  - >-
+    A cross-app AI assistant should understand the current workflow instead of
+    forcing every task into a separate chat.
+  - >-
+    Slack and Gmail need context-aware replies; Cursor needs code-aware prompts;
+    Notion needs structure and synthesis.
+  - Lazur uses one Mac hotkey and voice interface across these apps.
 faq:
-  - question: "What is the best AI assistant for Slack and Gmail?"
-    answer: "The best choice depends on whether you want a bot inside one app or an assistant that follows you across apps. Lazur is designed for system-wide voice actions and context-aware writing in Slack, Gmail, Cursor, Notion, and other Mac apps."
-  - question: "Can one AI assistant work in Cursor and Notion?"
-    answer: "Yes, a system-wide assistant can work across both when it can use the active app or selected context. Lazur returns finished writing or prompts at the cursor instead of requiring a separate plugin for every app."
-  - question: "Can I use Lazur without copying a Slack thread or email?"
-    answer: "For context-aware requests, Lazur can use the active window and selected text so you can say what you want without pasting the entire thread into another chat."
+  - question: What is the best AI assistant for Slack and Gmail?
+    answer: >-
+      The best choice depends on whether you want a bot inside one app or an
+      assistant that follows you across apps. Lazur is designed for system-wide
+      voice actions and context-aware writing in Slack, Gmail, Cursor, Notion,
+      and other Mac apps.
+  - question: Can one AI assistant work in Cursor and Notion?
+    answer: >-
+      Yes, a system-wide assistant can work across both when it can use the
+      active app or selected context. Lazur returns finished writing or prompts
+      at the cursor instead of requiring a separate plugin for every app.
+  - question: Can I use Lazur without copying a Slack thread or email?
+    answer: >-
+      For context-aware requests, Lazur can use the active window and selected
+      text so you can say what you want without pasting the entire thread into
+      another chat.
 relatedSlugs:
-  - "ai-assistants-that-understand-your-screen"
-  - "ai-assistant-for-email-replies-and-follow-ups"
-  - "ai-assistant-for-developers-and-coding-tasks"
+  - ai-assistants-that-understand-your-screen
+  - ai-assistant-for-email-replies-and-follow-ups
+  - ai-assistant-for-developers-and-coding-tasks
+heroImage:
+  url: >-
+    /content-images/blog/ai-assistant-for-slack-gmail-cursor-notion/ai-assistant-for-slack-gmail-cursor-notion-1-c0482a.jpg
+  width: 1280
+  height: 720
+  alt: >-
+    Code, programming and coding. AI Assistant for Slack, Gmail, Cursor, and
+    Notion
+  caption: 'AI Assistant for Slack, Gmail, Cursor, and Notion'
+  keywords:
+    - AI assistant for Slack Gmail Cursor Notion
+    - Guide
+    - programmer code screen
+    - Mac
+    - Lazur
+  credit:
+    name: MianShahzadRaza
+    url: 'https://pixabay.com/users/MianShahzadRaza-1991967/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/code-programming-coding-web-2434271/'
 ---
 
 An **AI assistant for Slack, Gmail, Cursor, and Notion** should follow your work across apps instead of making you rebuild context in four separate chats. Lazur gives you one system-wide voice interface on Mac for replies, rewrites, prompts, summaries, and next actions.

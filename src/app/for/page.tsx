@@ -24,13 +24,13 @@ export default function RolesHub() {
       <div className="seo-wrap">
         <HubSection title="By role">
           {roles.map((r) => (
-            <HubCard key={r.slug} href={`/for/${r.slug}`} kicker={`For ${r.roleName.toLowerCase()}`} title={r.title} description={r.description} />
+            <HubCard key={r.slug} image={r.images?.[0]} href={`/for/${r.slug}`} kicker={`For ${r.roleName.toLowerCase()}`} title={r.title} description={r.description} />
           ))}
         </HubSection>
         {roleApps.length > 0 ? (
           <HubSection title="By role and app">
             {roleApps.map((r) => (
-              <HubCard key={`${r.role}/${r.app}`} href={`/for/${r.role}/${r.app}`} kicker={`${r.appName} · ${r.roleName}`} title={r.title} />
+              <HubCard key={`${r.role}/${r.app}`} image={r.images?.[0]} href={`/for/${r.role}/${r.app}`} kicker={`${r.appName} · ${r.roleName}`} title={r.title} />
             ))}
           </HubSection>
         ) : null}

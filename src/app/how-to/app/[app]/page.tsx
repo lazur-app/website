@@ -41,7 +41,7 @@ export default async function AppHowToHub({ params }: Props) {
       <div className="seo-wrap">
         <HubSection title={`${pages.length} guides`} more={{ href: `/apps/${app.slug}`, label: `Lazur in ${app.name}` }}>
           {pages.map((p) => (
-            <HubCard key={p.slug} href={`/how-to/${p.slug}`} kicker={`${p.difficulty} · ${p.timeMinutes} min`} title={p.title} description={p.description} />
+            <HubCard key={p.slug} image={p.images?.[0]} href={`/how-to/${p.slug}`} kicker={`${p.difficulty} · ${p.timeMinutes} min`} title={p.title} description={p.description} />
           ))}
         </HubSection>
       </div>

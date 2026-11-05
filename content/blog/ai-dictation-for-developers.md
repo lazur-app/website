@@ -1,25 +1,59 @@
 ---
-title: "AI dictation for developers: PRs, Slack, and Cursor prompts"
-description: "AI dictation for developers works for PR descriptions, Slack, comments, and Cursor prompts, not for typing code syntax. How to use voice writing in an engineering workflow."
-publishedAt: "2026-08-12"
-author: "Lazur Team"
-category: "How-to"
-cover: "code"
-targetKeyword: "AI dictation for developers"
+title: 'AI dictation for developers: PRs, Slack, and Cursor prompts'
+description: >-
+  AI dictation for developers works for PR descriptions, Slack, comments, and
+  Cursor prompts, not for typing code syntax. How to use voice writing in an
+  engineering workflow.
+publishedAt: '2026-08-12'
+author: Lazur Team
+category: How-to
+cover: code
+targetKeyword: AI dictation for developers
 tldr:
-  - "Developers should dictate prose (PRs, tickets, prompts, Slack), not source code."
-  - "System-wide paste matters: the hotkey has to work in Cursor, Linear, GitHub, and Terminal-adjacent tools."
-  - "Voice is often the fastest way to dump context into an AI coding agent."
+  - >-
+    Developers should dictate prose (PRs, tickets, prompts, Slack), not source
+    code.
+  - >-
+    System-wide paste matters: the hotkey has to work in Cursor, Linear, GitHub,
+    and Terminal-adjacent tools.
+  - Voice is often the fastest way to dump context into an AI coding agent.
 faq:
-  - question: "Can developers use AI dictation to write code?"
-    answer: "You can dictate comments, commit messages, and prompts. Dictating raw syntax is usually slower than typing. The win is the written work around the code: PRs, RFCs, Slack, and agent prompts."
-  - question: "Does Lazur work in Cursor and VS Code?"
-    answer: "Yes. Lazur is system-wide on macOS, so the same hotkey pastes at the cursor in Cursor, VS Code, Xcode, GitHub in the browser, Linear, and Slack."
-  - question: "Is dictation useful for ChatGPT or Cursor prompts?"
-    answer: "Yes. Talking through the bug, the files involved, and the constraint often produces a better prompt than a short typed sentence. You review once, then run the agent."
+  - question: Can developers use AI dictation to write code?
+    answer: >-
+      You can dictate comments, commit messages, and prompts. Dictating raw
+      syntax is usually slower than typing. The win is the written work around
+      the code: PRs, RFCs, Slack, and agent prompts.
+  - question: Does Lazur work in Cursor and VS Code?
+    answer: >-
+      Yes. Lazur is system-wide on macOS, so the same hotkey pastes at the
+      cursor in Cursor, VS Code, Xcode, GitHub in the browser, Linear, and
+      Slack.
+  - question: Is dictation useful for ChatGPT or Cursor prompts?
+    answer: >-
+      Yes. Talking through the bug, the files involved, and the constraint often
+      produces a better prompt than a short typed sentence. You review once,
+      then run the agent.
 relatedSlugs:
-  - "what-is-voice-writing"
-  - "how-to-dictate-on-mac"
+  - what-is-voice-writing
+  - how-to-dictate-on-mac
+heroImage:
+  url: >-
+    /content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-b91d56.jpg
+  width: 1280
+  height: 853
+  alt: 'Podcast, microphone and record. AI dictation for developers'
+  caption: 'AI dictation for developers: PRs, Slack, and Cursor prompts'
+  keywords:
+    - AI dictation for developers
+    - How-to
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: parveender
+    url: 'https://pixabay.com/users/parveender-5611058/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/podcast-microphone-record-audio-7693636/'
 ---
 
 App pages: [Voice writing in Cursor](/apps/cursor) and [voice prompting for ChatGPT](/apps/chatgpt).

@@ -1,25 +1,62 @@
 ---
-title: "On-device speech to text on Mac: what private dictation actually means"
-description: "On-device speech to text on Mac keeps audio on your computer. Learn how local STT differs from cloud dictation, and what Lazur sends when Smart Rewrite is on."
-publishedAt: "2026-07-29"
-author: "Lazur Team"
-category: "Guide"
-cover: "privacy"
-targetKeyword: "on-device speech to text Mac"
+title: 'On-device speech to text on Mac: what private dictation actually means'
+description: >-
+  On-device speech to text on Mac keeps audio on your computer. Learn how local
+  STT differs from cloud dictation, and what Lazur sends when Smart Rewrite is
+  on.
+publishedAt: '2026-07-29'
+author: Lazur Team
+category: Guide
+cover: privacy
+targetKeyword: on-device speech to text Mac
 tldr:
-  - "On-device speech to text transcribes audio locally. Your voice does not have to leave the Mac for the words to appear."
-  - "Rewrite and polish may still use the cloud as text, not audio, read the vendor’s policy."
-  - "Lazur runs NVIDIA Parakeet STT on-device; Smart Rewrite sends text only when that feature is enabled."
+  - >-
+    On-device speech to text transcribes audio locally. Your voice does not have
+    to leave the Mac for the words to appear.
+  - >-
+    Rewrite and polish may still use the cloud as text, not audio, read the
+    vendor’s policy.
+  - >-
+    Lazur runs NVIDIA Parakeet STT on-device; Smart Rewrite sends text only when
+    that feature is enabled.
 faq:
-  - question: "What is on-device speech to text on a Mac?"
-    answer: "On-device speech to text (STT) converts your voice to words using a model that runs on the Mac itself, for example Whisper. Audio is processed locally, so the recording does not need to be uploaded for transcription."
-  - question: "Is Lazur dictation private?"
-    answer: "Speech-to-text runs locally on your Mac with NVIDIA Parakeet. Cloud AI is used for Smart Rewrite polish when enabled, and only text is sent, not the audio file. See Lazur’s privacy policy for the current details."
-  - question: "Is Super Whisper more private than cloud dictation apps?"
-    answer: "Super Whisper is built around local transcription, which is a strong privacy posture for STT. Compare rewrite, system-wide paste, and cloud features before you assume one app never leaves the device. Read Lazur vs Super Whisper for a side-by-side."
+  - question: What is on-device speech to text on a Mac?
+    answer: >-
+      On-device speech to text (STT) converts your voice to words using a model
+      that runs on the Mac itself, for example Whisper. Audio is processed
+      locally, so the recording does not need to be uploaded for transcription.
+  - question: Is Lazur dictation private?
+    answer: >-
+      Speech-to-text runs locally on your Mac with NVIDIA Parakeet. Cloud AI is
+      used for Smart Rewrite polish when enabled, and only text is sent, not the
+      audio file. See Lazur’s privacy policy for the current details.
+  - question: Is Super Whisper more private than cloud dictation apps?
+    answer: >-
+      Super Whisper is built around local transcription, which is a strong
+      privacy posture for STT. Compare rewrite, system-wide paste, and cloud
+      features before you assume one app never leaves the device. Read Lazur vs
+      Super Whisper for a side-by-side.
 relatedSlugs:
-  - "best-ai-dictation-apps-2026"
-  - "what-is-voice-writing"
+  - best-ai-dictation-apps-2026
+  - what-is-voice-writing
+heroImage:
+  url: >-
+    /content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-f501ea.jpg
+  width: 1280
+  height: 761
+  alt: 'Laptop, mockup and graphics tablet. On-device speech to text on Mac'
+  caption: 'On-device speech to text on Mac: what private dictation actually means'
+  keywords:
+    - on-device speech to text Mac
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: lukasbieri
+    url: 'https://pixabay.com/users/lukasbieri-4664461/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/'
 ---
 
 Speech to text on a Mac can mean a website converter, or live dictation at the cursor. **On-device speech to text** means transcription happens on your computer. The audio from the microphone is processed locally (often with a Whisper model). That is different from cloud dictation, where the recording is uploaded so a remote model can return text.

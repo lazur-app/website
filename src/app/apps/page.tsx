@@ -32,7 +32,7 @@ export default function AppsHub() {
             {pages
               .filter((p) => p.appCategory === cat)
               .map((p) => (
-                <HubCard key={p.slug} href={`/apps/${p.slug}`} kicker={p.appName} title={p.title} description={p.description} />
+                <HubCard key={p.slug} image={p.images?.[0]} href={`/apps/${p.slug}`} kicker={p.appName} title={p.title} description={p.description} />
               ))}
           </HubSection>
         ))}

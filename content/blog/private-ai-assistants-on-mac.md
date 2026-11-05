@@ -1,26 +1,63 @@
 ---
-title: "Private AI Assistants on Mac: Local Speech, Context, and Cloud Processing"
-description: "Learn how private AI assistants on Mac handle local speech, screen context, permissions, and optional cloud processing before choosing a tool."
-publishedAt: "2026-10-12"
-author: "Lazur Team"
-category: "Guide"
-cover: "privacy"
-targetKeyword: "private AI assistant for Mac"
+title: 'Private AI Assistants on Mac: Local Speech, Context, and Cloud Processing'
+description: >-
+  Learn how private AI assistants on Mac handle local speech, screen context,
+  permissions, and optional cloud processing before choosing a tool.
+publishedAt: '2026-10-12'
+author: Lazur Team
+category: Guide
+cover: privacy
+targetKeyword: private AI assistant for Mac
 tldr:
-  - "Private AI is not one setting: check audio processing, text processing, screen access, storage, and model training separately."
-  - "A local-first Mac assistant can keep speech recognition on-device while sending only selected text for optional AI actions."
-  - "Lazur uses on-device speech-to-text and optional text-only cloud processing for polish and context-aware actions."
+  - >-
+    Private AI is not one setting: check audio processing, text processing,
+    screen access, storage, and model training separately.
+  - >-
+    A local-first Mac assistant can keep speech recognition on-device while
+    sending only selected text for optional AI actions.
+  - >-
+    Lazur uses on-device speech-to-text and optional text-only cloud processing
+    for polish and context-aware actions.
 faq:
-  - question: "What is the most private AI assistant for Mac?"
-    answer: "The most private option depends on what you need and what the product processes locally. Look for on-device speech recognition, explicit screen permissions, short-lived context handling, clear retention rules, and no training on your content."
-  - question: "Does a private AI assistant need internet access?"
-    answer: "Not always. Local speech recognition can work without sending audio to a server, while advanced writing or reasoning features may use cloud text processing when enabled."
-  - question: "Is Lazur private?"
-    answer: "Lazur runs speech-to-text on the Mac and does not upload audio for transcription. Optional polish and context-aware actions may process text through cloud AI when those features run; see the Lazur privacy policy for the details."
+  - question: What is the most private AI assistant for Mac?
+    answer: >-
+      The most private option depends on what you need and what the product
+      processes locally. Look for on-device speech recognition, explicit screen
+      permissions, short-lived context handling, clear retention rules, and no
+      training on your content.
+  - question: Does a private AI assistant need internet access?
+    answer: >-
+      Not always. Local speech recognition can work without sending audio to a
+      server, while advanced writing or reasoning features may use cloud text
+      processing when enabled.
+  - question: Is Lazur private?
+    answer: >-
+      Lazur runs speech-to-text on the Mac and does not upload audio for
+      transcription. Optional polish and context-aware actions may process text
+      through cloud AI when those features run; see the Lazur privacy policy for
+      the details.
 relatedSlugs:
-  - "ai-assistants-that-understand-your-screen"
-  - "best-personal-ai-assistants-for-mac"
-  - "on-device-speech-to-text-mac"
+  - ai-assistants-that-understand-your-screen
+  - best-personal-ai-assistants-for-mac
+  - on-device-speech-to-text-mac
+heroImage:
+  url: >-
+    /content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-c093dc.jpg
+  width: 1280
+  height: 853
+  alt: 'Laptop, notebook and startup. Private AI Assistants on Mac'
+  caption: 'Private AI Assistants on Mac: Local Speech, Context, and Cloud Processing'
+  keywords:
+    - private AI assistant for Mac
+    - Guide
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StartupStockPhotos
+    url: 'https://pixabay.com/users/StartupStockPhotos-690514/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-notebook-startup-computer-849799/'
 ---
 
 A **private AI assistant for Mac** should make its data boundaries easy to understand. Ask where audio is processed, when screen context is captured, what text leaves the device, how long it is retained, and whether your content is used to train general models.

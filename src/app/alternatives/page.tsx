@@ -22,7 +22,7 @@ export default function AlternativesHub() {
       <div className="seo-wrap">
         <HubSection title="All alternatives pages" more={{ href: "/compare", label: "Head-to-head comparisons" }}>
           {pages.map((p) => (
-            <HubCard key={p.slug} href={`/alternatives/${p.slug}`} kicker="Alternatives" title={p.title} description={p.description} />
+            <HubCard key={p.slug} image={p.images?.[0]} href={`/alternatives/${p.slug}`} kicker="Alternatives" title={p.title} description={p.description} />
           ))}
         </HubSection>
       </div>

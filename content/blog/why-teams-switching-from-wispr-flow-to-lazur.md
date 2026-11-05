@@ -1,25 +1,59 @@
 ---
-title: "Why teams are switching from Wispr Flow to Lazur"
-description: "Teams switch from Wispr Flow to Lazur for intent-aware rewrite, system-wide dictation, and voice commands that turn speech into finished writing."
-publishedAt: "2026-07-01"
-author: "Lazur Team"
-category: "Product"
-cover: "waveform"
-targetKeyword: "switch from Wispr Flow to Lazur"
+title: Why teams are switching from Wispr Flow to Lazur
+description: >-
+  Teams switch from Wispr Flow to Lazur for intent-aware rewrite, system-wide
+  dictation, and voice commands that turn speech into finished writing.
+publishedAt: '2026-07-01'
+author: Lazur Team
+category: Product
+cover: waveform
+targetKeyword: switch from Wispr Flow to Lazur
 tldr:
-  - "Teams leave Wispr Flow when transcription is fast but editing still eats the time they saved."
-  - "Lazur is built for finished writing: Smart Rewrite, app context, and Intent Mode on macOS."
-  - "Compare edit time on a real email and Slack thread, not words per minute."
+  - >-
+    Teams leave Wispr Flow when transcription is fast but editing still eats the
+    time they saved.
+  - >-
+    Lazur is built for finished writing: Smart Rewrite, app context, and Intent
+    Mode on macOS.
+  - 'Compare edit time on a real email and Slack thread, not words per minute.'
 faq:
-  - question: "Why do teams switch from Wispr Flow to Lazur?"
-    answer: "They already believe in dictation. They switch because the transcript still needs heavy editing. Lazur’s Smart Rewrite turns speech into send-ready writing in Slack, email, docs, and IDEs."
-  - question: "Is Lazur a Wispr Flow alternative?"
-    answer: "Yes. Both are macOS dictation apps with a hotkey workflow. Wispr Flow optimizes for fast speech-to-text. Lazur optimizes for polished, app-aware output. See the full comparison for feature-by-feature detail."
-  - question: "Do I have to relearn my workflow?"
-    answer: "No. Press a hotkey, speak, and text lands at your cursor, the same pattern, with less cleanup afterward."
+  - question: Why do teams switch from Wispr Flow to Lazur?
+    answer: >-
+      They already believe in dictation. They switch because the transcript
+      still needs heavy editing. Lazur’s Smart Rewrite turns speech into
+      send-ready writing in Slack, email, docs, and IDEs.
+  - question: Is Lazur a Wispr Flow alternative?
+    answer: >-
+      Yes. Both are macOS dictation apps with a hotkey workflow. Wispr Flow
+      optimizes for fast speech-to-text. Lazur optimizes for polished, app-aware
+      output. See the full comparison for feature-by-feature detail.
+  - question: Do I have to relearn my workflow?
+    answer: >-
+      No. Press a hotkey, speak, and text lands at your cursor, the same
+      pattern, with less cleanup afterward.
 relatedSlugs:
-  - "wispr-flow-vs-aqua-voice-vs-lazur"
-  - "command-mode-voice-writing"
+  - wispr-flow-vs-aqua-voice-vs-lazur
+  - command-mode-voice-writing
+heroImage:
+  url: >-
+    /content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-0b0e2e.jpg
+  width: 1280
+  height: 854
+  alt: >-
+    Laptop, conference table and mouse. Why teams are switching from Wispr Flow
+    to Lazur
+  caption: Why teams are switching from Wispr Flow to Lazur
+  keywords:
+    - switch from Wispr Flow to Lazur
+    - Product
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: jhenning
+    url: 'https://pixabay.com/users/jhenning-8658480/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
 ---
 
 Teams switch from Wispr Flow to Lazur when dictation is already part of the day, and editing the transcript is still the bottleneck. Wispr Flow proved that speaking into Slack, email, and docs can feel natural. Lazur is built for the next job: **finished writing**, not a faster tape recorder.

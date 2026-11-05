@@ -1,25 +1,61 @@
 ---
-title: "Aqua Voice vs Lazur: which Wispr Flow alternative to pick"
-description: "Aqua Voice vs Lazur in 2026: Aqua wins on speed, live text, and devices. Lazur wins on intent, on-device STT, and send-ready writing. How to choose."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Comparison"
-cover: "compare"
-targetKeyword: "Aqua Voice vs Lazur"
+title: 'Aqua Voice vs Lazur: which Wispr Flow alternative to pick'
+description: >-
+  Aqua Voice vs Lazur in 2026: Aqua wins on speed, live text, and devices. Lazur
+  wins on intent, on-device STT, and send-ready writing. How to choose.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Comparison
+cover: compare
+targetKeyword: Aqua Voice vs Lazur
 tldr:
-  - "Aqua Voice is the closest ‘better Wispr’ product: fast, live text, strong technical vocabulary, Mac + Windows + iPhone."
-  - "Lazur is not competing on transcription speed. It turns messy speech into finished work using app context and Intent Mode, with NVIDIA Parakeet STT on the Mac."
-  - "Pick Aqua for throughput across devices. Pick Lazur if leftover editing and intent are the actual pain."
+  - >-
+    Aqua Voice is the closest ‘better Wispr’ product: fast, live text, strong
+    technical vocabulary, Mac + Windows + iPhone.
+  - >-
+    Lazur is not competing on transcription speed. It turns messy speech into
+    finished work using app context and Intent Mode, with NVIDIA Parakeet STT on
+    the Mac.
+  - >-
+    Pick Aqua for throughput across devices. Pick Lazur if leftover editing and
+    intent are the actual pain.
 faq:
-  - question: "Is Lazur an Aqua Voice alternative?"
-    answer: "Yes. Both are Wispr Flow alternatives for system-wide dictation. Aqua Voice optimizes for speed, live text, and polished transcription. Lazur optimizes for intent-aware rewrite and actions, reply, reformat, send-ready text, with on-device speech-to-text."
-  - question: "Which is better, Aqua Voice or Lazur?"
-    answer: "Aqua Voice is better if you want the fastest live dictation and you already work on Mac, Windows, and iPhone. Lazur is better if you want the paste to read like finished writing in Slack, Gmail, and Cursor, and you want audio transcribed locally on the Mac."
-  - question: "Does Aqua Voice work on Windows?"
-    answer: "Yes. Aqua Voice supports Mac, Windows, and iPhone. Lazur is macOS today, with Windows on the way and no mobile app yet."
+  - question: Is Lazur an Aqua Voice alternative?
+    answer: >-
+      Yes. Both are Wispr Flow alternatives for system-wide dictation. Aqua
+      Voice optimizes for speed, live text, and polished transcription. Lazur
+      optimizes for intent-aware rewrite and actions, reply, reformat,
+      send-ready text, with on-device speech-to-text.
+  - question: 'Which is better, Aqua Voice or Lazur?'
+    answer: >-
+      Aqua Voice is better if you want the fastest live dictation and you
+      already work on Mac, Windows, and iPhone. Lazur is better if you want the
+      paste to read like finished writing in Slack, Gmail, and Cursor, and you
+      want audio transcribed locally on the Mac.
+  - question: Does Aqua Voice work on Windows?
+    answer: >-
+      Yes. Aqua Voice supports Mac, Windows, and iPhone. Lazur is macOS today,
+      with Windows on the way and no mobile app yet.
 relatedSlugs:
-  - "wispr-flow-vs-aqua-voice-vs-lazur"
-  - "wispr-flow-alternatives"
+  - wispr-flow-vs-aqua-voice-vs-lazur
+  - wispr-flow-alternatives
+heroImage:
+  url: /content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
+  width: 1280
+  height: 719
+  alt: 'Technology, equipment and microphone. Aqua Voice vs Lazur'
+  caption: 'Aqua Voice vs Lazur: which Wispr Flow alternative to pick'
+  keywords:
+    - Aqua Voice vs Lazur
+    - Comparison
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Florian-Media
+    url: 'https://pixabay.com/users/Florian-Media-3471733/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/technology-equipment-microphone-3183126/'
 ---
 
 Canonical head-to-head: [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).

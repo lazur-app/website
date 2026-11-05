@@ -1,36 +1,72 @@
 ---
-title: "Learn any Mac app without watching a tutorial"
-description: "Stuck in a new app? Instead of searching help articles, ask an AI buddy. Lazur circles the button you need and walks you through each step on your own screen."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "How-to"
-cover: "apps"
-targetKeyword: "learn any Mac app without a tutorial"
+title: Learn any Mac app without watching a tutorial
+description: >-
+  Stuck in a new app? Instead of searching help articles, ask an AI buddy. Lazur
+  circles the button you need and walks you through each step on your own
+  screen.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: How-to
+cover: apps
+targetKeyword: learn any Mac app without a tutorial
 tldr:
-  - "Tutorials and help articles describe someone else's screen; you then have to map it onto yours."
-  - "Lazur looks at your actual screen and circles the exact thing to click, then waits and shows the next step."
-  - "It works in any Mac app, from System Settings to design tools and admin dashboards."
+  - >-
+    Tutorials and help articles describe someone else's screen; you then have to
+    map it onto yours.
+  - >-
+    Lazur looks at your actual screen and circles the exact thing to click, then
+    waits and shows the next step.
+  - >-
+    It works in any Mac app, from System Settings to design tools and admin
+    dashboards.
 faq:
-  - question: "How do I get step-by-step help in a Mac app?"
-    answer: "With Lazur, hold ⌥ ⌘ and ask how to do something, like 'how do I turn on dark mode?' It circles the first thing to click on your screen, waits until you click, then circles the next, until you're done."
-  - question: "Does it work in web apps too?"
-    answer: "Yes. Lazur works on top of whatever is on your screen, including web apps in Chrome or Safari."
-  - question: "What if the screen changes or I click the wrong thing?"
-    answer: "Lazur looks again after each click and adapts, pointing at what to click from where you are now."
+  - question: How do I get step-by-step help in a Mac app?
+    answer: >-
+      With Lazur, hold ⌥ ⌘ and ask how to do something, like 'how do I turn on
+      dark mode?' It circles the first thing to click on your screen, waits
+      until you click, then circles the next, until you're done.
+  - question: Does it work in web apps too?
+    answer: >-
+      Yes. Lazur works on top of whatever is on your screen, including web apps
+      in Chrome or Safari.
+  - question: What if the screen changes or I click the wrong thing?
+    answer: >-
+      Lazur looks again after each click and adapts, pointing at what to click
+      from where you are now.
 howto:
-  name: "How to get guided through any Mac app with Lazur"
+  name: How to get guided through any Mac app with Lazur
   steps:
-    - name: "Open the app you're stuck in"
-      text: "Go to the screen where you want to make the change."
-    - name: "Hold ⌥ ⌘ and ask"
-      text: "Say what you want to do, for example 'how do I export this as a PDF?'"
-    - name: "Click what Lazur circles"
-      text: "Lazur draws a circle around the first thing to click and waits for you."
-    - name: "Follow the next circle"
-      text: "After each click it looks again and circles the next step, until it tells you you're done."
+    - name: Open the app you're stuck in
+      text: Go to the screen where you want to make the change.
+    - name: Hold ⌥ ⌘ and ask
+      text: 'Say what you want to do, for example ''how do I export this as a PDF?'''
+    - name: Click what Lazur circles
+      text: Lazur draws a circle around the first thing to click and waits for you.
+    - name: Follow the next circle
+      text: >-
+        After each click it looks again and circles the next step, until it
+        tells you you're done.
 relatedSlugs:
-  - "stop-context-switching-ai-buddy"
-  - "what-is-an-ai-buddy"
+  - stop-context-switching-ai-buddy
+  - what-is-an-ai-buddy
+heroImage:
+  url: >-
+    /content-images/blog/learn-any-mac-app-without-tutorials/learn-any-mac-app-without-a-tutorial-1-57ddda.jpg
+  width: 1280
+  height: 826
+  alt: 'Laptop, computer and apple. Learn any Mac app without watching a tutorial'
+  caption: Learn any Mac app without watching a tutorial
+  keywords:
+    - learn any Mac app without a tutorial
+    - How-to
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StockSnap
+    url: 'https://pixabay.com/users/StockSnap-894430/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-computer-apple-macbook-room-2598310/'
 ---
 
 Learning software usually means a YouTube video recorded on a different version, or a help article with screenshots that don't quite match your screen. You pause, squint, hunt for the button, and lose ten minutes on a two-click task.

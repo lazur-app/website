@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { formatBlogDateLong } from "@/lib/blog/format";
 import type { BlogPost } from "@/lib/blog/types";
@@ -9,6 +10,16 @@ export function BlogPostCard({ post }: { post: BlogPost }) {
       className="group grid gap-3 py-10 sm:grid-cols-[13.5rem_minmax(0,1fr)] sm:gap-10"
     >
       <div className="text-[13px] leading-relaxed text-[var(--foreground-muted)] sm:pt-1">
+        {post.heroImage ? (
+          <Image
+            src={post.heroImage.url}
+            alt={post.heroImage.alt}
+            width={post.heroImage.width}
+            height={post.heroImage.height}
+            sizes="(max-width: 640px) 100vw, 216px"
+            className="mb-4 aspect-[16/10] w-full rounded-[14px] border border-[var(--border)] object-cover"
+          />
+        ) : null}
         <time dateTime={post.publishedAt}>{formatBlogDateLong(post.publishedAt)}</time>
         <p className="mt-2 text-[13px] text-[var(--foreground-muted)]">{post.author}</p>
       </div>

@@ -9,7 +9,6 @@ import { APPS, COMPETITORS, ROLES, appBySlug, roleBySlug } from "../../../src/li
 const SRC = { title: "Example source for a fake run", url: "https://example.com/fake-source", publisher: "Example", accessedAt: "2026-01-01" };
 const today = new Date().toISOString().slice(0, 10);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const common = (/** @type {string} */ _subject, /** @type {string} */ keyword) => ({
   // Long-tail H1 that contains the exact keyword, like the real rule wants.
   title: `${keyword[0].toUpperCase()}${keyword.slice(1)}: a fake pipeline test page`,

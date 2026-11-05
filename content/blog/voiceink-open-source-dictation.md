@@ -1,25 +1,65 @@
 ---
-title: "VoiceInk: open-source local dictation on Mac"
-description: "VoiceInk is an open-source, local voice-to-text app. How it compares to Wispr Flow, Superwhisper, and Lazur, and when owning the STT stack is the right call."
-publishedAt: "2026-08-22"
-author: "Lazur Team"
-category: "Guide"
-cover: "privacy"
-targetKeyword: "VoiceInk dictation"
+title: 'VoiceInk: open-source local dictation on Mac'
+description: >-
+  VoiceInk is an open-source, local voice-to-text app. How it compares to Wispr
+  Flow, Superwhisper, and Lazur, and when owning the STT stack is the right
+  call.
+publishedAt: '2026-08-22'
+author: Lazur Team
+category: Guide
+cover: privacy
+targetKeyword: VoiceInk dictation
 tldr:
-  - "VoiceInk is a Wispr Flow alternative for people who want open-source, local voice-to-text they can own."
-  - "It is closer to Superwhisper than to Lazur: control and privacy first, not intent-aware finished writing."
-  - "Choose VoiceInk if you want to run the stack yourself. Choose Lazur if you want send-ready paste in Slack and email with on-device NVIDIA Parakeet and Smart Rewrite."
+  - >-
+    VoiceInk is a Wispr Flow alternative for people who want open-source, local
+    voice-to-text they can own.
+  - >-
+    It is closer to Superwhisper than to Lazur: control and privacy first, not
+    intent-aware finished writing.
+  - >-
+    Choose VoiceInk if you want to run the stack yourself. Choose Lazur if you
+    want send-ready paste in Slack and email with on-device NVIDIA Parakeet and
+    Smart Rewrite.
 faq:
-  - question: "What is VoiceInk?"
-    answer: "VoiceInk is an open-source dictation app that processes speech locally. It shows up on 2026 Wispr Flow alternative lists next to Aqua Voice, Superwhisper, Willow, and MacWhisper for people who want to own their voice-to-text stack."
-  - question: "Is VoiceInk better than Wispr Flow for privacy?"
-    answer: "If your requirement is local processing and an open codebase, VoiceInk is a stronger privacy-shaped alternative than a cloud-first dictation app. Confirm each project’s current model download, network calls, and rewrite behavior before you treat it as fully air-gapped."
-  - question: "Should I use VoiceInk or Lazur?"
-    answer: "Use VoiceInk if you want open-source local STT and you are comfortable assembling workflow around it. Use Lazur if you want a productized voice writing loop: NVIDIA Parakeet on-device, Smart Rewrite, Intent Mode, and paste at the cursor in any Mac app."
+  - question: What is VoiceInk?
+    answer: >-
+      VoiceInk is an open-source dictation app that processes speech locally. It
+      shows up on 2026 Wispr Flow alternative lists next to Aqua Voice,
+      Superwhisper, Willow, and MacWhisper for people who want to own their
+      voice-to-text stack.
+  - question: Is VoiceInk better than Wispr Flow for privacy?
+    answer: >-
+      If your requirement is local processing and an open codebase, VoiceInk is
+      a stronger privacy-shaped alternative than a cloud-first dictation app.
+      Confirm each project’s current model download, network calls, and rewrite
+      behavior before you treat it as fully air-gapped.
+  - question: Should I use VoiceInk or Lazur?
+    answer: >-
+      Use VoiceInk if you want open-source local STT and you are comfortable
+      assembling workflow around it. Use Lazur if you want a productized voice
+      writing loop: NVIDIA Parakeet on-device, Smart Rewrite, Intent Mode, and
+      paste at the cursor in any Mac app.
 relatedSlugs:
-  - "on-device-speech-to-text-mac"
-  - "wispr-flow-alternatives"
+  - on-device-speech-to-text-mac
+  - wispr-flow-alternatives
+heroImage:
+  url: >-
+    /content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-cbcb7d.jpg
+  width: 1280
+  height: 850
+  alt: 'Laptop, iphone and workspace. VoiceInk'
+  caption: 'VoiceInk: open-source local dictation on Mac'
+  keywords:
+    - VoiceInk dictation
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Firmbee
+    url: 'https://pixabay.com/users/Firmbee-663163/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/laptop-iphone-workspace-hands-614213/'
 ---
 
 **VoiceInk** is the Wispr Flow alternative you pick when the requirement is *own the stack*: open source, local processing, no black-box cloud STT. 2026 alternative roundups put it beside Aqua Voice, Superwhisper, Willow, and MacWhisper. It is not a live “better Wispr” in the Aqua sense, and it is not [voice writing](/blog/what-is-voice-writing) in the Lazur sense.

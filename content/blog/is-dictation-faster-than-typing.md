@@ -1,25 +1,60 @@
 ---
-title: "Is dictation faster than typing?"
-description: "Dictation is faster than typing, people speak around 150 words per minute and type around 40. The catch is editing. Here is when voice writing actually saves time."
-publishedAt: "2026-07-22"
-author: "Lazur Team"
-category: "Guide"
-cover: "waveform"
-targetKeyword: "is dictation faster than typing"
+title: Is dictation faster than typing?
+description: >-
+  Dictation is faster than typing, people speak around 150 words per minute and
+  type around 40. The catch is editing. Here is when voice writing actually
+  saves time.
+publishedAt: '2026-07-22'
+author: Lazur Team
+category: Guide
+cover: waveform
+targetKeyword: is dictation faster than typing
 tldr:
-  - "Speaking is about 3× faster than typical typing. The advantage disappears if you rewrite every sentence by hand."
-  - "Dictation wins on email, Slack, specs, and comments. Typing still wins on code syntax, spreadsheets, and dense editing."
-  - "Measure time-to-send, not words per minute."
+  - >-
+    Speaking is about 3× faster than typical typing. The advantage disappears if
+    you rewrite every sentence by hand.
+  - >-
+    Dictation wins on email, Slack, specs, and comments. Typing still wins on
+    code syntax, spreadsheets, and dense editing.
+  - 'Measure time-to-send, not words per minute.'
 faq:
-  - question: "Is dictation faster than typing?"
-    answer: "Yes for first-draft words: most people speak around 120 to 160 words per minute and type around 35 to 50. Dictation is only faster overall if you do not spend the savings on cleanup. Intent-aware rewrite is what keeps the speed."
-  - question: "How many words per minute can you dictate?"
-    answer: "Conversational speech is typically 120 to 160 words per minute. Professional dictation with light pauses for punctuation is often 100 to 140 usable words per minute after a short review."
-  - question: "When is typing still better?"
-    answer: "Code, formulas, precise refactors, and anything where you are rearranging existing text more than generating it. Use voice for the draft, keyboard for the last 10%."
+  - question: Is dictation faster than typing?
+    answer: >-
+      Yes for first-draft words: most people speak around 120 to 160 words per
+      minute and type around 35 to 50. Dictation is only faster overall if you
+      do not spend the savings on cleanup. Intent-aware rewrite is what keeps
+      the speed.
+  - question: How many words per minute can you dictate?
+    answer: >-
+      Conversational speech is typically 120 to 160 words per minute.
+      Professional dictation with light pauses for punctuation is often 100 to
+      140 usable words per minute after a short review.
+  - question: When is typing still better?
+    answer: >-
+      Code, formulas, precise refactors, and anything where you are rearranging
+      existing text more than generating it. Use voice for the draft, keyboard
+      for the last 10%.
 relatedSlugs:
-  - "what-is-voice-writing"
-  - "how-to-dictate-on-mac"
+  - what-is-voice-writing
+  - how-to-dictate-on-mac
+heroImage:
+  url: >-
+    /content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-87a5c4.jpg
+  width: 1280
+  height: 853
+  alt: 'Student, education and webinar. Is dictation faster than typing?'
+  caption: Is dictation faster than typing?
+  keywords:
+    - is dictation faster than typing
+    - Guide
+    - microphone laptop desk
+    - Mac
+    - Lazur
+  credit:
+    name: Anilsharma26
+    url: 'https://pixabay.com/users/Anilsharma26-13475484/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/student-education-webinar-child-6956173/'
 ---
 
 Yes, **dictation is faster than typing** for getting words out. Most people type about 40 words per minute and speak about 150. The catch: if the transcript reads like speech, you give the time back to editing. That is why [voice writing](/blog/what-is-voice-writing) (dictation plus rewrite) is the metric that matters, not raw STT speed.

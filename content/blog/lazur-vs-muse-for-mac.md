@@ -1,25 +1,60 @@
 ---
-title: "Lazur vs Meta's Muse for Mac: two very different AI assistants"
-description: "Meta's Muse came to the Mac in September 2026. Here's how it compares with Lazur, the AI buddy in your notch, for everyday work, guidance and privacy."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "Comparison"
-cover: "compare"
-targetKeyword: "Lazur vs Muse for Mac"
+title: 'Lazur vs Meta''s Muse for Mac: two very different AI assistants'
+description: >-
+  Meta's Muse came to the Mac in September 2026. Here's how it compares with
+  Lazur, the AI buddy in your notch, for everyday work, guidance and privacy.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: Comparison
+cover: compare
+targetKeyword: Lazur vs Muse for Mac
 tldr:
-  - "Muse for Mac (Meta, September 2026) is a task agent that works across your files and Apple apps like Messages, Calendar, Notes and Mail."
-  - "Lazur is an AI buddy in your notch: you hold a key and ask about what's on screen, and it answers out loud, points at things, guides you step by step and types for you."
-  - "Choose Muse for hands-off tasks across your personal data; choose Lazur for live help inside whatever app you're using."
+  - >-
+    Muse for Mac (Meta, September 2026) is a task agent that works across your
+    files and Apple apps like Messages, Calendar, Notes and Mail.
+  - >-
+    Lazur is an AI buddy in your notch: you hold a key and ask about what's on
+    screen, and it answers out loud, points at things, guides you step by step
+    and types for you.
+  - >-
+    Choose Muse for hands-off tasks across your personal data; choose Lazur for
+    live help inside whatever app you're using.
 faq:
-  - question: "Is Muse for Mac available everywhere?"
-    answer: "At launch Meta released the Muse Mac app first in the US. Check Meta's site for current availability."
-  - question: "What's a good Muse alternative for Mac?"
-    answer: "If you want live help in the app you're using, Lazur is a strong alternative: it sees your screen when you ask, answers by voice, circles buttons, walks you through settings step by step, and handles reminders, timers and calendar events."
-  - question: "Can I use both?"
-    answer: "Yes. They don't conflict: Muse for longer tasks across your data, Lazur for moment-to-moment help and dictation."
+  - question: Is Muse for Mac available everywhere?
+    answer: >-
+      At launch Meta released the Muse Mac app first in the US. Check Meta's
+      site for current availability.
+  - question: What's a good Muse alternative for Mac?
+    answer: >-
+      If you want live help in the app you're using, Lazur is a strong
+      alternative: it sees your screen when you ask, answers by voice, circles
+      buttons, walks you through settings step by step, and handles reminders,
+      timers and calendar events.
+  - question: Can I use both?
+    answer: >-
+      Yes. They don't conflict: Muse for longer tasks across your data, Lazur
+      for moment-to-moment help and dictation.
 relatedSlugs:
-  - "best-ai-buddy-apps-for-mac-2026"
-  - "lazur-vs-heyclicky"
+  - best-ai-buddy-apps-for-mac-2026
+  - lazur-vs-heyclicky
+heroImage:
+  url: >-
+    /content-images/blog/lazur-vs-muse-for-mac/lazur-vs-muse-for-mac-1-8a3774.jpg
+  width: 1280
+  height: 853
+  alt: 'Startup, start-up and notebooks. Lazur vs Meta''s Muse for Mac'
+  caption: 'Lazur vs Meta''s Muse for Mac: two very different AI assistants'
+  keywords:
+    - Lazur vs Muse for Mac
+    - Comparison
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: StartupStockPhotos
+    url: 'https://pixabay.com/users/StartupStockPhotos-690514/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/startup-start-up-notebooks-creative-593310/'
 ---
 
 Meta released **Muse for Mac** in September 2026, after Muse launched on mobile and the web. **Lazur** is an AI buddy that lives in your MacBook's notch. Both are AI assistants for the Mac, but they're built for different moments.

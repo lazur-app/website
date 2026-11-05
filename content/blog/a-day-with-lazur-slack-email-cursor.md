@@ -1,26 +1,60 @@
 ---
-title: "A Day With Lazur: Slack, Email, and Cursor"
-description: "See how a context-aware AI assistant helps move through Slack, email, and Cursor during a normal workday on Mac."
-publishedAt: "2026-10-11"
-author: "Lazur Team"
-category: "Product"
-cover: "apps"
-targetKeyword: "a day with Lazur in Slack, email and Cursor"
+title: 'A Day With Lazur: Slack, Email, and Cursor'
+description: >-
+  See how a context-aware AI assistant helps move through Slack, email, and
+  Cursor during a normal workday on Mac.
+publishedAt: '2026-10-11'
+author: Lazur Team
+category: Product
+cover: apps
+targetKeyword: 'a day with Lazur in Slack, email and Cursor'
 tldr:
-  - "Lazur is most useful when the work changes apps but the need stays the same: understand context and take the next step."
-  - "A typical workflow moves from Slack decisions to email follow-ups to precise Cursor tasks."
-  - "The assistant drafts and structures work; you still review decisions, facts, and code."
+  - >-
+    Lazur is most useful when the work changes apps but the need stays the same:
+    understand context and take the next step.
+  - >-
+    A typical workflow moves from Slack decisions to email follow-ups to precise
+    Cursor tasks.
+  - >-
+    The assistant drafts and structures work; you still review decisions, facts,
+    and code.
 faq:
-  - question: "How can an AI assistant help throughout a workday?"
-    answer: "A context-aware assistant can summarize a Slack thread, draft an email follow-up, and turn a code change into an agent-ready task without requiring a new workflow in each app. Lazur provides this voice-first workflow across Mac apps."
-  - question: "Can Lazur work across Slack, email, and Cursor?"
-    answer: "Yes. Lazur is system-wide on macOS, so the same hotkey and voice interface can be used in Slack, Gmail, Cursor, VS Code, and other apps."
-  - question: "Does Lazur automatically send messages or change code?"
-    answer: "No. Lazur helps create the reply, prompt, or next action. You review the result and decide whether to send it or run it."
+  - question: How can an AI assistant help throughout a workday?
+    answer: >-
+      A context-aware assistant can summarize a Slack thread, draft an email
+      follow-up, and turn a code change into an agent-ready task without
+      requiring a new workflow in each app. Lazur provides this voice-first
+      workflow across Mac apps.
+  - question: 'Can Lazur work across Slack, email, and Cursor?'
+    answer: >-
+      Yes. Lazur is system-wide on macOS, so the same hotkey and voice interface
+      can be used in Slack, Gmail, Cursor, VS Code, and other apps.
+  - question: Does Lazur automatically send messages or change code?
+    answer: >-
+      No. Lazur helps create the reply, prompt, or next action. You review the
+      result and decide whether to send it or run it.
 relatedSlugs:
-  - "ai-assistant-for-slack-gmail-cursor-notion"
-  - "ai-assistant-for-email-replies-and-follow-ups"
-  - "ai-assistant-for-developers-and-coding-tasks"
+  - ai-assistant-for-slack-gmail-cursor-notion
+  - ai-assistant-for-email-replies-and-follow-ups
+  - ai-assistant-for-developers-and-coding-tasks
+heroImage:
+  url: >-
+    /content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-5de015.jpg
+  width: 1280
+  height: 683
+  alt: 'Programming, code and development. A Day With Lazur'
+  caption: 'A Day With Lazur: Slack, Email, and Cursor'
+  keywords:
+    - 'a day with Lazur in Slack, email and Cursor'
+    - Product
+    - programmer code screen
+    - Mac
+    - Lazur
+  credit:
+    name: doki7
+    url: 'https://pixabay.com/users/doki7-646987/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/programming-code-development-web-583923/'
 ---
 
 A useful **AI work assistant workflow** follows the work, not a single app. In one day, the same person may summarize a Slack decision, reply to a customer email, and ask a coding agent to change a file. Lazur gives each request the context of the app already open.

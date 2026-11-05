@@ -1,25 +1,62 @@
 ---
-title: "Lazur vs Clicky (HeyClicky): which AI buddy for Mac?"
-description: "Lazur and Clicky are both AI buddies for Mac that see your screen and talk back. Here's how they differ in guidance, actions, background agents, privacy and price."
-publishedAt: "2026-10-29"
-author: "Lazur Team"
-category: "Comparison"
-cover: "compare"
-targetKeyword: "Lazur vs Clicky"
+title: 'Lazur vs Clicky (HeyClicky): which AI buddy for Mac?'
+description: >-
+  Lazur and Clicky are both AI buddies for Mac that see your screen and talk
+  back. Here's how they differ in guidance, actions, background agents, privacy
+  and price.
+publishedAt: '2026-10-29'
+author: Lazur Team
+category: Comparison
+cover: compare
+targetKeyword: Lazur vs Clicky
 tldr:
-  - "Lazur and Clicky are both voice-first AI buddies for Mac that see your screen and answer out loud."
-  - "Lazur lives in the notch, circles things on screen, walks you through apps step by step, handles everyday Mac actions and types for you. Clicky sits beside your cursor and leans on agents and SaaS connectors."
-  - "If you want help learning apps and getting small tasks done without leaving them, try Lazur; if your work is mostly in Notion, Gmail and Calendar, Clicky's connectors are worth a look."
+  - >-
+    Lazur and Clicky are both voice-first AI buddies for Mac that see your
+    screen and answer out loud.
+  - >-
+    Lazur lives in the notch, circles things on screen, walks you through apps
+    step by step, handles everyday Mac actions and types for you. Clicky sits
+    beside your cursor and leans on agents and SaaS connectors.
+  - >-
+    If you want help learning apps and getting small tasks done without leaving
+    them, try Lazur; if your work is mostly in Notion, Gmail and Calendar,
+    Clicky's connectors are worth a look.
 faq:
-  - question: "What is a good HeyClicky alternative for Mac?"
-    answer: "Lazur is an AI buddy for Mac that lives in the notch. Like Clicky it sees your screen and talks back; it also draws circles on screen, guides you step by step, sets timers and reminders, runs background jobs in Chrome and has full dictation."
-  - question: "Is Clicky free?"
-    answer: "At the time of writing Clicky offers a free tier and a Pro plan; check heyclicky.com for current pricing. Lazur starts with three days of Pro free, then $18/month."
-  - question: "Does Lazur work on Windows?"
-    answer: "Not yet. Lazur is Mac-only today, with Windows on the way. Clicky also launched on Mac first."
+  - question: What is a good HeyClicky alternative for Mac?
+    answer: >-
+      Lazur is an AI buddy for Mac that lives in the notch. Like Clicky it sees
+      your screen and talks back; it also draws circles on screen, guides you
+      step by step, sets timers and reminders, runs background jobs in Chrome
+      and has full dictation.
+  - question: Is Clicky free?
+    answer: >-
+      At the time of writing Clicky offers a free tier and a Pro plan; check
+      heyclicky.com for current pricing. Lazur starts with three days of Pro
+      free, then $18/month.
+  - question: Does Lazur work on Windows?
+    answer: >-
+      Not yet. Lazur is Mac-only today, with Windows on the way. Clicky also
+      launched on Mac first.
 relatedSlugs:
-  - "best-ai-buddy-apps-for-mac-2026"
-  - "what-is-an-ai-buddy"
+  - best-ai-buddy-apps-for-mac-2026
+  - what-is-an-ai-buddy
+heroImage:
+  url: /content-images/blog/lazur-vs-heyclicky/lazur-vs-clicky-1-cb3759.jpg
+  width: 1280
+  height: 853
+  alt: 'Computer, office and desk. Lazur vs Clicky (HeyClicky)'
+  caption: 'Lazur vs Clicky (HeyClicky): which AI buddy for Mac?'
+  keywords:
+    - Lazur vs Clicky
+    - Comparison
+    - macbook desk workspace
+    - Mac
+    - Lazur
+  credit:
+    name: markusspiske
+    url: 'https://pixabay.com/users/markusspiske-670330/'
+    source: Pixabay
+    sourceUrl: 'https://pixabay.com/photos/computer-office-desk-work-1461295/'
 ---
 
 **Lazur** and **Clicky** (from HeyClicky) belong to the same new category: an AI buddy that lives on your Mac, sees your screen and talks with you. They feel similar for the first minute. They differ in where they live, how they help, and what they do for you without a prompt-writing session.

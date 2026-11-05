@@ -5,7 +5,7 @@ publishedAt: "2026-10-29"
 author: "Lazur Team"
 category: "How-to"
 cover: "apps"
-targetKeyword: "how to learn new software faster"
+targetKeyword: "learn any Mac app without a tutorial"
 tldr:
   - "Tutorials and help articles describe someone else's screen; you then have to map it onto yours."
   - "Lazur looks at your actual screen and circles the exact thing to click, then waits and shows the next step."

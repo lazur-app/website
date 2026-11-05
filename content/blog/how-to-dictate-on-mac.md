@@ -49,9 +49,9 @@ How to dictate on a Mac: turn on Apple dictation, allow the microphone, click in
 
 Three labels people search all mean this loop:
 
-- **Mac dictation** — Apple’s built-in speech to text.
-- **Voice to text Mac** — the same job, often from people who used Google Docs or Windows before.
-- **Mac voice recognition** — usually the same feature, or the microphone not being heard.
+- **Mac dictation:** Apple’s built-in speech to text.
+- **Voice to text Mac:** the same job, often from people who used Google Docs or Windows before.
+- **Mac voice recognition:** usually the same feature, or the microphone not being heard.
 
 If you wanted a file transcribed, that is a different product. This page is live voice typing.
 
@@ -92,7 +92,7 @@ Put the cursor in the real field first, then start. Starting in an empty desktop
 1. **Microphone.** Confirm input device and Microphone permission.
 2. **Cursor.** Click into the field you will send from, not Notes you will copy later.
 3. **Hotkey.** Start Apple dictation, or hold your AI app’s shortcut.
-4. **Speak in thoughts.** “Follow up with Priya tomorrow about the invoice” beats “follow… up… with…”
+4. **Speak in thoughts.** “Follow up with Priya tomorrow about the invoice” beats stopping after every word.
 5. **Stop and scan.** Read the paste once. Fix names. Send.
 
 That loop is how you [write emails by voice](/blog/how-to-write-emails-by-voice) without sounding like a transcript.

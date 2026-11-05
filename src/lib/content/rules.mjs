@@ -207,7 +207,7 @@ export const LAZUR_CLAIM_PATTERNS = [
   /\b(partner(ed|ship)?|integrat(ed|ion)) with\b[^.]{0,30}\b(microsoft|apple|google|figma|notion|slack|adobe|openai|anthropic)\b/i,
   /\b(official|certified|endorsed)\b[^.]{0,20}\b(partner|integration|plugin|add-in|extension)\b/i,
   // things Lazur cannot do (it guides, points, explains, drafts, dictates; it does not operate other apps' UIs)
-  /\blazur\b[^.]{0,40}\b(clicks?|edits? your|modif(y|ies) your|builds? the|creates? the (pivot|chart|table|formula|file|frame|component|slide))\b/i,
+  /\blazur\b[^.]{0,40}\b(clicks (the|on|that|this|it|buttons?)|clicks? .{0,20}for you|edits? your|modif(y|ies) your|builds? the|creates? the (pivot|chart|table|formula|file|frame|component|slide))\b/i,
   /\blazur\b[^.]{0,30}\b(plugin|add-in|add-on|extension) for (excel|word|figma|notion|slack|xcode|photoshop|powerpoint)\b/i,
   /\blazur\b[^.]{0,30}\b(works|runs) (on|for) (windows|iphone|ipad|android|linux)\b/i,
 ];
@@ -265,7 +265,8 @@ export function proseOnly(text) {
     .replace(/https?:\/\/\S+/g, " ")
     .replace(/^\s*\|?[\s:|-]*-{3,}[\s:|-]*$/gm, " ") // markdown table separator rows
     .replace(/^(\s*)[-*+]\s+/gm, "$1") // markdown list markers
-    .replace(/^---$/gm, " ");
+    .replace(/^---$/gm, " ")
+    .replace(/\|\s*-{1,2}\s*(?=\|)/g, "| "); // "-" as an empty table cell
 }
 
 /**

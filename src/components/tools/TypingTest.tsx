@@ -20,29 +20,34 @@ export function TypingTest({ onResult, duration = DURATION, passageIndex }: { on
   const [now, setNow] = useState(0);
   const [done, setDone] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const typedRef = useRef("");
 
-  useEffect(() => {
-    if (startedAt === null || done) return;
-    const t = setInterval(() => setNow(Date.now()), 200);
-    return () => clearInterval(t);
-  }, [startedAt, done]);
-
-  const elapsed = startedAt === null ? 0 : Math.min(duration * 1000, (done ? now : now || Date.now()) - startedAt);
   const correct = useMemo(() => [...typed].filter((c, i) => c === passage[i]).length, [typed, passage]);
+  const elapsed = startedAt === null ? 0 : Math.min(duration * 1000, Math.max(0, now - startedAt));
   const accuracy = typed.length ? Math.round((correct / typed.length) * 100) : 100;
   const speed = wpm(correct, elapsed);
   const left = Math.max(0, duration - Math.floor(elapsed / 1000));
 
+  function finish(at: number, text: string) {
+    if (startedAt === null) return;
+    const c = [...text].filter((ch, i) => ch === passage[i]).length;
+    setDone(true);
+    setNow(at);
+    onResult?.({ wpm: wpm(c, Math.min(duration * 1000, at - startedAt)), accuracy: text.length ? Math.round((c / text.length) * 100) : 100 });
+  }
+
   useEffect(() => {
-    if (done || startedAt === null) return;
-    if (left === 0 || typed.length >= passage.length) {
-      setDone(true);
-      setNow(Date.now());
-      onResult?.({ wpm: speed, accuracy });
-    }
-  }, [left, typed.length, passage.length, done, startedAt, speed, accuracy, onResult]);
+    if (startedAt === null || done) return;
+    const t = setInterval(() => {
+      const at = Date.now();
+      if (at - startedAt >= duration * 1000) finish(at, typedRef.current);
+      else setNow(at);
+    }, 200);
+    return () => clearInterval(t);
+  });
 
   function reset(next = false) {
+    typedRef.current = "";
     setTyped("");
     setStartedAt(null);
     setNow(0);
@@ -80,11 +85,15 @@ export function TypingTest({ onResult, duration = DURATION, passageIndex }: { on
           autoCorrect="off"
           spellCheck={false}
           onChange={(e) => {
+            const at = Date.now();
             if (startedAt === null) {
-              setStartedAt(Date.now());
-              setNow(Date.now());
+              setStartedAt(at);
             }
-            setTyped(e.target.value.slice(0, passage.length));
+            setNow(at);
+            const text = e.target.value.slice(0, passage.length);
+            typedRef.current = text;
+            setTyped(text);
+            if (startedAt !== null && text.length >= passage.length) finish(at, text);
           }}
           onPaste={(e) => e.preventDefault()}
         />

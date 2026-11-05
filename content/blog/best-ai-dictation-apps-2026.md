@@ -80,7 +80,7 @@ Willow Voice fits casual dictation and quick capture. Power users dictating hund
 
 Native dictation is convenient and requires no extra install. The limitation is consistency outside Mail, Notes, and Messages. Read [Apple dictation vs AI dictation](/blog/apple-dictation-vs-ai-dictation).
 
-## Also in the 2026 landscape
+## Other dictation apps worth knowing in 2026
 
 - **VoiceInk**, open-source, local processing. Best if you want to own the stack. [VoiceInk guide](/blog/voiceink-open-source-dictation).
 - **MacWhisper**, outstanding for transcribing recordings and meetings, not a live cursor replacement. [MacWhisper vs dictation apps](/blog/macwhisper-vs-dictation-apps).

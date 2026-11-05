@@ -5,7 +5,7 @@ publishedAt: "2026-08-22"
 author: "Lazur Team"
 category: "Guide"
 cover: "mail"
-targetKeyword: "messy speech to text"
+targetKeyword: "messy speech to finished writing"
 tldr:
   - "People do not speak like writers. ‘Um, tell Sarah the second section needs a pass but keep it positive’ is the input. The email is the output."
   - "Transcription products treat messy speech as a defect. Lazur treats it as the spec."

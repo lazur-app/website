@@ -5,7 +5,7 @@ publishedAt: "2026-10-17"
 author: "Lazur Team"
 category: "How-to"
 cover: "waveform"
-targetKeyword: "turn messy thoughts into finished work"
+targetKeyword: "messy thoughts to finished work"
 tldr:
   - "The fastest workflow is not speech-to-text; it is expressing the goal and letting the assistant handle structure."
   - "Give the assistant the outcome, constraints, tone, and context you already have."

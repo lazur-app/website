@@ -5,7 +5,7 @@ publishedAt: "2026-08-22"
 author: "Lazur Team"
 category: "Product"
 cover: "waveform"
-targetKeyword: "Command Mode dictation"
+targetKeyword: "voice commands that finish the work"
 tldr:
   - "Intent Mode is voice as instructions: ‘reply to this, keep it brief and professional,’ not ‘type the words I am saying.’"
   - "Wispr and Aqua are adding command-like features. Lazur treats Intent Mode as the product, sitting on local STT plus Smart Rewrite."
@@ -48,7 +48,7 @@ More examples in [messy speech to finished writing](/blog/messy-speech-to-finish
 
 It is not a chatbot window you context-switch into. Lazur stays [ambient](/blog/what-is-ambient-writing): one hotkey, cursor stays in Slack or Gmail. No “open Lazur and paste the thread.”
 
-It is also not magic against secrets. Do not speak API keys. Treat the mic like Slack.
+It also does not protect secrets. Do not speak API keys. Treat the mic like Slack.
 
 ## Next step
 

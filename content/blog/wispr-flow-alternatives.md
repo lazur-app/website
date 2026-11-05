@@ -42,7 +42,7 @@ Wispr Flow’s promise is still the classic one: *speak and I will type it for y
 | [Apple Dictation](/blog/apple-dictation-vs-ai-dictation) | Casual users | Free and built into Apple devices |
 | Typeless | Heavy everyday dictation | AI turns natural speech into polished writing |
 
-Head-to-heads we already publish: [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow), [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice), [Lazur vs MacWhisper](/compare/lazur-vs-macwhisper), [Google Voice Typing alternative](/compare/google-voice-typing-alternative), [Lazur vs Super Whisper](/compare/lazur-vs-super-whisper), [Lazur vs Willow](/compare/lazur-vs-willow-voice), [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation). Three-way landscape: [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
+Head-to-heads we already publish: [Lazur vs Wispr Flow](/compare/lazur-vs-wispr-flow), [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice), [Lazur vs MacWhisper](/compare/lazur-vs-macwhisper), [Google Voice Typing alternative](/compare/google-voice-typing-alternative), [Lazur vs Super Whisper](/compare/lazur-vs-super-whisper), [Lazur vs Willow](/compare/lazur-vs-willow-voice), [Lazur vs Apple Dictation](/compare/lazur-vs-apple-dictation). Three-way comparison: [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
 
 ## If you are specifically trying to replace Wispr Flow
 
@@ -62,7 +62,7 @@ The differentiator is local processing: run speech models on your machine, work 
 
 Willow is the fourth option if you want the same “talk naturally anywhere” idea with a stripped-down UI.
 
-## The real landscape (not just “Wispr clones”)
+## All the real options (not just “Wispr clones”)
 
 | Product | Thesis |
 | --- | --- |
@@ -71,7 +71,7 @@ Willow is the fourth option if you want the same “talk naturally anywhere” i
 | Lazur | Speak and I will understand the intent and finish the work |
 | Superwhisper | Speak privately and control how AI processes it |
 | VoiceInk | Own your voice-to-text stack |
-| Willow | Make voice typing effortless |
+| Willow | Make voice typing easy |
 | MacWhisper | Transcribe the file, not the live cursor |
 | Typeless | Everyday speech, polished writing |
 

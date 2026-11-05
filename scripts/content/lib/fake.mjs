@@ -37,8 +37,7 @@ const common = (/** @type {string} */ subject, /** @type {string} */ keyword) =>
 });
 
 export const fake = {
-  /** @param {any} _t */
-  research: (_t) => ({ summary: "Fake research notes.", facts: [{ fact: "A fake fact.", sourceUrl: SRC.url, sourceTitle: SRC.title }, { fact: "Another.", sourceUrl: SRC.url, sourceTitle: SRC.title }, { fact: "A third.", sourceUrl: SRC.url, sourceTitle: SRC.title }], sources: [SRC, { ...SRC, url: "https://example.com/two" }], searchQueries: ["fake"], caveats: [] }),
+  research: () => ({ summary: "Fake research notes.", facts: [{ fact: "A fake fact.", sourceUrl: SRC.url, sourceTitle: SRC.title }, { fact: "Another.", sourceUrl: SRC.url, sourceTitle: SRC.title }, { fact: "A third.", sourceUrl: SRC.url, sourceTitle: SRC.title }], sources: [SRC, { ...SRC, url: "https://example.com/two" }], searchQueries: ["fake"], caveats: [] }),
 
   /** @param {string} type @param {string[]} apps @param {number} count */
   topics: (type, apps, count) => ({

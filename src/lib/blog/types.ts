@@ -1,3 +1,5 @@
+import type { SeoImage, SeoSource, SeoStat } from "@/lib/seo-pages/types";
+
 export type BlogBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string; level?: 2 | 3 }
@@ -41,4 +43,8 @@ export type BlogPost = {
   relatedSlugs: string[];
   readingTimeMinutes: number;
   body: string;
+  /** Added by the content pipeline (scripts/content); older hand-written posts may not have them. */
+  heroImage?: SeoImage;
+  stats: SeoStat[];
+  sources: SeoSource[];
 };

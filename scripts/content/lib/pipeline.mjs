@@ -40,7 +40,6 @@ const LAZUR_PRODUCT = {
 
 /** Base fields code owns. @param {any} draft @param {Record<string, unknown>} extra */
 function basePage(draft, extra) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { imageQueries, ...rest } = draft;
   return {
     ...rest,
@@ -261,7 +260,7 @@ function saveBlog(page, root) {
 export async function generateOne(spec, t, opts) {
   const label = t.key;
   try {
-    const notes = await research({ prompt: spec.research(t), schema: researchSchema, label: `${label}:research`, runDir: opts.runDir, fake: () => fake.research(t) });
+    const notes = await research({ prompt: spec.research(t), schema: researchSchema, label: `${label}:research`, runDir: opts.runDir, fake: () => fake.research() });
     const internal = spec.internal(t);
     const existingNote = opts.existing ? `\n\nTHIS IS A REFRESH of an existing page. Keep the same topic and slug, keep what is still true, update facts, prices and versions from the new research, and fix anything that breaks the rules. Existing page:\n${JSON.stringify(opts.existing).slice(0, 12000)}` : "";
     const prompt = spec.write(t, notes, internal) + existingNote;

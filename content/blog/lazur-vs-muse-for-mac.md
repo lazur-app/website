@@ -5,7 +5,7 @@ publishedAt: "2026-10-29"
 author: "Lazur Team"
 category: "Comparison"
 cover: "compare"
-targetKeyword: "Muse for Mac alternative"
+targetKeyword: "Lazur vs Muse for Mac"
 tldr:
   - "Muse for Mac (Meta, September 2026) is a task agent that works across your files and Apple apps like Messages, Calendar, Notes and Mail."
   - "Lazur is an AI buddy in your notch: you hold a key and ask about what's on screen, and it answers out loud, points at things, guides you step by step and types for you."

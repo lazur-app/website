@@ -100,6 +100,9 @@ function parsePost(filename: string, file: string): BlogPost {
       : [],
     readingTimeMinutes: readingTime(content),
     body: content.trim(),
+    heroImage: data.heroImage && typeof data.heroImage === "object" && data.heroImage.url ? data.heroImage : undefined,
+    stats: Array.isArray(data.stats) ? data.stats : [],
+    sources: Array.isArray(data.sources) ? data.sources : [],
   };
 }
 

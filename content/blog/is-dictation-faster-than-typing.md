@@ -12,9 +12,9 @@ tldr:
   - "Measure time-to-send, not words per minute."
 faq:
   - question: "Is dictation faster than typing?"
-    answer: "Yes for first-draft words: most people speak around 120–160 words per minute and type around 35–50. Dictation is only faster overall if you do not spend the savings on cleanup. Intent-aware rewrite is what keeps the speed."
+    answer: "Yes for first-draft words: most people speak around 120 to 160 words per minute and type around 35 to 50. Dictation is only faster overall if you do not spend the savings on cleanup. Intent-aware rewrite is what keeps the speed."
   - question: "How many words per minute can you dictate?"
-    answer: "Conversational speech is typically 120–160 words per minute. Professional dictation with light pauses for punctuation is often 100–140 usable words per minute after a short review."
+    answer: "Conversational speech is typically 120 to 160 words per minute. Professional dictation with light pauses for punctuation is often 100 to 140 usable words per minute after a short review."
   - question: "When is typing still better?"
     answer: "Code, formulas, precise refactors, and anything where you are rearranging existing text more than generating it. Use voice for the draft, keyboard for the last 10%."
 relatedSlugs:
@@ -28,8 +28,8 @@ Yes, **dictation is faster than typing** for getting words out. Most people type
 
 | Mode | Typical speed | What you still pay |
 | --- | --- | --- |
-| Typing | ~35–50 wpm | Thinking while you hunt for keys |
-| Raw dictation | ~120–160 spoken wpm | Cleanup, punctuation, tone |
+| Typing | ~35 to 50 wpm | Thinking while you hunt for keys |
+| Raw dictation | ~120 to 160 spoken wpm | Cleanup, punctuation, tone |
 | Voice writing | Spoken speed, less cleanup | A short review pass |
 
 A 300-word customer email is ~7 minutes of typing and ~2 minutes of speaking. If cleanup takes 6 minutes, dictation lost. If Smart Rewrite leaves a 45-second scan, dictation won.

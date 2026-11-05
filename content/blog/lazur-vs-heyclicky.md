@@ -5,7 +5,7 @@ publishedAt: "2026-10-29"
 author: "Lazur Team"
 category: "Comparison"
 cover: "compare"
-targetKeyword: "HeyClicky alternative"
+targetKeyword: "Lazur vs Clicky"
 tldr:
   - "Lazur and Clicky are both voice-first AI buddies for Mac that see your screen and answer out loud."
   - "Lazur lives in the notch, circles things on screen, walks you through apps step by step, handles everyday Mac actions and types for you. Clicky sits beside your cursor and leans on agents and SaaS connectors."

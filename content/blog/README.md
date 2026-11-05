@@ -18,10 +18,10 @@ Skip files that start with `_`, they are not published.
 ## SEO / GEO rules
 
 - **One primary keyword per URL.** Do not write a second post that targets the same query.
-- **Description:** 150–160 characters, includes the keyword, reads like an answer.
+- **Description:** 150 to 160 characters, includes the keyword, reads like an answer.
 - **First paragraph:** answer the query in two sentences. Answer engines quote this.
-- **TL;DR:** 3–4 bullets a model can lift verbatim.
-- **FAQ:** 3–5 real questions. These become FAQ schema.
+- **TL;DR:** 3 to 4 bullets a model can lift verbatim.
+- **FAQ:** 3 to 5 real questions. These become FAQ schema.
 - **Internal links:** at least two, other posts, `/compare/*`, `/pricing`, or `/download`.
 - **How-to posts:** fill the `howto` steps in frontmatter for HowTo schema.
 - **Comparisons:** use `/compare/lazur-vs-*` for head-to-heads. Use `/blog/` for guides, lists, and how-tos.

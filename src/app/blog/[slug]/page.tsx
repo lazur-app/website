@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostLayout } from "@/components/blog/BlogPostLayout";
 import { BlogMarkdown } from "@/components/blog/BlogMarkdown";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import { OG_IMAGE, SITE_URL } from "@/lib/seo/constants";
 import {
@@ -64,23 +63,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const howtoSchema = buildBlogHowToSchema(post);
 
   return (
-    <>
-      <JsonLd data={buildArticleSchema(post)} />
-      {faqSchema ? <JsonLd data={faqSchema} /> : null}
-      {howtoSchema ? <JsonLd data={howtoSchema} /> : null}
-      <BlogPostLayout
-        slug={post.slug}
-        title={post.title}
-        description={post.description}
-        publishedAt={post.publishedAt}
-        author={post.author}
-        category={post.category}
-        readingTimeMinutes={post.readingTimeMinutes}
-        tldr={post.tldr}
-        faq={post.faq}
-      >
-        <BlogMarkdown source={post.body} />
-      </BlogPostLayout>
-    </>
+    <BlogPostLayout post={post} schema={[buildArticleSchema(post), faqSchema, howtoSchema].filter(Boolean) as Record<string, unknown>[]}>
+      <BlogMarkdown source={post.body} />
+    </BlogPostLayout>
   );
 }

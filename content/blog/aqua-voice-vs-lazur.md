@@ -36,7 +36,7 @@ Canonical head-to-head: [Lazur vs Aqua Voice](/compare/lazur-vs-aqua-voice).
 | Platforms | Mac, Windows, iPhone | macOS (Windows coming) |
 | Best if | You measure words per minute | You measure edits before send |
 
-Full landscape: [Wispr Flow alternatives](/blog/wispr-flow-alternatives) and [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
+All the options: [Wispr Flow alternatives](/blog/wispr-flow-alternatives) and [Wispr vs Aqua vs Lazur](/blog/wispr-flow-vs-aqua-voice-vs-lazur).
 
 ## Where Aqua Voice wins
 

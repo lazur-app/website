@@ -5,7 +5,7 @@ publishedAt: "2026-10-19"
 author: "Lazur Team"
 category: "Guide"
 cover: "apps"
-targetKeyword: "AI assistant that understands your screen"
+targetKeyword: "AI assistants that understand your screen"
 tldr:
   - "Screen-aware AI assistants use visible app context to reduce the need to copy, paste, and explain what you mean."
   - "Useful actions include replying, rewriting, summarizing, formatting, and creating app-specific prompts."

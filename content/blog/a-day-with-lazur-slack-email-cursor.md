@@ -5,7 +5,7 @@ publishedAt: "2026-10-11"
 author: "Lazur Team"
 category: "Product"
 cover: "apps"
-targetKeyword: "AI work assistant workflow"
+targetKeyword: "a day with Lazur in Slack, email and Cursor"
 tldr:
   - "Lazur is most useful when the work changes apps but the need stays the same: understand context and take the next step."
   - "A typical workflow moves from Slack decisions to email follow-ups to precise Cursor tasks."

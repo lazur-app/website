@@ -1,6 +1,6 @@
 ---
 title: "Your title, include the primary keyword"
-description: "150–160 characters. Answer the query. Include the primary keyword once."
+description: "150 to 160 characters. Answer the query. Include the primary keyword once."
 publishedAt: "2026-08-22"
 author: "Lazur Team"
 category: "How-to" # How-to | Guide | Product | Comparison
@@ -12,7 +12,7 @@ tldr:
   - "The action to take next."
 faq:
   - question: "A question people actually type into Google or ChatGPT?"
-    answer: "A complete answer in 2–3 sentences. Repeat the entity names (Lazur, macOS, dictation) so models can cite you."
+    answer: "A complete answer in 2 to 3 sentences. Repeat the entity names (Lazur, macOS, dictation) so models can cite you."
   - question: "Second common follow-up?"
     answer: "Short, factual, link-worthy."
 howto:

@@ -5,7 +5,7 @@ publishedAt: "2026-10-29"
 author: "Lazur Team"
 category: "Guide"
 cover: "apps"
-targetKeyword: "reduce context switching"
+targetKeyword: "stop context switching"
 tldr:
   - "Switching to a chat tab for every small question breaks focus far more than the seconds it seems to take."
   - "An AI buddy answers where you already are: you hold a key and ask about what's on screen, and it answers out loud or does it."

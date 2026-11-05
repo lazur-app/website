@@ -1,0 +1,212 @@
+{
+  "type": "howto",
+  "slug": "make-a-pivot-table-in-excel",
+  "title": "How to make a pivot table in Excel on Mac",
+  "metaTitle": "How to Make a Pivot Table in Excel on Mac (Step by Step)",
+  "description": "Make a pivot table in Excel on Mac in five steps: select your data, choose Insert > PivotTable, pick where it goes, then tick fields to summarize. With fixes for common errors.",
+  "targetKeyword": "how to make a pivot table in excel on mac",
+  "secondaryKeywords": [
+    "pivot table excel mac",
+    "insert pivottable mac",
+    "refresh pivot table mac"
+  ],
+  "publishedAt": "2026-11-05",
+  "updatedAt": "2026-11-05",
+  "intro": "To make a pivot table in Excel on a Mac, click any cell in your data, choose Insert > PivotTable, pick New Worksheet, and click OK. Then tick the fields you want in the PivotTable Fields pane and drag them between Rows, Columns and Values.",
+  "tldr": [
+    "Click a cell in your data, then Insert > PivotTable > New Worksheet > OK.",
+    "Tick fields in the PivotTable Fields pane. Text goes to Rows, numbers go to Values.",
+    "Change Sum to Count or Average with Value Field Settings.",
+    "When the source data changes, right-click the pivot table and choose Refresh."
+  ],
+  "appliesTo": "Excel for Mac in Microsoft 365 (version 16)",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "app": "excel",
+  "appName": "Excel",
+  "task": "make a pivot table",
+  "requirements": [
+    "Excel for Mac (Microsoft 365, Excel 2021 or Excel 2024)",
+    "Data with one header row and no fully blank rows or columns"
+  ],
+  "steps": [
+    {
+      "name": "Tidy your data first",
+      "text": "Each column needs a header in row 1, like Date, Region, Product and Sales. Remove blank rows inside the range. Pivot tables read the whole block, and a blank row cuts it short.",
+      "tip": "Press ⌘ + T to turn the range into a table. Tables grow when you add rows, so your pivot table picks up new data on refresh."
+    },
+    {
+      "name": "Click a cell in the data",
+      "text": "Click any single cell inside the range or table. Excel works out the full range from there."
+    },
+    {
+      "name": "Choose Insert > PivotTable",
+      "text": "Open the Insert tab on the ribbon and click PivotTable. The Create PivotTable dialog opens with your range or table name already filled in.",
+      "menuPath": [
+        "Insert",
+        "PivotTable"
+      ]
+    },
+    {
+      "name": "Pick where the pivot table goes",
+      "text": "Choose New Worksheet to keep it apart from your data, or Existing Worksheet and click the cell where it should start. Click OK. Excel adds an empty pivot table and opens the PivotTable Fields pane."
+    },
+    {
+      "name": "Tick the fields you want",
+      "text": "In the PivotTable Fields pane, tick each field to add it. By default, text fields go to Rows, dates go to Columns and numbers go to Values. Drag a field between the Filters, Columns, Rows and Values boxes to change the layout."
+    },
+    {
+      "name": "Change how values are summarized",
+      "text": "Excel sums numbers by default. To count or average instead, click the small i next to the field in the Values box (or right-click a value and choose Value Field Settings), then pick Count, Average, Max or Min.",
+      "menuPath": [
+        "Values",
+        "Value Field Settings"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Turn a range into a table",
+      "keys": "⌘ + T"
+    },
+    {
+      "action": "Select the whole data range",
+      "keys": "⌘ + A"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "\"The PivotTable field name is not valid\"",
+      "fix": "One of your columns has no header. Give every column in row 1 a name, then try Insert > PivotTable again."
+    },
+    {
+      "problem": "New rows do not show up",
+      "fix": "Right-click inside the pivot table and choose Refresh. If rows still go missing, your source is a fixed range. Turn the data into a table (⌘ + T) and point the pivot table at it with PivotTable Analyze > Change Data Source."
+    },
+    {
+      "problem": "Numbers are counted instead of summed",
+      "fix": "The column has text or blank cells mixed in, so Excel treats it as text. Fill the blanks with 0 and make sure the cells are formatted as numbers, then refresh."
+    }
+  ],
+  "lazur": {
+    "spoken": "where's the pivot table button?",
+    "capability": "point",
+    "result": "It's under the Insert tab, second from the left. I've circled it.",
+    "context": "A sales sheet open in Excel for Mac",
+    "pointsAt": "PivotTable",
+    "shell": "sheet"
+  },
+  "images": [],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows a single Excel worksheet can hold, so a pivot table can summarize a lot of data",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft: Excel specifications and limits"
+    },
+    {
+      "value": "16,384",
+      "label": "columns per worksheet in current Excel versions",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft: Excel specifications and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "What a pivot table does",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table groups rows that share a value and adds up the numbers for each group. Put Region in Rows and Sales in Values, and you get total sales per region. Add Product to Columns and you get a grid of region by product."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "You want",
+        "Rows",
+        "Columns",
+        "Values"
+      ],
+      "rows": [
+        [
+          "Sales per region",
+          "Region",
+          "",
+          "Sum of Sales"
+        ],
+        [
+          "Sales per region and product",
+          "Region",
+          "Product",
+          "Sum of Sales"
+        ],
+        [
+          "Number of orders per month",
+          "Date (grouped by month)",
+          "",
+          "Count of Order ID"
+        ]
+      ],
+      "caption": "Common layouts and where each field goes"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "How to refresh a pivot table on Mac",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables do not update on their own. After you change the source data, right-click anywhere in the pivot table and choose Refresh. To update every pivot table in the workbook, use PivotTable Analyze > Refresh > Refresh All."
+    },
+    {
+      "type": "lazur"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is the PivotTable button in Excel for Mac?",
+      "answer": "It is on the Insert tab of the ribbon. Click a cell in your data first, then choose Insert > PivotTable."
+    },
+    {
+      "question": "Can I make a pivot table in Numbers instead?",
+      "answer": "Yes. Numbers for Mac has pivot tables. Select your table, then choose Organize > Create Pivot Table and pick a new or the current sheet. Fields go into Columns, Rows and Values, the same idea as Excel."
+    },
+    {
+      "question": "Why is my pivot table not updating?",
+      "answer": "Pivot tables only change when you refresh them. Right-click inside it and choose Refresh. If new rows are still missing, change the source to a table so it grows with your data."
+    },
+    {
+      "question": "Can Lazur make the pivot table for me?",
+      "answer": "Lazur does not click inside Excel for you. Hold ⌥ ⌘ and ask, and it shows you where each button is, circles it on your screen, and walks you through the steps one click at a time."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a PivotTable to analyze worksheet data",
+      "url": "https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-05"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-05"
+    },
+    {
+      "title": "Create a pivot table in Numbers on Mac",
+      "url": "https://support.apple.com/guide/numbers/tan7f62056cf/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-05"
+    }
+  ],
+  "generator": {
+    "by": "hand (fixture)",
+    "version": 1
+  }
+}

@@ -1,71 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogRenderer } from "@/components/blog/BlogRenderer";
-import { ComparePageLayout } from "@/components/compare/ComparePageLayout";
-import { JsonLd } from "@/components/seo/JsonLd";
-import {
-  getAllComparisonSlugs,
-  getComparisonBySlug,
-} from "@/lib/compare";
-import {
-  buildCompareArticleSchema,
-  buildCompareFaqSchema,
-} from "@/lib/seo/compareSchema";
-import { OG_IMAGE, SITE_URL } from "@/lib/seo/constants";
+import { CompareTemplate } from "@/components/seo-pages/templates";
+import { getComparePage, getComparePages, prerenderLimit } from "@/lib/seo-pages/load";
+import { seoMetadata } from "@/lib/seo-pages/metadata";
 
-type ComparePageProps = {
-  params: Promise<{ slug: string }>;
-};
+type Props = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getAllComparisonSlugs().map((slug) => ({ slug }));
+  return getComparePages()
+    .slice(0, prerenderLimit())
+    .map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: ComparePageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const page = getComparisonBySlug(slug);
-
-  if (!page) {
-    return { title: "Comparison not found | Lazur" };
-  }
-
-  const canonical = `${SITE_URL}/compare/${slug}`;
-
-  return {
-    title: `${page.title} | Lazur`,
-    description: page.description,
-    alternates: { canonical },
-    openGraph: {
-      // A page's own openGraph replaces the site's, so the preview image is repeated here.
-      images: [OG_IMAGE],
-      title: page.title,
-      description: page.description,
-      type: "article",
-      url: canonical,
-      publishedTime: page.publishedAt,
-      modifiedTime: page.updatedAt ?? page.publishedAt,
-    },
-  };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const page = getComparePage((await params).slug);
+  return page ? seoMetadata(page) : { title: "Comparison not found | Lazur" };
 }
 
-export default async function CompareSlugPage({ params }: ComparePageProps) {
-  const { slug } = await params;
-  const page = getComparisonBySlug(slug);
-
-  if (!page) {
-    notFound();
-  }
-
-  return (
-    <>
-      <JsonLd
-        data={[buildCompareArticleSchema(page), buildCompareFaqSchema(page)]}
-      />
-      <ComparePageLayout page={page}>
-        <BlogRenderer blocks={page.blocks} />
-      </ComparePageLayout>
-    </>
-  );
+export default async function Page({ params }: Props) {
+  const page = getComparePage((await params).slug);
+  if (!page) notFound();
+  return <CompareTemplate page={page} />;
 }

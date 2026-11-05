@@ -4,10 +4,16 @@ import { LogoWordmark } from "./LogoWordmark";
 const footerLinks = {
   Product: [
     { href: "/pricing", label: "Pricing" },
-    { href: "/use-cases", label: "Use cases" },
+    { href: "/apps", label: "Apps" },
+    { href: "/for", label: "Roles" },
     { href: "/compare", label: "Comparisons" },
-    { href: "/blog", label: "Blog" },
     { href: "/download", label: "Download" },
+  ],
+  Learn: [
+    { href: "/how-to", label: "How-to guides" },
+    { href: "/tools", label: "Free tools" },
+    { href: "/alternatives", label: "Alternatives" },
+    { href: "/blog", label: "Blog" },
   ],
   // Account: [
   //   { href: "/login", label: "Log in" },

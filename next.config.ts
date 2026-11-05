@@ -41,6 +41,9 @@ const nextConfig: NextConfig = {
         destination: "/compare/google-voice-typing-alternative",
         permanent: true,
       },
+      // Use cases became app pages (/apps/<app>) with the programmatic SEO system.
+      { source: "/use-cases", destination: "/apps", permanent: true },
+      { source: "/use-cases/:app", destination: "/apps/:app", permanent: true },
       {
         source: "/blog/README",
         destination: "/blog",
@@ -53,9 +56,25 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    // Keyword-named photos uploaded by scripts/content (Pexels → re-encoded → Vercel Blob).
+    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+  },
   outputFileTracingIncludes: {
-    "/blog/[slug]": ["./content/blog/**/*"],
+    "/blog/[slug]": ["./content/blog/**/*", "./content/seo/**/*"],
     "/blog": ["./content/blog/**/*"],
+    "/how-to/[slug]": ["./content/seo/**/*", "./content/blog/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/how-to/[slug]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/apps/[app]": ["./content/seo/**/*", "./content/blog/**/*"],
+    "/apps/[app]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/for/[role]": ["./content/seo/**/*", "./content/blog/**/*"],
+    "/for/[role]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/for/[role]/[app]": ["./content/seo/**/*", "./content/blog/**/*"],
+    "/for/[role]/[app]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/compare/[slug]": ["./content/seo/**/*", "./content/blog/**/*"],
+    "/compare/[slug]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
+    "/alternatives/[slug]": ["./content/seo/**/*", "./content/blog/**/*"],
+    "/alternatives/[slug]/opengraph-image": ["./content/seo/**/*", "./src/fonts/open-sauce-one/*.ttf"],
   },
 };
 

@@ -56,7 +56,7 @@ The important distinction is the output. Voice input is only the interface. The 
 
 ChatGPT and other general assistants are useful when you want to explore an idea in a dedicated conversation. A work assistant is useful when the context is already present in Slack, Gmail, Cursor, Notion, or another app.
 
-Lazur is designed for the second workflow: hold a hotkey, say what you want done, and keep the result in the app where the work started. See the [Lazur use cases](/use-cases) for examples.
+Lazur is designed for the second workflow: hold a hotkey, say what you want done, and keep the result in the app where the work started. See the [Lazur use cases](/apps) for examples.
 
 ## Privacy still matters
 

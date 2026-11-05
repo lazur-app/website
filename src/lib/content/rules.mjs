@@ -262,7 +262,10 @@ export function proseOnly(text) {
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`[^`]*`/g, " ")
     .replace(/\]\([^)]*\)/g, "]")
-    .replace(/https?:\/\/\S+/g, " ");
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/^\s*\|?[\s:|-]*-{3,}[\s:|-]*$/gm, " ") // markdown table separator rows
+    .replace(/^(\s*)[-*+]\s+/gm, "$1") // markdown list markers
+    .replace(/^---$/gm, " ");
 }
 
 /**
@@ -323,7 +326,8 @@ export function checkText(raw, opts = {}) {
   if (!opts.allowLazurClaims) {
     for (const re of LAZUR_CLAIM_PATTERNS) {
       const m = text.match(re);
-      if (m) {
+      // "Lazur does not click inside Excel" is the honest version, not a claim.
+      if (m && !/\b(not|never|cannot|no)\b|n't/i.test(m[0])) {
         issues.push({ rule: "claim", detail: `unsupported claim${where}: "${m[0].slice(0, 90)}"`, severity: "error" });
       }
     }

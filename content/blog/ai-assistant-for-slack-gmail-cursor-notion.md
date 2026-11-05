@@ -46,13 +46,13 @@ Email assistants are most useful when they understand the relationship between t
 - “Make this shorter and more direct.”
 - “Follow up politely on the unanswered question.”
 
-Lazur's Gmail workflow is designed around the thread already open, not a blank prompt. See the [Gmail use case](/use-cases/gmail).
+Lazur's Gmail workflow is designed around the thread already open, not a blank prompt. See the [Gmail use case](/apps/gmail).
 
 ## Cursor: describe the change
 
 Developers rarely want a transcript of a spoken coding request. They want an instruction an agent can execute. A context-aware assistant can turn “refactor this, add error handling, and keep the API unchanged” into a precise coding prompt using the file or selection in front of you.
 
-See [Lazur for Cursor](/use-cases/cursor) and the guide to an [AI assistant for developers](/blog/ai-assistant-for-developers-and-coding-tasks).
+See [Lazur for Cursor](/apps/cursor) and the guide to an [AI assistant for developers](/blog/ai-assistant-for-developers-and-coding-tasks).
 
 ## Notion: organize the thought
 

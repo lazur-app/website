@@ -66,4 +66,4 @@ That is the difference between an assistant and a transcription tool. The assist
 
 Lazur is not an autonomous employee and it is not a replacement for Slack, Gmail, or Cursor. It is a voice-first context layer that helps you move between them with less copying, prompting, and rewriting.
 
-Explore the [app-specific use cases](/use-cases) or [join the early-access list](/exclusive-access).
+Explore the [app-specific use cases](/apps) or [join the early-access list](/exclusive-access).

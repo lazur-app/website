@@ -67,4 +67,4 @@ The assistant still needs a clear request. Screen context helps it understand wh
 
 The best screen-aware AI assistants remove the copy-paste step between your work and the AI. Lazur is built for that workflow on Mac: keep the app open, speak naturally, and ask for the next useful result.
 
-[Explore Lazur's app workflows](/use-cases) or [join the early-access list](/exclusive-access).
+[Explore Lazur's app workflows](/apps) or [join the early-access list](/exclusive-access).

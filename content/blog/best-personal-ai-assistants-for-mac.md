@@ -64,7 +64,7 @@ Lazur is not trying to be a general chatbot for every question. It is a personal
 - Keep the output at the cursor.
 - Use local speech-to-text with optional text-only cloud processing.
 
-Read the [privacy guide](/blog/private-ai-assistants-on-mac) and [use cases](/use-cases) before choosing a workflow.
+Read the [privacy guide](/blog/private-ai-assistants-on-mac) and [use cases](/apps) before choosing a workflow.
 
 ## Bottom line
 

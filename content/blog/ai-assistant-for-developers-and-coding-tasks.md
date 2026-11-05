@@ -63,4 +63,4 @@ Lazur is not a replacement for a coding agent. It makes the instruction layer fa
 
 Do not speak secrets, tokens, or private customer data. Check which context a tool can access and which text may be sent to cloud AI. Read Lazur's [privacy documentation](/privacy) before using it with sensitive repositories.
 
-[See Lazur in Cursor](/use-cases/cursor) or [join early access](/exclusive-access).
+[See Lazur in Cursor](/apps/cursor) or [join early access](/exclusive-access).

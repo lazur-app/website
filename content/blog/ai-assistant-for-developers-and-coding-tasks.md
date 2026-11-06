@@ -41,7 +41,7 @@ relatedSlugs:
   - ai-work-assistant-vs-dictation-app-vs-chatgpt
 heroImage:
   url: >-
-    /content-images/blog/ai-assistant-for-developers-and-coding-tasks/ai-assistant-for-developers-1-ad28e9.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-assistant-for-developers-and-coding-tasks/ai-assistant-for-developers-1-ad28e9.jpg
   width: 1280
   height: 854
   alt: 'Engineer, code and coding. AI Assistant for Developers and Coding Tasks'

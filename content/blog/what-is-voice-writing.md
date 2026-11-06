@@ -41,7 +41,7 @@ relatedSlugs:
   - messy-speech-to-finished-writing
 heroImage:
   url: >-
-    /content-images/blog/what-is-voice-writing/what-is-voice-writing-1-95bb7a.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-95bb7a.jpg
   width: 1280
   height: 854
   alt: >-

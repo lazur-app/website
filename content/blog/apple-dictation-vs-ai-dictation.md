@@ -38,7 +38,7 @@ relatedSlugs:
   - wispr-flow-alternatives
 heroImage:
   url: >-
-    /content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-954d3d.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-954d3d.jpg
   width: 1280
   height: 853
   alt: 'Computer, mac and google. Apple dictation vs AI dictation apps'

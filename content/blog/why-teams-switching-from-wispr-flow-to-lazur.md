@@ -36,7 +36,7 @@ relatedSlugs:
   - command-mode-voice-writing
 heroImage:
   url: >-
-    /content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-0b0e2e.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-0b0e2e.jpg
   width: 1280
   height: 854
   alt: >-

@@ -44,7 +44,7 @@ relatedSlugs:
   - wispr-flow-alternatives
 heroImage:
   url: >-
-    /content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-534f89.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-534f89.jpg
   width: 1280
   height: 854
   alt: 'Laptop, conference table and mouse. Wispr Flow vs Aqua Voice vs Lazur'

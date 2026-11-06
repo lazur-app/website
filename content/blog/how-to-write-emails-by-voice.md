@@ -49,7 +49,7 @@ relatedSlugs:
   - is-dictation-faster-than-typing
 heroImage:
   url: >-
-    /content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-ba1766.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-ba1766.jpg
   width: 1280
   height: 720
   alt: >-

@@ -40,7 +40,7 @@ relatedSlugs:
   - what-is-ambient-writing
 heroImage:
   url: >-
-    /content-images/blog/ai-work-assistant-vs-dictation-app-vs-chatgpt/ai-work-assistant-vs-dictation-app-vs-1-7b0f1a.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-work-assistant-vs-dictation-app-vs-chatgpt/ai-work-assistant-vs-dictation-app-vs-1-7b0f1a.jpg
   width: 1280
   height: 853
   alt: >-

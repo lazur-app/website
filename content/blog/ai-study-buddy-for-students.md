@@ -37,7 +37,7 @@ relatedSlugs:
   - what-is-an-ai-buddy
   - learn-any-mac-app-without-tutorials
 heroImage:
-  url: /content-images/blog/ai-study-buddy-for-students/ai-study-buddy-1-7b6681.jpg
+  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-study-buddy-for-students/ai-study-buddy-1-7b6681.jpg
   width: 1280
   height: 853
   alt: >-

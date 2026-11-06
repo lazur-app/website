@@ -42,7 +42,7 @@ relatedSlugs:
   - what-is-ambient-writing
 heroImage:
   url: >-
-    /content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-61b8ac.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-61b8ac.jpg
   width: 1280
   height: 853
   alt: 'Isolated, technology and desktop. Intent Mode'

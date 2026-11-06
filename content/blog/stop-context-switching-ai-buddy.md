@@ -34,7 +34,7 @@ relatedSlugs:
   - learn-any-mac-app-without-tutorials
 heroImage:
   url: >-
-    /content-images/blog/stop-context-switching-ai-buddy/stop-context-switching-1-a0d0c5.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/stop-context-switching-ai-buddy/stop-context-switching-1-a0d0c5.jpg
   width: 1280
   height: 639
   alt: 'Writing desk, computer and windows wallpaper. Stop context switching'

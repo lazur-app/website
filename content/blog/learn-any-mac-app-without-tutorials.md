@@ -51,7 +51,7 @@ relatedSlugs:
   - what-is-an-ai-buddy
 heroImage:
   url: >-
-    /content-images/blog/learn-any-mac-app-without-tutorials/learn-any-mac-app-without-a-tutorial-1-57ddda.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/learn-any-mac-app-without-tutorials/learn-any-mac-app-without-a-tutorial-1-57ddda.jpg
   width: 1280
   height: 826
   alt: 'Laptop, computer and apple. Learn any Mac app without watching a tutorial'

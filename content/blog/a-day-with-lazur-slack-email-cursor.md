@@ -39,7 +39,7 @@ relatedSlugs:
   - ai-assistant-for-developers-and-coding-tasks
 heroImage:
   url: >-
-    /content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-5de015.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-5de015.jpg
   width: 1280
   height: 683
   alt: 'Programming, code and development. A Day With Lazur'

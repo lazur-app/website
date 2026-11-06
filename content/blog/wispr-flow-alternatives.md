@@ -50,7 +50,7 @@ relatedSlugs:
   - aqua-voice-vs-lazur
 heroImage:
   url: >-
-    /content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-e11a5f.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-e11a5f.jpg
   width: 1280
   height: 854
   alt: 'Laptop, conference table and mouse. Best Wispr Flow alternatives in 2026'

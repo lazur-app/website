@@ -42,7 +42,7 @@ relatedSlugs:
   - ai-assistant-for-slack-gmail-cursor-notion
 heroImage:
   url: >-
-    /content-images/blog/ai-assistants-that-understand-your-screen/ai-assistants-that-understand-your-screen-1-1e2828.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-assistants-that-understand-your-screen/ai-assistants-that-understand-your-screen-1-1e2828.jpg
   width: 1280
   height: 853
   alt: 'Laptop, apple and macbook. AI Assistants That Understand Your Screen'

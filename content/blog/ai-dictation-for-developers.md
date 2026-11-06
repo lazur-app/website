@@ -38,7 +38,7 @@ relatedSlugs:
   - how-to-dictate-on-mac
 heroImage:
   url: >-
-    /content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-b91d56.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-b91d56.jpg
   width: 1280
   height: 853
   alt: 'Podcast, microphone and record. AI dictation for developers'

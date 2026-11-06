@@ -41,7 +41,7 @@ relatedSlugs:
   - what-is-voice-writing
   - command-mode-voice-writing
 heroImage:
-  url: /content-images/blog/what-is-ambient-writing/ambient-writing-1-d0132f.jpg
+  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-ambient-writing/ambient-writing-1-d0132f.jpg
   width: 1280
   height: 720
   alt: >-

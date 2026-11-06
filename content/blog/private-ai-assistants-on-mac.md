@@ -42,7 +42,7 @@ relatedSlugs:
   - on-device-speech-to-text-mac
 heroImage:
   url: >-
-    /content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-c093dc.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-c093dc.jpg
   width: 1280
   height: 853
   alt: 'Laptop, notebook and startup. Private AI Assistants on Mac'

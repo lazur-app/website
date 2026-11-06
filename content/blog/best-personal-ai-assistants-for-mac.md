@@ -41,7 +41,7 @@ relatedSlugs:
   - ai-work-assistant-vs-dictation-app-vs-chatgpt
 heroImage:
   url: >-
-    /content-images/blog/best-personal-ai-assistants-for-mac/best-personal-ai-assistant-for-mac-1-5d03c6.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-personal-ai-assistants-for-mac/best-personal-ai-assistant-for-mac-1-5d03c6.jpg
   width: 1280
   height: 853
   alt: 'Pineapple, laptop and nature. Best Personal AI Assistants for Mac in 2026'

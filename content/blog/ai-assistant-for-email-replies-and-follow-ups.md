@@ -55,7 +55,7 @@ relatedSlugs:
   - from-messy-thoughts-to-finished-work
 heroImage:
   url: >-
-    /content-images/blog/ai-assistant-for-email-replies-and-follow-ups/ai-assistant-for-email-replies-1-e63336.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-assistant-for-email-replies-and-follow-ups/ai-assistant-for-email-replies-1-e63336.jpg
   width: 1280
   height: 853
   alt: 'Time, alarm clock and clock. AI Assistant for Email Replies and Follow-Ups'

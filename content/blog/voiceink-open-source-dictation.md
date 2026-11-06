@@ -44,7 +44,7 @@ relatedSlugs:
   - wispr-flow-alternatives
 heroImage:
   url: >-
-    /content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-cbcb7d.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-cbcb7d.jpg
   width: 1280
   height: 850
   alt: 'Laptop, iphone and workspace. VoiceInk'

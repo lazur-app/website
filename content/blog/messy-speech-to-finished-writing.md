@@ -41,7 +41,7 @@ relatedSlugs:
   - how-to-write-emails-by-voice
 heroImage:
   url: >-
-    /content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-9c61f4.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-9c61f4.jpg
   width: 1280
   height: 850
   alt: 'Office, notes and notepad. Messy speech to finished writing'

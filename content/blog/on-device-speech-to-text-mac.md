@@ -41,7 +41,7 @@ relatedSlugs:
   - what-is-voice-writing
 heroImage:
   url: >-
-    /content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-f501ea.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-f501ea.jpg
   width: 1280
   height: 761
   alt: 'Laptop, mockup and graphics tablet. On-device speech to text on Mac'

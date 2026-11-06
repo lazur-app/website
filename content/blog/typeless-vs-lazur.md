@@ -42,7 +42,7 @@ relatedSlugs:
   - wispr-flow-alternatives
   - messy-speech-to-finished-writing
 heroImage:
-  url: /content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-6a0c9f.jpg
+  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-6a0c9f.jpg
   width: 1280
   height: 853
   alt: 'Office, computer and creative. Typeless vs Lazur'

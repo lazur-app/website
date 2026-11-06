@@ -40,7 +40,7 @@ relatedSlugs:
   - how-to-write-emails-by-voice
 heroImage:
   url: >-
-    /content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-213a71.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-213a71.jpg
   width: 1280
   height: 853
   alt: 'Radio, studio and sound. MacWhisper vs dictation apps'

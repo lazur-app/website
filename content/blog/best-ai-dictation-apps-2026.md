@@ -42,7 +42,7 @@ relatedSlugs:
   - apple-dictation-vs-ai-dictation
 heroImage:
   url: >-
-    /content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-c00ecc.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-c00ecc.jpg
   width: 1280
   height: 853
   alt: 'Podcast, microphone and audio. Best AI dictation apps in 2026'

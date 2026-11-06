@@ -39,7 +39,7 @@ relatedSlugs:
   - how-to-dictate-on-mac
 heroImage:
   url: >-
-    /content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-87a5c4.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-87a5c4.jpg
   width: 1280
   height: 853
   alt: 'Student, education and webinar. Is dictation faster than typing?'

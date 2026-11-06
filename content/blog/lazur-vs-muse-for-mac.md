@@ -39,7 +39,7 @@ relatedSlugs:
   - lazur-vs-heyclicky
 heroImage:
   url: >-
-    /content-images/blog/lazur-vs-muse-for-mac/lazur-vs-muse-for-mac-1-8a3774.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/lazur-vs-muse-for-mac/lazur-vs-muse-for-mac-1-8a3774.jpg
   width: 1280
   height: 853
   alt: 'Startup, start-up and notebooks. Lazur vs Meta''s Muse for Mac'

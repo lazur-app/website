@@ -40,7 +40,7 @@ relatedSlugs:
   - wispr-flow-vs-aqua-voice-vs-lazur
   - wispr-flow-alternatives
 heroImage:
-  url: /content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
+  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
   width: 1280
   height: 719
   alt: 'Technology, equipment and microphone. Aqua Voice vs Lazur'

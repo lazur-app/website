@@ -85,6 +85,10 @@ pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with U
 - Pages get 3 photos (`CONTENT_MIN_IMAGES` is the minimum, default 2). Product visuals (notch capsule,
   "you say / Lazur does" window), charts and OG images are drawn in code and need no files.
 - Existing pages without photos: `PIXABAY_API_KEY=... node scripts/content/fill-images.mjs [--blog]`.
+- **Blob store (set up 2026-11-06):** store `store_lFObMih1TPJ3SGPO` on the `lazur-website` project,
+  public base URL `https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com`, files under
+  `content-images/<type>/<slug>/`. The first 105 sample photos were moved there from `public/` with
+  `scripts/content/migrate-images-to-blob.mjs`; nothing image-related lives in the repo now.
 
 **Rate math.** Pixabay allows 100 requests a minute. One search returns up to 30 photos, so with the
 search cache a page costs about 3 searches at most, and fewer as common queries repeat. 100 pages an

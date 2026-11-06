@@ -81,7 +81,7 @@ relatedSlugs:
   - on-device-speech-to-text-mac
 heroImage:
   url: >-
-    /content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-b75dcf.jpg
+    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-b75dcf.jpg
   width: 1280
   height: 854
   alt: >-

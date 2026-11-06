@@ -66,6 +66,7 @@ Spacing stays on the 4px grid. Mobile first: 16px side gutter, 24px from 640px. 
 | `AppTemplate` | Hero (notch scene) → TL;DR → stats → what you can ask → body → by role → second demo → FAQ → sources → CTA → related |
 | `RoleTemplate` | Hero (notch scene) → TL;DR → stats → where the day goes → a day with Lazur → body → apps → FAQ → sources → CTA → related |
 | `RoleAppTemplate` | Hero (notch scene) → TL;DR → stats → asks → body → FAQ → sources → CTA → related |
+| `ProblemTemplate` | Hero (photo) → short answer → stats → what it costs (cards) → why it happens (numbered) → chart → how to fix it (checklist) → nudge → body → Where Lazur helps → what people say to Lazur → plan (timeline) → FAQ → sources → CTA → related |
 | `CompareTemplate` | Hero → short version → side by side → our take → product cards → body → FAQ → sources → disclaimer → CTA → related |
 
 The rule for how-to pages: the real answer comes first. Lazur appears after the steps, and only as

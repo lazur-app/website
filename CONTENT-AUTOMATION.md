@@ -14,12 +14,21 @@ photos, and makes one commit. Pushing to `main` deploys on Vercel.
 | App pages | `/apps/<app>` | `content/seo/apps/*.json` | 20 (until every app in `sources.mjs` has one) |
 | Role pages | `/for/<role>` | `content/seo/roles/*.json` | 15 (until every role has one) |
 | Role × app | `/for/<role>/<app>` | `content/seo/role-apps/<role>--<app>.json` | 50 |
+| Problems people in a job have, and fixes | `/for/<role>/problems/<slug>` | `content/seo/problems/<role>--<slug>.json` | 30 |
 | Compare, X vs Y | `/compare/<slug>` | `content/seo/compare/*.json` | 5 (shared with alternatives) |
 | Alternatives | `/alternatives/<competitor>` | `content/seo/alternatives/*.json` | (in compare) |
 | Blog | `/blog/<slug>` | `content/blog/*.md` | 5 |
 | Free tools | `/tools/<slug>` | hand-built in `src/components/tools` | not generated |
 
-Hubs: `/how-to`, `/how-to/app/<app>`, `/apps`, `/for`, `/compare`, `/alternatives`, `/tools`, `/blog`.
+Every page has **at least 2,000 words** of prose (`MIN_WORDS` in `src/lib/content/rules.mjs`, counted
+by code over intro, TL;DR, blocks, steps, FAQ and lists). Generated pages under it are refused. Pages
+written before the rule only warn in `seo-lint`, and the refresh job rewrites the thinnest pages first.
+
+Problem pages: a planner researches real problems per role (forums, People also ask, surveys) and
+rejects overlaps; each page covers what the problem costs, why it happens, fixes that work without
+any app, then where Lazur honestly helps, a short plan, FAQ and sources.
+
+Hubs: `/how-to`, `/how-to/app/<app>`, `/apps`, `/for`, `/for/<role>/problems`, `/compare`, `/alternatives`, `/tools`, `/blog`.
 Old `/use-cases/*` URLs redirect to `/apps/*`.
 
 ## How one page gets written
@@ -84,14 +93,14 @@ separate CDN requests.
 
 ## The daily run
 
-`node scripts/content/daily.mjs [--howto=N --apps=N --roles=N --role-apps=N --compare=N --blog=N] [--refresh=N]`
+`node scripts/content/daily.mjs [--howto=N --apps=N --roles=N --role-apps=N --problems=N --compare=N --blog=N] [--refresh=N]`
 
 - State lives in `content-runs/daily-<New York date>/`: `manifest.json` (every item and its status),
   `usage.jsonl`, `refused.jsonl`, `summary.md`. It is committed, so the next hourly run resumes and
   only writes what is still missing for that date.
 - `--concurrency` (default 4), `--max-minutes` (default 50; the workflow uses 40), `--no-images`,
   `--out=<dir>` (write somewhere else, for previews), `--date=` (override).
-- `--refresh=N` rewrites the N stalest pages (older than 30 days) against fresh research, keeping the
+- `--refresh=N` rewrites N pages: first every page under 2,000 words, then the stalest (older than 30 days) against fresh research, keeping the
   slug, publish date and photos. Mondays the workflow runs a refresh only (`CONTENT_REFRESH_COUNT`,
   default 40). Older hand-written blog posts are the first in line.
 - `npm run content:fake` runs the whole pipeline with a fake model into `.content-preview/`: no seat,
@@ -111,7 +120,7 @@ the plumbing for free.
 | Variable | Meaning |
 | --- | --- |
 | `CONTENT_DAILY_ENABLED` | `true` turns the schedule on. Leave unset to keep it off. |
-| `CONTENT_COUNT_HOWTO`, `_APPS`, `_ROLES`, `_ROLE_APPS`, `_COMPARE`, `_BLOG` | Per-day counts (defaults in `sources.mjs`: 100, 20, 15, 50, 5, 5) |
+| `CONTENT_COUNT_HOWTO`, `_APPS`, `_ROLES`, `_ROLE_APPS`, `_PROBLEMS`, `_COMPARE`, `_BLOG` | Per-day counts (defaults in `sources.mjs`: 100, 20, 15, 50, 30, 5, 5) |
 | `CONTENT_REFRESH_COUNT` | Pages rewritten each Monday (default 40) |
 | `CONTENT_CONCURRENCY` | Parallel pages (default 4) |
 

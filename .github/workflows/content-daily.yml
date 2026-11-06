@@ -24,6 +24,7 @@ on:
       apps: { description: "App pages", default: "", required: false }
       roles: { description: "Role pages", default: "", required: false }
       role_apps: { description: "Role x app pages", default: "", required: false }
+      problems: { description: "Problem pages", default: "", required: false }
       compare: { description: "Compare / alternatives pages", default: "", required: false }
       blog: { description: "Blog posts", default: "", required: false }
       refresh: { description: "Existing pages to refresh", default: "0", required: false }
@@ -82,11 +83,11 @@ jobs:
           weekly=${{ github.event.schedule == '41 7 * * 1' && 'true' || 'false' }}
           args=""
           if [ "$weekly" = "true" ]; then
-            args="--howto=0 --apps=0 --roles=0 --role-apps=0 --compare=0 --blog=0 --refresh=${{ vars.CONTENT_REFRESH_COUNT || '40' }}"
+            args="--howto=0 --apps=0 --roles=0 --role-apps=0 --problems=0 --compare=0 --blog=0 --refresh=${{ vars.CONTENT_REFRESH_COUNT || '40' }}"
           else
             # Repo variables override sources.mjs defaults; manual inputs override both.
             for pair in "howto:${{ inputs.howto || vars.CONTENT_COUNT_HOWTO }}" "apps:${{ inputs.apps || vars.CONTENT_COUNT_APPS }}" \
-                        "roles:${{ inputs.roles || vars.CONTENT_COUNT_ROLES }}" "role-apps:${{ inputs.role_apps || vars.CONTENT_COUNT_ROLE_APPS }}" \
+                        "roles:${{ inputs.roles || vars.CONTENT_COUNT_ROLES }}" "role-apps:${{ inputs.role_apps || vars.CONTENT_COUNT_ROLE_APPS }}" "problems:${{ inputs.problems || vars.CONTENT_COUNT_PROBLEMS }}" \
                         "compare:${{ inputs.compare || vars.CONTENT_COUNT_COMPARE }}" "blog:${{ inputs.blog || vars.CONTENT_COUNT_BLOG }}"; do
               k="${pair%%:*}"; v="${pair#*:}"
               [ -n "$v" ] && args="$args --$k=$v"

@@ -66,6 +66,13 @@ export function keywordHits(page, bodyText) {
   };
 }
 
+/** Words of prose on a page (body, steps, FAQ, everything a reader reads). @param {any} page */
+export function wordCount(page) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { images, sources, generator, keywordHits, imageQueries, file, ...rest } = page ?? {};
+  return allText(rest).split(/\s+/).filter(Boolean).length;
+}
+
 /** All human-readable text of a page, for counting. @param {unknown} v @returns {string} */
 export function allText(v) {
   if (typeof v === "string") return /^(https?:|\/)/.test(v) ? "" : v;

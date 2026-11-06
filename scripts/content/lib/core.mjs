@@ -15,6 +15,7 @@ export const DIRS = {
   app: "content/seo/apps",
   role: "content/seo/roles",
   "role-app": "content/seo/role-apps",
+  problem: "content/seo/problems",
   compare: "content/seo/compare",
   alternatives: "content/seo/alternatives",
   blog: "content/blog",
@@ -31,6 +32,8 @@ export function urlFor(p) {
       return `/for/${p.slug}`;
     case "role-app":
       return `/for/${p.role}/${p.app}`;
+    case "problem":
+      return `/for/${p.role}/problems/${p.slug}`;
     case "compare":
       return `/compare/${p.slug}`;
     case "alternatives":
@@ -43,7 +46,7 @@ export function urlFor(p) {
 
 /** File name per page. @param {any} p */
 export const fileFor = (p) =>
-  path.join(ROOT, DIRS[/** @type {keyof typeof DIRS} */ (p.type)], p.type === "role-app" ? `${p.role}--${p.app}.json` : p.type === "blog" ? `${p.slug}.md` : `${p.slug}.json`);
+  path.join(ROOT, DIRS[/** @type {keyof typeof DIRS} */ (p.type)], p.type === "role-app" ? `${p.role}--${p.app}.json` : p.type === "problem" ? `${p.role}--${p.slug}.json` : p.type === "blog" ? `${p.slug}.md` : `${p.slug}.json`);
 
 /** @param {string} type @returns {any[]} */
 export function readType(type) {
@@ -64,7 +67,7 @@ export function readType(type) {
     .map((f) => ({ ...JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")), type, file: path.join(dir, f) }));
 }
 
-export const ALL_TYPES = ["howto", "app", "role", "role-app", "compare", "alternatives", "blog"];
+export const ALL_TYPES = ["howto", "app", "role", "role-app", "problem", "compare", "alternatives", "blog"];
 
 /** Every page on the site, for links, dedupe and the lint. */
 export function readAll() {
@@ -77,6 +80,7 @@ export function allowedPaths() {
   for (const t of ["typing-speed-test", "speaking-vs-typing-test", "typing-tax-calculator", "dictation-accuracy-checker"]) s.add(`/tools/${t}`);
   for (const p of readAll()) s.add(urlFor(p));
   for (const p of readType("howto")) s.add(`/how-to/app/${p.app}`);
+  for (const p of readType("problem")) s.add(`/for/${p.role}/problems`);
   return s;
 }
 

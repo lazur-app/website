@@ -229,11 +229,15 @@ export const STYLE_PATTERNS = [
 
 export const MAX_SENTENCE_WORDS = 32;
 
+/** Every page carries at least this many words of real prose (counted by code, not by the model). */
+export const MIN_WORDS = 2000;
+
 /**
  * Pasted into every write prompt. Keep it in sync with the checks above (the guard enforces them).
  */
 export const WRITING_RULES_PROMPT = `WRITING RULES (code checks every string; a break gets the item sent back or refused):
 - Answer the search query in the first two sentences. Then the detail.
+- Length: at least ${2000} words of useful prose on every page (code counts it and refuses shorter pages). Get there with depth, not padding: more sections, worked examples, real numbers, edge cases, mistakes people make, what to do next. Never repeat a point to fill space.
 - Plain, specific, human. Write like a helpful colleague who uses a Mac every day. Second person ("you").
 - Short sentences. Average under 16 words, never over ${MAX_SENTENCE_WORDS}.
 - Concrete over abstract: real app names, real menu paths written as Menu > Submenu > Item, real keyboard shortcuts (⌘ ⌥ ⌃ ⇧), real version numbers.

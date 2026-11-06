@@ -20,6 +20,7 @@ const common = (/** @type {string} */ _subject, /** @type {string} */ keyword) =
   tldr: ["The pipeline ran.", "The guards checked every string.", "Nothing here is real advice."],
   stats: [{ value: "1", label: "test number used to check sources are linked", sourceUrl: SRC.url, sourceTitle: SRC.title }],
   blocks: [
+    ...Array.from({ length: 24 }, (_, i) => ({ type: "paragraph", text: `Test paragraph ${i + 1} for ${keyword}. It exists so a fake run reaches the length rule. Each line here is plain and short. Real pages fill this space with research, examples and steps. This one only checks that counting works. Nothing on this page should ever be published. The guards still read every word of it. They look for banned phrases and dashes. They check the links point to real pages. They count the words on the page as well. A fake page has to pass the same checks as a real one. That keeps the test honest.` })),
     { type: "heading", text: "What this test checks", level: 2 },
     { type: "paragraph", text: "It checks that every block type renders and that links point to real pages like [the download page](/download)." },
     { type: "stats" },
@@ -43,7 +44,9 @@ export const fake = {
   /** @param {string} type @param {string[]} apps @param {number} count */
   topics: (type, apps, count) => ({
     topics: Array.from({ length: Math.min(count, 6) }, (_, i) =>
-      type === "howto"
+      type === "problem"
+        ? { slug: `test-problem-${i + 1}`, title: `Test problem ${i + 1} for ${apps[0]} and how to fix it: a fake page`, targetKeyword: `test problem ${i + 1} for ${apps[0]}`, task: `test problem ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url }
+        : type === "howto"
         ? { slug: `test-task-${i + 1}-in-${apps[i % apps.length]}`, title: `How to test task ${i + 1} in ${appBySlug(apps[i % apps.length])?.name} on Mac`, targetKeyword: `how to test task ${i + 1} in ${appBySlug(apps[i % apps.length])?.name.toLowerCase()} on mac`, app: apps[i % apps.length], task: `test task ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url }
         : { slug: `test-blog-topic-${today}-${i + 1}`, title: `Test blog topic ${i + 1}: a fake pipeline post for checking`, targetKeyword: `test blog topic ${i + 1}`, why: "Fake demand.", evidenceUrl: SRC.url },
     ),
@@ -68,6 +71,22 @@ export const fake = {
         shortcuts: [{ action: "Save", keys: "⌘ + S" }],
         troubleshooting: [{ problem: "Nothing happens", fix: "Try again after a restart." }],
         lazur: { spoken: "where is this menu?", capability: "point", result: "Top left. I've circled it.", pointsAt: "File", shell: app?.shell ?? "generic" },
+      };
+    }
+    if (type === "problem") {
+      const role = roleBySlug(t.role);
+      const pairs = (/** @type {string} */ k) => Array.from({ length: 4 }, (_, i) => ({ title: `Test ${k} ${i + 1}`, text: `A short test description of ${k} number ${i + 1} for this fake problem page, long enough for the schema.` }));
+      return {
+        ...common(t.title, t.targetKeyword),
+        title: t.title,
+        problem: t.task,
+        costs: pairs("cost"),
+        causes: pairs("cause"),
+        fixes: pairs("fix"),
+        lazurHelps: Array.from({ length: 4 }, (_, i) => ({ say: `test ask ${i + 1}`, result: "Lazur answers out loud.", capability: "explain" })),
+        demo: { spoken: "sum up this page", capability: "explain", result: "It sums up the page out loud.", shell: "doc" },
+        plan: [{ label: "Day 1", title: "Start", text: "A short test step for the plan section of the page." }, { label: "Day 2", title: "Keep going", text: "A short test step for the plan section of the page." }, { label: "Day 3", title: "Review", text: "A short test step for the plan section of the page." }],
+        apps: role?.apps.slice(0, 2) ?? [],
       };
     }
     if (type === "app") {
@@ -119,7 +138,7 @@ export const fake = {
       stats: common("x", "x").stats,
       sources: [SRC, { ...SRC, url: "https://example.com/two" }],
       imageQueries: common("x", "x").imageQueries,
-      body: `This is a test post about ${t.targetKeyword}. It checks the blog path of the pipeline.\n\n## What it checks\n\n${"It checks that markdown posts are written with frontmatter, sources and images. ".repeat(40)}\n\nSee [the download page](/download) and [pricing](/pricing).`,
+      body: `This is a test post about ${t.targetKeyword}. It checks the blog path of the pipeline.\n\n## What it checks\n\n${Array.from({ length: 50 }, (_, i) => `Paragraph ${i + 1}. It checks that markdown posts are written with frontmatter, sources and images. Real posts fill this with research. This one only checks the plumbing, including the word count rule that every page must pass before it is saved.`).join("\n\n")}\n\nSee [the download page](/download) and [pricing](/pricing).`,
     };
   },
 };

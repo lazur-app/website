@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { HubCard, HubHeader, HubSection, SeoPageFrame } from "@/components/seo-pages";
 import { CtaBand } from "@/components/seo-pages/Primitives";
-import { getRoleAppPages, getRolePages } from "@/lib/seo-pages/load";
+import { getProblemPages, getRoleAppPages, getRolePages } from "@/lib/seo-pages/load";
 import { breadcrumbSchema } from "@/lib/seo-pages/schema";
 import { SITE_URL } from "@/lib/seo/constants";
 
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 export default function RolesHub() {
   const roles = getRolePages();
   const roleApps = getRoleAppPages();
+  const problems = getProblemPages();
   const crumbs = [
     { href: "/", label: "Home" },
     { href: "/for", label: "Roles" },
@@ -27,6 +28,13 @@ export default function RolesHub() {
             <HubCard key={r.slug} image={r.images?.[0]} href={`/for/${r.slug}`} kicker={`For ${r.roleName.toLowerCase()}`} title={r.title} description={r.description} />
           ))}
         </HubSection>
+        {problems.length > 0 ? (
+          <HubSection title="Problems and fixes">
+            {problems.map((p) => (
+              <HubCard key={`${p.role}/${p.slug}`} image={p.images?.[0]} href={`/for/${p.role}/problems/${p.slug}`} kicker={`${p.roleName} · problem`} title={p.title} />
+            ))}
+          </HubSection>
+        ) : null}
         {roleApps.length > 0 ? (
           <HubSection title="By role and app">
             {roleApps.map((r) => (

@@ -7,6 +7,7 @@ import type {
   AppPage,
   ComparePage,
   HowToPage,
+  ProblemPage,
   RoleAppPage,
   RolePage,
   SeoPage,
@@ -56,6 +57,7 @@ export const getHowTos = () => readType<HowToPage>("howto");
 export const getAppPages = () => readType<AppPage>("app");
 export const getRolePages = () => readType<RolePage>("role");
 export const getRoleAppPages = () => readType<RoleAppPage>("role-app");
+export const getProblemPages = () => readType<ProblemPage>("problem");
 export const getComparePages = () => readType<ComparePage>("compare");
 export const getAlternativesPages = () => readType<ComparePage>("alternatives");
 
@@ -64,6 +66,8 @@ export const getAppPage = (slug: string) => getAppPages().find((p) => p.slug ===
 export const getRolePage = (slug: string) => getRolePages().find((p) => p.slug === slug);
 export const getRoleAppPage = (role: string, app: string) =>
   getRoleAppPages().find((p) => p.role === role && p.app === app);
+export const getProblemPage = (role: string, slug: string) =>
+  getProblemPages().find((p) => p.role === role && p.slug === slug);
 export const getComparePage = (slug: string) => getComparePages().find((p) => p.slug === slug);
 export const getAlternativesPage = (slug: string) =>
   getAlternativesPages().find((p) => p.slug === slug);

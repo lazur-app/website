@@ -17,7 +17,7 @@ import { fake } from "./fake.mjs";
 import { guardPage, guardSummary } from "./guards.mjs";
 import { imagesForPage, slugify } from "./images.mjs";
 import { prompts } from "./prompts.mjs";
-import { appSchema, blogSchema, compareSchema, howtoSchema, researchSchema, roleAppSchema, roleSchema, topicsSchema } from "./schemas.mjs";
+import { appSchema, blogSchema, compareSchema, howtoSchema, problemSchema, researchSchema, roleAppSchema, roleSchema, topicsSchema } from "./schemas.mjs";
 
 /** Topic queues. Preview runs (--out) point this elsewhere so tests never touch the real queue. */
 const planDir = () => process.env.CONTENT_PLAN_DIR || path.join(ROOT, "content/seo/_plan");
@@ -168,6 +168,35 @@ export const SPECS = {
     },
     internal: (t) => internalFor([t.role, t.app]),
     extraKeywords: (t) => [/** @type {any} */ (appBySlug(t.app))?.name, /** @type {any} */ (roleBySlug(t.role))?.name, "Mac"],
+  },
+
+  problems: {
+    type: "problem",
+    flag: "problems",
+    async next(n) {
+      const have = new Set(readType("problem").map((p) => `${p.role}/${p.slug}`));
+      let queue = readJsonl(queueFile("problem-topics.jsonl")).filter((t) => !have.has(`${t.role}/${t.slug}`) && roleBySlug(t.role));
+      if (queue.length < n) {
+        await planProblemTopics(Math.max(n - queue.length + 10, 15));
+        queue = readJsonl(queueFile("problem-topics.jsonl")).filter((t) => !have.has(`${t.role}/${t.slug}`) && roleBySlug(t.role));
+      }
+      // Spread across roles: take one per role in turn.
+      const byRole = new Map();
+      for (const t of queue) byRole.set(t.role, [...(byRole.get(t.role) ?? []), t]);
+      const out = [];
+      while (out.length < n && [...byRole.values()].some((l) => l.length)) for (const l of byRole.values()) if (l.length && out.length < n) out.push(l.shift());
+      return out.map((t) => ({ ...t, key: `problem:${t.role}/${t.slug}` }));
+    },
+    research: (t) => prompts.problemResearch({ role: /** @type {any} */ (roleBySlug(t.role)), problem: t.task }),
+    write: (t, notes, internal) => prompts.problemWrite({ role: /** @type {any} */ (roleBySlug(t.role)), problem: t.task, keyword: t.targetKeyword, notes, internal }),
+    schema: problemSchema,
+    assemble(draft, t) {
+      const role = /** @type {any} */ (roleBySlug(t.role));
+      const apps = (draft.apps ?? []).filter((/** @type {string} */ a) => appBySlug(a));
+      return basePage({ ...draft, apps: apps.length ? apps : role.apps.slice(0, 3) }, { type: "problem", slug: t.slug, role: role.slug, roleName: role.name, roleSingular: role.singular, targetKeyword: draft.targetKeyword || t.targetKeyword });
+    },
+    internal: (t) => internalFor([t.role, ...(/** @type {any} */ (roleBySlug(t.role))?.apps ?? [])]),
+    extraKeywords: (t) => [/** @type {any} */ (roleBySlug(t.role))?.name, t.task, "Mac"],
   },
 
   compare: {
@@ -342,6 +371,34 @@ export async function planHowtoTopics(count, runDir = path.join(planDir(), "../.
     .filter((/** @type {any} */ t) => !seen.has(t.slug) && (seen.add(t.slug), true));
   writeJsonl(queueFile("howto-topics.jsonl"), [...queued, ...fresh]);
   return fresh.length;
+}
+
+/** Research real problems per role, deduped against what exists. @param {number} count */
+export async function planProblemTopics(count, runDir = path.join(planDir(), "../../../content-runs/planner")) {
+  const have = readType("problem");
+  const queued = readJsonl(queueFile("problem-topics.jsonl"));
+  const perRole = new Map(ROLES.map((r) => [r.slug, have.filter((p) => p.role === r.slug).length + queued.filter((q) => q.role === r.slug).length]));
+  const roles = [...ROLES].sort((a, b) => (perRole.get(a.slug) ?? 0) - (perRole.get(b.slug) ?? 0)).slice(0, 3);
+  let added = 0;
+  for (const role of roles) {
+    const existing = [...have, ...queued].filter((p) => p.role === role.slug).map((p) => `${p.slug} | ${p.title}`);
+    const res = await research({
+      prompt: prompts.problemTopics({ role, existing, count: Math.ceil(count / roles.length) }),
+      schema: topicsSchema,
+      label: `plan:problems:${role.slug}`,
+      runDir,
+      fake: () => fake.topics("problem", [role.slug], Math.ceil(count / roles.length)),
+    });
+    const seen = new Set([...have, ...queued].map((p) => `${p.role}/${p.slug}`));
+    const fresh = res.topics
+      .filter((/** @type {any} */ t) => t.task)
+      .map((/** @type {any} */ t) => ({ ...t, role: role.slug, slug: slugify(t.slug), addedAt: today() }))
+      .filter((/** @type {any} */ t) => !seen.has(`${t.role}/${t.slug}`) && (seen.add(`${t.role}/${t.slug}`), true));
+    queued.push(...fresh);
+    added += fresh.length;
+  }
+  writeJsonl(queueFile("problem-topics.jsonl"), queued);
+  return added;
 }
 
 /** Research new blog topics, avoiding every existing title. @param {number} count */

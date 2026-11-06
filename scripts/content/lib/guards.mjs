@@ -4,13 +4,13 @@
  * is sent back to the model once with the list; if it still fails it goes to refused.jsonl and is
  * not published. Hand-written pages are checked by the same code in seo-lint.mjs.
  */
-import { checkDeep } from "../../../src/lib/content/rules.mjs";
-import { H1_MAX_WORDS, H1_MIN_WORDS, allText, containsPhrase, covers, keywordHits } from "../../../src/lib/content/keywords.mjs";
+import { MIN_WORDS, checkDeep } from "../../../src/lib/content/rules.mjs";
+import { H1_MAX_WORDS, H1_MIN_WORDS, allText, containsPhrase, covers, keywordHits, wordCount } from "../../../src/lib/content/keywords.mjs";
 import { LAZUR, LAZUR_CAPABILITY_IDS } from "../../../src/lib/content/lazur-facts.mjs";
 
 /**
  * @typedef {{ errors: string[], warnings: string[] }} GuardResult
- * @typedef {{ allowedPaths: Set<string>, existingTitles?: Set<string>, minImages?: number, type: string, legacyH1?: boolean }} GuardCtx
+ * @typedef {{ allowedPaths: Set<string>, existingTitles?: Set<string>, minImages?: number, type: string, legacyH1?: boolean, legacyLength?: boolean }} GuardCtx
  */
 
 /** @param {string} u */
@@ -59,6 +59,10 @@ export function guardPage(page, ctx) {
   if (page.description && (page.description.length < 100 || page.description.length > 165)) warnings.push(`description is ${page.description.length} chars (aim 120 to 160)`);
   if (page.metaTitle && page.metaTitle.length > 65) warnings.push(`metaTitle is ${page.metaTitle.length} chars (aim under 60)`);
 
+  // 2b. Length: thick pages only.
+  const words = wordCount(page);
+  if (words < MIN_WORDS) (ctx.legacyLength ? warnings : errors).push(`length: ${words} words (minimum ${MIN_WORDS})`);
+
   // 3. Every number is sourced.
   const sourceUrls = new Set((sources ?? []).map((/** @type {any} */ s) => s.url));
   if ((sources ?? []).length === 0) errors.push("sources: none");
@@ -104,6 +108,10 @@ export function guardPage(page, ctx) {
     if (page.lazur && !["point", "guide", "explain"].includes(page.lazur.capability)) warnings.push("howto: lazur demo should point, guide or explain");
     if (!/\b(mac|macos)\b/i.test(`${page.title} ${page.intro}`)) warnings.push("howto: title/intro does not say Mac");
     if (!page.appliesTo) errors.push("howto: appliesTo missing");
+  }
+  if (ctx.type === "problem") {
+    if ((page.fixes ?? []).length < 3) errors.push("problem: fewer than 3 fixes");
+    if ((page.causes ?? []).length < 2) errors.push("problem: fewer than 2 causes");
   }
   if (ctx.type === "compare" || ctx.type === "alternatives") {
     for (const p of page.products ?? []) {

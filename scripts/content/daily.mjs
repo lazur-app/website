@@ -18,6 +18,8 @@ import { DEFAULT_DAILY_COUNTS } from "../../src/lib/content/sources.mjs";
 import { ROOT, flags, nyDate, openManifest, pool, readType } from "./lib/core.mjs";
 import { SPECS, generateOne } from "./lib/pipeline.mjs";
 import { checkImageEnv } from "./lib/images.mjs";
+import { wordCount } from "../../src/lib/content/keywords.mjs";
+import { MIN_WORDS } from "../../src/lib/content/rules.mjs";
 
 const f = flags(process.argv.slice(2));
 const date = f.date ?? nyDate();
@@ -88,10 +90,15 @@ if (refreshCount > 0) {
   for (const p of readType("app")) add("apps", p, { app: p.app, keyword: p.targetKeyword });
   for (const p of readType("role")) add("roles", p, { role: p.role, keyword: p.targetKeyword });
   for (const p of readType("role-app")) add("role-apps", p, { role: p.role, app: p.app, keyword: p.targetKeyword });
+  for (const p of readType("problem")) add("problems", p, { role: p.role, slug: p.slug, task: p.problem, title: p.title, targetKeyword: p.targetKeyword });
   for (const p of [...readType("compare"), ...readType("alternatives")])
     add("compare", p, { kind: p.kind, pageType: p.type, slug: p.slug, title: p.title, keyword: p.targetKeyword, products: p.products.filter((/** @type {any} */ x) => !x.isLazur).map((/** @type {any} */ x) => x.slug) });
   for (const p of readType("blog")) add("blog", p, { slug: p.slug, title: p.title, targetKeyword: p.targetKeyword ?? p.title });
-  const stale = candidates.sort((a, b) => a.at.localeCompare(b.at)).filter((c) => c.at < nyDate(new Date(Date.now() - 30 * 86400_000)));
+  // Thin pages (under the word minimum) first, whatever their age; then anything older than 30 days.
+  const thin = (/** @type {any} */ c) => wordCount(c.existing) < MIN_WORDS;
+  const stale = candidates
+    .filter((c) => thin(c) || c.at < nyDate(new Date(Date.now() - 30 * 86400_000)))
+    .sort((a, b) => Number(thin(b)) - Number(thin(a)) || a.at.localeCompare(b.at));
   await pool(
     concurrency,
     stale.slice(0, refreshCount).map((c) => () => runItem(c.flag, c.t, c.existing)),

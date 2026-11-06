@@ -48,7 +48,7 @@ export const imageQuerySchema = obj({
 
 export const blockSchema = {
   anyOf: [
-    obj({ type: { const: "paragraph" }, text: str(20, 1200) }),
+    obj({ type: { const: "paragraph" }, text: str(20, 1600) }),
     obj({ type: { const: "heading" }, text: str(3, 100), level: { type: "integer", enum: [2, 3] } }, ["type", "text"]),
     obj({ type: { const: "list" }, items: arr(str(2, 400), 2, 12), ordered: { type: "boolean" } }, ["type", "items"]),
     obj({ type: { const: "callout" }, tone: { type: "string", enum: ["tip", "note", "warning"] }, title: str(2, 60), text: str(10, 600) }, ["type", "tone", "text"]),
@@ -71,8 +71,8 @@ const base = {
   tldr: arr(str(10, 220), 3, 5),
   stats: arr(statSchema, 0, 4),
   chart: chartSchema,
-  blocks: arr(blockSchema, 3, 40),
-  faq: arr(faqSchema, 3, 7),
+  blocks: arr(blockSchema, 12, 90),
+  faq: arr(faqSchema, 5, 10),
   sources: arr(sourceSchema, 1, 15),
   imageQueries: arr(imageQuerySchema, 2, 5),
 };
@@ -140,6 +140,21 @@ const productSchema = obj(
   ["name", "slug", "site", "pricing", "platforms", "summary", "bestFor"],
 );
 
+export const problemSchema = obj(
+  {
+    ...base,
+    problem: str(5, 70),
+    costs: arr(obj({ title: str(3, 70), text: str(40, 600) }), 3, 6),
+    causes: arr(obj({ title: str(3, 80), text: str(60, 900) }), 3, 7),
+    fixes: arr(obj({ title: str(3, 80), text: str(60, 900) }), 4, 10),
+    lazurHelps: arr(askSchema, 4, 8),
+    demo: demoSchema,
+    plan: arr(obj({ label: str(2, 20), title: str(3, 70), text: str(30, 500) }), 3, 8),
+    apps: arr({ type: "string", pattern: "^[a-z0-9-]+$" }, 1, 6),
+  },
+  [...baseRequired, "problem", "costs", "causes", "fixes", "lazurHelps", "demo", "plan", "apps"],
+);
+
 export const compareSchema = obj(
   {
     ...base,
@@ -196,7 +211,7 @@ export const blogSchema = obj(
     stats: arr(statSchema, 0, 4),
     sources: arr(sourceSchema, 2, 12),
     imageQueries: arr(imageQuerySchema, 2, 4),
-    body: str(2500, 16000),
+    body: str(11000, 34000),
   },
   ["title", "description", "targetKeyword", "category", "cover", "tldr", "faq", "relatedSlugs", "stats", "sources", "imageQueries", "body"],
 );

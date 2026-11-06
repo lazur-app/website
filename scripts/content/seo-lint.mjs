@@ -22,7 +22,10 @@ const keywords = new Map();
 
 for (const p of pages) {
   // Hand-written blog posts from before the long-tail H1 rule warn instead of failing; the refresh job rewrites them.
-  const ctx = { type: p.type, allowedPaths: paths, legacyH1: p.type === "blog" && !p.generator };
+  // Pages written before the 2,000-word rule warn on length until the refresh job rewrites them
+  // (the refresh picks the thinnest pages first). Anything the pipeline writes must pass.
+  const handWritten = !p.generator || /^hand/.test(String(p.generator.by ?? ""));
+  const ctx = { type: p.type, allowedPaths: paths, legacyH1: p.type === "blog" && !p.generator, legacyLength: handWritten };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { file, ...page } = p;
   const subject =

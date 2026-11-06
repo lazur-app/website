@@ -92,6 +92,7 @@ export const KEYWORD_PATTERNS = {
   app: ["ai assistant for {app} on mac", "{app} voice assistant for mac", "{app} help on mac", "dictate in {app} on mac"],
   role: ["ai assistant for {role}", "voice assistant for {role} mac", "dictation for {role}"],
   "role-app": ["{app} for {role} on mac", "{app} tips for {role} on mac", "ai assistant in {app} for {role}"],
+  problem: ["why {role} {problem}", "how {role} can stop {problem}", "{problem} for {role}"],
   compare: ["lazur vs {x}", "{x} alternatives for mac", "{x} vs {y}"],
   blog: [],
 };
@@ -117,6 +118,7 @@ export const DEFAULT_DAILY_COUNTS = {
   apps: 20,
   roles: 15,
   "role-apps": 50,
+  problems: 30,
   compare: 5,
   blog: 5,
 };

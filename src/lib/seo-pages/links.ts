@@ -8,6 +8,7 @@ import {
   getAppPages,
   getComparePages,
   getHowTos,
+  getProblemPages,
   getRoleAppPages,
   getRolePages,
 } from "./load";
@@ -33,6 +34,8 @@ function toLink(page: SeoPage): SeoLink {
           ? `For ${page.roleName.toLowerCase()}`
           : page.type === "role-app"
             ? `${page.appName} for ${page.roleName.toLowerCase()}`
+            : page.type === "problem"
+              ? `Problem · ${page.roleName}`
             : page.type === "alternatives"
               ? "Alternatives"
               : "Comparison";
@@ -79,7 +82,32 @@ export function relatedFor(page: SeoPage): RelatedGroups {
   const roles = getRolePages();
   const roleApps = getRoleAppPages();
   const compares = [...getComparePages(), ...getAlternativesPages()];
+  const problems = getProblemPages();
   const groups: RelatedGroups = [];
+
+  if (page.type === "problem") {
+    const rolePage = roles.find((r) => r.role === page.role);
+    groups.push({
+      title: `More problems ${page.roleName.toLowerCase()} run into`,
+      links: uniq(problems.filter((p) => p.role === page.role).map(toLink), self, 6),
+      hub: { href: `/for/${page.role}/problems`, label: `All ${page.roleName.toLowerCase()} problems` },
+    });
+    groups.push({
+      title: `Lazur for ${page.roleName.toLowerCase()}`,
+      links: uniq(
+        [...(rolePage ? [toLink(rolePage)] : []), ...roleApps.filter((r) => r.role === page.role).map(toLink), ...apps.filter((a) => page.apps.includes(a.app)).map(toLink)],
+        self,
+        6,
+      ),
+      hub: { href: HUB_PATHS.role, label: "All roles" },
+    });
+    groups.push({
+      title: "Guides that help",
+      links: uniq([...howtos.filter((h) => page.apps.includes(h.app)).map(toLink), ...postsMentioning([page.roleSingular, page.roleName, ...page.problem.split(" ").filter((w) => w.length > 4)], 4)], self, 6),
+      hub: { href: HUB_PATHS.howto, label: "All how-to guides" },
+    });
+    groups.push({ title: "Other jobs, same kind of problem", links: uniq(problems.filter((p) => p.role !== page.role).map(toLink), self, 4) });
+  }
 
   if (page.type === "howto") {
     const app = apps.find((a) => a.app === page.app);
@@ -132,6 +160,11 @@ export function relatedFor(page: SeoPage): RelatedGroups {
 
   if (page.type === "role") {
     groups.push({
+      title: `Problems ${page.roleName.toLowerCase()} run into, and fixes`,
+      links: uniq(problems.filter((p) => p.role === page.role).map(toLink), self, 8),
+      hub: { href: `/for/${page.role}/problems`, label: "All of them" },
+    });
+    groups.push({
       title: `Lazur for ${page.roleName.toLowerCase()}, app by app`,
       links: uniq(roleApps.filter((r) => r.role === page.role).map(toLink), self, 8),
     });
@@ -158,6 +191,11 @@ export function relatedFor(page: SeoPage): RelatedGroups {
     groups.push({
       title: "Start here",
       links: uniq([...(rolePage ? [toLink(rolePage)] : []), ...(appPage ? [toLink(appPage)] : [])], self, 2),
+    });
+    groups.push({
+      title: `Problems ${page.roleName.toLowerCase()} run into`,
+      links: uniq(problems.filter((p) => p.role === page.role).map(toLink), self, 4),
+      hub: { href: `/for/${page.role}/problems`, label: "All of them" },
     });
     groups.push({
       title: `${page.appName} how-tos`,
@@ -200,6 +238,7 @@ export function relatedForPost(post: BlogPost): RelatedGroups {
   const text = `${post.title} ${post.description} ${post.targetKeyword ?? ""} ${post.body.slice(0, 4000)}`.toLowerCase();
   const apps = getAppPages().filter((a) => text.includes(a.appName.toLowerCase()));
   const roles = getRolePages().filter((r) => text.includes(r.roleSingular.toLowerCase()));
+  const problems = getProblemPages().filter((p) => roles.some((r) => r.role === p.role));
   const howtos = getHowTos().filter((h) => apps.some((a) => a.app === h.app));
   const compares = [...getComparePages(), ...getAlternativesPages()].filter((c) =>
     c.products.some((p) => !p.isLazur && text.includes(p.name.toLowerCase())),
@@ -209,6 +248,7 @@ export function relatedForPost(post: BlogPost): RelatedGroups {
     { title: "Lazur in these apps", links: uniq(apps.map(toLink), self, 4), hub: { href: HUB_PATHS.app, label: "All apps" } },
     { title: "How-to guides", links: uniq(howtos.map(toLink), self, 4), hub: { href: HUB_PATHS.howto, label: "All how-to guides" } },
     { title: "For your role", links: uniq(roles.map(toLink), self, 3), hub: { href: HUB_PATHS.role, label: "All roles" } },
+    { title: "Problems and fixes", links: uniq(problems.map(toLink), self, 4) },
     { title: "Comparisons", links: uniq(compares.map(toLink), self, 3), hub: { href: HUB_PATHS.compare, label: "All comparisons" } },
   ];
   return groups.filter((g) => g.links.length > 0);
@@ -229,6 +269,14 @@ export function breadcrumbsFor(page: SeoPage): { href: string; label: string }[]
         { href: "/for", label: "Roles" },
         { href: `/for/${page.role}`, label: page.roleName },
         { href: seoPath(page), label: appName(page.app) },
+      ];
+    case "problem":
+      return [
+        home,
+        { href: "/for", label: "Roles" },
+        { href: `/for/${page.role}`, label: page.roleName },
+        { href: `/for/${page.role}/problems`, label: "Problems" },
+        { href: seoPath(page), label: page.problem },
       ];
     case "compare":
       return [home, { href: "/compare", label: "Compare" }, { href: seoPath(page), label: page.title }];

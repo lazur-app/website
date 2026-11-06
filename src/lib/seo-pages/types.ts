@@ -4,7 +4,7 @@
  * file; keep the two in sync).
  */
 
-export type SeoPageType = "howto" | "app" | "role" | "role-app" | "compare" | "alternatives";
+export type SeoPageType = "howto" | "app" | "role" | "role-app" | "problem" | "compare" | "alternatives";
 
 export type LazurCapability =
   | "explain"
@@ -188,6 +188,28 @@ export type RoleAppPage = SeoPageBase & {
   tasks: LazurAsk[];
 };
 
+/** /for/<role>/problems/<slug>: one real problem people in a job have, and how to solve it. */
+export type ProblemPage = SeoPageBase & {
+  type: "problem";
+  role: string;
+  roleName: string;
+  roleSingular: string;
+  /** Short noun phrase, e.g. "losing focus while studying". */
+  problem: string;
+  /** What it costs them: time, money, grades, stress. */
+  costs: { title: string; text: string }[];
+  /** Why it happens. */
+  causes: { title: string; text: string }[];
+  /** Fixes that work with or without Lazur. */
+  fixes: { title: string; text: string }[];
+  /** Where Lazur helps, honestly. */
+  lazurHelps: LazurAsk[];
+  demo: LazurDemo;
+  /** A short routine or plan to follow. */
+  plan: { label: string; title: string; text: string }[];
+  apps: string[];
+};
+
 export type CompareProduct = {
   name: string;
   slug: string;
@@ -211,7 +233,7 @@ export type ComparePage = SeoPageBase & {
   verdict: string;
 };
 
-export type SeoPage = HowToPage | AppPage | RolePage | RoleAppPage | ComparePage;
+export type SeoPage = HowToPage | AppPage | RolePage | RoleAppPage | ProblemPage | ComparePage;
 
 export type SeoLink = {
   href: string;

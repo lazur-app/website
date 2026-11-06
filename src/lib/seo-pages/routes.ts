@@ -11,6 +11,8 @@ export function seoPath(page: Pick<SeoPage, "type" | "slug"> & { role?: string; 
       return `/for/${page.slug}`;
     case "role-app":
       return `/for/${page.role}/${page.app}`;
+    case "problem":
+      return `/for/${page.role}/problems/${page.slug}`;
     case "compare":
       return `/compare/${page.slug}`;
     case "alternatives":
@@ -23,6 +25,7 @@ export const HUB_PATHS: Record<SeoPageType, string> = {
   app: "/apps",
   role: "/for",
   "role-app": "/for",
+  problem: "/for",
   compare: "/compare",
   alternatives: "/alternatives",
 };
@@ -32,6 +35,7 @@ export const TYPE_LABEL: Record<SeoPageType, string> = {
   app: "Apps",
   role: "Roles",
   "role-app": "Roles",
+  problem: "Problems",
   compare: "Compare",
   alternatives: "Alternatives",
 };
@@ -42,6 +46,7 @@ export const CONTENT_DIRS: Record<SeoPageType, string> = {
   app: "content/seo/apps",
   role: "content/seo/roles",
   "role-app": "content/seo/role-apps",
+  problem: "content/seo/problems",
   compare: "content/seo/compare",
   alternatives: "content/seo/alternatives",
 };

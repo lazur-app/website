@@ -3,3 +3,4 @@ export { AppTemplate } from "./AppTemplate";
 export { RoleTemplate } from "./RoleTemplate";
 export { RoleAppTemplate } from "./RoleAppTemplate";
 export { CompareTemplate } from "./CompareTemplate";
+export { ProblemTemplate } from "./ProblemTemplate";

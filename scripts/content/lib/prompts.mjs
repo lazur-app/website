@@ -20,6 +20,7 @@ const RESEARCH_RULES = `RESEARCH RULES:
 - Return JSON only.`;
 
 const OUTPUT_RULES = `OUTPUT RULES:
+- At least 2,000 words of prose in total (code counts intro, tldr, every block, step, FAQ answer and list). Aim for 2,300. Use 12 or more blocks with several H2 sections, each answering a different sub-question. Make each page its own story: pick the angle, examples and section order that fit THIS topic, do not follow a fixed template.
 - Return JSON only, matching the schema. Use only facts from the research notes. Every number in stats, chart and text must come from the notes, and its URL must be in sources.
 - Internal links: you may link with markdown [text](/path) only to these paths: /download, /pricing, /tools/typing-speed-test, /tools/speaking-vs-typing-test, /tools/typing-tax-calculator, /tools/dictation-accuracy-checker, and the paths listed under INTERNAL PAGES. Related pages are added by code; do not list them.
 - imageQueries: 3 Pixabay searches (short, 2 to 4 words) for real photos that fit the page (people at a Mac, the kind of work, the setting). Not screenshots, not logos, not text. Alt text describes the photo and includes the keyword naturally.
@@ -112,6 +113,29 @@ ${internal(t)}
 RESEARCH NOTES:
 ${JSON.stringify(t.notes)}`,
 
+  /** @param {{ role: {name: string, singular: string}, problem: string }} t */
+  problemResearch: (t) => `Research a real problem ${t.role.name.toLowerCase()} have: "${t.problem}". Find: how common it is and what it costs (time, money, grades, burnout, errors), with numbers from surveys, studies or labor statistics; why it happens (research, expert explanations); fixes that work, with evidence; the tools and apps involved on a Mac. Prefer primary sources (studies, official statistics, professional bodies).
+${RESEARCH_RULES}`,
+
+  /** @param {{ role: {name: string, singular: string, slug: string, apps: string[]}, problem: string, keyword: string, notes: unknown, internal: string[] }} t */
+  problemWrite: (t) => `Write the data for lazur.app/for/${t.role.slug}/problems/...: a page about one problem ${t.role.name.toLowerCase()} have: "${t.problem}". Target keyword: "${t.keyword}".
+Earn trust first: what it costs them (costs), why it happens (causes), and fixes anyone can use without buying anything (fixes). Then, honestly, where Lazur helps (lazurHelps, demo) using only real capabilities. plan: a short routine or week plan (label like "Day 1" or "Morning"). apps: app slugs from ${t.role.apps.join(", ")} that matter for this problem. problem: a short noun phrase, lowercase.
+Do not overclaim. For regulated jobs (lawyers, nurses, accountants) say to follow employer rules on client or patient data.
+${WRITING_RULES_PROMPT}
+${VOICE}
+${LAZUR_FACTS_PROMPT}
+${OUTPUT_RULES}
+${internal(t)}
+RESEARCH NOTES:
+${JSON.stringify(t.notes)}`,
+
+  /** @param {{ role: {name: string, singular: string}, existing: string[], count: number }} t */
+  problemTopics: (t) => `Find ${t.count} distinct, real problems ${t.role.name.toLowerCase()} have in their work that people search for (e.g. "why do I lose focus while studying", "founders spending too much time on email"). Use WebSearch for evidence of demand: forum threads, People also ask, surveys. Each must be a different problem, not a rewording of another. Prefer problems where a voice assistant on a Mac that sees the screen, points, explains, drafts and dictates could honestly help, but include the problem only if it is real.
+Do NOT repeat or closely overlap these existing ones:
+${t.existing.join("\n")}
+For each: slug (lowercase, hyphens, 3 to 8 words), title (long-tail H1, 8 to 16 words, contains targetKeyword), targetKeyword (long-tail search phrase), task (the problem as a short noun phrase), why, evidenceUrl.
+${RESEARCH_RULES}`,
+
   /** @param {{ apps: string[], existing: string[], count: number }} t */
   howtoTopics: (t) => `Find ${t.count} how-to topics people search for, in the form "how to <task> in <app> on mac", for these Mac apps: ${t.apps.join(", ")}.
 Use WebSearch to check demand: autocomplete-style queries, "People also ask", help-center top articles, forum threads. Prefer tasks with clear steps and real search demand. Mac-specific angles are a plus.
@@ -134,7 +158,7 @@ ${RESEARCH_RULES}`,
 
   /** @param {{ topic: { title: string, targetKeyword: string }, notes: unknown, relatedOptions: string[], internal: string[] }} t */
   blogWrite: (t) => `Write a blog post for lazur.app/blog: "${t.topic.title}". Target keyword: "${t.topic.targetKeyword}".
-body: markdown, 900 to 1600 words, starting with a two-sentence direct answer (no H1, the title is rendered separately). Use ## headings that match search intent, a table where it helps, and at least two internal links. Mention Lazur once or twice where it genuinely helps, in its own short section near the end, and link /download. Never make Lazur the subject of every section.
+body: markdown, 2,000 to 2,800 words, starting with a two-sentence direct answer (no H1, the title is rendered separately). Use ## headings that match search intent, a table where it helps, and at least two internal links. Mention Lazur once or twice where it genuinely helps, in its own short section near the end, and link /download. Never make Lazur the subject of every section.
 relatedSlugs: 2 to 4 from: ${t.relatedOptions.join(", ")}.
 ${WRITING_RULES_PROMPT}
 ${VOICE}

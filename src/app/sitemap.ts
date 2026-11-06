@@ -5,6 +5,7 @@ import {
   getAppPages,
   getComparePages,
   getHowTos,
+  getProblemPages,
   getRoleAppPages,
   getRolePages,
 } from "@/lib/seo-pages/load";
@@ -78,6 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...seo(getAppPages(), 0.85),
     ...seo(getRolePages(), 0.8),
     ...seo(getRoleAppPages(), 0.7),
+    ...seo(getProblemPages(), 0.75),
+    ...[...new Set(getProblemPages().map((p) => p.role))].map((role) => ({
+      url: `${SITE_URL}/for/${role}/problems`,
+      lastModified: STATIC_LAST_MODIFIED,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    })),
     ...seo(howtos, 0.7),
     ...howtoAppHubs,
     ...blogRoutes,

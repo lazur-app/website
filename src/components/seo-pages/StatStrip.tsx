@@ -41,7 +41,8 @@ export function BarChart({ chart }: { chart: SeoChart }) {
           </div>
         ))}
       </div>
-      <table className="sr-only">
+      <div className="sr-only">
+      <table>
         <caption>{chart.title}</caption>
         <tbody>
           {chart.bars.map((b) => (
@@ -52,6 +53,7 @@ export function BarChart({ chart }: { chart: SeoChart }) {
           ))}
         </tbody>
       </table>
+      </div>
       {chart.note || chart.sourceUrl ? (
         <p className="seo-chart__note">
           {chart.note}

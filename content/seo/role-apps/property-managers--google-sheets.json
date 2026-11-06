@@ -1,0 +1,669 @@
+{
+  "title": "Google Sheets for property managers on Mac: rent rolls, late fees and lease tracking",
+  "metaTitle": "Google Sheets for Property Managers on Mac: Rent Rolls and Shortcuts",
+  "description": "Google Sheets for property managers on Mac: rent rolls, lease dates, late fees, Mac shortcuts, and how to get voice help from Lazur.",
+  "targetKeyword": "google sheets for property managers on mac",
+  "secondaryKeywords": [
+    "Google Sheets rent roll template Mac",
+    "property management spreadsheet on Mac",
+    "Google Sheets late rent tracker",
+    "lease tracking in Google Sheets",
+    "Google Sheets keyboard shortcuts Mac",
+    "Google Sheets dropdown for lease status"
+  ],
+  "intro": "Google Sheets works on a Mac through your browser, and it covers most of what a property manager tracks. The core file is the rent roll, with one row per unit for tenant, rent, deposit and lease dates. This guide shows how to set it up, which formulas catch problems, the Mac shortcuts that save time, and where Lazur helps inside the sheet.",
+  "tldr": [
+    "Google Sheets on a Mac works well for a rent roll: one row per unit, with tenant, rent, deposit and lease dates.",
+    "Use Data > Data validation for status dropdowns, and Format > Conditional formatting to flag late rent and ending leases.",
+    "Build your checks with SUMIFS, COUNTIFS, IF, TODAY and EDATE, and test each formula on a copy first.",
+    "Excel files open in Sheets, but cells over 50,000 characters are removed when the file converts.",
+    "Lazur sees your screen only while you hold ⌥⌘. It points, explains, guides and drafts. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "Cells a Google Sheets file can hold, per Google's file limits page",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive/Docs/Sheets file limits (Google Help)"
+    },
+    {
+      "value": "100MB",
+      "label": "File size limit for a spreadsheet created in or converted to Google Sheets",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive/Docs/Sheets file limits (Google Help)"
+    },
+    {
+      "value": "50,000",
+      "label": "Characters per cell. Longer cells are removed when an Excel file converts",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive/Docs/Sheets file limits (Google Help)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a property manager tracks in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most property managers start with a rent roll. A rent roll lists every unit you manage, who lives there, and what they pay. It answers the questions that come up every week. Who paid? Who is late? Which lease ends next? How much deposit do you still hold?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stessa, a landlord software company, publishes a rent roll template in two forms: a downloadable .xlsx file and a Google Sheets file. Its guide lists the fields it recommends for each unit. Treat that list as a checklist. Your state, your owner agreement and your company policy decide what you must keep."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Unit number, size, beds and baths",
+        "Tenant name and monthly rent",
+        "Rent collected and late fees",
+        "Additional rent for pets, roommates or parking",
+        "Security deposit held",
+        "Lease start date, end date and length",
+        "Renewal options and annual increases"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Stessa's guide says the rent roll helps you check three things. Is rent paid in full and on time? Should a late notice go out? How much security deposit do you hold, which matters at inspections? Build the sheet around those three questions first. Add the rest once the basics work."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the rent roll so the numbers stay honest"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use one tab for units and one for leases. The unit tab holds facts about the building that rarely change. The lease tab holds the tenant, the dates and the money. Link the two by unit name, so a renewal does not mean retyping the building details."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep each column to one kind of value. Dates go in date cells. Rent goes in number cells. Status goes in a dropdown. Avoid merged cells inside the data. Merged cells break sorting and filtering, and they make formulas harder to write."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Tab",
+        "What it holds",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Units",
+          "Unit name, size, beds and baths",
+          "Stable facts that rarely change"
+        ],
+        [
+          "Leases",
+          "Tenant, rent, deposit and lease dates",
+          "Where most of your checks happen"
+        ],
+        [
+          "Payments",
+          "Date, unit, amount and method",
+          "A record of what came in"
+        ],
+        [
+          "Notices",
+          "Late notices, renewal letters and dates sent",
+          "Keeps the paper trail in one place"
+        ]
+      ],
+      "caption": "One tab per job keeps each fact in one place."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Freeze the header and select with the keyboard"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open View > Freeze to keep the header row visible as you scroll. Without it, you lose track of which column is rent and which is deposit after a few screens."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use ⌃Space to select a whole column and ⇧Space to select a whole row. Google lists both on its Mac shortcut page. Select a full rent column before you format it, so every row gets the same number style."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dropdowns and conditional formatting for status"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Use dropdowns for rent status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the status column, then open Data > Data validation. Set the rule to a list of items, such as Current, Late, Notice given and Vacant. A dropdown stops typos like 'Lat' or a stray space from breaking your counts. Formulas match exact text, so one extra space can hide a row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dropdowns also keep filters reliable. A filter on Late shows every late row, because every late row says Late in the same way. Free text gives you spelling variants, and a filter misses them."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Flag late rent with conditional formatting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the rent status column, then choose Format > Conditional formatting. Pick the rule that says the text is exactly Late, and choose a fill color. Late rows now stand out when you scroll, even on a small laptop screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the same tool for lease end dates. Create a rule that colors a date cell when it falls inside a window you set. Put the window length in its own cell. You can change it later without editing the rule."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for rent, deposits and lease dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need advanced formulas for a rent roll. A few functions cover most of it: SUMIFS, COUNTIFS, IF, TODAY and EDATE. Learn one at a time, and test each one on a copy of the sheet first."
+    },
+    {
+      "type": "paragraph",
+      "text": "SUMIFS adds a column only where another column matches. For example, =SUMIFS(Leases!F:F, Leases!H:H, \"Late\") adds the amounts in column F on rows where column H says Late. Swap in your own tab name and column letters."
+    },
+    {
+      "type": "paragraph",
+      "text": "COUNTIFS counts rows that pass more than one test. Use it to count late units in one building. The result tells you how many late notices to write this week, without scrolling through the tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "TODAY returns the current date, and it updates each time the sheet recalculates. Compare a lease end date with it. A formula like =IF(D2-TODAY()<$B$1,\"Renew\",\"\") flags leases that end inside the window in B1, counted in days. Adjust the cell references to match your layout."
+    },
+    {
+      "type": "paragraph",
+      "text": "EDATE adds whole months to a date. Use it to calculate a renewal date from a start date and a lease length in months. Keep the length in its own column, so every lease follows the same rule."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "SUMIFS: total rent or fees for one status",
+        "COUNTIFS: count rows that match more than one test",
+        "IF: label rows that need action",
+        "TODAY: the current date, so flags stay current",
+        "EDATE: a renewal date from a start date and lease length"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one late tenant, step by step"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the Leases tab and find the tenant's row.",
+        "Check the rent status cell. It should say Late, picked from the dropdown.",
+        "Confirm the row turned color. If it did not, check the conditional formatting rule.",
+        "Run a COUNTIFS on the building column to see how many late rows that building has.",
+        "Ask Lazur to draft a reminder, then read it and change anything before you send it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the order. Check the data before you act on the count. A count built on a misspelled status comes out low, and you will miss a late tenant. The check takes less time than the mistake."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lease dates, sorting and renewal reminders"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sort the Leases tab by end date with Data > Sort range, so the next lease to end sits at the top. Turn on Data > Create a filter when you want one building or one status. A filter hides rows. It does not change the data, and you clear it when you finish."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sort the whole table, not one column. If you sort a single column, each name separates from its rent. That mistake puts the wrong rent on the wrong tenant, and it is hard to spot later."
+    },
+    {
+      "type": "paragraph",
+      "text": "A cell nobody opens will not remind you. Put renewal tasks in Apple Reminders instead. Lazur can add one by voice. Say the task and the date, and Lazur adds it to Apple Reminders for you."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: partial payments, roommates and move-outs"
+    },
+    {
+      "type": "paragraph",
+      "text": "A partial payment needs two columns. Keep rent due and rent collected apart. A partial payment then shows a balance still owed, instead of a row that says Paid. Check the balance column when you run the late count."
+    },
+    {
+      "type": "paragraph",
+      "text": "Roommates and pets go in the additional rent column, as Stessa's list suggests. If you add them into the main rent cell, your rent totals drift from what the lease says. Keep them separate, and total them with a formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a move-out, keep the row. Change the status to Vacant and record the date. Keep the deposit line until the deposit is returned or applied. A deleted row loses a record you may need at an inspection."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Owner statements and connected tools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Owner statements often start from the rent roll. Google's Sheets page lists third-party connectors for Asana, HubSpot, Intuit QuickBooks and Salesforce. If your accounting already runs in QuickBooks, check that connector before you build a manual bridge."
+    },
+    {
+      "type": "paragraph",
+      "text": "A connector depends on your Google account and on what your organization allows. Ask whoever manages your accounts before you turn one on. Read Google's current help pages to see what your account can connect."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel files in Google Sheets: what changes on conversion"
+    },
+    {
+      "type": "paragraph",
+      "text": "Owners, banks and tenants often send Excel files. Google says you can open and edit Excel files in Sheets without making a copy. Read that carefully. Some Gemini features only work after you convert the file to Sheets format."
+    },
+    {
+      "type": "paragraph",
+      "text": "Converting an Excel file removes cells over 50,000 characters. This matters for long notes pasted into a single cell. Keep notes short, or move long text to a Google Doc and link to it from the cell."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Check the file before you convert"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the original Excel file in Google Drive, unchanged. Work in a copy. Scan the notes column for long cells before you convert, and compare the totals in both files afterward. If a total moves, you know where to look."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you still run your portfolio in Excel, read [Excel for property managers on Mac](/for/property-managers/excel) for rent rolls, lease tracking and owner statements."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name your tabs plainly",
+      "text": "Use names like Units, Leases, Payments and Notices. A plain name makes a formula easy to read months later, when you have forgotten why it was built."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac shortcuts for Google Sheets on macOS"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Mac shortcut page is the reference for these. Press ⌘/ in Sheets to see the common list. Use the shortcuts below for the moves you repeat most."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘/ shows the common shortcuts for Sheets on a Mac",
+        "⌥/ opens Tool finder, which Google used to call Search the menus",
+        "⌃⌥ plus a letter opens a menu, such as ⌃⌥F for File",
+        "⌃Space selects a whole column",
+        "⇧Space selects a whole row",
+        "⌘Z undoes your last change"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Tool finder is faster than digging through menus. Press ⌥/, type Data validation, then choose it from the list. Tool finder only finds the command. You still choose the list values yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets limits you should know"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's file limits page says a spreadsheet can hold up to 20 million cells, and a file can be up to 100MB. A rent roll for a small portfolio stays far below both limits."
+    },
+    {
+      "type": "paragraph",
+      "text": "The real risk is habit. People paste years of bank exports into one file. The file grows, gets slower to open, and becomes hard to audit. Keep exports in their own files, and link only the totals you need."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page does not list a maximum number of tabs. Do not assume there is no limit. Test a large file before you depend on it, and keep archives in separate files."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gemini in Google Sheets: what needs a plan"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Sheets page says Gemini can write formulas, explain and fix errors, and create pivot tables and charts from a prompt. It can also fill a table with categorized or new data. Some of this needs a Workspace plan. Excel files must be converted first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google also highlights Sheets canvas, which builds small apps such as dashboards, heat maps and Kanban boards from a text prompt. Google calls it the newest addition. Check whether your account has it before you plan around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat Gemini formula help as a draft. Read the formula before you trust it. A formula can look right and still point at the wrong column, which is easy to miss in a tab full of numbers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that lead to bad rent numbers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates typed as text. They will not sort or compare correctly. Format the column as dates first, then type.",
+        "One fact in two places. If the rent lives on both the Units tab and the Leases tab, one copy goes stale.",
+        "Pasting exports over formulas. A paste can overwrite summary cells. Paste raw data into a data tab only.",
+        "Long notes in one cell. Cells over 50,000 characters are removed when an Excel file converts.",
+        "Sharing the whole file with everyone. Share with the people who need it. Lock summary tabs with Data > Protect sheets and ranges.",
+        "Skipping version history. If a total moves and you cannot explain why, open File > Version history > See version history."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Lazur in Google Sheets on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘ to ask about anything on your screen, and Lazur answers out loud. It listens and looks only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. You keep your hands on every change."
+    },
+    {
+      "type": "paragraph",
+      "text": "For text, hold fn and speak. Dictation produces clean, formatted text at the cursor in any app. Snippets, a personal dictionary and clipboard slots help with the phrases you repeat, such as your standard late notice opening line."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "What Lazur does not do in your sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate other apps for you. It is not a plugin or add-in for any app, and it has no partnerships with any app maker. Think of it as a helper that points, explains and types, not a second person in the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research jobs run in Lazur's own Chrome tabs and come back with a summary and a report. Use that for checking local rules. Then confirm the rule with your attorney or your state's official site."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy before you paste tenant data"
+    },
+    {
+      "type": "paragraph",
+      "text": "A rent roll holds tenant names, rent and deposit amounts. Read your company policy before you show that data to any AI tool. Lazur sends audio and the screenshot to AI providers so it can answer. Those are not stored, and content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "A safer habit is to point Lazur at the menu or the formula, not the tenant list. Ask the question first, then read the answer on screen. Hide sensitive columns before you hold the shortcut, if your policy requires it."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check your policy first",
+      "text": "Your management agreement or company policy may limit what you share with any AI tool. Lazur does not replace that check, so confirm it before you hold the shortcut over tenant data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start with a clean copy this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy your current rent roll into a new file, and leave the old one untouched.",
+        "Build the Units and Leases tabs, then add the status dropdown.",
+        "Add the conditional formatting rules and two or three formulas.",
+        "Run the late count and compare it with your paper records."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one tab, one dropdown and one formula. Once the status column stays clean, add the lease tab, the reminders and the owner view. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned but not available."
+    },
+    {
+      "type": "paragraph",
+      "text": "There is a free trial, and no credit card is needed to start. You can get the app from the [download page](/download), and compare plans on the [pricing page](/pricing). For the wider picture, see [AI assistant for property managers on Mac](/for/property-managers)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Google Sheets good for property managers on a Mac?",
+      "answer": "Yes, for a rent roll, lease tracking and simple owner summaries. It runs in your Mac browser and keeps one file shared with the people who need it. It is less suited to maintenance requests, accounting and tenant messaging, which usually need other tools."
+    },
+    {
+      "question": "Which Mac shortcuts help most in Google Sheets?",
+      "answer": "Press ⌘/ to see the common shortcut list. Use ⌥/ to open Tool finder, ⌃Space to select a column and ⇧Space to select a row. Ctrl and Option plus a letter opens a menu, such as ⌃⌥F for File."
+    },
+    {
+      "question": "How big can a Google Sheets file get?",
+      "answer": "Google's file limits page says a spreadsheet can hold up to 20 million cells, and a file can be up to 100MB. The page does not list a maximum number of tabs, so test a large file before you rely on it."
+    },
+    {
+      "question": "Do Excel files lose data when I open them in Google Sheets?",
+      "answer": "Google says you can open and edit Excel files without making a copy. When you convert an Excel file, cells over 50,000 characters are removed. Keep the original file in Drive and check the notes column before you convert."
+    },
+    {
+      "question": "Can Lazur edit my Google Sheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps. It points at things, guides you one click at a time, explains formulas and drafts text that you place and review yourself."
+    },
+    {
+      "question": "Is Lazur an add-in for Google Sheets?",
+      "answer": "No. Lazur is not a plugin or add-in for any app, and it has no partnerships with any app maker. It works with what is on your screen while you hold the shortcut."
+    },
+    {
+      "question": "Does Lazur record my screen all the time?",
+      "answer": "No. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models."
+    },
+    {
+      "question": "Where can I get Lazur for my Mac?",
+      "answer": "Use the download page. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned but not available yet. There is a free trial, and no credit card is needed to start."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Google Sheets",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Computer",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Google Drive/Docs/Sheets file limits",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "A Simple and Free Rent Roll Template for Landlords",
+      "url": "https://www.stessa.com/blog/rent-roll-template/",
+      "publisher": "Stessa",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I set up a dropdown for rent status?",
+    "capability": "point",
+    "result": "Lazur circles the Data menu and labels it. You click Data, then Data validation, and set the list of statuses yourself.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome on a Mac, Leases tab open, cursor on the rent status column.",
+    "output": "Lazur says: Open the Data menu up top, then choose Data validation. Type your status words into the list, such as Current, Late and Vacant. Lazur circles the Data menu and labels it as you ask.",
+    "pointsAt": "Data > Data validation"
+  },
+  "tasks": [
+    {
+      "say": "Where is Data validation in this sheet?",
+      "result": "Lazur circles the Data menu in the menu bar and labels it, so you know where to look first.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making a dropdown for rent status.",
+      "result": "Lazur guides you one click at a time and waits for each click. You make each change yourself.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this SUMIFS formula do?",
+      "result": "Lazur reads the formula on screen and explains each part in plain English, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a short late rent reminder for this tenant.",
+      "result": "Lazur drafts the text and types it where your cursor sits. Read it and change anything before you send.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a lease renewal note into this cell.",
+      "result": "Hold fn and speak. Clean, formatted text appears at the cursor in any app, ready for you to check.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Look up the late fee rules for my state and summarize them.",
+      "result": "The research runs in Lazur's own Chrome tabs and comes back with a summary and a report to check.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to check which deposits are still held.",
+      "result": "Lazur adds the reminder to Apple Reminders by voice, so the task shows up on your Mac.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "property-managers-google-sheets",
+  "role": "property-managers",
+  "app": "google-sheets",
+  "roleName": "Property managers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/property-managers-google-sheets/google-sheets-for-property-managers-on-mac-1-3292d2.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Property manager on a Mac using Google Sheets for rent rolls, lease dates and late fees",
+      "caption": "A rent roll works best when one person keeps it current.",
+      "keywords": [
+        "google sheets for property managers on mac",
+        "Google Sheets",
+        "Property managers",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/application-work-looking-for-a-job-3653359/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/property-managers-google-sheets/google-sheets-for-property-managers-on-mac-2-856914.jpg",
+      "width": 1280,
+      "height": 996,
+      "alt": "Keys handed over at an apartment move in, the kind of change a rent roll records",
+      "caption": "Move-ins and move-outs change the rent roll and the deposit record.",
+      "keywords": [
+        "google sheets for property managers on mac",
+        "Google Sheets",
+        "Property managers",
+        "Mac",
+        "apartment keys tenant",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/give-key-receive-hand-keys-5242150/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/property-managers-google-sheets/google-sheets-for-property-managers-on-mac-3-514111.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man using a Mac laptop to check a spreadsheet at a desk",
+      "caption": "Hold a shortcut, ask one question, then go back to the work.",
+      "keywords": [
+        "google sheets for property managers on mac",
+        "Google Sheets",
+        "Property managers",
+        "Mac",
+        "man using laptop Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "MomentR",
+        "url": "https://pixabay.com/users/MomentR-42422341/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/food-lemon-chop-fruit-9059609/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for property managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "Google Sheets rent roll template Mac": 1,
+      "property management spreadsheet on Mac": 1,
+      "Google Sheets late rent tracker": 1,
+      "lease tracking in Google Sheets": 1,
+      "Google Sheets keyboard shortcuts Mac": 1,
+      "Google Sheets dropdown for lease status": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,588 @@
+{
+  "title": "Chrome for IT support technicians on Mac: check policies, fix enrollment, clear cache",
+  "metaTitle": "Chrome for IT Support Technicians on Mac: Policies and Cache",
+  "description": "Chrome for IT support technicians on Mac: read policies at chrome://policy, fix enrollment and profiles, clear cache, and ask Lazur where to click.",
+  "targetKeyword": "chrome for it support technicians on mac",
+  "secondaryKeywords": [
+    "chrome policy check mac",
+    "chrome enterprise mac troubleshooting",
+    "chrome managed by organization mac",
+    "clear chrome cache on mac",
+    "chrome profile setup mac",
+    "chrome://policy mac"
+  ],
+  "intro": "Chrome for IT support technicians on Mac comes down to three checks. You read the policies a Mac receives, fix enrollment and profile problems, and clear the cache and cookies that break sign-in. Chrome has built-in pages for the first check, so you can start today without any extra tool. Lazur can point at each step while you work.",
+  "tldr": [
+    "Open chrome://policy, click Reload policies, then read the Source column before you trust any value.",
+    "A Not set row means Chrome received no value. It does not mean the policy passed.",
+    "Mac enrollment failures often trace back to the token file path, a plist saved in the wrong format, or a Chrome that was never restarted.",
+    "Clear one site's data before you clear everything. Clearing all cookies signs people out of email and the intranet.",
+    "Lazur points at buttons, reads error text out loud, and guides you one click at a time. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "22%",
+      "label": "of help desk tickets in a 50,000+ ticket analysis are productivity-blocking",
+      "sourceUrl": "https://www.fixify.com/it-help-desk-benchmark-report-2026",
+      "sourceTitle": "2026 IT Help Desk Benchmark Report"
+    },
+    {
+      "value": "28%",
+      "label": "of productivity-blocking tickets are about permissions management, the largest category",
+      "sourceUrl": "https://www.fixify.com/it-help-desk-benchmark-report-2026",
+      "sourceTitle": "2026 IT Help Desk Benchmark Report"
+    },
+    {
+      "value": "21% vs 4%",
+      "label": "negative sentiment on productivity-blocking tickets versus other tickets",
+      "sourceUrl": "https://www.fixify.com/it-help-desk-benchmark-report-2026",
+      "sourceTitle": "2026 IT Help Desk Benchmark Report"
+    },
+    {
+      "value": "Chrome 150",
+      "label": "is the last Chrome release that supports macOS 12 Monterey",
+      "sourceUrl": "https://9to5google.com/2026/01/23/google-chrome-ending-support-for-macos-monterey-in-july-2026/",
+      "sourceTitle": "Google Chrome ending support for macOS Monterey in July 2026"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most of your Chrome work on a Mac happens in four places. You use the Chrome menu bar, the chrome://policy page, the chrome://version page, and Google's Chrome Enterprise help. Each one answers a different question. chrome://policy shows what the browser received. chrome://version shows what is installed. The menu bar gets you to settings and the About page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What version of Chrome is this Mac running?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the version. Many answers depend on it, and Chrome changes its Mac requirements between releases. Open Chrome > About Google Chrome from the menu bar. You can also type chrome://version in the address bar. The same page shows your profile path, which tells you where this user's data lives."
+    },
+    {
+      "type": "paragraph",
+      "text": "WhatIsMyBrowser lists Chrome 156.0.8078.82 as the latest Mac build, dated November 4, 2026. Other sources list different builds for the same period. Read the number on the Mac you are fixing. Do not copy a version from an article into a ticket."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which macOS version does each Chrome release need?"
+    },
+    {
+      "type": "paragraph",
+      "text": "This matters most on older Macs. Chrome 150 is the last version that supports macOS 12 Monterey. Chrome 151 drops macOS 12 support, and new installs need macOS 13 Ventura or later. If a user on Monterey asks why Chrome will not install, this is the answer. Check the Mac's version under Apple menu > About This Mac."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Chrome release",
+        "Mac requirement or change",
+        "Date in source"
+      ],
+      "rows": [
+        [
+          "Chrome 150",
+          "Last release that supports macOS 12 Monterey",
+          "July 13, 2026 (Chrome Enterprise notes)"
+        ],
+        [
+          "Chrome 151",
+          "Drops macOS 12. New installs need macOS 13 Ventura or later. Extends the profile-creation redesign to Mac",
+          "August 7, 2026 (Chrome Enterprise notes). 9to5Google gave July 28, 2026 as tentative"
+        ],
+        [
+          "Chrome 152",
+          "Changes the tab strip on macOS and deprecates the PdfViewerOutOfProcessIframeEnabled enterprise policy",
+          "September 1, 2026"
+        ]
+      ],
+      "caption": "Release dates differ between sources. Check the release notes before you give a user a date."
+    },
+    {
+      "type": "paragraph",
+      "text": "The release dates conflict. Chrome Enterprise notes list Chrome 151 on August 7, 2026. A 9to5Google article gave July 28, 2026 as a tentative date. Use the Chrome Enterprise release notes for rollout planning. Treat the earlier date as tentative until Google confirms it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How do you see which policies a Mac gets from Chrome?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome shows what it actually received. Open chrome://policy in the address bar. The page lists each policy with its value and its source. Work through it in this order, so you do not chase stale values."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type chrome://policy in the address bar and press Return.",
+        "Click Reload policies. Without this step, you may read values from before your last change.",
+        "Type part of the policy name in the filter box. The list narrows fast.",
+        "Tick Show policies with no value set when you need to confirm that a policy is missing.",
+        "Read the Source column. Each value should say Platform, Cloud, or Enterprise default."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Save the page before you change anything. Press ⌘P and save it as a PDF. Attach that file to the ticket. The PDF shows the exact values and the time you checked them, which helps when someone asks what changed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What does Not set mean, and what does Source tell you?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not set means Chrome has no value for that policy. It does not mean the policy is off, and it does not mean the policy passed. Some teams read an unset line as a pass. That is wrong when a policy must have a value on every Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Source column tells you where a value came from. Platform means the value came from the device. Cloud means it came from your cloud management settings. Enterprise default means Chrome is using its built-in value. If you see the wrong source, the fix lives in the management setup, not in the user's Chrome settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why do Mac policies show up when no one is signed in?"
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, Platform policies are pushed through Managed Preferences or another out-of-band management system. Chrome lists them even when the user is not signed in to a managed account. That is useful when you test on a fresh user account. It also explains why a policy appears before anyone signs in."
+    },
+    {
+      "type": "paragraph",
+      "text": "Machine-level settings apply to all users of the device. A second test account on the same Mac sees the same machine policies. A common mistake is testing with a new user and assuming the result is per user. Check the device first, then the account."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How do you fix a Chrome enrollment that does not register on a Mac?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Enrollment is where Mac support time disappears. A Jamf community thread from 2019 to 2023 describes the same pattern. Admins placed the CloudManagementEnrollmentToken file, and Chrome did not register. One admin found no /Library/Google/Chrome folder, despite Google's instructions. Another wrote that the file method did not enroll very often."
+    },
+    {
+      "type": "paragraph",
+      "text": "The thread is anecdotal, and it covers older builds. Google's steps may have changed since. Still, the checks below cost little and match the failures the thread describes. Google's April 7, 2020 post says the older process made admins download a PLIST and work out the steps alone. It also says Jamf Pro 10.19 and later can deploy the enrollment token with a few clicks."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check the token file's path. Confirm it sits where your deployment instructions say it should.",
+        "If the upload fails with 'Property List error: Unexpected character { at line 1', save the plist as XML and upload it again.",
+        "Restart Chrome after the change. The Jamf thread notes that Google Chrome must be restarted for the change to take effect.",
+        "Open chrome://policy after the restart and click Reload policies.",
+        "If the browser still does not appear, note the Mac model, the Chrome version from chrome://version, and the exact error text before you escalate."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a working copy of every profile you build. One admin in the same thread called recreating a profile in ProfileCreator a pain with no search function. A saved copy spares you that rebuild. Name each file with the Chrome version it was tested on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Should you deploy Chrome on a Mac with a DMG or a PKG?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google has offered a macOS PKG installer alongside the DMG since Chrome 80. The PKG is easier to script. You can upload it to endpoint management tools and assign it to machines. A DMG is fine for one Mac that you install by hand. For a fleet, use the PKG, because you assign it instead of dragging an app across."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How do you clear cache and cookies in Chrome on a Mac?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Chrome > Settings, then go to Privacy and security. Find the option to delete browsing data there. Many guides list ⇧⌘⌫ as the shortcut for it. I could not confirm that shortcut against Google's desktop help, so open the menu first. Use the shortcut only after it works on your build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose what to clear with care. Cookies keep people signed in to email, the intranet, and billing pages. Cached images and files are safer to clear first. If one site is broken, remove only that site's data where Chrome lets you. Clearing everything often creates a new ticket, because the user has to sign in again everywhere."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How do you handle Chrome profiles on a shared or personal Mac?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Profiles keep bookmarks, history, extensions, and sign-ins apart. Work and personal accounts should use separate profiles. In Chrome 151, Google extends the profile-creation redesign to desktop on macOS and Linux. The steps you remember may look different after that update."
+    },
+    {
+      "type": "paragraph",
+      "text": "When a user says bookmarks disappeared, check which profile is open first. Click the profile icon in the toolbar. Then open chrome://version and read the profile path. That path names the folder that holds the profile's data. Two profiles signed in to the same account can confuse sync and extensions, so name the profile in the ticket."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why does browser work matter for help desk metrics?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Browser issues rarely get their own category in general IT reports. The best sourced figure I found is broader. In a benchmark of more than 50,000 tickets from more than 30 organizations, 22% of help desk tickets were productivity-blocking. The data covers January 2025 to February 2026. A productivity-blocking ticket stops the employee from doing their job until someone resolves it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Permissions management was the largest share of those blocking tickets, at 28%. Login troubleshooting came next at 22%, and application troubleshooting at 16%. The benchmark does not break out browser issues. Do not read those numbers as Chrome numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blocking tickets also arrive angrier. The benchmark puts negative sentiment at 21% for productivity-blocking tickets, against 4% for the rest. That is about five times as likely. A fast first reply matters more on those tickets than on a routine request."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits into Chrome support work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the Chrome work above, you might ask where Reload policies is. Lazur circles it. You still click the button yourself. Lazur does not click buttons, edit files, or operate other apps for you. You stay in control of every change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation helps with ticket notes. Hold fn to dictate clean, formatted text at the cursor in any app. Snippets, a personal dictionary, and clipboard slots help with lines you repeat. The restart note from the enrollment section is a good first snippet."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Research runs in the background. Lazur uses its own Chrome tabs through the Lazur for Chrome extension. The job comes back with a summary and a report. That suits a question like whether a Chrome release changed Mac requirements, because you can keep working while it runs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Is Lazur safe to use on a screen with employee data?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your company rules still apply. Release the shortcut when a screen shows personal records you should not share. Check your policy before you use any AI tool on a managed device. A short hold is usually enough for a policy check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur cannot do on a managed Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for any app. It has no partnership with any app maker. It runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. Lazur does not change a policy, push an installer, or enroll a device."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pricing starts with a 3-day Pro trial. No credit card is needed. The trial starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually. Power costs $120 a month, or $96 a month billed annually. Read [pricing](/pricing) for the full terms. Get the Mac app from [the download page](/download)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a Mac where a policy is missing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a user reports that Chrome lets them download a file type your company blocks. You are at their Mac. Here is the path, in order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open chrome://version and note the Chrome version. Then open chrome://policy.",
+        "Click Reload policies, then filter by the name of the blocking policy.",
+        "If the row says Not set, the policy never reached this Mac. Check the management setup next, not the user's settings.",
+        "If the Source reads Enterprise default, Chrome is using its built-in value, so the block was never applied.",
+        "Write the version, the policy name, the Source text, and the time you reloaded into the ticket. Attach the PDF from ⌘P."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to point at the filter box if the list is long. It circles the box, so you do not scroll past it. That small check saves time when the policy list runs past one screen."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with Chrome on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting a policy page you did not reload. Click Reload policies before every read.",
+        "Reading Not set as a pass. It means no value was received.",
+        "Testing with a second account and expecting a different device policy. Machine-level settings follow the Mac.",
+        "Clearing all cookies for one broken site. Clear that site's data first.",
+        "Saving a plist as plain text. Save it as XML when the upload fails with an unexpected character error.",
+        "Skipping the restart. The Jamf thread says Chrome must be restarted for the change to take effect.",
+        "Copying a Chrome version from a random article. Check chrome://version on the Mac you are fixing."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next after you find the cause"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down three facts before you escalate. Record the Chrome version, the policy name with its Source, and the exact error text. That makes the ticket easy for the next person to act on."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the cause is a missing policy, go back to the management setup and check the Mac's Managed Preferences. If the cause is a broken profile, move the user into a clean profile and compare the two. Test the fix on one Mac before you roll it out. If you also research browser tools, read [Chrome for researchers on Mac](/for/researchers/chrome). It covers tab groups and shortcuts from the research side."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where do I see every Chrome policy on a Mac?",
+      "answer": "Open chrome://policy in Chrome, click Reload policies, then filter by policy name. The Source column should read Platform, Cloud, or Enterprise default. Unset policies show Not set."
+    },
+    {
+      "question": "Why does a Chrome policy show on a Mac when no one is signed in?",
+      "answer": "On Mac, Platform policies are pushed through Managed Preferences or another out-of-band management system. Chrome lists them even when the user is not signed in to a managed account."
+    },
+    {
+      "question": "Which Chrome version supports macOS 12 Monterey?",
+      "answer": "Chrome 150 is the last version that supports macOS 12. Chrome 151 drops that support, and new installs need macOS 13 Ventura or later. Release dates for Chrome 151 differ between sources, so check the release notes."
+    },
+    {
+      "question": "Why does my Chrome enrollment token not register on a Mac?",
+      "answer": "A Jamf community thread from 2019 to 2023 describes the same failure, and it never settles on one cause. Check the file path, save any plist as XML, restart Chrome, and then check chrome://policy again."
+    },
+    {
+      "question": "Should I deploy Chrome on Mac with the PKG or the DMG?",
+      "answer": "Use the PKG for a fleet. Google has offered it since Chrome 80, and it is easier to script. You can upload it to endpoint management tools and assign it to machines. A DMG suits one Mac you install by hand."
+    },
+    {
+      "question": "Can Lazur change Chrome settings for me?",
+      "answer": "No. Lazur points at buttons, draws a circle and label around them, and guides you one click at a time. It does not click buttons, edit files, or operate other apps for you."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Windows is planned, not available. Lazur runs on macOS, on Apple silicon and Intel Macs. It is not a plugin or add-in for any app."
+    },
+    {
+      "question": "How much does Lazur cost for support work?",
+      "answer": "Lazur starts with a 3-day Pro trial that needs no credit card. Pro costs $18 a month, or $15 a month billed annually. Power costs $120 a month, or $96 a month billed annually. Dictation is unlimited on both plans."
+    },
+    {
+      "question": "Does Lazur store what it sees on my screen?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Is there an official Chrome template for support technicians?",
+      "answer": "I did not find official Chrome templates for support work. The template-like files are plist and configuration profiles for policy deployment. Test any profile on one Mac before you roll it out."
+    }
+  ],
+  "sources": [
+    {
+      "title": "View a device's current Chrome policies - Chrome Enterprise and Education Help",
+      "url": "https://support.google.com/chrome/a/answer/9024365?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Previous release notes - Chrome Enterprise and Education Help",
+      "url": "https://support.google.com/chrome/a/answer/10314655?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Google Chrome ending support for macOS Monterey in July 2026",
+      "url": "https://9to5google.com/2026/01/23/google-chrome-ending-support-for-macos-monterey-in-july-2026/",
+      "publisher": "9to5Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "2026 IT Help Desk Benchmark Report",
+      "url": "https://www.fixify.com/it-help-desk-benchmark-report-2026",
+      "publisher": "Fixify",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Simplifying Chrome deployments on macOS",
+      "url": "https://cloud.google.com/blog/products/chrome-enterprise/simplifying-chrome-deployments-on-macos",
+      "publisher": "Google Cloud",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Success enrolling cloud managed Chrome browsers on Mac",
+      "url": "https://community.jamf.com/general-discussions-2/success-enrolling-cloud-managed-chrome-browsers-on-mac-12989",
+      "publisher": "Jamf Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What is the latest version of Chrome?",
+      "url": "https://www.whatismybrowser.com/guides/the-latest-version/chrome",
+      "publisher": "WhatIsMyBrowser.com",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I see the policies this Mac is getting?",
+    "capability": "point",
+    "result": "Lazur circles the Reload policies button on chrome://policy and labels the Source column.",
+    "shell": "generic",
+    "context": "chrome://policy open in Chrome on a managed Mac",
+    "output": "Reload policies is the button near the top of the page. Click it, then read the Source column. Platform, Cloud, or Enterprise default means a value was set. Lazur points, and you click.",
+    "pointsAt": "Reload policies button"
+  },
+  "tasks": [
+    {
+      "say": "Where do I see the policies this Mac is getting?",
+      "result": "Lazur circles the Reload policies button on chrome://policy and labels the Source column.",
+      "capability": "point"
+    },
+    {
+      "say": "What does Not set mean on this policy?",
+      "result": "Lazur explains that Not set means Chrome received no value, so the setting never reached this Mac.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through filtering this list by policy name.",
+      "result": "Lazur guides you to the filter box one click at a time, waiting for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Read me the error on this profile upload.",
+      "result": "Lazur reads the error text out loud and explains what it means for the plist file.",
+      "capability": "explain"
+    },
+    {
+      "say": "Find the option to clear browsing data in this Chrome.",
+      "result": "Lazur circles the Privacy and security section in Settings so you can open the clear data option yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Draft a note telling the user Chrome needs a restart.",
+      "result": "Lazur drafts a short note saying Chrome must be restarted for the change to take effect. You read it, then send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Take this ticket summary.",
+      "result": "Hold fn and speak. The text appears at the cursor in the ticket field, cleaned up and formatted.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Check whether Chrome 151 still supports macOS 12.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report with the release notes it found.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "it-support-technicians-chrome",
+  "role": "it-support-technicians",
+  "app": "chrome",
+  "roleName": "IT support technicians",
+  "appName": "Chrome",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/it-support-technicians-chrome/chrome-for-it-support-technicians-on-mac-1-c3d4b1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "IT support technician checking a Mac laptop at a desk, the daily work behind Chrome for IT support technicians on Mac",
+      "caption": "Checking a managed Mac at the support desk.",
+      "keywords": [
+        "chrome for it support technicians on mac",
+        "Chrome",
+        "IT support technicians",
+        "Mac",
+        "IT support technician Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ColossusCloud",
+        "url": "https://pixabay.com/users/ColossusCloud-2086276/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/server-cloud-development-business-1235959/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/it-support-technicians-chrome/chrome-for-it-support-technicians-on-mac-2-b3a750.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Person working on a MacBook at an office desk with a browser open, a typical setting for Chrome for IT support technicians on Mac",
+      "caption": "Browser policy work usually starts at a desk like this.",
+      "keywords": [
+        "chrome for it support technicians on mac",
+        "Chrome",
+        "IT support technicians",
+        "Mac",
+        "person using macbook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yamabon",
+        "url": "https://pixabay.com/users/yamabon-11501053/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/building-shadow-architecture-7005414/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/it-support-technicians-chrome/chrome-for-it-support-technicians-on-mac-3-d55236.jpg",
+      "width": 1280,
+      "height": 731,
+      "alt": "Help desk staff in an office, where Chrome for IT support technicians on Mac tickets arrive all day",
+      "caption": "A help desk where browser tickets arrive all day.",
+      "keywords": [
+        "chrome for it support technicians on mac",
+        "Chrome",
+        "IT support technicians",
+        "Mac",
+        "office help desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/call-center-headset-smile-10378566/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "chrome for it support technicians on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "chrome policy check mac": 1,
+      "chrome enterprise mac troubleshooting": 1,
+      "chrome managed by organization mac": 1,
+      "clear chrome cache on mac": 1,
+      "chrome profile setup mac": 1,
+      "chrome://policy mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

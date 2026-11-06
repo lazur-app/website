@@ -1,0 +1,645 @@
+{
+  "title": "Excel for HR generalists on Mac: trackers, lookups, pivots, and date math in Microsoft 365",
+  "metaTitle": "Excel for HR Generalists on Mac: Lookups, Pivots, Dates",
+  "description": "Excel for HR generalists on Mac: trackers, lookups, pivots and date math, the Mac limits you will hit, and where Lazur helps in the sheet.",
+  "targetKeyword": "excel for hr generalists on mac",
+  "secondaryKeywords": [
+    "excel for HR on Mac",
+    "HR spreadsheet tracker Mac",
+    "VLOOKUP HR Excel Mac",
+    "Excel pivot table employee turnover",
+    "Excel tenure calculation DATEDIF",
+    "Excel Mac Power Pivot not supported",
+    "leave tracker Excel Mac"
+  ],
+  "intro": "Excel for HR generalists on Mac is the same Microsoft 365 Excel you use everywhere else, with a few gaps that matter for people work. Most of the job is trackers, lookups over HR exports, pivots for turnover and absence, and date math for tenure and notice periods. This page covers those jobs in order, the Mac limits to plan around, and where Lazur helps while you work.",
+  "tldr": [
+    "Excel for HR generalists on Mac covers trackers, lookups, pivots, and date math.",
+    "Power Pivot and the Data Model do not work in Excel for Mac, according to Microsoft Q&A answers.",
+    "Command replaces Control on Mac, and there are no matching ribbon Alt shortcuts.",
+    "Point tenure formulas at one report date cell, not at TODAY().",
+    "Lazur sees your screen while you hold ⌥ ⌘, and it guides you one click at a time."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "Rows per worksheet. Microsoft's limits page lists no separate Mac limit.",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft Support, Excel specifications and limits"
+    },
+    {
+      "value": "16,384",
+      "label": "Columns per worksheet, from the same Microsoft limits page.",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft Support, Excel specifications and limits"
+    },
+    {
+      "value": "22%",
+      "label": "of HR teams say they are very or extremely effective at getting value from people analytics, per AIHR.",
+      "sourceUrl": "https://www.aihr.com/blog/human-resources-formulas-and-functions/",
+      "sourceTitle": "AIHR, Human Resources Formulas and Functions in Excel"
+    },
+    {
+      "value": "49%",
+      "label": "of HR respondents use spreadsheets for people analytics, per a 2025 to 2026 HR.com survey as summarized on Substack.",
+      "sourceUrl": "https://ranmel17.substack.com/p/people-analytics-leads-hr-still-using",
+      "sourceTitle": "People Analytics Leads: HR still using Excel is your problem"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What HR generalists do in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of your Excel work as an HR generalist follows the same few patterns. You keep a headcount tracker or a leave log. You match employee IDs between two exports. You count leavers and absences by month. You work out how long someone has been with the company, or when a notice period ends. Each job is small, but a wrong answer reaches a manager fast."
+    },
+    {
+      "type": "paragraph",
+      "text": "AIHR's guide to HR formulas in Excel names the functions people in HR use most. The list includes DATEDIF, DAYS360, YEARFRAC, NETWORKDAYS, VLOOKUP, INDEX/MATCH, COUNTIF, AVERAGEIFS, IF, and RANK.EQ. It also names Format as Table, filters, PivotTables, and Define Name. Use that list as a map. This page follows the same jobs in the order you usually meet them."
+    },
+    {
+      "type": "paragraph",
+      "text": "The wider context moves more slowly than the daily work. AIHR cites Gartner research finding that only 24% of HR functions believe they get the maximum value from HR technology. A 2025 to 2026 HR.com survey, as summarized in a Substack post, reports that 49% of HR respondents use spreadsheets for people analytics. That 49% comes from a secondhand summary, so read it as a signal. Spreadsheets still carry a lot of HR analysis."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the workbook so formulas do not break"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a copy. Keep the raw export on its own tab, and leave it alone. Put one header row at the top of the data. Keep one record per row, with no blank rows in the middle. Then select the data and choose Home > Format as Table. Excel turns the range into a table. The table grows when you add rows, and formulas that point at it keep working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table as soon as you create it. Microsoft's October 2026 What's New post lists naming tables at creation for both Windows and Mac. Pick a plain name such as Staff or LeaveLog. Then your formulas read like Staff[Department] instead of Sheet2!C:C. Anyone who opens the file can tell what each formula reads. That helps when someone else takes over the tracker."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Keep one header row with no merged cells.",
+        "Store dates as real dates. Real dates align to the right by default, and text stays left.",
+        "Convert the range with Home > Format as Table.",
+        "Name the table in the Table Name box.",
+        "Name a status list with Formulas > Define Name, such as ActiveStatuses.",
+        "Save a dated copy before any bulk change, such as a sort or a find and replace."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check your Excel build",
+      "text": "Open Excel > About Excel to see your version. Microsoft's Office for Mac release notes list version 16.114.3, build 26102720, dated October 27, 2026. The Excel entry lists only quality and performance improvements. If your build differs, trust the menu over an old guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lookups on employee extracts: VLOOKUP and INDEX/MATCH"
+    },
+    {
+      "type": "paragraph",
+      "text": "A lookup pulls one field from another list. Say your leave log has employee IDs but no manager names. A directory tab has both. In the first empty column of the leave log, type =VLOOKUP(A2,Directory!$A:$C,3,FALSE) and press Return. Excel finds the ID in column A of the directory and returns the value from column 3. The FALSE means exact match. Leave it out and Excel may return a near match that is wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the formula returns #N/A, the value is not in the list in the same form. Three causes cover most cases. The ID has a space at the start or end. One side stores the ID as text, and the other stores it as a number. Or the person is missing from the directory. Fix the cause in the data. Do not wrap the formula in IFERROR to hide the problem."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Extra spaces. Wrap the lookup value in TRIM, or clean the source column once.",
+        "Numbers stored as text. Look for a small green triangle in the corner of the cell.",
+        "Missing records. Filter the directory for the ID before you blame the formula.",
+        "Wrong range. Use a table reference so new rows are included automatically."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "INDEX and MATCH work in every version of Excel. Try =INDEX(Directory[Manager],MATCH(A2,Directory[ID],0)). The formula finds the row first, then returns the value from the column you name. Inserting a column in the directory will not break it. AIHR's formula guide also covers XLOOKUP. If your Mac has it, the syntax is shorter for the same job."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Lookups take the first match",
+      "text": "VLOOKUP and MATCH stop at the first match they find. An employee who appears twice, for example after a transfer, gives one row with no warning. Count duplicates with COUNTIF before you trust the lookup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Date math for tenure, notice periods, and working days"
+    },
+    {
+      "type": "paragraph",
+      "text": "Date math is where HR sheets go wrong quietly. Excel stores each date as a number. That is why dates can sort, subtract, and add. It is also why a text date can look fine and still break every formula. Check the cell alignment first. A real date sits on the right by default."
+    },
+    {
+      "type": "paragraph",
+      "text": "For tenure in full years, use =DATEDIF(B2,C2,\"y\"). B2 holds the start date, and C2 holds the report date. Change the unit to m for months or d for days. AIHR's formula guide lists DATEDIF among the common HR functions. Excel may not suggest it while you type, so write it out by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Point the formula at a report date in a cell, not at TODAY(). TODAY() changes every day. A report you open next month then shows different tenure numbers with no change to the data. Put the as-of date in one labeled cell. Point every formula at that cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "For notice periods, add the notice length from a cell. Use =B2+C2 when C2 holds the notice days. For working days between two dates, use NETWORKDAYS with a holiday list. Keep the holiday list in a named range. Update it once a year, and every formula picks up the change."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Formula",
+        "Use it for",
+        "Example pattern"
+      ],
+      "rows": [
+        [
+          "DATEDIF",
+          "Tenure or age in years, months, or days",
+          "=DATEDIF(B2,C2,\"y\")"
+        ],
+        [
+          "YEARFRAC",
+          "Fractional years, for accruals or pro-rated amounts",
+          "=YEARFRAC(B2,C2)"
+        ],
+        [
+          "NETWORKDAYS",
+          "Working days between two dates, skipping weekends and holidays",
+          "=NETWORKDAYS(B2,C2,Holidays)"
+        ],
+        [
+          "DAYS360",
+          "Day counts on a simplified month basis, used by some contracts",
+          "=DAYS360(B2,C2)"
+        ]
+      ],
+      "caption": "Date functions from AIHR's HR formulas guide. Test each one on dates you already know."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test the edge cases before anyone relies on the report. A start date after the report date returns an error in DATEDIF. A blank start date gives a meaningless result unless you guard it with IF. A hire on a leap day gives a tenure that depends on the rule you pick. Write that rule in a note on the sheet, so the next person knows what it means."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for turnover, absence, and headcount"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table counts and sums a list with no formulas. For turnover, put department in Rows, the status field in Columns, and employee ID in Values set to Count. Put exit date in Filters, so you can limit the report to one period. Insert > PivotTable creates it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A turnover rate needs a denominator. Turnover is leavers divided by average headcount for the same period. Build the leavers count in one pivot. Build headcount at the start and end of the period in a second pivot. Then divide in a cell beside them. Keep that formula visible, so a manager can check your working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Counting people is harder than counting rows. An employee who took five leave days appears five times in a leave log. A plain Count counts those rows. Add a helper column that marks the first row for each person with 1. The formula is =IF(COUNTIF($B$2:B2,B2)=1,1,0), where column B holds the employee ID. Sum that column in the pivot. The Data Model route to a true distinct count needs Power Pivot, which does not run on Mac."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select any cell in the table, then choose Insert > PivotTable.",
+        "Drag the department field to Rows.",
+        "Drag the status field to Columns.",
+        "Drag the employee ID field to Values, then change it to Count.",
+        "After you add rows, right-click the pivot and choose Refresh."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits to plan around before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Pivot and the Data Model do not work on Excel for Mac. Microsoft Q&A answers from community moderators say so. One answer says the Data Model is not usable on Mac. Another suggests Windows through Boot Camp or Parallels. Those are community answers, not official Microsoft documentation. Check them against a small test before you commit. If your work needs linked tables in a model, plan for a Windows PC or a virtual machine."
+    },
+    {
+      "type": "paragraph",
+      "text": "Size limits still apply on Mac. A worksheet holds 1,048,576 rows and 16,384 columns. Microsoft's specifications page lists no separate Mac limit. An HRIS export with many fields and a long history can grow past what one tab handles comfortably. Split the history into its own tab or file before the sheet slows down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ribbon shortcuts are the other gap. On Windows, Alt and a letter reach each ribbon command. Excel for Mac has no matching ribbon shortcut, so you move with the mouse. Exceljet calls the missing ribbon shortcuts perhaps the most painful difference on a Mac. Exceljet also says Microsoft has aligned more Mac shortcuts with Windows in Excel 365, so check the list for your version."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test linked tables early",
+      "text": "Before you build a report on two linked tables, open a small copy in Excel for Mac and test the pivot. If the Data Model is needed, move that step to a Windows PC or a virtual machine before your deadline."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac shortcuts that replace Windows keys"
+    },
+    {
+      "type": "paragraph",
+      "text": "Command takes the place of Control in most shortcuts. Copy, paste, and undo use the same letters with Command. Some habits do not carry over. Exceljet notes that Windows F2 (Edit Cell) is Control+U on Mac. Windows F4 for toggling absolute references is Command+T. Function keys need fn, so Windows F11 becomes fn+F11."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Windows",
+        "Mac"
+      ],
+      "rows": [
+        [
+          "Copy, paste, undo",
+          "Ctrl+C, Ctrl+V, Ctrl+Z",
+          "⌘C, ⌘V, ⌘Z"
+        ],
+        [
+          "Edit the active cell",
+          "F2",
+          "Control+U"
+        ],
+        [
+          "Toggle absolute references",
+          "F4",
+          "⌘T"
+        ],
+        [
+          "Function key F11",
+          "F11",
+          "fn+F11"
+        ],
+        [
+          "Ribbon commands by letter",
+          "Alt, then letters",
+          "No matching shortcut, use the mouse"
+        ]
+      ],
+      "caption": "Common swaps from Exceljet's Mac shortcut guide. Check the full list for your version."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a short list by your keyboard for the first month. Write down the three shortcuts you reach for most. Practice those until they feel natural. Trying to memorize every swap at once slows you down."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Leave trackers and headcount templates on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A leave tracker is one of the most common HR workbooks. Someka's Leave Tracker template states that it works on both Mac and Windows. It allows up to seven leave types. It tracks annual allowances and remaining days. It includes Team Tracker, Employee Tracker, and Absence Calendar outputs. Each view answers a different question, such as who is out this week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Someka's own reviews include a reply that Mac users need a Microsoft Excel license. That is the vendor's view. Confirm your license with IT before you buy any template. A template that works on Mac is not the same as a template that fits your leave policy."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Test it with a few made up employees, not your real roster.",
+        "Check how remaining days are calculated when a leave type carries over.",
+        "Confirm which leave types match your policy, not the template defaults.",
+        "Decide who can edit the file, and where it is saved.",
+        "Keep a blank copy for next year, so you start clean."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you build your own, use one table per log. Keep a leave table, a headcount table, and a directory. Link them with employee IDs. Avoid one large tab with merged headers. Merged headers break sort and filter first, so they cause trouble early."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits into an HR spreadsheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ (Option and Command) and ask about anything on screen. Lazur sees the screen while you hold the keys, and it answers out loud. It does not run Excel for you. You still type, click, and decide what goes in the cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Three kinds of question fit well in a spreadsheet. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do a task, and Lazur guides you one click at a time, waiting for each click. Ask what a formula means while it is on screen, and Lazur explains it in plain words."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. HR work includes a lot of short notes. Dictate the note into a cell, a comment, or an email draft, then read it before you save. Snippets, a personal dictionary, and clipboard slots help with repeated phrases and names that are hard to spell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Everyday tasks work too. Set a timer for an interview, add an Apple Reminders item for a probation end date, or make a Calendar event for a review. Lazur can also run research in its own Chrome tabs through the Lazur for Chrome extension, then return a summary and a report. Use that when you need to see how other employers define a term before you write policy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy: check policy before you paste employee data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Employee data is sensitive. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer you. They are not stored. Content is never used to train AI models. Those are Lazur's stated rules, and they are a good starting point."
+    },
+    {
+      "type": "paragraph",
+      "text": "They do not replace your company's policy. Ask your data protection lead what is allowed before you ask any AI tool about payroll, health, or disciplinary records. Some rules depend on the country where your people work. Ask legal or privacy staff for the answer. Do not guess from a blog post, including this one."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Describe the column, not the person",
+      "text": "When you ask Lazur for help, describe the column or the formula. You rarely need the names in the question. Replace names and IDs with sample values when you can."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break HR workbooks"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates typed as text, often from a CSV. Convert them with Data > Text to Columns before you calculate.",
+        "Merged cells in the header or the body. Sort and filter fail on them.",
+        "Sorting one column but not the rest. Each row then loses its link to its employee ID.",
+        "Typed totals inside a table. Use a total row or a formula so the total updates.",
+        "Copying a filtered list. Only the visible rows copy, which surprises many people.",
+        "Extra spaces in names. COUNTIF ignores capital letters, but spaces still break a match."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these fixes are habits. Keep the raw extract untouched. Work in a copy. Record the report date in a cell. Save a dated version before a big change. Those four habits prevent most of the errors in this list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one job from this page and build it on a copy of your real data. Start with the tracker you open most often. Check each formula against a few records you can verify by hand. That takes less time than correcting a report after it reaches a manager."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a walk through pivots, read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). For Excel help across tasks, see [Lazur for Excel on Mac](/apps/excel). Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. Pro costs $18/month, or $15/month billed annually, with 150 AI actions. Power costs $120/month, or $96/month billed annually, with 1,000 AI actions. Dictation is unlimited on both. Compare plans on the [pricing page](/pricing), and get the app from the [download page](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have Power Pivot?",
+      "answer": "No, not the way Windows has it. Microsoft Q&A answers from community moderators say Power Pivot and the Data Model are not supported on Excel for Mac. For a model with linked tables, plan on a Windows PC or a virtual machine. Test your file first."
+    },
+    {
+      "question": "Which Excel version should an HR generalist on Mac use?",
+      "answer": "Use the Microsoft 365 release your company gives you. Check Excel > About Excel for your build number. Microsoft's Office for Mac release notes list version 16.114.3 as the latest entry, dated October 27, 2026, with quality fixes for Excel."
+    },
+    {
+      "question": "Why does my VLOOKUP show #N/A on Mac?",
+      "answer": "The formula is usually fine. The data is usually the cause. Check for spaces at the start or end of IDs, numbers stored as text, and records that are missing from the directory. Compare the two cell values side by side before you change the formula."
+    },
+    {
+      "question": "Can Lazur fill in my spreadsheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at things, explains formulas, guides you one click at a time, and drafts or dictates text. You make each change yourself."
+    },
+    {
+      "question": "Is there a free trial?",
+      "answer": "Yes. Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app."
+    },
+    {
+      "question": "Can I use Lazur on Windows?",
+      "answer": "Not yet. Lazur is a Mac app for macOS on Apple silicon and Intel. Windows is planned, but it is not available today."
+    },
+    {
+      "question": "Is it safe to ask Lazur about employee data?",
+      "answer": "Check your company's data policy first. Lazur sends audio and screenshots to AI providers to answer, and they are not stored. Content is never used to train AI models. Your own policy still decides what you may share."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel on Mac: Data Model features are not supported",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5445256/excel-on-mac-data-model-features-are-not-supported",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel shortcuts on the Mac",
+      "url": "https://exceljet.net/articles/excel-shortcuts-on-the-mac",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Human Resources Formulas & Functions in Excel",
+      "url": "https://www.aihr.com/blog/human-resources-formulas-and-functions/",
+      "publisher": "AIHR",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "9 HR Datasets to Practice Your People Analytics Skills",
+      "url": "https://www.aihr.com/blog/hr-data-sets-people-analytics/",
+      "publisher": "AIHR",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "People Analytics Leads: HR still using Excel is your problem",
+      "url": "https://ranmel17.substack.com/p/people-analytics-leads-hr-still-using",
+      "publisher": "Substack (secondary)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Leave Tracker Excel Template",
+      "url": "https://www.someka.net/products/leave-tracker-excel-template/",
+      "publisher": "Someka",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this lookup showing N/A for some employees?",
+    "capability": "explain",
+    "result": "Lazur reads the formula and the lookup column on screen, then answers out loud with the likely cause.",
+    "shell": "sheet",
+    "context": "Leave log with employee IDs, Excel for Mac, lookup into a directory tab",
+    "output": "Example answer: some IDs have a trailing space. Wrap the lookup value in TRIM, then check again.",
+    "pointsAt": "#N/A cells"
+  },
+  "tasks": [
+    {
+      "say": "Where is the Format as Table button in this version?",
+      "result": "Lazur circles the Format as Table command on the Home tab and labels it.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does this VLOOKUP show N/A for half the rows?",
+      "result": "Lazur reads the formula and the ID columns on screen, then names the most likely cause out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through a pivot of leavers by department.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate this into the cell: exit interview booked for Friday.",
+      "result": "Clean, formatted text appears at the cursor in the cell or email you are working in.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to the manager asking for the missing start dates.",
+      "result": "Lazur drafts the text, and you read and edit it before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how other employers define regretted turnover.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to check probation end dates on Friday.",
+      "result": "Lazur adds an item to Apple Reminders for Friday.",
+      "capability": "everyday"
+    },
+    {
+      "say": "What does this IF formula do? Read the one on my screen.",
+      "result": "Lazur explains each part of the formula out loud while it stays on screen.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "hr-generalists-excel",
+  "role": "hr-generalists",
+  "app": "excel",
+  "roleName": "HR generalists",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hr-generalists-excel/excel-for-hr-generalists-on-mac-1-dc3bb5.jpg",
+      "width": 1280,
+      "height": 721,
+      "alt": "HR generalist working on a laptop at a desk with an Excel spreadsheet of employee data",
+      "caption": "Leave logs and headcount lists often live in shared workbooks.",
+      "keywords": [
+        "excel for hr generalists on mac",
+        "Excel",
+        "HR generalists",
+        "Mac",
+        "hr manager laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "CUsai",
+        "url": "https://pixabay.com/users/CUsai-3170008/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/the-labour-code-human-ressources-3520806/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hr-generalists-excel/excel-for-hr-generalists-on-mac-2-847a6e.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Close-up of a laptop screen showing rows of data, the kind of sheet used for Excel for HR generalists on Mac",
+      "caption": "Lookups and pivots start with a clean table of rows and columns.",
+      "keywords": [
+        "excel for hr generalists on mac",
+        "Excel",
+        "HR generalists",
+        "Mac",
+        "spreadsheet data laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ds_30",
+        "url": "https://pixabay.com/users/ds_30-1795490/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/cup-notebook-work-coffee-business-5508207/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hr-generalists-excel/excel-for-hr-generalists-on-mac-3-fd122a.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Two colleagues reviewing a workforce report on a Mac in an office, a common setting for Excel for HR generalists on Mac",
+      "caption": "Managers ask for numbers, so the workbook needs to be right the first time.",
+      "keywords": [
+        "excel for hr generalists on mac",
+        "Excel",
+        "HR generalists",
+        "Mac",
+        "office team meeting laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/eam-workshop-office-collaboration-10171012/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for hr generalists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "excel for HR on Mac": 1,
+      "HR spreadsheet tracker Mac": 1,
+      "VLOOKUP HR Excel Mac": 1,
+      "Excel pivot table employee turnover": 1,
+      "Excel tenure calculation DATEDIF": 1,
+      "Excel Mac Power Pivot not supported": 1,
+      "leave tracker Excel Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

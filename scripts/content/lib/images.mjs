@@ -13,7 +13,7 @@
  *   6. Store through a pluggable adapter (store()):
  *        - Vercel Blob when BLOB_READ_WRITE_TOKEN is set (the daily job's default),
  *        - public/content-images/<type>/<slug>/ for local runs and the few sample pages.
- *      In CI (GITHUB_ACTIONS) the job refuses public/ unless CONTENT_ALLOW_PUBLIC_IMAGES=1.
+ *      Everywhere else the job refuses public/ unless CONTENT_ALLOW_PUBLIC_IMAGES=1.
  *   7. Return { url, width, height, alt, caption, keywords, credit } for the page JSON.
  * Credit on the page: "Image by <user> from Pixabay", linked to the photo page.
  */
@@ -56,8 +56,10 @@ function writeJson(file, value) {
 /** Fail fast with a clear message before any work starts. */
 export function checkImageEnv() {
   if (!process.env.PIXABAY_API_KEY) throw new Error("PIXABAY_API_KEY is not set. Get a key at https://pixabay.com/api/docs/ (see CONTENT-AUTOMATION.md).");
-  if (!process.env.BLOB_READ_WRITE_TOKEN && process.env.GITHUB_ACTIONS && process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
-    throw new Error("No remote image storage configured (BLOB_READ_WRITE_TOKEN). The daily job does not write images into the repo.");
+  // Anywhere the job runs (Actions, a cloud seat, a laptop), images go to remote storage. Writing
+  // into public/ is only for a handful of hand-picked samples, and must be asked for explicitly.
+  if (!process.env.BLOB_READ_WRITE_TOKEN && process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
+    throw new Error("BLOB_READ_WRITE_TOKEN is not set. The daily job stores images on Vercel Blob, not in the repo (CONTENT_ALLOW_PUBLIC_IMAGES=1 only for a few sample pages).");
   }
 }
 
@@ -174,8 +176,8 @@ export async function store(pathname, buffer) {
     });
     return blob.url;
   }
-  if (process.env.GITHUB_ACTIONS && process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
-    throw new Error("Refusing to write images into public/ from the daily job. Set BLOB_READ_WRITE_TOKEN.");
+  if (process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
+    throw new Error("Refusing to write images into public/. Set BLOB_READ_WRITE_TOKEN.");
   }
   const file = path.join(ROOT, "public/content-images", pathname);
   fs.mkdirSync(path.dirname(file), { recursive: true });

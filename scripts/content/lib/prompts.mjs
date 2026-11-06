@@ -15,7 +15,7 @@ const RESEARCH_RULES = `RESEARCH RULES:
 - Use WebSearch, then open the pages with WebFetch. Prefer the app maker's own help pages (support.microsoft.com, support.apple.com, help.figma.com, support.google.com, slack.com/help, the company's pricing page) and primary studies. Today is ${today()}.
 - Every fact gets the URL you actually opened. No URL, no fact.
 - Check the current version of the app and whether menus moved recently. Note old names ("formerly called…").
-- Collect 2 to 4 numbers worth showing (limits, version facts, usage, time costs) with sources. Never numbers about Lazur.
+- Collect 3 to 5 numbers worth showing that matter to the reader: how many people use or struggle with this, time it costs, limits that change what they can do, survey or study results. Not trivia like how many buttons a menu has or a build number. Each with its source. Never numbers about Lazur.
 - If sources disagree or something is unclear, say so in caveats.
 - Return JSON only.`;
 

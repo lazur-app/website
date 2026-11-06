@@ -177,6 +177,22 @@ export const researchSchema = obj(
   ["summary", "facts", "sources", "searchQueries"],
 );
 
+/** Role planner output: new jobs to write for. */
+export const rolesSchema = obj({
+  roles: arr(
+    obj({
+      slug: { type: "string", pattern: "^[a-z0-9-]{3,40}$" },
+      name: str(3, 40),
+      singular: str(3, 40),
+      apps: arr({ type: "string", pattern: "^[a-z0-9-]+$" }, 2, 8),
+      keywords: arr(str(3, 80), 1, 4),
+      why: str(10, 300),
+    }),
+    1,
+    30,
+  ),
+});
+
 /** Topic planner output for how-tos and blog posts. */
 export const topicsSchema = obj({
   topics: arr(

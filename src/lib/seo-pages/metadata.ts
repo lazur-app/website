@@ -10,7 +10,8 @@ export function seoMetadata(page: SeoPage): Metadata {
     title: `${page.metaTitle} | Lazur`,
     description: page.description,
     keywords: [page.targetKeyword, ...page.secondaryKeywords],
-    alternates: { canonical },
+    // The markdown copy (same content, for LLMs) is announced as an alternate format.
+    alternates: { canonical, types: { "text/markdown": `${canonical}.md` } },
     openGraph: {
       title: page.metaTitle,
       description: page.description,

@@ -47,25 +47,8 @@
 - Developers (errors explained in the editor, commit messages by voice)
 - People who type a lot and would rather talk
 
-## Guides
-- [What is an AI buddy?](https://www.lazur.app/blog/what-is-an-ai-buddy)
-- [Best AI buddy apps for Mac in 2026](https://www.lazur.app/blog/best-ai-buddy-apps-for-mac-2026)
-- [Stop context switching](https://www.lazur.app/blog/stop-context-switching-ai-buddy)
-- [Learn any Mac app without tutorials](https://www.lazur.app/blog/learn-any-mac-app-without-tutorials)
-- [An AI chief of staff for founders](https://www.lazur.app/blog/ai-chief-of-staff-for-founders)
-- [An AI study buddy for students](https://www.lazur.app/blog/ai-study-buddy-for-students)
-
-## Comparisons
-- [Lazur vs Clicky (HeyClicky)](https://www.lazur.app/blog/lazur-vs-heyclicky)
-- [Lazur vs Meta's Muse for Mac](https://www.lazur.app/blog/lazur-vs-muse-for-mac)
-- [Lazur vs Wispr Flow](https://www.lazur.app/compare/lazur-vs-wispr-flow) and other dictation apps: https://www.lazur.app/compare
-
 ## Optional
 - Full product details: https://www.lazur.app/llms-full.txt
-- Blog: https://www.lazur.app/blog
-- Lazur in each Mac app: https://www.lazur.app/apps
-- How-to guides for Mac apps: https://www.lazur.app/how-to
-- Lazur by role: https://www.lazur.app/for
-- Free tools (typing test, speaking vs typing, typing tax calculator, dictation accuracy): https://www.lazur.app/tools
+- Every page below also exists as plain markdown: add `.md` to its URL (e.g. https://www.lazur.app/how-to/make-a-pivot-table-in-excel.md).
 - Terms: https://www.lazur.app/terms
 - Support: support@lazur.app

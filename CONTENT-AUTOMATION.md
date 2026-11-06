@@ -107,6 +107,45 @@ separate CDN requests.
   no cost, no changes to `content/`.
 - `npm run content:lint` checks every page in the repo against the same guards.
 
+## Endless roles and problems
+
+Roles are not a fixed list. When every role in `src/lib/content/sources.mjs` has its page, the role
+planner researches new jobs that live on a Mac (with evidence of search demand) and appends them to
+`src/lib/content/roles-discovered.mjs`. Each new role then gets its role page, role × app pages and
+an open-ended stream of problem pages (the problem planner researches new, non-overlapping problems
+per role). The same problem can appear for different roles; each page is written for that job.
+
+## Indexing, llms.txt and markdown copies
+
+- **Sitemap:** every page is in `/sitemap.xml` (robots.txt points to it). Submit it once in Google
+  Search Console; Google does not take pings.
+- **IndexNow:** after each run that pushes to main, `scripts/content/indexnow.mjs` sends that day's
+  new and updated URLs to IndexNow (Bing, Yandex and others; Bing feeds ChatGPT search and Copilot).
+  The key file is `public/<key>.txt`. `--all` resends everything.
+- **llms.txt:** generated at build time (`src/app/llms.txt/route.ts`): the hand-written product
+  summary in `content/llms/header.md`, then every page grouped by type. `/llms-full.txt` stays as is.
+- **Markdown copies:** every content page also exists as plain markdown at its URL plus `.md`
+  (`/how-to/x.md`, `/for/students/problems/x.md`, `/blog/x.md`). Same text, sources and FAQ, no
+  layout. Pages announce it with `<link rel="alternate" type="text/markdown">`, the response carries
+  a canonical Link header back to the HTML page, and llms.txt links to these copies.
+- A separate `llms.` subdomain is deliberately not used: it would split authority from
+  www.lazur.app and look like duplicate content. Same-URL markdown gives LLMs the clean text without
+  that cost.
+
+## Running the job on a Claude Code seat (cloud)
+
+Instead of GitHub Actions, the job can run as a scheduled Claude Code cloud session on your seat
+(no `CLAUDE_CODE_OAUTH_TOKEN` needed). The session needs `PIXABAY_API_KEY` and
+`BLOB_READ_WRITE_TOKEN` in its environment and push access to the repo. Each run:
+
+```bash
+npm ci
+node scripts/content/daily.mjs --max-minutes=50     # resumes today's batch
+node scripts/content/seo-lint.mjs --quiet && npm run build
+git add content content-runs src/lib/content/roles-discovered.mjs && git commit -m "$(head -1 content-runs/daily-$(TZ=America/New_York date +%F)/summary.md)" && git push origin HEAD:main
+node scripts/content/indexnow.mjs
+```
+
 ## GitHub Actions
 
 `.github/workflows/content-daily.yml`: hourly at :17, Mondays 07:41 for refresh, one job at a time

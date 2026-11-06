@@ -136,6 +136,13 @@ ${t.existing.join("\n")}
 For each: slug (lowercase, hyphens, 3 to 8 words), title (long-tail H1, 8 to 16 words, contains targetKeyword), targetKeyword (long-tail search phrase), task (the problem as a short noun phrase), why, evidenceUrl.
 ${RESEARCH_RULES}`,
 
+  /** @param {{ existing: string[], count: number, apps: string[] }} t */
+  roleTopics: (t) => `Find ${t.count} jobs whose people spend most of the working day on a Mac or laptop and search for help with it (examples of the kind: paralegals, UX researchers, property managers, video editors, grant writers). Check search demand with WebSearch (job size, forums, "best tools for <job>").
+Do NOT repeat these existing roles:
+${t.existing.join("\n")}
+For each: slug (plural, lowercase, hyphens, e.g. "property-managers"), name (plural, e.g. "Property managers"), singular ("property manager"), apps (2 to 6 slugs ONLY from: ${t.apps.join(", ")}), keywords (1 to 3 long-tail searches like "ai assistant for property managers"), why (evidence).
+${RESEARCH_RULES}`,
+
   /** @param {{ apps: string[], existing: string[], count: number }} t */
   howtoTopics: (t) => `Find ${t.count} how-to topics people search for, in the form "how to <task> in <app> on mac", for these Mac apps: ${t.apps.join(", ")}.
 Use WebSearch to check demand: autocomplete-style queries, "People also ask", help-center top articles, forum threads. Prefer tasks with clear steps and real search demand. Mac-specific angles are a plus.

@@ -4,6 +4,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   outputFileTracingRoot: path.join(__dirname),
+  async rewrites() {
+    // Markdown copy of any content page: /how-to/x.md is served by src/app/md/[...path]/route.ts.
+    return [{ source: "/:path((?:blog|how-to|apps|for|compare|alternatives)/.+)\\.md", destination: "/md/:path" }];
+  },
   async redirects() {
     return [
       {
@@ -61,6 +65,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
   },
   outputFileTracingIncludes: {
+    "/llms.txt": ["./content/**/*"],
+    "/md/[...path]": ["./content/**/*"],
     "/blog/[slug]": ["./content/blog/**/*", "./content/seo/**/*"],
     "/blog": ["./content/blog/**/*"],
     "/how-to/[slug]": ["./content/seo/**/*", "./content/blog/**/*", "./src/fonts/open-sauce-one/*.ttf"],

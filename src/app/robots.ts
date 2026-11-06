@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/constants";
 
 /** Account and app-only pages: nothing for search engines there. */
-const PRIVATE_PATHS = ["/dashboard", "/billing", "/auth/", "/login", "/api/", "/leaderboard"];
+const PRIVATE_PATHS = ["/md/", "/dashboard", "/billing", "/auth/", "/login", "/api/", "/leaderboard"];
 
 /**
  * AI search and assistant crawlers, explicitly welcome so Lazur can be found and cited in

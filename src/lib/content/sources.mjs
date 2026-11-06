@@ -1,4 +1,5 @@
 // @ts-check
+import { DISCOVERED_ROLES } from "./roles-discovered.mjs";
 /**
  * One file for every keyword and source the content pipeline works from (SRCo's content-sources
  * pattern). The generators read the lists below to decide what to write next; pages record which
@@ -43,10 +44,12 @@ export const APPS = [
 ];
 
 /**
- * Roles for /for/<role>. `persona` links to src/lib/personas.ts where one exists.
+ * Roles for /for/<role>. `persona` links to src/lib/personas.ts where one exists. The list grows on
+ * its own: when every role has its pages, the planner researches new jobs and appends them to
+ * roles-discovered.mjs, so role, role x app and problem pages never run out.
  * @type {{ slug: string, name: string, singular: string, persona?: string, apps: string[], keywords: string[] }[]}
  */
-export const ROLES = [
+const BASE_ROLES = [
   { slug: "founders", name: "Founders", singular: "founder", persona: "founder", apps: ["gmail", "slack", "notion", "google-sheets", "linear", "chrome"], keywords: ["ai assistant for founders", "ai chief of staff mac"] },
   { slug: "developers", name: "Developers", singular: "developer", persona: "developer", apps: ["cursor", "vs-code", "xcode", "slack", "chrome", "linear"], keywords: ["voice assistant for developers mac", "ai pair programmer voice"] },
   { slug: "students", name: "Students", singular: "student", persona: "student", apps: ["google-docs", "notion", "word", "chrome", "pages", "keynote"], keywords: ["ai study buddy mac", "voice assistant for students"] },
@@ -85,6 +88,8 @@ export const COMPETITORS = [
   { slug: "raycast", name: "Raycast", site: "https://www.raycast.com", pricingUrl: "https://www.raycast.com/pricing", category: "assistant" },
   { slug: "heyclicky", name: "Clicky", site: "https://heyclicky.com", category: "assistant" },
 ];
+
+export const ROLES = [...BASE_ROLES, ...DISCOVERED_ROLES.filter((r) => !BASE_ROLES.some((b) => b.slug === r.slug))];
 
 /** Keyword patterns per page type. `{app}`, `{task}`, `{role}`, `{x}`, `{y}` are filled in. */
 export const KEYWORD_PATTERNS = {

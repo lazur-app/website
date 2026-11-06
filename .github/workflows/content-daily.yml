@@ -111,7 +111,7 @@ jobs:
         run: |
           git config user.name "lazur-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
-          git add content content-runs
+          git add content content-runs src/lib/content/roles-discovered.mjs
           if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
           summary="content-runs/daily-${{ steps.counts.outputs.date }}/summary.md"
           { head -1 "$summary"; echo; tail -n +2 "$summary" | head -60; } > /tmp/msg.txt
@@ -123,6 +123,10 @@ jobs:
             git push origin "HEAD:refs/heads/$branch" --force-with-lease
             echo "Pushed to $branch (no production deploy)."
           fi
+
+      - name: Tell search engines (IndexNow)
+        if: ${{ (inputs.target || 'main') == 'main' }}
+        run: node scripts/content/indexnow.mjs --date=${{ steps.counts.outputs.date }} || true
 
       - name: Upload run log
         if: always()

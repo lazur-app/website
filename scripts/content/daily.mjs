@@ -14,7 +14,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { DEFAULT_DAILY_COUNTS } from "../../src/lib/content/sources.mjs";
+import { DAILY_REFRESH, DEFAULT_DAILY_COUNTS, RAMP, TYPE_WEIGHTS } from "../../src/lib/content/sources.mjs";
 import { ROOT, flags, nyDate, openManifest, pool, readType } from "./lib/core.mjs";
 import { SPECS, generateOne } from "./lib/pipeline.mjs";
 import { checkImageEnv } from "./lib/images.mjs";
@@ -24,17 +24,65 @@ import { MIN_WORDS } from "../../src/lib/content/rules.mjs";
 const f = flags(process.argv.slice(2));
 const date = f.date ?? nyDate();
 const runDir = path.join(f.out ? path.resolve(f.out) : ROOT, "content-runs", `daily-${date}`);
-const concurrency = Number(f.concurrency ?? process.env.CONTENT_CONCURRENCY ?? 4);
+const concurrency = Number(f.concurrency ?? process.env.CONTENT_CONCURRENCY ?? 6);
 const deadline = Date.now() + Number(f["max-minutes"] ?? 50) * 60_000;
 const images = f["no-images"] !== "true" && f.images !== "false";
 const outRoot = f.out ? path.resolve(f.out) : undefined;
-if (outRoot) process.env.CONTENT_PLAN_DIR = path.join(outRoot, "content/seo/_plan");
+if (outRoot) {
+  // Preview runs never touch the real queues or the real discovered-roles file.
+  process.env.CONTENT_PLAN_DIR = path.join(outRoot, "content/seo/_plan");
+  const rolesCopy = path.join(outRoot, "roles-discovered.mjs");
+  if (!fs.existsSync(rolesCopy)) {
+    fs.mkdirSync(outRoot, { recursive: true });
+    fs.copyFileSync(path.join(ROOT, "src/lib/content/roles-discovered.mjs"), rolesCopy);
+  }
+  process.env.CONTENT_ROLES_FILE ??= rolesCopy;
+}
 
 /** @type {Record<string, number>} */
 const counts = {};
-for (const [k, v] of Object.entries(DEFAULT_DAILY_COUNTS)) counts[k] = f[k] !== undefined ? Number(f[k]) : f["only"] ? 0 : v;
-if (f.only) for (const k of f.only.split(",")) counts[k] = Number(f[k] ?? DEFAULT_DAILY_COUNTS[/** @type {keyof typeof DEFAULT_DAILY_COUNTS} */ (k)] ?? 0);
-const refreshCount = Number(f.refresh ?? 0);
+const TYPES = Object.keys(TYPE_WEIGHTS);
+const manual = TYPES.some((k) => f[k] !== undefined) || Boolean(f.only);
+const live = process.env.CONTENT_AGENT_FAKE !== "1" && !outRoot;
+let source = "";
+
+/** Split a daily total across types by TYPE_WEIGHTS. @param {number} total */
+const split = (total) => {
+  /** @type {Record<string, number>} */
+  const out = {};
+  let left = total;
+  TYPES.forEach((k, i) => {
+    const n = i === TYPES.length - 1 ? left : Math.round(total * TYPE_WEIGHTS[/** @type {keyof typeof TYPE_WEIGHTS} */ (k)]);
+    out[k] = Math.max(0, n);
+    left -= out[k];
+  });
+  return out;
+};
+
+if (manual) {
+  for (const k of TYPES) counts[k] = f[k] !== undefined ? Number(f[k]) : f.only ? 0 : DEFAULT_DAILY_COUNTS[/** @type {keyof typeof DEFAULT_DAILY_COUNTS} */ (k)];
+  if (f.only) for (const k of f.only.split(",")) counts[k] = Number(f[k] ?? DEFAULT_DAILY_COUNTS[/** @type {keyof typeof DEFAULT_DAILY_COUNTS} */ (k)] ?? 0);
+  source = "flags";
+} else if (process.env.CONTENT_DAILY_COUNTS) {
+  const v = process.env.CONTENT_DAILY_COUNTS.trim();
+  if (/^\d+$/.test(v)) Object.assign(counts, split(Number(v)));
+  else for (const k of TYPES) counts[k] = Number(JSON.parse(v)[k] ?? 0);
+  source = "CONTENT_DAILY_COUNTS";
+} else {
+  // The ramp: week 1 starts on the first real run and is written down once.
+  const rampFile = path.join(ROOT, "content-runs", "ramp.json");
+  /** @type {{ startDate: string }} */
+  let ramp = fs.existsSync(rampFile) ? JSON.parse(fs.readFileSync(rampFile, "utf8")) : { startDate: date };
+  if (live && !fs.existsSync(rampFile)) {
+    fs.mkdirSync(path.dirname(rampFile), { recursive: true });
+    fs.writeFileSync(rampFile, JSON.stringify({ startDate: date, note: "Week 1 of the automatic ramp. Delete this file to restart the ramp." }, null, 2) + "\n");
+  }
+  const day = Math.floor((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${ramp.startDate}T12:00:00Z`)) / 86400_000);
+  const step = [...RAMP].reverse().find((r) => day >= r.fromDay) ?? RAMP[0];
+  Object.assign(counts, split(step.total));
+  source = `ramp day ${day + 1} (started ${ramp.startDate}): ${step.total}/day`;
+}
+const refreshCount = Number(f.refresh ?? (manual ? 0 : DAILY_REFRESH));
 
 // Fail fast on missing keys before any model call is spent.
 if (images) checkImageEnv();
@@ -47,7 +95,7 @@ const manifest = openManifest(runDir);
 manifest.state.targets = { ...counts, refresh: refreshCount };
 manifest.save();
 
-console.log(`content daily ${date}: ${JSON.stringify(counts)} refresh=${refreshCount} concurrency=${concurrency} images=${images}${process.env.CONTENT_AGENT_FAKE === "1" ? " (FAKE model)" : ""}`);
+console.log(`content daily ${date} [${source}]: ${JSON.stringify(counts)} refresh=${refreshCount} concurrency=${concurrency} images=${images}${process.env.CONTENT_AGENT_FAKE === "1" ? " (FAKE model)" : ""}`);
 
 /** @param {string} type @param {import("./lib/pipeline.mjs").Target} t @param {any} [existing] */
 async function runItem(type, t, existing) {
@@ -63,8 +111,12 @@ async function runItem(type, t, existing) {
 }
 
 // New pages, one type at a time so planners do not race.
-for (const [flag, target] of Object.entries(counts)) {
+// A type with nothing left to write (all apps covered, say) hands its share to the next type.
+let carry = 0;
+for (const [flag, base] of Object.entries(counts)) {
   const spec = SPECS[flag];
+  const target = base + carry;
+  carry = 0;
   if (!spec || target <= 0) continue;
   const missing = target - manifest.doneCount(flag);
   if (missing <= 0) continue;
@@ -73,8 +125,10 @@ for (const [flag, target] of Object.entries(counts)) {
     targets = (await spec.next(missing + 5)).filter((t) => !manifest.settled(t.key)).slice(0, missing);
   } catch (e) {
     console.error(`planner for ${flag} failed: ${/** @type {Error} */ (e).message}`);
+    carry = missing;
     continue;
   }
+  if (!manual && targets.length < missing) carry = missing - targets.length;
   await pool(
     concurrency,
     targets.map((t) => () => runItem(flag, t)),

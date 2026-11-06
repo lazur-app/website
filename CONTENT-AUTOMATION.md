@@ -136,19 +136,54 @@ per role). The same problem can appear for different roles; each page is written
   www.lazur.app and look like duplicate content. Same-URL markdown gives LLMs the clean text without
   that cost.
 
-## Running the job on a Claude Code seat (cloud)
+## Running the job on a Claude Code seat (cloud) — the main way
 
-Instead of GitHub Actions, the job can run as a scheduled Claude Code cloud session on your seat
-(no `CLAUDE_CODE_OAUTH_TOKEN` needed). The session needs `PIXABAY_API_KEY` and
-`BLOB_READ_WRITE_TOKEN` in its environment and push access to the repo. Each run:
+An hourly scheduled Claude Code cloud session on the seat runs the job. Its prompt is
+[`scripts/content/CLOUD-RUN.md`](scripts/content/CLOUD-RUN.md): pull main, `npm ci`, check keys,
+`daily.mjs --max-minutes=45`, `seo-lint`, `build-check.mjs`, commit, rebase, push to main, IndexNow,
+report. No `CLAUDE_CODE_OAUTH_TOKEN` is needed: the session's own `claude` does the model calls.
+The cloud environment needs `PIXABAY_API_KEY` and `BLOB_READ_WRITE_TOKEN`, network access to the
+open web (research), and push access to lazur-app/website.
 
-```bash
-npm ci
-node scripts/content/daily.mjs --max-minutes=50     # resumes today's batch
-node scripts/content/seo-lint.mjs --quiet && npm run build
-git add content content-runs src/lib/content/roles-discovered.mjs && git commit -m "$(head -1 content-runs/daily-$(TZ=America/New_York date +%F)/summary.md)" && git push origin HEAD:main
-node scripts/content/indexnow.mjs
-```
+`scripts/content/build-check.mjs` is `next build` that works inside cloud sessions, whose proxy
+breaks Next's Google Fonts download (it fetches the font CSS itself and retries).
+
+## The ramp: 300, then 500, then 1,000 pages a day
+
+Set in `src/lib/content/sources.mjs` (`RAMP`, `TYPE_WEIGHTS`, `DAILY_REFRESH`):
+
+| Days since the first real run | Pages a day |
+| --- | --- |
+| 1 to 7 | 300 |
+| 8 to 14 | 500 |
+| 15 onwards | 1,000 |
+
+The first real run writes its date to `content-runs/ramp.json` (delete it to restart the ramp). The
+daily total is split by weight: how-to 40%, problems 25%, role × app 20%, blog 5%, roles 4%,
+compare 3%, apps 3%. When a type runs out (there are only so many apps and competitors), its share
+rolls into the next type, ending with how-tos. On top, up to 20 old pages under 2,000 words are
+rewritten each day until none are left. Override with `CONTENT_DAILY_COUNTS` (`"300"` or
+`{"howto":40,"problems":20}`) or per-type flags.
+
+### Can one seat do 1,000 a day? The math
+
+- **Time:** a page takes about 4.5 minutes of model time (measured: research 2.4 min, write 2 min)
+  plus about 20 seconds for images. With 6 pages in parallel and 45 working minutes an hour, one
+  hourly run writes up to about 60 pages, so 24 runs give about 1,400 a day. That covers 1,000 with
+  room for retries.
+- **Seat usage:** a measured page used about $0.13 of model usage, so 1,000 pages is roughly $130 a
+  day of usage on the seat. That is likely beyond what one subscription seat allows. When the limit
+  hits, calls fail, those items are retried next hour, and the day simply finishes short. Watch the
+  hourly reports: if 1,000 a day keeps falling short, add a second seat (a second scheduled session
+  with a different `CONTENT_CONCURRENCY`) or keep the ramp at 500.
+- **Pixabay:** at most 3 searches a page (cached 24 hours), so about 180 an hour against a limit of
+  6,000 an hour.
+- **Vercel Blob:** about 3 photos of roughly 120 KB per page, so about 360 MB a day at 1,000 pages,
+  around 11 GB a month. Blob storage and traffic are billed by Vercel; check the usage page monthly.
+- **Deploys:** each hourly push deploys the site, up to 24 deploys a day.
+- **Google:** a young domain adding 1,000 pages a day gets crawled slowly at first. Quality (sources,
+  2,000+ words, a real answer up top) is what keeps that from being treated as scaled spam; do not
+  loosen the guards to hit the number.
 
 ## GitHub Actions
 

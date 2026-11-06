@@ -128,6 +128,36 @@ export const DEFAULT_DAILY_COUNTS = {
   blog: 5,
 };
 
+/**
+ * Automatic ramp (pages per day across all types). Week 1 starts on the first New York date the
+ * job runs for real; that date is written once to content-runs/ramp.json. Override with the
+ * CONTENT_DAILY_COUNTS env var (a total like "300" or JSON like {"howto":40,"problems":20}) or
+ * per-type flags on the command line.
+ */
+export const RAMP = [
+  { fromDay: 0, total: 300 },
+  { fromDay: 7, total: 500 },
+  { fromDay: 14, total: 1000 },
+];
+
+/**
+ * How the daily total splits across types. Processed in this order; when a type runs out of
+ * things to write (apps and compare pages are finite), its unused share rolls into the next type,
+ * so how-tos and problems at the end absorb it.
+ */
+export const TYPE_WEIGHTS = {
+  apps: 0.03,
+  roles: 0.04,
+  compare: 0.03,
+  blog: 0.05,
+  "role-apps": 0.2,
+  problems: 0.25,
+  howto: 0.4,
+};
+
+/** Old pages under the word minimum rewritten each day, on top of the total, until none are left. */
+export const DAILY_REFRESH = 20;
+
 /** @param {string} slug */
 export const appBySlug = (slug) => APPS.find((a) => a.slug === slug);
 /** @param {string} slug */

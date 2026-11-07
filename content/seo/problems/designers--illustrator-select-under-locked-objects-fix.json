@@ -1,0 +1,548 @@
+{
+  "title": "How to select under locked objects in Illustrator on Mac: fixes for designers in 2026",
+  "metaTitle": "Select under locked objects in Illustrator on Mac",
+  "description": "Can't select under locked objects in Illustrator on Mac? Turn off one preference, or find the locked item in the Layers panel. Steps and trade-offs.",
+  "targetKeyword": "select under locked objects in illustrator",
+  "secondaryKeywords": [
+    "illustrator can't select object under locked object",
+    "illustrator selection and anchor display preference",
+    "illustrator locked object won't select",
+    "select locked objects in illustrator layers panel",
+    "illustrator click through locked objects",
+    "illustrator can't select object behind locked object"
+  ],
+  "intro": "To select under a locked object in Illustrator on Mac, turn off one preference first. Go to Illustrator > Preferences > Selection & Anchor Display, clear the option that lets clicks select locked objects on the canvas, then click beneath the locked item again. That option exists so you can release a lock with a click. Turning it off gives up that shortcut, but the object underneath should respond. This page covers the cause, the fix, the trade-off, and the Layers panel route.",
+  "tldr": [
+    "Turn off the selection option in Illustrator > Preferences > Selection & Anchor Display, then click beneath the locked object again.",
+    "The trade-off: clicks no longer select a locked object so you can release it. Use the Layers panel for that step.",
+    "Adobe staff said in August 2024 that the option cannot allow both click-to-release and click-through.",
+    "If the option is already off, check the Layers panel for a locked parent group or layer.",
+    "Test first with a two-shape file, so you know which cause you have."
+  ],
+  "stats": [
+    {
+      "value": "$30.27",
+      "label": "median hourly pay for graphic designers, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers: Occupational Outlook Handbook"
+    },
+    {
+      "value": "253,100",
+      "label": "graphic designer jobs in 2025, per the BLS",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers: Occupational Outlook Handbook"
+    },
+    {
+      "value": "8",
+      "label": "votes on Adobe's UserVoice request for this exact bug",
+      "sourceUrl": "https://illustrator.uservoice.com/forums/601447-illustrator-desktop-bugs/suggestions/48743753-can-t-select-an-object-under-a-locked-object",
+      "sourceTitle": "Can't select an object under a locked object (Adobe Illustrator UserVoice)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why you can't select an object under a locked object in Illustrator"
+    },
+    {
+      "type": "paragraph",
+      "text": "Illustrator sends your click to the top object under the cursor. If that object is locked, the click lands on it, not on the shape beneath. Locked objects cannot be edited, so Illustrator needs a separate path to reach them. A preference in Selection & Anchor Display controls that path. When it is on, a click can select a locked object on the canvas so you can release its lock. The same click cannot also pass through to what sits underneath."
+    },
+    {
+      "type": "paragraph",
+      "text": "Adobe staff confirmed the link in August 2024. Their reply on Adobe's UserVoice board called it a known problem with that option. They suggested splitting it into two separate settings, one for selecting locked objects and one for selecting underneath. Whether your version has that split is not confirmed here, so check your own preferences before you assume it exists."
+    },
+    {
+      "type": "paragraph",
+      "text": "The complaint is not a one-off. Adobe forum threads from 2020 through 2024 describe the same behavior. In one Adobe Community thread, a Community Expert said the option selects locked objects on the scratch area and releases them right away. One poster said the problem showed up in Preview mode, and locking objects with ⌘2 let them avoid it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 1: turn off the selection option in Preferences"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the fastest fix, and it is the one Adobe staff pointed to. Open Illustrator > Preferences > Selection & Anchor Display. Some newer builds may label the menu item Settings. Forum posts also give the option different names, so look for the line about selecting locked objects on the canvas or the artboard. Clear it, then click again."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Choose Illustrator > Preferences > Selection & Anchor Display.",
+        "Find the option that lets clicks select locked objects on the canvas.",
+        "Clear its checkbox and close the dialog.",
+        "Click the object beneath the locked one. The selection should land on it now.",
+        "If nothing changes, check the label in your version, then repeat the test in Outline view."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "The trade-off",
+      "text": "With the option off, a click on a locked object no longer selects it so you can release it. You will need the Layers panel for that step. Turn the option back on when you need click-to-release again. The setting lives in Illustrator, so it changes how every file behaves on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test the change with a two-shape file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build a test before you change how you work. Start a new file. Draw a square, then draw a circle that covers part of it. Select the circle and press ⌘2 to lock it. Click the square where the circle covers it. If nothing selects, the option is on or the click hits the circle first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now turn the option off in Preferences and repeat the click. If the square selects, the preference was the cause. If it still fails, the cause is probably a locked parent group or layer. Keep the test file small so the check takes seconds, not minutes."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option state",
+        "Click on a locked object",
+        "Click beneath a locked object",
+        "What you give up"
+      ],
+      "rows": [
+        [
+          "On",
+          "Selects it, so you can release the lock",
+          "Blocked, per Adobe staff",
+          "Nothing extra"
+        ],
+        [
+          "Off",
+          "Locked object does not select",
+          "Object beneath can be selected",
+          "Click-to-release, so use the Layers panel"
+        ]
+      ],
+      "caption": "Behavior as Adobe staff and forum posters described it. Not tested on every Illustrator version."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Release the locked object in the Layers panel"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you need the locked object itself, go through the Layers panel. Open Window > Layers. Find the layer or group that holds the object. The padlock column beside each row controls its lock. Expand the layer triangle to see objects inside. A locked parent can lock its children, so check the parent first if the child still refuses."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Choose Window > Layers to open the panel.",
+        "Expand the layer or group that holds your target.",
+        "Click the padlock on the parent, then on the child, if both are locked.",
+        "Select the object and carry on working."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Get in the habit of checking the panel first. It takes a few seconds and skips the guessing. The panel also shows what sits above your target, which is often the real cause."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Figma handles locked layers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma handles this differently, so the habit does not carry over. Figma's help center says it includes locked layers in the Select layer menu, marked with a padlock icon. Right-click lists the layers underneath the cursor, so you can pick a locked one from that list."
+    },
+    {
+      "type": "paragraph",
+      "text": "The lesson still carries over to Illustrator. A locked object is reachable, just not by a plain click on the canvas. Go through a menu or a panel instead. If you move between the two tools, [Figma for designers on Mac](/for/designers/figma) covers the Figma side."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What wasted clicks cost you in real money"
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the main cost. The BLS puts median pay for graphic designers at $30.27 an hour in May 2025, or $62,960 a year. At that hourly rate, 5 minutes of hunting is about $2.52 of labor. That is arithmetic from the BLS hourly figure, not a published number. One miss is cheap. A bad week of misses adds up."
+    },
+    {
+      "type": "paragraph",
+      "text": "The scale is the other angle. The BLS counted about 253,100 graphic designer jobs in 2025, so many people share this kind of friction. A fix you pass to a teammate saves them time too."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Interruption research points the same way, with a caveat. Wikipedia's summary of interruption science cites a 2008 New York Times article. That article says a worker can take nearly a half-hour to resume the original task. It is a newspaper claim, not a measured study, and it covers interruptions in general. Treat it as a reason to keep your flow intact, not as a number to quote."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur works alongside Illustrator, not inside it. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the padlock is, and Lazur draws a circle and a label around it. Ask how to change the preference, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click the padlock or the checkbox for you. It does not change Illustrator's preferences. You do the clicking. For the search part, ask Lazur to research a fix for your exact version. It runs in its own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: groups, artboards, and stacked art"
+    },
+    {
+      "type": "paragraph",
+      "text": "A locked group behaves like one locked object. Clicks inside it may not reach the child you want. Release the group in the Layers panel, then edit the child. Keep the group unlocked while you work inside it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Multiple artboards add a second source of confusion. You may think you are on one artboard while the locked object sits on another. Check the artboard you are on before you blame the preference. Stacked art can also hide what you want. Hide the top object with its eye toggle in the Layers panel, click through, then show it again."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A simple locking rule that keeps the list short"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lock only what you need to protect, and do it late. Lock the template or the background once the layout is done. Leave working art unlocked. A short list of locked items is easier to scan in the Layers panel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the locked layers clearly, such as Template or Background, so you spot them fast. If a teammate opens the file, the rule sits in the layer names, not in your memory."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client files and what Lazur sends"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the file holds client work under contract, follow your employer's rules on where that file can go. Lazur sends the audio and a screenshot to AI providers to answer. Those are not stored. Lazur listens and looks at the screen only while you hold the shortcut. Content is never used to train AI models."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the two-shape test. Leave the option off if clicks need to reach beneath. Use the Layers panel for release. Then pick the file habits that fit your work. Lazur offers a Pro trial with no credit card, and the trial starts when you first open the app. See [pricing](/pricing) or [download Lazur](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why can't I select an object under a locked object in Illustrator?",
+      "answer": "Illustrator sends the click to the locked object on top. A preference in Selection & Anchor Display lets clicks select locked objects so you can release them. Adobe staff said in August 2024 that this option blocks selecting underneath. Forum reports say turning it off fixed the problem."
+    },
+    {
+      "question": "Will turning off the preference break anything?",
+      "answer": "It removes click-to-release. You can still release locks through the Layers panel. Turn the option back on whenever you want click-to-release again. Nothing in your document changes when you flip the setting."
+    },
+    {
+      "question": "Where is the setting on a Mac?",
+      "answer": "Adobe staff and forum posts point to Illustrator > Preferences > Selection & Anchor Display. Some newer builds may say Settings. The exact label and location in your version were not confirmed here, so scan that section for the word lock."
+    },
+    {
+      "question": "Does Figma have the same problem?",
+      "answer": "Not in the same way. Figma lists locked layers in the Select layer menu with a padlock icon. Right-click shows the layers underneath the cursor, so you can still pick a locked one."
+    },
+    {
+      "question": "Can Lazur turn the preference off for me?",
+      "answer": "No. Lazur does not click buttons or change settings in other apps. Ask it to point at the option or guide you one click at a time, and you do the clicking."
+    },
+    {
+      "question": "Do I need to check my employer's rules?",
+      "answer": "Yes, if the file holds client work under contract. Lazur sends audio and a screenshot to AI providers to answer, and does not store them. Follow your employer's rules before you ask about confidential files."
+    },
+    {
+      "question": "Which Illustrator version does this affect?",
+      "answer": "Reports in Adobe forums run from 2020 through 2024. This page could not confirm how the current version behaves, so run the two-shape test on your own copy."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Graphic Designers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Can't select an object under a locked object (Adobe Illustrator UserVoice)",
+      "url": "https://illustrator.uservoice.com/forums/601447-illustrator-desktop-bugs/suggestions/48743753-can-t-select-an-object-under-a-locked-object",
+      "publisher": "Adobe Illustrator UserVoice",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Can't select under locked objects when in preview mode",
+      "url": "https://community.adobe.com/t5/illustrator-discussions/can-t-select-under-locked-objects-when-in-preview-mode/m-p/11579677",
+      "publisher": "Adobe Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Select layers and objects (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360040449873-Select-layers-and-objects",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Interruption science",
+      "url": "https://en.wikipedia.org/wiki/Interruption_science",
+      "publisher": "Wikipedia",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "cannot select object beneath locked item",
+  "costs": [
+    {
+      "title": "Minutes that add up",
+      "text": "A single missed click costs seconds. A hunt through a stacked file costs minutes. The BLS puts median pay at $30.27 an hour for graphic designers in May 2025. At that rate, 5 minutes of hunting is about $2.52 of labor. That figure is arithmetic from the hourly wage, not a published number."
+    },
+    {
+      "title": "Edits that land on the wrong art",
+      "text": "If the click selects the wrong object, your next edit lands on the wrong art. Check the selection in the Layers panel before a large change. A quick look costs far less than undoing a moved shape after export."
+    },
+    {
+      "title": "Flow that breaks when you stop",
+      "text": "Each stop to hunt for a shape breaks your train of thought. Interruption research cited by Wikipedia says a worker can take nearly a half-hour to resume. That is a newspaper claim, not a measured study, but it matches how this feels at the desk."
+    },
+    {
+      "title": "Workarounds that stack up",
+      "text": "Each workaround adds steps. Locking with ⌘2, hiding objects, and checking the Layers panel all take time. Pick the one that keeps your file clean, then stick with it so you stop re-deciding."
+    },
+    {
+      "title": "Friction your team shares",
+      "text": "Teams share the same tools and files. One designer who learns the preference fix can save the next person the same hunt. Adobe's UserVoice request has 8 votes, a small signal that others hit this too."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The selection option for locked objects",
+      "text": "Adobe staff said the behavior most probably comes from the preference that selects locked objects on the canvas. Turn that option on, and a click on a locked object selects it. That is what lets you release a lock by clicking. The side effect is that clicks never pass through to the object below. Staff said the option cannot allow both behaviors at once."
+    },
+    {
+      "title": "Locked art stacked on top",
+      "text": "Illustrator selects the topmost object under the cursor. If a locked shape sits above your target, the click lands on the locked shape. Nothing on screen shows which shape you hit, so the problem looks like a broken click. Check the stacking order in the Layers panel before you blame the preference."
+    },
+    {
+      "title": "A locked parent group or layer",
+      "text": "A lock on a group or layer covers everything inside it. Clicking a child shape can seem broken because the lock sits one level up. Expand the parent in the Layers panel and check its padlock first. Releasing only the child does nothing, and the test fails."
+    },
+    {
+      "title": "Preview mode",
+      "text": "One forum poster reported the problem in Preview mode. Preview is a view state, not a setting you choose in Preferences. Switch to Outline view and repeat the click. If the object selects in Outline but not in Preview, you have a clue to pass along to Adobe or your team."
+    },
+    {
+      "title": "The scratch area behavior",
+      "text": "A 2020 Adobe Community thread quotes a Community Expert who said the likely cause was a newer option. That option selects locked objects on the scratch area and releases them right away. The original poster confirmed that turning it off fixed the problem. Adobe staff pointed to the same preference in 2024."
+    },
+    {
+      "title": "Preferences that live on your Mac",
+      "text": "Illustrator preferences are stored for the app on your computer, not inside the document. Two designers can open the same file and see different behavior. If a teammate says the click works for them, compare preferences before you blame the file."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Turn off the selection option",
+      "text": "Use the fix Adobe staff pointed to. Open Illustrator > Preferences > Selection & Anchor Display, clear the option that selects locked objects on the canvas, then test with the two-shape file. You give up click-to-release, so keep the Layers panel route handy. Turn the option back on when that trade is worth it."
+    },
+    {
+      "title": "Release locks in the Layers panel",
+      "text": "Open Window > Layers and find the padlock column. Expand groups to see the children inside. Click the padlock on the parent, then on the child if both are locked. This route works whether the preference is on or off, and it keeps the lock change under your control."
+    },
+    {
+      "title": "Hide the top object for a moment",
+      "text": "Click the eye column beside the object in the Layers panel to hide it. Click the shape underneath, then turn the eye back on. Hidden objects do not catch clicks, so the object beneath becomes reachable. Show the hidden object again before you export."
+    },
+    {
+      "title": "Lock with ⌘2, and lock less",
+      "text": "Select the object and press ⌘2 to lock it, as one forum poster did to avoid the problem. Lock at the end of a session, not in the middle of building. Fewer locked objects means fewer shapes that can block a click later. Release the lock before you change the art."
+    },
+    {
+      "title": "Compare Preview and Outline views",
+      "text": "Switch between Preview and Outline from the View menu, then repeat the same click. The forum report ties the problem to Preview mode, so a clean result in Outline tells you where to look. This check takes seconds and needs no preference change."
+    },
+    {
+      "title": "Check the artboard and the parent group",
+      "text": "Confirm which artboard you are on before you click. Then check the parent group in the Layers panel. A locked parent can make every child look unselectable, even with the preference off. Fix the parent once and the children follow."
+    },
+    {
+      "title": "Find the label for your version",
+      "text": "Adobe labels shift between versions, and forum posts use different names for the same option. Scan the Selection & Anchor Display section for the word lock, or ask Lazur to point at the option. Write down the exact label you see so you can find it again next time."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the padlock for this layer?",
+      "capability": "point",
+      "result": "Lazur circles the padlock column in the Layers panel and labels it. You decide whether to click it."
+    },
+    {
+      "say": "Walk me through turning off the selection option.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click, so you never lose your place in Preferences."
+    },
+    {
+      "say": "What does this Illustrator option actually do?",
+      "capability": "explain",
+      "result": "Lazur answers out loud and explains the option on screen. It does not change the setting for you."
+    },
+    {
+      "say": "Research the fix for my Illustrator version.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report. Check its claims against the sources."
+    },
+    {
+      "say": "Take a note for my team about this bug.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Clean, formatted text lands at the cursor in any app, so the note is ready to paste."
+    },
+    {
+      "say": "Draft a short message to the client about the file.",
+      "capability": "draft",
+      "result": "Lazur drafts and types text on request. Read it before you send, especially for client files."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the padlock for this layer?",
+    "capability": "point",
+    "result": "You see the lock state before you click anything, and you keep control of the file.",
+    "shell": "design",
+    "context": "Illustrator open, Layers panel showing a locked circle over a square",
+    "pointsAt": "Lock column in Layers",
+    "output": "Lazur circles the padlock column beside the layer and labels it. You decide whether to click it."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Run the two-shape test",
+      "text": "Make a new file with a square and a circle on top. Select the circle and press ⌘2 to lock it. Click the square where the circle covers it, and note whether it selects. Then turn the selection option off and repeat the click."
+    },
+    {
+      "label": "Day 2",
+      "title": "Pick the setting you keep",
+      "text": "If you lock often and rarely need click-through, keep the option on and accept the quirks. If clicks must reach beneath, turn it off and rely on the Layers panel for release. Write your choice in a note so you do not re-decide it."
+    },
+    {
+      "label": "Day 3",
+      "title": "Build the Layers panel habit",
+      "text": "Open Window > Layers and learn the padlock column. Expand one real project and find a child object inside a locked group. Release the parent, then the child, and confirm the click works."
+    },
+    {
+      "label": "Day 4",
+      "title": "Lock less, and lock late",
+      "text": "Lock only the template or background at the end of a session. Leave working art unlocked. Before you send a file to a client, scan the Layers panel for locked groups you no longer need."
+    }
+  ],
+  "apps": [
+    "figma"
+  ],
+  "type": "problem",
+  "slug": "illustrator-select-under-locked-objects-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/illustrator-select-under-locked-objects-fix/select-under-locked-objects-in-illustrator-1-809d4a.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A graphic designer works on a laptop at a desk, reviewing vector artwork before selecting under locked objects in Illustrator.",
+      "caption": "Checking the Layers panel before you hunt for a locked object.",
+      "keywords": [
+        "select under locked objects in illustrator",
+        "Designers",
+        "Cannot select object beneath locked item",
+        "Mac",
+        "graphic designer laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yatsusimnetcojp",
+        "url": "https://pixabay.com/users/yatsusimnetcojp-14033705/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/graphics-tablet-drawing-laptop-4570796/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/illustrator-select-under-locked-objects-fix/select-under-locked-objects-in-illustrator-2-649969.jpg",
+      "width": 1280,
+      "height": 776,
+      "alt": "A designer at a Mac desk with a monitor and sketches, the kind of setup where stacked art causes clicking trouble.",
+      "caption": "A calm desk makes the two-shape test quick to run.",
+      "keywords": [
+        "select under locked objects in illustrator",
+        "Designers",
+        "Cannot select object beneath locked item",
+        "Mac",
+        "designer desk Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-desktop-monitor-technology-2562196/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/illustrator-select-under-locked-objects-fix/select-under-locked-objects-in-illustrator-3-9b53f1.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "A small creative team reviews design files together on screen and shares a fix for the same Illustrator snag.",
+      "caption": "Sharing one fix with a team saves everyone the same hunt.",
+      "keywords": [
+        "select under locked objects in illustrator",
+        "Designers",
+        "Cannot select object beneath locked item",
+        "Mac",
+        "creative team office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "u_c48rf6ybx8",
+        "url": "https://pixabay.com/users/u_c48rf6ybx8-55127632/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stick-notes-notes-work-friends-10186549/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "select under locked objects in illustrator",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "illustrator can't select object under locked object": 1,
+      "illustrator selection and anchor display preference": 1,
+      "illustrator locked object won't select": 1,
+      "select locked objects in illustrator layers panel": 1,
+      "illustrator click through locked objects": 1,
+      "illustrator can't select object behind locked object": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

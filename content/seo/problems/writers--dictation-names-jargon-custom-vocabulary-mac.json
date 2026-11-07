@@ -1,0 +1,578 @@
+{
+  "title": "How to teach Mac dictation my character names and jargon in 2026: fixes for writers",
+  "metaTitle": "How to teach Mac dictation my character names and jargon | Lazur",
+  "description": "Mac dictation keeps mangling your character names and jargon. Build a name sheet, test each term, then run a find-and-replace sweep. Steps for writers on macOS.",
+  "targetKeyword": "how to teach Mac dictation my character names and jargon",
+  "secondaryKeywords": [
+    "Mac dictation wrong names",
+    "Voice Control custom vocabulary Mac",
+    "dictation jargon Mac writing",
+    "fix dictation errors Pages Word",
+    "dictation names Google Docs Mac"
+  ],
+  "intro": "Apple's Dictation on Mac documents no custom word list. Voice Control has one, but turning Voice Control on switches standard Dictation off. The practical fix is a name sheet, one test pass, and a find-and-replace sweep after every session.",
+  "tldr": [
+    "Apple's Dictation help page documents no custom word list for names or jargon.",
+    "Voice Control has a custom vocabulary, but it cannot run at the same time as standard Dictation.",
+    "Make a name sheet with spellings and wrong forms before you dictate a scene.",
+    "Test each new name in a short paragraph, then sweep the whole draft with Find and Replace."
+  ],
+  "stats": [
+    {
+      "value": "7.4",
+      "label": "errors per 100 words in unedited speech-recognition clinical notes",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6203313/",
+      "sourceTitle": "Analysis of Errors in Dictated Clinical Documents (JAMA Network Open, 2018)"
+    },
+    {
+      "value": "96.3%",
+      "label": "of unedited dictated notes had at least one error",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6203313/",
+      "sourceTitle": "Analysis of Errors in Dictated Clinical Documents (JAMA Network Open, 2018)"
+    },
+    {
+      "value": "0.4%",
+      "label": "error rate after professional transcriptionist editing",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6203313/",
+      "sourceTitle": "Analysis of Errors in Dictated Clinical Documents (JAMA Network Open, 2018)"
+    },
+    {
+      "value": "42.4%",
+      "label": "of physician-signed notes still had at least one error",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6203313/",
+      "sourceTitle": "Analysis of Errors in Dictated Clinical Documents (JAMA Network Open, 2018)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You can teach names and jargon to Mac dictation, but not the way most people expect. Apple's Dictation help page describes no custom word list. Voice Control does have a custom vocabulary, but it is a separate mode. This page covers the steps that work with what Apple documents today, and the gaps you still need to cover."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Mac dictation can and cannot learn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Standard Dictation turns your speech into text at the cursor. Apple lists Fn-D as the shortcut to start or stop it. Apple also says you may be able to set a different shortcut in Keyboard settings. The Dictation page does not describe a place to add your own words. If your villain is called Oriel Marsh, you get no field that says so."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: teach names and jargon without a word list"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open System Settings > Keyboard > Dictation and confirm Dictation is on. Note the shortcut you use to start it.",
+        "Make a name sheet. Put each character, place, and term on its own line, with the spelling you want.",
+        "Dictate a test paragraph that uses every new name at least once. Read it aloud before you check the screen.",
+        "Fix each mistake in the draft, then add the wrong form you saw to your find list.",
+        "After the session, run Find and Replace for every wrong form. Check the match count before you accept.",
+        "Log any term that fails twice. Spell those out by hand, or use a placeholder tag."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Voice Control vocabulary may not help plain Dictation"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's custom vocabulary page covers Voice Control. You can add words one at a time or import a list. The same page says Dictation must be on to teach Voice Control a phrase. The catch is the conflict. When Voice Control is on, standard Dictation is not available, so you cannot use both for the same job at once. Turn Voice Control on for commands and vocabulary. Turn it off to go back to Fn-D."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Apple page appears to cover macOS 27. Check your version under Apple menu > About This Mac. Older macOS releases may behave differently, so run a test before you rely on any setting."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option",
+        "What it does",
+        "What to watch"
+      ],
+      "rows": [
+        [
+          "Dictation with Fn-D",
+          "Types what you say at the cursor",
+          "Apple documents no custom word list"
+        ],
+        [
+          "Voice Control vocabulary",
+          "Adds words and phrases, or imports a list",
+          "Turning on Voice Control turns off standard Dictation"
+        ],
+        [
+          "Find and Replace",
+          "Fixes every wrong form in one draft",
+          "Catches only the spellings you listed"
+        ],
+        [
+          "Spell out by hand",
+          "You type the hard name yourself after dictating",
+          "Slow, but reliable for a few key names"
+        ]
+      ],
+      "caption": "Mac options for names and jargon, based on Apple's documentation."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why names and jargon get mangled in the first place"
+    },
+    {
+      "type": "paragraph",
+      "text": "Speech recognition picks the likeliest word for each sound. Common words have plenty of examples behind them. A character's name may have few or none. So the model picks a common word that sounds close. Oriel can come out as an ordinary word. A product code or a fantasy place-name can break the same way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Researchers try to fix this with a list of entities that the model reads before it decodes. An arXiv paper on prompt biasing reports a 30.7% relative drop in entity errors with a small list, and 18.0% with a large one. Those tests used Microsoft research models and an in-house dataset. They do not predict what Apple's Dictation will do. They do show why a list of names helps in principle."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The clearest numbers come from clinical notes. A 2018 JAMA Network Open study looked at 217 dictated notes from 144 physicians at 2 institutions in 2016. Unedited speech recognition had 7.4 errors per 100 words. Medication was the most common clinical error category. Professional editing brought the error rate down to 0.4%. The study is clinical, not about novels, but it shows what happens when nobody reads the output."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a name sheet for your manuscript or report"
+    },
+    {
+      "type": "paragraph",
+      "text": "A name sheet is a plain list. Keep it in the same document, a separate note, or a shared doc. For each term, write the correct spelling, the pronunciation if it is unusual, and every wrong form you have seen. Mark words that are also ordinary English, like Will or Rye, because they collide with common words."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the list in three places. Paste it at the top of the draft while you work. Read it aloud before each session. Then use it as the source for Find and Replace. One sheet does three jobs, and it grows as you find more errors."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run Find and Replace in Pages, Word or Google Docs"
+    },
+    {
+      "type": "paragraph",
+      "text": "After each session, search for every wrong form. In Pages, choose Edit > Find > Find and Replace. In Google Docs, choose Edit > Find and replace. In Word for Mac, look for Replace under the Edit menu, since menu names shift between versions. Turn on whole-word matching for short names, so Oriel does not hit Oriole."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the match count before you accept. A count higher than you expect means a common word matched. Scroll through the hits. Replace only the ones that are the name. Then search the draft for your placeholder tags, if you used any."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep dictation runs short so names stay easy to check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Dictation page says dictation stops after 30 seconds without detected speech. A long pause ends the run. Plan for it. Dictate one scene or section at a time. Pause, fix any new name, then start again with Fn-D. Short runs also keep the text you must read small enough to scan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check where your dictation runs before you use it on unpublished work. Apple's page says you can confirm in Keyboard settings whether dictation is processed on the device. Apple Intelligence dictation uses an on-device model for spelling, punctuation, and capitalization on Mac models with M3 or later and at least 12GB of unified memory, in English. On other Macs, or in other languages, the setup may differ."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Who needs a human review pass"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your text goes to readers, clients, or patients, a human check is not optional. In the JAMA study, 96.3% of unedited notes had at least one error. Transcriptionist editing lowered that to 58.1%. Even physician-signed notes still had at least one error in 42.4% of cases. A signed page is not a clean page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lawyers, nurses, and accountants should follow their employer's rules on client or patient data before they dictate anything into a tool. Check the policy first. Then decide whether the text can leave the device at all."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep names wrong"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dictating a new name cold, without a test sentence first.",
+        "Fixing the first instance only, then missing the rest of the draft.",
+        "Trusting autocorrect, which does not know your character's name is right.",
+        "Turning on Voice Control for vocabulary, then wondering why Dictation has gone quiet.",
+        "Adding the correct name to your sheet but not the wrong forms you actually saw.",
+        "Leaving placeholder tags in the final file."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When one name keeps failing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some names fail every time. Use a placeholder. Dictate a plain tag such as NAMEOSCAR, then search for that tag and replace it. A tag is easy to find in a search. Pick a tag you would never type by accident, and check for leftover tags before you send the draft."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this routine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold fn to dictate clean, formatted text at the cursor in any app. Lazur also has snippets, a personal dictionary, and clipboard slots. Put your name sheet into the personal dictionary, then test it the same way you test Apple's Dictation. Lazur does not promise better accuracy than Apple. Your first test paragraph tells you more than any claim."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's default Dictation shortcut uses the fn key too. Pick keys that do not collide, and change one of them in Keyboard settings before you rely on both."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur explains and points. Hold ⌥ ⌘ and ask where the Dictation setting is. Lazur draws a circle and a label around it on your screen. Ask how to open Voice Control vocabulary, and Lazur guides you one click at a time, waiting for each click. It does not click for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Who this helps most"
+    },
+    {
+      "type": "paragraph",
+      "text": "Novelists with invented names, screenwriters with recurring places, and technical writers with product codes all hit this problem. Grant writers with program names hit it too. Set up the name sheet in the first hour of a project, not the last. For the wider workflow, see [Dictation for writers on Mac](/for/writers). If your draft lives in Pages, read [Pages for writers](/for/writers/pages)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start tonight with one name sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your current draft. List every name and term that dictation has already mangled. Add the wrong forms you saw. Run one find sweep. Then test a short paragraph of new dictation and count the errors. The [dictation accuracy checker](/tools/dictation-accuracy-checker) can help you track that number over time."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Mac Dictation have a custom dictionary or word list?",
+      "answer": "Apple's Dictation help page describes no word list for standard Dictation. Voice Control has a custom vocabulary where you add words one at a time or import a list. Check Apple's guide for your macOS version before you assume either works for your exact setup."
+    },
+    {
+      "question": "Can I use Voice Control vocabulary and still use Fn-D?",
+      "answer": "Not at the same time. Apple says standard Dictation is not available while Voice Control is on. Turn Voice Control off to return to Fn-D, then turn it on again when you need the vocabulary for commands."
+    },
+    {
+      "question": "How accurate is Mac dictation with character names?",
+      "answer": "Apple does not publish accuracy figures for names. The hard numbers I can source come from clinical notes, where unedited speech recognition had 7.4 errors per 100 words. Test your own names with a short paragraph, then count the misses."
+    },
+    {
+      "question": "Can I use Text Replacements to fix names in dictated text?",
+      "answer": "Text Replacements can expand shorthand you type, but I found no Apple page that confirms dictated words trigger them. Test one replacement with dictation before you rely on it for a whole project."
+    },
+    {
+      "question": "Will Word or Google Docs learn my character names?",
+      "answer": "Microsoft's Dictate page lists settings for spoken language, microphone, auto punctuation, and filtering sensitive phrases. It lists no custom word or vocabulary setting. Use Find and Replace after each session in any editor."
+    },
+    {
+      "question": "Is it safe to dictate client or patient information?",
+      "answer": "Follow your employer's rules first. Lazur's site says it listens and looks at the screen only while you hold the shortcut, and that audio and the screenshot are sent to AI providers to answer and are not stored. Your employer may still forbid that route for client data."
+    },
+    {
+      "question": "What is the fastest first step for a new project?",
+      "answer": "Make a name sheet with the correct spellings and every wrong form you have seen. Paste it at the top of the draft. Then run one short dictation test with each new name before you write a full chapter."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Analysis of Errors in Dictated Clinical Documents Assisted by Speech Recognition Software and Professional Transcriptionists",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6203313/",
+      "publisher": "JAMA Network Open (via PubMed Central)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use a custom vocabulary with Voice Control on Mac",
+      "url": "https://support.apple.com/guide/mac-help/use-a-custom-vocabulary-mchl3eb7b79a/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Dictate messages and documents on Mac",
+      "url": "https://support.apple.com/guide/mac-help/use-dictation-mh40584/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Mac keyboard shortcuts",
+      "url": "https://support.apple.com/en-us/102650",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Dictate your documents in Word",
+      "url": "https://support.microsoft.com/en-us/office/dictate-your-documents-in-word-3876e05f-3fcc-418f-b8ab-db7ce0d11d3c",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Lightweight Prompt Biasing for Contextualized End-to-End ASR Systems",
+      "url": "https://arxiv.org/html/2506.06252v1",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "dictation mangling names and jargon",
+  "costs": [
+    {
+      "title": "Editing time after every session",
+      "text": "Every dictation session adds a review pass. Names and jargon are the words you check most closely, so they take the longest. Without a routine, that check becomes a hunt through the whole draft each time you write."
+    },
+    {
+      "title": "Names that drift across chapters",
+      "text": "A character called Oriel can become Oriole in chapter four and Orel in chapter nine. Readers notice the drift before they notice the typo. Each variant then needs its own search, and some slip through."
+    },
+    {
+      "title": "Trust from editors and readers",
+      "text": "A wrong name on the first page tells an editor the draft was not read closely. Errors in place names or product codes damage trust in the same way. One mistake is small. A pattern of them makes the rest of the manuscript harder to take seriously."
+    },
+    {
+      "title": "Higher stakes in regulated work",
+      "text": "In clinical notes, one error in about 250 words in unedited output was clinically significant, according to the JAMA study authors. Writers in law, medicine, or accounting face that kind of risk with client or patient terms. The cost there is far above rework time."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Rare names have few examples",
+      "text": "Speech models learn from large amounts of common speech. A character's name, a town, or a product code may appear rarely or never in that training. The model then picks a common word that sounds close. That is the most common path to a mangled name."
+    },
+    {
+      "title": "Common words win the guess",
+      "text": "When a sound matches both a rare name and a common word, the model usually picks the common word. Words like Will, Rye, or Mara collide with ordinary English. Those are the names you most need to check after dictation."
+    },
+    {
+      "title": "Standard Dictation has no word list",
+      "text": "Apple's Dictation help page does not describe a custom vocabulary for standard Dictation. Voice Control has one, but it is a separate mode that turns Dictation off. So the usual fix, adding the word to a list, is not documented for the feature most people use."
+    },
+    {
+      "title": "Pauses and run limits break context",
+      "text": "Apple says dictation stops after 30 seconds without detected speech. Long pauses, hesitations, and restarts make the output choppier. Choppy text gives the model less to work with for unusual words, and it leaves more text for you to scan."
+    },
+    {
+      "title": "Cleanup can change the words too",
+      "text": "Apple says its on-device dictation model handles spelling, punctuation, and capitalization on M3 or later Macs with at least 12GB of unified memory, in English. A cleanup pass can change capitalization or spelling. A name can come out in a form you did not dictate."
+    },
+    {
+      "title": "Your eyes skip the errors you expect",
+      "text": "When you read your own draft, you read what you meant. A name that sounds right to you can pass unnoticed. This is why a sweep with Find and Replace catches more than a quick read-through."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Build a name sheet before you dictate",
+      "text": "List every character, place, and term. Write the correct spelling and every wrong form you have seen. Keep the sheet at the top of the draft or in a note you can open beside it. The sheet is the single source for every later step."
+    },
+    {
+      "title": "Test each new name aloud first",
+      "text": "Dictate a short paragraph that uses each new name at least once. Read it aloud before you look at the screen. Note any failure in a log. Fix it once, then add the wrong form to your find list."
+    },
+    {
+      "title": "Use Voice Control vocabulary, then switch back",
+      "text": "If you use Voice Control, add the failed words in its vocabulary settings. Apple says Dictation must be on to teach a phrase. Then turn Voice Control off to return to standard Dictation with Fn-D. Test the result before you trust it."
+    },
+    {
+      "title": "Sweep the draft with Find and Replace",
+      "text": "After every session, search each wrong form. Use Edit > Find > Find and Replace in Pages, or Edit > Find and replace in Google Docs. Turn on whole-word matching for short names. Read the match count before you accept each change."
+    },
+    {
+      "title": "Use placeholder tags for stubborn names",
+      "text": "When a name fails three times, dictate a tag such as NAMEOSCAR instead. Search for the tag later and replace it with the right name. Pick a tag you would never type by accident. Check for leftover tags before you send the file."
+    },
+    {
+      "title": "Keep dictation runs short",
+      "text": "Dictate one scene or section at a time. Pause to fix any new name, then restart with Fn-D. Apple's limit is 30 seconds without speech, so a short run keeps you inside it and keeps the text easy to scan."
+    },
+    {
+      "title": "Use Learn Spelling for the spell checker",
+      "text": "In most Mac apps, right-click an underlined name and look for a Learn Spelling option. That stops the spell checker from flagging the word again. It helps the spell checker only, not the dictation engine, so keep the find sweep too."
+    },
+    {
+      "title": "Add a human review pass before anything ships",
+      "text": "Have a second reader check the first chapter or the full draft for names. For clinical, legal, or client work, follow your employer's rules on data, then review the text yourself before it goes out. The JAMA study shows that signed text can still carry errors."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold fn and dictate the scene. Lazur types at the cursor.",
+      "result": "Clean text lands where your cursor is, in any app. Test your names first, because Lazur does not promise better name accuracy than Apple.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Where is Dictation in Keyboard settings?",
+      "result": "Lazur draws a circle and a label around the Dictation option, so you skip the hunt through System Settings.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through Voice Control vocabulary.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a name sheet from these notes.",
+      "result": "Lazur drafts the list as text you can paste into your document. You check every spelling yourself before you rely on it.",
+      "capability": "draft"
+    },
+    {
+      "say": "What does this Voice Control setting change?",
+      "result": "Lazur answers out loud from what is on screen, so you learn the setting while you work.",
+      "capability": "explain"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is Dictation in Keyboard settings?",
+    "capability": "point",
+    "context": "Keyboard settings open in System Settings on a Mac",
+    "result": "Lazur draws a circle and a label around the Dictation option, so you can find the setting quickly.",
+    "shell": "doc",
+    "output": "A spoken answer plus a circle and label on the Dictation row.",
+    "pointsAt": "Dictation"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Build the name sheet",
+      "text": "List every character, place, product name, and jargon term in your project. Write the spelling you want and each wrong form you have seen. Put the sheet at the top of the draft or in a note you can open beside it."
+    },
+    {
+      "label": "Day 2",
+      "title": "Run the test paragraph",
+      "text": "Dictate a short paragraph that uses every new name at least once. Read it aloud before you check the screen. Log each failure, and add the wrong form to your find list."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check Voice Control, then switch back",
+      "text": "If you use Voice Control, add the failed words to its vocabulary. Then turn Voice Control off to return to standard Dictation with Fn-D. Run one more short test to confirm the setup."
+    },
+    {
+      "label": "Day 4",
+      "title": "Sweep after each session",
+      "text": "After every writing session, run Find and Replace for each wrong form. Turn on whole-word matching for short names. Check the match count, then search for and clear any placeholder tags."
+    },
+    {
+      "label": "Day 5",
+      "title": "Second look at the first chapter",
+      "text": "Ask a human reader to check names in the first chapter. Hold ⌥ ⌘ and ask Lazur what names are on screen, then compare the answer with your sheet. Treat Lazur as a second look, not as proof."
+    }
+  ],
+  "apps": [
+    "pages",
+    "word",
+    "google-docs"
+  ],
+  "type": "problem",
+  "slug": "dictation-names-jargon-custom-vocabulary-mac",
+  "role": "writers",
+  "roleName": "Writers",
+  "roleSingular": "writer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/dictation-names-jargon-custom-vocabulary-mac/how-to-teach-mac-dictation-my-character-1-779842.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Writer typing a manuscript on a laptop at a desk, checking character names",
+      "caption": "Checking names in a draft after each dictation session.",
+      "keywords": [
+        "how to teach Mac dictation my character names and jargon",
+        "Writers",
+        "dictation mangling names and jargon",
+        "Mac",
+        "writer typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "drnaquin",
+        "url": "https://pixabay.com/users/drnaquin-5480289/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-keyboard-writing-2349465/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/dictation-names-jargon-custom-vocabulary-mac/how-to-teach-mac-dictation-my-character-2-707159.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person speaking into a microphone while dictating notes on a laptop",
+      "caption": "Short dictation runs keep names easier to check.",
+      "keywords": [
+        "how to teach Mac dictation my character names and jargon",
+        "Writers",
+        "dictation mangling names and jargon",
+        "Mac",
+        "person speaking microphone laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "connie_sf",
+        "url": "https://pixabay.com/users/connie_sf-1617884/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/microphone-live-music-tape-music-1159791/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/dictation-names-jargon-custom-vocabulary-mac/how-to-teach-mac-dictation-my-character-3-115c98.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Author at a desk with a notebook of character names beside a Mac",
+      "caption": "A name sheet works best as a plain list you keep open.",
+      "keywords": [
+        "how to teach Mac dictation my character names and jargon",
+        "Writers",
+        "dictation mangling names and jargon",
+        "Mac",
+        "author desk notebook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "annazuc",
+        "url": "https://pixabay.com/users/annazuc-224926/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hand-writing-pen-people-author-325321/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to teach Mac dictation my character names and jargon",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "Mac dictation wrong names": 1,
+      "Voice Control custom vocabulary Mac": 1,
+      "dictation jargon Mac writing": 1,
+      "fix dictation errors Pages Word": 1,
+      "dictation names Google Docs Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

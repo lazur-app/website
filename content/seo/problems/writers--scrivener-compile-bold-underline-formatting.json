@@ -1,0 +1,572 @@
+{
+  "title": "Why does Scrivener compile output show bold or underlined text? Mac fixes for 2026",
+  "metaTitle": "Scrivener compile shows bold or underline? Causes and fixes",
+  "description": "Scrivener compile output shows bold or underlined text when the compile format or your draft carries that formatting. Here is how to find and fix it on Mac.",
+  "targetKeyword": "why does Scrivener compile output show bold or underlined text",
+  "secondaryKeywords": [
+    "Scrivener compile formatting",
+    "Scrivener override text and notes formatting",
+    "Scrivener compile section layouts",
+    "Scrivener compile font chooser",
+    "Pandoc reference.docx styles",
+    "paste plain text Word Mac"
+  ],
+  "intro": "Scrivener compile output shows bold or underlined text when the compile format or your own draft carries that formatting into the export. Most of the time one of three things causes it: the override setting, the section layouts, or direct formatting you forgot about. This page shows how to tell them apart and fix each one on a Mac, without buying anything.",
+  "tldr": [
+    "Bold or underline in compile output comes from one of three places: the compile format, the section layout, or your draft.",
+    "Check the Override text and notes formatting setting in the Compile window first. It decides whether your formatting or the layout's formatting wins.",
+    "Look at the draft in the editor before you change compile settings. Bold you applied by hand passes straight through when override is off.",
+    "Renamed styles, a global font choice, and leftover filters can also change the output. Pasted text can bring its own bold from Word or the web."
+  ],
+  "stats": [
+    {
+      "value": "14 hours",
+      "label": "median formatting time per academic manuscript, from a 2019 survey of 372 participants in 41 countries",
+      "sourceUrl": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0223116",
+      "sourceTitle": "Scientific sinkhole: The pernicious price of formatting (PLOS ONE)"
+    },
+    {
+      "value": "US$477",
+      "label": "median formatting cost per manuscript in the same PLOS ONE survey",
+      "sourceUrl": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0223116",
+      "sourceTitle": "Scientific sinkhole: The pernicious price of formatting (PLOS ONE)"
+    },
+    {
+      "value": "52 hours",
+      "label": "formatting time per person per year reported in the same PLOS ONE survey",
+      "sourceUrl": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0223116",
+      "sourceTitle": "Scientific sinkhole: The pernicious price of formatting (PLOS ONE)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You wrote the chapter in plain text, and it looked fine in the editor. Then you compiled it. The export came out with bold headings, underlined words, or odd italics where you never put them. It feels like Scrivener made a random choice. Usually it did not. The cause sits in a setting you never opened, or in formatting that was already in your draft."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What bold or underline in compile output usually means"
+    },
+    {
+      "type": "paragraph",
+      "text": "Compile does not copy the editor view. It builds a new file from your project, using a compile format. That format carries its own fonts, styles, and section layouts. When those rules meet your text, one side wins. The output shows whichever side won."
+    },
+    {
+      "type": "paragraph",
+      "text": "Bold and underline are character formatting. They apply to single words or sentences. That makes them easy to miss in the editor and easy to spot in the export. The same levers control them as control font changes: the override setting, the section layouts, and formatting you applied by hand."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The layout or compile format sets a style that includes bold or underline.",
+        "Your own bold or underline passes through because the override setting is off.",
+        "A style in your draft has the same name as a compile style, so the compile format changes it.",
+        "Pasted text arrived with bold or underline from Word, a web page, or another app."
+      ]
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What it costs you when formatting goes wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "Formatting trouble costs time more than words. The words are fine. The hours go to hunting, testing, and cleaning up. A 2019 PLOS ONE survey of 372 participants from 41 countries asked about manuscripts they submitted in 2017. It found a median of 14 hours of formatting per manuscript. The study covers academic manuscripts, so treat it as a rough signal, not a measure of novels."
+    },
+    {
+      "type": "paragraph",
+      "text": "Money follows the hours. The same study puts the median cost at US$477 per manuscript. Your cost is your own time. Count the hours a bad export takes you across three or four drafts, and the number grows fast."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Scrivener adds formatting to your export"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most important setting is the checkbox labelled Override text and notes formatting. It sits in the Compile window. When it is off, Scrivener passes your project's text formatting through. When it is on, the layout's formatting replaces yours. The exception is text that already has a style applied."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Override setting",
+        "What wins in the export"
+      ],
+      "rows": [
+        [
+          "Off",
+          "Your text formatting, including bold and underline you applied by hand"
+        ],
+        [
+          "On",
+          "The layout's formatting, except for text that has a style applied"
+        ]
+      ],
+      "caption": "How the override setting decides which formatting wins. Source: Deckle summary of Literature & Latte's guidance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scrivener also matches styles by name. A style in your draft called Heading 1 can pick up the compile format's Heading 1 rules. Rename the style, and the compile format stops touching it. Edit the style in the editor, and the compiled file does not change at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Older Scrivener 3 versions needed workarounds such as Preserve Tabs and Indents to stop compile overrides from mangling block quotes. Literature & Latte's 2017 blog describes that era. Current versions let you override the formatting of individual styles. Literature & Latte's release notes list Scrivener 3.5.2, dated 18 December 2025, as a recent macOS build. Check the notes for newer builds before you assume a setting matches."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the draft before you change compile settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start in the editor. Find one paragraph that shows bold in the export. Look at that paragraph in the editor. If the bold is already there, the compile step did not create it. It carried it through. Select the words and press ⌘B to remove the bold, then compile again. If the selection is mixed, press ⌘B once, look, and press again if needed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do this before you touch any compile setting. Changing the compile window does not remove bold you put in by hand while override is off. It only changes what the compile format does to the text. That makes this check a fast and useful test."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix bold or underline in Scrivener, step by step"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the compile window with File > Compile.",
+        "Look above the layout tiles for a yellow warning. It means the format's look is not applied to that layout.",
+        "If you see the warning, click Assign Section Layouts. Then check that each section type has the layout you expect.",
+        "Set the Font chooser to Determined by Section Layout. Any other font choice overrides the layout for every section.",
+        "Turn Override text and notes formatting on or off on purpose. Off keeps your formatting. On lets the layout win.",
+        "Check the filters for leftovers from an earlier session. A stale filter can make text go missing from the output.",
+        "Compile a short test section, open the file, and check the bold. Then compile the full book."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Test with a small section first. A short test shows whether the layout, the override setting, or the draft is the cause. A full-book compile hides the answer inside a lot of text."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that bring the bold back"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is fixing one export and forgetting the setting for the next. A new section type can come with a different layout. Each new section needs a check. Keep a short checklist in the project notes, so the same steps run every time."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is editing a style in the editor and expecting the export to change. Because the compile format matches by name, an editor change reaches only the editor. If you want the export to look different, set that in the compile settings instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is removing bold from the compiled file in Word or Pages and calling it fixed. The next compile brings it back. Fix the source in Scrivener, then export again. Hand cleanup works once, and the bold returns on the next run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If you also export with Pandoc"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some writers draft in Scrivener, then convert Markdown with Pandoc into a Word file. Pandoc styles its Word output through a reference.docx file. The text inside that file is ignored. Its styles, margins, page size, header, and footer carry over. Pandoc's manual documents this behavior."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make your own reference.docx from Pandoc's default, then edit the styles in Word. Pandoc's style names include Normal, Body Text, First Paragraph, Compact, Title, Heading 1 through Heading 9, and Footnote Text. Keep those names when you edit, so Pandoc uses your changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch versions too. Pandoc 3.13, dated 26 October 2026, reads yes, no, on, off, y, and n as plain text now. Duplicate keys in the metadata cause an error. If an export fails after an upgrade, check your metadata first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pasting into Word or Pages brings the bold along"
+    },
+    {
+      "type": "paragraph",
+      "text": "Copy a passage from a web page or a Word file, and its bold often comes with it. Paste treats the source formatting as part of the text. You can choose a plain paste on purpose. For a deeper walk-through of this issue in Word, read [the pasted text fonts guide](/for/writers/problems/word-mac-pasted-text-fonts-styles)."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Word for Mac, ⇧⌘V (Command+Shift+V): Microsoft's Insider blog says this pastes text only. It applies to Word for the web and to Microsoft 365 Beta Channel users on Mac 16.67.1113.0 or newer.",
+        "Word for Mac, other builds: a Microsoft Q&A answer says there is no simple default plain-text paste on Mac. It suggests reassigning Command+V to PasteTextOnly under Tools > Customize Keyboard.",
+        "Word for Mac, ⌥⇧⌘V: some community answers name this combination instead. Test it in a blank document first.",
+        "Pages, ⌥⇧⌘V (Option+Shift+Command+V): Apple's keyboard shortcut list calls this Paste and Match Style, which applies the style of the surrounding text.",
+        "Pages, ⌥⌘V (Option+Command+V): Apple's list calls this Paste Style, which applies copied style to the selection. This one brings the bold along."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Test before you paste a whole chapter. Paste one line into a blank page and look at it. If the bold arrives, press ⌘Z and try the plain paste option. Then paste the rest."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘, which is Option plus Command, to ask about anything on screen. Lazur answers out loud. Ask where a control is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate Scrivener for you. It is not a plugin for any app. You still tick the override checkbox and press the shortcuts yourself. That limit matters here, because every compile change needs your hand on the setting."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If your manuscript falls under an NDA or your employer's data rules, follow those rules before you share a screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the fix repeatable for the next compile"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the export looks right, write down the settings. Note the override setting, the Font chooser value, and the section layouts that worked. Store that note with the project. Next time you compile, check the note first, then compile a short test section before the full book."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Scrivener compile output show bold when I never added any?",
+      "answer": "The bold may come from a layout, a style, or text you pasted in. Check the editor first. If the bold is there, the compile step carried it through. If it is not there, check the override setting and the section layouts."
+    },
+    {
+      "question": "Does turning off Override text and notes formatting remove all bold?",
+      "answer": "No. When override is off, Scrivener passes your own formatting through. Bold you applied by hand stays in the output. Remove it in the editor with ⌘B, then compile again."
+    },
+    {
+      "question": "What does the yellow warning above the layout tiles mean?",
+      "answer": "It means the format's look is not applied to that layout. Click Assign Section Layouts, then check each section type. The warning shows that the layout rules are not reaching your text."
+    },
+    {
+      "question": "Does Command+Shift+V remove bold in Word for Mac?",
+      "answer": "Microsoft's Insider blog says Command+Shift+V pastes text only. That applies to Word for the web and to Microsoft 365 Beta Channel users on Mac 16.67.1113.0 or newer. Other builds may differ, so test it in a blank document first."
+    },
+    {
+      "question": "Will these Scrivener fixes change my Pandoc output?",
+      "answer": "No. Pandoc uses its own reference.docx for styles. Change the styles in that file, then run Pandoc again. Scrivener settings do not reach that file."
+    },
+    {
+      "question": "Is there data on how many novelists hit this problem?",
+      "answer": "No published survey I could source tracks that. The figures on this page come from a 2019 PLOS ONE study of academic manuscripts. Treat them as a signal, not a measure of fiction writers."
+    },
+    {
+      "question": "Can Lazur fix the compile settings for me?",
+      "answer": "No. Lazur points at controls, explains them out loud, and guides you one click at a time. It does not click buttons or change Scrivener settings. You make each change."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Scrivener Release Notes",
+      "url": "https://www.literatureandlatte.com/scrivener/release-notes",
+      "publisher": "Literature & Latte",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Scrivener 3: Doing it with Style(s)",
+      "url": "https://www.literatureandlatte.com/blog/scrivener-3-doing-it-with-styles",
+      "publisher": "Literature & Latte",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Scrivener Compile Not Working? Causes and Fixes From L&L",
+      "url": "https://deckle.studio/wiki/workflow/software/scrivener-compile-not-working/",
+      "publisher": "Deckle Studio (third-party summary of L&L manual)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Pandoc User's Guide",
+      "url": "https://pandoc.org/MANUAL.html",
+      "publisher": "Pandoc",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Pandoc Releases",
+      "url": "https://pandoc.org/releases.html",
+      "publisher": "Pandoc",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Scientific sinkhole: The pernicious price of formatting",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0223116",
+      "publisher": "PLOS ONE",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Paste Text Only shortcut in Word",
+      "url": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/paste-text-only-shortcut-in-word/4218362",
+      "publisher": "Microsoft 365 Insider Blog",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Change Word's default paste settings (for more advanced users)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5622433/change-words-default-paste-settings-(for-more-adva",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Mac keyboard shortcuts",
+      "url": "https://support.apple.com/en-us/102650",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "compiled output shows unwanted formatting",
+  "costs": [
+    {
+      "title": "Hours lost to hunting",
+      "text": "Formatting bugs look like writing problems. You reread the prose, then discover the bold sits in a compile setting. Every wrong guess costs a compile, a check, and a change back. A short checklist cuts that guessing down."
+    },
+    {
+      "title": "Repeated test compiles",
+      "text": "Each fix needs a test. If you compile the full book for every change, you wait and reread a long export each time. Test one short section first, then run the full compile once you trust the result."
+    },
+    {
+      "title": "Cleanup that repeats for every export",
+      "text": "Fixing bold by hand in Word or Pages works for one file. The next compile brings it back, and you repeat the cleanup for each version. Fixing the cause in Scrivener costs less over a whole project."
+    },
+    {
+      "title": "Formatting time for submissions",
+      "text": "A 2019 PLOS ONE study found a median of 14 hours of formatting per academic manuscript. That study measured academic manuscripts, not novels. Your deadlines and rules differ, but hidden formatting hours can creep into any submission."
+    },
+    {
+      "title": "Money when you pay for help",
+      "text": "The same study put the median formatting cost at US$477 per manuscript. Budget for a similar cost if you pay someone to clean up an export. Fix the settings first, so you pay for fewer rounds of cleanup."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Override text and notes formatting is off",
+      "text": "When this checkbox is off, Scrivener passes your own text formatting into the output. Bold or underline you applied by hand survives the compile. This is the most common reason writers see formatting they never meant to keep. It is also the easiest cause to confirm, because the bold is already in the editor."
+    },
+    {
+      "title": "Layout rules replace your text",
+      "text": "When override is on, the layout's formatting replaces yours, except for text with a style applied. A layout that sets bold for headings or emphasis can bold text you did not mean to emphasize. A yellow warning above the layout tiles means the layout's look is not applied at all, so the rules may not match your draft."
+    },
+    {
+      "title": "Direct formatting you forgot about",
+      "text": "Writers often select a word, press ⌘B, and move on. Copied text can carry bold from an older draft. These marks sit in the editor, and they look the same as styled text. Search the draft and clear stray marks before you change any compile setting."
+    },
+    {
+      "title": "Styles matched by name",
+      "text": "Scrivener matches styles by name. A style with the same name as a compile format style picks up that style's rules. Rename a style, and the compile format stops changing it. Edit a style in the editor, and the export does not change. Both behaviors look like bugs if you do not know the rule."
+    },
+    {
+      "title": "Font chooser and stale filters",
+      "text": "The global Font chooser overrides everything unless it is set to Determined by Section Layout. A filter left over from a previous session can also make text go missing or change its look. Check both when the output looks wrong, because either one can hide the cause you are looking for."
+    },
+    {
+      "title": "Pasted text brings its own formatting",
+      "text": "Paste from Word, a web page, or another writing app, and the source formatting often comes along. Word and Pages both offer plain or matched paste options. Without them, bold and underline ride along into your draft. That formatting starts outside Scrivener, so compile settings do not remove it."
+    },
+    {
+      "title": "Pandoc reference.docx styles",
+      "text": "If you export through Pandoc, its Word output uses styles from a reference.docx file. Those styles set the look of headings and body text, including bold. When the bold comes from Pandoc, change the reference file, not the Scrivener draft."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Find out where the bold comes from",
+      "text": "Select one paragraph that shows bold in the export and look at it in the editor. If the bold is there, clear it with ⌘B and compile again. If it is not there, the cause is in the compile settings, so move to the next fixes. This one test removes most of the guessing."
+    },
+    {
+      "title": "Set the override checkbox on purpose",
+      "text": "Open the compile window and find Override text and notes formatting. Turn it off if you want your own formatting to appear in the output. Turn it on if you want the layout to decide. Pick one, test a short section, and write down your choice."
+    },
+    {
+      "title": "Fix the section layouts",
+      "text": "Click Assign Section Layouts when the yellow warning appears above the layout tiles. Check that each section type gets the layout you expect. A section that uses the wrong layout shows the wrong bold or underline, even when the rest of the book looks right."
+    },
+    {
+      "title": "Set the Font chooser to Determined by Section Layout",
+      "text": "A specific font in the Font chooser overrides every section. Choose Determined by Section Layout so each layout sets its own look. Then compile a short test section and check the bold again before you compile the book."
+    },
+    {
+      "title": "Clean up stray styles in the draft",
+      "text": "If a style in your draft carries bold you did not want, apply the right style to that text in the editor. Remember that editing a style in the editor does not change the export. Change the compile settings when you want the output to look different from the editor."
+    },
+    {
+      "title": "Paste as plain text in Word or Pages",
+      "text": "In Word on Mac, try ⇧⌘V for Paste Text Only. If your build lacks it, Microsoft's Q&A suggests reassigning Command+V to PasteTextOnly under Tools > Customize Keyboard. In Pages, ⌥⇧⌘V applies the surrounding style. Test each shortcut on one line first."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the override text and notes formatting checkbox?",
+      "result": "Lazur circles the checkbox and labels it on screen. You tick it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Explain what override text and notes formatting does.",
+      "result": "Lazur explains out loud in plain words, so you know which way to set it.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through assigning section layouts.",
+      "result": "Lazur guides you one click at a time and waits for each click before it continues.",
+      "capability": "guide"
+    },
+    {
+      "say": "Explain how to paste as plain text in Word on Mac.",
+      "result": "Lazur explains the shortcut and the reassignment option, then you test it in a blank document.",
+      "capability": "explain"
+    },
+    {
+      "say": "Help me write a short note to my editor about the formatting.",
+      "result": "Lazur drafts the note. Hold fn to dictate your own wording at the cursor in any app.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the override text and notes formatting checkbox?",
+    "capability": "point",
+    "result": "Lazur circles the Override text and notes formatting checkbox and labels it on screen. You tick it yourself.",
+    "shell": "generic",
+    "context": "Scrivener Compile window on a Mac",
+    "pointsAt": "Override checkbox",
+    "output": "A circle and a label around the Override text and notes formatting checkbox."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the source of the bold",
+      "text": "Compile one short section and open the output. Find the bold in the editor. If it is already in the draft, clear it with ⌘B, then compile that section again to confirm the fix."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the compile window",
+      "text": "Review Override text and notes formatting, the Font chooser, and the yellow warning above the layout tiles. Click Assign Section Layouts if the warning appears. Compile the short section again."
+    },
+    {
+      "label": "Day 3",
+      "title": "Clean up styles and filters",
+      "text": "Rename or restyle any draft style that carries unwanted bold. Remove filters left from an earlier session. If you use Pandoc, check the styles in reference.docx for the same problem."
+    },
+    {
+      "label": "Day 4",
+      "title": "Lock in the paste habit",
+      "text": "Test ⇧⌘V in Word or ⌥⇧⌘V in Pages on one line. Choose the option that works in your build. Then compile the full book once and write down the settings that worked."
+    }
+  ],
+  "apps": [
+    "word",
+    "pages"
+  ],
+  "type": "problem",
+  "slug": "scrivener-compile-bold-underline-formatting",
+  "role": "writers",
+  "roleName": "Writers",
+  "roleSingular": "writer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/scrivener-compile-bold-underline-formatting/why-does-scrivener-compile-output-show-bold-1-1e1628.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Writer working on a laptop with a manuscript draft open on a desk",
+      "caption": "Check the draft before you change compile settings.",
+      "keywords": [
+        "why does Scrivener compile output show bold or underlined text",
+        "Writers",
+        "compiled output shows unwanted formatting",
+        "Mac",
+        "writer laptop manuscript",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Sunriseforever",
+        "url": "https://pixabay.com/users/Sunriseforever-6314823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/girl-writer-pensive-vintage-retro-5780910/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/scrivener-compile-bold-underline-formatting/why-does-scrivener-compile-output-show-bold-2-c2462f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a Mac laptop checking formatting in a writing app before paste",
+      "caption": "Paste as plain text to keep stray bold out of your draft.",
+      "keywords": [
+        "why does Scrivener compile output show bold or underlined text",
+        "Writers",
+        "compiled output shows unwanted formatting",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/scrivener-compile-bold-underline-formatting/why-does-scrivener-compile-output-show-bold-3-9e5fe5.jpg",
+      "width": 1280,
+      "height": 835,
+      "alt": "Writer at a desk with a notebook and laptop reviewing a compiled manuscript",
+      "caption": "Test one short section before you compile the whole book.",
+      "keywords": [
+        "why does Scrivener compile output show bold or underlined text",
+        "Writers",
+        "compiled output shows unwanted formatting",
+        "Mac",
+        "writer desk notebook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "congerdesign",
+        "url": "https://pixabay.com/users/congerdesign-509903/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notes-notebook-paper-note-4830155/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "why does Scrivener compile output show bold or underlined text",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 2,
+    "secondary": {
+      "Scrivener compile formatting": 1,
+      "Scrivener override text and notes formatting": 1,
+      "Scrivener compile section layouts": 1,
+      "Scrivener compile font chooser": 1,
+      "Pandoc reference.docx styles": 2,
+      "paste plain text Word Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

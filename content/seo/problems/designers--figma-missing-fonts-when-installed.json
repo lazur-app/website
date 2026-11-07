@@ -1,0 +1,534 @@
+{
+  "title": "Figma missing fonts when installed on Mac: causes and fixes for designers in 2026",
+  "metaTitle": "Figma missing fonts when installed: fixes for Mac in 2026",
+  "description": "Figma flags a font as missing even though you installed it? Check the style, version, browser installer and Adobe Fonts. Mac fixes for 2026.",
+  "targetKeyword": "figma missing fonts when installed",
+  "secondaryKeywords": [
+    "figma missing font alert",
+    "figma font installer",
+    "figma adobe fonts missing",
+    "figma font version mismatch",
+    "font book validate font mac",
+    "figma font installed but missing"
+  ],
+  "intro": "If Figma says a font is missing even though you installed it, the font Figma needs is probably not the one you have. The usual causes are a missing style or weight, a different version from a collaborator, or a browser that lacks Figma's font installer. You can check all three on your Mac without buying anything.",
+  "tldr": [
+    "Figma matches the exact family, style and version. Being installed is not enough.",
+    "Start in Font Book: select the font and choose File > Validate Selection.",
+    "In a browser, install Figma's font installer, then reload open files.",
+    "If a teammate sees different text, agree on one font source and recompute the text layout.",
+    "Replacing a font changes it for every collaborator, so save a version first."
+  ],
+  "stats": [
+    {
+      "value": "$30.27",
+      "label": "Median hourly pay for graphic designers in May 2025. Use it to price your own lost hours.",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers: Occupational Outlook Handbook, U.S. Bureau of Labor Statistics"
+    },
+    {
+      "value": "3 hours",
+      "label": "Lost per week to tool failures and outages, per a survey of 500 US developers. Not a designer figure.",
+      "sourceUrl": "https://lokalise.com/blog/blog-the-developer-delay-report/",
+      "sourceTitle": "The Developer Delay Report: Lokalise"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma shows its missing-font alert as an icon in the left sidebar. Click it and a Missing fonts modal opens. The modal lists each font Figma cannot find and the layers that use it. Read it before you change anything, because it names the exact family and style Figma wants. Many people skip this and go straight to reinstalling. That wastes time when the fix is one missing weight."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the Missing fonts modal before you change anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the modal and note three things. First, the font family name. Second, the style name, such as Semibold Italic. Third, the layer names listed under it. If the family appears but the style does not, the problem is the style, not the install. If the family does not appear at all, Figma cannot see it. Figma's help page lists a missing style as a separate cause, so treat the two cases differently."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write down the family and style exactly as the modal shows them.",
+        "Select one affected text layer and compare its font name with the name in the modal.",
+        "Open Font Book and search for the family name.",
+        "If you use Figma in a browser, confirm the Figma font installer is installed.",
+        "Ask one collaborator to open the same file and tell you the font and style they see."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the font in Font Book first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Font Book with ⌘ Space, type Font Book, and press Return. Find the family in the list and select it. Then choose File > Validate Selection. Apple marks a failing font red and a font with a warning yellow. Fonts that fail can be removed with Remove Checked, so save the original file somewhere safe first. A yellow warning is a lead, not a verdict. Apple's troubleshooting guide does not cover fonts that are installed but flagged, so reinstall from the original source if the Figma alert stays."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide says system fonts cannot be deactivated or removed. The Deactivate and Remove options are dimmed in the Font Book menu for those fonts. If a font that came with your Mac triggers the warning, Font Book will not fix it. Check the style and version in Figma first, then move to the browser and team steps below."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: installed in Font Book, still missing in the browser"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you installed a family called Brand Sans in Font Book. It validates clean. You open the same file in Chrome and the warning appears anyway. The likely cause is the browser. Figma's help page says browser users must install the Figma font installer, called FigmaAgent. It runs a local helper that accepts connections only from figma.com. Install it, then reload the open file. The Figma desktop app includes Figma's font helper, so this step is not needed there."
+    },
+    {
+      "type": "paragraph",
+      "text": "File format matters too. Figma supports only TTF and OTF files. If a brand team sent you a different format, Figma will not read it. Ask for a TTF or OTF copy from the same license source. Chromebook and Linux users have a separate limit. Figma does not support fonts there, and only Google fonts are available."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix a version mismatch with a collaborator"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two people can open the same file and see different text. One has version 2 of a family and the other has version 3, or one has the font and the other does not. Figma flags this as a version conflict. The fix needs the whole team, not only you. Agree on one source, such as a shared folder or the license holder's download, and have every editor follow the same steps."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Each editor uninstalls the local copy of the font in Font Book.",
+        "Each editor installs the font from the one agreed source.",
+        "Restart Figma and the computer.",
+        "In each file, select a layer that uses the font, then choose Edit > Select all with > Select all with same font.",
+        "Open the quick actions menu and choose Recompute Text Layout in Selection."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Recompute carefully. Text can reflow when the font metrics change, and a label can wrap inside a tight button or card. Check one frame at a time. Save a version before you start, so you can compare or roll back. The steps are in [how to restore a previous version in Figma](/for/designers/problems/restore-a-previous-version-figma-file)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Replace the font when the original is gone for good"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the font will not come back. The license ended, the client changed brands, or the family was retired. Open the Missing fonts modal, pick a replacement family and style under Replacement, and click Replace fonts. Figma warns that this changes the font for all collaborators. Save a version first and tell the team before you click."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Confirm the license really ended, or that the client approved the change.",
+        "Save a named version in Figma so you can compare before and after.",
+        "Pick a replacement with a similar weight and width.",
+        "Check line breaks in headings, buttons and cards after the swap.",
+        "Post the change in your team channel so nobody is surprised."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Adobe Fonts that stop working in Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the font comes from Adobe Fonts, check the Adobe app first. Figma's help page says a cloud icon next to the font name in the Adobe Fonts app means the font needs reinstalling. Adobe also requires fonts and apps to be used or relaunched after a period of time. If they are not, they can stop working in desktop apps like Figma. Relaunch the Adobe app, reinstall the font, then restart Figma."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that bring the warning back"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Restarting only Figma. Restart the browser, the Adobe app and the Mac if it has run for a long time.",
+        "Installing the same family from two sources. Two copies can conflict, so keep one.",
+        "Running Reset Fonts before trying a simple validation.",
+        "Assuming Figma reads every format. Only TTF and OTF files work.",
+        "Fixing one file and forgetting the others. Other files on the team may still show the old font.",
+        "Expecting a local-only font to work with MCP. Figma's help page says MCP runs on Figma's servers and cannot reach local fonts."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Reset Fonts is a last resort. In Font Book, choose Font Book > Settings, click Advanced, then click Reset Fonts and Proceed. Apple's guide says this resets standard fonts. Fonts you installed move to a separate folder where apps cannot use them, so you must reinstall them in Font Book afterward. Keep your original font files before you start."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short routine for the next time it happens"
+    },
+    {
+      "type": "paragraph",
+      "text": "A repeatable routine saves more time than one clever fix. Keep the same order every time. Start with the modal, then Font Book, then the browser installer, then the team. Write the family, style, version and source into your project notes. The next person then starts from your notes, not from zero."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the problem sits outside your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some causes sit with the font vendor or with Figma. If a font validates in Font Book and still shows the warning in every fresh file, contact Figma support. Include the font name, the style, your Figma version, and whether you use the desktop app or a browser. Apple's guide says that if fonts do not appear in third-party apps, you should contact that app's developer. Attach a screenshot of the Missing fonts modal."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ and ask about anything on screen. Lazur listens and looks at your screen only while you hold the shortcut, and it answers out loud. Ask where the missing-font icon is and Lazur draws a circle and a label around it. Ask how to validate a font and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate Figma or Font Book for you. It is not a plugin for Figma, and it has no partnerships with any app maker. Dictation is included. Hold fn to dictate a clean note to your team at the cursor. There is a 3-day Pro trial with no credit card. You can start on the [download page](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Figma say a font is missing when I installed it?",
+      "answer": "Figma checks for the exact family, style and version your file uses. An install can be correct and still miss one weight. Open the Missing fonts modal to see which style it wants, then check that style in Font Book."
+    },
+    {
+      "question": "Does Font Book validation fix the Figma warning?",
+      "answer": "Not always. Validation tests the font file itself. Red means it failed and should be reinstalled. Yellow is a warning. If Figma still flags a validated font, check the browser font installer and the version your teammates use."
+    },
+    {
+      "question": "Do I need the Figma font installer if I use the desktop app?",
+      "answer": "No. Figma's help page says the desktop app includes the Figma font helper. Browser users must install the Figma font installer, called FigmaAgent, and then reload open files."
+    },
+    {
+      "question": "Can I just replace the font in the Missing fonts modal?",
+      "answer": "You can, and it is fast. Figma says the change applies to all collaborators at once. Save a version first and tell the team. Use this when the original font will not come back."
+    },
+    {
+      "question": "Why does my Adobe font stop working in Figma?",
+      "answer": "Adobe requires fonts and apps to be used or relaunched after a period of time. If they are not, they can stop working in desktop apps like Figma. Check the Adobe Fonts app, reinstall any font with a cloud icon, then restart Figma."
+    },
+    {
+      "question": "Is Reset Fonts safe to try?",
+      "answer": "It is a last resort. Apple's guide says it resets standard fonts. Fonts you installed move to a folder apps cannot use, so you must reinstall them in Font Book. Keep your original font files before you start."
+    },
+    {
+      "question": "Can Lazur fix the font problem for me?",
+      "answer": "No. Lazur does not click buttons or edit files. It can point at the modal, explain it out loud and guide you one click at a time while you do the steps yourself."
+    },
+    {
+      "question": "Does Lazur store my client files?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer and are not stored. Check your client contract before you share a file with any tool."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Troubleshoot Font Book problems on Mac",
+      "url": "https://support.apple.com/guide/font-book/troubleshooting-fntb569a054a/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Restore fonts that came with your Mac using Font Book",
+      "url": "https://support.apple.com/guide/font-book/restore-fonts-that-came-with-your-mac-fb34862/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Install and validate fonts in Font Book on Mac",
+      "url": "https://support.apple.com/guide/font-book/install-and-validate-fonts-fntbk1000/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Missing font alert in Figma Design",
+      "url": "https://help.figma.com/hc/en-us/articles/360039956994-Missing-font-alert-in-Figma-Design",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Access and troubleshoot missing Adobe fonts in Figma Design",
+      "url": "https://help.figma.com/hc/en-us/articles/23035569468439-Access-and-troubleshoot-missing-Adobe-fonts-in-Figma-Design",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers: Occupational Outlook Handbook, U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The Developer Delay Report: Lokalise",
+      "url": "https://lokalise.com/blog/blog-the-developer-delay-report/",
+      "publisher": "Lokalise",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "missing font warning despite installed font",
+  "costs": [
+    {
+      "title": "Time lost to hunting",
+      "text": "No survey counts how often designers see this warning. Each one still sends you across apps. You open Figma, then Font Book, then the browser installer, then the team chat. A lost hour is worth about $30.27 at the BLS median hourly pay for graphic designers in May 2025. Use that rate to price your own hours."
+    },
+    {
+      "title": "Layouts break after a swap",
+      "text": "Replacing a font or recomputing text can move line breaks. A button label that wraps can push a card out of shape. Repairing wrapped labels and cards across a file can take longer than the swap itself. Check each frame after you change the font."
+    },
+    {
+      "title": "Wrong text reaches the client",
+      "text": "A replacement changes the font for every collaborator at once. If a substituted font goes out in an export, the client sees a different look. A bad swap can spread across the team before anyone notices the change."
+    },
+    {
+      "title": "No easy way back",
+      "text": "A replacement without a saved version leaves little to roll back to. Figma's warning tells you to save first for this reason. Restoring an older version takes time you may not have near a deadline."
+    },
+    {
+      "title": "Friction with the team",
+      "text": "When two editors see different fonts, reviews stall. People argue about spacing and color when the real issue is which font file is installed. Settling the font source early saves those meetings."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The font is not installed or not visible",
+      "text": "Figma's help page lists the simplest cause first. The font is not installed on your computer. Before you blame Figma, check that Font Book shows the family as active and clean. A font that is turned off or failing validation gives you the same warning."
+    },
+    {
+      "title": "A required style or weight is missing",
+      "text": "The family can be installed while the exact style in the file is not. Figma's help page lists a missing required style as its own cause. A file that uses Semibold Italic will warn if you only installed Regular. Compare the style list in the modal with Font Book."
+    },
+    {
+      "title": "You and a collaborator have different versions",
+      "text": "Figma's help page lists version differences as a cause. Two copies of the same family can differ in glyphs, metrics or names. The file looks fine on your Mac and breaks on theirs. Compare versions with the other editor before you change any text."
+    },
+    {
+      "title": "The browser is missing the font installer",
+      "text": "Browser users need the Figma font installer, called FigmaAgent. The desktop app includes Figma's font helper, so the same file can behave differently in each. Designers who switch between the app and Chrome often hit this without knowing why."
+    },
+    {
+      "title": "A local-only font is used with MCP",
+      "text": "Figma's help page says MCP runs on Figma's servers and cannot access local fonts. A font that exists only on your machine will be flagged in MCP workflows. Use a font Figma can reach, or expect the flag in those workflows."
+    },
+    {
+      "title": "The Adobe Fonts activation has gone stale",
+      "text": "Adobe fonts can stop working in desktop apps like Figma after a period without use. Figma's help page says a cloud icon next to the font name means it needs reinstalling. Check the Adobe Fonts app before you reinstall anything else."
+    },
+    {
+      "title": "The file format or platform is not supported",
+      "text": "Figma supports only TTF and OTF files. A font in another format will not load, even when the family looks installed. Chromebook and Linux users have a further limit, since Figma does not support fonts there and only Google fonts are available."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read the Missing fonts modal",
+      "text": "Click the missing-font icon in the left sidebar. Note the family, style and layer names. If only the style is missing, install that weight from the same source. If the family is missing, move on to Font Book and the browser checks."
+    },
+    {
+      "title": "Validate the font in Font Book",
+      "text": "Open Font Book, select the family, and choose File > Validate Selection. Red means the font failed, so save the original file, remove the bad copy and reinstall it. Yellow is a warning. Treat it as a lead and reinstall if the Figma alert stays."
+    },
+    {
+      "title": "Install the Figma font installer in your browser",
+      "text": "If you use Figma in a browser, install the Figma font installer, called FigmaAgent. It runs a local helper that accepts connections only from figma.com. Then reload every open file, since open tabs keep the old state."
+    },
+    {
+      "title": "Restart the right things, in order",
+      "text": "Restart Figma and the browser first. Then relaunch the Adobe app if you use Adobe Fonts. If the Mac has been running for a long time, restart it with Apple menu > Restart. These steps are quick, and they clear a stale font list."
+    },
+    {
+      "title": "Reinstall Adobe Fonts activations",
+      "text": "In the Adobe Fonts app, confirm the font is active. A cloud icon next to the name means the font needs reinstalling. Relaunch the Adobe app after a long break, since fonts that go unused can stop working in desktop apps like Figma."
+    },
+    {
+      "title": "Align versions across the team",
+      "text": "Everyone uninstalls the local copy, installs from one common source, and restarts. In each file, select a layer that uses the font, then choose Edit > Select all with > Select all with same font. Open the quick actions menu and run Recompute Text Layout in Selection."
+    },
+    {
+      "title": "Replace the font when the original is gone",
+      "text": "If the original will not return, open the Missing fonts modal. Pick a family and style under Replacement, then click Replace fonts. Figma says this changes the font for all collaborators, so save a version and tell the team before you click."
+    },
+    {
+      "title": "Use Reset Fonts only as a last resort",
+      "text": "In Font Book, choose Font Book > Settings, click Advanced, then click Reset Fonts and Proceed. Apple's guide says this resets standard fonts. Fonts you installed move to a folder apps cannot use, so reinstall them in Font Book afterward. Keep the original files first."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask what this Missing fonts modal means.",
+      "result": "Lazur answers out loud in plain words, based on the modal, the family name and the layer names it can see on screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the missing font alert?",
+      "result": "Lazur draws a circle and a label around the alert icon in the left sidebar, so you know where to click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through validating this font in Font Book.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking. Lazur does not do it for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a note to the team about the font version.",
+      "result": "Dictation types clean, formatted text at the cursor in any app, so the note lands in Slack or your project doc.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a message to my team about the agreed font source.",
+      "result": "Lazur drafts the text for you to read. You check the wording before you send it yourself.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the missing font alert?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the missing-font icon in the left sidebar.",
+    "shell": "design",
+    "context": "Figma file open in the Mac desktop app with a font warning showing.",
+    "output": "A circle and a label around the missing-font icon in the left sidebar.",
+    "pointsAt": "Missing font icon"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read and validate",
+      "text": "Open the Missing fonts modal and write down the family, style and layer names. Validate the font in Font Book with File > Validate Selection. Save the original font file in a shared folder before you change anything."
+    },
+    {
+      "label": "Day 2",
+      "title": "Fix the browser and version",
+      "text": "If you use Figma in a browser, install the Figma font installer and reload open files. Ask one collaborator which font and style they see. Agree on one source for the font family."
+    },
+    {
+      "label": "Day 3",
+      "title": "Align the team",
+      "text": "Each editor uninstalls the local copy, installs from the agreed source and restarts. In each file, select a layer, choose Edit > Select all with > Select all with same font, then run Recompute Text Layout in Selection."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check the layouts",
+      "text": "Scan headings, buttons and cards for wrapped text and broken line breaks. Fix any frame that moved. Use the file history if a change is hard to undo."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write it down",
+      "text": "Add the font family, style, version and source to your project notes. Post the agreed source in your team channel, so the next person does not repeat the search from scratch."
+    }
+  ],
+  "apps": [
+    "figma",
+    "photoshop"
+  ],
+  "type": "problem",
+  "slug": "figma-missing-fonts-when-installed",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-missing-fonts-when-installed/figma-missing-fonts-when-installed-1-66b715.jpg",
+      "width": 1280,
+      "height": 617,
+      "alt": "Designer working on a laptop at a desk while reviewing a design file",
+      "caption": "A designer checks a design file on a laptop.",
+      "keywords": [
+        "figma missing fonts when installed",
+        "Designers",
+        "Missing-font warning despite installed font",
+        "Mac",
+        "designer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stux",
+        "url": "https://pixabay.com/users/stux-12364/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-table-home-office-laptop-1246484/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-missing-fonts-when-installed/figma-missing-fonts-when-installed-2-752abc.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Graphic designer at a desk with a monitor showing layouts and type",
+      "caption": "Design work often runs across several apps at once.",
+      "keywords": [
+        "figma missing fonts when installed",
+        "Designers",
+        "Missing-font warning despite installed font",
+        "Mac",
+        "graphic designer office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "hitesh0141",
+        "url": "https://pixabay.com/users/hitesh0141-2271740/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/photoshop-adobe-imac-computer-4759954/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-missing-fonts-when-installed/figma-missing-fonts-when-installed-3-30a90e.jpg",
+      "width": 1280,
+      "height": 815,
+      "alt": "Design team reviewing screens together at a table, a missing font issue on the shared file",
+      "caption": "Teams need one font source to keep files matching.",
+      "keywords": [
+        "figma missing fonts when installed",
+        "Designers",
+        "Missing-font warning despite installed font",
+        "Mac",
+        "design team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "alexjimmy",
+        "url": "https://pixabay.com/users/alexjimmy-42106115/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/designers-discussion-teamwork-8541315/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma missing fonts when installed",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "figma missing font alert": 1,
+      "figma font installer": 9,
+      "figma adobe fonts missing": 1,
+      "figma font version mismatch": 1,
+      "font book validate font mac": 1,
+      "figma font installed but missing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

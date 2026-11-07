@@ -1,10 +1,10 @@
-Content 2026-11-07: 133 written, 2 refused, 0 failed
+Content 2026-11-07: 186 written, 2 refused, 0 failed
 
-- howto: 0/120
+- howto: 6/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
-- problems: 28/75
+- problems: 75/75
 - compare: 9/9
 - blog: 15/15
 
@@ -141,3 +141,56 @@ problem:developers/mac-notifications-distracting-deep-work /for/developers/probl
 problem:nurses/iv-drip-rate-gtt-min-calculation /for/nurses/problems/iv-drip-rate-gtt-min-calculation
 problem:designers/figma-variables-not-updating-modes-fix /for/designers/problems/figma-variables-not-updating-modes-fix
 problem:lawyers/why-lawyers-fail-to-keep-clients-informed /for/lawyers/problems/why-lawyers-fail-to-keep-clients-informed
+problem:nurses/sbar-shift-report-minutes-per-patient /for/nurses/problems/sbar-shift-report-minutes-per-patient
+problem:writers/dictation-names-jargon-custom-vocabulary-mac /for/writers/problems/dictation-names-jargon-custom-vocabulary-mac
+problem:nurses/travel-nurse-contract-blended-rate-stipends /for/nurses/problems/travel-nurse-contract-blended-rate-stipends
+problem:writers/dictation-punctuation-new-paragraph-commands /for/writers/problems/dictation-punctuation-new-paragraph-commands
+problem:designers/figma-detached-instances-not-updating-fix /for/designers/problems/figma-detached-instances-not-updating-fix
+problem:designers/restore-a-previous-version-figma-file /for/designers/problems/restore-a-previous-version-figma-file
+problem:designers/figma-comments-not-showing-fixes /for/designers/problems/figma-comments-not-showing-fixes
+problem:writers/word-mac-table-contents-not-updating /for/writers/problems/word-mac-table-contents-not-updating
+problem:nurses/nurse-incident-report-objective-wording /for/nurses/problems/nurse-incident-report-objective-wording
+problem:designers/why-figma-file-so-slow-fixes /for/designers/problems/why-figma-file-so-slow-fixes
+problem:nurses/pharmacology-drug-classes-memorize-nursing /for/nurses/problems/pharmacology-drug-classes-memorize-nursing
+problem:writers/pages-footnote-numbering-restart-sections /for/writers/problems/pages-footnote-numbering-restart-sections
+problem:nurses/new-grad-nurse-resume-ats-keywords /for/nurses/problems/new-grad-nurse-resume-ats-keywords
+problem:designers/figma-missing-fonts-when-installed /for/designers/problems/figma-missing-fonts-when-installed
+problem:writers/word-mac-accept-reject-tracked-changes /for/writers/problems/word-mac-accept-reject-tracked-changes
+problem:nurses/patient-education-handout-reading-level /for/nurses/problems/patient-education-handout-reading-level
+problem:designers/figma-keyboard-shortcuts-mac-list /for/designers/problems/figma-keyboard-shortcuts-mac-list
+problem:writers/word-mac-pasted-text-fonts-styles /for/writers/problems/word-mac-pasted-text-fonts-styles
+problem:nurses/nurse-shift-swap-request-email-charge /for/nurses/problems/nurse-shift-swap-request-email-charge
+problem:designers/responsive-layouts-figma-breakpoints-auto-layout /for/designers/problems/responsive-layouts-figma-breakpoints-auto-layout
+problem:writers/word-figure-missing-cross-reference-list /for/writers/problems/word-figure-missing-cross-reference-list
+problem:designers/check-color-contrast-wcag-figma /for/designers/problems/check-color-contrast-wcag-figma
+problem:writers/word-numbered-list-wrong-starting-number /for/writers/problems/word-numbered-list-wrong-starting-number
+problem:nurses/nclex-failed-retake-study-plan-nursing /for/nurses/problems/nclex-failed-retake-study-plan-nursing
+problem:nurses/dictate-nursing-notes-mac-without-dragon /for/nurses/problems/dictate-nursing-notes-mac-without-dragon
+problem:writers/word-page-numbers-after-cover-page /for/writers/problems/word-page-numbers-after-cover-page
+problem:designers/illustrator-select-under-locked-objects-fix /for/designers/problems/illustrator-select-under-locked-objects-fix
+problem:nurses/night-shift-sleep-after-nights-nurses /for/nurses/problems/night-shift-sleep-after-nights-nurses
+problem:designers/illustrator-missing-fonts-dialog-fix /for/designers/problems/illustrator-missing-fonts-dialog-fix
+problem:writers/zotero-word-bibliography-font-changes /for/writers/problems/zotero-word-bibliography-font-changes
+problem:nurses/ecg-rhythm-strip-reading-nursing-student /for/nurses/problems/ecg-rhythm-strip-reading-nursing-student
+problem:designers/illustrator-cmyk-colors-look-different /for/designers/problems/illustrator-cmyk-colors-look-different
+problem:nurses/hospital-policy-find-quickly-intranet /for/nurses/problems/hospital-policy-find-quickly-intranet
+problem:writers/scrivener-compile-bold-underline-formatting /for/writers/problems/scrivener-compile-bold-underline-formatting
+problem:designers/indesign-relink-missing-images-fix /for/designers/problems/indesign-relink-missing-images-fix
+problem:writers/manuscript-format-literary-agent-submission /for/writers/problems/manuscript-format-literary-agent-submission
+problem:nurses/preceptor-written-evaluation-new-nurse /for/nurses/problems/preceptor-written-evaluation-new-nurse
+problem:designers/indesign-bleed-slug-print-pdf-setup /for/designers/problems/indesign-bleed-slug-print-pdf-setup
+problem:writers/nanowrimo-words-per-day-50000-target /for/writers/problems/nanowrimo-words-per-day-50000-target
+problem:designers/after-effects-expression-disabled-fix /for/designers/problems/after-effects-expression-disabled-fix
+problem:nurses/apa-7-nursing-care-plan-references /for/nurses/problems/apa-7-nursing-care-plan-references
+problem:writers/cut-abstract-journal-word-limit /for/writers/problems/cut-abstract-journal-word-limit
+problem:nurses/prioritize-patients-new-nurse-shift /for/nurses/problems/prioritize-patients-new-nurse-shift
+problem:designers/design-clients-paying-late-invoices-fix /for/designers/problems/design-clients-paying-late-invoices-fix
+problem:writers/word-footnotes-counted-in-word-count /for/writers/problems/word-footnotes-counted-in-word-count
+problem:designers/scope-creep-design-projects-revision-limits /for/designers/problems/scope-creep-design-projects-revision-limits
+problem:nurses/joint-commission-do-not-use-abbreviations /for/nurses/problems/joint-commission-do-not-use-abbreviations
+howto:create-a-formula-property-in-notion /how-to/create-a-formula-property-in-notion
+howto:create-an-email-signature-in-gmail /how-to/create-an-email-signature-in-gmail
+howto:create-a-filter-in-gmail /how-to/create-a-filter-in-gmail
+howto:schedule-an-email-to-send-later-in-gmail /how-to/schedule-an-email-to-send-later-in-gmail
+howto:make-a-chart-in-numbers /how-to/make-a-chart-in-numbers
+howto:share-with-view-only-access-in-google-sheets /how-to/share-with-view-only-access-in-google-sheets

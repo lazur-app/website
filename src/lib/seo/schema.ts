@@ -21,6 +21,35 @@ export function buildOrganizationSchema() {
   };
 }
 
+/** Site name in Google results ("Lazur" instead of the domain). */
+export function buildWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: "en",
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+  };
+}
+
+/** The homepage demo film (src/components/buddy/DemoVideo.tsx). */
+export function buildDemoVideoSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Lazur demo: an AI buddy that works in any Mac app",
+    description:
+      "You ask out loud; Lazur points on screen, rewrites, types, fixes code, totals a sheet, and researches in Chrome in the background.",
+    thumbnailUrl: ["https://releases.lazur.app/videos/lazur-demo-v3-poster.jpg"],
+    contentUrl: "https://releases.lazur.app/videos/lazur-demo-v3.mp4",
+    uploadDate: "2026-11-05T00:00:00+05:30",
+    duration: "PT37S",
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL, logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` } },
+  };
+}
+
 export function buildSoftwareApplicationSchema() {
   return {
     "@context": "https://schema.org",

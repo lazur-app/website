@@ -229,25 +229,22 @@ export function BuddyHero() {
       ) : null}
 
       <div className="landing-container relative flex flex-col items-center pt-32 text-center md:pt-44">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="rounded-full border border-[var(--border-strong)] bg-white/70 px-3 py-1 text-[13px] font-medium text-[var(--foreground-muted)]"
+        <p
+          className="hero-rise rounded-full border border-[var(--border-strong)] bg-white/70 px-3 py-1 text-[13px] font-medium text-[var(--foreground-muted)]"
         >
           AI buddy for Mac
-        </motion.p>
+        </p>
         <div className="relative isolate">
         {/* The floating particle wave, centred behind the headline */}
         <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[34rem] w-screen -translate-x-1/2 -translate-y-[30%]" aria-hidden>
           <HeroFluidWaves />
         </div>
-        <motion.h1
+        {/* CSS entrance (not framer-motion) so the headline paints with the HTML, before JS loads:
+            it is the page's Largest Contentful Paint. */}
+        <h1
           key={persona.id}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-5 max-w-4xl font-display text-[clamp(2.5rem,5.4vw,5rem)] font-medium leading-[0.98] tracking-[-0.04em] text-[var(--foreground)]"
+          style={{ animationDelay: "80ms" }}
+          className="hero-rise mt-5 max-w-4xl font-display text-[clamp(2.5rem,5.4vw,5rem)] font-medium leading-[0.98] tracking-[-0.04em] text-[var(--foreground)]"
         >
           {persona.title}
           <br />
@@ -256,17 +253,15 @@ export function BuddyHero() {
             in the notch.
             <HandUnderline show={drawLine} color={INK} delay={0.85} duration={1.1} offset={2} />
           </span>
-        </motion.h1>
+        </h1>
         </div>
-        <motion.p
+        <p
           key={`sub-${persona.id}`}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.55 }}
-          className="mt-6 max-w-[40rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-snug text-[var(--foreground-muted)]"
+          style={{ animationDelay: "200ms" }}
+          className="hero-rise mt-6 max-w-[40rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-snug text-[var(--foreground-muted)]"
         >
           {persona.sub}
-        </motion.p>
+        </p>
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -305,12 +300,10 @@ export function BuddyHero() {
       </div>
 
       <div className="landing-container relative flex flex-col items-center pb-16 text-center md:pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        <div
+          style={{ animationDelay: "450ms" }}
           data-guide-section="demo"
-          className="relative isolate mt-4 w-full max-w-5xl"
+          className="hero-rise relative isolate mt-4 w-full max-w-5xl"
         >
           {/* The faint grid fans out from the demo screen's top corners */}
           {(["left-0", "right-0"] as const).map((side) => (
@@ -330,7 +323,7 @@ export function BuddyHero() {
           ))}
           {/* The demo starts once the pen has finished, so one thing moves at a time. */}
           <DemoVideo held={at < order("rest") && !handedOff} />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

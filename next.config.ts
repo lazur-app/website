@@ -4,6 +4,21 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   outputFileTracingRoot: path.join(__dirname),
+  async headers() {
+    // Safe headers for every page. No Content-Security-Policy yet: GA, DataFast, Vercel and the
+    // R2 media hosts need an allow-list that should be tested on a preview first.
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     // Markdown copy of any content page: /how-to/x.md is served by src/app/md/[...path]/route.ts.
     return [{ source: "/:path((?:blog|how-to|apps|for|compare|alternatives)/.+)\\.md", destination: "/md/:path" }];
@@ -61,6 +76,7 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     // Keyword-named photos uploaded by scripts/content (Pixabay → re-encoded → Cloudflare R2,
     // served from images.lazur.app). The Blob host stays for any page not yet migrated.
     remotePatterns: [

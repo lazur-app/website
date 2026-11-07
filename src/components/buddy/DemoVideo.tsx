@@ -48,6 +48,7 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
 
   return (
     <div className="w-full">
+      <link rel="preload" as="image" href={POSTER} fetchPriority="high" />
       <div
         data-guide="demo-screen"
         className="relative mx-auto aspect-video w-full overflow-hidden rounded-[clamp(12px,2vw,24px)] bg-[#eef0f2] shadow-[0_30px_90px_rgba(28,25,23,0.22)] ring-1 ring-black/10"

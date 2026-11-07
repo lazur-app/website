@@ -1,6 +1,6 @@
-Content 2026-11-07: 186 written, 2 refused, 0 failed
+Content 2026-11-07: 239 written, 2 refused, 0 failed
 
-- howto: 6/120
+- howto: 59/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -194,3 +194,56 @@ howto:create-a-filter-in-gmail /how-to/create-a-filter-in-gmail
 howto:schedule-an-email-to-send-later-in-gmail /how-to/schedule-an-email-to-send-later-in-gmail
 howto:make-a-chart-in-numbers /how-to/make-a-chart-in-numbers
 howto:share-with-view-only-access-in-google-sheets /how-to/share-with-view-only-access-in-google-sheets
+howto:create-a-label-in-gmail /how-to/create-a-label-in-gmail
+howto:block-a-sender-in-gmail /how-to/block-a-sender-in-gmail
+howto:set-up-an-out-of-office-reply-in-gmail /how-to/set-up-an-out-of-office-reply-in-gmail
+howto:turn-on-keyboard-shortcuts-in-gmail /how-to/turn-on-keyboard-shortcuts-in-gmail
+howto:unsubscribe-from-emails-in-gmail /how-to/unsubscribe-from-emails-in-gmail
+howto:mute-a-conversation-in-gmail /how-to/mute-a-conversation-in-gmail
+howto:pin-gmail-to-the-dock-in-gmail /how-to/pin-gmail-to-the-dock-in-gmail
+howto:use-gmail-in-apple-mail-in-gmail /how-to/use-gmail-in-apple-mail-in-gmail
+howto:set-up-email-forwarding-in-gmail /how-to/set-up-email-forwarding-in-gmail
+howto:recall-a-sent-email-in-gmail /how-to/recall-a-sent-email-in-gmail
+howto:use-search-operators-in-gmail /how-to/use-search-operators-in-gmail
+howto:search-emails-with-attachments-in-gmail /how-to/search-emails-with-attachments-in-gmail
+howto:archive-emails-in-gmail /how-to/archive-emails-in-gmail
+howto:turn-on-categories-tabs-in-gmail /how-to/turn-on-categories-tabs-in-gmail
+howto:attach-a-file-in-gmail /how-to/attach-a-file-in-gmail
+howto:insert-a-hyperlink-in-gmail /how-to/insert-a-hyperlink-in-gmail
+howto:snooze-an-email-in-gmail /how-to/snooze-an-email-in-gmail
+howto:add-cc-and-bcc-in-gmail /how-to/add-cc-and-bcc-in-gmail
+howto:give-someone-access-to-your-mailbox-in-gmail /how-to/give-someone-access-to-your-mailbox-in-gmail
+howto:change-display-density-in-gmail /how-to/change-display-density-in-gmail
+howto:create-an-email-signature-in-apple-mail /how-to/create-an-email-signature-in-apple-mail
+howto:add-an-attachment-to-an-email-in-apple-mail /how-to/add-an-attachment-to-an-email-in-apple-mail
+howto:schedule-an-email-to-send-later-in-apple-mail /how-to/schedule-an-email-to-send-later-in-apple-mail
+howto:block-a-sender-in-apple-mail /how-to/block-a-sender-in-apple-mail
+howto:create-a-smart-mailbox-in-apple-mail /how-to/create-a-smart-mailbox-in-apple-mail
+howto:search-emails-by-sender-in-apple-mail /how-to/search-emails-by-sender-in-apple-mail
+howto:create-a-rule-to-sort-incoming-mail-in-apple-mail /how-to/create-a-rule-to-sort-incoming-mail-in-apple-mail
+howto:mark-all-messages-as-read-in-apple-mail /how-to/mark-all-messages-as-read-in-apple-mail
+howto:use-the-vip-mailbox-in-apple-mail /how-to/use-the-vip-mailbox-in-apple-mail
+howto:unsubscribe-from-a-mailing-list-in-apple-mail /how-to/unsubscribe-from-a-mailing-list-in-apple-mail
+howto:mute-a-thread-in-apple-mail /how-to/mute-a-thread-in-apple-mail
+howto:flag-an-email-in-apple-mail /how-to/flag-an-email-in-apple-mail
+howto:remove-an-email-account-in-apple-mail /how-to/remove-an-email-account-in-apple-mail
+howto:add-an-email-account-in-apple-mail /how-to/add-an-email-account-in-apple-mail
+howto:move-emails-to-a-folder-in-apple-mail /how-to/move-emails-to-a-folder-in-apple-mail
+howto:mark-up-a-pdf-attachment-in-apple-mail /how-to/mark-up-a-pdf-attachment-in-apple-mail
+howto:dictate-an-email-in-apple-mail /how-to/dictate-an-email-in-apple-mail
+howto:change-the-default-font-in-apple-mail /how-to/change-the-default-font-in-apple-mail
+howto:turn-on-mail-privacy-protection-in-apple-mail /how-to/turn-on-mail-privacy-protection-in-apple-mail
+howto:print-an-email-in-apple-mail /how-to/print-an-email-in-apple-mail
+howto:create-an-email-signature-in-outlook /how-to/create-an-email-signature-in-outlook
+howto:turn-on-automatic-replies-in-outlook /how-to/turn-on-automatic-replies-in-outlook
+howto:delay-delivery-of-an-email-in-outlook /how-to/delay-delivery-of-an-email-in-outlook
+howto:add-a-shared-mailbox-in-outlook /how-to/add-a-shared-mailbox-in-outlook
+howto:create-a-folder-in-outlook /how-to/create-a-folder-in-outlook
+howto:create-a-rule-in-outlook /how-to/create-a-rule-in-outlook
+howto:add-an-email-account-in-outlook /how-to/add-an-email-account-in-outlook
+howto:change-the-default-font-in-outlook /how-to/change-the-default-font-in-outlook
+howto:search-with-filters-in-outlook /how-to/search-with-filters-in-outlook
+howto:create-a-calendar-event-in-outlook /how-to/create-a-calendar-event-in-outlook
+howto:share-your-calendar-in-outlook /how-to/share-your-calendar-in-outlook
+howto:send-a-meeting-invite-in-outlook /how-to/send-a-meeting-invite-in-outlook
+howto:turn-off-focused-inbox-in-outlook /how-to/turn-off-focused-inbox-in-outlook

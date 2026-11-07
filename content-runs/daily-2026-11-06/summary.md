@@ -1,6 +1,6 @@
-Content 2026-11-06: 234 written, 3 refused, 0 failed
+Content 2026-11-06: 290 written, 4 refused, 0 failed
 
-- howto: 54/120
+- howto: 110/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -242,3 +242,59 @@ howto:add-auto-layout-in-figma /how-to/add-auto-layout-in-figma
 howto:create-a-prototype-in-figma /how-to/create-a-prototype-in-figma
 howto:share-a-file-with-view-access-in-figma /how-to/share-a-file-with-view-access-in-figma
 howto:present-a-prototype-in-figma /how-to/present-a-prototype-in-figma
+howto:view-two-tabs-side-by-side-in-figma /how-to/view-two-tabs-side-by-side-in-figma
+howto:pin-a-tab-in-figma /how-to/pin-a-tab-in-figma
+howto:select-layers-with-the-keyboard-in-figma /how-to/select-layers-with-the-keyboard-in-figma
+howto:show-the-keyboard-shortcuts-panel-in-figma /how-to/show-the-keyboard-shortcuts-panel-in-figma
+howto:zoom-in-and-out-in-figma /how-to/zoom-in-and-out-in-figma
+howto:install-the-desktop-app-in-figma /how-to/install-the-desktop-app-in-figma
+howto:turn-on-trackpad-haptic-feedback-in-figma /how-to/turn-on-trackpad-haptic-feedback-in-figma
+howto:see-notifications-in-the-menu-bar-in-figma /how-to/see-notifications-in-the-menu-bar-in-figma
+howto:create-a-frame-in-figma /how-to/create-a-frame-in-figma
+howto:use-fonts-installed-on-your-mac-in-figma /how-to/use-fonts-installed-on-your-mac-in-figma
+howto:create-a-text-style-in-figma /how-to/create-a-text-style-in-figma
+howto:add-a-plugin-in-figma /how-to/add-a-plugin-in-figma
+howto:use-dev-mode-to-inspect-designs-in-figma /how-to/use-dev-mode-to-inspect-designs-in-figma
+howto:invite-a-team-member-in-figma /how-to/invite-a-team-member-in-figma
+howto:duplicate-a-layer-in-figma /how-to/duplicate-a-layer-in-figma
+howto:create-a-variable-in-figma /how-to/create-a-variable-in-figma
+howto:set-constraints-on-a-layer-in-figma /how-to/set-constraints-on-a-layer-in-figma
+howto:restore-an-earlier-version-in-figma /how-to/restore-an-earlier-version-in-figma
+howto:install-the-desktop-app-in-notion /how-to/install-the-desktop-app-in-notion
+howto:open-notion-links-in-the-browser-in-notion /how-to/open-notion-links-in-the-browser-in-notion
+howto:open-notion-links-in-the-desktop-app-in-notion /how-to/open-notion-links-in-the-desktop-app-in-notion
+howto:check-system-requirements-in-notion /how-to/check-system-requirements-in-notion
+howto:fix-the-application-not-supported-error-in-notion /how-to/fix-the-application-not-supported-error-in-notion
+howto:share-a-page-in-notion /how-to/share-a-page-in-notion
+howto:create-a-database-in-notion /how-to/create-a-database-in-notion
+howto:use-the-web-clipper-in-notion /how-to/use-the-web-clipper-in-notion
+howto:create-a-toggle-in-notion /how-to/create-a-toggle-in-notion
+howto:create-a-template-in-notion /how-to/create-a-template-in-notion
+howto:add-a-table-of-contents-in-notion /how-to/add-a-table-of-contents-in-notion
+howto:export-a-page-in-notion /how-to/export-a-page-in-notion
+howto:import-a-csv-file-in-notion /how-to/import-a-csv-file-in-notion
+howto:add-a-callout-in-notion /how-to/add-a-callout-in-notion
+howto:lock-a-page-in-notion /how-to/lock-a-page-in-notion
+howto:embed-a-google-sheet-in-notion /how-to/embed-a-google-sheet-in-notion
+howto:create-a-kanban-board-in-notion /how-to/create-a-kanban-board-in-notion
+howto:sort-a-database-in-notion /how-to/sort-a-database-in-notion
+howto:filter-a-database-in-notion /how-to/filter-a-database-in-notion
+howto:use-slash-commands-in-notion /how-to/use-slash-commands-in-notion
+howto:search-your-workspace-in-notion /how-to/search-your-workspace-in-notion
+howto:restore-a-deleted-page-in-notion /how-to/restore-a-deleted-page-in-notion
+howto:set-a-reminder-in-notion /how-to/set-a-reminder-in-notion
+howto:mark-all-messages-as-read-in-slack /how-to/mark-all-messages-as-read-in-slack
+howto:search-messages-in-slack /how-to/search-messages-in-slack
+howto:search-inside-a-conversation-in-slack /how-to/search-inside-a-conversation-in-slack
+howto:open-the-threads-view-in-slack /how-to/open-the-threads-view-in-slack
+howto:set-your-status-in-slack /how-to/set-your-status-in-slack
+howto:view-all-unread-messages-in-slack /how-to/view-all-unread-messages-in-slack
+howto:open-preferences-in-slack /how-to/open-preferences-in-slack
+howto:jump-to-the-latest-unread-message-in-slack /how-to/jump-to-the-latest-unread-message-in-slack
+howto:start-a-new-message-in-slack /how-to/start-a-new-message-in-slack
+howto:fix-missing-notifications-in-slack /how-to/fix-missing-notifications-in-slack
+howto:turn-off-notification-sounds-in-slack /how-to/turn-off-notification-sounds-in-slack
+howto:pause-notifications-in-slack /how-to/pause-notifications-in-slack
+howto:show-the-keyboard-shortcuts-list-in-slack /how-to/show-the-keyboard-shortcuts-list-in-slack
+howto:mute-a-channel-in-slack /how-to/mute-a-channel-in-slack
+howto:jump-to-a-conversation-in-slack /how-to/jump-to-a-conversation-in-slack

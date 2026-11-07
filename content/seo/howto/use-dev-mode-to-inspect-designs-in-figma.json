@@ -1,0 +1,651 @@
+{
+  "title": "How to use Dev Mode in Figma on Mac: inspect designs step by step",
+  "metaTitle": "How to use Dev Mode in Figma on Mac: inspect designs",
+  "description": "Learn how to use Dev Mode in Figma on Mac: open it with Shift D, inspect layers, export assets, and mark frames ready for dev.",
+  "targetKeyword": "how to use dev mode in figma on mac",
+  "secondaryKeywords": [
+    "figma dev mode mac",
+    "figma dev mode shortcut",
+    "figma inspect panel",
+    "figma ready for dev",
+    "figma dev mode not working mac",
+    "figma dev mode access",
+    "figma inspect code mac"
+  ],
+  "intro": "To use Dev Mode in Figma on Mac, open a Design file in the desktop app and click the Dev Mode toggle in the toolbar, or press Shift D. Then select a frame, component or layer, and the Inspect panel shows its properties, styles, variables, assets and export options.",
+  "tldr": [
+    "Open a Design file. Dev Mode does not run in FigJam or Slides.",
+    "Press Shift D (⇧D) or click the Dev Mode toggle in the toolbar. Press it again to leave.",
+    "Select a frame, component, instance or section, then read the Inspect panel.",
+    "Click Mark as ready for dev in the toolbar when a frame is final.",
+    "No toggle? Check your plan and seat before you try anything else."
+  ],
+  "stats": [
+    {
+      "value": "91%",
+      "label": "of developers say the designer-developer handoff could be improved, per Figma's 2025 research",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026 (Figma Resource Library)"
+    },
+    {
+      "value": "92%",
+      "label": "of designers say the designer-developer handoff could be improved, per Figma's 2025 research",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026 (Figma Resource Library)"
+    },
+    {
+      "value": "84%",
+      "label": "of designers collaborate with developers at least weekly, per Figma's 2025 research",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026 (Figma Resource Library)"
+    },
+    {
+      "value": "25%",
+      "label": "fewer iteration cycles possible when designs are validated before development (UserTesting, 2025)",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026 (Figma Resource Library)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start: file type, plan and seat"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dev Mode only runs in a Figma Design file. It does not run in FigJam or Slides. If the file opens as a whiteboard or a slide deck, you will not see the toggle, so open a Design file first. You are in the right place when the usual design tools and the layers list are on screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, check your plan. Figma's Guide to Dev Mode lists Dev Mode on Professional, Education, Organization, Government and Enterprise plans. Figma's admin article says Dev Mode is not available on the Starter plan. If your file sits in a Starter team, move it to a paid team or ask your admin what your options are."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your seat decides how much you can do. Full seats and Dev seats get full Dev Mode access. Dev seats also include Slides and FigJam. Collab and View seats only get basic inspection."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Seat type",
+        "What it gets in Dev Mode"
+      ],
+      "rows": [
+        [
+          "Full",
+          "Full Dev Mode access"
+        ],
+        [
+          "Dev",
+          "Full Dev Mode access, plus Slides and FigJam"
+        ],
+        [
+          "Collab",
+          "Basic inspection only: measurements, copying code, exporting assets"
+        ],
+        [
+          "View",
+          "Basic inspection only: measurements, copying code, exporting assets"
+        ]
+      ],
+      "caption": "Dev Mode access by seat, from Figma's Dev Mode for admins article."
+    },
+    {
+      "type": "paragraph",
+      "text": "Basic inspection still helps. It covers measurements, copying code and exporting assets. If you need more than that, ask an admin for a Full or Dev seat."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Desktop app or browser on a Mac: does it change Dev Mode?"
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not change Dev Mode. Figma's guide to the desktop app says the Mac app has the same features as the browser version. The desktop-only items are plugin and widget development, local fonts without the font installer, tab groups, split tab view, multiple windows and desktop notifications from the menu bar. Dev Mode is not on that list."
+    },
+    {
+      "type": "paragraph",
+      "text": "The desktop app needs macOS 12 Monterey or later. Monterey came out in October 2021. Figma says the app is optimized for both Intel and Apple silicon Macs. If your Mac runs an older system, use the browser version instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the app current. Figma says support for old desktop versions ends six months after a release. The app shows an update prompt when you are not on the latest version. The downloads page I opened did not show a version number, so rely on the in-app prompt. For a fresh install, read [how to install the Figma desktop app on Mac](/how-to/install-the-desktop-app-in-figma)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to turn on Dev Mode on a Mac, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps below cover the Mac desktop app. The browser version has the same Dev Mode features, so the steps are nearly identical there. Work through them in order the first time. After that, you will mostly use the toggle and the Inspect panel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the Inspect panel in Dev Mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Inspect panel is where Dev Mode does most of its work. It shows details for whatever you select on the canvas. Figma's guide lists what you will find there. Most of it helps a developer, and some of it helps you check your own work."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Layer name and type, so both sides use the same label",
+        "Layer properties, shown as Code or List",
+        "Applied styles and variables, with their names",
+        "Assets used by the selected layer",
+        "Export options for PNG, JPG, SVG and PDF",
+        "Compare changes and Compare with main component",
+        "Component metadata and Explore component behavior",
+        "External dev resource links",
+        "Code Connect snippets, where your team has set them up"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Code Connect is listed for Professional, Organization and Enterprise plans. If your team is on another plan, you may not see its snippets. Check with your admin before you rely on them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read every section once before you send a link. A developer who opens a file cold will look at the same panel. You want to know what they see before they ask."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mark a design ready for dev in Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ready for dev is the handoff signal. Select a frame, component, instance or section in Dev Mode, then click Mark as ready for dev in the toolbar. Every Dev Mode plan includes Ready for dev. The Completed status needs an Organization or Enterprise plan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say you have a settings screen with three frames: Desktop, Tablet and Phone. Your developer starts with Desktop. Mark that frame first. Leave Tablet and Phone unmarked until the spacing and colors are final, so nobody builds from a draft."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you change a marked frame, tell the developer what moved. Then open Compare changes so they can see the difference for themselves."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Measure spacing and compare versions"
+    },
+    {
+      "type": "paragraph",
+      "text": "A third-party guide to Dev Mode on Mac lists the Option key for measuring the distance to another layer. It lists Option with Command for measuring to a nested layer. Figma's official help page did not list either key in the pages I opened, so test it yourself. Hold Option over a layer in Dev Mode and watch for a distance readout."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the readout does not appear, use the Inspect panel for exact values. The panel shows the values the layer already has. That beats estimating a gap by eye."
+    },
+    {
+      "type": "paragraph",
+      "text": "Compare changes is the other half of this job. It shows what changed between versions, which helps when a developer asks why a button moved. Compare with main component shows how an instance differs from its main component."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export assets from Dev Mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Inspect panel includes export for PNG, JPG, SVG and PDF. Select the layer, choose the format, and export. Ask your developer which format they need before you start. For the full steps, read the [SVG guide](/how-to/export-as-svg-in-figma) or the [PNG guide](/how-to/export-a-frame-as-png-in-figma)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: handing off a login card"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the file that holds the login card and select the card frame. Press Shift D to enter Dev Mode. The Inspect panel shows the card's layers. Click the sign-in button to read its properties and any applied styles."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, click the logo. If it is a vector, export it as SVG when your developer asks for vector art. Then select the whole card and click Mark as ready for dev. Send the file link or a Dev Mode link to your developer."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Dev Mode link opens in Dev Mode automatically. The developer does not need to press anything. Add a short note with the frame name, so they know which screen to build first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for Dev Mode on Mac"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Mac shortcut"
+      ],
+      "rows": [
+        [
+          "Enter or leave Dev Mode",
+          "⇧D"
+        ],
+        [
+          "Measure distance to another layer",
+          "⌥ (third-party guide)"
+        ],
+        [
+          "Measure distance to a nested layer",
+          "⌥⌘ (third-party guide)"
+        ]
+      ],
+      "caption": "Shift D is from Figma's help page. The Option keys come from a third-party guide and need checking."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help page writes the toggle key as Shift D with no Mac symbols. Mac users usually read it as ⇧D. If the shortcut fails, use the toolbar toggle. It does the same job."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that stop Dev Mode working"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pressing Shift D while typing in a text field. Click the empty canvas first.",
+        "Opening a FigJam board or a Slides deck and looking for the toggle. Dev Mode does not run there.",
+        "Using a Collab or View seat and expecting the full Inspect panel.",
+        "Marking a frame ready while its spacing or colors still change.",
+        "Running an old desktop app. Figma removes support for old versions six months after release.",
+        "Selecting a single layer when you meant the whole frame. Mark the frame, not the layer inside it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these are quick fixes. Seat and plan problems need an admin, so raise them early instead of waiting for a deadline."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Figma Dev Mode not working on Mac? Start here"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failures come from one of three places: the file type, the plan or seat, or keyboard focus. The troubleshooting list below covers each one. Work through the file type and focus checks first, because they take seconds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why teams bother with Dev Mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Handoff is where a design and a build can drift apart. Figma's own 2025 research, as summarized on its statistics page, reports that 91% of developers and 92% of designers think the handoff process could be improved. The same page says 84% of designers collaborate with developers at least weekly."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page cites UserTesting from 2025 for a 25% figure. It says validating designs before development can reduce iteration cycles by that share. Treat these as vendor-reported numbers, not promises. Count your own handoff rounds before and after you switch."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold Option and Command, ask your question, and Lazur answers out loud. It listens and looks at the screen only while you hold the shortcut. It does not click buttons or edit your file."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where the Dev Mode toggle is, and Lazur draws a circle and a label around it. Ask how to mark a frame ready for dev, and Lazur guides you one click at a time, waiting for each click. You stay in control of the file the whole way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Figma. It works across apps on your Mac, and it looks at your screen only while you hold the shortcut. The [Figma page for Lazur](/apps/figma) shows more of what it covers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after your first inspection"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a design is ready, you may need to share it. If a stakeholder only needs to look, give them view access instead of edit access. The [guide to view-only sharing](/how-to/share-a-file-with-view-access-in-figma) covers the invite and link roles."
+    },
+    {
+      "type": "paragraph",
+      "text": "For more Figma shortcuts, open the keyboard shortcuts panel and keep it nearby. The [shortcuts panel guide](/how-to/show-the-keyboard-shortcuts-panel-in-figma) explains where to find it."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want help with the rest of your Mac work, check the [Lazur pricing page](/pricing). Lazur has a free trial, and dictation is unlimited on both paid plans."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Dev Mode in Figma on Mac the same as the browser version?",
+      "answer": "Dev Mode itself is the same. Figma says the macOS desktop app has the same features as the browser version. The desktop-only items are plugin development, local fonts, tab groups, split view, multiple windows and menu bar notifications."
+    },
+    {
+      "question": "What is the Dev Mode shortcut on Mac?",
+      "answer": "Press Shift D. Some Mac guides write it as ⇧D. Click the empty canvas first so the key goes to the canvas and not a text field. Press it again to return to Design Mode."
+    },
+    {
+      "question": "Can I use Dev Mode on the Starter plan?",
+      "answer": "No. Figma's admin article says Dev Mode is not available on the Starter plan. Move the file to a paid team, or ask your admin about your plan."
+    },
+    {
+      "question": "Which seat do I need for Dev Mode?",
+      "answer": "A Full seat or a Dev seat gives you full Dev Mode access. Dev seats also include Slides and FigJam. Collab and View seats get basic inspection only, such as measurements, copying code and exporting assets."
+    },
+    {
+      "question": "What does Mark as ready for dev do?",
+      "answer": "It marks the selected frame, component, instance or section as ready for a developer to build from. Every Dev Mode plan includes Ready for dev. The Completed status needs an Organization or Enterprise plan."
+    },
+    {
+      "question": "Does Dev Mode work in FigJam?",
+      "answer": "No. Dev Mode does not run in FigJam or Slides. Open a Design file instead, then press Shift D or click the Dev Mode toggle."
+    },
+    {
+      "question": "Can Lazur turn on Dev Mode for me?",
+      "answer": "No. Lazur does not click buttons for you. Ask where the Dev Mode toggle is, and Lazur circles it on your screen. Ask how to mark a frame ready for dev, and Lazur guides you one click at a time."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Guide to Dev Mode in Figma",
+      "url": "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Dev Mode for admins",
+      "url": "https://help.figma.com/hc/en-us/articles/19813618057623-Dev-Mode-for-admins",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Dev Mode focus view",
+      "url": "https://help.figma.com/hc/en-us/articles/23919923330455-Dev-Mode-focus-view",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to the Figma desktop app",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Downloads",
+      "url": "https://www.figma.com/downloads/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "79+ Design Statistics for 2026",
+      "url": "https://www.figma.com/resource-library/design-statistics/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Everything You Need to Know About Dev Mode",
+      "url": "https://www.figma.com/blog/everything-you-need-to-know-about-dev-mode/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Community: Dev mode doesn't work",
+      "url": "https://forum.figma.com/ask-the-community-7/dev-mode-doesn-t-work-31956",
+      "publisher": "Figma Community Forum",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Open Dev Mode in Figma (Shortcut and Access Fixes)",
+      "url": "https://figmaplugins.co/guides/figma-dev-mode/",
+      "publisher": "figmaplugins.co (third party)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Inspect a Figma design in Dev Mode on a Mac",
+  "appliesTo": "Figma Design files in the Mac desktop app, macOS 12 or later",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Figma Design file, not FigJam or Slides",
+    "Dev Mode access on a paid plan, such as Professional or Organization",
+    "A Full or Dev seat, or basic inspection on a Collab or View seat",
+    "Figma desktop app on macOS 12 or later, or the browser version"
+  ],
+  "steps": [
+    {
+      "name": "Open a Design file in the Mac app",
+      "text": "Open the Figma desktop app and open a Design file. Dev Mode does not run in FigJam or Slides, so a whiteboard or a slide deck will not give you the toggle. Find a Design file in the file browser and open it.",
+      "tip": "Starter team files do not include Dev Mode. Check your plan before you spend time looking for the toggle."
+    },
+    {
+      "name": "Click the Dev Mode toggle or press Shift D",
+      "text": "Click the empty canvas first, so keyboard focus is not in a text field. Then press Shift D, or click the Dev Mode toggle in the toolbar and choose Dev Mode. Figma's help page writes the key as Shift D. A third-party Mac guide writes it as ⇧D.",
+      "menuPath": [
+        "Toolbar",
+        "Dev Mode toggle"
+      ],
+      "shortcut": "⇧D",
+      "tip": "If Shift D does nothing, confirm the file is a Design file and that you are not typing in a text box."
+    },
+    {
+      "name": "Select the layer you want to inspect",
+      "text": "Click a frame, component, instance or section on the canvas. Dev Mode shows the details for the selected layer. Start with the whole frame, then select a button or a text layer when you need its exact values.",
+      "tip": "Select the whole screen first. Narrowing down later helps you see which parent frame a value belongs to."
+    },
+    {
+      "name": "Read the Inspect panel",
+      "text": "The Inspect panel opens for the selection. Scroll it from top to bottom. It lists the layer name and type, the layer properties, applied styles and variables, assets and export options.",
+      "tip": "Read every section once before you send a link to your developer."
+    },
+    {
+      "name": "Switch layer properties between Code and List",
+      "text": "Layer properties can show as Code or List. Code gives you copyable snippets for your developer. List shows the same values as plain rows. Pick the view your developer asks for.",
+      "tip": "Ask which view your developer prefers before you start copying values."
+    },
+    {
+      "name": "Check styles and variables",
+      "text": "Applied styles and variables appear by name in the Inspect panel. Quote the name when you talk to a developer, not only the raw value. A name is easier to find in the code than a number.",
+      "tip": "If a value has no style or variable, ask the designer who made the file whether one should exist."
+    },
+    {
+      "name": "Compare changes before a handoff",
+      "text": "Open Compare changes from the Inspect panel to see what changed since an earlier version. Use Compare with main component to check how an instance differs from its main component. Both help you explain a change in a few clicks.",
+      "tip": "Compare before you send a second link, so the developer can see the difference without asking."
+    },
+    {
+      "name": "Export assets from the Inspect panel",
+      "text": "Select the layer, then use the export options in the Inspect panel. You can export PNG, JPG, SVG or PDF. Choose the format your developer asked for before you export.",
+      "tip": "Ask about the format first. Exporting the wrong format means a second round."
+    },
+    {
+      "name": "Mark the design ready for dev",
+      "text": "Select the frame, component, instance or section that is final. Click Mark as ready for dev in the toolbar. Leave unfinished frames unmarked so nobody builds from a draft.",
+      "menuPath": [
+        "Toolbar",
+        "Mark as ready for dev"
+      ],
+      "tip": "Ready for dev works on every Dev Mode plan. The Completed status needs an Organization or Enterprise plan."
+    },
+    {
+      "name": "Return to Design Mode",
+      "text": "Press Shift D again to leave Dev Mode. You can also choose another mode from the toolbar toggle. You are back in the Design editor with the same file open.",
+      "menuPath": [
+        "Toolbar",
+        "Dev Mode toggle"
+      ],
+      "shortcut": "⇧D",
+      "tip": "A Dev Mode link opens in Dev Mode automatically, so the person you send it to does not need to press anything."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Enter Dev Mode or return to Design Mode",
+      "keys": "⇧D"
+    },
+    {
+      "action": "Measure distance to another layer (third-party guide)",
+      "keys": "⌥"
+    },
+    {
+      "action": "Measure distance to a nested layer (third-party guide)",
+      "keys": "⌥⌘"
+    },
+    {
+      "action": "Clear text focus before pressing the toggle key",
+      "keys": "Click canvas"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Dev Mode toggle is missing from the toolbar.",
+      "fix": "The usual cause is the plan or the seat. Starter team files do not offer Dev Mode. On a Collab or View seat, ask an admin for a Full or Dev seat, or move the file to a paid team."
+    },
+    {
+      "problem": "You see 'You cannot access Dev Mode.'",
+      "fix": "The message means the file's plan or your seat does not include Dev Mode. Confirm the file sits in a paid team, then ask your admin for a Full or Dev seat. Figma's Dev Mode for admins article explains the seat types."
+    },
+    {
+      "problem": "Shift D does nothing.",
+      "fix": "Click the empty canvas to move focus off any text field. Confirm the file is a Design file, not FigJam or Slides. Then press Shift D again."
+    },
+    {
+      "problem": "Dev Mode access keeps closing on its own.",
+      "fix": "A Figma Community thread from March 21, 2024 describes access that closed every 15 to 17 days and returned only after an admin re-invited the user. Community support told that user to use the help request form with their Figma account email and file links. Do the same if your access keeps closing."
+    },
+    {
+      "problem": "The desktop app shows an update prompt, or Dev Mode behaves oddly.",
+      "fix": "Figma removes support for old desktop versions six months after release. Update the app from the in-app prompt, restart it, and try Dev Mode again."
+    },
+    {
+      "problem": "The distance readout does not appear when you hold Option.",
+      "fix": "The Option shortcut comes from a third-party guide, not Figma's help center. Use the Inspect panel for exact values, and test the shortcut in your version of the app."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Dev Mode toggle?",
+    "capability": "point",
+    "context": "Figma desktop app on Mac, Design file open",
+    "result": "Lazur circles the Dev Mode toggle in the toolbar and labels it on screen.",
+    "shell": "design",
+    "pointsAt": "Dev Mode toggle",
+    "output": "Lazur says where the toggle is, out loud. It does not press the toggle for you."
+  },
+  "type": "howto",
+  "slug": "use-dev-mode-to-inspect-designs-in-figma",
+  "app": "figma",
+  "appName": "Figma",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/use-dev-mode-to-inspect-designs-in-figma/how-to-use-dev-mode-in-figma-1-b01ddb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer working at a desk on a Mac laptop while reviewing a Figma design",
+      "caption": "A designer reviewing a screen layout on a Mac laptop",
+      "keywords": [
+        "how to use dev mode in figma on mac",
+        "Figma",
+        "use Dev Mode to inspect designs",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ambels22",
+        "url": "https://pixabay.com/users/ambels22-3251729/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/color-work-space-working-design-3871156/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/use-dev-mode-to-inspect-designs-in-figma/how-to-use-dev-mode-in-figma-2-c628ae.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer reading code on a laptop, the kind of handoff Figma Dev Mode supports",
+      "caption": "A developer checking values before building the screen",
+      "keywords": [
+        "how to use dev mode in figma on mac",
+        "Figma",
+        "use Dev Mode to inspect designs",
+        "Mac",
+        "developer coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-html-internet-computer-web-1689066/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/use-dev-mode-to-inspect-designs-in-figma/how-to-use-dev-mode-in-figma-3-a73965.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close-up of a Mac keyboard showing the Shift key and the letter D keys",
+      "caption": "The keyboard keys used to open Dev Mode on a Mac",
+      "keywords": [
+        "how to use dev mode in figma on mac",
+        "Figma",
+        "use Dev Mode to inspect designs",
+        "Mac",
+        "mac keyboard closeup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "valerioerrani",
+        "url": "https://pixabay.com/users/valerioerrani-14513548/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typewriter-alphabet-letter-writer-5065594/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use dev mode in figma on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "figma dev mode mac": 1,
+      "figma dev mode shortcut": 1,
+      "figma inspect panel": 1,
+      "figma ready for dev": 1,
+      "figma dev mode not working mac": 1,
+      "figma dev mode access": 1,
+      "figma inspect code mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

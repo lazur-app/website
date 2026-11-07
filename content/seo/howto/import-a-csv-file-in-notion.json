@@ -1,0 +1,583 @@
+{
+  "title": "How to import csv into notion on mac: steps for the desktop app in 2026",
+  "metaTitle": "how to import csv into notion on mac: 2026 steps",
+  "description": "Learn how to import csv into notion on mac: upload the file, map columns to properties, and merge rows into an existing database.",
+  "targetKeyword": "how to import csv into notion on mac",
+  "secondaryKeywords": [
+    "notion csv import mac",
+    "import csv notion database",
+    "notion merge with csv",
+    "notion csv import limit",
+    "notion csv date format",
+    "import csv into existing notion database",
+    "notion csv import not working"
+  ],
+  "intro": "To import a CSV into Notion on Mac, open Notion, go to Settings > Import > CSV, and upload your file. Then choose a new or existing database, pick the page it lives on, and map each CSV column to a Notion property.",
+  "tldr": [
+    "Open Notion on your Mac, go to Settings > Import > CSV, and upload a .csv file under your plan's size limit.",
+    "Choose a new database for a first import, then pick the page where it should live.",
+    "Map each CSV column to a property. Use Text for amounts and values that contain commas.",
+    "To add rows to an existing database, open it as a full page and use Merge with CSV. Headers must match exactly."
+  ],
+  "stats": [
+    {
+      "value": "5 MB",
+      "label": "Largest CSV file on the Free plan, per file",
+      "sourceUrl": "https://www.notion.com/help/import-data-into-notion",
+      "sourceTitle": "Import data into Notion (Notion Help Center)"
+    },
+    {
+      "value": "50 MB",
+      "label": "Largest CSV file on paid plans (Plus, Business, Enterprise), per file",
+      "sourceUrl": "https://www.notion.com/help/import-data-into-notion",
+      "sourceTitle": "Import data into Notion (Notion Help Center)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Notion can turn a spreadsheet export into a working database in a few minutes. The catch is that the file has to be shaped right before you start. This guide covers the Mac desktop app, the menu path Notion documents, and the choices you make along the way. It also covers the cases that go wrong, like a file that is too big or a date column that reads backward."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the file. Notion imports plain CSV files, which are text files with values separated by commas. You can export one from Excel, Google Sheets, Numbers, or most CRM tools. Keep the first row as headers, because Notion reads that row to name your columns. Check the file size before you upload, since each plan has its own limit."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A CSV file ending in .csv, with a header row in the first line.",
+        "A Notion account with edit access to the workspace or page where the database will live.",
+        "The Notion desktop app for Mac, or Notion open in a browser, signed in to the same account.",
+        "A file under 5 MB on the Free plan, or under 50 MB on a paid plan.",
+        "Your spreadsheet app open, so you can fix headers and date formats before the import."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install the Notion desktop app on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you do not have the desktop app yet, go to notion.com/desktop and click Download. Notion offers three Mac builds on that page: macOS Universal, macOS Apple Silicon, and macOS Intel x64. Open the downloaded file, follow the prompts, and sign in with your email. The desktop page does not list a minimum macOS version, so check the [system requirements guide](/how-to/check-system-requirements-in-notion) before you install."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Your Mac",
+        "Download to pick"
+      ],
+      "rows": [
+        [
+          "Apple silicon (M-series chip)",
+          "macOS Apple Silicon"
+        ],
+        [
+          "Intel processor",
+          "macOS Intel x64"
+        ],
+        [
+          "Not sure which chip you have",
+          "macOS Universal"
+        ]
+      ],
+      "caption": "Pick the download that matches your Mac's processor."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import a CSV into a new database"
+    },
+    {
+      "type": "paragraph",
+      "text": "Notion gives you three starting points for a CSV import. The first is the sidebar. Open Settings, choose Import, and pick CSV. The second is faster when you already have the target page open. Type /csv on that page and pick the CSV option from the list. The third is the ••• control at the top right of the target page. Open More, then select Import."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the sidebar route when you want a clean start and you are not sure where the database should go. Use /csv when you are already writing on the page where the database belongs. Either route leads to the same import steps, so the steps in this guide apply to all three."
+    },
+    {
+      "type": "paragraph",
+      "text": "Choosing new or existing matters more than it looks. A new database gets its properties from your headers. An existing database keeps the properties you already set up, so each CSV column has to land in one of them. If you pick the wrong option, rows can end up in a database you did not mean to touch."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Map each CSV column to a Notion property"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mapping is the step where most imports go right or wrong. Notion shows each column from your file and asks which property it should fill. Give the name column the Title property, since Title holds the page name. Then pick a type for every other column. The Title property does not support formatting, so keep names as plain text."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "CSV values look like",
+        "Map the column to"
+      ],
+      "rows": [
+        [
+          "Amounts with $, %, or negative numbers",
+          "Text"
+        ],
+        [
+          "Values that contain commas",
+          "Text, not Select"
+        ],
+        [
+          "Dates",
+          "Date. Dates import as MM/DD/YYYY"
+        ],
+        [
+          "A column with mixed types",
+          "Text. It may import as text anyway"
+        ]
+      ],
+      "caption": "Mapping rules from Notion's import help page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Think about each column before you map it. A price with a dollar sign and a thousands comma fails both tests. Map it to Text, then add any math as a formula after the import. A new CSV import cannot create formulas, so that step happens by hand inside Notion."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How big a CSV file Notion accepts"
+    },
+    {
+      "type": "paragraph",
+      "text": "The limit applies to each file, and it depends on your plan. On the Free plan, each CSV can be 5 MB. On paid plans, Plus, Business, and Enterprise, each CSV can be 50 MB. Notion's pricing page also lists 'up to 5 GB' for file uploads on paid plans. That figure is for file uploads, not CSV imports, so do not use it to size your file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the size in Finder before you start. Select the file and press ⌘I to open Get Info, then read the Size line. If the file is over your limit, split it at a natural break, such as by year or by status. Copy the header row into every part, or the parts will not match your columns."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add rows to an existing database with Merge with CSV"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Merge with CSV when the database already exists and you only need more rows. Open the database as a full page, not as an inline view. Click the ••• control at the top of the database, then select Merge with CSV. Notion asks you to match CSV columns to properties, the same way a new import does. Notion's help page draws this control with two dots, while many third-party guides show three. Trust the icon you see in your app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Headers matter more in a merge. Every CSV header must match a property name exactly, including capital letters, spaces, and punctuation. A header such as Due date may not match a property named Due Date. Rename one side so they agree, then run the merge."
+    },
+    {
+      "type": "paragraph",
+      "text": "Merging adds rows. It does not update rows that already exist. If your CSV contains a row that is already in the database, Notion adds a second copy. Before you merge, export only the new rows from your spreadsheet, or delete the rows you plan to replace."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a CSV import cannot do"
+    },
+    {
+      "type": "paragraph",
+      "text": "The import has real limits. A new CSV import cannot create rollups, formulas, or relations. You can map a column to an existing relation property, but only when you import into an existing database. Every data cell also needs a matching header in the first row."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Formulas and rollups: add them by hand after the import.",
+        "Relations on a new database: connect them after the import.",
+        "Updates: imports add rows. They never change rows that are already there.",
+        "Extra columns: a data cell without a header has nowhere to go."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Plan around these limits. Build the database structure first, with the properties you need. Then import the data into those properties. Relations you add later can link to the rows you imported, so the order of work still holds up."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix garbled text, wrong dates, and other import errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Garbled text is the most common surprise. Accented letters, curly quotes, and currency symbols can turn into strange characters when the file was saved in the wrong encoding. Re-export the file as UTF-8 from your spreadsheet app, then import it again. The fix takes a minute and saves you from cleaning every row by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates cause the next problem. Notion reads dates as MM/DD/YYYY. A file that uses DD/MM/YYYY can swap the day and month for any date where both numbers are twelve or less. Fix the dates in the spreadsheet first, so the format is consistent before the file reaches Notion."
+    },
+    {
+      "type": "paragraph",
+      "text": "When an import fails, start with the file size and the headers. Those two checks catch most failed imports. Third-party guides quote row limits, but Notion's own import help does not, so split a file for size, not for row count."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix the 'not supported on this Mac' error"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the app will not open and says it is not supported on this Mac, you probably installed the wrong build. Apple silicon Macs need the Apple Silicon download. Intel Macs need the Intel x64 download. Uninstall the app, check your chip under Apple menu > About This Mac, then install the matching version from notion.com/desktop. The full fix is on the [install error page](/how-to/fix-the-application-not-supported-error-in-notion)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts to use after the import"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the rows are in, a few shortcuts speed up cleanup. Press ⌘P or ⌘K to jump to the database by name. Use ⌘F to search inside a long page. For notes around the data, ⌘B bolds text, and ⌘⌥5, ⌘⌥6, and ⌘⌥7 start bulleted, numbered, and toggle lists. Notion's shortcut page has the full list."
+    },
+    {
+      "type": "paragraph",
+      "text": "The emoji picker opens with ⌃⌘Space, which is the macOS system picker, not a Notion one. New pages use ⌘N, a shortcut that works only in the desktop app. That is one reason to stay in the desktop app for cleanup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with CSV imports"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failed imports come from a few habits. People export a spreadsheet with a title row above the headers. They leave a column without a header and wonder why its data is missing. They map a comma-filled text column to Select, which breaks the options. They also merge without checking that the headers match the property names."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Putting a title or notes row above the headers, so Notion reads the wrong row as the header.",
+        "Leaving a column without a header, then wondering why its data is missing.",
+        "Mapping a comma-filled column to Select instead of Text.",
+        "Running a merge without renaming headers to match the property names.",
+        "Importing the same file twice, which doubles every row."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last mistake costs the most time. A merge run adds rows, so a second run creates copies. Keep the CSV you used, and note which import created which rows. That makes a cleanup faster if something goes wrong."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the import finishes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the new database and read the first few rows. Then sort by the date column and read the last rows too. Check that names sit in the Title column and that numbers stayed numbers. Check any amount that had a dollar sign or comma. If something is off, delete the imported rows, fix the source file, and run the import again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then set the database up for daily use. Add the views you need, and share the page with the people who will edit it. The [database guide](/how-to/create-a-database-in-notion) and the [sharing guide](/how-to/share-a-page-in-notion) cover those steps. If you plan to reuse the same layout, save a [template](/how-to/create-a-template-in-notion), so future imports match the properties."
+    },
+    {
+      "type": "paragraph",
+      "text": "Notion 3.6, dated July 1, 2026, made no changes to import, menus, or databases. The steps in this guide should match the app you have. If a label looks different, read the dialog text and follow the same order."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I import a CSV into Notion from the Mac app or from the browser?",
+      "answer": "Notion's help center documents Settings > Import > CSV and typing /csv on a page. This guide follows the Mac desktop app. Menu labels can shift between versions, so read the dialog text as you go."
+    },
+    {
+      "question": "Does a CSV import update rows that already exist?",
+      "answer": "No. Imports add rows and never update existing ones. If you import the same file twice, you get duplicate rows, so check the database before you run a second import."
+    },
+    {
+      "question": "What is the file size limit for a CSV import in Notion?",
+      "answer": "Each CSV file can be 5 MB on the Free plan. Paid plans (Plus, Business, Enterprise) allow 50 MB per file. The 'up to 5 GB' figure on the pricing page covers file uploads in general, not CSV imports."
+    },
+    {
+      "question": "Why does my date column show the wrong day or month?",
+      "answer": "Notion imports dates as MM/DD/YYYY. If your spreadsheet uses DD/MM/YYYY, fix the format in the spreadsheet and export the file again before you import."
+    },
+    {
+      "question": "Can a CSV import create formulas, rollups, or relations?",
+      "answer": "A new CSV import cannot create formulas, rollups, or relations. You can map a column to an existing relation property, but only when importing into an existing database. Add formulas and rollups by hand afterward."
+    },
+    {
+      "question": "Which Mac download should I pick from notion.com/desktop?",
+      "answer": "Pick macOS Apple Silicon for Macs with an M-series chip, and macOS Intel x64 for Intel Macs. If you are not sure, check Apple menu > About This Mac before you download."
+    },
+    {
+      "question": "Did Notion 3.6 change CSV import?",
+      "answer": "No. Notion's July 1, 2026 release notes for version 3.6 list no changes to import, CSV, menus, or databases."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Import data into Notion",
+      "url": "https://www.notion.com/help/import-data-into-notion",
+      "publisher": "Notion Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion keyboard shortcuts",
+      "url": "https://www.notion.com/help/keyboard-shortcuts",
+      "publisher": "Notion Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion for desktop (Mac & Windows)",
+      "url": "https://www.notion.com/en-gb/help/notion-for-desktop",
+      "publisher": "Notion Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion Desktop download page",
+      "url": "https://www.notion.com/desktop",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion Release notes: July 1, 2026 (3.6)",
+      "url": "https://www.notion.com/releases/2026-07-01",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion Pricing",
+      "url": "https://www.notion.com/pricing",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Import a CSV file into Notion on Mac",
+  "appliesTo": "Notion desktop app for macOS, new and existing databases",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Notion account with edit access to the target workspace or page",
+    "A .csv file with a header row in the first line",
+    "A file under 5 MB on the Free plan, or under 50 MB on paid plans",
+    "Notion desktop app for Mac, or Notion in a browser, signed in to the same account"
+  ],
+  "steps": [
+    {
+      "name": "Open Notion and choose the workspace",
+      "text": "Open the Notion desktop app and sign in. Pick the workspace where the database should live. If you do not have the app yet, install it first from notion.com/desktop.",
+      "tip": "Command Search is on by default in the desktop app. You can turn it off in Settings > Preferences."
+    },
+    {
+      "name": "Open Settings from the sidebar",
+      "menuPath": [
+        "Sidebar",
+        "Settings"
+      ],
+      "text": "In the left sidebar, click Settings. This is the route Notion documents for CSV import."
+    },
+    {
+      "name": "Choose Import, then CSV",
+      "menuPath": [
+        "Settings",
+        "Import",
+        "CSV"
+      ],
+      "text": "Open Import in the settings panel, then choose CSV. Notion asks you to upload a file next.",
+      "tip": "On a page, typing /csv reaches the same import flow without opening Settings."
+    },
+    {
+      "name": "Upload your .csv file",
+      "text": "Pick the file in the Finder window that opens. Choose a file that ends in .csv. Make sure it is under the size limit for your plan before you upload.",
+      "tip": "Select the file in Finder and press ⌘I to see its size in Get Info."
+    },
+    {
+      "name": "Choose a new or existing database",
+      "text": "Select the option to create a new database for a first import. Choose an existing database only when you want to add rows to one you already have.",
+      "tip": "Use a new database for a first import. It avoids the duplicate rows a second merge can create."
+    },
+    {
+      "name": "Pick the import location",
+      "shortcut": "⌘P",
+      "text": "Choose the page that will hold the new database. Notion places the database inside that page. Press ⌘P to search for the page by name if the list is long."
+    },
+    {
+      "name": "Map each CSV column to a property",
+      "text": "Match every CSV column to the Notion property it should fill. Give the name column the Title property. Set amounts and comma-filled text to Text, and dates to Date.",
+      "tip": "Read each header before you map it. A column with no header cannot be imported."
+    },
+    {
+      "name": "Run the import",
+      "text": "Confirm the import in the dialog. Read the button label before you click, since it can change between versions. Keep the app open until Notion finishes.",
+      "tip": "Large files take longer. Do not start a second import until the first one ends."
+    },
+    {
+      "name": "Check the new database",
+      "shortcut": "⌘F",
+      "text": "Open the database and read the first rows. Press ⌘F to search for a value you expect to see. Confirm names are in the Title column, numbers stayed numbers, and dates read in the right order.",
+      "tip": "If something is wrong, fix the source file, delete the imported rows, and import again."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Quick search (Command Search)",
+      "keys": "⌘P or ⌘K"
+    },
+    {
+      "action": "Search inside the current page",
+      "keys": "⌘F"
+    },
+    {
+      "action": "Bold text",
+      "keys": "⌘B"
+    },
+    {
+      "action": "Bulleted list",
+      "keys": "⌘⌥5"
+    },
+    {
+      "action": "Numbered list",
+      "keys": "⌘⌥6"
+    },
+    {
+      "action": "Toggle list",
+      "keys": "⌘⌥7"
+    },
+    {
+      "action": "Emoji picker (macOS system)",
+      "keys": "⌃⌘Space"
+    },
+    {
+      "action": "New page (desktop app only)",
+      "keys": "⌘N"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The import rejects my file as too large",
+      "fix": "Check the size against your plan. Free allows 5 MB per file and paid plans allow 50 MB per file. Split the file at a natural break and copy the header row into each part."
+    },
+    {
+      "problem": "Accented letters or symbols look garbled after import",
+      "fix": "Re-export the CSV as UTF-8 from your spreadsheet app, then import the new file. Do not fix the characters by hand row by row."
+    },
+    {
+      "problem": "Dates land on the wrong day or month",
+      "fix": "Notion reads dates as MM/DD/YYYY. Fix the date format in the spreadsheet, export again, and import the corrected file."
+    },
+    {
+      "problem": "Merge with CSV puts data in the wrong columns or adds nothing",
+      "fix": "Headers must match property names exactly, including capital letters and spaces. Rename the CSV headers or the Notion properties so they agree, then run the merge again."
+    },
+    {
+      "problem": "The app says it is not supported on this Mac",
+      "fix": "You installed the wrong build for your chip. Uninstall it, check Apple menu > About This Mac, then install the matching download from notion.com/desktop."
+    },
+    {
+      "problem": "Every row shows up twice",
+      "fix": "Imports add rows and never update existing ones. Delete the duplicate rows, then run the import once with the corrected file."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Merge with CSV button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Merge with CSV, so you can find it once the ••• menu is open.",
+    "shell": "doc",
+    "pointsAt": "Merge with CSV",
+    "context": "Full-page database open in the Notion desktop app",
+    "output": "A circle and a label over the Merge with CSV option, drawn on your screen."
+  },
+  "type": "howto",
+  "slug": "import-a-csv-file-in-notion",
+  "app": "notion",
+  "appName": "Notion",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/import-a-csv-file-in-notion/how-to-import-csv-into-notion-on-1-2962ee.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a desk with a laptop, preparing a spreadsheet for how to import csv into notion on mac",
+      "caption": "A desk setup for cleaning up a spreadsheet before import.",
+      "keywords": [
+        "how to import csv into notion on mac",
+        "Notion",
+        "import a CSV file",
+        "Mac",
+        "person using laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "didab56",
+        "url": "https://pixabay.com/users/didab56-47974411/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/technology-spring-using-job-9303676/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/import-a-csv-file-in-notion/how-to-import-csv-into-notion-on-2-e48252.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Laptop screen showing rows and columns of a spreadsheet, the kind of CSV file you import into Notion",
+      "caption": "Rows and columns, ready to become a Notion database.",
+      "keywords": [
+        "how to import csv into notion on mac",
+        "Notion",
+        "import a CSV file",
+        "Mac",
+        "spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/import-a-csv-file-in-notion/how-to-import-csv-into-notion-on-3-3a0b3f.jpg",
+      "width": 1280,
+      "height": 776,
+      "alt": "Man working on a Mac laptop in an office, checking a Notion database after a CSV import",
+      "caption": "Checking the rows after the import finishes.",
+      "keywords": [
+        "how to import csv into notion on mac",
+        "Notion",
+        "import a CSV file",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-begin-start-up-career-3245868/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to import csv into notion on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "notion csv import mac": 1,
+      "import csv notion database": 1,
+      "notion merge with csv": 1,
+      "notion csv import limit": 1,
+      "notion csv date format": 1,
+      "import csv into existing notion database": 1,
+      "notion csv import not working": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

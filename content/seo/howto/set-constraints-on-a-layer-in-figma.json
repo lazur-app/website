@@ -1,0 +1,561 @@
+{
+  "title": "How to set constraints in Figma on Mac: pin layers to frame edges for resizing",
+  "metaTitle": "How to set constraints in Figma on Mac, step by step",
+  "description": "How to set constraints in Figma on Mac: select a layer in a frame, open Position, click Constraints, then pick Left, Right, Top or Bottom.",
+  "targetKeyword": "how to set constraints in figma on mac",
+  "secondaryKeywords": [
+    "figma constraints mac",
+    "figma constraints not showing",
+    "figma layer constraints",
+    "figma constraints left and right",
+    "figma auto layout constraints",
+    "figma constraints scale",
+    "figma constraints position"
+  ],
+  "intro": "To set constraints in Figma on Mac, select a layer inside a frame, open the Position section in the right sidebar, and click the Constraints icon. Then choose a horizontal and a vertical option from the dropdowns, or click the lines in the diagram, and check the blue dotted line on the canvas.",
+  "tldr": [
+    "Select a layer inside a frame, open Position in the right sidebar, then click the Constraints icon.",
+    "Pick one horizontal and one vertical option. The default pair is Top and Left.",
+    "Hold Shift to apply two options on one axis, such as Left and Right.",
+    "Top-level layers, children of auto layout frames and groups cannot take constraints directly.",
+    "Hold Command while you resize to ignore constraints for that one drag."
+  ],
+  "task": "Set constraints on a layer inside a frame",
+  "appliesTo": "Figma desktop app for macOS, Intel and Apple silicon Macs, any plan with edit access",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "Edit access to the Figma file. Constraints need edit access, not just view access.",
+    "A layer inside a frame. Top-level layers outside a frame cannot take constraints.",
+    "A Mac running macOS 12 Monterey or later, on Intel or Apple silicon.",
+    "The Figma desktop app, or the browser. The desktop app gives the same features as the browser.",
+    "The latest desktop app update, since Figma prompts you when you are not on the latest version."
+  ],
+  "stats": [
+    {
+      "value": "macOS 12",
+      "label": "Minimum macOS for the Figma desktop app, on Intel and Apple silicon Macs",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "sourceTitle": "Guide to the Figma desktop app (Figma Help Center)"
+    },
+    {
+      "value": "6 months",
+      "label": "Time after a release before Figma removes support for previous desktop versions",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "sourceTitle": "Guide to the Figma desktop app (Figma Help Center)"
+    },
+    {
+      "value": "Free",
+      "label": "Starter plan price, and constraints are available on all plans",
+      "sourceUrl": "https://www.figma.com/pricing/",
+      "sourceTitle": "Figma Pricing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Constraints tell Figma what a layer does when its parent frame changes size. Pin a close icon to the top right corner and it stays in that corner when the frame grows. Leave a layer unpinned and it can drift, stretch or sit in the wrong place. Setting constraints is quick once you know where the controls live. The rest of this page covers the steps, the options, the cases where the controls disappear, and the fixes that work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Edit access to the Figma file. Constraints need edit access, not just view access.",
+        "A layer inside a frame. Top-level layers outside a frame cannot take constraints.",
+        "A Mac running macOS 12 Monterey or later, on Intel or Apple silicon.",
+        "The Figma desktop app, or the browser. The desktop app gives the same features as the browser.",
+        "The latest desktop app update, since Figma prompts you when you are not on the latest version."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's desktop guide says the Mac app gives you the same features as the browser version. The extras are plugin and widget development and locally installed fonts. Constraints are not on that extras list, so they work the same way in both. The guide also says Figma removes support for previous versions six months after release. Keep the app current before you follow these steps."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: set constraints on a layer in Figma on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work through these steps on a practice frame before you change a real design. The Position section is easy to miss when the wrong layer is selected, so check the selection first. The steps follow the path in Figma's help article, with the Mac keyboard shortcuts where they exist."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The horizontal and vertical constraint options"
+    },
+    {
+      "type": "paragraph",
+      "text": "Each axis has its own set of options. Horizontal choices are Left, Right, Left and right, Center and Scale. Vertical choices are Top, Bottom, Top and bottom, Center and Scale. The default pair is Top and Left, so a new layer stays pinned to the top and left edges of its frame until you change it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option",
+        "What it does on resize",
+        "Where people often use it"
+      ],
+      "rows": [
+        [
+          "Left",
+          "Keeps its distance from the left edge",
+          "Labels and icons anchored to the left"
+        ],
+        [
+          "Right",
+          "Keeps its distance from the right edge",
+          "Close buttons and menu icons"
+        ],
+        [
+          "Left and right",
+          "Stretches with both edges",
+          "Text fields and header bars"
+        ],
+        [
+          "Center",
+          "Stays centered as the frame changes",
+          "Logos and hero images"
+        ],
+        [
+          "Scale",
+          "Changes size in proportion to the frame",
+          "Illustrations and shapes that should grow"
+        ]
+      ],
+      "caption": "Common constraint options and what they do on resize"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Left and right when a field should stretch with the frame. Use Center when a logo should stay in the middle. Use Scale when a shape should grow with the frame. Scale changes the size of the layer, not only its position, so check the result after each resize."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a close icon in the corner of a card"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a card frame holds a close icon. You want the icon to stay in the top right corner when the card gets wider. Select the icon, click the Constraints icon, and set the horizontal option to Right. Set the vertical option to Top. Now resize the card. The icon keeps its distance from the right edge and the top edge, so it stays in the corner. If you left the default Left, the icon would stay on the left side and leave the right side empty."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Select two constraints with Shift"
+    },
+    {
+      "type": "paragraph",
+      "text": "Shift lets you pick two options at once on the same axis. Hold Shift and click Left, then click Right, to pin both sides of a text field. The field then stretches as the frame changes width. Without Shift, the second choice replaces the first. Check the diagram after each change, because a small mis-click can leave one side pinned when you wanted two."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the result with a test resize"
+    },
+    {
+      "type": "paragraph",
+      "text": "The blue dotted line on the canvas shows the constraints on the selected layer. Read it before you resize anything, so you know which edges the layer follows. Then drag an edge or corner of the parent frame. Pinned sides keep their distance from the frame edge. Scaled sides change. If the result looks wrong, press Command Z to undo, then check the diagram again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the Constraints icon is missing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma shows the controls only when a layer can take them. Three cases block them. The layer sits on the top level of the canvas, outside any frame. The layer sits inside an auto layout frame. Or the selection is a group. Each case has a different fix, so identify the case before you move anything."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Top-level layer: drag it into a frame. Frames nested inside other frames can take constraints too.",
+        "Child of an auto layout frame: use Ignore auto layout on the child, or remove auto layout from the parent.",
+        "Group: set constraints on the layers inside the group instead of the group itself."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Auto layout and the Ignore auto layout option"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto layout sets the position of its child layers for you, so constraints do not apply to them. The option you want is now called Ignore auto layout. It used to be called absolute position. A community answer dated May 31, 2026 says the button sits to the right of the Position header when you select a child of an auto layout frame. That answer came from a Figma community member, not Figma staff. A June 25, 2026 reply adds that the button appears in Design, not Figma Motion."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ignore constraints for one resize with Command"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you want to resize a frame without the layers inside it moving. Hold Command while you drag. Figma ignores the layer's constraints for that one drag. Release Command and the constraints apply again. The effect is temporary, so it helps when you want to test a layout. It is not a permanent rule. For that, change the constraint itself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Constraints on groups and nested frames"
+    },
+    {
+      "type": "paragraph",
+      "text": "A group cannot take constraints on its own. When you apply a constraint to a group, Figma applies it to the layers inside the group. That is why the controls can seem to do nothing when the group is selected. A third-party guide says Option Command G wraps a selection in a frame, and a frame can take constraints. A frame nested inside another frame can take constraints of its own, so set them on the inner frame directly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Plans, access and what they change"
+    },
+    {
+      "type": "paragraph",
+      "text": "Constraints are available on all plans. Figma's pricing page lists Starter as Free, Professional at $16/mo per full seat, Organization at $55/mo, and Enterprise at $90/mo, billed annually for Organization and Enterprise. The plan does not change how constraints work. Edit access does. If you can only view a file, ask the file owner to give you edit access."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost people time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Setting constraints on the wrong layer. Check the selection before you open the Position section.",
+        "Keeping the default Top and Left on every layer. Right side items then stay on the left when the frame widens.",
+        "Forgetting Command during a drag. A resize that ignores constraints looks like a bug, but a key is held down.",
+        "Using Scale without a test resize. Scaled layers change size, so test them at the widths you need.",
+        "Looking for constraints in a view-only file. You need edit access before you can change them."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once constraints feel natural, the next layout step is auto layout. Auto layout spaces and sizes children for you, so you set rules on the frame instead of on each layer. Read [How to add auto layout in Figma on Mac](/how-to/add-auto-layout-in-figma) to see the trade-off. If the frame itself is the problem, [How to create a frame in Figma on Mac](/how-to/create-a-frame-in-figma) covers the Frame tool and its presets. To move between layers without the mouse, [How to select layers with keyboard in Figma on Mac](/how-to/select-layers-with-the-keyboard-in-figma) shows the Enter and Tab steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A note on app versions and sources"
+    },
+    {
+      "type": "paragraph",
+      "text": "This page could not confirm which Mac app version these steps match. Figma's constraints help article shows no app version and no last updated date. Figma's release notes archive, checked on 2026-11-07, lists no constraints or Position panel entries. If your screen differs, update the desktop app and compare with the Figma help center before you assume the steps are wrong."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I set constraints in Figma on Mac on a layer outside a frame?",
+      "answer": "No. Constraints work on layers inside a frame. A layer on the top level of the canvas has no parent to pin to, so move it into a frame first."
+    },
+    {
+      "question": "What are the default constraints in Figma?",
+      "answer": "Figma sets Top and Left by default. A new layer keeps its distance from the top and left edges of its frame until you change the settings."
+    },
+    {
+      "question": "Do constraints work on the free Figma plan?",
+      "answer": "Figma's constraints help article says constraints are available on all plans, and Figma's pricing page lists Starter as Free. Check the pricing page for current plan details before you upgrade."
+    },
+    {
+      "question": "Can I set constraints on a group in Figma?",
+      "answer": "Not directly. Figma applies a constraint on a group to the layers inside it. Set them on the layers, or frame the group with Option Command G if you need one setting for several layers."
+    },
+    {
+      "question": "Why does my layer not move when I resize the frame?",
+      "answer": "Check whether you held Command during the resize, since Command ignores constraints for that drag. Then check the blue dotted line to confirm the layer is pinned to the edges you expect."
+    },
+    {
+      "question": "Where did constraints go in newer Figma versions?",
+      "answer": "A third-party guide says that in UI3 the constraints live in the Position section of the right sidebar. The layer must sit inside a parent frame that does not use auto layout."
+    },
+    {
+      "question": "Is the Mac app different from the browser for constraints?",
+      "answer": "Figma's desktop guide says the desktop app gives the same features as the browser version. The desktop-only items it lists do not include constraints."
+    },
+    {
+      "question": "Can Lazur set the constraints for me?",
+      "answer": "No. Lazur points at the Constraints icon, explains each option and can walk you through each click. It does not click buttons or change your file for you."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apply constraints to define how layers resize (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360039957734-Apply-constraints-to-define-how-layers-resize",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts in Figma (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360040328653-Keyboard-shortcuts-in-Figma",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to the Figma desktop app (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Constraints Not Showing? Where They Went in UI3",
+      "url": "https://figmaplugins.co/guides/figma-constraints-not-showing/",
+      "publisher": "figmaplugins.co (third party)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Absolute Position: Figma Community forum",
+      "url": "https://forum.figma.com/ask-the-community-7/absolute-position-54418",
+      "publisher": "Figma Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma product news and release notes (archive)",
+      "url": "https://www.figma.com/release-notes/archive/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Pricing",
+      "url": "https://www.figma.com/pricing/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "steps": [
+    {
+      "name": "Open the file with edit access",
+      "text": "Open the Figma file in the desktop app on your Mac. You need edit access to change constraints. If you can only view the file, ask the file owner for edit access before you start. The rest of these steps assume you can edit the file.",
+      "tip": "Ask the file owner to give you edit access, then reopen the file."
+    },
+    {
+      "name": "Select the layer inside its frame",
+      "text": "Click the layer on the canvas. It must sit inside a frame, because a layer on the top level of the canvas has no parent frame to pin to. If you select a group, the controls apply to the layers inside it, so click the layer itself.",
+      "tip": "If you are not sure which frame holds the layer, check the layers list on the left."
+    },
+    {
+      "name": "Open the Position section",
+      "menuPath": [
+        "Right sidebar",
+        "Position"
+      ],
+      "text": "In the right sidebar, find the Position section. It sits in the Design panel with the layer's position values. Open it if it is collapsed.",
+      "tip": "If Position is missing, make sure a layer is selected and not the empty canvas."
+    },
+    {
+      "name": "Click the Constraints icon",
+      "menuPath": [
+        "Right sidebar",
+        "Position",
+        "Constraints icon"
+      ],
+      "text": "Click the Constraints icon in the Position section. A small diagram opens. It shows the parent frame, the layer, and the lines you click to pin each side.",
+      "tip": "If you cannot spot the icon, ask Lazur to point at it."
+    },
+    {
+      "name": "Choose a horizontal constraint",
+      "text": "Open the horizontal dropdown and pick Left, Right, Left and right, Center or Scale. You can also click the left or right line in the diagram. The default is Top and Left.",
+      "tip": "Left and right is the option for a field that should stretch with its frame."
+    },
+    {
+      "name": "Choose a vertical constraint",
+      "text": "Open the vertical dropdown and pick Top, Bottom, Top and bottom, Center or Scale. You can also click the top or bottom line in the diagram.",
+      "tip": "Top and bottom pins both edges, so the layer stretches vertically."
+    },
+    {
+      "name": "Add a second side with Shift",
+      "shortcut": "Shift",
+      "text": "Hold Shift and select a second option to apply two constraints at once, such as Left and Right. Without Shift, the new choice replaces the old one. Check the diagram after each change."
+    },
+    {
+      "name": "Read the blue dotted line",
+      "text": "Look at the canvas. A blue dotted line shows the current constraints on the selected layer. Read it before you resize anything, so you know which edges the layer follows."
+    },
+    {
+      "name": "Test with a resize",
+      "shortcut": "Command Z to undo",
+      "text": "Drag an edge or corner of the parent frame to resize it. Pinned sides keep their distance from the frame edge, and scaled sides change. If the layer moves in a way you did not expect, press Command Z to undo, then check the diagram again."
+    },
+    {
+      "name": "Ignore constraints for one drag",
+      "shortcut": "Hold Command while resizing",
+      "text": "Hold Command while you resize to ignore the layer's constraints for that drag. Let go of Command and the constraints apply again. Use this to test a layout, not to replace the right settings.",
+      "tip": "If a layer seems stuck, check whether Command is still held down."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Select more than one constraint on an axis",
+      "keys": "Shift"
+    },
+    {
+      "action": "Ignore constraints during one resize",
+      "keys": "⌘ while resizing"
+    },
+    {
+      "action": "Undo a constraint change or resize",
+      "keys": "⌘Z"
+    },
+    {
+      "action": "Show the keyboard shortcuts panel",
+      "keys": "⌃⇧?"
+    },
+    {
+      "action": "Frame a group, third-party guide (check it in your app)",
+      "keys": "⌥⌘G"
+    },
+    {
+      "action": "Remove auto layout from parent, third-party guide (unverified)",
+      "keys": "⇧⌥A"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Constraints icon is missing from the Position section",
+      "fix": "Select a layer inside a frame. Top-level layers cannot take constraints, so drag the layer into a frame first. Frames nested inside other frames can take constraints too."
+    },
+    {
+      "problem": "Constraints are missing on a child of an auto layout frame",
+      "fix": "Select the child and look for Ignore auto layout, the option that used to be called absolute position. A community answer dated May 31, 2026 places it to the right of the Position header. Alternatively, remove auto layout from the parent. A third-party guide says Option Shift A does that, but Figma's shortcut list does not include it, so test it on a copy first."
+    },
+    {
+      "problem": "Constraints do not apply to a group",
+      "fix": "Groups cannot take constraints directly. Select the layers inside the group and set the constraints there. To give one constraint to several layers, frame them with Option Command G."
+    },
+    {
+      "problem": "The layer does not follow the frame when I resize it",
+      "fix": "Check whether Command is held. Holding Command while resizing ignores constraints. Release it, then resize again."
+    },
+    {
+      "problem": "Controls are greyed out or cannot be changed",
+      "fix": "You need edit access to the file. Ask the file owner to give you edit access, then reopen the file."
+    },
+    {
+      "problem": "The menus look different from these steps",
+      "fix": "Figma's constraints help article does not list an app version or a last updated date. Update the desktop app, since Figma prompts you when you are not on the latest version, then compare with the Figma help center."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Constraints icon?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Constraints icon on your screen, so you can find it in the Position section.",
+    "shell": "design",
+    "pointsAt": "Constraints icon",
+    "output": "Lazur answers out loud and points at the icon. It does not click for you. Ask it to walk you through the horizontal and vertical options next.",
+    "context": "Figma desktop on Mac, with a layer selected inside a frame."
+  },
+  "type": "howto",
+  "slug": "set-constraints-on-a-layer-in-figma",
+  "app": "figma",
+  "appName": "Figma",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/set-constraints-on-a-layer-in-figma/how-to-set-constraints-in-figma-on-1-b30f69.jpg",
+      "width": 1280,
+      "height": 1209,
+      "alt": "Designer at a desk working on a Mac laptop, setting constraints in Figma on Mac",
+      "caption": "Test constraints on a practice frame before you change a real layout.",
+      "keywords": [
+        "how to set constraints in figma on mac",
+        "Figma",
+        "set constraints on a layer",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-man-alone-apple-macbook-2592786/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/set-constraints-on-a-layer-in-figma/how-to-set-constraints-in-figma-on-2-790c82.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a Mac laptop with a design layout open on the screen",
+      "caption": "Constraints matter most when a layout has to resize.",
+      "keywords": [
+        "how to set constraints in figma on mac",
+        "Figma",
+        "set constraints on a layer",
+        "Mac",
+        "mac laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tama66",
+        "url": "https://pixabay.com/users/Tama66-1032521/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/pixabay-imac-apple-screen-monitor-2813940/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/set-constraints-on-a-layer-in-figma/how-to-set-constraints-in-figma-on-3-2fc1d9.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Two designers reviewing a screen layout together in front of a Mac",
+      "caption": "Check how each layer behaves at several frame sizes.",
+      "keywords": [
+        "how to set constraints in figma on mac",
+        "Figma",
+        "set constraints on a layer",
+        "Mac",
+        "ui design team",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Henning_W",
+        "url": "https://pixabay.com/users/Henning_W-327613/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/team-group-people-motivation-386673/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to set constraints in figma on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "figma constraints mac": 1,
+      "figma constraints not showing": 1,
+      "figma layer constraints": 1,
+      "figma constraints left and right": 1,
+      "figma auto layout constraints": 1,
+      "figma constraints scale": 1,
+      "figma constraints position": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

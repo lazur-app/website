@@ -1,6 +1,6 @@
-Content 2026-11-06: 290 written, 4 refused, 0 failed
+Content 2026-11-06: 320 written, 4 refused, 0 failed
 
-- howto: 110/120
+- howto: 120/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -298,3 +298,33 @@ howto:pause-notifications-in-slack /how-to/pause-notifications-in-slack
 howto:show-the-keyboard-shortcuts-list-in-slack /how-to/show-the-keyboard-shortcuts-list-in-slack
 howto:mute-a-channel-in-slack /how-to/mute-a-channel-in-slack
 howto:jump-to-a-conversation-in-slack /how-to/jump-to-a-conversation-in-slack
+howto:start-a-huddle-in-slack /how-to/start-a-huddle-in-slack
+howto:create-a-channel-in-slack /how-to/create-a-channel-in-slack
+howto:save-a-message-for-later-in-slack /how-to/save-a-message-for-later-in-slack
+howto:schedule-a-message-in-slack /how-to/schedule-a-message-in-slack
+howto:pin-a-message-in-slack /how-to/pin-a-message-in-slack
+howto:share-your-screen-in-a-huddle-in-slack /how-to/share-your-screen-in-a-huddle-in-slack
+howto:reply-in-a-thread-in-slack /how-to/reply-in-a-thread-in-slack
+howto:set-a-reminder-in-slack /how-to/set-a-reminder-in-slack
+howto:mark-a-message-as-unread-in-slack /how-to/mark-a-message-as-unread-in-slack
+howto:undo-send-in-gmail /how-to/undo-send-in-gmail
+refresh:blog:on-device-speech-to-text-mac /blog/on-device-speech-to-text-mac
+refresh:blog:is-dictation-faster-than-typing /blog/is-dictation-faster-than-typing
+refresh:blog:ai-dictation-for-developers /blog/ai-dictation-for-developers
+refresh:blog:what-is-voice-writing /blog/what-is-voice-writing
+refresh:blog:how-to-write-emails-by-voice /blog/how-to-write-emails-by-voice
+refresh:blog:why-teams-switching-from-wispr-flow-to-lazur /blog/why-teams-switching-from-wispr-flow-to-lazur
+refresh:blog:apple-dictation-vs-ai-dictation /blog/apple-dictation-vs-ai-dictation
+refresh:blog:aqua-voice-vs-lazur /blog/aqua-voice-vs-lazur
+refresh:blog:best-ai-dictation-apps-2026 /blog/best-ai-dictation-apps-2026
+refresh:blog:command-mode-voice-writing /blog/command-mode-voice-writing
+refresh:blog:macwhisper-vs-dictation-apps /blog/macwhisper-vs-dictation-apps
+refresh:blog:messy-speech-to-finished-writing /blog/messy-speech-to-finished-writing
+refresh:blog:typeless-vs-lazur /blog/typeless-vs-lazur
+refresh:blog:wispr-flow-vs-aqua-voice-vs-lazur /blog/wispr-flow-vs-aqua-voice-vs-lazur
+refresh:blog:voiceink-open-source-dictation /blog/voiceink-open-source-dictation
+refresh:blog:what-is-ambient-writing /blog/what-is-ambient-writing
+refresh:blog:how-to-dictate-on-mac /blog/how-to-dictate-on-mac
+refresh:blog:wispr-flow-alternatives /blog/wispr-flow-alternatives
+refresh:blog:a-day-with-lazur-slack-email-cursor /blog/a-day-with-lazur-slack-email-cursor
+refresh:blog:private-ai-assistants-on-mac /blog/private-ai-assistants-on-mac

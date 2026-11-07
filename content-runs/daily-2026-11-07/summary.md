@@ -1,6 +1,6 @@
-Content 2026-11-07: 259 written, 4 refused, 32 failed
+Content 2026-11-07: 316 written, 5 refused, 0 failed
 
-- howto: 79/120
+- howto: 120/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -267,3 +267,60 @@ howto:add-a-watermark-in-word /how-to/add-a-watermark-in-word
 howto:use-dictation-in-word /how-to/use-dictation-in-word
 howto:change-the-default-font-in-word /how-to/change-the-default-font-in-word
 howto:create-a-bibliography-in-word /how-to/create-a-bibliography-in-word
+howto:see-word-count-in-word /how-to/see-word-count-in-word
+howto:create-a-template-in-word /how-to/create-a-template-in-word
+howto:save-as-a-pdf-in-word /how-to/save-as-a-pdf-in-word
+howto:password-protect-a-document-in-word /how-to/password-protect-a-document-in-word
+howto:compare-two-documents-in-word /how-to/compare-two-documents-in-word
+howto:add-a-comment-in-word /how-to/add-a-comment-in-word
+howto:insert-an-equation-in-word /how-to/insert-an-equation-in-word
+howto:apply-heading-styles-in-word /how-to/apply-heading-styles-in-word
+howto:turn-off-autocorrect-in-word /how-to/turn-off-autocorrect-in-word
+howto:create-columns-in-word /how-to/create-columns-in-word
+howto:use-the-navigation-pane-in-word /how-to/use-the-navigation-pane-in-word
+howto:use-voice-typing-in-google-docs /how-to/use-voice-typing-in-google-docs
+howto:recover-an-unsaved-document-in-word /how-to/recover-an-unsaved-document-in-word
+howto:add-a-table-of-contents-in-google-docs /how-to/add-a-table-of-contents-in-google-docs
+howto:use-read-aloud-in-word /how-to/use-read-aloud-in-word
+howto:add-a-header-and-footer-in-google-docs /how-to/add-a-header-and-footer-in-google-docs
+howto:insert-a-footnote-in-google-docs /how-to/insert-a-footnote-in-google-docs
+howto:add-page-numbers-in-google-docs /how-to/add-page-numbers-in-google-docs
+howto:suggest-edits-in-google-docs /how-to/suggest-edits-in-google-docs
+howto:accept-or-reject-suggestions-in-google-docs /how-to/accept-or-reject-suggestions-in-google-docs
+howto:make-a-copy-of-a-document-in-google-docs /how-to/make-a-copy-of-a-document-in-google-docs
+howto:insert-a-smart-chip-in-google-docs /how-to/insert-a-smart-chip-in-google-docs
+howto:add-a-comment-in-google-docs /how-to/add-a-comment-in-google-docs
+howto:create-a-numbered-list-in-google-docs /how-to/create-a-numbered-list-in-google-docs
+howto:create-columns-in-google-docs /how-to/create-columns-in-google-docs
+howto:add-a-watermark-in-google-docs /how-to/add-a-watermark-in-google-docs
+howto:create-a-template-in-google-docs /how-to/create-a-template-in-google-docs
+howto:see-word-count-in-google-docs /how-to/see-word-count-in-google-docs
+howto:change-the-default-font-in-google-docs /how-to/change-the-default-font-in-google-docs
+howto:turn-on-offline-mode-in-google-docs /how-to/turn-on-offline-mode-in-google-docs
+howto:insert-a-drawing-in-google-docs /how-to/insert-a-drawing-in-google-docs
+howto:change-the-document-language-in-google-docs /how-to/change-the-document-language-in-google-docs
+howto:insert-a-checkbox-in-google-docs /how-to/insert-a-checkbox-in-google-docs
+howto:use-the-explore-tool-in-google-docs /how-to/use-the-explore-tool-in-google-docs
+howto:create-a-table-of-contents-in-pages /how-to/create-a-table-of-contents-in-pages
+howto:add-page-numbers-in-pages /how-to/add-page-numbers-in-pages
+howto:turn-on-track-changes-in-pages /how-to/turn-on-track-changes-in-pages
+howto:save-as-a-word-file-in-pages /how-to/save-as-a-word-file-in-pages
+howto:password-protect-a-document-in-pages /how-to/password-protect-a-document-in-pages
+howto:create-a-template-in-pages /how-to/create-a-template-in-pages
+howto:add-a-comment-in-pages /how-to/add-a-comment-in-pages
+refresh:blog:from-messy-thoughts-to-finished-work /blog/from-messy-thoughts-to-finished-work
+refresh:blog:ai-assistant-for-email-replies-and-follow-ups /blog/ai-assistant-for-email-replies-and-follow-ups
+refresh:blog:ai-assistant-for-developers-and-coding-tasks /blog/ai-assistant-for-developers-and-coding-tasks
+refresh:blog:best-personal-ai-assistants-for-mac /blog/best-personal-ai-assistants-for-mac
+refresh:blog:ai-assistant-for-slack-gmail-cursor-notion /blog/ai-assistant-for-slack-gmail-cursor-notion
+refresh:blog:ai-assistants-that-understand-your-screen /blog/ai-assistants-that-understand-your-screen
+refresh:blog:ai-chief-of-staff-for-founders /blog/ai-chief-of-staff-for-founders
+refresh:blog:what-is-a-context-aware-ai-work-assistant /blog/what-is-a-context-aware-ai-work-assistant
+refresh:blog:ai-study-buddy-for-students /blog/ai-study-buddy-for-students
+refresh:blog:best-ai-buddy-apps-for-mac-2026 /blog/best-ai-buddy-apps-for-mac-2026
+refresh:blog:learn-any-mac-app-without-tutorials /blog/learn-any-mac-app-without-tutorials
+refresh:blog:lazur-vs-heyclicky /blog/lazur-vs-heyclicky
+refresh:blog:stop-context-switching-ai-buddy /blog/stop-context-switching-ai-buddy
+refresh:blog:lazur-vs-muse-for-mac /blog/lazur-vs-muse-for-mac
+refresh:howto:make-a-pivot-table-in-excel /how-to/make-a-pivot-table-in-excel
+refresh:blog:what-is-an-ai-buddy /blog/what-is-an-ai-buddy

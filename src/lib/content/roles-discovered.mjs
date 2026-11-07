@@ -293,5 +293,294 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "BLS OOH (opened), computer support specialists group: 903,100 jobs in 2025, -3% for 2025-35; May 2025 median $62,890. BLS ties the decline to automated tools such as chatbots, a demand risk. bls.gov/ooh/computer-and-information-technology/computer-support-specialists.htm",
     "discoveredAt": "2026-11-06"
+  },
+  {
+    "slug": "technical-writers",
+    "name": "Technical writers",
+    "singular": "technical writer",
+    "apps": [
+      "word",
+      "google-docs",
+      "notion",
+      "chatgpt"
+    ],
+    "keywords": [
+      "ai assistant for technical writers",
+      "best tools for technical writers on mac"
+    ],
+    "why": "46,400 technical writers in 2025, median $90,390, +1% 2025-35; usually work in offices (bls.gov/ooh/media-and-communication/technical-writers.htm). Docs tool picks are my judgment, not sourced.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "freight-brokers",
+    "name": "Freight brokers",
+    "singular": "freight broker",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for freight brokers",
+      "freight broker load board software"
+    ],
+    "why": "BLS has no freight broker count. Proxy: 255,100 logisticians in 2025, median $82,320, +18% (bls.gov/ooh/business-and-financial/logisticians.htm). Email and spreadsheet use is my judgment, not sourced.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "insurance-claims-adjusters",
+    "name": "Insurance claims adjusters",
+    "singular": "insurance claims adjuster",
+    "apps": [
+      "outlook",
+      "excel",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for insurance claims adjusters",
+      "claims adjuster report writing tool"
+    ],
+    "why": "389,700 jobs in 2025, median $78,020, -6% 2025-35 (bls.gov/ooh/business-and-financial/claims-adjusters-appraisers-examiners-and-investigators.htm). Glassdoor 2026: 98% of adjuster reviews mentioning AI put it in cons (progressiverobot.com/2026/08/31/insurance-claims-adjusters-really-hate-ai/).",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "financial-analysts",
+    "name": "Financial analysts",
+    "singular": "financial analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "powerpoint",
+      "chatgpt"
+    ],
+    "keywords": [
+      "ai assistant for financial analysts",
+      "excel ai tool for financial analysts"
+    ],
+    "why": "443,100 jobs in 2025, median $103,570, +7% 2025-35 (bls.gov/ooh/business-and-financial/financial-analysts.htm). Excel and deck use is my judgment, not sourced.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "computer-systems-analysts",
+    "name": "Computer systems analysts",
+    "singular": "computer systems analyst",
+    "apps": [
+      "linear",
+      "excel",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "ai assistant for systems analysts",
+      "requirements documentation tool for business analysts"
+    ],
+    "why": "544,400 jobs in 2025, median $105,850, +8% 2025-35 (bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm). The page does not say where they work; app picks are my judgment.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "public-relations-specialists",
+    "name": "Public relations specialists",
+    "singular": "public relations specialist",
+    "apps": [
+      "gmail",
+      "powerpoint",
+      "google-docs",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for pr specialists",
+      "press release writing tool for pr teams"
+    ],
+    "why": "314,500 jobs in 2025, median $74,750, +2% 2025-35 (bls.gov/ooh/media-and-communication/public-relations-specialists.htm). Pitching by email and Slack is my judgment, not sourced.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "instructional-designers",
+    "name": "Instructional designers",
+    "singular": "instructional designer",
+    "apps": [
+      "powerpoint",
+      "google-docs",
+      "canva",
+      "zoom"
+    ],
+    "keywords": [
+      "ai assistant for instructional designers",
+      "course authoring tool for instructional designers"
+    ],
+    "why": "BLS has no instructional designer line. Closest: 248,700 instructional coordinators in 2025, median $77,440, +2% (bls.gov/ooh/education-training-and-library/instructional-coordinators.htm). Tool picks are my judgment.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "podcast-producers",
+    "name": "Podcast producers",
+    "singular": "podcast producer",
+    "apps": [
+      "zoom",
+      "chatgpt",
+      "gmail",
+      "google-docs"
+    ],
+    "keywords": [
+      "ai assistant for podcast producers",
+      "podcast editing tool for producers on mac"
+    ],
+    "why": "No BLS count. Castos 2026 survey (99 creators): Audacity top editing tool 'by a significant margin'; ~half 'maybe', just over 40% 'no' to built-in tools (castos.com/podcast-production-in-2026-what-99-creators-told-us-about-recording-editing-and-video/). Small sample.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "photographers",
+    "name": "Photographers",
+    "singular": "photographer",
+    "apps": [
+      "photoshop",
+      "canva",
+      "finder",
+      "gmail"
+    ],
+    "keywords": [
+      "ai assistant for photographers",
+      "photo editing tool for photographers on mac"
+    ],
+    "why": "145,000 jobs in 2025, median $44,660, -1% 2025-35; 67% self-employed (bls.gov/ooh/media-and-communication/photographers.htm). Lightroom, a common editor, is not in the app list.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "software-qa-testers",
+    "name": "Software QA testers",
+    "singular": "software QA tester",
+    "apps": [
+      "vs-code",
+      "linear",
+      "chrome",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for qa testers",
+      "test case writing tool for qa engineers"
+    ],
+    "why": "187,600 software QA analysts and testers in 2025, median $104,300, +6% 2025-35 (bls.gov/ooh/computer-and-information-technology/software-developers.htm). Tool picks are my judgment.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "architects",
+    "name": "Architects",
+    "singular": "architect",
+    "apps": [
+      "photoshop",
+      "powerpoint",
+      "excel",
+      "gmail"
+    ],
+    "keywords": [
+      "ai assistant for architects",
+      "presentation tool for architecture firms"
+    ],
+    "why": "124,600 jobs in 2025, median $99,280, +4% 2025-35 (bls.gov/ooh/architecture-and-engineering/architects.htm). Revit and AutoCAD, their core tools, are not in the app list, so picks cover admin and presentations only.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "mortgage-loan-officers",
+    "name": "Mortgage loan officers",
+    "singular": "mortgage loan officer",
+    "apps": [
+      "excel",
+      "gmail",
+      "outlook",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for loan officers",
+      "crm for mortgage loan officers"
+    ],
+    "why": "283,000 jobs in 2025, median $76,690, +1% 2025-35 (bls.gov/ooh/business-and-financial/loan-officers.htm). Search results named Encompass, Velocify and Jungo; I did not open those pages or confirm Mac support.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "nonprofit-fundraisers",
+    "name": "Nonprofit fundraisers",
+    "singular": "nonprofit fundraiser",
+    "apps": [
+      "gmail",
+      "excel",
+      "google-docs",
+      "zoom"
+    ],
+    "keywords": [
+      "ai assistant for nonprofit fundraisers",
+      "donor research tool for fundraisers"
+    ],
+    "why": "140,900 fundraisers in 2025, median $72,550, +6%; they 'work primarily for nonprofit organizations' (bls.gov/ooh/business-and-financial/fundraisers.htm). Fundraising managers: 48,800 (bls.gov/ooh/management/public-relations-managers.htm).",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "account-executives",
+    "name": "Account executives",
+    "singular": "account executive",
+    "apps": [
+      "gmail",
+      "slack",
+      "zoom",
+      "google-sheets"
+    ],
+    "keywords": [
+      "ai assistant for account executives",
+      "meeting prep tool for account executives"
+    ],
+    "why": "No BLS account executive line. Proxy: 1,571,400 wholesale and manufacturing sales reps in 2025, median $76,460, 0% growth (bls.gov/ooh/sales/wholesale-and-manufacturing-sales-representatives.htm). Proxy is imperfect.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "facilities-managers",
+    "name": "Facilities managers",
+    "singular": "facilities manager",
+    "apps": [
+      "excel",
+      "outlook",
+      "word",
+      "gmail"
+    ],
+    "keywords": [
+      "ai assistant for facilities managers",
+      "work order tracking for facilities managers"
+    ],
+    "why": "165,900 facilities managers in 2025, median $106,660; combined admin services and facilities group +5% (bls.gov/ooh/management/administrative-services-managers.htm). Other sources give lower counts; I did not verify them.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "hotel-revenue-managers",
+    "name": "Hotel revenue managers",
+    "singular": "hotel revenue manager",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for hotel revenue managers",
+      "forecasting tool for hotel revenue managers"
+    ],
+    "why": "No BLS revenue manager line. Proxy: 54,800 lodging managers in 2025, median $69,250, +4% (bls.gov/ooh/management/lodging-managers.htm). Forecasting and Excel use come from unopened search results, so unverified.",
+    "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "supply-chain-planners",
+    "name": "Supply chain planners",
+    "singular": "supply chain planner",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for supply chain planners",
+      "demand planning spreadsheet for supply chain planners"
+    ],
+    "why": "255,100 logisticians in 2025, median $82,320, +18% 2025-35, the fastest growth in this list (bls.gov/ooh/business-and-financial/logisticians.htm). Planning tool picks are my judgment, not sourced.",
+    "discoveredAt": "2026-11-07"
   }
 ];

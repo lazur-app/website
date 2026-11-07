@@ -1,0 +1,651 @@
+{
+  "title": "Excel for facilities managers on Mac: PM schedules, work orders and costs in 2026",
+  "metaTitle": "Excel for Facilities Managers on Mac: Schedules and Work Orders",
+  "description": "Excel for facilities managers on Mac: build PM schedules, work-order logs and cost trackers, with the Mac limits and voice help from Lazur.",
+  "targetKeyword": "excel for facilities managers on mac",
+  "secondaryKeywords": [
+    "excel for facilities managers",
+    "excel maintenance schedule template mac",
+    "excel work order tracker mac",
+    "pm schedule in excel",
+    "excel asset register mac",
+    "excel pivot table on mac",
+    "excel slow on mac large file"
+  ],
+  "intro": "Excel for Mac handles the core facilities jobs: PM schedules, asset registers, work-order logs and cost tracking. You can start with the Microsoft 365 app you already have, and you need no extra software. Mac builds have gaps, though, and those gaps change how you should set up each sheet. This page covers the setup, the Mac-specific limits, and where Lazur helps while you work.",
+  "tldr": [
+    "Keep one Table per job: PM schedule, asset register, work-order log and cost tracker.",
+    "Use EDATE for next-due dates and conditional formatting with TODAY so overdue tasks flag themselves.",
+    "Power Pivot is not available on Excel for Mac, and Power Query cannot be authored in its editor on Mac.",
+    "Ask Lazur where a control is, what a formula does, or to walk you through a fix while you keep your hands on the mouse."
+  ],
+  "stats": [
+    {
+      "value": "73%",
+      "label": "of 2023 CMM survey respondents used spreadsheets and paper checklists, the most popular tools",
+      "sourceUrl": "https://cmmonline.com/articles/2023-cmm-in-house-facility-management-benchmarking-survey-report",
+      "sourceTitle": "2023 CMM In-House/Facility Management Benchmarking Survey Report"
+    },
+    {
+      "value": "46%",
+      "label": "of the same survey's respondents said they use quality audit or inspection software",
+      "sourceUrl": "https://cmmonline.com/articles/2023-cmm-in-house-facility-management-benchmarking-survey-report",
+      "sourceTitle": "2023 CMM In-House/Facility Management Benchmarking Survey Report"
+    },
+    {
+      "value": "5 to 10 hours a week",
+      "label": "of coordinator time for an Excel PM schedule, per one CMMS vendor's page, which cites no source",
+      "sourceUrl": "https://oxmaint.com/industries/facility-management/building-preventive-maintenance-schedule-template",
+      "sourceTitle": "Building Preventive Maintenance Schedule Template by Oxmaint"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What facilities managers keep in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most facilities teams do not start with a system. They start with a spreadsheet that someone built years ago and nobody wants to rebuild. On a Mac, that file usually covers planned maintenance, a list of assets, a log of work orders, and a running cost total. Each one is a different job, and each one breaks in a different way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Free templates shape most of these files. Maintenance software vendors publish templates for PM schedules and work orders, and those templates set the columns you end up copying. Read the columns before you copy them. A template built for a large technician team may not fit one building with a contractor who sends invoices by email."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "PM schedule: every recurring task, its frequency, the last date it was done and the next date due.",
+        "Asset register: each piece of equipment with an ID, location, make, model, install date and warranty end.",
+        "Work-order log: each request, who raised it, who owns it, its status and when it closed.",
+        "Cost tracker: invoices, budgets and spend by building, asset or vendor, usually pulled from a monthly export."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep these as separate tabs or separate files. Mixing them on one sheet makes filters and pivot tables unreliable. A filter that hides a work order can also hide the cost that belongs to it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Why keep using spreadsheets when software exists? The 2023 CMM in-house facility management benchmarking survey gives one answer. Spreadsheets and paper checklists together were still the most popular tools, used by 73% of respondents. The same survey says 46% use quality audit or inspection software. Optisolve sponsored the survey, and the article does not state the sample size. Read it as a signal, not a census."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a preventive maintenance schedule that holds up"
+    },
+    {
+      "type": "paragraph",
+      "text": "A PM schedule works when every row is one task on one asset, and every due date comes from a formula. Start by making the data a Table. Select your data, press ⌘ T, and confirm that the header row is ticked. Tables grow when you add rows, so your formulas follow the new data without manual fill-down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use these columns as a starting point: Asset ID, Asset name, Location, Task, Frequency in months, Last done, Next due, Owner and Status. Store the frequency as a plain number of months. That keeps the next-due formula short and easy to read later."
+    },
+    {
+      "type": "paragraph",
+      "text": "In the Next due column, enter =IF(F2=\"\",\"\",EDATE(F2,E2)). Here F2 holds Last done and E2 holds Frequency in months. EDATE adds that many months to a date. If the target month is shorter, EDATE returns its last valid day, which is what you want for monthly and quarterly checks."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name the table first",
+      "text": "Microsoft's October 2026 What's New post says naming a table at creation is now available in Excel for Windows and Excel for Mac. Pick a clear name such as tblPMSchedule before you add formulas. Structured references read more clearly than cell ranges."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for blank Last done cells. Without the IF wrapper, a blank date can return a date far in the past. That looks like a task that has been overdue for years. The wrapper shows a blank next-due cell until the task has been done once, which is the honest answer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Flag overdue tasks with conditional formatting and TODAY"
+    },
+    {
+      "type": "paragraph",
+      "text": "Overdue tasks should announce themselves. Select the Next due column, then go to Home > Conditional Formatting > New Rule. Choose Use a formula to determine which cells to format. Enter =AND($G2<>\"\",$G2<TODAY()) and pick a fill color. Excel applies the rule to every row in the selection."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "TODAY() recalculates when the file opens and when cells change. A file left open for days may show stale flags until something recalculates. If the colors look wrong, close the file and reopen it before you trust the list. A flag that looks correct but is stale is worse than no flag at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel will flag the row, but it will not send an alert. A flag only helps if someone opens the file. Set a fixed weekly review, and put that review in your calendar."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track work orders without losing track of who owns what"
+    },
+    {
+      "type": "paragraph",
+      "text": "A work-order log is a list of events that people update. This is where Excel struggles most. The Status column needs a fixed list of choices, not free typing. Otherwise you get Open, open, OPEN and Opn in one column, and your filters miss half of them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use data validation for the Status column. Select the column, then go to Data > Data Validation > Data Validation. Under Allow, choose List. In Source, type Open, In progress, Waiting on parts, Closed, with commas between the options. People then pick a status from a dropdown instead of retyping it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Know the limits before you promise a team a shared log. A CMMS vendor's template page says Excel work orders leave field staff unable to access or update them. It also says multiple editors create conflicting versions, and nobody is alerted when a task is assigned, overdue or completed. Those are a vendor's words, not a study, but they describe the gaps you will hit."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Store the file in OneDrive or SharePoint so people co-author it instead of emailing copies. Co-authoring solves the copy problem. It does not add alerts. You still need a routine, or one person who checks the log every morning."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lookups and cost tracking that stay accurate"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cost tracking usually means matching invoices to assets. A lookup function does that job. XLOOKUP is the newer choice in current Microsoft 365 builds, and VLOOKUP still works. Pick one function and use it the same way across the whole file, so a colleague can read it in a minute."
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common error is #N/A. It usually means the lookup value does not match exactly. Stray spaces are the usual cause. A vendor code with a trailing space, such as HVAC-North, will not match HVAC-North in your register. For a full walkthrough of that error, see [Excel VLOOKUP #N/A error how to fix on Mac](/for/developers/problems/excel-vlookup-na-error-fix-steps)."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the column of vendor codes, then go to Home > Find & Select > Replace.",
+        "In Find what, type a single space. Leave Replace with empty, then choose Replace All.",
+        "Run TRIM on the codes in a helper column, then paste the values back over the original column.",
+        "Recount the matches. Any #N/A left is a code that does not exist in your asset register."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Copilot clean data skill checks for extra spaces, inconsistent text, inconsistent dates, duplicates and values stored as the wrong data type. Microsoft says it is rolling out to general availability on all platforms. Check whether it appears in your build before you rely on it for a cleanup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables on Mac: what works and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables are the fastest way to answer a question like how much did we spend on HVAC, by building. Build one from a clean Table. Select a cell inside the table, then go to Insert > PivotTable. Drag Building to Rows, Asset class to Columns and Amount to Values."
+    },
+    {
+      "type": "paragraph",
+      "text": "Know the Mac gaps first. Microsoft's support page says Power Pivot is not currently available on Excel for Mac. A third-party Mac comparison says pivot tables built from the Data Model cannot be filtered on a Mac, and dynamic PivotCharts are Windows-only. Test those claims on your own build before you plan a report around them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query has a gap too. Microsoft says shaping data in Power Query is generally available on Excel for Mac for Microsoft 365 subscribers on version 16.69 or later. Authoring queries in the Power Query Editor is not available on Mac. VBA can author Power Query queries, which is a route for IT staff rather than most facilities managers."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a step-by-step pivot build, see [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). If a pivot does not pick up new rows, see [Excel pivot table not refreshing new rows on Mac](/for/developers/problems/excel-pivot-table-not-refreshing-new-rows)."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Excel gets slow on a Mac, and what to do about it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Slow files usually come from how the file is built, not from size alone. A Microsoft Q&A thread describes Excel for Mac 16.70 on a 2018 MacBook Pro slowing and crashing on workbooks of 1 to 15 MB. Those files used lookups, conditional formatting and cross-workbook references. An MVP who looked into it said the problem was not running low on memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "That thread is one user's report, not a survey. Still, the pattern matches common facilities files. An asset register that looks up data in a second workbook, with conditional formatting on every row, makes Excel work hard. Each recalculation touches both files."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the cheap fixes. Move lookups into the same workbook. Replace links to other files with a values tab that you refresh on a schedule. Limit conditional formatting to the range you use, not whole columns."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Excel > About Excel and note the version. Microsoft's release notes list 16.114.3 as the current Mac build.",
+        "Delete old copies of the file, and keep one current version in OneDrive or SharePoint.",
+        "Save the cleaned file as a new name, then compare how fast it opens and recalculates."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Save a copy first",
+      "text": "Breaking a link turns a formula into a fixed value, and you cannot restore the formula afterward. Save a dated copy before you delete sheets or break links."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that quietly corrupt facilities spreadsheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Panko's 2016 abstract, What We Don't Know About Spreadsheet Errors Today, gives a useful frame. It says errors are \"rare on a per-cell basis.\" At the program level, though, \"at least one incorrect bottom-line value is very likely to be present.\" Facilities files have many cells and many hands, so plan for that."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates typed as text. Sorting puts them in the wrong order, and TODAY comparisons fail without warning.",
+        "Merged cells inside the data. Filters and pivot tables skip the merged rows.",
+        "Formulas that stop at a row. A new asset gets no next-due date until someone fills the formula down by hand.",
+        "Duplicate asset IDs made by copying a row. Lookups return the first match and hide the second.",
+        "Overwritten formulas. Someone types a number over a total, and nothing warns them.",
+        "Filtered rows left hidden. The footer total ignores them, and nobody notices until the budget meeting."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Check each one with a quick pass. Select a date column and look at the status bar. If it shows a count but no sum, the column holds text rather than real dates. Fix the text first, then run the overdue flags again."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Mac setup fits each facilities sheet"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Sheet",
+        "Best Excel setup on Mac",
+        "Limit to plan for"
+      ],
+      "rows": [
+        [
+          "PM schedule",
+          "Table with EDATE next-due dates and an overdue rule",
+          "No reminders, so someone must review the flags"
+        ],
+        [
+          "Asset register",
+          "One row per asset, with a dropdown for status and location",
+          "Copied rows create duplicate IDs"
+        ],
+        [
+          "Work-order log",
+          "Shared file in OneDrive or SharePoint with a status dropdown",
+          "Vendors say field staff cannot easily update it"
+        ],
+        [
+          "Cost tracker",
+          "Lookups from a vendor code list, with TRIM on the codes",
+          "#N/A errors from stray spaces"
+        ],
+        [
+          "Summary pivot",
+          "PivotTable built from the clean log",
+          "No Power Pivot, and Data Model pivots cannot be filtered on Mac"
+        ]
+      ],
+      "caption": "Setup options for the sheets most facilities teams keep, with limits from Microsoft and vendor notes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Asking Lazur for help while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sits beside Excel and answers from what is on your screen. Hold ⌥ ⌘, Option and Command together, and ask about anything you see. Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you. It does not edit your files or operate Excel. You make each change yourself. That keeps your data and your settings in your hands, which matters on a shared asset register."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. The text goes at the cursor in any app, so you can speak a note into a work-order cell and then fix it by hand. Snippets, a personal dictionary and clipboard slots help with repeat wording, such as standard vendor notes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps a memory of what you asked and did, and that memory stays on your Mac. It helps when you come back to a half-finished fix the next day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the privacy terms before you ask about live asset data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer them, and they are not stored. Content is never used to train AI models. Check your company's rules before you send tenant, vendor or staff details to any AI service, Lazur included."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur costs and how the trial works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial. No credit card is needed, and the trial starts when you first open the app. Use that window on a real PM schedule, not a practice file, so you learn what helps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pro costs $18 a month, or $15 a month billed annually, and includes 150 AI actions. Power costs $120 a month, or $96 a month billed annually, with 1,000 AI actions. Dictation is unlimited on both plans. Compare the details on the [pricing page](/pricing)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. If your team works on Windows, the menu paths on this page will not match your screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac updates that affect facilities files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft updates Excel for Mac often. The current build in the release notes is 16.114.3, released October 27, 2026, with the note Quality and performance improvements. Check your build before a template or a shared file starts behaving differently."
+    },
+    {
+      "type": "paragraph",
+      "text": "Naming tables at creation reached Excel for Mac in October 2026, according to Microsoft's What's New post. That helps when a team shares a file with several tables. Use the same naming pattern in every file, such as tblAssets and tblWorkOrders."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's release notes also list a PivotTable spill error behavior change in build 16.111, dated July 14, 2026. If your summary tabs use spilled formulas, test them after each update rather than assuming they still match."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine that keeps the file honest"
+    },
+    {
+      "type": "paragraph",
+      "text": "A spreadsheet only works if someone maintains it. A maintenance software vendor's Excel PM template page says upkeep typically takes 5 to 10 hours a week of a coordinator's time. That figure cites no source, so time your own routine for a week and compare."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Monday: filter the Next due column for the coming weeks and review every flag.",
+        "Tuesday: close or reschedule each overdue row, and note the reason in the Status column.",
+        "Friday: check the cost tracker against new invoices, then run the #N/A check on the lookups.",
+        "Monthly: save a dated copy in OneDrive or SharePoint, then move closed work orders to an archive tab."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the routine short. A routine you actually run beats a perfect file you stop opening. If a step takes too long, cut it, then check whether the file still answers the questions your manager asks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Excel stops being enough for facilities work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is a good place to start, and it can be a poor place to finish. Once several people must update work orders from site, or you need real alerts, a spreadsheet stops fitting the job. Maintenance software vendors make that case in their own template pages. Treat those claims as sales copy, and test any tool on your real data before you buy."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you compare tools, check each vendor's pricing page for current prices, since prices change. Keep your Excel files as the record you export from. A clean asset register and a dated history make any later import much easier."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Mac Excel setup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one sheet this week. Build the PM schedule with the next-due formula and the overdue flag, then add the work-order log with its dropdown. Ask Lazur to point at any control you cannot find, and keep the clicks in your own hands."
+    },
+    {
+      "type": "paragraph",
+      "text": "For related setups, see [Excel for property managers on Mac](/for/property-managers/excel) and [Excel for financial analysts on Mac](/for/financial-analysts/excel). For the Excel assistant itself, read the [Excel page](/apps/excel), then [download Lazur](/download) when you are ready to try it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a separate version of Excel for facilities managers on Mac?",
+      "answer": "No. Facilities teams use the same Excel for Mac app as everyone else, through Microsoft 365. The Mac gaps on this page apply to every role that uses the app, so plan your sheets around them."
+    },
+    {
+      "question": "Does Power Pivot work in Excel for Mac?",
+      "answer": "Not currently. Microsoft's support page says Power Pivot is not currently available on Excel for Mac. Build summaries with a PivotTable on a clean Table, and test any Data Model pivot before you rely on it."
+    },
+    {
+      "question": "Which Excel version is current on Mac?",
+      "answer": "Microsoft's release notes list Excel 16.114.3, build 26102720, released October 27, 2026. Open Excel > About Excel to see your version, then compare it with that entry."
+    },
+    {
+      "question": "How do I stop overdue PM tasks from being missed in Excel?",
+      "answer": "Use an EDATE next-due formula, then add a conditional formatting rule that compares the next-due date with TODAY. Excel flags the row but does not send an alert, so pair the sheet with a fixed weekly review."
+    },
+    {
+      "question": "Can Excel send reminders for work orders?",
+      "answer": "Not on its own. A CMMS vendor's template page says Excel work orders give no alert when a task is assigned, overdue or completed. Use calendar events or Apple Reminders for the due dates that matter most."
+    },
+    {
+      "question": "Will Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, and drafts or types text when you ask. It does not click buttons or edit files, so you make each change yourself."
+    },
+    {
+      "question": "Does Lazur work inside Excel?",
+      "answer": "No. Lazur is not a plugin for any app. It runs on your Mac beside Excel and answers from your screen while you hold the shortcut. It does not operate Excel for you."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Turn on Power Pivot",
+      "url": "https://support.microsoft.com/en-au/office/turn-on-power-pivot-fcafdc01-3020-4d34-a6ce-f89391799836",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "2023 CMM In-House/Facility Management Benchmarking Survey Report",
+      "url": "https://cmmonline.com/articles/2023-cmm-in-house-facility-management-benchmarking-survey-report",
+      "publisher": "CMM (Cleaning Management Magazine)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What We Don't Know About Spreadsheet Errors Today",
+      "url": "https://arxiv.org/abs/1602.02601",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Free Work Order Templates Excel Downloads by eWorkOrders",
+      "url": "https://eworkorders.com/cmms-industry-articles-eworkorders/free-work-order-templates-excel/",
+      "publisher": "eWorkOrders",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Building Preventive Maintenance Schedule Template by Oxmaint",
+      "url": "https://oxmaint.com/industries/facility-management/building-preventive-maintenance-schedule-template",
+      "publisher": "Oxmaint",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Slow operation of Excel for Mac (Microsoft 365 Subscription)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5222196/slow-operation-of-excel-for-mac-microsoft-365-subs",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel for Mac vs Windows: What's Different in 2026",
+      "url": "https://maccove.com/blog/excel-mac-vs-windows-differences",
+      "publisher": "Maccove",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Conditional Formatting in this sheet?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Conditional Formatting on the Home tab, then says where it sits.",
+    "shell": "sheet",
+    "context": "Overdue PM tasks in a maintenance schedule, Excel for Mac, Home tab",
+    "output": "Conditional Formatting is in Home > Conditional Formatting.",
+    "pointsAt": "Conditional Formatting"
+  },
+  "tasks": [
+    {
+      "say": "Where is Conditional Formatting in this sheet?",
+      "result": "Lazur circles Conditional Formatting on the Home tab and labels it on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making the Status column a dropdown.",
+      "result": "Lazur guides you through Data > Data Validation one click at a time, waiting for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Explain what this EDATE formula is doing.",
+      "result": "Lazur reads the formula aloud, explains the months argument, and says what the cell will show.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate a note for this work order.",
+      "result": "Hold fn and speak. The text lands at the cursor, and you fix any wrong words by hand.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a follow-up to the HVAC contractor about the late visit.",
+      "result": "Lazur drafts the message as text. You read it, change it and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research typical service intervals for a rooftop unit and summarize them.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to check the fire extinguisher log.",
+      "result": "Lazur adds the reminder to Apple Reminders for Friday.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Why is this lookup returning N/A?",
+      "result": "Lazur points at likely causes, such as stray spaces in the codes, and explains each fix.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "facilities-managers-excel",
+  "role": "facilities-managers",
+  "app": "excel",
+  "roleName": "Facilities managers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-excel/excel-for-facilities-managers-on-mac-1-fe5b67.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A facilities manager working in Excel on a Mac laptop at a desk",
+      "caption": "Planning maintenance at a desk",
+      "keywords": [
+        "excel for facilities managers on mac",
+        "Excel",
+        "Facilities managers",
+        "Mac",
+        "facilities manager laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "PublicDomainPictures",
+        "url": "https://pixabay.com/users/PublicDomainPictures-14/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-colleague-15498/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-excel/excel-for-facilities-managers-on-mac-2-0445fe.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "A maintenance technician checking a printed checklist inside a building",
+      "caption": "Checklists still sit beside the spreadsheet",
+      "keywords": [
+        "excel for facilities managers on mac",
+        "Excel",
+        "Facilities managers",
+        "Mac",
+        "building maintenance checklist",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "athree23",
+        "url": "https://pixabay.com/users/athree23-6195572/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/painter-to-paint-vietnam-hoian-4856002/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-excel/excel-for-facilities-managers-on-mac-3-234743.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "A spreadsheet of schedules and costs open on a computer screen",
+      "caption": "Schedules and costs in one file",
+      "keywords": [
+        "excel for facilities managers on mac",
+        "Excel",
+        "Facilities managers",
+        "Mac",
+        "office computer spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for facilities managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for facilities managers": 6,
+      "excel maintenance schedule template mac": 1,
+      "excel work order tracker mac": 1,
+      "pm schedule in excel": 1,
+      "excel asset register mac": 1,
+      "excel pivot table on mac": 1,
+      "excel slow on mac large file": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

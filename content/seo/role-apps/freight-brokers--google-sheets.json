@@ -1,0 +1,700 @@
+{
+  "title": "Google Sheets for freight brokers on mac: setup, offline use, and invoices in 2026",
+  "metaTitle": "Google Sheets for Freight Brokers on Mac: Setup and Offline Guide",
+  "description": "Google Sheets for freight brokers on Mac: set up offline use in Chrome, build load and invoice tabs, and check the cell limits that matter.",
+  "targetKeyword": "google sheets for freight brokers on mac",
+  "secondaryKeywords": [
+    "google sheets freight broker template",
+    "freight broker spreadsheet on mac",
+    "google sheets offline on mac",
+    "freight broker load tracking spreadsheet",
+    "google sheets invoice tracker for brokers",
+    "google sheets limits for large workbooks"
+  ],
+  "intro": "Google Sheets runs in a browser on a Mac, because Google does not make a native Mac app for it. Open it in Chrome, turn on the offline extension if you need the file without Wi-Fi, and build a few tabs for loads, carriers, customers, and invoices. That setup covers most freight broker work. The rest of this page covers the details, the limits, and where Lazur helps.",
+  "tldr": [
+    "Google Sheets has no native Mac app, so you work in a browser. Chrome or Edge is the choice for offline work.",
+    "Offline access needs the Google Docs Offline extension, and private browsing must stay off.",
+    "Build tabs for loads, carriers, customers, and invoices. Use one row per record and real dates.",
+    "Watch the cell limits, the 50,000 character cap on Excel conversion, and the Gemini plan rules before a big rollout.",
+    "Lazur points at cells, explains formulas, and drafts text by voice. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "Cells allowed in one spreadsheet, according to Google's Drive help page",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive/Sheets file limits: Google Drive Help"
+    },
+    {
+      "value": "53 hours",
+      "label": "Monthly re-keying time in a vendor model: 800 loads at 4 minutes each",
+      "sourceUrl": "https://www.laneproof.com/blog/document-automation-freight-ops-bol-data-entry",
+      "sourceTitle": "Document Automation for Freight Ops: Stop Manual BOL Entry"
+    },
+    {
+      "value": "62%",
+      "label": "Cut in invoice processing time in a Truckstop case study (self-reported)",
+      "sourceUrl": "https://truckstop.com/blog/freight-broker-invoicing-time-savings/",
+      "sourceTitle": "Freight broker invoicing: real time savings"
+    },
+    {
+      "value": "$5 to $45",
+      "label": "Typical price of single freight broker templates listed on Etsy",
+      "sourceUrl": "https://www.etsy.com/market/freight_broker_spreadsheet",
+      "sourceTitle": "Freight Broker Spreadsheet: Etsy"
+    }
+  ],
+  "chart": {
+    "title": "Invoice processing time per load",
+    "bars": [
+      {
+        "label": "Before",
+        "value": 8
+      },
+      {
+        "label": "After",
+        "value": 3,
+        "highlight": true
+      }
+    ],
+    "sourceUrl": "https://truckstop.com/blog/freight-broker-invoicing-time-savings/",
+    "sourceTitle": "Freight broker invoicing: real time savings",
+    "unit": "minutes",
+    "note": "Alliance Logistix case in Truckstop's blog. Vendor-reported, not independently checked."
+  },
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets on a Mac runs in the browser"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google does not make a native Mac app for Sheets. You open it in a browser, usually Chrome, and bookmark the page. Nothing installs on the Mac itself. Updates arrive on their own, and the file lives in Google Drive, so your dispatcher opens the same copy you do."
+    },
+    {
+      "type": "paragraph",
+      "text": "That setup is fine for most brokers. The catch is the connection. A truck stop, a dock, or a flight can leave you with no Wi-Fi when you need a load number. Plan for that before it happens."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on offline access in Chrome or Edge"
+    },
+    {
+      "type": "paragraph",
+      "text": "Offline access is the step most Mac users skip. Google supports it only in Google Chrome or Microsoft Edge. Other browsers are not supported, and private browsing must stay off. Set this up on a good connection, not in the parking lot."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Chrome or Microsoft Edge on your Mac.",
+        "Install the Google Docs Offline extension, then turn it on. On Edge, the link sends you to the Chrome Web Store.",
+        "In Google Drive settings, turn on Offline. You can also use the document status icon on the file."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test it before you need it",
+      "text": "Turn Wi-Fi off, open the sheet, and change one cell. Turn Wi-Fi back on and check that the change saved. Do this on every Mac you use for dispatch work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the broker workbook from the core tabs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one file and a few core tabs: Loads, Carriers, Customers, and Invoices. Each tab holds one kind of record. Each row holds one item. A load gets one row, a carrier gets one row, and an invoice gets one row. This keeps formulas simple and filters honest."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Tab",
+        "One row is",
+        "Columns to start with"
+      ],
+      "rows": [
+        [
+          "Loads",
+          "One load",
+          "Load ID, pickup date, origin, destination, customer rate, carrier rate, status"
+        ],
+        [
+          "Carriers",
+          "One carrier",
+          "MC number, insurance expiry, equipment type, last contact, status"
+        ],
+        [
+          "Customers",
+          "One customer",
+          "Payment terms, billing contact, credit limit, rate notes"
+        ],
+        [
+          "Invoices",
+          "One invoice",
+          "Invoice number, load ID, amount, date sent, date paid"
+        ]
+      ],
+      "caption": "Starter layout for a broker workbook. Adjust the columns to your process."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep dates as real dates. Enter them in the format your region uses, then check that the cell aligns to the right. Text dates stay on the left, and they break age formulas and sorting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use one load ID across every tab. That ID lets a lookup connect a load to its carrier and its invoice. Without it, you match by hand, and you miss things. Once the tabs are set, [sort the loads by pickup date](/how-to/sort-data-by-column-in-google-sheets) and [add a filter](/how-to/add-a-filter-to-a-range-in-google-sheets) so each person sees open loads only."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Freight broker load tracking without double entry"
+    },
+    {
+      "type": "paragraph",
+      "text": "Double entry is the hidden cost. A Laneproof article models a brokerage that processes 800 loads a month. At 4 minutes per document, re-keying adds up to 3,200 minutes, or about 53 hours a month. The article is a vendor's model, not a survey, so treat the figure as a rough guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your own number will differ. Count the loads you handle in a normal week. Then multiply by the minutes you spend typing the same data twice. If the total surprises you, fix the double entry first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dropdowns help most with status. A dropdown stops the typo that hides a load from your filter. Set one up with [a dropdown list](/how-to/create-a-dropdown-list-in-google-sheets), using the same status words every time."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Load tracking mistakes that cost you time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing status as free text. One typo hides the load from every filter you build.",
+        "Merging cells inside the table. Sorting and filtering get messy. Keep [merges](/how-to/merge-cells-in-google-sheets) above the table, not inside it.",
+        "Pasting a full rate confirmation into one cell. Split the fields into columns, or nobody can filter them.",
+        "Skipping the load ID. Two loads for the same customer on the same day look identical.",
+        "Hiding rows to clear the view. A filter keeps the data visible to the next person."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Margin and aging formulas you can copy down"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with margin. Say the customer rate sits in column C and the carrier rate sits in column D. In column E, type =C2-D2 to get the dollar margin. In column F, type =E2/C2 and format the cell as a percent. Copy both formulas down the column."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same formulas work for every load. The customer rate goes in one cell. The carrier rate goes in the next. When either rate changes, the margin updates without a retype."
+    },
+    {
+      "type": "paragraph",
+      "text": "Aging tells you which invoices are late. Put the date sent in column H of the Invoices tab. In the next column, type =TODAY()-H2 to count the days since the invoice went out. Then compare that count with your payment terms."
+    },
+    {
+      "type": "paragraph",
+      "text": "Counting distinct carriers is a different job. Use a unique count instead of a plain count. The [count unique values guide](/how-to/count-unique-values-in-google-sheets) covers the formulas and the Chrome steps."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Formula problems to check first"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A number stored as text. The sum shows zero, and the cell looks normal. Re-enter the value, then check the alignment.",
+        "Absolute references you did not mean. A dollar sign, such as $C$2, stops the formula from moving when you copy it.",
+        "A range that stops too early. New loads fall outside the sum. Use whole columns or a range you extend on purpose.",
+        "A formula copied down without a test. Check one row first, then copy it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "When a formula returns an error, ask for help in plain words. Hold ⌥⌘ and ask what the error means. Lazur answers out loud and explains what the error points to. You fix the cell yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Invoice tracking for freight brokers in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Invoicing takes real time, and software vendors publish the numbers. Truckstop reports that Alliance Logistix cut invoice processing from 8 minutes per load to 3. That is a 62 percent cut, and Truckstop calls it a vendor-reported claim. Measure your own desk before you plan around it."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Sheets invoice log can stay simple. Use one row per invoice. Add columns for the load ID, amount, date sent, date paid, and status. Leave the paid date blank until the money lands, so the open list stays accurate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Receivables come next. Filter for open invoices, then total what is still owed. The [filter steps](/how-to/add-a-filter-to-a-range-in-google-sheets) cover the Chrome path. Sort the open list by date sent so the oldest bills sit on top."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for duplicates. A double-entered invoice inflates your receivables total. Before you run [remove duplicate rows](/how-to/remove-duplicate-rows-in-google-sheets), check the invoice numbers by eye. Some duplicates are real, such as a corrected invoice."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Carrier records and insurance expiry dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Carrier records go stale fast. A certificate that expires before a load moves can cost you the booking. Put the expiry date in its own column. Then flag any date that has passed, so the problem shows up before dispatch calls."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the rule. Select the expiry column, then open Format > Conditional formatting. Under Format rules, choose Custom formula is and enter =AND(ISNUMBER(F2),F2<TODAY()). Pick a red fill. Every expired row turns red."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sheet only shows what you type. It does not verify the carrier for you. Check authority and insurance in the official federal carrier records before you tender a load. Then record the date you checked in a Last checked column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep notes short. Write the lane, the equipment, and the last rate paid. A long paragraph in one cell is hard to filter and hard to read on a small screen. Put longer history on its own tab."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sharing, revision history, and protection"
+    },
+    {
+      "type": "paragraph",
+      "text": "Share the file with the people who need it, and no one else. Give dispatchers Editor access. Give people who only check rates Viewer access. Avoid link sharing that lets anyone open the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Revision history shows who changed a rate and when. Open File > Version history > See version history. Check it before a big paste or delete. The [revision history steps](/how-to/see-revision-history-in-google-sheets) cover the browser path."
+    },
+    {
+      "type": "paragraph",
+      "text": "Protect the rates column when only you should change it. Select the range, then open Data > Protect sheets and ranges. Add a note that says who may edit. Protection stops accidents. It does not stop someone who holds the owner account, so guard that login."
+    },
+    {
+      "type": "paragraph",
+      "text": "Export a copy when a customer or factoring company needs one. Open File > Download and pick Microsoft Excel or PDF. Keep the Google copy as your working file, and treat exports as snapshots. The guides for [Excel](/how-to/download-as-excel-in-google-sheets) and [PDF](/how-to/export-as-pdf-in-google-sheets) cover both paths."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gemini features and the newer Sheets tools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Sheets page lists Gemini features for writing formulas, explaining errors, and filling tables. It also lists pivot tables, charts, and insights. These tools live inside Google Sheets. They are not part of Lazur, and they do not replace your check on a rate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google also lists data connections to Asana, HubSpot, Intuit QuickBooks, and Salesforce. Connected Sheets reaches BigQuery or Looker. Those connections belong to Google Sheets, so check with your IT contact before you connect company data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets canvas is newer. Google announced it on August 13, 2026. It turns rows and columns into dashboards and trackers from a prompt, and it stays synced with the source sheet. It is available to Google AI Pro and Ultra subscribers and certain Workspace plans, such as Business or Enterprise Standard and Plus."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your plan before you build a workflow around these tools. A feature on a marketing page is not always on your account. Ask whoever pays for your Google account."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits for large Google Sheets workbooks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive help says a spreadsheet can hold up to 20 million cells or 100MB. An April 2026 Workspace Updates post describes a beta that doubles the cell limit from 10 million to 20 million. That beta needs organization registration, and it is not general availability yet."
+    },
+    {
+      "type": "paragraph",
+      "text": "The two Google sources do not fully agree. Treat 10 million cells as the safe planning number until your own file or admin confirms more."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Number",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Cells per spreadsheet",
+          "20 million or 100MB",
+          "Google Drive help, file limits"
+        ],
+        [
+          "Cells, April 2026 beta",
+          "Doubles 10 million to 20 million",
+          "Workspace Updates, beta needs registration"
+        ],
+        [
+          "Connected Sheets pivot tables",
+          "200k rows",
+          "Google Drive help, file limits"
+        ],
+        [
+          "Connected Sheets extracts",
+          "500k rows or 5 million cells",
+          "Google Drive help, file limits"
+        ],
+        [
+          "Excel conversion, per cell",
+          "More than 50,000 characters is removed",
+          "Google Drive help, file limits"
+        ]
+      ],
+      "caption": "Limits from Google's own pages, as of 2026-11-07."
+    },
+    {
+      "type": "paragraph",
+      "text": "Converting Excel files has a hard cap. Any cell with more than 50,000 characters is removed during conversion. Move long rate confirmation text to a notes tab, or keep the original Excel file as the record."
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed improved in April 2026. Google said that opening and working in sheets with 1 million or more cells is up to 30 percent faster. Filtering and conditional formatting are up to 60 percent faster. These gains apply to Rapid and Scheduled Release domains automatically."
+    },
+    {
+      "type": "paragraph",
+      "text": "Big files still slow a laptop. Split the archive by year. Keep the active workbook for the current year, and move older loads to a separate file. You keep the history, and the daily file stays quick."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you work in Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. You hold a key and talk. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a column is, and Lazur draws a circle and a label around it on your screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click before it moves on. It does not click for you, and it does not edit your file. You make every change in the sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation fits this job. Hold fn to dictate clean text at the cursor in any app. Use it for detention notes, carrier call summaries, or the note you leave on a late invoice. Snippets and a personal dictionary help with carrier names you type often."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs research in its own Chrome tabs and returns a summary and a report. Ask it to check a carrier's public record, then review what it finds before you act. Research is a starting point, not a verdict."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters with customer data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your company's rules before you show customer data to any AI tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Google Sheets. It runs as its own app on the Mac. The free trial needs no credit card, and it starts when you first open the app. Compare plans on the [pricing page](/pricing), or [download Lazur](/download) to try it on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes brokers make in Google Sheets on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Using private browsing for offline work. Google says private browsing is not supported for offline access.",
+        "Using Safari for offline work. Google's offline support covers Chrome and Edge only.",
+        "Stacking every year on one tab. Filters slow down, and the file gets heavy.",
+        "Typing the same rate into many formulas. Put the rate in one cell and reference it, so one change updates every row.",
+        "Leaving rates open to every editor. Protect the range, or keep sensitive rates in a file with fewer editors.",
+        "Skipping the revision check before a big change. Open the history first, then edit."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Freight broker spreadsheet templates on Etsy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search Etsy for freight broker spreadsheets and you see about 161 listings or more. Single templates usually cost about $5 to $45. A Freight Broker Spreadsheet SOLO EDITION sells for $29.99 and includes a load tracker, margin dashboard, and carrier vetting. A Freight Dispatch Spreadsheet for Google Sheets sells for $44.99 and includes a true RPM calculator. A $129.96 lead-capture bundle is also listed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you buy, read the feature list. Look for load trackers, dispatch logs, carrier vetting, factoring fees, margins, and receivables. Many listings name these features. Ask the seller how the formulas work, and test the file on a few sample loads before you trust it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build your own when your process is unusual or your rates must stay private. Buy a template when you want a fast start. Either way, the tab layout in this guide works as a checklist for any template you read."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Your first week with the broker workbook"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Set up offline access in Chrome or Edge, then test it with Wi-Fi off.",
+        "Build the core tabs and enter only the loads from this week.",
+        "Add margin formulas and a status dropdown to the Loads tab.",
+        "Add the insurance expiry flag to the Carriers tab.",
+        "Share with dispatch, check revision history, and protect the rates column."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the first week runs clean, add older loads. A messy start is hard to fix later, so keep the first pass small. Then widen the file one tab at a time."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a native Google Sheets app for Mac?",
+      "answer": "No. Google does not make a native Mac app for Sheets, so you use it in a browser such as Chrome. For offline access, Google supports only Chrome and Microsoft Edge."
+    },
+    {
+      "question": "Can I use Google Sheets offline on a Mac?",
+      "answer": "Yes, in Chrome or Edge. Install the Google Docs Offline extension and turn it on. Then turn on Offline in Google Drive settings, or use the file's document status icon. Private browsing is not supported."
+    },
+    {
+      "question": "Is Google Sheets good for freight broker load tracking?",
+      "answer": "It can be, for a small desk. Use one row per load, a stable load ID, real dates, and a dropdown for status. Watch the cell limits if your history grows large."
+    },
+    {
+      "question": "How many cells can a Google Sheets file hold?",
+      "answer": "Google's Drive help says up to 20 million cells or 100MB. An April 2026 Workspace Updates post describes a beta that doubles the limit from 10 million to 20 million. The two sources do not fully agree, so check your own file."
+    },
+    {
+      "question": "Does Google Sheets check carrier insurance for me?",
+      "answer": "No. Sheets only shows the dates you enter. Use an expiry column and a conditional format to flag expired certificates. Confirm authority and insurance in the official federal carrier records before you book."
+    },
+    {
+      "question": "Can Lazur edit my Google Sheet?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at cells, explains formulas, guides you one click at a time, and drafts text. You make every change in the sheet."
+    },
+    {
+      "question": "Do the Gemini features in Sheets cost extra?",
+      "answer": "Access depends on your plan. Google lists Gemini features on its Sheets page, and Sheets canvas is limited to Google AI Pro and Ultra subscribers and certain Workspace plans. Check your plan before you count on it."
+    },
+    {
+      "question": "Is a freight broker spreadsheet template worth buying?",
+      "answer": "Many single templates on Etsy cost about $5 to $45. Read the feature list, ask how the formulas work, and test the file on a few sample loads before you trust it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work on Google Docs, Sheets, & Slides offline: Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/6388102?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive/Sheets file limits: Google Drive Help",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Faster performance and doubled cell limits in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "publisher": "Google Workspace Updates",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Workspace: Google Sheets",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Build mini-apps with Gemini in Google Sheets",
+      "url": "https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Document Automation for Freight Ops: Stop Manual BOL Entry",
+      "url": "https://www.laneproof.com/blog/document-automation-freight-ops-bol-data-entry",
+      "publisher": "Laneproof",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Freight broker invoicing: real time savings",
+      "url": "https://truckstop.com/blog/freight-broker-invoicing-time-savings/",
+      "publisher": "Truckstop",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Freight Broker Spreadsheet: Etsy",
+      "url": "https://www.etsy.com/market/freight_broker_spreadsheet",
+      "publisher": "Etsy",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the invoice date column?",
+    "capability": "point",
+    "result": "Lazur circles the Invoice Date header and labels it, so you find the column without scrolling across a wide sheet.",
+    "shell": "sheet",
+    "pointsAt": "Invoice Date header",
+    "context": "Invoices tab in Chrome, wide sheet with many columns",
+    "output": "A circle and a label drawn on the Invoice Date header. Lazur also says where the column sits, out loud."
+  },
+  "tasks": [
+    {
+      "say": "Hold Option and Command, then ask what this #N/A error means.",
+      "capability": "explain",
+      "result": "Lazur answers out loud and says what the lookup cannot find, so you can fix the key or the range."
+    },
+    {
+      "say": "Where is the invoice date column?",
+      "capability": "point",
+      "result": "Lazur circles the column header and labels it, so you find it without scrolling across a wide sheet."
+    },
+    {
+      "say": "Walk me through filtering open loads for one carrier.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time through the filter menu and waits for each click before it moves on."
+    },
+    {
+      "say": "Draft a short note asking the carrier for the signed BOL.",
+      "capability": "draft",
+      "result": "Lazur writes the note in plain language. You review it, then paste it into your email."
+    },
+    {
+      "say": "Let me dictate the detention notes for this load.",
+      "capability": "dictate",
+      "result": "Hold fn and your words land at the cursor as clean text, so the note goes into the cell in one pass."
+    },
+    {
+      "say": "Remind me to chase this invoice on Friday.",
+      "capability": "everyday",
+      "result": "Lazur adds a reminder to Apple Reminders, so the follow-up shows up on your Mac when it is due."
+    },
+    {
+      "say": "Research this carrier's safety record and bring back a summary.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs in the background and returns a summary and a report."
+    }
+  ],
+  "type": "role-app",
+  "slug": "freight-brokers-google-sheets",
+  "role": "freight-brokers",
+  "app": "google-sheets",
+  "roleName": "Freight brokers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/freight-brokers-google-sheets/google-sheets-for-freight-brokers-on-mac-1-859b12.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "A freight broker works on a Mac laptop at a desk, checking load and invoice rows in Google Sheets.",
+      "caption": "A laptop, a desk, and a sheet full of loads.",
+      "keywords": [
+        "google sheets for freight brokers on mac",
+        "Google Sheets",
+        "Freight brokers",
+        "Mac",
+        "person laptop desk office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/freight-brokers-google-sheets/google-sheets-for-freight-brokers-on-mac-2-483115.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A freight truck on a highway, the kind of load a freight broker tracks in a shared spreadsheet.",
+      "caption": "Every load in the sheet started as a truck on a road.",
+      "keywords": [
+        "google sheets for freight brokers on mac",
+        "Google Sheets",
+        "Freight brokers",
+        "Mac",
+        "freight truck highway",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Schwoaze",
+        "url": "https://pixabay.com/users/Schwoaze-4023294/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/highway-road-trucks-vehicles-3392100/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/freight-brokers-google-sheets/google-sheets-for-freight-brokers-on-mac-3-468f9a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Trucks at a loading dock, where carrier details and pickup times change by the hour.",
+      "caption": "Dock days change the sheet fast.",
+      "keywords": [
+        "google sheets for freight brokers on mac",
+        "Google Sheets",
+        "Freight brokers",
+        "Mac",
+        "loading dock warehouse",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "marcinjozwiak",
+        "url": "https://pixabay.com/users/marcinjozwiak-12652484/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/production-facility-logistic-4408573/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for freight brokers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "google sheets freight broker template": 1,
+      "freight broker spreadsheet on mac": 1,
+      "google sheets offline on mac": 1,
+      "freight broker load tracking spreadsheet": 1,
+      "google sheets invoice tracker for brokers": 1,
+      "google sheets limits for large workbooks": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

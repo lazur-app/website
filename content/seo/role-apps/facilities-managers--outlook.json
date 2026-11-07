@@ -1,0 +1,616 @@
+{
+  "title": "Outlook for facilities managers on Mac: rooms, shared inboxes and templates in 2026",
+  "metaTitle": "Outlook for facilities managers on Mac: rooms, inboxes and templates",
+  "description": "Outlook for facilities managers on Mac: book rooms, run a shared work-order inbox, and reuse templates. Tips, limits and how Lazur helps by voice.",
+  "targetKeyword": "outlook for facilities managers on mac",
+  "secondaryKeywords": [
+    "outlook room booking on mac",
+    "shared mailbox outlook for mac",
+    "outlook templates for mac",
+    "outlook rules for mac",
+    "new outlook for mac limits",
+    "outlook for mac 16.114"
+  ],
+  "intro": "Outlook for facilities managers on Mac covers three jobs: booking rooms, running a shared work-order inbox and sending the same notices again. Outlook for Mac 16.114 handles all three, with limits you should know before you rely on them. This page covers what works, what to test first, and where Lazur fits in.",
+  "tldr": [
+    "Room booking follows Exchange rules by default: 180 days ahead, 24 hours at most, and 8:00 A.M. to 5:00 P.M. working hours.",
+    "Templates start from File > New > Mail From Template. Test them in a shared mailbox before the team uses them.",
+    "A Microsoft Q&A thread reports gaps in shared mailbox settings and server-side rules in new Outlook for Mac.",
+    "Legacy Outlook for Mac support was set to end in October 2026. Check with IT before you plan around it.",
+    "Lazur points at controls and guides you one click at a time. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "180 days",
+      "label": "Default booking window for room mailboxes in Exchange Online",
+      "sourceUrl": "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-resource-mailboxes",
+      "sourceTitle": "Microsoft Learn: Manage resource mailboxes in Exchange Online"
+    },
+    {
+      "value": "24 hours",
+      "label": "Default maximum duration for one room booking in Exchange Online",
+      "sourceUrl": "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-resource-mailboxes",
+      "sourceTitle": "Microsoft Learn: Manage resource mailboxes in Exchange Online"
+    },
+    {
+      "value": "8.8 hours",
+      "label": "Weekly email time for the top 25% of email users, 2023 Work Trend Index (general workers)",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Microsoft WorkLab: Work Trend Index: Will AI Fix Work?"
+    },
+    {
+      "value": "+43",
+      "label": "IFMA Facility Management Workload Index from its Q3 2025 survey, where more expect workload to rise",
+      "sourceUrl": "https://ohsonline.com/articles/2026/01/20/ifma-releases-global-facility-management-pulse-report.aspx",
+      "sourceTitle": "OH&S: IFMA Releases Global Facility Management Pulse Report"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What facilities managers use Outlook for on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most facilities managers use Outlook for more than email. Your calendar holds room bookings, vendor visits and maintenance windows. Your inbox holds work-order requests, contractor replies and tenant complaints. One app carries all of it, so a few setup choices save time every week."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "No study has looked at how facilities managers use Outlook. The tasks on this page come from Microsoft's feature pages, admin documentation and release notes. Treat them as a starting point, then test each one in your own setup before you train a team on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Room booking in Outlook for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Room booking is where most facilities teams spend their Outlook time. Microsoft lists Scheduling assistant and Suggested Locations and Rooms as available in Outlook 16.58 and later. Use them to see whether a room is free before you send the invite."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your admin sets the rules that decide whether a booking sticks. Exchange Online ships with default room settings. A valid request reserves the room. A conflict, or a request that breaks the limits, is declined automatically. Read the decline before you rebook, so you know which limit you hit."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Default room settings to know"
+    },
+    {
+      "type": "table",
+      "caption": "Default room mailbox settings in Exchange Online. Your tenant may differ.",
+      "headers": [
+        "Room setting",
+        "Exchange Online default",
+        "What it means for you"
+      ],
+      "rows": [
+        [
+          "Booking window",
+          "180 days",
+          "Requests further out than 180 days are declined."
+        ],
+        [
+          "Maximum duration",
+          "24 hours",
+          "A single booking longer than 24 hours is declined."
+        ],
+        [
+          "Working hours",
+          "8:00 A.M. to 5:00 P.M., Monday to Friday",
+          "Scheduling only during working hours is off by default, so requests outside those hours are not blocked."
+        ],
+        [
+          "Approval",
+          "Automatic accept or decline",
+          "Admins can assign booking delegates who approve or decline each request by hand."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Multi-day events",
+      "text": "A conference that runs across several days breaks the default 24-hour limit, so it is declined. Book one room per day, or ask IT to change the room's maximum duration."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. You want the training room on Thursday from 9:00 A.M. to 4:00 P.M. That is seven hours, well under the 24-hour default, so the request reserves the room if nobody else booked it. Now try a three-day conference from Monday to Wednesday as one event. Three full days is 72 hours, three times the default limit, so Exchange declines it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Larger sites use room lists. Microsoft recommends room lists when an organization has more than 100 room mailboxes. Room lists can only be created in Exchange Online PowerShell, not in the Exchange admin center. That makes it an IT request, but it changes how rooms appear when you search."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shared and work-order mailboxes on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many sites run a shared inbox for work orders, often under a team name such as facilities or helpdesk. Outlook for Mac can open a shared mailbox next to your own. Microsoft's feature table lists shared and delegate mailboxes as available in Outlook for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check before you depend on it. A Microsoft Q&A thread dated December 19, 2025 reports that advanced shared mailbox settings and full server-side inbox rules are missing or different in new Outlook for Mac. A Microsoft staff reply says COM add-ins are Windows only. The feature table and the Q&A do not agree, so test your own setup."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Checks to run on a shared mailbox"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Send a test message to the shared address from an outside account.",
+        "Reply from the shared mailbox, then check how the sender name looks to the other side.",
+        "Open the test message from another device and confirm it sits in the folder you expect.",
+        "Run one rule against a test message, and confirm it lands where the rule says.",
+        "Ask IT which rules run on the server, since those may not show in new Outlook for Mac.",
+        "Write the results down, so the next person does not repeat your tests."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Shared mailboxes also change who sees what. Give each person the access they need, and no more. Ask IT to add a delegate instead of passing a shared password around."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Email templates for repeated notices"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work-order acknowledgements, access notices and contractor schedules repeat. A template saves you from retyping the same paragraph. Built-in template controls are listed for Microsoft 365 subscribers on Outlook for Mac 15.35 and later. You do not need an add-in to start."
+    },
+    {
+      "type": "paragraph",
+      "text": "To save a template, open the email you want to reuse. Choose File, then save it as a template. Name it, tag it if you want, pick a location and confirm. The template file ends in .emltpl."
+    },
+    {
+      "type": "paragraph",
+      "text": "To use one later, go to File > New > Mail From Template. Pick the template, change only the details for this job, and send. Keep the wording the same each time, so tenants learn where to look for the important parts."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep templates in your own mailbox",
+      "text": "Microsoft says the My Templates add-in is not available in shared mailboxes opened in Outlook for Mac. Microsoft does not say whether built-in templates have the same limit, so test one in the shared mailbox first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Rules and the new Outlook for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft lists rules as available in Outlook 16.58 and later. Rules suit a facilities inbox well. Sort contractor replies into a folder, flag replies from one vendor, or move calendar notices out of your main view."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Move replies from one contractor's domain into a Contractors folder.",
+        "Flag any message with an urgent word in the subject for the same day.",
+        "Send calendar notices from the room system to a folder you read once a day.",
+        "Route tenant complaints to a folder your team leads check at set times."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Rules are where the gaps show. The December 2025 Q&A describes full server-side inbox rules as missing in new Outlook for Mac. If a rule must run while you are away, ask IT whether it runs on the server. Then test it from another device."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Outlook for Mac version to run in 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "Outlook for Mac 16.114 (October 14, 2026) is the latest feature release in Microsoft's release notes. Microsoft lists 16.114.1 on October 22, 16.114.2 on October 26, and 16.114.3 on October 27, 2026, as quality-only updates. Newer builds may exist by now, so check the release notes before you plan an upgrade."
+    },
+    {
+      "type": "paragraph",
+      "text": "The client itself changed too. Microsoft calls the new client new Outlook and the old one Legacy Outlook. Accounts added in one client are not added to the other. To switch back, Microsoft says to use Help > Revert to Legacy Outlook."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says support for legacy Outlook for Mac ends in October 2026, and that month has passed. Continued support depends on your license. We could not confirm whether legacy Outlook still works, so ask IT before you plan around it."
+    },
+    {
+      "type": "table",
+      "caption": "Selected Outlook for Mac changes from Microsoft's release notes.",
+      "headers": [
+        "Version",
+        "Date",
+        "Change"
+      ],
+      "rows": [
+        [
+          "16.108",
+          "April 14, 2026",
+          "Redesigned Settings, and .msg files can be opened and imported."
+        ],
+        [
+          "16.110",
+          "June 16, 2026",
+          "Liquid Glass visuals across the app, and Import PST for mailbox data."
+        ],
+        [
+          "16.113",
+          "September 16, 2026",
+          "Work hours and work-location schedules in Settings, plus auto-decline for conflicts on supported accounts."
+        ],
+        [
+          "16.114",
+          "October 14, 2026",
+          "Choose a third-party online meeting provider when you create an event."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Auto-decline on supported accounts",
+      "text": "Version 16.113 lets you choose whether conflicting events are auto-declined on supported accounts. Test that setting on a personal calendar first. A declined invite can look like a missed meeting to the people who sent it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much email time is too much"
+    },
+    {
+      "type": "paragraph",
+      "text": "Email eats more time than most people expect. Microsoft's Work Trend Index found the top quarter of email users spend 8.8 hours a week on email. The survey covered 31,000 full-time workers in 31 markets, fielded in early 2023. It did not measure facilities managers."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2016 Microsoft Research study tracked 40 information workers for 12 workdays. Longer daily email time was linked to lower perceived productivity and higher measured stress. The authors found no evidence that batching email lowered stress."
+    },
+    {
+      "type": "paragraph",
+      "text": "So batching is not a cure. Checking less often matters more. Use rules to move routine notices out of sight, then read them at set times. Save your attention for requests that need a decision."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Route routine notices into folders, and read those folders at set times.",
+        "Open new events in a separate window while you plan, so the inbox stays out of the way.",
+        "Give emergencies a phone number or radio channel, so they never depend on email.",
+        "Turn off alerts for the shared mailbox, and check it on your own schedule."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the workload numbers say"
+    },
+    {
+      "type": "paragraph",
+      "text": "IFMA's Q3 2025 survey produced a Facility Management Workload Index of +43. The scale runs from minus 100 to plus 100. A positive number means more professionals expect their workload to rise than fall. The survey drew more than 1,400 professionals in 80 countries."
+    },
+    {
+      "type": "paragraph",
+      "text": "The index does not measure email. It shows that the work is growing. That makes small Outlook habits worth more, since the minutes they save go back to the building."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in Outlook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ (Option and Command) and ask about anything on screen. Lazur answers out loud. Ask where a control is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate Outlook for you. You do the clicks. Lazur is not a plugin or add-in for Outlook. It works in any app, so the same help works in Outlook and in Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation sits in the same flow. Hold fn to dictate clean, formatted text at the cursor in any app. Use it for a long notice to a contractor, then read it back before you send. Lazur does not send the email for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost facilities teams time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Booking a multi-day event as one booking. The default 24-hour maximum declines it.",
+        "Trusting a shared mailbox without a test message from outside the team.",
+        "Using My Templates in a shared mailbox. Microsoft says that add-in is not available there.",
+        "Assuming a rule runs on the server. Some server-side rules may be missing in new Outlook for Mac.",
+        "Sending to a distribution list from legacy Outlook without expanding it. Microsoft says that causes an error."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes share one cause. Settings differ by tenant and by version, and the defaults rarely match a facilities team's day. Test once, write down what works, then reuse it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for facilities managers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with rooms. Ask IT for your room settings, then test one booking longer than a day and one outside working hours. Next, build two templates and test them in the shared mailbox. Then decide which rules you can trust."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "For the sheet side of the job, see [Excel for facilities managers on Mac](/for/facilities-managers/excel). For help with Outlook on screen, see [Lazur for Outlook on Mac](/apps/outlook). Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "type": "paragraph",
+      "text": "The trial needs no credit card, and it starts when you first open the app. Download Lazur from the [download page](/download), or compare plans on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What this guide does not cover"
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Limits of the research",
+      "text": "We found no study of facilities managers' Outlook use. The task list comes from Microsoft feature pages, admin docs and release notes. The 8.8 hour figure covers general workers from 2023, and the CHI study used 40 workers. Both predate new Outlook for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's feature table may be optimistic. It lists shared mailbox features as available, while Q&A threads describe gaps. Treat the table as a map, and check the ground yourself."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Outlook for Mac have room booking for facilities teams?",
+      "answer": "Yes. Microsoft lists the Scheduling assistant and suggested locations and rooms as available in Outlook 16.58 and later. Booking limits come from your admin's Exchange settings, such as a 180-day window and a 24-hour maximum by default."
+    },
+    {
+      "question": "Can I use templates in a shared mailbox on Outlook for Mac?",
+      "answer": "Microsoft says the My Templates add-in is not available in shared mailboxes opened in Outlook for Mac. The page does not say whether built-in templates have the same limit. Test one in the shared mailbox before you rely on it."
+    },
+    {
+      "question": "Is legacy Outlook for Mac still supported?",
+      "answer": "Microsoft said support for legacy Outlook for Mac ends in October 2026, and that month has passed. Continued support depends on your license. We could not confirm whether legacy still works, so check with IT before you switch back with Help > Revert to Legacy Outlook."
+    },
+    {
+      "question": "Why do my room bookings keep getting declined?",
+      "answer": "Exchange declines requests that break the booking limits or conflict with another booking. The defaults are a 180-day window and a 24-hour maximum. Ask IT for the room's settings, and ask whether a booking delegate handles requests."
+    },
+    {
+      "question": "Does Lazur click buttons in Outlook for me?",
+      "answer": "No. Lazur points at controls, draws a circle and label, and guides you one click at a time. You do the clicks yourself."
+    },
+    {
+      "question": "Is Lazur an Outlook add-in?",
+      "answer": "No. Lazur is a voice assistant for the Mac. It is not a plugin or add-in for any app."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, but it is not available."
+    },
+    {
+      "question": "How much time do people spend on email?",
+      "answer": "In Microsoft's 2023 Work Trend Index, the top 25% of email users spent 8.8 hours a week on email. That survey covered general full-time workers, not facilities managers."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Microsoft Learn: Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Support: Outlook for Mac",
+      "url": "https://support.microsoft.com/en-us/outlook/outlook-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Support: Outlook for Mac features",
+      "url": "https://support.microsoft.com/en-us/outlook/outlook-for-mac-features",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Support: Can I create email templates in Outlook for Mac?",
+      "url": "https://support.microsoft.com/en-us/office/can-i-create-email-templates-in-outlook-for-mac-6339b60e-2e5a-4aed-a9e6-2e7b5d7eb5a0",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Q&A: Limitations in New Outlook for macOS compared to Classic Outlook",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5671981/limitations-in-new-outlook-for-macos-compared-to-c",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Learn: Manage resource mailboxes in Exchange Online",
+      "url": "https://learn.microsoft.com/en-us/exchange/recipients-in-exchange-online/manage-resource-mailboxes",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft WorkLab: Work Trend Index: Will AI Fix Work?",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft Research: Email Duration, Batching and Self-interruption",
+      "url": "https://www.microsoft.com/en-us/research/publication/email-duration-batching-and-self-interruption-patterns-of-email-use-on-productivity-and-stress/",
+      "publisher": "Microsoft Research",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "OH&S: IFMA Releases Global Facility Management Pulse Report",
+      "url": "https://ohsonline.com/articles/2026/01/20/ifma-releases-global-facility-management-pulse-report.aspx",
+      "publisher": "OH&S (trade publication reporting IFMA)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I add a room to this invite?",
+    "capability": "point",
+    "result": "Lazur circles the control that adds a room and labels it. You click it, then search for the room.",
+    "shell": "mail",
+    "context": "New event in Outlook for Mac, planning a site walk"
+  },
+  "tasks": [
+    {
+      "say": "Which rooms are free at 2 P.M. on Thursday?",
+      "capability": "point",
+      "result": "Lazur circles the scheduling view or room search on screen and labels it. You pick the room yourself."
+    },
+    {
+      "say": "Walk me through sending this from the shared work-order mailbox.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time to switch to the shared mailbox, and waits for each click."
+    },
+    {
+      "say": "Draft a reply asking the contractor for a start date on Monday.",
+      "capability": "draft",
+      "result": "Lazur drafts the reply text. You check the dates, change the details and send it yourself."
+    },
+    {
+      "say": "Dictate the access notice for the second floor.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. The text appears at the cursor as clean, formatted text, ready for you to check."
+    },
+    {
+      "say": "Show me how to save this email as a template.",
+      "capability": "guide",
+      "result": "Lazur walks you through File, then save as a template, one click at a time, and waits for each click."
+    },
+    {
+      "say": "Remind me at 4 P.M. to check the declined room bookings.",
+      "capability": "everyday",
+      "result": "Lazur adds a reminder in Apple Reminders for the time you name."
+    },
+    {
+      "say": "What does the work hours setting in Settings change?",
+      "capability": "explain",
+      "result": "Lazur explains the setting and answers out loud. It does not change the setting for you."
+    }
+  ],
+  "type": "role-app",
+  "slug": "facilities-managers-outlook",
+  "role": "facilities-managers",
+  "app": "outlook",
+  "roleName": "Facilities managers",
+  "appName": "Outlook",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-outlook/outlook-for-facilities-managers-on-mac-1-20fea7.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Facilities manager at an office desk with a laptop, planning room bookings in Outlook for facilities managers on Mac",
+      "caption": "Planning room bookings at a desk.",
+      "keywords": [
+        "outlook for facilities managers on mac",
+        "Outlook",
+        "Facilities managers",
+        "Mac",
+        "office desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-outlook/outlook-for-facilities-managers-on-mac-2-bea93e.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Facilities team reviewing work orders on a building site, the inbox work that Outlook on Mac helps sort",
+      "caption": "Work orders from the site.",
+      "keywords": [
+        "outlook for facilities managers on mac",
+        "Outlook",
+        "Facilities managers",
+        "Mac",
+        "building maintenance team",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "bogitw",
+        "url": "https://pixabay.com/users/bogitw-851103/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/glass-facade-window-cleaner-facade-817732/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/facilities-managers-outlook/outlook-for-facilities-managers-on-mac-3-333518.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Empty meeting room with a table and chairs, the kind of room booked through Outlook on Mac",
+      "caption": "A meeting room waiting for a booking.",
+      "keywords": [
+        "outlook for facilities managers on mac",
+        "Outlook",
+        "Facilities managers",
+        "Mac",
+        "meeting room office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/chairs-table-contemporary-furniture-2181960/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "outlook for facilities managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "outlook room booking on mac": 1,
+      "shared mailbox outlook for mac": 1,
+      "outlook templates for mac": 1,
+      "outlook rules for mac": 1,
+      "new outlook for mac limits": 1,
+      "outlook for mac 16.114": 3
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

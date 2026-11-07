@@ -1,0 +1,631 @@
+{
+  "title": "Excel for insurance claims adjusters on Mac: trackers, formulas and voice help for 2026",
+  "metaTitle": "Excel for Insurance Claims Adjusters on Mac: Tracker and Formulas",
+  "description": "Excel for insurance claims adjusters on Mac: a claim register, the formulas that matter, Mac limits, and how Lazur helps while you work in Excel.",
+  "targetKeyword": "excel for insurance claims adjusters on mac",
+  "secondaryKeywords": [
+    "excel for claims adjusters mac",
+    "claims tracker excel mac",
+    "insurance adjuster spreadsheet",
+    "xlookup for claim status",
+    "excel mac insurance claims",
+    "power query excel mac"
+  ],
+  "intro": "Excel for insurance claims adjusters on Mac works best as a claim register and a calculator. Yes, the Mac version handles that job, as long as your claims system stays the official record. Most adjusters keep status, diary dates, outstanding amounts and document locations in one workbook. This guide covers the layout, the formulas that answer daily questions, the Mac limits you will hit, and where Lazur helps while Excel is open.",
+  "tldr": [
+    "Excel for Mac works as a claim register, a diary and a calculator. Your claims system stays the official record.",
+    "Build the register as an Excel Table. Use XLOOKUP, COUNTIFS, SUMIFS and NETWORKDAYS for most daily questions.",
+    "Mac has real gaps. ActiveX and Windows API code do not run. Power Query needs a current build.",
+    "Claim files are sensitive. Check your carrier's rules before you paste anything into an AI tool.",
+    "Lazur points at cells, explains formulas, guides clicks and dictates notes. It never clicks for you."
+  ],
+  "stats": [
+    {
+      "value": "58%",
+      "label": "of frontline claims professionals in a 2019 workers' comp study spent over 20% of their time on compliance",
+      "sourceUrl": "https://riskandinsurance.com/claims-adjusters-spend-too-much-time-on-compliance-what-tools-might-help/",
+      "sourceTitle": "Claims Adjusters Spend Too Much Time on Compliance: What Tools Might Help?"
+    },
+    {
+      "value": "14%",
+      "label": "spent over 40% of their time on compliance in the same study",
+      "sourceUrl": "https://riskandinsurance.com/claims-adjusters-spend-too-much-time-on-compliance-what-tools-might-help/",
+      "sourceTitle": "Claims Adjusters Spend Too Much Time on Compliance: What Tools Might Help?"
+    },
+    {
+      "value": "72%",
+      "label": "of insurers still rely on Excel for critical workflows, per an RSM study for INTX covering over 250 insurance professionals",
+      "sourceUrl": "https://www.dig-in.com/news/72-of-insurers-rely-on-excel-for-critical-workflows-intx",
+      "sourceTitle": "72% of insurers still rely on Excel for critical workflows, INTX"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What adjusters actually use Excel for on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is usually a tracker and a calculator on a claims desk. It is not the reserving engine. The claims platform holds the official reserve, the payment history and the file notes. Excel fills the gaps around it. A claims software vendor describes the same pattern: adjusters track claim status in spreadsheets, claims arrive by email, and documents sit in network folders filed by claim number."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Public evidence on Mac-specific adjuster habits is thin. No public survey isolates adjusters who use Excel on Mac. The workflow advice here comes from how claims work runs, and from Microsoft's and ExcelGurus' own product notes. Treat it as a starting point, then adjust it to your carrier's rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most desks use Excel for five jobs. Each one answers a question someone will ask you this week."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Claim register: one row per claim, with status, adjuster, dates and the next action.",
+        "Diary: follow-up dates for insureds, vendors, contractors and carriers.",
+        "Calculators: outstanding amounts, estimate differences and days open.",
+        "Document index: where each file lives, filed by claim number.",
+        "Compliance checklist: what your state and carrier require, and the date each item is due."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the list short. If a job needs macros, forms and a database, it belongs in the claims system. A workbook that tries to do everything becomes the file nobody trusts."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a claims tracker in Excel on Mac that people trust"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one sheet named Register. Put the headers in row 1 and one claim on each row below. Do not merge cells. Merged cells break sorting, filtering and most formulas. Select the block, then press ⌘ T or choose Insert > Table. Excel turns the range into a Table. Tables keep formulas readable, and they grow as you add rows. Since Microsoft's October 2026 update, you can name a table when you create it on Mac. Name it Register now, so every formula below reads the same way."
+    },
+    {
+      "type": "table",
+      "caption": "Register columns that carry the most weight",
+      "headers": [
+        "Column",
+        "What goes in it",
+        "Tip"
+      ],
+      "rows": [
+        [
+          "Claim number",
+          "Carrier number, as text",
+          "Copy it from the claims system. Never retype it."
+        ],
+        [
+          "Status",
+          "Open, Pending or Closed",
+          "Use a dropdown, covered below"
+        ],
+        [
+          "Date reported",
+          "A real date value",
+          "Press ⌘ ; to enter today's date"
+        ],
+        [
+          "Next diary date",
+          "The next follow-up date",
+          "Highlight past dates with conditional formatting"
+        ],
+        [
+          "Reserve and paid",
+          "Numbers only, in separate columns",
+          "Keep notes out of these cells"
+        ],
+        [
+          "Outstanding",
+          "Reserve minus paid",
+          "Formula, such as =H2-I2 if reserve is in H"
+        ],
+        [
+          "Document link",
+          "Folder path or hyperlink",
+          "Test one link on your Mac first"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep one row per claim. If a claim has a field adjuster and a desk adjuster, give each one a column. Do not split one claim across two rows. Counts and totals go wrong fast when you do."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dates that look right can still be text"
+    },
+    {
+      "type": "paragraph",
+      "text": "Real dates align to the right of a cell by default. Text aligns to the left. A date on the left side is probably text. Text dates break date sorting and NETWORKDAYS. Fix a column with Data > Text to Columns, then click Finish. Check one cell afterward. A slash date can mean two different days, depending on your Mac's region settings, so read the first one back before you trust the column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lookups, counts and totals with XLOOKUP, COUNTIFS and SUMIFS"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most daily questions are lookups or counts. Say a claim number comes in by email. Put it in cell A2 of a Lookup tab. Then type this formula in B2: =XLOOKUP(A2,Register[Claim number],Register[Status],\"Not found\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "The formula searches the Claim number column for the value in A2. It returns the Status from the same row. If nothing matches, it shows Not found. Type the formula by hand. Text copied from a web page often carries curly quotes, and Excel rejects them inside a formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Counts and totals use COUNTIFS and SUMIFS. To count open files, type =COUNTIFS(Register[Status],\"Open\"). To total outstanding amounts on open files, type =SUMIFS(Register[Outstanding],Register[Status],\"Open\"). If you track catastrophe events, add an Event column. Put the event code in G1, then use =COUNTIFS(Register[Event],G1,Register[Status],\"Open\"). Change G1, and the count follows."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "If XLOOKUP fails",
+      "text": "A #NAME? error can mean your build does not support the function. Use INDEX and MATCH instead. The result is the same. Check your version under Excel > About Excel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track deadlines with calendar days and business days"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two day counts matter on most files. Calendar days are simple, and they count weekends. =TODAY()-B2 gives calendar days since the date in B2. =NETWORKDAYS(B2,TODAY()) gives business days, and it skips weekends. Add a holiday list as a third argument when your deadlines skip company holidays."
+    },
+    {
+      "type": "paragraph",
+      "text": "Due dates run the other way. =WORKDAY(B2,G2,Holidays) returns the date that is G2 business days after B2. Put the number from your state rule in G2, not inside the formula. Name the holiday list Holidays on its own tab. One change then updates every due date on the sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mixing up the two day counts is a common error. A file can look fine in calendar days and still miss a checkpoint in business days. Highlight overdue diary dates with Home > Conditional Formatting > Highlight Cells Rules > Less Than. Then type =TODAY() as the value. Every past date lights up."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Store the source",
+      "text": "Put the rule source in the cell beside each due date. Write the state, the rule name and the date you checked it. The next adjuster can see where the number came from."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reconcile estimates and log every reserve change"
+    },
+    {
+      "type": "paragraph",
+      "text": "Estimate reconciliation is a routine desk task. Keep the contractor's estimate in one column and your figure in the next. Use =C2-D2 for the gap, where C holds your figure and D holds the contractor's. A positive result means your figure is higher. Sort or filter on the gap column to find the biggest differences first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a separate Reserve Log tab. Each row needs a date, the adjuster's initials, a claim number, the old reserve, the new reserve and a one-sentence reason. Excel will not stop anyone from changing a reserve in the register without a log entry. The log shows the history, which the register alone cannot show. Press ⌘ ; to enter the date. Add a new row for every change. Do not overwrite the old number."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Link documents to the claim instead of hunting for them"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Document hunting eats time. The Regure page describes staff searching inboxes and network drives for the latest file. It also describes trackers with names such as FINAL_v3_UPDATED. Two habits cut that down. Name every file the same way, with the claim number first. Then link each claim row to its folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a link with =HYPERLINK, and point it at the folder. The cell shows a short label, such as Open file. Folder paths on a Mac look different from Windows paths. Test one link on your Mac before you fill the whole column. Do not link to files on your own desktop, because your teammates cannot open them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac limits adjusters run into"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many Excel tips come from Windows, and some do not run on a Mac. The biggest limits involve VBA, the macro language. ExcelGurus says UserForms work on Mac. ActiveX does not, because macOS has no COM. Windows API declarations have nothing to bind to. The table shows what to do about each one."
+    },
+    {
+      "type": "table",
+      "caption": "Mac limits for adjuster workbooks",
+      "headers": [
+        "Feature",
+        "Excel for Mac",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "ActiveX controls",
+          "Do not run, because macOS has no COM",
+          "Use Form controls instead"
+        ],
+        [
+          "Windows API Declare",
+          "Nothing to bind to on Mac",
+          "Rebuild the logic with formulas or another tool"
+        ],
+        [
+          "CreateObject for FileSystemObject",
+          "Fails with run-time error 429",
+          "Make the file step a manual step"
+        ],
+        [
+          "UserForms",
+          "Work on Mac",
+          "Keep them for data entry forms"
+        ],
+        [
+          "Power Query",
+          "Works on Excel for Mac",
+          "Check your version before you plan around it"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query needs a current build. Microsoft says it is not supported on Excel 2016 and Excel 2019 for Mac. Check your version before you plan a workbook around it. A workbook built on one Mac can break on an older one, so agree on a version with your team."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query and Power Pivot on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query is useful for carrier exports. It imports a file, cleans the headers, filters rows and refreshes when the export changes. Microsoft lists Excel for Mac as one of three Excel apps that support it, along with Windows and the web. On Mac, look under Data > Get Data. The steps are mostly the same as on Windows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Pivot is less clear. Several third-party posts say it is not available on Mac. Microsoft's pages did not confirm that when this guide was checked, so check Microsoft's support site before you build a model that depends on it. For most summaries, a PivotTable does the job. The [step-by-step pivot table guide](/how-to/make-a-pivot-table-in-excel) covers the basics."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It listens and looks only while you hold the shortcut. It does not click buttons, edit files or operate other apps for you. Every cell stays in your hands."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Point: ask where Freeze Panes lives. Lazur draws a circle and a label around the item in the View menu.",
+        "Explain: ask why a cell shows #VALUE!. Lazur reads the formula on screen and says what it means.",
+        "Guide: ask for the steps to build a dropdown. Lazur walks you through each click, waiting for each one.",
+        "Dictate: hold fn and speak a file note. Clean text lands at the cursor, in any app.",
+        "Research: ask for a state deadline rule. The search runs in Lazur's own Chrome tabs, and you get a summary and a report back."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps most with the questions that stop your flow. Explain and point handle the spreadsheet. Dictate and draft handle the words. Start with the guide for a task you do every month, so the steps stick. The [Excel page](/apps/excel) describes the Excel help in more detail."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Protect a shared tracker and the claim data in it"
+    },
+    {
+      "type": "paragraph",
+      "text": "A tracker used by several people needs ground rules. One person owns the structure. Others add rows and update status and notes. Lock the formula columns with Review > Protect Sheet, and leave the input columns unlocked. Protection stops accidents. It does not replace a backup, so keep versions in the shared drive your carrier approves."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not email copies around. Each copy becomes a fork, and version conflicts follow. The Regure page describes this problem when several people edit at once. If your desk must share one file, agree before the day starts on who edits which tab."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Build the Status dropdown"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the Status column, from the header down.",
+        "Choose Data > Data Validation.",
+        "Set Allow to List.",
+        "In Source, type Open, Pending and Closed, separated by your region's list separator.",
+        "Click OK, then test one cell with each value."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Claim files hold sensitive details. Medical notes, bank details, Social Security numbers and recorded statements can all appear in one file. Your register needs only what the work needs. A claim number, a status and a due date do most of the job. Keep everything else in the claims system or the document folder, behind its access controls."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your carrier's policy before you paste claim text into any AI tool. Many policies limit what can leave the company network. When you do use an assistant, remove names, addresses and identifiers first. The safer habit is to ask a question about the rule, not to paste the file."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Before you paste",
+      "text": "Do not paste a full claim file into an AI tool until your carrier says it is allowed. A redacted summary is safer than the original file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes adjusters make in Excel"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keeping three copies of the same tracker, each with different status values.",
+        "Typing dates as text, then wondering why business-day counts look wrong.",
+        "Merging cells in the register, which breaks sorting and filtering.",
+        "Hard coding a day count or a rate inside a formula instead of a labeled cell.",
+        "Building a macro on Windows, then finding out it fails on the Mac.",
+        "Letting an AI draft settle a coverage question. The draft is a starting point, not a decision."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a template is not the first step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Searching for a free claims template is the obvious next move. This guide found none from a source it could open and verify. The Excel templates that show up in this area are actuarial. Archer Actuarial offers reserving spreadsheets. Milliman describes its CREW workbook as an Excel template for estimating incurred but not paid medical claim liabilities. Those tools serve actuaries. A register built from the layout above fits a claims desk better."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy your current tracker into a new file. Leave the original alone.",
+        "Convert the data to a Table and name it Register.",
+        "Add the Status dropdown with Data > Data Validation.",
+        "Build the lookup, count and total formulas from this guide.",
+        "Check your Excel version before you rely on Power Query.",
+        "Ask your compliance team which deadlines belong in the checklist."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, add the document links and the reserve log. Keep each change small, and test it on a copy first. Email is the other half of the desk. The [Outlook guide for insurance claims adjusters on Mac](/for/insurance-claims-adjusters/outlook) covers templates, rules and signatures."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac work for insurance claims adjusters?",
+      "answer": "Yes, for most of the tracker and calculator work. Tables, lookups, COUNTIFS, SUMIFS and data validation all work on Mac. The gaps are macro features like ActiveX and Windows API calls. Power Query works on Excel for Mac, but not on Excel 2016 or Excel 2019 for Mac."
+    },
+    {
+      "question": "Is there a free Excel template for claims adjusters?",
+      "answer": "Not one this guide could open and verify. The public Excel templates in this area are actuarial. Archer Actuarial offers reserving downloads, and Milliman's CREW workbook estimates incurred but not paid medical claim liabilities. Build a simple register from the layout above instead."
+    },
+    {
+      "question": "Can I run VBA macros from a claims workbook on a Mac?",
+      "answer": "Some of them. UserForms work on Mac. ActiveX does not, because macOS has no COM, so replace ActiveX controls with Form controls. Windows API declarations fail. CreateObject calls for Scripting.FileSystemObject fail with run-time error 429."
+    },
+    {
+      "question": "Does Excel for Mac include Power Pivot?",
+      "answer": "Check Microsoft's support site before you plan around it. Several third-party posts say no. Microsoft's pages did not confirm that when this guide was checked. A basic PivotTable covers most summary needs."
+    },
+    {
+      "question": "Can Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, drafts and types text. It does not click buttons, edit files or operate other apps. You make every change. Ask it to walk you through the steps, one click at a time."
+    },
+    {
+      "question": "Does Lazur send my claim data to AI providers?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Your carrier's rules still come first, so check them before you use any AI tool with claim files."
+    },
+    {
+      "question": "Why do shared Excel trackers cause problems on claims desks?",
+      "answer": "Version conflicts are the usual cause. Several people edit at once, and copies multiply under names like FINAL_v3_UPDATED. Keep one master file, agree on who edits which tab, and lock formula columns with Review > Protect Sheet."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About Power Query in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/about-power-query-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Does Excel VBA Work on Mac? What Runs and What Doesn't",
+      "url": "https://excel-gurus.com/excel-vba-on-mac/",
+      "publisher": "ExcelGurus",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Claims Adjusters Spend Too Much Time on Compliance: What Tools Might Help?",
+      "url": "https://riskandinsurance.com/claims-adjusters-spend-too-much-time-on-compliance-what-tools-might-help/",
+      "publisher": "Risk & Insurance",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "72% of insurers still rely on Excel for critical workflows, INTX",
+      "url": "https://www.dig-in.com/news/72-of-insurers-rely-on-excel-for-critical-workflows-intx",
+      "publisher": "Digital Insurance",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Regure vs Email & Spreadsheets for Claims",
+      "url": "https://www.getregure.com/compare/regure-vs-email-spreadsheets/",
+      "publisher": "Regure",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Tools",
+      "url": "https://archeractuarial.com/tools/",
+      "publisher": "Archer Actuarial",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Claim Reserve Estimation Workbook (CREW)",
+      "url": "https://www.milliman.com/en/products/claim-reserve-estimation-workbook",
+      "publisher": "Milliman",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Walk me through making the Status column a dropdown.",
+    "capability": "guide",
+    "result": "Lazur guides you through Data > Data Validation one click at a time, waiting for each click.",
+    "shell": "sheet",
+    "context": "Claims register open in Excel for Mac, Status column selected.",
+    "output": "Click Data in the menu bar. Choose Data Validation. Set Allow to List, then type the three status values in Source.",
+    "pointsAt": "Data > Data Validation"
+  },
+  "tasks": [
+    {
+      "say": "Where is Freeze Panes in this menu?",
+      "result": "Lazur draws a circle and a label around the View menu item, so you find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making the Status column a dropdown.",
+      "result": "Lazur guides you through Data > Data Validation one click at a time, waiting for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why does this cell show #VALUE!?",
+      "result": "Lazur reads the formula on screen, names the likely problem and says what to check next.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a short status note to the claimant in plain language.",
+      "result": "Lazur types a short, plain note you can edit before you send it. It gives no coverage opinion.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a file note for this claim.",
+      "result": "Hold fn and speak. Lazur types the clean note at the cursor, in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find the current acknowledgment deadline for this state.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to call the body shop Friday morning.",
+      "result": "Lazur adds an Apple Reminders item for Friday morning.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "insurance-claims-adjusters-excel",
+  "role": "insurance-claims-adjusters",
+  "app": "excel",
+  "roleName": "Insurance claims adjusters",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/insurance-claims-adjusters-excel/excel-for-insurance-claims-adjusters-on-mac-1-3b7802.jpg",
+      "width": 1280,
+      "height": 834,
+      "alt": "Insurance claims adjuster working on a laptop at a desk, the setting for Excel for insurance claims adjusters on Mac",
+      "caption": "A claims desk with a laptop and paperwork",
+      "keywords": [
+        "excel for insurance claims adjusters on mac",
+        "Excel",
+        "Insurance claims adjusters",
+        "Mac",
+        "insurance adjuster laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexas_Fotos",
+        "url": "https://pixabay.com/users/Alexas_Fotos-686414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/accident-driver-escape-police-1497298/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/insurance-claims-adjusters-excel/excel-for-insurance-claims-adjusters-on-mac-2-3129de.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Office worker reviewing a spreadsheet on a Mac laptop at a desk",
+      "caption": "Reviewing a spreadsheet on a Mac",
+      "keywords": [
+        "excel for insurance claims adjusters on mac",
+        "Excel",
+        "Insurance claims adjusters",
+        "Mac",
+        "man laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/insurance-claims-adjusters-excel/excel-for-insurance-claims-adjusters-on-mac-3-36fc86.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Stack of claim documents and a laptop on an office desk",
+      "caption": "Claim files and paperwork on a desk",
+      "keywords": [
+        "excel for insurance claims adjusters on mac",
+        "Excel",
+        "Insurance claims adjusters",
+        "Mac",
+        "office desk documents",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-office-office-web-desktop-595476/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for insurance claims adjusters on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "excel for claims adjusters mac": 1,
+      "claims tracker excel mac": 1,
+      "insurance adjuster spreadsheet": 1,
+      "xlookup for claim status": 1,
+      "excel mac insurance claims": 1,
+      "power query excel mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

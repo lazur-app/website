@@ -1,0 +1,540 @@
+{
+  "title": "Excel for nonprofit fundraisers on Mac: donor logs, totals, and voice help in 2026",
+  "metaTitle": "Excel for Nonprofit Fundraisers on Mac: Gift Logs and Totals",
+  "description": "Excel for nonprofit fundraisers on Mac: set up a gift log, clean donor data, build SUMIFS totals and pivots, and get voice help with Lazur.",
+  "targetKeyword": "excel for nonprofit fundraisers on mac",
+  "secondaryKeywords": [
+    "excel for nonprofits mac",
+    "donor tracking spreadsheet excel mac",
+    "sumifs campaign totals excel",
+    "pivot table donor giving excel",
+    "excel gift log setup mac",
+    "lazur excel help"
+  ],
+  "intro": "Excel for nonprofit fundraisers on Mac handles gift logs, donor lists, and campaign totals well. Keep one row per gift in a named table, then build your totals with SUMIFS. This page shows the setup, the formulas, the Mac shortcuts, and where Excel stops being the right tool. Lazur can sit beside you while you work and point at each control.",
+  "tldr": [
+    "Keep one row per gift in a named table, so totals and pivot tables stay accurate.",
+    "Build campaign totals with SUMIFS and COUNTIFS, and check that amounts are numbers, not text.",
+    "Remove duplicate donors on a copy of the sheet, never on the only copy.",
+    "Excel has no built-in donor dashboard, so pivot tables do that job for board reports.",
+    "Lazur points, explains, and guides you one click at a time. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "52%",
+      "label": "of nonprofits still use Excel and Google Docs to run development operations, per a 2015 Software Advice report",
+      "sourceUrl": "https://www.littlegreenlight.com/blog/are-you-still-using-excel-to-manage-your-donor-data/",
+      "sourceTitle": "Are you still using Excel to manage your donor data?"
+    },
+    {
+      "value": "30%",
+      "label": "of about 200 surveyed nonprofits still track donor information in spreadsheets, survey year not stated",
+      "sourceUrl": "https://volunteerhub.com/blog/donor-management-study",
+      "sourceTitle": "Donor Management Study Recap"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows per worksheet in Excel, according to Microsoft's specifications and limits page",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "16,384",
+      "label": "columns per worksheet, the second half of Excel's sheet limit",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most nonprofit fundraisers who use Excel on a Mac do one of three jobs. They keep a gift log, a donor list with contact details, or a budget for a campaign. Some keep all three in one workbook, which works until it doesn't. Neon One's donor tracking guide says transaction-focused sheets can make people lose sight of when donors last gave, how often they give, and which campaign brought them in. That is the main risk. The rest of this page is built around avoiding it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Excel on a Mac still fits a small fundraising team"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is familiar to most staff, and it runs on the Mac you already have. A small team can run an appeal from one workbook without learning a new system. That matters when the development lead also writes the appeal letter and answers the phone. Excel does have real limits, and you should know them before you build. A single worksheet holds 1,048,576 rows and 16,384 columns, according to Microsoft. Most small appeals never come close to that. You will hit trouble from messy data long before you hit size."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a gift log that does not break"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one row per gift, not one row per donor. A donor who gave three times gets three rows. Use these columns in this order: Date, Donor ID, Donor Name, Amount, Campaign, Payment Method, and Notes. Keep one value in each cell. Never type Smith, J and K into a name column. Neon One warns that when the same gift is entered several ways, that mess can break your formulas and skew your reports. A donor ID prevents most of that. Give each person one ID and never reuse it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type the headers in row one. Each header gets its own column and a short name, such as Amount or Campaign.",
+        "Click any cell inside the data and press ⌘T. Excel asks for the range and whether the first row holds headers.",
+        "Turn on the header row, then click OK.",
+        "Click inside the table. Open the Table Design tab and type Gifts in the Table Name box.",
+        "Write every later formula with names like Gifts[Amount], not cell addresses like C2:C900."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Named tables grow on their own. When you type a new gift in the row under the table, the table expands, and formulas that use Gifts[Amount] pick up the new row. Microsoft's October 2026 What's New post says naming a table as you create it is now available on both Windows and Mac. If your version skips that prompt, rename the table afterward in the Table Design tab."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean up addresses, dates, and duplicate donors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Messy data causes most bad totals. Neon One says donor addresses often get formatted in six different ways. The same person can show up as Robert Lee, Bob Lee, and Lee, Robert. Fix formatting first, then hunt for duplicates. Turn on the filter with ⌘⇧L and sort the name column. Look for matches on the same email address or postal code. Merge only when you are sure they are the same person."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Make a copy of the sheet first. Name it with today's date and the word before, so you know what it is.",
+        "Click any cell in the Gifts table.",
+        "Choose Data > Remove Duplicates. Pick the columns that define a duplicate, usually Donor ID.",
+        "Read the count Excel reports, then compare it with what you expected from the source export.",
+        "Keep the copy until the campaign total matches last year's report."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Duplicates removal is permanent",
+      "text": "Remove Duplicates deletes rows. Undo with ⌘Z works only in the same session. Run the cleanup on a copy, and keep that copy until your totals match a number you already trust."
+    },
+    {
+      "type": "paragraph",
+      "text": "Copilot in Excel can help with this cleanup. Microsoft's October 2026 post says its clean-data skill finds issues that affect formulas, lookups, and PivotTables. Those issues include extra spaces, inconsistent formats, and duplicates. You choose which fixes to apply. The post describes the skill as rolling out to general availability on all platforms. I could not confirm which Microsoft 365 plans include Copilot, so check that before you plan a cleanup around it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Campaign totals with SUMIFS and COUNTIFS"
+    },
+    {
+      "type": "paragraph",
+      "text": "Totals are where a fundraising workbook earns its keep. SUMIFS adds up amounts that match a condition. Put the formula in a summary cell, not inside the table. This pattern gives the total raised for one appeal: =SUMIFS(Gifts[Amount],Gifts[Campaign],\"Spring Appeal\"). Because the formula reads table columns, it still works when new gifts go at the bottom of the table. Match the campaign name exactly, including spaces. A stray space at the end of a name makes SUMIFS skip that row."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Question",
+        "Formula pattern",
+        "Common mistake"
+      ],
+      "rows": [
+        [
+          "Total raised by campaign",
+          "=SUMIFS(Gifts[Amount],Gifts[Campaign],\"Spring Appeal\")",
+          "Amounts stored as text are skipped, so the total runs low"
+        ],
+        [
+          "Number of gifts in a campaign",
+          "=COUNTIFS(Gifts[Campaign],\"Spring Appeal\")",
+          "Counts rows, not people, so a donor who gave twice counts twice"
+        ],
+        [
+          "Donors who gave, each counted once",
+          "=COUNTA(UNIQUE(Gifts[Donor ID]))",
+          "A blank donor ID can add one extra, so clean blanks first"
+        ],
+        [
+          "Last gift date for one donor",
+          "=MAXIFS(Gifts[Date],Gifts[Donor ID],A2)",
+          "Dates stored as text return zero, so check the date format"
+        ]
+      ],
+      "caption": "Common donor and campaign formulas. Check each result against a total you already trust."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test every formula on a small slice first. Filter Campaign to one value, then select the Amount cells. Compare the sum shown in the status bar with your SUMIFS result. If they match, the formula is right. If they do not, look for amounts stored as text, extra spaces, or a currency symbol typed into the amount column. Bank exports often bring those problems along."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for giving patterns and board reports"
+    },
+    {
+      "type": "paragraph",
+      "text": "Neon One says spreadsheets lack the dashboards and pivot tables needed to spot giving patterns, measure campaign success, or report to the board. Excel does include PivotTables. The gap is usually in how the sheet is built, not in the tool. A pivot works best on a named table like Gifts. Select one cell in the table, then choose Insert > PivotTable. Drag Campaign to Rows and Amount to Values. Add Date to Filters when the board wants a year view."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivots do not refresh on their own. After you add gifts, choose Data > Refresh All. A pivot that still shows last month's total is a common reason two board reports disagree. For a full walkthrough, read [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Budgets and goal tracking for a campaign"
+    },
+    {
+      "type": "paragraph",
+      "text": "A campaign budget needs three things: a goal, the money raised so far, and the gap. Put the goal in one cell and label it Campaign goal. Select that cell, then type Goal in the Name Box at the left of the formula bar. Now formulas read clearly. Raised to date uses the SUMIFS total from earlier. Percent of goal is the raised total divided by Goal. Format that cell as a percentage."
+    },
+    {
+      "type": "paragraph",
+      "text": "Edge cases matter here. If the goal cell can be blank, a division will return an error. Wrap the formula in IFERROR so the summary shows a blank instead of an error code. Keep the raised total and the goal on the same sheet. Board members read one screen faster than three tabs."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep expenses out of the gift log",
+      "text": "Put campaign expenses on a separate tab. Mixing expense rows and gift rows in one table breaks totals and pivot tables. Keep the gift log for gifts only, and link to expenses from the summary."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel gets stuck for fundraising work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is a good workbook, but it is not a donor system. It has no built-in donor timeline, no contact history, and no email tool. Neon One lists the lack of dashboards and the difficulty of tracking giving history as common reasons teams move on. Know these limits before you promise a result to your board."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Lost context: a gift list does not show what a donor was asked for or when someone last called.",
+        "Many editors: two people sorting one sheet at the same time causes confusion. Keep one master copy with a clear owner.",
+        "Version gaps: Microsoft lists some features as Insiders-only on Mac, such as the skill recorder. Check before you plan around them.",
+        "Vendor framing: Neon One and Little Green Light sell donor software. Read their warnings as sales context, not neutral research."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "How common is this? VolunteerHub reports that 30 percent of about 200 surveyed nonprofits still track donor information in spreadsheets or similar documents. Its survey year is not stated, and the post is dated December 2014. Little Green Light, citing a 2015 Software Advice report, says 52 percent of nonprofits use Excel and Google Docs for development operations. Both figures are old and come from vendors. Use them to understand how common spreadsheets are, not as a current count."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard shortcuts for faster donor work"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Create a table from the selected data",
+          "⌘T",
+          "Do this before you write formulas that point at the table"
+        ],
+        [
+          "Turn the filter on or off",
+          "⌘⇧L",
+          "Filter Campaign to check one appeal at a time"
+        ],
+        [
+          "Collapse or expand the ribbon",
+          "⌘⌥R",
+          "Listed on Microsoft's Mac shortcut page for Microsoft 365"
+        ],
+        [
+          "Undo the last change",
+          "⌘Z",
+          "Undo does not carry over after you close the file, so save a copy before big edits"
+        ],
+        [
+          "Enter today's date",
+          "⌘;",
+          "Useful for the received date column in a gift log"
+        ]
+      ],
+      "caption": "Excel for Mac shortcuts that help with donor records."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some older articles say Excel for Mac has no ribbon shortcut. Microsoft's own shortcut page lists ⌘⌥R, so try it first. Microsoft also notes that some dialog navigation shortcuts need Full Keyboard Access turned on."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Turn on Full Keyboard Access",
+      "text": "Open System Settings > Keyboard > Keyboard navigation and turn on Full Keyboard Access. Then use Tab to move between controls in Excel dialogs such as Remove Duplicates."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Lazur with your donor spreadsheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on your screen, and Lazur answers out loud. Ask where the Table Name box is, and Lazur draws a circle and a label around it. Ask how to remove duplicates, and Lazur guides you one click at a time. It waits for each click before it moves to the next step. You can also see the AI assistant for Excel on Mac on the [Excel page](/apps/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Clean, formatted text lands at the cursor in any app. Use it for call notes in a comment column, or to speak a short gift note into a cell. Dictation is for text, not formulas. Read every dollar figure back before you save, because speech can mishear an amount."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not an add-in for Excel, and Lazur has no partnerships with any app maker. Think of it as a colleague who sits next to you. Lazur points, explains formulas, drafts text, and guides you through steps. You still press the keys. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Use that for outside comparisons, not for work inside your gift log. There is a free trial on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes fundraisers make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Counting pledges as gifts, so totals show money that never arrived. Add a Status column.",
+        "Typing one donor's name three ways, then wondering why the donor count is off.",
+        "Using merged cells inside the data area. Merged cells break sorting, filtering, and pivot tables.",
+        "Running Remove Duplicates on the only copy of the file.",
+        "Forgetting to refresh a pivot table before a board meeting.",
+        "Storing dates as text, so the last gift date formula returns nothing useful."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from the same habit. People type data the way it arrives, not the way a formula needs it. Fix the input once, and the totals stay honest. A little structure at the start saves hours at the end of the campaign."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a copy of your current gift log. Convert it to a table with ⌘T and name it Gifts. Then write one SUMIFS total for the current appeal, and check it against a number you already trust. Once the total matches, add a pivot table for the board. If your donor letters also depend on mail merge, read the [Gmail guide for nonprofit fundraisers on Mac](/for/nonprofit-fundraisers/gmail). Use the download page only when you are ready to try Lazur on your own Mac: [Download Lazur](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Excel for Mac good enough for nonprofit fundraising?",
+      "answer": "For a small team with a gift log, a donor list, and a campaign budget, yes. Excel handles the math well when the data is clean. It is not a donor database. It has no built-in donor timeline, email tool, or contact history, so larger teams often outgrow it."
+    },
+    {
+      "question": "How many rows can one Excel worksheet hold?",
+      "answer": "Microsoft's specifications and limits page lists 1,048,576 rows and 16,384 columns per worksheet. Most small fundraising logs stay far below the row limit. Messy data causes trouble much earlier than size does."
+    },
+    {
+      "question": "Why do my SUMIFS totals come out lower than expected?",
+      "answer": "The most common cause is amounts stored as text. Excel skips text values in a SUMIFS sum. Also check for extra spaces in the campaign name, because a trailing space stops the match. Select an amount cell and confirm it is aligned to the right, which usually means it is a number."
+    },
+    {
+      "question": "Can Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at controls, explains formulas, drafts text, and guides you one click at a time. You stay in control of every change."
+    },
+    {
+      "question": "Does Lazur listen to me all the time?",
+      "answer": "No. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Does Excel for Mac have the same features as Excel on Windows?",
+      "answer": "Not always. Microsoft's October 2026 What's New post lists some features as Insiders-only on Mac, and it lists the interactive canvas as Windows-only. Check the What's New post for your version before you plan a workflow around a new feature."
+    },
+    {
+      "question": "Should a small nonprofit use a donor database instead of Excel?",
+      "answer": "It depends on how many people edit the data and how much history you need. Neon One argues that spreadsheets lack dashboards and donor timelines. Those gaps matter once a team grows. Excel still works well for a single owner and a short, clean gift log."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Common Office for Mac keyboard shortcuts",
+      "url": "https://support.microsoft.com/en-us/office/common-office-for-mac-keyboard-shortcuts-307f469a-1a05-4263-9b55-49df19a8b8ff",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Track Your Donors in Spreadsheets (+ Free Donor Database Template)",
+      "url": "https://neonone.com/resources/blog/donor-tracking-spreadsheets/",
+      "publisher": "Neon One",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Donor Management Study Recap",
+      "url": "https://volunteerhub.com/blog/donor-management-study",
+      "publisher": "VolunteerHub",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Are you still using Excel to manage your donor data?",
+      "url": "https://www.littlegreenlight.com/blog/are-you-still-using-excel-to-manage-your-donor-data/",
+      "publisher": "Little Green Light",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I name this table?",
+    "capability": "point",
+    "result": "Lazur circles the Table Name box in the Table Design tab and labels it, so you can rename the table to Gifts yourself.",
+    "shell": "sheet",
+    "context": "Gifts table selected in Excel for Mac",
+    "pointsAt": "Table Name box"
+  },
+  "tasks": [
+    {
+      "say": "Where is the Table Name box?",
+      "result": "Lazur circles the Table Name box in the Table Design tab and labels it on screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through removing duplicate donors.",
+      "result": "Lazur guides you through Data > Remove Duplicates one click at a time, waiting for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this SUMIFS formula actually do?",
+      "result": "Lazur reads the formula on screen and explains each argument out loud, including which column it sums.",
+      "capability": "explain"
+    },
+    {
+      "say": "Write a thank-you note for the spring appeal donors.",
+      "result": "Lazur drafts the thank-you text, which you can review and paste into your mail app.",
+      "capability": "draft"
+    },
+    {
+      "say": "Note that Dana will call about the match on Friday.",
+      "result": "Hold fn and speak. The words land at the cursor as clean text, ready for the comment column.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Remind me to send the impact report on Friday afternoon.",
+      "result": "Lazur adds the reminder to Apple Reminders so the task shows up on your Mac.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Research how other food banks report campaign totals to their boards.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report you can read later.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "nonprofit-fundraisers-excel",
+  "role": "nonprofit-fundraisers",
+  "app": "excel",
+  "roleName": "Nonprofit fundraisers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/nonprofit-fundraisers-excel/excel-for-nonprofit-fundraisers-on-mac-1-72ba7c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Nonprofit fundraisers reviewing donor records together around a table in an office",
+      "caption": "Donor records are usually a team effort.",
+      "keywords": [
+        "excel for nonprofit fundraisers on mac",
+        "Excel",
+        "Nonprofit fundraisers",
+        "Mac",
+        "nonprofit fundraising team",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/donate-control-money-support-civil-5281984/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/nonprofit-fundraisers-excel/excel-for-nonprofit-fundraisers-on-mac-2-08ed65.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person working on a Mac laptop at a desk, tracking donations in a spreadsheet",
+      "caption": "Most gift logs start on a laptop at a desk.",
+      "keywords": [
+        "excel for nonprofit fundraisers on mac",
+        "Excel",
+        "Nonprofit fundraisers",
+        "Mac",
+        "person using laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/desk-laptop-notebook-pen-workspace-593327/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/nonprofit-fundraisers-excel/excel-for-nonprofit-fundraisers-on-mac-3-83fd57.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Volunteers sorting donation forms at a table during a charity campaign",
+      "caption": "Campaign season means lots of rows to check.",
+      "keywords": [
+        "excel for nonprofit fundraisers on mac",
+        "Excel",
+        "Nonprofit fundraisers",
+        "Mac",
+        "volunteers sorting donations",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "rdelarosa0",
+        "url": "https://pixabay.com/users/rdelarosa0-955109/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/donation-give-732298/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for nonprofit fundraisers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for nonprofits mac": 1,
+      "donor tracking spreadsheet excel mac": 1,
+      "sumifs campaign totals excel": 1,
+      "pivot table donor giving excel": 1,
+      "excel gift log setup mac": 1,
+      "lazur excel help": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

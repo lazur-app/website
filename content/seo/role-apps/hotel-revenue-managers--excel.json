@@ -1,0 +1,594 @@
+{
+  "title": "Excel for hotel revenue managers on Mac: RevPAR, pickup and rates in Microsoft 365",
+  "metaTitle": "Excel for Hotel Revenue Managers on Mac | Lazur",
+  "description": "Excel for hotel revenue managers on Mac: build RevPAR, ADR and pickup sheets, fix formula errors, and use Lazur to point at each step.",
+  "targetKeyword": "excel for hotel revenue managers on mac",
+  "secondaryKeywords": [
+    "RevPAR formula in Excel on Mac",
+    "ADR calculation in Excel",
+    "hotel pickup report in Excel",
+    "Excel PivotTable for hotel segment mix",
+    "free hotel revenue management template Excel",
+    "hotel revenue spreadsheet on Mac"
+  ],
+  "intro": "Excel for hotel revenue managers on Mac is a workbook that tracks rooms sold, ADR, occupancy, RevPAR and pickup. You build it as a Table with a few formulas and a PivotTable in Microsoft 365 for Mac. Lazur works beside Excel. It points at buttons, explains errors and drafts notes, but it does not click or edit for you.",
+  "tldr": [
+    "Track rooms sold, rooms available and room revenue each day. ADR, occupancy and RevPAR come from those three columns.",
+    "Turn the daily range into a Table with ⌘T, and wrap ADR and RevPAR in IF so closed nights stay blank.",
+    "Build pickup as on the books against last year and forecast, one row per segment, on the same weekday each week.",
+    "Excel for Mac 16.114.3 is the latest build in Microsoft's release notes. Updates need macOS 14 Sonoma or later.",
+    "Lazur points at the PivotTable button, explains errors and drafts notes. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "Rows per worksheet in Excel, according to Microsoft's specifications page",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits, Microsoft Support"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Latest Office for Mac build in Microsoft's release notes, dated October 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac, Microsoft Learn"
+    },
+    {
+      "value": "macOS 14",
+      "label": "Minimum macOS Microsoft gives for receiving Microsoft 365 and Office updates",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac, Microsoft Learn"
+    },
+    {
+      "value": "125 hours",
+      "label": "Monthly time a vendor says hotel teams spend cleaning and moving data, with no study named",
+      "sourceUrl": "https://revenue-hub.com/hotel-bi-vs-excel-the-hidden-costs/",
+      "sourceTitle": "Hotel BI vs Excel: The Hidden Costs, Revenue Hub"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What hotel revenue managers track in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many revenue managers keep a workbook next to their property management system and revenue management system. The research I found does not measure how many do this. Treat it as a common setup, not a fact about the whole industry. The sheet is where you test a rate idea before you change it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The core sheet tracks the same few measures every day:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Rooms sold and rooms available, from the night audit or your PMS report.",
+        "Room revenue without taxes and fees, so ADR stays clean.",
+        "Occupancy, which is rooms sold divided by rooms available.",
+        "ADR, which is room revenue divided by rooms sold.",
+        "RevPAR, which is room revenue divided by rooms available.",
+        "Competitor rates from your rate shop, with the date you checked them.",
+        "A short note on what changed and why."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Add the forward view once the daily numbers are clean. Pickup shows the rooms booked for future dates, which shows where demand is heading. The next sections cover both."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the workbook so formulas keep working"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one row per day. Select the range and press ⌘T to turn it into a Table. A Table grows when you type under it. Formulas that use column names keep working when you add a column. Plain ranges do not do that."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 What's New in Excel post lists name tables at creation for Windows and Mac. Use the name field in the Create Table dialog. Call the table Daily_Rates or something similar. A clear name makes formulas readable a year later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a second sheet called Setup. Put the hotel name, room types, base rates and date format there. Point your formulas at that sheet instead of typing values into them. When a number changes, you edit it once."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "RevPAR, ADR and occupancy formulas in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "ADR is room revenue divided by rooms sold. Occupancy is rooms sold divided by rooms available. RevPAR is room revenue divided by rooms available. Each one is a ratio, so each one can divide by zero."
+    },
+    {
+      "type": "paragraph",
+      "text": "RevPAR also equals ADR multiplied by occupancy. Use that as a check. If the two routes give different answers, one column points at the wrong range or the wrong row."
+    },
+    {
+      "type": "paragraph",
+      "text": "In a Table, the ADR formula reads like this: if rooms sold is zero, show a blank, otherwise divide room revenue by rooms sold. Written with structured references, it is =IF([@RoomsSold]=0,\"\",[@RoomRevenue]/[@RoomsSold]). Copy the pattern for RevPAR and occupancy, and change only the denominator."
+    },
+    {
+      "type": "paragraph",
+      "text": "Returning a blank instead of zero matters. A zero ADR on a closed night drags your average down. A blank stays out of the math, and AVERAGE skips it."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Mistakes that break the rate numbers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Including taxes and fees in room revenue, which inflates ADR.",
+        "Mixing stay dates and booking dates in one column.",
+        "Typing a rate as text, so SUM and AVERAGE skip it without a warning.",
+        "Copying a formula into blank rows and getting a divide-by-zero error down the whole sheet.",
+        "Building a pivot on a fixed range, which misses every new row.",
+        "Comparing a room count from one report with a count from another that handles rooms out of order differently."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the source before you fix the formula. Most rate errors come from the data, not from the math."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pickup reports: on the books versus last year and forecast"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pickup is the number of rooms booked since your last snapshot for a future date. Take the snapshot on the same weekday and time each week. Compare the rooms on the books for a date against the same date last year and against your forecast."
+    },
+    {
+      "type": "paragraph",
+      "text": "The free Roommaster template is a useful model. Its weekly summary compares each segment to this period, last year, forecast and variance. The segments it lists are Direct, OTA, Corporate and Group. Its setup section holds base rates by room type."
+    },
+    {
+      "type": "paragraph",
+      "text": "Its download buttons lead to a Book a Demo page in the research, and that page does not state Mac or Excel compatibility. Treat the template as a layout to copy. Test each formula on a week of sample data before you trust any total."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build the pickup table as a Table with one row per segment. Give it columns for on the books, last year, forecast and variance. Write your variance sign rule in the Setup sheet. Forecast minus actual and actual minus forecast tell opposite stories, so pick one and keep it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Segment mix with a PivotTable on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Segment mix answers a simple question. Which channel brought the rooms? Select any cell in the Daily_Rates Table, then go to Insert > PivotTable. Use the Table name as the source, so the pivot can grow with the data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put segment in Rows and the date in Filters. Put rooms sold and room revenue in Values. Set rooms sold to Sum, not Count. Count counts rows, so it gives the wrong total when a row shows zero rooms."
+    },
+    {
+      "type": "paragraph",
+      "text": "The step-by-step version is in [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). Read it once, then build your own. The first build takes longer than the rest."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Keep the source from going stale"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot built on a fixed range misses new rows. A pivot built on a Table name grows with the data. If yours still shows old totals, read [why a pivot does not refresh new rows](/for/developers/problems/excel-pivot-table-not-refreshing-new-rows). Then choose Data > Refresh All after every paste."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in the rate workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ and ask about anything on your screen. Lazur looks at the screen only while you hold the keys, and it answers out loud. Ask where a button is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click. It does not click for you, and it does not edit your file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur fits best where you know the number you need but not the menu. A new analyst can ask where the PivotTable button is. You can ask why a cell shows an error while that cell is still on screen."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Errors that stop a rate review"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common error in a rate sheet is #DIV/0, the divide-by-zero error. It means you divided by zero. The usual cause is rooms sold on a closed night, or a blank row copied down by mistake. Wrap the formula in IF, as shown earlier, so blank rows stay blank."
+    },
+    {
+      "type": "paragraph",
+      "text": "#N/A is a different problem. It usually means a lookup found no match. A room type name with a trailing space is a common cause. The guide to [fixing VLOOKUP #N/A errors](/for/developers/problems/excel-vlookup-na-error-fix-steps) walks through the checks in order."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to explain the error. Hold ⌥⌘, ask what the error means, and Lazur answers out loud while the cell is visible. You type the fix and read the result yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Rate decision log and dictated notes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A rate log records what you changed, when, and why. Keep it on its own sheet. Use columns for date, room type, old rate, new rate, reason and result. Future you will need the reason more than the number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation speeds up notes. Hold fn and speak. Lazur types clean, formatted text at the cursor in any app. Save phrases you repeat as snippets. Add hotel names and abbreviations to your personal dictionary so they come out spelled the way you want."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate short notes straight into a cell. Longer reasons read better in a cell with wrap on. Select the cell and use Home > Wrap Text on the ribbon."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac versions and sheet limits to check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft publishes release notes for Office for Mac. The latest build in the notes is 16.114.3, dated October 27, 2026. Releases came about weekly in 2026, starting with 16.105 on January 13, 2026. Check your build under Excel > About Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says macOS 14 Sonoma is required to receive updates for Microsoft 365 and Office apps. It says macOS 12 Monterey is required to install versions 16.78 or later. If your Mac is older, check your version before a big update."
+    },
+    {
+      "type": "paragraph",
+      "text": "A worksheet holds 1,048,576 rows and 16,384 columns. A cell holds 32,767 characters, and a formula holds 8,192. A daily rate sheet will not reach the row limit. A raw booking export can, so split large exports by month."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's specifications page also lists Data Model memory limits. It describes 32-bit and 64-bit builds differently. Check which build you run before you build a large model on top of your rate data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates to start from"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start from a template if you do not want to build the sheet from zero. Roommaster offers a free hotel revenue management template in PDF, Word and Excel. It has three parts: setup details, a daily rate and performance tracker, and a weekly pickup and segment summary."
+    },
+    {
+      "type": "paragraph",
+      "text": "The daily tracker covers rooms sold, occupancy, ADR, RevPAR, competitor rate and notes. The weekly summary covers Direct, OTA, Corporate and Group mix. Those columns match the measures in this guide, so you can compare them side by side."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test any template on a week of real data before you trust it. Check that each total matches your PMS report. A template that looks right can still point at the wrong column."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the time-saving claims actually show"
+    },
+    {
+      "type": "paragraph",
+      "text": "Vendors make big claims about spreadsheets. Revenue Hub says hotel teams can spend up to 125 hours per month cleaning, formatting and moving data. It names no study, publisher or date. Treat that figure as a sales claim, not a measurement."
+    },
+    {
+      "type": "paragraph",
+      "text": "A LodgIQ contributed article says automated systems save an estimated 20 to 40 hours per month. The same article says over 80% of spreadsheets used in hotel operations contain errors. It cites only Research shows, with no study named."
+    },
+    {
+      "type": "paragraph",
+      "text": "The article also gives setup costs of $7,000 to $10,000 and ongoing fees of $6 to $10 per room per month. It cites no source for those figures. Ask vendors for written quotes before you compare them with your own sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the claims as questions. How much time does your team spend on copy and paste each week? Time it for one week and write the answer down. That figure belongs to you, and it is the one that matters in a budget talk."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: stay dates, booking dates and several hotels"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stay date and booking date are not the same thing. Pickup needs the booking date. ADR needs the stay date. Mix them in one column, and the sheet still calculates. The numbers just stop meaning anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "A group of hotels should give each property its own Table. Stack the rows in one master Table with a property column. Keep currency in one column per row, and write the conversion rate in the Setup sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Snapshot time matters too. A snapshot taken at a different local time changes the pickup number. Take it at the same local time every week, and write that time in the sheet header."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine for pickup and rate review"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Take the pickup snapshot on the same weekday and time.",
+        "Paste the new rows directly under the last row of the Daily_Rates Table.",
+        "Check that closed nights show blanks, not errors.",
+        "Refresh the segment PivotTable with Data > Refresh All.",
+        "Write one line in the rate log for each change you made.",
+        "Send the GM a short summary with the pickup table and one sentence on what moved."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Lazur for competitor checks and reminders"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to run research on competitor rates for a date you pick. Research runs in Lazur's own Chrome tabs, and it comes back with a summary and a report. Check those numbers against the source sites before you change a rate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to set a reminder for the next snapshot. Reminders go to Apple Reminders. A missed snapshot breaks the pickup trend, so a weekly reminder is worth setting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your first week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build the Daily_Rates Table this week. Add the pickup summary next. Add the segment PivotTable once you have a full week of clean data. Keep the rate log running from the first day, even if the sheet is still rough."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your reports overlap with finance, the [financial analyst Excel guide](/for/financial-analysts/excel) covers budget and forecast cleanup. For a general Excel helper on the Mac, see [Lazur for Excel](/apps/excel). To try Lazur on your own screen, [download the app](/download). Plans and limits are on the [pricing page](/pricing)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Excel for Mac good enough for hotel revenue management?",
+      "answer": "Yes, for the core work. Daily tracking, pickup and segment mix all fit in one workbook. The limits that matter are row counts, formula length and file size. Microsoft lists 1,048,576 rows and 16,384 columns per worksheet."
+    },
+    {
+      "question": "What macOS do I need for the latest Excel on Mac?",
+      "answer": "Microsoft says macOS 14 Sonoma is required to receive updates for Microsoft 365 and Office apps. It says macOS 12 Monterey is required to install versions 16.78 or later. The latest build in its release notes is 16.114.3, dated October 27, 2026."
+    },
+    {
+      "question": "How do I calculate RevPAR in Excel on Mac?",
+      "answer": "Divide room revenue by rooms available. You can also multiply ADR by occupancy, which gives the same result. Wrap the formula in IF so closed nights show a blank instead of an error."
+    },
+    {
+      "question": "Does Lazur click buttons or edit my spreadsheet?",
+      "answer": "No. Lazur points at things, explains them, and guides you one click at a time. It waits for each click. It drafts and types text, but it does not operate Excel for you."
+    },
+    {
+      "question": "Is there a free hotel revenue template for Excel?",
+      "answer": "Roommaster publishes a free template in PDF, Word and Excel. Its download buttons lead to a demo request page in the research, and the page does not state Mac or Excel compatibility. Test it on sample data first."
+    },
+    {
+      "question": "Why does my ADR show a divide-by-zero error on some days?",
+      "answer": "Excel divides by zero when rooms sold is zero. That happens on closed nights and on blank rows copied down by mistake. Wrap the formula in IF so it returns a blank when rooms sold is zero."
+    },
+    {
+      "question": "What does Lazur do with my screen and voice?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Memory of what you asked stays on the Mac."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (September 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-september-2026/4549755",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Free Hotel Revenue Management Template (Excel, Word, PDF)",
+      "url": "https://www.roommaster.com/template/hotel-revenue-management-template",
+      "publisher": "Roommaster",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Hotel BI vs Excel: The Hidden Costs",
+      "url": "https://revenue-hub.com/hotel-bi-vs-excel-the-hidden-costs/",
+      "publisher": "Revenue Hub",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "5 Signs It's Time to Stop Relying on Spreadsheets (Or Replace Your Current RMS)",
+      "url": "https://www.hospitalitynet.org/opinion/4132374/5-signs-its-time-to-stop-relying-on-spreadsheets-or-replace-your-current-rms",
+      "publisher": "Hospitality Net",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where's the PivotTable button on this Mac?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Insert > PivotTable, then waits while you click it.",
+    "shell": "sheet",
+    "context": "Excel for Mac open on the Daily_Rates sheet, Insert tab visible",
+    "output": "A circle around the PivotTable command on the Insert tab, labelled PivotTable. Lazur says where it is out loud and waits for your click.",
+    "pointsAt": "PivotTable button"
+  },
+  "tasks": [
+    {
+      "say": "What's the formula for RevPAR in this sheet?",
+      "result": "Lazur explains that RevPAR is room revenue divided by rooms available, and answers out loud while the header is on screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where's the PivotTable button?",
+      "result": "Lazur circles Insert > PivotTable and labels it, then waits for you to click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through a segment pivot by channel.",
+      "result": "Lazur guides you one click at a time through Rows, Values and the Sum setting, and waits after each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why does this ADR cell show a divide error?",
+      "result": "Lazur reads the cell, says the denominator is zero, and explains the IF wrap you type yourself.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate a rate note for the weekend Deluxe room.",
+      "result": "Clean text appears at the cursor, with your saved snippets and dictionary terms spelled the way you set them.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a pickup summary to my GM.",
+      "result": "Lazur drafts a short email covering the segment changes, and you read it before you send anything.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research competitor rates for this weekend.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report to check before any rate changes.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to check pickup on Thursday.",
+      "result": "Lazur adds an Apple Reminders item for Thursday, so the weekly snapshot does not slip.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "hotel-revenue-managers-excel",
+  "role": "hotel-revenue-managers",
+  "app": "excel",
+  "roleName": "Hotel revenue managers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hotel-revenue-managers-excel/excel-for-hotel-revenue-managers-on-mac-1-522f2d.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "A revenue manager reviews an Excel workbook of hotel room rates on a laptop",
+      "caption": "Reviewing daily rates and pickup numbers in Excel.",
+      "keywords": [
+        "excel for hotel revenue managers on mac",
+        "Excel",
+        "Hotel revenue managers",
+        "Mac",
+        "man working laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hotel-revenue-managers-excel/excel-for-hotel-revenue-managers-on-mac-2-2eaa23.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Hotel reception desk where room sales and occupancy data start each day",
+      "caption": "Front desk data feeds the rate sheet.",
+      "keywords": [
+        "excel for hotel revenue managers on mac",
+        "Excel",
+        "Hotel revenue managers",
+        "Mac",
+        "hotel reception desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Rodrigo_SalomonHC",
+        "url": "https://pixabay.com/users/Rodrigo_SalomonHC-20127871/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/receptionist-man-hotel-work-5975961/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/hotel-revenue-managers-excel/excel-for-hotel-revenue-managers-on-mac-3-6ae275.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Woman at a desk with a laptop, working on hotel revenue data in a spreadsheet",
+      "caption": "A weekly pickup review on a Mac.",
+      "keywords": [
+        "excel for hotel revenue managers on mac",
+        "Excel",
+        "Hotel revenue managers",
+        "Mac",
+        "woman laptop desk office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "This_is_Engineering",
+        "url": "https://pixabay.com/users/This_is_Engineering-11384528/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-work-office-face-eyes-4941164/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for hotel revenue managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "RevPAR formula in Excel on Mac": 1,
+      "ADR calculation in Excel": 1,
+      "hotel pickup report in Excel": 1,
+      "Excel PivotTable for hotel segment mix": 1,
+      "free hotel revenue management template Excel": 1,
+      "hotel revenue spreadsheet on Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "title": "Excel for mortgage loan officers on Mac: pipelines, PMT payments, and voice help",
+  "metaTitle": "Excel for Mortgage Loan Officers on Mac: Pipeline and Payment Help",
+  "description": "Excel for mortgage loan officers on Mac: build a pipeline tracker, check documents, run PMT payments, and get voice help from Lazur.",
+  "targetKeyword": "excel for mortgage loan officers on mac",
+  "secondaryKeywords": [
+    "excel for loan officers on mac",
+    "mortgage pipeline tracker excel mac",
+    "excel PMT formula mortgage payment",
+    "loan amortization schedule excel mac",
+    "excel mortgage calculator template mac",
+    "copilot in excel mac license"
+  ],
+  "intro": "Excel for mortgage loan officers on Mac covers three jobs: pipeline tracking, document checklists, and payment math. Excel for Mac handles all three for a single loan list, but Microsoft says Data Models are not supported on Excel for Mac. This page shows what works, what does not, and where Lazur helps while you work.",
+  "tldr": [
+    "Keep one flat table of borrowers, name it, and build every count and report from that table.",
+    "Use PMT with a negative loan amount, and format the rate as a percent before you type it.",
+    "Excel for Mac has no Data Model, so Windows reports that link several tables through Power Pivot will not build on a Mac.",
+    "Copilot in Excel is available on Mac, but editing needs Automatic calculation and a qualifying license.",
+    "Lazur points, explains, answers out loud, and drafts text. It does not click buttons or type into your sheet."
+  ],
+  "stats": [
+    {
+      "value": "35%",
+      "label": "Rise in loan origination costs over three years, or $3,000, according to Freddie Mac's 2024 study",
+      "sourceUrl": "https://sf.freddiemac.com/articles/insights/2024-cost-to-originate-study",
+      "sourceTitle": "2024 Cost to Originate Study"
+    },
+    {
+      "value": "$600",
+      "label": "Average loss for a retail-only lender per loan, according to Freddie Mac's 2024 study",
+      "sourceUrl": "https://sf.freddiemac.com/articles/insights/2024-cost-to-originate-study",
+      "sourceTitle": "2024 Cost to Originate Study"
+    },
+    {
+      "value": "1,048,576",
+      "label": "Rows per worksheet in Excel, the same limit Microsoft lists with no Mac-specific differences",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "40%",
+      "label": "Over 40% of surveyed workers say a quarter of their week goes to repetitive tasks. This is a general workforce figure, not loan officer data.",
+      "sourceUrl": "https://www.besmartee.com/blog/loan-officer-productivity/",
+      "sourceTitle": "Loan Officer Productivity Hacks"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What loan officers keep in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most loan officers use Excel as a side tool for work the loan system does not do well. A typical workbook holds the pipeline, a contact list, a document checklist, payment math, and a weekly update for realtor partners. One practitioner guide describes exactly this setup, with a column for each loan stage and one for each required document. That guide comes from a company that sells a mortgage CRM, so read it as one view, not a survey."
+    },
+    {
+      "type": "paragraph",
+      "text": "I could not find a survey that measures how much time loan officers spend in spreadsheets. If you want a real number for your office, time one week of copy and paste work. Your own figure will tell you more than any industry average."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pipeline: borrower, loan officer, stage, and stage date, one row per loan",
+        "Document checklist: one column per required document",
+        "Payment math: PMT for quick quotes, and an amortization schedule for comparisons",
+        "Partner updates: a short weekly summary you paste into an email"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel can hold all of this on a Mac, and the limits sit far above what one office needs. A worksheet holds 1,048,576 rows and 16,384 columns. A single cell holds 32,767 characters. Those limits come from Microsoft's own specifications page."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a mortgage pipeline tracker in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one flat table, not a set of linked sheets. Select your headers and the first row of loans, then press ⌘T. You can also choose Insert > Table. Excel turns the range into a table with filter buttons. New rows join the table when you type under the last row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table before you build anything else. Microsoft's October 2026 update says naming a table as you create it is now available to Excel for Mac users. Click inside the table, open Table Design, and type a name in the Table Name box. Call it Pipeline, not Table1. Then a formula like =COUNTIF(Pipeline[Stage],\"Docs Out\") keeps working when rows move."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set up the columns before you enter data. Use a drop-down for Stage, so every row uses the same words. Select the Stage column, then go to Data > Data Validation, choose List, and type your stage names separated by commas. A single typo in a stage name breaks every count you build later."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What goes in it",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Borrower",
+          "Full name, spelled the same way as the file",
+          "Lookups match on exact text"
+        ],
+        [
+          "Stage",
+          "Drop-down with your stage names",
+          "Counts and pivots group by it"
+        ],
+        [
+          "Stage date",
+          "Date the loan entered its current stage",
+          "Lets you measure days in stage"
+        ],
+        [
+          "Days in stage",
+          "=TODAY()-[@[Stage date]]",
+          "Shows which loans have stalled"
+        ],
+        [
+          "Rate lock expires",
+          "Date, formatted as a date",
+          "Sort by it every morning"
+        ]
+      ],
+      "caption": "A starter column layout for a mortgage pipeline table."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for two mistakes. Dates typed as text sort in the wrong order. If a date sits on the left side of its cell, it is probably text. Merged cells stop sorting and filtering, so never merge a cell inside the table. Menus also move between Excel builds, so check the path on your version."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Document checklists in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A document checklist works best with one column per document and a fixed list of answers. Use Received, Requested, and N/A. Then count what is still missing with a formula, not by eye. Eyeballing a long list is how a file stalls for a week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose the document columns run from H to M. The formula =COUNTIF(H2:M2,\"Received\") counts the received items on row 2. Divide that by =COLUMNS(H2:M2) and format the result as a percent to get percent complete. If you mark items N/A, subtract them from the total first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Conditional formatting makes gaps easy to see. Select the checklist, then go to Home > Conditional Formatting > Highlight Cells Rules > Equal To. Set the rule to highlight Requested. Open items show in color before a processor asks about them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel does not send anything. It will not email a realtor or remind a borrower when a document is late. Practitioner guidance says manual entry is prone to errors, and that Excel cannot automate these tasks. The weekly update still leaves the sheet by hand."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "PMT formula for mortgage payments on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The PMT function returns the payment on a loan. Its syntax is =PMT(rate, nper, pv). The rate is the rate per period, nper is the number of payments, and pv is the loan amount. For a monthly mortgage, divide the annual rate by 12 and multiply the years by 12."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a layout that works. Put the loan amount in B1, the annual rate in B2, and the term in years in B3. In B5, type =PMT(B2/12,B3*12,-B1). Excel returns the monthly principal and interest as a positive number. PMT returns payments as negative when the loan is positive, so the minus sign on B1 flips the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Format B2 as a percent before you type into it. If a rate goes into a General cell as a plain whole number, the formula treats it as a far larger annual rate. The payment then comes out far too high, and the error is easy to miss in a long list."
+    },
+    {
+      "type": "paragraph",
+      "text": "PMT gives principal and interest only. Taxes, insurance, and mortgage insurance are not in the formula. Add those in a separate column when a borrower asks for a total housing payment. Then compare your result with the Loan Estimate your lender issued."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Loan amortization schedule in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "An amortization schedule shows how each payment splits between interest and principal. Build one with six columns: payment number, beginning balance, payment, interest, principal, and ending balance. Each row starts from the balance on the row above it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose the beginning balance sits in C6 and the annual rate sits in B2. Then the interest in D6 is =C6*$B$2/12. The dollar signs lock the rate cell, so the formula copies down the column. Principal is the payment minus the interest. Ending balance is the beginning balance minus principal."
+    },
+    {
+      "type": "paragraph",
+      "text": "Round each payment to cents with ROUND, or the last row carries a stray fraction of a cent. For interest across a range of payments, CUMIPMT adds it up for you. That helps when a borrower asks how much interest falls in the first year."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's mortgage calculator page lists five templates. They include a Loan amortization schedule and a Simple loan calculator and amortization table. The templates also compare extra repayments and shorter terms. The page sends you to Excel for the web, so open one in your Mac app before you build a client file around it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix lookups and #N/A errors in borrower data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lookups pull a rate, a fee, or a status from one sheet into another. If your Microsoft 365 version has XLOOKUP, it is the simplest choice. The shape is =XLOOKUP(lookup value, lookup array, return array, \"Not found\"). The fourth argument replaces #N/A with text you can filter on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose column A on the Pipeline table holds borrower names. The formula =XLOOKUP(A2,Rates!A:A,Rates!B:B,\"Not found\") finds the name in the Rates sheet and returns the matching rate from column B. Blank results point to the source list, not the formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most #N/A errors come from text that looks the same and is not. A name with a trailing space, a loan number stored as text on one sheet and as a number on the other, or a copied name with a hidden character will all fail. Wrap the lookup value in TRIM, or paste values from the source to clean it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Our step by step guide covers the classic VLOOKUP #N/A fixes for Mac. Read the [VLOOKUP #N/A error fix steps](/for/developers/problems/excel-vlookup-na-error-fix-steps) if your file still uses that formula."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for pipeline reports on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table is the fastest way to count loans by stage or total loan amounts by loan officer. Click any cell in the table, then go to Insert > PivotTable. Drag Stage to Rows and Loan Amount to Values. Excel groups the counts for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the pivot on one table. Microsoft's help says Data Models are not supported on Excel for Mac. Its help also says that building a PivotTable from several tables in Oracle, Access, IBM DB2, or MySQL is not supported on Excel for Mac. A Windows report that joins a loan table to a rate table will not build on a Mac. Use a lookup column to bring the rate into the main table first."
+    },
+    {
+      "type": "paragraph",
+      "text": "After you add new rows, click the pivot and go to Data > Refresh All. A pivot that looks stale is usually a refresh issue, or a source range that stops above the new rows. The [step by step pivot table guide](/how-to/make-a-pivot-table-in-excel) covers the source range fix."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Copilot in Excel on Mac: license, calculation, and SharePoint limits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Copilot in Excel is available on Mac. Microsoft's FAQ says it runs across Windows, Mac, the web, iPad, iPhone, and Android. Edit, chat, and plan modes are available on Windows, Mac, and the web."
+    },
+    {
+      "type": "paragraph",
+      "text": "Three conditions catch people out. First, the license must qualify. Microsoft lists Microsoft 365 Personal or Family with an AI credits plan, Microsoft 365 Premium, a commercial Microsoft Copilot subscription, and eligible business or enterprise plans. Second, Copilot editing works only when Calculation Options are set to Automatic. Go to Formulas > Calculation Options > Automatic."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third, if your organization requires check-out in SharePoint, Copilot in Excel will not work on Mac for files from that site. Excel for the web still opens those files. Ask your IT team which files live in a check-out library before you plan a workflow around Copilot."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says the clean-data skill is rolling out to general availability on all platforms. The skill recorder is for Insiders of Excel for Mac. Check which features your build offers before you rely on any of them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Protect borrower data in a shared spreadsheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "A loan sheet holds Social Security numbers, bank balances, and income. Keep those out of the pipeline. Use a loan number instead of a name where you can. Store the sensitive file in the system your lender approves. A copy on your desktop is one more copy to lose."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Still, anything open on screen when you hold ⌥⌘ is part of that request. Close files you do not need first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your lender's policy wins over any tip on this page. Ask your compliance team before you paste borrower data into any AI tool, including Copilot in Excel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes in Excel on Mac for loan officers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates typed as text, so sorting by stage date puts the wrong months first",
+        "Stage names spelled three ways, so counts quietly miss loans",
+        "Totals typed by hand over formulas, which go stale after one edit",
+        "Several copies named final, final_v3, and final_new, with no clear current file",
+        "Rates typed without the percent format, which breaks every payment cell",
+        "Hidden columns with live data inside, which show up later as missing numbers"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the file name habit first. Keep one master workbook. Save a dated copy each time you send an update to a partner. OneDrive and SharePoint version history cover the rest, so you do not need a new file for every change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why spreadsheet time matters to lender costs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Freddie Mac's 2024 Cost to Originate Study says loan origination costs have risen 35%, or $3,000, over three years. The same study says an average retail-only lender loses about $600 per loan. Those figures describe lender costs, not Excel time. Do not read them as a measure of spreadsheet work."
+    },
+    {
+      "type": "paragraph",
+      "text": "The study also says lenders using LPA digital capabilities at high rates produce loans that cost $1,500 less to make. Process tools change cost, and a spreadsheet is a process tool too. It helps most when it replaces re-keying. It helps least when it becomes a second copy of the loan system."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine for the pipeline"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one morning each week for a pipeline review. Sort the Pipeline table by Rate lock expires. Then filter Days in stage above the limit you set. Work the top rows first. Those are the loans most likely to slip past a lock date."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a week, make the partner update. Copy the summary from the pivot or a small filtered view, paste it into the email, and check each name against the table. The copy step is where errors slip in. Compare the totals before you send."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Track how long the routine takes for two weeks. If the copy step eats most of the time, that is the first place to look for a faster approach. Repetitive work is where most of the minutes disappear, and it is the part worth shrinking."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps inside Excel, and where it stops"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ and ask about what is on screen. Lazur answers out loud. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or type into your cells. It is not an add-in for Excel, and no app maker partners with it. The formulas and the entries stay yours. That suits a loan file, because you check every number yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Dictation writes clean text at the cursor in any app, including a note cell or an email draft. Snippets and a personal dictionary handle phrases you repeat, like your standard rate lock wording."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start with one table this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build the Pipeline table, name it, add the stage drop-down, and test one COUNTIF formula. That takes less time than reading about it. If you get stuck on the naming step, hold ⌥⌘ and ask where Table Design is. Lazur can point at it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on Apple silicon and Intel Macs. Windows is planned, but it is not available. There is a free trial with no credit card. Check the [pricing page](/pricing) for current plan details, and [download Lazur](/download) when you are ready."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have Power Pivot?",
+      "answer": "Not in the form Windows users know. Microsoft's PivotTable help says Data Models are not supported on Excel for Mac. Build reports from one flat table, and use lookups to bring in fields from other sheets. Check Microsoft's current help for your build before you plan around it."
+    },
+    {
+      "question": "Can I use Microsoft's mortgage calculator template on a Mac?",
+      "answer": "Microsoft's template page lists five templates, including a Loan amortization schedule and a Simple loan calculator and amortization table. The page directs you to open them in Excel for the web. It does not say they open in desktop Excel for Mac, so test one before you rely on it."
+    },
+    {
+      "question": "Does Copilot in Excel work on a Mac?",
+      "answer": "Microsoft lists Mac among the platforms where Copilot in Excel is available. Editing needs Automatic calculation and a qualifying license. If your organization requires SharePoint check-out, Copilot will not work on Mac for those files."
+    },
+    {
+      "question": "Can Lazur type my formulas into Excel?",
+      "answer": "No. Lazur explains, points, guides, answers out loud, dictates, and drafts text. It does not click buttons or operate other apps for you. You type the formula. Lazur can explain what the formula does and point at the cell."
+    },
+    {
+      "question": "Does Lazur send my loan files to AI providers?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Close files you do not need before you hold the keys."
+    },
+    {
+      "question": "How many rows can an Excel sheet hold?",
+      "answer": "A worksheet holds 1,048,576 rows and 16,384 columns. A cell holds up to 32,767 characters. Microsoft's limits page lists no Mac-specific differences. A mortgage pipeline rarely gets near those limits."
+    },
+    {
+      "question": "Can PMT replace the Loan Estimate?",
+      "answer": "No. PMT gives principal and interest only. A Loan Estimate includes other costs, and it reflects the terms your lender offers. Use PMT for quick comparisons, then check the result against the official form."
+    },
+    {
+      "question": "Does Excel tell me when a document is late?",
+      "answer": "Not by itself. Excel can count received documents and highlight gaps with conditional formatting. It cannot email a borrower or a realtor. Practitioner guidance says Excel cannot automate these tasks, so the reminder still comes from you."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Frequently asked questions about Copilot in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/copilot/frequently-asked-questions-about-copilot-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use multiple tables to create a PivotTable in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/use-multiple-tables-to-create-a-pivottable-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Mortgage calculator templates",
+      "url": "https://excel.cloud.microsoft/create/en/mortgage-calculator-templates/",
+      "publisher": "Microsoft Excel",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "2024 Cost to Originate Study",
+      "url": "https://sf.freddiemac.com/articles/insights/2024-cost-to-originate-study",
+      "publisher": "Freddie Mac Single-Family",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Can You Run Your Mortgage Business From Excel?",
+      "url": "https://ijungo.com/run-your-mortgage-business-from-excel/",
+      "publisher": "ijungo",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Loan Officer Productivity Hacks",
+      "url": "https://www.besmartee.com/blog/loan-officer-productivity/",
+      "publisher": "BeSmartee",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is there a minus sign in front of the loan amount?",
+    "capability": "explain",
+    "result": "Lazur answers out loud, then points at the minus sign in the PMT formula and explains that it flips the result so the payment shows as positive.",
+    "shell": "sheet",
+    "context": "Pipeline workbook, PMT formula in cell B5, Excel for Mac",
+    "output": "PMT returns payments as negative numbers when the loan amount is positive. The minus sign in front of B1 flips that, so the monthly principal and interest payment reads as a positive number.",
+    "pointsAt": "=PMT(B2/12,B3*12,-B1)"
+  },
+  "tasks": [
+    {
+      "say": "Where is Data Validation in this Excel window?",
+      "capability": "point",
+      "result": "Lazur circles the Data tab and labels Data Validation so you can find it without guessing."
+    },
+    {
+      "say": "Why does this lookup show #N/A for Jones?",
+      "capability": "explain",
+      "result": "Lazur explains that a trailing space in the name is a likely cause and names TRIM as the first fix to try."
+    },
+    {
+      "say": "Walk me through making a pivot table of loans by stage.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before it gives the next step."
+    },
+    {
+      "say": "Draft a short email to the realtor about this week's pipeline.",
+      "capability": "draft",
+      "result": "Lazur drafts the text from what you tell it. You check every name and number before you send."
+    },
+    {
+      "say": "Dictate: bank statements came in, and the rate lock is set for Friday.",
+      "capability": "dictate",
+      "result": "Lazur types clean text at your cursor in any app, and snippets handle phrases you repeat."
+    },
+    {
+      "say": "Remind me to call the appraiser on Thursday morning.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders, so it shows on your Mac."
+    },
+    {
+      "say": "Look up the current Copilot in Excel license options.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and comes back with a summary and a report."
+    }
+  ],
+  "type": "role-app",
+  "slug": "mortgage-loan-officers-excel",
+  "role": "mortgage-loan-officers",
+  "app": "excel",
+  "roleName": "Mortgage loan officers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/mortgage-loan-officers-excel/excel-for-mortgage-loan-officers-on-mac-1-3697b3.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Loan officer on a Mac laptop reviewing a mortgage spreadsheet at a desk",
+      "caption": "A loan officer checks a pipeline on a laptop.",
+      "keywords": [
+        "excel for mortgage loan officers on mac",
+        "Excel",
+        "Mortgage loan officers",
+        "Mac",
+        "loan officer desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/mortgage-loan-officers-excel/excel-for-mortgage-loan-officers-on-mac-2-15c779.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person typing numbers into a spreadsheet on a laptop at a desk",
+      "caption": "Data entry is most of the work in a loan file.",
+      "keywords": [
+        "excel for mortgage loan officers on mac",
+        "Excel",
+        "Mortgage loan officers",
+        "Mac",
+        "person typing spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/mortgage-loan-officers-excel/excel-for-mortgage-loan-officers-on-mac-3-f41d15.jpg",
+      "width": 1280,
+      "height": 862,
+      "alt": "Mortgage documents and a calculator on a desk beside a laptop",
+      "caption": "Loan files pile up faster than the checklist.",
+      "keywords": [
+        "excel for mortgage loan officers on mac",
+        "Excel",
+        "Mortgage loan officers",
+        "Mac",
+        "mortgage paperwork desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ernestoeslava",
+        "url": "https://pixabay.com/users/ernestoeslava-6289958/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-women-office-work-business-2773007/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for mortgage loan officers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for loan officers on mac": 1,
+      "mortgage pipeline tracker excel mac": 1,
+      "excel PMT formula mortgage payment": 1,
+      "loan amortization schedule excel mac": 1,
+      "excel mortgage calculator template mac": 1,
+      "copilot in excel mac license": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

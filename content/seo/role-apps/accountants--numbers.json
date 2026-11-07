@@ -1,0 +1,576 @@
+{
+  "title": "Numbers for accountants on Mac: client trackers, formulas and filters in Numbers 15.4",
+  "metaTitle": "Numbers for Accountants on Mac: Setup, Formulas and Tips",
+  "description": "Numbers for accountants on Mac: how to build client trackers and formulas, filter and pivot data, and where Lazur fits in.",
+  "targetKeyword": "numbers for accountants on mac",
+  "secondaryKeywords": [
+    "numbers spreadsheet for accountants",
+    "accounting templates in Numbers",
+    "pivot tables in Numbers on Mac",
+    "numbers formulas for bookkeeping",
+    "export numbers to excel on mac"
+  ],
+  "intro": "Numbers covers most of the spreadsheet work accountants do on a Mac. You can build client trackers, income and expense logs, budgets, simple balance sheets and invoices in it. Apple's guide says every spreadsheet begins with a template, so you rarely need to start from a blank sheet. This page covers version choices, templates, formulas, Excel files and where Lazur fits.",
+  "tldr": [
+    "Check your Numbers version first. Numbers 14.5 gets no new features, and new work lands in the 15.x line through Apple Creator Studio.",
+    "Start from a template, and save your own layout with File > Save as Template.",
+    "Use filters, categories and pivot tables for summaries, then check every array formula that came from an Excel file.",
+    "Ask Lazur to explain a formula, point at a control or walk you through a step while you stay in control of the file."
+  ],
+  "stats": [
+    {
+      "value": "$12.99",
+      "label": "per month in the US for Apple Creator Studio, the edition that carries new Numbers features",
+      "sourceUrl": "https://www.macrumors.com/2026/01/28/apple-updates-keynote-numbers-pages/",
+      "sourceTitle": "Apple Updates Keynote, Numbers, and Pages Apps With New Free and Paid Features, MacRumors"
+    },
+    {
+      "value": "5",
+      "label": "maximum header rows in a Numbers table, with a matching limit of five header columns, per Apple's guide",
+      "sourceUrl": "https://support.apple.com/en-ca/guide/numbers/tan504013a74/mac",
+      "sourceTitle": "Add or remove rows and columns in Numbers on Mac, Apple Support (CA)"
+    },
+    {
+      "value": "82%",
+      "label": "of FP&A job postings list advanced spreadsheet skills, based on AFP 2025 data cited by Cube",
+      "sourceUrl": "https://www.cubesoftware.com/blog/fpa-statistics",
+      "sourceTitle": "100+ FP&A statistics & trends for finance teams to know, Cube"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most accountants on a Mac use Numbers for a short list of jobs. They keep client trackers, log income and expenses, build budgets and draft invoices. Some also keep simple balance sheets for small clients. The work is mostly tables, totals and filters, and Numbers handles those well. The harder questions are about version, Excel compatibility and file size."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Numbers version before you follow any guide"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple changed how Numbers gets new features, so the version on your Mac matters more than it used to. On January 28, 2026, the older Numbers app was updated to version 14.5. That update said it will no longer receive new features of any kind. New features now arrive only in Apple Creator Studio, which ships as Numbers 15.1, according to MacRumors."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the version before you trust a feature list. Numbers 14.4 added more than 30 functions, including LET, LAMBDA, FILTER, SORT and UNIQUE. It also brought better Excel import and export compatibility. Numbers 15.4 added trigonometry, statistics and logic functions, such as PEARSON and XOR. A copy older than 14.4 will not have FILTER at all."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Numbers version",
+        "What it adds or changes"
+      ],
+      "rows": [
+        [
+          "14.5",
+          "Frozen. Apple says it will get no new features of any kind"
+        ],
+        [
+          "14.4",
+          "LET, LAMBDA, FILTER, SORT, UNIQUE and better Excel import and export"
+        ],
+        [
+          "15.1",
+          "Creator Studio edition with premium templates, Content Hub and AI image tools"
+        ],
+        [
+          "15.3",
+          "Hide or show individual sheets and color the sheet tabs"
+        ],
+        [
+          "15.4",
+          "Trigonometry, statistics and logic functions such as PEARSON and XOR"
+        ],
+        [
+          "11.2",
+          "Pivot tables"
+        ]
+      ],
+      "caption": "Numbers versions in this guide and what each one added, per Apple and MacRumors."
+    },
+    {
+      "type": "paragraph",
+      "text": "Creator Studio costs $12.99 per month or $129 per year in the US, according to MacRumors. Premium templates, Content Hub and AI image tools sit inside that subscription. If your current copy opens your files and runs your formulas, you do not need to switch just to get the basics. Check Apple's site for current prices before you buy."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template, not a blank sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide says it plainly: all spreadsheets begin with a template. Pick the template closest to your job, then change the columns to match your clients. Starting blank adds work you do not need, especially for tracking that repeats every month."
+    },
+    {
+      "type": "paragraph",
+      "text": "To keep your own layout, choose File > Save as Template. To install a template someone sent you, double-click the .nmbtemplate file and choose Add to Template Chooser. Custom templates appear under My Templates and sync through iCloud Drive if you have it turned on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two limits matter. You cannot delete templates that came with Numbers. You also cannot rearrange custom templates. Give each saved template a clear name, since you cannot sort them into your own order."
+    },
+    {
+      "type": "paragraph",
+      "text": "Free accounting templates from third parties are easy to find. I did not check their quality or their accounting accuracy. Before you use one with client data, enter a small set of figures whose totals you already know. Then compare the output with those totals."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Save one template for each client type, such as sole traders and small companies.",
+        "Keep an unedited copy of every template you download.",
+        "Test each formula on known figures before the first real client file.",
+        "Name custom templates by job, so you can find them quickly in My Templates."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a client tracker with sheets, tables and header rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "A client tracker works best as one sheet per client or per year, with a table on each sheet. Each sheet gets its own tab. Since Numbers 15.3 you can hide or show individual sheets and color the sheet tabs. Use colors to flag clients who are still waiting on documents."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Tables have limits you should know. Apple's guide says a table can have up to five header rows and five header columns. Footer rows are capped at five. Apple gives no overall cap on body rows or columns, so test a large file before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Header rows matter for filters and sorting. Mark the top row with column names as a header, so the names stay visible as you scroll. Read [how to add header rows in Numbers](/how-to/add-header-rows-to-a-table-in-numbers) for the Format sidebar steps. The [table basics page](/how-to/add-a-table-in-numbers) covers styles and resizing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a layout that works for document tracking. Columns are Date, Client, Document, Status and Amount. Status is a drop-down with a short list of values, such as Waiting and Received. Each row is one document, so a client update changes one cell. You can set that up with [a drop-down list in Numbers](/how-to/create-a-drop-down-list-in-numbers)."
+    },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is to type a running total under the data in the same table. A later filter can hide that total or count it twice. Put totals in a footer row or in a separate area of the sheet, where a filter cannot touch them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas accountants use most in Numbers"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers ships with hundreds of built-in functions, according to Apple's support page. The basics are SUM and AVERAGE, which Apple's guide uses as its formula examples. Use SUM for totals and AVERAGE for a typical amount across a period. Add IF when a row needs a flag, such as Waiting or Received."
+    },
+    {
+      "type": "paragraph",
+      "text": "Newer functions help with long lists. LET names an intermediate value, so a long formula stays readable. FILTER returns only the rows that match a rule. SORT puts results in order. UNIQUE removes repeats from a list of client names. These arrived in Numbers 14.4."
+    },
+    {
+      "type": "paragraph",
+      "text": "Statistics functions arrived in Numbers 15.4. PEARSON measures how closely two series move together. XOR returns true when exactly one of two conditions holds. Most client work will not need them, but a reviewer may ask how a figure was built."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check each formula against a number you can prove by hand. Pick one result, trace it back to a source document and confirm the figure. A wrong formula copies its error into every row that uses it."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Choose one total and trace it to a receipt, invoice or bank line.",
+        "Look for text that looks like a figure, since Numbers may treat it differently from a real number.",
+        "Check negative amounts that were entered as positive values.",
+        "Recalculate after any import, then check the result again."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Filters, categories and pivot tables for summaries"
+    },
+    {
+      "type": "paragraph",
+      "text": "Filters show only the rows you need, such as one client or one quarter. Read [how to filter table rows in Numbers](/how-to/filter-table-rows-in-numbers) for the steps. Categories summarize a table by group, which suits expense totals by type."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables arrived with Numbers 11.2. Apple's What's new page lists them in its feature history. A pivot table reads your table and builds a grouped summary. It does not change the source rows, so you can rebuild it after you fix the data."
+    },
+    {
+      "type": "paragraph",
+      "text": "A third-party article says pivot work in Numbers will probably be frustrating. It cites no test, dataset or source for that claim, so treat it as an opinion. Build a small pivot table from a copy of your real data, then judge it yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Charts come after the summary. Apple's guide covers 2D and 3D charts. For client reports, a plain 2D bar chart is usually easier to read than a 3D one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel files: import, export and formula breaks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers can open Excel files and export back to Excel, CSV and PDF, according to Apple's support page. Apple's What's new page says Numbers 14.4 improved Excel import and export compatibility. Better compatibility is not the same as perfect compatibility."
+    },
+    {
+      "type": "paragraph",
+      "text": "Imports are where things break. A 2023 Apple Community thread describes a SUM(IF) array formula that failed on import. Numbers replaced it with the last calculated value, and the user saw a message saying the array formula could not be imported. The cell then held a fixed value, so it would not update."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check array formulas after import",
+      "text": "A formula that shows a number after import may now be a fixed value. Compare it with the original Excel file before you send anything to a client."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use this order for any Excel file that feeds client work. Open the file. Check every array formula against the original. Fix or rebuild the ones that failed. Export only after those checks pass. Keep the original Excel file as the reference. You can read [how to open an Excel file in Numbers](/how-to/open-an-excel-file-in-numbers) and [how to export to Excel from Numbers](/how-to/export-a-spreadsheet-to-excel-in-numbers) for the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "A PDF is a snapshot. Use it for the copy the client receives, and keep the Numbers file for edits. The [PDF export guide](/how-to/export-a-spreadsheet-to-pdf-in-numbers) covers the steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost accountants time in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deleting rows is the first trap. Normally a row can only be deleted when its cells are empty. To delete rows and columns that hold data, you must Option-drag the Add or Remove Rows and Columns handle, as Apple's guide describes. Make a copy of the file before you do it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second trap is file size. A Spreadsheeto article says Numbers either slows down significantly or crashes with large data sets. The article does not show a test or name a source for that claim. Test with a copy of your largest client file on your own Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same article gives a limit of 65,535 rows by 256 columns per table. Apple's pages I opened do not state an overall cap, so treat that figure as unverified. Your own test will tell you more than either source."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third trap is version drift. A colleague may send a file built in a newer copy of Numbers. Your older copy may lack the function, and the cell can show an error or a stored value. Ask which version they use before you start."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sharing files with clients and staff"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers supports real-time collaboration, according to Apple's guide. Apple's support page also lists Numbers for iCloud for editing in a browser. Use the sharing options to invite people or send a link. The [share a spreadsheet guide](/how-to/share-a-spreadsheet-in-numbers) covers both paths."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple marks a 4GB collaboration file limit as a Creator Studio feature. If your shared file is large, check which edition your team uses before you plan a shared project."
+    },
+    {
+      "type": "paragraph",
+      "text": "Client files often hold tax numbers and bank details. Share only with people who need them. Check the access list each time you send a new link, and remove anyone who no longer works on the file."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It does not click buttons or edit your file. You make every change in Numbers yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use it in these ways. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. Ask why a formula failed, and Lazur reads the screen and explains it out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That helps when you write a note beside a client row or draft a cover message. Dictation is included, and it is not the headline feature. Snippets, a personal dictionary and clipboard slots help with wording you repeat."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps a memory of what you asked and did, on your Mac. It listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Numbers or any other app. It has no partnerships with app makers. See the [pricing page](/pricing) for plans and the free trial, and the [download page](/download) for the Mac app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist before you send a Numbers file to a client"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the Numbers version your client uses, and check that each function exists in it.",
+        "Check every array formula that came from Excel against the original file.",
+        "Trace one total to a receipt, invoice or bank line you can verify by hand.",
+        "Check hidden sheets, since Numbers 15.3 can hide them from view.",
+        "Send a PDF copy when the client needs a fixed version, and keep the Numbers file for edits.",
+        "Review the sharing list, and remove anyone who no longer needs the link."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Numbers setup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one client tracker built from a template. Add the formulas you use most, then add filters. Test every imported Excel formula against the original file. Once that works, try a pivot table on a copy. When you want the steps for a formula, read [how to add a formula in Numbers](/how-to/add-a-formula-to-a-cell-in-numbers)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Numbers good enough for accounting work on a Mac?",
+      "answer": "For trackers, budgets, simple balance sheets and invoices, Numbers covers the basics. Apple's guide describes templates, formulas, filters, pivot tables and charts. Test any file that feeds a tax return or an audit with your own data first, because this page does not check accounting accuracy."
+    },
+    {
+      "question": "Which Numbers version do I need for FILTER and SORT?",
+      "answer": "FILTER, SORT and UNIQUE arrived with Numbers 14.4, according to Apple's What's new page. Numbers 15.4 added trigonometry, statistics and logic functions. Check the version on your Mac before you follow a guide that uses newer functions."
+    },
+    {
+      "question": "Can I open an Excel file in Numbers without losing formulas?",
+      "answer": "Simple formulas usually come through. Array formulas can fail. A 2023 Apple Community thread shows a SUM(IF) formula replaced by its last calculated value. Check every array formula after import, and compare results with the original file."
+    },
+    {
+      "question": "Can I delete a row that has data in it?",
+      "answer": "Not by normal means. Apple's guide says you must Option-drag the Add or Remove Rows and Columns handle to delete rows and columns that hold data. Make a copy of the file first, so you can recover if you remove the wrong rows."
+    },
+    {
+      "question": "Can I remove the templates that came with Numbers?",
+      "answer": "No. Apple's guide says you cannot delete templates that came with Numbers. You can save your own templates with File > Save as Template, and install shared ones from the .nmbtemplate file."
+    },
+    {
+      "question": "How do I save my layout as a template?",
+      "answer": "Choose File > Save as Template. To install a template someone else sent, double-click the .nmbtemplate file and choose Add to Template Chooser. Custom templates appear under My Templates, and they sync through iCloud Drive if you have that turned on."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It points, explains, guides and drafts text. You make each change in Numbers yourself, and Lazur waits for you between steps when it guides you."
+    },
+    {
+      "question": "Is Lazur an add-in for Numbers?",
+      "answer": "No. Lazur is not a plugin or add-in for Numbers or any other app. It has no partnerships with app makers. It runs alongside the app you are in, and it answers when you hold the shortcut."
+    },
+    {
+      "question": "Is my client data sent to AI when I use Lazur?",
+      "answer": "When you hold the shortcut, audio and a screenshot go to AI providers so they can answer. They are not stored, and content is never used to train AI models. Read the privacy details on the site before you use Lazur with client files."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Numbers User Guide for Mac (15.4)",
+      "url": "https://support.apple.com/guide/numbers/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Numbers - Apple Support",
+      "url": "https://support.apple.com/numbers",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's new in Numbers on Mac, Apple Support",
+      "url": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Add or remove rows and columns in Numbers on Mac, Apple Support (CA)",
+      "url": "https://support.apple.com/en-ca/guide/numbers/tan504013a74/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Manage Numbers templates on Mac - Apple Support",
+      "url": "https://support.apple.com/guide/numbers/create-and-manage-custom-templates-tan57e4f9f9c/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Updates Keynote, Numbers, and Pages Apps With New Free and Paid Features, MacRumors",
+      "url": "https://www.macrumors.com/2026/01/28/apple-updates-keynote-numbers-pages/",
+      "publisher": "MacRumors",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel formula not working in Numbers, Apple Community",
+      "url": "https://discussions.apple.com/thread/255015446",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "100+ FP&A statistics & trends for finance teams to know",
+      "url": "https://www.cubesoftware.com/blog/fpa-statistics",
+      "publisher": "Cube Software",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Numbers vs Excel: When to Use Excel & When Numbers Is Better",
+      "url": "https://spreadsheeto.com/numbers-vs-excel/",
+      "publisher": "Spreadsheeto",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the filter for this table?",
+    "capability": "point",
+    "result": "Lazur circles the filter control on screen and labels it, then waits while you use it yourself.",
+    "shell": "sheet",
+    "context": "A client tracker open in Numbers with a header row.",
+    "output": "A circle and a short label on the filter control, with your table left unchanged.",
+    "pointsAt": "Filter control"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the export option?",
+      "result": "Lazur circles the export option and labels it. You choose the format yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, why does this formula show an error?",
+      "result": "Lazur reads the formula on screen and explains the error out loud. It does not edit the cell.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, walk me through adding a header row.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Lazur, what does this function do?",
+      "result": "Lazur explains the function and its inputs out loud, using the cell you have selected.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, look up what Apple says about table limits.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Lazur, remind me Friday to chase the missing receipts.",
+      "result": "Lazur adds a reminder for Friday in Apple Reminders.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Lazur, draft a short note asking for the missing bank statement.",
+      "result": "Lazur drafts the note and types the text where you need it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate a note for the client row.",
+      "result": "Dictation writes clean, formatted text at the cursor in any app.",
+      "capability": "dictate"
+    }
+  ],
+  "type": "role-app",
+  "slug": "accountants-numbers",
+  "role": "accountants",
+  "app": "numbers",
+  "roleName": "Accountants",
+  "appName": "Numbers",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/accountants-numbers/numbers-for-accountants-on-mac-1-931a33.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Accountant at a laptop reviewing a client spreadsheet, the kind of work behind numbers for accountants on Mac",
+      "caption": "A laptop and papers on a bookkeeping desk.",
+      "keywords": [
+        "numbers for accountants on mac",
+        "Numbers",
+        "Accountants",
+        "Mac",
+        "accountant working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheAngryTeddy",
+        "url": "https://pixabay.com/users/TheAngryTeddy-123386/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-apple-input-keys-hardware-338517/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/accountants-numbers/numbers-for-accountants-on-mac-2-a2f96a.jpg",
+      "width": 1280,
+      "height": 658,
+      "alt": "Office desk with a laptop and printed papers, the setting for numbers for accountants on Mac tracking",
+      "caption": "Client documents and a laptop on a work desk.",
+      "keywords": [
+        "numbers for accountants on mac",
+        "Numbers",
+        "Accountants",
+        "Mac",
+        "office desk laptop papers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "juliasorokina",
+        "url": "https://pixabay.com/users/juliasorokina-16041255/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/background-business-closeup-5060836/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/accountants-numbers/numbers-for-accountants-on-mac-3-7966f4.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Tax forms and paperwork on a desk, the kind of client files a Numbers tracker holds",
+      "caption": "Paper records that a client tracker replaces.",
+      "keywords": [
+        "numbers for accountants on mac",
+        "Numbers",
+        "Accountants",
+        "Mac",
+        "tax documents desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stevepb",
+        "url": "https://pixabay.com/users/stevepb-282134/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/tax-forms-income-business-468440/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "numbers for accountants on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "numbers spreadsheet for accountants": 1,
+      "accounting templates in Numbers": 1,
+      "pivot tables in Numbers on Mac": 1,
+      "numbers formulas for bookkeeping": 1,
+      "export numbers to excel on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,653 @@
+{
+  "title": "Photoshop for architects on Mac: render passes, grading and boards with Lazur voice help",
+  "metaTitle": "Photoshop for Architects on Mac: Renders, Boards and Voice Help",
+  "description": "Photoshop for architects on Mac: render compositing, colour grading, sky swaps and print boards in Photoshop 27. Practical steps plus Lazur voice help.",
+  "targetKeyword": "photoshop for architects on mac",
+  "secondaryKeywords": [
+    "Photoshop render compositing Mac",
+    "architects Photoshop render passes",
+    "Photoshop colour grading architecture",
+    "Photoshop sky replacement architecture",
+    "Generative Fill architects Mac",
+    "Photoshop CMYK boards architecture",
+    "Photoshop 27 Mac architects"
+  ],
+  "intro": "Photoshop for architects on Mac is mostly the last stage of a render. You composite render passes, grade the colour, swap the sky, add people and trees, then build a board. This page covers each job with menu paths, shortcuts and the mistakes that cost time. Lazur sits beside Photoshop and points at things, but it never clicks for you.",
+  "tldr": [
+    "Architects use Photoshop on Mac for the final stage: render passes, colour grading, sky swaps, people, planting and print boards.",
+    "Keep every edit reversible with Smart Objects, layer masks and blend modes. Work that way from the first pass.",
+    "The current stable build is Photoshop 27.11, which needs macOS 14.0 or later. The redesigned interface is still in beta.",
+    "Lazur points, explains and drafts text while you work. It does not click or edit inside Photoshop for you."
+  ],
+  "stats": [
+    {
+      "value": "86%",
+      "label": "of AI users say AI saved them time, in the Chaos and Architizer survey sponsored by Chaos",
+      "sourceUrl": "https://blog.chaos.com/statistics-ai-architectural-design-and-visualization",
+      "sourceTitle": "The 2026 archviz pulse: 10 stats defining the new era of design"
+    },
+    {
+      "value": "17%",
+      "label": "find AI outputs clear and controlled enough to use without significant oversight",
+      "sourceUrl": "https://blog.chaos.com/statistics-ai-architectural-design-and-visualization",
+      "sourceTitle": "The 2026 archviz pulse: 10 stats defining the new era of design"
+    },
+    {
+      "value": "48%",
+      "label": "of designers cite poor output quality or unreliable results as their biggest obstacle",
+      "sourceUrl": "https://blog.chaos.com/statistics-ai-architectural-design-and-visualization",
+      "sourceTitle": "The 2026 archviz pulse: 10 stats defining the new era of design"
+    },
+    {
+      "value": "US$22.99/mo",
+      "label": "Adobe US price for the Photoshop single app, annual plan billed monthly",
+      "sourceUrl": "https://www.adobe.com/creativecloud/plans.html",
+      "sourceTitle": "Adobe Creative Cloud plans"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What architects do in Photoshop on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most architects open Photoshop after the render is done. The model, camera and lighting are already set in SketchUp, Revit, Rhino or your renderer. Photoshop is where the image gets finished. It is also where a weak render gets rescued."
+    },
+    {
+      "type": "paragraph",
+      "text": "Archisoup lists the core jobs. They include photomontage from SketchUp models, final touches on externally rendered images, sharpening, stronger reflections and shadows in V-Ray or Corona renders, light fog and rays for depth, and placing people. Those are the jobs you will meet most often."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Illustrarch covers the same ground with more detail. It names render pass compositing, colour grading with Camera Raw and luminosity masks, print-ready CMYK competition boards, sky replacement, entourage, facade material swaps, and final polish such as grain and lens bloom. It calls Photoshop central to architectural post-production for over two decades."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Render pass compositing: beauty, shadow, ambient occlusion and reflection layers",
+        "Colour grading with Camera Raw and luminosity masks",
+        "Sky replacement, fog and light rays",
+        "People, trees and other entourage",
+        "Facade material swaps on elevations and sections",
+        "Site clean-up, such as removing lamp posts or other objects",
+        "Print-ready CMYK boards for competitions and reviews"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Use that list as a map for the rest of this page. Each job has its own section, with the menu path and the mistake to avoid."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the file before you composite a render"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by exporting each render pass as its own image. Archisoup notes that passes such as reflection, refraction, diffuse, shadows and lighting can come in as separate Photoshop layers. Keep the names your renderer gives them until you check each one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Bring each pass in with File > Place Embedded. That turns the pass into a Smart Object. Double-click it to edit the source, and the composite updates. If you paste pixels instead, you lose that link and cannot re-export at a new size cleanly."
+    },
+    {
+      "type": "paragraph",
+      "text": "Work in RGB while you composite. Convert to CMYK only at the end, and only on a copy. Choose Image > Mode > CMYK Color on the export file and keep the master in RGB. A later colour change then does not need a rebuild."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Photoshop files get so big, and how to keep them usable"
+    },
+    {
+      "type": "paragraph",
+      "text": "Archisoup warns that Photoshop files can become very large, really quickly. Full-size Smart Objects, many adjustment layers and high-resolution passes add weight fast. The file opens slowly, saves slowly, and each small change takes longer than it should."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Save the master PSD with all layers and Smart Objects intact.",
+        "Use File > Save a Copy (⌥⌘S) for the version you send out.",
+        "Crop to the final frame before you add heavy filters or a large Camera Raw pass.",
+        "Close documents you are not using, so Photoshop does not hold them in memory.",
+        "Open Photoshop > Settings > Performance and check the memory and scratch disk settings. Adobe's performance guidance can change between releases, so read its current page first."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep a master and a copy",
+      "text": "Edit the master and send the copy. Mixing the two is how a client ends up with a file called Final Final, and a second edit nobody can trace."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Composite render passes with blend modes and masks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Layers, masks and blend modes do most of the work here. Put the beauty pass at the bottom. Stack the shadow, ambient occlusion and reflection passes above it, then set each one to the blend mode that fits its job."
+    },
+    {
+      "type": "paragraph",
+      "text": "Multiply darkens the image. Use it for shadow and ambient occlusion passes, because those passes only add darkness. Screen lightens the image. Use it for light and glow passes. Soft Light gives a gentle contrast lift for reflections that look flat."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the pass layer in the Layers panel.",
+        "Choose the blend mode from the dropdown at the top of the Layers panel.",
+        "Add a layer mask with the mask button at the bottom of the Layers panel.",
+        "Paint black on the mask where the effect should not show. Paint white where it should.",
+        "Lower the layer opacity until the effect sits right, not until it disappears."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. A glass tower throws a strong reflection onto the plaza in the render. The same reflection also lifts the sky behind the tower, which looks wrong. Mask the sky out of the reflection pass. The plaza keeps its glow and the sky stays clean."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name and group your passes",
+      "text": "Name each pass as you place it. Select the related layers and press ⌘G to group them. A group named Shadow or Reflection makes a client change far quicker to handle."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Colour grading with Camera Raw and luminosity masks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Filter > Camera Raw Filter (⇧⌘A) for a global pass. Use it for white balance, exposure and a basic tone curve. It is quicker than stacking several adjustment layers across the whole image."
+    },
+    {
+      "type": "paragraph",
+      "text": "Global grades fail on architecture. A bright sky and a shaded facade need different treatment. A luminosity mask lets you grade highlights, midtones or shadows on their own. Open the Channels panel and ⌘-click the RGB thumbnail. That loads the image brightness as a selection. Add a Curves or Levels adjustment layer, and Photoshop turns the selection into its mask."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch saturation. Greens and warm stone turn neon fast when you push the slider on a whole image. Pull saturation back, then grade with a soft curve. Check the result at full screen, and again at the size it will print."
+    },
+    {
+      "type": "paragraph",
+      "text": "Work on the highlights first, then the midtones, then the shadows. Each step is easier to judge when the step before it is already right."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sky replacement, fog and light rays in Photoshop"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with Select > Sky. Photoshop picks the sky area. Then open Select and Mask (⌥⌘R) to refine the edge where the sky meets trees or a roofline. Thin branches are the usual failure, so use the refine brush on those spots, not the whole edge."
+    },
+    {
+      "type": "paragraph",
+      "text": "Match the new sky to the old light. If the render has low sun from the left, the new clouds need their light from the left too. Place the sky below the beauty pass. Add a gradient fog layer above the render, set it to Screen or a pale colour, and keep its opacity low. Fog near the ground gives more depth than a bright sky does."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Seams show late",
+      "text": "A new sky can look right in the preview and still show a seam at final size. Zoom to actual size and check the edges around trees, poles and roof lines before you export."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Placing people, trees and other entourage"
+    },
+    {
+      "type": "paragraph",
+      "text": "Archisoup calls placing people a tricky process to do well. The usual faults are wrong scale, flat lighting and no shadow. Fix those three before you think about style."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with scale. Compare each person against a door, a handrail or another known height in the drawing. Then add a contact shadow. Paint a soft dark brush on a Multiply layer under the feet, and match its direction to the sun in the render."
+    },
+    {
+      "type": "paragraph",
+      "text": "Photoshop 27 includes Rotate Object with Harmonize, according to Adobe's product page. It matches lighting, shadows and colour when you place an object. It is a good starting point for trees and street furniture. Check each placed object at full size, because the match is only a starting point."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Generative Fill and Remove for site clean-up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Generative Fill and the Remove tool handle most site clean-up now. Illustrarch says architects use Generative Fill to remove site elements, extend canvases, and add people or vegetation. Its advice is to select an area about 20% larger than the target."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. A parked van sits in front of a site photo. Draw a Lasso selection around the van, then grow it past the van edges, so the fill has room to blend. Run Generative Fill with an empty prompt, or with a short prompt such as empty road. Then check the pavement joints for repeated patterns."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The 27.11 release adds Enhance Edge, an AI mask refinement for Remove Background. Each use costs 20 generative credits, according to CGChannel. Count those credits before a large batch of fixes, so a deadline does not stall the file."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Read every edge",
+      "text": "Generated pixels can repeat, warp lines or get the scale wrong. The risk grows with the size of the area. Zoom to actual size and read each edge before the file leaves your desk."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Photoshop 27 on Mac: versions, macOS and the new interface"
+    },
+    {
+      "type": "paragraph",
+      "text": "The current stable build is Photoshop 27.11. CGChannel calls it the September 2026 release, and it needs macOS 14.0 or later. Check your Mac version under Apple menu > About This Mac before you update. An older system cannot run the new build."
+    },
+    {
+      "type": "paragraph",
+      "text": "A redesigned interface is in beta. Glyn Dewis says it arrives with beta 27.12.0 and continues into builds 28 and 28.0.1. Adobe has not said when it becomes final, so do not plan a project around it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Turn it on under Photoshop > Settings > Interface, then tick Enable Modern User Interface under Options.",
+        "Tool groups open on hover instead of click-and-hold. You can switch that off.",
+        "Quick Compare, with single and split before and after views, sits at the bottom of the toolbar under Quick Mask.",
+        "CMYK moves into a dropdown in the Colour Picker.",
+        "Curves, Levels, Hue/Saturation and gradient fill layers get a visual refresh. Their behaviour does not change."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one interface for each project. Shortcuts and muscle memory work best when the screen stays the same. If you are on a stable build, the option may not appear yet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Building architecture boards: Photoshop or InDesign"
+    },
+    {
+      "type": "paragraph",
+      "text": "Photoshop handles one image well. It handles a board with many images poorly. Archisoup says Photoshop is not designed for large scale organisation of multiple images on one page. It recommends InDesign for layout, and calls InDesign another program to learn."
+    },
+    {
+      "type": "paragraph",
+      "text": "A split that works: finish each image in Photoshop at its final size, then place the images into InDesign for the grid, titles and text. Photoshop does the image work. InDesign does the page. Each tool handles the job it was built for."
+    },
+    {
+      "type": "paragraph",
+      "text": "For competition boards, CMYK is a common request. Ask the organiser which colour space they want before you convert anything."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Finish the RGB master and save it.",
+        "Save a copy, then choose Image > Mode > CMYK Color on the copy.",
+        "Check the colours in the CMYK dropdown of the Colour Picker.",
+        "Export with the settings your printer or competition asks for."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Convert late",
+      "text": "Some boards accept RGB and some require CMYK. Ask first. A file converted to CMYK does not always return to the colours you started with."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your Photoshop workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘, ask your question, and Lazur sees your screen. It points at things and answers out loud. It works the same way in Photoshop as in any other app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where a tool lives and Lazur draws a circle and a label around it. Ask how to set a blend mode and Lazur guides you one click at a time, waiting for each click. Lazur does not click for you, edit your files or run Photoshop. You stay in control of every change."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "For notes, hold fn and dictate clean text at the cursor, in any app. Dictation is included with Lazur. Research runs in Lazur's own Chrome tabs and comes back as a summary and a report. Use it for release notes or spec sheets, then check the sources yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps a memory of what you asked and did, on your Mac. That helps when you come back to a file after a week and cannot remember which mask you used."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the 2026 AI survey says about manual clean-up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chaos and Architizer published a 2026 report on AI in architecture visualization. Dezeen reports it covered about 800 architects and designers, and that it is sponsored content from Chaos. Chaos is a rendering software vendor, so read its numbers with that in mind."
+    },
+    {
+      "type": "paragraph",
+      "text": "Chaos reports that 60% of architecture firms are actively using AI, up 38% since the 2023 survey. Among AI users, 86% say it saved them time. Only 17% find outputs clear enough to use without significant oversight. And 48% cite poor output quality as their biggest obstacle."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read those numbers as a reason to keep the manual pass. Time saved on generation still leaves a check at the end. Budget time for that check when you plan a deadline."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Photoshop costs for a small studio"
+    },
+    {
+      "type": "paragraph",
+      "text": "Adobe's US plans page lists the Photoshop single app at US$22.99/mo on an annual plan billed monthly. Creative Cloud Pro is US$34.99/mo on the same billing, and its regular price is US$69.99/mo."
+    },
+    {
+      "type": "paragraph",
+      "text": "Prices differ by country and change over time. Check the pricing page for your region before you budget. Team and single-user plans have different terms, so confirm them before you buy seats."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes architects make in Photoshop on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Compositing at full size from the first minute. Build with a smaller working copy, then export at full size.",
+        "Flattening before the passes are final. You lose the shadow and reflection layers you need for later changes.",
+        "Converting the master to CMYK. Convert a copy, every time.",
+        "Placing people at the wrong scale. Check against a door or a known height in the drawing.",
+        "Trusting generated fill at full size without reading each edge.",
+        "Using one global saturation slider. Greens and stone shift first.",
+        "Leaving layers with default names. A late change then takes far longer to find."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A working order for one render"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Place each render pass with File > Place Embedded and name the layers.",
+        "Set the beauty pass as the base, then stack shadow, ambient occlusion and reflection passes with Multiply and Screen.",
+        "Add the sky with Select > Sky, refine the edge, and check the light direction.",
+        "Place people and trees, then add a contact shadow under each one.",
+        "Clean up with Remove or Generative Fill, reading each edge at actual size.",
+        "Grade with Camera Raw and luminosity masks, not one global slider.",
+        "Add grain, lens bloom or sharpening last, on a copy if the board goes to print.",
+        "Save the master PSD, export the copy, and convert to CMYK only on the print copy."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep this order even when a client pushes a late change. A new sky is quick when the passes are still separate. It is slow when they were flattened on day one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for architects on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "For the wider daily workflow, read [Photoshop for designers on Mac](/for/designers/photoshop). To see what Lazur does inside Photoshop, read [Lazur for Photoshop](/apps/photoshop). When you are ready, [check the plans](/pricing) and get Lazur from the [download page](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do architects still use Photoshop on Mac in 2026?",
+      "answer": "Yes, for the final stage. Illustrarch calls Photoshop central to architectural post-production for over two decades. Its list of current uses still covers render compositing, grading, sky swaps, people and CMYK boards."
+    },
+    {
+      "question": "Which Photoshop version should I install for architecture work?",
+      "answer": "The current stable build is Photoshop 27.11, according to CGChannel. It needs macOS 14.0 or later. The redesigned interface is still in beta, so treat it as optional until Adobe makes it final."
+    },
+    {
+      "question": "Does Lazur edit my Photoshop file for me?",
+      "answer": "No. Lazur sees your screen, points at tools and guides you through steps. It does not click buttons, change layers or operate Photoshop. It is not a plugin or add-in for Photoshop."
+    },
+    {
+      "question": "Can I place people in a render without Generative Fill?",
+      "answer": "Yes. Use people from your own photo library, or from a stock library whose licence covers your use. Match the scale to a known object, then add a contact shadow on a Multiply layer."
+    },
+    {
+      "question": "Why does my Photoshop file slow down so much?",
+      "answer": "Full-size Smart Objects, many adjustment layers and large passes add weight fast. Archisoup notes that Photoshop files can grow very large quickly. Keep a master, work on a cropped copy and close unused documents."
+    },
+    {
+      "question": "Should I lay out an architecture board in Photoshop or InDesign?",
+      "answer": "Use Photoshop for each image and InDesign for the layout. Archisoup says Photoshop is not designed for organising many images on one large page, and recommends InDesign for that job."
+    },
+    {
+      "question": "Is Generative Fill safe to use in a competition entry?",
+      "answer": "Check the rules of the competition and your client's terms first. Keep generative layers separate, so you can show what changed. Read every generated edge at actual size before you submit."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Adobe releases Photoshop 27.11",
+      "url": "https://www.cgchannel.com/2026/10/adobe-releases-photoshop-27-11/",
+      "publisher": "CGChannel",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Photoshop Just Got a Facelift (First Time in 10 Years)",
+      "url": "https://glyndewis.com/blog/photoshop-facelift-2026",
+      "publisher": "Glyn Dewis",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to Photoshop for Architects",
+      "url": "https://www.archisoup.com/photoshop-for-architects",
+      "publisher": "archisoup",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Photoshop vs AI Rendering: Do Architects Still Need Photoshop in 2026?",
+      "url": "https://illustrarch.com/articles/design-softwares/74661-photoshop-vs-ai-rendering.html",
+      "publisher": "Illustrarch",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Adobe Creative Cloud plans",
+      "url": "https://www.adobe.com/creativecloud/plans.html",
+      "publisher": "Adobe",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Adobe Photoshop product page",
+      "url": "https://www.adobe.com/products/photoshop.html",
+      "publisher": "Adobe",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The 2026 archviz pulse: 10 stats defining the new era of design",
+      "url": "https://blog.chaos.com/statistics-ai-architectural-design-and-visualization",
+      "publisher": "Chaos",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Chaos survey finds AI is becoming an active collaborator in architecture workplaces",
+      "url": "https://www.dezeen.com/2026/05/14/chaos-survey-artificial-intelligence-architecture/",
+      "publisher": "Dezeen",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, the shadow pass is above the beauty pass. How do I set it to Multiply?",
+    "capability": "guide",
+    "result": "Lazur points at the blend mode dropdown above the layer list, then waits for you to pick Multiply before the next step.",
+    "shell": "design",
+    "context": "Photoshop 27.11 on macOS, Layers panel open, render passes placed as Smart Objects.",
+    "output": "Multiply is set on the shadow layer. Lazur says the next step is adding a layer mask, then points at the mask button at the bottom of the Layers panel. It waits for your click before it goes on.",
+    "pointsAt": "Blend mode dropdown"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Camera Raw filter?",
+      "result": "Lazur circles the Filter menu and labels Camera Raw Filter, so you can find it again next time.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through a luminosity mask on the sky.",
+      "result": "Lazur guides you one click at a time, from the Channels panel to the Curves layer, and waits for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does Multiply do to a shadow pass?",
+      "result": "Lazur explains out loud that Multiply only darkens, so a shadow pass adds darkness and never adds light.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate a note: the sky swap needs client approval before print.",
+      "result": "Hold fn and speak. Clean text appears at the cursor in your email or document, in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a caption for the board: east elevation, afternoon light.",
+      "result": "Lazur types a short caption you can edit. It drafts and types text. It does not place the text on your board.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research the Photoshop 27 release notes for the redesigned interface.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report you can check against the source.",
+      "capability": "research"
+    },
+    {
+      "say": "Which tool removes the lamp post?",
+      "result": "Lazur circles the Remove tool or the Generative Fill option in the toolbar, so you know where to click.",
+      "capability": "point"
+    },
+    {
+      "say": "Set a timer while this render exports.",
+      "result": "Lazur sets the timer by voice. You can leave the export running and check back when the timer rings.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Why does this file save so slowly?",
+      "result": "Lazur explains likely causes in plain terms, such as many full-size Smart Objects, and points you to the setting to check.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "architects-photoshop",
+  "role": "architects",
+  "app": "photoshop",
+  "roleName": "Architects",
+  "appName": "Photoshop",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/architects-photoshop/photoshop-for-architects-on-mac-1-4c7134.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Architect at a Mac reviewing an architectural render, the typical setting for Photoshop for architects on Mac",
+      "caption": "Final checks on a render at the desk.",
+      "keywords": [
+        "photoshop for architects on mac",
+        "Photoshop",
+        "Architects",
+        "Mac",
+        "architect working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "borevina",
+        "url": "https://pixabay.com/users/borevina-9505414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/architect-plan-construction-3979490/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/architects-photoshop/photoshop-for-architects-on-mac-2-170ad4.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Architectural drawings and plans spread on a studio desk beside a computer",
+      "caption": "Drawings and renders meet at the final stage.",
+      "keywords": [
+        "photoshop for architects on mac",
+        "Photoshop",
+        "Architects",
+        "Mac",
+        "architectural drawings desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "andreas160578",
+        "url": "https://pixabay.com/users/andreas160578-2383079/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/drawing-architect-designer-plan-1919080/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/architects-photoshop/photoshop-for-architects-on-mac-3-debcf8.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Architecture studio team reviewing a building visualization on a computer screen",
+      "caption": "Reviewing a visualization before the client sees it.",
+      "keywords": [
+        "photoshop for architects on mac",
+        "Photoshop",
+        "Architects",
+        "Mac",
+        "architecture studio computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stuartlimedigital",
+        "url": "https://pixabay.com/users/stuartlimedigital-1614765/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/small-office-architecture-1034921/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "photoshop for architects on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "Photoshop render compositing Mac": 1,
+      "architects Photoshop render passes": 1,
+      "Photoshop colour grading architecture": 1,
+      "Photoshop sky replacement architecture": 1,
+      "Generative Fill architects Mac": 1,
+      "Photoshop CMYK boards architecture": 1,
+      "Photoshop 27 Mac architects": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

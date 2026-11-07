@@ -1,0 +1,552 @@
+{
+  "title": "Excel for financial analysts on Mac: budgets, forecasts, and cleanup in Microsoft 365",
+  "metaTitle": "Excel for financial analysts on Mac: budgets, forecasts, and limits",
+  "description": "Excel for financial analysts on Mac: the daily finance work, the features Mac lacks, and how Lazur helps you stay in Excel while you work.",
+  "targetKeyword": "excel for financial analysts on mac",
+  "secondaryKeywords": [
+    "excel for finance on mac",
+    "power pivot not supported on mac",
+    "excel budget vs actual mac",
+    "excel pivot table mac finance",
+    "excel data model mac error",
+    "excel forecast template mac",
+    "excel voice assistant mac"
+  ],
+  "intro": "Excel for financial analysts on Mac covers the everyday finance work: budgets, forecasts, ad hoc reports, data cleanup, and charts. The gaps are specific. Power Pivot is not supported, Data Model pivots cannot be filtered, and VBA is less complete than on Windows. This page covers where those gaps bite, how to build sheets that avoid them, and how Lazur helps while you work.",
+  "tldr": [
+    "Excel for Mac covers the core finance work: budgets, forecasts, ad hoc reports, cleanup, and charts.",
+    "Power Pivot is not supported on Mac, and pivots built on the Data Model cannot be filtered there.",
+    "Build budget vs actual sheets on named tables and plain formulas so they behave on any Mac.",
+    "Hold ⌥ ⌘ and ask Lazur while you work. It points, explains, and guides one click at a time."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of surveyed office workers say they often have trouble making sense of spreadsheet data",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of spreadsheet data"
+    },
+    {
+      "value": "20 hours a month",
+      "label": "average time users spend in spreadsheets, per the 2022 ThoughtSpot survey",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of spreadsheet data"
+    },
+    {
+      "value": "14 hours",
+      "label": "a week on ad hoc reports for planning staff, per the DataRails-sponsored survey",
+      "sourceUrl": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "sourceTitle": "CFOs cling to spreadsheets despite their limits as FP&A tool"
+    },
+    {
+      "value": "42%",
+      "label": "of that ad hoc report time goes to data preparation and cleansing",
+      "sourceUrl": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "sourceTitle": "CFOs cling to spreadsheets despite their limits as FP&A tool"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What financial analysts actually do in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most analyst days in Excel fall into five jobs. You build budgets, run forecasts, answer ad hoc questions from leadership, clean data that arrives in odd shapes, and make charts for the deck. Each job feeds the next. A forecast needs clean actuals, and a chart needs a stable table. If one piece is messy, the whole week slows down."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "A DataRails-sponsored survey of 200 finance leaders at mid-sized companies, published in April 2022, found that almost two-thirds of CFOs still use spreadsheets for budgeting and forecasting. About a quarter use only Excel for it. DataRails sells FP&A software, so read the result as a signal about habits, not a neutral ranking of tools."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the time goes: ad hoc reports and data prep"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same DataRails survey puts planning staff at an average of 14 hours a week on ad hoc reports. About 42% of that time goes to data preparation and cleansing. That is roughly six hours a week spent before any analysis begins. Ad hoc requests rarely come with spare time, so the cleanup often happens in a rush."
+    },
+    {
+      "type": "paragraph",
+      "text": "The ThoughtSpot survey points the same way. Reshaping a dataset takes about an hour on average, and nearly three hours in Banking & Finance. Building a single chart takes 20 minutes or more. Both surveys date from 2022 and were paid for by vendors that sell analytics or planning software. Treat the hours as a rough guide, and track your own time for a few weeks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Pivot and Data Model limits on Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac runs most finance work without trouble. A few features behave differently, and they cause most of the confusion. The Parallels FAQ states that the Mac version of Excel does not support Power Pivot. It also says pivot tables based on the Excel Data Model cannot be filtered when a Mac user opens the spreadsheet. Windows users do not hit that problem."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Power Pivot: not supported in Excel for Mac, according to the Parallels FAQ.",
+        "Data Model pivots: cannot be filtered on Mac, even when the same file filters fine on Windows.",
+        "VBA: less comprehensive on Mac, and right-click context menus cannot be edited with VBA.",
+        "Large workbooks: complex macros, advanced data models, and very large sheets may run faster on Windows.",
+        "Version check: a community report shows the Data Model error on version 16.95.4, so note your build before you troubleshoot."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check before you rely on it",
+      "text": "Before a deadline, open a copy of your file on a Mac and test every Data Model pivot, filter, and macro. Do not assume a Windows file will behave the same way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's own Q&A forum shows the same wall. One community thread reports the error 'Data Model features are not supported on this version of Excel' on Mac. Those answers come from community members, not Microsoft staff. A moderator in the thread says Excel for Mac does not support Power Pivot or Data Model features. Use the thread as a pointer to check your version and your file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a budget vs actual sheet in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with three tabs. Put raw exports on one tab, a clean actuals table on a second, and the budget on a third. Keep the layout the same each month, so formulas do not break when you paste in new data. The table below shows what goes where."
+    },
+    {
+      "type": "table",
+      "caption": "A three-tab layout for a budget vs actual file in Excel for Mac",
+      "headers": [
+        "Tab",
+        "What goes there",
+        "Rule to follow"
+      ],
+      "rows": [
+        [
+          "Raw",
+          "Exports from the bank, ERP, or CRM, pasted as they arrive",
+          "Never edit this tab by hand"
+        ],
+        [
+          "Actuals",
+          "A clean named table with one row per transaction",
+          "Same column headers every month"
+        ],
+        [
+          "Budget",
+          "Budget by line item and month",
+          "Inputs in one column, formulas elsewhere"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn the actuals into a named table. Select the range and press ⌘T. Then type a name in the Table Name box on the Table Design tab. Microsoft's October 2026 roundup says that naming tables as you create them is now generally available for Windows and Mac. Named tables make formulas readable, and pivots stay pointed at the right rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add the variance next to the actuals. If budget sits in column B and actual sits in column C, the formula in D2 is =C2-B2. With expenses entered as positive numbers, a positive variance means you spent more than budget. Add a percent column in E with =IFERROR(D2/B2,0), so a zero budget line does not show an error. A named table fills both formulas down for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's support page for a first budget offers a simple monthly budget template that summarizes what you earn and spend. It is built for a personal budget, not a company ledger. Its layout is still a fair starting point for a small team sheet. The page also includes a Copilot prompt if you want help setting it up."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean messy exports before they reach the model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bank feeds, ERP exports, and CRM downloads rarely arrive ready. Dates come in as text. Amounts carry stray spaces. The same vendor appears under several spellings. Fix the basics first. TRIM removes extra spaces, Data > Remove Duplicates clears repeat rows, and Text to Columns splits a combined field."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the row count before and after each step. If a step removes more rows than you expected, stop and find out why. A dropped row can quietly move a total, and nobody notices until a review meeting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says the Copilot in Excel clean data skill, invoked with @clean-data or from the Skills menu, is rolling out to general availability on all platforms. The skill recorder is limited to Insiders of Excel for Windows and Excel for Mac. Review what any skill changed before you accept it. A step that merges two vendor names is right only if they are the same vendor."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables on Mac that keep up with new rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select any cell in a clean named table, then go to Insert > PivotTable. Drag cost center into Rows, month into Columns, and actual into Values. Pivot on the table, not on a fixed range. A pivot built on a fixed range will not pick up rows added below it. Ask Lazur to walk you through the setup if the dialog confuses you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Need the full steps? The [pivot table how-to](/how-to/make-a-pivot-table-in-excel) walks through the menus in order. If a pivot still skips new rows after a table change, read [why new rows go missing from a pivot](/for/developers/problems/excel-pivot-table-not-refreshing-new-rows) for the source range fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your model depends on the Data Model, a pivot on Mac may not give you the filtering you expect. Build the pivot from a flat table instead. You lose some relationships between tables. You keep a pivot you can filter on the Mac. Decide which trade matters more before you build the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formula errors that stop a forecast"
+    },
+    {
+      "type": "paragraph",
+      "text": "The divide by zero error means a formula divides by zero or by a blank cell. In a forecast, that usually comes from a growth rate whose base month is empty. Click the cell, read the formula, then check each input it points to. Press ⌃` to show every formula on the sheet at once. Press it again to hide them."
+    },
+    {
+      "type": "paragraph",
+      "text": "#N/A from a lookup is the other common error. VLOOKUP returns #N/A when it finds no exact match. A trailing space or a number stored as text often causes the miss. The [VLOOKUP #N/A fix steps](/for/developers/problems/excel-vlookup-na-error-fix-steps) cover the checks in order. Fix the key column before you touch the formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not wrap every formula in IFERROR. The wrapper hides real errors, and a forecast with hidden errors looks clean until someone checks it. Wrap only the cells where a blank is the correct result."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Charts for the deck without the detour"
+    },
+    {
+      "type": "paragraph",
+      "text": "Building one chart takes 20 minutes or more, according to the ThoughtSpot survey. Most of that time goes to fixing the data, not the chart. Build the chart from a named table, so new rows extend the chart on their own. Pick the chart type that matches the question. Trends need lines, and comparisons need bars."
+    },
+    {
+      "type": "paragraph",
+      "text": "Label axes with units, such as thousands of dollars, and keep the same scale across charts in one deck. Mismatched scales invite questions in review, and those questions eat meeting time."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fiscal calendars, currencies, and other edge cases"
+    },
+    {
+      "type": "paragraph",
+      "text": "Fiscal calendars rarely match calendar months. Build a mapping table on its own tab that turns each date into a fiscal period. Point your pivots and formulas at that table. Hardcoding the mapping inside each formula is how a year-end close goes wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Store amounts in one currency and convert on the way in. Keep the exchange rate table dated, so you can explain last quarter's numbers later. Write the rate source on the same tab. Reviewers will ask where each rate came from."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Budget and forecast timelines in real teams"
+    },
+    {
+      "type": "paragraph",
+      "text": "The DataRails survey found the typical organization takes four weeks to three months to complete its annual budget. The length of the process was the biggest frustration for CFOs, at 29%. About a third said they were dissatisfied with the output of their process."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your work in that timeline is usually the monthly close and the rolling forecast. A close needs repeatable steps. Write them on a tab called Checklist. Give each step an owner and a due date. That tab saves more time than any clever formula you will write this quarter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a model belongs on Windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some models should not live on a Mac. If the work depends on Power Pivot, filtered Data Model pivots, or heavy VBA, you have honest options. Ask IT whether a Windows machine is available. Ask whether a Windows virtual machine is allowed. Or ask whether the model can be rebuilt with flat tables that Mac Excel handles."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Parallels sells virtualization software, so its blog has a stake in the answer. Its speed comments are not benchmarked. Treat them as a hypothesis, and test your own large workbook on both platforms before you decide anything. Time the same recalculation on each machine."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps while you work in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Excel. You do the clicking. Hold fn to dictate clean, formatted text at the cursor, which helps with variance notes and emails to the controller. Research jobs run in Lazur's own Chrome tabs through the Lazur for Chrome extension, and they come back with a summary and a report."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your company's policy before you show a live forecast to any AI tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the Pro trial, which needs no credit card. It begins when you first open the app. Plans and action limits are on the [pricing page](/pricing). Get the app from the [download page](/download) when you are ready."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost analysts the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Hardcoding a number inside a formula. Put it in a labeled input cell and point the formula at it.",
+        "Building pivots on a fixed range. New rows stay invisible until you fix the source.",
+        "Assuming Power Pivot works on Mac. Test it before the deadline, not during it.",
+        "Trusting a 2022 survey as a current benchmark. Measure your own team's hours instead.",
+        "Skipping the row count after a cleanup step. One dropped row can move a total.",
+        "Copying a Windows macro to Mac without testing it. VBA behaves differently on Mac."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each of these costs a close or a review cycle. Fix them once in the template, and the next month inherits the fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your current budget file and check three things. Confirm every forecast formula points to an input cell, not a typed number. Confirm the actuals sit in a named table. Confirm the pivots read from that table, not from a fixed range. If any pivot uses the Data Model, test its filter on a Mac before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then ask Lazur about the one step that slows you most. Hold ⌥ ⌘, ask the question, and keep working in the sheet. For wider AI help in Excel, see the [AI assistant for Excel](/apps/excel) page. If your close is the heavy part, the [Excel for accountants on Mac](/for/accountants/excel) page covers that workflow in more depth."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac support Power Pivot?",
+      "answer": "No. The Parallels FAQ says the Mac version of Excel does not support Power Pivot. A Microsoft Q&A thread reports the Data Model error on Mac too. If your model needs Power Pivot, plan to run it on Windows."
+    },
+    {
+      "question": "Why can't I filter my pivot table on Mac?",
+      "answer": "Parallels says pivot tables based on the Excel Data Model cannot be filtered when a Mac user opens the file. Build the pivot from a flat table instead, or open the file on Windows to filter it."
+    },
+    {
+      "question": "Can Excel for Mac run VBA macros?",
+      "answer": "Yes, but the VBA language is less comprehensive on Mac than on Windows. Right-click context menus cannot be edited with VBA on Mac. Test each macro on a Mac before you rely on it during a close."
+    },
+    {
+      "question": "What is a good budget vs actual layout for Excel on Mac?",
+      "answer": "Use separate tabs for raw exports, a clean named actuals table, and the budget. Put the variance in its own column with a formula that points to input cells. Keep the layout identical each month so formulas keep working."
+    },
+    {
+      "question": "How long does a typical annual budget take?",
+      "answer": "A DataRails-sponsored survey of 200 finance leaders found the typical organization takes four weeks to three months to complete its annual budget. The survey dates from April 2022 and was paid for by a planning software vendor."
+    },
+    {
+      "question": "Can Lazur click through Excel for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It points at things with a circle and a label, and it guides you one click at a time while it waits for each click. It is not an add-in for Excel."
+    },
+    {
+      "question": "Is my financial data safe when I ask Lazur about a sheet?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your company policy first."
+    },
+    {
+      "question": "Does Microsoft's Copilot clean data skill work on Mac?",
+      "answer": "Microsoft's October 2026 roundup says the clean data skill is rolling out to general availability on all platforms. The skill recorder is limited to Insiders of Excel for Windows and Excel for Mac."
+    },
+    {
+      "question": "Is Excel slower on Mac than on Windows?",
+      "answer": "The reports are mostly anecdotal. Parallels says some large spreadsheets, complex macros, or advanced data models may run faster on Windows. No sourced benchmark settles it, so test your own workbook on both."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "New research shows almost half of users struggle to make sense of data in spreadsheets",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "CFOs cling to spreadsheets despite their limits as FP&A tool",
+      "url": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "publisher": "CFO Dive",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel Mac vs Windows: Key Differences Explained",
+      "url": "https://www.parallels.com/blogs/excel-mac-vs-excel-windows/",
+      "publisher": "Parallels",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel on Mac: Data Model features are not supported",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5445256/excel-on-mac-data-model-features-are-not-supported",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Create your first budget",
+      "url": "https://support.microsoft.com/en-us/excel/create-your-first-budget",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why is this forecast cell showing a divide by zero error?",
+    "capability": "explain",
+    "result": "Lazur reads the formula, finds the blank input it divides by, and explains the fix out loud.",
+    "shell": "sheet",
+    "context": "Monthly revenue forecast in Excel for Mac, one growth cell shows a divide by zero error",
+    "pointsAt": "the divide by zero cell",
+    "output": "That cell divides by the prior month's revenue, and that input is blank. Enter the revenue, or wrap the formula in IFERROR so the cell shows a blank until the input arrives."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Sort button on the Data tab?",
+      "result": "Lazur draws a circle and a label around the button on your screen. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, why is this cell showing a divide by zero error?",
+      "result": "Lazur reads the formula, names the zero or blank input, and says what to fix.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through a pivot table of actuals by cost center.",
+      "result": "Lazur gives one step at a time and waits for your click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the variance commentary for the deck.",
+      "result": "Clean, formatted text lands at the cursor. Snippets and a personal dictionary help with repeat terms.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note to the controller about the travel overspend.",
+      "result": "Lazur types a short draft you can edit before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Lazur, what does Data Model features are not supported mean?",
+      "result": "Lazur explains what the message means on this Mac and what to check next.",
+      "capability": "explain"
+    },
+    {
+      "say": "Find two published rolling forecast templates and summarize their tabs.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary with a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me before the close meeting to send the forecast to the controller.",
+      "result": "Lazur adds the reminder to Apple Reminders at the time you asked for.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "financial-analysts-excel",
+  "role": "financial-analysts",
+  "app": "excel",
+  "roleName": "Financial analysts",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-excel/excel-for-financial-analysts-on-mac-1-2c7b5d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Excel for financial analysts on Mac: an analyst reviews a budget on a laptop at a desk",
+      "caption": "A finance team member at a laptop, reviewing a budget.",
+      "keywords": [
+        "excel for financial analysts on mac",
+        "Excel",
+        "Financial analysts",
+        "Mac",
+        "financial analyst laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "harryloya",
+        "url": "https://pixabay.com/users/harryloya-7475427/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-office-business-laptop-3033135/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-excel/excel-for-financial-analysts-on-mac-2-ca2464.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A chart and spreadsheet on a laptop screen, the kind of deck work in excel for financial analysts on Mac",
+      "caption": "A chart on a laptop screen, ready for a finance deck.",
+      "keywords": [
+        "excel for financial analysts on mac",
+        "Excel",
+        "Financial analysts",
+        "Mac",
+        "spreadsheet office chart",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "jarmoluk",
+        "url": "https://pixabay.com/users/jarmoluk-143740/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/innovation-business-businessman-561388/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-excel/excel-for-financial-analysts-on-mac-3-09ec85.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Person working at a Mac laptop on a desk, reviewing finance numbers for excel for financial analysts on Mac",
+      "caption": "Working at a Mac on a finance review.",
+      "keywords": [
+        "excel for financial analysts on mac",
+        "Excel",
+        "Financial analysts",
+        "Mac",
+        "man working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "MaximeUtopix",
+        "url": "https://pixabay.com/users/MaximeUtopix-19431082/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-man-laptop-mask-desk-work-5916335/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for financial analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "excel for finance on mac": 1,
+      "power pivot not supported on mac": 1,
+      "excel budget vs actual mac": 1,
+      "excel pivot table mac finance": 1,
+      "excel data model mac error": 1,
+      "excel forecast template mac": 1,
+      "excel voice assistant mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "title": "Google Sheets for financial analysts on Mac: shortcuts, formulas and fixes in Chrome",
+  "metaTitle": "Google Sheets for Financial Analysts on Mac: Shortcuts and Fixes",
+  "description": "Google Sheets for financial analysts on Mac runs in your browser. Get the shortcuts, formula checks and fixes, and see how Lazur helps by voice.",
+  "targetKeyword": "google sheets for financial analysts on mac",
+  "secondaryKeywords": [
+    "google sheets on mac",
+    "google sheets shortcuts mac",
+    "financial modeling in google sheets",
+    "google sheets for finance teams",
+    "google sheets offline mac",
+    "google sheets absolute references"
+  ],
+  "intro": "Google Sheets for financial analysts on Mac runs in a browser, because there is no Mac app to install. Chrome is the safest choice, and a Dock shortcut makes it feel like one app. This guide covers the shortcuts, formula checks, and data limits that matter for budgets, forecasts, and valuation models.",
+  "tldr": [
+    "Google Sheets has no Mac app. Use Chrome and pin a Sheets window to the Dock.",
+    "Learn ⌘+D, ⌘+R, ⌘+Enter, Fn+F4 and Ctrl+~ first. They cover most forecast work.",
+    "Lock the rate cell with $ signs before you fill down a formula. Otherwise every row drifts.",
+    "Check cell and file size limits before you import. Google's help page cites 20 million cells or 100MB.",
+    "Hold ⌥ ⌘ to ask Lazur about what is on screen. Hold fn to dictate at the cursor."
+  ],
+  "stats": [
+    {
+      "value": "42%",
+      "label": "Of ad hoc report time at mid-sized companies goes to data preparation (2022 survey of 200 finance leaders, sponsored by DataRails)",
+      "sourceUrl": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "sourceTitle": "CFO Dive: CFOs cling to spreadsheets despite their limits as FP&A tool"
+    },
+    {
+      "value": "14 hours",
+      "label": "Average weekly time planning staff spend on ad hoc reports, from the same 2022 CFO survey",
+      "sourceUrl": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "sourceTitle": "CFO Dive: CFOs cling to spreadsheets despite their limits as FP&A tool"
+    },
+    {
+      "value": "53%",
+      "label": "Of 1,003 U.S. operations professionals deal with spreadsheet errors every week, in a 2026 DOSS survey",
+      "sourceUrl": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "DOSS: How spreadsheet mistakes are costing operations teams thousands"
+    },
+    {
+      "value": "20 million",
+      "label": "Cells allowed in a Google Sheets file, per Google's help page (third-party sites still cite 10 million)",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: file size and limits (Sheets)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Google Sheets on Mac runs in a browser"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets has no native Mac app. A Bricks guide dated February 2025 says there is no dedicated Google Sheets application in the Mac App Store. You work in a browser, and that changes a few habits."
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome is the browser this guide uses. Google's offline help names Chrome and Edge as the supported browsers, so Chrome is the safer default. Safari works for online editing, but offline support follows different rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "Analysts who live in Sheets all day want the browser to feel like an app. The Bricks guide lists the options. You can make a Chrome window with the Create shortcut command, add a Safari Dock shortcut, or use Google Drive for desktop."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Pin it to the Dock",
+      "text": "A pinned Sheets window stops hiding in a pile of tabs. Press ⌘+Tab to jump back to it when a reviewer asks for the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Google Sheets on Mac as a Dock shortcut"
+    },
+    {
+      "type": "paragraph",
+      "text": "This takes a couple of minutes. Chrome menu wording changes between releases, so read each dialog before you click."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Sheets in Chrome and sign in with your work account.",
+        "Open the ⋮ menu at the top right of Chrome, then choose Save and share > Create shortcut.",
+        "Tick Open as window, then select Create.",
+        "Find the new app in your Applications folder and drag it to the Dock.",
+        "Open the new window once and check that it shows your Drive home."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Work accounts sometimes block apps or shortcuts through admin policy. If the option is missing, ask your IT team before you try a workaround. The Dock icon is only a shortcut. Your files still live in Drive, so nothing is stored only on the Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets shortcuts on Mac that save the most time"
+    },
+    {
+      "type": "paragraph",
+      "text": "These shortcuts come from Google's keyboard shortcut page. Learn the first four before anything else. They handle most of the copy work in a forecast."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shortcut",
+        "What it does",
+        "Use it when"
+      ],
+      "rows": [
+        [
+          "⌘+D",
+          "Fill down",
+          "Copy a formula from the top cell of a selection down a column"
+        ],
+        [
+          "⌘+R",
+          "Fill right",
+          "Copy a formula across a row of forecast periods"
+        ],
+        [
+          "⌘+Enter",
+          "Fill range",
+          "Enter one formula into many selected cells at once"
+        ],
+        [
+          "⌘+Option+T",
+          "Convert range to table",
+          "Turn a clean block of data into a table"
+        ],
+        [
+          "Fn+F4",
+          "Cycle absolute and relative references",
+          "While you type a formula, lock a cell with $ signs"
+        ],
+        [
+          "Ctrl+~",
+          "Show all formulas",
+          "Audit a model without clicking each cell"
+        ],
+        [
+          "Option+/",
+          "Tool finder",
+          "Search for a menu item by name when you forget where it is"
+        ]
+      ],
+      "caption": "Mac shortcuts from Google's Docs Editors keyboard shortcut page."
+    },
+    {
+      "type": "paragraph",
+      "text": "If F4 opens something else, your top row is set to media and system controls. Open System Settings > Keyboard and turn on the setting that makes the top row act as standard function keys. Then press F4 without Fn in Sheets. Hold Fn only when you want the Mac's own action for that key."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fill down and absolute references in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most forecast errors start with one missing dollar sign. Here is a simple growth row. Put the growth rate in cell B1. Put the starting value in cell A2."
+    },
+    {
+      "type": "paragraph",
+      "text": "In cell A3, type =A2*(1+$B$1). The dollar signs lock the rate cell. Press Return, then select A3 and the cells below it, and press ⌘+D to fill down the column. Each new row uses the same rate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Without the dollar signs, the reference slides down with each row. A3 would point at B2, then B3, and the rate would change on every line. Your forecast drifts, and no error message appears. That is the dangerous kind of mistake."
+    },
+    {
+      "type": "paragraph",
+      "text": "While the cursor sits on B1 inside the formula, press Fn+F4. Keep pressing until you see $B$1. That is the locked form you want for a single input cell."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Forgetting the $ on the rate cell, so each row reads a different input.",
+        "Pasting values over a formula row, which freezes the numbers in place.",
+        "Filling down into a total row, which can double a sum.",
+        "Typing a rate into a formula instead of a labeled input cell, which hides the assumption."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas and AI help for financial modeling in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Analysts use a small set of functions over and over. SUMIFS adds values that meet conditions across a range. INDEX and MATCH work together to look up a value by a key. GOOGLEFINANCE pulls market data into a cell. Pick the function that fits the question, not the one you know best."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Workspace page says Gemini in Sheets can write formulas from a prompt and explain error messages. Use that as a second reader, not a final check. Ask it to explain the formula in plain words, then confirm the result by hand on a few rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Confirm in your own account which Gemini features your plan includes. Google's product page describes them, but it does not settle plan details for every customer. Check before you build a process around a feature."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import Excel and CSV files into Google Sheets without breaking data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel files open in Sheets without making a copy, according to Google's Workspace page. That is useful for a model someone else built. A conversion can still change things, so keep the original file safe."
+    },
+    {
+      "type": "paragraph",
+      "text": "When an Excel file converts, cells with more than 50,000 characters are removed, according to Google's Drive help page. Long text fields are where this shows up first. Scan your notes columns after any conversion."
+    },
+    {
+      "type": "paragraph",
+      "text": "For CSV files, open File > Import, then choose how to place the data, such as Replace current sheet. The full steps are in our guide to [importing a CSV file in Google Sheets on Mac](/how-to/import-a-csv-file-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Size limits matter too. Google's Drive help page says a Sheets file can hold up to 20 million cells or 100MB. Third-party sites still cite 10 million cells, so the sources conflict. Check your own file rather than trusting either number."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Split large imports first",
+      "text": "Very large imports slow down a laptop and make errors hard to spot. Split the data by period or entity before you start, so each sheet stays easy to check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where analyst time goes in Google Sheets, according to surveys"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two surveys give a sense of the pain. Both come from vendors with a stake in the answer, so treat them as directional. The first is a 2022 CFO survey sponsored by DataRails, which sells FP&A software. It polled 200 finance leaders at mid-sized companies."
+    },
+    {
+      "type": "paragraph",
+      "text": "In that survey, planning staff average 14 hours a week on ad hoc reports. About 42% of that time, roughly six hours, goes to data preparation and cleansing. Budget length was the top frustration for 29% of CFOs. One in five CFOs said errors that need fixing are a constant challenge."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second survey is from DOSS in 2026. It polled 1,003 U.S. operations professionals, not finance-only staff. It found 53% deal with spreadsheet errors every week, and 22% face them daily. Respondents average 3.6 hours a week fixing them."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Error type (DOSS 2026)",
+        "Share of respondents"
+      ],
+      "rows": [
+        [
+          "Manual data entry mistakes",
+          "59%"
+        ],
+        [
+          "Formula errors",
+          "46%"
+        ],
+        [
+          "Copy-paste issues",
+          "45%"
+        ]
+      ],
+      "caption": "Error types from the DOSS 2026 survey of operations professionals."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the gap as a signal. Cleaning data takes much of the time, and errors create more cleaning. The habits in the next section target that loop directly."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Error checks for Google Sheets models before the deck"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build these checks into your routine. Each one takes less time than a single round of correction after a reviewer finds the problem."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Press Ctrl+~ to show all formulas, then scan for typed numbers in rows that should be formulas.",
+        "Add a check cell that subtracts each total from the sum of the rows above it. The result should be zero.",
+        "Compare the row count of a pasted block with the source file.",
+        "Open Data > Protect sheets and ranges to lock input cells that should not change.",
+        "Read any formula that returns a blank or an error before you trust the rows next to it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say a revenue total sits in A14, and the monthly rows above it run from A5 to A13. Put =SUM(A5:A13)-A14 in a spare cell. A result of zero means the total matches. Any other number means a row was missed, doubled, or pasted as text."
+    },
+    {
+      "type": "paragraph",
+      "text": "The copy-paste category in the DOSS survey is the one these checks catch best. Use Edit > Paste special > Values only when you mean it, and note the date in a cell beside the pasted block. That small note saves time when someone asks where a number came from."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version history in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "When a number moves and nobody can say why, open File > Version history > See version history. Sheets lists past versions by time, and you can see who edited what."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version history is a better audit trail than a folder of files named final, final2, and final_v7. Restoring an old version puts it back in front of everyone, so check it first. The full steps are in [our revision history guide for Google Sheets on Mac](/how-to/see-revision-history-in-google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets offline on Mac: setup and limits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Offline editing in Sheets needs Google Chrome or Microsoft Edge. You also need the Google Docs Offline extension installed and turned on. Edge users get sent to the Chrome Web Store to add the extension, according to Google's help page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page also says not to use private or incognito browsing for offline access. Many people open a file in incognito during a meeting, then find it will not load offline later."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test offline before you need it",
+      "text": "Open the file while you are online, turn Wi-Fi off, and make a small change. Then confirm the change saved when you reconnect."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some third-party guides say add-ons, Apps Script, and GOOGLEFINANCE may not work offline. Google's offline page does not list these, so test your own model rather than trusting a guide. For the same workbook layout, see our [freeze columns guide](/how-to/freeze-columns-in-google-sheets), which keeps labels visible while you scroll across forecast periods."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates for financial modeling in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "SheetsFinance publishes 27 free finance templates for Google Sheets and Excel. The list includes a DCF valuation, a WACC calculator, comparable companies, a DuPont analysis, a portfolio tracker, a historical dividend calculator, and watchlists. Read the page before you pick one."
+    },
+    {
+      "type": "paragraph",
+      "text": "The vendor notes some limits. Its Options dashboard needs the paid SheetsFinance Options product, which has a 15-day free trial. The Financial Statements template's year limit depends on your plan."
+    },
+    {
+      "type": "paragraph",
+      "text": "A template saves setup time, but it does not check your logic. Trace each output back to its inputs. Ask Lazur to explain a formula if you cannot follow one. Check the vendor's pricing page for current plan details."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in a Google Sheets workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen. Lazur answers out loud, so your hands can stay on the keyboard."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it on your screen. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click for you. You stay in control of every change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That helps when you need to type a comment into a cell or draft a note for a reviewer. Dictation is included in both plans and is unlimited."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur can do in Google Sheets, and what it cannot"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explains a formula or an error message that is on your screen.",
+        "Points at menus, buttons, and cells, and labels them on screen.",
+        "Guides a multi-step task one click at a time, waiting for each click.",
+        "Dictates or types text at the cursor in any app when you hold fn.",
+        "Drafts text, such as a short variance note or an email to a reviewer.",
+        "Runs research in its own Chrome tabs and returns a summary and a report.",
+        "Handles everyday tasks such as timers, Apple Reminders, Calendar events, and opening apps."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Google Sheets or any other app. Lazur has no partnerships with any app maker. It works next to Sheets, the same way it works next to any other app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy for client and deal data in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps memory of what you asked and did, on the Mac. Your firm's data policy still decides what you can paste or dictate. Read it before you point any assistant at client files or deal models."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pricing for Lazur while you work in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a 3-day Pro trial with no credit card. The trial starts the first time you open the app. Open it when you are ready to test your real files."
+    },
+    {
+      "type": "paragraph",
+      "text": "After the trial, Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions. Power costs $120/month, or $96/month billed annually, and includes 1,000 AI actions. Dictation is unlimited on both plans. See [pricing](/pricing) or [download Lazur](/download) for the Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes analysts make with Google Sheets on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Trusting a pasted block before checking its row count against the source.",
+        "Building a model on an import before checking the cell and file size limits.",
+        "Working in incognito, then finding the file will not open offline.",
+        "Using a template formula you have not traced back to its inputs.",
+        "Saving copies instead of using version history, which makes the trail hard to follow."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes are quiet. Nothing turns red, and the totals still look plausible. Build the habit of checking before you send, not after a reviewer finds the gap."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Google Sheets on Mac setup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one habit this week. Start with the dollar sign anchoring and the Ctrl+~ scan, because they catch the most errors for the least effort. Then go deeper on the task you do most."
+    },
+    {
+      "type": "paragraph",
+      "text": "For specific tasks, read [how to count unique values in Google Sheets on Mac](/how-to/count-unique-values-in-google-sheets), [how to remove duplicate rows in Google Sheets on Mac](/how-to/remove-duplicate-rows-in-google-sheets), and [how to make a chart in Google Sheets on Mac](/how-to/make-a-chart-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want Lazur in the loop, [download Lazur](/download) and hold ⌥ ⌘ on your next formula. Ask what it does, then check the answer against a few rows by hand."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "No dedicated Google Sheets app is listed in the Mac App Store, according to a Bricks guide dated February 2025. You can open Sheets in Chrome, make a Chrome window with Create shortcut, add a Safari Dock shortcut, or use Google Drive for desktop."
+    },
+    {
+      "question": "Can I use Google Sheets offline on a Mac?",
+      "answer": "Yes, with limits. Google's help page says offline editing needs Google Chrome or Microsoft Edge, plus the Google Docs Offline extension turned on. Private or incognito browsing is not supported for offline access."
+    },
+    {
+      "question": "What is the Google Sheets cell limit?",
+      "answer": "Google's Drive help page says a Sheets file can hold up to 20 million cells or 100MB. Third-party sites still cite 10 million cells, so check your own file size and cell count before you build on a large import."
+    },
+    {
+      "question": "Does Google Sheets open Excel files without converting them?",
+      "answer": "Google's Workspace page says Excel files can be opened and edited in Sheets without making a copy. Conversion can still remove cells with more than 50,000 characters, so keep the original file."
+    },
+    {
+      "question": "Which shortcut locks a cell with dollar signs in Google Sheets on Mac?",
+      "answer": "Press Fn+F4 while you enter a formula, with the cursor on the cell reference. Keep pressing until the reference shows the $ signs you need, such as $B$1."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It explains, points at things, guides you one click at a time, and drafts or types text when you ask."
+    },
+    {
+      "question": "Will Lazur send my financial data to an AI provider?",
+      "answer": "Audio and the screenshot are sent to AI providers to answer your question. They are not stored, and content is never used to train AI models. Check your firm's data policy before you share client or deal files."
+    },
+    {
+      "question": "Is Lazur a Google Sheets add-on?",
+      "answer": "No. Lazur is not a plugin or add-in for any app. It is a voice assistant for the Mac that lives in the notch, and it has no partnerships with any app maker."
+    },
+    {
+      "question": "How long is the Lazur trial?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Drive Help: file size and limits (Sheets)",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets, Computer (Google Docs Editors Help)",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Work on Google Docs, Sheets & Slides offline (Google Docs Editors Help)",
+      "url": "https://support.google.com/docs/answer/6388102?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Get Google Sheets on MacBook",
+      "url": "https://www.thebricks.com/resources/guide-how-to-get-google-sheets-on-macbook",
+      "publisher": "Bricks",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "CFO Dive: CFOs cling to spreadsheets despite their limits as FP&A tool",
+      "url": "https://www.cfodive.com/news/cfos-cling-to-spreadsheets-despite-their-limits-as-fpa-tool/622140/",
+      "publisher": "CFO Dive",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "DOSS: How spreadsheet mistakes are costing operations teams thousands",
+      "url": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "publisher": "DOSS",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "SheetsFinance: Free Finance Templates for Google Sheets and Excel",
+      "url": "https://sheetsfinance.com/templates",
+      "publisher": "SheetsFinance",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Data menu in this sheet?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Data in the menu bar, then says where it sits.",
+    "shell": "sheet",
+    "context": "Google Sheets open in a Chrome window on a Mac, a forecast tab in view",
+    "output": "Data sits in the menu bar, between Format and Tools. Open it to find Create a filter and Data validation.",
+    "pointsAt": "Data"
+  },
+  "tasks": [
+    {
+      "say": "Why is this cell showing #REF?",
+      "result": "Lazur reads the formula on screen, names the broken reference, and says which cell to check first.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is Data validation?",
+      "result": "Lazur circles the Data menu and labels it, then says where Data validation sits inside it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through a dropdown list in column C.",
+      "result": "Lazur names each menu step and waits for your click before it gives the next one.",
+      "capability": "guide"
+    },
+    {
+      "say": "Put my variance note into this cell.",
+      "result": "Hold fn, speak the note, and clean text lands at the cursor in the open cell.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note explaining this variance for the reviewer.",
+      "result": "Lazur writes a short draft from the numbers on screen, then types it where you ask.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research current comparable company multiples for these tickers.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to send the model before the review call.",
+      "result": "Lazur adds the task to Apple Reminders, so it shows up on your list.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "financial-analysts-google-sheets",
+  "role": "financial-analysts",
+  "app": "google-sheets",
+  "roleName": "Financial analysts",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-google-sheets/google-sheets-for-financial-analysts-on-mac-1-495dce.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Financial analyst using Google Sheets on a Mac at a desk",
+      "caption": "Analysts spend much of the day in a browser spreadsheet.",
+      "keywords": [
+        "google sheets for financial analysts on mac",
+        "Google Sheets",
+        "Financial analysts",
+        "Mac",
+        "financial analyst laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DigitalMarketingAgency",
+        "url": "https://pixabay.com/users/DigitalMarketingAgency-2670666/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/marketing-online-social-media-online-1427786/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-google-sheets/google-sheets-for-financial-analysts-on-mac-2-f7c69e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant checking spreadsheet figures with a calculator on a desk",
+      "caption": "Checking the numbers before they reach the deck.",
+      "keywords": [
+        "google sheets for financial analysts on mac",
+        "Google Sheets",
+        "Financial analysts",
+        "Mac",
+        "accountant calculator spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stevepb",
+        "url": "https://pixabay.com/users/stevepb-282134/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/new-year-calculator-calculation-1680905/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/financial-analysts-google-sheets/google-sheets-for-financial-analysts-on-mac-3-3026bb.jpg",
+      "width": 1280,
+      "height": 956,
+      "alt": "Finance team reviewing a forecast on a laptop during a meeting",
+      "caption": "Reports go to people who need them fast.",
+      "keywords": [
+        "google sheets for financial analysts on mac",
+        "Google Sheets",
+        "Financial analysts",
+        "Mac",
+        "office team meeting laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "erwinbosman",
+        "url": "https://pixabay.com/users/erwinbosman-50462252/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-collaboration-meeting-10494915/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for financial analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "google sheets on mac": 12,
+      "google sheets shortcuts mac": 1,
+      "financial modeling in google sheets": 3,
+      "google sheets for finance teams": 1,
+      "google sheets offline mac": 1,
+      "google sheets absolute references": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

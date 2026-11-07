@@ -1,0 +1,619 @@
+{
+  "title": "Google Sheets for recruiters on Mac: tracker setup, formulas and Lazur help",
+  "metaTitle": "Google Sheets for Recruiters on Mac: Tracker Setup Guide",
+  "description": "Set up a recruiting tracker in Google Sheets on Mac, with stage dropdowns, formulas and fixes. See where Lazur helps while you work in the browser.",
+  "targetKeyword": "google sheets for recruiters on mac",
+  "secondaryKeywords": [
+    "google sheets recruiting tracker mac",
+    "recruiter spreadsheet template google sheets",
+    "google sheets candidate pipeline",
+    "google sheets dropdown for hiring stage",
+    "google sheets keyboard shortcuts mac",
+    "lazur voice assistant for mac"
+  ],
+  "intro": "Google Sheets works well for recruiters on a Mac. It runs in a browser tab, supports co-editing with hiring managers and keeps revision history. Set up one row per candidate, a dropdown for stage and a few formulas for counts. Lazur helps while you work. It points at menus, guides you one click at a time and answers out loud, but it does not click for you.",
+  "tldr": [
+    "Keep one row per candidate, with stage, source, dates and next step as columns.",
+    "Use Data > Data validation for a Stage dropdown, so every row uses the same names.",
+    "COUNTIF, COUNTUNIQUE and TODAY cover most pipeline counts without add-ons.",
+    "On a Mac, Option + / opens Tool finder and Ctrl + Option + f opens the File menu.",
+    "Lazur points, guides and answers out loud. It does not click or edit your sheet for you."
+  ],
+  "stats": [
+    {
+      "value": "17.7 hours",
+      "label": "per vacancy recruiters average on manual admin, UK survey published August 2025",
+      "sourceUrl": "https://www.staffingindustry.com/news/global-daily-news/recruiters-lose-ps17k-annually-to-admin-tasks-study-finds",
+      "sourceTitle": "Recruiters lose £17k annually to admin tasks, study finds"
+    },
+    {
+      "value": "61%",
+      "label": "of recruiters cite manual tasks such as data entry as a slowdown, UK survey",
+      "sourceUrl": "https://www.staffingindustry.com/news/global-daily-news/recruiters-lose-ps17k-annually-to-admin-tasks-study-finds",
+      "sourceTitle": "Recruiters lose £17k annually to admin tasks, study finds"
+    },
+    {
+      "value": "71%",
+      "label": "of recruiters cite waiting for stakeholder feedback as a slowdown, UK survey",
+      "sourceUrl": "https://www.staffingindustry.com/news/global-daily-news/recruiters-lose-ps17k-annually-to-admin-tasks-study-finds",
+      "sourceTitle": "Recruiters lose £17k annually to admin tasks, study finds"
+    },
+    {
+      "value": "20 million cells",
+      "label": "cell limit in Google Drive Help, or 100MB. The page does not say if it is per sheet or per file.",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most recruiters use Google Sheets as a light applicant tracker. A tracker holds the basics: candidate name, role, source, stage, dates and the next step. It is not a full applicant tracking system, but a small team can run a hiring pipeline in it for a while."
+    },
+    {
+      "type": "paragraph",
+      "text": "Free templates show the usual shape. A Google Workspace Marketplace template from Envision Talent Solutions lists three synced tabs: Requisitions, Candidate Database and Active Candidates. Its listing also claims resume import, custom stages and marking other candidates rejected on hire. Those are the vendor's claims. The listing shows a rating but no install count, so test it before you trust it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a Sheet works for a small hiring pipeline"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Sheets product page lists co-editing, sharing controls, offline access and revision history. Those matter when a hiring manager needs to comment on candidates but should not change a candidate's stage. Give managers Commenter access and keep Editor access for the recruiters who update the rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page names connections to Asana, HubSpot, Intuit QuickBooks and Salesforce. If your applicant tracking system already holds candidates, check for an export before you retype anything. Retyping takes time and adds typos."
+    },
+    {
+      "type": "paragraph",
+      "text": "The page also says Gemini in Sheets can write and debug formulas, and build a spreadsheet from a prompt. Some Gemini features need a Google Workspace plan. The page does not list prices, so check your plan before you count on them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the tracker with columns that hold up"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Sheets in Chrome or Safari and start a blank spreadsheet.",
+        "Name the file with the team and the hiring year so it sorts well in Drive.",
+        "Rename the first tab Candidates. Add a second tab named Requisitions for open roles.",
+        "In Candidates, make one row per candidate per role. Put these headers in row 1: Name, Role, Source, Stage, Date applied, Last contact, Next step, Notes.",
+        "Type dates as real dates, not text, so sorting and day counts work.",
+        "Select the Stage column, then go to Data > Data validation. Choose Dropdown and enter your stage names.",
+        "Freeze the header row so the names stay visible as the list grows. Use View > Freeze > 1 row."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stage dropdowns and the rules that keep counts right"
+    },
+    {
+      "type": "paragraph",
+      "text": "A dropdown does more than look tidy. It stops typos, and typos break counts. A stage typed as Interveiw looks wrong on screen. A stage with a trailing space looks right but counts as a different value. Your formulas will miss both."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick a short stage list before you start. A common set is Sourced, Screen, Interview, Offer, Hired and Rejected. Change the list only with the whole team. Renaming a stage in a live sheet makes older rows look wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a hiring manager asks for a new stage, add it to the dropdown list first, then tell the team. Old rows keep their old stage until someone changes them. Test the new stage on one row before you trust the summary."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Use the dropdown, not free text",
+      "text": "When stage names arrive by paste from an email or a job board, paste them as values with Edit > Paste special > Values only. Then check the Stage column again before you trust a count."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for pipeline counts and day counts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Formulas turn the tracker into a simple dashboard. These examples assume Stage is in column D, Date applied is in column E, and names are in column A on a tab called Candidates. Whole-column references keep working as you add rows."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "=COUNTIF(Candidates!D:D,\"Interview\") counts rows where Stage says Interview. Change the word to count another stage.",
+        "=COUNTA(Candidates!A:A)-1 counts candidate rows and skips the header row.",
+        "=COUNTUNIQUE(Candidates!A2:A) counts each name once. It helps when one person applied to two roles.",
+        "=TODAY()-E2 shows the days since the date in E2. Fill it down the column, and format the cell as a number.",
+        "=VLOOKUP(A2,Candidates!A:D,4,FALSE) pulls the stage for a name from another tab. Column 4 means column D."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A fixed range is a common trap. A formula that stops at a set row misses new candidates once the list grows past it. Whole-column references avoid that trap, and they suit a tracker that keeps growing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a quick check. Filter the Stage column to one value, then compare the visible row count with what the COUNTIF cell shows. If they match, the stage name is clean. If they do not, look for a trailing space or a typo in the rows you can see."
+    },
+    {
+      "type": "paragraph",
+      "text": "Gemini can draft these formulas from a plain description. It only knows the columns you describe, so check every column letter before you paste."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with formulas in a different way. Hold ⌥ ⌘ while an error is on screen and ask what it means. Lazur answers out loud. It does not type the formula into your cell."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts and menus on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets uses Mac keys, not Windows keys. Option + / opens Tool finder, a search box for commands. Type what you want in plain words, such as freeze or dropdown, and pick the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "For menus, Ctrl + Option + f opens the File menu. Other menus follow the same Ctrl + Option pattern with a different letter. If a key does nothing, look at the menu bar and find the command there."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you came from Excel, turn on Excel-style shortcuts. Go to Help > Keyboard shortcuts, then tick Enable compatible spreadsheet shortcuts at the bottom of the window. Many of your old keys then work."
+    },
+    {
+      "type": "table",
+      "caption": "Shortcuts and menu paths for a recruiting tracker on a Mac.",
+      "headers": [
+        "Task",
+        "Mac shortcut or menu path",
+        "Use it for"
+      ],
+      "rows": [
+        [
+          "Find any command",
+          "Option + /",
+          "Tool finder search box"
+        ],
+        [
+          "Open the File menu",
+          "Ctrl + Option + f",
+          "Import, download and version history"
+        ],
+        [
+          "Excel-style keys",
+          "Help > Keyboard shortcuts",
+          "Turn on Enable compatible spreadsheet shortcuts"
+        ],
+        [
+          "Add a Stage dropdown",
+          "Data > Data validation",
+          "Keep stage names consistent"
+        ],
+        [
+          "Check who changed a row",
+          "File > Version history > See version history",
+          "Review edits by date and person"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Menus move. Google changes labels over time, and the help pages I checked did not confirm every menu location. If a path looks different on your screen, search with Option + / first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where recruiter time goes, and where Lazur fits"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "A UK survey puts admin time high. Staffing Industry Analysts, citing Totaljobs research published in August 2025, reports that recruiters average 17.7 hours per vacancy on manual admin tasks. The study drew on 748 HR leaders and 2,025 UK jobseekers."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same article breaks out three tasks. Application review takes 3.6 hours per vacancy. Interview scheduling takes 2.5 hours, and processing post-interview notes takes 3 hours. It also reports that 61% of recruiters cite manual tasks such as data entry as a slowdown, and 71% cite waiting for stakeholder feedback."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat these as a rough guide. The survey covers the UK only. The same article gives 8,450 hours a year of admin per recruiter and nearly 850 hours for four vacancies a month, and it does not explain the gap. Use 17.7 hours as the figure, with that caveat."
+    },
+    {
+      "type": "table",
+      "caption": "Three admin tasks from the UK survey, with the part Lazur can help with.",
+      "headers": [
+        "Admin task",
+        "Hours per vacancy",
+        "Where Lazur helps"
+      ],
+      "rows": [
+        [
+          "Application review",
+          "3.6",
+          "Ask what a column or score means while you read. Lazur answers out loud."
+        ],
+        [
+          "Interview scheduling",
+          "2.5",
+          "Ask Lazur to add a Calendar event by voice, or set a Reminder to follow up."
+        ],
+        [
+          "Post-interview notes",
+          "3",
+          "Hold fn and dictate clean notes at the cursor, in any app."
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate interview notes without retyping"
+    },
+    {
+      "type": "paragraph",
+      "text": "Post-interview notes take about three hours per vacancy in the UK survey. Dictation removes some of that typing. Hold fn, say the note in plain words, then let go. Lazur types clean, formatted text at your cursor, in any app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use snippets for notes you repeat, such as a standard screen call note. A personal dictionary helps with candidate names, company names and tool names that speech tools often get wrong. Clipboard slots hold text you need in more than one cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check names and figures after you dictate. Speech can get a name wrong. A wrong offer figure in a tracker causes real trouble, so read the row back before you move on."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to ask Lazur while you work in Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "\"Lazur, where is Data validation?\" Lazur circles the Data menu and labels it, so you can open it yourself.",
+        "\"Lazur, walk me through a dropdown.\" Lazur guides you one click at a time and waits for each click before the next step.",
+        "\"Lazur, what does this error mean?\" Hold ⌥ ⌘ with the cell on screen. Lazur reads the screen and explains the error out loud.",
+        "\"Lazur, what is the shortcut for Tool finder?\" Lazur answers out loud with Option and slash.",
+        "\"Lazur, remind me to chase feedback on Friday.\" Lazur adds the reminder to Apple Reminders for that day.",
+        "\"Lazur, research free applicant tracker templates.\" Research runs in Lazur's own Chrome tabs, with the Lazur for Chrome extension. It comes back with a summary and a report."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur draws, points and speaks. It does not click buttons for you, and it does not edit files or operate other apps. It is not a plugin or add-in for Sheets. Lazur has no partnerships with any app maker. It runs on macOS, on Apple silicon and Intel Macs."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and candidate data in a shared sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Candidate data is personal. Before you hold a shortcut over a candidate sheet, check your company policy on AI tools. Then decide what you are comfortable having on screen. Lazur only listens and looks at the screen while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you ask, the audio and a screenshot go to AI providers to answer. They are not stored. Content is never used to train AI models. Hold ⌥ ⌘ only when you need an answer, and let go when you finish."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sharing needs the same care. Click Share, then set each person to Viewer, Commenter or Editor. Give hiring managers Commenter access when they only need to leave feedback. Check version history if a stage changed and nobody remembers why."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits to know before the sheet gets big"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cell limits depend on which Google page you read. A 2022 Google Workspace Updates post raised the limit to 10 million cells for new, existing and imported files. Newer Google Drive help says 20 million cells or 100MB. It does not say whether that applies per sheet or per file, or whether blank cells count."
+    },
+    {
+      "type": "paragraph",
+      "text": "Connected Sheets, which links to BigQuery and Looker data, has its own limits. Pivot tables cap at 200k rows. Extracts cap at 500k rows or 5 million cells. Those caps matter when a team pulls a long run of applicant data into a sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel files have a text limit too. When an Excel file converts to Google Sheets, cells over 50,000 characters are removed. A long resume pasted into one cell can get cut. Store resumes as files in Drive and link to them from the row."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes recruiters make in a shared tracker"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Extra spaces. A stage with a trailing space does not match Interview. If imports add spaces, use TRIM in a helper column.",
+        "Dates typed as text. Text dates do not sort by time and do not work with TODAY math. Format the column as a date first.",
+        "Merged cells in candidate rows. Merged cells break sort and filter. Keep merges to title rows only.",
+        "Duplicate rows after a re-import. Clean them with Data > Data cleanup > Remove duplicates, then check the result.",
+        "Trusting totals without a check. A 2024 literature review reports that 94% of spreadsheets used in business decision-making contain errors. The review does not explain how it reached that figure, so treat it as a warning."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Check totals another way. Count each stage with COUNTIF, then compare the total to your candidate count. If the two do not agree, filter the Stage column and look for the odd value."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import, export and download your tracker"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most recruiting data arrives as a CSV export. Go to File > Import, choose Upload, and pick the file. Check the separator and whether dates converted before you accept the import. The full steps are in the [CSV import guide](/how-to/import-a-csv-file-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "To send a copy to someone who uses Excel, go to File > Download > Microsoft Excel (.xlsx). Check formulas and long text in that copy, since conversion can change them. Step by step is in the [download as Excel guide](/how-to/download-as-excel-in-google-sheets). For a read-only copy, see the [PDF export guide](/how-to/export-as-pdf-in-google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy your current tracker into a test file, then set the Stage dropdown there first.",
+        "Add the COUNTIF and COUNTUNIQUE formulas on a separate Summary tab.",
+        "Check sharing so each person has the lowest access they need.",
+        "Read the [dropdown guide](/how-to/create-a-dropdown-list-in-google-sheets) and the [unique count guide](/how-to/count-unique-values-in-google-sheets).",
+        "Try the dropdown walkthrough with Lazur on one column, and check its steps against your screen."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on Mac only for now, and Windows is planned but not available. You can get the app from the [download page](/download). Plan details are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "The sources for this guide do not describe a separate Mac app for Sheets, so the steps here use the browser. Open Sheets in Chrome or Safari and sign in with your Google account."
+    },
+    {
+      "question": "Can Lazur fill in my tracker for me?",
+      "answer": "No. Lazur points at controls, guides you one click at a time, answers questions out loud, and drafts or types text when you ask. It does not click buttons or edit your sheet."
+    },
+    {
+      "question": "Does Lazur work as an add-in inside Google Sheets?",
+      "answer": "No. Lazur is not a plugin or add-in for any app, and it has no partnerships with any app maker. It runs on your Mac and helps with whatever is on screen."
+    },
+    {
+      "question": "How many cells can a Google Sheets file hold?",
+      "answer": "Google Drive help says 20 million cells or 100MB. A 2022 Google post said 10 million. The Drive page does not say whether the limit is per sheet or per file."
+    },
+    {
+      "question": "Why does my COUNTIF show fewer candidates than I expect?",
+      "answer": "The usual causes are extra spaces, dates typed as text, and stage names spelled differently. Use a Stage dropdown, then compare each stage total to your row count to find the gap."
+    },
+    {
+      "question": "Does Gemini write formulas in Google Sheets?",
+      "answer": "Google's product page says Gemini in Sheets can write and debug formulas. Some Gemini features need a Google Workspace plan, and the page does not list prices. Check your plan before you count on it."
+    },
+    {
+      "question": "Is it safe to use an AI assistant with candidate data?",
+      "answer": "Check your company policy first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored, and content is never used to train AI models."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, but it is not available."
+    },
+    {
+      "question": "What if a Mac shortcut in Sheets does nothing?",
+      "answer": "Check the key combination first. Option + / opens Tool finder, and Ctrl + Option + f opens the File menu. If keys still fail, open Help > Keyboard shortcuts and check the Excel-style option."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets, Computer, Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Workspace Updates: Google Sheets doubles cell limit",
+      "url": "https://workspaceupdates.googleblog.com/2022/03/ten-million-cells-google-sheets.html",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive Help: File size and limits",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Recruiters lose £17k annually to admin tasks, study finds",
+      "url": "https://www.staffingindustry.com/news/global-daily-news/recruiters-lose-ps17k-annually-to-admin-tasks-study-finds",
+      "publisher": "Staffing Industry Analysts",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Applicant Tracking System Template, Google Workspace Marketplace",
+      "url": "https://workspace.google.com/marketplace/app/applicant_tracking_system_template/1041108951403",
+      "publisher": "Google Workspace Marketplace",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Phys.org: 94% of business spreadsheets contain errors, per a 2024 literature review",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, walk me through making the Stage column a dropdown.",
+    "capability": "guide",
+    "result": "Lazur guides you one click at a time and waits for each click. You stay in control of every change in the sheet.",
+    "shell": "sheet",
+    "context": "Candidates tab, Stage column selected, Google Sheets in Chrome on a Mac",
+    "pointsAt": "Data > Data validation",
+    "output": "First, click Data in the menu bar. Next, choose Data validation. Then set the criteria to Dropdown and type your stage names."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, walk me through making the Stage column a dropdown.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Lazur, where is Data validation?",
+      "result": "Lazur draws a circle and a label around the Data menu so you can find the item.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, what does this error in the cell mean?",
+      "result": "Hold ⌥ ⌘ while the error is on screen. Lazur explains it out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, draft a formula that counts candidates in the Interview stage.",
+      "result": "Lazur drafts the COUNTIF formula. Check the column letters before you paste it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Interview went well. Move the candidate to the next round.",
+      "result": "Hold fn and speak. Lazur types clean text at your cursor, in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Lazur, remind me to chase hiring manager feedback on Friday.",
+      "result": "Lazur adds an Apple Reminders item for that day.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Lazur, research free applicant tracker templates and summarize them.",
+      "result": "Research runs in Lazur's own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Lazur, what is the shortcut for Tool finder?",
+      "result": "Lazur answers out loud with Option and slash. Press them, then type the command you want.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "recruiters-google-sheets",
+  "role": "recruiters",
+  "app": "google-sheets",
+  "roleName": "Recruiters",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/recruiters-google-sheets/google-sheets-for-recruiters-on-mac-1-cb9b84.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Recruiter at a Mac laptop tracking candidates, a typical setup for Google Sheets for recruiters on Mac",
+      "caption": "Tracking candidates on a Mac, one row at a time",
+      "keywords": [
+        "google sheets for recruiters on mac",
+        "Google Sheets",
+        "Recruiters",
+        "Mac",
+        "recruiter laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Goumbik",
+        "url": "https://pixabay.com/users/Goumbik-3752482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/chart-graph-finance-financial-data-2785932/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/recruiters-google-sheets/google-sheets-for-recruiters-on-mac-2-83593d.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Interviewer typing notes on a laptop after a call, ready for a Google Sheets for recruiters on Mac tracker",
+      "caption": "Interview notes need a clean place to live",
+      "keywords": [
+        "google sheets for recruiters on mac",
+        "Google Sheets",
+        "Recruiters",
+        "Mac",
+        "job interview notes",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "5138153",
+        "url": "https://pixabay.com/users/5138153-5138153/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/application-curriculum-vitae-2580867/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/recruiters-google-sheets/google-sheets-for-recruiters-on-mac-3-705471.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Hiring team at a meeting table reviewing a shared candidate sheet for Google Sheets for recruiters on Mac",
+      "caption": "Hiring managers need access without edit rights",
+      "keywords": [
+        "google sheets for recruiters on mac",
+        "Google Sheets",
+        "Recruiters",
+        "Mac",
+        "hiring team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-interview-handshake-hiring-4131482/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for recruiters on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "google sheets recruiting tracker mac": 1,
+      "recruiter spreadsheet template google sheets": 1,
+      "google sheets candidate pipeline": 1,
+      "google sheets dropdown for hiring stage": 1,
+      "google sheets keyboard shortcuts mac": 1,
+      "lazur voice assistant for mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

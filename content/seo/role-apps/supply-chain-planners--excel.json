@@ -1,0 +1,714 @@
+{
+  "title": "Excel for supply chain planners on Mac: MRP math, Power Query limits, and voice help",
+  "metaTitle": "Excel for Supply Chain Planners on Mac: MRP, Power Query, Lazur",
+  "description": "Excel for supply chain planners on Mac: build net requirements and lot sizes, handle Power Query limits, and get voice help from Lazur.",
+  "targetKeyword": "excel for supply chain planners on mac",
+  "secondaryKeywords": [
+    "excel MRP template on Mac",
+    "excel net requirements formula",
+    "power query excel for mac",
+    "excel safety stock formula",
+    "excel lot sizing formula",
+    "supply chain planning spreadsheet mac",
+    "excel for planners microsoft 365"
+  ],
+  "intro": "Excel for Mac handles the core supply chain planning math well. You can build net requirements, safety stock, lot sizes, and lead-time offsets with plain formulas. Power Query on Mac imports and refreshes data, but you cannot edit queries in the Power Query Editor. This guide shows what works, where Mac Excel gets in the way, and what to ask Lazur while you work.",
+  "tldr": [
+    "Mac Excel runs the MRP math with plain formulas: net requirements, safety stock, lot sizes, and lead-time offsets.",
+    "Power Query on Mac imports and refreshes data. You cannot author queries in the Power Query Editor, so shape data at the source.",
+    "Shared planning files break under version conflicts. Keep one owner per sheet and one dated copy per cycle.",
+    "A free MRP template's author says three or more warning signs mean you have outgrown spreadsheet planning. One sign is over 200 active parts.",
+    "Lazur explains formulas, points at cells, and drafts text. It does not click buttons or edit your file."
+  ],
+  "stats": [
+    {
+      "value": "67.4%",
+      "label": "of 140 executives in a 2018 vendor-commissioned survey said they used Excel for supply chain",
+      "sourceUrl": "https://www.supplychaindive.com/news/supply-chain-innovation-survey-BluJay-AdelanteSCM/530263/",
+      "sourceTitle": "Two-thirds of companies consider Excel a supply chain system"
+    },
+    {
+      "value": "16.69",
+      "label": "Minimum Excel for Mac version for Power Query shaping, build 23010700",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "sourceTitle": "Import and shape data in Excel for Mac (Power Query)"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Current Excel for Mac build, build 26102720, released 27 Oct 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac"
+    },
+    {
+      "value": "200",
+      "label": "Active parts, one of the warning signs a free MRP template lists for outgrowing spreadsheets",
+      "sourceUrl": "https://usersolutions.com/excel-templates/mrp",
+      "sourceTitle": "Free MRP Excel Template (2026)"
+    }
+  ],
+  "chart": {
+    "title": "Excel use for supply chain by adoption group, 2018 survey",
+    "bars": [
+      {
+        "label": "All respondents",
+        "value": 67.4
+      },
+      {
+        "label": "Late adopters",
+        "value": 78,
+        "highlight": true
+      },
+      {
+        "label": "Early adopters",
+        "value": 56.3
+      }
+    ],
+    "unit": "%",
+    "note": "Vendor-commissioned survey of 140 executives. Dated 2018, and not limited to planners.",
+    "sourceUrl": "https://www.supplychaindive.com/news/supply-chain-innovation-survey-BluJay-AdelanteSCM/530263/",
+    "sourceTitle": "Two-thirds of companies consider Excel a supply chain system"
+  },
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Excel for Mac does well in supply chain planning"
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed keeps Excel in supply chain work. FLOX's September 2025 article says speed is a major reason Excel persists. You can change a formula in a minute. A planning system change takes a project. On Mac, the core planning math uses ordinary functions: MAX, IF, SUMIFS, CEILING, and XLOOKUP. Every step stays visible in a cell, so you can check it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most planning sheets do four jobs. Each job takes a few rows and a few formulas."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Net requirements: gross demand minus what you already have on hand or on order.",
+        "Safety stock: a buffer you hold back on top of each week's demand.",
+        "Lot sizing: how many units one order covers, in fixed batches or lot-for-lot.",
+        "Lead-time offsets: the week you must release an order so it arrives on time."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a net requirements sheet that works on Mac"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The free MRP template from UserSolutions uses this netting formula: MAX(0, gross requirement + safety stock minus (projected on hand last week + scheduled receipt)). Lead times sit in weeks. The template supports lot-for-lot and fixed lot size only. It has no period order quantity or economic order quantity built in."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. The numbers are invented for illustration, not real data. A bracket has 120 units on hand at the start of week 1. Safety stock is 40. Week 1 gross requirement is 100, and nothing is scheduled to arrive. Net requirement is MAX(0, 100 + 40 minus (120 + 0)), which is 20. Lot-for-lot plans an order of 20. Ending on hand becomes 120 + 20 minus 100, or 40, which matches safety stock."
+    },
+    {
+      "type": "paragraph",
+      "text": "Week 2 works the same way. Last week ended at 40 on hand. Gross requirement is 80. Net is MAX(0, 80 + 40 minus (40 + 0)), which is 80. The planned order is 80, and ending on hand stays at 40."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Row",
+        "Week 1",
+        "Week 2",
+        "What it means"
+      ],
+      "rows": [
+        [
+          "Gross requirement",
+          "100",
+          "80",
+          "Demand from the master production schedule"
+        ],
+        [
+          "Scheduled receipt",
+          "0",
+          "0",
+          "Open orders due in that week"
+        ],
+        [
+          "Projected on hand, prior week",
+          "120",
+          "40",
+          "Ending balance from the week before"
+        ],
+        [
+          "Net requirement",
+          "20",
+          "80",
+          "The formula result"
+        ],
+        [
+          "Planned order",
+          "20",
+          "80",
+          "Equals net under lot-for-lot"
+        ]
+      ],
+      "caption": "Worked example with invented numbers, lot-for-lot"
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check one week by hand",
+      "text": "Build the formula in one row, then fill it across. Check week 2 with a calculator before you trust the rest. If your number differs, a reference has moved. Put dollar signs on the safety stock cell, such as $C$4, so it stays fixed when you fill."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lot sizes and lead-time offsets in formulas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Fixed lot sizes need rounding up. CEILING handles that. If net is 80 and your lot size is 50, =CEILING(80, 50) returns 100. A better setup puts the lot size in one named cell, set with Formulas > Define Name. Then use =CEILING(C12, LotSize). When net is zero, CEILING returns zero, so no order appears."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lead times need one unit for the whole file. The template uses weeks. Enter 2 for two weeks, not 14 for days. Mixed units in one column cause silent errors, because the sheet still shows numbers. Put the unit in the header, such as Lead time (weeks), so the next planner sees it."
+    },
+    {
+      "type": "paragraph",
+      "text": "To release an order early enough, look back by the lead time. A need in week 6 with a 2-week lead time releases in week 4. On a sheet with weeks running left to right, the release row sits two columns left of the need row."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Past-due orders disappear",
+      "text": "A release that falls before your first column never shows. If week 1 needs an order released in week minus 1, the sheet has nowhere to put it. Add a past-due column, or flag any need that lands before the planning horizon."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Bring ERP data into Excel with Power Query on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac uses Power Query, which Microsoft also calls Get & Transform, to import, refresh and authenticate data. Microsoft says shaping data needs Excel for Mac version 16.69, build 23010700, or later. Check yours under Excel > About Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the limit. Excel for Mac does not offer the Power Query Editor. You cannot author or edit queries in that window. Microsoft says VBA can still author queries, which suits advanced users. Most planners do better with a simpler rule: shape the export in the ERP, then refresh it in Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft lists these import sources for Excel for Mac:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Excel Workbook",
+        "Text or CSV",
+        "XML",
+        "JSON",
+        "SQL Server Database, Insiders Beta only",
+        "SharePoint Online List",
+        "OData",
+        "Blank Table and Blank Query"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Text or CSV is the workhorse for planners. Export open purchase orders, on-hand inventory, and the forecast as CSV files from the ERP. Point a query at each file, then refresh. Formulas stay on the planning tab, and raw data stays on its own tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "Expect column order to change. An ERP update or a new report layout can shift columns. A query then loads the wrong number into the wrong field. Check the header row after each refresh, before you trust the MRP output."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac Power Query history is messy. Older forum posts say Mac lacked Power Query or its connectors. Microsoft's current support page is the source to trust. It shows a 2026 copyright line but no last updated date, so check the behavior in your own app before you rely on it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep one planning file alive across S&OP cycles"
+    },
+    {
+      "type": "paragraph",
+      "text": "FLOX describes the usual failure. In S&OP cycles, a master Excel file passes between departments. Version conflicts follow, then broken formulas and stale data. FLOX also cites limited multi-user support, and missing audit trails and access controls."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Give each sheet one owner. Only that person edits the input cells.",
+        "Save a dated copy each cycle, such as MRP_2026-11-10.xlsx, so you can trace the numbers.",
+        "Keep the file on OneDrive or SharePoint, and check its version history after each cycle.",
+        "Protect formula sheets with Review > Protect Sheet. Leave input cells editable.",
+        "Write the cycle date in cell A1, so every reader knows which numbers they see."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Name your tables. Microsoft's October 2026 'What's New in Excel' post says Name tables at creation is now generally available on Windows and Mac. Press ⌘ T to make a table, then give it a clear name such as tblItems. A formula such as tblItems[Lead Time] tells the next planner what the number means."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel stops working for planning"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel works until it does not. The UserSolutions template's author says the file shows only two BOM levels. Copying blocks works for a few dozen parts. Capacity and rescheduling need MRP software with finite capacity scheduling, the author says."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Warning sign",
+        "Threshold in the source",
+        "What to do next"
+      ],
+      "rows": [
+        [
+          "Active parts",
+          "Over 200",
+          "Count them each cycle and track the trend"
+        ],
+        [
+          "BOM depth",
+          "Deeper than three levels",
+          "Plan a move to MRP software"
+        ],
+        [
+          "Editors",
+          "Several planners editing at once",
+          "Move to a system with access controls"
+        ]
+      ],
+      "caption": "Three or more signs mean spreadsheet planning has been outgrown, per UserSolutions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Count honestly. The three-sign rule is the template author's rule of thumb, not a Microsoft standard. Count your active parts, BOM levels, and editors this month. Write the numbers down before the next cycle."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How common is Excel in supply chain planning?"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2018 web survey of 140 executives found 67.4% used Excel for supply chain. BluJay Solutions commissioned it, and Adelante SCM ran it. Supply Chain Dive says the survey does not prove spreadsheets are a problem. It shows only a link between integrated technology and innovation."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the chart with care. The survey covers executives, not planners. It is also from 2018. Supply Chain Dive notes that BluJay likely has an interest in promoting supply chain software. The most recent figure in this research is ITPro's February 2025 headline. It says three-quarters of data analysts still rely on spreadsheets and manual preparation. That covers analysts, not planners."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac checks: version, features, and shortcuts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every feature reaches every platform at the same time. Microsoft's October 2026 post says the Copilot clean data skill is rolling out to general availability on all platforms. The skill recorder is for Insiders on Mac, so most Mac planners will not see it yet. Check your build first."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut or menu path"
+      ],
+      "rows": [
+        [
+          "Show formulas in every cell",
+          "⌘ ` (Command and grave accent)"
+        ],
+        [
+          "Insert today's date",
+          "⌘ ;"
+        ],
+        [
+          "Fill a formula down",
+          "Select the range, then ⌘ D"
+        ],
+        [
+          "Create a table",
+          "⌘ T"
+        ],
+        [
+          "Freeze the header row",
+          "View > Freeze Panes > Freeze Top Row"
+        ],
+        [
+          "Find formula errors",
+          "Formulas > Error Checking"
+        ],
+        [
+          "Trace where a value comes from",
+          "Formulas > Trace Precedents"
+        ],
+        [
+          "Check your Excel build",
+          "Excel > About Excel"
+        ]
+      ],
+      "caption": "Common Excel for Mac actions for planning sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "On some Mac keyboards, the F-keys send media controls first. Hold fn to reach the F-keys in that case."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break planning sheets on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mixing days and weeks in lead time columns, with no unit in the header.",
+        "Filling formulas across without locking the safety stock or lot size cell.",
+        "Typing over a query output table. The next refresh overwrites your edits.",
+        "Assuming a CSV layout stays the same. A new column can shift every number.",
+        "Looking for the Power Query Editor on Mac. It is not there, so the search wastes time."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the units and the locks first. They produce the errors that look like correct output."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sanity checks before you send a plan"
+    },
+    {
+      "type": "paragraph",
+      "text": "A plan can look neat and still be wrong. Run a few checks before it leaves your desk."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ending on hand should not fall below safety stock unless you planned a shortage on purpose.",
+        "Every planned release should line up with a need, offset by lead time.",
+        "A zero net week should have enough on hand or receipts to cover gross plus safety stock.",
+        "Planned orders should match the open purchase orders your buyers already placed."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to read a formula aloud when a check fails. A second reading often catches a wrong reference."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to ask Lazur while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sees the Excel window while you hold the shortcut. Hold ⌥ ⌘ to ask about anything on screen. Lazur answers out loud. Ask where a control lives, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Good requests sound like planner questions. Here are five that work well in a planning file:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Why does week 6 net to zero? Lazur reads the formula and names the term doing the work.",
+        "Read the formula in F14 out loud. Lazur explains each argument in plain words.",
+        "Where is Data Validation? Lazur circles it on the ribbon and labels it.",
+        "Walk me through refreshing the inventory query. Lazur guides one click at a time.",
+        "Draft a note to the supplier about the late receipt. Lazur drafts text you can edit."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation uses fn. Hold fn and speak. Lazur types clean, formatted text at the cursor in any app. Use it for an S&OP summary or a supplier email. Dictation is unlimited on both paid plans."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Lazur for reminders too. Ask it to remind you to refresh the MPS sheet on Monday at 8. Lazur handles timers, Apple Reminders, Calendar events, and notes by voice. Put deadlines in your planning calendar, not only in your head."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Excel, and it has no partnership with any app maker. Keep the planning logic in your own cells. Use Lazur to explain, point, guide, and draft."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy before you share a planning screen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so Lazur can answer. They are not stored. Content is never used to train AI models. Supplier prices and customer names still deserve care. Check your company's data rules before you hold the key over a file that holds them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Trial and plans for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a free trial with no credit card. Download it from the [download page](/download). Plan details and limits live on the [pricing page](/pricing). Check them before you commit, since plan limits decide how many AI actions you get."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short plan for your next planning cycle"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check your build under Excel > About Excel. Power Query shaping needs 16.69 or later.",
+        "Build one net requirements sheet for five items. Check one week by hand.",
+        "Move lot sizes and lead times into named cells.",
+        "Save a dated copy before you edit anything.",
+        "Count active parts, BOM levels, and editors against the warning signs."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with five items and one clean cycle. Scale only the parts that break. If the count passes the warning signs, you have a case for planning software."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have Power Query?",
+      "answer": "Yes, for importing and refreshing data. Microsoft says Excel for Mac uses Power Query to import, refresh, authenticate, and shape data. It does not offer the Power Query Editor, so you cannot author queries there. Shaping needs Excel for Mac 16.69 or later."
+    },
+    {
+      "question": "Which Excel for Mac version should planners run?",
+      "answer": "Run the current build. Microsoft lists it as 16.114.3, build 26102720, released 27 October 2026. Power Query shaping needs at least 16.69, build 23010700. Check your version under Excel > About Excel."
+    },
+    {
+      "question": "Can Excel handle MRP for a full plant?",
+      "answer": "For a small item list, yes. A free template handles lot-for-lot and fixed lot size with two BOM levels. Its author says three or more warning signs mean you have outgrown spreadsheet planning. Examples include over 200 active parts and several planners editing at once."
+    },
+    {
+      "question": "What is the net requirements formula in Excel?",
+      "answer": "The UserSolutions template uses MAX(0, gross requirement + safety stock minus (projected on hand last week + scheduled receipt)). It returns zero when stock on hand and receipts cover the need plus safety stock. Check one week by hand before you fill it across."
+    },
+    {
+      "question": "Why does my MRP release week look wrong?",
+      "answer": "A common cause is a unit mismatch. The template takes lead times in weeks, not days, so enter 2 for two weeks. Also check that the release row sits to the left of the need row, offset by the lead time."
+    },
+    {
+      "question": "Can Lazur build my planning sheet or click through Excel?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It explains formulas, points at cells and menus, guides you one click at a time, and drafts text. You still make the changes in your file."
+    },
+    {
+      "question": "Does Lazur send my planning file to AI providers?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Check your company's policy before you share supplier or customer data."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Two-thirds of companies consider Excel a supply chain system",
+      "url": "https://www.supplychaindive.com/news/supply-chain-innovation-survey-BluJay-AdelanteSCM/530263/",
+      "publisher": "Supply Chain Dive",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Three-quarters of data analysts are still reliant on spreadsheets and manual preparation",
+      "url": "https://www.itpro.com/business/data-and-insights/data-analyst-manual-tasks-ai-automation",
+      "publisher": "ITPro",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Free MRP Excel Template (2026)",
+      "url": "https://usersolutions.com/excel-templates/mrp",
+      "publisher": "UserSolutions",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The Pros and Cons of Excel in Supply Chain Management",
+      "url": "https://flox.is/blog/hitting-an-excel-spreadsheet-wall",
+      "publisher": "FLOX",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why does week 6 net to zero on this bracket?",
+    "capability": "explain",
+    "result": "Lazur reads the net requirement formula, says the scheduled receipt covers the need, and points at the receipt cell.",
+    "shell": "sheet",
+    "context": "MRP sheet, week 6 column, Excel for Mac",
+    "output": "Week 6 nets to zero. Prior on hand of 60 plus a scheduled receipt of 120 covers gross 90 plus safety stock 40. The numbers are illustrative.",
+    "pointsAt": "Scheduled receipt, week 6"
+  },
+  "tasks": [
+    {
+      "say": "Why does week 6 net to zero?",
+      "result": "Lazur reads the formula and names the term that covers the need.",
+      "capability": "explain"
+    },
+    {
+      "say": "Read the formula in F14 out loud.",
+      "result": "Lazur reads the formula aloud and explains each argument in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is Data Validation on this Mac?",
+      "result": "Lazur circles the Data Validation button on the ribbon and labels it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through refreshing the inventory query.",
+      "result": "Lazur guides one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to the supplier about the late receipt.",
+      "result": "Lazur drafts the message as text you can review, edit, and send yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate the S&OP summary for Monday.",
+      "result": "Hold fn, speak, and clean formatted text lands at the cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find Microsoft's current Excel for Mac release notes.",
+      "result": "Research runs in Lazur's own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to refresh the MPS sheet on Monday at 8.",
+      "result": "Lazur sets an Apple Reminders item by voice.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "supply-chain-planners-excel",
+  "role": "supply-chain-planners",
+  "app": "excel",
+  "roleName": "Supply chain planners",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/supply-chain-planners-excel/excel-for-supply-chain-planners-on-mac-1-1b2a3f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Supply chain planner at a Mac reviewing inventory numbers in Excel",
+      "caption": "Planning work often starts with a spreadsheet and a laptop.",
+      "keywords": [
+        "excel for supply chain planners on mac",
+        "Excel",
+        "Supply chain planners",
+        "Mac",
+        "supply chain planner laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexas_Fotos",
+        "url": "https://pixabay.com/users/Alexas_Fotos-686414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/shopping-toilet-paper-covid-19-4974313/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/supply-chain-planners-excel/excel-for-supply-chain-planners-on-mac-2-749d30.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Warehouse shelves stocked with boxes, the inventory that net requirements track",
+      "caption": "Net requirements track what sits on the shelf and what is due in.",
+      "keywords": [
+        "excel for supply chain planners on mac",
+        "Excel",
+        "Supply chain planners",
+        "Mac",
+        "warehouse inventory shelves",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Montech_AG",
+        "url": "https://pixabay.com/users/Montech_AG-14520729/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/antriebsrollen-f%C3%BChrungsrollen-lager-4746950/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/supply-chain-planners-excel/excel-for-supply-chain-planners-on-mac-3-f69607.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Planning team meeting in an office reviewing a shared supply schedule in Excel",
+      "caption": "Shared planning files need one owner and a dated copy each cycle.",
+      "keywords": [
+        "excel for supply chain planners on mac",
+        "Excel",
+        "Supply chain planners",
+        "Mac",
+        "team meeting planning office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fahribaabdullah14",
+        "url": "https://pixabay.com/users/fahribaabdullah14-19581918/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/team-colleagues-coworkers-office-5842784/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for supply chain planners on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "excel MRP template on Mac": 1,
+      "excel net requirements formula": 1,
+      "power query excel for mac": 1,
+      "excel safety stock formula": 1,
+      "excel lot sizing formula": 1,
+      "supply chain planning spreadsheet mac": 1,
+      "excel for planners microsoft 365": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

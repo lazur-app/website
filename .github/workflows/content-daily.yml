@@ -48,7 +48,9 @@ jobs:
     env:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
       PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       CONTENT_CONCURRENCY: ${{ vars.CONTENT_CONCURRENCY || '4' }}
       CONTENT_AGENT_FAKE: ${{ inputs.fake && '1' || '0' }}
       TZ: America/New_York
@@ -72,7 +74,7 @@ jobs:
         if: ${{ !inputs.fake }}
         run: |
           missing=""
-          for s in CLAUDE_CODE_OAUTH_TOKEN PIXABAY_API_KEY BLOB_READ_WRITE_TOKEN; do
+          for s in CLAUDE_CODE_OAUTH_TOKEN PIXABAY_API_KEY R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY; do
             [ -z "${!s}" ] && missing="$missing $s"
           done
           if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing (see CONTENT-AUTOMATION.md)"; exit 1; fi

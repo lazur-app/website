@@ -79,13 +79,19 @@ pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with U
   Copyright), XMP (dc:subject, dc:description, dc:creator, AltTextAccessibility) and IPTC (2:25
   keywords, 2:120 caption, 2:80 by-line, via `iptc.mjs`).
 - Credit on the page: "Image by <user> from Pixabay", linking to the photo page.
-- **Storage is one function, `store()`**, so the vendor can change later: Vercel Blob when
-  `BLOB_READ_WRITE_TOKEN` is set; otherwise `public/content-images/<type>/<slug>/` for local runs and a
+- **Storage is one function, `store()`**, so the vendor can change later: Cloudflare R2 when the
+  `R2_*` variables are set (`lib/r2.mjs`); Vercel Blob when only `BLOB_READ_WRITE_TOKEN` is set (legacy); otherwise `public/content-images/<type>/<slug>/` for local runs and a
   handful of sample pages. The daily job in GitHub Actions refuses to write into `public/`.
 - Pages get 3 photos (`CONTENT_MIN_IMAGES` is the minimum, default 2). Product visuals (notch capsule,
   "you say / Lazur does" window), charts and OG images are drawn in code and need no files.
 - Existing pages without photos: `PIXABAY_API_KEY=... node scripts/content/fill-images.mjs [--blog]`.
-- **Blob store (set up 2026-11-06):** store `store_lFObMih1TPJ3SGPO` on the `lazur-website` project,
+- **R2 bucket (since 2026-11-07):** `lazur-content-images` on the lazur.app Cloudflare account, public at
+  `https://images.lazur.app`, same `content-images/<type>/<slug>/` paths. Env: `R2_ACCOUNT_ID`,
+  `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` (an R2 API token with Object Read & Write on that bucket),
+  optional `R2_BUCKET` / `R2_PUBLIC_URL`. The Hobby Blob store was suspended after ~2,000 uploads in its
+  first day (Advanced Operations limit), so every image was rebuilt from Pixabay and moved with
+  `scripts/content/migrate-images-to-r2.mjs`.
+- **Blob store (2026-11-06 to 2026-11-07, retired):** store `store_lFObMih1TPJ3SGPO` on the `lazur-website` project,
   public base URL `https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com`, files under
   `content-images/<type>/<slug>/`. The first 105 sample photos were moved there from `public/` with
   `scripts/content/migrate-images-to-blob.mjs`; nothing image-related lives in the repo now.
@@ -142,7 +148,8 @@ An hourly scheduled Claude Code cloud session on the seat runs the job. Its prom
 [`scripts/content/CLOUD-RUN.md`](scripts/content/CLOUD-RUN.md): pull main, `npm ci`, check keys,
 `daily.mjs --max-minutes=45`, `seo-lint`, `build-check.mjs`, commit, rebase, push to main, IndexNow,
 report. No `CLAUDE_CODE_OAUTH_TOKEN` is needed: the session's own `claude` does the model calls.
-The cloud environment needs `PIXABAY_API_KEY` and `BLOB_READ_WRITE_TOKEN`, network access to the
+The cloud environment needs `PIXABAY_API_KEY` and the `R2_*` variables (`R2_ACCOUNT_ID`,
+`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`), network access to the
 open web (research), and push access to lazur-app/website.
 
 `scripts/content/build-check.mjs` is `next build` that works inside cloud sessions, whose proxy
@@ -212,8 +219,8 @@ per type rendered at build time, default 1500; the rest render on first visit an
    - `CLAUDE_CODE_OAUTH_TOKEN`: run `claude setup-token` on a machine logged in to the Claude Code seat
      that should pay for this.
    - `PIXABAY_API_KEY`: free key from https://pixabay.com/api/docs/ (log in, the key is on that page).
-   - `BLOB_READ_WRITE_TOKEN`: Vercel > Storage > create a Blob store connected to the website project
-     > copy the read-write token.
+   - `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare > R2 > Manage API tokens >
+     create a token with Object Read & Write on the `lazur-content-images` bucket.
 2. **Test on a branch:** Actions > content-daily > Run workflow, `target=branch`, small counts
    (`howto=3, apps=1, compare=1, blog=1`). Read the pages on the Vercel preview for
    `content-test/<date>`, and check `refused.jsonl` and `usage.jsonl` in the run artifact.

@@ -61,8 +61,12 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    // Keyword-named photos uploaded by scripts/content (Pixabay → re-encoded → Vercel Blob).
-    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+    // Keyword-named photos uploaded by scripts/content (Pixabay → re-encoded → Cloudflare R2,
+    // served from images.lazur.app). The Blob host stays for any page not yet migrated.
+    remotePatterns: [
+      { protocol: "https", hostname: "images.lazur.app" },
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
   },
   outputFileTracingIncludes: {
     "/llms.txt": ["./content/**/*"],

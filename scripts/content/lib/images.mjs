@@ -11,7 +11,9 @@
  *   5. Write keywords into EXIF (ImageDescription, Artist, Copyright), XMP (dc:subject, dc:description,
  *      dc:creator, AltTextAccessibility) and IPTC (2:25 keywords, 2:120 caption, 2:80 by-line).
  *   6. Store through a pluggable adapter (store()):
- *        - Vercel Blob when BLOB_READ_WRITE_TOKEN is set (the daily job's default),
+ *        - Cloudflare R2 when R2_ACCOUNT_ID/R2_ACCESS_KEY_ID/R2_SECRET_ACCESS_KEY are set (the daily
+ *          job's default, served from https://images.lazur.app; see lib/r2.mjs),
+ *        - Vercel Blob when only BLOB_READ_WRITE_TOKEN is set (legacy; Hobby limits are far too low),
  *        - public/content-images/<type>/<slug>/ for local runs and the few sample pages.
  *      Everywhere else the job refuses public/ unless CONTENT_ALLOW_PUBLIC_IMAGES=1.
  *   7. Return { url, width, height, alt, caption, keywords, credit } for the page JSON.
@@ -22,6 +24,7 @@ import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 import { buildIptc, injectIptc } from "./iptc.mjs";
+import { r2Configured, r2Put } from "./r2.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../..");
 const PLAN = path.join(ROOT, "content/seo/_plan");
@@ -58,8 +61,8 @@ export function checkImageEnv() {
   if (!process.env.PIXABAY_API_KEY) throw new Error("PIXABAY_API_KEY is not set. Get a key at https://pixabay.com/api/docs/ (see CONTENT-AUTOMATION.md).");
   // Anywhere the job runs (Actions, a cloud seat, a laptop), images go to remote storage. Writing
   // into public/ is only for a handful of hand-picked samples, and must be asked for explicitly.
-  if (!process.env.BLOB_READ_WRITE_TOKEN && process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
-    throw new Error("BLOB_READ_WRITE_TOKEN is not set. The daily job stores images on Vercel Blob, not in the repo (CONTENT_ALLOW_PUBLIC_IMAGES=1 only for a few sample pages).");
+  if (!r2Configured() && !process.env.BLOB_READ_WRITE_TOKEN && process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
+    throw new Error("R2 is not configured (R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY). The daily job stores images on Cloudflare R2, not in the repo (CONTENT_ALLOW_PUBLIC_IMAGES=1 only for a few sample pages).");
   }
 }
 
@@ -164,6 +167,7 @@ export async function encodeWithMetadata(input, meta) {
  * @returns {Promise<string>}
  */
 export async function store(pathname, buffer) {
+  if (r2Configured()) return r2Put(`content-images/${pathname}`, buffer);
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     const { put } = await import("@vercel/blob");
     const blob = await put(`content-images/${pathname}`, buffer, {
@@ -177,7 +181,7 @@ export async function store(pathname, buffer) {
     return blob.url;
   }
   if (process.env.CONTENT_ALLOW_PUBLIC_IMAGES !== "1") {
-    throw new Error("Refusing to write images into public/. Set BLOB_READ_WRITE_TOKEN.");
+    throw new Error("Refusing to write images into public/. Configure R2 (R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY).");
   }
   const file = path.join(ROOT, "public/content-images", pathname);
   fs.mkdirSync(path.dirname(file), { recursive: true });

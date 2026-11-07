@@ -136,7 +136,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-1-83ea04.jpg
+      https://images.lazur.app/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-1-83ea04.jpg
     width: 1280
     height: 832
     alt: >-
@@ -157,7 +157,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/keyboard-computer-technology-light-5017973/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-2-b27cef.jpg
+      https://images.lazur.app/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-2-b27cef.jpg
     width: 1280
     height: 853
     alt: >-
@@ -178,7 +178,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-reading-touchscreen-blog-791049/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-3-4dfe11.jpg
+      https://images.lazur.app/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-3-4dfe11.jpg
     width: 1280
     height: 853
     alt: >-
@@ -205,7 +205,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-1-83ea04.jpg
+    https://images.lazur.app/content-images/blog/ai-screenshot-data-retention-mac/ai-screenshot-data-retention-mac-1-83ea04.jpg
   width: 1280
   height: 832
   alt: >-

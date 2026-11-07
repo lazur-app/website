@@ -132,7 +132,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-1-6bbea8.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-1-6bbea8.jpg
     width: 1280
     height: 888
     alt: >-
@@ -153,7 +153,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-work-think-laptop-professional-1205084/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-2-a96c3a.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-2-a96c3a.jpg
     width: 1280
     height: 853
     alt: >-
@@ -174,7 +174,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/startup-start-up-notebooks-creative-593315/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-3-92e564.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-3-92e564.jpg
     width: 1280
     height: 853
     alt: >-
@@ -201,7 +201,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-1-6bbea8.jpg
+    https://images.lazur.app/content-images/blog/screen-recording-keeps-resetting-mac/screen-recording-permission-keeps-resetting-mac-1-6bbea8.jpg
   width: 1280
   height: 888
   alt: >-

@@ -139,7 +139,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-1-4b2040.jpg
+      https://images.lazur.app/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-1-4b2040.jpg
     width: 1280
     height: 853
     alt: >-
@@ -160,7 +160,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/bed-woman-work-laptop-computer-1979270/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-2-2be9c0.jpg
+      https://images.lazur.app/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-2-2be9c0.jpg
     width: 1280
     height: 812
     alt: Person talking toward a laptop while dictating text on a Mac at a desk
@@ -179,7 +179,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/students-announcement-communication-1822449/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-3-a5b7b6.jpg
+      https://images.lazur.app/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-3-a5b7b6.jpg
     width: 1280
     height: 852
     alt: 'Silver MacBook on a desk, the setting where most people test Mac dictation'
@@ -204,7 +204,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-1-4b2040.jpg
+    https://images.lazur.app/content-images/blog/macos-27-dictation-changes/macos-27-dictation-changes-1-4b2040.jpg
   width: 1280
   height: 853
   alt: >-

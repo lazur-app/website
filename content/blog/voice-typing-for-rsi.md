@@ -142,7 +142,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-1-be0461.jpg
+      https://images.lazur.app/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-1-be0461.jpg
     width: 1280
     height: 853
     alt: >-
@@ -163,7 +163,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/hands-laptop-working-businessman-2178566/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-2-46e4e8.jpg
+      https://images.lazur.app/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-2-46e4e8.jpg
     width: 1280
     height: 853
     alt: >-
@@ -186,7 +186,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-laptop-work-digital-nomad-4749237/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-3-14ebb9.jpg
+      https://images.lazur.app/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-3-14ebb9.jpg
     width: 1280
     height: 854
     alt: >-
@@ -213,7 +213,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-1-be0461.jpg
+    https://images.lazur.app/content-images/blog/voice-typing-for-rsi/voice-typing-for-rsi-1-be0461.jpg
   width: 1280
   height: 853
   alt: >-

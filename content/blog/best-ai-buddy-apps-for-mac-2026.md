@@ -43,7 +43,7 @@ relatedSlugs:
   - lazur-vs-heyclicky
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-buddy-apps-for-mac-2026/best-ai-buddy-apps-for-mac-2026-1-3b2739.jpg
+    https://images.lazur.app/content-images/blog/best-ai-buddy-apps-for-mac-2026/best-ai-buddy-apps-for-mac-2026-1-3b2739.jpg
   width: 1280
   height: 853
   alt: 'Laptop, mockup and business. Best AI buddy apps for Mac in 2026'

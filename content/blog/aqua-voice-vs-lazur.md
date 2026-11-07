@@ -134,7 +134,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
+      https://images.lazur.app/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
     width: 1280
     height: 719
     alt: >-
@@ -153,7 +153,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/technology-equipment-microphone-3183126/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-2-8a4492.jpg
+      https://images.lazur.app/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-2-8a4492.jpg
     width: 1280
     height: 853
     alt: Person typing on a laptop keyboard while writing a reply to a message
@@ -172,7 +172,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-3-a8582e.jpg
+      https://images.lazur.app/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-3-a8582e.jpg
     width: 1280
     height: 823
     alt: >-
@@ -199,7 +199,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
+    https://images.lazur.app/content-images/blog/aqua-voice-vs-lazur/aqua-voice-vs-lazur-1-401c67.jpg
   width: 1280
   height: 719
   alt: >-

@@ -141,7 +141,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-e53c5c.jpg
+      https://images.lazur.app/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-e53c5c.jpg
     width: 1280
     height: 853
     alt: >-
@@ -162,7 +162,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-writing-laptop-computer-write-2562325/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-c093dc.jpg
+      https://images.lazur.app/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-c093dc.jpg
     width: 1280
     height: 853
     alt: >-
@@ -181,7 +181,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-notebook-startup-computer-849799/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-3-cc312a.jpg
+      https://images.lazur.app/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-3-cc312a.jpg
     width: 1280
     height: 853
     alt: >-
@@ -208,7 +208,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-e53c5c.jpg
+    https://images.lazur.app/content-images/blog/private-ai-assistants-on-mac/private-ai-assistant-for-mac-1-e53c5c.jpg
   width: 1280
   height: 853
   alt: >-

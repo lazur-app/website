@@ -115,7 +115,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-1-272ecc.jpg
+      https://images.lazur.app/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-1-272ecc.jpg
     width: 1280
     height: 942
     alt: Person wearing headphones and listening to text read aloud on a laptop
@@ -134,7 +134,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/girl-music-fashion-listen-1990347/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-2-486250.jpg
+      https://images.lazur.app/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-2-486250.jpg
     width: 1280
     height: 853
     alt: >-
@@ -161,7 +161,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-1-272ecc.jpg
+    https://images.lazur.app/content-images/blog/mac-read-text-aloud-speak-selection/make-mac-read-text-out-loud-1-272ecc.jpg
   width: 1280
   height: 942
   alt: Person wearing headphones and listening to text read aloud on a laptop

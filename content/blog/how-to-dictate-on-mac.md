@@ -133,7 +133,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-72bf53.jpg
+      https://images.lazur.app/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-72bf53.jpg
     width: 1280
     height: 853
     alt: >-
@@ -154,7 +154,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-2-be8d8f.jpg
+      https://images.lazur.app/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-2-be8d8f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -175,7 +175,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/interior-design-home-office-8922413/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-3-264aab.jpg
+      https://images.lazur.app/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-3-264aab.jpg
     width: 1280
     height: 714
     alt: >-
@@ -202,7 +202,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-72bf53.jpg
+    https://images.lazur.app/content-images/blog/how-to-dictate-on-mac/how-to-dictate-on-a-mac-1-72bf53.jpg
   width: 1280
   height: 853
   alt: >-

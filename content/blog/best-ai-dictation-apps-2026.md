@@ -103,7 +103,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-3f5a08.jpg
+      https://images.lazur.app/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-3f5a08.jpg
     width: 1280
     height: 852
     alt: >-
@@ -124,7 +124,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/obama-barack-obama-president-man-356133/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-2-ab9c76.jpg
+      https://images.lazur.app/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-2-ab9c76.jpg
     width: 1280
     height: 853
     alt: >-
@@ -145,7 +145,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/writing-typewriter-office-business-7901174/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-3-ef6c20.jpg
+      https://images.lazur.app/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-3-ef6c20.jpg
     width: 1280
     height: 854
     alt: >-
@@ -172,7 +172,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-3f5a08.jpg
+    https://images.lazur.app/content-images/blog/best-ai-dictation-apps-2026/best-ai-dictation-apps-2026-1-3f5a08.jpg
   width: 1280
   height: 852
   alt: >-

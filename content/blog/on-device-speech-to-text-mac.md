@@ -109,7 +109,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-10ee35.jpg
+      https://images.lazur.app/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-10ee35.jpg
     width: 1280
     height: 853
     alt: >-
@@ -130,7 +130,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-2-348f2f.jpg
+      https://images.lazur.app/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-2-348f2f.jpg
     width: 1280
     height: 850
     alt: 'Laptop open on a tidy office desk, showing a Mac used for dictated writing'
@@ -149,7 +149,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-3-be2d57.jpg
+      https://images.lazur.app/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-3-be2d57.jpg
     width: 1280
     height: 854
     alt: Microphone placed beside a notebook and laptop during a work session
@@ -174,7 +174,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-10ee35.jpg
+    https://images.lazur.app/content-images/blog/on-device-speech-to-text-mac/on-device-speech-to-text-mac-1-10ee35.jpg
   width: 1280
   height: 853
   alt: >-

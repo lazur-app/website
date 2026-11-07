@@ -145,7 +145,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-ambient-writing/ambient-writing-1-0ff445.jpg
+      https://images.lazur.app/content-images/blog/what-is-ambient-writing/ambient-writing-1-0ff445.jpg
     width: 1280
     height: 853
     alt: >-
@@ -165,7 +165,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/note-book-man-computer-young-man-8566854/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-ambient-writing/ambient-writing-2-11e0bf.jpg
+      https://images.lazur.app/content-images/blog/what-is-ambient-writing/ambient-writing-2-11e0bf.jpg
     width: 1280
     height: 853
     alt: 'Person speaking near a laptop, the voice side of ambient writing'
@@ -183,7 +183,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/public-speaking-flare-abstract-3956908/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-ambient-writing/ambient-writing-3-d10968.jpg
+      https://images.lazur.app/content-images/blog/what-is-ambient-writing/ambient-writing-3-d10968.jpg
     width: 1280
     height: 854
     alt: >-
@@ -209,7 +209,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-ambient-writing/ambient-writing-1-0ff445.jpg
+    https://images.lazur.app/content-images/blog/what-is-ambient-writing/ambient-writing-1-0ff445.jpg
   width: 1280
   height: 853
   alt: 'Person at a laptop on a desk, a typical setting for ambient writing at work'

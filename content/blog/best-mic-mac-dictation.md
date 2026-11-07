@@ -108,7 +108,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-1-4f2c37.jpg
+      https://images.lazur.app/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-1-4f2c37.jpg
     width: 1280
     height: 853
     alt: >-
@@ -129,7 +129,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/virtual-virtual-reality-technology-3460451/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-2-22f878.jpg
+      https://images.lazur.app/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-2-22f878.jpg
     width: 1280
     height: 853
     alt: >-
@@ -150,7 +150,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/tablet-touch-screen-reading-glasses-600649/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-3-158b67.jpg
+      https://images.lazur.app/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-3-158b67.jpg
     width: 1280
     height: 853
     alt: Person typing on a MacBook at a desk in a quiet room
@@ -175,7 +175,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-1-4f2c37.jpg
+    https://images.lazur.app/content-images/blog/best-mic-mac-dictation/best-microphone-for-mac-dictation-1-4f2c37.jpg
   width: 1280
   height: 853
   alt: >-

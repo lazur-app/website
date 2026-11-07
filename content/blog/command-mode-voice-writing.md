@@ -120,7 +120,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-607def.jpg
+      https://images.lazur.app/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-607def.jpg
     width: 1280
     height: 658
     alt: >-
@@ -141,7 +141,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/silhouette-rope-couple-separation-5726230/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-2-788058.jpg
+      https://images.lazur.app/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-2-788058.jpg
     width: 1280
     height: 854
     alt: >-
@@ -162,7 +162,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-3-2f0a90.jpg
+      https://images.lazur.app/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-3-2f0a90.jpg
     width: 1280
     height: 853
     alt: >-
@@ -189,7 +189,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-607def.jpg
+    https://images.lazur.app/content-images/blog/command-mode-voice-writing/voice-commands-that-finish-the-work-1-607def.jpg
   width: 1280
   height: 658
   alt: >-

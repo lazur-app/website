@@ -125,7 +125,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-1d0152.jpg
+      https://images.lazur.app/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-1d0152.jpg
     width: 1280
     height: 936
     alt: >-
@@ -146,7 +146,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/microphone-speech-lecture-speakers-2316268/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-2-eb114c.jpg
+      https://images.lazur.app/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-2-eb114c.jpg
     width: 1280
     height: 853
     alt: >-
@@ -167,7 +167,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-3-a37bc1.jpg
+      https://images.lazur.app/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-3-a37bc1.jpg
     width: 1280
     height: 848
     alt: >-
@@ -194,7 +194,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-1d0152.jpg
+    https://images.lazur.app/content-images/blog/macwhisper-vs-dictation-apps/macwhisper-vs-dictation-1-1d0152.jpg
   width: 1280
   height: 936
   alt: >-

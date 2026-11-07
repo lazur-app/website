@@ -106,7 +106,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-aee6b7.jpg
+      https://images.lazur.app/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-aee6b7.jpg
     width: 1280
     height: 853
     alt: >-
@@ -127,7 +127,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-954d3d.jpg
+      https://images.lazur.app/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-954d3d.jpg
     width: 1280
     height: 853
     alt: >-
@@ -146,7 +146,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-mac-google-internet-6963428/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-3-e5d988.jpg
+      https://images.lazur.app/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-3-e5d988.jpg
     width: 1280
     height: 823
     alt: 'Person working at a Mac in an office, writing messages and email'
@@ -171,7 +171,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-aee6b7.jpg
+    https://images.lazur.app/content-images/blog/apple-dictation-vs-ai-dictation/apple-dictation-vs-ai-dictation-1-aee6b7.jpg
   width: 1280
   height: 853
   alt: >-

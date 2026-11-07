@@ -102,7 +102,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-1-56f355.jpg
+      https://images.lazur.app/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-1-56f355.jpg
     width: 1280
     height: 853
     alt: >-
@@ -123,7 +123,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/mark-mark-rutte-rutte-politics-2684712/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-2-e2a6f2.jpg
+      https://images.lazur.app/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-2-e2a6f2.jpg
     width: 1280
     height: 853
     alt: >-
@@ -144,7 +144,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-3-1eb16e.jpg
+      https://images.lazur.app/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-3-1eb16e.jpg
     width: 1280
     height: 853
     alt: Man working on a Mac laptop and dictating notes at a desk
@@ -169,7 +169,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-1-56f355.jpg
+    https://images.lazur.app/content-images/blog/speaking-speed-words-per-minute/average-speaking-speed-words-per-minute-1-56f355.jpg
   width: 1280
   height: 853
   alt: >-

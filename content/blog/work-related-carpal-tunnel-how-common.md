@@ -108,7 +108,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-1-62215f.jpg
+      https://images.lazur.app/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-1-62215f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -131,7 +131,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/internet-skull-web-icon-danger-2515611/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-2-8ed9c3.jpg
+      https://images.lazur.app/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-2-8ed9c3.jpg
     width: 1280
     height: 853
     alt: >-
@@ -152,7 +152,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/hands-ipad-tablet-technology-820272/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-3-337547.jpg
+      https://images.lazur.app/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-3-337547.jpg
     width: 1280
     height: 851
     alt: >-
@@ -181,7 +181,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-1-62215f.jpg
+    https://images.lazur.app/content-images/blog/work-related-carpal-tunnel-how-common/work-related-carpal-tunnel-syndrome-how-common-1-62215f.jpg
   width: 1280
   height: 853
   alt: >-

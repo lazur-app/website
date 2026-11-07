@@ -97,7 +97,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-1-c92b4f.jpg
+      https://images.lazur.app/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-1-c92b4f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -118,7 +118,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/corona-coronavirus-virus-covid-19-4983589/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-2-968924.jpg
+      https://images.lazur.app/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-2-968924.jpg
     width: 1280
     height: 852
     alt: >-
@@ -139,7 +139,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/trump-president-america-politics-2704264/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-3-c4aa12.jpg
+      https://images.lazur.app/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-3-c4aa12.jpg
     width: 1280
     height: 853
     alt: >-
@@ -166,7 +166,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-1-c92b4f.jpg
+    https://images.lazur.app/content-images/blog/dictation-errors-vs-typing-errors/dictation-accuracy-vs-typing-errors-1-c92b4f.jpg
   width: 1280
   height: 853
   alt: >-

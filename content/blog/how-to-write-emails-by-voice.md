@@ -130,7 +130,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-4a928b.jpg
+      https://images.lazur.app/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-4a928b.jpg
     width: 1280
     height: 917
     alt: >-
@@ -151,7 +151,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-speech-speaker-male-boy-1405712/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-2-5dc05f.jpg
+      https://images.lazur.app/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-2-5dc05f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -172,7 +172,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-3-31eddd.jpg
+      https://images.lazur.app/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-3-31eddd.jpg
     width: 1280
     height: 853
     alt: Office worker reviewing an email on a laptop at a desk before sending it
@@ -197,7 +197,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-4a928b.jpg
+    https://images.lazur.app/content-images/blog/how-to-write-emails-by-voice/write-emails-by-voice-1-4a928b.jpg
   width: 1280
   height: 917
   alt: >-

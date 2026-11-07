@@ -129,7 +129,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/average-typing-speed-mac/average-typing-speed-1-a7c5f9.jpg
+      https://images.lazur.app/content-images/blog/average-typing-speed-mac/average-typing-speed-1-a7c5f9.jpg
     width: 1280
     height: 853
     alt: >-
@@ -150,7 +150,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/average-typing-speed-mac/average-typing-speed-2-7daaab.jpg
+      https://images.lazur.app/content-images/blog/average-typing-speed-mac/average-typing-speed-2-7daaab.jpg
     width: 1280
     height: 853
     alt: Close up of hands typing on a keyboard during an average typing speed test
@@ -169,7 +169,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/igromania-game-addiction-handcuffs-1894847/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/average-typing-speed-mac/average-typing-speed-3-a5827b.jpg
+      https://images.lazur.app/content-images/blog/average-typing-speed-mac/average-typing-speed-3-a5827b.jpg
     width: 1280
     height: 853
     alt: 'Office worker at a desk with a laptop, writing emails and notes'
@@ -194,7 +194,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/average-typing-speed-mac/average-typing-speed-1-a7c5f9.jpg
+    https://images.lazur.app/content-images/blog/average-typing-speed-mac/average-typing-speed-1-a7c5f9.jpg
   width: 1280
   height: 853
   alt: Person typing on a laptop keyboard while checking their average typing speed

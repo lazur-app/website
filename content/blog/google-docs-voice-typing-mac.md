@@ -97,7 +97,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-1-ef5477.jpg
+      https://images.lazur.app/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-1-ef5477.jpg
     width: 1280
     height: 853
     alt: >-
@@ -118,7 +118,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-2-bd7c39.jpg
+      https://images.lazur.app/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-2-bd7c39.jpg
     width: 1280
     height: 853
     alt: >-
@@ -139,7 +139,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/audio-concert-mic-microphone-music-2941753/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-3-67e76e.jpg
+      https://images.lazur.app/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-3-67e76e.jpg
     width: 1280
     height: 852
     alt: >-
@@ -166,7 +166,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-1-ef5477.jpg
+    https://images.lazur.app/content-images/blog/google-docs-voice-typing-mac/google-docs-voice-typing-mac-1-ef5477.jpg
   width: 1280
   height: 853
   alt: >-

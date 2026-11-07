@@ -129,7 +129,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-1-fe7e9b.jpg
+      https://images.lazur.app/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-1-fe7e9b.jpg
     width: 1280
     height: 757
     alt: Man speaking at a laptop while he dictates in Word on Mac at a desk
@@ -148,7 +148,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-2-3f9deb.jpg
+      https://images.lazur.app/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-2-3f9deb.jpg
     width: 1280
     height: 854
     alt: >-
@@ -169,7 +169,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-3-7fb6b1.jpg
+      https://images.lazur.app/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-3-7fb6b1.jpg
     width: 1280
     height: 720
     alt: Woman reviewing a Word document on a laptop after dictating a draft
@@ -194,7 +194,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-1-fe7e9b.jpg
+    https://images.lazur.app/content-images/blog/dictate-in-word-mac-microsoft-365/dictate-in-word-on-mac-1-fe7e9b.jpg
   width: 1280
   height: 757
   alt: Man speaking at a laptop while he dictates in Word on Mac at a desk

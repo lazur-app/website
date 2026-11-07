@@ -110,7 +110,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-1-4fae23.jpg
+      https://images.lazur.app/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-1-4fae23.jpg
     width: 1280
     height: 853
     alt: >-
@@ -131,7 +131,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-2-99402d.jpg
+      https://images.lazur.app/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-2-99402d.jpg
     width: 1280
     height: 853
     alt: >-
@@ -152,7 +152,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/workspace-place-of-work-work-766045/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-3-ba55d0.jpg
+      https://images.lazur.app/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-3-ba55d0.jpg
     width: 1280
     height: 922
     alt: >-
@@ -179,7 +179,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-1-4fae23.jpg
+    https://images.lazur.app/content-images/blog/siri-ai-mac-screen-shortcut/siri-screen-mac-shift-command-6-1-4fae23.jpg
   width: 1280
   height: 853
   alt: >-

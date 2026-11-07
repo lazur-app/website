@@ -101,7 +101,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-3f7b0a.jpg
+      https://images.lazur.app/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-3f7b0a.jpg
     width: 1280
     height: 852
     alt: >-
@@ -124,7 +124,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-apple-keyboard-technology-2589420/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-2-dafc1e.jpg
+      https://images.lazur.app/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-2-dafc1e.jpg
     width: 1280
     height: 852
     alt: >-
@@ -145,7 +145,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/to-learn-explain-family-show-50009/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-3-bb82b8.jpg
+      https://images.lazur.app/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-3-bb82b8.jpg
     width: 1280
     height: 1280
     alt: Programmer working at a desk with a coffee cup and a monitor showing code
@@ -170,7 +170,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-3f7b0a.jpg
+    https://images.lazur.app/content-images/blog/ai-dictation-for-developers/ai-dictation-for-developers-1-3f7b0a.jpg
   width: 1280
   height: 852
   alt: >-

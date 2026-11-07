@@ -127,7 +127,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-1-e32356.jpg
+      https://images.lazur.app/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-1-e32356.jpg
     width: 1280
     height: 853
     alt: Person using a Mac laptop for dictation at a wooden desk
@@ -146,7 +146,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-coffee-notebook-pen-glasses-1478822/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-2-b217c7.jpg
+      https://images.lazur.app/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-2-b217c7.jpg
     width: 1280
     height: 853
     alt: Man reviewing privacy settings on a laptop screen
@@ -165,7 +165,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/hacking-cyber-blackandwhite-crime-2903156/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-3-0fe7f0.jpg
+      https://images.lazur.app/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-3-0fe7f0.jpg
     width: 1280
     height: 853
     alt: 'Desk with a laptop and notebook, a setup for writing and voice notes'
@@ -190,7 +190,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-1-e32356.jpg
+    https://images.lazur.app/content-images/blog/share-dictation-audio-apple-setting/mac-dictation-share-audio-recordings-1-e32356.jpg
   width: 1280
   height: 853
   alt: Person using a Mac laptop for dictation at a wooden desk

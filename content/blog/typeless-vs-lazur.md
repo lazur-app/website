@@ -131,7 +131,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-3f61ba.jpg
+      https://images.lazur.app/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-3f61ba.jpg
     width: 1280
     height: 853
     alt: >-
@@ -151,7 +151,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/woman-beauty-face-portrait-facial-3289372/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-2-359589.jpg
+      https://images.lazur.app/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-2-359589.jpg
     width: 1280
     height: 823
     alt: >-
@@ -171,7 +171,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/typing-computer-man-workspace-work-849806/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-3-c39ac0.jpg
+      https://images.lazur.app/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-3-c39ac0.jpg
     width: 1280
     height: 719
     alt: >-
@@ -197,7 +197,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-3f61ba.jpg
+    https://images.lazur.app/content-images/blog/typeless-vs-lazur/typeless-vs-lazur-1-3f61ba.jpg
   width: 1280
   height: 853
   alt: >-

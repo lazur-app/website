@@ -113,7 +113,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-1-184e8b.jpg
+      https://images.lazur.app/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-1-184e8b.jpg
     width: 1280
     height: 853
     alt: >-
@@ -134,7 +134,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-2-68fac5.jpg
+      https://images.lazur.app/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-2-68fac5.jpg
     width: 1280
     height: 850
     alt: >-
@@ -155,7 +155,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/macbook-mac-apple-ipad-iphone-577758/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-3-7c35f9.jpg
+      https://images.lazur.app/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-3-7c35f9.jpg
     width: 1280
     height: 853
     alt: >-
@@ -182,7 +182,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-1-184e8b.jpg
+    https://images.lazur.app/content-images/blog/mac-productivity-shortcuts-short-list/mac-productivity-shortcuts-1-184e8b.jpg
   width: 1280
   height: 853
   alt: >-

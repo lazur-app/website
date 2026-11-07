@@ -123,7 +123,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-1-439cfe.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-1-439cfe.jpg
     width: 1280
     height: 853
     alt: Person using Claude desktop voice input on a Mac laptop at a desk
@@ -142,7 +142,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-desk-typing-laptop-1867758/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-2-166af4.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-2-166af4.jpg
     width: 1280
     height: 720
     alt: A man speaking into a microphone while working on a laptop
@@ -161,7 +161,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-microphone-music-musician-1845432/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-3-3ee4ec.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-3-3ee4ec.jpg
     width: 1280
     height: 776
     alt: 'Apple laptop open on a desk in a bright office, ready for voice input'
@@ -186,7 +186,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-1-439cfe.jpg
+    https://images.lazur.app/content-images/blog/claude-desktop-voice-mac/claude-desktop-voice-input-mac-1-439cfe.jpg
   width: 1280
   height: 853
   alt: Person using Claude desktop voice input on a Mac laptop at a desk

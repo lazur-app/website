@@ -94,7 +94,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-1-8a40b8.jpg
+      https://images.lazur.app/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-1-8a40b8.jpg
     width: 1280
     height: 831
     alt: >-
@@ -114,7 +114,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-laptop-work-place-mouse-2982270/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-2-671b30.jpg
+      https://images.lazur.app/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-2-671b30.jpg
     width: 1280
     height: 848
     alt: >-
@@ -134,7 +134,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/woman-working-bed-laptop-typing-731894/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-3-3906f1.jpg
+      https://images.lazur.app/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-3-3906f1.jpg
     width: 1280
     height: 853
     alt: >-
@@ -160,7 +160,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-1-8a40b8.jpg
+    https://images.lazur.app/content-images/blog/chatgpt-voice-mac-screen/chatgpt-voice-mac-screen-1-8a40b8.jpg
   width: 1280
   height: 831
   alt: >-

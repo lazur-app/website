@@ -39,7 +39,7 @@ relatedSlugs:
   - ai-assistant-for-developers-and-coding-tasks
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-assistant-for-slack-gmail-cursor-notion/ai-assistant-for-slack-gmail-cursor-notion-1-c0482a.jpg
+    https://images.lazur.app/content-images/blog/ai-assistant-for-slack-gmail-cursor-notion/ai-assistant-for-slack-gmail-cursor-notion-1-c0482a.jpg
   width: 1280
   height: 720
   alt: >-

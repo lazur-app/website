@@ -135,7 +135,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-1-b23774.jpg
+      https://images.lazur.app/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-1-b23774.jpg
     width: 1280
     height: 853
     alt: >-
@@ -156,7 +156,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/tin-can-speak-talk-microphone-can-238488/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-2-a13fea.jpg
+      https://images.lazur.app/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-2-a13fea.jpg
     width: 1280
     height: 853
     alt: >-
@@ -177,7 +177,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/call-center-customer-service-6290276/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-3-fb4175.jpg
+      https://images.lazur.app/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-3-fb4175.jpg
     width: 1280
     height: 853
     alt: >-
@@ -204,7 +204,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-1-b23774.jpg
+    https://images.lazur.app/content-images/blog/non-native-english-dictation-mac/dictation-for-non-native-english-speakers-mac-1-b23774.jpg
   width: 1280
   height: 853
   alt: >-

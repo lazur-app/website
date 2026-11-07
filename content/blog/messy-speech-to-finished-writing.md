@@ -101,7 +101,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-e75ef3.jpg
+      https://images.lazur.app/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-e75ef3.jpg
     width: 1280
     height: 716
     alt: >-
@@ -122,7 +122,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/entrepreneur-begin-start-up-career-2275739/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-2-1b141f.jpg
+      https://images.lazur.app/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-2-1b141f.jpg
     width: 1280
     height: 800
     alt: >-
@@ -143,7 +143,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/merry-christmas-pen-handwriting-3481061/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-3-f0c458.jpg
+      https://images.lazur.app/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-3-f0c458.jpg
     width: 1280
     height: 853
     alt: >-
@@ -170,7 +170,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-e75ef3.jpg
+    https://images.lazur.app/content-images/blog/messy-speech-to-finished-writing/messy-speech-to-finished-writing-1-e75ef3.jpg
   width: 1280
   height: 716
   alt: >-

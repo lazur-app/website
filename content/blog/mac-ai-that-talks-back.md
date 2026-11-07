@@ -121,7 +121,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-1-0c5848.jpg
+      https://images.lazur.app/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-1-0c5848.jpg
     width: 1280
     height: 800
     alt: >-
@@ -142,7 +142,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/meeting-business-architect-office-2284501/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-2-f59646.jpg
+      https://images.lazur.app/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-2-f59646.jpg
     width: 1280
     height: 852
     alt: >-
@@ -163,7 +163,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/trump-president-america-politics-2704264/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-3-9d2352.jpg
+      https://images.lazur.app/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-3-9d2352.jpg
     width: 1280
     height: 870
     alt: >-
@@ -190,7 +190,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-1-0c5848.jpg
+    https://images.lazur.app/content-images/blog/mac-ai-that-talks-back/mac-ai-assistant-that-talks-back-1-0c5848.jpg
   width: 1280
   height: 800
   alt: >-

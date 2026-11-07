@@ -119,7 +119,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-1-bdc8c4.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-1-bdc8c4.jpg
     width: 1280
     height: 853
     alt: >-
@@ -140,7 +140,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/woman-beauty-face-portrait-facial-3289372/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-2-466603.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-2-466603.jpg
     width: 1280
     height: 853
     alt: >-
@@ -161,7 +161,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/man-working-it-3408298/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-3-0bb461.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-3-0bb461.jpg
     width: 1280
     height: 853
     alt: 'Microphone on a desk beside a laptop, set up for dictation on a Mac'
@@ -186,7 +186,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-1-bdc8c4.jpg
+    https://images.lazur.app/content-images/blog/mac-dictation-punctuation-commands/dictation-commands-punctuation-mac-1-bdc8c4.jpg
   width: 1280
   height: 853
   alt: >-

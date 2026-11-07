@@ -161,7 +161,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-d125be.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-d125be.jpg
     width: 1280
     height: 853
     alt: >-
@@ -182,7 +182,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-2-3fea84.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-2-3fea84.jpg
     width: 1280
     height: 854
     alt: >-
@@ -203,7 +203,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-3-0b124c.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-3-0b124c.jpg
     width: 1280
     height: 853
     alt: Man working on a laptop in a bright room while comparing voice typing apps
@@ -228,7 +228,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-d125be.jpg
+    https://images.lazur.app/content-images/blog/wispr-flow-alternatives/wispr-flow-alternatives-1-d125be.jpg
   width: 1280
   height: 853
   alt: >-

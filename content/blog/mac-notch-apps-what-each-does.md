@@ -116,7 +116,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-1-065418.jpg
+      https://images.lazur.app/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-1-065418.jpg
     width: 1280
     height: 854
     alt: >-
@@ -137,7 +137,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/invitation-typography-calligraphy-2110452/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-2-e4faf3.jpg
+      https://images.lazur.app/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-2-e4faf3.jpg
     width: 1280
     height: 720
     alt: >-
@@ -158,7 +158,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-laptop-apple-computing-933100/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-3-8f08fc.jpg
+      https://images.lazur.app/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-3-8f08fc.jpg
     width: 1280
     height: 853
     alt: >-
@@ -185,7 +185,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-1-065418.jpg
+    https://images.lazur.app/content-images/blog/mac-notch-apps-what-each-does/mac-notch-apps-1-065418.jpg
   width: 1280
   height: 854
   alt: >-

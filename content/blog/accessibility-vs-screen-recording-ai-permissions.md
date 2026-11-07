@@ -142,7 +142,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-1-5f12d9.jpg
+      https://images.lazur.app/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-1-5f12d9.jpg
     width: 1280
     height: 853
     alt: >-
@@ -163,7 +163,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/technology-spring-using-job-9303676/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-2-c57eb8.jpg
+      https://images.lazur.app/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-2-c57eb8.jpg
     width: 1280
     height: 853
     alt: >-
@@ -184,7 +184,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-3-590297.jpg
+      https://images.lazur.app/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-3-590297.jpg
     width: 1280
     height: 850
     alt: >-
@@ -211,7 +211,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-1-5f12d9.jpg
+    https://images.lazur.app/content-images/blog/accessibility-vs-screen-recording-ai-permissions/accessibility-permission-mac-ai-1-5f12d9.jpg
   width: 1280
   height: 853
   alt: >-

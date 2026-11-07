@@ -135,7 +135,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-1-f918f0.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-1-f918f0.jpg
     width: 1280
     height: 853
     alt: >-
@@ -156,7 +156,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/phone-technology-mobile-internet-869669/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-2-0c0266.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-2-0c0266.jpg
     width: 1280
     height: 853
     alt: >-
@@ -177,7 +177,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/censorship-limitations-610101/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-3-5b77ed.jpg
+      https://images.lazur.app/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-3-5b77ed.jpg
     width: 1280
     height: 853
     alt: >-
@@ -204,7 +204,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-1-f918f0.jpg
+    https://images.lazur.app/content-images/blog/screen-recording-permission-mac-ai/screen-recording-permission-mac-1-f918f0.jpg
   width: 1280
   height: 853
   alt: >-

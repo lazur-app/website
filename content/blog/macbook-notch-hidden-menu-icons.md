@@ -120,7 +120,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-1-99e814.jpg
+      https://images.lazur.app/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-1-99e814.jpg
     width: 1280
     height: 853
     alt: >-
@@ -141,7 +141,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-laptop-technology-3184028/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-2-3b5521.jpg
+      https://images.lazur.app/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-2-3b5521.jpg
     width: 1280
     height: 853
     alt: Man typing on a laptop while checking which menu bar icons are missing
@@ -160,7 +160,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/adult-computer-laptop-internet-3182384/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-3-b05236.jpg
+      https://images.lazur.app/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-3-b05236.jpg
     width: 1280
     height: 853
     alt: >-
@@ -187,7 +187,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-1-99e814.jpg
+    https://images.lazur.app/content-images/blog/macbook-notch-hidden-menu-icons/macbook-notch-hidden-menu-bar-icons-1-99e814.jpg
   width: 1280
   height: 853
   alt: >-

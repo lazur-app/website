@@ -149,7 +149,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-1-cad5b6.jpg
+      https://images.lazur.app/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-1-cad5b6.jpg
     width: 1280
     height: 853
     alt: >-
@@ -170,7 +170,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/office-work-school-note-to-write-4628592/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-2-e64bb1.jpg
+      https://images.lazur.app/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-2-e64bb1.jpg
     width: 1280
     height: 853
     alt: >-
@@ -191,7 +191,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/piano-music-keys-keyboard-9271509/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-3-f80929.jpg
+      https://images.lazur.app/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-3-f80929.jpg
     width: 1280
     height: 848
     alt: >-
@@ -218,7 +218,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-1-cad5b6.jpg
+    https://images.lazur.app/content-images/blog/customize-mac-keyboard-shortcuts/customize-mac-keyboard-shortcuts-1-cad5b6.jpg
   width: 1280
   height: 853
   alt: >-

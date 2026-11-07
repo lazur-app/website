@@ -91,7 +91,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-cba81c.jpg
+      https://images.lazur.app/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-cba81c.jpg
     width: 1280
     height: 714
     alt: >-
@@ -112,7 +112,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/business-businessman-computer-10279402/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-5de015.jpg
+      https://images.lazur.app/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-5de015.jpg
     width: 1280
     height: 683
     alt: >-
@@ -131,7 +131,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/programming-code-development-web-583923/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-3-5903b0.jpg
+      https://images.lazur.app/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-3-5903b0.jpg
     width: 1280
     height: 799
     alt: >-
@@ -158,7 +158,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-cba81c.jpg
+    https://images.lazur.app/content-images/blog/a-day-with-lazur-slack-email-cursor/a-day-with-lazur-in-slack-email-1-cba81c.jpg
   width: 1280
   height: 714
   alt: >-

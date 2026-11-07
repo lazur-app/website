@@ -55,7 +55,7 @@ relatedSlugs:
   - ai-assistant-for-developers-and-coding-tasks
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/from-messy-thoughts-to-finished-work/messy-thoughts-to-finished-work-1-feb8da.jpg
+    https://images.lazur.app/content-images/blog/from-messy-thoughts-to-finished-work/messy-thoughts-to-finished-work-1-feb8da.jpg
   width: 1280
   height: 853
   alt: 'Laptop, notebook and startup. From Messy Thoughts to Finished Work'

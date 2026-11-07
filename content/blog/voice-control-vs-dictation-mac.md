@@ -122,7 +122,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-1-788371.jpg
+      https://images.lazur.app/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-1-788371.jpg
     width: 1280
     height: 853
     alt: >-
@@ -143,7 +143,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-coffee-notebook-pen-glasses-1478822/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-2-5e0a82.jpg
+      https://images.lazur.app/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-2-5e0a82.jpg
     width: 1280
     height: 854
     alt: >-
@@ -164,7 +164,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/students-computers-laptops-smiling-1807505/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-3-bcfefb.jpg
+      https://images.lazur.app/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-3-bcfefb.jpg
     width: 1280
     height: 853
     alt: >-
@@ -191,7 +191,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-1-788371.jpg
+    https://images.lazur.app/content-images/blog/voice-control-vs-dictation-mac/voice-control-vs-dictation-mac-1-788371.jpg
   width: 1280
   height: 853
   alt: >-

@@ -119,7 +119,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-1-b9946f.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-1-b9946f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -140,7 +140,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/technology-laptop-keyboard-computer-791029/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-2-1f4805.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-2-1f4805.jpg
     width: 1280
     height: 853
     alt: >-
@@ -163,7 +163,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/adult-music-listening-sound-man-3086307/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-3-fe3dcd.jpg
+      https://images.lazur.app/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-3-fe3dcd.jpg
     width: 1280
     height: 854
     alt: >-
@@ -190,7 +190,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-1-b9946f.jpg
+    https://images.lazur.app/content-images/blog/mac-dictation-not-working-fixes/mac-dictation-not-working-1-b9946f.jpg
   width: 1280
   height: 853
   alt: 'Person using a Mac laptop at a desk, cursor in a document, ready to dictate'

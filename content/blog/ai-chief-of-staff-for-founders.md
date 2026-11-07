@@ -41,7 +41,7 @@ relatedSlugs:
   - best-ai-buddy-apps-for-mac-2026
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/ai-chief-of-staff-for-founders/ai-chief-of-staff-1-8e5db2.jpg
+    https://images.lazur.app/content-images/blog/ai-chief-of-staff-for-founders/ai-chief-of-staff-1-8e5db2.jpg
   width: 1280
   height: 640
   alt: >-

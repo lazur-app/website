@@ -150,7 +150,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-748436.jpg
+      https://images.lazur.app/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-748436.jpg
     width: 1280
     height: 853
     alt: >-
@@ -170,7 +170,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-2-bcb66a.jpg
+      https://images.lazur.app/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-2-bcb66a.jpg
     width: 1280
     height: 853
     alt: >-
@@ -190,7 +190,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/people-man-guy-beard-laptop-2605980/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-3-721233.jpg
+      https://images.lazur.app/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-3-721233.jpg
     width: 1280
     height: 717
     alt: >-
@@ -216,7 +216,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-748436.jpg
+    https://images.lazur.app/content-images/blog/voiceink-open-source-dictation/voiceink-dictation-1-748436.jpg
   width: 1280
   height: 853
   alt: >-

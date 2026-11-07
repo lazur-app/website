@@ -116,7 +116,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-1-b81417.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-1-b81417.jpg
     width: 1280
     height: 853
     alt: >-
@@ -137,7 +137,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-2-237729.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-2-237729.jpg
     width: 1280
     height: 853
     alt: >-
@@ -158,7 +158,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/singing-festival-microphone-man-4554431/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-3-575d9f.jpg
+      https://images.lazur.app/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-3-575d9f.jpg
     width: 1280
     height: 853
     alt: >-
@@ -185,7 +185,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-1-b81417.jpg
+    https://images.lazur.app/content-images/blog/claude-desktop-quick-entry-mac/claude-desktop-quick-entry-mac-1-b81417.jpg
   width: 1280
   height: 853
   alt: >-

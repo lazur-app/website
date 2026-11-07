@@ -128,7 +128,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-93e34d.jpg
+      https://images.lazur.app/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-93e34d.jpg
     width: 1280
     height: 853
     alt: >-
@@ -149,7 +149,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/student-typing-keyboard-text-849825/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-2-b4c916.jpg
+      https://images.lazur.app/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-2-b4c916.jpg
     width: 1280
     height: 853
     alt: >-
@@ -170,7 +170,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/robert-harbeck-federal-election-6606335/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-3-4628b5.jpg
+      https://images.lazur.app/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-3-4628b5.jpg
     width: 1280
     height: 854
     alt: 'Laptop on a desk in a quiet room, a good setup for dictation on a Mac'
@@ -195,7 +195,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-93e34d.jpg
+    https://images.lazur.app/content-images/blog/is-dictation-faster-than-typing/is-dictation-faster-than-typing-1-93e34d.jpg
   width: 1280
   height: 853
   alt: >-

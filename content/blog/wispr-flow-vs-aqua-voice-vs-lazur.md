@@ -102,7 +102,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-80fa71.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-80fa71.jpg
     width: 1280
     height: 936
     alt: >-
@@ -123,7 +123,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/microphone-speech-lecture-speakers-2316268/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-2-ff9b68.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-2-ff9b68.jpg
     width: 1280
     height: 853
     alt: >-
@@ -144,7 +144,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-3-6c0ed7.jpg
+      https://images.lazur.app/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-3-6c0ed7.jpg
     width: 1280
     height: 848
     alt: >-
@@ -171,7 +171,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-80fa71.jpg
+    https://images.lazur.app/content-images/blog/wispr-flow-vs-aqua-voice-vs-lazur/wispr-flow-vs-aqua-voice-vs-lazur-1-80fa71.jpg
   width: 1280
   height: 936
   alt: >-

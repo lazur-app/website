@@ -155,7 +155,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-9f6910.jpg
+      https://images.lazur.app/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-9f6910.jpg
     width: 1280
     height: 853
     alt: >-
@@ -176,7 +176,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-2-6dca35.jpg
+      https://images.lazur.app/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-2-6dca35.jpg
     width: 1280
     height: 441
     alt: >-
@@ -197,7 +197,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/trump-president-usa-america-flag-2546104/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-3-ce2e25.jpg
+      https://images.lazur.app/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-3-ce2e25.jpg
     width: 1280
     height: 823
     alt: >-
@@ -224,7 +224,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-9f6910.jpg
+    https://images.lazur.app/content-images/blog/why-teams-switching-from-wispr-flow-to-lazur/switch-from-wispr-flow-to-lazur-1-9f6910.jpg
   width: 1280
   height: 853
   alt: >-

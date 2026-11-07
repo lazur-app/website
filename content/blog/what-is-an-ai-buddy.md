@@ -44,7 +44,7 @@ relatedSlugs:
   - best-ai-buddy-apps-for-mac-2026
   - stop-context-switching-ai-buddy
 heroImage:
-  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-an-ai-buddy/ai-buddy-1-a61578.jpg
+  url: https://images.lazur.app/content-images/blog/what-is-an-ai-buddy/ai-buddy-1-a61578.jpg
   width: 1280
   height: 720
   alt: >-

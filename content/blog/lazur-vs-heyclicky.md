@@ -41,7 +41,7 @@ relatedSlugs:
   - best-ai-buddy-apps-for-mac-2026
   - what-is-an-ai-buddy
 heroImage:
-  url: https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/lazur-vs-heyclicky/lazur-vs-clicky-1-cb3759.jpg
+  url: https://images.lazur.app/content-images/blog/lazur-vs-heyclicky/lazur-vs-clicky-1-cb3759.jpg
   width: 1280
   height: 853
   alt: 'Computer, office and desk. Lazur vs Clicky (HeyClicky)'

@@ -41,7 +41,7 @@ relatedSlugs:
   - private-ai-assistants-on-mac
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-a-context-aware-ai-work-assistant/context-aware-ai-assistant-1-eff4d5.jpg
+    https://images.lazur.app/content-images/blog/what-is-a-context-aware-ai-work-assistant/context-aware-ai-assistant-1-eff4d5.jpg
   width: 1280
   height: 853
   alt: 'Laptop, apple and macbook. What Is a Context-Aware AI Work Assistant?'

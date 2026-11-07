@@ -146,7 +146,7 @@ updatedAt: '2026-11-06'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-d0ab26.jpg
+      https://images.lazur.app/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-d0ab26.jpg
     width: 1280
     height: 853
     alt: Man speaking into a microphone while working at a laptop on a desk
@@ -165,7 +165,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/manager-man-explaining-speak-talk-6466713/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-95bb7a.jpg
+      https://images.lazur.app/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-95bb7a.jpg
     width: 1280
     height: 854
     alt: 'Microphone and laptop on a desk, set up for dictating a message'
@@ -182,7 +182,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/laptop-conference-table-mouse-work-7978588/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-voice-writing/what-is-voice-writing-3-19b1ec.jpg
+      https://images.lazur.app/content-images/blog/what-is-voice-writing/what-is-voice-writing-3-19b1ec.jpg
     width: 1280
     height: 823
     alt: 'Person working at a Mac computer in an office, reviewing text on screen'
@@ -207,7 +207,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-d0ab26.jpg
+    https://images.lazur.app/content-images/blog/what-is-voice-writing/what-is-voice-writing-1-d0ab26.jpg
   width: 1280
   height: 853
   alt: Man speaking into a microphone while working at a laptop on a desk

@@ -124,7 +124,7 @@ updatedAt: '2026-11-07'
 author: Lazur Team
 images:
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-1-5293b9.jpg
+      https://images.lazur.app/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-1-5293b9.jpg
     width: 1280
     height: 765
     alt: >-
@@ -145,7 +145,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/turntable-computer-workspace-1337986/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-2-0c2d80.jpg
+      https://images.lazur.app/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-2-0c2d80.jpg
     width: 1280
     height: 833
     alt: >-
@@ -166,7 +166,7 @@ images:
       source: Pixabay
       sourceUrl: 'https://pixabay.com/photos/adult-man-papers-pavement-person-1846488/'
   - url: >-
-      https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-3-e5c264.jpg
+      https://images.lazur.app/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-3-e5c264.jpg
     width: 1280
     height: 853
     alt: >-
@@ -193,7 +193,7 @@ generator:
   version: 1
 heroImage:
   url: >-
-    https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-1-5293b9.jpg
+    https://images.lazur.app/content-images/blog/logic-pro-learn-faster-screen-help/learn-logic-pro-fast-1-5293b9.jpg
   width: 1280
   height: 765
   alt: >-

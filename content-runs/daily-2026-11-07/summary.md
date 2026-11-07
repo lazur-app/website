@@ -1,4 +1,4 @@
-Content 2026-11-07: 316 written, 5 refused, 0 failed
+Content 2026-11-07: 333 written, 6 refused, 1 failed
 
 - howto: 120/120
 - apps: 9/9
@@ -324,3 +324,20 @@ refresh:blog:stop-context-switching-ai-buddy /blog/stop-context-switching-ai-bud
 refresh:blog:lazur-vs-muse-for-mac /blog/lazur-vs-muse-for-mac
 refresh:howto:make-a-pivot-table-in-excel /how-to/make-a-pivot-table-in-excel
 refresh:blog:what-is-an-ai-buddy /blog/what-is-an-ai-buddy
+refresh:app:cursor /apps/cursor
+refresh:role:developers /for/developers
+refresh:app:slack /apps/slack
+refresh:app:gmail /apps/gmail
+refresh:app:excel /apps/excel
+refresh:role:founders /for/founders
+refresh:role:students /for/students
+refresh:role-app:founders-gmail /for/founders/gmail
+refresh:role:lawyers /for/lawyers
+refresh:compare:google-voice-typing-alternative /compare/google-voice-typing-alternative
+refresh:role-app:lawyers-word /for/lawyers/word
+refresh:compare:lazur-vs-apple-dictation /compare/lazur-vs-apple-dictation
+refresh:compare:lazur-vs-wispr-flow /compare/lazur-vs-wispr-flow
+refresh:compare:lazur-vs-macwhisper /compare/lazur-vs-macwhisper
+refresh:compare:lazur-vs-willow-voice /compare/lazur-vs-willow-voice
+refresh:compare:lazur-vs-super-whisper /compare/lazur-vs-super-whisper
+refresh:compare:superwhisper-vs-wispr-flow /compare/superwhisper-vs-wispr-flow

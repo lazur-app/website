@@ -1,0 +1,673 @@
+{
+  "title": "Excel VLOOKUP #N/A error how to fix on Mac, step by step for Microsoft 365",
+  "metaTitle": "Excel VLOOKUP #N/A error how to fix on Mac (2026 guide)",
+  "description": "VLOOKUP #N/A means no exact match, or a match Excel cannot see. Fix the formula with FALSE, TRIM, and IFNA on Mac, step by step.",
+  "targetKeyword": "excel vlookup #n/a error how to fix",
+  "secondaryKeywords": [
+    "vlookup #n/a error mac",
+    "vlookup returns na excel",
+    "ifna vlookup excel",
+    "vlookup exact match false",
+    "excel lookup not found fix",
+    "xlookup excel mac version",
+    "trim lookup value excel"
+  ],
+  "intro": "VLOOKUP shows #N/A when it cannot find your lookup value in the first column of the range. Usually the value is there, but Excel does not see it as a match. Check for extra spaces, text numbers, and approximate match, then add FALSE as the last argument.",
+  "tldr": [
+    "#N/A from VLOOKUP means no match, or a match Excel cannot see.",
+    "Set the last argument to FALSE for an exact match on most lookups.",
+    "Use TRIM and matching data types when two values look the same but are not.",
+    "Wrap the formula in IFNA to hide only #N/A, not every error.",
+    "On Mac, XLOOKUP defaults to exact match, but check your Excel version first."
+  ],
+  "stats": [
+    {
+      "value": "3.6 hours",
+      "label": "Weekly time spent fixing spreadsheet errors, average across 1,003 U.S. operations professionals (2026 DOSS survey)",
+      "sourceUrl": "https://www.doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "Spreadsheet Error Costs Operations Thousands, DOSS"
+    },
+    {
+      "value": "53%",
+      "label": "Operations professionals who deal with spreadsheet errors every week (DOSS 2026, vendor-run survey)",
+      "sourceUrl": "https://www.doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "Spreadsheet Error Costs Operations Thousands, DOSS"
+    },
+    {
+      "value": "$4,315",
+      "label": "Average cost of one significant spreadsheet error, per DOSS, a vendor that sells a spreadsheet alternative",
+      "sourceUrl": "https://www.doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "Spreadsheet Error Costs Operations Thousands, DOSS"
+    },
+    {
+      "value": "94%",
+      "label": "Business spreadsheets reported to contain errors in a 2024 literature review, method not explained",
+      "sourceUrl": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "sourceTitle": "Study finds 94% of business spreadsheets have critical errors, Phys.org"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Excel shows #N/A in a VLOOKUP cell when the function cannot find a match for the value you gave it. Most of the time the match exists. Excel just does not treat the two values as equal. That gap causes most of these errors, and the fix is usually small."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What #N/A means in VLOOKUP"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft describes two cases on its troubleshooting page. Either the value does not exist in the lookup range, or it exists but Excel does not see it as a match. The second case frustrates people, because the cell looks correct. You can read both values on screen and still get #N/A."
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP has three rules that catch people out. The lookup value must sit in the first column of the range you give it. The column number counts from the left, starting at 1. The last argument sets how Excel matches, and if you leave it out, Excel uses approximate match. Each rule maps to one of the fixes below."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the error costs more than one cell"
+    },
+    {
+      "type": "paragraph",
+      "text": "One #N/A rarely stays in one cell. You copy the formula down a column, and every row inherits the same mistake. A total built on that column can then be wrong in several places, and nobody sees it until someone checks by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "The bigger cost is time. In a 2026 survey of 1,003 U.S. operations professionals, respondents said they spend an average of 3.6 hours a week fixing spreadsheet errors. DOSS, which ran the survey, says that adds up to more than 22 full workdays a year per employee."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read that number carefully. The survey covers spreadsheet errors in general, not VLOOKUP or #N/A in particular. I did not find a study that measures time lost to #N/A alone. DOSS also sells an alternative to spreadsheet-based operations, so its framing may favor its product."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same survey ranks the most common error types. Manual data entry comes first at 59%, then formula errors at 46%, then copy-paste issues at 45%. A lookup that returns #N/A counts as a formula error, so it belongs in that 46% group."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the lookup value before you touch the formula"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the value you search for. Click the lookup cell and read the formula bar. Look for a leading apostrophe, a space after the last character, or a number that sits left in its cell. Each sign points to a different fix, and the table below shows which."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "If you see",
+        "Likely cause",
+        "Start with"
+      ],
+      "rows": [
+        [
+          "Value looks right but is left aligned",
+          "Number stored as text",
+          "VALUE on the lookup cell"
+        ],
+        [
+          "Value looks right, with a space after it",
+          "Trailing or extra spaces",
+          "TRIM on the lookup cell"
+        ],
+        [
+          "Some rows work, others show #N/A",
+          "Approximate match left on",
+          "FALSE as the last argument"
+        ],
+        [
+          "Value is absent from the source list",
+          "Missing or misspelled source row",
+          "Check the source, then IFNA if a blank is right"
+        ]
+      ],
+      "caption": "Match your symptom to a likely cause, then start with the fix in the last column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with a price lookup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say column A on your report holds product codes. Sheet2 holds a price list, with codes in column A and prices in column B. In cell B2 you type the formula below, then press Return."
+    },
+    {
+      "type": "paragraph",
+      "text": "=VLOOKUP(A2,Sheet2!$A:$B,2,FALSE)"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2 tells Excel to return column B of the range. FALSE forces an exact match. If the code in A2 carries a trailing space, this still returns #N/A. Wrap the lookup value in TRIM, like this: =VLOOKUP(TRIM(A2),Sheet2!$A:$B,2,FALSE). TRIM also removes double spaces between words, so it catches more than the ends of the text."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix one: set the last argument to FALSE"
+    },
+    {
+      "type": "paragraph",
+      "text": "The last argument is range_lookup. When you leave it out, Excel uses TRUE, which means approximate match. With approximate match, a value smaller than the smallest value in the first column returns #N/A. A value that is present can also match the wrong row. Type FALSE to force an exact match."
+    },
+    {
+      "type": "paragraph",
+      "text": "To make the change, click the cell and move to the end of the formula. Replace TRUE with FALSE, or add ,FALSE before the closing parenthesis. Press Return, then copy the fixed formula down the column. Check a few rows against the source sheet before you trust the rest."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix two: match data types and clean the values"
+    },
+    {
+      "type": "paragraph",
+      "text": "Text and numbers look alike, but Excel treats them as different values. Use VALUE to turn text into a number, or TEXT to turn a number into text, so both sides match. Use TRIM for stray spaces. Work in a copy of the sheet, so you keep the original values for comparison."
+    },
+    {
+      "type": "paragraph",
+      "text": "TRIM has one blind spot. It does not remove non-breaking spaces, which often come from web pages and some exports. Those characters look like normal spaces, but Excel treats them as different. Wrap the value in SUBSTITUTE to replace the character CHAR(160) with nothing, then pass the result to TRIM."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix three: hide only #N/A with IFNA"
+    },
+    {
+      "type": "paragraph",
+      "text": "IFNA replaces only the #N/A error. Microsoft says other error types are not trapped. A broken range or a bad column number still shows, which is the point. Wrap the lookup like this: =IFNA(VLOOKUP(A2,Sheet2!$A:$B,2,FALSE),\"Not found\")."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Hiding is not fixing",
+      "text": "IFERROR catches every error, including a broken range, so it can hide real mistakes. Use IFNA when a blank or a label is the right answer. If every row must find a match, find the cause first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix four: use XLOOKUP on Mac if your version supports it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft recommends XLOOKUP on its VLOOKUP troubleshooting page, because it returns exact matches by default. You skip the FALSE step. The syntax is XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found]). The if_not_found text replaces #N/A when nothing matches."
+    },
+    {
+      "type": "paragraph",
+      "text": "=XLOOKUP(A2,Sheet2!$A:$A,Sheet2!$B:$B,\"Not found\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "XLOOKUP can search left, which VLOOKUP cannot. That helps when the key column sits to the right of the value you want. People who open the file in an older Excel will see a #NAME? error instead, so plan for that before you share it."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Check your Excel version first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's XLOOKUP page lists Mac as supported. The same page also says XLOOKUP is not available in Excel 2016 and Excel 2019, so it contradicts itself on older versions. A February 2024 Mac blog reports that a license for Office 2019 or earlier made the function go missing. To check your version, open Excel > About Excel."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Shared files",
+      "text": "If a colleague uses Office 2019, a formula with XLOOKUP will break for them. Keep VLOOKUP with IFNA when the file must work for everyone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: fixing a whole column"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy the lookup value from a #N/A row, then search the source sheet with ⌘ F. If nothing appears, the value is missing from the source.",
+        "If it appears, add a spare column with LEN on the lookup cell and compare the length with the source value.",
+        "Fix the formula in the first row. Set FALSE, add TRIM or VALUE, and check the result by hand.",
+        "Fill the formula down the column only after the first row is right.",
+        "Scan the column for leftover #N/A values. Wrap with IFNA only where a blank is correct."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Fixing the first row, then forgetting to fill down the rest of the column.",
+        "Wrapping every formula in IFERROR, which hides broken ranges along with the real misses.",
+        "Sorting the lookup table and expecting approximate match to stay correct. Google warns that unsorted data with TRUE can return wrong results.",
+        "Editing the source sheet without checking the range. If the range ends above the row you need, the match fails.",
+        "Trusting a fix without checking a few rows against the source."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets and Apple Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets uses the same logic. Its VLOOKUP takes search_key, range, index, and is_sorted. Google calls FALSE the recommended setting. If you leave is_sorted out, Google defaults to TRUE, and the first column must be sorted ascending or the result can be wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wrap the formula in IFNA() to replace #N/A there too. Open the sheet in Chrome, click the cell, and edit the formula in the formula bar. The fix looks the same as it does in Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple Numbers is less clear. A third-party iWork fan site says Numbers includes XLOOKUP with the same syntax as Excel. That site does not name a Numbers version, and I did not confirm it with an Apple source. Test one lookup in a copy before you depend on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When #N/A is the right answer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes #N/A tells you something true. The customer is not on the list. The product was never ordered. In those cases, keep the error or show a clear label with IFNA. A labeled blank is easier to explain than a wrong price."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with this"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on your screen, and Lazur answers out loud. While you hold the shortcut, it looks at the screen, so it can read the cell and formula you have open. It does not edit the formula for you."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is how that fits this fix. Ask what #N/A means in the cell you are on, and Lazur explains it in plain words. Ask where the lookup range is, and Lazur draws a circle and a label around it. Ask how to add FALSE, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can also draft text. Ask it to draft a note to your team about bad source data, then read the draft before you send it. You can dictate a comment too. Hold fn to dictate text at the cursor in any app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be careful with private data. While you hold the shortcut, audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. If your sheet holds client, patient, or payroll data, follow your employer's rules before you share a screen with any AI tool. This matters most for regulated work, such as law, nursing, or accounting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does not do"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "It does not click buttons, change cells, or edit your formulas.",
+        "It is not a plugin or add-in for Excel or any other app.",
+        "It has no partnerships with any app maker.",
+        "It does not replace testing. You still check the result against the source."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the #N/A cell that matters most. Use the table to match its symptom to a cause. Fix the formula in one row, check it by hand, then fill down. Keep a copy of the original sheet, so you can compare results if someone questions a number."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does VLOOKUP show #N/A when the value is in the sheet?",
+      "answer": "Usually Excel sees a difference you cannot see. Check for a trailing space, a number stored as text, or an approximate match. Use TRIM, VALUE, and FALSE to fix each one, then test a few rows by hand."
+    },
+    {
+      "question": "Should I use IFERROR or IFNA?",
+      "answer": "Use IFNA when you want to replace only #N/A. Microsoft says IFNA does not trap other error types. IFERROR replaces every error, so a broken range can look like a missing row."
+    },
+    {
+      "question": "What does FALSE do at the end of VLOOKUP?",
+      "answer": "FALSE forces an exact match. If you leave the argument out, Microsoft says Excel uses TRUE, which means approximate match. That setting can return #N/A or the wrong row."
+    },
+    {
+      "question": "Is XLOOKUP better than VLOOKUP on Mac?",
+      "answer": "XLOOKUP uses exact match by default, can search left, and has an if_not_found argument. Microsoft says it is not available in Excel 2016 and Excel 2019. Open Excel > About Excel before you switch."
+    },
+    {
+      "question": "Can Lazur fix my VLOOKUP for me?",
+      "answer": "No. Lazur explains the error, points at cells, and guides you one click at a time. It does not click buttons or edit the formula. You make the change and test the result."
+    },
+    {
+      "question": "Does the same fix work in Google Sheets?",
+      "answer": "Mostly yes. Use FALSE for an exact match, wrap the formula in IFNA(), and check that is_sorted is set correctly. Google's VLOOKUP help page covers the syntax and the defaults."
+    },
+    {
+      "question": "Are the cost numbers about VLOOKUP errors?",
+      "answer": "No. The survey figures cover spreadsheet errors in general. The 3.6 hours and $4,315 numbers come from a vendor that sells a spreadsheet alternative. No source here measures VLOOKUP errors alone."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How to correct a #N/A error, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/excel/how-to-correct-a-n-a-error",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "VLOOKUP function, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/excel/functions/vlookup-function",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Quick Reference Card: VLOOKUP troubleshooting tips, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/excel/quick-reference-card-vlookup-troubleshooting-tips",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "XLOOKUP function, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "IFNA function, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/excel/functions/ifna-function",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "VLOOKUP, Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/3093318",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Spreadsheet Error Costs Operations Thousands, DOSS",
+      "url": "https://www.doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "publisher": "DOSS",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Study finds 94% of business spreadsheets have critical errors, Phys.org",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Fixed: XLOOKUP function not available in latest version of MS Excel (macmanus.nl)",
+      "url": "https://macmanus.nl/2024/02/14/fixed-xlookup-function-not-available-in-latest-version-of-ms-excel/",
+      "publisher": "macmanus.nl",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Master XLOOKUP in Apple Numbers (iWork Community)",
+      "url": "https://iworkcommunity.com/mastering-xlookup-in-apple-numbers-the-future-of-data-lookup/",
+      "publisher": "iWork Community",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "problem": "vlookup #n/a errors",
+  "costs": [
+    {
+      "title": "Time lost each week",
+      "text": "DOSS's 2026 survey of 1,003 U.S. operations professionals reports 3.6 hours a week spent fixing spreadsheet errors. The survey covers spreadsheet errors in general, not #N/A alone. For one worker, that is more than 22 full workdays a year."
+    },
+    {
+      "title": "Wrong numbers in reports",
+      "text": "Manual data entry (59%), formula errors (46%), and copy-paste issues (45%) are the most common error types in that survey. A #N/A you hide with IFERROR can hide a wrong total too."
+    },
+    {
+      "title": "The cost of one significant error",
+      "text": "DOSS gives an average cost of $4,315 for a single significant spreadsheet error. That figure comes from a vendor that sells an alternative to spreadsheet-based operations. Treat it as a rough signal, not a rate for your team."
+    },
+    {
+      "title": "Doubt about the whole file",
+      "text": "A 2024 literature review by Poon et al. reports that 94% of business spreadsheets contain errors. The review does not explain how it reached that figure. Use it as a reason to test your own lookups, not as a measurement of your file."
+    },
+    {
+      "title": "Repeat fixes",
+      "text": "When a colleague copies a broken formula, the error comes back. If you fix only the first row, the rest of the column stays wrong until someone checks it. That repeat work is the cost most people feel first."
+    }
+  ],
+  "causes": [
+    {
+      "title": "No exact match in the table",
+      "text": "The value truly is not in the lookup range. This happens when a source row is missing, misspelled, or stored on another sheet. Check the source list first. If the value is absent, no formula fix will find it, and IFNA can label the gap."
+    },
+    {
+      "title": "Text and numbers that look the same",
+      "text": "A product code can be the number 1042 on one sheet and the text 1042 on another. Excel treats them as different values, so the match fails. Text numbers usually sit left in their cells, and the formula bar may show a leading apostrophe."
+    },
+    {
+      "title": "Spaces you cannot see",
+      "text": "A leading space, a trailing space, or a double space between words changes the value. Excel compares characters exactly, so the match fails. TRIM removes ordinary spaces, but it does not remove non-breaking spaces from web data."
+    },
+    {
+      "title": "Approximate match left on",
+      "text": "When the last argument is TRUE or missing, Excel uses approximate match. It can return #N/A when the value is smaller than the smallest value in the first column. It can also return a row you did not want. Set the last argument to FALSE for exact matches."
+    },
+    {
+      "title": "The key column is not first",
+      "text": "VLOOKUP only searches the first column of the range you give it. If the key sits to the right of the value you want, VLOOKUP cannot find it. Move the key column, or switch to XLOOKUP, which can search left."
+    },
+    {
+      "title": "A #N/A stored in the source",
+      "text": "Some sheets hold #N/A values on purpose, or someone typed or pasted one into the source. A lookup that reads that cell returns the same error. Search the source for #N/A and check whether the error belongs there."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Set FALSE as the last argument",
+      "text": "Type FALSE as the last argument, which is the range_lookup setting. This forces an exact match. The formula then returns #N/A only when the value truly is missing from the first column. Microsoft's fix list includes it, and Google calls it the recommended setting."
+    },
+    {
+      "title": "Trim spaces and match data types",
+      "text": "Use TRIM on text values that carry stray spaces. Use VALUE or TEXT so both sides of the match share a type. Apply the fix to the lookup value or the source column, and test the result on a few rows first."
+    },
+    {
+      "title": "Hide only #N/A with IFNA",
+      "text": "Wrap the VLOOKUP in IFNA and give it the text you want to see, such as a blank or a label. IFNA traps only #N/A. Other errors still show, so a broken range stays visible. IFERROR is broader and can hide problems you need to see."
+    },
+    {
+      "title": "Switch to XLOOKUP when your version supports it",
+      "text": "XLOOKUP uses exact match by default, and its if_not_found argument replaces #N/A. It can also search left. Check Excel > About Excel first, because Microsoft says XLOOKUP is not available in Excel 2016 and Excel 2019."
+    },
+    {
+      "title": "Check the range and the column number",
+      "text": "Make sure the range starts with the key column and runs far enough to include the row you need. The column number must point to the column that holds the answer. A range that ends too early misses rows near the bottom of the list."
+    },
+    {
+      "title": "Fill down only after testing one row",
+      "text": "Fix the first row, check it against the source, then copy the formula down. If you fill down first, you copy the same mistake into every row. Check the last rows too, because a short range can miss them."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "What does #N/A mean in this cell?",
+      "result": "Lazur explains the error out loud in plain words, using what is on your screen while you hold the shortcut."
+    },
+    {
+      "capability": "point",
+      "say": "Where is the lookup range in this formula?",
+      "result": "Lazur draws a circle and a label around the range on screen, so you can check the key column."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through adding FALSE to this formula.",
+      "result": "Lazur guides you one click at a time, waiting for each click. You make each change yourself."
+    },
+    {
+      "capability": "explain",
+      "say": "What does IFNA do in this formula?",
+      "result": "Lazur explains each argument, so you know what the formula does before you copy it down the column."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a note to my team about the bad source data.",
+      "result": "Lazur drafts the message. You read it, edit it, and send it yourself."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate a comment on the fix.",
+      "result": "Dictation types clean text at the cursor in any app, so the comment lands where you are working."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the lookup range in this formula?",
+    "capability": "point",
+    "result": "Lazur circles the range and labels it, so you can check that the key column sits first.",
+    "shell": "sheet",
+    "context": "Excel on Mac, a VLOOKUP cell showing #N/A",
+    "pointsAt": "lookup range in the formula",
+    "output": "A circle and a label on the range, read out loud. You make the change yourself and test the result."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the errors",
+      "text": "Scan the sheet for #N/A values. Note how many rows fail. Write down the source sheet name and the lookup column for each formula that returns the error."
+    },
+    {
+      "label": "Day 2",
+      "title": "Fix one row",
+      "text": "Test FALSE, TRIM, and VALUE on one row. Check the result by hand against the source sheet. Keep the original sheet as a copy so you can compare later."
+    },
+    {
+      "label": "Day 3",
+      "title": "Fill down and recheck",
+      "text": "Copy the fixed formula down the column. Scan again for leftover #N/A values. Wrap with IFNA only where a blank or a label is the correct result."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check your version",
+      "text": "Open Excel > About Excel. If you use Office 2019 or 2016, plan on VLOOKUP and IFNA. If you use Microsoft 365, test XLOOKUP in a copy before you rely on it."
+    },
+    {
+      "label": "Day 5",
+      "title": "Share with care",
+      "text": "Send the fixed file with a short note on what changed. If the sheet holds client, patient, or payroll data, follow your employer's rules before you share a screenshot with any tool."
+    }
+  ],
+  "apps": [
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "excel-vlookup-na-error-fix-steps",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/excel-vlookup-na-error-fix-steps/excel-vlookup-n-a-error-how-to-1-6da82a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man working at a laptop, checking a spreadsheet error on a Mac in an office",
+      "caption": "Checking a lookup formula on a laptop",
+      "keywords": [
+        "excel vlookup #n/a error how to fix",
+        "Developers",
+        "VLOOKUP returning #N/A errors",
+        "Mac",
+        "man at laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "renanrure",
+        "url": "https://pixabay.com/users/renanrure-23766958/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-model-portrait-pose-tattoo-6692288/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/excel-vlookup-na-error-fix-steps/excel-vlookup-n-a-error-how-to-2-10d071.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Analyst reviewing a spreadsheet of data on a computer screen to fix a formula error",
+      "caption": "Reviewing lookup results in a spreadsheet",
+      "keywords": [
+        "excel vlookup #n/a error how to fix",
+        "Developers",
+        "VLOOKUP returning #N/A errors",
+        "Mac",
+        "spreadsheet data analyst",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-stock-exchange-7204663/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/excel-vlookup-na-error-fix-steps/excel-vlookup-n-a-error-how-to-3-5712fa.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Office worker at a desk with a computer, working through spreadsheet data",
+      "caption": "Routine spreadsheet work at a desk",
+      "keywords": [
+        "excel vlookup #n/a error how to fix",
+        "Developers",
+        "VLOOKUP returning #N/A errors",
+        "Mac",
+        "office worker desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "kirill_makes_pics",
+        "url": "https://pixabay.com/users/kirill_makes_pics-5203613/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/lego-star-wars-toys-stormtroopers-2539844/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel vlookup #n/a error how to fix",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "vlookup #n/a error mac": 1,
+      "vlookup returns na excel": 1,
+      "ifna vlookup excel": 1,
+      "vlookup exact match false": 1,
+      "excel lookup not found fix": 1,
+      "xlookup excel mac version": 1,
+      "trim lookup value excel": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,657 @@
+{
+  "title": "Mac storage full with system data: how to free space on macOS 13 or later",
+  "metaTitle": "Mac Storage Full With System Data: Free Up Space on macOS",
+  "description": "System Data fills Mac storage when you can't see what's using it. Learn what it is, what it costs, and free-space fixes you can run today.",
+  "targetKeyword": "mac storage full with system data",
+  "secondaryKeywords": [
+    "system data mac storage",
+    "what is system data on mac",
+    "reduce system data on mac",
+    "optimize storage mac",
+    "xcode simulators disk space",
+    "time machine local snapshots mac"
+  ],
+  "intro": "System Data is the macOS bucket for logs, caches, VM files, and other runtime resources. You can't choose what goes in it, and Apple doesn't let you delete its contents directly, so you free space by clearing what feeds it. This guide shows how to read the Storage screen, which fixes are safe, and when a developer tool or Time Machine is the real culprit.",
+  "tldr": [
+    "System Data can't be deleted directly. Apple says you can't manage the contents of this category.",
+    "Start with Apple menu > System Settings > General > Storage on macOS 13 or later, then check Optimize Storage.",
+    "Empty the Trash after every clean-up step. Apple says the space doesn't return until you do.",
+    "For developers, Xcode simulators and DerivedData are the biggest levers. Erase-type commands need a backup first.",
+    "If System Data stays large, check Time Machine local snapshots read-only before you change anything."
+  ],
+  "stats": [
+    {
+      "value": "100 GB",
+      "label": "System Data on a 250 GB MacBook Air after one user imported about 35,000 photos and 750 videos into Photos",
+      "sourceUrl": "https://discussions.apple.com/thread/255463853",
+      "sourceTitle": "MAC OS System Data using a lot of storage (Apple Community)"
+    },
+    {
+      "value": "About 15 GB",
+      "label": "Expected System Data size in that same case, according to the user who reported it",
+      "sourceUrl": "https://discussions.apple.com/thread/255463853",
+      "sourceTitle": "MAC OS System Data using a lot of storage (Apple Community)"
+    },
+    {
+      "value": "About 80%",
+      "label": "Disk space one developer regained on a 1 TB disk after removing Xcode and its Developer folder, based on one user report",
+      "sourceUrl": "https://developer.apple.com/forums/thread/773153",
+      "sourceTitle": "FYI: Xcode and Disk Space (Apple Developer Forums)"
+    },
+    {
+      "value": "macOS 13",
+      "label": "Oldest version where Storage lives in System Settings, per Apple. Earlier versions use About This Mac",
+      "sourceUrl": "https://support.apple.com/en-us/102624",
+      "sourceTitle": "Free up storage space on Mac (Apple Support)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What System Data actually is"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's own definition is short. The Storage screen describes System Data as files and data used by the system, such as log files, caches, VM files, and other runtime system resources. That covers a lot of ground. Logs grow when macOS and apps record events. Caches grow when apps keep copies of things so they load faster. VM files are memory swap files that macOS uses when RAM runs short."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the frustrating part. Apple says you can't manage the contents of this category. You can't open it, sort it, or pick items to delete. Your only moves are indirect. You remove the large things that feed it, or you let macOS clear the pieces it considers safe."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How big is too big for System Data"
+    },
+    {
+      "type": "paragraph",
+      "text": "There isn't a normal size. No primary survey measures how many Mac owners hit System Data bloat. The public evidence is a handful of user reports. One Apple Community user had a 13-inch MacBook Air running macOS 14.3 with about 250 GB of total storage. After importing about 35,000 photos and 750 videos into Apple Photos, System Data grew to about 100 GB, later cited as 106 GB. The expected size was about 15 GB."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat that as a warning sign, not a rule. If System Data takes up a large share of your drive and you can't explain why, it's worth checking. If the number is small, leave it alone. Big numbers after a known event, such as a photo import, a new Xcode version, or a macOS update, are the easiest to explain."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down the System Data figure before and after each step you take. Those notes show which step moved the number. They also help if you later ask Apple Support or your IT team for help, because you can say exactly what changed."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What running out of space costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nobody has measured what this problem costs Mac users. No study tracks lost hours, money, or grades. What exists is anecdote and retail pricing. So read the costs below as the ways a full disk slows you down, not as statistics."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the first cost. A nearly full startup disk makes apps stall, saves slow down, and updates refuse to install. Apple's guide also says that when you move a file to the Trash, its space does not become available until you empty the Trash. A clean-up that skips the Trash frees nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Money is the second cost. If the honest answer is more storage, the price difference matters. 9to5Toys lists the 13-inch M5 MacBook Air at regular prices shown in the table below. Apple's buy page lists the same storage options without prices, so check the live price on Apple's page before you decide."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Model",
+        "Storage",
+        "Regular price",
+        "Source"
+      ],
+      "rows": [
+        [
+          "13-inch M5 MacBook Air",
+          "512GB",
+          "$1,299",
+          "9to5Toys, Nov 2026"
+        ],
+        [
+          "13-inch M5 MacBook Air",
+          "1TB",
+          "$1,599",
+          "9to5Toys, Nov 2026"
+        ]
+      ],
+      "caption": "Regular prices from 9to5Toys. Apple's buy page shows the options without prices."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third is the risk of bad fixes. Some guides tell you to run sudo rm -rf on /private/var or on log folders. That can break things you can't easily restore. Apple does not endorse it. Skip it, even if a forum post says it worked for someone else."
+    },
+    {
+      "type": "paragraph",
+      "text": "Fourth is a blocked update. Apple's guide suggests that starting in Safe Mode clears certain system caches. Those caches rebuild as needed. That may free enough temporary room to install a macOS update, which is often the moment people finally notice the problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why System Data keeps filling up"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Big photo and video libraries"
+    },
+    {
+      "type": "paragraph",
+      "text": "Photo libraries are the easiest case to explain. The Apple Community example shows how a large import can push the number up sharply. The thread does not confirm a single cause. The number later dropped to about 13 GB with no settings changed, and the user said it appeared to correct itself."
+    },
+    {
+      "type": "paragraph",
+      "text": "That matters for your plan. A spike can settle on its own, but you shouldn't count on it. If your System Data stays high after a few days, move on to the steps below and check the other causes."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Developer tools and simulators"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode is the clearest developer case. One developer on Apple's forums reported that Xcode simulators stayed on disk after deletion in Devices and Simulators and in Disk Utility. Removing Xcode and its Developer folder, then reinstalling, regained about 80% of a 1 TB disk. That is one user's report. It is not an Apple recommendation."
+    },
+    {
+      "type": "paragraph",
+      "text": "A forum reply says platforms that use space in CoreSimulator can be removed from the Other Installed Platforms section in Xcode settings. Command-line options exist too, but they erase simulator data. Read the next sections before you run any of them."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Local Time Machine snapshots"
+    },
+    {
+      "type": "paragraph",
+      "text": "Third-party guides name local snapshots as a hidden cause. Apple's Time Machine page doesn't mention them. It says the oldest backups are deleted when your backup disk is full. It doesn't explain what happens on the startup disk. Treat snapshots as a suspect to check, not a confirmed cause."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Caches and logs that never get trimmed"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apps write caches, and macOS writes logs. Most of the time they stay small. When they don't, the usual cause is one app stuck in a loop or one cache that never gets trimmed. Apple says macOS clears safe items when space is needed, including temporary database files, interrupted downloads, staged macOS and app updates, and Safari website data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix it without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work from safe to risky. Each step stands on its own. Stop when you have enough room, then check the Storage screen again to see the new numbers."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Apple menu > System Settings > General > Storage. On macOS 13 or later, this screen shows categories and sizes. On older macOS, use Apple menu > About This Mac > Storage.",
+        "Empty the Trash. In Finder, press ⇧⌘⌫ or choose Finder > Empty Trash. Apple says space returns only after you empty it.",
+        "Clear Downloads. Sort by size, move large files you no longer need to the Trash, then empty the Trash again.",
+        "Turn on Optimize Storage from the Storage screen. Apple says it removes Apple TV movies and shows you already watched, and keeps only recent email attachments.",
+        "Delete old iPhone and iPad backups you no longer need. Check each backup's date first, because a backup may be your only copy.",
+        "Remove apps you don't use. Drag them to the Trash, then empty the Trash. Apple lists unused apps as a storage fix.",
+        "Restart in Safe Mode only if you still need room for an update. On Apple silicon, shut down, hold the power button until Loading startup options appears, choose your disk, hold Shift, then click Continue in Safe Mode.",
+        "Restart normally, wait a day, and check the number again. In the Apple Community example, the figure fell without any settings change."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean up Xcode leftovers safely"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with Xcode > Settings. Look for the Other Installed Platforms section and remove any simulator platform you no longer use. Use the Xcode interface first. It is the least risky option, and it keeps you in control of what gets removed."
+    },
+    {
+      "type": "paragraph",
+      "text": "The command line can clean up more. The forum thread lists xcrun simctl runtime list to show installed runtimes, and xcrun simctl delete unavailable to remove runtimes that no longer work. A note in the thread says those commands erase all simulator data and applications."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Simulator commands erase data",
+      "text": "Simulator commands remove simulator data and the apps installed inside each simulator. Back up anything you need first, or skip the command and use the Xcode settings option."
+    },
+    {
+      "type": "paragraph",
+      "text": "DerivedData is the next place to look. It holds build output that Xcode rebuilds when you build again. Quit Xcode first. Then open Finder, press ⇧⌘G, and enter ~/Library/Developer/Xcode/DerivedData. Move the contents to the Trash, then empty the Trash. The next build takes longer on a large project."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Time Machine local snapshots without guessing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with read-only checks. Open Terminal and run man tmutil to read the manual for your exact macOS version. Then run tmutil listlocalsnapshots / to list any local snapshots on the startup disk. Listing changes nothing on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Deleting snapshots is where the advice gets shaky. Some guides recommend purge commands, but one user reported that deleting snapshots did not raise free space. The purge flag is also disputed for newer macOS versions. If snapshots are your suspect, read the manual for your version and back up first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with System Data"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Forgetting to empty the Trash after each delete. Apple says the space does not return until the Trash is empty.",
+        "Deleting random files in ~/Library or /private/var. Much of that data exists for a reason, and some apps rebuild it only with their own help.",
+        "Trusting a cleaner app's junk list without reading it. Vendor blogs promote their own tools, so check each item first.",
+        "Reading one number as the whole story. Check Applications, Photos, Mail, and developer folders too.",
+        "Buying a bigger drive before you find the cause. A clean-up often recovers space for free, and a bigger drive only delays the next full warning.",
+        "Deleting old backups before you confirm you have another copy of that data."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it doesn't"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can point at things and guide you one click at a time. It does not clear caches, delete snapshots, or click buttons for you. You make every change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is most useful as a guide through the Storage screen. Keep the Storage page open, hold ⌥ ⌘, and ask what each category means. Ask where Optimize Storage is, and Lazur draws a circle and a label around it. Ask how to remove an Xcode platform, and Lazur walks you through it while it waits for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can also help with the routine. Ask it to set a reminder in Apple Reminders for a storage check next week. Hold fn to dictate your notes into the cursor in any app, so your Day 1 and Day 7 numbers are written down without extra typing."
+    },
+    {
+      "type": "paragraph",
+      "text": "For research, Lazur can run a background job in its own Chrome tabs and return a summary and a report. Use it to gather Apple's current pages for your macOS version. Still open the pages yourself. A summary is not a source."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. There is a free trial with no credit card, and current plans are on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to stop and ask for help"
+    },
+    {
+      "type": "paragraph",
+      "text": "If System Data stays high after the safe steps, stop guessing. Back up the Mac first, then contact Apple Support. Bring your Day 1 note with the before and after numbers. That note makes the conversation faster, and it shows exactly what you already tried."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Work or regulated data",
+      "text": "If this Mac holds client, patient, or tax records, follow your employer's rules on that data. Ask IT before you delete, move, or back up anything, especially on a managed Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some people reach for a cleaner app or a new drive as the first step. That can work, but it skips the question of cause. Find out what is filling the disk first. Then pick the fix that matches it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is System Data on a Mac?",
+      "answer": "System Data is the storage category for logs, caches, VM files, and other runtime system resources, according to Apple. You can't manage its contents directly. You can reduce it by clearing what feeds it, such as caches macOS treats as safe, unused simulators, and old backups."
+    },
+    {
+      "question": "Can I delete System Data on my Mac?",
+      "answer": "Not directly. Apple says you can't manage the contents of this category. Use the safe steps on the Storage screen instead, and avoid deleting files in system folders by hand, because some of that data rebuilds only with the app's help."
+    },
+    {
+      "question": "Why did System Data jump after a Photos import?",
+      "answer": "One Apple Community user saw System Data grow to about 100 GB after importing about 35,000 photos and 750 videos into a 250 GB MacBook Air. The number later dropped to about 13 GB without any settings change. The thread does not confirm the cause."
+    },
+    {
+      "question": "Does emptying the Trash free space right away?",
+      "answer": "Only after you empty it. Apple says that when you move a file to the Trash, its storage space does not become available until you empty the Trash."
+    },
+    {
+      "question": "Is it safe to remove Xcode simulators?",
+      "answer": "Removing unavailable simulators is a common fix. Simulator commands erase simulator data and the apps installed in each simulator, so back up anything you need first. Using the Other Installed Platforms section in Xcode settings is the least risky option."
+    },
+    {
+      "question": "Will Safe Mode fix a full disk?",
+      "answer": "Not on its own. Apple says starting in Safe Mode clears certain system caches that are recreated as needed. That may give enough temporary room to install a macOS update, but it doesn't replace the other steps."
+    },
+    {
+      "question": "Should I use a Mac cleaner app?",
+      "answer": "You can, but read what it plans to remove first. Vendor blogs promote their own cleaners, so check each item the app lists before you approve it. Check the vendor's pricing page for current prices."
+    },
+    {
+      "question": "Does Lazur clean my Mac for me?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, and drafts text. It does not click buttons, edit files, or operate other apps for you. You make each change yourself."
+    },
+    {
+      "question": "Is buying a bigger drive the better answer?",
+      "answer": "Sometimes. Check the cause first, because a clean-up often recovers space for free. If you do buy, 9to5Toys lists the 13-inch M5 MacBook Air at $1,299 for 512GB and $1,599 for 1TB at regular price. Apple's buy page shows options without prices."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Change Storage settings on Mac - Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/change-storage-settings-mchl3d437fbc/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Optimize storage space on your Mac - Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/optimize-storage-space-sysp4ee93ca4/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Free up storage space on Mac - Apple Support",
+      "url": "https://support.apple.com/en-us/102624",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Back up your Mac with Time Machine - Apple Support",
+      "url": "https://support.apple.com/en-us/104984",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "MAC OS System Data using a lot of storage - Apple Community",
+      "url": "https://discussions.apple.com/thread/255463853",
+      "publisher": "Apple Community (user-submitted)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "FYI: Xcode and Disk Space - Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/thread/773153",
+      "publisher": "Apple Developer Forums (user-submitted)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "1TB M5 MacBook Air lowest price, Black Friday - 9to5Toys",
+      "url": "https://9to5toys.com/2026/11/06/1tb-m5-macbook-air-lowest-price-black-friday/",
+      "publisher": "9to5Toys",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Buy MacBook Air - Apple",
+      "url": "https://www.apple.com/shop/buy-mac/macbook-air",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "problem": "full mac storage caused by system data",
+  "costs": [
+    {
+      "title": "Time lost to a nearly full disk",
+      "text": "Apps stall, saves slow down, and cleanups take longer when the startup disk is nearly full. Apple also says freed space returns only after you empty the Trash, so one missed step can waste a whole session of effort."
+    },
+    {
+      "title": "Money if the answer is a bigger drive",
+      "text": "A larger drive costs more at checkout. 9to5Toys lists the 13-inch M5 MacBook Air at $1,299 for 512GB and $1,599 for 1TB at regular price. Apple's buy page shows the options without prices, so check the live price first."
+    },
+    {
+      "title": "Risk from bad fixes",
+      "text": "Forum posts sometimes suggest sudo rm -rf on system log folders. That can break things you can't easily restore. Apple does not endorse it, and a clean-up that takes minutes can turn into a reinstall."
+    },
+    {
+      "title": "A blocked macOS update",
+      "text": "Updates need free room to install. Apple says starting in Safe Mode can clear certain caches and may free enough temporary space for an update, which means a full disk can quietly stop security updates from landing."
+    }
+  ],
+  "causes": [
+    {
+      "title": "System Data is a catch-all bucket",
+      "text": "Apple defines System Data as files and data used by the system, including log files, caches, VM files, and other runtime resources. Anything that doesn't fit a named category lands here. That is why the number can grow even when you have deleted all your visible files."
+    },
+    {
+      "title": "Big library imports",
+      "text": "A large Photos import can push System Data up sharply. In one Apple Community case, System Data reached about 100 GB after about 35,000 photos and 750 videos were imported to a 250 GB MacBook Air. The thread does not confirm the cause, and the number later fell."
+    },
+    {
+      "title": "Xcode simulators and runtimes",
+      "text": "Simulator data can survive a normal app delete. A developer on Apple's forums reported that simulators persisted after deletion in Devices and Simulators and Disk Utility. Removing Xcode and its Developer folder recovered about 80% of a 1 TB disk, according to that one report."
+    },
+    {
+      "title": "Local Time Machine snapshots (unverified)",
+      "text": "Third-party guides call local snapshots a hidden cause. Apple's pages don't document them for storage. One user reported that deleting snapshots did not raise free space, so treat snapshots as a suspect to check, not a settled cause."
+    },
+    {
+      "title": "Caches and logs that never get trimmed",
+      "text": "Apps write caches and macOS writes logs. Usually they stay small. When they grow, the cause is often one app in a loop or a cache that never gets cleared. Apple says macOS clears safe caches when space is needed, but it may not clear all of them."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read the Storage screen first",
+      "text": "Open Apple menu > System Settings > General > Storage on macOS 13 or later. Wait for the categories to load and note the System Data figure. On older macOS, use Apple menu > About This Mac > Storage. Write the number down so you can compare later."
+    },
+    {
+      "title": "Empty the Trash and clear Downloads",
+      "text": "Empty the Trash with ⇧⌘⌫ in Finder. Then sort Downloads by size, move large files you no longer need to the Trash, and empty it again. Apple says space returns only after you empty the Trash, so do this last."
+    },
+    {
+      "title": "Turn on Optimize Storage",
+      "text": "Use Storage > Optimize Storage. Apple says it removes Apple TV movies and shows you have already watched and keeps only recent email attachments. Turn it on only if those trade-offs suit how you watch and read mail."
+    },
+    {
+      "title": "Remove old backups and unused apps",
+      "text": "Delete iPhone and iPad backups you no longer need, after checking the date and the device name. Drag unused apps to the Trash. Apple lists both as storage fixes, and both are easy to undo only if you have a copy."
+    },
+    {
+      "title": "Remove unused Xcode platforms in Xcode",
+      "text": "Open Xcode > Settings and find the Other Installed Platforms section. Remove platforms you no longer use. This is the least risky developer fix because it stays inside Xcode."
+    },
+    {
+      "title": "Try Safe Mode only when you need room",
+      "text": "On Apple silicon, shut down, hold the power button until Loading startup options appears, choose your disk, hold Shift, and click Continue in Safe Mode. Apple says this can clear certain caches that rebuild. Restart normally after you finish."
+    },
+    {
+      "title": "Check snapshots read-only before deleting anything",
+      "text": "Run man tmutil in Terminal to read the manual for your macOS version. Then run tmutil listlocalsnapshots / to list snapshots. Listing changes nothing. Deleting snapshots is disputed, so back up and read the manual before you go further."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Lazur, where is Storage in System Settings?",
+      "result": "Lazur circles the Storage row on screen and labels it. You still click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, what is System Data on this screen?",
+      "result": "Lazur answers out loud from what it sees on screen. It explains the category, not the files on your disk.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, walk me through Optimize Storage.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate today's storage notes.",
+      "result": "Clean text lands at the cursor in any app, so your before and after numbers take less time to write down.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Lazur, remind me to check storage in a week.",
+      "result": "Lazur adds the recheck to Apple Reminders, so the follow-up doesn't depend on memory.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Lazur, research Apple's storage pages for my macOS version.",
+      "result": "Lazur runs the job in its own Chrome tabs and returns a summary and report. Open the pages yourself to check them.",
+      "capability": "research"
+    },
+    {
+      "say": "Lazur, draft a message to IT about our disk space.",
+      "result": "Lazur types a draft in the cursor's app. You read it, edit it, and send it yourself.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where do I see what System Data is using?",
+    "capability": "point",
+    "context": "System Settings > General > Storage on macOS 13 or later",
+    "output": "Lazur circles the Storage category list and labels it on screen.",
+    "shell": "generic",
+    "result": "You see the category sizes on screen. Lazur points, and you choose what to clear.",
+    "pointsAt": "Storage"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Measure before you change anything",
+      "text": "Open Apple menu > System Settings > General > Storage. Note the System Data figure and the free space. Take a screenshot for your own record. Those two numbers show whether each later step helped."
+    },
+    {
+      "label": "Day 2",
+      "title": "Clear the obvious files",
+      "text": "Empty the Trash, clear Downloads by size, and remove old iPhone or iPad backups you no longer need. Check the Storage figure after each action, not only once you are finished for the day."
+    },
+    {
+      "label": "Day 3",
+      "title": "Decide on Optimize Storage",
+      "text": "Turn on Optimize Storage only if you're fine with watched TV and movies being removed. Apple also says only recent email attachments stay on the Mac. Note the change in your log."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check developer leftovers",
+      "text": "If you use Xcode, open Xcode > Settings and remove unused platforms in Other Installed Platforms. Quit Xcode before you touch DerivedData. Skip the simctl erase commands unless you have a backup."
+    },
+    {
+      "label": "Day 5",
+      "title": "Check snapshots read-only",
+      "text": "Open Terminal, run man tmutil, then tmutil listlocalsnapshots /. Write down what you see. Do not delete any snapshots on this day, even if a guide tells you to."
+    },
+    {
+      "label": "Day 6",
+      "title": "Restart and recheck",
+      "text": "Restart the Mac. If you still need room for an update, try Safe Mode as described above. Then compare the System Data figure with your Day 1 note and record the difference."
+    },
+    {
+      "label": "Day 7",
+      "title": "Decide what comes next",
+      "text": "If System Data is still large, back up the Mac and contact Apple Support or your IT team with your notes. If it fell, write down which step worked. That record helps the next time the number climbs."
+    }
+  ],
+  "apps": [
+    "xcode",
+    "vs-code",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "mac-system-data-storage-full-fix",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-system-data-storage-full-fix/mac-storage-full-with-system-data-1-2a5bd0.jpg",
+      "width": 1280,
+      "height": 840,
+      "alt": "Person at a desk working on a Mac laptop, the setting where a mac storage full warning appears",
+      "caption": "A normal workday on a Mac, where a full disk shows up.",
+      "keywords": [
+        "mac storage full with system data",
+        "Developers",
+        "Mac storage full because of System Data",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "16391475",
+        "url": "https://pixabay.com/users/16391475-16391475/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-office-corona-virus-depression-5175354/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-system-data-storage-full-fix/mac-storage-full-with-system-data-2-8de25c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close-up of a MacBook on an office desk, the kind of Mac that fills up with system data over time",
+      "caption": "Most Macs hit a full disk during everyday work.",
+      "keywords": [
+        "mac storage full with system data",
+        "Developers",
+        "Mac storage full because of System Data",
+        "Mac",
+        "macbook laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Campaign_Creators",
+        "url": "https://pixabay.com/users/Campaign_Creators-9720680/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/web-design-computer-internet-3828301/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-system-data-storage-full-fix/mac-storage-full-with-system-data-3-cf24e8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer coding on a laptop, the kind of work that fills a Mac with Xcode and simulator data",
+      "caption": "Developer tools can fill a Mac faster than other apps.",
+      "keywords": [
+        "mac storage full with system data",
+        "Developers",
+        "Mac storage full because of System Data",
+        "Mac",
+        "developer coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-notebook-cellphone-computer-1839876/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "mac storage full with system data",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "system data mac storage": 1,
+      "what is system data on mac": 1,
+      "reduce system data on mac": 1,
+      "optimize storage mac": 1,
+      "xcode simulators disk space": 1,
+      "time machine local snapshots mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

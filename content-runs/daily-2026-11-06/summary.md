@@ -1,10 +1,10 @@
-Content 2026-11-06: 132 written, 1 refused, 0 failed
+Content 2026-11-06: 180 written, 1 refused, 0 failed
 
 - howto: 0/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
-- problems: 27/75
+- problems: 75/75
 - compare: 9/9
 - blog: 15/15
 
@@ -140,3 +140,51 @@ problem:lawyers/dictation-software-misreads-legal-terms /for/lawyers/problems/di
 problem:lawyers/dragon-dictation-mac-lawyers-options /for/lawyers/problems/dragon-dictation-mac-lawyers-options
 problem:developers/bluetooth-headphones-keep-disconnecting-mac /for/developers/problems/bluetooth-headphones-keep-disconnecting-mac
 problem:realtors/florida-license-ce-deadline-missed /for/realtors/problems/florida-license-ce-deadline-missed
+problem:developers/mac-stage-manager-cluttered-windows-setup /for/developers/problems/mac-stage-manager-cluttered-windows-setup
+problem:realtors/contact-expired-listings-sequence /for/realtors/problems/contact-expired-listings-sequence
+problem:realtors/realtor-call-reluctance-prospecting /for/realtors/problems/realtor-call-reluctance-prospecting
+problem:lawyers/turn-dictation-into-polished-legal-drafts /for/lawyers/problems/turn-dictation-into-polished-legal-drafts
+problem:developers/mac-printer-offline-reset-re-add /for/developers/problems/mac-printer-offline-reset-re-add
+problem:lawyers/memorialize-client-meetings-without-write-up-hours /for/lawyers/problems/memorialize-client-meetings-without-write-up-hours
+problem:developers/zsh-command-not-found-mac-terminal-fix /for/developers/problems/zsh-command-not-found-mac-terminal-fix
+problem:lawyers/how-long-to-summarize-deposition /for/lawyers/problems/how-long-to-summarize-deposition
+problem:realtors/spot-fake-zillow-buyer-leads /for/realtors/problems/spot-fake-zillow-buyer-leads
+problem:developers/git-merge-conflict-markers-step-by-step /for/developers/problems/git-merge-conflict-markers-step-by-step
+problem:lawyers/find-clauses-across-hundreds-of-contracts /for/lawyers/problems/find-clauses-across-hundreds-of-contracts
+problem:realtors/explain-inspection-report-plain-language /for/realtors/problems/explain-inspection-report-plain-language
+problem:lawyers/compare-two-word-documents-on-mac /for/lawyers/problems/compare-two-word-documents-on-mac
+problem:realtors/change-lockbox-code-after-showings /for/realtors/problems/change-lockbox-code-after-showings
+problem:developers/mac-keyboard-shortcuts-keep-forgetting /for/developers/problems/mac-keyboard-shortcuts-keep-forgetting
+problem:developers/mac-mail-rules-filter-email-folders /for/developers/problems/mac-mail-rules-filter-email-folders
+problem:lawyers/word-opens-in-reviewing-mode /for/lawyers/problems/word-opens-in-reviewing-mode
+problem:developers/fill-out-pdf-form-mac-cannot-type /for/developers/problems/fill-out-pdf-form-mac-cannot-type
+problem:realtors/how-long-cma-takes /for/realtors/problems/how-long-cma-takes
+problem:realtors/respond-to-zestimate-objection /for/realtors/problems/respond-to-zestimate-objection
+problem:lawyers/missed-court-deadlines-calendaring-errors /for/lawyers/problems/missed-court-deadlines-calendaring-errors
+problem:developers/time-machine-backup-keeps-failing-mac /for/developers/problems/time-machine-backup-keeps-failing-mac
+problem:lawyers/lawyers-sanctioned-fake-ai-citations-verify /for/lawyers/problems/lawyers-sanctioned-fake-ai-citations-verify
+problem:realtors/re-engage-buyers-after-showings /for/realtors/problems/re-engage-buyers-after-showings
+problem:developers/mac-external-display-not-detected-fix /for/developers/problems/mac-external-display-not-detected-fix
+problem:lawyers/client-confidentiality-concerns-ai-tools /for/lawyers/problems/client-confidentiality-concerns-ai-tools
+problem:realtors/ask-past-clients-google-review /for/realtors/problems/ask-past-clients-google-review
+problem:developers/mac-battery-draining-fast-what-to-check /for/developers/problems/mac-battery-draining-fast-what-to-check
+problem:lawyers/lawyers-lose-focus-after-interruptions /for/lawyers/problems/lawyers-lose-focus-after-interruptions
+problem:developers/spotlight-not-finding-files-mac-reindex /for/developers/problems/spotlight-not-finding-files-mac-reindex
+problem:realtors/verify-closing-wire-instructions /for/realtors/problems/verify-closing-wire-instructions
+problem:lawyers/find-firm-precedent-documents-fast /for/lawyers/problems/find-firm-precedent-documents-fast
+problem:realtors/track-mileage-between-showings /for/realtors/problems/track-mileage-between-showings
+problem:lawyers/westlaw-lexis-cost-per-search /for/lawyers/problems/westlaw-lexis-cost-per-search
+problem:developers/scheduling-meetings-back-and-forth-email /for/developers/problems/scheduling-meetings-back-and-forth-email
+problem:lawyers/conflict-check-delays-new-client-intake /for/lawyers/problems/conflict-check-delays-new-client-intake
+problem:realtors/condo-resale-certificate-review-window /for/realtors/problems/condo-resale-certificate-review-window
+problem:developers/meeting-action-items-lost-after-meeting /for/developers/problems/meeting-action-items-lost-after-meeting
+problem:realtors/avoid-mls-fines-listing-data-errors /for/realtors/problems/avoid-mls-fines-listing-data-errors
+problem:developers/why-writers-block-blank-page-causes /for/developers/problems/why-writers-block-blank-page-causes
+problem:lawyers/drafting-demand-letter-from-scratch /for/lawyers/problems/drafting-demand-letter-from-scratch
+problem:developers/reading-long-research-papers-hard /for/developers/problems/reading-long-research-papers-hard
+problem:realtors/overpriced-seller-price-reduction /for/realtors/problems/overpriced-seller-price-reduction
+problem:realtors/low-appraisal-deal-at-risk /for/realtors/problems/low-appraisal-deal-at-risk
+problem:lawyers/first-year-associate-skills-gap /for/lawyers/problems/first-year-associate-skills-gap
+problem:developers/non-native-english-writing-anxiety-academic /for/developers/problems/non-native-english-writing-anxiety-academic
+problem:lawyers/billable-hour-targets-utilization-lawyers /for/lawyers/problems/billable-hour-targets-utilization-lawyers
+problem:realtors/schedule-social-posts-in-advance /for/realtors/problems/schedule-social-posts-in-advance

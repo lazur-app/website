@@ -1,0 +1,545 @@
+{
+  "title": "zsh command not found mac terminal fix: step by step for macOS 10.15 and later",
+  "metaTitle": "zsh command not found mac terminal fix: 2026 guide",
+  "description": "Fix the zsh command not found error in Mac Terminal. Check the tool, add its path to ~/.zprofile, then open a new window. Covers macOS 10.15 and later.",
+  "targetKeyword": "zsh command not found mac terminal fix",
+  "secondaryKeywords": [
+    "zsh command not found homebrew",
+    "zsh command not found mac",
+    "change default shell to zsh mac",
+    "zprofile vs zshrc mac",
+    "homebrew shellenv zprofile",
+    "bash command not found mac terminal"
+  ],
+  "intro": "When Terminal says zsh: command not found, zsh cannot find the program you typed. Usually the program is not installed, or its folder is missing from your PATH. On a Mac, the fix is often one line in ~/.zprofile, then a new Terminal window. This page shows how to check each cause in order, and which mistakes bring the error back.",
+  "tldr": [
+    "zsh: command not found means zsh cannot find a program name in the folders listed in your PATH.",
+    "Since macOS 10.15, zsh is the default shell, so bash-era tutorials often put lines in the wrong file.",
+    "Check whether the tool is installed, then its folder, then whether zsh reads the file you edited.",
+    "On Apple silicon, Homebrew needs eval \"$(/opt/homebrew/bin/brew shellenv)\" in ~/.zprofile.",
+    "Open a new Terminal window after every change. Do not change folder ownership as a first step."
+  ],
+  "stats": [
+    {
+      "value": "10.15",
+      "label": "First macOS version where zsh is the default login and interactive shell. Earlier versions used bash.",
+      "sourceUrl": "https://support.apple.com/en-au/HT208050",
+      "sourceTitle": "Use zsh as the default shell on your Mac: Apple Support"
+    },
+    {
+      "value": "about $65",
+      "label": "Developer wage per hour at the BLS median, calculated as $135,980 divided by 2,080 hours (our calculation).",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "Software Developers: Occupational Outlook Handbook"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the zsh command not found message means"
+    },
+    {
+      "type": "paragraph",
+      "text": "The message has two parts. The word before the first colon names the shell that ran your command. The word after names the command that shell could not find. So zsh: command not found: brew means you are in zsh, and zsh searched for a program called brew."
+    },
+    {
+      "type": "paragraph",
+      "text": "That search uses your PATH. Run echo $PATH in Terminal to see the folders zsh checks, separated by colons. If the program sits in a folder that is not on that list, zsh acts as if the program does not exist. Common causes are that gap and a simple typo."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why old bash tutorials break on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple made zsh the default shell starting with macOS 10.15. Before that, bash was the default in macOS 10.14 and earlier. Tutorials written in those years often say to add a line to ~/.bash_profile. zsh does not read that file for your Terminal sessions, so the line does nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple describes the zsh startup files this way. .zprofile runs at login, including over SSH, and is the counterpart to .bash_profile. .zshrc runs for each new Terminal session and is the counterpart to .bashrc. Apple's description points to .zprofile for login setup, which is where Homebrew's setup line usually goes."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Match the message to its likely cause"
+    },
+    {
+      "type": "table",
+      "caption": "Four common messages and their first checks.",
+      "headers": [
+        "Message",
+        "Usually means",
+        "First check"
+      ],
+      "rows": [
+        [
+          "zsh: command not found: brew",
+          "Homebrew is missing from PATH, or not installed",
+          "command -v brew, then ls /opt/homebrew/bin/brew on Apple silicon"
+        ],
+        [
+          "zsh: command not found: node",
+          "Node is not installed, or its setup line is missing from your shell file",
+          "command -v node, then check how you installed it"
+        ],
+        [
+          "zsh: command not found: pyhton",
+          "A typo in the command name",
+          "Retype it slowly, or type the first letters and press Tab"
+        ],
+        [
+          "bash: brew: command not found",
+          "You are in bash, so the zsh files do not apply",
+          "echo $0 to see which shell is running"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Work through the checks in order"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Read the word before the colon. zsh means you are in zsh. bash means you are in bash.",
+        "Check whether the program exists with command -v name. No output means zsh cannot find it.",
+        "If the program exists, find its folder. For Homebrew on Apple silicon, that is /opt/homebrew/bin.",
+        "Check that the folder is on PATH with echo $PATH. If it is missing, add it in ~/.zprofile.",
+        "Open a new Terminal window and run the failed command again."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with Homebrew on Apple silicon"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you ran brew install wget and saw zsh: command not found: brew. A tutorial told you Homebrew was already installed. Start by checking the file itself. Run ls /opt/homebrew/bin/brew in Terminal."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "If the path prints, Homebrew is installed and only PATH is missing. Open the startup file with nano ~/.zprofile. Add eval \"$(/opt/homebrew/bin/brew shellenv)\" on its own line. Save with ⌃ O and Return, then exit with ⌃ X. Open a new window and run brew --version. A version number means the fix worked."
+    },
+    {
+      "type": "paragraph",
+      "text": "If ls says No such file or directory, the install never finished. Install Homebrew again from the official Installation page at docs.brew.sh. Two details trip people up. The line must match your Mac, and it should appear only once. Run cat ~/.zprofile before you edit, so you see what is already there."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set zsh as the shell, or confirm the one you have"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple says to change the login shell with chsh -s, followed by a path listed in /etc/shells. For zsh, use /bin/zsh. On macOS 13 or later, you can also open System Settings > Users & Groups > Advanced Options and set the Login shell there. This changes the account default, so use it when you want zsh everywhere."
+    },
+    {
+      "type": "paragraph",
+      "text": "Terminal can also open its own shell. Choose Terminal > Settings > General. Next to Shells open with, select Command (complete path), then enter /bin/zsh. Apple notes that this changes Terminal's shell without changing the system default. That makes it a safe test for a single app."
+    },
+    {
+      "type": "paragraph",
+      "text": "To see which shell runs in the current window, run echo $0. To see the login shell set for your account, run echo $SHELL. The two can differ. Use $0 when you want to know what you are typing into right now."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Skip the permission fixes",
+      "text": "Some forum posts suggest a recursive ownership change on /opt/homebrew/bin. Check first with ls -ld /opt/homebrew/bin. A broad ownership change can break installs in ways that take longer to fix than the original error."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that bring the error back"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Adding the same eval line twice. The file gets messy, and it is hard to tell which line is live. Run cat ~/.zprofile before you edit.",
+        "Editing ~/.bash_profile while you use zsh. zsh does not read it, so nothing changes.",
+        "Testing in the old window. That window keeps its old PATH. Open a new window, or run exec zsh, before you judge the fix.",
+        "Pasting sudo commands from an unknown site. Read each command first. Skip any that change system folders without a reason you understand.",
+        "Stopping after one lucky result. Run command -v and brew --version in a new window, then run the command that failed."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Intel Macs, version managers, and editor terminals"
+    },
+    {
+      "type": "paragraph",
+      "text": "The default Homebrew folder on Apple silicon is /opt/homebrew. Intel Macs may use a different folder, so do not copy that line without checking. Run ls on the path your installer names, or read the output the installer printed. That output is written for your machine."
+    },
+    {
+      "type": "paragraph",
+      "text": "Tools installed through a version manager often need a setup line too. Add that line to the zsh file the tool names in its install output. If a tool works in one window and fails in another, compare the two windows with echo $0 first. Different shells read different files."
+    },
+    {
+      "type": "paragraph",
+      "text": "Editors have their own terminals. An integrated terminal in Cursor or VS Code may run a different shell or read different settings than Terminal. If the error appears only in the editor, check that editor's terminal settings. [VS Code for developers on Mac](/for/developers/vs-code) covers terminal setup in more depth."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. With the Terminal error on screen, ask what the message means. Ask where a setting lives, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not run commands for you. It does not click buttons or edit files. You type or paste each command, and you read it before you press Return. Hold fn to dictate text at the cursor when you write a note to a teammate. Dictated commands need the same check as typed ones."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. If your Terminal shows client or patient data, follow your employer's rules before you ask Lazur about it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the fix from coming back"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down the file you changed, the line you added, and the date. Keep that note with your project or your dotfiles, so the next setup starts from a known state. When you move to a new Mac, read the file before you copy it. Check that each path still exists on the new machine."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the message is not about zsh"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some errors look similar but mean something else. zsh: permission denied: ./script.sh means the file exists, but you cannot run it. zsh: no such file or directory means the path you typed is wrong. Use ls -l on the path to check its location and permissions. Keep the PATH fix for messages that say command not found."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Terminal say zsh command not found right after I installed something?",
+      "answer": "Installing a program does not always add its folder to PATH. On Apple silicon, Homebrew needs its shellenv line in ~/.zprofile. Open a new Terminal window after you add it, then run command -v with the program name."
+    },
+    {
+      "question": "Do I need to switch from zsh to bash to fix this?",
+      "answer": "No. zsh is the default shell from macOS 10.15 on. Keep zsh, and put the setup line in the zsh file that matches what you need. Switching shells hides the setup gap instead of fixing it."
+    },
+    {
+      "question": "What is the difference between echo $0 and echo $SHELL?",
+      "answer": "echo $0 shows the shell running in the current window. echo $SHELL shows the login shell set for your account. The two can differ, which is why a fix can seem to work in one window and fail in another."
+    },
+    {
+      "question": "Should I change folder permissions to get rid of this error?",
+      "answer": "Usually no. This error means zsh cannot find a name in PATH. It does not mean you lack permission. Permission problems show a different message, such as permission denied. Changing ownership of Homebrew folders can cause new problems."
+    },
+    {
+      "question": "Does this fix work on Intel Macs?",
+      "answer": "The same idea applies, but the folder may differ. Use ls to find where brew is installed on your machine. Then use the line the Homebrew installer printed for that machine. The Apple silicon path may not match an Intel Mac."
+    },
+    {
+      "question": "Does Lazur type the fix for me?",
+      "answer": "Lazur can explain the message, point at settings, guide you one click at a time, and draft or type text. It does not run commands or click buttons for you. You check each line before you run it."
+    },
+    {
+      "question": "Do I need to restart my Mac?",
+      "answer": "Usually no. Open a new Terminal window, or run exec zsh. If a login shell change does not show up, log out and back in. That is the fallback, not the first step."
+    },
+    {
+      "question": "What if the error says bash: command not found instead?",
+      "answer": "Then you are in bash. Check echo $0. If it says bash, the zsh files do not apply. You can set Terminal to open zsh under Terminal > Settings > General, or add the setup line to the bash file you use."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use zsh as the default shell on your Mac: Apple Support",
+      "url": "https://support.apple.com/en-au/HT208050",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Change the default shell in Terminal on Mac: Apple Support",
+      "url": "https://support.apple.com/guide/terminal/change-the-default-shell-trml113/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Installation: Homebrew Documentation",
+      "url": "https://docs.brew.sh/Installation",
+      "publisher": "Homebrew",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Software Developers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "zsh command not found in terminal on mac",
+  "costs": [
+    {
+      "title": "Time at developer wage rates",
+      "text": "The median software developer wage was $135,980 in May 2025, according to the BLS. On a 2,080-hour year, that is about $65 per hour (our calculation). At that rate, each 15 minutes of troubleshooting costs roughly $16 in wage time. No study measures how long this exact error takes, so treat the number as a rough guide."
+    },
+    {
+      "title": "Fixes that miss the cause",
+      "text": "Most lost time comes from fixes that do not match the cause. Adding a line to the wrong file, reinstalling the same tool, or changing folder ownership can each start a new round of debugging. The check order on this page costs less than trying fixes at random."
+    },
+    {
+      "title": "Setup gaps that repeat",
+      "text": "A missing PATH line breaks every new window until you fix the file. Each new command can fail the same way, and the error can look like a new problem each time. Fixing the file once stops the repeat."
+    },
+    {
+      "title": "Interrupted focus",
+      "text": "Every switch from your editor to a search page and back takes attention. A short error can cost more than the fix itself, because you lose the thread of the task. [Recovering focus after interruptions](/for/developers/problems/developer-context-switching-recovery-time) covers that cost."
+    },
+    {
+      "title": "Help requests that take longer",
+      "text": "A teammate who answers in Slack needs your details to help. A pasted error without the shell name and the output of command -v takes longer to answer. Send both, and the reply usually comes faster."
+    }
+  ],
+  "causes": [
+    {
+      "title": "PATH does not include the tool's folder",
+      "text": "zsh searches only the folders listed in your PATH. Run echo $PATH to see them. Homebrew on Apple silicon installs under /opt/homebrew, and its programs live in /opt/homebrew/bin. If that folder is missing from PATH, zsh cannot find brew, even when brew is installed."
+    },
+    {
+      "title": "The setup line went into a bash file",
+      "text": "Many guides from the years before macOS 10.15 say to edit ~/.bash_profile. Apple made zsh the default from macOS 10.15 on. zsh reads its own startup files, so a line in ~/.bash_profile never reaches your zsh windows."
+    },
+    {
+      "title": "The setup line went into the wrong zsh file",
+      "text": "zsh has two startup files that matter for Terminal. Apple says .zprofile runs at login, including over SSH. It says .zshrc runs for each new Terminal session. A line in the wrong one can work in some windows and fail in others."
+    },
+    {
+      "title": "The tool is not installed, or the install stopped",
+      "text": "A command can fail because an install step stopped early. It can also fail because a tutorial assumed a tool you never installed. Run command -v with the name. No output means zsh cannot find it, so check the install first."
+    },
+    {
+      "title": "The command name is wrong",
+      "text": "Typos are common with short names and with names that look alike. zsh shows the name it could not find, so compare it letter by letter with the tool's official docs. Tab completion also shows what exists in the current folders and PATH."
+    },
+    {
+      "title": "Terminal runs a different shell than you expect",
+      "text": "Terminal can open a shell you did not choose. If the error starts with bash:, the zsh files are not the ones being read. Apple documents the Shells open with setting in Terminal > Settings > General, so check it before you edit anything."
+    },
+    {
+      "title": "A tool needs its own setup line",
+      "text": "Version managers and language tools often need a line in your shell file before their commands work. Without it, the tool can install while its commands stay off PATH. Read the install output, which usually names the file to edit."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm the tool is installed",
+      "text": "Run command -v brew, or the name of your tool. A path such as /opt/homebrew/bin/brew means it exists. No output means it is missing or not on PATH. Check the folder with ls before you install again, so you know which problem you have."
+    },
+    {
+      "title": "Add Homebrew's shellenv line to ~/.zprofile",
+      "text": "Open the file with nano ~/.zprofile. Add eval \"$(/opt/homebrew/bin/brew shellenv)\" on its own line. Save with ⌃ O and Return, then exit with ⌃ X. Open a new Terminal window and run brew --version. Homebrew's docs say it will not work if you skip the printed directions."
+    },
+    {
+      "title": "Set zsh as the login shell with chsh",
+      "text": "Run chsh -s /bin/zsh only after you confirm that /bin/zsh is listed in /etc/shells. Apple says the path must be in that file. On macOS 13 or later, you can also open System Settings > Users & Groups > Advanced Options and set the Login shell there."
+    },
+    {
+      "title": "Set the shell Terminal opens",
+      "text": "Choose Terminal > Settings > General. Next to Shells open with, select Command (complete path), then enter /bin/zsh. Apple says this changes Terminal only, not the system default. Use it when Terminal opens bash and you want zsh in that app."
+    },
+    {
+      "title": "Reload without restarting the Mac",
+      "text": "Open a new window with ⌘ N, or run exec zsh in the current window. Some guides suggest hash -r to clear zsh's command cache. The mechanism is not confirmed on this page, so treat hash -r as a quick test, not the fix. If the error remains, log out and back in."
+    },
+    {
+      "title": "Confirm the fix in a fresh window",
+      "text": "Run command -v brew and brew --version in a new window. Both should print a result. Then run the command that failed. If it passes, you are done. If it fails, read the prefix again and start from the check list."
+    },
+    {
+      "title": "Read each suggested command before you run it",
+      "text": "Compare every suggested command with your own system. Check paths with ls first. Skip any fix that changes ownership of a system folder unless you can say why it is needed. A fix you cannot explain is a fix you cannot undo."
+    },
+    {
+      "title": "Reinstall from the official instructions",
+      "text": "If the tool's folder is broken, reinstall from the official install page. Homebrew's installation page is at docs.brew.sh. Follow the lines the installer prints, not a copy from a blog post."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "point",
+      "say": "Where is the Shells open with setting in Terminal?",
+      "result": "Lazur draws a circle and a label around the setting on your screen, so you know where to click."
+    },
+    {
+      "capability": "explain",
+      "say": "What does zsh command not found mean here?",
+      "result": "Lazur reads the error on screen and explains it out loud, including which word names the shell."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through setting zsh as my Terminal shell.",
+      "result": "Lazur guides you one click at a time and waits for each click. You still choose each setting yourself."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a short Slack message about this error for my team.",
+      "result": "Lazur drafts the text and types it where you ask. Include the shell name and the command -v output, then read it before you send."
+    },
+    {
+      "capability": "dictate",
+      "say": "Dictate a note about the PATH change I made.",
+      "result": "Hold fn to dictate clean text at the cursor in any app. Check every command you dictate before you run it."
+    }
+  ],
+  "demo": {
+    "spoken": "Hold Option and Command, then ask what this zsh error means.",
+    "capability": "explain",
+    "result": "Lazur reads the error on screen and explains it out loud. It names the shell and the missing command. It does not run the check for you.",
+    "shell": "code",
+    "context": "Terminal window showing zsh: command not found: brew",
+    "pointsAt": "Terminal error line",
+    "output": "Example answer: zsh is your shell, and it cannot find a program named brew on your PATH. Check with command -v brew first."
+  },
+  "plan": [
+    {
+      "label": "Now",
+      "title": "Read the message and check the tool",
+      "text": "Copy the first word of the error and the missing command name. Run command -v with that name in a new window. Write down the output. This tells you which of the two main problems you have."
+    },
+    {
+      "label": "Day 1",
+      "title": "Fix PATH or install the tool",
+      "text": "If the tool is missing, install it from its official page. If Homebrew exists but is not on PATH, add the shellenv line to ~/.zprofile with nano. Save, open a new window, and run brew --version."
+    },
+    {
+      "label": "Day 2",
+      "title": "Set the shell and confirm it",
+      "text": "Run echo $0 and echo $SHELL. If Terminal opens the wrong shell, set Shells open with to /bin/zsh under Terminal > Settings > General. Open a new window and repeat the command that failed."
+    },
+    {
+      "label": "Day 3",
+      "title": "Write the setup down",
+      "text": "Note the file you changed and the line you added. Keep the note with your project or dotfiles. The next time a tool fails, you start with the same checks instead of a new search."
+    }
+  ],
+  "apps": [
+    "cursor",
+    "vs-code"
+  ],
+  "type": "problem",
+  "slug": "zsh-command-not-found-mac-terminal-fix",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/zsh-command-not-found-mac-terminal-fix/zsh-command-not-found-mac-terminal-fix-1-4f123f.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Developer at a laptop desk reviewing a zsh command not found mac terminal fix",
+      "caption": "A quiet desk, a Mac, and one error to read.",
+      "keywords": [
+        "zsh command not found mac terminal fix",
+        "Developers",
+        "Terminal says zsh command not found",
+        "Mac",
+        "developer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Goumbik",
+        "url": "https://pixabay.com/users/Goumbik-3752482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-technology-notebook-laptop-2717063/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/zsh-command-not-found-mac-terminal-fix/zsh-command-not-found-mac-terminal-fix-2-a21ea6.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Hands typing on a Mac keyboard while working through a zsh command not found mac terminal fix",
+      "caption": "Type each command yourself and read it first.",
+      "keywords": [
+        "zsh command not found mac terminal fix",
+        "Developers",
+        "Terminal says zsh command not found",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/zsh-command-not-found-mac-terminal-fix/zsh-command-not-found-mac-terminal-fix-3-94e286.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Coding setup on a Mac with a terminal open, used for a zsh command not found mac terminal fix",
+      "caption": "Check your shell before you change anything.",
+      "keywords": [
+        "zsh command not found mac terminal fix",
+        "Developers",
+        "Terminal says zsh command not found",
+        "Mac",
+        "coding office laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programming-developing-startup-593312/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "zsh command not found mac terminal fix",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "zsh command not found homebrew": 1,
+      "zsh command not found mac": 7,
+      "change default shell to zsh mac": 1,
+      "zprofile vs zshrc mac": 1,
+      "homebrew shellenv zprofile": 1,
+      "bash command not found mac terminal": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

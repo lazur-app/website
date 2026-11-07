@@ -1,0 +1,672 @@
+{
+  "title": "How to resolve git merge conflict markers step by step on a Mac in 2026",
+  "metaTitle": "Resolve git merge conflict markers step by step on Mac",
+  "description": "Resolve git merge conflict markers step by step on your Mac. Find the markers, pick the right code, stage the file, and finish the merge safely.",
+  "targetKeyword": "how to resolve git merge conflict markers step by step",
+  "secondaryKeywords": [
+    "git merge conflict markers",
+    "git merge --abort",
+    "resolve merge conflicts VS Code Mac",
+    "zdiff3 conflict style git",
+    "git merge -X theirs",
+    "git merge conflict Terminal Mac"
+  ],
+  "intro": "To resolve git merge conflict markers, find each conflict block. It starts with <<<<<<< and ends with >>>>>>>. Choose the code to keep, delete the marker lines, stage the file, and finish the merge. This guide covers each step in Terminal and VS Code on a Mac, plus the checks that stop a bad merge from reaching your branch.",
+  "tldr": [
+    "Run git status to list the files Git could not merge.",
+    "Open each file, find the block from <<<<<<< HEAD to >>>>>>>, and choose the code you want.",
+    "Delete all three marker lines in every conflict, then search for any that remain.",
+    "Run git add on each fixed file, then git commit or git merge --continue.",
+    "If the merge goes wrong, run git merge --abort to return to where you started."
+  ],
+  "stats": [
+    {
+      "value": "1,717,800",
+      "label": "US software developer jobs, May 2025 (BLS)",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Software Developers"
+    },
+    {
+      "value": "19.8%",
+      "label": "Textual conflict rate for same-agent branch pairs in a 747 pair replay of AI-agent pull requests",
+      "sourceUrl": "https://arxiv.org/html/2607.04697",
+      "sourceTitle": "AI Agent Pull Requests on GitHub: Frequency, Structure, and Merge Conflict Rates (arXiv preprint)"
+    },
+    {
+      "value": "41.7%",
+      "label": "Textual conflict rate for cross-agent branch pairs in the same replay, a lower bound",
+      "sourceUrl": "https://arxiv.org/html/2607.04697",
+      "sourceTitle": "AI Agent Pull Requests on GitHub: Frequency, Structure, and Merge Conflict Rates (arXiv preprint)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a merge conflict is and why Git stops"
+    },
+    {
+      "type": "paragraph",
+      "text": "A merge conflict means Git could not combine two sets of changes by itself. Git merges on its own when the edits sit in different places. When two branches change the same lines, Git stops and asks you to decide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Git does not guess. It leaves your branch where it is, records the other branch in a file called MERGE_HEAD, and marks the trouble spots in your files. Your project is now half merged. Nothing is lost, but nothing is finished either."
+    },
+    {
+      "type": "paragraph",
+      "text": "That half-merged state is why people panic. The fix is short. Find the conflicts, decide, edit, stage, and commit. The rest of this page walks through that loop with real commands and real menu paths."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start: check where you are"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Terminal and change into the project folder. Run git status first. Git lists every file it could not merge under a heading called Unmerged paths, and it names the branch in progress. Write that branch name down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run git branch --show-current to confirm which branch you are on. A merge into the wrong branch makes the conflict harder to read and harder to undo. If you are on the wrong branch, abort first with git merge --abort, then switch with git switch."
+    },
+    {
+      "type": "paragraph",
+      "text": "Commit or stash your own unsaved work before you merge. Git refuses some merges when your local edits overlap the incoming changes. A clean state makes the conflict list easier to trust."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 1 to 3: find every conflicted file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run git status again once the merge stops. Look for files marked both modified. Those files hold conflict markers. For a precise list, run git ls-files -u. Each line names a file and an index stage number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Git keeps three versions of a conflicted file in its index. Stage 1 is the common ancestor, the point where the branches split. Stage 2 is your side, HEAD. Stage 3 is the incoming side, MERGE_HEAD. You do not need to work with stages directly. Knowing they exist helps when markers look confusing."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 4: read the conflict markers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open a conflicted file in any editor. Git writes three marker lines around each conflict. Lines between <<<<<<< HEAD and ======= come from your branch. Lines between ======= and >>>>>>> come from the branch you merged in."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Marker line",
+        "What it marks",
+        "What you do"
+      ],
+      "rows": [
+        [
+          "<<<<<<< HEAD",
+          "Start of your side, the current branch",
+          "Read it, then decide whether to keep it"
+        ],
+        [
+          "=======",
+          "Divider between the two versions",
+          "Delete it when you finish the block"
+        ],
+        [
+          ">>>>>>> feature/login",
+          "End of the incoming side, with the branch name",
+          "Delete it when you finish the block"
+        ]
+      ],
+      "caption": "The three marker lines Git writes around each conflict."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some setups add a fourth marker, |||||||, that shows the original text. You can turn that on, and the zdiff3 section below explains how. Your file may have several blocks. Treat each block as its own decision."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 5: edit the file and delete the markers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Decide what the final code should be. You can keep your side, keep the incoming side, or write a mix. Then delete every marker line in that block, along with the code you rejected. Leave only the code you want."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a small example. Your branch sets a timeout to 30. The other branch sets it to 45 and adds a retry count. The right answer may be 45 with the retry count. Type that line yourself. Git will not check whether the value makes sense."
+    },
+    {
+      "type": "paragraph",
+      "text": "Save the file, then run your build and tests. A file with no markers can still be wrong. Treat the edit like any other code change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Search for leftover markers from the project root with grep -rnE '^(<{7}|={7}|>{7})' . If the command prints nothing, no marker lines remain. Lines that are only seven equal signs in docs can give false matches, so read any hit before you delete it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 6: stage the file and finish the merge"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Run git add with each fixed file path, for example git add src/config.js.",
+        "Run git status. Fixed files should show as staged, and Unmerged paths should be gone.",
+        "Run git commit. Git opens the merge message with default text. Edit it if needed, then save and close.",
+        "Or run git merge --continue, which finishes the merge once every file is staged.",
+        "Run git log --oneline -3 to confirm the merge commit sits on top."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If Vim opens for the message, press Esc, type :wq, and press Return. That saves and exits. If another editor opens, save the message and close the window."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use zdiff3 to see what each branch changed"
+    },
+    {
+      "type": "paragraph",
+      "text": "The default style shows only your side and the incoming side. It hides the original text. Set a better style once with git config --global merge.conflictStyle zdiff3. Git then adds the base text between ||||||| and =======."
+    },
+    {
+      "type": "paragraph",
+      "text": "The zdiff3 style also trims lines that match on both sides at the edges of a conflict, so each block is shorter. The base text often answers the first question people ask: what did each branch change?"
+    },
+    {
+      "type": "paragraph",
+      "text": "No published test I found measures whether zdiff3 cuts resolution time. Git's manual documents the option. Try it on a few real conflicts, then decide for yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use -X ours or -X theirs with care"
+    },
+    {
+      "type": "paragraph",
+      "text": "Git can pick a side for you. git merge -X theirs feature/login chooses the incoming side for each conflicting hunk. It still keeps non-conflicting changes from both sides. The -X ours option picks your side the same way."
+    },
+    {
+      "type": "paragraph",
+      "text": "The risk is silent loss. Git picks a whole hunk, so a useful change inside the losing side disappears. Git gives no warning. Check the result with git diff HEAD^ HEAD before you push, then read the changed lines."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Never use -s ours for a normal merge. Git's docs say that strategy discards the other branch's changes entirely. That is a different tool from -X ours, and the two names are easy to mix up."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Back out with git merge --abort"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the conflicts feel too big, back out. Run git merge --abort. Git restores the state you had before the merge. The edits you made while resolving conflicts go with it, so copy any file you want to keep first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use git merge --quit if you want to forget the merge but keep the index and working tree. It is a narrower tool. Use it only when you know what is staged."
+    },
+    {
+      "type": "paragraph",
+      "text": "Aborting is not failure. Many people abort, read the conflict list again, and come back with a clearer plan. A clean retry costs less than a bad commit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Resolve the conflict in VS Code on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code shows conflicts inline. Above each block you see buttons. Accept Current Change keeps your side. Accept Incoming Change keeps the other side. Accept Both Changes keeps both. Compare Changes opens a side-by-side diff."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accept Both is not a finish line. The VS Code docs warn that you may still need to remove duplicate lines or combine the logic by hand. Read the result before you move on."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a bigger view, open the 3-way Merge Editor. Incoming sits on the left, Current on the right, and Result on the bottom. Result is the file Git saves. The Complete Merge button stages that file only. The rest of the Git operation still needs finishing."
+    },
+    {
+      "type": "paragraph",
+      "text": "To find the files, open the Source Control view from the sidebar and look under Merge Changes. For settings, use Code > Settings > Settings and search for merge. VS Code's docs also describe git mergetool with a vscode merge tool. Git does not open it on its own."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When GitHub's web editor is enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "GitHub's web editor handles simple conflicts. GitHub says it resolves only simple competing line change conflicts. For anything else, GitHub tells you to use the command line or another Git client. In Chrome, check that your conflict is simple before you open it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Resolving on GitHub merges the entire base branch into your head branch. If the head branch is protected, GitHub asks you to create a new branch. Plan for that before you start clicking."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode project files and pbxproj conflicts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode projects add a tricky file, project.pbxproj. Two branches that add files or targets can both edit it. In a March 2018 Apple Developer Forums thread, one developer said they spent hours fixing these conflicts by hand on a team that merges daily. The only reply pointed to WWDC 2017 session 405."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sources checked for this guide do not confirm a documented Xcode merge tool. Check Apple's documentation before you rely on one. For now, resolve the markers by hand, rebuild the project, and check that targets and file references still match."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they resolve a conflict"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Deleting the markers without choosing. The file keeps both versions stacked, and that often breaks the build.",
+        "Keeping one side by reflex. Read the other side first, since it may hold a fix you need.",
+        "Skipping git add. Git keeps the merge open until every fixed file is staged.",
+        "Committing with markers still in a file. Run the grep check before every commit.",
+        "Using -s ours for a normal merge. The other branch's changes are discarded.",
+        "Aborting after hours of edits without a copy. Abort also drops the resolution edits you made."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you run git merge feature/login on main. Git reports a conflict in src/auth.js. You run git status and see both modified: src/auth.js. You open the file. The top block sets the token timeout to 30 minutes. The bottom block sets it to 45 and adds a refresh call."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "You keep 45 and the refresh call, then delete the three marker lines in that block. You save and run the tests. The tests pass. The grep check prints nothing. You run git add src/auth.js, then git commit, and save the message."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run git log --oneline -3 and the merge commit sits on top. The time this takes depends on how many files overlap. A small conflict like this one can finish in a few minutes once you know the loop."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your work before you push"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the tests and the build again. Then run git show --stat HEAD to list the files the merge commit touched. If a file appears that you did not expect, open it and read the diff before you push."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask a teammate to review the merge commit when it touches shared code. A second reader often spots a wrong pick that the author has stopped seeing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the next marker is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to accept a change, and Lazur guides you one click at a time, waiting for each click. Lazur does not click buttons, edit files, or run Git for you. You make every choice in the file yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate a merge commit message at the cursor. Dictation is unlimited on the paid plans. For longer writing, read the [AI dictation guide for developers](/blog/ai-dictation-for-developers). Plans and trial terms are on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after your first conflict"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Write down the branch names before you merge, so you know what to abort to.",
+        "Set merge.conflictStyle to zdiff3 once, then review the base text on each block.",
+        "Add the grep check to your routine, and run it before each commit.",
+        "Practice in a throwaway repo, so a bad resolution costs nothing."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does <<<<<<< HEAD mean in a file?",
+      "answer": "It marks the start of your side of a conflict. HEAD is the name Git uses for your current branch tip. The lines below it, down to =======, are the code from your branch. The lines between ======= and >>>>>>> come from the branch you merged in."
+    },
+    {
+      "question": "Can I just delete the markers and commit?",
+      "answer": "You can, but you should not. Deleting the markers keeps both versions stacked in the file. That often breaks the build. Choose the right code first, then delete the marker lines."
+    },
+    {
+      "question": "How do I list every file that has a conflict?",
+      "answer": "Run git status and look under Unmerged paths. For a precise list, run git ls-files -u. Each conflicted file appears with its index stages. Run it again after each fix to see what remains."
+    },
+    {
+      "question": "What is the difference between git merge --abort and git merge --quit?",
+      "answer": "Abort restores the state from before the merge. Quit forgets the merge but keeps the index and working tree as they are. Use abort when you want a clean start. Use quit only when you know what is already staged."
+    },
+    {
+      "question": "Is -X theirs safe for a whole merge?",
+      "answer": "Not without a check. It picks the incoming side for each conflicting hunk, so a useful change can disappear without a warning. Use it only when you know the other side should win, and review the diff afterward."
+    },
+    {
+      "question": "Does Lazur resolve merge conflicts for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or run Git. It can explain what the markers mean, point at the next conflict on screen, and guide you one click at a time. You make every choice."
+    },
+    {
+      "question": "Which Git version should I use?",
+      "answer": "The git-merge manual documents Git 2.54.0 and says its steps still apply through 2.56.0. Run git --version in Terminal to see what you have installed."
+    }
+  ],
+  "sources": [
+    {
+      "title": "BLS Occupational Outlook Handbook: Software Developers",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "AI Agent Pull Requests on GitHub: Frequency, Structure, and Merge Conflict Rates",
+      "url": "https://arxiv.org/html/2607.04697",
+      "publisher": "arXiv (preprint)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Git documentation: git-merge",
+      "url": "https://git-scm.com/docs/git-merge",
+      "publisher": "Git project",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "GitHub Docs: Resolving a merge conflict on GitHub",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/resolving-a-merge-conflict-on-github",
+      "publisher": "GitHub",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "VS Code docs: Merge conflicts",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Developer Forums: Merge Project File Conflicts",
+      "url": "https://developer.apple.com/forums/thread/98535",
+      "publisher": "Apple Developer Forums",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "resolving git merge conflicts",
+  "costs": [
+    {
+      "title": "Paid time, at a rough hourly rate",
+      "text": "Conflict work is paid time. BLS puts the median annual pay for software developers at $135,980 in May 2025. Assuming 2,080 paid hours a year, that works out to about $65 an hour. That hourly figure is our own derivation, not a BLS number. At that rate, half an hour of conflict work costs about $33 in salary time."
+    },
+    {
+      "title": "A pull request that waits",
+      "text": "A conflicted branch cannot merge until someone fixes it. The pull request sits in review. The reviewer loses the thread, and the author switches to other work. Each handoff adds time. None of this shows up on a timer, which is why it is easy to miss."
+    },
+    {
+      "title": "Code that builds but behaves wrong",
+      "text": "The worst cost is a merge that compiles and still behaves wrong. Automatic picks such as -X theirs can drop a useful change without a warning. Your tests may not cover the lost line. You may only find it later, in production or in a customer report."
+    },
+    {
+      "title": "How often AI-written branches collide",
+      "text": "A 2026 arXiv preprint replayed 747 branch pairs from AI-agent pull requests. Textual conflicts appeared in 19.8% of same-agent pairs and 41.7% of cross-agent pairs. The authors call these lower bounds. The preprint is not peer reviewed, so treat the numbers as a signal, not a verdict."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Both branches changed the same lines",
+      "text": "This is the classic conflict. Git can merge changes that sit in different places. Two edits to the same lines leave it stuck, because Git cannot tell which version you meant. Long-running feature branches make this more likely, since they touch more lines over time."
+    },
+    {
+      "title": "One branch deleted a file the other edited",
+      "text": "Git calls this modify/delete. One side removes or moves a file while the other side changes it. In the AI-agent pull requests in the 2026 preprint, modify/delete conflicts made up 26.8% of conflicted files. Content conflicts made up 57.6%, so check for both kinds."
+    },
+    {
+      "title": "Two branches created the same new file",
+      "text": "This is add/add. Each branch creates a file with the same path but different contents. Git cannot pick one without help from you. The same preprint counted 15.1% of its conflicted files as add/add in the AI-agent set."
+    },
+    {
+      "title": "Source code takes most of the hits",
+      "text": "In that preprint's AI-agent replay, source code made up 84.4% of conflicted files. Configuration and generated files still collide. Code still takes most of the hits, so expect conflicts in the files you edit most."
+    },
+    {
+      "title": "Tool-generated project files",
+      "text": "Some files are rewritten by tools, such as lock files and Xcode project files. Two branches that each run a tool can produce different output for the same file. The Apple forum thread shows how painful this can feel on a team that merges daily."
+    },
+    {
+      "title": "Branches that go stale",
+      "text": "A branch that stays open for weeks drifts away from main. Every day it drifts, the chance that someone else touched the same line grows. This cause is one you control. Pull main into your branch often, and conflicts stay small."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Merge main into your branch often",
+      "text": "Merge or pull main into your feature branch every day or two. Small, frequent merges leave fewer overlaps. Run git fetch origin, then git merge origin/main while your branch is clean. Fix each small conflict while the context is still fresh in your head."
+    },
+    {
+      "title": "Turn on the zdiff3 conflict style",
+      "text": "Run git config --global merge.conflictStyle zdiff3 once. Git's manual lists diff3 and zdiff3 as options. The base text shows what each branch changed from. Use it on your next conflict and compare the blocks with the default output."
+    },
+    {
+      "title": "Use the list of unmerged files",
+      "text": "Run git ls-files -u to see each conflicted file and its index stages. Use it to check that you did not miss a file. A file that never appears in that list is not part of the conflict."
+    },
+    {
+      "title": "Choose a side per block, not per file",
+      "text": "Read both sides of each block, then choose. Top is your side, bottom is the incoming side. Edit by hand, or use VS Code's Accept buttons for simple blocks. Reading first avoids the reflex fix that drops a change you needed."
+    },
+    {
+      "title": "Use the VS Code 3-way Merge Editor",
+      "text": "Open the Source Control view and click the conflicted file. Use the 3-way Merge Editor to compare Incoming, Current, and Result. Edit only the Result pane. Click Complete Merge to stage that file, then finish the Git operation in Terminal or Source Control."
+    },
+    {
+      "title": "Use git merge --abort as a reset",
+      "text": "If you feel lost, run git merge --abort. Git returns to the state before the merge. Copy any resolution you want to keep first, because abort drops those edits. Then restart the merge with a clearer plan."
+    },
+    {
+      "title": "Search for markers and run tests before every commit",
+      "text": "Run grep -rnE '^(<{7}|={7}|>{7})' . from the project root, then run your tests. Markers can hide in files you did not open. Tests catch many wrong picks, but not all of them. Read the diff for every file you touched."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥⌘ and ask what these conflict markers mean.",
+      "result": "Lazur answers out loud from what is on your screen. You learn that the top block is your branch and the bottom block is the incoming branch.",
+      "capability": "explain"
+    },
+    {
+      "say": "Ask Lazur where the next conflict marker is.",
+      "result": "Lazur draws a circle and a label around the marker line, so you can find it in a long file.",
+      "capability": "point"
+    },
+    {
+      "say": "Ask how to accept the incoming change in VS Code.",
+      "result": "Lazur guides you one click at a time, waiting for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate your merge commit message.",
+      "result": "Your words land at the cursor as clean text, in the commit message box or any other field you pick.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Ask Lazur to draft a short note on what you kept from each side.",
+      "result": "Lazur drafts the text, and you paste it or edit it. Useful for pull request descriptions, where reviewers want to know which side won.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "What do these conflict markers mean?",
+    "capability": "explain",
+    "result": "Lazur explains that the top block is your branch and the bottom block is the branch you merged in. It points at the marker lines.",
+    "shell": "code",
+    "context": "VS Code open on a file with a merge conflict",
+    "output": "Lazur answers out loud. It explains the three marker lines and what each side holds.",
+    "pointsAt": "<<<<<<< HEAD"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Practice in a throwaway repo",
+      "text": "Create a test folder with git init. Make two branches that edit the same line of one file. Run git merge, then resolve the conflict with the steps above. Finish with git commit and read the result in git log."
+    },
+    {
+      "label": "Day 2",
+      "title": "Turn on zdiff3 and compare",
+      "text": "Run git config --global merge.conflictStyle zdiff3. Repeat the Day 1 test and compare the base text with the default output. Note which style makes each choice faster for you."
+    },
+    {
+      "label": "Day 3",
+      "title": "Practice abort and quit",
+      "text": "Start a conflicting merge, then run git merge --abort. Confirm with git status that you are back where you began. Repeat the test with git merge --quit and see what stays staged."
+    },
+    {
+      "label": "Day 4",
+      "title": "Resolve one real conflict in VS Code",
+      "text": "Pick a small, low-risk conflict on your team branch. Use the Accept buttons for simple blocks and the 3-way Merge Editor for one file. Run the grep check and your tests before you commit."
+    },
+    {
+      "label": "Day 5",
+      "title": "Make the routine stick",
+      "text": "Add the grep check and the git status step to your team's pull request checklist. Ask one teammate to review your next merge commit. Note any file that surprised you, and why."
+    }
+  ],
+  "apps": [
+    "vs-code",
+    "cursor",
+    "chrome",
+    "xcode"
+  ],
+  "type": "problem",
+  "slug": "git-merge-conflict-markers-step-by-step",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/git-merge-conflict-markers-step-by-step/how-to-resolve-git-merge-conflict-markers-1-b0f285.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Programmer at a laptop reviewing code before a git merge",
+      "caption": "Review the changes before you choose a side.",
+      "keywords": [
+        "how to resolve git merge conflict markers step by step",
+        "Developers",
+        "Resolving git merge conflicts",
+        "Mac",
+        "programmer laptop code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "This_is_Engineering",
+        "url": "https://pixabay.com/users/This_is_Engineering-11384528/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/engineer-computer-laptop-technology-8499904/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/git-merge-conflict-markers-step-by-step/how-to-resolve-git-merge-conflict-markers-2-5a707a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a desk coding on a Mac with a code editor open",
+      "caption": "A merge conflict often shows up in the middle of review.",
+      "keywords": [
+        "how to resolve git merge conflict markers step by step",
+        "Developers",
+        "Resolving git merge conflicts",
+        "Mac",
+        "developer desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "9sdworld",
+        "url": "https://pixabay.com/users/9sdworld-9495675/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-coder-programming-coding-4333398/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/git-merge-conflict-markers-step-by-step/how-to-resolve-git-merge-conflict-markers-3-040b08.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a MacBook on a desk to fix a git merge conflict",
+      "caption": "Finish the merge in Terminal, then check the result.",
+      "keywords": [
+        "how to resolve git merge conflict markers step by step",
+        "Developers",
+        "Resolving git merge conflicts",
+        "Mac",
+        "macbook coding desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fancycrave1",
+        "url": "https://pixabay.com/users/fancycrave1-1115284/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-programming-hacking-html-web-820275/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to resolve git merge conflict markers step by step",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 2,
+    "secondary": {
+      "git merge conflict markers": 6,
+      "git merge --abort": 9,
+      "resolve merge conflicts VS Code Mac": 1,
+      "zdiff3 conflict style git": 1,
+      "git merge -X theirs": 2,
+      "git merge conflict Terminal Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

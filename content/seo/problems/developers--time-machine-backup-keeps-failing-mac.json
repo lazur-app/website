@@ -1,0 +1,619 @@
+{
+  "title": "Time Machine backup keeps failing on Mac: causes and free fixes you can try today",
+  "metaTitle": "Time Machine backup keeps failing on Mac: fixes that work",
+  "description": "Time Machine backup keeps failing on your Mac? Read the error, check the disk, and try Apple's free fixes in order, with the causes explained.",
+  "targetKeyword": "time machine backup keeps failing on mac",
+  "secondaryKeywords": [
+    "time machine backup failed mac",
+    "an error occurred while preparing the backup",
+    "time machine disk is read-only",
+    "time machine backup disk full",
+    "time machine network backup fails",
+    "verify time machine backup disk"
+  ],
+  "intro": "If your Time Machine backup keeps failing on Mac, the cause is usually the backup disk, its connection, free space, security software, or a damaged backup. Apple lists each of these with a fix you can run yourself, and none of them costs money.",
+  "tldr": [
+    "Read the exact error message first. Apple lists a different cause and fix for each one.",
+    "Most failures come from the backup disk, its cable or hub, free space, or security software.",
+    "Run First Aid on the backup disk in Disk Utility before you blame macOS.",
+    "Keep the backup disk at least twice the size of the data you back up.",
+    "Network backups have their own rules. Apple says to use SMB, and AFP is no longer supported in macOS 27."
+  ],
+  "stats": [
+    {
+      "value": "1.36%",
+      "label": "Annualized drive failure rate in Backblaze's 2025 data, across 344,196 hard drives",
+      "sourceUrl": "https://ir.backblaze.com/news/news-details/2026/Backblaze-Publishes-2025-Drive-Stats-Report-13-Years-of-Data-Show-a-Growing-Healthier-Drive-Fleet/default.aspx",
+      "sourceTitle": "Backblaze Publishes 2025 Drive Stats Report"
+    },
+    {
+      "value": "42%",
+      "label": "Of 6,118 people in a 2025 Western Digital survey said they had already experienced data loss",
+      "sourceUrl": "https://securitybrief.co.nz/story/western-digital-survey-reveals-global-data-backup-trends",
+      "sourceTitle": "Western Digital survey reveals global data backup trends"
+    },
+    {
+      "value": "22%",
+      "label": "Of about 4,000 people in a 2024 ExpressVPN survey said they never back up their data",
+      "sourceUrl": "https://www.expressvpn.com/blog/backup-data/",
+      "sourceTitle": "Survey: How often do you back up your data?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a failed Time Machine backup costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "A failed backup costs you the work it was supposed to protect. Time Machine keeps only the copies it managed to save. If the last good backup is from Monday, everything you changed after Monday lives on one drive and one Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The worst part is that the failure can be quiet. A backup can stop running for weeks while the Mac looks normal. You only find out when you need an old file. Check the last backup time in System Settings > General > Time Machine every week until the problem is fixed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Restores take time too. Copying a large library back from a backup can take much longer than you expect, especially over a slow USB connection or a slow network. Plan for that wait before a deadline, not during one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the error message before you change anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Time Machine often tells you what went wrong, if you read the message. Apple's troubleshooting page matches common messages to a likely cause and a fix. Copy the exact wording into a note. That text is the fastest route to the right section."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Message",
+        "Apple's listed cause",
+        "Apple's suggested fix"
+      ],
+      "rows": [
+        [
+          "An error occurred while preparing the backup",
+          "Virus scanning software may be blocking backups",
+          "Update the antivirus, exclude the backup disk, or disable it temporarily"
+        ],
+        [
+          "The disk is read-only",
+          "A problem with the disk or its file system",
+          "Run First Aid in Disk Utility on the backup disk"
+        ],
+        [
+          "The disk is full",
+          "The backup disk is too small for your data",
+          "Exclude files from the backup, or use a larger disk"
+        ],
+        [
+          "Due to a network disconnection",
+          "Third-party firewall software may interfere",
+          "Disable the firewall software"
+        ],
+        [
+          "Some files are unavailable",
+          "Encrypted files can't be read while the Mac is locked",
+          "Time Machine retries later, or retry while the Mac is unlocked"
+        ],
+        [
+          "Can't create a snapshot",
+          "The internal disk is almost full",
+          "Delete files from the Mac"
+        ]
+      ],
+      "caption": "Common Time Machine messages, with the causes and fixes Apple lists."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two of these messages point at the drive, not at macOS. A read-only disk and a full disk both start with the backup disk itself. Check the drive first, and skip the rest until you know it is healthy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the backup works on some days and fails on others"
+    },
+    {
+      "type": "paragraph",
+      "text": "Intermittent failures usually come from the connection or from sleep. A loose cable or a hub can drop the drive for a few seconds. Time Machine stops mid-run, and the next attempt may work. Fix the hardware before you touch the software."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a portable SSD that backs up, then fails"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your MacBook backs up to a portable SSD on your desk. The first few runs finish. Then one run fails with a read-only message. You check the cable and find the SSD plugged into a USB hub under your monitor."
+    },
+    {
+      "type": "paragraph",
+      "text": "You unplug the hub and connect the SSD straight to a port on the Mac. You run First Aid on the SSD in Disk Utility, and it reports a file system error that it repairs. You start a new backup, and it finishes. You still keep a second copy of your work, in case the drive fails again."
+    },
+    {
+      "type": "paragraph",
+      "text": "The lesson is simple. Hardware checks come before settings changes. If First Aid reports errors it cannot fix, stop using the drive and copy your files off it before you try anything else."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix it in this order, starting with the cheapest check"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Plug the backup disk straight into the Mac, not into a hub, dock, or extension cable.",
+        "Open Applications > Utilities > Disk Utility, select the backup disk, and click First Aid.",
+        "Check free space on the backup disk. Apple says it should be at least twice the size of the data you back up.",
+        "Update your antivirus app, then exclude the backup disk from scanning. Disable the app only as a last test.",
+        "Turn off third-party firewall software for one backup run, then turn it back on and allow Time Machine through.",
+        "Wake the Mac, keep it unlocked, and start a backup. Watch the first few minutes for the same error.",
+        "Verify the backup disk with Apple's troubleshooting steps to find damaged backups.",
+        "If none of this works, copy everything you need off the old disk, then start again on a clean disk."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Log each step as you go. Write down the date, the change, and the result. If you change three things at once, you won't know which one fixed it, and the problem may come back."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Disk format and size: the setup mistakes behind repeat failures"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple says APFS or APFS Encrypted disks are the preferred format for a Time Machine backup disk. Mac OS Extended (Journaled) is still supported. Check the format in Disk Utility before you change anything else, since it takes a minute."
+    },
+    {
+      "type": "paragraph",
+      "text": "Size matters just as much. Time Machine keeps the last backup while it writes the next one, so the disk needs room for both. A disk the same size as the Mac's internal drive leaves no margin for that."
+    },
+    {
+      "type": "paragraph",
+      "text": "Windows-formatted drives are a trap. Apple says reformatting a Windows-formatted disk permanently removes all of its data. Copy anything you need off the drive before you reformat it, even if the drive looks empty."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Network backups: SMB, AFP, and older Time Capsules"
+    },
+    {
+      "type": "paragraph",
+      "text": "Network backups fail for different reasons than USB backups. Apple says to use SMB when you have the choice. Some non-Apple network disks don't support Time Machine at all, so check the vendor's list before you buy."
+    },
+    {
+      "type": "paragraph",
+      "text": "AFP is the trouble spot. Apple's backup disk article, published 14 September 2026, says AFP-based NAS backups aren't supported in macOS 27 or later. It says Time Capsule and AirPort Extreme are no longer recommended because they use AFP."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac-to-Mac backups have a version rule. Apple recommends network backup between two Macs only when both run macOS 11 or later. If the other Mac is older, upgrade it or switch to an external disk."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that look like failures but aren't"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some warnings are not failures. When some files are locked or encrypted, Time Machine skips them and retries later. You do not need to rebuild the backup for that. Retry while the Mac is unlocked if you need the files now."
+    },
+    {
+      "type": "paragraph",
+      "text": "A nearly full internal disk causes a different error. Apple lists 'can't create a snapshot' with an almost-full internal disk as the cause. Delete files from your Mac, not from the backup, and try again."
+    },
+    {
+      "type": "paragraph",
+      "text": "An old damaged backup can block new ones. Apple says to verify the backup disk to find damaged backups that stop the current backup from completing. Verification can take a while on a large drive, so start it before you step away."
+    },
+    {
+      "type": "paragraph",
+      "text": "Don't erase the backup disk to fix errors unless you have another copy. Erasing removes every backup on it, including the old ones you still need."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when a backup keeps failing"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Changing five settings at once, so nobody knows which change worked.",
+        "Turning antivirus off for good, instead of excluding the backup disk.",
+        "Buying a new drive before running First Aid on the old one.",
+        "Trusting the Mac's icon and ignoring the date of the last backup.",
+        "Formatting the disk that holds the only copy of your files.",
+        "Using a network disk that doesn't support Time Machine, then blaming macOS."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How often backups fail, and what the numbers can't tell you"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "No study measures how often Time Machine backups fail specifically. The numbers online cover backups in general. ExpressVPN's 2024 poll of about 4,000 people in four countries found that 22% never back up their data. It is a non-probability survey, so treat it as a rough signal."
+    },
+    {
+      "type": "paragraph",
+      "text": "Western Digital's 2025 survey of 6,118 people in 10 countries found that 42% had already experienced data loss. It also found that 79% actively back up. Those are self-reported answers, not failure rates for any one tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "Drives do fail. Backblaze reported a 1.36% annualized failure rate across 344,196 drives for 2025, down from 1.55% in 2024. That is a fleet average, not a promise about your drive. A second copy protects you either way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it doesn't"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for your Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can explain an error, point at a setting, and guide you through steps. It does not click buttons or change settings for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use it while you work the list. Ask what a message means, and Lazur explains it from your screen. Ask where the Time Machine setting is, and Lazur draws a circle and a label around it. Ask for the steps to run First Aid, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "For research, Lazur runs jobs in its own Chrome tabs and returns a summary and a report. Use that to check Apple's current pages for your macOS version. Verify anything it finds against Apple's own support pages."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Mac holds client, patient, or financial data, follow your employer's rules first. Check whether you can copy files to a backup disk, use a network share, or ask Lazur to read a screen with that data on it. Lazur listens and looks at the screen only while you hold the shortcut."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next, and when to stop troubleshooting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the last backup date and the exact error. If First Aid comes back clean, the disk is probably fine. Then work through the fix list one step at a time, and check the result after each step."
+    },
+    {
+      "type": "paragraph",
+      "text": "Stop when the disk shows errors that First Aid can't repair, or when no Mac recognizes it. Copy what you can off it first. Then take the drive to a repair service or ask your IT team. Repeated retries on a failing drive waste time and put your data at more risk."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a backup runs clean, check it again in a few days. One successful run is good news, not proof. Keep a second copy somewhere else, so one failing drive is never your only copy."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Time Machine backup keep failing with no clear error?",
+      "answer": "Start with the last backup time in System Settings > General > Time Machine, then check the disk connection. Silent failures are often a loose cable, a USB hub, or a drive that drops out during long runs. Run First Aid on the disk, then try again with the cable plugged straight into the Mac."
+    },
+    {
+      "question": "Can I fix a failed Time Machine backup without erasing the disk?",
+      "answer": "Usually yes. Run First Aid, check free space, adjust antivirus and firewall settings, and verify the backup disk. Erase only after you have a copy of everything on the disk, because erasing removes every backup on it."
+    },
+    {
+      "question": "Is APFS better than Mac OS Extended for a Time Machine disk?",
+      "answer": "Apple says APFS or APFS Encrypted disks are the preferred format. Mac OS Extended (Journaled) is still supported. If your disk works now, change the format only after you have a verified backup somewhere else."
+    },
+    {
+      "question": "What does it mean when Time Machine says the disk is read-only?",
+      "answer": "Apple lists this error with a cause of a problem with the disk or its file system. Run First Aid in Disk Utility on the backup disk. If First Aid finds errors it can't fix, copy your data off the disk and replace it."
+    },
+    {
+      "question": "Can I back up to a Time Capsule on macOS 27?",
+      "answer": "Apple says Time Capsule and AirPort Extreme are no longer recommended because they use AFP. Apple's page also says AFP-based NAS backups aren't supported in macOS 27 or later. Check Apple's current backup disk list before you rely on one."
+    },
+    {
+      "question": "Can Lazur fix my Time Machine backup for me?",
+      "answer": "No. Lazur explains errors, points at settings, and guides you one click at a time. It does not click buttons or change settings for you. You do the steps."
+    },
+    {
+      "question": "How do I know my backup is working?",
+      "answer": "Check the last backup time in System Settings > General > Time Machine a few days after a fix. Verify the backup disk using Apple's steps. One successful run is a good sign, but it is not proof the next run will work."
+    }
+  ],
+  "sources": [
+    {
+      "title": "If a Time Machine backup fails on Mac - Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/if-a-time-machine-backup-fails-mchlb955003d/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Backup disks you can use with Time Machine - Apple Support",
+      "url": "https://support.apple.com/en-us/102423",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Disks you can use with Time Machine - Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/disks-you-can-use-with-time-machine-mh15139/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Survey: How often do you back up your data?",
+      "url": "https://www.expressvpn.com/blog/backup-data/",
+      "publisher": "ExpressVPN",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Western Digital survey reveals global data backup trends",
+      "url": "https://securitybrief.co.nz/story/western-digital-survey-reveals-global-data-backup-trends",
+      "publisher": "SecurityBrief New Zealand",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Backblaze Publishes 2025 Drive Stats Report",
+      "url": "https://ir.backblaze.com/news/news-details/2026/Backblaze-Publishes-2025-Drive-Stats-Report-13-Years-of-Data-Show-a-Growing-Healthier-Drive-Fleet/default.aspx",
+      "publisher": "Backblaze, Inc.",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "time machine backups that fail on mac",
+  "costs": [
+    {
+      "title": "The gap between backups",
+      "text": "Anything you changed since the last good backup is at risk. That includes drafts, photos, and project files saved after the last successful run. The longer the failure runs, the bigger that gap grows. Check the date of your last backup every week until the problem is fixed."
+    },
+    {
+      "title": "Time spent on repairs",
+      "text": "Troubleshooting a backup can eat an afternoon, especially when the error changes between tries. Restoring from a backup takes time too. Large libraries can take much longer to copy back than they took to back up. Plan for that wait before a deadline."
+    },
+    {
+      "title": "A false sense of safety",
+      "text": "A stale backup can look fine at a glance. The Time Machine icon may still appear, and older backups still show in the list. You can feel protected while nothing new is being saved. That gap is the real cost."
+    },
+    {
+      "title": "Money spent on the wrong fix",
+      "text": "People buy new drives or new software before checking the disk they already have. A First Aid check costs nothing and tells you whether the drive is failing. Spend money only after the free checks fail."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Security software blocking the backup",
+      "text": "Antivirus software can block Time Machine from writing to the backup disk. Apple lists this as the cause of the error 'an error occurred while preparing the backup'. Update the antivirus app first. If the problem stays, exclude the backup disk from scanning, and turn protection back on after your test."
+    },
+    {
+      "title": "A read-only or damaged backup disk",
+      "text": "Apple lists 'the disk is read-only' with a cause of a problem with the disk or its file system. A small file system error can stop every backup until you repair it. Run First Aid in Disk Utility on the backup disk. A disk with physical errors may need replacing."
+    },
+    {
+      "title": "A backup disk that is too small",
+      "text": "Time Machine needs room for the new backup and for the last one it keeps. Apple says the backup disk should be at least twice the size of the data being backed up. A disk sized to match your data leaves no margin, so the next backup fails when it fills."
+    },
+    {
+      "title": "A third-party firewall",
+      "text": "Firewall software can interfere with the connection to a network backup device. Apple lists the error 'due to a network disconnection' with this cause. Disable the firewall briefly to test. Then keep it on and adjust its rules so Time Machine is allowed through."
+    },
+    {
+      "title": "A loose cable, a USB hub, or a drive that drops out",
+      "text": "When Time Machine stops and the backup drive isn't listed in the Finder, Apple's fix is to remove any USB hubs and connect the disk firmly. Hubs and docks can drop power or signal during long runs. A drive that works for a quick file copy can still fail during a backup."
+    },
+    {
+      "title": "Locked or encrypted files",
+      "text": "Some encrypted files can't be accessed while the Mac is locked. Time Machine skips them and shows 'some files are unavailable'. It retries automatically later. You can also retry while the Mac is unlocked, which is the faster route if you need those files now."
+    },
+    {
+      "title": "Old AFP network backups",
+      "text": "Apple's page published 14 September 2026 says AFP-based NAS backups aren't supported in macOS 27 or later. Time Capsule and AirPort Extreme are no longer recommended because they use AFP. Some non-Apple network disks don't support Time Machine at all, so repeated retries won't help."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Reconnect the disk without a hub",
+      "text": "Connect the backup disk straight to a port on the Mac, using the cable that came with it. Remove hubs, docks, and extension cables. Then start a backup and check whether it gets past the point where it failed before."
+    },
+    {
+      "title": "Run First Aid on the backup disk",
+      "text": "Open Applications > Utilities > Disk Utility. Select the backup disk in the sidebar, click First Aid, and let it finish. If it reports errors it can't fix, stop using the disk and copy what you need off it."
+    },
+    {
+      "title": "Give the backup disk enough room",
+      "text": "Apple says the backup disk should be at least twice the size of the data you back up. Exclude large folders you don't need, such as old downloads or virtual machine files, from the backup in Time Machine settings. Buy a larger disk later if you still run short."
+    },
+    {
+      "title": "Exclude the backup disk from antivirus scanning",
+      "text": "Update your antivirus app first. Then add the backup disk to its exclusion list. Each security product names this setting differently, so check the app's own help for the exact menu."
+    },
+    {
+      "title": "Test with the firewall off, then allow Time Machine",
+      "text": "Turn off third-party firewall software, run one backup, and check the result. If the backup works, add a rule that allows Time Machine instead of leaving the firewall off. Keep the firewall on for everything else."
+    },
+    {
+      "title": "Retry while the Mac is unlocked",
+      "text": "Wake the Mac, sign in, and start a backup. Keep the Mac unlocked until the backup finishes. This helps when the error mentions files that can't be read while the Mac is locked."
+    },
+    {
+      "title": "Verify the backup disk",
+      "text": "Apple says verifying the backup disk finds damaged backups that can stop the current backup from completing. Use the verify option in Time Machine settings. If verification finds damage, copy the files you need first, then decide whether to erase the disk."
+    },
+    {
+      "title": "Check the disk format before you change anything",
+      "text": "Apple says APFS or APFS Encrypted is the preferred format for a Time Machine backup disk. Mac OS Extended (Journaled) is still supported. Check the format in Disk Utility. If the disk was formatted for Windows, copy its files off first, because reformatting removes all data permanently."
+    },
+    {
+      "title": "Use SMB for network backups",
+      "text": "If you back up to a NAS, Apple says to use SMB when you have the choice. Confirm that the device supports Time Machine. If your Mac runs macOS 27 or later, AFP-based backups aren't supported, so an AFP setup needs a new target."
+    },
+    {
+      "title": "Free space on the Mac, not just the backup disk",
+      "text": "If Time Machine says it can't create a snapshot, Apple lists an almost-full internal disk as the cause. Delete files from your Mac to free space, then run the backup again. Deleting from the backup disk won't fix this error."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "point",
+      "say": "Where is the Time Machine setting for the backup disk?",
+      "result": "Lazur draws a circle and a label around the setting on your screen. You open it and make the change yourself."
+    },
+    {
+      "capability": "explain",
+      "say": "What does 'the disk is read-only' mean?",
+      "result": "Lazur explains the message out loud, using what is on your screen. Hold ⌥ ⌘ to ask, and it answers in plain words."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through running First Aid on my backup disk.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking, so you stay in control of the disk."
+    },
+    {
+      "capability": "research",
+      "say": "Find Apple's current steps for verifying a Time Machine disk.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report. Check the report against Apple's own pages."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to check my last backup on Friday at 5 pm.",
+      "result": "Lazur adds the reminder to Apple Reminders by voice, so the check doesn't slip."
+    },
+    {
+      "capability": "dictate",
+      "say": "Dictate a short error report for the IT team.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in any app, so you can paste it into a ticket."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a short message to my IT team about the backup error.",
+      "result": "Lazur drafts the message and types it where you ask. Read it, fix any details, then send it yourself."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Time Machine setting?",
+    "capability": "point",
+    "result": "Lazur circles the Time Machine pane and labels it on screen. You open it and read the last backup time yourself.",
+    "shell": "generic",
+    "context": "Time Machine settings in System Settings",
+    "output": "Lazur draws a circle and a label around Time Machine in System Settings. It points only. You choose what to do next.",
+    "pointsAt": "Time Machine pane"
+  },
+  "plan": [
+    {
+      "label": "Tonight",
+      "title": "Read the last backup date and the error",
+      "text": "Open System Settings > General > Time Machine and note the last backup time. Copy the exact error message into a note. That message decides which fix you try first."
+    },
+    {
+      "label": "Day 1",
+      "title": "Check the cable and the disk",
+      "text": "Plug the backup disk straight into the Mac, without a hub or dock. Run First Aid on the disk in Disk Utility. Write down exactly what it reports, even if it says the disk is fine."
+    },
+    {
+      "label": "Day 1",
+      "title": "Clear the usual blockers",
+      "text": "Check free space on the backup disk against the size of your data. Add the disk to your antivirus exclusions. Turn off third-party firewall software for one test run, then turn it back on."
+    },
+    {
+      "label": "Day 2",
+      "title": "Run a backup and read the result",
+      "text": "Start a backup by hand while the Mac stays unlocked. Check the result the next morning. If the backup finished, leave the disk where it is and stop changing settings."
+    },
+    {
+      "label": "Day 3",
+      "title": "Verify the backup disk",
+      "text": "Use the verify option Apple describes to find damaged backups. If verification reports damage, copy the files you need first. Then decide whether the disk needs erasing."
+    },
+    {
+      "label": "Day 7",
+      "title": "Confirm the backup stays current",
+      "text": "Check the last backup time again. A working backup shows a recent date. If it doesn't, return to the error message and the fix list, and work the next step."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "time-machine-backup-keeps-failing-mac",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/time-machine-backup-keeps-failing-mac/time-machine-backup-keeps-failing-on-mac-1-9094ed.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Person at a laptop checking why a Time Machine backup keeps failing on Mac",
+      "caption": "Checking backup status at a desk with a laptop.",
+      "keywords": [
+        "time machine backup keeps failing on mac",
+        "Developers",
+        "Time Machine backups that fail",
+        "Mac",
+        "person using laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/time-machine-backup-keeps-failing-mac/time-machine-backup-keeps-failing-on-mac-2-be42bf.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "External hard drive on a desk beside a laptop, the kind used as a Time Machine backup disk",
+      "caption": "A portable drive used as a Time Machine backup disk.",
+      "keywords": [
+        "time machine backup keeps failing on mac",
+        "Developers",
+        "Time Machine backups that fail",
+        "Mac",
+        "external hard drive desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-hard-drive-parts-desk-2607018/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "time machine backup keeps failing on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "time machine backup failed mac": 1,
+      "an error occurred while preparing the backup": 3,
+      "time machine disk is read-only": 1,
+      "time machine backup disk full": 1,
+      "time machine network backup fails": 1,
+      "verify time machine backup disk": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

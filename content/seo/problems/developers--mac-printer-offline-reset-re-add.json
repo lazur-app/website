@@ -1,0 +1,640 @@
+{
+  "title": "Mac says printer is offline but it isn't: fixes for macOS Tahoe 26 and later",
+  "metaTitle": "Mac says printer is offline but it isn't: fixes for Tahoe",
+  "description": "Mac shows a printer as offline when it works fine. Check the network, Local Network access and stuck jobs, then re-add it.",
+  "targetKeyword": "mac says printer is offline but it isn't",
+  "secondaryKeywords": [
+    "printer offline on Mac",
+    "Mac printer offline macOS Tahoe",
+    "Local Network permission Mac printer",
+    "reset printing system Mac",
+    "re-add printer Mac",
+    "Print Center paused job"
+  ],
+  "intro": "When your Mac says a printer is offline but it isn't, the Mac has lost track of the printer, not the printer itself. Three checks cover the usual causes, in order: the network, Local Network access for the app, and stuck jobs in Print Center. This guide covers each check, the free fixes, and where Lazur can help.",
+  "tldr": [
+    "Check that the printer is on and on the same network as the Mac first.",
+    "Give the app you print from Local Network access in System Settings > Privacy & Security > Local Network.",
+    "In Print Center, resume a paused queue or delete the one job that is stuck.",
+    "Re-add the printer, print a test page, then delete the old queue.",
+    "Use Reset Printing System only as a last resort, because it removes every printer."
+  ],
+  "stats": [
+    {
+      "value": "18%",
+      "label": "Desk workers who say print, copy or scan always works on the first try (500 surveyed, 2026)",
+      "sourceUrl": "https://boomset.com/most-employees-say-the-printer-doesnt-work-on-the-first-try-that-cost-rarely-shows-up-anywhere/",
+      "sourceTitle": "Boomset: Most employees say the printer doesn't work on the first try"
+    },
+    {
+      "value": "49%",
+      "label": "Employees who lose 1 to 5 hours of productivity each week to IT issues (Unisys, 2023)",
+      "sourceUrl": "https://www.hrdive.com/news/employees-lose-hours-productivity-weekly-to-it-issues/645198/",
+      "sourceTitle": "HR Dive: Employees lose hours of productivity weekly to IT issues"
+    },
+    {
+      "value": "22 min",
+      "label": "Average minutes per day lost to IT-related issues, over 300 US office workers (2016)",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/wasted-workday-employees-lose-over-two-weeks-each-year-due-to-it-related-issues-300239058.html",
+      "sourceTitle": "PR Newswire: Wasted Workday, employees lose over two weeks each year due to IT-related issues"
+    },
+    {
+      "value": "3.6",
+      "label": "Tech-problem interruptions per office worker per month (Ivanti, 2025, over 3,300 respondents)",
+      "sourceUrl": "https://www.ivanti.com/company/press-releases/2025/tech-disruptions-cost-companies-millions-of-dollars-in-lost-productivity-annually-according-to-research-from-ivanti",
+      "sourceTitle": "Ivanti press release: Tech disruptions cost companies millions in lost productivity"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the offline label means on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Printer pop-up menu in the print dialog and look at the status icon beside your printer. Apple says that icon shows whether the printer is paused, offline or unavailable. Apple lists those three states but does not define each one in detail. Read the label as the Mac's view of the connection, not as proof the hardware is dead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Offline means the Mac has no working path to the printer at that moment. The printer may be switched on and healthy. The Mac just cannot see it on the network. Apple says a printer may not appear if it is turned off or the Mac is on a different network."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the delay costs, and what the data does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "The numbers below come from surveys about IT problems in general. A Standley Systems survey of 500 desk workers found only 18% say printing, copying or scanning always works on the first try. Unisys research reported by HR Dive says about 49% of employees lose 1 to 5 hours of productivity each week to IT issues."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "None of these sources puts a printer-only figure on time, mistakes or money. The 18% number covers print, copy and scan together. Treat the figures as context, not as a bill for your own printer problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A quick check before you change anything"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Is the printer switched on and past its startup screen? A printer still booting can look offline.",
+        "Is the Mac on the same network as the printer? Check the Wi-Fi name in the menu bar, not only the name you remember.",
+        "Does the printer's own panel show a network error or a Wi-Fi warning?",
+        "Does Print Center show a Resume button? That means the printer is paused, not gone.",
+        "Does only one Mac show offline? If other devices print fine, the problem sits on that Mac."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the answers down. They decide the order. If the printer is off or on another network, skip the permission and driver steps. Fix the network first, then come back to the Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why macOS loses track of a printer"
+    },
+    {
+      "type": "paragraph",
+      "text": "The sources point to four causes. The printer is off or on another network. The app you print from lacks Local Network access. A job is stuck in the queue. Or the print queue itself is damaged. Each one needs a different first check."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Offline on one Mac, others print fine",
+          "Local Network access or a stale queue",
+          "Local Network toggles, then re-add"
+        ],
+        [
+          "Offline on every device",
+          "Printer is off or on another network",
+          "Printer power and its Wi-Fi network"
+        ],
+        [
+          "Job sits and never prints",
+          "Paused queue or a faulty job",
+          "Resume button and delete job in Print Center"
+        ],
+        [
+          "Broke after a macOS update",
+          "Reported in Apple Community threads, cause not confirmed",
+          "Re-add the printer before any reset"
+        ]
+      ],
+      "caption": "Symptom, likely cause and first check, based on Apple's help and user reports."
+    },
+    {
+      "type": "paragraph",
+      "text": "An Apple Community thread shows how a bad queue can hurt. After moving to macOS 26 Tahoe, one user saw 'insecure permissions' entries from cups-deviced in the error log. Their USB and network printers stopped. Resetting the printing system and reinstalling the USB printer did not fix it. Another user reported that a clean macOS install did. That is one thread, not proof of a bug that hits everyone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Give your printing app Local Network access"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Apple menu > System Settings > Privacy & Security > Local Network. Turn access on for each app that prints. Apple's help page explains this setting for apps in general and does not mention printers. One Tahoe user reported that turning on those toggles fixed an Epson printer."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Local Network is not a printer setting",
+      "text": "Apple's page covers apps, not printers. Expect this toggle to help only when the app you print from is the one talking to the printer. Do not turn on Local Network for every app just to test. Turn on only what you need."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clear paused and stuck jobs in Print Center"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Print Center from the Dock, as Apple describes. If a Resume button shows in the toolbar, the printer is paused. Click Resume to continue a single paused job. A faulty job can block the whole queue, so select that job and delete it. Deleting it cancels that print, so send it again afterward."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the queue keeps stalling, look for more stuck jobs and delete the ones you no longer need. Then send one test page. One clean test tells you more than repeated retries. Each retry adds another job, and new jobs can stall behind the old one."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Re-add the printer without losing track of it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's order is simple. Add the printer again in Printers & Scanners, print a test page to the new queue, and delete the old queue only after that test prints. Working in this order keeps a fallback. If the new queue fails, the old one still exists."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write down the printer name and its IP address if you can find it.",
+        "Open Printers & Scanners and add the printer again.",
+        "Print a test page to the new queue.",
+        "Delete the old queue only after the test page prints."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use an IP address or the vendor driver when discovery fails"
+    },
+    {
+      "type": "paragraph",
+      "text": "Discovery means the Mac finds the printer on its own. When discovery fails, add the printer by IP address. One Apple Community user reported that re-adding by IP after a network reset worked. Find the address on the printer's panel or its network settings page, then type it into the add screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "A vendor driver is the other route. In the same thread, a user installed the HP driver package, and an HP LaserJet printed again. Other users printed through the HP Smart app instead. Download drivers only from the printer maker's own site, and check the web address before you install anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reset Printing System, the last resort"
+    },
+    {
+      "type": "paragraph",
+      "text": "Control-click the Printers list and choose Reset Printing System. Apple says this removes all printers, so you must add each one again. Write down every printer name and address first. One thread also reported a fix that used Reset Printing System from a queue's File menu, followed by re-adding."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Reset is not a first step",
+      "text": "It affects every printer on the Mac, not only the one that reads offline. Try the re-add and the IP steps first. Use the reset only when those fail and you have your printer details saved."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the queue from Terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are comfortable in Terminal, two commands help. Run lpstat -p to list the printers the Mac knows about. Run dns-sd -B _printer._tcp to search the local network for printers. Press ⌃C to stop the search. Both commands read information. Neither one changes your printers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Reading the results is a rule of thumb, not an Apple step. If lpstat lists your printer but dns-sd never finds it, check the network and the printer first. If dns-sd finds it while the Mac still reads offline, re-add the queue."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make offline worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Deleting the old queue before the new one prints a test page.",
+        "Running Reset Printing System as the first step.",
+        "Installing drivers from download sites you do not know.",
+        "Restarting the printer again and again without checking the network.",
+        "Sending more jobs to a queue that already holds a stuck job.",
+        "Changing router settings before you confirm the printer's current address."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: an Epson on a Tahoe Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your Epson reads offline on a Mac that sits on the same Wi-Fi as the printer. Start with the Local Network list. Turn on access for the app you print from, then quit that app and open it again. Print a test page. This order matches the thread where one user fixed an Epson this way."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Epson still reads offline, delete any stuck job in Print Center. Then re-add the printer. Try the IP address only after the re-add fails. Change one thing at a time, so you know which step worked."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It cannot fix a printer on its own. It can explain the status you see, point at the Local Network list, walk you through a re-add, and draft a note to IT. You still make each change. The Pro trial is 3 days with no credit card, and it starts when you first open the app. See [pricing](/pricing) for plan details."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and work rules when Lazur is on screen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so Lazur can answer, and they are not stored. Content is never used to train AI models. Lazur keeps a memory of what you asked and did, on the Mac."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Client and patient records",
+      "text": "If the screen shows client, patient or other regulated records, close that window before you hold the shortcut. Follow your employer's rules on that data, even when the tool runs on your own Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Working on a company-managed Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "On a company Mac, your IT team may control printers, drivers and network settings. Ask before you reset printing, install a driver, or change Local Network access. Send them the printer name, the status you see, and a screenshot of Print Center. Lazur can draft that message for you to send."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the printer prints again"
+    },
+    {
+      "type": "paragraph",
+      "text": "Print one test page from Chrome and one from a document app. Then open Print Center and confirm the queue is empty. Save the printer's name, address and driver in a note. The next offline message will take less time to fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the problem returns after a macOS update, start with the Local Network list and the queue. Leave the reset for last. The Day 7 check in the plan above covers that routine."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Mac say the printer is offline when it is switched on?",
+      "answer": "A printer can be on and still unreachable. Apple says a printer may not appear if it is off or the Mac is on a different network. Check the printer's network first, then Local Network access for the app you print from."
+    },
+    {
+      "question": "Is offline the same as broken?",
+      "answer": "No. Offline describes the Mac's connection right now. Apple's status icon also shows paused and unavailable states. A paused queue can be resumed in Print Center, so it needs no repair."
+    },
+    {
+      "question": "Will Reset Printing System delete my documents?",
+      "answer": "Apple says the reset removes all printers from the Mac, so you must add each one again. Apple's page does not describe deleting documents, but do not rely on that. Save printer names and addresses first, and keep your files backed up."
+    },
+    {
+      "question": "Why does printing from my phone work but not from my Mac?",
+      "answer": "The phone may reach the printer while the Mac cannot. Check that the Mac is on the same network as the printer, and that the app has Local Network access. If the phone prints, the printer itself is probably working."
+    },
+    {
+      "question": "Do I need the printer maker's app or driver?",
+      "answer": "Not always. One Apple Community user printed through the HP Smart app after printing broke on Tahoe. Another installed the HP driver package, and an HP LaserJet printed again. Try the maker's app or driver when re-adding fails."
+    },
+    {
+      "question": "What do lpstat and dns-sd do in Terminal?",
+      "answer": "lpstat -p lists the printers the Mac knows about. dns-sd -B _printer._tcp searches the local network for printers. Press ⌃C to stop the search. Both commands only read information, so they are safe to try."
+    },
+    {
+      "question": "Can Lazur fix the printer for me?",
+      "answer": "No. Lazur does not click buttons or change settings for you. It can explain the status you see, point at the setting, guide you one click at a time, and draft a message to IT."
+    },
+    {
+      "question": "What if my Mac belongs to my employer?",
+      "answer": "Ask your IT team before you reset printing, install a driver, or change network settings. Follow your employer's rules on any client or patient data that is on screen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Solve printing problems on Mac (Apple Mac Help, en-SA copy of guide mh14002)",
+      "url": "https://support.apple.com/en-sa/guide/mac-help/mh14002/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Control access to your local network on Mac",
+      "url": "https://support.apple.com/guide/mac-help/control-access-to-your-local-network-on-mac-mchla4f49138/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Updated to Tahoe (macOS 26) and now printing fails - Apple Community",
+      "url": "https://discussions.apple.com/thread/256145647",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Boomset: Most employees say the printer doesn't work on the first try",
+      "url": "https://boomset.com/most-employees-say-the-printer-doesnt-work-on-the-first-try-that-cost-rarely-shows-up-anywhere/",
+      "publisher": "Boomset",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "HR Dive: Employees lose hours of productivity weekly to IT issues",
+      "url": "https://www.hrdive.com/news/employees-lose-hours-productivity-weekly-to-it-issues/645198/",
+      "publisher": "HR Dive",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Ivanti press release: Tech disruptions cost companies millions in lost productivity",
+      "url": "https://www.ivanti.com/company/press-releases/2025/tech-disruptions-cost-companies-millions-of-dollars-in-lost-productivity-annually-according-to-research-from-ivanti",
+      "publisher": "Ivanti",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "PR Newswire: Wasted Workday, employees lose over two weeks each year due to IT-related issues",
+      "url": "https://www.prnewswire.com/news-releases/wasted-workday-employees-lose-over-two-weeks-each-year-due-to-it-related-issues-300239058.html",
+      "publisher": "PR Newswire",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "mac showing a printer as offline",
+  "costs": [
+    {
+      "title": "Lost minutes on IT problems in general",
+      "text": "Unisys reports that about 49% of employees lose 1 to 5 hours of productivity each week to IT issues. Robert Half's 2016 survey of more than 300 US office workers found a mean of 22 minutes a day lost to IT-related issues. That adds up to over 91 hours a year, assuming five 8-hour days over 50 weeks. These figures cover all IT problems, not printers."
+    },
+    {
+      "title": "Retries and skipped help",
+      "text": "In a 2026 Standley Systems survey of 500 desk workers, 52% said they retry or troubleshoot failed print, copy or scan tasks themselves. 22% switch device, and 15% contact IT. Also, 76% avoid contacting IT at least sometimes because it feels like more effort than it is worth."
+    },
+    {
+      "title": "The big company number needs a grain of salt",
+      "text": "Ivanti's 2025 press release reports 3.6 tech-problem interruptions per office worker per month. That comes from a survey of over 3,300 IT professionals and end users. The release also estimates nearly $4 million a year in lost productivity for a company with 2,000 employees, but it does not explain how it reached that figure."
+    },
+    {
+      "title": "Your own time is the cost you can measure",
+      "text": "For one offline printer, your own clock is the most honest meter. Count the minutes you spend walking to the printer, reprinting, and searching settings. This page does not put a dollar figure on that time, because none of the sources behind it gives one for printers."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The printer is off or on another network",
+      "text": "Apple says a printer may not appear if it is turned off or the Mac is on a different network. A printer joined to one Wi-Fi network while your Mac sits on another is the classic case. Check the printer's panel first, since the printer shows its own network state more clearly than the Mac does."
+    },
+    {
+      "title": "The app lacks Local Network access",
+      "text": "In System Settings, Local Network access lives under Privacy & Security > Local Network. Each app gets its own toggle. Apple's help page does not name printers, but one user reported that turning on those toggles fixed an Epson. An app without local access may show the printer as gone."
+    },
+    {
+      "title": "A paused or faulty job blocks the queue",
+      "text": "Print Center shows a Resume button when the printer is paused. Apple says a faulty job can block the rest of the queue. A blocked queue can make a healthy printer look dead, so resume or delete the job, then test again."
+    },
+    {
+      "title": "A stale or damaged print queue",
+      "text": "The queue is the Mac's saved record of each printer. In one Apple Community thread, the error log showed 'insecure permissions' entries from cups-deviced after an update to macOS 26 Tahoe. Resetting the printing system and reinstalling a USB printer did not fix it there. Re-adding the printer is the next step to try."
+    },
+    {
+      "title": "A macOS update changed the behavior",
+      "text": "Several people in one Apple Community thread reported failed printing after moving to macOS 26 Tahoe. That pattern is anecdotal. It does not prove a bug affects every Mac, and the sources here show no official Apple fix. Re-add the printer before any reset."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm the printer is on and on the same network",
+      "text": "Check the printer's power and network on its own panel. Then check the Wi-Fi name in the menu bar on the Mac. Look at the status icon in the Printer pop-up menu. Paused, offline and unavailable each point to a different next step. If the printer is off or on another network, fix that before you touch any Mac setting."
+    },
+    {
+      "title": "Give the printing app Local Network access",
+      "text": "Open Apple menu > System Settings > Privacy & Security > Local Network. Turn access on for the app you print from. Then quit that app and open it again. Print a one-page test. Only turn on apps that need it, because this is a privacy setting."
+    },
+    {
+      "title": "Resume the queue or delete the stuck job",
+      "text": "Open Print Center from the Dock. If a Resume button shows in the toolbar, click it to resume a paused job. For a faulty job that blocks the queue, select it and delete it. Reprint anything you cancelled, then send one test page to confirm the queue moves."
+    },
+    {
+      "title": "Re-add the printer, then delete the old queue",
+      "text": "Open Printers & Scanners and add the printer again. Print a test page to the new queue. Delete the old printer queue only after the test prints. Keeping the old queue until the new one works gives you a fallback if the new setup fails."
+    },
+    {
+      "title": "Add the printer by IP address",
+      "text": "When the Mac cannot find the printer on its own, add it by IP address. Find the address on the printer's panel or its network settings page. One Apple Community user reported that re-adding by IP after a network reset worked. Keep the address in a note for next time."
+    },
+    {
+      "title": "Install the vendor driver or app",
+      "text": "Go to the printer maker's own site and download the driver for your version of macOS. In one Apple Community thread, a user installed the HP driver package and an HP LaserJet printed again. Other users printed through the HP Smart app. Check the web address before you install anything."
+    },
+    {
+      "title": "Reset Printing System as the last resort",
+      "text": "Control-click the Printers list and choose Reset Printing System. Apple says this removes all printers, so you must add each one again. Write down names and addresses first. Use this only after the steps above fail, because one thread reported a fix after a reset and re-add."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Hold ⌥ ⌘ and ask what this offline status means.",
+      "result": "Lazur answers out loud from what is on screen, so you know whether to check the network or the queue first."
+    },
+    {
+      "capability": "point",
+      "say": "Where is the Local Network list in System Settings?",
+      "result": "Lazur draws a circle and a label around the item on your screen. You still click it yourself."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through re-adding this printer.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not press buttons for you."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a note to IT with the printer name and error text.",
+      "result": "Lazur drafts the text. You read it, edit it and send it from your own email or chat app."
+    },
+    {
+      "capability": "research",
+      "say": "Find the official driver page for this printer model.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the source before you install."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the note to IT.",
+      "result": "Dictation types clean, formatted text at the cursor in any app. It is unlimited on both Pro and Power."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to test print tomorrow morning.",
+      "result": "Lazur adds an Apple Reminders entry by voice, so the follow-up check does not get lost."
+    }
+  ],
+  "demo": {
+    "spoken": "Walk me through re-adding this printer on my Mac.",
+    "capability": "guide",
+    "result": "Lazur points at each setting, names the next click, and waits for your click before it continues.",
+    "shell": "generic",
+    "context": "Printers & Scanners in macOS Tahoe 26",
+    "output": "A short numbered path, one step at a time. Lazur does not touch your mouse or keyboard.",
+    "pointsAt": "Printers & Scanners"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the basics",
+      "text": "Confirm the printer is on and on the same network as the Mac. Look at the status icon in the Printer pop-up menu. Open Print Center and clear any paused or stuck job. Then send one test page from the app you use most."
+    },
+    {
+      "label": "Day 2",
+      "title": "Fix access and re-add",
+      "text": "Open Apple menu > System Settings > Privacy & Security > Local Network and turn on the app you print from. Quit that app, open it again, and print a test page. If it still fails, re-add the printer in Printers & Scanners and delete the old queue only after a test prints."
+    },
+    {
+      "label": "Day 3",
+      "title": "Try the IP address or driver",
+      "text": "If discovery still fails, find the printer's IP address on its panel and add it by address. If that also fails, download the driver from the printer maker's own site. Write down the name, address and driver you used."
+    },
+    {
+      "label": "Day 7",
+      "title": "Repeat the routine after updates",
+      "text": "After the next macOS update, print a test page before you need the printer. Check Local Network and Print Center first. Keep the reset out of the routine, and use it only if every earlier step fails."
+    }
+  ],
+  "apps": [
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "mac-printer-offline-reset-re-add",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-printer-offline-reset-re-add/mac-says-printer-is-offline-but-it-1-42bdbd.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Office printer on a desk beside a laptop, the kind a Mac user checks when it shows offline",
+      "caption": "Check the printer before you reset anything",
+      "keywords": [
+        "mac says printer is offline but it isn't",
+        "Developers",
+        "Mac showing a printer as offline",
+        "Mac",
+        "office printer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "andreas160578",
+        "url": "https://pixabay.com/users/andreas160578-2383079/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/plotter-large-format-printer-printer-2138990/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-printer-offline-reset-re-add/mac-says-printer-is-offline-but-it-2-062956.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Person working on a laptop at a desk near a printer",
+      "caption": "Printing from a laptop when the printer drops off",
+      "keywords": [
+        "mac says printer is offline but it isn't",
+        "Developers",
+        "Mac showing a printer as offline",
+        "Mac",
+        "person laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Bellahu123",
+        "url": "https://pixabay.com/users/Bellahu123-10783290/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-screen-technology-education-7052694/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/mac-printer-offline-reset-re-add/mac-says-printer-is-offline-but-it-3-cd0dc8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man at a home office using a Mac while a printer sits nearby",
+      "caption": "A Mac user checking printer status at home",
+      "keywords": [
+        "mac says printer is offline but it isn't",
+        "Developers",
+        "Mac showing a printer as offline",
+        "Mac",
+        "man laptop home office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-code-programming-computer-2557466/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "mac says printer is offline but it isn't",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "printer offline on Mac": 1,
+      "Mac printer offline macOS Tahoe": 1,
+      "Local Network permission Mac printer": 1,
+      "reset printing system Mac": 1,
+      "re-add printer Mac": 1,
+      "Print Center paused job": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

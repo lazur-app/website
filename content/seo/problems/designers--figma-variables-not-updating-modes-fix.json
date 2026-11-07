@@ -1,0 +1,593 @@
+{
+  "title": "Figma variables not updating on Mac: causes and fixes for designers in 2026",
+  "metaTitle": "Figma variables not updating on Mac: causes and fixes",
+  "description": "Figma variables not updating? Check the mode on the frame or instance, then re-sync the library. Causes, fixes, and costs for Mac designers.",
+  "targetKeyword": "figma variables not updating",
+  "secondaryKeywords": [
+    "figma variable mode not changing",
+    "figma library variables not updating",
+    "figma variables not syncing",
+    "figma regenerate all instances",
+    "figma variable modes explained",
+    "figma variables not showing in instance"
+  ],
+  "intro": "Figma variables not updating usually comes down to two causes. The frame or instance is pinned to a specific mode, or a linked library has not been republished. Check the mode on the frame first, then re-sync the library that feeds it. Community reports point to these two causes.",
+  "tldr": [
+    "Check the mode on the frame or instance first. A pinned mode ignores a change to the collection default.",
+    "If the value comes from a library, republish the source library, then update the file that uses it.",
+    "Regenerate all instances (slow) is a community tip. Figma staff have not confirmed it as a general fix.",
+    "Test on a copy before you run anything slow on a large file."
+  ],
+  "stats": [
+    {
+      "value": "10 modes",
+      "label": "Maximum modes per variable collection on Figma's Professional plan",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features",
+      "sourceTitle": "Compare Figma plans and features, Figma Help Center"
+    },
+    {
+      "value": "$30.27",
+      "label": "Median hourly pay for graphic designers as of May 2025, U.S. Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers, Occupational Outlook Handbook, BLS"
+    },
+    {
+      "value": "65.9%",
+      "label": "Zeplin survey respondents who lose a quarter to half their time to design-delivery problems (sample size not stated)",
+      "sourceUrl": "https://blog.zeplin.io/design-delivery/designer-developer-collaboration-insights-and-statistics/",
+      "sourceTitle": "What goes wrong with designer-developer collaboration, Zeplin Gazette"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You change a color variable in your design system. The frame in your work file still shows the old color. That gap is what this page covers. Figma variables not updating looks like a bug, but the usual cause is a mode setting or a library that has not been republished. Forum reports point to those two causes. No survey measures how often this happens, so treat frequency as a signal, not a rate."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Figma variable changes stop at one frame"
+    },
+    {
+      "type": "paragraph",
+      "text": "Modes let one variable hold more than one value, such as Light and Dark. Each object that uses a variable picks a mode in one of two ways. It can inherit the mode from a parent, or it can carry a mode of its own. Figma's Help Center says objects default to Auto. Auto objects follow their parent until they reach a container with a set mode."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The three inheritance rules"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Auto objects use the mode of the nearest parent that has one set.",
+        "Objects set to a specific mode keep that mode, even after it stops being the default.",
+        "If no parent sets a mode, the collection's default mode applies."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is what that means in practice. You change the default from Light to Dark. Auto objects switch. A frame you pinned to Light stays Light. The change did reach the file, but the pinned frame ignores it. That is correct behavior, and it is the reason the change looks missing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Symptoms and first checks"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Only one frame ignores the new value",
+          "The frame is set to a specific mode",
+          "Select the frame and read its mode picker"
+        ],
+        [
+          "Every frame on a page ignores the value",
+          "A parent frame or section is pinned",
+          "Select the parent and read its mode"
+        ],
+        [
+          "A nested copy ignores the value inside a parent",
+          "The nested instance has its own mode",
+          "Compare the nested instance with its parent"
+        ],
+        [
+          "A library color never changes in your work file",
+          "The library was not republished, or the file has not pulled it",
+          "Republish the library, then update the work file"
+        ]
+      ],
+      "caption": "Symptoms, likely causes, and first checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the symptom that matches your file. Run the first check, then move on to the next row if it does not fit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to check the mode on a frame"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the file where the wrong value shows. Select the frame, not a layer inside it. Look in the right panel for the mode picker. It appears when the frame's collection has more than one mode. Figma moves menus between releases, so if you cannot find it, ask Lazur to point at it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the frame that shows the wrong value.",
+        "Read the mode in the mode picker and write it down.",
+        "Compare it with the mode the frame should use, such as Light or Dark.",
+        "Set it to Auto, or to the mode you want, then look at the canvas again.",
+        "If the frame is fine, select its parent and repeat until you reach the page."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Work up from the broken frame, not down. The pin that causes the problem can sit on a parent you have not checked. Checking every child layer one by one wastes time, because the pin can sit higher up."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with a library chain"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take three files. A Foundations file holds the color variables. A Component library uses them. A Work file uses the components. A designer in a Figma forum thread ran this exact chain. They changed a color in Foundations, and the Work file kept the old value. Their fix was to pull and publish each linked library in order."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Order matters",
+      "text": "Publish the source library first. Publishing out of order can leave a downstream file with old values. Work from the top down and check each file after each step."
+    },
+    {
+      "type": "paragraph",
+      "text": "The thread never marked that fix as a solution, and the poster did not confirm it worked. Use the order as a method to try, not a promise. Keep a short note of which file you published and when."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Nested components and pinned instances"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nested components are harder to check. An instance inside another component can carry its own mode. The outer component can carry a different one. Forum reports describe changes that reach the outer instance but skip the nested one. Figma's Help Center mode article does not cover nested components, so this part rests on community reports."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test it with a copy. Duplicate the component on a scratch page and change the default mode. See which copy moves. A scratch page keeps your real file clean while you find the pin."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Changing the default mode, then assuming every frame follows.",
+        "Checking the layer you clicked and skipping the parent frames above it.",
+        "Republishing the work file while the library underneath it is still stale.",
+        "Starting Regenerate all instances on a large file and walking away.",
+        "Editing a variable in one collection while the file uses a similar one in another."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Regenerate all instances: when it helps"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Community Support member in a Figma forum thread suggested Regenerate all instances (slow). The reply gives ⌘ / or ⌘ P as the way to run it. The original poster never confirmed it worked. Figma staff have not listed it as a general fix. Treat it as a test on a copy, not a routine step."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test on a copy first",
+      "text": "Duplicate the file, run the command on the copy, and compare the two. Your original stays as it is until you decide what to change."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Plan limits can hide a mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the mode you expect does not exist on your plan. Figma's plans table lists up to 10 modes per collection on Professional and up to 20 on Organization. Enterprise gets unlimited modes through extended collections. The Starter cell is blank in that table, so check your plan page before you rely on modes."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Limits are per collection",
+      "text": "The mode limit applies to each collection, not to the whole file. Count the modes in the collection that holds the variable you need."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you hit a limit, you have three choices. You can remove unused modes, split the system into another collection where that fits your design, or move to a plan with a higher limit. Each choice changes how your team works, so talk to the file owner first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to report the bug to Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the mode is correct and the library is republished, report the bug. Figma's Community forum has a Report a problem category. A thread titled 'Variables do not update in design', from July 2023, describes similar reports. Include the mode names, your Figma desktop version, your macOS version, and a short screen recording."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make a sanitized copy before you post. Remove client names, unreleased work, and anything under NDA. Your employer may have rules about sharing design files outside the company, so check those first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Two numbers that frame the cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two public numbers help you judge the time a stale value wastes. Read both as direction, not measurement. The cost cards on this page show how the weekly estimate is built."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with mode checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click the mode picker or change the file for you. It points at the picker, explains what the panel shows, and walks you through each click. Hold ⌥ ⌘ to ask about anything on screen. Lazur answers out loud. The changes stay with you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur also drafts text. Hold fn to dictate a bug note at the cursor, then read it back. Lazur can draft the message to your developer about a stale token, and you send it yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and client files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. If your client contract limits screenshots, ask your employer before you hold the shortcut over that file."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can be a good first stop for the menu hunt, and a poor one for a contract decision. Use it for the steps, and check the rules for the data."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Figma variable update in one frame but not another?",
+      "answer": "The frame that does not update is probably set to a specific mode. Figma keeps an explicit mode after the default changes. Select the frame, check the mode picker, and set it to Auto or to the mode you need. Then look at the canvas again."
+    },
+    {
+      "question": "Does Regenerate all instances fix Figma variables not updating?",
+      "answer": "Sometimes, according to one forum reply, but Figma has not confirmed it as a general fix. The original poster never confirmed it worked. Run it on a duplicate first. The reply gives ⌘ / or ⌘ P. If those keys do nothing in your version, check the menus for the command."
+    },
+    {
+      "question": "Do I need to republish a library after I change a variable?",
+      "answer": "If your file pulls from a library, yes. The forum case that fixed a color chain published the source first, then pulled into each file in order. A stale value in a work file often means the library never published the change."
+    },
+    {
+      "question": "Why is there no mode option on my Figma plan?",
+      "answer": "Figma's plans table leaves the Starter cell blank for variable modes. Check the plan page for your account. Professional allows up to 10 modes per collection, and Organization allows up to 20. Enterprise allows unlimited modes with extended collections."
+    },
+    {
+      "question": "Will Lazur fix Figma variables for me?",
+      "answer": "No. Lazur does not click buttons or change your file. It points at the mode picker, explains what the panel shows, and guides you one click at a time. You make the change yourself."
+    },
+    {
+      "question": "Can I use Lazur on client work under NDA?",
+      "answer": "Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Your contract or employer may still limit screenshots. Check those rules before you hold the shortcut over client files."
+    },
+    {
+      "question": "Where do I report a Figma variable bug?",
+      "answer": "Use Figma's Community forum and its Report a problem category. Post a sanitized copy, the mode names, your Figma desktop version, and your macOS version. Describe the steps in the order you ran them."
+    },
+    {
+      "question": "What if none of these fixes work?",
+      "answer": "Write down the frame, the mode, the library version, and each step you ran. Duplicate the file and test on the copy. Then report it with those notes. A clear list of steps helps staff repeat the problem."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Modes for variables, Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Compare Figma plans and features, Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Variables do not update in design, Figma Community forum",
+      "url": "https://forum.figma.com/report-a-problem-6/variables-do-not-update-in-design-13844",
+      "publisher": "Figma Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Color updates in library not reflected in components, Figma Community forum",
+      "url": "https://forum.figma.com/ask-the-community-7/color-updates-in-library-not-reflected-in-components-38447",
+      "publisher": "Figma Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What goes wrong with designer-developer collaboration? Zeplin Gazette",
+      "url": "https://blog.zeplin.io/design-delivery/designer-developer-collaboration-insights-and-statistics/",
+      "publisher": "Zeplin",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers, Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Designer and Developer 2025 Trends, Figma",
+      "url": "https://www.figma.com/reports/designer-developer-trends/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "variable or mode changes not reaching instances",
+  "costs": [
+    {
+      "title": "Hours lost to stale values",
+      "text": "Zeplin's survey says 65.9% of respondents lose a quarter to half their time to design-delivery problems. Its article equates that to 10 to 20 hours a week. No sample size or year is stated, and the survey covers design delivery in general, not variables. Use it as a sign, not a number to bill."
+    },
+    {
+      "title": "Pay rate behind those hours",
+      "text": "The BLS lists a median of $30.27 an hour for graphic designers as of May 2025. At that rate, 10 to 20 hours comes to roughly $300 to $600 a week. This is our arithmetic. It leaves out benefits and overhead, and BLS covers graphic designers, not Figma specialists."
+    },
+    {
+      "title": "Trust with developers",
+      "text": "Figma's 2025 trends page says 84% of designers collaborate with developers at least weekly. A stale token can show up in that weekly contact as a question in a thread. Each question costs time on both sides, and the designer often has to find the cause anyway."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Frame pinned to one mode",
+      "text": "A frame can be set to a specific mode. Figma keeps that mode even after it stops being the default. So a change to the collection default does not reach that frame. Community reports describe this pattern often, and it is the first thing to check. Set the frame to Auto or to the mode you want."
+    },
+    {
+      "title": "Children inheriting a pinned parent",
+      "text": "Auto objects follow the nearest parent that has a mode set. A parent section, page frame, or outer frame can carry the pin. Its children then look broken even though they are set to Auto. Check the parent, not only the layer you see on the canvas."
+    },
+    {
+      "title": "Library not republished",
+      "text": "A library holds the source value. If its owner changes a variable and does not publish, the work file has nothing new to pull. The file looks stale, but the change never left the library. Check whether the library has unpublished changes before you blame the work file."
+    },
+    {
+      "title": "Libraries updated out of order",
+      "text": "Libraries can depend on each other. A Work file that uses a Component library, which uses Foundations, needs the chain to move in order. Forum users describe the chain breaking when a middle library was published out of sequence. Republish from the source down."
+    },
+    {
+      "title": "Nested component with its own mode",
+      "text": "A component can contain instances, and each nested instance can carry its own mode. The outer copy can update while the inner copy stays on the old mode. Only community reports describe this, so test it on a duplicate before you rely on that explanation."
+    },
+    {
+      "title": "Two similar collections or names",
+      "text": "A file can hold two collections with similar names. You can edit one while the frame reads from the other. This is a check, not a documented cause. Confirm which collection the frame reads from before you edit anything."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Reset the mode on the pinned frame",
+      "text": "Select the frame, open the mode picker, and set it to Auto. The frame then follows its parent or the collection default. Look at the canvas to confirm the value moved. If you need a specific mode, set it on purpose and note the choice in the file so the next person knows why."
+    },
+    {
+      "title": "Use Auto where objects should follow the default",
+      "text": "Frames and instances that should follow the file default work best on Auto. Set the collection default to the value your team expects. Then check any object that still reads an explicit mode. Figma's Help Center says those objects keep their mode after a default change."
+    },
+    {
+      "title": "Republish the source library, then update downstream files",
+      "text": "Open the library file that owns the variable and publish the change. Then open each file that uses that library and pull the update. Start with the file closest to the source and move down. A forum user fixed a color chain this way. Confirm the value after each step."
+    },
+    {
+      "title": "Run Regenerate all instances on a copy",
+      "text": "Duplicate the file first. Run Regenerate all instances (slow) with ⌘ / or ⌘ P, as a forum reply suggests. Wait until it finishes, then compare the copy with the original. If the copy updates and the original does not, compare the pinned frames in both files."
+    },
+    {
+      "title": "Test a nested pin on a scratch duplicate",
+      "text": "Duplicate the component onto a scratch page and change the default mode. Note which copies move. Then compare the mode on each nested instance with its parent. Fix the instance that does not match. Remove the scratch page once you have your answer."
+    },
+    {
+      "title": "Check your plan before you add modes",
+      "text": "Open Figma's plans page and check the mode limit for your plan. Professional lists 10 modes per collection, and Organization lists 20. If you are close to the limit, remove unused modes or move some work into another collection. Talk to the file owner before you change the structure."
+    },
+    {
+      "title": "Send a clean report with exact steps",
+      "text": "If the checks fail, report the bug through Figma's Community forum. Use a sanitized copy. Include the mode names, your Figma desktop version, your macOS version, and a short recording. Describe the steps you ran, in order, so a staff member can repeat them."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the mode picker on this frame?",
+      "result": "Lazur circles the mode picker and labels it on screen. You change the mode yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "What does Auto mean for this frame?",
+      "result": "Lazur answers out loud, using what is on your screen, and explains inheritance in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through republishing this library.",
+      "result": "Lazur gives one step at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate your bug notes.",
+      "result": "Clean text lands at the cursor in any app, so notes and forum posts take less typing.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to my developer about the stale token.",
+      "result": "Lazur drafts the message. You read it, change what you need, and send it yourself.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the mode picker for this frame?",
+    "capability": "point",
+    "context": "Figma desktop, one frame selected in a work file",
+    "result": "Lazur circles the mode picker and labels it. You still pick the mode yourself.",
+    "shell": "design",
+    "pointsAt": "Mode picker",
+    "output": "Lazur reads the current mode out loud and points at the picker on your screen."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the pinned frame",
+      "text": "Open the file with the wrong value. Select the frame that shows it and read its mode. Write the frame name and mode in a note. Compare that mode with the collection default."
+    },
+    {
+      "label": "Day 2",
+      "title": "Walk up the parents",
+      "text": "Select each parent frame in turn and read its mode. Stop at the first parent that is set to a specific mode. Note it. If the frame should follow the file, set it to Auto."
+    },
+    {
+      "label": "Day 3",
+      "title": "Republish in order",
+      "text": "Open the source library and publish the change. Then update the downstream files, closest to the source first. Confirm the value on the canvas after each file."
+    },
+    {
+      "label": "Day 4",
+      "title": "Test on a copy",
+      "text": "Duplicate the file. Run Regenerate all instances (slow) on the copy only. Compare the copy with the original and write down any difference you see."
+    },
+    {
+      "label": "Day 5",
+      "title": "Report or document",
+      "text": "If the value still fails, write a short report with a sanitized copy, the mode names, and your app versions. Post it to Figma's Community forum."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "figma-variables-not-updating-modes-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-variables-not-updating-modes-fix/figma-variables-not-updating-1-fa9801.jpg",
+      "width": 1280,
+      "height": 891,
+      "alt": "Designer at a Mac tracing why Figma variables not updating across a shared library",
+      "caption": "A designer checking a design file on a Mac",
+      "keywords": [
+        "figma variables not updating",
+        "Designers",
+        "Variable or mode changes not reaching instances",
+        "Mac",
+        "designer working on Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "violetta",
+        "url": "https://pixabay.com/users/violetta-37547/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/huskies-dogs-race-sled-dog-racing-273409/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-variables-not-updating-modes-fix/figma-variables-not-updating-2-2e047a.jpg",
+      "width": 1280,
+      "height": 761,
+      "alt": "Designer at a desk with a laptop and notes, planning a design system update",
+      "caption": "Planning a design system update at a desk",
+      "keywords": [
+        "figma variables not updating",
+        "Designers",
+        "Variable or mode changes not reaching instances",
+        "Mac",
+        "designer desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-variables-not-updating-modes-fix/figma-variables-not-updating-3-100ef1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Design team reviewing screens together at a table, sharing one laptop",
+      "caption": "A design team reviewing screens together",
+      "keywords": [
+        "figma variables not updating",
+        "Designers",
+        "Variable or mode changes not reaching instances",
+        "Mac",
+        "design team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/bricks-chairs-classroom-empty-2181920/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma variables not updating",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "figma variable mode not changing": 1,
+      "figma library variables not updating": 1,
+      "figma variables not syncing": 1,
+      "figma regenerate all instances": 1,
+      "figma variable modes explained": 1,
+      "figma variables not showing in instance": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

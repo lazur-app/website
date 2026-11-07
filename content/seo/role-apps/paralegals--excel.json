@@ -1,0 +1,611 @@
+{
+  "title": "Excel for paralegals on Mac: trackers, deadlines, and Lazur questions in Microsoft 365",
+  "metaTitle": "Excel for Paralegals on Mac: Trackers, Deadlines and Lazur Help",
+  "description": "Excel for paralegals on Mac: case trackers, deadline formulas, chronologies, and Mac limits. Ask Lazur to point, explain, and draft as you work.",
+  "targetKeyword": "excel for paralegals on mac",
+  "secondaryKeywords": [
+    "excel for paralegals",
+    "paralegal case tracker excel mac",
+    "excel deadline calendar for legal work",
+    "excel chronology discovery documents",
+    "excel billing tracker for paralegals",
+    "power query excel for mac 16.69"
+  ],
+  "intro": "Excel for paralegals on Mac means running case trackers, deadline calendars, billing sheets, and discovery chronologies in Microsoft 365. Lazur works next to Excel. You hold a key, ask a question, and Lazur answers out loud and points at the right control while you keep your hands on the file. Lazur does not click for you.",
+  "tldr": [
+    "Most paralegal Excel work is a case tracker, a deadline calendar, a billing sheet, or a chronology of discovery documents.",
+    "Build deadlines with WORKDAY and NETWORKDAYS, and keep a holiday list. Your court's rules decide what counts.",
+    "On Mac, Power Query needs Microsoft 365 build 16.69 or later, and Power Query Editor authoring is not available there.",
+    "Ask Lazur to point, explain, guide, and draft. It does not click buttons, edit files, or run other apps for you."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of spreadsheet users in a 2022 vendor survey say they struggle to make sense of their data. The headline says almost half.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release (Sapio Research survey)"
+    },
+    {
+      "value": "85%",
+      "label": "of paralegals said they worked more than their normal hours in 2022, per NALA's summary of its utilization survey. This is about hours, not spreadsheets.",
+      "sourceUrl": "https://nala.org/9-tips-and-technologies-for-simplified-and-streamlined-legal-work/",
+      "sourceTitle": "NALA: 9 Tips and Technologies for Legal Work"
+    },
+    {
+      "value": "Over 20 hours",
+      "label": "a month in spreadsheets for the average knowledge worker, per the same 2022 ThoughtSpot release.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release (Sapio Research survey)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for paralegals on Mac: what the work looks like"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most paralegals do not live in Excel. They reach for it when a case needs a list, a date, or a total. Sources that describe paralegal practice put Excel next to OneNote, Airtable, Outlook, and dedicated litigation software, not in place of them. Excel wins when you sort, filter, and count the same rows again and again."
+    },
+    {
+      "type": "paragraph",
+      "text": "A practice guide on Substack lists the tabs many paralegals build first. It includes a client information table, a master case dashboard, and a case progress tracker that follows discovery, settlement talks, and trial prep. It also includes a deadlines and milestones sheet, where conditional formatting highlights dates that are close."
+    },
+    {
+      "type": "paragraph",
+      "text": "Billing is the other big use. A billing tracker can carry discount or markup adjustments and expense columns. A start and stop time tracker can total hours with formulas. A settlement calculator can work out fees, court costs, and medical liens. Pivot tables show workload and billable hours by person or matter."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a case tracker that stays clean"
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean tracker starts with one rule. One matter per row, one fact per column. Client name, matter number, responsible paralegal, practice area, opened date, and status cover most trackers. Keep each column to one kind of data. Mixed columns break sorting and filtering."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type every date as a real date. A real date sits on the right side of its cell. A text date sits on the left.",
+        "Leave no merged cells in the data area. Merged cells block sorting and filtering.",
+        "Select the range and press ⌘ T to turn it into a table.",
+        "Name the table when you create it. Microsoft's October 2026 notes say that now works on Mac too.",
+        "Turn on the filter arrows with ⌘ ⇧ F if they are off."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The table tool matters more than it looks. A table keeps formulas pointed at the right rows as you add matters. It also puts a filter arrow on every column, so you can pull up one practice area in a second."
+    },
+    {
+      "type": "paragraph",
+      "text": "Names matter for formulas too. A formula that reads Matters[Status] is easier to check than one that reads Sheet1!F2:F400. When you come back to the file months later, the name tells you what the formula does."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Chronologies from discovery documents in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "A chronology turns a pile of discovery into a timeline you can sort. Parseur's guide to case chronologies suggests a set of columns for a chronology built from discovery documents. The core columns are below."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Bates begin and end",
+          "Points you to the exact page range for each entry"
+        ],
+        [
+          "Document date",
+          "Sorts events in the order they happened"
+        ],
+        [
+          "Date received",
+          "Shows when your firm had the document"
+        ],
+        [
+          "Document type",
+          "Lets you filter letters, emails, or medical records"
+        ],
+        [
+          "Author or custodian",
+          "Shows who wrote or holds the document"
+        ],
+        [
+          "Privilege designation",
+          "Flags entries that need review before any release"
+        ]
+      ],
+      "caption": "Chronology columns suggested by Parseur for discovery documents"
+    },
+    {
+      "type": "paragraph",
+      "text": "The full list also has recipient and a one-line summary. Keep the summary short. One sentence is enough for a timeline row. Long summaries are hard to scan when you filter."
+    },
+    {
+      "type": "paragraph",
+      "text": "Parseur describes the common failure. Manual chronology work means going back to fix dates, remove duplicate entries, and add missing Bates numbers. Descriptions drift from row to row. One paralegal in its example worked through a 14,000-page set by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel helps with the sorting and the filtering. It does not decide what belongs in the chronology. Parseur says the same thing. Macros can cut repeated table work, but a macro cannot judge relevance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scans need a closer look. Poor-quality scans can still need human review. Handwritten exhibits belong in a review pile, not a quick entry. On Mac, ⌘ F finds text, but it only works on searchable documents."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Deadline formulas that count court days"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deadlines are where a small error costs the most. Do not type a due date by hand when a formula can work it out. NALA's tips for legal work point to electronic date calculators that count or exclude weekends and court holidays. Excel can do the same job with a few date functions and a holiday list."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Formula",
+        "What it does",
+        "Example"
+      ],
+      "rows": [
+        [
+          "WORKDAY(start, days, holidays)",
+          "Adds business days and skips the holidays",
+          "=WORKDAY(B2,N2,Holidays)"
+        ],
+        [
+          "NETWORKDAYS(start, end, holidays)",
+          "Counts business days between two dates",
+          "=NETWORKDAYS(B2,C2,Holidays)"
+        ],
+        [
+          "EDATE(start, months)",
+          "Moves a date forward by whole months",
+          "=EDATE(B2,N2)"
+        ],
+        [
+          "TODAY()",
+          "Gives today's date for countdowns",
+          "=C2-TODAY()"
+        ]
+      ],
+      "caption": "Date functions for deadline sheets in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "In these examples, B2 holds the start date and N2 holds the number of days or months. Holidays is a named range. Build it on its own sheet with one date per row. Select the list, click the Name Box at the top left, type Holidays, and press Return."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say service happens on a Friday, and the rule gives you a set number of business days to respond. Put the Friday in B2 and the count in N2. WORKDAY returns the due date, skipping weekends and anything on the Holidays list. Wrap it in IF so a blank row stays blank: =IF(B2=\"\",\"\",WORKDAY(B2,N2,Holidays))."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check the court rule",
+      "text": "A formula gives you the date your rule produces. It does not confirm the rule is right. Compare each deadline with your court's local rules or the order itself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the rule in a notes column next to each deadline. The next person can then check the math without guessing what you meant. Excel does not know whether your court counts calendar days or court days."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conditional formatting for deadlines that are close"
+    },
+    {
+      "type": "paragraph",
+      "text": "Conditional formatting turns a date column into a warning light. It fills a cell when the date falls inside a window you choose. The practice guide uses it on deadline sheets. Here is the setup on Mac."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the due date column, starting at the first data row.",
+        "Go to Home > Conditional Formatting > New Rule.",
+        "Choose Use a formula to determine which cells to format.",
+        "Enter a formula that compares the date with TODAY(). Point the window at one threshold cell so you can change it later.",
+        "Pick a fill color and click OK. To fix a rule later, go to Home > Conditional Formatting > Manage Rules."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Conditional formatting does not send reminders. The practice guide says reminders depend on Outlook or Power Automate. Keep the highlight in Excel, and keep the alert in the calendar tool you already check."
+    },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is a rule that uses a plain cell reference where it needs a locked one. The rule then shifts as it copies down the column. Test the rule on a few rows before you apply it to the whole column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Billing trackers and time totals in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "A billing tracker is a simple table with a hard rule. Every line needs a date, a matter, a task, hours, a rate, and an amount. Amount is hours times rate. Put that formula in the table once, and Excel fills it down each new row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hours cause the most trouble. Type hours as decimals, not as clock times. A clock-style entry turns into a time value, and the total comes out wrong. Check one row by hand before you trust the column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Bill4Time, a time-tracking vendor, cites a survey saying attorneys average 3.1 hours a month on timesheets. The survey covers attorneys, not paralegals, and the year is not stated. Treat it as a rough signal, not a benchmark."
+    },
+    {
+      "type": "paragraph",
+      "text": "For totals by matter, use SUMIFS on the table. A pivot table works too. Insert > PivotTable is the quickest way to see billable hours by matter. Our [step by step pivot table guide for Microsoft 365 on Mac](/how-to/make-a-pivot-table-in-excel) walks through it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A settlement calculator follows the same pattern. Keep each fee, cost, and lien on its own row. Then total the rows with SUM. Retyping numbers into a total cell is how mistakes creep in."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits to know before you build a shared workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many Excel features match across Mac and Windows. A few do not. Check these limits before you plan a shared template or a data pull."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Power Query on Excel for Mac needs Microsoft 365 build 16.69 or later. Find Get Data (Power Query) on the Data tab.",
+        "Authoring in the Power Query Editor is not available in Excel for Mac. VBA can author Power Query, or you can build the query on Windows.",
+        "Mac import sources include Excel workbooks, Text or CSV, XML, JSON, SharePoint Online lists, OData, blank tables, and blank queries. SQL Server import is in Insiders Beta only.",
+        "The Copilot clean-data skill is generally available on all platforms. Run it with @clean-data or from the Skills menu. The skill recorder is Insider-only on Mac.",
+        "This page could not confirm Power Pivot status on Mac. Check Microsoft's support pages before you plan a data model."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates work differently too. On Mac, the template folder is set in Word. Go to Word > Preferences > File Locations and set User templates, because Word and Excel share that folder. Templates in the Personal templates folder appear under the Personal tab when you choose New from Template."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Default blank workbook",
+      "text": "To make your own default blank workbook, save it as Book.xltx or Book.xltm in the Start-up folder. Open a new workbook to test it before you share it with the team."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your Excel work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. That covers the cell you are stuck on, the menu you cannot find, or the formula you did not write."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it on your screen. Ask how to do something, and Lazur guides you one click at a time. It waits for each click. You stay in control of every change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Dictation writes clean text at the cursor in any app. Snippets, a personal dictionary, and clipboard slots help with repeated work. Save your standard chronology entry as a snippet, then dictate only the facts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Excel or any other app. Lazur runs on macOS, and Windows is planned, not available. Lazur has no partnership with any app maker."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters more in a law office than in most offices. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer. They are not stored, and content is never used to train AI models. Client files are still privileged, so check your firm's policy first."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Privileged material",
+      "text": "Keep privileged documents off screen when you ask a question, unless your firm allows AI tools on them. Ask about the formula, not the client facts."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes paralegals make in Excel, and how to fix them"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates typed as text. Fix it by retyping the first date and filling down. A real date sorts, and text does not.",
+        "Merged cells in the data area. Fix them by unmerging and keeping one value per cell.",
+        "Duplicate chronology rows when two people add entries. Fix it with one owner per tracker and a filter on Bates number before each update.",
+        "Hand-typed due dates. Fix them with formulas tied to the Holidays list, plus a notes column that states the rule.",
+        "Macros that delete rows you still need. Test each macro on a copy, and keep the original file.",
+        "Searching scans with ⌘ F. Find only works on searchable text, so review image-only scans by eye."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Parseur notes that search helps with names in searchable documents. It does not replace review. A tracker shows what you logged. It does not show what you missed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine for the tracker"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Filter the deadlines column for dates within the next week.",
+        "Check the Holidays list against the court calendar.",
+        "Clear or change any highlighted rows you have handled.",
+        "Add new documents to the chronology, then sort by document date.",
+        "Save a dated copy before any large change."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the routine on the same day each week. A fixed day turns the check into a habit. A routine catches the rows nobody looked at."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are starting from zero, begin with the case tracker and the deadline sheet. Add billing when those two hold up. Add the chronology when the next discovery set arrives. For the wider set of tools, see [AI tools for paralegals on Mac](/for/paralegals)."
+    },
+    {
+      "type": "paragraph",
+      "text": "To see how Lazur works with Excel in practice, read the [Excel help page](/apps/excel). When you are ready to try it, [download Lazur for Mac](/download) and check [plans and the free trial](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Excel for paralegals on Mac different from the Windows version?",
+      "answer": "Most workbook features match. A few differ. Power Query on Mac needs Microsoft 365 build 16.69 or later, and Power Query Editor authoring is not available there. The template folder is set through Word's preferences. Check those limits before you plan a shared template or a data pull."
+    },
+    {
+      "question": "Do paralegals need Excel, or is another tool better?",
+      "answer": "Excel is one tool among several. Sources that describe paralegal practice put it next to OneNote, Airtable, Outlook, and litigation software. NALA's tips point to date calculators and Airtable for reminders and project tracking. Pick the tool that fits each job, and keep one home for each deadline."
+    },
+    {
+      "question": "How do I count court days in Excel?",
+      "answer": "Use NETWORKDAYS to count business days between two dates. Use WORKDAY to add business days to a start date. Give both formulas a range of holidays. Excel does not know your court's rules, so check whether your court counts calendar days or court days before you trust the result."
+    },
+    {
+      "question": "Can Lazur build my tracker or change my formulas?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at the control you need, explains a formula, and guides you one click at a time. It can also draft a formula or a status email for you to check and enter yourself."
+    },
+    {
+      "question": "Does Lazur send my client documents to an AI provider?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer. They are not stored, and content is never used to train AI models. Your firm's rules on privileged material still apply, so check them first."
+    },
+    {
+      "question": "Is Lazur an Excel add-in?",
+      "answer": "No. Lazur is a voice assistant for the Mac. It is not a plugin or add-in for Excel or any other app, and it has no partnership with any app maker. It runs on macOS on Apple silicon and Intel. Windows is planned, not available."
+    },
+    {
+      "question": "Can Lazur make a pivot table for me?",
+      "answer": "Lazur guides you through it, one click at a time, and waits for each click. You make the pivot table yourself. Insert > PivotTable is the starting path in Microsoft 365 on Mac."
+    },
+    {
+      "question": "Where should a new paralegal start with Excel on Mac?",
+      "answer": "Start with one table for open matters, one row per matter, and real dates. Add a deadline sheet with a Holidays list next. Add billing and chronology sheets after those work. Ask Lazur to explain any formula you do not understand before you copy it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "New research: almost half of users struggle to make sense of data in spreadsheets (ThoughtSpot press release)",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "NALA: 9 Tips and Technologies for Legal Work",
+      "url": "https://nala.org/9-tips-and-technologies-for-simplified-and-streamlined-legal-work/",
+      "publisher": "National Association of Legal Assistants (NALA)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How Excel Costs You Time & Money",
+      "url": "https://www.bill4time.com/blog/how-excel-costs-you-time-and-money/",
+      "publisher": "Bill4Time",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Case Chronology Spreadsheet: How to Build One From Discovery Documents",
+      "url": "https://parseur.com/blog/case-chronology-spreadsheet-discovery-documents",
+      "publisher": "Parseur",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The Ultimate Guide to Using Excel and OneNote",
+      "url": "https://paralegalpracticeessentials.substack.com/p/the-ultimate-guide-to-using-excel",
+      "publisher": "Paralegal Practice Essentials (Substack)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Customize how Excel starts in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/customize-how-excel-starts-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why is this row red?",
+    "capability": "explain",
+    "result": "Lazur says a conditional formatting rule fills rows whose due date is close, then points you to Manage Rules.",
+    "shell": "sheet",
+    "context": "Deadlines sheet in Excel for Mac, Microsoft 365",
+    "pointsAt": "Manage Rules",
+    "output": "The red fill comes from a rule that checks the due date against TODAY(). Open Home > Conditional Formatting > Manage Rules to see the formula and change the threshold."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is Get Data on this Mac?",
+      "result": "Lazur circles the Get Data (Power Query) button on the Data tab and labels it, so you find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Why is this row red?",
+      "result": "Lazur names the conditional formatting rule behind the fill and points you to Manage Rules.",
+      "capability": "explain"
+    },
+    {
+      "say": "Give me a formula that adds business days to the date in B2, skipping the holidays.",
+      "result": "Lazur drafts a WORKDAY formula with your holiday range and explains each argument. You check it before you enter it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Walk me through a pivot table of hours by matter.",
+      "result": "Lazur guides you one click at a time through Insert > PivotTable, and waits for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Read me the entries in this chronology, one by one.",
+      "result": "Lazur reads the visible rows aloud. It does not change the sheet or decide what is relevant.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate the next chronology entry into this cell.",
+      "result": "Hold fn, speak the entry, and clean text lands at the cursor. Snippets can hold your standard entry format.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a status email to the client with this matter's next deadline.",
+      "result": "Lazur drafts the email text from what is on screen. You review it, then send it from Mail or your own client tool.",
+      "capability": "draft"
+    }
+  ],
+  "type": "role-app",
+  "slug": "paralegals-excel",
+  "role": "paralegals",
+  "app": "excel",
+  "roleName": "Paralegals",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/paralegals-excel/excel-for-paralegals-on-mac-1-f174de.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Paralegal at a desk working on a laptop, the usual setup for Excel for paralegals on Mac",
+      "caption": "A paralegal at a laptop with case files nearby.",
+      "keywords": [
+        "excel for paralegals on mac",
+        "Excel",
+        "Paralegals",
+        "Mac",
+        "paralegal working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/paralegals-excel/excel-for-paralegals-on-mac-2-efedac.jpg",
+      "width": 1280,
+      "height": 779,
+      "alt": "Stack of legal documents on an office desk, the kind of discovery files a paralegal logs in Excel",
+      "caption": "Discovery files waiting to be logged.",
+      "keywords": [
+        "excel for paralegals on mac",
+        "Excel",
+        "Paralegals",
+        "Mac",
+        "legal documents office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/contract-consultation-pen-4313684/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role-app/paralegals-excel/excel-for-paralegals-on-mac-3-23aa1e.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Desk calendar and notebook on a law office desk, a reminder of the deadlines tracked in Excel",
+      "caption": "Court deadlines still need a calendar.",
+      "keywords": [
+        "excel for paralegals on mac",
+        "Excel",
+        "Paralegals",
+        "Mac",
+        "office desk calendar",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/imac-ipad-computer-tablet-mobile-605421/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for paralegals on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "excel for paralegals": 9,
+      "paralegal case tracker excel mac": 1,
+      "excel deadline calendar for legal work": 1,
+      "excel chronology discovery documents": 1,
+      "excel billing tracker for paralegals": 1,
+      "power query excel for mac 16.69": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

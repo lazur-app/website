@@ -1,0 +1,665 @@
+{
+  "title": "Figma smart animate not working on Mac: causes and fixes for designers in 2026",
+  "metaTitle": "Figma Smart Animate not working on Mac: fixes for 2026",
+  "description": "Smart Animate fails when layers don't match or the file is too heavy. Learn the causes, free fixes, and the menu steps to check each one on Mac.",
+  "targetKeyword": "figma smart animate not working",
+  "secondaryKeywords": [
+    "figma smart animate stutter",
+    "figma smart animate layers not matching",
+    "figma smart animate dissolve instead",
+    "figma prototype lag on mac",
+    "figma memory limit 2GB",
+    "figma smart animate drop shadow"
+  ],
+  "intro": "If Figma Smart Animate is not working, the transition either fails to match layers or the file is too heavy to play smoothly. Figma falls back to a dissolve in the first case and stutters in the second. This guide shows how to tell which one you have, then fixes each one without buying anything.",
+  "tldr": [
+    "Smart Animate matches layers by name and by position in the frame hierarchy. If names or nesting differ, the layer dissolves instead.",
+    "Drop shadows, inner shadows, overlays and shape-to-shape morphs are not supported, so they will not animate as you expect.",
+    "Stutter comes from heavy files. Figma sets a memory limit of about 2 GB per browser tab, and the desktop app uses the same limit.",
+    "Check the Prototype tab first, then layer names, then file weight. Split large files before you try hacks."
+  ],
+  "stats": [
+    {
+      "value": "2 GB",
+      "label": "Figma memory limit per browser tab, which the desktop app also uses",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "sourceTitle": "Reduce memory usage in files (Figma Help Center)"
+    },
+    {
+      "value": "60 fps",
+      "label": "Frame rate web.dev says to maintain whenever you are animating",
+      "sourceUrl": "https://web.dev/articles/animations-and-performance",
+      "sourceTitle": "Animations and performance (web.dev)"
+    },
+    {
+      "value": "$62,960",
+      "label": "Median yearly pay for graphic designers in May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers (BLS Occupational Outlook Handbook)"
+    },
+    {
+      "value": "1 second",
+      "label": "NN/g limit for a user's flow of thought to stay uninterrupted",
+      "sourceUrl": "https://www.nngroup.com/articles/response-times-3-important-limits/",
+      "sourceTitle": "Response Times: The 3 Important Limits (Nielsen Norman Group)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Two different failures, one complaint"
+    },
+    {
+      "type": "paragraph",
+      "text": "When people say Smart Animate is not working, they usually mean one of two things. The transition does not move the layers the way they expected, or the preview stutters. Those problems have different causes, so figure out which one you have before you change anything. Trying every fix at once wastes time and hides the real cause."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell which problem you have"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a clean test. Open the prototype, select the frame where the transition starts, and click Present, the play button at the top right of the Figma window. Click the trigger twice and watch the motion. If layers slide and one or two dissolve, you have a naming or nesting problem. If the test file is smooth but the real one is choppy, you have a weight problem."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Some layers slide and a few fade: check names and nesting in those layers.",
+        "Every layer dissolves: the frames share no matching layers, or an unsupported property sits on a layer.",
+        "Smooth on a small file, choppy on a large one: the file is probably too heavy for its memory limit.",
+        "Choppy only when other apps are busy: your Mac or browser is short on memory."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: the card that dissolves"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you have a frame called Home with a card layer named Title. The second frame, called Home 2, shows the same card, but its text layer says Title Text because you renamed it while editing. Smart Animate looks for Title in Home 2, does not find it, and fades the text in. The fix is one rename. Select the layer in Home 2, double-click its name in the Layers panel, and type Title. Preview again, and the text should slide with the card."
+    },
+    {
+      "type": "paragraph",
+      "text": "Frame names matter too. A Figma staff member wrote in a community thread that Smart Animate is reliant on layer name and hierarchy. That person suggested unique frame names, which worked in their test. The thread did not mark an accepted solution, so treat the tip as a check, not a guarantee."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why shadows, overlays and morphs never animate"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help page says it does not support Smart Animate for layers with drop shadow or inner shadow. A shadow can break an otherwise matching layer, so a card that looks identical in both frames may still dissolve. Test it on a copy. Remove the shadow in one frame, preview, and compare the motion. If the layer moves, the shadow was the reason."
+    },
+    {
+      "type": "paragraph",
+      "text": "Overlays are a separate case. Figma treats an overlay as a new frame, so Smart Animate does not apply the same way. Moving between shapes, such as a rectangle that should become a circle, is also unsupported. For those screens, pick a transition type the page supports, and accept that the result will not be a true morph."
+    },
+    {
+      "type": "paragraph",
+      "text": "One more trap sits in the matching checkbox. The help page says that if you check Smart animate matching layers alongside another transition, fixed layers that do not match get a dissolve. They do not follow the transition you picked. Turn the box on only for screens that need it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the Prototype tab settings"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the frame that starts the transition, then open the Prototype tab in the right sidebar.",
+        "Confirm that a connection runs from the trigger to the destination frame.",
+        "In the Animation section, open the transition field and choose Smart animate.",
+        "Decide whether you need Smart animate matching layers, and read the warning above before you turn it on.",
+        "Click Present and test again. Reload the preview if it looks stale."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "You need edit access to change these settings. A view-only link can show the prototype, but it cannot show your edits. If the settings look right and the file still misbehaves, ask the file owner to confirm your access level. Smart Animate is on all plans, so your plan is not the cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a heavy file stutters on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's memory article gives an active limit of about 2 GB per browser tab. The desktop app runs on browser technology, so the same limit applies to it. At 90%, Figma shows a red alert tile. At 100%, the file locks. A file near that limit can stutter, and the preview is often where you notice it first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's troubleshooting checklist lists warnings at 60%, 75% and 100%. That does not match the memory article, which lists 90% and 100%. Use the warnings your file actually shows, and check the Figma help center for the current numbers. Do not plan around a threshold you have not seen in your own file."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Mac blog estimates that Figma's Helper (Renderer) process draws the canvas and holds most of the app's RAM. It says a simple file may use 300 to 500 MB there, and a complex file can pass 1 GB by itself. Treat those figures as one blog's estimates, not Figma data. They still explain why a large file slows down before you see a warning."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read your memory numbers on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma shows memory data inside the app. Open Main menu > View > Memory usage, choose Manage memory, and turn on the toggle called Show memory in layers panel. The Layers panel then shows memory figures next to layers. Write down the three heaviest areas. Those are your first candidates to simplify or move to another file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the Mac side with Activity Monitor. Press ⌘Space, type Activity Monitor, and press Return. Open the Memory tab and find Figma's processes. Apple's guide also describes an Energy pane that lists energy use by app and process. The Apple page did not show a GPU section, so check your macOS version for that detail."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Quit Figma with ⌘Q when you finish, then reopen it the next day.",
+        "Close tabs you do not need, because each browser tab has its own memory limit.",
+        "Force quit a frozen app with ⌘⌥Esc, then reopen Figma and retest the transition.",
+        "Turn off multiplayer cursors, layout guides and effects while you preview."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Symptom, cause and first check"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Layer dissolves instead of moving",
+          "Name or nesting differs",
+          "Compare layer names in both frames"
+        ],
+        [
+          "Drop shadow never animates",
+          "Shadow effect is unsupported",
+          "Test a copy without the shadow"
+        ],
+        [
+          "Overlay does not slide",
+          "Overlays are treated as new frames",
+          "Check the action type in the Prototype tab"
+        ],
+        [
+          "Preview stutters on a big file",
+          "Memory is near the 2 GB limit",
+          "Main menu > View > Memory usage"
+        ],
+        [
+          "Warning tile on the file",
+          "Memory warning at 90% or 100%",
+          "Split the file and retest"
+        ]
+      ],
+      "caption": "Quick triage for the most common Smart Animate symptoms."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes that cost nothing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's memory guide suggests several fixes that need no purchase. Simplify the frame structure first. Reduce components and variants by using component properties instead of many near-copies. Split large files into smaller ones, such as one file per page. Structure helps every time, so start there before you touch settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test any split on a copy so the original stays intact. The memory guide also names the Downsize plugin for compressing images, and it suggests importing complex SVGs in smaller parts. Check image sizes before you import them. If one SVG makes the canvas lag, bring it in pieces and preview after each one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Browser, app and cache steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's checklist says to close unused tabs and to force-quit and reopen the browser or desktop app. It also says to clear the desktop app cache. The checklist does not give Mac steps for the cache, so look up the current steps in Figma's help center before you clear anything. Save a copy of the file first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the browser too. Figma recommends the latest stable Chrome, Firefox or Safari. It asks you to confirm that WebGL is enabled. The checklist notes that a Chrome extension can block WebGL, so test in a clean profile or a window without extensions to rule that out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Forum tweaks to test last"
+    },
+    {
+      "type": "paragraph",
+      "text": "Community threads suggest other fixes. Some say to turn off hardware acceleration on Mac, to work at 100% zoom, or to clip frames to the same size. These are anecdotes. Figma's official checklist does not list them, and the threads did not mark a verified solution. If you try one, change only one setting, preview, and write down the result."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Editing the wrong copy. Duplicated frames keep the old names, so fix the frame you actually preview.",
+        "Renaming one layer and forgetting the matching layer in the next frame.",
+        "Judging a transition on a stale preview. Stop the preview, then start it again.",
+        "Turning on Smart animate matching layers as a catch-all fix. It can make other layers dissolve.",
+        "Rebuilding the whole prototype before checking names. Most failures need one rename."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to send the file to Figma support"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the names match, the shadows are gone and the file sits under the memory limit, send a report. In the community thread, Figma support asked the poster for a file link and to share the file with the support team. Describe the frame names, the transition type and the exact step where the motion breaks. That detail saves a round of questions."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Client or patient data",
+      "text": "Check your employer's rules before you share a file that holds client or patient data. If you are unsure, describe the problem with screenshots of frame names only, and leave out the content."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ (Option and Command) and ask about anything on screen, and Lazur answers out loud. Ask where the Prototype tab is, and Lazur draws a circle and a label around it. Ask how to set Smart animate, and Lazur guides you one click at a time, waiting for each click. It does not click for you, and it does not edit your file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Lazur is not a plugin or add-in for Figma, and it does not edit your file. Pro costs $18 a month, or $15 a month billed annually, with 150 AI actions. The 3-day trial starts when you first open the app, with no credit card."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps once the transition moves"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once Smart Animate works in one flow, repeat the check on the other frames. Keep a copy of the working version. Then read the guide on [how to create a prototype in Figma](/how-to/create-a-prototype-in-figma) for the connection and transition steps in more detail. For desktop setup and memory habits, see [Figma for designers on Mac](/for/designers/figma)."
+    },
+    {
+      "type": "paragraph",
+      "text": "A stubborn prototype usually improves in layers. Fix names first, then effects, then file weight. Write down each change and its result so you know which one helped. If nothing changes after the full routine, the problem may be file size or a bug, so send the report and move on."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Figma Smart Animate dissolve instead of moving?",
+      "answer": "Smart Animate matches layers by name and by position in the hierarchy. A layer with no match in the next frame fades in, so it dissolves. Compare the layer names and grouping in both frames first, then preview again."
+    },
+    {
+      "question": "Does Smart Animate work with drop shadows in Figma?",
+      "answer": "Figma's help page says it does not support Smart Animate for layers with drop shadow or inner shadow. Test a copy without the shadow to see whether the shadow is the cause. Do not expect the shadow itself to animate."
+    },
+    {
+      "question": "Why is my Figma prototype laggy on Mac?",
+      "answer": "Heavy files can stutter, because Figma sets a memory limit of about 2 GB per browser tab. The desktop app uses the same limit. Check memory usage, close tabs you do not need, split large files, and reduce components and variants."
+    },
+    {
+      "question": "Do I need edit access to fix Smart Animate?",
+      "answer": "Yes. Figma's help page says edit access to the file is required for Smart Animate. A view-only link can show the prototype but cannot show your changes. Ask the file owner for edit access if you need to change settings."
+    },
+    {
+      "question": "Is Smart Animate available on every Figma plan?",
+      "answer": "Figma's help page says Smart Animate is on all plans. If a transition still fails, your plan is not the cause, so check names, nesting, effects and file size instead."
+    },
+    {
+      "question": "What is the memory limit for Figma on Mac?",
+      "answer": "Figma's memory article gives about 2 GB per browser tab, and the desktop app runs on the same technology. Reaching 100% locks the file. Figma's troubleshooting checklist lists different warning levels, so check the current help center numbers."
+    },
+    {
+      "question": "Can Lazur fix Smart Animate for me?",
+      "answer": "No. Lazur answers questions about what is on your screen, points at controls and guides you one click at a time. It does not click or edit your file for you. You still make the changes yourself."
+    },
+    {
+      "question": "Should I turn off hardware acceleration to fix stutter?",
+      "answer": "It is a forum tip, not an official Figma fix, and Figma's checklist does not list it. Change one setting, test the preview, and undo the change if nothing improves."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Smart animate layers between frames (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360039818874-Smart-animate-layers-between-frames",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Reduce memory usage in files (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Troubleshooting checklist (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360040523973-Troubleshooting-checklist",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to the Figma desktop app (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Smart Animation doesn't animate properly (Figma Community)",
+      "url": "https://forum.figma.com/ask-the-community-7/smart-animation-doesnt-animate-properly-35360",
+      "publisher": "Figma Community (user forum with staff replies)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Response Times: The 3 Important Limits (Nielsen Norman Group)",
+      "url": "https://www.nngroup.com/articles/response-times-3-important-limits/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Animations and performance (web.dev)",
+      "url": "https://web.dev/articles/animations-and-performance",
+      "publisher": "Google (web.dev)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers (BLS Occupational Outlook Handbook)",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma on Mac: why Helper (Renderer) eats RAM (Shiny)",
+      "url": "https://www.theodorehq.com/shiny/blog/figma-mac-memory-usage",
+      "publisher": "Shiny (third-party blog)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Activity Monitor User Guide (Apple Support)",
+      "url": "https://support.apple.com/guide/activity-monitor/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "smart animate transitions that fail or stutter",
+  "costs": [
+    {
+      "title": "Your own time, measured in minutes",
+      "text": "No survey or study in this research measured the time lost to Smart Animate problems. What you can measure is your own time. Write down the minutes a failed preview costs you for one week, including rebuilt layers and reloads. Your own log is more useful than any average."
+    },
+    {
+      "title": "The hourly value of your time",
+      "text": "The BLS puts the median pay for graphic designers at $62,960 per year, or $30.27 per hour, in May 2025. Treat that as a rough rate, not a promise for your job. As illustrative arithmetic, one hour a week lost for 52 weeks comes to about $1,574 a year at that rate. This is a calculation, not a measured loss."
+    },
+    {
+      "title": "Client review rounds",
+      "text": "A transition that dissolves when it should slide can look broken to a client. The next message often asks for changes you did not plan. No source here measures how often that happens. Run a short check before every review, so a broken transition does not become the topic of the meeting."
+    },
+    {
+      "title": "Interrupted flow",
+      "text": "NN/g says a response within 0.1 second feels instantaneous. It also says 1 second is about the limit for a user's flow of thought to stay uninterrupted. A preview that stalls for seconds breaks that flow. The research here does not measure burnout from tool problems, so read this as a usability point, not a health claim."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Layer names do not match",
+      "text": "Smart Animate matches layers by name and by position in the frame hierarchy, according to Figma's help page. If Title in the first frame is Title Text in the second, the layer has no match. Figma then brings the new layer in with a dissolve. The failure is silent, so nothing warns you."
+    },
+    {
+      "title": "Nesting differs between frames",
+      "text": "Matching also depends on where a layer sits in the hierarchy. A card inside a group in one frame and loose on the canvas in the next can break the match, even when the names look right. A Figma staff member made the same point about hierarchy in a community thread."
+    },
+    {
+      "title": "Drop and inner shadows",
+      "text": "Figma's help page says it does not support Smart Animate for layers with drop shadow or inner shadow. A layer with one of these effects may not animate as expected, even when its name and position match. Shadows are common on cards and buttons, so this failure shows up on many screens."
+    },
+    {
+      "title": "Overlays and shape morphs",
+      "text": "Overlay actions are unsupported because Figma treats an overlay as a new frame. Moving between shapes is also unsupported. Both cases look like a broken transition when they are simply outside what Smart Animate does. Check the action type before you change layer names."
+    },
+    {
+      "title": "Components and variants pile up",
+      "text": "Figma's memory guide says components and variants add weight to a file. Many separate variants of one button can push the file toward its memory limit. The guide recommends component properties to cut the count. A heavy file can stutter, and that stutter looks like a bad transition."
+    },
+    {
+      "title": "One giant file for the whole product",
+      "text": "Figma's memory guide suggests splitting large files, for example one file per page. A single file that holds every flow, version and asset is hard to keep under the limit. Each browser tab gets about 2 GB for that file. The bigger the file, the less room the preview has to run smoothly."
+    },
+    {
+      "title": "Memory pressure on the Mac",
+      "text": "Figma runs on browser technology, so the desktop app shares the browser memory limit. A third-party blog says the Helper (Renderer) process draws the canvas and holds most of Figma's RAM on a Mac. Other apps and tabs compete for the same memory. The preview is often the first place you notice it. web.dev says to keep 60 frames per second when animating, and lower rates cause stutters users notice."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Match layer names exactly",
+      "text": "Select the layer in each frame, double-click its name in the Layers panel, and type the same name. Watch for small differences such as Title and Title Text. Give each frame a unique name too, which a Figma staff member suggested in a community thread. Preview after each pair you fix."
+    },
+    {
+      "title": "Fix the nesting",
+      "text": "Move the matching layer into the same group in both frames, or ungroup both. Keep the hierarchy the same from frame to frame. Preview one transition at a time, so you know which change helped."
+    },
+    {
+      "title": "Test without shadows on matching layers",
+      "text": "Drop and inner shadows are unsupported for Smart Animate. Remove the shadow on a test copy and see whether the layer animates. If it does, decide how to keep the look without breaking the transition, and test that version before you change the production file."
+    },
+    {
+      "title": "Use the matching checkbox with care",
+      "text": "Smart animate matching layers changes how fixed layers that do not match behave. Turn it on only for screens that need it, and watch the fixed layers in the preview. Turn it off again if other layers start to dissolve."
+    },
+    {
+      "title": "Reduce components and variants",
+      "text": "Replace near-copies of a component with one component that uses component properties. Figma's memory guide recommends this to reduce the count. Fewer variants means fewer objects for the canvas to draw, and that helps a heavy file."
+    },
+    {
+      "title": "Split the file",
+      "text": "Move each page or flow into its own file, following the memory guide. Test the split on a copy so the original stays intact. Keep the prototype flow inside one file where the transition lives, so the connections still work."
+    },
+    {
+      "title": "Compress images and split complex SVGs",
+      "text": "The memory guide suggests the Downsize plugin for compressing images, and it suggests importing complex SVGs in smaller parts. Check image sizes before you import them. If one SVG makes the canvas lag, bring it in pieces and preview after each piece."
+    },
+    {
+      "title": "Quit, reopen and clear the cache",
+      "text": "Quit with ⌘Q, wait a few seconds, and reopen the app. Close browser tabs you do not need. Turn off multiplayer cursors, layout guides and effects while you preview. Figma's checklist says to clear the desktop app cache too, but check its help center for the Mac steps first."
+    },
+    {
+      "title": "Check your browser and WebGL",
+      "text": "Use the latest stable Chrome, Firefox or Safari. Confirm that WebGL is enabled, because Figma's checklist asks for it. If a Chrome extension blocks WebGL, test in a clean profile or a window without extensions."
+    },
+    {
+      "title": "Test forum tweaks one at a time",
+      "text": "Community tips such as turning off hardware acceleration on Mac are anecdotes. Change one setting, preview, and note the result. Undo the change if nothing improves. Figma's official checklist does not list this tip, so do not treat it as a known fix."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why did this layer dissolve instead of sliding?",
+      "result": "Lazur answers out loud, based on what is visible on your screen, and points at the layer names it can see.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Smart animate option?",
+      "result": "Lazur draws a circle and a label around the transition field in the Animation section.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through setting Smart animate on this connection.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Write a note to the file owner about the card title layer.",
+      "result": "Hold fn and dictate the note into any text field. Your personal dictionary keeps layer names spelled the way you want.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find recent community threads about Smart Animate failing.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the Prototype tab?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Prototype tab in the right sidebar, so you can open it yourself.",
+    "shell": "design",
+    "context": "Figma desktop app, prototype open on a Mac",
+    "pointsAt": "Prototype tab",
+    "output": "A circle and a label on the Prototype tab in the right sidebar."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Reproduce the failure",
+      "text": "Open the prototype, click Present, and record which layers dissolve. Note the frame names, the transition type and whether the file feels heavy. Do not change anything yet."
+    },
+    {
+      "label": "Day 2",
+      "title": "Match names and nesting",
+      "text": "Compare the layer names and group structure in the two frames. Rename or regroup one pair at a time. Preview after each pair, so you know which change worked."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check effects and settings",
+      "text": "Remove drop and inner shadows on a test copy. Check the Prototype tab, the connection and the Smart animate setting. Keep the matching checkbox off unless a screen needs it."
+    },
+    {
+      "label": "Day 4",
+      "title": "Measure memory",
+      "text": "Turn on Main menu > View > Memory usage, then check Activity Monitor for Figma processes. Write down the three heaviest areas of the file, and note the warning tile if one appears."
+    },
+    {
+      "label": "Day 5",
+      "title": "Split, clean up and report",
+      "text": "Split the heaviest page into its own file, reduce variants, and quit and reopen the app. Preview the full flow once more. If the failure stays, send the file owner or Figma support a short report with frame names and steps."
+    }
+  ],
+  "apps": [
+    "figma"
+  ],
+  "type": "problem",
+  "slug": "figma-smart-animate-not-working-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-smart-animate-not-working-fix/figma-smart-animate-not-working-1-698d3b.jpg",
+      "width": 1280,
+      "height": 761,
+      "alt": "Designer at a laptop on a desk, reviewing an app prototype on the screen",
+      "caption": "Reviewing a prototype before a client call",
+      "keywords": [
+        "figma smart animate not working",
+        "Designers",
+        "Smart Animate transitions fail or stutter",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-smart-animate-not-working-fix/figma-smart-animate-not-working-2-ed671d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a Mac computer at a desk while checking a Figma Smart Animate transition",
+      "caption": "A Mac workspace for design review",
+      "keywords": [
+        "figma smart animate not working",
+        "Designers",
+        "Smart Animate transitions fail or stutter",
+        "Mac",
+        "person using Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Waldrebell",
+        "url": "https://pixabay.com/users/Waldrebell-826900/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/trees-forest-fog-snow-wanderer-5899195/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-smart-animate-not-working-fix/figma-smart-animate-not-working-3-8e0e2b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Graphic designer checking a Figma prototype on a computer screen",
+      "caption": "Testing transitions on a large design file",
+      "keywords": [
+        "figma smart animate not working",
+        "Designers",
+        "Smart Animate transitions fail or stutter",
+        "Mac",
+        "graphic designer work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "hitesh0141",
+        "url": "https://pixabay.com/users/hitesh0141-2271740/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/photoshop-imac-mac-computer-apple-4759955/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma smart animate not working",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "figma smart animate stutter": 1,
+      "figma smart animate layers not matching": 1,
+      "figma smart animate dissolve instead": 2,
+      "figma prototype lag on mac": 1,
+      "figma memory limit 2GB": 1,
+      "figma smart animate drop shadow": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

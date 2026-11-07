@@ -1,0 +1,561 @@
+{
+  "title": "How to read a Java stack trace on Mac: find the real cause, for beginners",
+  "metaTitle": "How to Read a Java Stack Trace on Mac: Find the Real Cause",
+  "description": "Learn how to read a Java stack trace on Mac. Start at the exception, find your own code, then follow Caused by to the real bug.",
+  "targetKeyword": "how to read a java stack trace",
+  "secondaryKeywords": [
+    "java stack trace",
+    "read java stack trace mac",
+    "java exception stack trace",
+    "caused by java exception",
+    "java error message meaning",
+    "java null pointer exception stack trace"
+  ],
+  "intro": "A Java stack trace is a list of method calls that were running when an exception was thrown. To read it, start with the exception line, find the first frame that points at your own code, then follow any Caused by lines down to the root. Most people stop at the top line. That line tells you what broke, not always why it broke.",
+  "tldr": [
+    "Read the exception class and message first. They name the problem in one line.",
+    "Find the first frame that names your own package. That is the first place to look.",
+    "Follow every Caused by line to the bottom. The last one is usually the root failure.",
+    "Check line numbers against the code that actually ran. A stale build sends you to the wrong line.",
+    "Reproduce the error before you change anything, then change one thing at a time."
+  ],
+  "stats": [
+    {
+      "value": "45.2%",
+      "label": "of 2025 Stack Overflow respondents picked debugging AI-generated code as more time-consuming",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/ai",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: AI"
+    },
+    {
+      "value": "66%",
+      "label": "picked AI answers that are almost right, but not quite, in the same survey",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/ai",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: AI"
+    },
+    {
+      "value": "1,717,800",
+      "label": "software developer jobs in 2025, according to the Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "Occupational Outlook Handbook: Software Developers"
+    },
+    {
+      "value": "$135,980",
+      "label": "May 2025 median annual wage for software developers, per the Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "Occupational Outlook Handbook: Software Developers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A stack trace is Java's record of where a program was when something went wrong. The JVM prints one when an exception is thrown and nothing in the code catches it. You will see it in Terminal, in the run panel of your editor, in a test report, or in a log file. The format is the same in all of these places. Learn to read it once, and you can read a trace from a web server, a unit test, or a command line tool."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The four parts of a Java stack trace"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "The exception line. It holds the exception class, such as java.lang.NullPointerException, then a colon and a message.",
+        "Stack frames. Each line starts with at. It names a class, a method, and the source file with a line number in parentheses.",
+        "Caused by lines. A Caused by line means one exception wrapped another. Each one starts a new block of frames below it.",
+        "More lines. The JVM hides frames that repeat from the enclosing trace and shows a short line that says more, with a count."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the frames from the top down. The first frame is where the exception was created. Each frame below it is a call that led to that point. The bottom frame is usually the entry point of the program, such as main."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to read a Java stack trace, step by step"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy the whole trace. Drag across it in Terminal and press ⌘ C, or select it in your editor's run panel.",
+        "Read the exception class and message. A helpful NullPointerException message usually names the variable that was null.",
+        "Find the first frame from your own code. Your package is the reverse domain at the start of your class names, such as com.yourcompany.",
+        "Open that file. In VS Code or Cursor, press ⌘ P, type the file name, then press ⌃ G and type the line number.",
+        "Read the lines around that number. Note which variable could be empty, wrong, or out of range.",
+        "Move to the bottom Caused by line and read the root exception the same way.",
+        "Reproduce the failure with the smallest input you can find, then change one thing at a time."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down three things before you touch the code. Record what the message says, which file and line it points at, and which value looked wrong. That note keeps you from chasing guesses."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find your own code in a long stack trace"
+    },
+    {
+      "type": "paragraph",
+      "text": "Long traces are mostly framework and JDK frames. Frames that start with java., javax., or jdk. belong to Java itself. Library frames carry their own package names. Scan down until you see a package you recognize as yours, then stop there."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat that first frame as a suspect, not a verdict. Your code may be correct and still receive a bad value from its caller. Read one frame up to the caller, then ask where the bad value came from. That question usually leads to the real bug."
+    },
+    {
+      "type": "paragraph",
+      "text": "Modern Java versions usually name the null variable in a NullPointerException message. Older traces only show the line. In both cases, the message tells you what was null, not why it became null. You still have to trace the value back."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to follow the Caused by chain in Java"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Caused by line means a lower layer failed first. Your code or a library caught that failure and threw a new exception that wraps it. Java prints the original below the wrapper. Start at the bottom Caused by line. The root exception often names the true failure, such as a missing file or a refused connection."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a small example. The top line says an import failed. The Caused by line below says a file was not found, followed by a path. You now know to check the path and the file, not the import code. The wrapper showed where the failure surfaced. The root showed what failed."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a null value from a customer lookup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say the top line reads NullPointerException, and the message says a String is null where length is called. The first frame from your code is Invoice.total. The frame above it is Report.build, which calls total with an invoice from a customer lookup. Open Invoice.total first, and find the field that is null."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now you have two questions. Why does total assume the name is set? Why did the lookup return a customer with no name? The second question is the real bug. The fix belongs in the lookup or in data validation, not in total. The trace showed where the crash happened. It did not show where the bad data started."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Java stack trace on a Mac: where to search"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Terminal: press ⌘ F to search the output for a class name. You can also find the same bar under Edit > Find > Find.",
+        "Editor: press ⇧ ⌘ F in VS Code or Cursor to search every file for a class or method name.",
+        "Chrome: press ⌘ L to jump to the address bar. Paste the exception class and the first few words of the message in quotes.",
+        "Console: a normal Java exception prints to the output and does not create a crash report. If the whole Java process crashes, open Console and check Reports in the sidebar."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Console sorts reports into user reports and system reports. You can see the user reports for apps you use. Only an administrator can view every report. Crash report files end in .ips, so use the file name and the time stamp to match a report to the run that failed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes when reading stack traces"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reading only the top line and guessing a fix.",
+        "Editing JDK or framework code, which you usually cannot change, instead of your own call site.",
+        "Trusting a line number from an old build. Clean the project and rebuild first.",
+        "Logging only the message. The message drops the stack and the Caused by chain. Log the whole exception object instead.",
+        "Pasting a trace with tokens, emails, or customer IDs into a chat tool without removing them.",
+        "Accepting an AI explanation without opening the file it names."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you read a trace"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant that lives in the notch on your Mac. Hold ⌥ ⌘ and ask what the trace means. Lazur sees your screen while you hold the shortcut and answers out loud. Ask where the first line from your code is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has limits, and they matter for this job. It does not click through Cursor, run your build, or edit your files. Its guide mode walks you through one step at a time and waits for each click. The reading, the reasoning, and the fix still belong to you. Treat its explanation as a lead to check against the code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn the trace into a clear bug report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once you know the cause, the report is the next job. Paste the trace into a Linear issue or a Slack message. In Slack, wrap it in triple backticks so the layout holds. Add two lines above it that describe what you expected and what happened. Hold fn to dictate those lines at the cursor in any app. See [AI dictation for developers](/blog/ai-dictation-for-developers) for more."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and work rules for pasted traces"
+    },
+    {
+      "type": "paragraph",
+      "text": "Traces often contain customer emails, internal hostnames, file paths, and tokens. Remove them before you paste into Slack, Linear, or an AI tool. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you work with client records, patient data, or other regulated information, follow your employer's rules first. Some rules forbid pasting that data into any outside tool. When you are unsure, redact the trace or ask your team before you share it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for reading errors faster"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one trace from your own project this week. Use the order in this guide, and write the note before you change code. The [VS Code guide](/for/developers/vs-code) and the [Cursor guide](/for/developers/cursor) cover the shortcuts used here. For the full list of ways Lazur helps with errors, see [Lazur for developers](/for/developers). Trial details are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does Caused by mean in a Java stack trace?",
+      "answer": "Caused by means an exception was wrapped inside another exception. The lower layer failed first, and the code above it threw a new error with the original attached. Read the bottom Caused by line first, because it usually names the true failure. Each Caused by block has its own frames, so read those top down too."
+    },
+    {
+      "question": "Which line should I read first in a Java stack trace?",
+      "answer": "Read the exception class and message first. Then find the first at line that names your own package. After that, look at the Caused by lines, starting from the bottom. This order gets you to the suspect file fastest in most cases."
+    },
+    {
+      "question": "Why does my trace show lines from java.base?",
+      "answer": "Those frames come from the Java standard library, which runs your code. The module name java.base shows where Java itself was when the failure happened. You rarely change that code. Scroll down to a frame from your package and start there."
+    },
+    {
+      "question": "Why do the line numbers in my trace not match my code?",
+      "answer": "Most often, the code you are reading is not the code that ran. You may have edited a file without rebuilding, or your IDE compiled a different version than your terminal ran. Clean the build, rebuild, run again, and read the new trace."
+    },
+    {
+      "question": "Can I read a Java stack trace on a Mac without an IDE?",
+      "answer": "Yes. Terminal shows the output, and any text editor can open the source files. Press ⌘ F to find a class name in Terminal, and use your editor's search across files to find the code. An IDE can make frames clickable, but the reading method stays the same."
+    },
+    {
+      "question": "Is it safe to paste a stack trace into an AI tool?",
+      "answer": "Remove tokens, emails, customer IDs, and internal hostnames first. Follow your employer's rules about outside tools. Lazur only listens and looks at the screen while you hold its shortcut, and screenshots are not stored. Still, redact the trace before you share it anywhere."
+    },
+    {
+      "question": "What if my program fails without printing a stack trace?",
+      "answer": "Check the log file or output your program writes. If the whole process crashes instead of throwing an exception, open Console and look under Reports, then Crash Reports. Crash report files end in .ips, so look for that extension."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Stack Overflow Developer Survey 2025: AI",
+      "url": "https://survey.stackoverflow.co/2025/ai",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Stack Overflow press release: 2025 Developer Survey",
+      "url": "https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "An Exploratory Study of Debugging Episodes",
+      "url": "https://arxiv.org/abs/2105.02162",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Occupational Outlook Handbook: Software Developers",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Not the Silver Bullet: LLM-enhanced Programming Error Messages are Ineffective in Practice",
+      "url": "https://arxiv.org/abs/2409.18661",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What we can learn from how programmers debug their code",
+      "url": "https://arxiv.org/pdf/2103.12447",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "View reports in Console on Mac",
+      "url": "https://support.apple.com/guide/console/reports-cnsl664be99a/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Sentry Pricing",
+      "url": "https://sentry.io/pricing/",
+      "publisher": "Sentry",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "reading stack traces and error messages",
+  "costs": [
+    {
+      "title": "Debugging comes up about every eight minutes",
+      "text": "A small observational study followed 11 professional developers across 30 hours of live-streamed programming. It found debugging happened about once every eight minutes. The study counted how often it happened, not how much of the day it took. Reading errors is routine work, so the small delays add up."
+    },
+    {
+      "title": "Stuck time has a salary cost",
+      "text": "The BLS May 2025 median wage for software developers is $135,980. Divided by 2,080 hours, that comes to about $65 an hour. That figure is my math, not a BLS number, and it leaves out benefits and overhead. An hour lost to one confusing trace still costs real money."
+    },
+    {
+      "title": "AI answers that are almost right",
+      "text": "In the 2025 Stack Overflow survey, 66% of respondents picked AI answers that are almost right, but not quite. Another 45.2% said debugging AI-generated code is more time-consuming. A plausible explanation of a trace can send you to the wrong file for a long stretch."
+    },
+    {
+      "title": "Quick rewrites that do not save time",
+      "text": "One study with 106 participants tested GPT-4 rewrites of compiler errors. The rewrites beat conventional messages on time-to-fix in only one of six tasks. Expert written explanations did better. Do not assume a fast AI summary will save you time."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The top line names a symptom",
+      "text": "The exception line says what broke, such as a null value or a closed connection. It does not say how the value got that way. Most of the work is tracing back from the symptom to the first bad decision in the flow. Treat the top line as the start of your search, not the answer."
+    },
+    {
+      "title": "The real failure hides in a Caused by line",
+      "text": "Libraries and frameworks often catch an error and throw a new one. The wrapper shows up at the top. The real failure sits under a Caused by line, sometimes several levels down. Readers who stop at the first block miss it."
+    },
+    {
+      "title": "Most frames belong to other code",
+      "text": "A trace from a web app or a test may list many frames before your code appears. Those frames come from the JDK, the framework, and the test runner. They are accurate, but they hide your call site. Scanning for your package takes practice."
+    },
+    {
+      "title": "Line numbers can point at the wrong version",
+      "text": "A line number belongs to the file version that was compiled. If you edited the file after the run, the number points at new code, or at nothing useful. A stale build is an easy reason a trace looks wrong. Rebuild before you trust it."
+    },
+    {
+      "title": "Most bugs are logic errors, not crashes",
+      "text": "In a questionnaire of 102 programmers describing bugs they had fixed, about 69.6% were semantic bugs. Those are wrong results from code that runs without errors. A trace shows where the program stopped, but a logic bug can stop far from its cause. That gap is why the trace alone is not enough."
+    },
+    {
+      "title": "Finding the bug is harder than fixing it",
+      "text": "In the same study of 102 programmers, locating a bug was harder than reproducing or fixing it. A stack trace helps with location, but only if you read it well. Skipping reproduction turns a short search into a long one."
+    },
+    {
+      "title": "Error messages are written for compilers",
+      "text": "Compiler and runtime messages describe the rule that broke. They rarely explain what you meant to do. In one study with 106 participants, GPT-4 rewrites of compiler errors helped time-to-fix in only one of six tasks. Expert explanations did better, so clear wording matters more than extra text."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read in a fixed order",
+      "text": "Start with the exception class and message. Then read the first frame from your code, then the Caused by lines from the bottom. Writing the order on a sticky note helps at first. After a few traces, it becomes a habit you do without thinking."
+    },
+    {
+      "title": "Treat your first own-code frame as the suspect",
+      "text": "Open the file at that line and read the lines above and below it. Look for a variable that could be null, empty, or out of range. Write down what you think it should hold, then check the caller that passed it in."
+    },
+    {
+      "title": "Rebuild before you trust a line number",
+      "text": "Clean the build, rebuild, and run again so the line numbers match the source you are reading. If the trace moves, you had a stale build. This takes little time and saves a long hunt through the wrong file."
+    },
+    {
+      "title": "Reproduce before you locate",
+      "text": "A study of 102 programmers found that locating a bug was harder than reproducing it. So shrink the input first. Run the smallest case that still throws the same exception, then read the trace from that run."
+    },
+    {
+      "title": "Use the debugger built into your IDE",
+      "text": "Set a breakpoint on the suspect line, then run in debug mode. Step over lines and watch the variables change. The same programmer study found that people often relied only on the debugger built into their IDE, so it is a fair place to start."
+    },
+    {
+      "title": "Search the exact message",
+      "text": "Copy the exception class and the first few words of its message. Paste them into Chrome with quotes. Official docs and community answers often explain the exception in plain words. Read the answer, then check that it matches your code."
+    },
+    {
+      "title": "Ask a teammate with a clean paste",
+      "text": "In Slack, wrap the trace in triple backticks so the layout stays intact. Add the one line you expected to see. Remove secrets before you send it, even inside a private channel."
+    },
+    {
+      "title": "Use an error tracker only for production",
+      "text": "If the trace only happens for real users, an error tracker groups repeated errors and keeps the trace. Sentry lists a Developer plan as free, with a limit of 5k errors on its pricing page. Check their pricing page for current limits before you rely on it."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this exception mean?",
+      "capability": "explain",
+      "result": "Lazur reads the trace on your screen and explains the exception out loud, in plain words."
+    },
+    {
+      "say": "Where is the first line from my code?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around that line, so you find it faster."
+    },
+    {
+      "say": "Walk me through opening that file in Cursor.",
+      "capability": "guide",
+      "result": "Lazur gives one step at a time and waits for each click. It does not click for you."
+    },
+    {
+      "say": "Find the docs for this exception.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "say": "Draft a Slack message with this trace.",
+      "capability": "draft",
+      "result": "Lazur drafts the text and can type it where your cursor is. You review it before anything is sent."
+    },
+    {
+      "say": "Dictate the bug summary into Linear.",
+      "capability": "dictate",
+      "result": "Hold fn to dictate clean text at the cursor in any app, so the summary takes less typing."
+    }
+  ],
+  "demo": {
+    "spoken": "Which line in this trace is my code?",
+    "capability": "point",
+    "result": "Lazur circles the first frame that names your package and labels it on screen.",
+    "shell": "code",
+    "context": "Java exception in the Cursor run panel",
+    "output": "Lazur says which frame is yours, what that method does, and which variable to check on that line. You confirm it in the file.",
+    "pointsAt": "first frame from your code"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the first line only",
+      "text": "Pick one trace from your own project. Write the exception class and the message in one sentence each. Do not open any file yet. This forces you to name the symptom before you guess at the cause."
+    },
+    {
+      "label": "Day 2",
+      "title": "Find your first own-code frame",
+      "text": "Scan the trace for your package. Open that file in VS Code or Cursor with ⌘ P. Read the lines above and below the frame, and note the variable that looked wrong."
+    },
+    {
+      "label": "Day 3",
+      "title": "Follow the Caused by chain",
+      "text": "Go to the bottom Caused by line. Write the root exception in your note. Check whether it names a file, a network call, or a value that came from outside your code."
+    },
+    {
+      "label": "Day 4",
+      "title": "Reproduce, then check line numbers",
+      "text": "Shrink the input until the same exception appears. Clean and rebuild the project. Confirm the line numbers match the file you are reading before you edit anything."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write the note and share it safely",
+      "text": "Remove secrets and customer data from the trace. Paste it into Linear or Slack with two lines about what you expected. Dictate the summary if typing slows you down."
+    }
+  ],
+  "apps": [
+    "vs-code",
+    "cursor",
+    "chrome",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "java-stack-trace-read-find-error",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/java-stack-trace-read-find-error/how-to-read-a-java-stack-trace-1-024a99.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a laptop reading error output while learning how to read a java stack trace",
+      "caption": "Reading a trace takes patience and a steady pace.",
+      "keywords": [
+        "how to read a java stack trace",
+        "Developers",
+        "Reading stack traces and error messages",
+        "Mac",
+        "developer laptop code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-electronics-2583383/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/java-stack-trace-read-find-error/how-to-read-a-java-stack-trace-2-3f79ec.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer at a desk with coffee and code open, working through a Java error message",
+      "caption": "Work through one frame at a time.",
+      "keywords": [
+        "how to read a java stack trace",
+        "Developers",
+        "Reading stack traces and error messages",
+        "Mac",
+        "programmer desk coffee",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "diegartenprofis",
+        "url": "https://pixabay.com/users/diegartenprofis-13853955/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programmer-computer-code-4709802/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/java-stack-trace-read-find-error/how-to-read-a-java-stack-trace-3-121927.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Software engineer in an office checking a Java exception before making a change",
+      "caption": "Check the file before you change the code.",
+      "keywords": [
+        "how to read a java stack trace",
+        "Developers",
+        "Reading stack traces and error messages",
+        "Mac",
+        "man coding office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "imperioame",
+        "url": "https://pixabay.com/users/imperioame-6404363/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/employee-meeting-job-working-4604126/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to read a java stack trace",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "java stack trace": 14,
+      "read java stack trace mac": 1,
+      "java exception stack trace": 1,
+      "caused by java exception": 1,
+      "java error message meaning": 1,
+      "java null pointer exception stack trace": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

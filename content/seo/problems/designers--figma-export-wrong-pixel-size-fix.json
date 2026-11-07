@@ -1,0 +1,599 @@
+{
+  "title": "Figma export wrong pixel size on Mac: causes and fixes for designers in 2026",
+  "metaTitle": "Figma export wrong pixel size: causes and fixes on Mac",
+  "description": "Figma export gives the wrong pixel size? Check the scale, fractional positions and format limits. Fixes for PNG, SVG and Preview on Mac.",
+  "targetKeyword": "figma export wrong pixel size",
+  "secondaryKeywords": [
+    "figma export scale 2x",
+    "figma png wrong dimensions",
+    "figma svg export size",
+    "figma export not aligned to pixel grid",
+    "figma export 72 dpi",
+    "preview adjust size mac png",
+    "illustrator export wrong pixel size"
+  ],
+  "intro": "A Figma export that comes out the wrong pixel size usually has one of three causes. The export scale is set above 1x, a layer sits between whole pixels, or the format cannot scale, as with SVG and PDF. This guide shows how to find each one on a Mac, what the mistake costs, and how to check the file before you send it.",
+  "tldr": [
+    "Check the export scale first. At 2x, every pixel count doubles.",
+    "Round X and Y to whole pixels. A layer on a fractional position can export one pixel larger.",
+    "SVG and PDF export only at 1x in Figma. Size the frame instead.",
+    "In Preview, deselect Resample image before you change width or height. Confirm the result with ⌘I."
+  ],
+  "stats": [
+    {
+      "value": "$62,960",
+      "label": "Median annual pay for graphic designers, May 2025, the figure used for the cost estimate",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Graphic Designers"
+    },
+    {
+      "value": "72 DPI",
+      "label": "Default resolution tag for images exported from Figma. At 2x the tag reads 144 DPI.",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings",
+      "sourceTitle": "Figma Help Center: Export formats and settings"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You usually find out from the file itself. The PNG is wider than the spec, an icon looks soft on a web page, or a developer asks why the asset does not match the mockup. Before you export again, write down the size the file should be. A pixel count only means something next to a scale, a target screen, or a spec from the developer."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a pixel size means in a Figma export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma does not save an export size with the file. It takes the frame or layer at its design size and multiplies the pixel count by the scale you pick. At 1x the output matches the design size. At 2x, both width and height double."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma also tags raster exports with a resolution. Its help center says images exported at 72 DPI by default, and 2x exports carry 144 DPI. That tag tells print software how big to print the file. It is not the same as the pixel count, which is what a screen uses."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the scale field before anything else"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the frame or layer, then open the Export section at the bottom of the Design panel. The scale field accepts a default option or a custom value. A custom value can end in x, w or h. Use x for a multiplier, w for a fixed width and h for a fixed height."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the suffix before you click Export. A value like 2x doubles the output. A value with w sets a fixed width. Check the output width in Preview after each export, because a custom value is easy to mistype."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "PNG is larger than the frame",
+          "Scale above 1x, usually 2x",
+          "Read the scale field and its suffix"
+        ],
+        [
+          "Icon exports one pixel too big",
+          "Layer sits on a fractional X or Y",
+          "Type whole numbers into X and Y"
+        ],
+        [
+          "SVG will not export at 2x",
+          "Figma exports SVG only at 1x",
+          "Set width and height in the frame"
+        ],
+        [
+          "Illustrator file is far too large",
+          "High resolution, such as 326 PPI",
+          "Check the export resolution and PPI"
+        ],
+        [
+          "Preview resize looks soft",
+          "Resample image left on",
+          "Deselect Resample image, then check the Inspector"
+        ]
+      ],
+      "caption": "Common symptoms in Figma, Illustrator and Preview, with the first check to run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix layers that sit between pixels"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Figma community thread posted on January 11, 2024 describes a 5 px icon that exported at 6 px. The layer was not aligned to the pixel grid. After the poster aligned it, the export came out at the correct size. The thread has no staff reply and is closed, so treat it as one user's finding."
+    },
+    {
+      "type": "paragraph",
+      "text": "The canvas will not show you a decimal position. The Design panel will. Dragging a layer with the mouse can leave X or Y at a decimal value, even when the layer looks neatly placed."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the layer and look at X and Y in the Design panel.",
+        "If either value has a decimal, type the nearest whole number.",
+        "Check W and H too. Whole numbers keep the edges on the pixel grid.",
+        "Export again, open the file in Preview, and press ⌘I to read the pixel size."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export SVG and PDF at the right size"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma only supports SVG and PDF exports at 1x. There is no 2x option for these formats, so the scale field cannot make an SVG bigger. Change the frame size instead, then export at 1x."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help center says SVG size can still be changed through width and height variables or code. If a developer needs one icon at two sizes, set up variables for the width and height. Learn the basics in [how to create a variable in Figma](/how-to/create-a-variable-in-figma)."
+    },
+    {
+      "type": "paragraph",
+      "text": "SVG is vector, so it has no fixed pixel count. The size you see depends on the width and height written into the file and the space the page gives it. If a developer asks for the numbers, open the SVG in a text editor and read the width and height attributes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose between 1x and 2x PNG exports"
+    },
+    {
+      "type": "paragraph",
+      "text": "If a developer asks for a sharp image on a high-density screen, export the frame at 2x. Keep the 1x file too, so both sizes exist for the team. Name them clearly so nobody has to guess which is which."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the step-by-step menu path, read [how to export a frame as PNG in Figma](/how-to/export-a-frame-as-png-in-figma). The same settings apply whether you export one frame or many."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Illustrator resolution and PPI: a worked case"
+    },
+    {
+      "type": "paragraph",
+      "text": "In an Adobe Community thread first posted on October 4, 2011, a user had a 640 x 960 px artboard. It exported at 2892 x 4348 px. The accepted answer blamed the 326 PPI setting. A 2021 reply said exporting at 72 PPI instead of 300 PPI fixed the oversized output."
+    },
+    {
+      "type": "paragraph",
+      "text": "The lesson is that Illustrator's output depends on resolution as well as the artboard. Another reply in the same thread says to keep artboard X and Y coordinates on whole pixels. Adobe's help pages were not checked for this page, so confirm the menu names in your version."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Resize a PNG in Preview on Mac without losing detail"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the PNG in Preview and choose Tools > Adjust Size. The Adjust Size button in the Markup toolbar does the same job.",
+        "Leave Scale proportionally on, so a change to width also updates height.",
+        "Deselect Resample image before you change width or height. Apple's Preview guide says this shrinks dimensions without losing detail.",
+        "Set the width or height, then click OK.",
+        "Press ⌘I to open the Inspector and read the pixel width and height."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Some guides say that with resampling off, only the DPI value changes. The sources conflict, so do not trust either account without checking. The Inspector shows the real pixel count. If it does not match your target, re-export from the source file. That is safer than resizing a flattened PNG again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Photoshop has the same split. Choose Image > Image Size and check the Resample box before you type a new size. The pixel dimensions at the top of that dialog show what the file will become."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check dimensions before you send a file"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open the file in Preview and press ⌘I. Compare the pixel width and height with the spec.",
+        "Export one test file at each scale the developer asked for, and compare them side by side.",
+        "Name each file with its scale, such as icon@2x.png, so the team can see the difference.",
+        "Post the sizes in the handoff message, not only in the file names."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Re-exporting at new scales before you check X and Y. The position is often the real cause.",
+        "Setting a 2x scale on an SVG, then assuming Figma is broken.",
+        "Resizing a PNG in Preview with Resample image on, then sending the soft result.",
+        "Trusting the DPI tag. Screens read the pixel count, not the DPI tag.",
+        "Sending one size when the developer needs two. Ask for the list of sizes before you export."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a re-export costs in time and money"
+    },
+    {
+      "type": "paragraph",
+      "text": "The U.S. Bureau of Labor Statistics lists a median of $62,960 a year for graphic designers in May 2025, or $30.27 an hour. The hourly figure is calculated from that median and assumes a 2,080 hour work year."
+    },
+    {
+      "type": "paragraph",
+      "text": "At that rate, a 15-minute re-export costs about $7.57 of designer time. That counts only your hours. It leaves out the developer, the reviewer and any second round of files. No source found for this page measures how often export mistakes happen, so treat the cost as a rough guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you export a small icon at 1x and it comes out one pixel too big. Open the layer. The X value shows a decimal, which means the layer sits between two pixels. Type the nearest whole number, export again, and check the file in Preview."
+    },
+    {
+      "type": "paragraph",
+      "text": "The file now opens at the size you set. If the developer also needs a 2x version, export it from the same frame. Its pixel width should be twice the width of the 1x file. Doubling is the only change you should see."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the export is still wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work down the checks in order. Read the scale suffix first. Then check X and Y for decimals. Then check whether a parent frame or group changes the size you expect. Last, check the format, because SVG and PDF cannot export above 1x."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the file still does not match, copy the spec, the scale you used and the Inspector size into one message for the developer. A clear message saves a round trip."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur looks at your screen only while you hold ⌥⌘. Hold the keys and ask where the scale field is. Lazur draws a circle and a label around it, and it answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons or change your files. It can guide you one click at a time, waiting for each click, and you make each change. It can also draft the handoff note, so the sizes are written down before anyone sends anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the files hold client or patient data, follow your employer's rules before you share a screenshot with any AI tool. Check those rules before you start, not after."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for a clean export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the scale field, round X and Y, size SVG in the frame, and check the Inspector before you send. The [Figma page for designers](/for/designers/figma) covers the wider setup, and the [Figma SVG export guide](/how-to/export-as-svg-in-figma) covers single layers, frames and bulk export."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Figma PNG come out bigger than the frame?",
+      "answer": "The export scale is probably set above 1x. Open the Export section and read the value in the scale field. A 2x value doubles the width and height, so the file is bigger than the frame's design size. Set the scale back to 1x, or enter the size you need, then export again."
+    },
+    {
+      "question": "Why does a 5 px icon export at 6 px in Figma?",
+      "answer": "The icon probably sits on a fractional X or Y position. A January 2024 Figma community thread reported this case. Aligning the layer to the pixel grid fixed it for that user. Round the position to whole numbers, export, and check the size in Preview."
+    },
+    {
+      "question": "Can I export an SVG at 2x in Figma?",
+      "answer": "No. Figma supports SVG and PDF exports only at 1x. To change the size of an SVG, change the frame's width and height, or set width and height variables or code. The exported file then carries the new size."
+    },
+    {
+      "question": "What is the DPI of a Figma export?",
+      "answer": "By default, images exported from Figma carry a 72 DPI tag. At 2x, the tag reads 144 DPI. The tag tells print software how big to print the file. Screens read the pixel count, so check the pixel width and height in Preview."
+    },
+    {
+      "question": "Why does my image look soft after I resize it in Preview?",
+      "answer": "Resample image may be on. Open Tools > Adjust Size, deselect Resample image, then change the width or height. Apple's Preview guide describes this setting. Check the result with Tools > Show Inspector, because some guides describe the effect differently."
+    },
+    {
+      "question": "How do I check the pixel size of a PNG on a Mac?",
+      "answer": "Open the file in Preview and press ⌘I. The Inspector shows the pixel width and height. If the shortcut does not respond, choose Tools > Show Inspector from the menu bar."
+    },
+    {
+      "question": "Does a wrong export size affect my pay?",
+      "answer": "Indirectly. The BLS median for graphic designers was $62,960 a year in May 2025, which works out to $30.27 an hour. A re-export costs your time at that rate. Export mistakes are not measured separately, so the cost is an estimate."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Figma Help Center: Export formats and settings",
+      "url": "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Community: Layers export at incorrect sizes if not perfectly aligned to the pixel grid",
+      "url": "https://forum.figma.com/ask-the-community-7/layers-export-at-incorrect-sizes-if-not-perfectly-aligned-to-the-pixel-grid-26767",
+      "publisher": "Figma Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Support Guide: Crop, resize, or rotate an image in Preview on Mac",
+      "url": "https://support.apple.com/guide/preview/crop-resize-or-rotate-an-image-prvw2015/mac",
+      "publisher": "Apple Inc.",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Adobe Community: Illustrator not exporting at correct pixel size",
+      "url": "https://community.adobe.com/t5/illustrator-discussions/illustrator-not-exporting-at-correct-pixel-size/td-p/3697636",
+      "publisher": "Adobe Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "BLS Occupational Outlook Handbook: Graphic Designers",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "exported png or svg with wrong dimensions",
+  "costs": [
+    {
+      "title": "Designer time per re-export",
+      "text": "At the BLS median of $30.27 an hour, a 15-minute re-export costs about $7.57 of designer time. The rate comes from the May 2025 BLS figure for graphic designers. It assumes a 2,080 hour year, so treat the number as a planning estimate, not a payroll figure."
+    },
+    {
+      "title": "Round trips with developers",
+      "text": "A wrong asset rarely stops at one export. It goes to a developer, comes back, gets a new file, and gets checked again. Each round adds messages and waiting. No source here measures that cost, so count your own rounds for one week before you decide what matters most."
+    },
+    {
+      "title": "Print size and DPI tags",
+      "text": "Figma tags raster exports at 72 DPI by default, and 144 DPI at 2x. If a printer or client asks for a physical size, the tag matters. Check the DPI tag and the pixel count together, because they answer different questions."
+    },
+    {
+      "title": "Trust in the handoff",
+      "text": "A soft image from a Preview resize or a 1x export on a dense screen can look like a design flaw, even when the layout is right. Reviewers judge the file they receive. A quick export check protects your reputation on the handoff."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Scale set above 1x",
+      "text": "The export scale is the first thing to check. Figma's export row takes a multiplier such as 2x, and every pixel count goes up with it. A scale left over from an earlier export can carry into the next one, so read the value before you click Export."
+    },
+    {
+      "title": "Layer on a fractional position",
+      "text": "A layer can sit at a decimal X or Y value. The canvas can hide this, but the export does not. In a January 2024 Figma community thread, a 5 px icon exported at 6 px until its position was aligned to the pixel grid. Treat that as one user's report, and check the position each time you export an icon."
+    },
+    {
+      "title": "Format limits in SVG and PDF",
+      "text": "Figma exports SVG and PDF only at 1x. A 2x setting for those formats is not available. People often try it, get an unexpected result, and blame the export. The size of an SVG comes from its frame and the width and height written into the file."
+    },
+    {
+      "title": "Resolution in Illustrator",
+      "text": "Illustrator's output size depends on resolution as well as the artboard. In a thread first posted in 2011, a 640 x 960 px artboard exported at 2892 x 4348 px. The accepted answer blamed a 326 PPI setting. A 2021 reply said 72 PPI instead of 300 PPI fixed the oversized output."
+    },
+    {
+      "title": "Resample on during a Preview resize",
+      "text": "Preview's Resample image option controls whether pixel data changes when you resize. With it on, Preview can change the pixels and soften the image. Apple's guide says to deselect it before you change width or height. Some guides describe the result differently, so check the Inspector size after every resize."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Set the scale on purpose",
+      "text": "Pick 1x, 2x or a custom value before each export, and check the scale field every time. Use the w or h suffix only when you need an exact width or height. Writing the scale into the file name helps the team see what was used."
+    },
+    {
+      "title": "Round X and Y to whole pixels",
+      "text": "Type whole numbers into X and Y for every layer you export, then check W and H as well. This is the fix that worked in the January 2024 Figma thread, where a 5 px icon came back to 5 px after alignment. It takes seconds per layer."
+    },
+    {
+      "title": "Size the SVG in the frame",
+      "text": "Set the frame to the size you need, export at 1x, and check the width and height in the SVG file. For code, use width and height variables as Figma's help center describes. Keep the frame size and the code value the same so the two never disagree."
+    },
+    {
+      "title": "Export a test file at each scale",
+      "text": "Export one frame at every scale the developer needs. Compare the pixel sizes in Preview's Inspector before you send anything. A test takes little time, and it catches the error before the team sees the file."
+    },
+    {
+      "title": "Use pixel units and 72 PPI in Illustrator",
+      "text": "Set the artboard in pixels, then check the export resolution. A 2021 reply in the Adobe thread reported that 72 PPI instead of 300 PPI fixed the oversized output. Confirm the setting in your version, because the menus have changed since that thread."
+    },
+    {
+      "title": "Resize with Resample off, then verify",
+      "text": "In Preview, choose Tools > Adjust Size, deselect Resample image, change the width or height, then press ⌘I to confirm the pixel size. If the source is a raster file, re-export from the original when you can instead of resizing a flattened copy."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the export section?",
+      "result": "Lazur draws a circle and a label around the Export section on your screen, so you can find the scale field fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through checking X and Y",
+      "result": "Lazur guides you one click at a time and waits for each click. You make the change yourself.",
+      "capability": "guide"
+    },
+    {
+      "say": "Explain what 2x means for this export",
+      "result": "Hold ⌥⌘ and ask. Lazur answers out loud, using what is on your screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a handoff note with the sizes",
+      "result": "Lazur drafts the text with the scales and sizes you name. You check the numbers and send the note yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to check the pixel size before I send",
+      "result": "Lazur adds an Apple Reminders item for the time you name, so the check does not get skipped.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the scale field for this export?",
+    "capability": "point",
+    "result": "Lazur circles the scale field and labels it, so you can read the value before you click Export.",
+    "shell": "design",
+    "context": "Figma export panel open on a Mac, one PNG frame selected",
+    "output": "A circle and label around the export scale field",
+    "pointsAt": "Export scale field"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the scale",
+      "text": "Open the Export section on one frame. Write down the scale and its suffix. Export at 1x, then check the pixel width in Preview with ⌘I."
+    },
+    {
+      "label": "Day 2",
+      "title": "Round the positions",
+      "text": "Pick five icons in one file. Type whole numbers into X and Y for each one. Export them again and compare the pixel sizes with the first set."
+    },
+    {
+      "label": "Day 3",
+      "title": "Test SVG and PDF",
+      "text": "Export one SVG and one PDF from a frame with a set width. Open the SVG in a text editor and read the width and height. Note that both formats stay at 1x."
+    },
+    {
+      "label": "Day 4",
+      "title": "Resize in Preview",
+      "text": "Use Tools > Adjust Size on a copy of a PNG. Deselect Resample image, change the width, then check the new pixel size with ⌘I."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write the handoff note",
+      "text": "Send one message with the sizes, scales and file names. Ask the developer to confirm. Keep the note as a template for the next export."
+    }
+  ],
+  "apps": [
+    "figma",
+    "photoshop",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "figma-export-wrong-pixel-size-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-export-wrong-pixel-size-fix/figma-export-wrong-pixel-size-1-7502ce.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer working on a laptop and checking a design file before export",
+      "caption": "Check the file before you export it.",
+      "keywords": [
+        "figma export wrong pixel size",
+        "Designers",
+        "Exported PNG or SVG has wrong dimensions",
+        "Mac",
+        "designer working on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-home-office-creative-apple-581131/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-export-wrong-pixel-size-fix/figma-export-wrong-pixel-size-2-ae8be6.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Graphic designer at a desk reviewing layouts on screen before a Figma export",
+      "caption": "Sizes are easy to miss when the canvas looks right.",
+      "keywords": [
+        "figma export wrong pixel size",
+        "Designers",
+        "Exported PNG or SVG has wrong dimensions",
+        "Mac",
+        "graphic designer desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sakibmia24",
+        "url": "https://pixabay.com/users/sakibmia24-57634147/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/graphic-design-digital-illustration-10503603/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/problem/figma-export-wrong-pixel-size-fix/figma-export-wrong-pixel-size-3-767fb9.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Mac computer on an office desk with a design on the screen",
+      "caption": "Preview and the Inspector show the real pixel size.",
+      "keywords": [
+        "figma export wrong pixel size",
+        "Designers",
+        "Exported PNG or SVG has wrong dimensions",
+        "Mac",
+        "mac computer office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "GREGOR",
+        "url": "https://pixabay.com/users/GREGOR-27062/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/department-store-apple-colorful-652935/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma export wrong pixel size",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "figma export scale 2x": 1,
+      "figma png wrong dimensions": 1,
+      "figma svg export size": 1,
+      "figma export not aligned to pixel grid": 1,
+      "figma export 72 dpi": 1,
+      "preview adjust size mac png": 1,
+      "illustrator export wrong pixel size": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

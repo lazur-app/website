@@ -12,6 +12,7 @@ const footerLinks = {
   Learn: [
     { href: "/how-to", label: "How-to guides" },
     { href: "/tools", label: "Free tools" },
+    { href: "/games", label: "Games" },
     { href: "/alternatives", label: "Alternatives" },
     { href: "/blog", label: "Blog" },
   ],

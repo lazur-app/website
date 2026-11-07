@@ -1,6 +1,6 @@
-Content 2026-11-07: 239 written, 2 refused, 0 failed
+Content 2026-11-07: 259 written, 4 refused, 32 failed
 
-- howto: 59/120
+- howto: 79/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -247,3 +247,23 @@ howto:create-a-calendar-event-in-outlook /how-to/create-a-calendar-event-in-outl
 howto:share-your-calendar-in-outlook /how-to/share-your-calendar-in-outlook
 howto:send-a-meeting-invite-in-outlook /how-to/send-a-meeting-invite-in-outlook
 howto:turn-off-focused-inbox-in-outlook /how-to/turn-off-focused-inbox-in-outlook
+howto:pin-an-email-in-outlook /how-to/pin-an-email-in-outlook
+howto:use-dark-mode-in-outlook /how-to/use-dark-mode-in-outlook
+howto:create-a-quick-step-in-outlook /how-to/create-a-quick-step-in-outlook
+howto:change-your-default-calendar-in-outlook /how-to/change-your-default-calendar-in-outlook
+howto:use-categories-in-outlook /how-to/use-categories-in-outlook
+howto:block-a-sender-in-outlook /how-to/block-a-sender-in-outlook
+howto:add-a-profile-photo-in-outlook /how-to/add-a-profile-photo-in-outlook
+howto:insert-a-table-of-contents-in-word /how-to/insert-a-table-of-contents-in-word
+howto:set-a-reminder-for-an-email-in-outlook /how-to/set-a-reminder-for-an-email-in-outlook
+howto:turn-on-track-changes-in-word /how-to/turn-on-track-changes-in-word
+howto:import-an-olm-file-in-outlook /how-to/import-an-olm-file-in-outlook
+howto:add-page-numbers-in-word /how-to/add-page-numbers-in-word
+howto:create-a-mail-merge-in-word /how-to/create-a-mail-merge-in-word
+howto:insert-a-section-break-in-word /how-to/insert-a-section-break-in-word
+howto:add-a-header-in-word /how-to/add-a-header-in-word
+howto:insert-a-citation-in-word /how-to/insert-a-citation-in-word
+howto:add-a-watermark-in-word /how-to/add-a-watermark-in-word
+howto:use-dictation-in-word /how-to/use-dictation-in-word
+howto:change-the-default-font-in-word /how-to/change-the-default-font-in-word
+howto:create-a-bibliography-in-word /how-to/create-a-bibliography-in-word

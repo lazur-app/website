@@ -1,4 +1,4 @@
-Content 2026-11-07: 333 written, 6 refused, 1 failed
+Content 2026-11-07: 335 written, 6 refused, 0 failed
 
 - howto: 120/120
 - apps: 9/9
@@ -337,7 +337,9 @@ refresh:compare:google-voice-typing-alternative /compare/google-voice-typing-alt
 refresh:role-app:lawyers-word /for/lawyers/word
 refresh:compare:lazur-vs-apple-dictation /compare/lazur-vs-apple-dictation
 refresh:compare:lazur-vs-wispr-flow /compare/lazur-vs-wispr-flow
+refresh:compare:lazur-vs-aqua-voice /compare/lazur-vs-aqua-voice
 refresh:compare:lazur-vs-macwhisper /compare/lazur-vs-macwhisper
 refresh:compare:lazur-vs-willow-voice /compare/lazur-vs-willow-voice
 refresh:compare:lazur-vs-super-whisper /compare/lazur-vs-super-whisper
 refresh:compare:superwhisper-vs-wispr-flow /compare/superwhisper-vs-wispr-flow
+refresh:alternatives:wispr-flow /alternatives/wispr-flow

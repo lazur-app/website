@@ -1,0 +1,612 @@
+{
+  "title": "How to create a dropdown list in Google Sheets on Mac: steps for Chrome",
+  "metaTitle": "How to Create a Dropdown List in Google Sheets on Mac",
+  "description": "Learn how to create a dropdown list in Google Sheets on Mac in Chrome, with menu steps, shortcuts, display styles, and fixes for common errors.",
+  "targetKeyword": "how to create a dropdown list in google sheets on mac",
+  "secondaryKeywords": [
+    "dropdown list google sheets mac",
+    "data validation google sheets mac",
+    "dropdown from a range google sheets",
+    "dropdown chips google sheets",
+    "allow multiple selections google sheets",
+    "remove dropdown list google sheets",
+    "google sheets dropdown not working"
+  ],
+  "intro": "On a Mac, select the cells, then open Data > Data validation, click Add rule, set Criteria to Dropdown, type your items, and click Done. For a quick version, use Insert > Dropdown instead, or point the rule at a list in your sheet with Dropdown (from a range).",
+  "tldr": [
+    "Select the cells first. The rule applies to every selected cell.",
+    "Open Data > Data validation, click Add rule, and set Criteria to Dropdown or Dropdown (from a range).",
+    "Pick a display style, choose what happens on invalid entries, then click Done.",
+    "Ctrl+Option+D opens the Data menu on a Mac, shown as ⌃⌥D. Google lists no dropdown-specific shortcut.",
+    "To remove the list, open Data > Data validation and click Remove Rule."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a dropdown list does in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A dropdown list limits what goes into a cell. You give the cell a set of allowed items. When someone clicks the cell, they see those items and pick one. Google's help calls this an in-cell dropdown list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Under the hood, the list is a data validation rule. The rule sits on the cells you select, not on the sheet as a separate object. That is why pasting can change or remove it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dropdowns help most where people type the same values again and again. Status columns, yes or no answers, and team names are common examples. Consistent spelling also makes sorting and filtering less messy."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Sheets menus sit in a toolbar inside the page, below Chrome's address bar. The menus you need are Insert, Data, and Help. Look for them there, not in the macOS menu bar at the top of the screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "This guide uses Google Chrome. Google's offline help names Chrome and Microsoft Edge, so Chrome is the safe choice for matching these steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "You need edit access to the file. If you can only view it, you cannot add or change a rule. Ask the owner for edit access, or make your own copy first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create a dropdown with your own list of items"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the simplest type of dropdown. Select the cells, open Data > Data validation, and click Add rule. Under Criteria, choose Dropdown. Then click Add another item for each option and type it in."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write each item the same way every time. A stray space at the start or end of an item can stop two matching-looking values from matching. Check your items before you share the file."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep each item short. Long text is hard to scan in a narrow column.",
+        "Put the items in the order people will look for them.",
+        "Use one idea per item. Split combined answers into separate options.",
+        "Skip blank items at the end of the list."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create a dropdown from a list in your sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Dropdown (from a range) when the options already live in your file. Put them in one column, such as on a tab named Lists. Then select that column as the source."
+    },
+    {
+      "type": "paragraph",
+      "text": "The rule reads the cells in the range, not a copy of them. If you add a new item below the last cell in the range, the dropdown will not show it until you extend the range. Check the range after each change."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep the source on its own tab",
+      "text": "A separate Lists tab keeps the source safe from accidental edits. Anyone who types over the list changes every dropdown that uses it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick a display style: Chip, Arrow, or Plain text"
+    },
+    {
+      "type": "paragraph",
+      "text": "Display Style controls how a chosen value looks in the cell. It is one of the choices in the rules panel. You can change it later without rebuilding the list."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Display style",
+        "What the cell shows",
+        "Good for"
+      ],
+      "rows": [
+        [
+          "Chip",
+          "A colored label holding the chosen value",
+          "Statuses, categories, and tags"
+        ],
+        [
+          "Arrow",
+          "The value with an arrow that opens the list",
+          "Plain data columns you fill often"
+        ],
+        [
+          "Plain text",
+          "The chosen value as ordinary text",
+          "Columns that feed formulas or exports"
+        ]
+      ],
+      "caption": "The three display styles offered in Display Style."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google added dropdown chips on December 8, 2022. Chips also support multiple selections, which the next section covers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Allow multiple selections and set a warning for bad entries"
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn on Allow multiple selections when one cell needs more than one answer, such as skills or tags. This option works only with chip-format dropdowns. Set Display Style to Chip before you turn it on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Advanced options controls what happens when someone enters a value outside the list. Under If the data is invalid, choose Show a warning to allow the entry with a warning. Otherwise, Google rejects invalid entries."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick a warning when people sometimes need a value that is not on the list yet. Pick rejection when a report, filter, or formula depends on exact values."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick ways to add a dropdown: Insert, right-click, and @"
+    },
+    {
+      "type": "paragraph",
+      "text": "For a fast chip dropdown, select the cells and go to Insert > Dropdown. You can also right-click the selected cells and choose Dropdown. Google's help page lists both routes, along with the Data validation path."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also type @ in a cell, then type dropdown and pick it from the menu. On March 5, 2024, Google added preset dropdown chips for common uses, such as priority or review statuses."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the quick routes for small lists you rarely change. Use Data validation when you need ranges, warnings, or multiple selections."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for dropdowns on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's shortcut page lists Mac menu shortcuts with Control and Option. Ctrl+Option+I opens Insert on a Mac, which is ⌃⌥I. Ctrl+Option+D opens Data, which is ⌃⌥D."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's official keyboard shortcut page does not list a shortcut for creating a dropdown. Press ⌘/ to show the common shortcuts in Sheets. Our [guide to showing keyboard shortcuts](/how-to/show-keyboard-shortcuts-in-google-sheets) covers the rest of the list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit or remove a dropdown list later"
+    },
+    {
+      "type": "paragraph",
+      "text": "To change items in a typed list, select a cell in the list and open Data > Data validation. Edit the items under Criteria, then click Done. For a range based list, edit the source cells or change the range."
+    },
+    {
+      "type": "paragraph",
+      "text": "To remove the restriction, open Data > Data validation and click Remove Rule. The text already in the cells stays. Only the dropdown rule goes away."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break a dropdown list"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A stray space or a typo makes a good-looking entry fail. Retype the item in the list so it matches exactly.",
+        "A normal paste can replace the rule in the cells you paste over. Press ⌘Z to undo, then paste with ⌘⇧V.",
+        "A range based list does not include cells added below its range. Extend the range when you add items.",
+        "A value you deleted from a colored range can stay in the criteria list. It stays until the source range changes or another item's color changes.",
+        "Multiple selections do not work with arrow or plain text formats. Switch the display style to Chip."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test the list before you share it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click a cell in the list and open it. Pick each item once and check the text. Then type a value that is not on the list and see whether Google warns you or rejects it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test on the devices your team uses. A list that works on your desktop can behave differently on a phone, so check the list there too."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Phones and multi-select",
+      "text": "Google's help page says mobile cannot select multiple dropdown options, even when the setting is on. Plan for desktop users on multi-select cells."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Admin settings and limits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's December 8, 2022 post says there is no admin control for dropdown chips. According to that post, a Workspace admin cannot switch this feature off for a domain."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's official pages do not state a maximum number of dropdown items or a maximum range size. For a very long list, test the dropdown before you depend on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If the menu names look different"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google updates the Sheets menus. The help pages do not show version numbers or last updated dates for these steps. Use the names here as a starting point, and look for the closest match in the same menu if a name differs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help pages do not include Mac-specific dropdown steps. The paths here are the browser menus, with ⌘ and ⌃ used for shortcuts. If you cannot find a command, try the [tool finder guide](/how-to/use-the-tool-finder-in-google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps once the dropdown works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dropdown columns often sit under a long header row. [Freeze the top row](/how-to/freeze-the-top-row-in-google-sheets) so the column names stay visible as you scroll."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your source list has repeated entries, clean it before you build the range. The steps are in [remove duplicate rows](/how-to/remove-duplicate-rows-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "For more on sheet work tied to a specific job, see [Google Sheets for data analysts on Mac](/for/data-analysts/google-sheets)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does this work in Safari or other browsers on a Mac?",
+      "answer": "Google's offline help names Chrome and Microsoft Edge, so this guide uses Chrome. Other browsers may show the menus a little differently. Chrome is the safe choice for matching these steps."
+    },
+    {
+      "question": "Why does my dropdown reject a value that looks right?",
+      "answer": "Most often the cause is a stray space or a typo. Retype the item in the source list so it matches the cell exactly. If the list comes from a range, check that the range covers that item."
+    },
+    {
+      "question": "Can a cell hold more than one dropdown choice?",
+      "answer": "Yes, with chips. Set Display Style to Chip, then turn on Allow multiple selections. The arrow and plain text styles do not allow more than one choice."
+    },
+    {
+      "question": "Is there a keyboard shortcut to create a dropdown list?",
+      "answer": "Google's official shortcut list has no dropdown shortcut. The quickest route is Insert > Dropdown on the selected cells, or typing @ and then dropdown."
+    },
+    {
+      "question": "What is the difference between Dropdown and Dropdown (from a range)?",
+      "answer": "Dropdown uses items you type into the rule. Dropdown (from a range) reads items from cells in your sheet. Use the range version when the list changes often, because you edit the cells instead of the rule."
+    },
+    {
+      "question": "Can my Workspace admin turn off dropdown chips?",
+      "answer": "Google's December 8, 2022 post says there is no admin control for dropdown chips. Check Google's current admin help for any later change."
+    },
+    {
+      "question": "Why is a deleted value still in my dropdown?",
+      "answer": "For a range based list with colored values, Google keeps the deleted value in the criteria list. It stays until the source range changes or another item's color changes."
+    },
+    {
+      "question": "Does a warning stop people from typing other values?",
+      "answer": "No. With Show a warning, Google lets an invalid entry through and displays a warning. Without it, Google rejects the entry."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create an in-cell dropdown list - Computer - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/186103?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Create an in-cell dropdown list - Computer (desktop variant)",
+      "url": "https://support.google.com/docs/answer/186103?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets keyboard shortcuts - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use Google Drive files offline - Computer - Google Drive Help",
+      "url": "https://support.google.com/drive/answer/2375012?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Create drop-down chips in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2022/12/drop-down-chips-google-sheets.html",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Set up dropdown chips more easily in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2024/03/set-up-dropdown-chips-more-easily-google-sheets.html",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Create a dropdown list in Google Sheets on a Mac",
+  "appliesTo": "Google Sheets in Chrome on macOS, desktop browser version",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Google Chrome",
+    "A Google account with edit access to the sheet",
+    "Your list items typed in, or stored in one column of the sheet"
+  ],
+  "steps": [
+    {
+      "name": "Open your sheet in Chrome",
+      "text": "Open the spreadsheet in Google Chrome on your Mac. Confirm you have edit access. A file you can only view cannot take a new rule.",
+      "tip": "Make a copy of the file first if you want to test the dropdown without touching the original."
+    },
+    {
+      "name": "Select the cells for the list",
+      "text": "Click the first cell that needs the dropdown. Drag across the other cells, or hold Shift and click the last one. The rule applies to every selected cell.",
+      "shortcut": "⇧ + click"
+    },
+    {
+      "name": "Open Data validation",
+      "menuPath": [
+        "Data",
+        "Data validation"
+      ],
+      "text": "Click Data in the Sheets toolbar, then choose Data validation. The rules panel opens. Any existing rule on the selected cells appears there.",
+      "shortcut": "⌃⌥D",
+      "tip": "⌃⌥D opens the Data menu. Then choose Data validation with the mouse or the arrow keys."
+    },
+    {
+      "name": "Add a rule",
+      "menuPath": [
+        "Data",
+        "Data validation",
+        "Add rule"
+      ],
+      "text": "Click Add rule. Check that the cell range in the rule matches the cells you selected. Fix a wrong range now, because it is a common cause of broken lists."
+    },
+    {
+      "name": "Choose the criteria",
+      "menuPath": [
+        "Criteria"
+      ],
+      "text": "Under Criteria, open the menu. Pick Dropdown to type your own items. Pick Dropdown (from a range) to read items from cells in your sheet."
+    },
+    {
+      "name": "Type or select the items",
+      "text": "For Dropdown, click Add another item after each option and type it. For Dropdown (from a range), select the cells that hold the items. Spell each item the same way everywhere.",
+      "tip": "Watch for stray spaces at the start or end of an item."
+    },
+    {
+      "name": "Allow multiple selections if you need it",
+      "menuPath": [
+        "Allow multiple selections"
+      ],
+      "text": "Turn on Allow multiple selections only when one cell needs more than one answer. This option works only with chip-format dropdowns, so set Display Style to Chip first."
+    },
+    {
+      "name": "Set what happens to invalid entries",
+      "menuPath": [
+        "Advanced options",
+        "If the data is invalid"
+      ],
+      "text": "Expand Advanced options. Next to If the data is invalid, choose Show a warning to allow an entry with a warning. Otherwise, Google rejects invalid entries."
+    },
+    {
+      "name": "Pick a display style",
+      "menuPath": [
+        "Display Style"
+      ],
+      "text": "Open Display Style and choose Chip, Arrow, or Plain text. Chip shows a colored label. Arrow shows an arrow that opens the list. Plain text shows the value as ordinary text."
+    },
+    {
+      "name": "Click Done",
+      "menuPath": [
+        "Done"
+      ],
+      "text": "Click Done to save the rule. Click a cell inside the range and open it to see the list."
+    },
+    {
+      "name": "Test the list",
+      "text": "Open the dropdown in a few cells. Pick an item, then type a value that is not on the list. Check that the warning or rejection works the way you chose.",
+      "tip": "Test multi-select cells on desktop. Phones cannot select several options."
+    },
+    {
+      "name": "Edit or remove the rule later",
+      "menuPath": [
+        "Data",
+        "Data validation",
+        "Remove Rule"
+      ],
+      "text": "Select a cell in the list, then open Data > Data validation. To delete the restriction, click Remove Rule. To change the items, edit them in the rule and click Done."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Show common keyboard shortcuts in Sheets",
+      "keys": "⌘/"
+    },
+    {
+      "action": "Open the Insert menu",
+      "keys": "⌃⌥I"
+    },
+    {
+      "action": "Open the Data menu",
+      "keys": "⌃⌥D"
+    },
+    {
+      "action": "Paste values only, so the rule is less likely to change",
+      "keys": "⌘⇧V"
+    },
+    {
+      "action": "Open the dropdown chip menu in a cell",
+      "keys": "@ then dropdown"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The dropdown arrow is missing",
+      "fix": "Open Data > Data validation and check Display Style. Choose Arrow if you want the arrow to show in each cell."
+    },
+    {
+      "problem": "Typed values get rejected",
+      "fix": "Open Advanced options and check If the data is invalid. Choose Show a warning if you want to allow entries that are not on the list."
+    },
+    {
+      "problem": "New items from a range do not appear",
+      "fix": "Open the rule and check the range. Extend it so it covers the new cells, then click Done."
+    },
+    {
+      "problem": "Multiple selections do not work",
+      "fix": "Set Display Style to Chip first, then turn on Allow multiple selections. Test on desktop, because phones cannot select several options."
+    },
+    {
+      "problem": "A paste removed the dropdown",
+      "fix": "Press ⌘Z to undo the paste. Copy the text again and paste with ⌘⇧V to paste values only."
+    },
+    {
+      "problem": "A deleted value is still in the list",
+      "fix": "For a range based list with colored values, the value stays until the source range changes or another item's color changes. Edit the source cells to clear it."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through making a dropdown list in this sheet.",
+    "capability": "guide",
+    "result": "Lazur circles Data validation in the Data menu, then waits for you to click before it names the next step.",
+    "shell": "sheet",
+    "pointsAt": "Data validation",
+    "context": "Google Sheets open in Chrome on a Mac, with cells selected",
+    "output": "Lazur names each menu, circles it, and explains each setting in plain words. It does not click for you."
+  },
+  "type": "howto",
+  "slug": "create-a-dropdown-list-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/create-a-dropdown-list-in-google-sheets/how-to-create-a-dropdown-list-in-1-6edf33.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a Mac laptop working on a spreadsheet, the kind of sheet that needs a dropdown list",
+      "caption": "Dropdown lists keep entries consistent in a shared spreadsheet.",
+      "keywords": [
+        "how to create a dropdown list in google sheets on mac",
+        "Google Sheets",
+        "create a dropdown list",
+        "Mac",
+        "person using laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/create-a-dropdown-list-in-google-sheets/how-to-create-a-dropdown-list-in-2-3b9de7.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on a desk with a spreadsheet open, ready for a dropdown list in Google Sheets",
+      "caption": "A source list in its own column makes the dropdown easier to maintain.",
+      "keywords": [
+        "how to create a dropdown list in google sheets on mac",
+        "Google Sheets",
+        "create a dropdown list",
+        "Mac",
+        "laptop spreadsheet desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-working-laptop-macbook-925900/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/create-a-dropdown-list-in-google-sheets/how-to-create-a-dropdown-list-in-3-17e715.jpg",
+      "width": 1280,
+      "height": 506,
+      "alt": "Office worker using a laptop to edit a shared spreadsheet with a dropdown column",
+      "caption": "Shared sheets need consistent answers, so a dropdown helps.",
+      "keywords": [
+        "how to create a dropdown list in google sheets on mac",
+        "Google Sheets",
+        "create a dropdown list",
+        "Mac",
+        "office worker laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/jobs-job-seek-social-media-2979648/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to create a dropdown list in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "dropdown list google sheets mac": 1,
+      "data validation google sheets mac": 1,
+      "dropdown from a range google sheets": 1,
+      "dropdown chips google sheets": 1,
+      "allow multiple selections google sheets": 1,
+      "remove dropdown list google sheets": 1,
+      "google sheets dropdown not working": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

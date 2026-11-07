@@ -1,0 +1,498 @@
+{
+  "title": "How to merge cells in Google Sheets on Mac: step by step in Chrome",
+  "metaTitle": "How to Merge Cells in Google Sheets on Mac (Step by Step)",
+  "description": "How to merge cells in Google Sheets on Mac: open Format > Merge cells, pick a merge type, and unmerge safely. Covers data loss and sorting errors.",
+  "targetKeyword": "how to merge cells in google sheets on mac",
+  "secondaryKeywords": [
+    "merge cells google sheets mac",
+    "unmerge cells google sheets mac",
+    "google sheets merge cells shortcut mac",
+    "merged cells sort google sheets",
+    "merge horizontally google sheets",
+    "merge vertically google sheets",
+    "google sheets merged cells data loss"
+  ],
+  "intro": "To merge cells in Google Sheets on a Mac, select the cells, then click Format > Merge cells and choose a merge type. Only the top-left value survives a merge, so copy any other values first, and unmerging will not restore them.",
+  "tldr": [
+    "Select the cells, then go to Format > Merge cells and choose a merge type.",
+    "On a Mac, ⌃⌥O opens the Format menu. Google's shortcut page lists no merge shortcut.",
+    "Only the top-left value survives a merge. Unmerging does not bring the others back.",
+    "To split cells again, use Format > Merge cells > Unmerge.",
+    "Before sorting, unmerge, fill the blanks, then sort."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Google Sheets has no native Mac app. Bricks, a guide to using Sheets on Mac, describes it as a browser tool. The steps below use Google Chrome on macOS. Sheets draws its own menu bar inside the page, just under the file name. Format lives in that bar, not in the menu bar at the top of your screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What merging does to your data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Merging joins a block of cells into one cell. Google keeps only the value in the top-left cell and drops the rest. Unito, a third-party guide, says Sheets shows a pop-up warning when several cells hold data. Read that warning as your last chance to copy values out. Unmerging does not bring the dropped values back."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say A1 holds a customer name, while B1 and C1 hold a date and an amount. Merging A1 through C1 keeps the name and nothing else. The date and the amount are gone. Copy them to another row before you merge, and nothing is lost."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you merge: a short checklist"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy any values from the cells that the merge will cover.",
+        "Check each cell in the block for formulas, and note which ones point into the block.",
+        "Confirm that you want a merged cell, not text that only looks centered.",
+        "Make a copy of the file with File > Make a copy if the data matters.",
+        "Check whether a sort or filter range includes these cells."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose the right merge type"
+    },
+    {
+      "type": "paragraph",
+      "text": "Unito lists two options in the Format > Merge cells dropdown, Merge all and Merge horizontally. It says Merge vertically sits in the shortcut section. Google's merge help page says you choose a merge type, but it does not name the options. Treat the labels as coming from a third-party guide, and check your own menu."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Merge all joins every cell in the selection into one cell.",
+        "Merge horizontally joins the cells across each row, so each row becomes one cell.",
+        "Merge vertically joins the cells down each column, so each column becomes one cell."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A title that spans A1 through F1 is a single row. Merge all and Merge horizontally give the same result there. A block of A1 through F3 behaves differently. Merge all gives one cell, while Merge horizontally gives three cells, one for each row."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for merging on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut page lists ⌃⌥O for the Format menu on Mac. Google writes it as Ctrl + Option + O. The same page lists no shortcut for merging cells. Unito says that pressing Enter then selects Merge all. Google's pages do not confirm that, so test it on your screen first."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full list of Sheets shortcuts on Mac, read [how to show keyboard shortcuts in Google Sheets on Mac](/how-to/show-keyboard-shortcuts-in-google-sheets). When a key does not respond, check the official list before you assume the shortcut changed."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to unmerge cells in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click the merged cell so it is selected. Then go to Format > Merge cells > Unmerge. Unito also describes the merge icon in the toolbar, followed by Unmerge. Use the menu path if the icon is hard to find. Unmerging returns the cell to the grid, but the dropped values stay gone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Merged cells break sorting and filtering"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sorting a column that contains merged cells makes Google Sheets show error messages, according to Unito. Filtering a range with merged cells can cause errors too. The Bricks guide explains the cause. A merge keeps only the top-left value, so the other cells look empty to the sort."
+    },
+    {
+      "type": "paragraph",
+      "text": "The usual fix has three parts. Unmerge the cells. Fill each blank with the value it should hold. Then sort. Filling the blanks means copying the right value into every cell that a merge once covered. After the sort, you can merge again for display, ideally on a copy of the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the sort itself, see [how to sort data by column in Google Sheets on Mac](/how-to/sort-data-by-column-in-google-sheets)."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Problem",
+        "Likely cause",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Sort shows error messages",
+          "Merged cells hide values from the sort",
+          "Unmerge, fill the blanks, then sort"
+        ],
+        [
+          "Values disappeared",
+          "A merge keeps only the top-left value",
+          "Copy values out before you merge"
+        ],
+        [
+          "Formula results changed",
+          "Merging cells that hold formulas can cause errors or change values",
+          "Check each formula after the merge"
+        ],
+        [
+          "Lost values will not return",
+          "Unmerging does not bring dropped values back",
+          "Use your copy or the file's revision history"
+        ]
+      ],
+      "caption": "Common merge problems and fixes, from the Unito and Bricks guides."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Merging cells that hold formulas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Formulas add a second risk. Unito says merging cells that hold formulas can create errors or change values. Before you merge, click each cell in the block and read its formula. If a formula points at a cell you plan to merge, move it first."
+    },
+    {
+      "type": "paragraph",
+      "text": "After the merge, click the merged cell and read the formula again. Compare the result with what you expected. If the value changed, press ⌘Z to undo the merge straight away."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with merged cells"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Merging a whole column just to center a title. Sorting that column later causes errors.",
+        "Merging without reading the top-left cell first. That value is the one that stays.",
+        "Assuming unmerge brings values back. It does not.",
+        "Merging cells that a filter or formula depends on, then wondering why the results look empty.",
+        "Merging in a shared file without telling the other editors. Their formulas and sorts may break."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Working with Sheets offline on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's offline help says you can edit Sheets without a connection. Offline editing requires Google Chrome or Microsoft Edge. It does not work in private browsing, and you need the Google Docs Offline extension plus a setting at drive.google.com/drive/settings. The page does not mention Safari or Firefox."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the merged result after you reconnect, and before you share the file. That habit catches formulas that changed while you worked."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "File size limits for large sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive Help page says a Sheets spreadsheet can have up to 20 million cells or 100MB. Merging rarely pushes a file near that limit on its own. If your file is close to the cap, split the data across tabs before you format it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do instead of merging"
+    },
+    {
+      "type": "paragraph",
+      "text": "Often you only want a heading to look centered. Type the heading in the first cell, leave the other cells empty, and set the alignment with the toolbar buttons. The text stays in one cell, so the grid stays intact for sorting and filtering."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "If one label should cover several columns, put it in a row above the headers. Keep the header row itself unmerged. That gives you a clean grid under the label."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after your merge"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the merge looks right, check the sort, filter and formula ranges around it. Those are the places where merged cells cause trouble. If the header row needs to stay visible while you scroll, read [how to freeze the top row in Google Sheets on Mac](/how-to/freeze-the-top-row-in-google-sheets)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "No. Google Sheets has no native Mac app, so you use it in a browser. Bricks describes Sheets on Mac as a browser tool, and Google's Sheets product page does not mention a Mac app. The steps here use Chrome on macOS."
+    },
+    {
+      "question": "What is the keyboard shortcut to merge cells in Google Sheets on Mac?",
+      "answer": "Google's official list has no merge shortcut. It does list ⌃⌥O for the Format menu on Mac. Unito says Enter then picks Merge all, but Google's pages do not confirm it, so test it before you rely on it."
+    },
+    {
+      "question": "Can I get values back after I merge cells?",
+      "answer": "Not from the merge itself. Only the top-left value stays, and unmerging does not restore the rest. Use your own copy of the data or the file's revision history to recover them."
+    },
+    {
+      "question": "Why does sorting fail after I merge cells?",
+      "answer": "A merge keeps only the top-left value, so the other cells look empty to the sort. Unmerge the cells, fill the blanks, then sort. Unito also reports error messages when you sort a column with merged cells."
+    },
+    {
+      "question": "How do I unmerge cells in Google Sheets on Mac?",
+      "answer": "Select the merged cell, then go to Format > Merge cells > Unmerge. Unito also describes the merge icon in the toolbar, followed by Unmerge. Unmerging does not bring back values that the merge dropped."
+    },
+    {
+      "question": "Does merging cells work in Safari on Mac?",
+      "answer": "The sources for this page do not test merging in Safari. Google's offline help names Chrome and Microsoft Edge, and it does not mention Safari or Firefox. If the menus act differently for you, switch to Chrome for this task."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Freeze, group, hide, or merge rows & columns - Computer - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/9060449?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Merge Cells in Google Sheets - Unito.io",
+      "url": "https://unito.io/blog/merge-cells-google-sheets/",
+      "publisher": "Unito",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets - Google Workspace",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use Google Drive files offline - Computer - Google Drive Help",
+      "url": "https://support.google.com/drive/answer/2375012?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive Help - file size and limit information",
+      "url": "https://support.google.com/drive/answer/37603?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Use Google Sheets Offline on Mac - Bricks",
+      "url": "https://www.thebricks.com/resources/guide-how-to-use-google-sheets-offline-on-mac",
+      "publisher": "Bricks",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Sort Merged Cells in Google Sheets - Bricks",
+      "url": "https://www.thebricks.com/resources/guide-how-to-sort-merged-cells-in-google-sheets",
+      "publisher": "Bricks",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Merge cells in Google Sheets on a Mac",
+  "appliesTo": "Google Sheets in Chrome on macOS, with no separate Mac app",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "Google Chrome on macOS, with the sheet open",
+    "Edit access to the spreadsheet file",
+    "Cells selected as one block of adjacent cells"
+  ],
+  "steps": [
+    {
+      "name": "Open the sheet in Chrome",
+      "text": "Open the Google Sheets file in a Chrome window on your Mac. Sheets is a browser app, so there is no separate Mac program to launch. The menu bar sits inside the page, below the file name."
+    },
+    {
+      "name": "Select the cells to merge",
+      "text": "Click the first cell, then drag to the last cell. You can also click the first cell and hold Shift while you click the last one. Merge works on one block of adjacent cells, so select only the cells you intend to combine.",
+      "shortcut": "⇧ + click",
+      "tip": "Select at least two adjacent cells, or the merge options will not apply."
+    },
+    {
+      "name": "Check the top-left cell",
+      "text": "The value in the top-left cell is the only one that survives a merge. Read it, then move or copy any other values you need. Check each formula in the block too, since merging can change or break them."
+    },
+    {
+      "name": "Open the Format menu",
+      "text": "Press Ctrl + Option + O to open the Format menu, or click Format in the menu bar. Google writes this shortcut as Ctrl + Option + O on Mac. The shortcut only opens the menu, so you still choose Merge cells next.",
+      "menuPath": [
+        "Format"
+      ],
+      "shortcut": "⌃⌥O",
+      "tip": "If the shortcut does nothing, click Format in the sheet's menu bar instead."
+    },
+    {
+      "name": "Open Merge cells",
+      "text": "Hover over Merge cells to open its options. The submenu shows the available merge types. Choose the one that matches the shape of your selection.",
+      "menuPath": [
+        "Format",
+        "Merge cells"
+      ],
+      "tip": "Merge cells needs more than one selected cell, so check your selection first."
+    },
+    {
+      "name": "Pick a merge type",
+      "text": "Click Merge all to combine the whole selection into one cell. Unito says that pressing Enter after the menu opens also selects Merge all. Google's pages do not confirm that shortcut, so test it before you rely on it.",
+      "menuPath": [
+        "Format",
+        "Merge cells",
+        "Merge all"
+      ],
+      "shortcut": "Enter",
+      "tip": "For a single row, Merge horizontally gives the same result as Merge all."
+    },
+    {
+      "name": "Read and confirm the warning",
+      "text": "If more than one cell holds data, Sheets shows a pop-up warning, according to Unito. Read it carefully. If the values in the other cells are safe to drop, confirm the merge. If you are not sure, cancel and copy those values out first.",
+      "tip": "Cancelling costs nothing, so use it when the data matters."
+    },
+    {
+      "name": "Check the merged result",
+      "text": "The merged cell now shows the top-left value across the whole block. Click it and read the formula bar. Confirm that nothing you need is gone before you move on to other edits.",
+      "shortcut": "⌘Z",
+      "tip": "If the result is wrong, press ⌘Z to undo the merge, then check the file's revision history."
+    }
+  ],
+  "shortcuts": [
+    {
+      "keys": "⌃⌥O",
+      "action": "Open the Format menu in Google Sheets on Mac"
+    },
+    {
+      "keys": "Enter",
+      "action": "Choose Merge all once the menu is open, per Unito"
+    },
+    {
+      "keys": "⌘Z",
+      "action": "Undo the last change, including a merge"
+    },
+    {
+      "keys": "⇧ + arrow keys",
+      "action": "Extend a selection to adjacent cells before merging"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Merge cells does nothing or stays unavailable",
+      "fix": "Select at least two adjacent cells before you open Format > Merge cells. Click the first cell, then Shift-click the last one."
+    },
+    {
+      "problem": "Sorting shows error messages after a merge",
+      "fix": "Unmerge the cells, fill each blank with the value it should hold, then sort. Bricks describes this fix for merged cells."
+    },
+    {
+      "problem": "Values disappeared after I merged",
+      "fix": "Only the top-left value is kept. Unmerging does not restore the rest, so use your copy or the file's revision history."
+    },
+    {
+      "problem": "Enter does not choose Merge all",
+      "fix": "Google's official pages do not list that shortcut. Click Merge all with the mouse, or check the menu on your screen."
+    },
+    {
+      "problem": "The menu looks different from these steps",
+      "fix": "I found no source for a 2026 menu change, but Google can rename items. Follow the closest match in the Format menu."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Merge cells option in this sheet?",
+    "capability": "guide",
+    "context": "Google Sheets open in Chrome on a Mac, with cells selected",
+    "result": "Lazur points at the Format menu, then at Merge cells, and waits for each click. It does not click for you.",
+    "shell": "sheet",
+    "pointsAt": "Format menu",
+    "output": "Format is in the menu bar above the grid. Open it, then hover over Merge cells. I will wait while you choose a merge type."
+  },
+  "type": "howto",
+  "slug": "merge-cells-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/merge-cells-in-google-sheets/how-to-merge-cells-in-google-sheets-1-bf910a.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person on a Mac learning how to merge cells in Google Sheets in a browser window",
+      "caption": "Working in a browser spreadsheet on a laptop.",
+      "keywords": [
+        "how to merge cells in google sheets on mac",
+        "Google Sheets",
+        "merge cells",
+        "Mac",
+        "person laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/merge-cells-in-google-sheets/how-to-merge-cells-in-google-sheets-2-7b24a3.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man working on a MacBook at an office desk, a common setup for spreadsheet work",
+      "caption": "A desk setup for everyday spreadsheet work.",
+      "keywords": [
+        "how to merge cells in google sheets on mac",
+        "Google Sheets",
+        "merge cells",
+        "Mac",
+        "man MacBook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to merge cells in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "merge cells google sheets mac": 2,
+      "unmerge cells google sheets mac": 1,
+      "google sheets merge cells shortcut mac": 1,
+      "merged cells sort google sheets": 1,
+      "merge horizontally google sheets": 1,
+      "merge vertically google sheets": 1,
+      "google sheets merged cells data loss": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,6 +1,6 @@
-Content 2026-11-06: 180 written, 1 refused, 0 failed
+Content 2026-11-06: 234 written, 3 refused, 0 failed
 
-- howto: 0/120
+- howto: 54/120
 - apps: 9/9
 - roles: 12/12
 - role-apps: 60/60
@@ -188,3 +188,57 @@ problem:lawyers/first-year-associate-skills-gap /for/lawyers/problems/first-year
 problem:developers/non-native-english-writing-anxiety-academic /for/developers/problems/non-native-english-writing-anxiety-academic
 problem:lawyers/billable-hour-targets-utilization-lawyers /for/lawyers/problems/billable-hour-targets-utilization-lawyers
 problem:realtors/schedule-social-posts-in-advance /for/realtors/problems/schedule-social-posts-in-advance
+howto:unfreeze-rows-and-columns-in-google-sheets /how-to/unfreeze-rows-and-columns-in-google-sheets
+howto:switch-between-sheet-tabs-in-google-sheets /how-to/switch-between-sheet-tabs-in-google-sheets
+howto:insert-a-row-above-in-google-sheets /how-to/insert-a-row-above-in-google-sheets
+howto:freeze-columns-in-google-sheets /how-to/freeze-columns-in-google-sheets
+howto:find-and-replace-text-in-google-sheets /how-to/find-and-replace-text-in-google-sheets
+howto:freeze-the-top-row-in-google-sheets /how-to/freeze-the-top-row-in-google-sheets
+howto:see-revision-history-in-google-sheets /how-to/see-revision-history-in-google-sheets
+howto:show-keyboard-shortcuts-in-google-sheets /how-to/show-keyboard-shortcuts-in-google-sheets
+howto:use-the-tool-finder-in-google-sheets /how-to/use-the-tool-finder-in-google-sheets
+howto:sort-data-by-column-in-google-sheets /how-to/sort-data-by-column-in-google-sheets
+howto:remove-duplicate-rows-in-google-sheets /how-to/remove-duplicate-rows-in-google-sheets
+howto:add-a-filter-to-a-range-in-google-sheets /how-to/add-a-filter-to-a-range-in-google-sheets
+howto:create-a-dropdown-list-in-google-sheets /how-to/create-a-dropdown-list-in-google-sheets
+howto:use-conditional-formatting-in-google-sheets /how-to/use-conditional-formatting-in-google-sheets
+howto:make-a-chart-in-google-sheets /how-to/make-a-chart-in-google-sheets
+howto:import-a-csv-file-in-google-sheets /how-to/import-a-csv-file-in-google-sheets
+howto:download-as-excel-in-google-sheets /how-to/download-as-excel-in-google-sheets
+howto:export-as-pdf-in-google-sheets /how-to/export-as-pdf-in-google-sheets
+howto:use-sumif-in-google-sheets /how-to/use-sumif-in-google-sheets
+howto:use-vlookup-in-google-sheets /how-to/use-vlookup-in-google-sheets
+howto:split-text-into-columns-in-google-sheets /how-to/split-text-into-columns-in-google-sheets
+howto:merge-cells-in-google-sheets /how-to/merge-cells-in-google-sheets
+howto:hide-rows-and-columns-in-google-sheets /how-to/hide-rows-and-columns-in-google-sheets
+howto:count-unique-values-in-google-sheets /how-to/count-unique-values-in-google-sheets
+howto:sort-a-table-by-column-in-numbers /how-to/sort-a-table-by-column-in-numbers
+howto:filter-table-rows-in-numbers /how-to/filter-table-rows-in-numbers
+howto:export-a-spreadsheet-to-excel-in-numbers /how-to/export-a-spreadsheet-to-excel-in-numbers
+howto:look-up-a-function-in-formulas-and-functions-help-in-numbers /how-to/look-up-a-function-in-formulas-and-functions-help-in-numbers
+howto:add-a-formula-to-a-cell-in-numbers /how-to/add-a-formula-to-a-cell-in-numbers
+howto:export-a-spreadsheet-to-pdf-in-numbers /how-to/export-a-spreadsheet-to-pdf-in-numbers
+howto:open-an-excel-file-in-numbers /how-to/open-an-excel-file-in-numbers
+howto:add-a-table-in-numbers /how-to/add-a-table-in-numbers
+howto:merge-table-cells-in-numbers /how-to/merge-table-cells-in-numbers
+howto:share-a-spreadsheet-in-numbers /how-to/share-a-spreadsheet-in-numbers
+howto:sync-spreadsheets-with-icloud-in-numbers /how-to/sync-spreadsheets-with-icloud-in-numbers
+howto:use-keyboard-shortcuts-in-numbers /how-to/use-keyboard-shortcuts-in-numbers
+howto:create-a-drop-down-list-in-numbers /how-to/create-a-drop-down-list-in-numbers
+howto:highlight-cells-with-conditional-rules-in-numbers /how-to/highlight-cells-with-conditional-rules-in-numbers
+howto:insert-an-image-in-numbers /how-to/insert-an-image-in-numbers
+howto:add-a-text-box-in-numbers /how-to/add-a-text-box-in-numbers
+howto:add-header-rows-to-a-table-in-numbers /how-to/add-header-rows-to-a-table-in-numbers
+howto:add-a-checkbox-in-numbers /how-to/add-a-checkbox-in-numbers
+howto:add-a-new-sheet-in-numbers /how-to/add-a-new-sheet-in-numbers
+howto:duplicate-a-table-in-numbers /how-to/duplicate-a-table-in-numbers
+howto:format-cells-as-currency-in-numbers /how-to/format-cells-as-currency-in-numbers
+howto:rename-a-sheet-in-numbers /how-to/rename-a-sheet-in-numbers
+howto:export-a-frame-as-png-in-figma /how-to/export-a-frame-as-png-in-figma
+howto:export-as-svg-in-figma /how-to/export-as-svg-in-figma
+howto:find-and-replace-text-in-numbers /how-to/find-and-replace-text-in-numbers
+howto:create-a-component-in-figma /how-to/create-a-component-in-figma
+howto:add-auto-layout-in-figma /how-to/add-auto-layout-in-figma
+howto:create-a-prototype-in-figma /how-to/create-a-prototype-in-figma
+howto:share-a-file-with-view-access-in-figma /how-to/share-a-file-with-view-access-in-figma
+howto:present-a-prototype-in-figma /how-to/present-a-prototype-in-figma

@@ -1,0 +1,548 @@
+{
+  "title": "How to remove duplicate rows in Google Sheets on Mac: step by step with fixes",
+  "metaTitle": "How to Remove Duplicate Rows in Google Sheets on Mac",
+  "description": "Learn how to remove duplicate rows in Google Sheets on Mac using Data > Data cleanup > Remove duplicates. Steps, Mac shortcut, and fixes when it fails.",
+  "targetKeyword": "how to remove duplicate rows in google sheets on mac",
+  "secondaryKeywords": [
+    "remove duplicates google sheets mac",
+    "google sheets remove duplicates",
+    "delete duplicate rows google sheets",
+    "google sheets data cleanup menu",
+    "remove duplicates in google sheets not working",
+    "google sheets duplicate rows mac shortcut"
+  ],
+  "intro": "To remove duplicate rows in Google Sheets on a Mac, select your data, then click Data > Data cleanup > Remove duplicates. Pick the columns that define a duplicate, say whether your first row holds headers, and click Remove duplicates to finish.",
+  "tldr": [
+    "Google does not list a Mac app for Sheets. You run it in a browser, and the tool lives in the Data menu.",
+    "Select your data first. Even if you click a single cell, the removal applies to the whole range.",
+    "Choose the columns that define a duplicate, and tell Sheets when row one holds headers.",
+    "Copy the sheet before you start. Press ⌘Z right after a removal if the result looks wrong.",
+    "If the menu is greyed out or duplicates survive, check for filters, protected ranges, and hidden spaces."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells allowed in one Google Sheets spreadsheet, one of two limits",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    },
+    {
+      "value": "100 MB",
+      "label": "file size limit for a spreadsheet in Google Sheets, the other limit",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    },
+    {
+      "value": "50,000",
+      "label": "characters in a cell above which Google removes the cell when converting an Excel file",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    },
+    {
+      "value": "3.3",
+      "label": "average star rating for the Ablebits Remove Duplicates add-on, from 1,742 ratings",
+      "sourceUrl": "https://workspace.google.com/marketplace/app/remove_duplicates/347814268012",
+      "sourceTitle": "Remove Duplicates: Google Workspace Marketplace"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets on a Mac runs in your browser"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google does not list a Mac app for Sheets. Its Sheets product page does not mention a Mac app or any downloadable desktop application. You open your spreadsheet in a browser tab and work there. The same page says you can use Sheets from a phone, a tablet, or a desktop, so the browser is the route on a Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps in this guide follow Google's Data cleanup instructions for the computer version of Sheets. Google's help page does not list Mac-specific notes for this tool. So the menu names are the ones you see in the browser, and the Mac shortcut comes from Google's shortcut list. If a name looks slightly different on your screen, look for the same words under Data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you remove anything, keep a copy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Removing duplicates deletes rows from your sheet. Google's help page does not say whether removed rows can be brought back once you leave the sheet. Treat the removal as final unless you can undo it right away. Google's shortcut list gives ⌘Z for undo."
+    },
+    {
+      "type": "paragraph",
+      "text": "The safest habit is a second tab. Copy the original data into a new tab, then run the removal on the tab you plan to keep. If the result is wrong, the untouched version is still there. For a large file, this takes little time and saves a lot of trouble."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Confirm you have edit access. A viewer cannot remove rows.",
+        "Clear any filter so you can see every row.",
+        "Decide which columns make a record unique, such as an ID or an email.",
+        "Make the backup tab before you click anything in the Data menu."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose which columns count as duplicates"
+    },
+    {
+      "type": "paragraph",
+      "text": "A duplicate depends on the columns you choose. Google's help page says you select which columns to include. Sheets compares only those columns. If rows match in every chosen column, Sheets treats them as duplicates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a simple case. Say your sheet has a name column, an email column, and a city column. If you check only the email column, rows with the same email count as duplicates, even if the city differs. If you check all three, the rows stay, because the city differs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the columns that identify one record. For a customer list, an email or a customer ID often works. For an order log, you might need the order ID and the date together. Test your choice on the backup tab first, then run it on the real data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the header row out of the comparison"
+    },
+    {
+      "type": "paragraph",
+      "text": "If row one holds column names, tell Sheets that the data has headers. That keeps the names out of the comparison. Google's help page paraphrases this option and does not give the exact label, so read the dialog text before you click Remove duplicates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Headers matter most when a header name could match a real value. A column named Email in row one should not compete with the addresses below it. Mark the header setting, then check the first few rows after the removal."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Three ways to handle duplicate rows in Google Sheets on Mac"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option",
+        "What it does",
+        "Where the claim comes from"
+      ],
+      "rows": [
+        [
+          "Data > Data cleanup > Remove duplicates",
+          "Removes matching rows from the range you select",
+          "Google Docs Editors Help"
+        ],
+        [
+          "UNIQUE formula",
+          "Returns a copy of the unique rows and leaves your data in place",
+          "Third-party guides, not verified by Google"
+        ],
+        [
+          "Remove Duplicates add-on by Ablebits",
+          "Third-party add-on with a 3.3 star average from 1,742 ratings",
+          "Google Workspace Marketplace listing"
+        ]
+      ],
+      "caption": "Built-in removal, a formula, and an add-on compared"
+    },
+    {
+      "type": "paragraph",
+      "text": "The built-in tool suits a one-time cleanup. UNIQUE suits you when you want to keep the original rows and build a clean list beside them. An add-on makes sense only after you read its reviews and permissions."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why some duplicate rows survive the removal"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page says cells with identical values count as duplicates, even if they differ in letter case, formatting, or formulas. So formatting alone will not stop a match. Some third-party guides report a different cause. Hidden spaces at the start or end of a cell can stop a match, even though the cell looks the same."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a row you expected to remove stays, check for spaces. A helper column with TRIM can show the cleaned text. Third-party guides also mention UPPER and LOWER for letter case. Google's help page is the more reliable source on case, so test any case fix on the backup tab first. To replace spaces across many cells, see [How to find and replace in Google Sheets on Mac](/how-to/find-and-replace-text-in-google-sheets)."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use UNIQUE to keep a copy instead"
+    },
+    {
+      "type": "paragraph",
+      "text": "UNIQUE is a formula, not a menu command. Type it into an empty cell and point it at your data. For example, =UNIQUE(A:C) returns the unique rows from columns A through C. Your original data stays where it is. The header row is part of that range, so it comes back too."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third-party guides describe UNIQUE as non-destructive. Google's Remove duplicates help page does not cover the formula. Use UNIQUE when you want both versions. Use Remove duplicates when you want the sheet itself cleaned. Either way, label the new output so the next person knows which tab is clean."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard shortcuts for this task"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut page lists ⌃⌥D for the Data menu on a Mac. It lists ⌘Z for undo and ⌘F for find. It does not list a shortcut for Remove duplicates, so you click that item with the trackpad or mouse."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use ⌘F to find a value across the sheet before you remove anything. Searching for a name shows you every match. If a removal goes wrong, press ⌘Z before any other edit, so you undo only the removal."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits to check on a big sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive help page says a spreadsheet can hold up to 20 million cells or 100 MB. If your file sits close to either limit, split the data across tabs or files before you clean it. A smaller file is easier to check after the removal."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your sheet started in Excel, check the long cells. Google's help page says that any cell with more than 50,000 characters is removed when you convert an Excel file. That is a conversion issue, not a duplicate issue, but it can change the rows you compare."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add-ons for removing duplicates: what the ratings tell you"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Remove Duplicates add-on from Ablebits is listed in the Google Workspace Marketplace. The listing shows more than 3 million installs and an average rating of 3.3 stars from 1,742 ratings. A low average for an add-on with that many installs is worth a close look."
+    },
+    {
+      "type": "paragraph",
+      "text": "An install count shows how many people tried the add-on. It does not show how well it worked for them. Read the newest reviews, and check which data the add-on asks to access before you install it. The built-in menu needs no add-on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes people make"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Removing duplicates before making a copy of the data.",
+        "Checking only one column when the whole row defines a record.",
+        "Leaving the header setting off, so column names get compared like data.",
+        "Clicking one cell and assuming only that column is checked. Google applies the removal to the whole range.",
+        "Opening the menu with a filter on, then wondering why it is greyed out.",
+        "Trusting the first result without checking the rows at the top and bottom."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Work offline or check your access on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you need to clean a sheet without a connection, offline access is the route. Google's offline help page lists Chrome and Edge only. It does not mention Safari or a Mac version. Open Google Drive in Chrome or Edge, click the Settings gear, then Settings, and turn on the Offline setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Google Docs Offline Chrome extension is required. Do not use private browsing. If you see Offline sync is disabled by your administrator, your organization has blocked offline access. Only one account per browser profile can have offline access, so sign in to the right account first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the cleanup"
+    },
+    {
+      "type": "paragraph",
+      "text": "Compare the new row count with your backup tab. Scan a few rows near the top, the middle, and the bottom. Look for a row that should have stayed. If the sheet is long, freeze the header row so column names stay visible while you scroll. The steps are in [How to freeze the top row in Google Sheets on Mac](/how-to/freeze-the-top-row-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then save the clean version under a name that says it is clean. Keep the backup until you have used the clean data in whatever comes next, such as a report or a shared file. A clear name saves a question later."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Mac app for Google Sheets?",
+      "answer": "Google does not list a Mac app for Sheets. Its Sheets product page does not mention a Mac app or downloadable desktop application. Open the spreadsheet in a browser on your Mac, select your data, then use Data > Data cleanup > Remove duplicates."
+    },
+    {
+      "question": "What is the Mac shortcut for the Data menu in Google Sheets?",
+      "answer": "⌃⌥D opens the Data menu in Google Sheets on a Mac. Google writes it as Ctrl + Option + D. Google's shortcut list does not include a shortcut for Remove duplicates, so you click that item."
+    },
+    {
+      "question": "Does removing duplicates delete rows for good?",
+      "answer": "Google's help page does not say whether removed rows can be recovered after you leave the sheet. Press ⌘Z right away if you need to undo a removal. Keep a backup tab before you start."
+    },
+    {
+      "question": "Why do some duplicates stay after I run the tool?",
+      "answer": "Some third-party guides point to hidden spaces, so check for them with TRIM in a helper column. Also confirm you chose the right columns. Rows match only when every chosen column matches."
+    },
+    {
+      "question": "Can I remove duplicates based on only some columns?",
+      "answer": "Yes. The dialog lets you select which columns to include. Sheets compares only those columns, so rows that differ in other columns can still be removed."
+    },
+    {
+      "question": "Do I need to select the whole table first?",
+      "answer": "Not always. Google's help page says that if you select a single cell within a range, duplicates are removed for the whole range. Select the full data range anyway, so it is clear what you are cleaning."
+    },
+    {
+      "question": "Can I do this on an iPhone or iPad?",
+      "answer": "This guide covers the browser version on a Mac. Google's help page for this feature covers the computer version, so check the menus on a phone or tablet before you follow these steps."
+    },
+    {
+      "question": "Is the Ablebits add-on worth installing?",
+      "answer": "The Marketplace listing shows more than 3 million installs and a 3.3 star average from 1,742 ratings. Those numbers do not prove how the add-on handles your data. Read recent reviews and check the access it asks for."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Split text, remove duplicates, or trim whitespace: Computer, Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/6325535?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Docs Editors Help: Keyboard shortcuts",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive Help: File size and limits",
+      "url": "https://support.google.com/drive/answer/37603?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Docs Editors Help: Use Google Docs, Sheets, and Slides offline",
+      "url": "https://support.google.com/docs/answer/6388102?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Remove Duplicates: Google Workspace Marketplace",
+      "url": "https://workspace.google.com/marketplace/app/remove_duplicates/347814268012",
+      "publisher": "Ablebits (developer)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Remove duplicate rows in Google Sheets",
+  "appliesTo": "Google Sheets in a browser on a Mac, the web version",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "Edit access to the spreadsheet. Viewers cannot remove rows.",
+    "Google Sheets open in a browser on your Mac.",
+    "A backup tab with the original data.",
+    "Chrome or Edge if you want to work offline."
+  ],
+  "steps": [
+    {
+      "name": "Open your spreadsheet",
+      "text": "Open the spreadsheet in Google Sheets in your browser. Make sure you have edit access, since viewers cannot remove rows.",
+      "tip": "Google's product page does not mention a Mac app, so the browser is the route."
+    },
+    {
+      "name": "Select the data range",
+      "text": "Drag from the top-left cell of your data to the bottom-right cell. Include the header row if you have one. If you click only one cell inside the range, Google still applies the removal to the whole range.",
+      "tip": "Third-party guides say an active filter can grey out the menu, so clear it first."
+    },
+    {
+      "name": "Open the Data menu",
+      "text": "Click Data in the Sheets menu bar. You can also press ⌃⌥D to open the Data menu from the keyboard.",
+      "menuPath": [
+        "Data"
+      ],
+      "shortcut": "⌃⌥D",
+      "tip": "Google lists this shortcut as Ctrl + Option + D. On a Mac keyboard that is ⌃⌥D."
+    },
+    {
+      "name": "Point to Data cleanup",
+      "text": "Move the pointer onto Data cleanup so its submenu opens.",
+      "menuPath": [
+        "Data",
+        "Data cleanup"
+      ],
+      "tip": "If the submenu does not open, click Data cleanup once."
+    },
+    {
+      "name": "Click Remove duplicates",
+      "text": "Click Remove duplicates. A dialog opens with your columns and a setting about headers.",
+      "menuPath": [
+        "Data",
+        "Data cleanup",
+        "Remove duplicates"
+      ],
+      "tip": "Google's help page does not give the exact label of the header setting, so read the dialog text."
+    },
+    {
+      "name": "Choose columns and the header setting",
+      "text": "Pick the columns that should define a duplicate. Then say whether the data has headers. Rows match only when every chosen column matches.",
+      "tip": "Start with the columns that identify one record, such as an ID or an email."
+    },
+    {
+      "name": "Confirm the removal",
+      "text": "Click Remove duplicates in the dialog. Sheets removes the matching rows from the range. Check the sheet right away.",
+      "tip": "If the result is wrong, press ⌘Z before you make any other change."
+    }
+  ],
+  "shortcuts": [
+    {
+      "keys": "⌃⌥D",
+      "action": "Open the Data menu in Google Sheets on a Mac"
+    },
+    {
+      "keys": "⌘Z",
+      "action": "Undo the last change, including a removal"
+    },
+    {
+      "keys": "⌘F",
+      "action": "Find text in the sheet"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Remove duplicates is greyed out",
+      "fix": "Google's help page does not list this error. Third-party guides say an active filter, a protected range, or a cell still in edit mode can block the menu. Clear the filter, press Escape to leave edit mode, and check for protected ranges."
+    },
+    {
+      "problem": "Duplicate rows are still there",
+      "fix": "Google counts values as duplicates even when case or formatting differs. Some third-party guides say hidden spaces still block a match. Use TRIM in a helper column to see the cleaned text, and run the removal again only after you check it."
+    },
+    {
+      "problem": "Rows disappeared that should have stayed",
+      "fix": "Press ⌘Z right away. If you already left the sheet, Google's help page does not say whether the rows can be recovered, so use your backup tab. Then run the removal again with the right columns selected."
+    },
+    {
+      "problem": "The header row was removed",
+      "fix": "Press ⌘Z to bring back the rows you lost. Then run the removal again with the header setting turned on, and check the first row before you continue."
+    },
+    {
+      "problem": "Long text is missing after converting an Excel file",
+      "fix": "Google's help page says any cell with more than 50,000 characters is removed when you convert an Excel file. Check long cells in the original file, and keep that file as a backup."
+    },
+    {
+      "problem": "The sheet is too large to work with",
+      "fix": "Sheets caps a spreadsheet at 20 million cells or 100 MB. Split the data across tabs or files. Duplicates that cross the split will not match, so check the columns carefully."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Remove duplicates in this sheet?",
+    "capability": "point",
+    "result": "Lazur circles the Remove duplicates menu item and labels it on your screen. You still click it yourself.",
+    "shell": "sheet",
+    "context": "Google Sheets in a browser, Data menu open",
+    "output": "Lazur answers out loud and points at the item. It does not click or change the sheet.",
+    "pointsAt": "Remove duplicates"
+  },
+  "type": "howto",
+  "slug": "remove-duplicate-rows-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/remove-duplicate-rows-in-google-sheets/how-to-remove-duplicate-rows-in-google-1-c653cb.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a Mac laptop checking a spreadsheet before they remove duplicate rows in Google Sheets",
+      "caption": "Checking rows in a spreadsheet before you remove anything",
+      "keywords": [
+        "how to remove duplicate rows in google sheets on mac",
+        "Google Sheets",
+        "remove duplicate rows",
+        "Mac",
+        "person using laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/remove-duplicate-rows-in-google-sheets/how-to-remove-duplicate-rows-in-google-2-7b0335.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man working on a MacBook at a desk, the setting for cleaning up duplicate data in a sheet",
+      "caption": "Cleaning up duplicate data at a desk on a Mac",
+      "keywords": [
+        "how to remove duplicate rows in google sheets on mac",
+        "Google Sheets",
+        "remove duplicate rows",
+        "Mac",
+        "man working MacBook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/remove-duplicate-rows-in-google-sheets/how-to-remove-duplicate-rows-in-google-3-6421c7.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen showing a table of data, the kind of sheet where duplicate rows build up",
+      "caption": "A data table where duplicate rows often pile up",
+      "keywords": [
+        "how to remove duplicate rows in google sheets on mac",
+        "Google Sheets",
+        "remove duplicate rows",
+        "Mac",
+        "spreadsheet data laptop screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "picjumbo_com",
+        "url": "https://pixabay.com/users/picjumbo_com-2130229/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-desk-smartphone-modern-865091/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to remove duplicate rows in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "remove duplicates google sheets mac": 1,
+      "google sheets remove duplicates": 1,
+      "delete duplicate rows google sheets": 1,
+      "google sheets data cleanup menu": 1,
+      "remove duplicates in google sheets not working": 1,
+      "google sheets duplicate rows mac shortcut": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

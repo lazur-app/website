@@ -1,0 +1,548 @@
+{
+  "title": "How to split text into columns in Google Sheets on Mac: browser steps and fixes",
+  "metaTitle": "How to Split Text into Columns in Google Sheets on Mac",
+  "description": "How to split text into columns in Google Sheets on Mac: choose Data > Split text to columns, pick a separator, and fix the common problems.",
+  "targetKeyword": "how to split text into columns in google sheets on mac",
+  "secondaryKeywords": [
+    "split text to columns google sheets",
+    "google sheets split text to columns mac",
+    "split text into columns google sheets",
+    "google sheets text to columns",
+    "google sheets split cell by comma",
+    "google sheets split text separator"
+  ],
+  "intro": "In Google Sheets on Mac, select the cells with text, then open Data > Split text to columns and pick a separator from the dropdown. Insert empty columns to the right first, because the split overwrites any data already in those columns with no warning.",
+  "tldr": [
+    "Select the cells, then click Data > Split text to columns in Google Sheets on Mac.",
+    "Insert empty columns to the right first. The split overwrites whatever sits there.",
+    "Pick the separator from the dropdown: Detect automatically, Comma, Semicolon, Period, Space or Custom.",
+    "Press ⌘Z right after the split if the result is wrong. Use TRIM to clear leftover spaces.",
+    "A SPLIT formula does the same job and stays linked to the source cells."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the command lives in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Split text to columns is a command inside Google Sheets. You reach it from the Data menu at the top of the sheet. Sheets draws its own menu bar on the page. You will not find the command in the Mac menu bar at the top of the screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page for this feature uses one Computer tab for desktop browsers. It does not give Mac-only steps. The menu names are the same on a Mac. The Mac shortcuts use ⌘, ⌥ and ⌃, where Windows uses Ctrl and Alt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's product page says Sheets works on phones, tablets and desktops, and that it can be used offline. It does not describe a separate Mac app. Use your browser, and the steps on this page will match what you see."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you split: make room for the new columns"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most people skip this step, and it causes most of the damage. Google's help page warns that the menu method overwrites data in the columns to the right. If those cells hold anything, it gets replaced with no warning."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Column A holds full addresses like Ana Lima, Lisbon, Portugal. Column B holds a note you typed earlier. A comma split writes the pieces into A, B and C, so the note in B is lost unless you make room first."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Cell",
+        "Before the split",
+        "After the split"
+      ],
+      "rows": [
+        [
+          "A2",
+          "Ana Lima, Lisbon, Portugal",
+          "Ana Lima"
+        ],
+        [
+          "B2",
+          "Note from March",
+          "Lisbon"
+        ],
+        [
+          "C2",
+          "Empty",
+          "Portugal"
+        ]
+      ],
+      "caption": "Comma split on one row. Leading spaces are hidden here so the table stays easy to read."
+    },
+    {
+      "type": "paragraph",
+      "text": "Insert the empty columns before you select anything. Click the column letter to the right of your text, then use Insert > Column right. Repeat until the longest row has enough empty columns to hold its pieces."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the longest row before you count. Some rows split into more pieces than others. Those extra pieces need room too, so count the widest row, not the first one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choosing the right separator"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Separator dropdown offers Detect automatically, Comma, Semicolon, Period, Space and Custom. Choose the character that really sits between your values. Look at the cell itself, not at what you expect to see."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Detect automatically: Google says it helps fix how columns spread after the split.",
+        "Comma: the usual choice for lists of names, places and CSV-style text.",
+        "Semicolon: use it when your values are separated by semicolons.",
+        "Period: use it for values with dots between their parts, such as a code.",
+        "Space: splits every word, so a full name splits too. Check the result.",
+        "Custom: any other character, such as a pipe or a slash. Type it in the box."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for spaces after commas. Most lists write a comma and then a space. The split keeps that space at the start of each new piece. You can remove it with TRIM, which is covered later on this page."
+    },
+    {
+      "type": "paragraph",
+      "text": "A value with the separator inside it breaks apart. A name like J. Smith splits at the period. Clean those cells first, or split on a character that never appears inside the names."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Split with a formula instead: the SPLIT function"
+    },
+    {
+      "type": "paragraph",
+      "text": "The SPLIT function gives the same result with a formula. Google's syntax is SPLIT(text, delimiter, [split_by_each], [remove_empty_text]). The delimiter characters do not appear in the results."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the example above, type =SPLIT(A2, \",\") in cell B2. The first piece lands in B2, and the rest spill to the right. The cells to the right must be empty, the same rule as the menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "By default, consecutive delimiters count as one. Two commas in a row produce one split, not an empty cell. Set remove_empty_text to FALSE if you want the empty cells kept."
+    },
+    {
+      "type": "paragraph",
+      "text": "The menu command changes the cells once. A formula stays linked to its source cell, so the split updates when the source text changes. Pick the tool that fits how often your source text changes."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep the result, drop the formula",
+      "text": "Copy the split cells, then paste with ⌘⇧V to paste values only. The text stays and the formula goes."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes for the problems people hit most"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failed splits come from a short list of causes. Each one has a clean fix. None of them needs a second tool."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Wrong or missing separator: choose Custom and type the character you see.",
+        "Partial selection: select the full range before you open the command.",
+        "Extra spaces: use TRIM in a helper column, then paste values only.",
+        "Merged cells: choose Format > Merge cells > Unmerge, then split again.",
+        "Not enough empty columns: insert empty columns or clear the cells to the right."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Merged cells deserve a closer look. A merged cell spans several cells, so the split has no clean place to put the pieces. Unmerge first, then check that the text is still in the cell you expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "Partial selections are easy to miss. If you drag across only part of a column, the rows below stay whole. Click the column letter to select everything at once."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost people their data"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first mistake is skipping the empty columns. The second is splitting a column that holds formulas. The split works on the values in those cells, so check what each cell contains first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Undo is your safety net. Press ⌘Z right after the split. Undo works best straight after the change, so do not make other edits before you check the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Decimal values break in the same way. If your column holds prices with decimal points, a Period split pulls each number apart. Use Custom only when you know the separator is safe in that column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch the header row too. If you select the whole column, the header splits along with the data. Your first row then holds the piece names, which may be what you want. Check it before you move on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts, and what Google does not offer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut page lists ⌘Z for undo, ⌘C for copy, ⌘V for paste and ⌘⇧V for paste values only. It also lists ⌘/ for the shortcut list and ⌥/ for the tool finder."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page has no shortcut for Split text to columns. The fastest route is Ctrl+Option+D to open the Data menu, then one click on the command. The command itself is a mouse action."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you cannot find a command, use the tool finder. The guide on [how to use the tool finder in Google Sheets on Mac](/how-to/use-the-tool-finder-in-google-sheets) covers it step by step."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "After the split: tidy up and keep working"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check every row after the split. Sort the new columns with [sort data by column in Google Sheets](/how-to/sort-data-by-column-in-google-sheets) if the order matters. Remove doubled rows with [remove duplicate rows](/how-to/remove-duplicate-rows-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the text came from a CSV file, read the [CSV import steps](/how-to/import-a-csv-file-in-google-sheets) before you split by hand. A clean import can save you a cleanup pass later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Find and replace can clear stray characters before a split. The [find and replace guide](/how-to/find-and-replace-text-in-google-sheets) walks through the steps in Chrome on Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checklist before you split"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Confirm the separator by looking at the cell, not at your guess.",
+        "Insert empty columns to the right of the text.",
+        "Select the full range, including every row with text.",
+        "Unmerge any merged cells inside the range.",
+        "After the split, check the longest row. Press ⌘Z if anything looks wrong."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version and update notes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google does not publish version numbers for the Sheets web app, so these steps do not name one. Sheets Bootcamp says its guide was updated May 20, 2026, and lists no version-specific behavior."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your Data menu looks different from these steps, look for the same command name. The menu label Split text to columns is what Google's help page uses."
+    },
+    {
+      "type": "image",
+      "index": 1
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "Google Sheets runs in your browser. Google's product page says Sheets works on phones, tablets and desktops, and can be used offline. It does not describe a separate Mac app, so the split steps here work in any browser on your Mac."
+    },
+    {
+      "question": "Why did my data disappear after I split a column?",
+      "answer": "The menu method overwrites data in the columns to the right, and Google's help page says it does so with no warning. Insert empty columns before you split. If you already split, press ⌘Z right after to undo."
+    },
+    {
+      "question": "Can I undo a text split in Google Sheets on Mac?",
+      "answer": "Yes. Undo works right after the split, so press ⌘Z straight away. If you made other edits first, the original text may not come back, so copy the sheet before your next split."
+    },
+    {
+      "question": "Is there a keyboard shortcut for Split text to columns?",
+      "answer": "Google's keyboard shortcut page does not list one. Press Ctrl+Option+D to open the Data menu on Mac, then click Split text to columns. The shortcut list itself opens with ⌘/."
+    },
+    {
+      "question": "What separator should I pick for a pipe or a slash?",
+      "answer": "Choose Custom in the Separator dropdown and type the character. Check one cell first to confirm the exact character, since a similar symbol can look the same at a glance."
+    },
+    {
+      "question": "Does a SPLIT formula update when the source changes?",
+      "answer": "Yes. A SPLIT formula stays linked to its source cell, so the pieces update when the source text changes. The menu command changes the cells once and does not keep a link to the source."
+    },
+    {
+      "question": "Why does a piece start with a space?",
+      "answer": "Most lists put a space after each comma. The split keeps that space, so the new cell starts with it. Use TRIM on the cell, such as =TRIM(B2), to remove the leading space."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Split text, remove duplicates, or trim whitespace - Computer - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/6325535?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Computer - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "SPLIT function - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/3094136?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets - Google Workspace",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Split Text to Columns in Google Sheets - Sheets Bootcamp",
+      "url": "https://www.sheetsbootcamp.com/text-functions/text-to-columns/",
+      "publisher": "Sheets Bootcamp",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Use Split Text to Columns in Google Sheets - Guiding Tech",
+      "url": "https://www.guidingtech.com/how-to-use-split-text-to-columns-in-google-sheets/",
+      "publisher": "Guiding Tech",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets Text to Columns Not Working? Here's What To Do - Analysis Fix",
+      "url": "https://analysisfix.com/google-sheets-text-to-columns-not-working-heres-what-to-do/",
+      "publisher": "Analysis Fix",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Split text into columns in Google Sheets on Mac",
+  "appliesTo": "Google Sheets in a web browser on a Mac",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Google account with edit access to the spreadsheet",
+    "Text in one column, with a character between the values",
+    "Empty columns to the right of the text",
+    "A Mac browser that can open Google Sheets"
+  ],
+  "steps": [
+    {
+      "name": "Open the sheet in your browser",
+      "text": "Open the spreadsheet in Google Sheets in your Mac browser. Click the tab that holds the text. You need edit access to split text, so check that you can type in the cells."
+    },
+    {
+      "name": "Find the separator",
+      "text": "Click one cell that holds text and read it. Look for the character between the values, such as a comma, a space, a semicolon, a period or a pipe.",
+      "tip": "Read the cell itself, not the source file. Hidden spaces can hide the real separator."
+    },
+    {
+      "name": "Make room to the right",
+      "text": "Click the column letter to the right of your text. Open Insert > Column right from the menu bar. Repeat until the longest row has enough empty columns.",
+      "menuPath": [
+        "Insert",
+        "Column right"
+      ],
+      "tip": "Google warns that the split overwrites columns to the right with no warning, so leave them blank."
+    },
+    {
+      "name": "Select the full range",
+      "text": "Click the column letter at the top to select the whole column, or drag across the cells you want. A partial selection leaves some rows unsplit."
+    },
+    {
+      "name": "Open the Data menu",
+      "text": "Click Data in the menu bar at the top of the sheet. You can also press Ctrl+Option+D to open the Data menu from the keyboard, which Google lists for Mac.",
+      "menuPath": [
+        "Data"
+      ],
+      "shortcut": "⌃⌥D"
+    },
+    {
+      "name": "Click Split text to columns",
+      "text": "In the Data menu, click Split text to columns. Sheets shows a Separator dropdown for the selected cells. The menu label matches Google's help page.",
+      "menuPath": [
+        "Data",
+        "Split text to columns"
+      ]
+    },
+    {
+      "name": "Choose the separator",
+      "text": "Open the dropdown next to Separator. Pick Detect automatically, Comma, Semicolon, Period or Space. Choose Custom for any other character, then type it in the box.",
+      "menuPath": [
+        "Separator dropdown",
+        "Comma"
+      ],
+      "tip": "If the result looks wrong, press ⌘Z and try the next option while the undo still works."
+    },
+    {
+      "name": "Check the result",
+      "text": "Look at the first rows, the longest row and any merged cells. Spaces after commas show up as leading spaces in the new cells. If something is wrong, press ⌘Z right after the split.",
+      "shortcut": "⌘Z"
+    },
+    {
+      "name": "Remove leftover spaces",
+      "text": "In a free cell, type =TRIM(B2), using the first split cell as the reference. Copy the formula down the column. When you need plain text, copy the results and paste with ⌘⇧V to paste values only.",
+      "shortcut": "⌘⇧V"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Undo the last change",
+      "keys": "⌘Z"
+    },
+    {
+      "action": "Copy",
+      "keys": "⌘C"
+    },
+    {
+      "action": "Paste",
+      "keys": "⌘V"
+    },
+    {
+      "action": "Paste values only",
+      "keys": "⌘⇧V"
+    },
+    {
+      "action": "Open the Data menu",
+      "keys": "⌃⌥D"
+    },
+    {
+      "action": "Show the shortcut list",
+      "keys": "⌘/"
+    },
+    {
+      "action": "Open the tool finder",
+      "keys": "⌥/"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Only some rows split, and the rest stay whole.",
+      "fix": "Select the full range before you open the command. A partial selection leaves the rows you did not select unsplit."
+    },
+    {
+      "problem": "My existing data was replaced by the split.",
+      "fix": "Press ⌘Z right after the split. Insert empty columns to the right of the text, then split again. Google warns that the menu overwrites columns to the right with no warning."
+    },
+    {
+      "problem": "The pieces landed in the wrong places or the wrong character was used.",
+      "fix": "Undo, then check the character in the cell. Pick the matching option in the Separator dropdown, or choose Custom and type the character."
+    },
+    {
+      "problem": "The split fails on merged cells.",
+      "fix": "Choose Format > Merge cells > Unmerge, then split again. Check that the text is still in the cell you expect."
+    },
+    {
+      "problem": "The new cells have extra spaces at the start or end.",
+      "fix": "Use TRIM. Type =TRIM(B2) in a free cell, copy it down the column, then paste values only with ⌘⇧V if you need plain text."
+    },
+    {
+      "problem": "A value splits where it should not, such as initials or decimals.",
+      "fix": "Clean those cells first, or split only the columns where the separator is safe. Undo right after a bad split."
+    }
+  ],
+  "lazur": {
+    "capability": "guide",
+    "context": "Google Sheets on Mac, text in column A, Split text to columns not found",
+    "output": "Lazur points at the Data menu first, then at Split text to columns, and waits for each click.",
+    "pointsAt": "Data menu",
+    "result": "You ask how to split the column. Lazur guides you one click at a time, pointing at each control and waiting for you to click it. Lazur does not click for you.",
+    "shell": "sheet",
+    "spoken": "Walk me through splitting column A by comma in Google Sheets."
+  },
+  "type": "howto",
+  "slug": "split-text-into-columns-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/split-text-into-columns-in-google-sheets/how-to-split-text-into-columns-in-1-4d887e.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Person working on a laptop at a desk, reviewing a spreadsheet of text rows before splitting text into columns",
+      "caption": "Check every row after the split, not just the first one.",
+      "keywords": [
+        "how to split text into columns in google sheets on mac",
+        "Google Sheets",
+        "split text into columns",
+        "Mac",
+        "person using laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/howto/split-text-into-columns-in-google-sheets/how-to-split-text-into-columns-in-2-e89c20.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Man typing on a Mac keyboard while reviewing data columns in a browser spreadsheet on a desk",
+      "caption": "Undo right after the split, before you make other edits.",
+      "keywords": [
+        "how to split text into columns in google sheets on mac",
+        "Google Sheets",
+        "split text into columns",
+        "Mac",
+        "man typing on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/bar-ipad-mockup-business-computer-621033/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to split text into columns in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "split text to columns google sheets": 1,
+      "google sheets split text to columns mac": 1,
+      "split text into columns google sheets": 1,
+      "google sheets text to columns": 1,
+      "google sheets split cell by comma": 1,
+      "google sheets split text separator": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

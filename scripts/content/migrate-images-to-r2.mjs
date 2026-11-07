@@ -11,6 +11,8 @@
  *
  *   node scripts/content/migrate-images-to-r2.mjs --dry-run   # count only, no network
  *   node scripts/content/migrate-images-to-r2.mjs             # rebuild + upload + rewrite
+ *   node scripts/content/migrate-images-to-r2.mjs --retry-failed  # only the URLs in failed.json
+ *     (pages already point at R2 then; the image is rebuilt from the page's metadata)
  *
  * Needs PIXABAY_API_KEY and the R2_* variables (see lib/r2.mjs). Safe to re-run: progress is kept in
  * content-runs/migrate-r2/done.json and finished images are skipped.
@@ -24,6 +26,7 @@ import { r2Configured, r2Put, r2PublicUrl } from "./lib/r2.mjs";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const BLOB_HOST = "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com";
 const DRY = process.argv.includes("--dry-run");
+const RETRY = process.argv.includes("--retry-failed");
 const STATE_DIR = path.join(ROOT, "content-runs/migrate-r2");
 const DONE_FILE = path.join(STATE_DIR, "done.json");
 const FAIL_FILE = path.join(STATE_DIR, "failed.json");
@@ -45,13 +48,18 @@ function walk(dir) {
 function collect(node, into) {
   if (!node || typeof node !== "object") return;
   if (Array.isArray(node)) return node.forEach((n) => collect(n, into));
-  if (typeof node.url === "string" && node.url.startsWith(BLOB_HOST) && node.credit?.sourceUrl) {
-    if (!into.has(node.url)) into.set(node.url, node);
+  if (typeof node.url === "string" && node.credit?.sourceUrl) {
+    const r2 = r2PublicUrl() + "/";
+    const key = node.url.startsWith(BLOB_HOST) ? node.url : RETRY && node.url.startsWith(r2) ? `${BLOB_HOST}/${node.url.slice(r2.length)}` : null;
+    if (key && !into.has(key)) into.set(key, node);
   }
   for (const v of Object.values(node)) collect(v, into);
 }
 
-const files = walk(path.join(ROOT, "content")).filter((f) => fs.readFileSync(f, "utf8").includes(BLOB_HOST));
+const files = walk(path.join(ROOT, "content")).filter((f) => {
+  const t = fs.readFileSync(f, "utf8");
+  return t.includes(BLOB_HOST) || (RETRY && t.includes(r2PublicUrl()));
+});
 /** @type {Map<string, any>} */
 const images = new Map();
 for (const f of files) {
@@ -76,6 +84,8 @@ if (!r2Configured()) throw new Error("R2 is not configured (R2_ACCOUNT_ID, R2_AC
 fs.mkdirSync(STATE_DIR, { recursive: true });
 /** @type {Record<string, string>} */
 const done = fs.existsSync(DONE_FILE) ? JSON.parse(fs.readFileSync(DONE_FILE, "utf8")) : {};
+/** @type {Record<string, string>} */
+const previouslyFailed = fs.existsSync(FAIL_FILE) ? JSON.parse(fs.readFileSync(FAIL_FILE, "utf8")) : {};
 /** @type {Record<string, string>} */
 const failed = {};
 const save = () => {
@@ -102,7 +112,7 @@ async function pixabayById(/** @type {string} */ id) {
   return hit;
 }
 
-const todo = [...images.entries()].filter(([url]) => !done[url]);
+const todo = [...images.entries()].filter(([url]) => !done[url] && (!RETRY || url in previouslyFailed));
 console.log(`to rebuild: ${todo.length} (already done: ${Object.keys(done).length})`);
 let n = 0;
 async function worker() {
@@ -115,7 +125,12 @@ async function worker() {
       const id = String(img.credit.sourceUrl).match(/-(\d+)\/?$/)?.[1];
       if (!id) throw new Error(`no photo id in ${img.credit.sourceUrl}`);
       const hit = await pixabayById(id);
-      const res = await fetch(hit.largeImageURL || hit.webformatURL);
+      let res;
+      for (let a = 1; ; a++) {
+        res = await fetch(hit.largeImageURL || hit.webformatURL);
+        if (res.status !== 429 || a >= 6) break;
+        await sleep(15_000 * a);
+      }
       if (!res.ok) throw new Error(`download ${res.status}`);
       const kw = Array.isArray(img.keywords) && img.keywords.length ? img.keywords.map(String) : [];
       const idx = key.match(/-(\d+)-[0-9a-f]{6}\.jpg$/)?.[1] ?? "1";
@@ -134,7 +149,7 @@ async function worker() {
     if (++n % 25 === 0) { save(); console.log(`${n} processed, ${Object.keys(failed).length} failed`); }
   }
 }
-await Promise.all([1, 2, 3, 4].map(worker));
+await Promise.all((RETRY ? [1] : [1, 2, 3, 4]).map(worker));
 save();
 
 // Rewrite the host everywhere. Paths are identical, so a plain host swap is exact.

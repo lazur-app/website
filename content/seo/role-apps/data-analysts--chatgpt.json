@@ -1,0 +1,514 @@
+{
+  "title": "ChatGPT for Data Analysts on Mac in 2026: Cleaning, Checking and Spoken Help",
+  "metaTitle": "ChatGPT for Data Analysts on Mac: Clean, Check and Ask Out Loud",
+  "description": "ChatGPT for data analysts on Mac: clean messy data, check results and get spoken help from Lazur while you work in any app on your Mac.",
+  "targetKeyword": "chatgpt for data analysts on mac",
+  "secondaryKeywords": [
+    "chatgpt for data analysts",
+    "chatgpt data cleaning mac",
+    "chatgpt csv analysis mac",
+    "ai assistant for data analysts mac",
+    "chatgpt excel help mac",
+    "data analyst ai tools mac"
+  ],
+  "intro": "ChatGPT for data analysts on Mac works best as a fast second reader. Use it to draft cleaning steps, explain formulas, write SQL and turn raw results into plain notes. Check every number against your source file before it leaves your desk. Lazur adds voice and on-screen help to the same workflow.",
+  "tldr": [
+    "ChatGPT on Mac helps most with cleaning plans, formula help, SQL drafts and plain-language notes.",
+    "Check every figure against the source file. Most people in one 2025 US survey say AI tools make mistakes at least sometimes.",
+    "Upload only data your company allows in an AI tool. Remove names and IDs when the analysis does not need them.",
+    "Lazur sits next to ChatGPT. Hold ⌥ ⌘ to ask about the screen, or hold fn to dictate text at the cursor.",
+    "Ask Lazur to point, guide or explain while you keep working in Excel, Google Sheets or ChatGPT."
+  ],
+  "stats": [
+    {
+      "value": "97%",
+      "label": "of 1,400 data analysts say AI tools speed up their daily tasks (vendor-run survey)",
+      "sourceUrl": "https://www.alteryx.com/resources/report/2025-state-of-the-data-analyst",
+      "sourceTitle": "The 2025 State of Data Analysts in the Age of AI"
+    },
+    {
+      "value": "76%",
+      "label": "of analysts still rely on manual, spreadsheet-based data prep",
+      "sourceUrl": "https://www.alteryx.com/resources/report/2025-state-of-the-data-analyst",
+      "sourceTitle": "The 2025 State of Data Analysts in the Age of AI"
+    },
+    {
+      "value": "70%",
+      "label": "of 1,503 US respondents say generative AI makes mistakes at least sometimes",
+      "sourceUrl": "https://arxiv.org/html/2609.38186",
+      "sourceTitle": "Why and How People Check Generative AI Output for Mistakes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What ChatGPT does well in a data job"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of a data analyst's week is not modeling. It is getting data into a shape you can trust. ChatGPT helps with that part. It reads a sample you paste, suggests a cleaning plan, writes a formula or a SQL query, and explains what a result seems to mean. You still decide what goes into the report."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shape of the work explains why this matters. A vendor-run survey of 1,400 data analysts, published by Alteryx in 2025, found that 97% say AI tools speed up their daily tasks. The same report found that 76% still rely on manual, spreadsheet-based data prep. Both can be true. AI helps with the thinking, but the clicking and copying still take most of the day."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read those numbers as a direction, not a benchmark. Alteryx sells data products, so its survey has a stake in the story. Use it to decide where to test ChatGPT first. Good first tests are repetitive, checkable jobs like cleaning one column or drafting one formula, where you can see the result."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up ChatGPT on Mac for analysis work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Set up one habit before anything else. Open a separate chat for each dataset and name it with the project and the date. A long chat that mixes three clients will carry old column names into new answers. A fresh chat per dataset keeps the context clean."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the ChatGPT app from Applications, or press ⌘ Space, type ChatGPT and press Return. A separate app is easier to keep in front of your spreadsheet than a browser tab buried among many other tabs. Keep it in its own Space if your Mac layout gets crowded."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the question in one sentence before you open any file.",
+        "Say what the file is, what each column means and what a good result looks like.",
+        "Attach a small sample first, using the attach control in the message box.",
+        "Ask for the plan before the answer, and read the plan before you run anything.",
+        "Keep the source sheet open next to the chat so you can check each figure."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Upload a file without creating a mess"
+    },
+    {
+      "type": "paragraph",
+      "text": "File limits and plan features change. I could not confirm the current limits from OpenAI's own help pages while writing this page. Check ChatGPT's help center before you upload a large export. For a first test, a small sample of rows is usually enough to see whether the plan makes sense."
+    },
+    {
+      "type": "paragraph",
+      "text": "Export a flat CSV from the source system when you can. Excel files often carry hidden sheets, merged cells and formatting that confuse a reader. A CSV with one header row and no merged cells is easier to check. It is also easier for ChatGPT to read correctly."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name files before you upload",
+      "text": "Use a name like orders_q3_sample.csv, not final_v7_REAL.xlsx. A clear name tells you which version you pasted. That matters when two copies of the same export are floating around."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cleaning messy columns: a worked example"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you have a customer orders export. The Region column holds NE, northeast and North East. Order dates come in two formats. Some totals include a dollar sign and some do not. Each problem looks small. Together they break a pivot table in a quiet way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste the header row and a few sample rows into ChatGPT. Then ask for a plan with this prompt: 'These are my columns and sample rows. List the cleaning steps in order. For each step, say how to check it worked. Do not change any values yet.' A good plan names the Region fix first, then the date fix, then the totals."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run one step at a time in your own tool. After each step, check the row count and look at a handful of random rows. If the count changes when it should not, stop. Ask ChatGPT what its step assumed about blank cells, and settle that before you go on."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask for a mapping table rather than a list of find and replace edits. A two-column table with the raw value on the left and the clean value on the right is easy to review. You can paste it into a lookup sheet. The next analyst can then see every decision you made."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checking ChatGPT's answers before you use them"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is where analysts get hurt. A clean-looking answer can hide a wrong join, a duplicated key or a rounded total. The 70% figure in the stats above measures belief, not error rate. It cannot tell you how often ChatGPT is wrong on your data. It does tell you that most people already expect mistakes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers report the same tension. In Stack Overflow's 2025 Developer Survey, 46% of respondents said they distrust AI output accuracy, and 33% said they trust it. Developers are not analysts. The pattern still matches. People use the tool and then check it, because the output sounds more sure than it is."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Trace every figure",
+      "text": "Never paste a number from ChatGPT into a deck until you can point to the cell or query that produced it. Ask ChatGPT for the formula or code, then run it yourself in your own tool."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Recalculate totals in your source tool, not in the chat.",
+        "Compare row counts before and after every cleaning step.",
+        "Check joins for duplicate keys, since one duplicate can double a sum.",
+        "Ask what it assumed about blank cells, time zones and currency.",
+        "Spot-check the biggest and smallest values by hand."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using ChatGPT with Excel and Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "ChatGPT writes formulas well, but it cannot see your sheet unless you describe it or paste it. Give it the header row, the cell range and the result you expect. Then test the formula on a copy of the sheet. Never test on the live file."
+    },
+    {
+      "type": "paragraph",
+      "text": "For pivot tables in Excel on Mac, the menu path is Insert > PivotTable. Use ChatGPT to decide which fields belong in Rows, Columns and Values. Then build the table yourself. The Excel guide covers cleaning, pivots and Power Query in more depth: [Excel for data analysts on Mac](/for/data-analysts/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets follows a similar pattern with different menus. If your team works in Sheets, read [Google Sheets for data analysts on Mac](/for/data-analysts/google-sheets) before you copy any workflow across. Test each formula on a copy first, whichever tool you use."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits next to ChatGPT"
+    },
+    {
+      "type": "paragraph",
+      "text": "ChatGPT is where you reason and draft. Lazur is the voice and screen layer on top of your Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Hold fn to dictate clean, formatted text at the cursor in any app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you. Ask where something is, and it draws a circle and a label around it on your screen. Ask how to do something, and it guides you one click at a time, waiting for each click. You stay in control of every change."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Job",
+        "Use ChatGPT for",
+        "Use Lazur for"
+      ],
+      "rows": [
+        [
+          "Cleaning plan",
+          "Listing steps and edge cases",
+          "Walking you through each menu in Excel or Sheets"
+        ],
+        [
+          "Formula help",
+          "Writing and explaining the formula",
+          "Pointing at the cell or button you need"
+        ],
+        [
+          "Notes and emails",
+          "Drafting the wording",
+          "Dictating with fn so you do not retype it"
+        ],
+        [
+          "Chart review",
+          "Explaining what a result means",
+          "Reading the axis labels out loud"
+        ],
+        [
+          "Background research",
+          "Short answers in the chat",
+          "Running research in Lazur's own Chrome tabs, then a summary and report"
+        ]
+      ],
+      "caption": "A rough split of work between a chat model and a voice assistant on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The split is simple. Use ChatGPT for the thinking and the text. Use Lazur for the moments when you need a voice and a pointer while you work in someone else's app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes analysts make with ChatGPT on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the damage comes from habit, not from the tool. These mistakes show up on busy weeks, when the deadline is close and the file looks almost right."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pasting client data into a personal account without checking your company's rules.",
+        "Trusting a summary without seeing the query or formula that produced it.",
+        "Uploading a messy export, then blaming the answer for the mess.",
+        "Letting one long chat mix several projects, so old columns leak into new work.",
+        "Asking for a chart before agreeing on the metric definition, such as active user or net revenue.",
+        "Testing on the live file, then overwriting the source sheet."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last mistake costs the most. Duplicate the sheet first. Name the copy with today's date. Work on the copy, and keep the original untouched until your numbers check out."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and client data on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your company's AI policy before you upload anything with names, emails, account IDs, payment details or health data. If the analysis does not need an identifier, remove it. Replace customer IDs with a random key in your own tool before you upload."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur's privacy rules are simple. It listens and looks at your screen only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer you, and they are not stored. Content is never used to train AI models. Those rules cover Lazur only. Read ChatGPT's own data controls in its settings before you decide what to upload."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist for your next dataset"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the business question in one sentence.",
+        "Define each metric, including filters and the date range.",
+        "Export one flat CSV or a single clean sheet.",
+        "Upload a small sample and ask ChatGPT for a cleaning plan.",
+        "Apply one step at a time and recheck row counts.",
+        "Build the output and trace each figure to a cell or query.",
+        "Write the note in your own words, then edit it or dictate it with fn."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "For the wider picture, read [AI Work Assistant vs Dictation App vs ChatGPT](/blog/ai-work-assistant-vs-dictation-app-vs-chatgpt). For a side by side look at ChatGPT on Mac and Lazur, see [ChatGPT on Mac vs Lazur](/apps/chatgpt). When you are ready, start at [the download page](/download) and check [pricing](/pricing) before you commit."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Start small",
+      "text": "Pick one repetitive job this week, such as cleaning one export. Time it, check the output, and decide from that result instead of from a demo."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does ChatGPT for data analysts on Mac need a paid plan?",
+      "answer": "Plan names, prices and file features change. Check OpenAI's current plan details before you choose one. Do not budget from an old blog post. Lazur's plans are listed on the pricing page of this site."
+    },
+    {
+      "question": "Can ChatGPT read an Excel file on Mac?",
+      "answer": "You can usually attach an Excel or CSV file in the message box. For reliable results, export a flat CSV or copy one clean range. Check the file limits in ChatGPT's help center first, because they change."
+    },
+    {
+      "question": "Is ChatGPT accurate enough for data analysis?",
+      "answer": "It can be useful, and it can also be wrong. A 2025 US survey found that 70% of respondents think generative AI makes mistakes at least sometimes. Trace every number back to your source data before you share it."
+    },
+    {
+      "question": "What is the difference between ChatGPT and Lazur?",
+      "answer": "ChatGPT is the chat where you upload files and work through a problem. Lazur runs on your Mac, sees your screen only while you hold ⌥ ⌘, answers out loud and guides you through steps in any app. It does not click buttons for you."
+    },
+    {
+      "question": "Can Lazur build a pivot table for me?",
+      "answer": "No. Lazur guides you one click at a time and waits for each click. It can also point at the button or field you need, so you build the table yourself."
+    },
+    {
+      "question": "Does Lazur store my data?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and screenshots are sent to AI providers to answer you and are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Is there a Windows version of Lazur?",
+      "answer": "Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, but it is not available yet."
+    },
+    {
+      "question": "How do I stop ChatGPT from inventing column names?",
+      "answer": "Paste the real header row and a few sample rows. Tell it to use only those names. Ask it to say so when it needs a column it cannot see."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The 2025 State of Data Analysts in the Age of AI",
+      "url": "https://www.alteryx.com/resources/report/2025-state-of-the-data-analyst",
+      "publisher": "Alteryx",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Why and How People Check Generative AI Output for Mistakes (arXiv 2609.38186)",
+      "url": "https://arxiv.org/html/2609.38186",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Stack Overflow 2025 Developer Survey: AI",
+      "url": "https://survey.stackoverflow.co/2025/ai",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, which total on this table looks wrong?",
+    "capability": "explain",
+    "result": "Lazur reads the table on screen, points at the total that looks off, and says why out loud. Check it against the source file.",
+    "shell": "chat",
+    "context": "ChatGPT window with a summary table from an uploaded CSV open",
+    "pointsAt": "the total row",
+    "output": "Lazur circles the total row and says the figure does not match the sum of the rows above it. Confirm the sum in your source tool before you change anything."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the attach button in this ChatGPT window?",
+      "capability": "point",
+      "result": "Lazur circles the button and labels it on screen, so you stop hunting in the message box."
+    },
+    {
+      "say": "Lazur, walk me through making a pivot table from this sheet.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on."
+    },
+    {
+      "say": "Lazur, what does this formula error actually mean?",
+      "capability": "explain",
+      "result": "Lazur reads the error on your screen and explains it out loud in plain language."
+    },
+    {
+      "say": "Hold fn and dictate the summary note into the ChatGPT box.",
+      "capability": "dictate",
+      "result": "Your speech lands as clean text at the cursor, so you edit a draft instead of typing one."
+    },
+    {
+      "say": "Lazur, draft a short note saying the Q3 totals changed after the refund fix.",
+      "capability": "draft",
+      "result": "Lazur types a draft you can edit before you send it to your team."
+    },
+    {
+      "say": "Lazur, research how other analysts set up a churn dashboard.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report."
+    },
+    {
+      "say": "Lazur, set a timer for twenty minutes while I clean this file.",
+      "capability": "everyday",
+      "result": "Lazur sets the timer by voice, so your hands stay on the data."
+    },
+    {
+      "say": "Lazur, what does the vertical axis on this chart measure?",
+      "capability": "explain",
+      "result": "Lazur reads the axis label on screen and answers out loud, so you can check the metric."
+    }
+  ],
+  "type": "role-app",
+  "slug": "data-analysts-chatgpt",
+  "role": "data-analysts",
+  "app": "chatgpt",
+  "roleName": "Data analysts",
+  "appName": "ChatGPT",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-chatgpt/chatgpt-for-data-analysts-on-mac-1-d87482.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Data analyst working on a laptop with charts at a desk, using ChatGPT for data analysts on Mac",
+      "caption": "A laptop workspace for daily data work.",
+      "keywords": [
+        "chatgpt for data analysts on mac",
+        "ChatGPT",
+        "Data analysts",
+        "Mac",
+        "data analyst laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sakibmia24",
+        "url": "https://pixabay.com/users/sakibmia24-57634147/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-trading-statistics-10503579/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-chatgpt/chatgpt-for-data-analysts-on-mac-2-5b7965.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person reviewing a spreadsheet on a Mac screen during data cleaning work",
+      "caption": "Checking a spreadsheet before numbers get shared.",
+      "keywords": [
+        "chatgpt for data analysts on mac",
+        "ChatGPT",
+        "Data analysts",
+        "Mac",
+        "person reviewing spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Sunriseforever",
+        "url": "https://pixabay.com/users/Sunriseforever-6314823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/old-photos-woman-memories-7097834/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-chatgpt/chatgpt-for-data-analysts-on-mac-3-60c824.jpg",
+      "width": 1280,
+      "height": 855,
+      "alt": "Analyst at a Mac in an office reviewing results from ChatGPT for data analysts on Mac",
+      "caption": "Reviewing results before a team meeting.",
+      "keywords": [
+        "chatgpt for data analysts on mac",
+        "ChatGPT",
+        "Data analysts",
+        "Mac",
+        "woman working computer office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "spharma",
+        "url": "https://pixabay.com/users/spharma-31870371/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-laptop-desk-office-work-7671984/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "chatgpt for data analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "chatgpt for data analysts": 9,
+      "chatgpt data cleaning mac": 1,
+      "chatgpt csv analysis mac": 1,
+      "ai assistant for data analysts mac": 1,
+      "chatgpt excel help mac": 1,
+      "data analyst ai tools mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

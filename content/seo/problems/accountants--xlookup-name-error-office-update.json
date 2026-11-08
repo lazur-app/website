@@ -1,0 +1,609 @@
+{
+  "title": "XLOOKUP showing #NAME? after an Office update on Mac: fixes for accountants",
+  "metaTitle": "XLOOKUP showing #NAME? after an Office update on Mac",
+  "description": "XLOOKUP showing #NAME? on Mac after an Office update? Check your Excel version, license and name clash first, then run a blank test.",
+  "targetKeyword": "xlookup showing #name?",
+  "secondaryKeywords": [
+    "xlookup not working mac",
+    "xlookup name error excel mac",
+    "excel xlookup not available 2019",
+    "xlookup after office update",
+    "excel name error after update",
+    "about microsoft excel license check"
+  ],
+  "intro": "If XLOOKUP shows #NAME? on your Mac after an Office update, check three things first: your Excel version, your license, and the function name. #NAME? means Excel does not recognize something in the formula. Microsoft has not tied this error to one specific update, so test the basics before you blame the update.",
+  "tldr": [
+    "#NAME? means Excel does not recognize part of the formula, most often the function itself.",
+    "Microsoft says XLOOKUP is not available in Excel 2016 and 2019. A license can keep it hidden even when Excel looks current.",
+    "Check version, license, and name clash in that order. Then run a test formula in a blank workbook.",
+    "A separate Office 2021 bug, which Microsoft admits, affected existing users. Build 16.114.3 is the listed fix, and it is a license problem, not a formula problem."
+  ],
+  "stats": [
+    {
+      "value": "$83,680",
+      "label": "Median pay for accountants and auditors, May 2025 (about $40.23 an hour)",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors (Occupational Outlook Handbook, BLS)"
+    },
+    {
+      "value": "4.15 hours",
+      "label": "Weekly time US accountants spend checking client data for bad data, Dext survey (2021)",
+      "sourceUrl": "https://www.goingconcern.com/todays-trivia-time-spent-checking-for-stupid-mistakes-made-by-clients/",
+      "sourceTitle": "Today's Trivia: Time Spent Checking For Stupid Mistakes Made By Clients (Going Concern)"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Office for Mac build that restores Office 2021 for affected users, dated 27 October 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    },
+    {
+      "value": "10/14/2026",
+      "label": "Microsoft's listed retirement date for Office 2021",
+      "sourceUrl": "https://learn.microsoft.com/en-us/lifecycle/products/office-2021",
+      "sourceTitle": "Office 2021 (Microsoft Lifecycle)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "XLOOKUP showing #NAME? usually means your copy of Excel does not know the function. The update may be a coincidence. It may also have changed which Excel build or license you run. Prove what your Excel can do first, then fix the formula. The steps below take a short while on a normal Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What #NAME? means in an XLOOKUP formula"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel shows #NAME? when it cannot match a name in your formula to anything it knows. With XLOOKUP, the usual cause is that the function is not defined in your install. A typo or a leftover defined name can cause the same message. Start by reading the formula in the formula bar."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a quick split. If the name is spelled XLOOKUP and the rest of the formula is fine, the problem sits in your version or license. If the spelling is off, fix the spelling and stop. A typo needs no license check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a broken lookup costs an accountant"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with time. The Bureau of Labor Statistics put the median pay for accountants and auditors at $83,680 a year in May 2025. That is about $40.23 an hour. Every hour spent hunting a broken lookup is an hour at that rate, before the client work waiting behind it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2021 Dext survey, reported by Going Concern, says US accountants spend 4.15 hours a week checking client data for bad data. Multiply 4.15 hours by $40.23 and by 52 weeks and you get about $8,700 a year. That is a rough calculation, not a published figure. It is wage only, and it mixes a 2021 hours figure with 2025 pay, so use it as a scale."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Item",
+        "Figure",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Median accountant pay",
+          "$40.23 an hour",
+          "BLS, May 2025"
+        ],
+        [
+          "Weekly time checking client data",
+          "4.15 hours",
+          "Dext survey, reported 2021"
+        ],
+        [
+          "Rough yearly wage cost of that checking",
+          "About $8,700 per person",
+          "Rough calculation: 4.15 hours x $40.23 x 52 weeks"
+        ]
+      ],
+      "caption": "Wage only. Benefits and overhead are not included."
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors cost more than hours. DataHub Pro, citing Raymond Panko's spreadsheet audit research, says about 94% of operational spreadsheets contain at least one error. That page cites compilations, not the original papers. Read it as a warning, not as a measurement of your own files."
+    },
+    {
+      "type": "paragraph",
+      "text": "A #NAME? error is at least loud. A wrapper such as IFERROR can hide it, and the cell then shows a blank or a wrong number. If you wrap lookups to keep a sheet tidy, check the wrapped cells too, row by row."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel version and license first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Excel > About Microsoft Excel. Read the version number and the license line, and write both down. Excel for Mac builds look like 16.114, so that number tells you the build family. The license line tells you whether you run a subscription or an older product."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, open File > Account. Read the product name under Product Information. If it names Office 2019 or an older product, XLOOKUP may stay hidden even though Excel looks current. A license renewal can switch you to a perpetual version without XLOOKUP, according to one Microsoft Q&A answer."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Check",
+        "Where to look",
+        "What good looks like"
+      ],
+      "rows": [
+        [
+          "Excel version",
+          "Excel > About Microsoft Excel",
+          "A current 16.x build with a license line shown"
+        ],
+        [
+          "License product",
+          "File > Account",
+          "Microsoft 365 or a 2021 license named, not 2019 or older"
+        ],
+        [
+          "XLOOKUP listed",
+          "Formulas > Lookup & Reference",
+          "XLOOKUP appears in the list"
+        ],
+        [
+          "Name clash",
+          "Formulas > Name Manager",
+          "No defined name called XLOOKUP"
+        ],
+        [
+          "Updates and macOS",
+          "Help > Check for Updates, then Apple menu > About This Mac",
+          "No pending update, and macOS 14 or later"
+        ]
+      ],
+      "caption": "Run these checks in order. Stop at the first one that explains the error."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test XLOOKUP in a blank workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open a new blank workbook. Type 1, 2 and 3 into A1 to A3. Type a, b and c into B1 to B3. In D1, type =XLOOKUP(2,A1:A3,B1:B3) and press Return. The cell should show b. If it shows #NAME?, your install cannot run XLOOKUP, and the fault is not that one formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the test file apart from client work. Nothing in your client files changes during this test. Delete the test file when you finish, or keep it as a note for IT."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix a shared file that must open on older Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some files go to people on Excel 2016 or 2019, and XLOOKUP fails for them. Replace it with INDEX and MATCH. The formula =XLOOKUP(F2,A2:A500,B2:B500) becomes =INDEX(B2:B500,MATCH(F2,A2:A500,0)). The 0 forces an exact match, which is the default for XLOOKUP."
+    },
+    {
+      "type": "paragraph",
+      "text": "Copy the new formula down the column. Then check three rows by hand against the source. Rewriting a range often leaves the last row out. A quick check catches that before a client sees the number."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Office 2021 is a separate problem",
+      "text": "Microsoft's release notes say a previous update inadvertently disabled Office 2021 for existing users. Build 16.114.3, dated 27 October 2026, is listed as the fix. Microsoft also lists 10/14/2026 as the Office 2021 retirement date, and that date has passed. Plan the upgrade with IT. Do not treat it as a formula bug."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the license is the real problem"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the license line names Office 2019 or earlier, the fix sits with your license, not your formula. MacManus, a Mac blog, describes this path. Get a Microsoft 365 or 2021 license, then run Microsoft's License Removal Tool for Mac. Re-enter the license code, restart, and check Formulas > Lookup & Reference. That post is from 2024, and Microsoft has not confirmed it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask your Office admin before you do any of this. On a firm-managed Mac, a license change can affect other people's access. You may not be able to undo it on your own. Test any removal steps on a machine with no client files first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make after an update"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Blaming the update before reading About Microsoft Excel. Check the version and license first.",
+        "Fixing one cell and leaving the column broken. Copy the corrected formula down and check the last row.",
+        "Wrapping the formula in IFERROR. The error hides, and the sheet looks clean but can be wrong.",
+        "Reinstalling Office before copying your workbooks somewhere safe.",
+        "Rolling back to an older build without reading the current release notes or asking IT.",
+        "Ignoring where the file came from. A workbook built in a newer version can carry XLOOKUP into an older install.",
+        "Sending client data to any AI tool before checking your firm's rules."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ and ask about what is on your screen. Lazur answers out loud. It can point at Formulas, circle Name Manager, or guide you through About Microsoft Excel one click at a time. It waits for each click, so you stay in control."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or change your license. It cannot confirm a Microsoft fix. For release notes and lifecycle dates, read Microsoft's own pages. If you ask Lazur to research, it runs in its own Chrome tabs and returns a summary and report. Check the Microsoft source before you act on it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "For regulated work, follow your firm's rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants often handle client data under firm and professional rules. Follow your employer's rules on client data before you paste a workbook into any tool, AI or otherwise. Ask IT before you run a license tool, reinstall Office, or roll back a build. Those rules come first, even when a fix looks simple."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to send your IT team"
+    },
+    {
+      "type": "paragraph",
+      "text": "Send the Excel version, the license line, the macOS version from Apple menu > About This Mac, the cell address, and the result of the blank workbook test. That lets IT answer in one reply. Do not attach client files unless your firm's rules allow it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does an Office update cause XLOOKUP to show #NAME?",
+      "answer": "Microsoft has not published a root cause that ties #NAME? to one update. The public threads point to license type, license renewals, and out-of-date builds. The one update problem Microsoft has admitted to, for Office 2021, affects licensing and editing rather than formulas."
+    },
+    {
+      "question": "Which versions of Excel include XLOOKUP?",
+      "answer": "Microsoft's XLOOKUP page says it is not available in Excel 2016 and Excel 2019. Microsoft's lookup reference page lists Microsoft 365, Excel 2024, 2021, 2019 and 2016 under Applies To. The two pages conflict, so run the blank workbook test in your own copy."
+    },
+    {
+      "question": "Will version 16.114.3 fix my XLOOKUP formula?",
+      "answer": "Microsoft says 16.114.3 fixes the bug that disabled Office 2021 for existing users. That is a license and editing fix. Microsoft does not say it changes how formulas calculate. If your error started before the update, run the version and test checks first."
+    },
+    {
+      "question": "Should I replace every XLOOKUP with INDEX and MATCH?",
+      "answer": "Only if the file must open on older versions. Otherwise keep XLOOKUP. Microsoft describes it as an improved version of VLOOKUP that works in any direction and returns exact matches by default."
+    },
+    {
+      "question": "Can Lazur fix my Office license?",
+      "answer": "No. Lazur guides you, points at things and answers out loud. It does not click buttons or change your license. Your Office admin or the account owner handles license changes, and Lazur can help you explain the problem."
+    },
+    {
+      "question": "What if my firm controls the Mac?",
+      "answer": "Follow your employer's rules on client data and software changes. Ask IT before you run a license tool, reinstall, or send a client workbook to any AI tool. Send IT the version and license line, not the client file."
+    }
+  ],
+  "sources": [
+    {
+      "title": "XLOOKUP function, Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/excel/functions/xlookup-function",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Lookup and reference functions (reference), Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/office/lookup-and-reference-functions-reference-8aa21a3a-b56a-4055-8257-3ec89df2b23e",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Release notes for Office for Mac (Microsoft Learn)",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Office 2021 (Microsoft Lifecycle)",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/office-2021",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Office 2021 release of 16.114.1 License Removed (Microsoft Q&A)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/6047955/office-2021-release-of-16-114-1-license-removed",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "error #NAME? using the XLOOKUP formula (Microsoft Q&A)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5727915/error-name-using-the-xlookup-formula",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "XLOOKUP not available on my version of Excel (Microsoft Q&A)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5141574/xlookup-not-available-on-my-version-of-excel",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "XLOOKUP, FILTER NOT WORKING WITH EXCEL ON MAC 365 (Microsoft Q&A)",
+      "url": "https://learn.microsoft.com/en-in/answers/questions/5790929/xlookup-filter-not-working-with-excel-on-mac-365",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "fixed: XLOOKUP function not available in latest version of MS Excel",
+      "url": "https://macmanus.nl/2024/02/14/fixed-xlookup-function-not-available-in-latest-version-of-ms-excel/",
+      "publisher": "MacManus",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Accountants and Auditors (Occupational Outlook Handbook, BLS)",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Today's Trivia: Time Spent Checking For Stupid Mistakes Made By Clients (Going Concern)",
+      "url": "https://www.goingconcern.com/todays-trivia-time-spent-checking-for-stupid-mistakes-made-by-clients/",
+      "publisher": "Going Concern",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What % of Spreadsheets Have Errors? About 94% Contain at Least One (DataHub Pro)",
+      "url": "https://www.datahubpro.co.uk/what-percentage-of-spreadsheets-have-errors",
+      "publisher": "DataHub Pro",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "xlookup showing #name? after an office update",
+  "costs": [
+    {
+      "title": "Hours spent hunting",
+      "text": "The Bureau of Labor Statistics puts median accountant pay at $83,680 a year, or about $40.23 an hour, based on May 2025 data. A broken lookup can eat part of an afternoon at that rate. The cost grows when the same formula sits in many tabs and every tab needs a check."
+    },
+    {
+      "title": "Time checking client data",
+      "text": "A 2021 Dext survey reported by Going Concern found US accountants spend 4.15 hours a week checking client data. The article does not state its sample size. Treat the figure as a rough signal, not a fact about your own week."
+    },
+    {
+      "title": "Wrong numbers that look right",
+      "text": "Panko's audit research, as summarized by DataHub Pro, says about 94% of operational spreadsheets contain at least one error. A #NAME? message at least shows up on screen. A wrapper that hides the message does not."
+    },
+    {
+      "title": "A file that will not edit",
+      "text": "A Microsoft Q&A thread reports that Word and Excel for Office 2021 went read-only after a license deactivation on 16.114.1. You cannot correct client numbers in a read-only file. That is a different problem, but it can land in the same busy week."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Excel older than the function",
+      "text": "Microsoft's XLOOKUP page says the function is not available in Excel 2016 and Excel 2019. A workbook built in a newer version can carry XLOOKUP into an older install. There, Excel has no definition for the function, so it shows #NAME?. This happens when you open a file from a colleague on an older Excel."
+    },
+    {
+      "title": "A license tied to Office 2019",
+      "text": "A Mac how-to says XLOOKUP stays hidden when the Excel license is for Office 2019 or earlier. That can be true even when Excel looks current. The advice comes from one blog post, and Microsoft has not confirmed it. The check takes a minute and costs nothing."
+    },
+    {
+      "title": "A license renewal that changed the product",
+      "text": "In one Microsoft Q&A thread, an XLOOKUP formula began returning #NAME? after a Microsoft 365 renewal. The advice was to check File > Account, because a renewal can switch you to a perpetual version without XLOOKUP. The root cause was not identified. A user said an Office 365 update fixed it."
+    },
+    {
+      "title": "A stale or mismatched build",
+      "text": "A March 2026 Mac thread on Excel 16.78 says XLOOKUP works only when the build is fully up to date and the license build is correct, according to a volunteer moderator. The poster said updating and restarting did not help. Reinstalling Excel, and clearing some credential files, is what helped."
+    },
+    {
+      "title": "A name clash or typo",
+      "text": "A defined name called XLOOKUP, or a misspelled function name, makes Excel look for something it cannot find. Excel then shows #NAME?. This cause does not involve your license at all, so check it first."
+    },
+    {
+      "title": "The Office 2021 license bug",
+      "text": "Microsoft's release notes say a previous update inadvertently disabled Office 2021 for existing users. The fix is in 16.114.3, dated 27 October 2026. The bug affects licensing and editing, not formulas. Its symptoms differ from #NAME?, though both can appear right after an update."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read the formula and the name list",
+      "text": "Click the cell and confirm the function name reads XLOOKUP with no typo. Then open Formulas > Name Manager and look for a name called XLOOKUP. If you find one, read what it refers to before you change anything, because another formula may depend on it."
+    },
+    {
+      "title": "Read your version and license",
+      "text": "Open Excel > About Microsoft Excel and note the version and license line. Then open File > Account and read the product name under Product Information. Write both down before you change anything, so IT can compare them later."
+    },
+    {
+      "title": "Run the four-line test",
+      "text": "Open a blank workbook. Put 1, 2 and 3 in A1 to A3, and a, b and c in B1 to B3. In D1, type =XLOOKUP(2,A1:A3,B1:B3). A result of b means the function works in your install."
+    },
+    {
+      "title": "Update and check macOS",
+      "text": "Open Help > Check for Updates in any Office app. Microsoft says updates come through Microsoft AutoUpdate. Microsoft also says macOS 14 Sonoma is the minimum to receive updates for Microsoft 365 and Office apps, so check Apple menu > About This Mac."
+    },
+    {
+      "title": "Tell the people who open the file",
+      "text": "If a file must open on Excel 2016 or 2019, say so in the file or the email. Agree on a formula both versions support before you share it. Your colleagues should not have to guess why the formula returns #NAME? on their screen."
+    },
+    {
+      "title": "Ask IT about the license, not the formula",
+      "text": "If the license line names Office 2019 or earlier, send the version and license line to your Office admin. MacManus describes a License Removal Tool path, but Microsoft has not confirmed it. Test that path on a machine without client files, and only with approval."
+    },
+    {
+      "title": "Check Office 2021 before rolling back",
+      "text": "If Word or Excel went read-only on Office 2021, a Microsoft Q&A accepted answer suggests reinstalling 16.114 or 16.113 and turning off automatic updates. Microsoft's release notes now list 16.114.3 as the fix. Check the current build first, then ask IT before you roll back."
+    },
+    {
+      "title": "Back up before any reinstall",
+      "text": "A Mac user reported that reinstalling Excel and clearing some credential files helped. Copy your workbooks somewhere safe first. Do not clear credential files on a work Mac without IT, because that can affect access you need for client work."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Walk me through checking my license in Excel, one click at a time.",
+      "capability": "guide",
+      "result": "Lazur points at About Microsoft Excel and File > Account, then waits for each click before the next step."
+    },
+    {
+      "say": "Where is Name Manager in this window?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the control on your screen so you find it fast."
+    },
+    {
+      "say": "What does #NAME? mean in this cell?",
+      "capability": "explain",
+      "result": "Lazur explains out loud that Excel does not recognize a name in the formula, then suggests what to check next."
+    },
+    {
+      "say": "Draft a note to IT with my Excel version and the error.",
+      "capability": "draft",
+      "result": "Lazur drafts the text. You read it, edit it and send it yourself."
+    },
+    {
+      "say": "Research the current Office 2021 release notes.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and report. Check Microsoft's page before you act on it."
+    }
+  ],
+  "demo": {
+    "spoken": "Why does my XLOOKUP show #NAME? after the update?",
+    "capability": "guide",
+    "result": "Lazur asks for your version first, then walks you to About Microsoft Excel one click at a time.",
+    "shell": "sheet",
+    "context": "Excel for Mac after an Office update, XLOOKUP shows #NAME?",
+    "output": "Lazur reads the version and license line on screen, says what they mean, then points at File > Account and waits for your next click.",
+    "pointsAt": "About Microsoft Excel"
+  },
+  "plan": [
+    {
+      "label": "Now",
+      "title": "Save a copy and note the cell",
+      "text": "Copy the file before you change anything. Write down the cell address, the exact formula, and when the error started. Those three details narrow the cause fast."
+    },
+    {
+      "label": "Morning",
+      "title": "Run the version and license checks",
+      "text": "Open About Microsoft Excel and File > Account, then write down the version and product name. Check Help > Check for Updates and your macOS version. Stop at the first check that explains the error."
+    },
+    {
+      "label": "Afternoon",
+      "title": "Run the blank workbook test",
+      "text": "Type the four-line test in a new workbook. If the cell shows b, the function works and the problem lives in your client file. If it shows #NAME?, your install cannot run XLOOKUP."
+    },
+    {
+      "label": "Day 2",
+      "title": "Pick the fix with your team",
+      "text": "If the file is shared, switch to INDEX and MATCH and check three rows by hand. If the license line is wrong, send the details to your Office admin. Do not change a license on a work Mac without approval."
+    }
+  ],
+  "apps": [
+    "excel",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "xlookup-name-error-office-update",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-name-error-office-update/xlookup-showing-name-1-c40a26.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Accountant at a laptop checking an XLOOKUP formula in a client spreadsheet of numbers",
+      "caption": "Client numbers, checked line by line",
+      "keywords": [
+        "xlookup showing #name?",
+        "Accountants",
+        "XLOOKUP shows #NAME? after an Office update",
+        "Mac",
+        "accountant laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Altnet",
+        "url": "https://pixabay.com/users/Altnet-9205206/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/financial-planning-finance-business-4010999/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-name-error-office-update/xlookup-showing-name-2-1657f6.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person using a Mac at a desk while checking an XLOOKUP formula in a spreadsheet",
+      "caption": "Checking the version before you change the formula",
+      "keywords": [
+        "xlookup showing #name?",
+        "Accountants",
+        "XLOOKUP shows #NAME? after an Office update",
+        "Mac",
+        "person using mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-name-error-office-update/xlookup-showing-name-3-fa5b81.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office worker comparing rows of figures on a screen during a month end close",
+      "caption": "Month end work, where lookups get used heavily",
+      "keywords": [
+        "xlookup showing #name?",
+        "Accountants",
+        "XLOOKUP shows #NAME? after an Office update",
+        "Mac",
+        "office worker spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Quanlecntt2004",
+        "url": "https://pixabay.com/users/Quanlecntt2004-8196954/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/worker-woman-mask-face-mask-6322029/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "xlookup showing #name?",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 6,
+    "secondary": {
+      "xlookup not working mac": 1,
+      "xlookup name error excel mac": 1,
+      "excel xlookup not available 2019": 1,
+      "xlookup after office update": 1,
+      "excel name error after update": 1,
+      "about microsoft excel license check": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

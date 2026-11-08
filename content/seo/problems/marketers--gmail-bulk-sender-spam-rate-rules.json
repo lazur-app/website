@@ -1,0 +1,652 @@
+{
+  "title": "Gmail bulk sender spam rate 0.3 percent: a Mac guide to staying under it in 2026",
+  "metaTitle": "Gmail bulk sender spam rate 0.3 percent: fixes for Mac marketers",
+  "description": "Google's ceiling for user-reported spam is 0.3 percent. Here is what counts, why bulk senders slip past it, and the free fixes that help.",
+  "targetKeyword": "gmail bulk sender spam rate 0.3 percent",
+  "secondaryKeywords": [
+    "gmail spam rate 0.1 percent",
+    "gmail sender authentication requirements",
+    "spf dkim dmarc gmail bulk sender",
+    "one-click unsubscribe gmail bulk mail",
+    "google postmaster tools spam rate",
+    "outlook high-volume sender requirements",
+    "gmail 5.7 rejection error"
+  ],
+  "intro": "Google says to keep user-reported spam below 0.1 percent and never let it reach 0.3 percent. Above 0.3 percent, you lose mitigation eligibility until you stay under 0.3 percent for seven consecutive days. This page explains how that number is counted, what breaks it, and the fixes to try first, most of which need only access you already have.",
+  "tldr": [
+    "Google wants user-reported spam below 0.1 percent. It treats 0.3 percent as the line you must not reach.",
+    "Bulk rules start at close to 5,000 messages in 24 hours to personal Gmail accounts, and the status is permanent.",
+    "SPF and DKIM must pass, the From domain must align, and DMARC needs at least p=none.",
+    "Marketing mail needs one-click unsubscribe under RFC 8058. A mailto link does not count.",
+    "The free fixes are DNS records, a clean list, a working unsubscribe, and a weekly look at Postmaster Tools."
+  ],
+  "stats": [
+    {
+      "value": "0.3%",
+      "label": "Google's hard line for user-reported spam rate. Its target is below 0.1%.",
+      "sourceUrl": "https://support.google.com/mail/answer/14229414?hl=en",
+      "sourceTitle": "Email sender guidelines FAQ (Gmail Help)"
+    },
+    {
+      "value": "About 5,000",
+      "label": "Messages in 24 hours to personal Gmail accounts that makes you a bulk sender, per Google",
+      "sourceUrl": "https://support.google.com/mail/answer/14229414?hl=en",
+      "sourceTitle": "Email sender guidelines FAQ (Gmail Help)"
+    },
+    {
+      "value": "75%",
+      "label": "Drop in unauthenticated mail to Gmail users after its 2023 authentication push, Google's own figure",
+      "sourceUrl": "https://blog.google/products/gmail/gmail-security-authentication-spam-protection/",
+      "sourceTitle": "New Gmail protections for a safer, less spammy inbox"
+    },
+    {
+      "value": "30.4%",
+      "label": "Of 5.5 million scanned domains publish a DMARC record, per a vendor study from February 2026",
+      "sourceUrl": "https://dmarcguard.io/research/email-authentication/",
+      "sourceTitle": "DMARCguard: DMARC adoption research (Feb 2026)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Google counts the 0.3 percent spam rate"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your spam rate is the share of messages that Gmail users report as spam. Google calculates it daily. Its sender guidelines say to keep the rate below 0.1 percent and never let it reach 0.3 percent or higher. Plan around those two numbers. They come straight from Google's own guidelines."
+    },
+    {
+      "type": "paragraph",
+      "text": "The number has blind spots. The Postmaster Tools Spam Rate dashboard covers only DKIM-authenticated messages. If your DKIM breaks, the dashboard goes quiet on the mail you most need to see. Google also warns that when Gmail sends many messages to spam, the reported rate can look low. Recipients see fewer messages in their Inbox, so a low number is not always a healthy one."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Volume decides whether the bulk rules apply to you at all. Google defines a bulk sender as one that sends close to 5,000 messages or more to personal Gmail accounts within 24 hours. Once you reach that status, it is permanent. One busy launch day can change the rules for every send after it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gmail and Outlook.com bulk sender rules side by side"
+    },
+    {
+      "type": "paragraph",
+      "text": "Gmail and Outlook.com use similar building blocks, but the details differ. Both ask for SPF, DKIM and DMARC. Read the table before you assume one checklist covers both inboxes. Where a source is silent, the cell says so."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Requirement",
+        "Gmail",
+        "Outlook.com, Hotmail.com, Live.com"
+      ],
+      "rows": [
+        [
+          "Volume trigger",
+          "Close to 5,000 messages in 24 hours to personal accounts",
+          "More than 5,000 emails per day"
+        ],
+        [
+          "SPF and DKIM",
+          "Both required",
+          "Both must pass"
+        ],
+        [
+          "DMARC minimum",
+          "p=none, with the From domain aligned to SPF or DKIM",
+          "p=none, aligned with SPF or DKIM, both preferred"
+        ],
+        [
+          "Non-compliant mail",
+          "4.7.x temporary failure, 5.7.x permanent rejection, or spam folder",
+          "Routed to Junk since May 5, 2025, and Safe Sender lists are not honored"
+        ],
+        [
+          "Rejection text",
+          "5.7.x permanent rejection codes",
+          "550 5.7.515 Access denied, planned, with no date announced"
+        ],
+        [
+          "Spam rate limit",
+          "Below 0.1 percent, never 0.3 percent or higher",
+          "Not stated on the Microsoft page used here"
+        ]
+      ],
+      "caption": "Requirements from Google's and Microsoft's own sender pages. Verify before a large send."
+    },
+    {
+      "type": "paragraph",
+      "text": "Notice the rejection row. Microsoft's post says rejection is planned for a later date. That post was last updated in April 2025, and it gave no date. Routing to Junk is the risk you can plan for today. Check Microsoft's current sender page before you assume the rejection has started or stopped."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a slipping spam rate or failed authentication costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "No public source in this research puts a dollar or hour figure on this. This page does not invent one. What you can count is the type of loss, and each type moves on a different timeline."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Lower placement. Mail that lands in spam is never seen, so opens and clicks fall before anyone files a ticket.",
+        "Delayed delivery. A 4.7.x temporary failure means the sending server retries later, so your send lands late.",
+        "Outright refusal. A 5.7.x permanent rejection means the message never arrives, and that recipient never hears from you.",
+        "Long recovery. Above 0.3 percent, you lose mitigation eligibility until you stay below it for seven consecutive days.",
+        "Blind data. Postmaster Tools can take up to 7 days to show a fix, so you work from older numbers for a week."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The worst loss is the quiet one. Validity reports that Gmail inbox placement fell through 2026. It attributes the drop to rule enforcement and to changes in Gmail itself. Those are vendor explanations, not controlled studies. Treat the trend as a warning, not as a measurement you can rely on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why your spam rate climbs in the first place"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most spam reports come from people, not systems. A recipient may not remember signing up. They may not recognize your sender name. They may not see an unsubscribe link at all. Each of those moments can end with one click on Report spam. The ZeroBounce survey of 1,091 people found 55 percent would report a message as spam if the sender did not ask permission. Fieldwork ran from January to May 2023, and the survey measures what people say they would do."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How authentication fails even when you set it up"
+    },
+    {
+      "type": "paragraph",
+      "text": "DMARC checks alignment. The From domain must match a domain that SPF or DKIM authenticated. Many sending tools sign with their own domain by default. Your From address then fails alignment, even though the tool passed its own checks. SPF can pass for the tool's domain and still fail DMARC for yours."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the rate high"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Setting DMARC to reject on day one. Start at p=none, read the reports, and tighten the policy only after your real senders pass.",
+        "Trusting a mailto unsubscribe. Google says mailto links and body links do not meet the marketing requirement.",
+        "Checking the spam rate once a month. Rates are calculated daily, so a bad send can sit in your data for a week.",
+        "Assuming Postmaster Tools shows everything. It covers only DKIM-authenticated messages, so unsigned mail stays invisible.",
+        "Ignoring the Outlook.com row. If you send to Hotmail.com or Live.com, Junk routing already applies to non-compliant mail."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can make without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the records, because they are the fastest to confirm. Then fix the unsubscribe path, clean the list, and set a weekly look at the dashboard. Everything here runs on access you probably already have: a DNS panel, your sending tool, and a Google account."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open your DNS host's panel and confirm an SPF TXT record exists for the sending domain.",
+        "Turn on DKIM in your sending tool and publish the key it gives you.",
+        "Publish a DMARC record at _dmarc with p=none to start.",
+        "Add the one-click unsubscribe headers to every marketing send.",
+        "Verify the domain in Postmaster Tools and check the spam rate on the same weekday each week."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: 1,000 messages to Gmail addresses"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take one send of 1,000 messages to Gmail addresses. At the 0.1 percent target, a single spam report already sits on the line. At the 0.3 percent ceiling, three reports put you there. Gmail calculates the rate daily, so one small segment can swing the whole day. That is why list hygiene matters more than the size of any one campaign."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now add authentication. If the same 1,000 messages fail alignment, Gmail may route them to spam or refuse them, whatever the complaint count. Fix the records first, since they affect every send. Complaints depend on who opens the mail, and that changes from one campaign to the next."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac tools that help, and where Lazur fits"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need new software for this work. Postmaster Tools is a web dashboard, and so is most DNS hosting. Press ⌘ T to open a new tab for each panel. Keep a sheet with one row per send. Track the date, the volume, the Postmaster spam rate, and what you changed. The [Google Sheets for marketers](/for/marketers/google-sheets) guide covers the basics."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and it answers out loud. It can point at things and walk you through steps one click at a time. It does not click buttons for you, edit DNS records, or send mail. It is not a plugin for any app, and it does not run inside Gmail or Outlook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly check that keeps you under the line"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Check",
+        "Where to look",
+        "Target"
+      ],
+      "rows": [
+        [
+          "Spam rate",
+          "Postmaster Tools, Spam Rate dashboard",
+          "Below 0.1 percent, never 0.3 percent or higher"
+        ],
+        [
+          "Authentication",
+          "DNS panel and DMARC reports",
+          "SPF and DKIM pass, DMARC at p=none or stricter"
+        ],
+        [
+          "Unsubscribe requests",
+          "Your sending tool",
+          "Processed within two days, with no confirmation page"
+        ],
+        [
+          "Invalid addresses",
+          "Your sending tool's bounce log",
+          "Removed on a regular schedule"
+        ],
+        [
+          "Campaign complaints",
+          "Postmaster Tools, Feedback Loop dashboard",
+          "Find the send that caused any spike"
+        ]
+      ],
+      "caption": "A one-page weekly check. Targets come from Google's and Microsoft's sender guidance."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the evidence does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most rules on this page come from Google and Microsoft. Those sources say what they require. They do not prove that meeting the rules lifts your inbox rate. Evidence for that is mostly platform or vendor claims, not controlled research. Validity reports Gmail inbox placement of 89.8 percent for 2025 and 81.57 percent for Q3 2026. Another analysis, which this page could not confirm, reports a much lower figure. Treat the trend as unsettled."
+    },
+    {
+      "type": "paragraph",
+      "text": "The authentication adoption figures also come from one vendor. Its scan of 5,499,028 domains on February 27, 2026 found 30.4 percent publish DMARC. Only 12.8 percent enforce it overall. Those figures show direction. They do not give you a benchmark for your own domain."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Questions to answer before your next send"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Does my From domain match the domain my DKIM signs with?",
+        "Does my SPF record list every tool that sends for this domain?",
+        "Does my marketing mail carry List-Unsubscribe and List-Unsubscribe-Post headers?",
+        "Can a recipient leave in one click, without logging in?",
+        "Do I have a set line where I pause sends if the spam rate spikes?"
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the records, not the report. Once SPF, DKIM and DMARC pass, add one-click unsubscribe and watch the rate each week. The next send will show you whether the fix held."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is 0.3 percent a rule Gmail enforces automatically?",
+      "answer": "Google's guidelines say to keep user-reported spam below 0.1 percent and prevent it from reaching 0.3 percent or higher. Google calculates the rate daily. It describes enforcement as gradual and progressive, so you may not see one moment when the line is crossed. Treat 0.3 percent as the point you must not reach."
+    },
+    {
+      "question": "Do the bulk sender rules apply to a small list?",
+      "answer": "Google's bulk status starts at close to 5,000 messages in 24 hours to personal Gmail accounts. Below that volume, these bulk-specific requirements do not apply to you. SPF, DKIM and DMARC still help delivery, so set them up now, before your volume grows."
+    },
+    {
+      "question": "Why does Postmaster Tools show no spam rate for my domain?",
+      "answer": "The Spam Rate dashboard covers only DKIM-authenticated messages. If your mail is not DKIM-signed with your domain, the dashboard may show nothing for that stream. Low-volume days may also lack data. Fix DKIM first, then give the data time to build."
+    },
+    {
+      "question": "How long until a fix shows up in my data?",
+      "answer": "Google says it can take up to 7 days for a fix to show in the Postmaster Tools spam rate. Do not change the policy again during that window. Let the new setup run, and log the daily values so you can see the effect."
+    },
+    {
+      "question": "Does a mailto unsubscribe link count as one-click unsubscribe?",
+      "answer": "No. Google says marketing and promotional bulk mail must offer one-click unsubscribe through List-Unsubscribe headers under RFC 8058. A mailto link does not meet that requirement, and neither does a link in the body. Add the headers, and keep a visible body link as well."
+    },
+    {
+      "question": "What error will I see if Outlook.com rejects my mail?",
+      "answer": "Microsoft's planned rejection text reads 550 5.7.515 Access denied, sending domain does not meet the required authentication level. The Microsoft post this page relies on gives no date for that rejection. Check Microsoft's current sender page before you plan around it."
+    },
+    {
+      "question": "Can I paste my subscriber list into a sheet or an AI tool?",
+      "answer": "Not until you know your rules. If the list holds patient or client data, follow your employer's rules on that data before you copy it anywhere. Email addresses paired with send history can count as client data in some jobs. Ask your compliance or IT contact first."
+    },
+    {
+      "question": "Is one-click unsubscribe the same as a list cleanup?",
+      "answer": "No. One-click unsubscribe gives people a way to leave. List cleanup removes invalid addresses and stops sending to addresses that bounce. Microsoft recommends removing invalid addresses regularly. You need both, because they solve different problems."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Email sender guidelines FAQ (Gmail Help)",
+      "url": "https://support.google.com/mail/answer/14229414?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sender requirements and Postmaster Tools FAQ (Gmail Help)",
+      "url": "https://support.google.com/a/answer/14289100?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Postmaster Tools dashboards (Gmail Help)",
+      "url": "https://support.google.com/mail/answer/14668346?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "New Gmail protections for a safer, less spammy inbox",
+      "url": "https://blog.google/products/gmail/gmail-security-authentication-spam-protection/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Strengthening Email Ecosystem: Outlook's New Requirements for High-Volume Senders",
+      "url": "https://techcommunity.microsoft.com/blog/microsoftdefenderforoffice365blog/strengthening-email-ecosystem-outlook%E2%80%99s-new-requirements-for-high%E2%80%90volume-senders/4399730",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "RFC 7489: Domain-based Message Authentication, Reporting, and Conformance (DMARC)",
+      "url": "https://www.rfc-editor.org/rfc/rfc7489",
+      "publisher": "IETF",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "RFC 8058: Signaling One-Click Functionality for List Email Headers",
+      "url": "https://www.rfc-editor.org/rfc/rfc8058",
+      "publisher": "IETF",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Validity Email Radar: The Great Gmail Inbox Placement Crash",
+      "url": "https://www.validity.com/blog/email-radar-the-great-gmail-inbox-placement-crash/",
+      "publisher": "Validity",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "DMARC adoption research (Feb 2026)",
+      "url": "https://dmarcguard.io/research/email-authentication/",
+      "publisher": "DMARCguard",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Into the Inbox: Email Marketing Statistics for 2026",
+      "url": "https://www.zerobounce.net/email-statistics-report",
+      "publisher": "ZeroBounce",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "gmail spam rate and sender authentication failures",
+  "costs": [
+    {
+      "title": "Mail lands in spam",
+      "text": "When Gmail routes your mail to spam, the campaign still goes out, but fewer people see it. You get no bounce and no alert. Opens and clicks slip, and the drop can look like a weak offer. That misreading is the expensive part, because teams rewrite copy when the fix lives in DNS."
+    },
+    {
+      "title": "Sends get delayed or refused",
+      "text": "Google says non-compliant mail may get 4.7.x temporary failures, 5.7.x permanent rejections, or spam routing. A temporary failure delays delivery while the sending server retries. A permanent rejection means the message never arrives. Microsoft's planned rejection text reads 550 5.7.515 Access denied."
+    },
+    {
+      "title": "Recovery takes a week or more",
+      "text": "Above 0.3 percent, you lose mitigation eligibility until you stay below 0.3 percent for seven consecutive days. Postmaster Tools can take up to 7 days to reflect a fix. One bad day can keep you restricted for at least a week, and the data may lag behind the fix."
+    },
+    {
+      "title": "Time spent guessing",
+      "text": "No public source in this research gives an hour or dollar figure for this work, so this page gives none. Any number you hear is a guess until you count your own team's hours. What you can count is the gap between a problem and its confirmation, and that gap can run a week or more."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Recipients press Report spam",
+      "text": "Most spam reports come from people, not robots. A recipient may not remember signing up, may not know the sender name, or may not see an unsubscribe link. The ZeroBounce survey found 55 percent would report a message as spam if the sender did not ask permission. That measured stated intent in 2023, not actual behavior."
+    },
+    {
+      "title": "Authentication does not align with the From domain",
+      "text": "DMARC asks whether the From domain matches a domain that SPF or DKIM authenticated. Many marketing tools sign mail with their own domain. If your From address is on your domain but DKIM signs with the tool's domain, alignment can fail. Google requires alignment, though not for forwarded or list mail."
+    },
+    {
+      "title": "DMARC is missing or partial",
+      "text": "Google requires a DMARC record with a minimum policy of p=none. A vendor scan of 5.5 million domains found 30.4 percent publish DMARC and 12.8 percent enforce it overall. Most domains in that scan have no DMARC record at all. Missing records are the easiest failure to fix and the easiest to miss."
+    },
+    {
+      "title": "The rules got stricter",
+      "text": "A check that once gave a warning now gives a real outcome. Google says it started ramping up enforcement on non-compliant traffic in November 2025, and that the approach is gradual and progressive. Microsoft says non-compliant mail from high-volume senders goes to Junk after May 5, 2025, and Safe Sender lists no longer rescue it."
+    },
+    {
+      "title": "Unsubscribe is hard to use",
+      "text": "Google says marketing mail must offer one-click unsubscribe through List-Unsubscribe headers under RFC 8058. A mailto link does not meet the requirement, and neither does a body link. When people cannot leave easily, they report instead. Google also says bulk senders must process unsubscribe requests within two days."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Publish SPF and DKIM for your sending domain",
+      "text": "Add an SPF TXT record that lists every service allowed to send for the domain. Turn on DKIM in your sending tool, then publish the DKIM key it gives you at your DNS host. Google requires both. Check each record in your DNS panel after you save, because a typo can break a record without any warning in your inbox."
+    },
+    {
+      "title": "Add a DMARC record at p=none first",
+      "text": "Publish a TXT record at _dmarc with p=none to start. Google's own FAQ describes a minimal setting of p=none with pct=0. Read the aggregate reports that receivers send back for a few weeks. Tighten the policy only after your legitimate senders pass. Moving to reject too early can block your own mail."
+    },
+    {
+      "title": "Make your From domain align",
+      "text": "Alignment means the From domain matches the domain that SPF or DKIM passed. If your tool signs with its own domain, set up a custom sending domain inside that tool, then sign with yours. Google says one aligned check is enough, and aligning both is recommended."
+    },
+    {
+      "title": "Add one-click unsubscribe to marketing mail",
+      "text": "Add a List-Unsubscribe header with exactly one HTTPS URI, plus List-Unsubscribe-Post with the value List-Unsubscribe=One-Click. The DKIM signature must cover both headers. Process each request without a confirmation page, within two days. Keep a visible body link as well, so people can find it."
+    },
+    {
+      "title": "Remove invalid addresses on a schedule",
+      "text": "Microsoft recommends removing invalid addresses regularly. Bounces also signal poor list quality. Clean the list after each batch of hard bounces, and stop sending to addresses that bounce. Write down the date of each cleanup, so you can compare the spam rate before and after."
+    },
+    {
+      "title": "Watch Postmaster Tools each week",
+      "text": "Add your domain to Google Postmaster Tools and verify it through DNS. The Spam Rate dashboard reads only DKIM-authenticated messages, so confirm DKIM passes first. Rates are calculated daily, but a fix can take up to seven days to show. Log the daily value on the same weekday each week."
+    },
+    {
+      "title": "Act on complaints the same day",
+      "text": "When someone complains, remove them from the list at once. Do not wait for the next send. A fast opt-out keeps a person from pressing Report spam. Per-campaign spam rates sit on the Feedback Loop dashboard, so you can find the send that caused a spike and fix that segment first."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does p=none mean in this DMARC record?",
+      "result": "Lazur explains the record out loud, using the text on your screen, in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the spam rate on this page?",
+      "result": "Lazur draws a circle and a label around the spam rate panel, so you find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Ask Lazur to walk you through adding a TXT record.",
+      "result": "Lazur guides you one click at a time and waits for each click. You still make every click yourself.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a short unsubscribe confirmation for my list.",
+      "result": "Lazur types a draft you can edit. It does not send anything for you.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research whether Microsoft has announced a rejection date.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary. Check the source before you act on it.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me every Monday to check Postmaster Tools.",
+      "result": "Lazur adds the reminder to Apple Reminders, set by voice.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the spam rate on this screen?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the spam rate panel, then answers out loud.",
+    "shell": "generic",
+    "pointsAt": "Spam rate",
+    "output": "A circle and label on the spam rate panel, plus a spoken summary of the latest reading if it is visible."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pull your numbers",
+      "text": "Export the send volume for the last 30 days from your sending tool. Sign in to Google Postmaster Tools and note the current spam rate. Write both in one row of a sheet, so you have a baseline before any change."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the DNS records",
+      "text": "Open your DNS panel and confirm an SPF record exists for the sending domain. Check that DKIM is on in your sending tool and that the key is published. Add a DMARC record at p=none if none exists, and note the time you changed it."
+    },
+    {
+      "label": "Day 3",
+      "title": "Fix the From alignment",
+      "text": "Compare your From domain with the domain DKIM signs with. If they differ, set up a custom sending domain in your tool. Send a small test to yourself and confirm the message shows the aligned domain."
+    },
+    {
+      "label": "Day 4",
+      "title": "Add one-click unsubscribe",
+      "text": "Add the List-Unsubscribe and List-Unsubscribe-Post headers to marketing mail. Test that one click removes an address with no confirmation page. Remove invalid addresses, as Microsoft recommends, and log how many you removed."
+    },
+    {
+      "label": "Day 5",
+      "title": "Set the weekly routine",
+      "text": "Set a recurring Monday reminder to check Postmaster Tools. Add a row to your sheet for each send. Write a stop rule: pause sends if the spam rate goes above 0.1 percent. Keep the rule where your team can see it."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "chrome",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "gmail-bulk-sender-spam-rate-rules",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/gmail-bulk-sender-spam-rate-rules/gmail-bulk-sender-spam-rate-0-3-1-9fee4b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a Mac on a desk reviewing a Gmail bulk sender spam rate report before a send",
+      "caption": "Reviewing campaign results before a large send.",
+      "keywords": [
+        "gmail bulk sender spam rate 0.3 percent",
+        "Marketers",
+        "Gmail spam rate and sender authentication failures",
+        "Mac",
+        "marketer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheInvestorPost",
+        "url": "https://pixabay.com/users/TheInvestorPost-19152356/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/finance-stock-trading-day-trading-5771541/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/gmail-bulk-sender-spam-rate-rules/gmail-bulk-sender-spam-rate-0-3-2-dfe09f.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Marketing team reviewing sender authentication results together in an office meeting",
+      "caption": "A weekly review keeps the numbers in front of the team.",
+      "keywords": [
+        "gmail bulk sender spam rate 0.3 percent",
+        "Marketers",
+        "Gmail spam rate and sender authentication failures",
+        "Mac",
+        "office team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/gmail-bulk-sender-spam-rate-rules/gmail-bulk-sender-spam-rate-0-3-3-5fc794.jpg",
+      "width": 1280,
+      "height": 880,
+      "alt": "Hands typing an email on a laptop keyboard beside a notebook of mailing list notes",
+      "caption": "Unsubscribe links and clean lists start with the sender.",
+      "keywords": [
+        "gmail bulk sender spam rate 0.3 percent",
+        "Marketers",
+        "Gmail spam rate and sender authentication failures",
+        "Mac",
+        "email on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/e-mail-mail-contact-letter-write-4487083/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "gmail bulk sender spam rate 0.3 percent",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "gmail spam rate 0.1 percent": 1,
+      "gmail sender authentication requirements": 1,
+      "spf dkim dmarc gmail bulk sender": 1,
+      "one-click unsubscribe gmail bulk mail": 1,
+      "google postmaster tools spam rate": 1,
+      "outlook high-volume sender requirements": 1,
+      "gmail 5.7 rejection error": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

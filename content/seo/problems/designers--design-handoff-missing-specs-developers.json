@@ -1,0 +1,638 @@
+{
+  "title": "Design handoff missing specs developers: states, measurements and motion on Mac, 2026",
+  "metaTitle": "Design handoff missing specs developers: a Mac fix guide",
+  "description": "Developers guess when handoff skips states, measurements and motion. Write each spec once, measure in Figma Dev Mode and time motion in plain numbers.",
+  "targetKeyword": "design handoff missing specs developers",
+  "secondaryKeywords": [
+    "developer handoff states measurements",
+    "Figma Dev Mode measure Mac",
+    "design handoff checklist for developers",
+    "motion specs for developers",
+    "Figma variants for component states",
+    "design spec template for developers"
+  ],
+  "intro": "Design handoff misses specs when developers get finished screens but no written states, measurements, or motion. Developers then guess at hover colors, error text, and how fast a panel slides. Fix it by writing every state, measuring every gap, and describing motion in plain numbers before you hand off. Lazur can point at the layer you forgot, but the spec is still yours to write.",
+  "tldr": [
+    "Developers guess when a handoff shows only the resting state of a screen.",
+    "Write a state table for every interactive part, including disabled and error.",
+    "In Figma, press Shift+D for Dev Mode. Select one object, hold Option, and hover the other to measure.",
+    "Describe motion as a trigger, a duration in milliseconds, and an easing curve.",
+    "Check seats first. View seats cannot open Dev Mode."
+  ],
+  "stats": [
+    {
+      "value": "90%",
+      "label": "of Zeplin survey respondents say the design does not match the final product. The page gives no sample size or date.",
+      "sourceUrl": "https://zeplin.io/principles-of-design-delivery/report-ux-tools-survey/",
+      "sourceTitle": "Report: UX Tools Design Delivery Survey (Zeplin)"
+    },
+    {
+      "value": "80%",
+      "label": "say developers miss changes to designs. Same Zeplin page, same caveat on sample size and date.",
+      "sourceUrl": "https://zeplin.io/principles-of-design-delivery/report-ux-tools-survey/",
+      "sourceTitle": "Report: UX Tools Design Delivery Survey (Zeplin)"
+    },
+    {
+      "value": "50%",
+      "label": "of developers in Atlassian's 2025 survey lose more than 10 hours a week to organizational inefficiencies, not handoff alone.",
+      "sourceUrl": "https://www.atlassian.com/blog/developer/developer-experience-report-2025",
+      "sourceTitle": "Atlassian research: AI adoption is rising, but friction persists"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What missing specs cost your team"
+    },
+    {
+      "type": "paragraph",
+      "text": "A missing spec does not look like a missing spec. It looks like a Slack thread, a rebuilt component, or a QA ticket that reads like a design bug. Each one pulls time from someone who was already busy."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the numbers that have sources. Zeplin's UX tools design delivery survey reports that 90% of respondents say the design does not match the final product. It also reports that 80% say developers miss changes to designs. The page gives no sample size and no survey date. Read these as a warning sign, not a measurement."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Atlassian's State of Developer Experience 2025 is broader. It surveyed 3,500 developers and managers in six countries. Half of the developers say they lose more than 10 hours a week to organizational inefficiencies. That covers everything from finding docs to switching tools. It is not a handoff statistic, so do not quote it as one."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the lost time costs in dollars"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use your own rates first. The U.S. Bureau of Labor Statistics reports a median pay of $64.44 an hour for software developers, quality assurance analysts, and testers combined. Take the hours your team lost on one feature, multiply by the rate, and you have a number a manager will read. Keep in mind that the BLS figure covers a group, not one company."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Read the numbers with care",
+      "text": "Zeplin's figures come from a survey with no published sample size or date. Atlassian's figures measure all developer time lost, not design handoff. The BLS rate is a group median. None of them proves your team's cost. They show the scale of the problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why developers end up guessing"
+    },
+    {
+      "type": "paragraph",
+      "text": "A static frame shows one moment. Usually that moment is the resting state of a button, with clean text and perfect data. It does not show hover, focus, loading, the empty list, or the error after a failed save. The developer sees the frame and fills in the rest. Their guess may be fine. It may also be wrong in a way that shows up in review."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's variants help page uses four states as its standard example: default, hover, pressed, and disabled. If those four are not written down, they live in your head. A 2017 CSCW paper by Maudet, Leiva, Beaudouin-Lafon, and Mackay studies designer-developer gaps in how each side represents and reads interactive systems. Its findings are not summarized here."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can use today without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "None of these fixes need a new tool. They need a habit and a short checklist. Start with states, since they touch every interactive part. Measurements and motion come next. Keep the checklist in the same file as the design, so nobody has to hunt for it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Name every interactive part in the frame, including buttons, fields, toggles, and menus.",
+        "List each state that applies to each part, including disabled, error, loading, and empty.",
+        "Measure any gap that matters with Dev Mode or the Measure tool, then write the value down.",
+        "Write each motion as a trigger, a duration, and an easing name.",
+        "Record any motion you cannot describe in words, and attach the clip to the frame."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write a state table for each component"
+    },
+    {
+      "type": "paragraph",
+      "text": "A state table is a grid. Each row is one state. Each column is a fact a developer needs to build it. Keep the table in the Figma file next to the component, or in a shared doc. Here is a short example for two common parts."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Component",
+        "State",
+        "What to write",
+        "Developer check"
+      ],
+      "rows": [
+        [
+          "Primary button",
+          "Default",
+          "Fill token, label text, corner radius, padding",
+          "Values match tokens in code"
+        ],
+        [
+          "Primary button",
+          "Hover",
+          "Fill change, cursor, timing of the change",
+          "Pointer hover shows the same change"
+        ],
+        [
+          "Primary button",
+          "Pressed",
+          "Fill or scale change, what happens on release",
+          "Release triggers the action once"
+        ],
+        [
+          "Primary button",
+          "Disabled",
+          "Opacity, label color, no hover response",
+          "Keyboard focus is skipped on purpose, or kept"
+        ],
+        [
+          "Text field",
+          "Error",
+          "Message wording, border color, icon, where it appears",
+          "Message copy is final, not placeholder"
+        ],
+        [
+          "Sheet",
+          "Loading",
+          "Spinner position, copy, timeout behavior",
+          "Empty and loading copy both written"
+        ]
+      ],
+      "caption": "Example state table for a primary button and a text field. Adapt the rows to your components."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the table as a checklist. Every interactive part needs a row for each state that applies. If a state does not apply, write that too. A row that says not applicable saves a question later. Match the names to your code component names, so the developer does not translate them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Measurements developers need in Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dev Mode is the fastest way to hand over measurements. Press Shift+D, or use the Dev Mode toggle at the top of the file. Open the Inspect tab in the right sidebar. It lists layout, color, typography, text, component properties, styles, and variables. Developers copy values from there instead of guessing from pixels."
+    },
+    {
+      "type": "paragraph",
+      "text": "To measure the gap between two objects, select the first, hold Option, and hover over the second. For a measurement that stays on screen, use the Measure tool or press Shift+M. Press Shift+T to add an annotation for a rule you cannot show in a number, such as when a list scrolls."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check seats before you promise access",
+      "text": "Figma says Full and Dev seats can access Dev Mode. Collab and View seats cannot. View seats still get basic inspection, including measurements, and can copy code and export assets. Confirm which seat each developer holds before the handoff meeting."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Figma pricing page, checked on 2026-11-08, lists a Full seat at $16 a month on the Professional plan. A Dev seat lists at $12 a month. That page showed monthly prices only, so check annual rates yourself. Dev Mode is not available on the Starter plan."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Motion specs: write the timing, not just the arrow"
+    },
+    {
+      "type": "paragraph",
+      "text": "A frame cannot show how a panel slides in or how long a toast stays on screen. Motion needs three things written down: the trigger, the duration in milliseconds, and the easing curve. Add what happens when someone turns on Reduce Motion. To test that case, open Apple menu > System Settings > Accessibility > Display and turn on Reduce motion."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trigger: tap on Add, or the sheet opens after the save succeeds",
+        "Duration: write milliseconds, never 'quick' or 'slow'",
+        "Easing: name the curve your team uses and link to it",
+        "Reduced motion: what replaces the movement, such as a fade or no change",
+        "Clip: a short screen recording saved next to the frame"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "To record motion on a Mac, press ⇧⌘5 and choose a recording option from the Screenshot toolbar. Name the file after the screen and the trigger. Attach it to the Figma frame or the ticket. If you prototype with Smart Animate, test the prototype before you hand off. The [Smart Animate fix page](/for/designers/problems/figma-smart-animate-not-working-fix) covers the common failures."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ and ask about anything on screen. Lazur answers out loud. Ask where a layer is, and it draws a circle and a label around it on your screen. That helps when a state hides in a component set you forgot to open."
+    },
+    {
+      "type": "paragraph",
+      "text": "It helps most with the work around the spec. Ask it to guide you through combining layers into variants, one click at a time. Hold fn to dictate a handoff note into Slack or Linear. Ask it to draft a checklist, then rewrite the draft in your own words."
+    },
+    {
+      "type": "paragraph",
+      "text": "It can draft a checklist, but it does not know your product decisions. It does not click through Figma or change your file. Check every state, value, and timing against the design yourself. Lazur sees your screen only while you hold the shortcut."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Client and patient data",
+      "text": "If your screens hold client, patient, or other private data, follow your employer's rules before you share screenshots. That includes sharing with an AI tool. Lazur sends audio and the screenshot to AI providers to answer. They are not stored, and content is not used to train AI models."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A one-week handoff routine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the routine on one screen first. A button, a form, and a modal make a good test. Once the routine works, use it on each new feature. Treat the days as a rhythm, not a deadline."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with handoff specs"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Documenting only the happy path, with real text and perfect data.",
+        "Writing 'looks good' where a developer needs a value to match.",
+        "Adding specs after the developer has already built the screen.",
+        "Leaving motion for a later pass that never happens.",
+        "Keeping specs in Slack threads that nobody can find next month."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Put every spec in one place, next to the frame. Link to that location from the ticket. When the design changes, update the spec and say so in the thread. A spec that is one click away gets read. A spec buried in a thread gets guessed around."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one screen this week. Write its state table, measure its gaps in Dev Mode, and add motion lines for anything that moves. Then walk through it with the developer who will build it. Ask which line they had to guess, and fix that line first. Lazur is on the [download page](/download). Lazur Pro is $18 a month, or $15 a month billed annually, after a 3-day trial with no credit card. See [pricing](/pricing) for the details."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does a design handoff need Dev Mode to include specs?",
+      "answer": "No. Dev Mode helps developers read values from the file. Without a Full or Dev seat, write the states, values, and motion as text beside the frame. Developers can still build from it. Check your team's seats before you plan the handoff around Dev Mode."
+    },
+    {
+      "question": "How many states should a button have in the spec?",
+      "answer": "Figma's variants help page uses default, hover, pressed, and disabled as its standard example. Add focus, loading, or error if the button can show them. Write not applicable for any state that does not exist, so nobody asks later."
+    },
+    {
+      "question": "How do I describe motion without a video?",
+      "answer": "Write the trigger, the duration in milliseconds, and the easing curve name. Add the reduced-motion behavior. Text covers the rules. A short clip shows the feel, and you can record one with ⇧⌘5 in the Screenshot app."
+    },
+    {
+      "question": "What if the developer already built the screen?",
+      "answer": "Do not wait for the next sprint. Walk through the built screen with the developer. List the states that were guessed, write them into the table, then fix the differences in the component first."
+    },
+    {
+      "question": "Can Lazur write the spec for me?",
+      "answer": "Lazur can draft text and answer questions about what is on screen while you hold ⌥⌘. It does not know your product decisions, and it does not change your Figma file. You still check every value, state, and timing."
+    },
+    {
+      "question": "What if my developers only have View seats?",
+      "answer": "View seats can inspect properties and measurements, and they can copy code. They cannot open Dev Mode. Put the values in text next to the frame, and confirm the seat setup with your Figma admin before the handoff."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available."
+    },
+    {
+      "question": "Is it safe to show screenshots to Lazur?",
+      "answer": "Lazur sees the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. If the screen holds client or patient data, follow your employer's rules first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Atlassian research: AI adoption is rising, but friction persists",
+      "url": "https://www.atlassian.com/blog/developer/developer-experience-report-2025",
+      "publisher": "Atlassian",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Report: UX Tools Design Delivery Survey",
+      "url": "https://zeplin.io/principles-of-design-delivery/report-ux-tools-survey/",
+      "publisher": "Zeplin",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Software Developers, Quality Assurance Analysts, and Testers",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Figma Pricing",
+      "url": "https://www.figma.com/pricing/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Dev Mode for admins",
+      "url": "https://help.figma.com/hc/en-us/articles/19813618057623-Dev-Mode-for-admins",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Guide to inspecting",
+      "url": "https://help.figma.com/hc/en-us/articles/22012921621015-Guide-to-inspecting",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Create and use variants",
+      "url": "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Design Breakdowns: Designer-Developer Gaps in Representing and Interpreting Interactive Systems",
+      "url": "https://pure.au.dk/portal/en/publications/design-breakdowns-designer-developer-gaps-in-representing-and-int/",
+      "publisher": "Aarhus University Research Portal",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "developers lack states, measurements, and motion specs",
+  "costs": [
+    {
+      "title": "Rework after the build",
+      "text": "A developer builds the default state, then rebuilds it when the disabled state arrives. Rework costs build time, review time, and QA time. The same component can be rebuilt across several screens before anyone notices."
+    },
+    {
+      "title": "Questions that never end",
+      "text": "Every missing value starts a thread. The developer asks, you answer, and they wait. Each question costs two people's attention. The answer often lives in your head, so the next question also lands on you."
+    },
+    {
+      "title": "QA tickets that were design decisions",
+      "text": "When a state is missing, QA tests what the developer guessed. Bugs logged this way are design decisions, not defects. They take triage time, and the fix still needs your call."
+    },
+    {
+      "title": "Motion cut at the last minute",
+      "text": "A transition nobody specified tends to get dropped in review, because nobody can say what it should do. You lose the detail that made the screen feel right, and the build time already spent is gone."
+    },
+    {
+      "title": "Late changes to shared components",
+      "text": "A guessed hover state on a shared button can spread to every screen that uses it. Fixing it later means touching several screens, and each one needs review again."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Frames show one moment",
+      "text": "A static frame shows the resting state. It hides hover, focus, loading, empty, and error states. The developer sees one picture and fills in the rest. That is where most guesses start."
+    },
+    {
+      "title": "The spec lives in your head",
+      "text": "Decisions made in a meeting or a direct message rarely reach the file. The developer never sees the reason behind a radius or a timing value. They build what they can see, not what you decided."
+    },
+    {
+      "title": "Motion does not fit in a frame",
+      "text": "A still frame has no time in it. Without a trigger, duration, and easing, motion becomes a guess. Teams often assume the prototype explains it, but the developer may never open the prototype."
+    },
+    {
+      "title": "Developers join after the design",
+      "text": "If a developer sees the design late, they build from the frame. Questions get answered after the code exists. Late review is where missing states turn into rework."
+    },
+    {
+      "title": "Seats and access hide the details",
+      "text": "Dev Mode needs a Full or Dev seat. View seats get basic inspection and cannot open Dev Mode. A developer who cannot see the inspect panel will ask for values in chat instead."
+    },
+    {
+      "title": "No shared definition of done",
+      "text": "If nobody defines a finished handoff, the designer hands over a frame and calls it done. The developer thinks done means every state is specified. Both are right by their own rules, so the gap stays hidden."
+    },
+    {
+      "title": "Components without variants",
+      "text": "When each state is a separate frame, nothing links them. A developer sees four loose screens and cannot tell which one is the component. Variants tie the states to one component."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write a state table for every interactive part",
+      "text": "Make a table with one row per state and one column per fact. Cover default, hover, pressed, and disabled at least. Add error, loading, and empty wherever they can appear. Write not applicable for any state that does not exist."
+    },
+    {
+      "title": "Build states as variants in one component set",
+      "text": "Figma's variants help page says all variants in a set must share the same properties and values. Each variant must be a unique combination. Select the layers, then choose Combine as variants in the right sidebar. If your plan lacks variants, check the pricing page, then use one labeled frame per state."
+    },
+    {
+      "title": "Use Dev Mode for values, not screenshots",
+      "text": "Press Shift+D to enter Dev Mode, then read values from the Inspect tab. Dev Mode needs a Full or Dev seat. Without one, copy each value into a text layer beside the frame, such as spacing, radius, color token, and type size."
+    },
+    {
+      "title": "Measure only the gaps developers ask about",
+      "text": "Select the first object, hold Option, and hover over the second to read the gap. Use Shift+M for a measurement that stays on screen. Measure the gaps a developer must match. Too many lines hide the one that matters."
+    },
+    {
+      "title": "Write motion as three lines",
+      "text": "Write the trigger, the duration in milliseconds, and the easing name. Add the reduced-motion behavior, then test it under Apple menu > System Settings > Accessibility > Display. A line that says smooth gives the developer nothing to match."
+    },
+    {
+      "title": "Record motion with the Screenshot app",
+      "text": "Press ⇧⌘5 to open the Screenshot toolbar. Record the trigger and the result, then stop. Name the file after the screen and the trigger. Attach the clip next to the frame or in the ticket, so the timing is never a guess."
+    },
+    {
+      "title": "Agree on the definition of done with the developer",
+      "text": "Ask the developer what they need before the handoff. Agree on a short list: states, values, motion, and empty or error copy. A handoff is done when that list is complete. Both of you can check the list without another meeting."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the disabled state for this button?",
+      "result": "If the disabled variant is on screen, Lazur draws a circle and a label around it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through combining these layers into variants.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a handoff note into Linear.",
+      "result": "Clean, formatted text lands at the cursor in any app. You still read it before you send it.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a checklist for a modal with error and loading states.",
+      "result": "Lazur drafts text you can edit. It does not know your product rules unless you tell it.",
+      "capability": "draft"
+    },
+    {
+      "say": "What does Smart Animate do between these two frames?",
+      "result": "Lazur answers out loud, using what it sees on screen while you hold ⌥⌘.",
+      "capability": "explain"
+    },
+    {
+      "say": "Remind me Thursday to check the motion specs.",
+      "result": "Lazur adds the reminder to Apple Reminders at the time you give.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the hover state for this button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the hover variant, if it is on screen.",
+    "shell": "design",
+    "context": "Figma file open in Dev Mode, one button selected",
+    "output": "Circle and label on the hover variant",
+    "pointsAt": "hover variant"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "List parts and states",
+      "text": "Name every interactive part on one screen. Write each state that applies, including disabled, error, loading, and empty. Mark the states you are not sure about so you can ask."
+    },
+    {
+      "label": "Day 2",
+      "title": "Build variants",
+      "text": "Combine the states of each interactive part into a component set. Use a State property with default, hover, pressed, and disabled. Add error or loading where they apply."
+    },
+    {
+      "label": "Day 3",
+      "title": "Measure the gaps",
+      "text": "Open Dev Mode with Shift+D. Hold Option and hover to measure gaps that matter for layout. Add persistent measurements with Shift+M for the values a developer will ask about."
+    },
+    {
+      "label": "Day 4",
+      "title": "Write motion lines",
+      "text": "For each moving element, write the trigger, the duration in milliseconds, the easing name, and the reduced-motion behavior. Record a clip with ⇧⌘5 and attach it to the frame."
+    },
+    {
+      "label": "Day 5",
+      "title": "Run the handoff check",
+      "text": "Walk through the spec with one developer. Ask which line they had to guess. Fix that line in the spec itself, not in a chat thread."
+    },
+    {
+      "label": "Ongoing",
+      "title": "Keep the spec current",
+      "text": "When the design changes, update the table and the variants together. Say what changed in the ticket, so the developer knows what to rebuild."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "design-handoff-missing-specs-developers",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/design-handoff-missing-specs-developers/design-handoff-missing-specs-developers-1-7372c1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a Mac reviewing screen layouts before a design handoff so developers do not guess.",
+      "caption": "Reviewing screens before the handoff.",
+      "keywords": [
+        "design handoff missing specs developers",
+        "Designers",
+        "Developers lack states, measurements, and motion specs",
+        "Mac",
+        "designer working on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-home-office-creative-apple-581131/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/design-handoff-missing-specs-developers/design-handoff-missing-specs-developers-2-9ddb5f.jpg",
+      "width": 1280,
+      "height": 640,
+      "alt": "Developer reviewing a design on a monitor during a handoff meeting with the designer.",
+      "caption": "A developer and designer checking the spec.",
+      "keywords": [
+        "design handoff missing specs developers",
+        "Designers",
+        "Developers lack states, measurements, and motion specs",
+        "Mac",
+        "developer reviewing design",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Boskampi",
+        "url": "https://pixabay.com/users/Boskampi-3788146/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/html-css-responsive-site-design-1832991/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/design-handoff-missing-specs-developers/design-handoff-missing-specs-developers-3-46d65a.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Person at a desk writing a design handoff spec with states and measurements in a document.",
+      "caption": "Writing the spec next to the design file.",
+      "keywords": [
+        "design handoff missing specs developers",
+        "Designers",
+        "Developers lack states, measurements, and motion specs",
+        "Mac",
+        "person writing at desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stempow",
+        "url": "https://pixabay.com/users/stempow-4705662/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/invitation-typography-calligraphy-2110452/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "design handoff missing specs developers",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "developer handoff states measurements": 1,
+      "Figma Dev Mode measure Mac": 1,
+      "design handoff checklist for developers": 1,
+      "motion specs for developers": 1,
+      "Figma variants for component states": 1,
+      "design spec template for developers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

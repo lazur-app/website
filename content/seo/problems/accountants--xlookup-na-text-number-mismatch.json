@@ -1,0 +1,634 @@
+{
+  "title": "XLOOKUP returns #N/A for values that exist: fixes for accountants in Excel on Mac",
+  "metaTitle": "XLOOKUP returns #N/A? Causes and fixes for Excel on Mac",
+  "description": "XLOOKUP returns #N/A when no exact match exists. Usually the cause is stray spaces, text stored as numbers, or a range that stops too early. Check each one.",
+  "targetKeyword": "xlookup returns #n/a",
+  "secondaryKeywords": [
+    "xlookup #n/a error",
+    "xlookup value exists but #n/a",
+    "excel xlookup not found",
+    "xlookup text vs number",
+    "xlookup trim spaces",
+    "xlookup if_not_found",
+    "excel #n/a mac"
+  ],
+  "intro": "XLOOKUP returns #N/A when it finds no exact match for your lookup value. When the value is clearly in the sheet, the cause is usually a hidden difference. Extra spaces, numbers stored as text, and ranges that stop too early are the usual suspects. This page shows how to find the mismatch, fix it, and check the result.",
+  "tldr": [
+    "XLOOKUP uses an exact match by default. If nothing matches exactly, you get #N/A.",
+    "The usual culprits are stray spaces, text vs number mismatches, and a lookup range that stops too early.",
+    "Find one row that should match, then compare its cells with LEN, ISTEXT, and ISNUMBER.",
+    "Use if_not_found only after you find the real cause, or it hides the problem.",
+    "If a colleague sees #NAME? instead, their version of Excel may be too old for XLOOKUP."
+  ],
+  "stats": [
+    {
+      "value": "83%",
+      "label": "of 163 operational spreadsheets had errors across nine field audits",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Spreadsheet Audits, Ray Panko"
+    },
+    {
+      "value": "60%",
+      "label": "of seeded errors found on average by 1,025 inspection participants",
+      "sourceUrl": "https://panko.com/ssr/InspectionExperiments.html",
+      "sourceTitle": "Spreadsheet Inspection Experiments, Ray Panko"
+    },
+    {
+      "value": "$40.23",
+      "label": "median accountant pay per hour, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors, BLS"
+    },
+    {
+      "value": "99%",
+      "label": "of 204 accounting and finance staff reported some burnout, 2022 study",
+      "sourceUrl": "https://www.cfodive.com/news/most-accountants-suffer-burnout-study/627850/",
+      "sourceTitle": "Most accountants suffer burnout, CFO Dive"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What XLOOKUP #N/A means"
+    },
+    {
+      "type": "paragraph",
+      "text": "XLOOKUP looks for your lookup value in one list, then returns the matching item from another list. By default it wants an exact match. If it finds none and you left out if_not_found, it returns #N/A. The error is a message about the search. It is not proof that your data is bad."
+    },
+    {
+      "type": "paragraph",
+      "text": "The syntax is =XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode]). Only the first three arguments are required. The square brackets mark the optional ones."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "match_mode 0 is exact match, and it is the default.",
+        "match_mode -1 finds an exact match or the next smaller item.",
+        "match_mode 1 finds an exact match or the next larger item.",
+        "match_mode 2 allows wildcard matching."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the error costs an accountant"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most people treat #N/A as an annoyance. The bigger cost is the error you do not see. In Panko's compilation of nine field audits, 83% of 163 operational spreadsheets had errors. Individual studies ranged from 44% to 100%. Where studies reported a cell error rate, it ran from 0.2% to 2.5%."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Checking by eye is also unreliable. In Panko's inspection experiments, 1,025 participants found an average of 60% of seeded errors. Individual studies ranged from 37% to 67%. A formula that looks right on screen can still hide a bad row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time adds up. The BLS puts median accountant pay at $83,680 a year, or $40.23 an hour, for May 2025. Every hour spent chasing a phantom #N/A is an hour at about that rate. The cost also falls on people. A 2022 study of 204 accounting and finance staff, co-conducted by the University of Georgia and FloQast, found 99% reported some burnout. That study counted any level of burnout, and FloQast makes accounting software, so read that figure with care."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why XLOOKUP returns #N/A for values that exist"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the most common cause. Microsoft says a lookup value missing from the source data is the usual reason for #N/A. When the value looks present, the difference is usually hidden in the data, the range, or the settings. The table below maps each symptom to its likely cause and a quick check."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "Likely cause",
+        "Quick check"
+      ],
+      "rows": [
+        [
+          "Only the newest rows fail",
+          "Lookup range ends before the data does",
+          "Read the last row in the range reference"
+        ],
+        [
+          "One row fails, others work",
+          "Stray space or hidden character",
+          "Use LEN on the lookup cell and the source cell"
+        ],
+        [
+          "Every row fails, values look the same",
+          "Text vs number mismatch",
+          "Use ISTEXT and ISNUMBER on both sides"
+        ],
+        [
+          "Results land on the wrong row",
+          "match_mode set to a non-zero value",
+          "Check the fifth argument is 0 or left out"
+        ],
+        [
+          "#NAME? instead of #N/A",
+          "Excel version too old for XLOOKUP",
+          "Help > Check for Updates, or ask the colleague"
+        ]
+      ],
+      "caption": "Quick diagnosis for XLOOKUP #N/A and the errors that look like it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: finding the hidden space"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say column D on your Summary sheet holds client codes from a bank export. Column A on the Clients sheet holds the master list. Your formula in E2 is =XLOOKUP(D2, Clients!A2:A200, Clients!B2:B200). It returns #N/A for the code KTL, which you can see on the Clients sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Type =LEN(D2) in a blank cell. Then type the same formula against the matching cell on the Clients sheet. If the two counts differ, a hidden character sits in one of the cells. Compare the count with what you can see on screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the column with a helper column. In column F, type =TRIM(D2) and copy it down. Change the lookup in E2 to use F2. If the master list has the same spaces, trim its range the same way. Keep column D untouched, so you can compare the before and after results."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixing the formula without hiding the error"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work through the fixes in order. Confirm the range first, then clean the data, then decide what a real miss should show. This order keeps you from hiding a problem you have not found yet."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Read lookup_array and confirm its last row matches the source data.",
+        "Wrap the lookup value and the range in TRIM when text may carry spaces.",
+        "Convert types with TEXT or VALUE so both sides match.",
+        "Count the remaining misses with =SUMPRODUCT(ISNA(E2:E200)*1).",
+        "Only then add if_not_found, using a visible label such as Check code."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not hide the error",
+      "text": "if_not_found and IFERROR both replace #N/A with something else. A blank or zero can flow into totals with no warning. Add a visible label, then filter for it at every month-end."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checking your Excel version on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's XLOOKUP page lists Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac. The same page says XLOOKUP is not available in Excel 2016 and Excel 2019. It does not explain the conflict. Treat that note as the safe warning for any file you share."
+    },
+    {
+      "type": "paragraph",
+      "text": "To check your version, open any Office app and choose Help > Check for Updates. If Microsoft AutoUpdate opens, click Update or Update All. Restart the app when it finishes. If your firm manages updates on company Macs, ask IT before you change anything."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Numbers and Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Numbers compatibility page lists XLOOKUP as supported. Google's Sheets function list also includes XLOOKUP. Support does not guarantee identical results. Test a few known rows and the totals after you move a file between apps."
+    },
+    {
+      "type": "paragraph",
+      "text": "For import steps, read [how to open an Excel file in Numbers on Mac](/how-to/open-an-excel-file-in-numbers). To send work back to Excel, see [how to export a spreadsheet to Excel in Numbers](/how-to/export-a-spreadsheet-to-excel-in-numbers)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the error alive"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Fixing the range but not the data type, then assuming the formula works.",
+        "Wrapping the formula in IFERROR before finding the cause.",
+        "Copying the formula down without locking the range with $ signs, so the range shifts.",
+        "Testing one row, then trusting every row below it.",
+        "Assuming #NAME? is the same problem as #N/A."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that look like this error"
+    },
+    {
+      "type": "paragraph",
+      "text": "A #VALUE error is a different problem. It can appear when the lookup and return ranges differ in size. Read the error code before you start. #N/A means no match was found. #NAME? means Excel does not recognize the function in your version."
+    },
+    {
+      "type": "paragraph",
+      "text": "Duplicates are a separate trap. XLOOKUP returns one result, so a code that appears twice can send you to the wrong row. Type =COUNTIF(Clients!A2:A200, Clients!A2) on a helper column. Any result above 1 means a duplicate exists."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blank lookup values need a rule too. A blank can match nothing and return #N/A, or it can match a blank in the source. Decide what a blank should do before you write the formula. Then test it with a blank row."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keeping client data safe while you debug"
+    },
+    {
+      "type": "paragraph",
+      "text": "Client files are sensitive. Follow your employer's rules on client data before you paste names, account numbers, or tax IDs into any tool. Many firms limit where that data can go. When in doubt, swap real names for codes, or use a sample file with the same layout."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Lazur, know what it does with screen content. It looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer. Lazur's privacy notes say they are not stored, and content is not used to train AI models."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one failing row. Use LEN and ISTEXT on it, then fix the single cause you find. Count the misses again after each change. When the count matches what you expect, check the totals against the source file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a short note of each change for your reviewer. A line such as Trimmed column D and extended the range to the last client row is enough. If the error keeps returning, read [Excel for accountants on Mac, fixing errors and closing the month](/for/accountants/excel) for more patterns."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does XLOOKUP return #N/A when the value is in my sheet?",
+      "answer": "The value may be there, but outside the range XLOOKUP searches. Or the cell may hold a space, a number stored as text, or a hidden character. Use LEN and ISTEXT on one row to find out which."
+    },
+    {
+      "question": "What is the difference between #N/A and #NAME?",
+      "answer": "#N/A means XLOOKUP ran but found no match. #NAME? usually means Excel does not recognize the function, often because the version is too old for XLOOKUP."
+    },
+    {
+      "question": "Should I wrap XLOOKUP in IFERROR?",
+      "answer": "Only after you find the cause. IFERROR and if_not_found both hide problems. Microsoft says the usual fix is to confirm the value exists or wrap the formula in IFERROR. Treat the wrap as a last step, with a visible label."
+    },
+    {
+      "question": "Does XLOOKUP work in Excel on Mac?",
+      "answer": "Yes, in current versions. Microsoft lists XLOOKUP for Microsoft 365 for Mac and Excel 2021 for Mac. Apple lists XLOOKUP as supported in Numbers. Check your version with Help > Check for Updates."
+    },
+    {
+      "question": "Does TRIM fix every hidden space?",
+      "answer": "Not always. TRIM removes ordinary spaces, but some hidden characters from web pages or PDFs can survive it. Compare LEN on a sample cell with what you see. Then clean the source data where you can."
+    },
+    {
+      "question": "Can I share my file with a colleague on an older Excel?",
+      "answer": "They can open it, but XLOOKUP may not work there. Microsoft says a workbook from newer Excel may open in Excel 2016 or 2019, but the function will not work. Ask which error they see and which version they run."
+    },
+    {
+      "question": "Can I send client data to an AI tool to debug this?",
+      "answer": "Follow your employer's rules first. Many firms restrict client data in outside tools. Lazur sends audio and the screenshot to AI providers to answer. If your rules require it, remove client names and numbers before you ask for help."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How to correct a #N/A error",
+      "url": "https://support.microsoft.com/en-us/office/how-to-correct-a-n-a-error-a9708411-f82e-4e1b-8a7e-28c28311b993",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "XLOOKUP function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/xlookup-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "XLOOKUP function (b7fd680e)",
+      "url": "https://support.microsoft.com/en-us/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Update Microsoft 365 on your work or school macOS or iOS device",
+      "url": "https://support.microsoft.com/en-us/office/lifecycle/update-microsoft-365-on-your-work-or-school-macos-or-ios-device",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Numbers Compatibility",
+      "url": "https://www.apple.com/numbers/compatibility/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Sheets function list",
+      "url": "https://support.google.com/docs/answer/3093375",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Audits - Ray Panko's Spreadsheet Research",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Ray Panko (University of Hawaii)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Inspection Experiments",
+      "url": "https://panko.com/ssr/InspectionExperiments.html",
+      "publisher": "Ray Panko (University of Hawaii)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Errors: What We Know; What We Think We Can Do",
+      "url": "https://arxiv.org/abs/0802.3457",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What We Don't Know About Spreadsheet Errors Today",
+      "url": "https://arxiv.org/abs/1602.02601",
+      "publisher": "arXiv / EuSpRIG 2015",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Accountants and Auditors - Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Most accountants suffer burnout: study",
+      "url": "https://www.cfodive.com/news/most-accountants-suffer-burnout-study/627850/",
+      "publisher": "CFO Dive",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Reinhart-Rogoff error",
+      "url": "https://theconversation.com/the-reinhart-rogoff-error-or-how-not-to-excel-at-economics-13646",
+      "publisher": "The Conversation",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "xlookup #n/a errors on values that exist",
+  "costs": [
+    {
+      "title": "Wrong totals that look right",
+      "text": "A #N/A is at least visible. The bigger risk is a lookup that returns the wrong row, or a fallback value that hides the failure. A missing rate or account code can flow into totals with no error on screen. In Panko's compilation of nine field audits, 83% of 163 operational spreadsheets had errors. Where studies reported a cell error rate, it ran from 0.2% to 2.5%."
+    },
+    {
+      "title": "Your own checking is less reliable than it feels",
+      "text": "In Panko's inspection experiments, 1,025 participants found an average of 60% of seeded errors. Individual studies ranged from 37% to 67%. A clean-looking check can still miss a broken lookup. Re-reading the formula is not enough. Test with a value you know, and compare row counts against the source list."
+    },
+    {
+      "title": "Hours at your own rate",
+      "text": "The BLS puts median accountant pay at $83,680 a year, or $40.23 an hour, for May 2025. An afternoon spent chasing a phantom #N/A is time you cannot bill or use for review. Repeated error hunts also add to the pressure many accountants already feel. A 2022 study of 204 staff found 99% reported some burnout."
+    },
+    {
+      "title": "The silent version: a range that stops early",
+      "text": "Spreadsheet mistakes can change conclusions. In the Reinhart-Rogoff case, the authors averaged 15 of 20 countries because they did not select the full row. Once corrected, a reported 0.1% decline became a 2.2% average increase. That was a range error, not a lookup error. It shows how a short range can quietly change a result."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The value is not in the range",
+      "text": "Microsoft says the most common cause of #N/A in lookup functions is a lookup value missing from the source data. Sometimes the value exists in the workbook, but on another sheet or outside the range XLOOKUP searches. Find the exact value in the source sheet with ⌘F. If it appears somewhere else, the range is the problem, not the data."
+    },
+    {
+      "title": "Text and numbers can look identical",
+      "text": "A code such as 00412 can be a number in one sheet and text in another. Both look the same on screen. Text usually sits on the left of a cell and numbers on the right, so alignment is a quick hint. Microsoft lists type mismatches, such as text on one side and numbers on the other, as a cause of #N/A."
+    },
+    {
+      "title": "Spaces and hidden characters",
+      "text": "Microsoft says extra leading or trailing spaces can cause lookup failures. A trailing space after a name is invisible, but it breaks an exact match. Data pasted from email, a bank export, or a PDF often carries spaces like this. TRIM removes ordinary spaces. It may not remove every hidden character, such as a non-breaking space from a web page."
+    },
+    {
+      "title": "The range stops before the data",
+      "text": "A fixed range is a common trap. Your lookup_array might end at row 200, while new clients now run past it. The formula cannot see the rows below the range. Nothing looks broken, which makes this cause hard to spot. Compare the end of your range with the last row of the source list."
+    },
+    {
+      "title": "A non-exact match setting",
+      "text": "Microsoft's approximate match note covers VLOOKUP, HLOOKUP, and MATCH. For XLOOKUP, the matching setting is the fifth argument, match_mode. Its default of 0 means exact match. Values 1 and -1 find the next larger or smaller item, and 2 allows wildcards. If one of those was typed by mistake, results can change in ways that are hard to see."
+    },
+    {
+      "title": "An older Excel or a shared file",
+      "text": "XLOOKUP is not in every version of Excel. Microsoft lists Excel 2021 for Mac and Microsoft 365 for Mac, and says Excel 2016 and Excel 2019 do not have it. A file built in newer Excel can open in an older version, but the function will not work there. In that case you usually see #NAME? rather than #N/A, so ask which error your colleague sees."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm the range covers every row",
+      "text": "Click the formula and read the lookup_array part. Note its last row, then scroll the source sheet to the real last row. If the range stops short, extend it or switch to a table reference. Table references grow when you add rows, so new clients are included."
+    },
+    {
+      "title": "Trim spaces on both sides",
+      "text": "Wrap both sides in TRIM, for example =XLOOKUP(TRIM(D2), TRIM(Clients!A2:A200), Clients!B2:B200). Microsoft suggests nesting TRIM inside the lookup for this reason. Keep the lookup range and the return range the same height, or the formula will fail with a different error."
+    },
+    {
+      "title": "Match the data types",
+      "text": "Check both columns with ISTEXT and ISNUMBER on one row. If the source holds text codes with leading zeros, convert the lookup value with =TEXT(D2, \"00000\"). If the source holds numbers, convert the lookup value with VALUE. Microsoft advises converting both sides to the same type."
+    },
+    {
+      "title": "Test one row you know is right",
+      "text": "Pick a value you can see in the source, such as a client code from an email. Type it into a blank cell and run the lookup against it. If that works, the formula is fine and the failing rows have a data problem. If it fails, the formula or the range is wrong."
+    },
+    {
+      "title": "Count the misses before you hide them",
+      "text": "Count the #N/A results with =SUMPRODUCT(ISNA(E2:E200)*1). The count tells you how many rows still fail. Compare it with the number of clients you expected to match. A count that does not drop after a fix means the cause is somewhere else."
+    },
+    {
+      "title": "Use if_not_found only after the fix",
+      "text": "The fourth argument returns text or a value when nothing matches. Use it after you fix the data, not before. Label it clearly, such as Check code, so a miss stays visible in totals and filters. A blank or zero passes quietly into totals."
+    },
+    {
+      "title": "Update Excel on your Mac",
+      "text": "In any Office app, choose Help > Check for Updates. If Microsoft AutoUpdate opens, click Update or Update All. Restart the app when the update finishes. Ask IT first if your firm manages updates on company Macs."
+    },
+    {
+      "title": "Check the same file in Numbers",
+      "text": "Apple lists XLOOKUP as supported in Numbers. If you open the workbook there, compare a few known rows and the totals with the Excel file. Each app can treat blanks and text in its own way, so do not assume the results match. For import steps, see how to open an Excel file in Numbers on Mac."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why is this XLOOKUP showing #N/A?",
+      "result": "Lazur looks at the formula and the cells on screen, then explains the likely cause out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the lookup range in this formula?",
+      "result": "Lazur draws a circle and a label around the range, so you can check where it ends.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through checking the data type of this cell.",
+      "result": "Lazur guides you one click at a time and waits for each click. You still make the clicks.",
+      "capability": "guide"
+    },
+    {
+      "say": "Tell me how to update Excel on my Mac.",
+      "result": "Lazur reads the Help menu steps out loud and waits for you to finish each one.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a short note asking the client for the missing codes.",
+      "result": "Lazur drafts the message text. Keep client names out of drafts unless your firm allows it. You review and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate a cell comment for the reviewer.",
+      "result": "Hold fn to dictate clean text at the cursor in any app, including Excel and Numbers.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this XLOOKUP returning #N/A?",
+    "capability": "explain",
+    "result": "Lazur names the likely cause from what is on screen. It only sees your screen while you hold the shortcut, so confirm with a test row.",
+    "shell": "sheet",
+    "context": "Excel for Mac, client code lookup, Microsoft 365",
+    "output": "Lazur explains the likely cause out loud, based on the formula and the cells on screen.",
+    "pointsAt": "Lookup value cell"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find one failing row",
+      "text": "Pick one row that returns #N/A. Type =LEN on the lookup cell and on the matching source cell. Different counts point to hidden spaces or characters."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the range",
+      "text": "Read the lookup_array in the formula. Scroll to the last row of the source list. Extend the range, or move the list into an Excel table so it grows."
+    },
+    {
+      "label": "Day 3",
+      "title": "Match the data types",
+      "text": "Run ISTEXT and ISNUMBER on both sides. Trim the lookup value or convert its type where the check shows a mismatch. Retest the known row."
+    },
+    {
+      "label": "Day 4",
+      "title": "Count the misses",
+      "text": "Use =SUMPRODUCT(ISNA(E2:E200)*1) to count the failures. Each fix should lower the count. Investigate any miss that does not move."
+    },
+    {
+      "label": "Day 5",
+      "title": "Confirm versions and close",
+      "text": "Check Excel on your Mac through Help > Check for Updates. Ask colleagues which version they use. Add a note to the file about what changed."
+    }
+  ],
+  "apps": [
+    "excel",
+    "numbers"
+  ],
+  "type": "problem",
+  "slug": "xlookup-na-text-number-mismatch",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-na-text-number-mismatch/xlookup-returns-n-a-1-c42996.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Accountant working at a laptop on a desk, checking an Excel spreadsheet for lookup errors",
+      "caption": "Checking a lookup on a laptop before month-end.",
+      "keywords": [
+        "xlookup returns #n/a",
+        "Accountants",
+        "XLOOKUP returns #N/A for values that exist",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheAngryTeddy",
+        "url": "https://pixabay.com/users/TheAngryTeddy-123386/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-apple-input-keys-hardware-338513/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-na-text-number-mismatch/xlookup-returns-n-a-2-d3049e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop in an office reviewing financial data for a client file in Excel",
+      "caption": "Reviewing client data before you share a file.",
+      "keywords": [
+        "xlookup returns #n/a",
+        "Accountants",
+        "XLOOKUP returns #N/A for values that exist",
+        "Mac",
+        "person office laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "rayedigitaldesigns",
+        "url": "https://pixabay.com/users/rayedigitaldesigns-5446944/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/planner-planners-compass-protractor-2428870/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xlookup-na-text-number-mismatch/xlookup-returns-n-a-3-990e2b.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Printed financial spreadsheet with numbers on a desk beside a laptop",
+      "caption": "Numbers that must match the source list.",
+      "keywords": [
+        "xlookup returns #n/a",
+        "Accountants",
+        "XLOOKUP returns #N/A for values that exist",
+        "Mac",
+        "spreadsheet numbers desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Edar",
+        "url": "https://pixabay.com/users/Edar-609103/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-calculator-calculation-861323/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "xlookup returns #n/a",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "xlookup #n/a error": 2,
+      "xlookup value exists but #n/a": 1,
+      "excel xlookup not found": 1,
+      "xlookup text vs number": 1,
+      "xlookup trim spaces": 1,
+      "xlookup if_not_found": 1,
+      "excel #n/a mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

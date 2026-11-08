@@ -1,10 +1,10 @@
-Content 2026-11-08: 86 written, 1 refused, 0 failed
+Content 2026-11-08: 136 written, 1 refused, 0 failed
 
 - howto: 0/120
 - apps: 2/9
 - roles: 19/12
-- role-apps: 41/60
-- problems: 0/75
+- role-apps: 60/60
+- problems: 31/75
 - compare: 9/9
 - blog: 15/15
 
@@ -94,3 +94,53 @@ role-app:book-editors/google-docs /for/book-editors/google-docs
 role-app:sales-development-representatives/chrome /for/sales-development-representatives/chrome
 role-app:medical-writers/excel /for/medical-writers/excel
 role-app:economists/word /for/economists/word
+role-app:agile-coaches/slack /for/agile-coaches/slack
+role-app:policy-analysts/powerpoint /for/policy-analysts/powerpoint
+role-app:internal-auditors/word /for/internal-auditors/word
+role-app:ediscovery-specialists/outlook /for/ediscovery-specialists/outlook
+role-app:investor-relations-officers/excel /for/investor-relations-officers/excel
+role-app:compliance-officers/word /for/compliance-officers/word
+role-app:documentary-filmmakers/slack /for/documentary-filmmakers/slack
+role-app:data-analysts/chatgpt /for/data-analysts/chatgpt
+role-app:journalists/chrome /for/journalists/chrome
+role-app:translators/chrome /for/translators/chrome
+role-app:video-editors/slack /for/video-editors/slack
+role-app:procurement-specialists/chrome /for/procurement-specialists/chrome
+role-app:insurance-agents/word /for/insurance-agents/word
+role-app:it-support-technicians/finder /for/it-support-technicians/finder
+role-app:technical-writers/notion /for/technical-writers/notion
+role-app:freight-brokers/gmail /for/freight-brokers/gmail
+role-app:financial-analysts/powerpoint /for/financial-analysts/powerpoint
+role-app:computer-systems-analysts/slack /for/computer-systems-analysts/slack
+role-app:insurance-claims-adjusters/word /for/insurance-claims-adjusters/word
+problem:marketers/ga4-reports-missing-left-navigation /for/marketers/problems/ga4-reports-missing-left-navigation
+problem:designers/conflicting-design-feedback-stakeholders-final-say /for/designers/problems/conflicting-design-feedback-stakeholders-final-say
+problem:nurses/night-physician-call-sbar-script /for/nurses/problems/night-physician-call-sbar-script
+problem:writers/proofreading-own-writing-typos-missed /for/writers/problems/proofreading-own-writing-typos-missed
+problem:product-managers/prd-stuck-in-endless-revisions /for/product-managers/problems/prd-stuck-in-endless-revisions
+problem:realtors/monthly-market-report-for-clients /for/realtors/problems/monthly-market-report-for-clients
+problem:designers/specific-client-feedback-design-work /for/designers/problems/specific-client-feedback-design-work
+problem:nurses/pediatric-mg-kg-dosage-calculation-nursing /for/nurses/problems/pediatric-mg-kg-dosage-calculation-nursing
+problem:writers/google-docs-recover-lost-paragraph /for/writers/problems/google-docs-recover-lost-paragraph
+problem:product-managers/too-many-meetings-eating-product-week /for/product-managers/problems/too-many-meetings-eating-product-week
+problem:marketers/google-ads-disapproved-ad-appeal-limits /for/marketers/problems/google-ads-disapproved-ad-appeal-limits
+problem:accountants/quickbooks-online-error-324-bank-feed /for/accountants/problems/quickbooks-online-error-324-bank-feed
+problem:accountants/xero-bank-rules-wrong-category /for/accountants/problems/xero-bank-rules-wrong-category
+problem:designers/design-handoff-missing-specs-developers /for/designers/problems/design-handoff-missing-specs-developers
+problem:nurses/nurse-back-pain-patient-lifting-prevention /for/nurses/problems/nurse-back-pain-patient-lifting-prevention
+problem:writers/em-dash-type-mac-shortcut /for/writers/problems/em-dash-type-mac-shortcut
+problem:product-managers/weekly-stakeholder-status-report-takes-hours /for/product-managers/problems/weekly-stakeholder-status-report-takes-hours
+problem:marketers/meta-ad-set-learning-limited-fix /for/marketers/problems/meta-ad-set-learning-limited-fix
+problem:accountants/quickbooks-reconciliation-difference-not-zero /for/accountants/problems/quickbooks-reconciliation-difference-not-zero
+problem:nurses/nurse-inbox-messages-overload-secure-chat /for/nurses/problems/nurse-inbox-messages-overload-secure-chat
+problem:product-managers/synthesizing-customer-interview-notes-into-themes /for/product-managers/problems/synthesizing-customer-interview-notes-into-themes
+problem:writers/query-letter-literary-agent-rejections /for/writers/problems/query-letter-literary-agent-rejections
+problem:designers/photoshop-scratch-disks-full-mac-fixes /for/designers/problems/photoshop-scratch-disks-full-mac-fixes
+problem:marketers/reply-google-reviews-business-profile /for/marketers/problems/reply-google-reviews-business-profile
+problem:product-managers/competitive-analysis-takes-too-long-pm /for/product-managers/problems/competitive-analysis-takes-too-long-pm
+problem:writers/international-phd-english-academic-writing /for/writers/problems/international-phd-english-academic-writing
+problem:accountants/xlookup-na-text-number-mismatch /for/accountants/problems/xlookup-na-text-number-mismatch
+problem:marketers/gmail-bulk-sender-spam-rate-rules /for/marketers/problems/gmail-bulk-sender-spam-rate-rules
+problem:accountants/xlookup-name-error-office-update /for/accountants/problems/xlookup-name-error-office-update
+problem:writers/word-mac-smart-quotes-turn-off /for/writers/problems/word-mac-smart-quotes-turn-off
+problem:product-managers/jira-tickets-untestable-acceptance-criteria /for/product-managers/problems/jira-tickets-untestable-acceptance-criteria

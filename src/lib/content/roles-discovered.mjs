@@ -582,5 +582,437 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "255,100 logisticians in 2025, median $82,320, +18% 2025-35, the fastest growth in this list (bls.gov/ooh/business-and-financial/logisticians.htm). Planning tool picks are my judgment, not sourced.",
     "discoveredAt": "2026-11-07"
+  },
+  {
+    "slug": "project-managers",
+    "name": "Project managers",
+    "singular": "project manager",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "powerpoint"
+    ],
+    "keywords": [
+      "ai assistant for project managers",
+      "project status report template",
+      "project plan spreadsheet tool"
+    ],
+    "why": "BLS: about 1.1 million project management specialists in 2025, median pay $102,320 (https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm, opened). Tool roundups disagree on leaders; no survey of PM tool use found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "business-analysts",
+    "name": "Business analysts",
+    "singular": "business analyst",
+    "apps": [
+      "excel",
+      "word",
+      "powerpoint",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for business analysts",
+      "requirements document ai tool",
+      "business analysis tools mac"
+    ],
+    "why": "Visio is Windows-only, so Mac users lean on web tools like Lucidchart and Confluence (https://www.aitooldiscovery.com/guides/best-ai-tools-for-business-analyst-reddit, third-party summary). No usage survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "bookkeepers",
+    "name": "Bookkeepers",
+    "singular": "bookkeeper",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for bookkeepers",
+      "bookkeeping software for mac",
+      "receipt capture tool for bookkeepers"
+    ],
+    "why": "BLS: 1.5 million bookkeeping clerks (2025), median pay $50,670 (https://www.bls.gov/ooh/office-and-administrative-support/bookkeeping-accounting-and-auditing-clerks.htm). Forums favor browser tools like Xero (https://chieftalk.chiefarchitect.com/topic/16669-accountingbookkeeping-software-for-mac/).",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "urban-planners",
+    "name": "Urban planners",
+    "singular": "urban planner",
+    "apps": [
+      "powerpoint",
+      "word",
+      "excel",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for urban planners",
+      "ai planning staff report drafting",
+      "urban planning tools ai"
+    ],
+    "why": "APA survey (396 responses): 47% rated their AI experience at the lowest level, yet over 70% expect AI to affect the profession (https://www.planning.org/publications/report/9270237/, snippet). Report-drafting tools are mostly vendor claims; a Finnish Delphi of 34 planners is small.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "interior-designers",
+    "name": "Interior designers",
+    "singular": "interior designer",
+    "apps": [
+      "figma",
+      "photoshop",
+      "powerpoint",
+      "gmail"
+    ],
+    "keywords": [
+      "ai assistant for interior designers",
+      "interior design software mac",
+      "room layout ai tool"
+    ],
+    "why": "No survey found. Roundups name SketchUp, Sweet Home 3D, AutoCAD and Revit as main tools (https://www.careers360.com/question-what-are-the-best-interior-design-tools-and-software, snippet). Weakest evidence in this set; verify before use.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "illustrators",
+    "name": "Illustrators",
+    "singular": "illustrator",
+    "apps": [
+      "photoshop",
+      "figma",
+      "canva",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for illustrators",
+      "illustration software for mac",
+      "client file export tool for illustrators"
+    ],
+    "why": "Procreate is iPad-only, so Mac-based illustrators use Photoshop or Affinity; many sketch in Procreate then finish in Photoshop (https://outterapps.com/posts/is-procreate-on-ipad-actually-replacing-desktop-photoshop-for-freelanc/, snippet). No survey of illustrators found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "animators",
+    "name": "Animators",
+    "singular": "animator",
+    "apps": [
+      "photoshop",
+      "chrome",
+      "zoom",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for animators",
+      "animation software for mac",
+      "animation storyboard tool"
+    ],
+    "why": "GummySearch analysed 219 Reddit reviews across 24 subreddits and ranked Blender first at 4.7/5. This is a review count, not a poll (https://gummysearch.com/tools/best-products/animation-software/, snippet). Mac-laptop data for animators is thin.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "music-producers",
+    "name": "Music producers",
+    "singular": "music producer",
+    "apps": [
+      "chrome",
+      "slack",
+      "gmail",
+      "finder"
+    ],
+    "keywords": [
+      "ai assistant for music producers",
+      "mac music production software",
+      "mixing and mastering ai tool"
+    ],
+    "why": "Sleepfreaks 2025 survey (3,222 producers): Logic Pro, Mac-only, had 18.1%, third behind Cubase and Studio One (https://sleepfreaks-dtm.com/en/dtm-materials/daw-ranking-2025/, snippet). Shares vary between surveys.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "game-designers",
+    "name": "Game designers",
+    "singular": "game designer",
+    "apps": [
+      "figma",
+      "notion",
+      "google-sheets",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for game designers",
+      "game design documentation tool",
+      "game balance spreadsheet tool"
+    ],
+    "why": "Indie guides pair Notion, Figma and Google Sheets (https://dev.to/hiroshi_takamura_c851fe71/best-game-design-tools-for-indie-and-mobile-game-designers-4kpj, vendor-influenced). ADPList 2025: 93% use Figma (https://adplist.substack.com/p/the-state-of-design-tools-2025).",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "data-scientists",
+    "name": "Data scientists",
+    "singular": "data scientist",
+    "apps": [
+      "vs-code",
+      "cursor",
+      "chatgpt",
+      "excel"
+    ],
+    "keywords": [
+      "ai assistant for data scientists",
+      "jupyter notebook ai tool",
+      "python data analysis mac"
+    ],
+    "why": "Kaggle 2020 survey: about three-quarters used Jupyter-based IDEs; VS Code was second at about 33% (https://visualstudiomagazine.com/articles/2021/02/09/kaggle-survey.aspx, snippet). About five years old; no 2025-26 share found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "speechwriters",
+    "name": "Speechwriters",
+    "singular": "speechwriter",
+    "apps": [
+      "word",
+      "google-docs",
+      "chatgpt",
+      "apple-mail"
+    ],
+    "keywords": [
+      "ai assistant for speechwriters",
+      "speech drafting ai tool",
+      "speechwriting ai do and don't"
+    ],
+    "why": "Toastmasters (Apr 2026): ChatGPT, Claude, Copilot and Gemini are standard speech-prep aids, but can agree too readily and make things up (https://www.toastmasters.org/magazine/magazine-issues/2026/april/dos-and-donts-of-using-ai-in-speechwriting). No speechwriter survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "literary-agents",
+    "name": "Literary agents",
+    "singular": "literary agent",
+    "apps": [
+      "gmail",
+      "word",
+      "google-sheets",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for literary agents",
+      "query letter management tool",
+      "manuscript submission tracker"
+    ],
+    "why": "Weak evidence: the sources cover writers researching agents in QueryTracker, not agents' own work (https://granger.substack.com/p/querying-literary-agents-is-not-fun, snippet). No survey of agents' tool use found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "book-editors",
+    "name": "Book editors",
+    "singular": "book editor",
+    "apps": [
+      "word",
+      "google-docs",
+      "pages",
+      "apple-mail"
+    ],
+    "keywords": [
+      "ai assistant for book editors",
+      "manuscript editing software mac",
+      "track changes workflow for editors"
+    ],
+    "why": "Several author guides say editors expect Word with Track Changes, and writers often draft in Scrivener then export to Word (https://thewritepractice.com/best-book-writing-software/, snippet). Guides list Scrivener at $59.99 but one listing differs. No freelance-editor survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "operations-managers",
+    "name": "Operations managers",
+    "singular": "operations manager",
+    "apps": [
+      "excel",
+      "slack",
+      "google-sheets",
+      "powerpoint"
+    ],
+    "keywords": [
+      "ai assistant for operations managers",
+      "operations reporting tool",
+      "operations management software mac"
+    ],
+    "why": "Weak evidence: the only survey hit is a 2017 project-manager study (https://www.slideshare.net/MicheleTaverna1/best-tools-for-project-management, snippet). Excel and Slack appear in vendor lists, which are marketing-influenced.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "sales-development-representatives",
+    "name": "Sales development representatives",
+    "singular": "sales development representative",
+    "apps": [
+      "gmail",
+      "chrome",
+      "slack",
+      "google-sheets"
+    ],
+    "keywords": [
+      "ai assistant for sdrs",
+      "gmail prospecting extension",
+      "sales outreach tool for sdrs"
+    ],
+    "why": "SDR tooling is Gmail- and Chrome-first: Mixmax, Streak, YAMM, HubSpot Sales and Apollo are the most listed options (https://addtocrm.com/tools/best-gmail-extensions-for-sales, snippet). Vendor roundups; no survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "medical-writers",
+    "name": "Medical writers",
+    "singular": "medical writer",
+    "apps": [
+      "word",
+      "excel",
+      "google-docs",
+      "pages"
+    ],
+    "keywords": [
+      "ai assistant for medical writers",
+      "medical writing software mac",
+      "clinical document ai tool"
+    ],
+    "why": "AMWA blog on a 2024 survey of 291 freelance medical communicators (https://blog.amwa.org/the-home-office-toolkit-software-for-freelance-medical-communicators). A 2016 compilation names Word most common (https://6weekcourse.com/wp-content/uploads/2016/04/2016-UsefulSoftwareandEquipment.pdf). Dated.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "economists",
+    "name": "Economists",
+    "singular": "economist",
+    "apps": [
+      "excel",
+      "word",
+      "chatgpt",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for economists",
+      "economic research ai tool",
+      "econometrics ai assistant"
+    ],
+    "why": "AEA's Aug 2025 update says agentic AI is production-ready for daily economic research (https://www.aeaweb.org/content/file?id=23290, snippet). A think-aloud study finds researchers keep judgement on identification and interpretation (https://arxiv.org/pdf/2604.23136, snippet). No usage share found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "policy-analysts",
+    "name": "Policy analysts",
+    "singular": "policy analyst",
+    "apps": [
+      "word",
+      "powerpoint",
+      "chatgpt",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for policy analysts",
+      "policy memo ai tool",
+      "think tank research ai"
+    ],
+    "why": "UK study: 554 people at 94 think tanks were invited to a 2024 survey. GenAI plays a small role, mainly summarising publications (https://link.springer.com/article/10.1007/s00146-026-03084-9, snippet). Response count not confirmed; a SkillSeek 42% claim could not be verified.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "investor-relations-officers",
+    "name": "Investor relations officers",
+    "singular": "investor relations officer",
+    "apps": [
+      "powerpoint",
+      "excel",
+      "outlook",
+      "zoom"
+    ],
+    "keywords": [
+      "ai assistant for investor relations",
+      "earnings prep ai tool",
+      "investor relations software mac"
+    ],
+    "why": "NIRI/Korn Ferry 2022 survey drew 397 IR professionals; NIRI and UF also ran an AI-in-IR survey. Most reports are member-only (https://www.niri.org/publications/research/, snippet).",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "internal-auditors",
+    "name": "Internal auditors",
+    "singular": "internal auditor",
+    "apps": [
+      "excel",
+      "word",
+      "outlook",
+      "chatgpt"
+    ],
+    "keywords": [
+      "ai assistant for internal auditors",
+      "audit workpaper ai tool",
+      "internal audit software mac"
+    ],
+    "why": "Under 40% of 370+ audit leaders feel ready for AI-enabled fraud; 57% cite lack of tools (https://www.theiia.org/en/content/communications/press-releases/2026/new-survey-from-the-iia-and-auditboard-report-reveals-growing-awareness-of-ai-enabled-fraud-varying-perception-of-audit-preparedness/).",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "agile-coaches",
+    "name": "Agile coaches",
+    "singular": "agile coach",
+    "apps": [
+      "notion",
+      "slack",
+      "zoom",
+      "linear"
+    ],
+    "keywords": [
+      "ai assistant for agile coaches",
+      "retrospective facilitation tool",
+      "agile coaching tools mac"
+    ],
+    "why": "Agile coaches on AWS Marketplace say Miro runs retros and workshops; Miro's two-way tracker sync needs a paid Business plan (https://clickup.com/blog/agile-tools/, snippet). Miro is not on the app list. No survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "ediscovery-specialists",
+    "name": "eDiscovery specialists",
+    "singular": "eDiscovery specialist",
+    "apps": [
+      "excel",
+      "outlook",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "ai assistant for ediscovery specialists",
+      "ediscovery review tool",
+      "legal document review ai"
+    ],
+    "why": "G2's 2026 roundup calls Relativity the closest thing to an eDiscovery default (https://learn.g2.com/best-ediscovery-software, snippet). Relativity's guide says search results export to Excel (Relativity Searching Guide, p.31, not opened). No usage survey found.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "compliance-officers",
+    "name": "Compliance officers",
+    "singular": "compliance officer",
+    "apps": [
+      "excel",
+      "word",
+      "outlook",
+      "slack"
+    ],
+    "keywords": [
+      "ai assistant for compliance officers",
+      "regulatory compliance ai tool",
+      "compliance workload software"
+    ],
+    "why": "Regology 2025 survey: 92% say their roles got harder; 77% still run manual processes; median team size is four (https://www.regology.com/blog/state-of-regulatory-compliance-in-2025-survey-results, snippet). EY: 47% cite lack of time as the main barrier to tech adoption.",
+    "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "documentary-filmmakers",
+    "name": "Documentary filmmakers",
+    "singular": "documentary filmmaker",
+    "apps": [
+      "chrome",
+      "slack",
+      "gmail",
+      "finder"
+    ],
+    "keywords": [
+      "ai assistant for documentary filmmakers",
+      "documentary editing software mac",
+      "documentary production tools"
+    ],
+    "why": "IDA gear survey (2019, 286 Part II respondents): about 75% edited their latest film on a Mac; Premiere Pro led editing (https://www.documentary.org/feature/tools-trade-documentary-makers-talk-gear, snippet, dated; source mapping unverified).",
+    "discoveredAt": "2026-11-08"
   }
 ];

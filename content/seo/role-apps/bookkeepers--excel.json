@@ -1,0 +1,660 @@
+{
+  "title": "Excel for bookkeepers on Mac: reconciliations, month close and voice help in Microsoft 365",
+  "metaTitle": "Excel for Bookkeepers on Mac: Reconciliation and Close Help",
+  "description": "Excel for bookkeepers on Mac: bank reconciliation, month-end close, and data cleanup in Microsoft 365, plus voice help from Lazur for the cell you need.",
+  "targetKeyword": "excel for bookkeepers on mac",
+  "secondaryKeywords": [
+    "Excel for bookkeepers",
+    "bank reconciliation in Excel on Mac",
+    "month-end close in Excel for Mac",
+    "Excel shortcuts for Mac bookkeeping",
+    "Excel templates for bookkeeping on Mac",
+    "Power Query on Mac Excel",
+    "Excel help for bookkeepers"
+  ],
+  "intro": "Excel for bookkeepers on Mac is Microsoft Excel for macOS, used for the work that accounting software does not do well. That means bank reconciliation, the month-end close, invoice and bill logs, client trackers, and cleanup of exported data. This page covers those jobs on the current Mac build, the places Mac differs from Windows, and where Lazur helps while you work.",
+  "tldr": [
+    "Bookkeepers on Mac use Excel mostly for bank reconciliation, the month-end close, invoice logs, and cleaning exported data.",
+    "The latest Excel for Mac build in Microsoft's release notes is 16.114.3, dated October 27, 2026. Check yours under Excel > About Excel.",
+    "Power Query on Mac lists fewer data sources than Windows, so plan a CSV export for any source the Mac list does not include.",
+    "Lazur points at cells, explains formulas, and answers out loud in Excel. It does not click buttons or edit your file."
+  ],
+  "stats": [
+    {
+      "value": "52%",
+      "label": "of responding U.S. companies still reconcile accounts manually, per a 2016 study cited by Centage",
+      "sourceUrl": "https://www.centage.com/blog/dangers-of-manual-spreadsheet-reconciliation",
+      "sourceTitle": "The Dangers of Manual Spreadsheet Reconciliation (Centage)"
+    },
+    {
+      "value": "8 days",
+      "label": "average month-end close in the same 2016 study, as cited by Centage",
+      "sourceUrl": "https://www.centage.com/blog/dangers-of-manual-spreadsheet-reconciliation",
+      "sourceTitle": "The Dangers of Manual Spreadsheet Reconciliation (Centage)"
+    },
+    {
+      "value": "67%",
+      "label": "of 261 bookkeeping firms re-enter data between tools at least a few times a week",
+      "sourceUrl": "https://financial-cents.com/resources/guides/2026-bookkeeping-firm-tech-stack-report/",
+      "sourceTitle": "2026 Bookkeeping Firm Tech Stack Report (Financial Cents)"
+    },
+    {
+      "value": "28%",
+      "label": "of firms manage month-end close with spreadsheets they maintain by hand",
+      "sourceUrl": "https://financial-cents.com/resources/guides/2026-bookkeeping-firm-tech-stack-report/",
+      "sourceTitle": "2026 Bookkeeping Firm Tech Stack Report (Financial Cents)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What bookkeepers do in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most bookkeepers treat Excel as a workbench, not a ledger. The accounting system holds the books. Excel holds the messy work around them. In a February 2026 survey of 261 mostly small U.S. and Canadian bookkeeping and accounting firms, 71% said they use spreadsheets, Excel and Google Sheets combined, to track work, clients, or processes."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, five jobs come up again and again:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Bank reconciliation, matching each bank line to a ledger entry.",
+        "Month-end close, the checklist that must finish before the books are final.",
+        "Invoice and bill logs, tracking what is open, paid, or late.",
+        "Client trackers, one row per client with deadlines and document status.",
+        "Cleanup of exports, fixing dates, spaces, and duplicate rows before anything else works."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel build before you follow any steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Menu names and features change with each Microsoft build. The latest Excel for Mac build in Microsoft's release notes is 16.114.3, dated October 27, 2026. The entries from mid-October list quality fixes and security updates only, with no menu changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "To check yours, open Excel > About Excel. If you are behind, run Help > Check for Updates and restart Excel when it finishes."
+    },
+    {
+      "type": "paragraph",
+      "text": "The build before that, 16.113, dated September 16, 2026, added chat history to Copilot in Excel. On Mac, that history opens from the menu icon in the upper left of the Copilot pane."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Menus may look different",
+      "text": "Microsoft's release notes show no menu or ribbon moves in the October entries. If an item in this guide is missing on your screen, search the Help menu for its name."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Bank reconciliation in Excel for Mac, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reconciliation is the job bookkeepers most often do by hand. A 2016 study by Robert Half and the Financial Executives Research Foundation, as cited by Centage, found 52% of responding U.S. companies still reconcile accounts manually. The same study put the average month-end close at 8 days."
+    },
+    {
+      "type": "paragraph",
+      "text": "Centage does not link the original report or list a sample size, so treat both figures as a rough signal. They are not a benchmark for your clients. Start with one bank account and these steps."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Export the bank statement as a CSV. Export the ledger as a second CSV. Open each in its own tab.",
+        "Select the bank data and go to Insert > Table. Name it tblBank in the Table Design tab. Microsoft's October 2026 update says naming tables as you create them is generally available on Mac.",
+        "Repeat for the ledger and name it tblLedger.",
+        "In the first empty column of tblBank, add a Matched column. Enter =COUNTIFS(tblLedger[Date],[@Date],tblLedger[Amount],[@Amount]). A result of zero means no ledger row matches that date and amount.",
+        "Above the tables, add a Difference cell. Enter =ROUND(SUM(tblBank[Amount])-SUM(tblLedger[Amount]),2). Rounding stops tiny floating-point differences from showing up.",
+        "Filter Matched for zero. Those rows are your open items. Work them from the largest amount down."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Say the bank total is one cent away from the ledger. The usual cause is one row on one side only, a fee posted on one side, or a payment dated on the other side of the month end. Filter the unmatched rows and read them against the statement. The answer is usually in those rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the same table names every month. Formulas keep working when you paste next month's export into the table. Named tables also make formulas readable, such as tblLedger[Amount], and a reviewer can follow them without a guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cleaning exports before you match anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failed reconciliations start with the data, not the formula. Exports from bank portals and older accounting tools often store dates as text, leave stray spaces, and repeat rows when someone downloads the same range twice."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trim spaces with =TRIM(A2) in a helper column. Paste values back over the original column.",
+        "Turn text dates into real dates with Data > Text to Columns, or with =DATEVALUE(A2) for simple formats.",
+        "Find numbers stored as text with =ISNUMBER(B2). FALSE means the cell only looks like a number.",
+        "Remove exact duplicates with Data > Remove Duplicates. Check the columns you select before you confirm."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Duplicates need care. Two real payments of the same amount on the same day look identical in an export. Remove a row only when every column matches, and write the count in your close notes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common. A 2024 literature review in Frontiers of Computer Science reported that 94% of spreadsheets used in business decision-making contain errors, as covered by Phys.org. The review summarizes earlier studies of business spreadsheets, not bookkeeping files. Still, it is a reason to check totals twice."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac has fewer connectors than Windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query is the tool for imports you repeat every month. On Mac, open Data > Get Data. Microsoft's support table lists the Mac sources: Text & CSV, Excel workbook, XML, JSON, SharePoint List, OData feed, and a blank query."
+    },
+    {
+      "type": "paragraph",
+      "text": "Windows supports a much longer list, including Access, Oracle, IBM Db2, MySQL, PostgreSQL, SAP HANA, Salesforce, ODBC, and OLEDB. Most of those do not appear in Microsoft's Mac table. Check the table before you plan a workflow."
+    },
+    {
+      "type": "paragraph",
+      "text": "For most bookkeepers, a CSV export is the reliable path on Mac. Keep the export folder in one fixed place. A query breaks when its source file moves or gets renamed."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Month-end close with a checklist tab"
+    },
+    {
+      "type": "paragraph",
+      "text": "The close is where spreadsheets tend to fail. In the Financial Cents survey, 28% of firms managed month-end close with spreadsheets they maintained by hand. Another 20% kept a checklist in a document or notes app. Neither option gives you an owner or a date by default."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build a close tab with four columns: Task, Owner, Status, and Done on. Add one row for each task, such as bank reconciliation, accounts receivable aging, accrual review, and the payroll journal."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Owner",
+        "Status",
+        "Done on"
+      ],
+      "rows": [
+        [
+          "Bank reconciliation",
+          "Bookkeeper",
+          "Done",
+          ""
+        ],
+        [
+          "Accounts receivable aging",
+          "Bookkeeper",
+          "In progress",
+          ""
+        ],
+        [
+          "Accrual review",
+          "Senior accountant",
+          "Not started",
+          ""
+        ],
+        [
+          "Payroll journal entry",
+          "Bookkeeper",
+          "Waiting on payroll",
+          ""
+        ]
+      ],
+      "caption": "A close tab layout. Fill in the date as each task finishes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add Data > Data Validation with a list for Status, such as Not started, In progress, and Done. That keeps the words consistent, so a filter on Done returns the right rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give each review step its own row with a name and a date. Unowned tabs are easy to miss at the end of a long close."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Free accounting templates for Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft publishes free accounting templates. Its page lists 30 templates. They include Monthly bank reconciliation, Check register ledger, Check register with spending summary, Petty cash log, Balance sheet, Profit and loss statement, Statement of account, Finance charge invoice, and Fixed asset record with depreciation."
+    },
+    {
+      "type": "paragraph",
+      "text": "The list also includes non-accounting designs and several invoice layouts. Read the names before you pick one. The template links point to a web viewer, which suggests they open in Excel for the web. The page does not say that, so check the title bar after you open one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat a template as a starting layout. Your chart of accounts and bank export will not match the sample. Rename the columns to fit your ledger before you build formulas on top of them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts that save time on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘ Z undoes your last change. Press it again to go back further.",
+        "⌘ F opens Find, which helps when a client name sits on several tabs.",
+        "⌃ ⌘ V opens Paste Special, so you can paste values without formulas or formats.",
+        "⌘ ⇧ ↓ extends the selection to the last filled row, which speeds up checks on long ledgers."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can tell you a shortcut out loud. Ask what a key does while your hands stay on the keyboard."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where bookkeepers lose time, and what the numbers do not say"
+    },
+    {
+      "type": "paragraph",
+      "text": "The largest group of Financial Cents respondents, 39%, re-enter information between tools a few times a week. Another 20% do it several times a day. Add the firms that re-enter data once a day, and the total is 67%."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Financial Cents says 70% re-enter data at least a few times a week. Its own breakdown adds to 67, so this page uses 67. The sample is small and mostly U.S. and Canadian, so read the figure as a signal, not a rule."
+    },
+    {
+      "type": "paragraph",
+      "text": "Intuit's 2024 survey of U.S. small businesses with 10 to 99 employees reported 25 hours a week spent on manual data entry or reconciling data. That group is owners and executives, not bookkeepers. It shows the scale of the problem, not your own hours."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes bookkeepers make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Hardcoded totals. A typed number in a total row stops updating when rows change.",
+        "Ranges that stop short. =SUM(A2:A40) misses row 41 after the export grows.",
+        "Dates in two formats. Day and month can swap in some exports, so an item lands in the wrong month.",
+        "Pasting over formulas. Use Paste Special to paste values only when you mean it.",
+        "Matching on amount alone. Two bills with the same amount can match by mistake, so add a date or a reference."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each fix above takes little time once you know it exists. Keep this list in your close checklist and tick it off each month."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps in Excel without touching your file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘, which is Option and Command together, to ask about anything on screen. Lazur answers out loud. Ask where a cell is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click before it gives the next step. You do every click. Lazur does not click buttons, edit files, or operate other apps for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That helps when a reconciliation note needs a full sentence. Snippets, a personal dictionary, and clipboard slots are also included."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy works the same in Excel as in other apps. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Asking Lazur good questions in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Short, specific questions get faster answers. Name the tab, the column, or the cell. Compare 'where is the difference cell' with 'help me with this sheet.' The first gives Lazur a target. The second gives it nothing to point at."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does not do in Excel"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "It does not click buttons, edit cells, or change formulas for you.",
+        "It is not a plugin or add-in for Excel or any other app.",
+        "It does not watch your screen unless you hold the shortcut.",
+        "It runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available.",
+        "It does not check your numbers. You still review every total and formula before a close is posted."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If most of your work is reconciliation, start with the table setup and the Difference cell. Test the setup on last month's file, not the live close. Once it works, add the close tab and the cleanup steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "For role-specific help, read [Excel help for accountants on Mac](/for/accountants) or [Excel for accountants on Mac](/for/accountants/excel). For month-end summaries, see [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). To try the voice helper, [download Lazur](/download) and start the free trial. Pricing details are on [the pricing page](/pricing)."
+    }
+  ],
+  "chart": {
+    "title": "How often bookkeeping firms re-enter data between tools",
+    "bars": [
+      {
+        "label": "A few times a week",
+        "value": 39,
+        "highlight": true
+      },
+      {
+        "label": "Multiple times a day",
+        "value": 20
+      },
+      {
+        "label": "Once a day",
+        "value": 8
+      },
+      {
+        "label": "Once a week or less",
+        "value": 19
+      },
+      {
+        "label": "Rarely or never",
+        "value": 14
+      }
+    ],
+    "unit": "%",
+    "note": "Survey of 261 mostly small U.S. and Canadian firms, February 2026.",
+    "sourceUrl": "https://financial-cents.com/resources/guides/2026-bookkeeping-firm-tech-stack-report/",
+    "sourceTitle": "2026 Bookkeeping Firm Tech Stack Report (Financial Cents)"
+  },
+  "faq": [
+    {
+      "question": "Is Excel for bookkeepers on Mac the same as the Windows version?",
+      "answer": "The core work is the same. Tables, formulas, and pivot tables behave much the same. The main gap for bookkeepers is Power Query. Microsoft's support table lists fewer data sources for Mac than for Windows, so check it before you plan an import."
+    },
+    {
+      "question": "Which Excel for Mac version should a bookkeeper run?",
+      "answer": "The latest build in Microsoft's release notes is 16.114.3, dated October 27, 2026. Run Help > Check for Updates to get it. If your copy is older, some items in this guide may sit in different places."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at cells, explains formulas, answers out loud, and drafts text you can paste. Guides step through one click at a time, and you do each click."
+    },
+    {
+      "question": "Does Lazur see my client data?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. Check your firm's data policy before you use any AI tool on client files."
+    },
+    {
+      "question": "Can I reconcile a bank account in Excel without a template?",
+      "answer": "Yes. The table setup and the Difference cell in this guide work in a blank workbook. Microsoft's free Monthly bank reconciliation template gives you a starting layout if you prefer one."
+    },
+    {
+      "question": "Is Agent Mode available in Excel for Mac?",
+      "answer": "Microsoft said in January 2026 that Agent Mode was generally available in Excel on Windows and rolling out in Excel on Mac. It did not give a Mac date. Check whether the feature appears in your copy before you plan around it."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "Does Lazur replace accounting software?",
+      "answer": "No. Lazur helps you work in the apps you already use. It is not a plugin or add-in for any app, and it has no partnership with any app maker."
+    },
+    {
+      "question": "Why does my reconciliation difference show a tiny amount that should be zero?",
+      "answer": "Usually a number is stored as text, or the sum carries tiny rounding differences. Test the cells with ISNUMBER, and wrap the difference in ROUND as shown in the steps above."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (January 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-january-2026/4474246",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Power Query data sources in Excel versions",
+      "url": "https://support.microsoft.com/en-us/office/power-query-data-sources-in-excel-versions-e9332067-8e49-46fc-97ff-f2e1bfa0cb16",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Free accounting spreadsheet templates for Excel",
+      "url": "https://excel.cloud.microsoft/create/en/accounting-templates/",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Dangers of Manual Spreadsheet Reconciliation",
+      "url": "https://www.centage.com/blog/dangers-of-manual-spreadsheet-reconciliation",
+      "publisher": "Centage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "2026 Bookkeeping Firm Tech Stack Report",
+      "url": "https://financial-cents.com/resources/guides/2026-bookkeeping-firm-tech-stack-report/",
+      "publisher": "Financial Cents",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Study finds 94% of business spreadsheets have critical errors",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Intuit QuickBooks Business Solutions report 2024",
+      "url": "https://erp.intuit.com/blog/research/business-solutions-survey-2024/",
+      "publisher": "Intuit",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the difference cell?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the difference cell, then says what it compares.",
+    "shell": "sheet",
+    "pointsAt": "Difference cell",
+    "context": "Bank reconciliation tab, Excel for Mac",
+    "output": "A spoken answer naming the cell and the two totals it compares."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the difference cell on this sheet?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the cell, so you find it without hunting across tabs."
+    },
+    {
+      "say": "Why does my bank total differ from the ledger by a small amount?",
+      "capability": "explain",
+      "result": "Lazur explains the usual causes, such as text stored as a number, rounding, or a row missing from one side."
+    },
+    {
+      "say": "Walk me through turning this range into a table.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time through Insert > Table, and waits for each click before the next step."
+    },
+    {
+      "say": "What does this COUNTIFS formula check?",
+      "capability": "explain",
+      "result": "Lazur reads the formula you point at and explains each argument in plain words, out loud."
+    },
+    {
+      "say": "Where is Remove Duplicates on this Mac?",
+      "capability": "point",
+      "result": "Lazur circles Data > Remove Duplicates and labels it, then you choose the columns yourself."
+    },
+    {
+      "say": "Draft a note to the client asking for the missing receipts.",
+      "capability": "draft",
+      "result": "Lazur drafts the message as text. You read it, edit it, and paste it into your email."
+    },
+    {
+      "say": "Remind me to chase the open items on Friday.",
+      "capability": "everyday",
+      "result": "Lazur adds an Apple Reminders item for the day you name."
+    },
+    {
+      "say": "Dictate the reconciliation note into this cell.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Clean, formatted text lands at the cursor in any app."
+    },
+    {
+      "say": "Look up whether this vendor issues tax forms for contractors.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report."
+    }
+  ],
+  "type": "role-app",
+  "slug": "bookkeepers-excel",
+  "role": "bookkeepers",
+  "app": "excel",
+  "roleName": "Bookkeepers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-excel/excel-for-bookkeepers-on-mac-1-e8641e.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "A bookkeeper at a laptop reviewing a spreadsheet, the everyday setting for Excel for bookkeepers on Mac",
+      "caption": "A bookkeeping desk with a laptop and a spreadsheet open.",
+      "keywords": [
+        "excel for bookkeepers on mac",
+        "Excel",
+        "Bookkeepers",
+        "Mac",
+        "bookkeeper laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cloudhoreca",
+        "url": "https://pixabay.com/users/cloudhoreca-516676/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/accounting-flash-drive-keyboard-1112920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-excel/excel-for-bookkeepers-on-mac-2-d78591.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Hands on a laptop keyboard beside printed bank statements, the close work where Excel for bookkeepers on Mac matters",
+      "caption": "Printed statements next to a laptop during a month-end review.",
+      "keywords": [
+        "excel for bookkeepers on mac",
+        "Excel",
+        "Bookkeepers",
+        "Mac",
+        "accountant paperwork laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sakibmia24",
+        "url": "https://pixabay.com/users/sakibmia24-57634147/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-workplace-productivity-10503613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-excel/excel-for-bookkeepers-on-mac-3-4bb841.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "An office desk with a laptop and paperwork, the kind of setup for Excel for bookkeepers on Mac and voice help",
+      "caption": "A small office desk set up for bookkeeping work.",
+      "keywords": [
+        "excel for bookkeepers on mac",
+        "Excel",
+        "Bookkeepers",
+        "Mac",
+        "small business office laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "F1Digitals",
+        "url": "https://pixabay.com/users/F1Digitals-1568321/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-woman-freelancer-meeting-7642551/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for bookkeepers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 9,
+    "secondary": {
+      "Excel for bookkeepers": 10,
+      "bank reconciliation in Excel on Mac": 1,
+      "month-end close in Excel for Mac": 1,
+      "Excel shortcuts for Mac bookkeeping": 1,
+      "Excel templates for bookkeeping on Mac": 1,
+      "Power Query on Mac Excel": 1,
+      "Excel help for bookkeepers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

@@ -1,0 +1,581 @@
+{
+  "title": "Excel for medical writers on Mac: tracking trials, tables and drafts in Microsoft 365",
+  "metaTitle": "Excel for Medical Writers on Mac: Tracker Setup for 2026",
+  "description": "Excel for medical writers on Mac, in Microsoft 365. Track narratives, tables and drafts, and ask Lazur for help without leaving the sheet.",
+  "targetKeyword": "excel for medical writers on mac",
+  "secondaryKeywords": [
+    "excel for medical writers",
+    "medical writing tracker in Excel",
+    "Excel KeyTips on Mac",
+    "Power Query row limit Excel Mac",
+    "name a table in Excel for Mac",
+    "Microsoft 365 for medical writers"
+  ],
+  "intro": "Excel for medical writers on Mac is mostly tracking work. You keep milestone dates, subject IDs, event lists and draft status in one shared sheet. This page shows how to build that tracker in Microsoft 365 for Mac, which shortcuts help, and where Lazur fits while you work.",
+  "tldr": [
+    "Medical writers mostly use Excel to track work, not to model numbers. Milestones, subject IDs, event lists and draft status are the core columns.",
+    "Name your table when you create it. Microsoft says naming tables at creation is now available on Windows and Mac.",
+    "Power Query fills at most 1,048,576 rows to a worksheet. Keep raw listings out of the tracker.",
+    "Turn on KeyTips under Excel > Preferences > Accessibility, then press Option to show the letters on the ribbon.",
+    "Lazur can point at the Table Name box, explain a COUNTIFS formula or draft a status note. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "52.2%",
+      "label": "of 270 high-impact oncology trials included a medical writer, 141 trials in total",
+      "sourceUrl": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2800869",
+      "sourceTitle": "Frequency and Characteristics of Trials Using Medical Writer Support in High-Impact Oncology Journals"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows that Power Query can fill to one Excel worksheet",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/power-query-specifications-and-limits-in-excel-5fb2807c-1b16-4257-aa5b-6793f051a9f4",
+      "sourceTitle": "Power Query specifications and limits in Excel"
+    },
+    {
+      "value": "$99.99",
+      "label": "per year for Microsoft 365 Personal, which includes the Excel desktop app",
+      "sourceUrl": "https://www.microsoft.com/en-us/microsoft-365/buy/compare-all-microsoft-365-products",
+      "sourceTitle": "Compare Microsoft 365 Plans & Pricing"
+    },
+    {
+      "value": "18.6 vs 30.8",
+      "label": "months to publication with and without writing support, in one study within a systematic review",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6621980/",
+      "sourceTitle": "Professional medical writing support and the quality, ethics and timeliness of clinical trial reporting"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most medical writers do not use Excel to model numbers. They use it to track work. A patient safety narrative guide from Quanticate describes Excel as the tool for milestone dates, protocol and subject IDs, and events of interest. The same guide mentions a comprehensive template and a project style guide shared with every writer. That is the job this page covers, from the first row to the final review."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What medical writers track in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good tracker has one row per deliverable. Each row names the document, the study it belongs to, the subject or event IDs it covers, and its current stage. Stages usually run from outline to draft, QC, client review and final. Keep one idea per cell. Do not pack three notes into one box."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates do the most work. Enter due dates as real dates, not as text. Excel sorts real dates in order and counts them with formulas. Text like next Friday sorts to the wrong place and counts as nothing. Pick one date format for the whole column. Use the same format for database lock dates and client deadlines."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Quanticate guide also lists the hard parts of this work. Writers estimate narrative volume early. Some write before database lock and update later. Teams must keep consistency across several writers. Drafts change when client requirements change. QC timing gets decided under time pressure. A good tracker answers each of these with a column, not with memory."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Deliverable ID and title, one row each",
+        "Study or protocol name, so filters work across projects",
+        "Subject or event IDs covered by the document",
+        "Milestone dates for outline, draft, QC and final",
+        "Owner, the writer responsible for the next step",
+        "Status, picked from a fixed list you control",
+        "Open client queries and the date each one was raised",
+        "Notes for the next version, kept short"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a tracker that several writers can share"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a table, not a loose range of cells. A table keeps formulas attached to its columns. It also grows when you add a row at the bottom. Click a cell in your data and press ⌘ T. Excel asks whether the range has headers. Tick the box if it does, then click OK."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table as you create it. Microsoft's October 2026 What's New in Excel post says naming tables at creation is now available on Windows and Mac. Before that, the feature was an Insider feature. Pick a plain name such as Tracker. Skip spaces. Formulas read more clearly with a short name."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Table Name box sits on the Table Design tab. Click any cell inside the table, then open Table Design. Type the name in the Table Name box and press Return. If the Table Design tab is missing, your cursor is probably outside the table."
+    },
+    {
+      "type": "paragraph",
+      "text": "Freeze the header row so column names stay on screen. Go to View > Freeze Panes > Freeze Top Row. A long tracker scrolls past its headers, and frozen headers keep each column readable. This matters more when several writers open the same file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a drop-down list to the Status column. Select the column, then go to Data > Data Validation. Under Allow, choose List. In the Source box, type the stages separated by commas. Now nobody types a stage with a spelling mistake, and your counts stay clean."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a Notes column at the far right. Keep each note to the next action, such as waiting on a client query. Longer history belongs in the document's own version log, not in one cell of the tracker. Short notes stay readable on a small screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the project style guide close to the tracker. The Quanticate guide describes a project-specific style guide shared with all writers. Put a link to it on a second sheet called Style. A tracker that points to the guide answers fewer questions. It does not replace the guide itself."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Protect the structure",
+      "text": "Keep the tracker on one sheet and the notes on another. Anyone who sorts or inserts cells in the wrong place can break the layout. Save a copy of the file before you restructure it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts and KeyTips in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "KeyTips let you reach ribbon commands with the keyboard. They started in Excel for Mac 16.86 as a feature for Beta Channel users. Microsoft said it would reach all users in the coming months. Check your version under Excel > About Excel before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn KeyTips on under Excel > Preferences > Accessibility. Option is the default key. Press Option once and letters appear over the ribbon. Type the letter for the command you need. This feels slow for the first few tries. It gets faster as the letters become familiar."
+    },
+    {
+      "type": "paragraph",
+      "text": "Expect rough edges. Commenters on Microsoft's KeyTips post report inconsistent behavior. Some report missing letters on dropdown menus. The post itself does not address those reports. If a KeyTip does not appear, use the mouse for that one step and move on."
+    },
+    {
+      "type": "table",
+      "caption": "Shortcuts and menu paths for tracker work in Excel for Mac.",
+      "headers": [
+        "Task",
+        "Mac shortcut or menu path"
+      ],
+      "rows": [
+        [
+          "Create a table from the selected range",
+          "⌘ T"
+        ],
+        [
+          "Find a word or value",
+          "⌘ F"
+        ],
+        [
+          "Name a table",
+          "Table Design > Table Name box"
+        ],
+        [
+          "Freeze the top row",
+          "View > Freeze Panes > Freeze Top Row"
+        ],
+        [
+          "Add a drop-down list",
+          "Data > Data Validation"
+        ],
+        [
+          "Undo a bad sort right away",
+          "⌘ Z"
+        ],
+        [
+          "Show ribbon letters",
+          "Option, after KeyTips are turned on"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for counting narratives by status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Counting is where a tracker earns its place. You want to know how many items sit in each stage. COUNTIFS handles this well. Suppose your table is named Tracker and the stage column is Status. Type =COUNTIFS(Tracker[Status],\"QC\") in an empty cell. Excel returns the number of rows marked QC."
+    },
+    {
+      "type": "paragraph",
+      "text": "Count distinct subjects with a formula that returns a list. In Microsoft 365, =COUNTA(UNIQUE(Tracker[Subject ID])) counts unique IDs. UNIQUE spills its results downward. Keep the cells below the formula empty, or it returns a spill error. Check for that error before you trust the count."
+    },
+    {
+      "type": "paragraph",
+      "text": "Estimating volume early is harder. Count the events of interest in the safety listing for each study. Multiply that total by how long your team usually takes per item. Use your team's own average. Averages borrowed from another project rarely fit your work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Track days until due with plain subtraction. Add a column named Days Left and type =[@Due]-TODAY() in the first row. Format the column as a number, not a date. Negative results mean the item is late. Highlight those cells with Home > Conditional Formatting > Highlight Cells Rules > Less Than, and set the value to zero."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked case. One writer owns the narratives, and a second writer owns the summary. Filter the table by owner, then look at the status counts for each. If one writer has most of the items in draft, you see the bottleneck before database lock."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read each formula before you copy it down a column. A formula typed by hand can point at a fixed cell address, so the copy in row 40 may still point at row 2. Structured references such as Tracker[Status] avoid that trap. They name the column, not a cell address, so the formula follows the table as it grows."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for status and timing reports"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table turns the tracker into a status report. Click any cell in Tracker. Go to Insert > PivotTable. Drag Status to Rows, Owner to Columns, and Deliverable ID to Values. Excel counts the items in each cell of the grid. The pivot can sit on its own sheet, away from the raw rows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Refresh the pivot after every edit. Right-click the pivot and choose Refresh, or go to Data > Refresh All. A stale pivot looks correct and is not. That mistake shows up in status meetings, so build the refresh into your routine. For step by step pivot setup, read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query row limits in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most trackers stay small. Some grow when you import raw listings or safety data with Power Query. Microsoft's specifications page lists a maximum of 1,048,576 rows filled to a worksheet. It also lists 16,384 columns per table. Plan for those ceilings before a big import."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Query Editor data preview shows up to 3,000 cells. Keep that in mind when you shape large tables. The same page notes about 1GB of data processing for the 32-bit version of Excel. It compares that with the 64-bit version, which uses available virtual memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "The page does not list Mac-specific differences. It covers Excel for Microsoft 365, 2024, 2021, 2019 and 2016. Check the limits in your own copy before you plan a large import. Do not assume the Windows numbers match your Mac exactly."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep raw safety listings out of the tracker. Load them into a separate query or sheet, then bring only summaries into the tracker. The file stays easier to open. Writers scroll less, and the review stays focused on the rows that matter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break a medical writing tracker"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sorting one column on its own. Excel moves that column and leaves its neighbors behind. Click one cell inside the table, then sort.",
+        "Typing dates as text. Text does not sort by date and does not count in date formulas. Use real dates in every due column.",
+        "Merging cells in the header or status area. Merged cells break sorting, filtering and formulas. Use Format > Cells > Alignment and pick Center Across Selection instead.",
+        "Hiding rows to remove finished items. Hidden rows still count in COUNTIFS. Filter the table instead, so the status stays visible.",
+        "Keeping two copies of the tracker. One writer edits a local copy while the lead reads the shared file. Keep one shared file and log changes in a notes column.",
+        "Renaming headers without checking formulas. A new header name can break formulas that pointed at the old one. Read the formulas after each rename."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes show up slowly. A count is off by one, and nobody notices for a week. Check the totals against the raw rows each time you run a report. A quick check beats a corrected status meeting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac, and it lives in the notch. Hold ⌥ ⌘ to ask about anything on your screen. Lazur answers out loud. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "That fits tracker work. You keep your hands on the keyboard and the mouse. Lazur points at the Table Name box, explains a formula, or walks you through a sort. It does not click buttons, edit files or operate other apps for you. You make each change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor. Use it for a status email, a comment in the tracker or a note for the lead writer. Snippets and a personal dictionary help with repeated study names and product terms."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly check routine for the tracker"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Refresh the pivot with Data > Refresh All, then read the status counts.",
+        "Filter Status to everything that is not Final, then look at the owners.",
+        "Click one cell in the table, then sort by Due, earliest first.",
+        "Check the Days Left column for negative values. Those items are late.",
+        "Write a short status note. Dictate the changes with fn, then send it from your mail app."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the same routine each week. A repeated order catches problems early. Writers and leads learn where to look, and the questions get shorter over time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Patient data, privacy and AI tools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trackers often hold details that identify people. Subject IDs, event dates and site names can be sensitive. Check your company's data rules before you put that data in any file, shared drive or AI tool. Your rules come first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. Lazur says they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "A practical habit helps. Ask Lazur about formulas and menus while a sample tab is open. Close the subject-level rows before you hold the shortcut. That habit reduces what gets captured. It does not replace your data policy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Microsoft 365 costs for Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft 365 Personal includes the Excel desktop app, and it can be used on a Mac. Microsoft lists it at $99.99 per year, or $9.99 per month. Microsoft 365 Family is $129.99 per year, or $12.99 per month. Check Microsoft's pricing page before you buy, because prices change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask your IT team which Excel version they support before you buy. A second license can waste money if your company already supplies one. Lazur starts with a 3-day Pro trial, and no credit card is needed. Check [pricing](/pricing) for current plans before you decide."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for medical writing teams"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one tracker and one routine. Name the table, add the Status list and freeze the header row. Then add a pivot for the weekly check. Once that works, ask Lazur to explain any formula you do not recognize. You can read more on the [Excel for Mac page](/apps/excel) or [download Lazur](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have what medical writers need for tracking?",
+      "answer": "For tracking, yes. Tables, drop-down lists, formulas, pivot tables and conditional formatting cover most tracker work. Some new Copilot features are not on Mac yet. Microsoft's October 2026 post lists the skill recorder as Insider only on Mac."
+    },
+    {
+      "question": "Can I name a table in Excel for Mac?",
+      "answer": "Yes. Microsoft says naming tables at creation is now available on Windows and Mac. Click inside the table, open Table Design, and type the name in the Table Name box."
+    },
+    {
+      "question": "Why do my rows get mixed up after a sort?",
+      "answer": "Usually one column was sorted alone, or the table has merged cells. Click one cell inside the table before you sort. If the result looks wrong, press ⌘ Z right away."
+    },
+    {
+      "question": "How many rows can a tracker hold in Excel for Mac?",
+      "answer": "Power Query fills up to 1,048,576 rows to one worksheet. Tables also have a limit of 16,384 columns. Keep raw listings in a separate query so the tracker stays fast and easy to review."
+    },
+    {
+      "question": "Does Lazur work inside Excel?",
+      "answer": "Lazur is a voice assistant for the Mac that lives in the notch. It is not a plugin or add-in for any app, so it does not sit inside Excel's menus. It sees your screen only while you hold ⌥ ⌘, and it does not click buttons or edit files for you."
+    },
+    {
+      "question": "Can I use Lazur with subject-level data?",
+      "answer": "Check your company's data rules first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and Lazur says they are not stored."
+    },
+    {
+      "question": "How much is Microsoft 365 for a Mac?",
+      "answer": "Microsoft lists Microsoft 365 Personal at $99.99 per year or $9.99 per month. Microsoft 365 Family is $129.99 per year or $12.99 per month. Check Microsoft's pricing page before you buy, because prices change."
+    },
+    {
+      "question": "Do KeyTips work in every version of Excel for Mac?",
+      "answer": "Microsoft first offered KeyTips to Beta Channel users on Excel for Mac 16.86 or later. It said all users would get the feature in the coming months. Some commenters report missing letters on dropdown menus, so check your version first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "KeyTips now available in Office for Mac",
+      "url": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/keytips-now-available-in-office-for-mac/4226638",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Power Query specifications and limits in Excel",
+      "url": "https://support.microsoft.com/en-us/office/power-query-specifications-and-limits-in-excel-5fb2807c-1b16-4257-aa5b-6793f051a9f4",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Compare Microsoft 365 Plans & Pricing",
+      "url": "https://www.microsoft.com/en-us/microsoft-365/buy/compare-all-microsoft-365-products",
+      "publisher": "Microsoft Store",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Frequency and Characteristics of Trials Using Medical Writer Support in High-Impact Oncology Journals",
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2800869",
+      "publisher": "JAMA Network Open",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Professional medical writing support and the quality, ethics and timeliness of clinical trial reporting: a systematic review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6621980/",
+      "publisher": "PMC / Research Integrity and Peer Review",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Challenges of Writing Patient / Safety Narratives",
+      "url": "https://www.quanticate.com/blog/bid/56497/challenges-of-writing-patient-safety-narratives-part-1",
+      "publisher": "Quanticate",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Table Name box? I want to name this tracker.",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Table Name box on the Table Design tab, with your cursor inside the table. You type the name yourself.",
+    "shell": "sheet",
+    "context": "Excel for Mac, a Tracker table for a clinical writing project.",
+    "output": "A circle and a label around the Table Name box, with the words spoken aloud.",
+    "pointsAt": "Table Name box"
+  },
+  "tasks": [
+    {
+      "say": "Where is the Table Name box?",
+      "result": "Lazur draws a circle and a label around the Table Name box on the Table Design tab.",
+      "capability": "point"
+    },
+    {
+      "say": "What does this COUNTIFS formula count?",
+      "result": "Lazur reads the formula aloud and says which column it checks and which value it matches.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through sorting this tracker by due date.",
+      "result": "Lazur guides you one click at a time, waiting for each click, so the whole table sorts and no row breaks.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a status note for the lead writer about the QC queue.",
+      "result": "Lazur drafts a short note from what you tell it, ready for you to read and edit.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate the changes for the notes column.",
+      "result": "Lazur types clean text at the cursor, so the notes column gets your words without typos from typing.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Why does this dropdown not show my stages?",
+      "result": "Lazur looks at the screen and explains where the list source sits in Data Validation.",
+      "capability": "explain"
+    },
+    {
+      "say": "Find every cell that repeats this subject ID.",
+      "result": "Lazur points to the column and says which filter to set to see the repeats.",
+      "capability": "point"
+    },
+    {
+      "say": "Remind me to check the database lock date on Friday.",
+      "result": "Lazur adds the reminder to Apple Reminders for Friday.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "medical-writers-excel",
+  "role": "medical-writers",
+  "app": "excel",
+  "roleName": "Medical writers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-writers-excel/excel-for-medical-writers-on-mac-1-534687.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Medical writer at a laptop reviewing a shared Excel for medical writers tracker on a Mac",
+      "caption": "A tracker lives on a laptop, often open for hours.",
+      "keywords": [
+        "excel for medical writers on mac",
+        "Excel",
+        "Medical writers",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-writers-excel/excel-for-medical-writers-on-mac-2-12a8cb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Researcher at a computer in a laboratory, the setting where clinical trial documents get tracked",
+      "caption": "Clinical trial documents pass through many hands before publication.",
+      "keywords": [
+        "excel for medical writers on mac",
+        "Excel",
+        "Medical writers",
+        "Mac",
+        "scientist laboratory computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "andreas160578",
+        "url": "https://pixabay.com/users/andreas160578-2383079/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/internet-fraud-database-theft-1895376/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-writers-excel/excel-for-medical-writers-on-mac-3-357401.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Team reviewing a spreadsheet on a screen during a planning meeting",
+      "caption": "Several writers share one tracker, so consistency matters.",
+      "keywords": [
+        "excel for medical writers on mac",
+        "Excel",
+        "Medical writers",
+        "Mac",
+        "team reviewing spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TomaszProszek",
+        "url": "https://pixabay.com/users/TomaszProszek-613139/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/sleigh-ride-horses-winter-snow-549727/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for medical writers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for medical writers": 7,
+      "medical writing tracker in Excel": 1,
+      "Excel KeyTips on Mac": 1,
+      "Power Query row limit Excel Mac": 1,
+      "name a table in Excel for Mac": 2,
+      "Microsoft 365 for medical writers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

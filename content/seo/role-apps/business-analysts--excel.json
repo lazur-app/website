@@ -1,0 +1,509 @@
+{
+  "title": "Excel for business analysts on Mac: formulas, pivots and voice help with Lazur in 2026",
+  "metaTitle": "Excel for Business Analysts on Mac: Formulas, Pivots and Cleanup",
+  "description": "Excel for business analysts on Mac: the lookups, pivots and cleanup that fill your week, plus Mac shortcuts and how Lazur helps by voice.",
+  "targetKeyword": "excel for business analysts on mac",
+  "secondaryKeywords": [
+    "excel for business analysts",
+    "excel lookups on mac",
+    "pivot table mac business analyst",
+    "excel shortcuts on mac",
+    "excel templates mac start-up folder",
+    "power query mac limitations"
+  ],
+  "intro": "Excel for business analysts on Mac is the same spreadsheet you know from Windows, with different keys and a few missing features. Mac Excel uses the same worksheet limit, 1,048,576 rows by 16,384 columns, so file size is rarely the issue. Most of your week goes to lookups, pivot tables and cleanup. This page covers those tasks and shows how Lazur helps by voice.",
+  "tldr": [
+    "Mac Excel uses the same worksheet limit: 1,048,576 rows and 16,384 columns per sheet.",
+    "Panko's spreadsheet audits found important errors in 84% to 91% of the files they reviewed.",
+    "Tables, fn-key navigation and a Start-up template cut the repetitive work on Mac.",
+    "Power Pivot and the Data Model appear to be unavailable on Mac, according to a 2025 forum answer. Confirm before you plan big joins.",
+    "Lazur explains formulas, points at menus and dictates notes. It does not click buttons or edit your file."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows in one Excel worksheet, which also holds 16,384 columns, per Microsoft's limits page",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits (Microsoft Support)"
+    },
+    {
+      "value": "91%",
+      "label": "of 55 spreadsheets in five core audit studies had important errors, per Panko's compilation",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets (Raymond Panko)"
+    },
+    {
+      "value": "More than 20",
+      "label": "hours a month in spreadsheets for the average knowledge worker, per a 2022 vendor-commissioned survey",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release: almost half of users struggle with spreadsheet data"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What business analysts do in Excel each week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Business analysts use Excel as a workbench, not as a finished report. You pull an export from a system, reshape it, join it to a second list, then summarize it for someone who will never open the file. That loop repeats every week. The formulas change. The steps stay about the same."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the work falls into four buckets. Lookups match an ID in one table to a value in another. Pivot tables turn thousands of rows into a grid by region, month or team. Cleaning fixes stray spaces, split columns and mixed date formats. Checking reconciles your totals against the source system, so nobody finds the gap in a meeting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors are the expensive part. Raymond Panko has audited operational spreadsheets for years. In five core studies covering 55 spreadsheets, he reports important errors in 91% of them. A compilation of nine inspections covering 163 spreadsheets puts the figure at 84%. Panko's own summary table gives 83%, so treat the exact number as approximate."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Those audits looked at real business files. They do not say your file is wrong. They say checking matters. Build a check into every workbook you hand off. A total that does not match the source is the cheapest bug you will ever find, so look for it first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel on Mac differs from Windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac Excel is close to Windows Excel in daily use. The ribbon, the formulas and most files carry over without changes. The differences sit in the keyboard and in a few features. Microsoft warns that some Windows shortcuts clash with default macOS shortcuts. You may need to change a Mac setting to make them work."
+    },
+    {
+      "type": "paragraph",
+      "text": "The biggest friction is navigation. A MacBook keyboard has no dedicated Home or End key. You reach them with the fn key. Hold fn and press the left arrow for Home. Add Control to jump to the top left of the sheet. Once those feel normal, moving through a large file gets faster."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Key on a Mac"
+      ],
+      "rows": [
+        [
+          "Go to the start of a row",
+          "fn + Left arrow"
+        ],
+        [
+          "Go to the top left cell",
+          "Control + fn + Left arrow"
+        ],
+        [
+          "Go to the last used cell",
+          "Control + fn + Right arrow"
+        ],
+        [
+          "Page down",
+          "fn + Down arrow"
+        ],
+        [
+          "Minimize or expand the ribbon",
+          "Command + Option + R"
+        ],
+        [
+          "Save",
+          "Command + S"
+        ]
+      ],
+      "caption": "Mac Excel shortcuts from Microsoft's keyboard shortcut page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some Windows habits carry over with Command. Command + S saves the file. Microsoft lists Cmd and Ctrl pairs for many actions, but not every Ctrl shortcut has a Mac twin. When a shortcut does nothing, check Microsoft's keyboard page before you decide Excel is broken."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lookups and pivot tables without the usual errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lookups cause most of the lost time. The classic case is a #N/A on a value you can see on screen. The cause is usually a trailing space, a number stored as text, or a code with a leading zero. Compare the LEN of both values. A length mismatch explains most cases."
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean the lookup key with TRIM when the export is messy. A working pattern looks like this: =XLOOKUP(TRIM(A2), Products[Code], Products[Price]). That assumes a Table named Products with Code and Price columns. XLOOKUP needs Microsoft 365 or Excel 2021 or later. Structured references keep working as rows get added, which is why Tables beat plain ranges."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table when you create it. Microsoft said in its October 2026 update that naming tables at creation moved into production on Mac. A name like Sales_Q3 reads better in a formula than Table3. It also survives when someone else edits the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a pivot, click one cell inside the data, then choose Insert > PivotTable. Check the range Excel suggests. Drag fields into Rows, Columns and Values. Keep the source as a Table so refreshes pick up new rows. The step-by-step version is in our [pivot table guide for Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Text in a value field",
+      "text": "Excel ignores text when it sums a value field. The pivot looks short, and nothing warns you. Filter the column for text, then convert the values with VALUE or fix them at the source."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data cleaning, the step that eats your week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Exports from ERP systems, CRMs and ticketing tools rarely arrive clean. Dates come in mixed formats. Currency carries symbols. Blank rows sit between sections. Keep the raw file untouched and work on a copy. Never clean the only copy you have."
+    },
+    {
+      "type": "paragraph",
+      "text": "This sequence handles most exports."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Paste the raw export onto a new sheet, not over your model.",
+        "Select the range, then choose Insert > Table and name it.",
+        "Split combined columns with Data > Text to Columns.",
+        "Run TRIM on text keys, then check lengths with LEN.",
+        "Count the rows after each step. Stop if the count changes without a reason."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Size can also bite. One worksheet holds 1,048,576 rows and 16,384 columns. A raw export bigger than that will not fit on one sheet. Filter the export first, or move the detail to a database. A smaller slice keeps the workbook fast and easy to check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates and the Start-up folder on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many analysts rebuild the same workbook every week. A custom default fixes that. Microsoft's help page explains how to save a blank layout that opens each time Excel starts."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Build the layout in a new workbook. Add headers, formats and named ranges.",
+        "Choose File > Save as Template, then name it Book.",
+        "Save it to ~/Library/Group Containers/UBF8T346G9.Office/User Content/Start-up/Excel.",
+        "Quit Excel and open it again. The new default loads on launch."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Which versions this covers",
+      "text": "Microsoft's custom default steps apply to Excel for Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. Check your version before you rely on the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Personal templates use a different setting. On Mac, the folder is set in Word > Preferences > File Locations under User templates. Word and Excel share that setting. A template works best for layout, not data. Keep inputs on one tab and formulas on another, so the next person knows where to paste."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does while you stay in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘, ask about what is on screen, and Lazur answers out loud. Lazur looks at the screen only while you hold the shortcut. Ask where something is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click before it continues. That suits a formula you have not used before, or a menu you can never find. You stay in control of the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate Excel for you. It is not a plugin or add-in for any app. Dictation is a separate job. Hold fn to dictate clean text at the cursor, so a note for finance or a comment in a cell goes in without retyping."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask in plain terms, and name the sheet and column. A question like what does column F do on the Q3 tab works better than help me with this. Lazur answers from what is on screen when you hold the keys, so keep the relevant cells visible."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query and the Data Model on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query on Mac handles import and reshaping well. The limit is the Data Model. A Microsoft Q&A forum answer from August 2025 says Power Pivot and the Data Model are only available in Windows Excel. On Mac, Load To can only place a query into a worksheet table. That answer came from a forum moderator and cites no documentation."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Test before you plan a join",
+      "text": "We could not confirm this limit in Microsoft's documentation. Test a small join on your Mac first, then decide where the data model should live."
+    },
+    {
+      "type": "paragraph",
+      "text": "In practice, a join across three large tables is harder on Mac. Load each table to its own sheet and do the lookups there. Use a Windows machine for the Data Model if your team has one. Keep queries simple so a colleague can rebuild them. For more on this, see [Excel help for data analysts](/for/data-analysts/excel)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes business analysts make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pasting an export over the only copy of the model.",
+        "Trusting a pivot total without comparing it to the source count.",
+        "Typing a number into a formula, so the next change hides in the wrong cell.",
+        "Assuming a Windows shortcut works without checking the Mac keyboard page.",
+        "Leaving client data on screen while you ask for help, when you do not need to."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters here. Audio and the screenshot go to AI providers to answer, and they are not stored. Lazur never uses that content to train AI models. Your company may still have rules for client files, so check them before you share a sensitive workbook."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time spent on this is real. A 2022 survey of 1,001 office workers, commissioned by ThoughtSpot, says the average knowledge worker spends more than 20 hours a month in spreadsheets. The release body also says 40% often struggle to make sense of spreadsheet data. Its headline says almost half. Treat both figures as vendor research."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next with Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one repetitive task this week. Build it once as a Table with a clear formula and a check row. Save the layout as your Start-up template. Then ask Lazur to explain any formula you inherit and do not trust."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your work leans toward finance, read [Excel for financial analysts on Mac](/for/financial-analysts/excel). If it leans toward data cleaning, [Excel for data analysts on Mac](/for/data-analysts/excel) covers that side in more depth. When you want Lazur on your Mac, [download it here](/download). Plans are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for business analysts on Mac have the same features as Windows?",
+      "answer": "Most core features match. Mac Excel uses the same worksheet limit and most of the same formulas. Some Windows features are missing on Mac, including Power Pivot and the Data Model, according to a 2025 forum answer. Check Microsoft's current documentation before you plan a large model."
+    },
+    {
+      "question": "What is the Mac key for Ctrl + Home in Excel?",
+      "answer": "On a MacBook, Ctrl + Home is Control + fn + Left arrow, according to Microsoft's keyboard shortcut page. Plain fn + Left arrow moves to the start of the row. Use the table in this guide as a quick reference while you learn the keys."
+    },
+    {
+      "question": "Why does my XLOOKUP return #N/A when the value looks right?",
+      "answer": "Check for trailing spaces, numbers stored as text and leading zeros. Compare the LEN of both values. If the export adds stray spaces, wrap the lookup key in TRIM. Keep the lookup and the source as Tables so the ranges do not shift."
+    },
+    {
+      "question": "How many rows can one Excel worksheet hold on Mac?",
+      "answer": "One worksheet holds 1,048,576 rows and 16,384 columns. Microsoft lists the same limit across Microsoft 365, Excel 2024, Excel 2021, Excel 2019 and Excel 2016. For data larger than that, filter first or move the detail to a database."
+    },
+    {
+      "question": "Can Lazur click buttons or edit my workbook?",
+      "answer": "No. Lazur guides, points, explains and answers out loud. It drafts and types text when you dictate. It does not click buttons, edit files or operate Excel for you. You stay in control of the workbook."
+    },
+    {
+      "question": "Where do I save a custom default workbook on Mac?",
+      "answer": "Choose File > Save as Template and name it Book. Excel stores it in ~/Library/Group Containers/UBF8T346G9.Office/User Content/Start-up/Excel. Quit Excel and open it again to apply the new default."
+    },
+    {
+      "question": "Is Lazur a plugin or add-in inside Excel?",
+      "answer": "No. Lazur is a voice assistant for the Mac, not a plugin or add-in for any app. It has no partnership with any app maker. It works in any app while you hold the shortcut."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Audits of Operational Spreadsheets",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "New research shows almost half of users struggle to make sense of data in spreadsheets",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Why isn't there an option for Power Pivot and Load To in the Mac version?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5537966/why-isn-t-there-an-option-for-power-pivot-and-load",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Customize how Excel starts in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/customize-how-excel-starts-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this lookup returning N/A?",
+    "capability": "explain",
+    "result": "Lazur reads the formula on screen and explains the likely cause out loud. It can circle the cell that needs a fix.",
+    "shell": "sheet",
+    "pointsAt": "Column D"
+  },
+  "tasks": [
+    {
+      "say": "Why is this lookup returning N/A?",
+      "result": "Lazur reads the formula and explains the likely cause out loud, such as a trailing space in the key.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the PivotTable button?",
+      "result": "Lazur draws a circle and a label around the Insert menu option you need.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through a pivot of revenue by region.",
+      "result": "Lazur gives one step at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a note for finance.",
+      "result": "Lazur types clean text at the cursor, so the note lands in the cell or email you are working in.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft two lines explaining the Q3 variance.",
+      "result": "Lazur drafts the text, which you can paste into a comment or a summary tab.",
+      "capability": "draft"
+    },
+    {
+      "say": "What does this margin formula reference?",
+      "result": "Lazur names the cells and sheets the formula uses, so you can trace it without guessing.",
+      "capability": "explain"
+    },
+    {
+      "say": "Remind me to send this file before the standup.",
+      "result": "Lazur adds the reminder to Apple Reminders.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Look up the current Excel row limit and summarize it.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "business-analysts-excel",
+  "role": "business-analysts",
+  "app": "excel",
+  "roleName": "Business analysts",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/business-analysts-excel/excel-for-business-analysts-on-mac-1-b23293.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A business analyst at a laptop reviewing rows in a spreadsheet, the daily work of Excel for business analysts on Mac",
+      "caption": "Reviewing an export before the weekly summary",
+      "keywords": [
+        "excel for business analysts on mac",
+        "Excel",
+        "Business analysts",
+        "Mac",
+        "business analyst laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "harryloya",
+        "url": "https://pixabay.com/users/harryloya-7475427/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-office-business-laptop-3033135/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/business-analysts-excel/excel-for-business-analysts-on-mac-2-502a36.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A man at a MacBook on a desk, working through a spreadsheet as part of Excel for business analysts on Mac",
+      "caption": "Checking totals on a MacBook",
+      "keywords": [
+        "excel for business analysts on mac",
+        "Excel",
+        "Business analysts",
+        "Mac",
+        "man using macbook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/business-analysts-excel/excel-for-business-analysts-on-mac-3-cb9e4b.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Printed reports and a spreadsheet on an office desk, the kind of data an analyst cleans and summarizes in Excel",
+      "caption": "Reports that need checking before they go out",
+      "keywords": [
+        "excel for business analysts on mac",
+        "Excel",
+        "Business analysts",
+        "Mac",
+        "spreadsheet office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for business analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "excel for business analysts": 9,
+      "excel lookups on mac": 1,
+      "pivot table mac business analyst": 1,
+      "excel shortcuts on mac": 1,
+      "excel templates mac start-up folder": 1,
+      "power query mac limitations": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

@@ -1,0 +1,599 @@
+{
+  "title": "VS Code for data scientists on Mac: setup, notebooks, and shortcuts in 2026",
+  "metaTitle": "VS Code for Data Scientists on Mac: Setup Guide for 2026",
+  "description": "VS Code for data scientists on Mac: set up Python, run Jupyter notebooks, inspect DataFrames, and debug cells. Ask Lazur for help by voice.",
+  "targetKeyword": "vs code for data scientists on mac",
+  "secondaryKeywords": [
+    "VS Code Jupyter notebooks on Mac",
+    "Python environment for VS Code on Mac",
+    "VS Code Data Viewer for DataFrames",
+    "VS Code Variables pane",
+    "Jupyter kernel in VS Code on Mac",
+    "Debug Cell in VS Code notebooks",
+    "VS Code notebook PDF export"
+  ],
+  "intro": "VS Code for data scientists on Mac means using Microsoft's editor for Jupyter notebooks, Python environments, and data exploration. Set up a Python environment with Jupyter, open a .ipynb file, pick the kernel, and you can load, plot, and model data in one window. This guide covers the setup, the features that matter, the mistakes to avoid, and where Lazur fits.",
+  "tldr": [
+    "Set up a Python environment with Jupyter installed, then pick it as the notebook kernel.",
+    "Use the Variables pane and Data Viewer to check DataFrames before you model anything.",
+    "Restricted Mode blocks cell execution, so trust your own workspace before you run code.",
+    "Debug Cell and Run by Line need ipykernel 6 or newer, and they ignore launch.json.",
+    "Lazur points at things, guides you one click at a time, and answers out loud. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "45%",
+      "label": "Share of their time respondents say data scientists spend getting data ready, in Anaconda's 2020 survey",
+      "sourceUrl": "https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020",
+      "sourceTitle": "2020 State of Data Science (Anaconda)"
+    },
+    {
+      "value": "75.9%",
+      "label": "Of 2025 Stack Overflow IDE respondents use Visual Studio Code. This covers all developers, not only data scientists.",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "1.145",
+      "label": "Current stable VS Code release, released November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates/v1_145",
+      "sourceTitle": "Visual Studio Code 1.145"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How VS Code fits data science work on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the data work in VS Code happens in Jupyter notebooks. A notebook is a .ipynb file split into cells. Each cell holds code or text. You run one cell at a time and read the output right below it. That loop is why notebooks suit exploration. Microsoft's data science guide says you can start analyzing and visualizing data in minutes this way."
+    },
+    {
+      "type": "paragraph",
+      "text": "The editor itself is widely used. In Stack Overflow's 2025 Developer Survey, 75.9% of IDE respondents use Visual Studio Code. Among professional developers, the share is 76.2%. Those figures cover all developers, not only data scientists. Read them as a sign of how much support the editor has, not as a data science ranking."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's overview also mentions the Interactive Window. It links to a separate page, but the overview does not explain what the window does. Treat the Interactive Window as something to test on a small file before you build a workflow around it. This guide follows the notebook path."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a Python environment for VS Code on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Notebooks do not run until VS Code can see a Python environment with Jupyter installed. Microsoft's notebook guide says to activate an Anaconda environment, or another Python environment with the Jupyter package. The official data science tutorial creates a conda environment named myenv with Python 3.10. It installs pandas, jupyter, seaborn, and scikit-learn. It also installs Keras and TensorFlow for an optional neural network."
+    },
+    {
+      "type": "paragraph",
+      "text": "The tutorial has a gap for Mac users. It does not include macOS Python install steps. It names Windows and Linux shortcuts next to Mac symbols such as ⇧⌘P and ⌃`. That means you choose and install Python yourself. Pick one install, note where it lives, and use it for every project. VS Code 1.145 offers Universal, Intel, and Apple silicon downloads. On Apple silicon, use the Apple silicon or Universal download."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install a Python distribution you trust. Anaconda works, and so does any setup with Jupyter available.",
+        "Create a named environment. The tutorial uses myenv with Python 3.10.",
+        "Install pandas, jupyter, seaborn, and scikit-learn into that environment.",
+        "Open your project folder with File > Open Folder. One project per folder keeps things clear.",
+        "Create a file named analysis.ipynb, then select your environment as the kernel."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name it so you can find it",
+      "text": "Choose a short environment name you can type fast, like myenv. You will pick it from a list each time a notebook opens."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Check ipykernel before you blame VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run by Line and Debug Cell both need ipykernel 6 or newer. Open the terminal with ⌃` and run pip show ipykernel while your environment is active. If the version is below 6, upgrade it inside that same environment. A common mistake is upgrading the base Python while the notebook uses myenv. Check the environment name first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Trust the workspace so cells run"
+    },
+    {
+      "type": "paragraph",
+      "text": "Restricted Mode is a VS Code safety setting. In Restricted Mode, you cannot execute notebook cells, and rich outputs such as plots stay hidden. Microsoft's docs tell you to work in a trusted workspace. If a cell does nothing and the plot is missing, look for the trust prompt before you change any code."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Trust only your own folders",
+      "text": "Trust a folder when you made it or know where it came from. A downloaded project can contain code you did not write, and that code can run when you execute cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "After you trust the folder, run one cell that prints something simple. If the output appears, the kernel and the workspace both work. Then start the real analysis."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Inspect DataFrames with the Variables pane and Data Viewer"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Variables pane shows the variables in your notebook session. You can see a DataFrame's name and type without writing a print statement. Data Viewer opens a DataFrame as a table. Each column has its own filter, so you can narrow rows quickly while you check the data."
+    },
+    {
+      "type": "paragraph",
+      "text": "The filter has one trick. Type an equals sign before a value to match it exactly, like =female. Use a regular expression for pattern matches. Exact matches are safer when a column has near duplicates, such as male and Male."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Load titanic3.csv, the dataset the tutorial uses, into a DataFrame. Open it in Data Viewer. Filter the sex column with =female to count the rows. Then filter the age column and check whether any values look wrong. Count the rows before you trust any summary you compute."
+    },
+    {
+      "type": "paragraph",
+      "text": "Large tables can slow the editor. Microsoft's notebook guide does not mention performance or known issues, so the docs will not warn you. While you explore, sample the data with df.sample or df.head. Load the full file once you know which columns matter."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Train a model in one notebook: a worked example"
+    },
+    {
+      "type": "paragraph",
+      "text": "The tutorial works on the Titanic passenger dataset. Its Naive Bayes model reaches about 75% accuracy. The optional Keras network reaches about 79%. Those are tutorial results on one split. They are a starting point for your own comparison, not a benchmark to quote."
+    },
+    {
+      "type": "paragraph",
+      "text": "A four point gap on one split is weak evidence. Split the data again with a different random seed and compare the two models. If the ranking flips, the first gap was noise. Write the seed into the notebook so the run repeats the same way on your Mac next week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep each step in its own cell. Load, clean, engineer features, train, and score each get a cell of their own. When a score changes, you can rerun only the cell that changed. That habit saves time when a model needs several passes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Debug a cell with Debug Cell and Run by Line"
+    },
+    {
+      "type": "paragraph",
+      "text": "A print statement works for a quick check. For a bug inside a function, use Run by Line or Debug Cell. Both need ipykernel 6 or newer. Debug Cell runs the cell in VS Code's full debugger. It does not read debug configurations from launch.json. People who wrote a launch file for scripts often expect it to apply, and it does not."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Run by Line when you want to move through a cell one statement at a time. Use Debug Cell when the bug depends on a breakpoint inside a function call or a loop. Set the breakpoint in the left margin of the cell, then start the debug run."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Breakpoint ignored?",
+      "text": "Check the ipykernel version first. Both debug features need version 6 or newer, so an older kernel is a likely cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts and settings to learn first in VS Code on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⇧⌘P opens the Command Palette. Type a command name, such as Python: Select Interpreter, and press return.",
+        "⌃` opens the integrated terminal. Use it for pip and conda commands inside your active environment.",
+        "⌘, opens Settings. Search for notebook to see options that change how cells run and display.",
+        "Data Science profile template: Microsoft lists it as a next step. It is a profile with curated extensions, settings, and snippets.",
+        "Data Wrangler is another option. Microsoft mentions it as an alternative. Read its own docs before you rely on its features."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Learn two shortcuts first, ⇧⌘P and ⌃`. They cover most of the setup work in this guide. The rest can wait until a task needs them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep notebooks reproducible on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A notebook that runs once is not enough. Another person, or you in a month, needs the same result. Start by pinning the environment. Run pip freeze inside myenv and save the output to a requirements file in the project folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then keep the data path in one cell at the top. Use a relative path inside the project folder. Absolute paths like a Downloads folder break the moment you move the project to another Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run All before you share the notebook. Restart the kernel first, then check the output again. If the output changes, a hidden cell or a stale variable caused it. Fix the order of the cells, not the output."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where VS Code for data scientists on Mac gets awkward"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Problem",
+        "What Microsoft's docs say",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Cells will not run",
+          "Restricted Mode blocks cell execution",
+          "Trust the workspace, then run one cell"
+        ],
+        [
+          "Web version feels thin",
+          "VS Code for the Web has no terminal and limited debugging",
+          "Use the desktop app for real analysis"
+        ],
+        [
+          "PDF export fails",
+          "PDF export needs TeX installed",
+          "Export to HTML, then print to PDF from the browser"
+        ],
+        [
+          "Interactive Window is unclear",
+          "The overview links to it without explaining it",
+          "Test it on a small file first"
+        ],
+        [
+          "Large data feels slow",
+          "The notebook guide does not mention performance",
+          "Sample the data while you explore"
+        ],
+        [
+          "Setup is confusing",
+          "The tutorial assumes conda or Anaconda knowledge",
+          "Follow the environment steps in this guide"
+        ]
+      ],
+      "caption": "Limits Microsoft's docs confirm, with the workaround for each."
+    },
+    {
+      "type": "paragraph",
+      "text": "These limits are not reasons to avoid VS Code. They are reasons to test your setup on a small project before a deadline. Find the limit on day one, not during a client demo."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export a notebook to PDF for a colleague"
+    },
+    {
+      "type": "paragraph",
+      "text": "PDF export of notebooks requires TeX. Without TeX, the export fails. Microsoft's documented workaround is to export the notebook to HTML, open that HTML file in your browser, and print it to PDF. In Safari or Chrome on Mac, the print dialog opens with ⌘P."
+    },
+    {
+      "type": "paragraph",
+      "text": "SVG-only plots do not show in the PDF. If a chart is missing from the export, check its output type. Saving the plot as an image before export is a simple fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your VS Code workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It listens and looks at your screen only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time. It waits for each click. It does not click for you, edit your files, or operate other apps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean text at the cursor in any app. That helps when you write markdown cells, comments, or a commit message. Snippets, a personal dictionary, and clipboard slots help with repeated names and paths."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What Lazur does not do",
+      "text": "Lazur is for macOS on Apple silicon and Intel Macs. Windows is planned, not available. It is not a plugin or add-in for VS Code, and it has no partnership with any app maker."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Questions to ask Lazur while a notebook is open"
+    },
+    {
+      "type": "paragraph",
+      "text": "These requests fit a notebook session. Say them out loud while the notebook is in front of you."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "What does this pandas error mean? Lazur explains it out loud, using what is on your screen.",
+        "Where is the Variables pane? Lazur draws a circle and a label around it.",
+        "Walk me through picking the kernel. Lazur guides you one click at a time.",
+        "Dictate a note: the churn model drops rows with nulls in tenure. Hold fn and speak.",
+        "Draft a markdown cell that explains the train and test split.",
+        "Research the scikit-learn release notes. The research runs in Lazur's Chrome tabs, with the Lazur for Chrome extension, and comes back with a summary and report.",
+        "Set a timer while this cell trains."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each request maps to a different capability. Explain and point cover questions about the screen. Guide covers steps. Dictate and draft cover text you write. Research and everyday cover work outside the notebook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Installing packages into the wrong environment. Check the kernel name before you run pip install.",
+        "Skipping the trust prompt, then blaming the code for cells that never ran.",
+        "Loading a huge CSV in full just to see the columns. Sample first, then load the full file once.",
+        "Writing a launch.json for a notebook bug. Debug Cell does not read it.",
+        "Comparing two models on one split. Repeat the split with a new seed before you pick a winner.",
+        "Expecting VS Code for the Web to behave like the desktop app. It has no terminal.",
+        "Exporting to PDF without TeX installed. Use the HTML route instead."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one notebook on the Titanic data from the tutorial. The expected results are published, so you can check your setup against them. Then build your own project in its own folder with its own environment."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you also write code outside notebooks, read [VS Code for developers on Mac](/for/developers/vs-code). It covers setup, shortcuts, debugging, and Git. For the AI side of the editor, see [the VS Code assistant page](/apps/vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "To try Lazur on your Mac, go to [download](/download). Plans and trial details are on [pricing](/pricing). The trial needs no credit card."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does VS Code for data scientists on Mac need Anaconda?",
+      "answer": "No. Microsoft's notebook guide says you need an activated Anaconda environment or another Python environment with the Jupyter package installed. Anaconda is one option. Pick one Python install and use it for every project."
+    },
+    {
+      "question": "Why won't my notebook cells run in VS Code?",
+      "answer": "Check Restricted Mode first. In Restricted Mode, cells cannot run and rich outputs such as plots stay hidden. Trust the workspace, then run one simple cell to test it."
+    },
+    {
+      "question": "What is the difference between the Variables pane and Data Viewer?",
+      "answer": "The Variables pane shows the variables in your notebook session. Data Viewer opens a DataFrame as a table, with a filter for each column. Use the pane to find a name and the viewer to scan rows."
+    },
+    {
+      "question": "Does Lazur work inside VS Code?",
+      "answer": "Lazur works across apps on your Mac, including VS Code. It is not a plugin or add-in for VS Code. It listens and looks at your screen only while you hold the shortcut, and it does not click or edit files for you."
+    },
+    {
+      "question": "Can Debug Cell use my launch.json file?",
+      "answer": "No. Debug Cell runs in the full VS Code debugger and does not use debug configurations in launch.json. Debug Cell and Run by Line both need ipykernel 6 or newer."
+    },
+    {
+      "question": "Why does PDF export fail in VS Code?",
+      "answer": "PDF export of notebooks requires TeX. Without it, the export fails. Export to HTML, open the file in a browser, and print to PDF. SVG-only plots do not show in the PDF output."
+    },
+    {
+      "question": "Is VS Code for the Web good enough for data science?",
+      "answer": "It runs entirely in the browser. It has no terminal access, limited debugging, and partial Python IntelliSense. Use the desktop app for serious analysis on your Mac."
+    },
+    {
+      "question": "Does Lazur run on Windows?",
+      "answer": "Not yet. Lazur is for macOS on Apple silicon and Intel Macs. Windows is planned, not available."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Jupyter Notebooks in VS Code",
+      "url": "https://code.visualstudio.com/docs/datascience/jupyter-notebooks",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Data Science in VS Code tutorial",
+      "url": "https://code.visualstudio.com/docs/datascience/data-science-tutorial",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Jupyter Notebooks on the web",
+      "url": "https://code.visualstudio.com/docs/datascience/notebooks-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Data Science in Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/datascience/overview",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Visual Studio Code 1.145",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "2020 State of Data Science",
+      "url": "https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020",
+      "publisher": "Anaconda",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Walk me through picking the kernel for this notebook.",
+    "capability": "guide",
+    "result": "Lazur guides you one click at a time and waits for each click, so you keep control of the notebook.",
+    "shell": "code",
+    "context": "A notebook is open in VS Code with no kernel selected in the top right.",
+    "output": "First, Lazur circles the kernel selector in the top right. Click it when you are ready for the next step.",
+    "pointsAt": "Select Kernel"
+  },
+  "tasks": [
+    {
+      "say": "What does this pandas error mean?",
+      "result": "Lazur reads the error on screen and explains it out loud in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Variables pane?",
+      "result": "Lazur draws a circle and a label around the Variables pane on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through picking the kernel for this notebook.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate a note: the churn model drops rows with nulls in tenure.",
+      "result": "Hold fn and speak. The clean text lands at your cursor in the notebook or any other app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a markdown cell that explains the train and test split.",
+      "result": "Lazur types a short markdown explanation you can paste into a notebook cell and edit.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research the scikit-learn release notes from this year.",
+      "result": "The research runs in Lazur's Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Set a timer while this cell trains.",
+      "result": "Lazur starts the timer by voice, so you can keep your hands on the notebook.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "data-scientists-vs-code",
+  "role": "data-scientists",
+  "app": "vs-code",
+  "roleName": "Data scientists",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-vs-code/vs-code-for-data-scientists-on-mac-1-b3bc00.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person works on a laptop at a desk, with code and data charts open on the screen",
+      "caption": "Working through a data project on a laptop",
+      "keywords": [
+        "vs code for data scientists on mac",
+        "VS Code",
+        "Data scientists",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-vs-code/vs-code-for-data-scientists-on-mac-2-c287f3.jpg",
+      "width": 1280,
+      "height": 717,
+      "alt": "A data scientist looks at a chart on a Mac laptop while working in a notebook",
+      "caption": "Checking a chart before trusting the numbers",
+      "keywords": [
+        "vs code for data scientists on mac",
+        "VS Code",
+        "Data scientists",
+        "Mac",
+        "data analyst laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cliff1126",
+        "url": "https://pixabay.com/users/cliff1126-2330376/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/control-center-internet-8004994/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-vs-code/vs-code-for-data-scientists-on-mac-3-b9a181.jpg",
+      "width": 1280,
+      "height": 1280,
+      "alt": "Close view of a developer typing Python code on a silver laptop keyboard",
+      "caption": "Writing Python cells in an editor",
+      "keywords": [
+        "vs code for data scientists on mac",
+        "VS Code",
+        "Data scientists",
+        "Mac",
+        "man coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "zs18384022951",
+        "url": "https://pixabay.com/users/zs18384022951-40809725/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/ai-generated-man-computer-desk-8403412/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "vs code for data scientists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "VS Code Jupyter notebooks on Mac": 1,
+      "Python environment for VS Code on Mac": 2,
+      "VS Code Data Viewer for DataFrames": 1,
+      "VS Code Variables pane": 1,
+      "Jupyter kernel in VS Code on Mac": 1,
+      "Debug Cell in VS Code notebooks": 1,
+      "VS Code notebook PDF export": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

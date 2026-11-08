@@ -1,0 +1,699 @@
+{
+  "title": "Google Sheets for bookkeepers on Mac: reconciliation, limits and voice help",
+  "metaTitle": "Google Sheets for Bookkeepers on Mac: Formulas, Limits, Lazur",
+  "description": "Google Sheets for bookkeepers on Mac: the formulas, limits and reconciliation steps that matter, plus how Lazur points and talks you through them.",
+  "targetKeyword": "google sheets for bookkeepers on mac",
+  "secondaryKeywords": [
+    "google sheets for bookkeeping on mac",
+    "bookkeeping in google sheets",
+    "google sheets bank reconciliation template",
+    "google sheets accounts receivable tracker",
+    "google sheets offline on mac chrome",
+    "google sheets vs excel for bookkeeping"
+  ],
+  "intro": "Google Sheets works for bookkeepers on a Mac because it runs in your browser. Open it in Chrome or Safari, start from a template, and build reconciliation sheets, invoice trackers and cash books. Check the file limits and the calculation settings before a file gets big. Lazur works alongside your browser, so you can ask a question with ⌥⌘ and get the menu path read back to you.",
+  "tldr": [
+    "Google Sheets runs in your browser, so on a Mac you open it in Chrome or Safari.",
+    "Start from the Template Gallery. Google opens a copy and leaves the original unchanged.",
+    "Watch the limits: 20 million cells or 100MB per file, and 50,000 characters per cell when converting from Excel.",
+    "Offline editing needs Chrome or Edge with the Google Docs Offline extension, according to a third-party guide.",
+    "Lazur guides you, points at menus and drafts text while you work. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells allowed in a Google Sheets file, according to Google's limits page",
+      "sourceUrl": "https://support.google.com/docs/answer/37603",
+      "sourceTitle": "Google Sheets limits"
+    },
+    {
+      "value": "94%",
+      "label": "of finance teams in a 2025 month-end close survey of 100 professionals use Excel in close",
+      "sourceUrl": "https://www.ledge.co/content/month-end-close-benchmarks-for-2025",
+      "sourceTitle": "The state of month-end close in 2025"
+    },
+    {
+      "value": "23",
+      "label": "free bookkeeping templates on Smartsheet's page, and only three have Google Sheets versions",
+      "sourceUrl": "https://www.smartsheet.com/content/small-business-bookkeeping-templates",
+      "sourceTitle": "Free small business bookkeeping templates"
+    },
+    {
+      "value": "up to 60%",
+      "label": "faster filtering in sheets with 1M+ cells, a performance claim Google made in April 2026",
+      "sourceUrl": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "sourceTitle": "Faster performance and doubled cell limits in Google Sheets"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most bookkeeping work in Google Sheets is simple. It is also easy to break. You match a bank export to a ledger, track unpaid invoices, and keep a running cash book. The file is usually a copy of something made last year, with a few columns added and a few quietly broken. This guide covers the parts that trip people up on a Mac, and how to get help while you work."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What bookkeepers build in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets sits between your bank and your accounting system. It handles the small, repeated jobs in that gap. Three jobs come up again and again. Reconciliation comes first. Receivables and payables tracking comes second. The cash book comes third."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Monthly bank reconciliation: the statement balance, the book balance, and every open item between them.",
+        "Accounts receivable tracker: invoice date, amount, paid date, and how long each invoice has been open.",
+        "Accounts payable list: bills due, bills paid, and the bank account each payment left from.",
+        "Cash book: one row per transaction, with a running balance column built from a formula.",
+        "Chart of accounts: account codes, names and types, used as the lookup source for the other tabs."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates speed this up, but check them before you trust them. Smartsheet lists 23 free small business bookkeeping templates. Only three have Google Sheets versions: Invoice Tracking, Inventory Tracking and Monthly Bank Reconciliation. The reconciliation template tracks deposits in transit and outstanding checks, and it calculates the statement balance for you."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template without changing the original"
+    },
+    {
+      "type": "paragraph",
+      "text": "The template steps are short. Open Google Sheets in your browser and click Template Gallery at the top right. Pick a template, and Google opens a copy for editing. The original stays unchanged. Use that copy as your working file, every month."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Sheets in Chrome or Safari.",
+        "Click Template Gallery at the top right.",
+        "Pick the bookkeeping template you need. A copy opens for editing.",
+        "Rename the copy with the client name and the period before you type anything.",
+        "Keep last month's copy closed and untouched, so you can compare against it later."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Naming matters more than it sounds. A file called Reconciliation is hard to find months later. A file called Acme Reconciliation Oct is easy to find. Pick one naming pattern for every client, and stick to it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas that do most of the work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Four formulas cover most bookkeeping sheets. SUMIFS totals a column when rows match a condition. COUNTIF counts the rows that match. VLOOKUP pulls a value from another tab using a key, such as an invoice number. IFERROR replaces an error with a blank or a label, so one bad row does not break the total."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Column A holds the account name, column C holds the amount, and column D holds the status. To total the cleared amounts for one bank account, type this in a summary cell:"
+    },
+    {
+      "type": "paragraph",
+      "text": "=SUMIFS(C:C, A:A, \"Bank Main\", D:D, \"Cleared\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the result against the statement before you move on. A zero usually means the criteria text does not match exactly. Extra spaces are the usual cause. Wrap the source column in TRIM if a bank export added them, or clean the column once and keep the clean copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "The other common trap is hidden totals. SUMIFS includes rows you have hidden or filtered out. If you want a total that follows the filter, use SUBTOTAL with the right function code instead. Test both on a small range first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reconciliation step by step in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reconciliation is where most bookkeeping time goes. The file stays manageable when each source has its own tab. Keep the bank export on one tab, untouched. Keep your book entries on another. Use a status column to mark each line as matched, open or adjusted."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Paste the bank export into a raw tab, with no edits.",
+        "Convert the date column to real dates. Select it and check Format > Number > Date.",
+        "Build a match key, such as the amount plus the date, in a helper column on both tabs.",
+        "Turn on a filter from the Data menu, then filter the status column to open items.",
+        "Compare the adjusted book balance with the statement balance. The difference should be zero."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The Monthly Bank Reconciliation template already has sections for deposits in transit and outstanding checks. If your bank uses a different layout, copy the logic and keep your own labels."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lookups are where bad matches hide. VLOOKUP returns the first match only. If two bank lines share an amount and a date, match on a third field, such as a reference number or the payee. Otherwise you pair the wrong rows, and the totals still look plausible."
+    },
+    {
+      "type": "paragraph",
+      "text": "Need a list of unique payees for a dropdown? Read [how to count unique values in Google Sheets on Mac](/how-to/count-unique-values-in-google-sheets) for the formula steps."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import CSV and Excel files without losing data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bank exports usually arrive as CSV. Import them into a new tab, not over your working sheet. Go to File > Import, choose the file, and pick the option to insert a new sheet. Check the first few rows before you do anything else."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel files need one more check. Google's limits page says cells over 50,000 characters are removed when a file converts from Excel. Most bookkeeping cells stay far below that. Long memo fields from a bank system sometimes do not. Scan the longest text column after every import."
+    },
+    {
+      "type": "paragraph",
+      "text": "Step-by-step menu fixes for imports are in [how to import a CSV into Google Sheets on Mac](/how-to/import-a-csv-file-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Going the other way is common too. When a client or auditor needs Excel, use File > Download > Microsoft Excel (.xlsx). Formulas usually carry over. Check pivot tables and dropdowns after the download, since those are the parts most likely to need a second look."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cell limits and slow recalculation on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google caps every file. Its limits page says a spreadsheet can hold up to 20 million cells or 100MB, for files created in or converted to Google Sheets. In April 2026, Google said the cell cap would double from 10 million to 20 million, through a beta that organizations register for. Check which limit your account has before you plan a large year-end file."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Value",
+        "Where it bites"
+      ],
+      "rows": [
+        [
+          "Cells per file",
+          "20 million",
+          "Full ledger exports across many tabs"
+        ],
+        [
+          "File size",
+          "100MB",
+          "Large workbooks with years of history"
+        ],
+        [
+          "Connected Sheets pivot rows",
+          "200,000 rows",
+          "Pivots built on live data connections"
+        ],
+        [
+          "Connected Sheets extracts",
+          "500,000 rows or 5 million cells",
+          "Pulling big datasets into a tab"
+        ],
+        [
+          "Characters per cell from Excel",
+          "50,000 characters",
+          "Long memo text in converted files"
+        ]
+      ],
+      "caption": "Limits from Google's help page. Check the current page before you plan a large file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed is the other problem. Google says that after the April 2026 change, opening and starting work in 1M+ cell spreadsheets is up to 30% faster. It says filtering and conditional formatting are each up to 60% faster. Those are Google's own claims. Test them on your own file before you count on them."
+    },
+    {
+      "type": "paragraph",
+      "text": "When recalculation is what slows you down, use the manual calculation setting. Google announced it on September 21, 2026. Editors can pause automatic recalculation, batch their edits, and trigger a sheet-wide update. It is off by default. Turn it on at File > Settings > Calculation Settings."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Turn it back off",
+      "text": "Manual calculation can leave totals stale until someone triggers an update. Turn it off before you send the file to a client, and check that the totals match the source tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's post suggests two uses. One is entering large blocks of data into formula-heavy sheets without recalculating after each change. The other is freezing volatile functions such as RAND or timestamps. Admins have no control over the setting, so a team cannot lock it for everyone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Offline work in Chrome on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets needs a connection by default. For offline editing, a July 2026 guide from GKit says you need Chrome or Microsoft Edge with the Google Docs Offline extension. Safari and Firefox are not supported. Offline does not work in incognito or guest windows. The setting applies to each device and browser profile."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Mac steps are not confirmed",
+      "text": "The GKit guide does not mention macOS, and Google's own offline help page was not available to check. Confirm the steps on your Mac while you still have a connection."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you work at a client site with weak Wi-Fi, set up offline mode at your desk first. Open the file once while you are online. Then switch off Wi-Fi for a minute and test that you can still edit and save."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Revision history and sharing with clients"
+    },
+    {
+      "type": "paragraph",
+      "text": "Revision history is your audit trail when a total changes. Open File > Version history > See version history. Pick the version from before the change, then compare it with the current file. The steps are in [how to see revision history in Google Sheets](/how-to/see-revision-history-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sharing needs the same care. When a client only needs a summary, give them view-only access. Use Share, then set their access to Viewer. Read [how to share a Google Sheet view only on Mac](/how-to/share-with-view-only-access-in-google-sheets) for the link settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "The common mistake is sharing the whole workbook when one tab would do. Move the client summary into its own file, or export that tab as a PDF. Your ledger stays private, and the client sees only what they need."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts that matter on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Mac keyboard shortcuts page lists the Command-based keys. These five matter most for bookkeeping work."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘Z undoes the last change. Use it before you retype a formula.",
+        "⌘F opens find, handy for locating an account code.",
+        "⌘⇧H opens find and replace, for fixing a vendor name across a tab.",
+        "⌘B bolds the selected text, useful for total rows.",
+        "⌘K inserts a link, such as a path to the bank statement folder."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the full list nearby. Read [how to show keyboard shortcuts in Google Sheets on Mac](/how-to/show-keyboard-shortcuts-in-google-sheets) for the menu route, and [how to find and replace in Google Sheets on Mac](/how-to/find-and-replace-text-in-google-sheets) for the replace steps."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps while you work in Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘, which is Option and Command together, to ask about anything on screen. Lazur answers out loud. It listens and looks only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click. Lazur does not click for you, and it does not edit your file. You stay in control of every cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "This suits the bookkeeper who knows the work but forgets the menu path. You do not need to remember File > Settings > Calculation Settings. Ask, and Lazur circles it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy has limits you should know. Audio and the screenshot go to AI providers to answer your question. They are not stored. Content is never used to train AI models. Client data is still client data, so check your firm's rules before you ask about a named account."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate memos and descriptions instead of typing them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bookkeepers write a lot of short text. Transaction descriptions, reconciliation notes, and adjustment memos all add up. Hold fn to dictate clean, formatted text at the cursor in any app. Dictation is unlimited on both the Pro and Power plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use snippets for text you repeat, such as your standard reconciliation note. Use the personal dictionary for client names and account codes that dictation gets wrong. Clipboard slots help when you move a value between tabs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the dictated cell before you move on. A misheard vendor name looks fine at a glance, and it breaks a lookup later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes bookkeepers make in Google Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing over a formula total. The next paste replaces the total, and nobody notices until close.",
+        "Sorting one column but not the whole range. Select every column in the table before you sort.",
+        "Dates stored as text. They look right, then sort wrong or fail a SUMIFS.",
+        "Duplicate rows from a second import. Check the [duplicate rows guide](/how-to/remove-duplicate-rows-in-google-sheets) before you remove anything.",
+        "Leaving manual calculation on. Totals look final when they are not.",
+        "Giving edit access to a client. Viewer access is the safer default."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these come from the same habit. Look at the cell, the formula and the source tab before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets or accounting software: where the line sits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets does not replace your accounting system. It holds the working papers around the ledger. Intuit says customers save an average of 15 hours per week on manual data entry. That figure comes from a September 2022 survey of QuickBooks Online users who had used a spreadsheet. The page gives no sample size, so treat it as Intuit's claim."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2025 month-end close survey from Ledge asked 100 finance professionals about their close. It found that 94% of teams use Excel in month-end close. Half of them say Excel is a key reason their close is slow. Most teams automate less than 40% of close work. These are finance teams, and they say Excel, not Google Sheets. Use the numbers as a rough guide."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Good fit for Sheets",
+        "Better elsewhere"
+      ],
+      "rows": [
+        [
+          "Bank reconciliation worksheet",
+          "Yes, on a template or your own tab",
+          "Your accounting tool, if it matches bank feeds for you"
+        ],
+        [
+          "Invoice tracker for a short client list",
+          "Yes",
+          "Your invoicing software once volume grows"
+        ],
+        [
+          "Official general ledger",
+          "No",
+          "Your accounting system"
+        ],
+        [
+          "Quick cash forecast",
+          "Yes",
+          "A dedicated forecasting tool once the model gets complex"
+        ],
+        [
+          "Audit trail for client sign-off",
+          "Revision history plus a PDF export",
+          "Check what your accounting software logs first"
+        ]
+      ],
+      "caption": "A rough split for small bookkeeping work. Your process may differ."
+    },
+    {
+      "type": "paragraph",
+      "text": "The practical rule is simple. Keep the official ledger in your accounting system. Keep the working papers around it in Sheets, where you can see every formula."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pricing if you want Lazur on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. It starts with a 3-day Pro trial and needs no credit card. The trial starts when you first open the app. Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions. Power costs $120/month, or $96/month billed annually, with 1,000 AI actions. Dictation is unlimited on both plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test it on a real reconciliation, not a demo file. Ask it one question per step, and see whether it saves you a trip through the menus. You can [download Lazur](/download) for the Mac or [compare plans on the pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your next close"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy your current reconciliation file and rename the copy.",
+        "Check the cell count and the longest text column against Google's limits.",
+        "Turn on manual calculation only for bulk entry, then turn it off again.",
+        "Set client access to Viewer, and check the revision history after each change.",
+        "Ask Lazur with ⌥⌘ to circle File > Settings > Calculation Settings the next time you need it."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "Google describes Sheets as available on phone, tablet, or desktop. Its product page does not list a separate Mac app. On a Mac, you open Sheets in a browser such as Chrome or Safari. For offline work, Chrome is the browser to use."
+    },
+    {
+      "question": "Can I use Google Sheets for bookkeeping on a Mac without installing anything?",
+      "answer": "Yes. Open Sheets in your browser and sign in with your Google account. Templates from the Template Gallery open as copies, so the originals stay unchanged. Check the file limits before you start a large year-end file."
+    },
+    {
+      "question": "How many cells can a Google Sheets bookkeeping file hold?",
+      "answer": "Google's limits page says up to 20 million cells or 100MB for files created in or converted to Google Sheets. An April 2026 Google post describes a move from 10 million to 20 million cells through a beta. Check which limit your account has."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur points at things with a circle and a label, guides you one click at a time, answers out loud and drafts text. It does not click buttons or operate other apps for you."
+    },
+    {
+      "question": "Does Lazur connect to QuickBooks or work as a Sheets add-on?",
+      "answer": "No. Lazur is not a plugin or add-in for any app, and it has no partnership with any app maker. Google lists its own third-party connections to QuickBooks on its product page, so check those with Google and Intuit."
+    },
+    {
+      "question": "Why did my Excel import lose text in Google Sheets?",
+      "answer": "Google's limits page says cells over 50,000 characters are removed when a file converts from Excel. Find the longest text cells and split them. Keep the original Excel file as your archive."
+    },
+    {
+      "question": "Can I work on Google Sheets offline on a Mac?",
+      "answer": "A July 2026 third-party guide says offline editing needs Chrome or Microsoft Edge with the Google Docs Offline extension. Safari and Firefox are not supported, and incognito windows do not work. The guide does not cover Mac steps, so confirm them before you rely on it."
+    },
+    {
+      "question": "Is my client data safe when I ask Lazur about it?",
+      "answer": "Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your firm's rules for client data before you ask about a named account."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google Workspace",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Sheets limits",
+      "url": "https://support.google.com/docs/answer/37603",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Faster performance and doubled cell limits in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "publisher": "Google Workspace Updates",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Workspace Updates: September 2026 (manual calculation setting)",
+      "url": "https://workspaceupdates.googleblog.com/2026/09/",
+      "publisher": "Google Workspace Updates",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Create a file from a template",
+      "url": "https://support.google.com/docs/answer/148833?hl=en-GB&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Docs Editors (Mac)",
+      "url": "https://support.google.com/docs/answer/181110",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The state of month-end close in 2025",
+      "url": "https://www.ledge.co/content/month-end-close-benchmarks-for-2025",
+      "publisher": "Ledge",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "QuickBooks vs Spreadsheets for Small Business Accounting",
+      "url": "https://quickbooks.intuit.com/global/resources/accounting-and-bookkeeping/quickbooks-vs-spreadsheets-for-small-business-accounting/",
+      "publisher": "Intuit QuickBooks",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Free small business bookkeeping templates",
+      "url": "https://www.smartsheet.com/content/small-business-bookkeeping-templates",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How to work offline on Google Sheets",
+      "url": "https://gkit.mreshank.com/blog/how-to-work-offline-on-google-sheets",
+      "publisher": "GKit",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I turn on manual calculation?",
+    "capability": "point",
+    "result": "Lazur circles File > Settings > Calculation Settings and reads out that the option is off by default.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome, a formula-heavy reconciliation file",
+    "pointsAt": "File > Settings",
+    "output": "Lazur circles the File menu, then the Settings item and Calculation Settings. It says the manual calculation setting is off by default, and that admins cannot control it."
+  },
+  "tasks": [
+    {
+      "say": "Where is the manual calculation setting?",
+      "capability": "point",
+      "result": "Lazur circles File > Settings > Calculation Settings and says the setting is off by default."
+    },
+    {
+      "say": "Walk me through freezing the header row.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time, waiting for each click until the top row is frozen."
+    },
+    {
+      "say": "Why does this SUMIFS return zero?",
+      "capability": "explain",
+      "result": "Lazur reads the formula and the criteria cell, then points at the text that does not match."
+    },
+    {
+      "say": "Draft a note to the client about the open invoice.",
+      "capability": "draft",
+      "result": "Lazur drafts a short note you can read, edit and send from your own email."
+    },
+    {
+      "say": "Dictate the adjustment memo for this entry.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Clean text appears at the cursor, ready for you to check."
+    },
+    {
+      "say": "Find the current Google Sheets limit for big files.",
+      "capability": "research",
+      "result": "Lazur runs a research job in its own Chrome tabs and returns a summary with sources."
+    },
+    {
+      "say": "Open the Template Gallery in Google Sheets.",
+      "capability": "everyday",
+      "result": "Lazur opens the link, so you can pick the template yourself."
+    }
+  ],
+  "type": "role-app",
+  "slug": "bookkeepers-google-sheets",
+  "role": "bookkeepers",
+  "app": "google-sheets",
+  "roleName": "Bookkeepers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-google-sheets/google-sheets-for-bookkeepers-on-mac-1-deb33f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A bookkeeper at a laptop reviewing a spreadsheet, the kind of Google Sheets for bookkeepers on Mac work this guide covers",
+      "caption": "Reconciliation usually starts with a bank export and a blank tab.",
+      "keywords": [
+        "google sheets for bookkeepers on mac",
+        "Google Sheets",
+        "Bookkeepers",
+        "Mac",
+        "bookkeeper working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-google-sheets/google-sheets-for-bookkeepers-on-mac-2-0a8f03.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "An accountant at a desk with papers and a computer screen showing a ledger, a common setting for Google Sheets for bookkeepers on Mac",
+      "caption": "Templates help, but check them before you trust them.",
+      "keywords": [
+        "google sheets for bookkeepers on mac",
+        "Google Sheets",
+        "Bookkeepers",
+        "Mac",
+        "accountant desk spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexas_Fotos",
+        "url": "https://pixabay.com/users/Alexas_Fotos-686414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/tax-consultant-secretary-office-1050832/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/bookkeepers-google-sheets/google-sheets-for-bookkeepers-on-mac-3-d15f93.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A person using a Mac laptop in a home office, a common setup for Google Sheets for bookkeepers on Mac",
+      "caption": "Chrome is the safer browser for offline work in Sheets.",
+      "keywords": [
+        "google sheets for bookkeepers on mac",
+        "Google Sheets",
+        "Bookkeepers",
+        "Mac",
+        "person using Mac laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for bookkeepers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "google sheets for bookkeeping on mac": 1,
+      "bookkeeping in google sheets": 1,
+      "google sheets bank reconciliation template": 1,
+      "google sheets accounts receivable tracker": 1,
+      "google sheets offline on mac chrome": 1,
+      "google sheets vs excel for bookkeeping": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

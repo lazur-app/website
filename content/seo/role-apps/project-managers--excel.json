@@ -1,0 +1,594 @@
+{
+  "title": "Excel for project managers on Mac: trackers, Gantt charts and status reports in 2026",
+  "metaTitle": "Excel for Project Managers on Mac: Trackers, Gantt and Reports",
+  "description": "Build a task tracker, a Gantt chart and a status report in Excel for Mac. Lazur points, explains and guides you one click at a time through each step.",
+  "targetKeyword": "excel for project managers on mac",
+  "secondaryKeywords": [
+    "excel gantt chart on mac",
+    "project tracker template excel mac",
+    "excel project status report mac",
+    "stacked bar gantt chart excel",
+    "excel project dependencies mac",
+    "excel project management mac"
+  ],
+  "intro": "Excel for project managers on Mac handles three jobs well: a task tracker, a simple Gantt chart and a status report. It gets hard to maintain once a project grows, or when several people edit copies of the same file. This guide shows how to set up each job in Excel for Mac, and where Lazur helps while you work.",
+  "tldr": [
+    "Use an Excel Table with a Status dropdown, so the tracker grows without breaking formulas.",
+    "Build a Gantt chart from Insert > Recommended Charts, a Stacked Bar chart and a hidden start series.",
+    "Excel has no dependency engine, so track predecessors in a column and flag conflicts with a formula.",
+    "Lazur helps inside Excel on Mac by pointing, explaining, guiding one click at a time, drafting and dictating. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "72%",
+      "label": "of respondents spend half a day or more every month collating reports",
+      "sourceUrl": "https://wellingtone.com/state-of-project-management-research/",
+      "sourceTitle": "The State of Annual Project Management Report (Wellingtone)"
+    },
+    {
+      "value": "13 to 16",
+      "label": "hours a week on status reporting, per Lucid's blog. A vendor claim with no named study.",
+      "sourceUrl": "https://www.lucensoftware.com/blog/manual-reporting-tax-pms-excel",
+      "sourceTitle": "Why PMOs spend 80% of their time formatting and 20% planning (Lucid Software)"
+    },
+    {
+      "value": "30 to 50",
+      "label": "tasks, the rough point where Teamwork says Excel upkeep rises steeply. The author's guidance.",
+      "sourceUrl": "https://www.teamwork.com/blog/excel-for-project-management/",
+      "sourceTitle": "Excel Project Management Guide: Limits, Tips & Alternatives (Teamwork)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most project managers on Mac use Excel for three jobs. They keep a task tracker, draw a timeline, and write a status report for a sponsor or client. Excel handles each job well at small scale. It starts to fight you as the project grows and more people touch the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What project managers build in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A typical tracker looks the same from project to project. Teamwork's guide to Excel project management lists task name, owner, start date, due date, status, priority, estimated hours, actual hours and notes. Start with that list. Add a column only when a real decision needs it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The rest of this page uses those columns. You will set up a table, a Gantt chart, a dependency check and a status pivot. Microsoft's Gantt support article names Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. Check your version under Excel > About Excel before you follow the chart steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a task tracker that survives a week of changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with an Excel Table. Select your header row and the data under it, then press ⌘ T. The table grows when you add a row. Formulas fill down on their own, and charts pick up new rows. A plain range does none of this."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table as soon as you create it. Microsoft's October 2026 What's New in Excel post says naming tables at creation is now available for Excel on Mac. Pick a short name like tblTasks, so formulas stay readable months later."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name tables early",
+      "text": "If you forget, rename the table later from the Table Design tab. Pick names that say what the table holds, such as tblCRMRollout, when you keep two project files open at once."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What to put in it",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Task ID",
+          "T-001, T-002 and so on",
+          "Gives dependencies and lookups a stable key"
+        ],
+        [
+          "Owner",
+          "One name per task",
+          "Someone must answer for every row"
+        ],
+        [
+          "Start and Due",
+          "Real dates, not text",
+          "Gantt bars and overdue checks need real dates"
+        ],
+        [
+          "Status",
+          "Not started, In progress, Blocked, Done",
+          "A dropdown keeps the wording consistent"
+        ],
+        [
+          "Estimated and Actual hours",
+          "Plain numbers",
+          "Lets you compare the plan with reality later"
+        ],
+        [
+          "Notes",
+          "Short text, one idea per cell",
+          "Long notes make filters and printing harder"
+        ]
+      ],
+      "caption": "A tracker layout that works for most small projects."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Use a dropdown for Status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the Status column. Go to Data > Data Validation, set Allow to List, and type your options separated by commas. Everyone now uses the same spelling. A filter for Done misses a cell that says Done with a trailing space."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Flag overdue tasks with a formula and conditional formatting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a column named Overdue. In the first data row, enter =AND([@Due]<TODAY(),[@Status]<>\"Done\"). Excel fills the formula down the table. A late task that is not Done returns TRUE."
+    },
+    {
+      "type": "paragraph",
+      "text": "TODAY() recalculates each time the file opens, so the flag stays current. The risk is a copy someone pasted as values. That copy freezes the flag on the day of the paste, and nobody notices until a client does."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, highlight the late rows. Select the table, go to Home > Conditional Formatting > New Rule, then choose Use a formula to determine which cells to format. Enter =$H2=TRUE, replacing H with the letter of your Overdue column. A light red fill works well."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blank Due cells count as zero, so they read as earlier than today. Add a blank check to the formula, such as =AND([@Due]<>\"\",[@Due]<TODAY(),[@Status]<>\"Done\"). The FAQ below covers this case."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a Gantt chart in Excel for Mac, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel has no built-in Gantt chart type. Microsoft says so in its support article on Gantt charts. You build one from a stacked bar chart, then hide the start dates. The article covers Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Add a Duration column with =[@Due]-[@Start]+1. The plus one counts the first day, so a task due the day it starts lasts one day.",
+        "Select the task name, Start and Duration columns. Go to Insert > Recommended Charts, choose Stacked Bar, then confirm the chart.",
+        "Click the Start series, the bars that carry the start dates, and choose Shape Fill > No Fill. Only the duration bars stay visible.",
+        "Control-click the vertical axis, choose Format Axis, then tick Categories in reverse order. Without this step, the first task sits at the bottom."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's support page also links free Gantt chart templates on create.microsoft.com for Microsoft 365 subscribers. Start from a template when you need color-coded categories quickly. Build your own when you need a column the template lacks, such as Predecessor."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test the save step",
+      "text": "Microsoft's article tells you to Control-click the chart and choose Save as Template. Its image caption says Command. Try Control-click first, then check the menu before you rely on the step."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two problems break Gantt charts in practice. The first is text dates. A Start cell that Excel reads as text sits in the wrong place or does not show at all. Real dates align right in the cell. The second is a row typed under a plain range. Inside a table, a new row joins the chart. Outside one, it does not."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Handle dependencies without pretending Excel has a dependency engine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel does not know that design must finish before build starts. Teamwork says dependencies in Excel are usually text notes. A date change then means finding every affected task by hand, and reminders depend on memory. A small check column helps, though it does not solve the problem."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give every task an ID in a Task ID column. Put the ID of the task it waits for in a Predecessor column. Then add a Check column with this formula: =IF([@Predecessor]=\"\",\"\",IF([@Start]<=INDEX([Due],MATCH([@Predecessor],[Task ID],0)),\"Check predecessor\",\"OK\")). Rows that start too early now say so."
+    },
+    {
+      "type": "paragraph",
+      "text": "The test uses <=, so a start on the same day the predecessor is due gets flagged. Change the test to < if your team starts the day after a finish. Decide the rule once, and keep it in a cell note so the next person knows it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say design is due on a Friday and build starts that same Friday. The check flags the build row. You then decide whether the overlap is real or whether the dates need to move. Excel points at the problem, and the decision stays with you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a status report with a pivot table, and check the totals"
+    },
+    {
+      "type": "paragraph",
+      "text": "A status report is mostly counting. How many tasks are Done, In progress or Blocked, grouped by owner. A pivot table does this without extra formulas. Put Owner in Rows, Status in Columns, and Task ID in Values set to Count. Our guide to [making a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel) covers each menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "Refresh the pivot after each change. Go to Data > Refresh All to update every pivot in the workbook. Teamwork lists stale pivots and weekend rebuilds as common pain points, so make refreshing part of your routine."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check totals before anything leaves your Mac. A 2016 paper by Ray Panko states that large spreadsheets very likely contain at least one incorrect bottom-line value. The abstract gives no percentage, so do not quote one. Compare the pivot count with =COUNTA(tblTasks[Task ID]) instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "A second check takes seconds. Filter the table to one owner, then compare the pivot row for that owner with what you see. Two numbers that disagree tell you something broke before a client does."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep one copy of the file, not five"
+    },
+    {
+      "type": "paragraph",
+      "text": "Teamwork lists version chaos as one of Excel's main limits for project work. Shared files pile up as copies with names like Project_v3_FINAL_revised. Overwrites happen. Comments end up in cells or side threads, and there is no audit trail."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep one file in OneDrive or SharePoint, and have everyone open that copy. Mac users often save to Desktop out of habit. Move the file into the cloud folder before the first share, then send a link instead of an attachment."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the file's version history when you need an older state. A new file name is not version history. Put the date in the name if your team likes it, such as a status file dated for each Friday, but keep one live copy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much time project reporting really takes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two figures circulate, and they do not match. Wellingtone's research summary says 72% of respondents spend half a day or more every month collating reports. Teamwork cites 42% for the same report, phrased as one or more days. Secondary summaries place the 42% figure in an earlier year. Quote the 72% with its exact wording."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lucid Software's blog says the average project manager spends 13 to 16 hours a week on status reporting. It names only industry research and cites no study. Treat it as a vendor estimate, not a benchmark."
+    },
+    {
+      "type": "paragraph",
+      "text": "The practical lesson is simple. Time your own report from start to finish for one cycle. Write down the step that took longest, which is often formatting and pulling numbers together. Fix that step first, before you buy anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Excel stops being enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "Teamwork says Excel maintenance rises steeply at roughly 30 to 50 tasks, several concurrent clients, or a larger team. That is the author's own guidance, not a survey result. Use it as a warning sign, not a rule."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for three signs. You spend Friday rebuilding the report. Two people keep different versions they both call current. Inserting a row breaks something, and you cannot say what. When two or three of those show up, a dedicated project tool may save more time than Excel does."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel still works well for the reporting layer. Many teams keep their tracker in a dedicated tool, then export the numbers to Excel for the sponsor deck. Check your tool's export options before you rebuild anything by hand."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ and ask about anything on screen, and Lazur answers out loud. It listens and looks at the screen only while you hold the shortcut. It does not click buttons or edit your file for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Three kinds of ask fit this job. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. Ask for text, and Lazur drafts it for you to edit."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Where is Recommended Charts? Lazur circles it on screen.",
+        "Walk me through the Stacked Bar steps. Lazur waits for each click.",
+        "Why does this cell show a number, not a date? Lazur explains the format.",
+        "Draft the status note from these rows. You edit it before it goes out.",
+        "Research Gantt templates. Lazur runs the search in its own Chrome tabs."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation fits status notes well. Hold fn, speak, and clean formatted text lands at the cursor in any app, Excel included. Snippets and a personal dictionary help too, so project names come out spelled the way you expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps a memory of what you asked and did, and that memory stays on your Mac. It runs on macOS, on Apple silicon and Intel. Windows is planned, not available. The Pro trial lasts 3 days, needs no credit card, and starts when you first open the app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes project managers make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing dates as text. Real dates align right in the cell. Text often aligns left and breaks charts.",
+        "Inserting rows inside a plain range. Formulas can point at the wrong cells. A table avoids most of that.",
+        "Pasting the Overdue results as values. The flag stops updating on that day.",
+        "Merging cells in the tracker. Sorting and filtering get messy, and merged cells cause chart trouble.",
+        "Keeping five copies of the file. Teamwork ties overwrites and lost comments to this habit.",
+        "Trusting one total. Check counts with a second formula before you send anything."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from a plain range that grew past its first draft. Convert it to a table early, and most of them go away."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine that takes less time"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Update Status and Actual hours on the same day each week, before the status meeting.",
+        "Refresh the pivot with Data > Refresh All before you read it.",
+        "Check the Overdue flag and the Check predecessor column.",
+        "Copy the pivot counts into the status note. Dictate the risks with fn.",
+        "Save to the shared folder, then send the link, not an attachment."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Set the weekly update as a reminder. Ask Lazur to add it to Apple Reminders by voice, so the update does not depend on memory. The routine then runs without you deciding each Friday."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start with one live project this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one project that is live today. Build the tracker, add the Overdue flag, and draw one Gantt chart. Note how long the report takes. Then run next week's report the new way and compare. If the new way saves real time, build the next project the same way."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can [download Lazur](/download) for Mac and start the 3-day Pro trial, or read [pricing](/pricing) first. The [Excel page](/apps/excel) shows more of what Lazur does inside the app. Lazur works in any app on screen, so Excel is one place it helps, not the only one."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have a Gantt chart?",
+      "answer": "Not as a built-in chart type. Microsoft says Excel has no built-in Gantt chart type, so you build one from a stacked bar chart with a hidden start series. The support article covers Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac."
+    },
+    {
+      "question": "Is Excel good enough for project management on Mac?",
+      "answer": "For a small project, usually yes. Teamwork says upkeep rises steeply at roughly 30 to 50 tasks, several concurrent clients, or a larger team. That is the author's guidance, not a survey result, so treat it as a warning sign."
+    },
+    {
+      "question": "How do I track task dependencies in Excel?",
+      "answer": "Add a Task ID column and a Predecessor column, then a Check column that flags a start on or before the predecessor's due date. The formula shows conflicts. It does not move dates, so you still make the call."
+    },
+    {
+      "question": "Why does my Gantt chart list the tasks upside down?",
+      "answer": "Excel draws the first category at the bottom by default. Control-click the vertical axis, choose Format Axis, and tick Categories in reverse order."
+    },
+    {
+      "question": "Why does my overdue flag show TRUE for rows with no due date?",
+      "answer": "A blank cell counts as zero, which is earlier than today. Add a blank check, such as =AND([@Due]<>\"\",[@Due]<TODAY(),[@Status]<>\"Done\"), so those rows return FALSE."
+    },
+    {
+      "question": "Can Lazur set up the Gantt chart or the pivot table for me?",
+      "answer": "No. Lazur points at things, explains them, guides you one click at a time while it waits for each click, and drafts text. It does not click buttons or operate other apps for you."
+    },
+    {
+      "question": "Does Lazur work with Excel on Windows?",
+      "answer": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available, so Lazur does not run on a Windows PC today."
+    },
+    {
+      "question": "What does Lazur hear and see, and is any of it stored?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "How long is the free trial?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app, not when you create an account."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Present your data in a Gantt chart in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/present-your-data-in-a-gantt-chart-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel Project Management Guide: Limits, Tips & Alternatives",
+      "url": "https://www.teamwork.com/blog/excel-for-project-management/",
+      "publisher": "Teamwork",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The State of Annual Project Management Report",
+      "url": "https://wellingtone.com/state-of-project-management-research/",
+      "publisher": "Wellingtone",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Why PMOs spend 80% of their time formatting and 20% planning",
+      "url": "https://www.lucensoftware.com/blog/manual-reporting-tax-pms-excel",
+      "publisher": "Lucid Software",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What We Don't Know About Spreadsheet Errors Today",
+      "url": "https://arxiv.org/abs/1602.02601",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the setting that flips my Gantt chart so task one sits at the top?",
+    "capability": "point",
+    "result": "Lazur circles the task names on the vertical axis and labels them, then tells you to Control-click there and choose Format Axis.",
+    "shell": "sheet",
+    "context": "Gantt chart in Excel for Mac with the first task at the bottom",
+    "output": "The setting lives on the vertical axis. Control-click the task names, choose Format Axis, then tick Categories in reverse order. Your first task moves to the top.",
+    "pointsAt": "Vertical axis labels"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is Recommended Charts in Excel?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the Recommended Charts button so you can find it on screen."
+    },
+    {
+      "say": "Walk me through turning these rows into a Gantt chart.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click, so you stay in control of the workbook."
+    },
+    {
+      "say": "Why does this cell show a number instead of a date?",
+      "capability": "explain",
+      "result": "Lazur reads the cell on screen, explains the number format, and tells you which format to pick."
+    },
+    {
+      "say": "Draft a status note for the sponsor from this tracker.",
+      "capability": "draft",
+      "result": "Lazur writes a short status note from the visible rows. You edit it, then send it yourself."
+    },
+    {
+      "say": "Dictate the risk note into this cell.",
+      "capability": "dictate",
+      "result": "Hold fn, speak, and clean formatted text lands at the cursor in Excel."
+    },
+    {
+      "say": "Research how other teams set up Gantt templates for Excel.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "say": "Remind me on Friday to refresh the status pivot.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders, so the refresh does not depend on memory."
+    }
+  ],
+  "type": "role-app",
+  "slug": "project-managers-excel",
+  "role": "project-managers",
+  "app": "excel",
+  "roleName": "Project managers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-excel/excel-for-project-managers-on-mac-1-e3fd5c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Excel for project managers on Mac happens at desks like this, with a laptop and a task list open",
+      "caption": "Most tracker work happens at a desk, on a laptop.",
+      "keywords": [
+        "excel for project managers on mac",
+        "Excel",
+        "Project managers",
+        "Mac",
+        "project manager desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/project-management-product-management-5235092/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-excel/excel-for-project-managers-on-mac-2-fed23d.jpg",
+      "width": 1280,
+      "height": 859,
+      "alt": "A team reviews a project schedule during a planning meeting in an office",
+      "caption": "Status reports get read in meetings like this one.",
+      "keywords": [
+        "excel for project managers on mac",
+        "Excel",
+        "Project managers",
+        "Mac",
+        "team planning meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sarahblocks",
+        "url": "https://pixabay.com/users/sarahblocks-8094083/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/meeting-coworkers-group-office-4156018/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-excel/excel-for-project-managers-on-mac-3-44ffdf.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A man types on a MacBook at a desk, updating a spreadsheet",
+      "caption": "A set weekly routine cuts the time the update takes.",
+      "keywords": [
+        "excel for project managers on mac",
+        "Excel",
+        "Project managers",
+        "Mac",
+        "man using macbook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for project managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel gantt chart on mac": 1,
+      "project tracker template excel mac": 1,
+      "excel project status report mac": 1,
+      "stacked bar gantt chart excel": 1,
+      "excel project dependencies mac": 1,
+      "excel project management mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

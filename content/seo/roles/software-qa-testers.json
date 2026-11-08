@@ -1,0 +1,654 @@
+{
+  "title": "AI assistant for QA testers on Mac: a voice helper for bugs, tests and triage",
+  "metaTitle": "AI Assistant for QA Testers on Mac | Lazur",
+  "description": "An AI assistant for QA testers on Mac that sees your screen while you hold ⌥⌘. It explains logs, drafts bug reports and dictates text in any app.",
+  "targetKeyword": "ai assistant for qa testers",
+  "secondaryKeywords": [
+    "AI tool for software testers",
+    "QA tester daily tasks",
+    "bug report template for Mac",
+    "test case and edge case ideas",
+    "Linear bug triage on Mac",
+    "VS Code for QA testers",
+    "voice assistant for Mac testing",
+    "Jira on Mac in the browser"
+  ],
+  "intro": "An AI assistant for QA testers on Mac should see the screen you are looking at, explain what it sees, and draft text you can dictate or paste. Lazur is a voice assistant for the Mac that does exactly that. Hold ⌥⌘, ask about anything on screen, and it answers out loud. This page covers where QA time goes, what to hand off, and where you stay in charge.",
+  "tldr": [
+    "Lazur is a voice assistant for the Mac. Hold ⌥⌘ and ask about anything on your screen.",
+    "It explains log lines and test steps, points at buttons, guides you through unfamiliar tools and drafts bug text.",
+    "Hold fn to dictate clean text into a Linear ticket, a Slack thread or a bug report in any app.",
+    "No study measures how QA testers spend their day. The figures here come from job duties and knowledge worker surveys.",
+    "Check your employer's rules before you point Lazur at a screen that shows real customer data."
+  ],
+  "stats": [
+    {
+      "value": "187,600",
+      "label": "Software QA analysts and testers employed in 2025, according to BLS",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Software Developers, Quality Assurance Analysts, and Testers"
+    },
+    {
+      "value": "25%",
+      "label": "Time leaders and teams waste searching for answers, per Atlassian's 2025 survey",
+      "sourceUrl": "https://www.atlassian.com/blog/state-of-teams-2025",
+      "sourceTitle": "Atlassian State of Teams 2025"
+    },
+    {
+      "value": "117",
+      "label": "Emails the average worker receives each day, most of them skimmed in under 60 seconds",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "sourceTitle": "Microsoft WorkLab: Breaking down the infinite workday"
+    },
+    {
+      "value": "275",
+      "label": "Interruptions a day for the heaviest 20% of users, from meetings, emails or chats",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "sourceTitle": "Microsoft WorkLab: Breaking down the infinite workday"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Start with the honest version. No study measures how QA testers split their day. Most public numbers cover knowledge workers in general, or come from job descriptions. That is still enough to see the shape of the work. Treat the figures below as a rough map, not a timesheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where a QA tester's day goes"
+    },
+    {
+      "type": "paragraph",
+      "text": "The U.S. Bureau of Labor Statistics lists about 187,600 jobs for software quality assurance analysts and testers in 2025. Its duties list is short. You write test plans, scenarios and procedures. You run manual or automated tests. You document and report defects, and you give feedback to developers and stakeholders."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read that list against a normal week. Planning and running tests sit at the core. Reporting and talking to people take up time the duties list does not measure. Those are the parts a voice assistant can actually touch."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two outside numbers help frame the rest. Atlassian's State of Teams 2025 found that leaders and teams waste 25% of their time searching for answers. The survey covered 12,000 knowledge workers and 200 executives. For a tester, that search usually means hunting for the build number, the spec, or the fix that landed last week."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's 2025 Work Trend Index adds the interruption side. It reports the average worker receives 117 emails a day and 153 Teams messages on a weekday. Heavy users are interrupted about every two minutes during core hours. That figure comes from the top 20% of users by ping volume, so it describes a heavy day, not a typical one."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What these numbers do not say",
+      "text": "None of these figures measure testers. Microsoft's data and Atlassian's survey both cover knowledge workers. PractiTest's 2026 State of Testing Report draws on thousands of practitioners, but its page gives no breakdown of tester time. Use these as a rough picture, then check your own calendar for one week."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What an AI assistant for QA testers should do"
+    },
+    {
+      "type": "paragraph",
+      "text": "The job breaks into five parts. The assistant reads the screen you are looking at. It explains what it sees in plain language. It drafts text you can paste or dictate. It answers quick questions without sending you to another tab. Each part maps to a real task in your week."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explain: read a stack trace, a log line or a failed assertion and say what it probably means.",
+        "Point: find the button, field or menu you keep losing. Lazur circles it and labels it on screen.",
+        "Guide: walk through an unfamiliar tool one click at a time, waiting for you between steps.",
+        "Draft and dictate: turn rough notes into a bug report or test case, then type it at the cursor.",
+        "Research: run a search job in Lazur's own Chrome tabs and get back a summary and a report."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That list covers the work around testing. It does not cover the calls that belong to you. Severity, scope and release risk still need a person who knows the product. Lazur can help you phrase those calls. It cannot make them for your team."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Setup on a Mac for QA work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the download. Get Lazur from the [download page](/download), open it once, and allow the permissions macOS asks for. The settings live in System Settings > Privacy & Security. If a shortcut does nothing on first use, check the microphone and screen recording entries there."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install Lazur from the download page.",
+        "Open the app once. The free trial starts then, and it needs no credit card.",
+        "Hold ⌥⌘ and ask about the window in front of you.",
+        "Hold fn in a text field and dictate one sentence to test it.",
+        "Compare the plans on [pricing](/pricing) before the trial ends."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep Apple's screenshot keys close too. Shift-Command-4 captures a selected portion and saves it to the desktop. Add Control to copy it to the clipboard instead. Shift-Command-5 opens the Screenshot panel, which can also record the screen. Capture the repro first, then ask Lazur to explain it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur works from what is on your screen. Put the right build in front before you ask. A staging window next to a production window invites a wrong answer, and a wrong answer costs more time than the question saved."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Bug reports and Linear tickets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Jira is where the Mac setup gets awkward. Atlassian says support has ended for the Jira Cloud for Mac app and recommends a web browser. The page gives no end date, so do not plan around a native app. Run Jira in Chrome or Safari, and let Lazur work on the page that is open."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your team uses Linear, keep its window in front and hold ⌥⌘ over the view you need. For a closer look at triage, read the [Linear page for software QA testers](/for/software-qa-testers/linear)."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Typing it yourself",
+        "With Lazur on Mac"
+      ],
+      "rows": [
+        [
+          "Write a bug title",
+          "Rewrite it until it reads right",
+          "Dictate a rough version with fn, then ask Lazur to tighten it"
+        ],
+        [
+          "Find the Retest button",
+          "Scan the page for it",
+          "Ask where it is, and Lazur circles it"
+        ],
+        [
+          "Explain a log line",
+          "Search the docs and guess",
+          "Hold ⌥⌘ and ask, and Lazur answers out loud"
+        ],
+        [
+          "Fill in steps to reproduce",
+          "Type them from memory",
+          "Describe the path out loud, and Lazur drafts the list"
+        ]
+      ],
+      "caption": "Common tester tasks and how a voice assistant changes each one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Bug report template for Mac: what a useful report needs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bug reports fail for the same reasons. The title describes a feeling, not a fault. The steps skip a click. The expected result is missing. A useful report names the build, the browser, the steps, the expected result and the actual result, in that order. Lazur helps with the wording, but you still supply the facts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. You remove a coupon on a checkout page, and the total shows a zero for a moment before it corrects. Hold fn and say what you saw, in order. Then hold ⌥⌘ and ask Lazur for a title, steps to reproduce, an expected result and an actual result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Compare two titles. The weak one reads checkout is broken. The useful one reads checkout total shows a zero for a moment after a coupon is removed. The second title tells a developer where to look, and it stays true after the fix."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reread every step against what you did, not what you meant to do.",
+        "Confirm the build and the browser version. Lazur cannot know them unless they are on screen.",
+        "Delete any detail you did not see. A draft guesses when the screen is silent.",
+        "Keep the severity field for yourself. It depends on your release plan, not on the screen."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Reproduce before you draft",
+      "text": "Never submit a draft you have not reproduced. A fluent summary can sound right and still skip the step that breaks the feature."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test cases and edge cases, talked through"
+    },
+    {
+      "type": "paragraph",
+      "text": "Test case work starts with the spec, then moves to the edges. Edges are where bugs hide. Describe the screen out loud and ask what you are missing. Lazur answers from what it sees and from what you tell it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a password reset form. The happy path is easy. Hold ⌥⌘ and ask what edge cases you are missing for this form. A useful answer covers an expired link, a link opened twice, a new password that matches the old one, a paste with trailing spaces, and a back button after submit."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Expired or reused links, and what happens on the second click.",
+        "Input with leading or trailing spaces, pasted from a password manager.",
+        "Browser back and forward after a submit, especially on a slow network.",
+        "Two tabs open at once with the same account.",
+        "Date and time formats that change with the locale or time zone shown on screen."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Then ask for the draft in a fixed shape. Ask for a title, a precondition, steps and an expected result for each case. A reused reset link might come out like this."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Title: Reused reset link shows an error, not the new password form.",
+        "Precondition: the reset link was used once already.",
+        "Steps: open the link a second time, then submit a new password.",
+        "Expected result: the page refuses the link and offers a fresh one."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate your edits as you go. Keep the cases that match your spec, and cut the rest. A short list you trust beats a long list you skimmed."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "VS Code for QA testers: failing tests and terminal output"
+    },
+    {
+      "type": "paragraph",
+      "text": "In VS Code, the friction is context. A test output panel, a terminal and a source file all compete for your eyes. Hold ⌥⌘ while the failing line is on screen and ask what it means. Lazur explains the red text out loud and names the line to check first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the terminal from View > Terminal, or press ⌃`. Open the command palette from View > Command Palette, or press ⇧⌘P. Both help when you want Lazur to point at the menu item you need, not the one you remember."
+    },
+    {
+      "type": "paragraph",
+      "text": "A failing test often shows two messages. The test runner says what failed, and the output panel says why. Read both before you draft anything. A timeout message can follow a successful response, which points at the client code, not the server."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Mask logs before you share them",
+      "text": "Logs can hold tokens, email addresses and customer IDs. Before you hold the key over a log, mask anything you should not share, and follow your employer's data rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "The [VS Code page for software QA testers](/for/software-qa-testers/vs-code) covers setup and bug report steps in more detail."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Slack interruptions and getting unblocked"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix for interruptions is timing, not speed. Decide when you read chat, then dictate replies in one pass. Lazur helps you write the reply. You decide when it goes out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Slack's Mac desktop app needs macOS 13 or later, and Slack asks for version 4.44 or newer. Check both before you blame the assistant for a broken window. For missed alerts, read the [fix for Slack notifications on Mac](/how-to/fix-missing-notifications-in-slack)."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ask Lazur to circle the latest unread message, then reply by dictation.",
+        "Hold fn, say the reply in plain words, and let Lazur type it at the cursor.",
+        "Ask Lazur to draft a short status line for the thread, then edit it yourself.",
+        "Ask what a long thread is about before you read every message in it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation works in the Slack message box because Lazur types at the cursor. It does not press Send for you. Read the message, then send it yourself."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and test data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models. Memory of what you asked stays on the Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Those are Lazur's stated rules. They are not a compliance certification, and this page does not claim one. Test environments often hold real customer records, copies of production data, or secrets. Your employer's rules decide what you may show anyone, including an AI tool. Ask your security team before you use Lazur on those screens."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Ask before the first real screen",
+      "text": "If a screen shows production data, pause. Check the rule first, then decide. A short question to your security team costs far less than a privacy incident."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes QA testers make with an AI assistant"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking for a bug report before you reproduce the bug. The draft then reads like a guess.",
+        "Trusting the summary of a long log without opening the lines it cites.",
+        "Pasting a whole test plan at once. Ask for one section at a time instead.",
+        "Expecting Lazur to click Submit. It guides and points, and you click.",
+        "Forgetting that Lazur only listens while you hold the key. Nothing runs in the background.",
+        "Dictating into the wrong field. Check where the cursor sits before you hold fn."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from speed. A short pause before each request saves a rewrite later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your week, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur fits the small, repeated tasks around testing. Looking up a button, reading a stack trace, drafting a report and answering a Slack thread all qualify. It does not fit work that needs a dedicated tool, such as running a full regression suite or editing your test management data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Jira, Linear, Slack or VS Code. It has no partnership with any of those app makers. It works from what is on your screen, so it only knows what you show it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install Lazur from the download page and open it once.",
+        "Pick one repeating task, such as bug reports or edge case lists.",
+        "Try it first on a test environment that holds no customer data.",
+        "Check your employer's rules on AI tools and test data.",
+        "Review every draft before it leaves your hands."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "After the first week, compare the tasks you tried with the ones you still do by hand. Keep the ones that save you time, and drop the rest. When you are ready to pay, the plans are on [pricing](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur click buttons or run tests for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It guides you one click at a time, points at things on screen, explains what it sees and drafts text you can paste or dictate."
+    },
+    {
+      "question": "Does Lazur work inside Jira?",
+      "answer": "Lazur is not a plugin or add-in for any app. Atlassian says support has ended for the Jira Cloud for Mac app, so run Jira in a browser. Lazur works on whatever is on your screen, including a Jira page in Chrome or Safari."
+    },
+    {
+      "question": "Can it write test cases from a spec?",
+      "answer": "It can draft test cases from text you give it or from text on screen. Check every step against the spec before you use it. A draft can sound right and still miss a rule that the spec states."
+    },
+    {
+      "question": "Is my test data safe to use with it?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you and are not stored. Content is never used to train AI models. Follow your employer's rules on test data, because this page makes no compliance claims."
+    },
+    {
+      "question": "How do I start Lazur and dictate text?",
+      "answer": "Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Hold fn to dictate clean text at the cursor in any app. Read the text before you send it."
+    },
+    {
+      "question": "Does it work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, but it is not available."
+    },
+    {
+      "question": "Does it keep a history of what I asked?",
+      "answer": "Lazur keeps a memory of what you asked and did, and that memory stays on the Mac. Check the download page and the pricing page for the current plan details before you decide."
+    },
+    {
+      "question": "Is there a free trial?",
+      "answer": "Yes. The trial needs no credit card, and it starts when you first open the app. Check the pricing page for current plan options after the trial."
+    }
+  ],
+  "sources": [
+    {
+      "title": "BLS Occupational Outlook Handbook: Software Developers, Quality Assurance Analysts, and Testers",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Atlassian State of Teams 2025",
+      "url": "https://www.atlassian.com/blog/state-of-teams-2025",
+      "publisher": "Atlassian",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Breaking down the infinite workday",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "publisher": "Microsoft WorkLab",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Work in a Jira Cloud project on your Mac",
+      "url": "https://support.atlassian.com/jira-cloud-macos/docs/work-in-a-jira-cloud-project-on-your-mac/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Take a screenshot on Mac",
+      "url": "https://support.apple.com/guide/mac-help/take-a-screenshot-mh26782/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "System requirements for using Slack",
+      "url": "https://slack.com/help/articles/115002037526-System-requirements-for-using-Slack",
+      "publisher": "Slack Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The 2026 State of Testing Report",
+      "url": "https://www.practitest.com/state-of-testing/",
+      "publisher": "PractiTest",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "painPoints": [
+    {
+      "title": "Searching for answers",
+      "text": "Atlassian's 2025 survey says leaders and teams waste 25% of their time searching for answers. For a tester, that search is the build number, the spec and the fix that landed late."
+    },
+    {
+      "title": "Interruptions that never stop",
+      "text": "Microsoft reports that heavy users are interrupted about every two minutes in core hours. Each interruption breaks a test pass you were halfway through."
+    },
+    {
+      "title": "A full inbox and a busy chat window",
+      "text": "The average worker receives 117 emails a day and 153 Teams messages on a weekday, per Microsoft. Most emails are skimmed in under 60 seconds."
+    },
+    {
+      "title": "Writing up defects, again and again",
+      "text": "The Bureau of Labor Statistics lists documenting and reporting defects as a core duty. A clear report takes real time, and you often write it between other tasks."
+    },
+    {
+      "title": "Jira on a Mac without a native app",
+      "text": "Atlassian says support has ended for the Jira Cloud for Mac app and recommends a web browser. Many testers now keep Jira in a tab next to everything else."
+    }
+  ],
+  "day": [
+    {
+      "time": "08:45",
+      "say": "What's on my plate before stand-up?",
+      "result": "Lazur reads today's Calendar events and your open Reminders out loud, so you start with the list in front of you.",
+      "capability": "everyday"
+    },
+    {
+      "time": "09:30",
+      "say": "Where is the Retest button on this ticket?",
+      "result": "Lazur circles the button on screen and labels it, so you can click it yourself.",
+      "capability": "point"
+    },
+    {
+      "time": "10:15",
+      "say": "Walk me through filtering this Linear view by label.",
+      "result": "Lazur gives you one step at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "time": "11:00",
+      "say": "Hold fn: the upload fails silently for large files, and no error shows.",
+      "result": "Lazur types clean text at the cursor, in the ticket's description field, so you can check it before you save.",
+      "capability": "dictate"
+    },
+    {
+      "time": "13:30",
+      "say": "Draft edge cases for the password reset form.",
+      "result": "Lazur drafts a short list you can paste into your test plan. You cut the items that do not fit.",
+      "capability": "draft"
+    },
+    {
+      "time": "15:00",
+      "say": "Why does this log say timeout when the request returned OK?",
+      "result": "Lazur reads the line on screen, explains the likely cause, and names the line to check first.",
+      "capability": "explain"
+    },
+    {
+      "time": "16:20",
+      "say": "Find the release note about the export change in our docs.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this one red, and where do I look first?",
+    "capability": "point",
+    "context": "Example: VS Code with one failing test selected in the Test Explorer sidebar",
+    "output": "Lazur circles the red row in the Test Explorer sidebar, then the matching line in the output panel. It says the test expected a discounted total, and the code returned zero after the coupon was removed. It suggests you check the coupon step first.",
+    "pointsAt": "red row in Test Explorer",
+    "result": "Lazur points at the failing row and the log line, then explains the mismatch out loud.",
+    "shell": "code"
+  },
+  "type": "role",
+  "slug": "software-qa-testers",
+  "role": "software-qa-testers",
+  "roleName": "Software QA testers",
+  "roleSingular": "software QA tester",
+  "apps": [
+    "vs-code",
+    "linear",
+    "chrome",
+    "slack"
+  ],
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role/software-qa-testers/ai-assistant-for-qa-testers-1-061c6f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A QA tester reads a bug list on a laptop, the daily screen work an AI assistant for QA testers supports",
+      "caption": "Testers spend much of the day reading and writing on screen.",
+      "keywords": [
+        "ai assistant for qa testers",
+        "Software QA testers",
+        "AI assistant",
+        "Mac",
+        "software tester laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-926242/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/software-qa-testers/ai-assistant-for-qa-testers-2-e1aa6d.jpg",
+      "width": 1280,
+      "height": 542,
+      "alt": "A small team meets at a desk while one person points at a laptop screen",
+      "caption": "Meetings and chat messages break up the working day.",
+      "keywords": [
+        "ai assistant for qa testers",
+        "Software QA testers",
+        "AI assistant",
+        "Mac",
+        "office team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/planning-plan-business-people-team-2899922/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/software-qa-testers/ai-assistant-for-qa-testers-3-94c307.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close view of hands typing on a laptop keyboard while drafting a bug report",
+      "caption": "Drafting a bug report by hand or by voice.",
+      "keywords": [
+        "ai assistant for qa testers",
+        "Software QA testers",
+        "AI assistant",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "ai assistant for qa testers",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "AI tool for software testers": 1,
+      "QA tester daily tasks": 1,
+      "bug report template for Mac": 2,
+      "test case and edge case ideas": 1,
+      "Linear bug triage on Mac": 1,
+      "VS Code for QA testers": 2,
+      "voice assistant for Mac testing": 1,
+      "Jira on Mac in the browser": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

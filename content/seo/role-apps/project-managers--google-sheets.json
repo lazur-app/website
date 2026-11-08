@@ -1,0 +1,634 @@
+{
+  "title": "Google Sheets for project managers on Mac: trackers, timelines, and status updates in 2026",
+  "metaTitle": "Google Sheets for Project Managers on Mac: Trackers and Timelines",
+  "description": "Google Sheets for project managers on Mac: build a task tracker, a timeline without Gantt tools, and overdue flags. Steps for Chrome, plus Lazur.",
+  "targetKeyword": "google sheets for project managers on mac",
+  "secondaryKeywords": [
+    "google sheets project tracker on mac",
+    "google sheets gantt chart on mac",
+    "google sheets project management template",
+    "google sheets overdue tasks formula",
+    "google sheets status dropdown",
+    "google sheets shortcuts on mac"
+  ],
+  "intro": "Google Sheets works well for project managers on a Mac. It handles a task tracker, a simple timeline, and one shared file that several people can edit. You open it in a browser at sheets.google.com. This guide covers the tracker setup, a timeline built by hand, the formulas that flag overdue work, and the Mac shortcuts you use every day.",
+  "tldr": [
+    "Open Sheets in your Mac browser at sheets.google.com. Start from a template or a blank file, then keep one task on each row.",
+    "Google has no built-in Gantt chart, so build a timeline from a stacked bar chart with a Start column, a Duration column, and an End formula.",
+    "Use a Status dropdown and a formula-based Overdue flag. Exact status text is what keeps counts correct.",
+    "Use Option + / (Tool finder) when you know the command name but not where it lives. Use ⌘ + Option + = to insert rows above.",
+    "Lazur helps while you work. Ask where a column is, get steps one click at a time, or dictate a status note. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells per Google Sheets file, or 100MB, according to Google's Drive help page",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: file size and conversion limits"
+    },
+    {
+      "value": "61%",
+      "label": "of surveyed professionals use Google Sheets regularly, per Smartsheet's 2025 report",
+      "sourceUrl": "https://www.smartsheet.com/content/hidden-cost-of-spreadsheets-report",
+      "sourceTitle": "The Limitations of Spreadsheets: Smartsheet Original Research"
+    },
+    {
+      "value": "89%",
+      "label": "of surveyed professionals use more than one tool to manage their work",
+      "sourceUrl": "https://www.smartsheet.com/content/hidden-cost-of-spreadsheets-report",
+      "sourceTitle": "The Limitations of Spreadsheets: Smartsheet Original Research"
+    },
+    {
+      "value": "45%",
+      "label": "name manual updates as a top spreadsheet challenge",
+      "sourceUrl": "https://www.smartsheet.com/content/hidden-cost-of-spreadsheets-report",
+      "sourceTitle": "The Limitations of Spreadsheets: Smartsheet Original Research"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Start with the job, not the template. Most project managers on a Mac use Google Sheets for three things. They keep a task tracker, draw a timeline, and report status to someone above them. Pick the one you need this week. The other two can wait."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets for project managers on Mac: setup first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Google Sheets at sheets.google.com in your browser. Google's help pages for Sheets point to the browser as the way in. No standalone Mac app from Google was confirmed for this guide, so treat the browser as your workspace."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some guides describe a Chrome shortcut that opens Sheets in its own window. Those guides disagree on the menu path. Check Chrome's own menu for the option, and skip it if the steps do not match what you see."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Template Gallery sits at the top right of the Sheets home page. Open a template and Google makes a copy, so your starting file stays clean. Google's help page notes that some template features only work with work or school accounts. Check that before you build a process around a template."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a task tracker that stays readable"
+    },
+    {
+      "type": "paragraph",
+      "text": "A tracker needs few columns. Start with Task, Owner, Start, Due, Status, Flag, and Notes, in that order. Keep one task on each row. Write each task name as a short phrase that starts with a verb."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Task: one action per row, such as Confirm vendor start date.",
+        "Owner: a name picked from one list, so you can filter by person.",
+        "Start and Due: real dates, not typed text. Sorting and formulas need real dates.",
+        "Status: a dropdown with a few fixed options.",
+        "Flag: a formula that shows Overdue when needed. You never type in this column.",
+        "Notes: free text for blockers, kept in the last column so the other columns stay in view."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is one row as an example. Task reads Confirm vendor start date. Owner is a name. Start and Due are real dates. Status reads In progress. The Flag cell stays blank until the due date passes and the task is still open."
+    },
+    {
+      "type": "paragraph",
+      "text": "Typed status words cause most of the trouble in trackers. In progress, In Progress with a trailing space, and WIP all look like status to a person. A formula counts only the text it matches, and one trailing space is enough to break a match. That is why the dropdown matters."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make the Status column a dropdown. Select the column, then go to Data > Data validation. Add the options as a list, and use the same spelling everywhere. The [dropdown list guide for Chrome](/how-to/create-a-dropdown-list-in-google-sheets) has the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Freeze the header row so the column names stay visible as you scroll. Use View > Freeze > 1 row. The [freeze the top row guide](/how-to/freeze-the-top-row-in-google-sheets) shows the browser steps. Sort by due date when you review, using the [sort by column guide](/how-to/sort-data-by-column-in-google-sheets)."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a timeline without a Gantt button"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets has no built-in Gantt chart, according to Smartsheet's guide to Gantt charts in Sheets. Smartsheet sells project software, so weigh that view with care. The same guide says a basic Gantt chart can come from a stacked bar chart, and that Sheets handles simple versions well."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put the timeline on its own tab. Use four columns: Task in A, Start in B as a real date, Duration in C in days, and End in D. In D2, type =B2+C2 and fill it down with ⌘ + d. Format column D as a date, so the end dates read as dates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the Task, Start, and Duration columns together, including the header row. Go to Insert > Chart. In the Chart editor, choose a stacked bar chart. Remove the fill from the Start series, so only the duration bars show. The result looks like a simple Gantt chart."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Dependencies do not move on their own",
+      "text": "If one task slips, the tasks after it stay where they are. Smartsheet says Sheets dependencies do not update automatically. It also says Sheets has no automated workflows, so plan for manual checks at every schedule change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep dependencies to one predecessor per task. Write the predecessor's ID in its own column, then test the lookup on a copy. A formula that points back at its own row creates a circular reference error. You will see that error the first time you change a date."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas that flag overdue work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use TODAY() to compare due dates with the current date. In the Flag column, F, put this formula in F2 and fill it down: =IF(D2=\"\",\"\",IF(AND(D2<TODAY(),E2<>\"Done\"),\"Overdue\",\"\")). Here D is Due and E is Status. Select the cells and press ⌘ + d to fill down."
+    },
+    {
+      "type": "paragraph",
+      "text": "The blank check matters. A blank due date counts as zero in a comparison, so without the check an empty row looks overdue. Test that with one empty row before you trust the column."
+    },
+    {
+      "type": "paragraph",
+      "text": "To count overdue tasks on a summary tab, use COUNTIFS: =COUNTIFS(D2:D200,\"<\"&TODAY(),E2:E200,\"<>Done\"). Set the range to cover every row you expect. Whole-column ranges such as D:D also work. Some guides blame them for slow sheets, so test on your own file."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "TODAY() changes every day",
+      "text": "A report saved last week shows different counts when you open it today. Name the version under File > Version history > Name current version when you send a report, so the numbers stay on record."
+    },
+    {
+      "type": "paragraph",
+      "text": "Formula mistakes look fine at a glance. Check one overdue row by hand. Compare the flag with the due date and the status. Do this before each status meeting, not only the first time you build the sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts for Mac keys you press all day"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut page lists Mac shortcuts with ⌘ for Command and ⌥ for Option. Menu shortcuts on a Mac use Ctrl + Option. File, for example, is Ctrl + Option + f. Learn the handful below first, then look up the rest in the Tool finder."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "When you use it"
+      ],
+      "rows": [
+        [
+          "Fill down",
+          "⌘ + d",
+          "Copy a formula into the rows below"
+        ],
+        [
+          "Fill right",
+          "⌘ + r",
+          "Copy a formula across a row"
+        ],
+        [
+          "Paste values only",
+          "⌘ + Shift + v",
+          "Turn formula results into fixed values for a report"
+        ],
+        [
+          "Insert rows above",
+          "⌘ + Option + =",
+          "Add a task above the one you are on"
+        ],
+        [
+          "Delete rows",
+          "⌘ + Option + the minus key",
+          "Remove a task after you check what refers to it"
+        ],
+        [
+          "Hide row",
+          "⌘ + Option + 9",
+          "Clear finished rows from view without deleting them"
+        ],
+        [
+          "Tool finder",
+          "Option + /",
+          "Find any menu command by name"
+        ]
+      ],
+      "caption": "Mac shortcuts from Google's keyboard shortcut page, with when to use them."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Tool finder was called Search the menus. Press Option + / and type the name of the action. It works well when you know what you want but not where it lives in the menus."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Paste values for reports",
+      "text": "Paste values only with ⌘ + Shift + v into the report tab. The report then stops changing when the live tracker changes. Keep the live tracker and the report in separate tabs."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Share the file and see who changed what"
+    },
+    {
+      "type": "paragraph",
+      "text": "Several people can edit one Sheets file at the same time. Google's product page describes simultaneous editing, sharing permissions, and revision history. Open File > Version history > See version history to look back at earlier versions and who changed them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use [view only access](/how-to/share-with-view-only-access-in-google-sheets) for stakeholders who should read, not edit. Give edit access only to the people who update their own rows. Share with the team, not the whole company, when the file holds budget or staffing details."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lock the baseline. Select the range that holds the original dates, then go to Data > Protect sheets and ranges. Teammates can then change status without moving the baseline by mistake."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data limits to know before the file gets big"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive help page says a Sheets spreadsheet can hold up to 20 million cells or 100MB. Use that as the ceiling, and treat it as a hard limit rather than a target. Split the tracker long before you reach it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Connected Sheets has its own limits. Google's limits page says Connected Sheets pivot tables stop at 200,000 rows. Connected Sheets extracts stop at 500,000 rows or 5 million cells. Plan for those numbers if the tracker pulls from a large source."
+    },
+    {
+      "type": "paragraph",
+      "text": "Imports carry a catch too. Google's limits page says cells with more than 50,000 characters are removed when an Excel file converts to Google Sheets. Long notes fields are the most likely to hit that limit. Check them after every import. If you move files back out, the [download as Excel guide](/how-to/download-as-excel-in-google-sheets) covers the steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Google Sheets stops being enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "A spreadsheet fits a small project well. It gets harder when many projects share one file, when people need alerts, or when you report on workloads. Smartsheet's 2025 report surveyed more than 650 professionals, plus 16 in-depth interviews. The survey covers all professionals, not only project managers."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "The top challenges were manual updates at 45%, formatting issues at 36%, and undetected errors at 31%. Smartsheet also says teams spend more time maintaining their tools than using them to move work forward. It gives no percentage for that time."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same report found 61% of respondents use Google Sheets regularly. It found 89% use more than one tool to manage work. Among teams that used spreadsheets without considering alternatives, 49% were generally satisfied. Among teams that adopted an alternative, 76% were. Smartsheet sells dedicated project software, so weigh those figures with that in mind."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google's AI features in Sheets, and how far to trust them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Sheets product page says Gemini can build or edit a spreadsheet from a prompt. It also says Gemini can fill tables with Fill with Gemini, write formulas, and explain and fix formula errors."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page describes dashboards, heat maps, and Kanban boards built on your data without code. It lists connectors to Asana, HubSpot, Intuit QuickBooks, and Salesforce. These are Google's claims. This guide did not test them inside the app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test each feature on a copy of your file before you rely on it. Read every Gemini formula before you paste it. A formula you cannot explain is a formula you cannot defend in a status meeting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Lazur while you work in Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold Option and Command to ask about anything on your screen, and Lazur answers out loud. Ask where a column is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click. Lazur does not click buttons, edit your sheet, or operate other apps for you. You keep your hands on the mouse and the keyboard."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate status notes at the cursor in any app. Dictation writes clean, formatted text where your cursor sits. Lazur also handles Apple Reminders, Calendar events, timers, and web search, so small tasks do not pull you out of the file for long."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. A budget sheet is still sensitive, so read the details before you ask about one."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What Lazur is not",
+      "text": "Lazur is not a plugin or add-in for Google Sheets or any other app. It works on your screen, outside the file. It runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes project managers make in Sheets on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing dates as text. Text such as next Friday does not sort, and formulas skip it.",
+        "Spelling one status three ways. The dropdown fixes this in one step.",
+        "Deleting a row that other formulas point to. Check the references first, because a deleted reference can cause a reference error, shown as #REF.",
+        "Keeping one file for both the team and the report. Copy the report out, then paste values only.",
+        "Trusting a summary you have not checked. Test one row by hand before each status meeting.",
+        "Letting one file grow forever. Split it by program or quarter once it starts to lag."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine that keeps the file honest"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Filter the tracker to open tasks, then sort by due date.",
+        "Check the Overdue flags and the summary count against the rows.",
+        "Change status only through the dropdown. Do not type over it.",
+        "Copy the summary, then paste values only with ⌘ + Shift + v into the report tab.",
+        "Name the version under File > Version history > Name current version, then send the report."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the routine short. A brief session on the same day each week beats a long one before a meeting. The file stays readable when the same steps happen each time, and the people reading it learn where to look."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one live project this week. Build the tracker in a copy. Add the dropdown, the overdue flag, and the timeline, in that order. Then ask Lazur to point at anything you cannot find."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want voice help while you work, [download Lazur](/download). The [pricing page](/pricing) lists the plans, so you can compare them before you decide."
+    }
+  ],
+  "chart": {
+    "title": "Top spreadsheet challenges in Smartsheet's 2025 survey",
+    "bars": [
+      {
+        "label": "Manual updates",
+        "value": 45,
+        "highlight": true
+      },
+      {
+        "label": "Formatting issues",
+        "value": 36
+      },
+      {
+        "label": "Undetected errors",
+        "value": 31
+      }
+    ],
+    "unit": "%",
+    "note": "Share of respondents naming each challenge. The survey covers all professionals, not only project managers.",
+    "sourceUrl": "https://www.smartsheet.com/content/hidden-cost-of-spreadsheets-report",
+    "sourceTitle": "The Limitations of Spreadsheets: Smartsheet Original Research"
+  },
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "Google's help pages for Sheets point to the browser at sheets.google.com. No standalone Mac app from Google was confirmed for this guide. Some guides describe a Chrome shortcut that opens Sheets in its own window, but they disagree on the steps. Check Chrome's own menu first."
+    },
+    {
+      "question": "Does Google Sheets have a Gantt chart?",
+      "answer": "Not a built-in one. Smartsheet's guide says Google has no built-in Gantt chart maker or prebuilt template. You can build a basic version from a stacked bar chart, using a Start column, a Duration column, and an End formula."
+    },
+    {
+      "question": "How many cells can one Google Sheets file hold?",
+      "answer": "Google's Drive help page says up to 20 million cells or 100MB. Use that as the ceiling. Split the file well before you reach it, especially when several people edit the same sheet."
+    },
+    {
+      "question": "Does Lazur work inside Google Sheets?",
+      "answer": "Lazur works on your Mac screen, in any app, including the browser where Sheets runs. It points at columns, guides you one click at a time, and dictates text. It does not click buttons or edit the sheet for you."
+    },
+    {
+      "question": "Are there project management templates for Google Sheets?",
+      "answer": "Google's Template Gallery sits at the top right of the Sheets home page, and opening a template makes a copy. Smartsheet lists 14 project templates for Sheets, including a Gantt chart, a risk register, and a RACI matrix. That list comes from Smartsheet, not from Google's gallery."
+    },
+    {
+      "question": "Why does my status count show the wrong number?",
+      "answer": "Look for spelling differences, extra spaces, and mixed names. A formula counts only the exact text it matches. Use a dropdown for the Status column, so every row uses the same options."
+    },
+    {
+      "question": "Why is my tracker slow on my Mac?",
+      "answer": "Some guides blame volatile functions, conditional formatting, and whole-column ranges. Google's pages checked for this guide do not confirm those causes. Copy the file, remove one thing at a time, and test the speed after each change."
+    },
+    {
+      "question": "Can I dictate into a Sheets cell with Lazur?",
+      "answer": "Yes. Click the cell first, then hold fn and speak. Dictation types clean, formatted text at the cursor. Dictation is unlimited on both the Pro and Power plans."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Keyboard shortcuts for Google Sheets: Google Docs Editors Help (Computer)",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Use templates: Google Docs Editors Help (Computer)",
+      "url": "https://support.google.com/docs/answer/148833?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Drive Help: file size and conversion limits",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How to Make a Gantt Chart in Google Sheets",
+      "url": "https://www.smartsheet.com/content/make-gantt-chart-google-sheets",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Free Google Sheets Project Management Templates",
+      "url": "https://www.smartsheet.com/content/google-sheets-project-management-templates",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Limitations of Spreadsheets: Smartsheet Original Research",
+      "url": "https://www.smartsheet.com/content/hidden-cost-of-spreadsheets-report",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Due date column?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Due date header, so you find it without scanning the whole sheet.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome on a Mac, with a project tracker open",
+    "output": "A circle and label on the Due date column header, with a short spoken answer.",
+    "pointsAt": "Due date header"
+  },
+  "tasks": [
+    {
+      "say": "Where is the Status dropdown?",
+      "capability": "point",
+      "result": "Lazur circles the Status column header and labels it on screen."
+    },
+    {
+      "say": "Walk me through adding a dropdown to the Status column.",
+      "capability": "guide",
+      "result": "Lazur guides you through Data > Data validation one click at a time, waiting for each click."
+    },
+    {
+      "say": "What does this #REF error mean in cell G4?",
+      "capability": "explain",
+      "result": "Lazur explains that the formula points to a cell or row that no longer exists, and says where to check."
+    },
+    {
+      "say": "Draft a status note for the steering group from what is on screen.",
+      "capability": "draft",
+      "result": "Lazur drafts a short status note from the visible rows. You read and edit it before you send it."
+    },
+    {
+      "say": "Dictate the risk note for the vendor delay.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor, in whichever cell you clicked."
+    },
+    {
+      "say": "Remind me Friday to send the budget review.",
+      "capability": "everyday",
+      "result": "Lazur adds an Apple Reminders item for Friday, outside the Sheets tab."
+    },
+    {
+      "say": "Research Google's limits for Connected Sheets pivot tables.",
+      "capability": "research",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report."
+    }
+  ],
+  "type": "role-app",
+  "slug": "project-managers-google-sheets",
+  "role": "project-managers",
+  "app": "google-sheets",
+  "roleName": "Project managers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-google-sheets/google-sheets-for-project-managers-on-mac-1-491c67.jpg",
+      "width": 1280,
+      "height": 570,
+      "alt": "Project manager on a Mac using Google Sheets for a task tracker at a desk",
+      "caption": "Reviewing a task tracker on a laptop before a status meeting.",
+      "keywords": [
+        "google sheets for project managers on mac",
+        "Google Sheets",
+        "Project managers",
+        "Mac",
+        "project manager laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/monitor-plan-done-to-do-4094937/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-google-sheets/google-sheets-for-project-managers-on-mac-2-9c0fbd.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office desk with a notebook and laptop, set up for project planning",
+      "caption": "Plan the columns on paper before you open the sheet.",
+      "keywords": [
+        "google sheets for project managers on mac",
+        "Google Sheets",
+        "Project managers",
+        "Mac",
+        "office planning desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-iphone-notebook-pen-1841553/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/project-managers-google-sheets/google-sheets-for-project-managers-on-mac-3-4cb2c2.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Team gathered around a laptop during a project status meeting",
+      "caption": "Status updates often start from one shared spreadsheet.",
+      "keywords": [
+        "google sheets for project managers on mac",
+        "Google Sheets",
+        "Project managers",
+        "Mac",
+        "team meeting laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "profrahmed",
+        "url": "https://pixabay.com/users/profrahmed-55317004/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/businessman-office-computer-meeting-10210445/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for project managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "google sheets project tracker on mac": 1,
+      "google sheets gantt chart on mac": 1,
+      "google sheets project management template": 1,
+      "google sheets overdue tasks formula": 1,
+      "google sheets status dropdown": 1,
+      "google sheets shortcuts on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

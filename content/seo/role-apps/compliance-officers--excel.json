@@ -1,0 +1,539 @@
+{
+  "title": "Excel for compliance officers on Mac: audit trails, checks and voice help in Microsoft 365",
+  "metaTitle": "Excel for Compliance Officers on Mac: Audit Trails and Checks",
+  "description": "Excel for compliance officers on Mac: track changes with Show Changes, check formulas, clean exports with Power Query, and get voice help from Lazur.",
+  "targetKeyword": "excel for compliance officers on mac",
+  "secondaryKeywords": [
+    "compliance officer Excel Mac",
+    "Excel audit trail on Mac",
+    "Show Changes in Excel for Mac",
+    "Power Query in Excel for Mac",
+    "Excel error checking on Mac",
+    "Excel data validation for compliance",
+    "Excel compliance checklist Mac"
+  ],
+  "intro": "Excel for compliance officers on Mac comes down to three jobs. You track changes, check formulas, and clean exports from other systems. Microsoft 365 for Mac has built-in tools for all three. This page shows where each one lives, where it stops, and how Lazur can guide you through it.",
+  "tldr": [
+    "Track edits with Review > Show Changes, which covers the past 365 days according to Microsoft.",
+    "Check formulas with Formulas > Error Checking before any file goes to a reviewer.",
+    "Power Query sits under Data > Get Data (Power Query). An unaccepted community answer says it needs Excel 16.69 or later and macOS 13 or later.",
+    "Lazur circles the menu you need and guides you one click at a time. It never clicks for you."
+  ],
+  "stats": [
+    {
+      "value": "94%",
+      "label": "of audited operational spreadsheets had at least one error, per a summary of Raymond Panko's audit work",
+      "sourceUrl": "https://www.datahubpro.co.uk/spreadsheet-error-statistics",
+      "sourceTitle": "Spreadsheet Error Statistics 2026 (DataHub Pro)"
+    },
+    {
+      "value": "40%",
+      "label": "of office workers often struggle to make sense of their spreadsheet data",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release: almost half of users struggle with spreadsheet data"
+    },
+    {
+      "value": "92%",
+      "label": "of business people need to manipulate spreadsheet data before it is understandable",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release: almost half of users struggle with spreadsheet data"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows is the maximum a single Excel worksheet holds, the limit Power Query fills to",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/power-query-specifications-and-limits-in-excel-5fb2807c-1b16-4257-aa5b-6793f051a9f4",
+      "sourceTitle": "Power Query specifications and limits in Excel (Microsoft Support)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Most compliance officers do not live in Excel all day. The file opens when a policy check, an audit request or a vendor review lands on the desk. By then the workbook is often shared, often old, and often built by someone else. Excel for Mac handles this well once you know where the tools are. Start with three tabs: Review, Data and Formulas. Between them they hold most of what a compliance file needs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What compliance work looks like in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Compliance work in a spreadsheet is usually plain. You keep a control register with an owner, a due date and a status for each row. You log exceptions and the reason for each one. You track training completion and policy sign-offs. You compare a vendor list against an approved master list. Every one of these jobs depends on two things. The numbers must be right, and someone must be able to see who changed them. Excel does not give you the second point by default, so you need a few habits to fill the gap."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Control registers with owners, due dates and status columns",
+        "Exception logs that record who approved each exception and why",
+        "Attestation trackers for policies that staff must sign each year",
+        "Vendor or supplier lists checked against an approved master list",
+        "Transaction samples pulled for review from a larger export",
+        "Training completion sheets that feed a quarterly report"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel version before you promise a workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with Excel > About Excel. The version number tells you which features your copy can use. Microsoft's Office for Mac release notes list Excel 16.114 for October 2026, with quality and performance improvements only. Version 16.113, released September 16, 2026, added a change history skill that explains how a workbook has evolved. If a menu item in this guide is missing from your window, check the release notes first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query is the other version question. An unaccepted answer on Microsoft Q&A says Get Data reached Excel for Mac at version 16.69 and needs macOS 13 Ventura or later, including Apple silicon. Treat that as a lead, not a rule. Confirm it on Microsoft's own pages before you roll anything out to a team."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Show Changes in Excel for Mac: the audit trail most people miss"
+    },
+    {
+      "type": "paragraph",
+      "text": "Show Changes is the audit trail most people miss. Open the workbook, then go to Review > Show Changes. Microsoft says the feature tracks changes made in Excel for Mac, Excel for the web, Windows, iPad, iPhone and Android. It shows changes from the past 365 days. For a compliance file, that cross-platform reach matters. A control owner may edit the register on an iPhone between meetings, and Microsoft says those edits show up too."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be careful about what the history proves. Microsoft's page does not list exclusions, but that does not prove every edit appears. Test it on a copy. Change one cell, save, then look for that change in Show Changes. Keep dated copies of final versions in a separate archive folder as well. Show Changes is a helpful record, not a sealed log."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the workbook in Excel for Mac.",
+        "Go to Review > Show Changes.",
+        "Read the changes listed for the period you need, and note the date, the person and the cell.",
+        "Copy those entries into a review log sheet, with the date you reviewed them.",
+        "Save the log with the version you signed off."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel error checking on Mac: find formula problems before sign-off"
+    },
+    {
+      "type": "paragraph",
+      "text": "Formula errors are the quiet risk. One secondary summary of Raymond Panko's audit work says about 94% of operational spreadsheets audited had at least one error. It also puts the average cell error rate near 5%. The original papers were not checked for this page, and other sources report different figures. Read these numbers as a warning, not a measure of your own file."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Mac, start with Formulas > Error Checking. It walks you through cells Excel flags as suspicious. Then use Trace Precedents and Trace Dependents on the Formulas tab. They show where a value comes from and what relies on it. Error Checking catches many mechanical problems. It cannot tell you whether the logic matches your policy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hard-coded values are a classic audit finding. A rate or a threshold typed inside a formula is hard to see and hard to change. Press ⌘ F, then search for the number you expect to find. Check whether it sits inside a formula or in its own labeled input cell. Move each threshold to a labeled cell, then point the formulas at it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query in Excel for Mac: clean exports without retyping them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Exports from core systems rarely arrive in a shape you can audit. Power Query helps. On Mac, go to Data > Get Data (Power Query), then pick a source. Each cleaning step you apply is recorded in the query. When a new export lands, refresh the query instead of pasting and fixing again. The steps stay in one place, not in someone's memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "Know the limits before you build anything. Microsoft lists 1,048,576 as the maximum number of rows that Power Query fills to a worksheet. When the engine cannot stream the data, for example when it sorts before loading, it is limited to available virtual memory on 64-bit Excel. On 32-bit Excel, the limit is about 1GB. A large export can fail halfway through. Filter the export at the source before you load it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Community answers say Power Query on Mac has limits compared with Windows. They do not list the gaps. Check the Mac feature you need before you promise a team that a workflow will run on every Mac. A test with a real export from your own system tells you more than any list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a quarterly policy attestation tracker"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a workflow that uses the tools above. Start with four columns: Policy, Owner, Due date and Status. Select the Status cells, go to Data > Data Validation, and set Allow to List. Type the approved values, such as Not started, In progress and Attested, separated by commas. Now nobody can invent a fifth status."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, add a formula that counts the rows not marked Attested. Use Formulas > Error Checking to confirm the formula covers the full range. When a manager asks who marked a policy Attested, open Review > Show Changes and read the entries for that cell. Save a dated copy before the review, so the record of the quarter survives any later edit."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur where a tool lives while you do this. Hold ⌥ ⌘ and ask where Data Validation is. Lazur circles the menu and labels it. Then ask it to guide you through the list setup one click at a time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Data Validation and protection to stop typing errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "A register fails when one row says Pending and the next says pending with a trailing space. Data Validation stops that. Select the status column, then go to Data > Data Validation. Set Allow to List, then type the allowed values. The dropdown now shows only the approved choices."
+    },
+    {
+      "type": "paragraph",
+      "text": "Validation has a gap. Pasting over a cell can replace the rule. Lock the sheet with Review > Protect Sheet, then leave only the input cells open. Protection does not stop a determined editor. It does stop accidental overwrites in a shared file, and that covers most of the everyday risk."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dates, text and other traps that break audit filters"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates typed as text break sorting and filters. Text aligns left in a cell by default, while numbers and real dates align right. If a date sits on the left, check it before you filter. A date that looks right but is stored as text will sort in the wrong order. Fix these early, because a wrong sort can hide an overdue item from a reviewer."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Where on Mac",
+        "What to watch"
+      ],
+      "rows": [
+        [
+          "Track edits",
+          "Review > Show Changes",
+          "Covers the past 365 days, according to Microsoft"
+        ],
+        [
+          "Check formulas",
+          "Formulas > Error Checking",
+          "Flags cells, not whether the logic matches policy"
+        ],
+        [
+          "Import exports",
+          "Data > Get Data (Power Query)",
+          "A community answer says it needs macOS 13 or later"
+        ],
+        [
+          "Limit inputs",
+          "Data > Data Validation",
+          "Pasting can overwrite the rule"
+        ],
+        [
+          "Large exports",
+          "Power Query load",
+          "Maximum of 1,048,576 rows per worksheet"
+        ]
+      ],
+      "caption": "Core Excel tools for compliance checks on Mac"
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes compliance officers make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keeping one master file on a desktop, with no copies and no dates",
+        "Saving over the final version, so the earlier state is gone",
+        "Treating Error Checking as proof that a formula matches policy",
+        "Typing dates as text, which breaks sorting and filters",
+        "Pasting exports in, then fixing numbers by hand without a log",
+        "Hiding rows instead of filtering, so reviewers miss them"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each mistake starts as a shortcut that feels harmless. Fix the file once, then keep the fix. Give every register one owner, one archive folder and one review date in the top rows. That habit costs little and saves a long argument later."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps with Excel on Mac, without clicking for you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘, Option and Command together, and ask about anything on screen. Lazur sees the screen only while you hold the shortcut, and it answers out loud. Ask where something is and Lazur circles it with a label. Ask how to do something and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation helps with the notes that come with every review. Hold fn to dictate clean, formatted text at the cursor in any app. Dictation is unlimited on both plans. Lazur keeps a memory of what you asked and did, on your Mac. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate other apps for you. It is not an add-in for Excel or any other app. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. For the Excel-specific page, see [Excel help for Mac](/apps/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the trial, then decide. The trial runs for three days with no credit card, and it starts the first time you open the app. Plan prices and AI action limits are on the [pricing page](/pricing). You can get the app from the [download page](/download)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why compliance teams still run on spreadsheets"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheets stay because they are flexible and everyone already knows them. A ThoughtSpot survey of 1,001 office workers, run by Sapio Research in October 2022, found that 40% often struggle to make sense of their spreadsheet data. The same release says 92% of business people need to manipulate spreadsheet data before it is understandable."
+    },
+    {
+      "type": "paragraph",
+      "text": "A vendor poll points the same way. Cygnetise reports that nearly 80% of respondents in a LinkedIn Governance, Risk and Compliance group said Excel does not meet their security expectations. Cygnetise sells signatory software, and the sample size is not stated. Use the poll as a prompt to review your own controls, not as proof of anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A simple plan for the next week"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need to fix everything at once. Work through this list in order, and stop when the file is safe to share."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Excel > About Excel and note your version.",
+        "Turn on Review > Show Changes on your main register, then test one edit.",
+        "Run Formulas > Error Checking on the file you send most often.",
+        "Add a Data > Data Validation list to every status column.",
+        "Save a dated copy in your archive folder before the next review."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If your team also runs bookkeeping, the [Excel for bookkeepers on Mac](/for/bookkeepers/excel) page covers reconciliations and month close. Keep your plan short. Review it after each audit cycle, and cut anything nobody uses."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have an audit trail for compliance?",
+      "answer": "Excel for Mac has Review > Show Changes, which shows changes from the past 365 days, according to Microsoft. It is a useful record, not a complete audit log. Keep dated copies of final versions in a separate folder too."
+    },
+    {
+      "question": "Which Excel version do I need for Power Query on Mac?",
+      "answer": "An unaccepted answer on Microsoft Q&A says Get Data reached Excel for Mac at version 16.69 and needs macOS 13 Ventura or later, including Apple silicon. Check Excel > About Excel, then confirm the requirement on Microsoft's own pages."
+    },
+    {
+      "question": "What is the row limit for a compliance spreadsheet in Excel?",
+      "answer": "A single worksheet holds 1,048,576 rows, according to Microsoft's Power Query limits page. Power Query can hit memory limits when it must sort data before loading, so filter large exports at the source first."
+    },
+    {
+      "question": "Can Lazur click through Excel for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps. It circles where things are and guides you one click at a time, waiting for each click before it continues."
+    },
+    {
+      "question": "Is it safe to use Lazur with confidential compliance files?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Follow your firm's policy on AI tools before you use them with client data."
+    },
+    {
+      "question": "Is Lazur available on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "How do I check a formula for errors on Mac?",
+      "answer": "Use Formulas > Error Checking to find flagged cells, then use Trace Precedents to see where a value comes from. Error Checking catches common mechanical problems. It cannot confirm that the logic matches your policy."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Show changes made in a workbook",
+      "url": "https://support.microsoft.com/en-us/excel/show-changes-that-were-made-in-a-workbook",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Power Query specifications and limits in Excel",
+      "url": "https://support.microsoft.com/en-us/office/power-query-specifications-and-limits-in-excel-5fb2807c-1b16-4257-aa5b-6793f051a9f4",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "I'm using office 365 on a mac and can't figure out how to access power query",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5543965/im-using-office-365-on-a-mac-and-cant-figure-out-h",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "ThoughtSpot press release: almost half of users struggle with spreadsheet data",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Error Statistics 2026",
+      "url": "https://www.datahubpro.co.uk/spreadsheet-error-statistics",
+      "publisher": "DataHub Pro",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel for compliance: Yay or nay? (Survey results)",
+      "url": "https://www.cygnetise.com/blog/excel-for-compliance-poll-results",
+      "publisher": "Cygnetise",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is Show Changes?",
+    "capability": "point",
+    "result": "Lazur circles the Show Changes button on the Review tab and labels it, so you can click it yourself.",
+    "shell": "sheet",
+    "context": "Compliance register open in Excel for Mac, Review tab showing",
+    "pointsAt": "Show Changes",
+    "output": "Review > Show Changes is on the Review tab. Click it to see changes from the past 365 days, then copy the entries you need into a review log."
+  },
+  "tasks": [
+    {
+      "say": "Where is the Show Changes button?",
+      "result": "Lazur circles Review > Show Changes and labels it. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through checking this sheet for formula errors.",
+      "result": "Lazur guides you to Formulas > Error Checking one click at a time, waiting for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this formula return, in plain English?",
+      "result": "Lazur reads the formula on screen and explains it out loud, step by step.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through a status dropdown for this column.",
+      "result": "Lazur guides you through Data > Data Validation and the list values, one step at a time.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why does this cell show a value error?",
+      "result": "Lazur reads the cell and its formula, then explains the likely cause out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a note that the register was reviewed today.",
+      "result": "Lazur drafts the note in plain language. You can read it, edit it and use it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate the exception reason for this row.",
+      "result": "Hold fn and speak. The text lands at the cursor in clean, formatted form.",
+      "capability": "dictate"
+    },
+    {
+      "say": "What did I ask you about this file last week?",
+      "result": "Lazur recalls earlier questions and actions from its memory, kept on your Mac.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "compliance-officers-excel",
+  "role": "compliance-officers",
+  "app": "excel",
+  "roleName": "Compliance officers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/compliance-officers-excel/excel-for-compliance-officers-on-mac-1-dce7ff.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office worker reviewing a spreadsheet on a laptop at a desk, the kind of work behind excel for compliance officers on Mac",
+      "caption": "Reviewing a shared workbook at a desk",
+      "keywords": [
+        "excel for compliance officers on mac",
+        "Excel",
+        "Compliance officers",
+        "Mac",
+        "office worker laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Peggy_Marco",
+        "url": "https://pixabay.com/users/Peggy_Marco-1553824/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-nerd-laptop-happy-hippo-2017653/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/compliance-officers-excel/excel-for-compliance-officers-on-mac-2-eb471a.jpg",
+      "width": 1280,
+      "height": 754,
+      "alt": "Compliance professional checking documents against a policy checklist in a quiet office",
+      "caption": "Checking a register before sign-off",
+      "keywords": [
+        "excel for compliance officers on mac",
+        "Excel",
+        "Compliance officers",
+        "Mac",
+        "accountant reviewing documents",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/audit-auditor-analysis-examination-4190944/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/compliance-officers-excel/excel-for-compliance-officers-on-mac-3-24308e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Professional working on a Mac computer with a spreadsheet open in a busy office",
+      "caption": "Excel on a Mac in a busy office",
+      "keywords": [
+        "excel for compliance officers on mac",
+        "Excel",
+        "Compliance officers",
+        "Mac",
+        "man working on Mac computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-laptop-businessman-entrepreneur-593372/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for compliance officers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "compliance officer Excel Mac": 1,
+      "Excel audit trail on Mac": 1,
+      "Show Changes in Excel for Mac": 2,
+      "Power Query in Excel for Mac": 2,
+      "Excel error checking on Mac": 2,
+      "Excel data validation for compliance": 1,
+      "Excel compliance checklist Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

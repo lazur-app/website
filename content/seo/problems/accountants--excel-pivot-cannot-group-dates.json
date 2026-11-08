@@ -1,0 +1,562 @@
+{
+  "title": "Excel pivot table cannot group dates by month or year on Mac: fixes for Microsoft 365",
+  "metaTitle": "Excel pivot table cannot group dates: Mac fixes for accountants",
+  "description": "Excel pivot table cannot group dates? Convert text dates, clear blanks, refresh, then right-click > Group > Months on Mac. Step by step.",
+  "targetKeyword": "excel pivot table cannot group dates",
+  "secondaryKeywords": [
+    "excel pivot group dates by month",
+    "excel pivot table group by year",
+    "pivot table dates not grouping Excel",
+    "excel pivot dates text not grouping",
+    "group dates pivot table Mac",
+    "excel pivot months option missing"
+  ],
+  "intro": "Excel can only group dates by month or year when every value in the date field is a real date. Text dates and blank cells break that rule. Convert the text, clear the blanks, refresh the pivot table, then right-click a date and choose Group.",
+  "tldr": [
+    "Excel offers Months and Years grouping only when every date in the field is a real date.",
+    "Text-formatted dates and blank cells are the usual cause, according to Microsoft Q&A answers.",
+    "Fix the source column with Text to Columns, refresh the pivot, then choose Group > Months and Years.",
+    "Check the grand total against the source, then add a check cell so the problem does not return."
+  ],
+  "stats": [
+    {
+      "value": "1,595,200",
+      "label": "accountants and auditors held jobs in 2025, according to the BLS",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors: Occupational Outlook Handbook"
+    },
+    {
+      "value": "$83,680",
+      "label": "median annual wage for accountants and auditors in May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors: Occupational Outlook Handbook"
+    },
+    {
+      "value": "90%",
+      "label": "of 725 US accounting professionals say fatigue and burnout are a significant issue",
+      "sourceUrl": "https://firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "sourceTitle": "2026 Accountant Technology Survey"
+    },
+    {
+      "value": "37%",
+      "label": "named volume of work and billable pressure as the top burnout driver",
+      "sourceUrl": "https://firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "sourceTitle": "2026 Accountant Technology Survey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the error looks like on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "You build a pivot table, drag the date field into Rows, and right-click a date. The menu shows Group. When you open it, Months and Years are missing, or Excel says it cannot group that selection. The grouping you need is not offered."
+    },
+    {
+      "type": "paragraph",
+      "text": "This does not mean your pivot table is broken. Microsoft lists Excel for Microsoft 365 for Mac among the versions that support grouping by a time period. So start with the data, not the software."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Excel refuses to group your dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel stores a real date as a number, then displays it in a date format. Text that only looks like a date is a string of characters. Excel cannot treat it as a date, so it cannot sort it into months or years."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blank cells cause a similar problem. Community answers on Microsoft Q&A name text-formatted entries and blank cells as the usual cause. Excel offers Months and Years only when every value in the date field is a true date."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell text dates from real dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click a date cell in the source sheet, not in the pivot. Look at the Number Format box on the Home tab. A real date shows a date format such as Short Date. A text entry shows Text. Real dates also sit on the right side of the cell by default."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check the whole column. Select its column letter and read the status bar at the bottom of the window. Real dates count as numbers, so Sum and Average appear. If they do not appear, the column probably holds text."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the bad dates come from"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most accounting files come from somewhere else. A bank export, a billing tool, or a client workbook often stores dates as text. Copying from a PDF or an email can bring text dates along too. Look for these signs in the source sheet:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dates aligned to the left of their cells.",
+        "A leading apostrophe in the formula bar.",
+        "Blank rows between rows of data.",
+        "A total or subtotal at the bottom of the date column.",
+        "Two date styles in the same column, such as day first and month first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Use this table to match what you see with a likely cause. Each row is a first guess, not a diagnosis."
+    },
+    {
+      "type": "table",
+      "caption": "Common symptoms, likely causes, and first fixes. Confirm each against your own sheet.",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "First fix"
+      ],
+      "rows": [
+        [
+          "Group option is missing or greyed out",
+          "Some date cells are text",
+          "Convert the column with Text to Columns"
+        ],
+        [
+          "Cannot group that selection",
+          "Mixed or text values in the field",
+          "Find the text cells, convert them, then refresh"
+        ],
+        [
+          "Months option is missing after a refresh",
+          "Blank or non-date entries in the source",
+          "Clear the blanks, then rebuild the pivot"
+        ],
+        [
+          "Groups work but totals look wrong",
+          "Total or note rows inside the Date column",
+          "Remove them, then refresh"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the error alive"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Changing the number format and assuming it converted the text. It does not.",
+        "Refreshing the pivot before fixing the source. The problem stays.",
+        "Pasting a new export over old dates without checking the new format.",
+        "Fixing one cell at a time when the whole column needs one pass.",
+        "Leaving a total row, a note, or a subheading inside the date column."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to check your totals after grouping"
+    },
+    {
+      "type": "paragraph",
+      "text": "Grouping can work while the totals are still wrong. Start with the grand total. Select the amount column in the source sheet and read Sum in the status bar. Compare that figure with the grand total in the pivot."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check one month by hand. Filter the source to a single month and read its Sum. It should match that month's row in the pivot. A gap usually means a date Excel did not read, or a row outside the range you expected."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the error costs an accounting team"
+    },
+    {
+      "type": "paragraph",
+      "text": "The direct cost is time. A grouping failure sends you through the export, the source sheet, and the pivot settings. Then the same export comes back next period, and the hunt repeats. Each loss is small. Across a month-end close, they add up."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pay gives a rough price for that time. The BLS puts the May 2025 median wage for accountants and auditors at $83,680 a year, or $40.23 an hour. Pay alone is not the full cost, but it shows what an hour of rework is worth."
+    },
+    {
+      "type": "paragraph",
+      "text": "Burnout raises the stakes. In the 2026 Accountant Technology Survey, volume of work was the top burnout driver, at 37%. Among respondents who reported burnout, 25% cited fragmented data as a driver. Messy source files add to that load."
+    },
+    {
+      "type": "paragraph",
+      "text": "Parseur's survey is broader. It covers all sectors, not accountants. It puts manual data entry at $28,500 per employee per year on average. Its respondents spend more than 9 hours a week moving data into digital systems. Use these figures as a sign, not a benchmark for your firm."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accuracy is the other cost. Panko's review of spreadsheet research says errors are both common and non-trivial. That review does not measure pivot grouping errors, so do not treat it as a rate for this problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘, which is Option plus Command, and ask about anything on screen. Lazur answers out loud. Ask where the Group command is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do a step, and Lazur guides you one click at a time. It waits for each click. That helps when your menus read differently from this page. Lazur does not click for you or edit your file. You make each change."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sees what is on screen while you hold the shortcut. It can explain an error message in plain words and point at the cell or menu you ask about. It cannot find text dates in a file you have not shown it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data and the rules you follow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants handle client names, account numbers, and payroll details. Follow your employer's rules before you show that data to any AI tool, Lazur included. If your firm restricts screenshots of client files, follow that rule."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "A safer habit is practice data. Copy the sheet, replace client names with placeholders, and ask Lazur about the steps there. Then apply the fix to the real file yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Prevent the error at the source"
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the export once, and the problem stops coming back. Ask the sender for a date format that Excel reads without changes. Keep totals and notes out of the date column. Keep one date format per column."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the data as an Excel table. Tables expand when new rows arrive, so the pivot source stays complete. Run the check cell described in the fixes before you build the pivot each period."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the pivot feeds a lookup that also fails, see [XLOOKUP returns #N/A for values that exist](/for/accountants/problems/xlookup-na-text-number-mismatch). Text numbers cause that error too, and the cleanup overlaps with this one."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why are Months missing in the Group dialog?",
+      "answer": "Excel offers Months and Years only when every value in the date field is a true date. Text or blank entries in that field usually cause it. Convert the text, clear the blanks, then refresh the pivot."
+    },
+    {
+      "question": "Does changing the number format fix the problem?",
+      "answer": "No. A number format changes how a value looks. It does not turn text into a date. Use Text to Columns on the column, or retype the values as real dates."
+    },
+    {
+      "question": "Can I group by year only?",
+      "answer": "Yes, once the field holds real dates. In the Group dialog, select Years and clear Months. Excel then groups each row by its year. The grouping still needs every entry to be a date."
+    },
+    {
+      "question": "Does refreshing the pivot fix text dates?",
+      "answer": "Not by itself. Refresh reads the source again, so text stays text. Fix the source sheet first, then refresh the pivot and group it again."
+    },
+    {
+      "question": "What if the Group option is missing or greyed out?",
+      "answer": "First click a date inside the Rows area, not a header or a total. If the option is still missing, check the source for text dates and blank cells."
+    },
+    {
+      "question": "Do I need to rebuild the pivot table each month?",
+      "answer": "Usually not. Refresh after you fix the source. Rebuild the pivot only if grouping still fails after the source is clean."
+    },
+    {
+      "question": "Is it safe to ask Lazur about a client file?",
+      "answer": "Follow your employer's rules first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer. They are not stored. Practice data is the safer choice."
+    },
+    {
+      "question": "Does this fix work the same on Windows?",
+      "answer": "The cause sits in the data, so the same checks apply. Microsoft's grouping page covers Windows and Mac. Menu names can differ, so read the labels on your own screen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Group or ungroup data in a PivotTable",
+      "url": "https://support.microsoft.com/en-us/excel/get-started/group-or-ungroup-data-in-a-pivottable",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How to fix date group in new Excel Pivot Table",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5614147/how-to-fix-date-group-in-new-excel-pivot-table",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Accountants and Auditors: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Errors: What We Know. What We Think We Can Do",
+      "url": "https://arxiv.org/abs/0802.3457",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "2026 Accountant Technology Survey",
+      "url": "https://firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "publisher": "Firm of the Future",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Manual Data Entry Report",
+      "url": "https://parseur.com/blog/manual-data-entry-report",
+      "publisher": "Parseur",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "pivot table will not group dates by month or year",
+  "costs": [
+    {
+      "title": "Time lost on every export",
+      "text": "Each export that fails grouping sends you back through the source sheet, the data, and the pivot settings. The same export format often returns next period, so the hunt repeats. The cost is small each time and steady every month."
+    },
+    {
+      "title": "Pay for the hours",
+      "text": "The BLS puts the May 2025 median wage for accountants and auditors at $40.23 an hour. That is pay alone, before overhead. An hour spent on a broken pivot is an hour of paid work that moves nowhere."
+    },
+    {
+      "title": "Burnout and messy data",
+      "text": "In the 2026 Accountant Technology Survey, 90% of 725 respondents said fatigue and burnout had been a significant issue. Volume of work was the top driver, at 37%. Fragmented data was cited by 25% of respondents who reported burnout."
+    },
+    {
+      "title": "Wrong totals reach the client",
+      "text": "If a month group is missing, you may build the view by hand and miss a row. Panko's review says spreadsheet errors are common. A quick check on totals is cheap protection against that."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Text-formatted dates",
+      "text": "The most common cause is a date that Excel stores as text. It looks right on screen, so people miss it. Imports from banks, billing tools, and PDFs often bring text dates along. Excel will not group the field until every entry is a real date."
+    },
+    {
+      "title": "Blank cells in the date field",
+      "text": "Blank cells inside the date range can stop the Months and Years options from appearing. Blanks often come from deleted rows or from a column that was filled in halfway. Clear them, then refresh the pivot table."
+    },
+    {
+      "title": "Totals, subtotals, and notes",
+      "text": "A total row under the dates counts as one more entry in the field. Excel does not read it as a date. A note or subheading typed into the date column causes the same problem. Move those items to another area of the sheet."
+    },
+    {
+      "title": "Mixed date formats from imports",
+      "text": "One column can hold dates in two formats. Excel may accept some entries and read others as text. This shows up when two systems export to the same file, or when someone pastes a new batch. Check the whole column, not only the first rows."
+    },
+    {
+      "title": "A pivot built before the source was fixed",
+      "text": "A pivot table keeps the data it was built from. Fixing the source does not change what the pivot already holds until you refresh it. Refresh after every fix, then check the Rows area again."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Convert text dates with Text to Columns",
+      "text": "Changing the number format does not convert text, so start here. Select the Date column without its header. Choose Data > Text to Columns, pick Delimited, click Next, clear every delimiter box, then click Next again. Under Column data format, choose Date and the date order that matches your file, such as MDY or DMY. Click Finish. Real dates align to the right. Menu labels can vary by version, so read the wizard on your screen."
+    },
+    {
+      "title": "Clear blanks and stray rows",
+      "text": "Delete empty rows inside your data, not just clear their contents. Move any total, subtotal, or note out of the date column. Then select your data and press ⌘T to make it an Excel table. New rows join the table, so the pivot source stays complete after each refresh."
+    },
+    {
+      "title": "Refresh, then group by Months and Years",
+      "text": "Click inside the pivot table. Choose PivotTable Analyze > Refresh. Make sure Date sits in Rows. Right-click any date in that area, or Control-click it. Choose Group. Under By, select Months. Select Years too if you want a yearly view with monthly rows. Click OK."
+    },
+    {
+      "title": "Rebuild the pivot from clean data",
+      "text": "If grouping still fails with clean data, the pivot may hold an old range. Delete the pivot table, then choose Insert > PivotTable. Confirm the source range or table name, and place the new pivot on a new sheet. Drag Date to Rows, then group it as described above. Community answers say this clears many stubborn cases. Treat it as a practical fallback, not a guarantee."
+    },
+    {
+      "title": "Trim the range with Starting at and Ending at",
+      "text": "The Group dialog has Starting at and Ending at fields. Use them to limit the range, for example to one fiscal year. Excel then groups only the dates inside that window. Leave both blank to group every date in the field. Trimming helps when old exports still sit in the source sheet."
+    },
+    {
+      "title": "Add a check cell for text entries",
+      "text": "Name the date range DateColumn in the Name Box, next to the formula bar. In an empty cell, enter =COUNTA(DateColumn)-COUNT(DateColumn). COUNTA counts non-blank entries, and COUNT counts real numbers. The difference is the number of text entries. Zero means every entry is a real date."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Group command?",
+      "result": "Lazur draws a circle and a label around the Group command on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through grouping by month and year.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this Excel error mean?",
+      "result": "Lazur explains the message on your screen in plain words, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a note asking the client for dates in one format.",
+      "result": "Lazur drafts the text. You check it, paste it into Outlook, and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate my close checklist notes.",
+      "result": "Hold fn to dictate clean, formatted text at the cursor in any app.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Group command?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Group in the right-click menu.",
+    "shell": "sheet",
+    "context": "Pivot table in Excel for Mac, date field in Rows",
+    "output": "A circle and label around Group. You make the click.",
+    "pointsAt": "Group"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the text dates",
+      "text": "Select the Date column and read the status bar. If Sum and Average do not appear, the column likely holds text. Note those cells, then convert them with Text to Columns before you touch the pivot."
+    },
+    {
+      "label": "Day 2",
+      "title": "Clear blanks and totals",
+      "text": "Delete empty rows inside the data and move any total or note out of the date column. Make the range an Excel table with ⌘T so new rows join it. Change nothing else in the export."
+    },
+    {
+      "label": "Day 3",
+      "title": "Refresh and group",
+      "text": "Refresh the pivot with PivotTable Analyze > Refresh. Right-click a date in Rows, choose Group, select Months and Years, then click OK. Check the first and last month against the source."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check the totals",
+      "text": "Compare the pivot grand total with the Sum of the amount column in the source. Filter one month by hand and match it. Write down any gap before the file goes to anyone else."
+    },
+    {
+      "label": "Month end",
+      "title": "Run the check cell",
+      "text": "Add the COUNTA minus COUNT check cell from the fixes section. Run it each time the export changes. If the result is not zero, fix the text entries before you build the pivot."
+    }
+  ],
+  "apps": [
+    "excel",
+    "outlook"
+  ],
+  "type": "problem",
+  "slug": "excel-pivot-cannot-group-dates",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-cannot-group-dates/excel-pivot-table-cannot-group-dates-1-6139a9.jpg",
+      "width": 1280,
+      "height": 780,
+      "alt": "Accountant at a desk working on a laptop with a spreadsheet open",
+      "caption": "An accountant reviewing a spreadsheet at a desk.",
+      "keywords": [
+        "excel pivot table cannot group dates",
+        "Accountants",
+        "Pivot table will not group dates by month or year",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-information-new-years-day-3528039/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-cannot-group-dates/excel-pivot-table-cannot-group-dates-2-38dae5.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a MacBook in an office while checking an Excel pivot table",
+      "caption": "Working on a Mac with a spreadsheet open.",
+      "keywords": [
+        "excel pivot table cannot group dates",
+        "Accountants",
+        "Pivot table will not group dates by month or year",
+        "Mac",
+        "man using macbook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-cannot-group-dates/excel-pivot-table-cannot-group-dates-3-9d5b16.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Printed financial reports and numbers on a desk beside a laptop",
+      "caption": "Financial reports and a laptop on an office desk.",
+      "keywords": [
+        "excel pivot table cannot group dates",
+        "Accountants",
+        "Pivot table will not group dates by month or year",
+        "Mac",
+        "office spreadsheet numbers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tigerlily713",
+        "url": "https://pixabay.com/users/tigerlily713-194784/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/calendar-date-time-month-week-660670/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel pivot table cannot group dates",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "excel pivot group dates by month": 1,
+      "excel pivot table group by year": 1,
+      "pivot table dates not grouping Excel": 1,
+      "excel pivot dates text not grouping": 1,
+      "group dates pivot table Mac": 1,
+      "excel pivot months option missing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

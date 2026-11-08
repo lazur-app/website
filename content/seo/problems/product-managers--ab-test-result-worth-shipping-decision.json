@@ -1,0 +1,620 @@
+{
+  "title": "How to check if an A/B test result is actually worth shipping on Mac",
+  "metaTitle": "Is an A/B test result actually worth shipping? Mac guide for PMs",
+  "description": "Statistical significance does not prove an A/B test win is worth shipping. Learn how to check effect size, confidence intervals and cost on Mac.",
+  "targetKeyword": "A/B test result is actually worth shipping",
+  "secondaryKeywords": [
+    "statistical vs practical significance",
+    "practical significance in A/B testing",
+    "minimum detectable effect A/B test",
+    "A/B test confidence interval",
+    "how long to run an A/B test",
+    "peeking at A/B test results"
+  ],
+  "intro": "An A/B test result is worth shipping when the win is big enough to matter. Statistical significance only tells you the win is probably real, not that it is big enough or cheap enough to ship. This guide shows how to check size, certainty and cost on a Mac, with numbers you can reuse.",
+  "tldr": [
+    "A significant result means the data would be surprising if there were no real difference. It does not mean the difference is big enough to matter.",
+    "Set the smallest effect worth shipping before the test starts, then compare the result with that number.",
+    "Read the confidence interval from both ends. A range that dips below your threshold means you have a maybe, not a launch.",
+    "Turn the lift into users, orders or dollars, then compare it with the build and upkeep cost.",
+    "Stop on the planned date. Checking early and stopping on the first green result inflates false wins."
+  ],
+  "stats": [
+    {
+      "value": "0.2 points",
+      "label": "Gap between 85.0% and 85.2% checkout completion, which still reached p = 0.03",
+      "sourceUrl": "https://www.nngroup.com/articles/practical-significance/",
+      "sourceTitle": "Statistical Significance Isn't the Same as Practical Significance (Nielsen Norman Group)"
+    },
+    {
+      "value": "$150,000",
+      "label": "Yearly value of cutting checkout errors by 0.5% across 2 million checkouts, at $15 per failure",
+      "sourceUrl": "https://www.nngroup.com/articles/practical-significance/",
+      "sourceTitle": "Statistical Significance Isn't the Same as Practical Significance (Nielsen Norman Group)"
+    },
+    {
+      "value": "3.2 weeks",
+      "label": "Time for four variations at 10,000 weekly visitors, per Optimizely's planning example",
+      "sourceUrl": "https://docs.optimizely.com/experimentation-strategy/docs/use-minimum-detectable-effect-when-you-design-an-experiment",
+      "sourceTitle": "Use minimum detectable effect when you design an experiment (Optimizely Experimentation Strategy docs)"
+    },
+    {
+      "value": "One third",
+      "label": "Ideas tested at Microsoft that improved their target metric, per Kohavi and colleagues (secondary notes)",
+      "sourceUrl": "https://justin.abrah.ms/notes/math/stats/Trustworthy-Online-Controlled-Experiments",
+      "sourceTitle": "Trustworthy Online Controlled Experiments (notes by Justin Abrahms on Kohavi et al.)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Your dashboard says the new checkout button won. The test shows a significance badge, a lift someone already pasted into Slack and a green light. Before you ask engineering to ship it, you need a harder question answered. Is the lift large enough to be worth the change?"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a significant result does and does not tell you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Statistical significance is a check on whether a difference is more than noise. It says nothing about how large the difference is, how much it is worth, or whether a user will notice it. Nielsen Norman Group makes this point with a checkout example. Completion moved from 85.0% to 85.2%, a gap of 0.2 percentage points, and that still reached p = 0.03."
+    },
+    {
+      "type": "paragraph",
+      "text": "The reason is arithmetic. A large sample can detect a tiny gap. The more visitors a test gets, the smaller the lift that clears the bar. A busy product can produce many significant results that nobody would miss if they disappeared."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the result one question at a time"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Is the difference real? Check the p-value and the confidence interval together.",
+        "How big is it? Convert the lift into users, orders, revenue or hours saved.",
+        "Can anyone notice it? Ask whether a user would feel the change, or whether only the chart shows it.",
+        "Is it worth the cost? Compare the gain with build time, support load and the upkeep of the change."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Work through every question before you decide. A yes on the first question and a no on the second is a real outcome. It means the test measured something true, and the idea is too small to matter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with a checkout change"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a change cuts checkout errors by 0.5% across 2 million checkouts a year. That is 10,000 fewer failed transactions. Nielsen Norman Group uses $15 per failure in its example, which puts the value at $150,000 a year. That is a real business case, even when the change looks tiny on a chart."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same article gives the opposite case. An 8 millisecond speed gain can be statistically detectable, yet users cannot perceive it. The test can show a clean p-value and still fail the business question. Same test, two very different answers."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Write the business sentence first",
+      "text": "Before you open the results, finish this sentence: 'If this change wins, it adds about X per month, and we ship it only if X clears Y.' Fill in X and Y before launch, so the numbers cannot move the goalposts later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the smallest effect worth shipping before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the step teams often skip. The sample size chapter by Daniel Lakens says the strongest justification for a sample size is an explicit statement of the smallest effect size you care about. That number can come from theory or from practical concerns. Either way, write it down before the test starts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Optimizely's documentation shows why this matters for planning. Its example uses a 15% baseline, 95% significance and a 10% minimum detectable effect. That needs about 8,000 visitors per variation. With four variations and 10,000 weekly visitors, the test takes roughly 3.2 weeks at full traffic allocation. Optimizely also says MDE is a planning guide, not a prediction of the real effect."
+    },
+    {
+      "type": "paragraph",
+      "text": "The tradeoff is simple. A smaller effect needs more visitors, and a larger effect needs fewer. If the smallest win you would ship is tiny, the test may need weeks you do not have. That is a useful answer too. It tells you to skip the test or pick a bolder idea."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use the confidence interval, not only the p-value"
+    },
+    {
+      "type": "paragraph",
+      "text": "A p-value gives one number about surprise. A confidence interval gives a range of plausible lifts. The range tells you more. Eppo recommends reporting confidence intervals instead of p-values, and it warns against reporting only the center of an interval."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the range from both ends. If the whole range sits above zero, the win is probably real. If the lower end still falls below the smallest effect worth shipping, you have a maybe. A maybe needs more data or a bolder idea, not a launch."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stop on schedule, not when the chart turns green"
+    },
+    {
+      "type": "paragraph",
+      "text": "Checking a test every morning feels responsible. It also inflates false wins. Johari, Pekelis and Walsh state that inferences are unreliable when people choose sample sizes by continuously monitoring a test. Their paper, Always Valid Inference, defines p-values and confidence intervals built for that kind of checking."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your platform offers sequential or always-valid methods, use them. If it does not, set the stop date before launch and keep to it. A test that looks strong early can fade by the planned end date."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run a quick second look in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac has a built-in check you can run in minutes. Microsoft's Analysis ToolPak page says it applies to Excel for Microsoft 365 for Mac and Excel 2024 for Mac. Use it as a second look at your numbers, not as the final analysis."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Excel and choose Tools > Excel Add-ins.",
+        "Tick Analysis ToolPak in the Add-Ins box, then confirm the dialog.",
+        "Put control values in one column and treatment values in another. Pick the t-test that matches that layout.",
+        "Read the p-value, then compare the difference in means with your smallest effect worth shipping."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the unequal variance t-test when you are not sure the two groups vary the same way. The paired option fits when the same users appear in both columns. The ToolPak knows nothing about your experiment design, so clustered users or repeat visits need a better tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your raw numbers live in Google Sheets, [filtering a range in Google Sheets on Mac](/how-to/add-a-filter-to-a-range-in-google-sheets) helps you pull the rows you need. Set your filter rules before you look at the result, so you do not pick the segment that happens to win."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write the ship or no-ship note"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good decision note fits on one screen. It names the metric, the smallest effect worth shipping, the observed lift with its interval, the business value, the guardrails and the build cost. Keep it in Notion, where [Notion for product managers on Mac](/for/product-managers/notion) covers the workflow, so the next product manager can follow the reasoning."
+    },
+    {
+      "type": "table",
+      "caption": "A ship or no-ship checklist to fill in before the decision meeting.",
+      "headers": [
+        "Item",
+        "What to write",
+        "Check before you ship"
+      ],
+      "rows": [
+        [
+          "Smallest effect worth shipping",
+          "The lift below which you would not ship",
+          "Set before launch and written in the test plan"
+        ],
+        [
+          "Observed lift and interval",
+          "The point estimate plus the full range",
+          "Lower end above zero and above your threshold"
+        ],
+        [
+          "Business value",
+          "The lift turned into users, orders, revenue or hours",
+          "Use the dollar value per order or failure you already track"
+        ],
+        [
+          "Guardrail metrics",
+          "Metrics that must not get worse",
+          "Errors, load time, support tickets, refunds"
+        ],
+        [
+          "Build and upkeep cost",
+          "Engineering time plus ongoing maintenance",
+          "Compare with the business value above"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Guardrails matter most here. A change that lifts clicks but raises errors is not a win, even when the primary metric is significant. Eppo warns that the most statistically sensitive metrics are often more superficial and less aligned with business goals."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make weak wins look strong"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Treating significant as important. A p-value answers a narrower question than your roadmap asks.",
+        "Choosing the metric after the result. Name the primary metric before launch, then report the rest as secondary.",
+        "Reporting only the best segment. A win in one segment can vanish across all users.",
+        "Ignoring upkeep. A small lift can lose to the cost of a feature nobody needs to maintain.",
+        "Checking many variants and shipping the luckiest one. More looks at the data mean more chances for a false win."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A no-ship result still teaches you something. Write down what the test ruled out and why, so nobody runs the same idea again next quarter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the confidence interval sits on a results page and Lazur draws a circle and a label around it. Ask how to turn on the Analysis ToolPak and Lazur guides you one click at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or run Excel for you. It points, explains and waits for you. You still make the call on the test, and you check every number against the source export before it leaves your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate the ship or no-ship note at the cursor in Notion or Slack. Lazur can also draft a first pass of the note from numbers you paste in. Read every line. A drafted number that does not match the export is worse than no number."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check your data rules first",
+      "text": "If the test data includes customer names, emails or payment details, check your employer's rules before you share a screenshot with any AI tool. Lazur listens and looks only while you hold the shortcut. It sends audio and the screenshot to AI providers to answer you, and those are not stored. Your company's policy still decides what can leave its systems."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the work is still judgment. The numbers tell you the change moved. Your threshold, your cost and your users tell you whether to ship it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is a statistically significant A/B test result always worth shipping?",
+      "answer": "No. Statistical significance means the data would be surprising if there were no real difference. It does not say the difference is large, valuable or noticeable. Check the lift size, the confidence interval and the cost of the change before you ship."
+    },
+    {
+      "question": "What is practical significance in A/B testing?",
+      "answer": "Practical significance asks whether the effect is big enough to change a decision. Judge it with the smallest effect worth shipping, the business value and whether users notice. NN/g recommends evaluating practical significance through user perception, business value and effect size."
+    },
+    {
+      "question": "What is a minimum detectable effect?",
+      "answer": "It is the smallest lift a test is designed to detect at a chosen sample size. Optimizely says a smaller MDE needs more visitors and a larger MDE needs fewer. Treat it as a planning guide, not a prediction of the real effect."
+    },
+    {
+      "question": "Can I check an A/B test result in Excel for Mac?",
+      "answer": "Yes, as a basic second look. Turn on Analysis ToolPak from Tools > Excel Add-ins, then run a two-sample t-test that matches your data layout. The ToolPak does not know your experiment design, so treat it as a check, not the final analysis."
+    },
+    {
+      "question": "How do I stop peeking at my A/B test results?",
+      "answer": "Set the sample size and stop date before launch. If your platform supports sequential or always-valid methods, use them. Johari, Pekelis and Walsh state that choosing sample sizes by continuous monitoring makes inferences unreliable."
+    },
+    {
+      "question": "Should I report p-values or confidence intervals?",
+      "answer": "Report the confidence interval. Eppo recommends it over p-values, and warns against showing only the center of the interval. Add the p-value if your team expects it, but let the range lead the discussion."
+    },
+    {
+      "question": "What do I do with a significant result that is tiny?",
+      "answer": "Do not ship on the p-value alone. Ask whether the lower end of the interval clears your smallest effect worth shipping. If it does not, run a bigger test, change the idea, or move on and record the result."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Statistical Significance Isn't the Same as Practical Significance",
+      "url": "https://www.nngroup.com/articles/practical-significance/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Use minimum detectable effect when you design an experiment",
+      "url": "https://docs.optimizely.com/experimentation-strategy/docs/use-minimum-detectable-effect-when-you-design-an-experiment",
+      "publisher": "Optimizely",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Cult of Stat Sig",
+      "url": "https://www.geteppo.com/blog/the-cult-of-stat-sig",
+      "publisher": "Eppo",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sample Size Justification (Improving Your Statistical Inferences, Ch. 8)",
+      "url": "https://lakens.github.io/statistical_inferences/08-samplesizejustification.html",
+      "publisher": "Daniel Lakens",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Always Valid Inference: Bringing Sequential Analysis to A/B Testing",
+      "url": "https://arxiv.org/abs/1512.04922",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Trustworthy Online Controlled Experiments (notes)",
+      "url": "https://justin.abrah.ms/notes/math/stats/Trustworthy-Online-Controlled-Experiments",
+      "publisher": "Justin Abrahms (secondary notes on Kohavi et al.)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Use the Analysis ToolPak to perform complex data analysis",
+      "url": "https://support.microsoft.com/en-us/excel/use-the-analysis-toolpak-to-perform-complex-data-analysis",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "significant A/B test results that are not worth shipping",
+  "costs": [
+    {
+      "title": "Weeks of traffic on a small win",
+      "text": "A test that hunts for a small lift can take weeks. Optimizely's example needs about 8,000 visitors per variation. With four variations and 10,000 weekly visitors, the test runs roughly 3.2 weeks at full allocation. That traffic cannot go to the next idea while it runs."
+    },
+    {
+      "title": "Engineering time and upkeep",
+      "text": "Every shipped change needs review, QA, a release and later cleanup. A lift that is real but small can cost more to maintain than it earns. Ask whether the change pays for its own upkeep before it goes on the sprint."
+    },
+    {
+      "title": "The slot you did not use",
+      "text": "A test slot is limited. If a weak result takes it, the team loses the chance to learn from a bolder idea. The opportunity cost rarely shows up on the results page."
+    },
+    {
+      "title": "Trust in the experiment program",
+      "text": "If you announce a big win and the number fades after launch, people stop believing the next result. Trust in test results is slow to build and quick to lose. Be honest about the size from the start."
+    },
+    {
+      "title": "Hidden damage to other metrics",
+      "text": "A change can win on one metric and hurt another. Checkout errors, page load time or support tickets can rise quietly while the primary chart looks good. Check guardrails in the same view as the win."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The badge reads like a verdict",
+      "text": "Most dashboards show a significance badge next to the lift. People read the badge as a yes or no on shipping. The badge only answers whether the difference would be surprising under no real effect. It does not answer whether the difference is large enough, valuable enough or cheap enough to matter."
+    },
+    {
+      "title": "Big samples find tiny gaps",
+      "text": "The more visitors a test gets, the smaller the gap that clears the significance bar. Nielsen Norman Group's checkout example shows 85.0% against 85.2% reaching p = 0.03. A busy product can produce many significant results that are too small to change a roadmap."
+    },
+    {
+      "title": "No smallest effect was set in advance",
+      "text": "Teams often skip the planning step. Without a smallest effect worth shipping, every significant result looks like a candidate. Daniel Lakens argues that the strongest sample size justification is an explicit statement of that effect size."
+    },
+    {
+      "title": "Metrics chosen for sensitivity, not value",
+      "text": "The metrics that move fastest are often shallow. Eppo warns that the most statistically sensitive metrics are often more superficial and less aligned with business goals. A click rate can rise while revenue stays flat."
+    },
+    {
+      "title": "Peeking and early stops",
+      "text": "Checking the chart daily and stopping at the first green result raises false wins. Johari, Pekelis and Walsh show that continuous monitoring makes conclusions unreliable unless the method accounts for it."
+    },
+    {
+      "title": "Pressure to show a win",
+      "text": "Teams want a win, and a no-ship result can feel like wasted work. Under that pressure, a small significant result looks like proof of progress. Often it is just a precise measurement of a small change."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write the smallest effect worth shipping before launch",
+      "text": "Before the test starts, write the lift you would need to see before you ship. Put it in the test plan with the primary metric and the stop date. Lakens says an explicit smallest effect size gives the strongest sample size justification."
+    },
+    {
+      "title": "Turn the lift into money or users",
+      "text": "Ask the metric owner what one order, one failed checkout or one active user is worth. Multiply the lift by that value. Nielsen Norman Group's example uses 0.5% fewer checkout errors across 2 million checkouts, which becomes a dollar figure you can debate."
+    },
+    {
+      "title": "Read the confidence interval from both ends",
+      "text": "Look at the lower end first. If it still clears your threshold, the case for shipping is solid. If only the upper end clears it, you have a maybe. Eppo recommends intervals over p-values and warns against reporting only the center."
+    },
+    {
+      "title": "Lock the stop date and sample size",
+      "text": "Pick the sample size from the effect you care about, using a planning tool such as Optimizely's MDE guidance. Then keep to it. If your platform supports sequential or always-valid methods, use them instead of checking early and hoping."
+    },
+    {
+      "title": "Check guardrail metrics in the same view",
+      "text": "List the metrics that must not get worse, such as errors, load time, refunds and support tickets. Put them next to the primary metric in one view. A win that breaks a guardrail is a no-ship until someone explains it."
+    },
+    {
+      "title": "Run a second look in Excel for Mac",
+      "text": "Open Tools > Excel Add-ins, tick Analysis ToolPak and run the t-test that matches your data layout. Compare its p-value with the platform result. If they disagree, check the data before you trust either number."
+    },
+    {
+      "title": "Check whether a user would notice",
+      "text": "Watch a few real sessions or read support notes. Ask whether a user would feel the change, or whether only the chart shows it. NN/g recommends judging practical significance through user perception alongside business value and effect size."
+    },
+    {
+      "title": "Log the no-ship and the reason",
+      "text": "Write down what the test ruled out, the lift you saw and why you did not ship. Keep the log in one place, such as a Notion database or a Linear project. The next person will find the answer without running the test again."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Hold ⌥ ⌘ and ask what this confidence interval means.",
+      "result": "Lazur answers out loud, using what is on your screen, in plain words."
+    },
+    {
+      "capability": "point",
+      "say": "Show me where the minimum detectable effect is.",
+      "result": "Lazur draws a circle and a label around the field, so you find it fast."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through turning on the Analysis ToolPak.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the decision note into Notion.",
+      "result": "Dictation types clean, formatted text at the cursor in any app. Read it before anyone else does."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a first pass of the ship or no-ship note.",
+      "result": "Lazur drafts the text from what you give it. Check each number against the test export."
+    },
+    {
+      "capability": "research",
+      "say": "Research how sequential testing works in vendor docs.",
+      "result": "Research runs in Lazur's own Chrome tabs through the Lazur for Chrome extension, then returns a summary and report. Check its sources."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to check the test on Friday.",
+      "result": "Lazur adds an Apple Reminders item, so the check stays on your list."
+    }
+  ],
+  "demo": {
+    "spoken": "Hold ⌥ ⌘ and ask what this confidence interval tells me.",
+    "capability": "explain",
+    "result": "Lazur explains the range out loud, so you can judge whether the lower end clears your threshold without reading a stats textbook.",
+    "shell": "generic",
+    "context": "Results page of an A/B test tool, open on a Mac",
+    "output": "A spoken explanation of what the range means, and whether the lower end clears your smallest effect worth shipping.",
+    "pointsAt": "confidence interval"
+  },
+  "plan": [
+    {
+      "label": "Morning",
+      "title": "Write the threshold before anyone opens the chart",
+      "text": "Open the test plan and write the smallest effect worth shipping, the primary metric, the stop date and the guardrails. Paste them into a dated Notion page so the decision has a record."
+    },
+    {
+      "label": "Day 1",
+      "title": "Confirm the sample and the stop date",
+      "text": "Check that the test reached the planned sample. If anyone peeked, write down when and what they saw. Do not call a winner on an early green result."
+    },
+    {
+      "label": "Day 2",
+      "title": "Turn the lift into business value",
+      "text": "Work with the metric owner to convert the lift into users, orders or dollars. Keep the arithmetic in one Google Sheets tab so you can change one input and see the effect."
+    },
+    {
+      "label": "Day 3",
+      "title": "Read the interval and the guardrails",
+      "text": "Check the lower end of the range against your threshold. Then check error rates, load time and support tickets in the same view before you trust the win."
+    },
+    {
+      "label": "Day 4",
+      "title": "Run the Excel for Mac second look",
+      "text": "Open Tools > Excel Add-ins, enable Analysis ToolPak and run the t-test that matches your layout. Compare its p-value with the platform result, and explain any gap before you go on."
+    },
+    {
+      "label": "Day 5",
+      "title": "Decide and write it down",
+      "text": "Fill in the ship or no-ship note and post it in Slack for review. If the answer is no, record what the test ruled out. If it is a maybe, file a bolder test as a Linear issue."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "notion",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "ab-test-result-worth-shipping-decision",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/ab-test-result-worth-shipping-decision/a-b-test-result-is-actually-worth-1-5931f2.jpg",
+      "width": 1280,
+      "height": 973,
+      "alt": "Product manager reviewing an A/B test result on a laptop at a desk",
+      "caption": "Check the numbers before the launch call.",
+      "keywords": [
+        "A/B test result is actually worth shipping",
+        "Product managers",
+        "statistical vs practical significance",
+        "Mac",
+        "person laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mohamed_hassan",
+        "url": "https://pixabay.com/users/Mohamed_hassan-5229782/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/lamp-bulb-inspiration-invention-3066096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/ab-test-result-worth-shipping-decision/a-b-test-result-is-actually-worth-2-7c007a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Product team talking through test results around a laptop during a meeting",
+      "caption": "A ship decision usually needs more than one voice.",
+      "keywords": [
+        "A/B test result is actually worth shipping",
+        "Product managers",
+        "statistical vs practical significance",
+        "Mac",
+        "team meeting laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RosZie",
+        "url": "https://pixabay.com/users/RosZie-6000120/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/christmas-party-party-company-7606990/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/ab-test-result-worth-shipping-decision/a-b-test-result-is-actually-worth-3-1e8901.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen with charts showing data for an experiment review",
+      "caption": "Charts show the lift. They do not show if it is worth it.",
+      "keywords": [
+        "A/B test result is actually worth shipping",
+        "Product managers",
+        "statistical vs practical significance",
+        "Mac",
+        "data charts screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "3844328",
+        "url": "https://pixabay.com/users/3844328-3844328/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stock-trading-monitor-business-1863880/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "A/B test result is actually worth shipping",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 2,
+    "secondary": {
+      "statistical vs practical significance": 1,
+      "practical significance in A/B testing": 2,
+      "minimum detectable effect A/B test": 1,
+      "A/B test confidence interval": 1,
+      "how long to run an A/B test": 1,
+      "peeking at A/B test results": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

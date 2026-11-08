@@ -1,0 +1,541 @@
+{
+  "title": "How to audit tickmarks in Excel workpapers on Mac: legends and cross-references, 2026",
+  "metaTitle": "Audit tickmarks in Excel workpapers on Mac: legend setup",
+  "description": "Set up a tickmark legend and cross-references in Excel on Mac. Build the index, link each mark to its workpaper, and check for broken references.",
+  "targetKeyword": "audit tickmarks in excel workpapers",
+  "secondaryKeywords": [
+    "tickmark legend in Excel",
+    "cross-reference workpapers Excel",
+    "audit workpaper cross-referencing",
+    "Excel hyperlink to workpaper",
+    "tickmark legend template",
+    "audit tick marks meaning"
+  ],
+  "intro": "To audit tickmarks in Excel workpapers on Mac, define each mark once on the index sheet. Then link every mark to the workpaper that holds its evidence. A tickmark says what you did. A cross-reference says where the proof is filed.",
+  "tldr": [
+    "Put one tickmark legend on the index sheet, and define every mark there once.",
+    "A tickmark records the procedure. A cross-reference records where the evidence sits.",
+    "Use letter codes and a Data Validation list fed by a named range, so typos get caught.",
+    "Run a break check before sign-off for unknown codes, unused codes and dead links.",
+    "Caseware Working Papers lists Windows only in its requirements, so check your firm's setup first."
+  ],
+  "stats": [
+    {
+      "value": "1,595,200",
+      "label": "accountant and auditor jobs in 2025, per the BLS Occupational Outlook Handbook",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors: Occupational Outlook Handbook"
+    },
+    {
+      "value": "78%",
+      "label": "of busy-season respondents worked more than 50 hours a week (sample size not stated)",
+      "sourceUrl": "https://www.distinctrecruitment.com/us/resources/blog/busy-season-2026-trends-in-workload-stress-support-across-public-accounting/",
+      "sourceTitle": "Busy season 2026: Trends in workload, stress & support across public accounting"
+    },
+    {
+      "value": "57%",
+      "label": "called busy season somewhat or extremely stressful in the same survey",
+      "sourceUrl": "https://www.distinctrecruitment.com/us/resources/blog/busy-season-2026-trends-in-workload-stress-support-across-public-accounting/",
+      "sourceTitle": "Busy season 2026: Trends in workload, stress & support across public accounting"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "An audit file carries two kinds of marks. A tickmark is a short letter or symbol that says what you did to a figure. A cross-reference points to the workpaper where the evidence is filed. The guide behind this page says good workpapers usually use both, and trouble starts when one of them is missing or unclear."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a tickmark and a cross-reference each record"
+    },
+    {
+      "type": "paragraph",
+      "text": "A tickmark answers one question: what procedure was performed? You might mark a cash balance as agreed to the bank statement. A cross-reference answers a second question: where is the proof? It is usually a workpaper number, such as C-1. Keep the two answers apart. If the mark says agreed but no reference follows, the reviewer has to guess where to look."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Busy season makes this harder. Distinct Recruitment's 2025/26 survey reports that 78% of respondents worked more than 50 hours a week. The page does not state its sample size, and the publisher is a recruiter. Read the figure as a warning sign, not a measurement. A clear legend takes less time to write than the questions it prevents, and you can check that on your own files."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the tickmark legend on the index sheet in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Put the legend on the index sheet, the first tab a reviewer opens. Do not repeat it on every workpaper. The guide behind this page recommends one engagement-level legend on the index page, and it says a mark with no legend is decoration. The steps below use features in Excel for Mac in Microsoft 365."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Rename the first tab to Index. Keep it at the front of the file.",
+        "In column A, type each code exactly as it will appear. Use letters such as T, F, C or AN.",
+        "In column B, write the meaning in one plain sentence, such as agreed to bank statement.",
+        "In column C, write the workpaper number where the evidence is filed, such as C-1.",
+        "Select the code cells in column A. Choose Formulas > Define Name, and name the range Codes.",
+        "Right-click the Index tab and choose Tab Color, so reviewers find it fast."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Letters beat glyphs",
+      "text": "Check marks and boxes can look different across fonts, printers and PDF exports. Letter codes are easy to type and easy to search. If your firm insists on a symbol, press ⌃⌘Space to open the Character Viewer, then test the file on a second computer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, lock entry to the list. Select the mark column on your working sheets. Go to the Data tab, choose Data Validation, set Allow to List, and type =Codes in the Source box. Anyone who then types a code outside the legend sees an error."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add cross-references that open the workpaper"
+    },
+    {
+      "type": "paragraph",
+      "text": "A cross-reference can be plain text, a link, or both. Plain text survives every copy, archive and export. A link saves a click during review. Microsoft's support page on Excel links gives three routes: select a cell and choose Insert > Hyperlink, right-click the cell and choose Hyperlink, or press Ctrl+K. Those screens come from Windows. On a Mac, ⌘K is the likely shortcut, but Microsoft's page does not say so. Confirm it in your copy."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Same sheet: =HYPERLINK(\"#A10\",\"Go to Cell A10\") jumps to cell A10 on the active sheet.",
+        "Different sheet: put the sheet name in single quotes, such as =HYPERLINK(\"#'C-1 Bank'!A1\",\"C-1\").",
+        "Another file: type the full path. The link breaks when the file moves or gets renamed."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheet names matter more than people expect. A HYPERLINK formula stores its target as text. Rename the tab and the formula keeps pointing at the old name, while ordinary cell references update themselves. Settle the sheet names before you build links, and avoid renaming tabs once review starts."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one cash balance traced end to end"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a cash balance on the Cash sheet. The tickmark T on that row means agreed to the bank statement. The cross-reference C-1 names the workpaper that holds the bank confirmation. The legend on the Index tab defines T. Three records now tell one story, and each one does a different job."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now suppose the bank statement shows a difference. The balance no longer agrees, so T does not apply to that row. Add the exception mark E-1 on the same row instead. E-1 points to the exception log, which holds the amount, the explanation and the resolution. The reviewer reads one row and follows one trail."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check for broken references and unused codes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A legend is only useful if it matches the file. Run these checks before you send a file for review. Excel will not run them for you."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Unknown codes: in a spare column next to the marks, enter =COUNTIF(Codes,A2)=0 and fill it down. TRUE means the mark is not in the legend.",
+        "Unused codes: press ⌘F and search the workbook for each code in the legend. A code with no marks may be stale, so remove it or explain it.",
+        "Broken links: follow each link once from a clean copy of the file. A failing link shows an error or opens nothing.",
+        "Missing references: check that every procedure mark has a cross-reference in the next column."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "These checks are manual. A clean result shows the file is consistent. It does not show the evidence is correct, which still needs a reviewer."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes people make with tickmark legends"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Defining a mark on one page only. The reader on another page cannot decode it.",
+        "Typing codes by hand, so AN and A/N both appear in the same file.",
+        "Linking to a file name instead of a workpaper number. A rename breaks the trail.",
+        "Putting exception notes in cell comments instead of an exception log. Comments can be easy to miss when a file is printed or exported.",
+        "Changing a meaning mid-engagement without updating the legend. Older pages keep the old meaning."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each of these feels fast on the day and slow at review. The legend takes longer at the start and saves the back and forth later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the vendor docs stop for Mac users"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your firm uses Caseware Working Papers, its requirements page lists Windows 10 and Windows 11 (64-bit). It does not list macOS or ARM. Ask your IT team what your firm supports rather than guessing from a menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Excel link page is the other gap. It shows Windows screenshots from Excel 2016 and gives no Mac steps. That is why this page marks the ⌘K shortcut as unconfirmed. Test it once on your own copy before you write it into a team guide."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "One example, not a standard",
+      "text": "The tickmark set in this page comes from a 2026 practitioner guide, and that guide says firms use different standard sets. Replace these codes with your firm's list before you share the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep client data inside your firm's rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "A legend holds no client data, but the workpapers around it do. They carry client names, balances and bank details. Follow your employer's rules on client data before you paste, screenshot or describe any of it to an AI tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Lazur, know what leaves the Mac. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Ask first, then hold the key",
+      "text": "If your firm does not allow client files in outside AI tools, do not hold the shortcut over client workpapers. Build the legend from the rules on this page and keep client content out of any prompt."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps and where it stops"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ to ask about anything on screen. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not click buttons, edit files or operate other apps for you. Use it to find the Data Validation button, check what a mark means, or walk through a menu path. You still make each change in the file yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean text at the cursor in any app. A personal dictionary can hold IPE and AN, so dictation spells your codes the way your legend does. Snippets can store the exception sentence you reuse on every file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your next engagement file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build the Index tab on your next file, then run the break check before the reviewer sees it. For broader Excel habits on Mac, read [Excel for accountants on Mac](/for/accountants/excel). When you want the voice side, the [download page](/download) has the Mac app. The Pro trial is three days, needs no credit card, and starts when you first open the app."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Should I use symbols or letters for tickmarks in Excel on Mac?",
+      "answer": "Use letters or short codes such as T, F, C or AN. They type fast, search cleanly and do not depend on a font. If your firm uses symbols, press ⌃⌘Space to open the Character Viewer, then test the file on a second computer."
+    },
+    {
+      "question": "Does Excel stop me from typing a code that is not in the legend?",
+      "answer": "Only for entries made after you set up Data Validation with a List source. Existing cells keep whatever they hold, and pasted values can overwrite the rule. Run a count check across the mark column before sign-off."
+    },
+    {
+      "question": "Can a cell comment replace a legend?",
+      "answer": "No. A comment explains one cell and can be easy to miss when a file is printed or exported. Keep the meaning of each mark on the index page, and use a comment only as a short note."
+    },
+    {
+      "question": "Is there one standard tickmark set I should copy?",
+      "answer": "No. The guide behind this page calls its list an example, not a standard, and firms use different sets. Start from your firm's own list. If it has none, write one and keep it on the index sheet."
+    },
+    {
+      "question": "Does Caseware Working Papers run on a Mac?",
+      "answer": "Not according to Caseware's own requirements page. It lists Windows 10 and Windows 11 (64-bit), and it does not list macOS or ARM. Check the current page, or ask your IT team what your firm supports."
+    },
+    {
+      "question": "Will Lazur write the legend or the links into my file?",
+      "answer": "No. Lazur points at things, explains what is on screen, guides you one click at a time and drafts text. It does not click buttons or edit your file, so you do the building yourself."
+    },
+    {
+      "question": "Does Lazur send my client workbook to an AI service?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Follow your employer's rules on client data before you hold the shortcut over client work."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Busy season 2026: Trends in workload, stress & support across public accounting",
+      "url": "https://www.distinctrecruitment.com/us/resources/blog/busy-season-2026-trends-in-workload-stress-support-across-public-accounting/",
+      "publisher": "Distinct Recruitment",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Accountants and Auditors: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Audit Tick Marks That Mean Something: A Standard Set With Usage Examples",
+      "url": "https://internalauditguide.com/2026/09/audit-tick-marks/",
+      "publisher": "internalauditguide.com",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "System requirements – Working Papers",
+      "url": "https://www.caseware.com/docs/en/desktop/working-papers/setup/installation/system-requirements",
+      "publisher": "Caseware International",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Work with links in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/work-with-links-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "building tickmark legends and cross-references",
+  "costs": [
+    {
+      "title": "Hunting for meaning at review",
+      "text": "When a mark has no legend on the page, the reviewer stops and searches. They check the index, an older file or a colleague. Each lookup delays sign-off, and the questions come back as review notes. The guide behind this page says a tick mark without a legend is decoration."
+    },
+    {
+      "title": "Long hours in busy season",
+      "text": "BLS says overtime hours are typical at certain periods of the year, and it cites quarterly audits and tax season as examples. Distinct Recruitment's 2025/26 survey found 78% of respondents worked more than 50 hours a week. Clerical rework lands in those same weeks, so every avoidable fix matters."
+    },
+    {
+      "title": "Stress that outlasts the season",
+      "text": "Distinct reports that 57% called busy season somewhat or extremely stressful. Among respondents who received useful tools, 38% called it stressful, against 78% of those who received no practical support. That is an association from a survey with no stated sample size, so do not treat it as proof."
+    },
+    {
+      "title": "Rework after a missed link",
+      "text": "A broken cross-reference sends the reviewer to the wrong workpaper. They open the file, find nothing, then message the preparer. A link checked once before sign-off costs far less than that loop of messages and reopened files."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The legend is written last",
+      "text": "Many preparers add the legend after the file is full. By then the marks have grown in different directions. Writing the legend first forces one set of definitions before the work starts. Adding it at the end means guessing what each mark meant at the time."
+    },
+    {
+      "title": "Excel does not know what a mark means",
+      "text": "Excel stores the letter T the same way whether it means traced, tested or total. The software cannot check a mark against a legend unless you build that check. Without a validation list or a count formula, a wrong code stays in the file until someone reads it."
+    },
+    {
+      "title": "A mark and a reference do different jobs",
+      "text": "The tickmark records the procedure. The cross-reference records the file location. Teams often merge the two into one combined code, so the procedure and the location blur together. Keeping them apart lets each one stay short and checkable."
+    },
+    {
+      "title": "Workpapers get renamed and moved",
+      "text": "Tabs get renamed, sheets move and files get saved under new names. A HYPERLINK formula stores its target as text, so it keeps pointing at the old name. Links break quietly, and nobody notices until a reviewer clicks one."
+    },
+    {
+      "title": "Several people, several habits",
+      "text": "Each preparer brings a habit. One uses a letter, another uses a symbol, and a third writes the meaning in a comment. Without one legend on one index page, the same file holds three conventions at once."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Put one legend on the index page",
+      "text": "Define every mark once, on the engagement index sheet. The guide behind this page recommends one engagement-level legend in that place. Reviewers then have one place to look, and preparers have one list to follow."
+    },
+    {
+      "title": "Use a fixed code list",
+      "text": "Name the code column, then point a Data Validation list at that name. New entries must match a code from the legend. Existing entries are not checked, so run a count check across the whole mark column before sign-off."
+    },
+    {
+      "title": "Number your exceptions",
+      "text": "Use exception references such as E-1 that point to an exception log, instead of bare marks or cell comments. The log holds the difference, the explanation and the resolution. One line in the file then carries the whole story."
+    },
+    {
+      "title": "Point cross-references at the workpaper number",
+      "text": "Cross-reference by the workpaper number, not by file name. Add a link if you want one-click access, but keep the number as plain text beside it. A link can break, and the number still tells a reviewer where to look."
+    },
+    {
+      "title": "Run one break check before sign-off",
+      "text": "Check for unknown codes, unused codes and links that fail. Use a count formula, a workbook search and one click on each link from a clean copy. Write the date of the check on the index so the reviewer knows it was done."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the tickmark legend on this sheet?",
+      "result": "Lazur draws a circle and a label around the legend block, so you find it without scrolling through every tab.",
+      "capability": "point"
+    },
+    {
+      "say": "What does this tickmark mean on the bank row?",
+      "result": "Lazur reads the marks on screen and answers out loud, so you can check a row without leaving the file.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through adding a Data Validation list.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not make the click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the exception note for this row.",
+      "result": "Dictation types clean text at the cursor in any app. A personal dictionary can hold IPE and AN, so they are spelled correctly.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a one-line legend entry for the AN mark.",
+      "result": "Lazur drafts the sentence for you to read and place in the legend. You decide what goes into the file.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to run the break check before sign-off.",
+      "result": "Lazur adds an Apple Reminders item by voice, so the check is on your list before sign-off.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the tickmark legend on this sheet?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the legend block on screen, so you can find it at once.",
+    "shell": "sheet",
+    "context": "Index tab of an engagement workbook in Excel for Mac",
+    "pointsAt": "Legend block",
+    "output": "Lazur points at the legend block and names it aloud."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Define the codes",
+      "text": "Open the Index tab. Write the code list in column A and the meaning in column B. Keep codes to letters. Name the code range Codes, so a validation list can read it. Stop when every mark used so far has a line."
+    },
+    {
+      "label": "Day 2",
+      "title": "Set up validation and links",
+      "text": "Apply a List validation to the mark column, with Codes as the source. Add a cross-reference beside each mark, with the workpaper number as text and a link where it helps the reviewer."
+    },
+    {
+      "label": "Day 3",
+      "title": "Trace one balance end to end",
+      "text": "Pick one balance, such as cash. Follow its mark, its reference and any exception entry across the file. Fix each step where a reviewer would have to guess what you meant."
+    },
+    {
+      "label": "Day 4",
+      "title": "Run the break check",
+      "text": "Add a count formula for unknown codes. Search the workbook for each code to find stale ones. Follow each link once from a clean copy, then write the date of the check on the index."
+    },
+    {
+      "label": "Day 5",
+      "title": "Agree the legend with the reviewer",
+      "text": "Send the Index tab to the reviewer before the busy weeks start. Ask them to challenge any mark they cannot decode. Update the legend, then keep that convention for the next file."
+    }
+  ],
+  "apps": [
+    "excel",
+    "outlook",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "audit-tickmarks-excel-cross-reference",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/audit-tickmarks-excel-cross-reference/audit-tickmarks-in-excel-workpapers-1-79d7d2.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Accountant at a laptop reviewing audit tickmarks in Excel workpapers",
+      "caption": "Reviewing a file before sign-off.",
+      "keywords": [
+        "audit tickmarks in excel workpapers",
+        "Accountants",
+        "Building tickmark legends and cross-references",
+        "Mac",
+        "accountant laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "vanmarciano",
+        "url": "https://pixabay.com/users/vanmarciano-1310286/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/money-computer-desk-finance-931423/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/audit-tickmarks-excel-cross-reference/audit-tickmarks-in-excel-workpapers-2-8cef11.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Audit documents on a desk, ready for tickmarks in Excel workpapers",
+      "caption": "Evidence still arrives on paper and in folders.",
+      "keywords": [
+        "audit tickmarks in excel workpapers",
+        "Accountants",
+        "Building tickmark legends and cross-references",
+        "Mac",
+        "audit documents desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stevepb",
+        "url": "https://pixabay.com/users/stevepb-282134/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/calculator-calculation-insurance-1044172/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/audit-tickmarks-excel-cross-reference/audit-tickmarks-in-excel-workpapers-3-088043.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Spreadsheet rows on a computer screen for audit tickmarks in Excel workpapers",
+      "caption": "Cross-references live in rows like these.",
+      "keywords": [
+        "audit tickmarks in excel workpapers",
+        "Accountants",
+        "Building tickmark legends and cross-references",
+        "Mac",
+        "spreadsheet screen office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "audit tickmarks in excel workpapers",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "tickmark legend in Excel": 1,
+      "cross-reference workpapers Excel": 1,
+      "audit workpaper cross-referencing": 1,
+      "Excel hyperlink to workpaper": 1,
+      "tickmark legend template": 1,
+      "audit tick marks meaning": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

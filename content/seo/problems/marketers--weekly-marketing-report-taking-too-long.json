@@ -1,0 +1,679 @@
+{
+  "title": "Why is my weekly marketing report taking so long? Fixes for Mac marketers in 2026",
+  "metaTitle": "Why is my weekly marketing report taking so long? Mac fixes",
+  "description": "A weekly marketing report takes hours when every export, paste, and check is manual. Here is why it drags, what it costs, and fixes you can start today.",
+  "targetKeyword": "why is my weekly marketing report taking so long",
+  "secondaryKeywords": [
+    "weekly marketing report automation",
+    "how to automate a weekly marketing report on Mac",
+    "Google Sheets marketing report refresh",
+    "Looker Studio scheduled email limits",
+    "marketing report takes too long",
+    "time spent on marketing reporting",
+    "Excel Power Query refresh on Mac"
+  ],
+  "intro": "Most slow weekly reports are rebuilt from scratch every week. Each export, paste, and check waits on the step before it, so small delays stack into hours. This page shows where the time goes, what the delay costs, and fixes you can use on a Mac without buying anything. Lazur is a voice assistant for the Mac, and it only helps where it fits.",
+  "tldr": [
+    "Most slow reports are rebuilt by hand from scratch, every week, from the same messy exports.",
+    "A 2022 vendor survey put marketers at 14.5 hours a week on customer data work. Treat it as scale, not a benchmark.",
+    "Scheduled emails and linked sources have limits. Check the quotas before you build a plan around them.",
+    "Fix the source first: one Raw tab, one campaign name map, and one checklist before the charts.",
+    "Lazur explains formulas, points at menus, guides you step by step, and dictates commentary. It does not build the report for you."
+  ],
+  "stats": [
+    {
+      "value": "14.5 hours",
+      "label": "a week managing customer data collection, average across the marketers surveyed in 2022",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: data efficiency survey"
+    },
+    {
+      "value": "18%",
+      "label": "of marketers spend more than 20 hours a week on that same customer data work",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: data efficiency survey"
+    },
+    {
+      "value": "88%",
+      "label": "of 113 operational spreadsheets had at least one error in field audits from 1995 to 2007",
+      "sourceUrl": "https://keyholesoftware.com/spreadsheet-modernization/",
+      "sourceTitle": "Keyhole Software: When the Spreadsheet Is the System"
+    },
+    {
+      "value": "$79.70",
+      "label": "median hourly wage for advertising, promotions, and marketing managers, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a slow weekly report costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "A slow weekly report costs more than an afternoon. It costs the afternoon, the Monday you spent chasing exports, and the decision that waited until Thursday. Start with the hours, because they are easiest to count. In a 2022 survey released by Treasure Data, marketers said they spend an average of 14.5 hours a week managing customer data collection. One in five, or 18%, said it takes more than 20 hours."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read that number carefully. The survey covers customer data work in general. It does not isolate the time it takes to assemble one weekly report. Read it as a sign of scale, not as a benchmark for your team. For your own number, time the next build yourself. Log every step with its minutes, then compare that total to the survey figure."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "About that survey",
+      "text": "Treasure Data sells a customer data platform, so its survey has a product angle. Use the 14.5 hour figure to see the scale of the problem, not to set a target."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Money is the second cost. The U.S. Bureau of Labor Statistics lists a median hourly wage of $79.70 for advertising, promotions, and marketing managers in May 2025. That figure is a median for the whole occupation, not your pay. Use it as a rough stand-in for what an hour of your time is worth."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Hours per week",
+        "Cost per week",
+        "Cost per 52 weeks"
+      ],
+      "rows": [
+        [
+          "2",
+          "$159.40",
+          "$8,288.80"
+        ],
+        [
+          "5",
+          "$398.50",
+          "$20,722.00"
+        ],
+        [
+          "10",
+          "$797.00",
+          "$41,444.00"
+        ],
+        [
+          "14.5",
+          "$1,155.65",
+          "$60,093.80"
+        ]
+      ],
+      "caption": "My arithmetic at the $79.70 median hourly wage. Illustrative, not a measured cost for your team."
+    },
+    {
+      "type": "paragraph",
+      "text": "A five-hour report looks small until you multiply it. Five hours a week comes to about $20,700 a year at that rate. Swap in your own hours and your own rate. The point is that a weekly report is a recurring cost, not a one-time chore."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Late decisions cost more than hours"
+    },
+    {
+      "type": "paragraph",
+      "text": "A slow report also arrives late, and late data changes decisions. Gartner's 2020 Marketing Data and Analytics Survey covered 415 marketing leaders and analytics practitioners in North America and Western Europe. It found analytics shaped only 54% of marketing decisions. Marketers cited weak data quality and insights they could not act on as reasons."
+    },
+    {
+      "type": "paragraph",
+      "text": "A report that lands on Thursday shapes Friday's budget, not Monday's. Every day of delay is a day the team works from old numbers. Shorten the build, and the report can go out while the data is still current."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the hours go in a weekly build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the time is not analysis. It is movement. You download a file, open it, paste it, fix the columns, and copy the result into the next file. Analysis happens in the last ten minutes, if it happens at all. Here is a typical build, step by step."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Export each source: ad platform, web analytics, CRM, email tool, and social.",
+        "Paste into one sheet, then fix date formats, currency symbols, and column names.",
+        "Match campaign names across sources, which often differ by one word or one character.",
+        "Recalculate totals, percentages, and week-over-week changes by hand.",
+        "Build charts, then resize them for the deck or the email body.",
+        "Write the commentary, send it, then answer the first three questions."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why does a weekly marketing report take so long?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Three things cause most of the delay. The first is that the report starts from zero every week. The second is that the sources do not agree on names, dates, or currency. The third is that every step depends on a person who has to remember the order."
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors add a second cost. Field audits compiled by Ray Panko, who studies spreadsheet errors, found at least one error in 88% of 113 operational spreadsheets from 1995 to 2007. Per-cell formula error rates in those audits ranged from 0.4% to 6.9%. Keyhole Software summarizes that work, and it is the source cited here. Powell, Baker, and Lawson argued in 2008 that the audit data cannot support a precise error rate. The risk still holds for any hand-built sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "A vendor blog, Coupler.io, cites a Journal of Accountancy figure that manual data entry has an average error rate of 1% to 5%. It also cites a Conexiom analysis that puts one data entry error at $50 to $150. Both are secondhand, and the blog sells data tools. Use them as rough ranges, not as facts."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one Tuesday that took five hours"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a typical build for a paid social and email report. It covers three ad accounts, one email tool, and a web analytics export. Step one takes 40 minutes of downloads. Step two takes an hour to clean columns that changed format since last week. Step three takes another hour, because two agencies used different campaign names. Charts and commentary take about two hours. Sending and answering questions takes the last 20 minutes. That is five hours, and only the last two were analysis."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix is not a faster Tuesday. It is moving steps one through three off Tuesday. Once the raw data lands in a tab that refreshes on its own, your Tuesday becomes commentary and checks. Most people find the slow part was never the writing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Scheduled report limits to check first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Looker Studio can email a report on a schedule. That is the most direct way to stop the manual send. It has limits, and they matter for a weekly report. Google's documentation lists these rules for scheduled email delivery."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Individual accounts: 200 emails per day and 800 per month.",
+        "Google Workspace accounts: 500 emails per day and 3,000 per month.",
+        "Looker Studio Pro: unlimited scheduled email, according to Google's documentation.",
+        "Without Pro, a scheduled report runs no more than once a day. With Pro, it can run as often as hourly.",
+        "Send Now and a custom subject or message require Pro, and they are unavailable for reports in the Owned by me folder."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google also changed the free tier in 2025. On March 21, 2025, the company removed Send Now, custom subject and message editing, and the report preview image for non-Pro users. The email now contains only the PDF and a link. Google suggested upgrading to Pro, or downloading the PDF and sending it yourself. The second option still means a manual step, but a short one."
+    },
+    {
+      "type": "paragraph",
+      "text": "One edge case catches teams with strict security rules. If your data sits behind IP-based access levels under VPC Service Controls, scheduled email contains only a link. Google's recommended fix is service account credentials. Ask your data owner or IT team before you plan around scheduled email."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "IMPORTRANGE and Power Query refresh problems"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets IMPORTRANGE pulls data from one spreadsheet into another. It has four rules that cause most of the surprises. The source sheet must grant access first. Each request is capped at 10MB of received data. Open documents check for updates hourly, so a change may take a while to appear. Formulas inside the import cannot reference NOW, RAND, or RANDBETWEEN."
+    },
+    {
+      "type": "paragraph",
+      "text": "That last rule matters for weekly reports. Many people stamp a report date with NOW(), and that will not work inside an import. Put the date in a plain cell instead. Type it or paste it on the day you publish, and point the title at that cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your reports live in Excel for Mac, Power Query does the refresh. Choose Data > Refresh All to update every source in the workbook. To update one source, right-click its query table and choose Refresh. The first refresh of a file-based source may ask for a new path. Go to Data > Get Data arrow > Data Source Settings > Change File Path. Check that path again after you move the folder to a new Mac."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Apple Shortcuts: check before you plan on it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcuts is built into macOS. It chains actions together, which helps with renaming files or moving exports into a folder. Apple's Shortcuts user guide describes action chains, an Automations section, and running shortcuts from the command line. The guide does not mention scheduled time triggers or AppleScript actions. Open Shortcuts and look at the Automation options in your version before you build a weekly workflow around a timer. If the trigger is missing, use a calendar reminder to start the run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make the weekly report slower"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Rebuilding the file from scratch instead of copying last week's template.",
+        "Pasting values over formulas, so next week's numbers never update.",
+        "Keeping three copies of the report and not knowing which one is current.",
+        "Fixing campaign names by hand each week instead of keeping a mapping tab.",
+        "Saving over last week's file, so the old numbers disappear with it.",
+        "Writing commentary before the numbers settle, then rewriting it twice."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one mistake from that list and fix it this week. The mapping tab alone often saves the most time, because it ends the by-eye matching. If you use Sheets, the guides on [sorting data by column](/how-to/sort-data-by-column-in-google-sheets) and [adding a filter to a range](/how-to/add-a-filter-to-a-range-in-google-sheets) help with the cleanup step."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch, and you hold a key to talk. It sees your screen only while you hold the shortcut. It points at things, explains what it sees, and guides you one click at a time. It does not click buttons or edit files for you, so the rebuild still runs through your hands."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ and ask about a formula that shows an error. Lazur answers out loud and can point at the cell that breaks it. Hold fn to dictate your weekly commentary at the cursor in a Google Doc. Save the standard opening as a snippet, so you stop retyping the same sentence every week."
+    },
+    {
+      "type": "paragraph",
+      "text": "For research, Lazur can run a job in its own Chrome tabs through the Lazur for Chrome extension. It returns a summary and a report. Use it to gather public pages for the commentary, such as a competitor's pricing page. It does not pull your ad accounts into a sheet for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Everyday voice actions help with the schedule. You can ask Lazur to start a timer for each build step, add a Calendar event for the Monday send, or set an Apple Reminders item to check the scheduled email. These are small help. They will not shorten the build by themselves."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Start with the slowest step",
+      "text": "Time each step once. The longest step is usually the one that moves data between tools. Fix that before you touch the charts."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data and employer rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "Weekly reports often hold client or customer data. Agency work can also involve data your client owns. Before you paste anything into a tool, including an AI assistant, check your employer's and your client's data rules. Lazur sends audio and the screenshot to AI providers to answer. Those are not stored, and content is never used to train AI models. Your contract still decides what you may share."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a report should stay manual"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every report should be automated. A one-off board deck, a new client brief, or a report with unclear numbers should stay manual until the questions settle. Automate the repeated part, such as the export, the cleanup, and the totals. Keep the judgment step by hand, where you decide what the numbers mean."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check the numbers before you send",
+      "text": "A refresh can finish without pulling new data. Check the last-updated date on each source, then compare one total against the platform's own report."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the slowest step, not the prettiest chart. Time one week's build, mark the three longest steps, and move the first one to a fix. The fixes on this page cost nothing. After four weeks of timings, decide whether you need a paid tool or a better sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the commentary is the slow part, the guides on [adding a comment in Google Docs](/how-to/add-a-comment-in-google-docs) and [accepting or rejecting suggestions](/how-to/accept-or-reject-suggestions-in-google-docs) help with the review loop. Lazur's plans and trial are on the [pricing page](/pricing). Check it for current limits before you decide."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why is my weekly marketing report taking so long even with a template?",
+      "answer": "A template holds layout, not data. If you still paste exports, match names by eye, and retype totals, the template saves only formatting time. Move the raw data and the name matching into fixed tabs. Then the template can do its job."
+    },
+    {
+      "question": "How long should a weekly marketing report take?",
+      "answer": "None of the sources used here sets a standard time for a weekly report. The Treasure Data survey measured customer data work broadly, at an average of 14.5 hours a week. Time your own build for four weeks, then set a target from your own numbers."
+    },
+    {
+      "question": "Can Looker Studio email my report every week for free?",
+      "answer": "Yes, with limits. Free individual accounts can send 200 emails a day and 800 a month. Without Pro, a scheduled report can run only once a day. Since March 21, 2025, free accounts get only the PDF and a link. Check Google's documentation for current rules."
+    },
+    {
+      "question": "Why does my Google Sheets import stop updating?",
+      "answer": "Check that the source sheet has granted access. Check the 10MB cap on each request. Open documents check for updates hourly, so a change can take time to show. Confirm the formula does not reference NOW, RAND, or RANDBETWEEN."
+    },
+    {
+      "question": "Does Lazur build my weekly report for me?",
+      "answer": "No. Lazur sees your screen while you hold the shortcut, explains what it sees, points at things, and guides you one click at a time. It does not click buttons or operate other apps for you. You still build the report, with Lazur helping through the steps."
+    },
+    {
+      "question": "Does Lazur plug into Google Sheets or Excel?",
+      "answer": "No. Lazur is a voice assistant for the Mac, not a plugin or add-in for any app. It has no partnership with app makers. It works alongside the apps you already use, such as Chrome and Google Sheets."
+    },
+    {
+      "question": "Can I use Lazur with client data?",
+      "answer": "Check your employer's and your client's data rules first. Lazur sends audio and the screenshot to AI providers to answer, and it does not store them. Content is never used to train AI models. Your client contract still decides what you may share."
+    },
+    {
+      "question": "Is Apple Shortcuts enough to automate the report?",
+      "answer": "It can chain actions and run from the command line. Apple's Shortcuts guide describes an Automations section. The guide does not list scheduled time triggers or AppleScript actions, so confirm what your version offers before you rely on it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Treasure Data press release: data efficiency survey",
+      "url": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "publisher": "Treasure Data",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Advertising, Promotions, and Marketing Managers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Schedule automatic report delivery (Looker Studio)",
+      "url": "https://docs.cloud.google.com/looker/docs/studio/schedule-automatic-report-delivery?hl=en",
+      "publisher": "Google Cloud",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Important updates to Looker Studio users on scheduled email feature",
+      "url": "https://discuss.google.dev/t/important-updates-to-looker-studio-users-on-scheduled-email-feature/184670",
+      "publisher": "Google Developers forum",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "IMPORTRANGE function",
+      "url": "https://support.google.com/docs/answer/3093340?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Shortcuts User Guide for Mac",
+      "url": "https://support.apple.com/guide/shortcuts-mac/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "When the Spreadsheet Is the System: Modernizing Excel-Run Business Processes",
+      "url": "https://keyholesoftware.com/spreadsheet-modernization/",
+      "publisher": "Keyhole Software",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Gartner 2020 marketing analytics survey press release",
+      "url": "https://www.webwire.com/ViewPressRel.asp?aId=264925",
+      "publisher": "Webwire (Gartner release)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Hidden Cost of Manual Data Work in Marketing",
+      "url": "https://blog.coupler.io/why-marketing-teams-need-automation/",
+      "publisher": "Coupler.io",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "hand-assembled weekly marketing reports",
+  "costs": [
+    {
+      "title": "Hours you do not get back",
+      "text": "Five hours a week at $79.70 an hour is about $398.50 a week. Over 52 weeks that comes to about $20,700. Those hours could go to tests, client calls, or the budget decision the report was meant to support. Use your own hours and your own rate."
+    },
+    {
+      "title": "Errors that reach the client",
+      "text": "A hand-built sheet is easy to break. A pasted range can shift by one row, and a total can quietly drop a campaign. Keyhole Software summarizes field audits that found at least one error in 88% of the spreadsheets studied. A Conexiom analysis cited by Coupler.io puts one data entry error at $50 to $150."
+    },
+    {
+      "title": "Decisions that arrive late",
+      "text": "A report that lands on Thursday shapes Friday's budget, not Monday's. Gartner's 2020 survey found analytics shaped only 54% of marketing decisions. A slow report widens that gap, because the data is already old when someone reads it."
+    },
+    {
+      "title": "Your own focus",
+      "text": "Every week, the same build pulls you away from strategy work. Switching from a pivot to an email and back costs attention. No source used on this page measures that cost, so treat it as a plain observation. The fix is fewer manual steps, not a bigger calendar."
+    },
+    {
+      "title": "Trust in the numbers",
+      "text": "When the report arrives late or changes after it goes out, people stop asking for it or stop trusting it. Marketers in the same Gartner survey cited weak data quality as a reason analytics shaped so few decisions. A stable report with a visible update time rebuilds that trust."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The report starts from zero every week",
+      "text": "Most hand-built reports are copies of a file that was never designed to repeat. Each week someone duplicates last week's deck, deletes the old numbers, and pastes new ones in. Formulas break, colors drift, and the next person has to work out what changed."
+    },
+    {
+      "title": "Sources use different names and formats",
+      "text": "Ad platforms, analytics tools, and CRMs all name campaigns differently. One tool writes Spring_Sale, another writes spring sale 2026, and a third uses an ID number. A person matches them by eye every week. Dates arrive as text in one export and as real dates in another."
+    },
+    {
+      "title": "Every step depends on memory",
+      "text": "The process lives in one person's head. The export order, the filter settings, and the chart tweaks are not written down. When that person is away, the report slows down or stops. When they are present, each step takes longer because they check it twice."
+    },
+    {
+      "title": "Copy and paste creates errors",
+      "text": "Each paste is a chance for a shifted row. Panko's compiled field audits found at least one error in 88% of 113 operational spreadsheets from 1995 to 2007. Those audits are old, and the authors debate the exact rate, but the risk is real for any hand-built sheet."
+    },
+    {
+      "title": "Scheduling tools have quotas and gaps",
+      "text": "Looker Studio scheduled email has daily and monthly caps for free accounts, and a once-a-day minimum without Pro. Google Sheets IMPORTRANGE needs access grants and caps each request at 10MB. When one of these limits applies, the automation quietly does less than you expect."
+    },
+    {
+      "title": "Commentary waits until the numbers settle",
+      "text": "Many people write the summary last, then rewrite it twice. The numbers move during the build, so the words go stale. Write a template with blank slots first, then fill the numbers in at the end."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Keep one Raw tab that never gets pasted over",
+      "text": "Create a tab named Raw. Paste each export into its own block, and never type over the pasted values. Add a column with the export date. Every other tab reads from Raw with formulas, so next week you paste fresh data and the summary updates. Use the sort and filter tools for cleanup."
+    },
+    {
+      "title": "Build a campaign name map",
+      "text": "Make a second tab with two columns: the name in each source, and the name you report. Look up each source name against that map with XLOOKUP or VLOOKUP. Add a row whenever a new campaign appears. This one tab ends the by-eye matching every week."
+    },
+    {
+      "title": "Use a template, not last week's file",
+      "text": "Save one clean template with charts linked to fixed ranges. Each week, make a copy, paste into Raw, and check the totals. Name the version in File > Version history > Name current version before you send. Keep old versions instead of saving over them."
+    },
+    {
+      "title": "Check totals against each source",
+      "text": "Pick one total per source and compare it to the platform's own report. Put the check in a cell with conditional formatting, so it turns visibly red when the numbers differ. Five minutes here stops a bad report from going out. Use Format > Conditional formatting."
+    },
+    {
+      "title": "Send a PDF by a fixed rule",
+      "text": "If your viewers accept a PDF, export it from the sheet with File > Download > PDF document, then attach it to one standard email. If you use Looker Studio, remember that free accounts get only the PDF and a link, and that Send Now needs Pro."
+    },
+    {
+      "title": "Write commentary in a Doc template with blanks",
+      "text": "Create a Google Doc with three headings: Wins, Misses, and Next week. Put numbers in square brackets so you can find and replace them fast. Ask reviewers to leave suggestions, then accept or reject them in one pass."
+    },
+    {
+      "title": "Time every step for four weeks",
+      "text": "Write the build steps on a card, in order. Time each step for four weeks. Move the longest step into a fix before you add anything new. A written timer keeps the list honest, because memory tends to round the times down."
+    },
+    {
+      "title": "Ask your data owner about access rules",
+      "text": "If your data sits behind VPC Service Controls, scheduled email sends only a link. Google's recommended fix is service account credentials. Ask your data owner or IT team to set that up, rather than working around it yourself."
+    },
+    {
+      "title": "Write a one-page runbook",
+      "text": "List each step in order, with the menu path and the owner. Keep the runbook in the same Doc as the template. A new person can then run the report without asking, and the process survives a holiday week."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why does this cell show an error in my weekly sheet?",
+      "result": "Lazur reads the formula on screen and explains which reference breaks, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the access prompt for this import?",
+      "result": "Lazur draws a circle and a label around the prompt so you can find it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through Change File Path in Excel.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Type the standard commentary opening here.",
+      "result": "Dictation types clean, formatted text at the cursor in your Google Doc.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research the public pricing pages for these three competitors.",
+      "result": "Lazur runs the job in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Monday at 9 to check the scheduled email.",
+      "result": "Lazur adds an Apple Reminders item for the check.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the access prompt for this import?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the access prompt, so you can grant access and check the feed.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome, a weekly report tab showing an import error in the summary",
+    "pointsAt": "IMPORTRANGE access prompt"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Time the current build",
+      "text": "Run the report the way you always do, with a timer going. Log each step and its minutes in a sheet. Mark the three longest steps. Fix nothing yet, because you need a baseline first."
+    },
+    {
+      "label": "Day 2",
+      "title": "Set up the Raw tab",
+      "text": "Create a Raw tab and paste this week's exports into it, one block per source. Add an export date column. Save a copy as your template, and write the date in the first row."
+    },
+    {
+      "label": "Day 3",
+      "title": "Build the campaign name map",
+      "text": "Make a mapping tab with source names and report names. Point the summary formulas at it. Check that one source's totals match the platform's own report."
+    },
+    {
+      "label": "Day 4",
+      "title": "Move commentary into a template",
+      "text": "Write the Doc with fixed headings and square-bracket slots. Save the standard opening as a snippet, so you can dictate it in one step next week."
+    },
+    {
+      "label": "Day 5",
+      "title": "Run it and check it",
+      "text": "Build the report from Raw and the map. Compare totals to each platform, then time the build again. Compare the time to Day 1 and write the saved minutes at the top of the template."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "google-docs",
+    "chrome",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "weekly-marketing-report-taking-too-long",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/weekly-marketing-report-taking-too-long/why-is-my-weekly-marketing-report-taking-1-c750c3.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Marketing team reviewing a weekly report together on a laptop at a desk",
+      "caption": "Weekly reporting still happens on laptops, in spreadsheets.",
+      "keywords": [
+        "why is my weekly marketing report taking so long",
+        "Marketers",
+        "Assembling weekly marketing reports by hand",
+        "Mac",
+        "marketing team laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DiggityMarketing",
+        "url": "https://pixabay.com/users/DiggityMarketing-12123926/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/search-engine-optimization-seo-4111000/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/weekly-marketing-report-taking-too-long/why-is-my-weekly-marketing-report-taking-2-7efb77.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen showing spreadsheet charts and data for a marketing report",
+      "caption": "Most weekly reports still live in a spreadsheet.",
+      "keywords": [
+        "why is my weekly marketing report taking so long",
+        "Marketers",
+        "Assembling weekly marketing reports by hand",
+        "Mac",
+        "spreadsheet charts laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/shares-dax-diagram-interest-charges-5279686/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/weekly-marketing-report-taking-too-long/why-is-my-weekly-marketing-report-taking-3-050dbd.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Marketer typing on a Mac at a desk while checking campaign numbers",
+      "caption": "Checking the numbers is the step you cannot skip.",
+      "keywords": [
+        "why is my weekly marketing report taking so long",
+        "Marketers",
+        "Assembling weekly marketing reports by hand",
+        "Mac",
+        "person working Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "why is my weekly marketing report taking so long",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "weekly marketing report automation": 1,
+      "how to automate a weekly marketing report on Mac": 1,
+      "Google Sheets marketing report refresh": 1,
+      "Looker Studio scheduled email limits": 1,
+      "marketing report takes too long": 1,
+      "time spent on marketing reporting": 1,
+      "Excel Power Query refresh on Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

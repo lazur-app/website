@@ -1,0 +1,565 @@
+{
+  "title": "Writing release notes eats up a product manager's week: fixes for Mac in 2026",
+  "metaTitle": "Writing Release Notes Eats Up a Product Manager's Week: Mac Fixes",
+  "description": "Writing release notes eats up a product manager's week because the facts are scattered. Here is how to collect them early, with fixes that need no purchase.",
+  "targetKeyword": "writing release notes eats up a product manager's week",
+  "secondaryKeywords": [
+    "how to write release notes on Mac",
+    "gathering info for release notes",
+    "release notes for product managers",
+    "GitHub generate release notes",
+    "App Store What's New character limit",
+    "release notes checklist"
+  ],
+  "intro": "Writing release notes eats up a product manager's week because the facts sit in several tools, and they were written for engineers. The fix is to collect facts as work ships, not in a last-minute scramble before launch. This page covers what the hunt costs, why it happens, and fixes you can use on your Mac today.",
+  "tldr": [
+    "For most product managers, finding the facts takes longer than writing the note.",
+    "Ticket titles and pull request names describe code, not what a customer sees.",
+    "GitHub can generate a draft from merged pull requests. You still rewrite it for customers.",
+    "App Store Connect allows up to 4,000 characters in What's New. Short and specific wins.",
+    "Collect facts at merge time in one running sheet, then check the draft against the shipped build."
+  ],
+  "stats": [
+    {
+      "value": "4,000",
+      "label": "characters allowed in the App Store Connect What's New field",
+      "sourceUrl": "https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information",
+      "sourceTitle": "App Store Connect Help: Platform version information"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Release notes look like a small job. A few bullets, a short paragraph, and you are done. In practice the bullets come last. Most of your time goes to finding out what actually shipped, who it helps, and whether the wording is true. You can write the sentences quickly once the facts are clear."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the time goes when you write release notes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Release facts live in more places than most teams admit. A ticket tells you the owner and status. A pull request tells you what code changed. A Slack thread explains why. A Figma file shows the new screen. Each source answers part of the question, and none of them answers it in customer words."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Source",
+        "What it tells you",
+        "What it leaves out"
+      ],
+      "rows": [
+        [
+          "Ticket tracker, such as Linear or Jira",
+          "Owner, status, and priority",
+          "What a customer will notice"
+        ],
+        [
+          "GitHub pull requests",
+          "What code merged and when",
+          "Plain-English user impact"
+        ],
+        [
+          "Slack or Teams threads",
+          "Why a decision was made",
+          "Whether the decision held"
+        ],
+        [
+          "Figma files",
+          "What the new screen was meant to look like",
+          "Whether it shipped that way"
+        ],
+        [
+          "Support inbox",
+          "What users keep asking about",
+          "Which fix they will see"
+        ],
+        [
+          "Your memory of meetings",
+          "Context from the last planning call",
+          "Anything you did not write down"
+        ]
+      ],
+      "caption": "Each source answers part of the question. None answers it in customer words."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take one change. The ticket says Persist filter state on list views. The pull request says the filter moves into local storage. A Slack thread says support logged complaints about lost filters. The Figma file shows a small reset chip. The note you want reads: Your filters now stay selected when you come back to a list. You pieced that line together from several places. This example is invented to show the pattern."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why release notes take longer than they should"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work is written for the team that does it. Tickets, commits, and chat use internal words like refactor, flag, and migration. Release notes need customer words like save, find, and sign in. Translating between the two takes a judgment call each time. Judgment is slow when nobody has written the rule down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Timing makes it worse. Facts get gathered at the end, when the team is tired and the launch date is close. Each missing detail becomes a message to someone who has already moved on to the next sprint. You wait for replies, and the draft waits too."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use GitHub's generated notes as a draft, not the final text"
+    },
+    {
+      "type": "paragraph",
+      "text": "GitHub can generate release notes for a release. The generated text includes a list of merged pull requests, a list of contributors to the release, and a link to a full changelog. That is a useful draft for engineers. It is not customer copy, because it lists code work by title."
+    },
+    {
+      "type": "paragraph",
+      "text": "To generate notes in the web app, open the release form, pick a tag and an optional previous tag, and enter a title. Click Generate release notes above the description field. Review the output before you publish. Nothing is final until you edit it."
+    },
+    {
+      "type": "paragraph",
+      "text": "From a terminal with the GitHub CLI installed, run gh release create v2.0.0 --generate-notes. The --notes flag adds your own text above the generated list. Use --notes-file with a dash to read your prepared text from standard input."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Hide the noise",
+      "text": "Add a .github/release.yml file to your repository. Use changelog.exclude.labels to keep pull requests with certain labels out of the list. Use changelog.exclude.authors to exclude user or bot handles. Set it once, and every release starts cleaner."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Writing the App Store What's New field"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you publish an iPhone or Mac app, the What's New in this Version field in App Store Connect is where your notes go. Apple allows up to 4,000 characters. The field is not available for an app's first version. It is required for every version after that, and you can localize it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple recommends that What's New give users detailed information about the specifics of changes, improvements, or fixes. Vague lines like Bug fixes and performance improvements tell a user nothing. Name the screen, button, or action that changed, and say what the user will notice."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that catch product managers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Internal refactors with no visible change: leave them out, or point engineers to the full changelog link.",
+        "Security fixes: check with your security or legal owner before you describe them in public text.",
+        "Staged rollouts: say which users see the change first, and do not promise a date you do not control.",
+        "Several platforms: write each note for the platform it ships on, not one blurred version for all.",
+        "Localized text: send translators the final English, not the first draft.",
+        "Customer quotes: use them only with permission, and follow your employer's rules on customer data."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The first version deserves a short note anyway. Apple does not require What's New there, so teams often skip it. Early users still want to know what they are getting. A short note costs little and sets expectations for the next update."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Customer data and regulated work",
+      "text": "If your product handles health, legal, or financial records, never name a real customer in a note. Do not paste support tickets that contain personal data into any tool. Follow your employer's rules on client or patient data first, every time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make release notes take longer"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking for facts on launch day instead of at merge time.",
+        "Copying ticket titles straight into the note.",
+        "Writing for the engineering team instead of the user.",
+        "Promising a date, price, or feature that is not final.",
+        "Skipping the check against the shipped build.",
+        "Scattering drafts across apps, so nobody can find the last approved version."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Hold fn to dictate clean text at the cursor in any app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It listens and looks at your screen only while you hold the shortcut. It only knows what you show it or say. Treat its draft as a first pass, and check every claim against the ticket and the build."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn rough bullets into customer language"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate your rough bullets with fn into a Notion page or a Slack draft. Then ask Lazur to rewrite them as plain sentences for a customer. Keep the technical bullets beside the draft, so you can check each sentence. If a sentence has no matching ticket, cut it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist before you publish"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Every line names something a user can see, use, or do.",
+        "Every claim matches the build you tested, not the plan.",
+        "Dates and version names match the release tag.",
+        "The text fits the field, with room to spare.",
+        "Translated copy was checked by a native reader.",
+        "Legal or security owners approved any risky wording."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep this checklist in your release template, not in your head. The next release will ask the same questions, and the checklist answers them before anyone has to."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does writing release notes take so long for a product manager?",
+      "answer": "Most of the time goes to finding facts, not writing. The facts sit in tickets, pull requests, chat threads, and design files. Each one needs a question or a check. Writing goes quickly once the facts are clear."
+    },
+    {
+      "question": "Can GitHub write my release notes?",
+      "answer": "GitHub can generate a list of merged pull requests, a list of contributors, and a link to a full changelog. That list is a draft for engineers, not customer copy. You still rewrite it in customer language before you publish."
+    },
+    {
+      "question": "How long can App Store What's New text be?",
+      "answer": "Apple allows up to 4,000 characters in the What's New in this Version field. The field is not available for an app's first version. It is required for every version after that, and you can localize it."
+    },
+    {
+      "question": "Should release notes list internal changes?",
+      "answer": "Usually no. Leave out refactors and cleanup that users cannot see. If engineers want those details, link to the full changelog. Keep the customer note focused on what changed for the user."
+    },
+    {
+      "question": "Can Lazur write release notes from my tickets?",
+      "answer": "Lazur drafts and types text, and it answers questions about what is on your screen while you hold ⌥ ⌘. It does not operate your tracker or other apps for you. Paste the facts in, then check every line against the source."
+    },
+    {
+      "question": "What should I do about customer names in release notes?",
+      "answer": "Do not name customers unless they gave permission. If your product handles health, legal, or financial data, follow your employer's rules on client or patient data before you paste anything into an AI tool."
+    },
+    {
+      "question": "What if the release has no visible change?",
+      "answer": "Record it in the internal changelog and skip the customer note. Customers do not need a note for a fix they never notice. Engineers and support still benefit from a short internal line."
+    },
+    {
+      "question": "How do I start if my team has no template?",
+      "answer": "Start with the last release. Rewrite each line in customer words, then keep the result as your template. Use the same headings and tone for the next release, and adjust them after each one."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Automatically generated release notes - GitHub Docs",
+      "url": "https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes",
+      "publisher": "GitHub",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "gh release create - GitHub CLI manual",
+      "url": "https://cli.github.com/manual/gh_release_create",
+      "publisher": "GitHub",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "App Store Connect Help: Platform version information",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information",
+      "publisher": "Apple Developer",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Project Management Specialists: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "gathering info for release notes",
+  "costs": [
+    {
+      "title": "Your calendar loses time you never see",
+      "text": "Gathering facts splits into many small tasks. Each one is a short search, a question, or a wait. Each one breaks your focus on the work in front of you. Few of these tasks get a calendar slot, so the total is easy to miss. Track your own time across a few releases to see the real number."
+    },
+    {
+      "title": "Engineers and support get pulled in",
+      "text": "Every open question sends a message to an engineer, a designer, or a support lead. They answer when they can. Your draft waits for those answers. When the answers arrive late, release day slips, and the note gets written under pressure."
+    },
+    {
+      "title": "Vague or wrong notes create support tickets",
+      "text": "A line that says Improved performance invites questions about what changed. A line that promises an unfinished feature invites complaints. Support then spends time on questions your note should have answered, and you spend time on corrections."
+    },
+    {
+      "title": "Sales and marketing request extra versions",
+      "text": "Sales wants a sentence for a customer call. Marketing wants a headline for a blog post. Each request is a rewrite, and each rewrite needs another fact check against the ticket. The work multiplies after you think the note is done."
+    },
+    {
+      "title": "A pay reference, not a measure",
+      "text": "The U.S. Bureau of Labor Statistics reports a median annual wage of $102,320 for project management specialists in May 2025. That is a related role, and the figure is not for product managers. Use it only as a rough reference for what coordination work costs in pay terms, not as a measure of your week."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Facts live in too many places",
+      "text": "Release facts sit in the tracker, the code host, chat, design files, and the support inbox. No single tool holds the full picture. You rebuild that picture for each release, and the rebuild is the slow part of the job."
+    },
+    {
+      "title": "Tickets describe the work, not the result",
+      "text": "A ticket title tells engineers what to build. It rarely says what a user will notice afterward. Translating from work to result takes a judgment call. Without a written rule, each call is made from scratch."
+    },
+    {
+      "title": "Notes get written at the end",
+      "text": "Teams gather facts when the launch is close. People are tired, and the details have faded. The note becomes a rescue job instead of a planned output, and rescue jobs run long."
+    },
+    {
+      "title": "Nobody owns the note",
+      "text": "Engineers assume the product manager writes it. The product manager assumes engineering will add the details. Without a named owner and a deadline, the task falls to whoever notices first, and that is often you."
+    },
+    {
+      "title": "Generated lists look finished",
+      "text": "A generated list of pull requests looks like a complete changelog, so it is easy to publish as is. The list is complete for engineers and unclear for users. The cleanup then returns later as support questions."
+    },
+    {
+      "title": "No template to reuse",
+      "text": "Each release starts from a blank page. You decide the format, the tone, and the headings again. The same choices repeat every time, and that repeated effort is wasted time."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Add a customer note field to every ticket",
+      "text": "Use a label, a status, or a custom field your tracker already supports. Ask the person who closes each ticket to write one plain sentence about what a user will see. This needs no new tool. It only needs a short rule the team agrees to follow."
+    },
+    {
+      "title": "Log each change at merge time",
+      "text": "When a change merges, add one line to a running sheet. Use columns for the change, the customer words, the ticket link, and a ready flag. A Google Sheet does this well, and so does a shared Notion database. Your draft is then ready on release day."
+    },
+    {
+      "title": "Keep one running draft with a template",
+      "text": "Put the template at the top of the draft. Use a what's new part, an improvements part, and a fixes part. Keep the last approved note as a sample, so the next release copies the tone and not the mess."
+    },
+    {
+      "title": "Let GitHub draft, then cut hard",
+      "text": "Use the Generate release notes button or gh release create with --generate-notes to get the list. Then remove internal refactors, bot noise, and dependency bumps nobody can feel. Add changelog.exclude settings to .github/release.yml so the cleanup repeats less often."
+    },
+    {
+      "title": "Write what a user can do, not what the code does",
+      "text": "Swap the code verb for a user verb. For example, a line about migrating the settings store becomes a line about what a user sees on the settings page. Ask yourself what changed on the screen, and write that instead."
+    },
+    {
+      "title": "Check the note against the shipped build",
+      "text": "Open the build that will ship, not the staging branch or the plan. Walk through each change in the note. Take a screenshot with ⌘ ⇧ 4 for your own record. If a line describes what the team hoped for, rewrite it or cut it."
+    },
+    {
+      "title": "Dictate the rough draft, then edit",
+      "text": "Hold fn and speak your rough bullets into a document. Dictation types clean text at the cursor in any app. Then edit for accuracy. Speaking often gets a first draft down faster than typing it, so the bullets are on the page before the details fade."
+    },
+    {
+      "title": "Set one approver and one deadline",
+      "text": "Name the person who signs off on customer copy, usually the product lead or the support lead. Put the deadline in the release channel. A named approver turns a week of back-and-forth into one review pass."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the button that generates release notes?",
+      "result": "Lazur circles the button and labels it. You click it yourself, then read the text before you publish.",
+      "capability": "point"
+    },
+    {
+      "say": "What does this ticket change for a customer?",
+      "result": "Lazur reads what is on screen and answers out loud. Check the answer against the ticket before you use it.",
+      "capability": "explain"
+    },
+    {
+      "say": "Hold fn and speak your rough bullets into the note.",
+      "result": "Dictation types clean text at the cursor in any app. You edit the wording afterward.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Rewrite these bullets as customer-facing sentences.",
+      "result": "Lazur drafts and types the text. It only knows what you show it, so check every sentence against the source.",
+      "capability": "draft"
+    },
+    {
+      "say": "Walk me through adding a label to this ticket.",
+      "result": "Lazur guides you one click at a time and waits for each click before it gives the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Remind me to write the release note on Friday.",
+      "result": "Lazur can set Apple Reminders by voice, so the task shows up when you need it.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Look up the changelog pages for the tools in our stack.",
+      "result": "Research runs in Lazur's own Chrome tabs through the Lazur for Chrome extension, then returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the button that generates release notes?",
+    "capability": "point",
+    "result": "Lazur circles the button and labels it. You click it yourself, then read the text before you publish.",
+    "shell": "generic",
+    "context": "GitHub release form with the Generate release notes button visible",
+    "output": "Lazur circles the button and labels it on screen.",
+    "pointsAt": "Generate release notes"
+  },
+  "plan": [
+    {
+      "label": "Week start",
+      "title": "Set the rule and the template",
+      "text": "Agree with engineering that each ticket gets a customer sentence. Put the template at the top of a shared doc. Name the approver and the deadline. This takes one meeting and saves the scramble later."
+    },
+    {
+      "label": "Each merge",
+      "title": "Log the change in customer words",
+      "text": "When work merges, add a line to the running sheet. Write what a user will see or do. Link the ticket, so you can trace the line back if someone questions it."
+    },
+    {
+      "label": "Midweek",
+      "title": "Chase the open questions",
+      "text": "Post the changes that still lack a plain sentence in the release channel. Ask each owner to answer by a fixed day. Late answers cause most of the rework, so ask early."
+    },
+    {
+      "label": "Before release",
+      "title": "Generate and trim the draft",
+      "text": "Run GitHub's generated notes from the release form, or use gh release create with --generate-notes. Remove internal work and bot noise. Move what is left into the template, one section at a time."
+    },
+    {
+      "label": "Release day",
+      "title": "Check, paste, publish",
+      "text": "Open the build that ships and walk through each line. Paste the final text into the GitHub release or the App Store Connect What's New field. Confirm it fits the field before you save."
+    },
+    {
+      "label": "After release",
+      "title": "Save the example for next time",
+      "text": "Keep the sheet and the final text together. Write down which questions took the longest to answer. Add those questions to the template, so the next release needs fewer messages."
+    }
+  ],
+  "apps": [
+    "linear",
+    "notion",
+    "slack",
+    "google-sheets"
+  ],
+  "type": "problem",
+  "slug": "release-notes-eat-up-pm-week",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/release-notes-eat-up-pm-week/writing-release-notes-eats-up-a-product-1-79fe80.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Product manager working on a laptop at a desk while reviewing release notes",
+      "caption": "Gathering facts at a desk before a release.",
+      "keywords": [
+        "writing release notes eats up a product manager's week",
+        "Product managers",
+        "gathering info for release notes",
+        "Mac",
+        "man working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/release-notes-eat-up-pm-week/writing-release-notes-eats-up-a-product-2-320aa8.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Team meeting in an office where release facts get confirmed before publishing",
+      "caption": "Confirming release facts with the team.",
+      "keywords": [
+        "writing release notes eats up a product manager's week",
+        "Product managers",
+        "gathering info for release notes",
+        "Mac",
+        "office team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/release-notes-eat-up-pm-week/writing-release-notes-eats-up-a-product-3-cb1a06.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing notes on a laptop, drafting customer-facing text for an update",
+      "caption": "Drafting customer-facing text for an update.",
+      "keywords": [
+        "writing release notes eats up a product manager's week",
+        "Product managers",
+        "gathering info for release notes",
+        "Mac",
+        "person typing notes",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/especially-news-positive-attitude-5243208/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "writing release notes eats up a product manager's week",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "how to write release notes on Mac": 1,
+      "gathering info for release notes": 2,
+      "release notes for product managers": 1,
+      "GitHub generate release notes": 1,
+      "App Store What's New character limit": 1,
+      "release notes checklist": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

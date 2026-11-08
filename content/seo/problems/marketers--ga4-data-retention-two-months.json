@@ -1,0 +1,569 @@
+{
+  "title": "Google Analytics 4 data retention 2 months on Mac: what to save before it goes",
+  "metaTitle": "Google Analytics 4 data retention 2 months: save data on Mac",
+  "description": "Google Analytics 4 keeps Explorations data for 2 months by default. Learn what that hides, how to raise the setting to 14 months, and how to export it on Mac.",
+  "targetKeyword": "google analytics 4 data retention 2 months",
+  "secondaryKeywords": [
+    "GA4 data retention settings",
+    "GA4 Explorations data export",
+    "GA4 BigQuery export history",
+    "GA4 data retention 14 months",
+    "export GA4 data to Google Sheets",
+    "Google Analytics 4 data retention Mac"
+  ],
+  "intro": "Google Analytics 4 keeps user-level and event detail for the retention window you set, and Google's Explorations help page says the default is 2 months. Explorations and funnel reports stop at that window, while standard reports are not affected by the setting. This page shows where the setting lives, what disappears first, and how to export the detail before it ages out on your Mac.",
+  "tldr": [
+    "Check Admin > Data collection and modification > Data retention today, and write down both values.",
+    "Raise the setting to 14 months. Raising it applies to data Google still holds, and it cannot restore deleted detail.",
+    "Lowering the setting deletes affected data at the next monthly process, so never lower it casually.",
+    "Export Explorations to Google Sheets or CSV every month, and keep the standard report totals too.",
+    "BigQuery export copies raw data each day, but Google's help page does not confirm that older history comes with it."
+  ],
+  "stats": [
+    {
+      "value": "2 months",
+      "label": "Default retention for Explorations, per Google's Explorations help page",
+      "sourceUrl": "https://support.google.com/analytics/answer/7579450?hl=en",
+      "sourceTitle": "Get started with Explorations, Analytics Help"
+    },
+    {
+      "value": "14 months",
+      "label": "Longest retention option for user-level data on a standard property",
+      "sourceUrl": "https://support.google.com/analytics/answer/7667196",
+      "sourceTitle": "Google Analytics Help: data retention settings (answer 7667196)"
+    },
+    {
+      "value": "10 million",
+      "label": "Events above which Explorations may use sampled data",
+      "sourceUrl": "https://support.google.com/analytics/answer/7579450?hl=en",
+      "sourceTitle": "Get started with Explorations, Analytics Help"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the 2 month limit covers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Retention is a rule about how far back Explorations and funnel reports can see user-level and event detail. Google's retention help page says the setting affects explorations and funnel reports only. Standard reports, the ones under Reports in the left menu, keep their aggregated totals. So when someone says GA4 lost history, the honest version is narrower. The detail is gone from Explorations. The totals may still be there."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Data type",
+        "Retention you can pick",
+        "What to know"
+      ],
+      "rows": [
+        [
+          "User-level data in Explorations",
+          "2 months or 14 months",
+          "Set under Data retention. This is the window that limits Explorations."
+        ],
+        [
+          "Other event data",
+          "2 months or 14 months",
+          "Analytics 360 only: 26, 38, or 50 months."
+        ],
+        [
+          "Age, gender, and interest data",
+          "Always 2 months",
+          "Your setting does not change this window."
+        ],
+        [
+          "Standard reports",
+          "Not affected by the setting",
+          "Aggregated totals stay in the report."
+        ]
+      ],
+      "caption": "Retention options as listed on Google's data retention help page."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your current retention setting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with what your property already says. Reading the setting takes seconds, and changing it takes seconds more. If the fields are greyed out, your login probably lacks permission, so ask whoever manages the property. Write the values down before you touch anything. That note is your baseline if someone asks later."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Analytics in Chrome on your Mac, then pick the property you report on.",
+        "Click the gear icon at the lower left to open Admin.",
+        "Go to Admin > Data collection and modification > Data retention.",
+        "Read the event data and user data values, then copy both into a Google Doc with today's date."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the values carefully. Google's Explorations help page says the default is 2 months. Google's retention page does not name a default at all. Some third-party guides give a different default. Trust what your own property shows, not a guide, and date your note."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Lowering deletes data",
+      "text": "Reducing the retention period deletes affected data during the next monthly process. Raising it applies to data already collected. Google says a change can be reverted within 24 hours without losing data. Do not lower the setting to test something. Test in a copy of the report instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with real dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say today is November 8, 2026. A 2 month window reaches back to September 8, 2026. A 14 month window reaches back to September 8, 2025. A holiday campaign from last November sits inside the 14 month window and outside the 2 month window. With a 2 month setting, you can still see last November's totals in standard reports. You cannot see the paths visitors took through Explorations."
+    },
+    {
+      "type": "paragraph",
+      "text": "Funnels behave the same way. A funnel built on last spring's signup flow only works inside the window Google still holds. Before you build any analysis, ask one question. Does it need visitor paths, or only totals? If it needs paths, export it before the window closes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Explorations sampling and the 10 million event limit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google says Explorations may use sampled data when more than 10 million events are involved. A sampled figure and a full figure can differ, so a rebuilt number may not match last quarter's number. Label sampled figures in your sheet. Then compare one total from a standard report with the same total from Explorations before you trust either one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export before the window closes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Exploration, then choose Export data in the upper right. The formats are Google Sheets, TSV, CSV, PDF, and PDF (all tabs). For Sheets, TSV, and CSV, Google exports all data in the visualization, which can be more than what is on your screen. Pick Google Sheets when people read the numbers, and CSV when a data tool will load them."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "A monthly routine that holds up"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Export each important Exploration to Google Sheets on the same day every month.",
+        "Put the date range and the retention value in the first rows of the sheet.",
+        "Copy the main standard report totals into a second tab, so the totals survive too.",
+        "Name the file with the property and the month, such as GA4 paths November 2026.",
+        "Post the link in Slack so the file does not live on one laptop."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "BigQuery export: link it before you need it"
+    },
+    {
+      "type": "paragraph",
+      "text": "BigQuery export gives you raw, unsampled event data once per day. Each daily export covers the previous day. Daily tables can update for up to 2 calendar days plus today. Google's help page also says you cannot re-export data once it is exported. So BigQuery is an archive you start now, not a way back to last year."
+    },
+    {
+      "type": "paragraph",
+      "text": "Does the export bring back history from before you linked it? Google's help page does not say. Some third-party sources say it does not. Treat the answer as unknown. After you link, wait for the first daily table, then compare one count you already know from Explorations."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Ask the Google Cloud owner",
+      "text": "BigQuery usually lives in a Google Cloud project that someone else manages. Ask who pays for it, who can read the tables, and how long they are kept. Check BigQuery pricing on Google's site before you link anything, because the retention help page covers settings, not prices."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost marketers the most data"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Raising the setting after the data is gone, then expecting the old detail to return. It does not.",
+        "Leaving the setting at 2 months because nobody asked. Check it in your first week on any property.",
+        "Comparing a sampled Explorations total with a standard report total as if they match.",
+        "Exporting only what is on screen. Sheets, TSV, and CSV exports include all data in the visualization.",
+        "Assuming BigQuery will fill in last year. Google's page does not confirm that.",
+        "Changing roles without a handover. A new admin lowers the setting to tidy up, and the data goes at the next run."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the Data retention setting is, and Lazur draws a circle and a label around it. Ask how to change it, and Lazur guides you one click at a time, waiting for each click. You still do the clicking."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or export for you. It is not a plugin for Google Analytics or for Sheets. While you hold the shortcut, it can see a sheet you have open and explain a column in plain speech. Hold fn to dictate a note into any app, then read it before you post."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy is worth a line here. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. If your export holds customer emails, follow your employer's rules before you share it with anyone, including an assistant."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do if the detail is already gone"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with what you still have. Check old exports, shared drives, and any Sheets your team built for a dashboard. Look for a BigQuery link that existed earlier, and for tables anyone saved. Ad platforms keep their own numbers, but they usually count different things, so label any mix in your note."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then write a short note for your team. State the date range you still have, the setting you found, and the change you made. A short note stops the next person from asking why the chart ends in September."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research does and does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "The research behind this page found no public survey or study that measures how many marketers lose GA4 history, or what that loss costs in hours, money, or errors. The Sprout Social Index surveyed 900 full-time social media practitioners and 322 marketing leaders from September 13 to 27, 2024. The pages reviewed do not measure reporting hours. So this page rests on Google's own help pages, not on a headcount of affected teams."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Google Analytics 4 delete all my data after 2 months?",
+      "answer": "Not all of it. The 2 month setting applies to Explorations and funnel reports, and to age, gender, and interest data. Standard aggregated reports are not affected by the setting, according to Google's retention help page."
+    },
+    {
+      "question": "Can I get back data that is already gone?",
+      "answer": "Raising the setting does not restore deleted detail. Google says the change applies to data already collected. Check old exports, shared drives, and any BigQuery tables you may have saved earlier."
+    },
+    {
+      "question": "Is 14 months the longest retention I can choose?",
+      "answer": "For user-level data and other event data on a standard property, 14 months is the longest option. Analytics 360 also offers 26, 38, or 50 months for other event data, according to Google's retention page."
+    },
+    {
+      "question": "Will changing the retention setting cost me money?",
+      "answer": "The retention help page covers settings, not prices. BigQuery has its own pricing, so check Google's pricing pages before you link it. Analytics 360 lists no price on its product page."
+    },
+    {
+      "question": "Does BigQuery backfill history from before I linked it?",
+      "answer": "Google's BigQuery export page does not say. Some third-party sources say it does not, so treat the answer as unknown. After linking, compare one count you already know with the same count in BigQuery."
+    },
+    {
+      "question": "Why do my Explorations numbers differ from standard reports?",
+      "answer": "Explorations may use sampled data when more than 10 million events are involved. Standard reports also answer different questions. Compare totals only after you check the date range and the filters on both sides."
+    },
+    {
+      "question": "Does Lazur change my retention setting for me?",
+      "answer": "No. Lazur points, explains, and guides you one click at a time. You make every change in Google Analytics yourself."
+    },
+    {
+      "question": "What if I work in a regulated field and my data is client or patient data?",
+      "answer": "Follow your employer's rules on client or patient data before you export, share, or paste it anywhere. Analytics exports can still contain personal details, such as emails in a list."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Analytics Help: data retention settings (answer 7667196)",
+      "url": "https://support.google.com/analytics/answer/7667196",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Get started with Explorations, Analytics Help",
+      "url": "https://support.google.com/analytics/answer/7579450?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Analytics Help: BigQuery export (answer 9358801)",
+      "url": "https://support.google.com/analytics/answer/9358801",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Analytics 360 product page",
+      "url": "https://marketingplatform.google.com/about/analytics-360/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Sprout Social Index (Edition XX)",
+      "url": "https://sproutsocial.com/insights/index/",
+      "publisher": "Sprout Social",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "losing ga4 history past the retention window",
+  "costs": [
+    {
+      "title": "Trend lines that stop early",
+      "text": "A year over year comparison needs detail from both years. With a 2 month window, the earlier year is gone from Explorations. You can still compare totals in standard reports. You cannot compare the paths and cohorts that explain why a number moved. That gap makes the story hard to defend in a meeting."
+    },
+    {
+      "title": "Hours spent rebuilding",
+      "text": "When someone needs old detail, they rebuild it from scratch or ask whoever saved a file last. No public source gives an hours figure for this, so measure your own team. Time one rebuild this month, then multiply by how often the question comes up. That number is your real cost."
+    },
+    {
+      "title": "Decisions made on a partial window",
+      "text": "A campaign judged on the last 2 months alone can look weaker or stronger than its full run. Seasonal products feel this first. If you cut a channel because its peak fell outside the window, you may pay for that mistake twice. Keep the full run in a sheet."
+    },
+    {
+      "title": "A quiet setting change",
+      "text": "Someone lowers retention to tidy up or to save cost, and the next monthly process deletes affected data. The reports you check every day still load, so the loss can go unnoticed for a while. Google's help page says a change can be reverted within 24 hours without losing data, so the window to catch it is short."
+    },
+    {
+      "title": "Analytics 360 is not a quick fix",
+      "text": "The longer options of 26, 38, or 50 months for other event data exist only on Analytics 360, according to Google's retention page. Google's product page lists no price, only a Talk to Sales option. Plan a call with sales before you build a process around those months, and do not guess a price from a blog."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The default window is short",
+      "text": "Google's Explorations help page says Google Analytics properties retain 2 months of data by default. Many properties inherit that setting without anyone choosing it. Google's retention page does not list a default, so check the value your property actually shows instead of assuming."
+    },
+    {
+      "title": "Explorations is not a standard report",
+      "text": "Many marketers treat Explorations as one more report. It is the tool that keeps user-level paths, and it follows the retention window. Standard reports show aggregated totals and are not affected by the setting. The two look alike on screen while behaving differently underneath."
+    },
+    {
+      "title": "Nobody owns the setting",
+      "text": "A developer or agency often sets up a property once, then leaves. Nobody revisits Data retention after launch. Months later, a new marketer opens Explorations, finds the window too short, and has no idea who could change it."
+    },
+    {
+      "title": "Lowering the setting deletes data",
+      "text": "Reducing the retention period deletes affected data during the next monthly process. A team that trims the setting to tidy up can remove history without meaning to. Raising the setting applies to data still stored, but it cannot reach data already deleted."
+    },
+    {
+      "title": "No export habit",
+      "text": "Explorations data lasts only as long as the window. Without a routine export, the detail stops being available once it ages out. The cause is a missing habit, not a broken feature, which is why the fix is a calendar reminder and a shared folder."
+    },
+    {
+      "title": "BigQuery was linked late or not at all",
+      "text": "A BigQuery export copies raw event data once per day, and Google says exported data cannot be re-exported. If the link came late, the early months may not be in your dataset. Google's help page does not confirm whether pre-link history is exported."
+    },
+    {
+      "title": "Sampling changes the numbers",
+      "text": "Explorations may use sampled data above 10 million events. Sampling does not delete anything, but a rebuilt report can look different from the original. Two numbers that both look correct can disagree, and that makes people distrust the data."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Raise retention to 14 months today",
+      "text": "Go to Admin > Data collection and modification > Data retention, then choose 14 months for user-level data and for other event data. Google says a higher period applies to data already collected, so it protects what Google still holds. It cannot bring back anything already deleted. The user-level setting may offer a reset option. Google describes it as resetting the retention clock for a user with each new event from that user, so read it before you select anything."
+    },
+    {
+      "title": "Export your Explorations every month",
+      "text": "Open the Exploration, choose Export data in the upper right, and pick Google Sheets. Save the file in a shared folder with the date range in the file name. Repeat the export before the window closes, so the oldest detail is saved before it ages out. Put a reminder on the same day every month."
+    },
+    {
+      "title": "Keep standard report totals as well",
+      "text": "Standard reports keep aggregated totals, so those totals are not at risk in the same way. Still, save a copy each month. Open a report such as Reports > Acquisition > Traffic acquisition, then copy the table into a Sheet or use the download option near the top right of the report. Store the file next to your Explorations export."
+    },
+    {
+      "title": "Link BigQuery now, then verify it",
+      "text": "Ask whoever has access to your Google Cloud project to link it in Admin > Product links > BigQuery links. After the first daily table appears, compare one count you already know from Explorations with the same count in BigQuery. If the numbers do not match, write down the date range and the filters before you dig further."
+    },
+    {
+      "title": "Write a one-page retention note",
+      "text": "Use one Google Doc with a few lines: the retention value, the date you checked it, the name of the owner, and the export schedule. Update the note on the first working day of each month. Share it with anyone who can change the property. A written owner beats a memory of who clicked what."
+    },
+    {
+      "title": "Use Lazur to explain numbers, not to replace the export",
+      "text": "Open a sheet, hold ⌥ ⌘, and ask what a column means. Lazur explains it out loud while you read along. It does not export, click, or fix the sheet for you. Check any explanation against the source before you put it in a report."
+    },
+    {
+      "title": "Recheck after every team change",
+      "text": "When someone joins, leaves, or changes agencies, reopen Data retention and compare it with your note. If the value moved, ask who changed it and why, then record the answer. This check takes a few minutes, and it catches the quiet change before the next monthly process runs."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the data retention setting in this property?",
+      "result": "Lazur circles the setting and labels it, so you know exactly where to click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through changing data retention to 14 months.",
+      "result": "Lazur guides you one click at a time and waits for each click before it continues.",
+      "capability": "guide"
+    },
+    {
+      "say": "Explain this column in my Exploration export.",
+      "result": "Lazur explains the column out loud while the sheet stays open on your screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate my retention note for the team.",
+      "result": "Hold fn and speak. The text lands at the cursor in Google Docs, clean and formatted, for you to check.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note about the setting change for Slack.",
+      "result": "Lazur drafts the text, and you read it and post it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find Google's current retention help pages and summarize them.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the data retention setting in Google Analytics?",
+    "capability": "point",
+    "result": "Lazur circles Admin, then points at Data retention under Data collection and modification, so you can click it yourself.",
+    "shell": "generic",
+    "pointsAt": "Data retention",
+    "context": "Google Analytics open in Chrome on a Mac"
+  },
+  "plan": [
+    {
+      "label": "Today",
+      "title": "Read your setting and write it down",
+      "text": "Open Admin > Data collection and modification > Data retention in Chrome. Copy both values into a Google Doc with today's date. If the fields are greyed out, send the note to whoever owns the property."
+    },
+    {
+      "label": "Tomorrow",
+      "title": "Raise the window and test one export",
+      "text": "Change the user-level and event data settings to 14 months if your team agrees. Then export one Exploration to Google Sheets and check that the row count looks right before you rely on it."
+    },
+    {
+      "label": "This week",
+      "title": "Link BigQuery or ask who will",
+      "text": "If you have access, open Admin > Product links > BigQuery links and follow the steps. If not, ask your Google Cloud owner to link it. Check BigQuery pricing before anyone clicks link."
+    },
+    {
+      "label": "Month end",
+      "title": "Run the export routine",
+      "text": "Export each key Exploration to Sheets, save the file in a shared folder with the date range in its name, and post the link in Slack so it does not live on one laptop."
+    },
+    {
+      "label": "Monthly",
+      "title": "Recheck the setting",
+      "text": "On the first working day of the month, reopen Data retention and paste the value into your note. If it changed, find out who changed it and why, and write that down too."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "ga4-data-retention-two-months",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/ga4-data-retention-two-months/google-analytics-4-data-retention-2-months-1-9111fd.jpg",
+      "width": 1280,
+      "height": 815,
+      "alt": "Marketer at a desk with a laptop, reviewing charts and campaign reports",
+      "caption": "Reporting depends on detail you can still reach.",
+      "keywords": [
+        "google analytics 4 data retention 2 months",
+        "Marketers",
+        "Losing GA4 history past the retention window",
+        "Mac",
+        "marketer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sergeitokmakov",
+        "url": "https://pixabay.com/users/sergeitokmakov-3426571/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stock-trading-investing-stock-market-6525083/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/ga4-data-retention-two-months/google-analytics-4-data-retention-2-months-2-8ea9b2.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Analyst looking at charts on a computer screen during a Google Analytics 4 review",
+      "caption": "Explorations is the report most affected by the retention window.",
+      "keywords": [
+        "google analytics 4 data retention 2 months",
+        "Marketers",
+        "Losing GA4 history past the retention window",
+        "Mac",
+        "analyst computer screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sakibmia24",
+        "url": "https://pixabay.com/users/sakibmia24-57634147/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-trading-statistics-10503579/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/ga4-data-retention-two-months/google-analytics-4-data-retention-2-months-3-af390f.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Small marketing team reviewing reports together at a table in an office",
+      "caption": "Share the retention note with the people who can change it.",
+      "keywords": [
+        "google analytics 4 data retention 2 months",
+        "Marketers",
+        "Losing GA4 history past the retention window",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google analytics 4 data retention 2 months",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "GA4 data retention settings": 1,
+      "GA4 Explorations data export": 1,
+      "GA4 BigQuery export history": 1,
+      "GA4 data retention 14 months": 1,
+      "export GA4 data to Google Sheets": 1,
+      "Google Analytics 4 data retention Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

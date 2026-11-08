@@ -1,0 +1,571 @@
+{
+  "title": "How to fix the data model could not be accessed error in Excel on Mac",
+  "metaTitle": "Fix 'the data model could not be accessed' in Excel on Mac",
+  "description": "Excel on Mac says the data model could not be accessed after an update. Learn why it happens, what it costs, and free fixes to try first.",
+  "targetKeyword": "the data model could not be accessed",
+  "secondaryKeywords": [
+    "Power Query error after Excel update",
+    "Excel Mac Data Model error",
+    "Power Query refresh fails on Mac",
+    "Excel for Mac Power Query not refreshing",
+    "Excel update Power Query error fix"
+  ],
+  "intro": "Excel on Mac shows 'the data model could not be accessed' when a workbook cannot reach its Data Model after an update. A 2023 community answer says Power Query on Mac cannot load to or refresh the Data Model, so the fix starts with checking which queries use it. This page covers what the error costs, why it happens, and fixes you can try without buying anything.",
+  "tldr": [
+    "Check whether your queries load to the Data Model before you change anything else.",
+    "A 2023 community answer says Power Query on Mac cannot load to or refresh the Data Model.",
+    "Refresh one query at a time on a copy. Stop clicking Refresh All on the original.",
+    "Note your Excel build and macOS version. Office for Mac builds below 16.83 can enter reduced-function mode.",
+    "Roll back only with IT approval. A Mac rollback path is not verified by Microsoft's docs."
+  ],
+  "stats": [
+    {
+      "value": "90%",
+      "label": "of accounting professionals report fatigue and burnout as a significant issue, per a 2026 survey",
+      "sourceUrl": "https://www.alkmist.com/blog-posts/90-percent-accountants-burnout-fragmented-data",
+      "sourceTitle": "Alkmist: 90% of Accountants Report Burnout"
+    },
+    {
+      "value": "1GB",
+      "label": "Power Query processing limit on 32-bit Excel when data cannot be streamed",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/power-query-specifications-and-limits-in-excel",
+      "sourceTitle": "Power Query specifications and limits in Excel"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows that can be filled to a single worksheet",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/power-query-specifications-and-limits-in-excel",
+      "sourceTitle": "Power Query specifications and limits in Excel"
+    },
+    {
+      "value": "16.83",
+      "label": "minimum Office for Mac app version before reduced-function mode applies",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/lifecycle/officeinstall/update-m365-office-macos-ios",
+      "sourceTitle": "Update Microsoft 365 or Office on your macOS or iOS device"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Excel on Mac shows this message when a workbook cannot reach its Data Model. The Data Model is a store of tables inside the file. Power Query loads and PivotTables can depend on it. After an update, a file that refreshed fine last week can stop. You usually notice it when you click Refresh All and the numbers do not move."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the Data Model is, in plain words"
+    },
+    {
+      "type": "paragraph",
+      "text": "Think of the Data Model as a set of hidden tables kept inside your workbook. You do not see them on a sheet. A PivotTable can read from them. So can a Power Query load that you set to go into them. When Excel cannot open those tables, you get the error. The sheet itself may look fine."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell if your workbook uses the Data Model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the query list, not the sheets. Open the workbook copy and go to Data > Queries & Connections. For each query, check its load setting. A query that loads to the Data Model shows that choice in its load dialog, under the option named Add this data to the Data Model. Then check each PivotTable and note where its data comes from."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Save a copy of the workbook and open the copy.",
+        "Go to Data > Queries & Connections and list every query.",
+        "Mark each query whose load setting includes the Data Model.",
+        "Mark each PivotTable that reads from a marked query."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from a 14-query Mac file"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Microsoft Q&A post from November 2026 describes a Mac user with 14 Power Queries that pull from OneDrive. Excel for Mac 16.114.1 on macOS 26.7.2 crashes within seconds of Data > Refresh All. The post says each query refreshes fine on its own. That points at the full refresh, not at every query. No Microsoft staff reply appeared in the thread."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use that pattern as your test. Refresh one query on the copy, save, then refresh the next. Write down the first query that fails. Repeated full refreshes only repeat the failure and eat time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say the failing query is named Client AR. Check its load setting first. If it loads to the Data Model, turn that off on the copy and refresh again. If it loads only to a sheet, the problem is more likely the source or the build, so move on to the build check below."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "What it points to",
+        "Try first"
+      ],
+      "rows": [
+        [
+          "The message names the Data Model",
+          "A query loads to the Data Model",
+          "Turn off Data Model loading on a copy"
+        ],
+        [
+          "Refresh All crashes, single queries work",
+          "A full-refresh problem on your build",
+          "Refresh queries one at a time"
+        ],
+        [
+          "Memory climbs during a long refresh",
+          "Size or memory pressure",
+          "Filter source rows and turn off grand totals"
+        ],
+        [
+          "File opens but will not edit or save",
+          "Build below 16.83 or reduced-function mode",
+          "Update through Help > Check for Updates"
+        ]
+      ],
+      "caption": "Symptom to first step. Based on user reports and Microsoft's limits, not controlled tests."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Excel build you are on, and why it matters"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Excel > About Excel and read the full version string. Microsoft lists 16.83 as the minimum Office for Mac app version. Builds below that can fall into reduced-function mode, which started July 13, 2026 for some unsupported setups. In that mode you can open, view and print, but not edit, save or create. Your Mac also needs macOS 12 or later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the build down exactly, such as 16.114.1 with build 26102031. Include the macOS version too, such as macOS 26.7.2. IT and Microsoft both need that detail. Some users say the Beta channel, 16.116, fixes the Mac crash. Nobody has verified that, so keep Beta off any file your firm closes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Can you roll back a Mac Office update?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes, but the documented path is thin. Microsoft AutoUpdate 3.18 or later includes msupdate. Its docs list --list and --install commands. A --version option targets a specific version, and it works for Excel with the identifier XCEL2019. The docs do not say that option downgrades a build. Treat a Mac rollback as unverified until you test it on a copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's revert guide has Windows steps only. It says to disable updates first, and it calls a rollback temporary. Do not improvise on a work Mac. Ask IT to make the call, and keep the copy of the workbook until the fix is confirmed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make this error worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clicking Refresh All again and again. A January 2026 report saw memory climb from 30% to 98% during one long refresh.",
+        "Saving over the only copy after a failed refresh.",
+        "Turning off Data Model loading on the original file instead of a copy.",
+        "Assuming a Windows fix works on a Mac. The 2023 community answer says Mac does not support the Data Model.",
+        "Rolling back Office on a company machine without approval.",
+        "Blaming the query when the Office build is in reduced-function mode."
+      ]
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to write the issue for IT or Microsoft"
+    },
+    {
+      "type": "paragraph",
+      "text": "Include the exact error text, the Excel build, the macOS version, the query names and the step that failed. Attach a screenshot with client names removed. A reviewer can then reproduce the problem. In a January 2026 Microsoft Q&A thread, a moderator pointed the user to the feedback portal. Send your report there too, and keep a link to the thread."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can explain the message, then point at Data > Queries & Connections with a circle and a label. Ask it to walk you through a setting, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you, and it does not operate other apps. It cannot make a Mac load the Data Model or fix the build. It can draft a note to IT with your build numbers and query names. You read the draft, edit it, and send it yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sees the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Your employer may still limit what you can share from client files, so follow those rules before you ask about a client workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checklist before you call for help"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A copy of the workbook is saved, and the original is untouched.",
+        "The Excel build and macOS version are written down.",
+        "Every query and its load setting is listed.",
+        "The query that fails when refreshed alone is named.",
+        "Screenshots have client names removed.",
+        "Your employer has approved any rollback or outside tool."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query error after an Excel update: what to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the copy still fails, stop refreshing and export the source data you need. Rebuild the summary on a Windows machine with Excel and the Data Model, if your firm has one. Ask IT which machine that is before you move any client file. Keep the Mac copy as your record of what failed and when."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does this error mean my data is gone?",
+      "answer": "Not by itself. The error stops a refresh. It does not show that your source files or your sheets are lost. Save a copy before you change any query. Then check totals against the source data before you trust the result."
+    },
+    {
+      "question": "Why did this start after an update?",
+      "answer": "Updates can change how Excel refreshes. The clearest public example in the research is a September 2025 Windows thread, where a Microsoft moderator said the crash may be related to version 2508. Mac threads from 2026 report similar crashes. Microsoft has not confirmed these as bugs."
+    },
+    {
+      "question": "Can I fix this on a Mac alone?",
+      "answer": "Sometimes. Microsoft's Mac refresh support covers Text, CSV, XLSX, XML and JSON files. A 2023 community answer says Mac cannot refresh queries that load to the Data Model. For those, move the work to Windows or change the query's load setting."
+    },
+    {
+      "question": "Should I roll back Office?",
+      "answer": "Only with IT approval. Microsoft's revert guide covers Windows steps. The msupdate tool has a version option for Excel, but its docs do not say it downgrades. Treat a Mac rollback as unverified, and back up the file first."
+    },
+    {
+      "question": "Which Excel version do I need?",
+      "answer": "Microsoft lists 16.83 as the minimum Office for Mac app version. Builds below that can enter reduced-function mode, which started July 13, 2026 for some unsupported setups. You also need macOS 12 or later. Check Excel > About Excel for your build."
+    },
+    {
+      "question": "Will Lazur fix the workbook for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps for you. It explains the message, points at the setting, and guides you one click at a time. It cannot make a Mac load the Data Model."
+    },
+    {
+      "question": "Does Lazur see my client data?",
+      "answer": "Lazur sees the screen only while you hold ⌥ ⌘. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Follow your employer rules on client data before you use it on those screens."
+    },
+    {
+      "question": "Where should I report the bug?",
+      "answer": "In a January 2026 Microsoft Q&A thread, a moderator pointed the user to the feedback portal. Include the Excel build, the macOS version, the query names and the exact error text. Remove client names from screenshots first."
+    },
+    {
+      "question": "Is the Beta channel safe for month-end files?",
+      "answer": "Some users report that Beta 16.116 fixes the Mac crash. That report is unverified. Do not use Beta on a file your firm closes at month end."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Power Query specifications and limits in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/power-query-specifications-and-limits-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "A Journey to Power Query in Excel for Mac",
+      "url": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/a-journey-to-power-query-in-excel-for-mac/4209204",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Refresh Power Query loaded to Data Model in Excel Online OR in Mac",
+      "url": "https://techcommunity.microsoft.com/discussions/excelgeneral/refresh-power-query-loaded-to-data-model-in-excel-online-or-in-mac/3749712",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Bug Report: Excel Power Query crashes after Office update",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5550560/bug-report-excel-power-query-crashes-after-office",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel update broke PowerPivot Data Model refresh",
+      "url": "https://learn.microsoft.com/en-gb/answers/questions/5749817/excel-update-broke-powerpivot-data-model-refresh",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel for Mac crashes (EXC_BAD_ACCESS) on Refresh All of Power Queries",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/6059200/excel-for-mac-crashes-exc-bad-access-reproducible",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Update Microsoft applications for Mac by using msupdate",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365-apps/mac/update-office-for-mac-using-msupdate",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Update Microsoft 365 or Office on your macOS or iOS device",
+      "url": "https://support.microsoft.com/en-us/office/lifecycle/officeinstall/update-m365-office-macos-ios",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How to revert to an earlier version of Office",
+      "url": "https://support.microsoft.com/en-us/topic/how-to-revert-to-an-earlier-version-of-office-2bd5c457-a917-d57e-35a1-f709e3dda841",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Errors: What We Know. What We Think We Can Do (arXiv 0802.3457)",
+      "url": "https://arxiv.org/abs/0802.3457",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Alkmist: 90% of Accountants Report Burnout. 1 in 4 Blame Fragmented Data",
+      "url": "https://www.alkmist.com/blog-posts/90-percent-accountants-burnout-fragmented-data",
+      "publisher": "Alkmist (vendor blog)",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "power query error after an excel update",
+  "costs": [
+    {
+      "title": "Month-end time that disappears",
+      "text": "A failed refresh turns a simple review into a manual rebuild. You copy totals, check them against source files, and try again. The research found no hour figure for Power Query specifically, so measure your own. Track one close, note the minutes lost to refresh, and multiply by the people who share the file."
+    },
+    {
+      "title": "Burnout that is already there",
+      "text": "In the 2026 Intuit survey of 725 US accounting and bookkeeping professionals, as cited by Alkmist, 90% reported fatigue and burnout as a significant issue. Fragmented data was the second biggest driver, at 25%. A broken refresh adds to that load. The survey covers accountants in general, not this error."
+    },
+    {
+      "title": "Numbers you cannot fully trust",
+      "text": "A summary that looks right can still be stale. An arXiv abstract of EuSpRIG spreadsheet research says: Fifteen years of research studies have concluded unanimously that spreadsheet errors are both common and non-trivial. After any failed refresh, check totals against the source data before you send anything."
+    },
+    {
+      "title": "Machine and approval costs",
+      "text": "Mac Excel may not run the query at all. Then the work moves to a Windows machine, a colleague, or an IT ticket. Each move costs time and may need approval. Microsoft also sets limits. Power Query processing is about 1GB on 32-bit Excel when data cannot be streamed."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Mac Power Query does not reach the Data Model",
+      "text": "A 2023 Microsoft Tech Community answer, accepted, says Power Query for Mac does not support Power Pivot or the Data Model. Workbooks that rely on those cannot be refreshed on a Mac. No Microsoft staff member replied in that thread. A separate Microsoft post about Excel for Mac lists refresh support for Text, CSV, XLSX, XML and JSON files and does not mention the Data Model."
+    },
+    {
+      "title": "A new build changed how refresh behaves",
+      "text": "Excel updates can change refresh behavior. In September 2025, Windows users reported crashes on refresh after the 8 Sept 2025 Office update. A Microsoft moderator said it may be related to version 2508. In a November 2026 Mac thread, Excel 16.114.1 crashed on Refresh All with 14 queries from OneDrive. Microsoft has not confirmed either case as a bug."
+    },
+    {
+      "title": "Memory and size limits",
+      "text": "Large models push memory hard. In a January 2026 Microsoft Q&A thread, a workbook with 70 PivotTables took over an hour to refresh, with memory rising from 30% to 98%. It ended in an out-of-memory error. That was a single user report. Microsoft's specs page also sets a 1GB limit per cache entry and a 4GB soft limit on the persistent query cache."
+    },
+    {
+      "title": "A build below the supported minimum",
+      "text": "Office for Mac builds below 16.83 became reduced-function from July 13, 2026 for some unsupported setups. In that mode you can open and view a file, but not edit, save or create. That is not the same error. It can still block the steps you need to fix the query, so check your build first."
+    },
+    {
+      "title": "Refresh All runs everything at once",
+      "text": "Refresh All runs every query in one pass. One failing query can stop the whole run. Refreshing queries one at a time isolates the failure. Microsoft also lists hard limits: rows filled to a worksheet are capped at 1,048,576, and columns per table at 16,384. A source that grows each month can reach those caps."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Find the queries that load to the Data Model",
+      "text": "Open Data > Queries & Connections on a copy of the workbook. For each query, check its load setting. Where you do not need the Data Model, turn off Add this data to the Data Model. Microsoft moderators suggested this in a Windows thread, and it has no controlled testing. Compare totals with the original before you replace anything."
+    },
+    {
+      "title": "Refresh one query at a time",
+      "text": "Skip Data > Refresh All. Open the Queries & Connections list and refresh each query on its own. The November 2026 Mac thread reports that this works when Refresh All crashes. Note the first query that fails. That query is your starting point, not the whole file."
+    },
+    {
+      "title": "Clear the cache and filter the source rows",
+      "text": "Clear the query cache if your version offers that option. Moderators suggested it for Windows, so test it on the copy. Filter the source rows to the period you need, then refresh. Turn off grand totals on the PivotTable while you test, then compare the result with last month's totals."
+    },
+    {
+      "title": "Check your build, then update",
+      "text": "Open Excel > About Excel and write down the version. Choose Help > Check for Updates and install what is offered. Builds below 16.83 need an update to edit files. Some users say Beta 16.116 fixed the Mac crash. That report is unverified, so keep Beta off month-end files."
+    },
+    {
+      "title": "Shrink the source, not the report",
+      "text": "If one source keeps growing, archive older periods into a separate file. Keep the active query on the newest year. Refresh the archive less often. Check the 1,048,576 row limit on any worksheet that receives query output, so the output does not hit the cap."
+    },
+    {
+      "title": "Move the Data Model work to Windows",
+      "text": "If your firm has a Windows machine with Excel, run the refresh there. The 2023 answer says Mac cannot refresh Data Model queries, so Windows is the realistic path for those files. Copy the file only with approval, and follow your employer rules on client data before it leaves your Mac."
+    },
+    {
+      "title": "Roll back only with approval",
+      "text": "A rollback is a last resort. Microsoft's revert guide covers Windows only and calls a rollback temporary. On a Mac, msupdate has a --version option for Excel, but the docs do not say it downgrades. Ask IT, back up the file, and record your current build before any change."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask what the error on screen means.",
+      "result": "Lazur answers out loud about the message, so you know which part of the file to check first.",
+      "capability": "explain"
+    },
+    {
+      "say": "Ask where Queries & Connections is.",
+      "result": "Lazur draws a circle and a label around the Data menu item, so you find it without searching.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through turning off Add this data to the Data Model.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to IT with my Excel build and the failing query name.",
+      "result": "Lazur drafts the text. You read it, edit it and send it from your own email.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research the latest Mac Excel refresh issues.",
+      "result": "Lazur runs research in its own Chrome tabs and returns a summary and a report. Check each source yourself.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Hold ⌥ ⌘ and ask: what does this error mean?",
+    "capability": "explain",
+    "result": "Lazur answers out loud, points at the Data Model setting and suggests you check each query's load setting first.",
+    "shell": "sheet",
+    "context": "Excel for Mac after a Microsoft 365 update, Power Query refresh fails",
+    "pointsAt": "Queries & Connections",
+    "output": "Lazur says the message points at the Data Model, then circles Data > Queries & Connections on screen."
+  },
+  "plan": [
+    {
+      "label": "Morning",
+      "title": "Protect the file",
+      "text": "Save a copy of the workbook and leave the original alone. Write down the Excel build from Excel > About Excel, and the macOS version from Apple menu > About This Mac. Keep the exact error text in a screenshot with client names removed."
+    },
+    {
+      "label": "Before lunch",
+      "title": "Map the queries",
+      "text": "Open Data > Queries & Connections on the copy. List each query and its load setting. Mark every query that loads to the Data Model. Note which PivotTables read from those queries."
+    },
+    {
+      "label": "Afternoon",
+      "title": "Refresh one at a time",
+      "text": "On the copy, refresh each query alone. Record the first query that fails and how long it ran. Turn off Data Model loading only on the copy, then compare its totals with the original."
+    },
+    {
+      "label": "Next day",
+      "title": "Ask for the right help",
+      "text": "Check Help > Check for Updates and install any update offered. Send your build numbers, query names and screenshots to IT. Do not roll back Office without approval."
+    }
+  ],
+  "apps": [
+    "excel",
+    "outlook",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "data-model-could-not-be-accessed-excel",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/data-model-could-not-be-accessed-excel/the-data-model-could-not-be-accessed-1-3d5299.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Accountant at a desk working on a laptop while reviewing an Excel workbook",
+      "caption": "Month-end work often sits on one laptop and one spreadsheet.",
+      "keywords": [
+        "the data model could not be accessed",
+        "Accountants",
+        "Power Query error after an Excel update",
+        "Mac",
+        "accountant working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheAngryTeddy",
+        "url": "https://pixabay.com/users/TheAngryTeddy-123386/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-apple-input-keys-hardware-338512/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/data-model-could-not-be-accessed-excel/the-data-model-could-not-be-accessed-2-2a508f.jpg",
+      "width": 1280,
+      "height": 757,
+      "alt": "Man at a Mac laptop checking a spreadsheet error in Excel at an office desk",
+      "caption": "A failed refresh often shows up on a normal work morning.",
+      "keywords": [
+        "the data model could not be accessed",
+        "Accountants",
+        "Power Query error after an Excel update",
+        "Mac",
+        "man laptop office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/data-model-could-not-be-accessed-excel/the-data-model-could-not-be-accessed-3-83d3e5.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Printed financial charts and a spreadsheet on a desk beside a laptop",
+      "caption": "Totals on a summary sheet need checking after every failed refresh.",
+      "keywords": [
+        "the data model could not be accessed",
+        "Accountants",
+        "Power Query error after an Excel update",
+        "Mac",
+        "charts spreadsheet desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "6689062",
+        "url": "https://pixabay.com/users/6689062-6689062/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/desk-computer-business-office-2852986/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "the data model could not be accessed",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Power Query error after Excel update": 1,
+      "Excel Mac Data Model error": 1,
+      "Power Query refresh fails on Mac": 1,
+      "Excel for Mac Power Query not refreshing": 1,
+      "Excel update Power Query error fix": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

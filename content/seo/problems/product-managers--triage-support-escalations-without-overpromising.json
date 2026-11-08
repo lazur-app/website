@@ -1,0 +1,576 @@
+{
+  "title": "How to triage support escalations without overpromising on Mac: a PM playbook for 2026",
+  "metaTitle": "Triage support escalations without overpromising, for PMs on Mac",
+  "description": "Triage support escalations without overpromising. Sort, route, and reply to escalations on Mac, with honest timelines and fixes you can use today.",
+  "targetKeyword": "triage support escalations without overpromising",
+  "secondaryKeywords": [
+    "support escalation triage",
+    "how to handle support escalations",
+    "support escalation process for product managers",
+    "customer escalation reply template",
+    "support to engineering handoff",
+    "escalation review meeting"
+  ],
+  "intro": "To triage support escalations without overpromising, sort each case by impact and evidence before you reply. Then promise only the next step and the time you will send an update. Keep one status line per case so every reply says the same thing.",
+  "tldr": [
+    "Sort each escalation by customer impact and by what you can prove, before you promise anything.",
+    "Promise a next step and an update time. Do not promise a fix or a ship date you do not control.",
+    "Write one status line per case and reuse it in Slack, email, and Linear.",
+    "Lazur can explain, draft, dictate, and remind you. It does not triage the queue or send replies for you."
+  ],
+  "stats": [
+    {
+      "value": "79.9%",
+      "label": "Recall for flagging at-risk support tickets, IBM field study on 2.5 million tickets and 10,000 escalations",
+      "sourceUrl": "https://arxiv.org/abs/1901.01092",
+      "sourceTitle": "What do Support Analysts Know about Their Customers? (arXiv 1901.01092)"
+    },
+    {
+      "value": "80.8%",
+      "label": "Reduction in analyst workload for identifying at-risk tickets, same IBM study",
+      "sourceUrl": "https://arxiv.org/abs/1901.01092",
+      "sourceTitle": "What do Support Analysts Know about Their Customers? (arXiv 1901.01092)"
+    },
+    {
+      "value": "14%",
+      "label": "Average rise in issues resolved per hour with generative AI help, across 5,179 customer support agents",
+      "sourceUrl": "https://www.nber.org/papers/w31161",
+      "sourceTitle": "Generative AI at Work (NBER Working Paper 31161)"
+    },
+    {
+      "value": "2,666,000",
+      "label": "Customer service representative jobs in 2025, per the BLS Occupational Outlook Handbook",
+      "sourceUrl": "https://www.bls.gov/ooh/office-and-administrative-support/customer-service-representatives.htm",
+      "sourceTitle": "Customer Service Representatives: Occupational Outlook Handbook"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What support escalations cost you"
+    },
+    {
+      "type": "paragraph",
+      "text": "An escalation is a support case that needs more than the first-line team can give. For a product manager, it usually shows up as a Slack ping, a ticket in your queue, and a question you cannot answer yet. The cost lands in three places: customer trust, engineering time, and your own calendar."
+    },
+    {
+      "type": "paragraph",
+      "text": "The notes behind this page do not include a verified escalation rate, a cost per escalation, or a burnout figure. Treat your own recent tickets as the baseline. Count the cases that were escalated, the ones that came back, and the ones you chased for a status update."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The clearest measured example comes from IBM. Montgomery and Damian trained a model on more than 2.5 million support tickets and 10,000 escalations. It flagged at-risk tickets with 79.9% recall and cut analyst review workload by 80.8%. That is one large company's research result, not a promise for your team."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Recall of 79.9% means the model caught most of the at-risk tickets in its test. It does not mean the model was right about every case. The useful lesson is narrower. A signal that finds risky cases early can save reviewer time, if the signal is good enough."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why escalations pile up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most escalations do not come from one bad reply. They come from how the queue is built and how the handoffs work. A few patterns repeat across teams, and each one pushes cases up to product."
+    },
+    {
+      "type": "paragraph",
+      "text": "Software triage research treats the job as three steps: prioritizing issues, assigning them, and assessing them. A systematic review covered 234 papers on the topic. The handoff between those steps is where a case most easily loses time, so start looking there."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Triage without overpromising"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Sort each case by impact and evidence"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask two questions before you reply. How many customers does this touch, and how badly? What can you show right now? A reproduced bug with logs is a different case from a customer's description of a bug. Find the row that fits, then write a reply that matches it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Impact",
+        "Evidence",
+        "What you can promise"
+      ],
+      "rows": [
+        [
+          "High, many customers or a paid account blocked",
+          "Reproduced, logs attached",
+          "A fix plan and a date for your next update"
+        ],
+        [
+          "High, few customers",
+          "Described, not reproduced",
+          "The next step to reproduce, and an update time"
+        ],
+        [
+          "Low, cosmetic or rare",
+          "Any",
+          "That it is logged, and where the customer can follow it"
+        ],
+        [
+          "Unknown cause",
+          "Customer report only",
+          "What you need from the customer to start"
+        ]
+      ],
+      "caption": "Match each case to one row before you write the reply."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Write a status line every time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Each open case gets one status line. It has four parts, in this order. Keep the wording the same from one update to the next, so the customer and your colleagues read one story."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "What we know: one sentence on the facts, with the evidence behind it.",
+        "What we do not know: one sentence on the gap.",
+        "Next step and owner: the action and the person doing it.",
+        "Next update: the time you will send news, even if the news is that nothing changed."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example of a support escalation"
+    },
+    {
+      "type": "paragraph",
+      "text": "A customer says their weekly export skips rows for accounts created after a migration. Two other customers mention the same thing in chat. Engineering has not seen it. The customer is angry and asks for a fix by the end of the week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the table. Impact is high, since paid accounts may be missing data. Evidence is partial, since you have two reports and no reproduction. Your reply promises the next step, not the fix. You ask for one export file and an account ID, you check the migration log with engineering, and you name the time of your next update."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The honest version sounds like this: We take this seriously and have details from two accounts. We need one export file and an account ID to reproduce it. You will hear from us on Thursday with what we found, even if we do not have a fix yet. You can keep that promise."
+    },
+    {
+      "type": "paragraph",
+      "text": "The version to avoid sounds like this: This is fixed in the next release, so you are covered. You do not know that yet. If the release slips, you lose the customer and the credibility you built with your first reply."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common escalation mistakes that cause overpromising"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Giving a fix date on a call before engineering has agreed to it.",
+        "Calling a guess a cause in the Slack thread, so others repeat it.",
+        "Writing should be when you mean we are checking.",
+        "Closing the case when the fix ships, before the customer confirms it works.",
+        "Sending the same bug to several people instead of one owner."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each mistake feels kind at the moment you make it. Later, it reads like a broken promise. The fix is usually a smaller sentence and an earlier update time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with the writing and reminders"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the words around triage, not the triage itself. It does not sort your queue, decide severity, or send replies. Hold ⌥ ⌘ to ask a question about what is on your screen, and Lazur answers out loud. It points at the field you need, so you do not hunt for it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate your status line straight into the Linear issue or the Slack thread. Dictated text lands at the cursor in any app. Snippets, a personal dictionary, and clipboard slots help when you paste the same status parts each week. Check names, versions, and account IDs before you save."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur looks at your screen only while you hold the shortcut. It sends the audio and the screenshot to AI providers to answer, and they are not stored. Content is never used to train AI models. Those are the facts. They do not replace your company's rules on what can be shared."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a weekly escalation routine on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Set one short weekly slot for escalations with support and engineering. Review only the cases that changed since the last review. Use the status lines as the agenda. If a case has no new status line, it goes first, because nobody owns it yet."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your log lives in Google Sheets, add a filter so only open cases show. Pick the range, then follow [how to add a filter in Google Sheets on Mac](/how-to/add-a-filter-to-a-range-in-google-sheets). Use a dropdown for impact so the column stays clean, as explained in [how to create a dropdown list in Google Sheets on Mac](/how-to/create-a-dropdown-list-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Linear, link each customer case to the bug issue, and keep one owner on that issue. [Linear for product managers on Mac](/for/product-managers/linear) covers the board and the plan limits. In Notion, a database works well as an escalation log. See [how to create a database in Notion on Mac](/how-to/create-a-database-in-notion)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If the escalation channel keeps pulling you away from deep work, read [Slack keeps breaking my focus](/for/product-managers/problems/slack-interruptions-break-focus-pm). Fewer interruptions make it easier to reply on time, and the update time is the promise that matters most."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and customer data in escalations"
+    },
+    {
+      "type": "paragraph",
+      "text": "Escalations contain customer names, account IDs, and sometimes files. Before you paste any of that into an AI tool, check your company's policy. If you work in health, law, or accounting, follow your employer's rules on client or patient data, even when a tool seems harmless."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one open escalation today. Sort it into a row of the table, then write its status line. Check whether the next update time is one you can keep. If you want voice help while you work, [download Lazur for Mac](/download). Pricing is on [the pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I triage support escalations without overpromising?",
+      "answer": "Sort each case by impact and evidence, then match it to a row in the triage table. Reply with the next step and the time of your next update. Leave out the fix date until engineering gives you one in writing."
+    },
+    {
+      "question": "What do I say when I do not know the fix date?",
+      "answer": "Say what you know, what you are checking, and when you will update. For example: We are reproducing this now and will update you on Thursday, even if the fix is not ready. It is honest, and you can keep it."
+    },
+    {
+      "question": "What counts as an escalation?",
+      "answer": "A case that needs a person beyond the first-line team, such as engineering, a manager, or a product decision. Write your own definition on one page. Then apply it the same way to every case, so the count means something."
+    },
+    {
+      "question": "Does the IBM study prove AI triage works for my team?",
+      "answer": "No. It is a research study at one large company. Its model reached 79.9% recall on at-risk tickets and cut analyst review workload by 80.8%. Your data, tools, and staff will differ, so test any tool on your own cases first."
+    },
+    {
+      "question": "Can Lazur read my support tickets for me?",
+      "answer": "Not in the way you might hope. Lazur looks at your screen only while you hold the shortcut, answers out loud, and points at things. It does not click buttons, edit files, or operate other apps for you. Audio and the screenshot go to AI providers to answer and are not stored."
+    },
+    {
+      "question": "Is it safe to paste customer data into an AI tool?",
+      "answer": "Check your company's policy first. Many teams limit what can go into AI tools. If you work in health, law, or accounting, follow your employer's rules on client or patient data. Do not paste anything your policy does not allow."
+    },
+    {
+      "question": "How many escalations should a team expect?",
+      "answer": "The research notes for this page do not include a verified escalation rate, so there is no reliable industry number to quote. Measure your own. Count open escalations each week, the cases that came back, and the updates you missed."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What do Support Analysts Know about Their Customers? (arXiv 1901.01092)",
+      "url": "https://arxiv.org/abs/1901.01092",
+      "publisher": "arXiv / RE'17",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Generative AI at Work (NBER Working Paper 31161)",
+      "url": "https://www.nber.org/papers/w31161",
+      "publisher": "National Bureau of Economic Research",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Customer Service Representatives: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/office-and-administrative-support/customer-service-representatives.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Triage in Software Engineering: A Systematic Review of Research and Practice (arXiv 2511.08607)",
+      "url": "https://arxiv.org/abs/2511.08607",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Manage your incoming requests with queues",
+      "url": "https://support.atlassian.com/jira-service-management-cloud/docs/manage-your-incoming-requests-with-queues/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "support escalation triage",
+  "costs": [
+    {
+      "title": "Trust with the customer",
+      "text": "When you promise a fix date and miss it, the customer remembers the date. They stop believing the next one. A calm, accurate update that says what you do not know often holds trust better than a confident date. Keep promises small enough that you can keep them."
+    },
+    {
+      "title": "Engineering time",
+      "text": "Each vague escalation pulls an engineer into a hunt for facts. Engineers who get vague cases tend to stop reading the queue closely. Then the real urgent case waits longer. A clear next step protects their time and yours."
+    },
+    {
+      "title": "Your calendar",
+      "text": "Escalations turn into status calls. You become the relay between the customer, support, and engineering. Each relay adds a delay and a chance to change the story. Plan your week around update times, not around the next ping."
+    },
+    {
+      "title": "Account risk",
+      "text": "Escalated customers often have the most at stake, and they watch how you respond. If they feel ignored, renewal talks get harder. The notes for this page do not include a verified churn figure, so measure this with your own renewals."
+    },
+    {
+      "title": "Internal wording",
+      "text": "A sales lead repeats it ships next sprint on a call. Support repeats it to the customer. Engineering never agreed to that. Now the promise belongs to nobody, and you end up owning it anyway."
+    }
+  ],
+  "causes": [
+    {
+      "title": "No shared meaning of urgent",
+      "text": "Support, sales, and customers each use urgent to mean something different. Without a written rule, every case claims the top spot. Your queue then sorts by who pushed hardest, not by impact. A rule on one page fixes most of this."
+    },
+    {
+      "title": "Facts spread across tools",
+      "text": "The ticket lives in Jira Service Management or another help desk. The discussion lives in Slack. The bug lives in Linear. The customer's files sit in email. Atlassian's queue docs describe bulk actions on requests, which helps inside one tool. It does not join the tools for you."
+    },
+    {
+      "title": "Support and engineering want different details",
+      "text": "Support writes what the customer saw. Engineering needs steps, versions, account IDs, and logs. When the first message lacks those, the case bounces back and forth. Triage research frames the job as prioritizing, assigning, and assessing issues, and the handoff is where delays start."
+    },
+    {
+      "title": "Reassurance under pressure",
+      "text": "A rep wants the call to end, so they say we will fix this today. The sentence feels kind. It is a promise made without engineering in the room. Many overpromises start this way, on a call, under pressure."
+    },
+    {
+      "title": "Repeat bugs with many owners",
+      "text": "Several customers report the same bug, and each one reaches a different person. Each person gives a different answer. Nobody sees the pattern until a manager asks for a summary. A single owner for each bug stops the drift."
+    },
+    {
+      "title": "Smaller teams, same queue",
+      "text": "The US Bureau of Labor Statistics projects customer service representative jobs to fall 5% from 2025 to 2035. That is a projection for the whole occupation, not a rule for your team. A shrinking staff with the same queue can mean more cases per person. This is an inference, not a finding."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write a one-page severity rule",
+      "text": "Define high, medium, and low in plain words. High means paying customers are blocked or data is at risk. Medium means a workaround exists but the work is painful. Low means cosmetic or rare. Pin the rule in the escalation channel and link it from every case, so the label means the same thing to everyone."
+    },
+    {
+      "title": "Ask the same short checklist every time",
+      "text": "Ask the same questions on every case: what broke, who is affected, whether there is a workaround, and what date the customer already heard. Copy the answers into the status line. If one answer is missing, the next step is to get it, not to promise."
+    },
+    {
+      "title": "Promise the next step, not the outcome",
+      "text": "Replace we will fix this with we will reproduce this by our next update. You control that step. A fix depends on engineering, testing, and a release you do not run. Leave out the fix date until engineering gives you one in writing."
+    },
+    {
+      "title": "Put the status line where people look",
+      "text": "Keep the same status line at the top of the Linear issue or Notion page, in the Slack thread, and in the first line of the email reply. When the line changes in one place, change it everywhere. Mismatched updates are easy to spot, and customers notice them."
+    },
+    {
+      "title": "Save a holding reply as a snippet",
+      "text": "Write one holding reply for cases where you need more time. Save it as a Lazur snippet so you can reuse it. Edit the case details before you send, and read the whole reply once. A snippet saves typing, but it does not replace the check."
+    },
+    {
+      "title": "Tie repeat reports to one bug",
+      "text": "When a second customer reports the same problem, link their case to the existing issue. Add the customer count to that issue once. Then reply to each customer with the same next step. This stops several people from giving several answers."
+    },
+    {
+      "title": "Close the loop with each customer",
+      "text": "When engineering ships a fix, tell each customer what changed and what to check. Ask them to confirm it works. Close the case only after that confirmation. If the fix does not land, send the new next step with its update time."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this error in the ticket mean, in plain words?",
+      "result": "Lazur reads what is on your screen while you hold the shortcut and answers out loud. You understand the problem before you reply to the customer.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a holding reply that gives the next step and the update time.",
+      "result": "Lazur drafts text in your words. You check every line, and you send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate the status line into this Linear issue.",
+      "result": "Clean, formatted text appears at the cursor in any app. Check names and account IDs before you save.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Where is the impact field on this issue?",
+      "result": "Lazur draws a circle and a label around the field on your screen, so you find it without hunting.",
+      "capability": "point"
+    },
+    {
+      "say": "Remind me to check this escalation before the update time.",
+      "result": "Lazur adds the reminder to Apple Reminders, so the promise stays on your list.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Find the public docs that describe this export limit.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Verify each source before you quote it.",
+      "capability": "research"
+    },
+    {
+      "say": "Walk me through adding a text replacement on my Mac.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    }
+  ],
+  "demo": {
+    "spoken": "Draft a holding reply for this escalation. Promise the next update time, not a fix date.",
+    "capability": "draft",
+    "shell": "slack",
+    "context": "Escalation thread in a Slack channel",
+    "pointsAt": "Reply box in the thread",
+    "result": "Lazur drafts a reply in your voice. It names the next step and the update time, and it leaves out any fix date.",
+    "output": "Thanks for your patience. We have the details, and the engineering team is looking at them now. You will hear from us on Thursday with the next update, even if we do not have a fix yet."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Write the severity rule",
+      "text": "Write high, medium, and low in plain words, with one real example of each from last month. Pin it in the escalation channel and link it from your Linear board. Get support to sign off, so the rule belongs to more than you."
+    },
+    {
+      "label": "Day 2",
+      "title": "Audit open escalations",
+      "text": "List each open case. Mark its impact and evidence, then pick its row in the triage table. Any case without a next step gets one today. Note every date promise you made, and check whether it still holds."
+    },
+    {
+      "label": "Day 3",
+      "title": "Write the status lines",
+      "text": "Write a status line for each open case, using the four parts. Paste it at the top of the Linear issue or the Notion page. Ask Lazur to draft the holding replies you need, then read each one before you send."
+    },
+    {
+      "label": "Day 4",
+      "title": "Set the review slot",
+      "text": "Book one short weekly review with support and engineering. Use the status lines as the agenda, and review only cases that changed. Ask Lazur to remind you before each update time, so the promise stays on your list."
+    },
+    {
+      "label": "Day 5",
+      "title": "Close the loop",
+      "text": "Check every fix that shipped this week. Tell each customer what changed and ask them to confirm. Close only the confirmed cases, and move the rest to the next review with a new update time."
+    }
+  ],
+  "apps": [
+    "linear",
+    "slack",
+    "notion",
+    "google-sheets"
+  ],
+  "type": "problem",
+  "slug": "triage-support-escalations-without-overpromising",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/triage-support-escalations-without-overpromising/triage-support-escalations-without-overpromising-1-710c1d.jpg",
+      "width": 1280,
+      "height": 603,
+      "alt": "Customer support agent at a desk reviewing support escalations on a laptop",
+      "caption": "Support work often starts with one unclear customer message.",
+      "keywords": [
+        "triage support escalations without overpromising",
+        "Product managers",
+        "support escalation triage",
+        "Mac",
+        "customer support agent",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/call-center-headset-woman-service-2944063/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/triage-support-escalations-without-overpromising/triage-support-escalations-without-overpromising-2-afaee5.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person working on a laptop at a desk with notes beside the keyboard",
+      "caption": "A short written status line keeps every reply consistent.",
+      "keywords": [
+        "triage support escalations without overpromising",
+        "Product managers",
+        "support escalation triage",
+        "Mac",
+        "person working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/triage-support-escalations-without-overpromising/triage-support-escalations-without-overpromising-3-701ae6.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Product and support team meeting in an office to review open escalations",
+      "caption": "A weekly review keeps open cases moving between teams.",
+      "keywords": [
+        "triage support escalations without overpromising",
+        "Product managers",
+        "support escalation triage",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "triage support escalations without overpromising",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "support escalation triage": 2,
+      "how to handle support escalations": 1,
+      "support escalation process for product managers": 1,
+      "customer escalation reply template": 1,
+      "support to engineering handoff": 1,
+      "escalation review meeting": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

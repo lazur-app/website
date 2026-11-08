@@ -1,10 +1,10 @@
-Content 2026-11-08: 136 written, 1 refused, 0 failed
+Content 2026-11-08: 184 written, 3 refused, 0 failed
 
-- howto: 0/120
+- howto: 4/120
 - apps: 2/9
 - roles: 19/12
 - role-apps: 60/60
-- problems: 31/75
+- problems: 75/75
 - compare: 9/9
 - blog: 15/15
 
@@ -144,3 +144,51 @@ problem:marketers/gmail-bulk-sender-spam-rate-rules /for/marketers/problems/gmai
 problem:accountants/xlookup-name-error-office-update /for/accountants/problems/xlookup-name-error-office-update
 problem:writers/word-mac-smart-quotes-turn-off /for/writers/problems/word-mac-smart-quotes-turn-off
 problem:product-managers/jira-tickets-untestable-acceptance-criteria /for/product-managers/problems/jira-tickets-untestable-acceptance-criteria
+problem:product-managers/release-notes-eat-up-pm-week /for/product-managers/problems/release-notes-eat-up-pm-week
+problem:product-managers/figma-designs-miss-edge-cases-error-states /for/product-managers/problems/figma-designs-miss-edge-cases-error-states
+problem:marketers/search-console-discovered-currently-not-indexed /for/marketers/problems/search-console-discovered-currently-not-indexed
+problem:marketers/utm-source-case-sensitive-ga4 /for/marketers/problems/utm-source-case-sensitive-ga4
+problem:accountants/data-model-could-not-be-accessed-excel /for/accountants/problems/data-model-could-not-be-accessed-excel
+problem:accountants/power-query-not-refreshing-excel-web /for/accountants/problems/power-query-not-refreshing-excel-web
+problem:product-managers/saying-no-to-feature-requests-pm /for/product-managers/problems/saying-no-to-feature-requests-pm
+problem:product-managers/ab-test-result-worth-shipping-decision /for/product-managers/problems/ab-test-result-worth-shipping-decision
+problem:marketers/pivottable-messy-data-excel /for/marketers/problems/pivottable-messy-data-excel
+problem:marketers/gtm-preview-mode-tag-not-firing /for/marketers/problems/gtm-preview-mode-tag-not-firing
+problem:accountants/excel-pivot-cannot-group-dates /for/accountants/problems/excel-pivot-cannot-group-dates
+problem:accountants/excel-mac-alt-shortcuts-not-working /for/accountants/problems/excel-mac-alt-shortcuts-not-working
+problem:product-managers/mid-sprint-scope-changes-engineering /for/product-managers/problems/mid-sprint-scope-changes-engineering
+problem:marketers/google-analytics-consent-mode-missing-data /for/marketers/problems/google-analytics-consent-mode-missing-data
+problem:accountants/sage-50-accounting-not-responding /for/accountants/problems/sage-50-accounting-not-responding
+problem:marketers/youtube-studio-add-subtitles-captions /for/marketers/problems/youtube-studio-add-subtitles-captions
+problem:accountants/chasing-clients-missing-documents-tax-season /for/accountants/problems/chasing-clients-missing-documents-tax-season
+problem:product-managers/product-analytics-missing-events-tracking /for/product-managers/problems/product-analytics-missing-events-tracking
+problem:product-managers/product-pricing-without-willingness-to-pay-data /for/product-managers/problems/product-pricing-without-willingness-to-pay-data
+problem:accountants/accountant-email-triage-client-inbox /for/accountants/problems/accountant-email-triage-client-inbox
+problem:marketers/alt-text-marketing-images-guide /for/marketers/problems/alt-text-marketing-images-guide
+problem:product-managers/slack-interruptions-break-focus-pm /for/product-managers/problems/slack-interruptions-break-focus-pm
+problem:product-managers/recruit-enough-user-research-participants /for/product-managers/problems/recruit-enough-user-research-participants
+problem:accountants/manual-data-entry-from-invoices-and-pdfs /for/accountants/problems/manual-data-entry-from-invoices-and-pdfs
+problem:marketers/repurpose-long-form-content-social-posts /for/marketers/problems/repurpose-long-form-content-social-posts
+problem:accountants/cpe-credit-tracking-state-carryover-rules /for/accountants/problems/cpe-credit-tracking-state-carryover-rules
+problem:marketers/weekly-marketing-report-taking-too-long /for/marketers/problems/weekly-marketing-report-taking-too-long
+problem:product-managers/okr-key-results-real-outcomes /for/product-managers/problems/okr-key-results-real-outcomes
+problem:marketers/responsive-search-ad-headlines-descriptions-limit /for/marketers/problems/responsive-search-ad-headlines-descriptions-limit
+problem:accountants/audit-tickmarks-excel-cross-reference /for/accountants/problems/audit-tickmarks-excel-cross-reference
+problem:product-managers/answer-repeated-roadmap-questions-executives /for/product-managers/problems/answer-repeated-roadmap-questions-executives
+problem:accountants/1099-nec-corrected-vs-void-refile /for/accountants/problems/1099-nec-corrected-vs-void-refile
+problem:marketers/performance-max-campaign-control-final-url /for/marketers/problems/performance-max-campaign-control-final-url
+problem:product-managers/preparing-executive-presentation-deck-hours /for/product-managers/problems/preparing-executive-presentation-deck-hours
+problem:product-managers/triage-support-escalations-without-overpromising /for/product-managers/problems/triage-support-escalations-without-overpromising
+problem:accountants/form-4868-extension-not-payment /for/accountants/problems/form-4868-extension-not-payment
+problem:marketers/google-ads-search-terms-hidden-queries /for/marketers/problems/google-ads-search-terms-hidden-queries
+problem:marketers/ga4-data-retention-two-months /for/marketers/problems/ga4-data-retention-two-months
+problem:product-managers/prepare-for-customer-escalation-calls /for/product-managers/problems/prepare-for-customer-escalation-calls
+problem:marketers/shopify-product-seo-title-meta-description /for/marketers/problems/shopify-product-seo-title-meta-description
+problem:accountants/delete-duplicate-transactions-quickbooks-online /for/accountants/problems/delete-duplicate-transactions-quickbooks-online
+problem:accountants/bank-statement-pdf-excel-columns-merged /for/accountants/problems/bank-statement-pdf-excel-columns-merged
+problem:product-managers/learn-unfamiliar-industry-first-90-days /for/product-managers/problems/learn-unfamiliar-industry-first-90-days
+problem:marketers/ai-first-draft-marketing-copy-brand-voice /for/marketers/problems/ai-first-draft-marketing-copy-brand-voice
+howto:create-a-bulleted-list-in-pages /how-to/create-a-bulleted-list-in-pages
+howto:use-dictation-in-pages /how-to/use-dictation-in-pages
+howto:add-a-footnote-in-pages /how-to/add-a-footnote-in-pages
+howto:add-a-chart-in-pages /how-to/add-a-chart-in-pages

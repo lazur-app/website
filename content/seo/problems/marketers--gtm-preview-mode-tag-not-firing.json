@@ -1,0 +1,733 @@
+{
+  "title": "Google Tag Manager preview mode: fix a tag that does not fire on Mac",
+  "metaTitle": "Google Tag Manager Preview Mode: Fix a Tag That Does Not Fire",
+  "description": "Google Tag Manager preview mode shows which tags fire and which stay silent. Use these steps on Mac in Chrome to find the cause.",
+  "targetKeyword": "google tag manager preview mode",
+  "secondaryKeywords": [
+    "gtm preview mode not working",
+    "tag not firing google tag manager",
+    "tag assistant could not connect",
+    "ga4 debugview not showing events",
+    "tag assistant chrome extension",
+    "debug google tag manager on mac"
+  ],
+  "intro": "Google Tag Manager preview mode runs your workspace draft on your site, so you can see which tags fire and which stay silent. If a tag does not fire, check its trigger, the published version, and your browser before you change the tag again. The steps below use Google's free tools, Chrome, and built-in Mac shortcuts.",
+  "tldr": [
+    "Open the Workspace tab, click Preview, enter your URL, click Connect, then click Continue in the Tag Assistant tab.",
+    "Preview shows the draft. Visitors get the last published version, so a tag can work in Preview and still fail live.",
+    "Ad blockers, privacy extensions, and consent settings can each stop a tag from firing for you or your visitors.",
+    "Confirm the event in GA4 DebugView. In Chrome on Mac, press ⌘⌥J and read the Network tab to see whether the request leaves the browser.",
+    "Lazur can point at the Preview button, explain a message on screen, and draft your bug note. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "21 cents",
+      "label": "of every media dollar wasted from poor data quality, per a 2019 Forrester study commissioned by Marketing Evolution",
+      "sourceUrl": "https://customerthink.com/new-study-finds-marketers-waste-21-cents-of-every-media-dollar-from-poor-data-quality/",
+      "sourceTitle": "CustomerThink summary of the Forrester study"
+    },
+    {
+      "value": "32%",
+      "label": "of marketing team time can go to managing data quality, as much as, per the same 2019 study",
+      "sourceUrl": "https://customerthink.com/new-study-finds-marketers-waste-21-cents-of-every-media-dollar-from-poor-data-quality/",
+      "sourceTitle": "CustomerThink summary of the Forrester study"
+    },
+    {
+      "value": "29.5%",
+      "label": "of internet users use ad blockers at least sometimes, as of Q2 2025 (GWI data)",
+      "sourceUrl": "https://backlinko.com/ad-blockers-users",
+      "sourceTitle": "Ad Blocker Usage and Demographic Statistics in 2026 (Backlinko)"
+    },
+    {
+      "value": "$79.70",
+      "label": "median hourly wage for advertising, promotions and marketing managers, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "sourceTitle": "Advertising, Promotions, and Marketing Managers (BLS)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A tag that does not fire is one of the most common problems in Google Tag Manager. You set up a button click or a purchase event, publish, and nothing shows up in your reports. Preview mode is the fastest way to find out why. It shows what GTM sees on a page before the change goes live."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Preview mode shows, and what it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Tag Manager, often called GTM, lets you add tags to a website without editing the site code each time. A tag sends data somewhere, such as a Google Analytics event or an ad conversion. A trigger decides when the tag runs. Preview mode lets you watch that chain on a live page before you publish."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google says Preview runs the current workspace draft as if it were deployed. Visitors still get the last published version. A tag that works in Preview can still fail for real visitors. Test again after you publish."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to open GTM Preview mode on Mac, step by step"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open your container in Google Tag Manager in Chrome. Sign in with an account that has edit access.",
+        "Click the Workspace tab.",
+        "Click Preview.",
+        "Enter the full URL of the page you want to test, including https://, then click Connect.",
+        "Wait for the Tag Assistant tab to open. Click Continue in that tab.",
+        "Open a second tab with your site and browse the pages. Watch the Tag Assistant summary fill in."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Older versions work a little differently. Open Versions, pick the version you want, then choose More Actions > Preview. Use this when you need to see how a past version behaved, or to compare it with your current draft."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test the right URL",
+      "text": "Enter the exact page where the tag should fire. A Page View tag on your homepage tells you nothing about a checkout page. Use a real product or checkout URL, with the same path your visitors use."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the Tag Assistant panel without guessing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Preview opens Tag Assistant in its own tab. Tag Assistant is Google's debugging view. It shows the tags that fired, the tags that did not, and the events on the page. Read the summary from top to bottom before you change anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Tag Assistant Chrome extension adds a side panel. It lists the Google tags on the current page. Its Troubleshoot tag option turns on debug mode through tagassistant.google.com. Google merged the older Legacy and Companion extensions into one Tag Assistant extension. If you have Legacy installed, you need not uninstall anything. Companion still works, but Google says it will be deprecated in the coming months."
+    },
+    {
+      "type": "paragraph",
+      "text": "If Tag Assistant says Could not connect, treat that as a loading problem first. Google's consent guide says your container may be blocked from loading in that case. Check your browser and consent setup before you dig into individual tags."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the trigger before you change the tag"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most silent tags have a trigger problem. Open the tag, look at its Triggering section, and read every trigger attached to it. Check the event name, the page filter, and the trigger type. A Click trigger does not run on a page load, and a Page View trigger does not run on a button press."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blocking triggers, also called exceptions, have a quirk. Analytics Mania says a blocking trigger can only block a firing trigger of the same event type. An exception built on a different trigger type can fail to block, or fail to fire, when you expect it to. Test the exception on its own before you trust it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Tag never appears in the summary",
+          "The trigger never matched",
+          "Event name and page filter on the trigger"
+        ],
+        [
+          "Tag fired on the first page, not after",
+          "Once per page setting",
+          "Tag advanced settings"
+        ],
+        [
+          "Tag works in Preview, not live",
+          "Container not published",
+          "Publish, then test the live page"
+        ],
+        [
+          "No new events after the first one",
+          "dataLayer snippet placed below the GTM container",
+          "Order of the two snippets in the page source"
+        ],
+        [
+          "Tag is listed but does not run",
+          "Tag is paused or on a firing schedule",
+          "Paused status and schedule in tag settings"
+        ]
+      ],
+      "caption": "Symptoms and first checks, based on Analytics Mania's list of common causes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the cheapest check. Paused tags and firing schedules take seconds to read. A dataLayer order problem takes a developer to fix, so bring them the page source order with the problem marked."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Preview works but GA4 shows nothing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Preview and GA4 answer different questions. Preview proves GTM ran the tag. It does not prove Google Analytics received the event. For that check, use GA4 DebugView."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google says you can turn on debug mode with Tag Assistant or GTM Preview for your own device. You can also set debug_mode to true in the gtag config or GA4 Event tag, which affects all users. Setting debug_mode to false does not turn it off. Remove the parameter entirely."
+    },
+    {
+      "type": "paragraph",
+      "text": "DebugView has two streams. The Seconds stream covers the last 60 seconds. The Minutes stream covers the last 30 minutes. Events can be hidden if client-side privacy controls are in use, or if consent mode is on and the visitor has not consented to Analytics cookies. A quiet DebugView can mean a consent setting, not a broken tag."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Turn off GA Debugger",
+      "text": "The GA Debugger extension only hides GA4 requests from the Preview GA4 section. The tags still fire and still send hits. Disable it while you debug GA4, or you will chase a problem that exists only in the view."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Turn on debug mode for your own device through Tag Assistant or GTM Preview.",
+        "Load the page and trigger the event once.",
+        "Open DebugView and find the event in the Seconds stream.",
+        "If nothing appears, check the consent setting for Analytics cookies.",
+        "When you finish, remove debug_mode from the tag and publish the change."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find out if the browser blocks the request"
+    },
+    {
+      "type": "paragraph",
+      "text": "When Preview and GA4 disagree, look at the network. Open Chrome, load the page, then press ⌘⌥J to open DevTools on the Console. Click the Network tab. A working tag sends a request. If no request appears, the tag did not run, or something stopped it."
+    },
+    {
+      "type": "paragraph",
+      "text": "To check for blocked requests, press ⌘⇧P, type block, then choose Show Request Blocking. Blocked requests show in red in the Network log. That tells you an ad blocker, a privacy extension, or a firewall stopped the call. GTM did not."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Safari, turn on Web Inspector first. Go to Safari > Settings > Advanced, then check Show features for web developers. After that, press ⌥⌘I, or choose Develop > Show Web Inspector. The Tag Assistant extension installs from the Chrome Web Store, so run the Preview checks in Chrome."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Use a separate Chrome profile",
+      "text": "Debug in a Chrome profile with no ad blocker installed. Your everyday browser stays clean. Your test profile shows what a visitor with no blockers sees."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ad blockers, privacy tools, and consent settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the tag is fine and your browser is the problem. Google's troubleshooting steps say to disable ad blockers and extensions, and to allow the Tag Assistant extension to read and change site data. Analytics Mania adds Brave Shields and Cloudflare Rocket Loader to that list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Consent is the other silent blocker. Google's consent guide checks default and updated consent values for ad_storage, ad_personalization, ad_user_data and analytics_storage. It also checks whether each tag behaved according to consent. If the Google tag only loads after a visitor agrees, modeled conversions become less accurate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ad blockers reach real visitors too. Backlinko, citing GWI data, says 29.5% of internet users use ad blockers at least sometimes as of Q2 2025. For that share of people, some tags will not run. Read your reports with that gap in mind."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "These numbers are general. None of them measure how long a silent tag takes to fix. Treat them as context for why blockers and consent deserve a check on every test, not as a forecast for your site."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Server-side tagging is a bigger change, not a quick fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "Server-side tagging moves some tag work to a server you control. Google lists three benefits: improved page performance, more detailed privacy controls, and improved data quality. Google's page does not say it gets around ad blockers. Do not promise that to your team."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your silent tag is a one-off, fix the trigger, the consent setting, or the browser test first. Server-side work needs a server and a developer. Plan it as a project, not as a debugging step."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Hand the bug to your developer in a useful form"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some causes sit outside GTM. A Content Security Policy, a firewall, or a proxy can block the tag script. Google's troubleshooting guide lists firewalls, proxies, and CSP as checks. Confirm the Google tag is on the page before you blame the container."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the bug so a developer can act on it in one read. Include the tag name, the trigger name, the exact URL, the browser version, and what the Tag Assistant panel showed. Attach a screenshot of the panel with any customer data cropped out."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Customer data on screen",
+      "text": "If the screen shows customer emails, account numbers, or health information, follow your employer's rules before you share a screenshot or paste text into an AI tool. Lazur listens and looks only while you hold the shortcut."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a purchase tag that stays silent"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a purchase tag fires on your test store but not on the live checkout. You open Preview on the checkout URL. The Tag Assistant summary shows the page loaded, and the purchase tag is listed as not fired. The trigger waits for an event named purchase."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your developer's code pushes the event as checkout_complete a moment after the page changes. The trigger never matches, so the tag never runs. You did not need to touch the tag. The fix is to match the event name in the trigger to the event in the code."
+    },
+    {
+      "type": "paragraph",
+      "text": "Publish the container, then open the live checkout in a clean profile. Check DebugView for the event, then the Network tab for the request. If both show it, write the fix in your log and close the bug."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep a test log so you do not repeat yourself"
+    },
+    {
+      "type": "paragraph",
+      "text": "A short log saves the most time on a long bug. A Google Sheet works well. Use one row per test with the date, page URL, tag name, trigger, what Preview showed, what DebugView showed, and the fix you tried. Read the basics in [Google Sheets for marketers](/for/marketers/google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Mistakes people make"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Testing the draft, then assuming the live site matches it.",
+        "Setting debug_mode to false and believing debug mode is off.",
+        "Trusting a fix before you publish and check the live page.",
+        "Changing three triggers at once, so nobody knows which change worked.",
+        "Blaming GTM when an ad blocker or a consent setting stops the request."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are stuck after the checks above, write down what you tried and send it to your developer. A clear log turns a vague bug into a short task."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it stops"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It can point at things, so you can find the Preview button or the Troubleshoot tag option without hunting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can also guide you through the steps one click at a time. It waits for each click, and you do the clicking. Lazur does not press buttons, edit tags, or work inside Tag Manager for you. Lazur is not a plugin or add-in for Google Tag Manager or any other app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean text at the cursor in any app. That helps when you write the bug note. Dictation is unlimited on both paid plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. The 3-day Pro trial starts when you first open the app, with no credit card. Check the [pricing page](/pricing) for paid plans, or [download Lazur](/download) to try it on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the tag fires"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the tag fires in Preview and shows up in DebugView, publish the container. Load the live page in your clean profile and check again. Write the fix in your log, and tell your team what changed and when. The next report then starts from facts, not memory."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my tag work in Preview but not on the live site?",
+      "answer": "Preview runs the workspace draft. Visitors get the last published version. If you did not publish after your change, the live site runs the old setup. Publish the container, then test the live page in a clean browser profile."
+    },
+    {
+      "question": "Does Preview mode show whether Google Analytics received the event?",
+      "answer": "No. Preview shows that GTM ran the tag. To see what GA4 received, open DebugView, turn on debug mode for your device, trigger the event, and check the Seconds stream. Privacy controls and consent settings can hide events there."
+    },
+    {
+      "question": "How do I turn off GA4 debug mode after testing?",
+      "answer": "Remove the debug_mode parameter from the gtag config or GA4 Event tag. Setting debug_mode to false does not turn it off. Remove the parameter, then publish the change."
+    },
+    {
+      "question": "Is Tag Assistant Companion still needed?",
+      "answer": "Not for new work. Google merged Tag Assistant Legacy and Companion into one Tag Assistant extension. Companion still works, but Google says it will be deprecated in the coming months. Legacy users need not uninstall anything."
+    },
+    {
+      "question": "Does server-side tagging get around ad blockers?",
+      "answer": "Google lists three benefits for server-side tagging: improved page performance, more detailed privacy controls, and improved data quality. Its page does not say server-side tagging defeats ad blockers. Treat it as a larger project, not a quick recovery for blocked tags."
+    },
+    {
+      "question": "Can I run Preview mode in Safari?",
+      "answer": "Use Chrome for the Preview and Tag Assistant steps, since the Tag Assistant extension installs from the Chrome Web Store. Safari's Web Inspector still helps with network checks. Turn it on under Safari > Settings > Advanced, then press ⌥⌘I."
+    },
+    {
+      "question": "Does Lazur click the buttons in Tag Manager for me?",
+      "answer": "No. Lazur does not click buttons, edit tags, or operate other apps for you. It can point at the Preview button, guide you one click at a time, explain a message on screen, and dictate or draft text. You do the clicking and the editing."
+    },
+    {
+      "question": "Is there a free trial of Lazur?",
+      "answer": "Yes. Lazur has a 3-day Pro trial with no credit card. The trial starts the first time you open the app. Paid plans are listed on the pricing page."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Tag Manager Help: Preview and debug",
+      "url": "https://support.google.com/tagmanager/answer/6107056",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Troubleshoot with Tag Assistant",
+      "url": "https://support.google.com/tagassistant/answer/10039345?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Tag Assistant Chrome extension",
+      "url": "https://support.google.com/tagmanager/answer/16463290?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Monitor events in DebugView",
+      "url": "https://support.google.com/analytics/answer/7201382?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Troubleshoot consent mode with Tag Assistant",
+      "url": "https://developers.google.com/tag-platform/security/guides/consent-debugging",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Server-side tagging",
+      "url": "https://developers.google.com/tag-platform/tag-manager/server-side",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Network panel (Chrome DevTools)",
+      "url": "https://developer.chrome.com/docs/devtools/network/",
+      "publisher": "Chrome for Developers",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Enabling Web Inspector",
+      "url": "https://webkit.org/web-inspector/enabling-web-inspector/",
+      "publisher": "WebKit",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Advertising, Promotions, and Marketing Managers",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "12 Reasons Why a Tag in Google Tag Manager is Not Firing",
+      "url": "https://www.analyticsmania.com/post/tag-in-google-tag-manager-is-not-firing/",
+      "publisher": "Analytics Mania",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Preview Mode Not Working? 26 ways to fix it",
+      "url": "https://www.analyticsmania.com/post/google-tag-manager-preview-mode-not-working/",
+      "publisher": "Analytics Mania",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Ad Blocker Usage and Demographic Statistics in 2026",
+      "url": "https://backlinko.com/ad-blockers-users",
+      "publisher": "Backlinko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "New Study Finds Marketers Waste 21 Cents of Every Media Dollar From Poor Data Quality",
+      "url": "https://customerthink.com/new-study-finds-marketers-waste-21-cents-of-every-media-dollar-from-poor-data-quality/",
+      "publisher": "CustomerThink",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "a tag that does not fire in google tag manager",
+  "costs": [
+    {
+      "title": "Salary time spent guessing",
+      "text": "BLS puts the median hourly wage for advertising, promotions and marketing managers at $79.70 in May 2025. That is a salary rate, not a bill. Use it to price your own hours. An afternoon lost to a silent tag is paid time that does not go to campaign work. BLS also says this work may be stressful, particularly near deadlines."
+    },
+    {
+      "title": "Data that drifts without a warning",
+      "text": "A 2019 Forrester study, commissioned by Marketing Evolution, found 21 cents of every media dollar was wasted from poor data quality. It also found 26% of campaigns were hurt by poor data quality. These are vendor-commissioned numbers from 2019, so read them as a direction, not a forecast. A tag that fires on some pages and not others is a data quality problem."
+    },
+    {
+      "title": "Conversions the models cannot see",
+      "text": "When consent holds back the Google tag, Google says modeled conversions become less accurate. A silent conversion tag can make a campaign look weaker than it is. That shifts bids and budget decisions, and the cost lands there, not in the tag settings."
+    },
+    {
+      "title": "Visitors your tags never reach",
+      "text": "GWI data, as cited by Backlinko, shows 29.5% of internet users use ad blockers at least sometimes as of Q2 2025. Tags do not run for those visitors. Your reports will show a gap that looks like a tag bug but may be the browser."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The trigger never matches the event",
+      "text": "The tag waits for a trigger, and the trigger waits for an event. If the event name, the page filter, or the trigger type is off, the tag never runs. Blocking triggers add a trap of their own. Analytics Mania says a blocking trigger can only block a firing trigger of the same event type, so an exception on a different trigger type can fail without any warning."
+    },
+    {
+      "title": "Tag settings hold it back",
+      "text": "A tag can be set to fire once per page, which stops repeat firing on the same page. A firing schedule can block a tag outside the hours you set. A paused tag never fires until someone unpauses it and publishes the container. Check all three before you suspect anything bigger."
+    },
+    {
+      "title": "The container was never published",
+      "text": "Preview runs your workspace draft. Visitors get the last published version. If you changed a tag and did not publish, the live site runs the old setup. Analytics Mania also lists a setting called Only fire in published containers, which stops tags from firing in Preview at all."
+    },
+    {
+      "title": "The dataLayer snippet sits in the wrong place",
+      "text": "The dataLayer snippet must load before the GTM container snippet. If it sits below the container, it can overwrite the layer, so no new events fire after the first one. A developer can check the snippet order in the page source in a few minutes."
+    },
+    {
+      "title": "Ad blockers, privacy tools, and extensions",
+      "text": "Ad blockers and privacy extensions can stop a tag from loading or sending. Analytics Mania also names Brave Shields and Cloudflare Rocket Loader as sources of trouble. The GA Debugger extension can make GA4 look wrong without stopping the tag, which hides the real picture."
+    },
+    {
+      "title": "Consent settings hold the tag back",
+      "text": "If the Google tag only loads after a visitor agrees, the tag waits. Google says that makes modeled conversions less accurate. A Could not connect message in Tag Assistant can also mean your container is blocked from loading, so check that message before you blame a single tag."
+    },
+    {
+      "title": "The page code blocks the script",
+      "text": "A Content Security Policy, a firewall, or a proxy can block the tag script before it runs. Google's troubleshooting guide lists these checks. Google also says to turn off the debug signal in the URL if it breaks the page. Confirm that the Google tag is on the page at all, because a missing tag cannot fire."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Run Preview the right way",
+      "text": "Open the Workspace tab, click Preview, enter the full URL including https://, and click Connect. Wait for the Tag Assistant tab, then click Continue in that tab. Browse the page in a second tab. Use the exact URL of the page where the tag should fire, not a shortcut to it."
+    },
+    {
+      "title": "Read the trigger and the tag settings",
+      "text": "Open the silent tag and read every trigger attached to it. Compare the event name with what the page actually sends. Check the paused status, the once per page setting, and any firing schedule. Change one setting, save, and retest in Preview so you know what worked."
+    },
+    {
+      "title": "Confirm the Google tag is on the page",
+      "text": "Open the Tag Assistant side panel in Chrome and check the list of Google tags on the page. If the Google tag is missing, the container cannot load, and no tag will fire. Google's troubleshooting steps say to confirm this first."
+    },
+    {
+      "title": "Clean up the browser for the test",
+      "text": "Disable ad blockers and privacy extensions for the test. Allow the Tag Assistant extension to read and change site data. Analytics Mania also suggests disabling Brave Shields and Cloudflare Rocket Loader, then fully quitting and relaunching the browser. Remove the Tag Assistant extension only if it conflicts with the test."
+    },
+    {
+      "title": "Check GA4 in DebugView, then clean up",
+      "text": "Turn on debug mode for your own device through Tag Assistant or GTM Preview. Trigger the event once. Open DebugView and find the event in the Seconds stream. When you finish, remove the debug_mode parameter from the tag, because setting it to false does not turn debug mode off."
+    },
+    {
+      "title": "Check the request in DevTools",
+      "text": "In Chrome, press ⌘⌥J, open the Network tab, and reload the page. Filter for the request your tag sends. For blocked requests, press ⌘⇧P, type block, and choose Show Request Blocking. Blocked requests show in red, which means the browser stopped the call before it could finish."
+    },
+    {
+      "title": "Publish, then test the live page",
+      "text": "Publish the container, then load the live page in a clean profile. Check Tag Assistant or DebugView again. Google says a tag that works in Preview can still fail live, so this step is not optional. Log the result with the date and the tag name."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this Tag Assistant message mean?",
+      "result": "Lazur reads the panel on screen and explains the message out loud in plain words. It does not change anything in the panel.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Troubleshoot tag option?",
+      "result": "Lazur draws a circle and a label around the option. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through the GTM Preview steps.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Type this bug note into my Google Doc.",
+      "result": "Hold fn and speak. Clean text appears at the cursor in any app, so the bug note goes into your doc without retyping.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a bug report for my developer.",
+      "result": "Lazur drafts the message from what you tell it. You check the tag name, the URL, and the trigger before you send anything.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to recheck the live page tomorrow morning.",
+      "result": "Lazur adds an item to Apple Reminders. Use it to schedule the live check after you publish.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Preview button in this container?",
+    "capability": "point",
+    "result": "Lazur circles the Preview button and labels it. You click it yourself, then continue in the Tag Assistant tab.",
+    "shell": "generic",
+    "context": "GTM Workspace tab in Chrome on Mac",
+    "output": "A circle and a label on the Preview button in the Workspace tab. Lazur does not press it for you.",
+    "pointsAt": "Preview button"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Reproduce the bug in Preview",
+      "text": "Open the Workspace tab, click Preview, enter the exact URL, and click Connect. Click Continue in the Tag Assistant tab. Note which tags fired and which did not, with the trigger names beside them."
+    },
+    {
+      "label": "Day 1",
+      "title": "Check triggers and tag settings",
+      "text": "Read each trigger on the silent tag. Check the event name, the page filter, the paused status, the once per page setting, and any firing schedule. Fix one thing at a time and retest in Preview after each change."
+    },
+    {
+      "label": "Day 2",
+      "title": "Test in a clean browser",
+      "text": "Open a Chrome profile with no ad blocker. Run the same URL again. Press ⌘⌥J, open the Network tab, and look for the tag request. Note any red blocked requests and the name of the blocker or extension you suspect."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check GA4 in DebugView",
+      "text": "Turn on debug mode for your own device, trigger the event once, and open DebugView. Check the Seconds stream first. When you finish, remove debug_mode from the tag, because setting it to false does not turn it off."
+    },
+    {
+      "label": "Day 3",
+      "title": "Publish and test the live page",
+      "text": "Publish the container, then load the live page in your clean profile. Confirm the request in the Network tab and the event in GA4. Write the fix and the date in your test log, then tell your developer what changed."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "gtm-preview-mode-tag-not-firing",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/gtm-preview-mode-tag-not-firing/google-tag-manager-preview-mode-1-c892f0.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A marketer at a laptop checking a tracking setup before a Google Tag Manager preview mode test",
+      "caption": "Checking a tracking setup before a launch.",
+      "keywords": [
+        "google tag manager preview mode",
+        "Marketers",
+        "Debugging a tag that does not fire in Tag Manager",
+        "Mac",
+        "marketer working at laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/gtm-preview-mode-tag-not-firing/google-tag-manager-preview-mode-2-a4698f.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person typing on a Mac at a desk while testing a website in Google Tag Manager preview mode",
+      "caption": "Testing one page at a time in the browser.",
+      "keywords": [
+        "google tag manager preview mode",
+        "Marketers",
+        "Debugging a tag that does not fire in Tag Manager",
+        "Mac",
+        "person typing on Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/gtm-preview-mode-tag-not-firing/google-tag-manager-preview-mode-3-9e8c68.jpg",
+      "width": 1280,
+      "height": 699,
+      "alt": "Office team reviewing an analytics dashboard after a tag fix in Google Tag Manager preview mode",
+      "caption": "Checking reports after a tag is fixed.",
+      "keywords": [
+        "google tag manager preview mode",
+        "Marketers",
+        "Debugging a tag that does not fire in Tag Manager",
+        "Mac",
+        "analytics dashboard office team",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tungnguyen0905",
+        "url": "https://pixabay.com/users/tungnguyen0905-17946924/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/technology-business-analysis-7111799/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google tag manager preview mode",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "gtm preview mode not working": 1,
+      "tag not firing google tag manager": 1,
+      "tag assistant could not connect": 1,
+      "ga4 debugview not showing events": 1,
+      "tag assistant chrome extension": 2,
+      "debug google tag manager on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

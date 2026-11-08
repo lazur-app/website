@@ -1,0 +1,599 @@
+{
+  "title": "Power Query not refreshing in Excel for the web on Mac: fixes for accountants",
+  "metaTitle": "Power Query not refreshing in Excel for the web: Mac fixes",
+  "description": "Power Query not refreshing in Excel for the web? Microsoft limits refresh for some sources. Here are the causes, costs and fixes you can test on a Mac.",
+  "targetKeyword": "power query not refreshing in excel for the web",
+  "secondaryKeywords": [
+    "power query refresh failed excel for the web",
+    "excel for the web power query data source cannot be refreshed",
+    "excel for mac power query refresh all crash",
+    "power query refresh excel mac",
+    "power query clear permissions mac"
+  ],
+  "intro": "Power Query not refreshing in Excel for the web usually means the workbook uses a source, storage location or load setting that the browser version does not refresh. Microsoft documents several of these limits, and Excel for Mac has its own separate problems. This page explains what the error means, what it costs, and the checks you can run yourself.",
+  "tldr": [
+    "Excel for the web does not refresh every Power Query source. Microsoft documents several limits.",
+    "Check whether the file runs in a Chrome tab or in the Mac app. The fixes differ.",
+    "Test one query at a time, then clear permissions and sign in again.",
+    "Do not turn off privacy checks to force a refresh. Ask IT about gateway and Data Model queries.",
+    "A failed refresh can leave old numbers on the sheet, so check totals after every run."
+  ],
+  "stats": [
+    {
+      "value": "1000",
+      "label": "connections per user allowed for refresh in Excel for the web, per Microsoft",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/power-query-data-sources-in-excel-versions",
+      "sourceTitle": "Power Query data sources in Excel versions (Microsoft Support)"
+    },
+    {
+      "value": "4h 46m",
+      "label": "per week spent detecting financial data errors, Dext 2021 survey of 2,183 accountants and bookkeepers",
+      "sourceUrl": "https://www.internationalaccountingbulletin.com/news/checking-data-manually/",
+      "sourceTitle": "Time lost in checking bad data (International Accounting Bulletin)"
+    },
+    {
+      "value": "$40.23",
+      "label": "median hourly pay for accountants and auditors in May 2025 BLS wage data",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "Accountants and Auditors (BLS Occupational Outlook Handbook)"
+    },
+    {
+      "value": "78%",
+      "label": "of busy season respondents worked more than 50 hours a week, Distinct 2026 survey",
+      "sourceUrl": "https://www.distinctrecruitment.com/us/resources/blog/busy-season-2026-trends-in-workload-stress-support-across-public-accounting/",
+      "sourceTitle": "Busy season 2026: Trends in workload, stress & support across public accounting (Distinct)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the refresh error means in Excel for the web"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web does not refresh every Power Query source. Microsoft's support page lists the cases it cannot refresh at all. When a refresh fails, the message often reads: This workbook contains Power Query queries using data sources that can't be refreshed in Excel for the Web. Read that message as a pointer. It names a source, a storage location or a load setting the browser version does not handle. It does not mean your data is broken."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac users have a second layer to check. Excel for Mac and Excel for the web are two different products. The Mac app runs on your computer. The web version runs in a browser tab, such as Chrome. Microsoft says Power Query is available to Microsoft 365 subscribers on Excel for Mac 16.69 or later. So check which one you are in before you change anything. A web address in the browser's address bar means you are in Excel for the web."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which sources refresh in Excel for the web"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's support page sorts sources into groups. Anonymous sources, such as a Table or Range and an OData feed, form one group. Organizational sources form another, and they include SharePoint files, SharePoint folders, SharePoint Online List, Azure Data Lake, Dataverse and Dynamics 365. User and password sources include SQL Server, PostgreSQL, Web API and Salesforce. The table below pulls the main limits together. Check the date on any post you read, because Microsoft expanded refresh in July 2025."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting or source",
+        "Excel for the web",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Query loads to the Data Model",
+          "Not yet supported",
+          "Load to a worksheet table and test a copy"
+        ],
+        [
+          "Workbook saved in a third-party cloud location",
+          "Not yet supported",
+          "Test a copy in OneDrive or SharePoint"
+        ],
+        [
+          "Source needs an on-premises data gateway",
+          "Not supported",
+          "Ask the file owner for another route"
+        ],
+        [
+          "Refresh count per user",
+          "Limited to 1000 connections",
+          "Ask IT if your account runs many refreshes"
+        ],
+        [
+          "Authenticated sources, such as SharePoint or SQL Server",
+          "Generally available for selected sources since July 2025",
+          "Clear permissions and sign in again"
+        ],
+        [
+          "Privacy levels",
+          "Excel for Mac does not support them",
+          "Do not turn off privacy checks to force a refresh"
+        ]
+      ],
+      "caption": "Limits from Microsoft's support page and its July 2025 Tech Community post."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: finding the query that fails"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your monthly workbook has 14 queries, and Refresh All fails. A Microsoft Q&A thread describes the same setup in Excel for Mac 16.114.1. In that thread, Refresh All crashed after macOS 26.7.2. Refreshing each query on its own still worked. Copy that method. Right-click each query table and choose Refresh. Write down which queries pass. The failing query is your lead, so fix that one first. Then run the full set again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a stuck refresh costs an accountant"
+    },
+    {
+      "type": "paragraph",
+      "text": "The costs are real, but the numbers come from surveys and government data, not from a study of Power Query. Read them as direction. The figures below show where your hours tend to go, and why a broken refresh is more than a small annoyance."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the figures above as context for your own week. For one month, track how long each refresh failure takes you to diagnose and fix. Compare that total with the hours you already spend checking data. Your own log tells you more than any survey."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a failed refresh is worse than an error message"
+    },
+    {
+      "type": "paragraph",
+      "text": "A failed refresh can leave the last loaded numbers on the sheet. The file still looks finished. Panko's audit summary describes important errors in most spreadsheets it reviewed, and inspectors caught only part of them. That page is undated and covers spreadsheets in general, not Power Query. Treat any failed refresh as a blocker. Do not sign off a report until the totals match a number you trust."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac Power Query refresh problems that look like web issues"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some failures start in the Mac app, not the web. In Excel for Mac, Refresh All sits at Data > Refresh All. You refresh one query by right-clicking its table and choosing Refresh. Power Query authoring in the Power Query Editor is not available on Mac. Microsoft says VBA does support Power Query authoring. If you need to change a query, ask the file owner or use a Windows PC."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version numbers matter here. A Q&A thread reports Excel for Mac 16.114.1 crashing with EXC_BAD_ACCESS on Refresh All. Some users say the Beta channel, version 16.116, fixed it. A moderator called that an unofficial workaround, not a confirmed fix. Report the crash through Excel > Help > Feedback. Keep your test copy, and check your firm's rules before you change update settings on a work Mac."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting a refresh that finished without an error. Check the rows and one known total after each run, not just the status.",
+        "Hunting for Power Query Editor on a Mac. It is not available there, so the search wastes time.",
+        "Turning off privacy checks to force a refresh. Microsoft warns that Ignore the Privacy Levels can reveal sensitive or confidential data.",
+        "Copying client files to an unapproved cloud folder to get a test working. Check your firm's storage rules first.",
+        "Following a 2024 forum answer without checking its date. Microsoft changed what refreshes on the web in July 2025.",
+        "Fixing the wrong layer. A Mac crash needs a different fix from a gateway limit, so note which one you see before you act."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A quick triage before you change anything"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Is the file open in a Chrome tab, or in the Excel app on your Mac?",
+        "Which query fails, and what does its error message say?",
+        "Does that query load to the Data Model, or does it use an on-premises gateway?",
+        "Is the file stored in OneDrive, SharePoint, or another cloud service?",
+        "Did the failure start after a macOS or Excel update?"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to stop and ask the file owner or IT"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some failures need someone else. A gateway source sits on a server inside your network, and Microsoft says that is not supported for refresh in Excel for the web. The file owner or IT may need to move the source or create a copy. Give them the exact error text, the Excel version and whether you used the browser or the Mac app. Follow your firm's rules on client data before you share a workbook or paste it into an email."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where Data Source Settings is, and Lazur draws a circle and a label around it. Ask how to clear a saved login, and Lazur guides you one click at a time, waiting for each click. It does not click the button for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can explain the error, find the menu, draft the note to IT and set a reminder for the retest. It cannot see the source server or tell you which limit your account hit. For that, check Microsoft's pages and ask IT. Lazur is not an add-in for Excel, and it has no partnerships with any app maker."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Your employer's rules still decide what you can share. If the workbook holds client data, check the policy before you ask anything about it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is fixing a Power Query refresh in Excel for the web free?",
+      "answer": "Most of the steps on this page cost nothing. You can test queries, clear permissions and save a copy of the file. Some causes need a change from the file owner or IT, such as a different source or storage location. You do not need to buy a tool to work through this list."
+    },
+    {
+      "question": "Why does my refresh work on Windows but fail on my Mac?",
+      "answer": "Microsoft says authoring in the Power Query Editor is not available in Excel for Mac, although VBA supports it. Excel for Mac also does not support privacy levels. A query built on Windows can behave differently on a Mac. Ask the owner which version built the file, and test the query on a copy."
+    },
+    {
+      "question": "Does Excel for the web refresh every Power Query source now?",
+      "answer": "No. Microsoft's July 2025 post made refresh generally available for selected authenticated sources. The support page still lists unsupported cases, including Data Model queries, third-party cloud locations and on-premises gateway sources. Check your source against that list before you assume it will refresh."
+    },
+    {
+      "question": "What does the 1000 limit mean for my workbook?",
+      "answer": "Microsoft's support page says refresh is limited to 1000 connections per user. A Tech Community post mentions a limit of 1000 data source credentials. The pages do not explain how either count applies to one file. If you run many refreshes under one account, ask IT and keep the exact error text."
+    },
+    {
+      "question": "Should I turn off privacy levels to get the refresh working?",
+      "answer": "No. Microsoft warns that Ignore the Privacy Levels can reveal sensitive or confidential data, and it is not on by default. Excel for Mac does not support privacy levels in the first place. Fix the source or the storage location instead."
+    },
+    {
+      "question": "Is the Beta channel a safe fix for the Mac crash?",
+      "answer": "Nobody has confirmed it. A moderator on the Microsoft Q&A thread called Beta 16.116 an unofficial workaround. Test it on a copy, and check your firm's rules on software updates before you switch channels on a work Mac."
+    },
+    {
+      "question": "Will Lazur refresh my workbook for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps for you. It points at the menu you need, and it can walk you through each click. You run the refresh yourself."
+    },
+    {
+      "question": "Can I use Lazur with a workbook that holds client data?",
+      "answer": "Check your employer's rules first, because they decide what you can share with any tool. Lazur sees the screen only while you hold its shortcut. Keep client names and account numbers out of your questions unless your firm allows them."
+    },
+    {
+      "question": "Why do my numbers look right if the refresh failed?",
+      "answer": "A failed refresh can leave the last loaded results on the sheet. The file may not make the failure obvious. Compare a total you know after every refresh. Panko's audit summary found that inspectors caught only part of the errors, so do not rely on a quick look."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Power Query data sources in Excel versions",
+      "url": "https://support.microsoft.com/en-us/excel/power-query-data-sources-in-excel-versions",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "New in Excel for the web: Power Query Refresh & Data Source Settings for authenticated data sources",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/new-in-excel-for-the-web-power-query-refresh--data-source-settings-for-authentic/4422757",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Power Query Data Sources Cannot Be Refreshed in Excel for the Web",
+      "url": "https://techcommunity.microsoft.com/discussions/excelgeneral/power-query-data-sources-cannot-be-refreshed-in-excel-for-the-web/4186029",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Privacy Levels in Power Query",
+      "url": "https://learn.microsoft.com/en-us/power-query/privacy-levels",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Updates to Power Query in Excel for Mac",
+      "url": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/updates-to-power-query-in-excel-for-mac/4210883",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel for Mac crashes (EXC_BAD_ACCESS) on Refresh All of 14 Power Queries",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/6059200/excel-for-mac-crashes-exc-bad-access-reproducible",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Time lost in checking bad data",
+      "url": "https://www.internationalaccountingbulletin.com/news/checking-data-manually/",
+      "publisher": "International Accounting Bulletin",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Panko, Spreadsheet Research: Audits",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond R. Panko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Accountants and Auditors",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Busy season 2026: Trends in workload, stress & support across public accounting",
+      "url": "https://www.distinctrecruitment.com/us/resources/blog/busy-season-2026-trends-in-workload-stress-support-across-public-accounting/",
+      "publisher": "Distinct Recruitment",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "power query refresh failures in excel for the web",
+  "costs": [
+    {
+      "title": "Hours spent chasing the error",
+      "text": "Dext surveyed 2,183 accountants and bookkeepers across six countries in 2021. They spent 4 hours and 46 minutes per week detecting financial data errors. Dext is a vendor, so treat the figure as a signal. A broken refresh adds to that checking time when you rerun the workbook and compare the numbers again."
+    },
+    {
+      "title": "What that time is worth",
+      "text": "This is my rough estimate, not a published figure. 4.77 hours a week over 52 weeks is about 248 hours a year. At the BLS median of $40.23 per hour, that comes to about $10,000 per accountant per year. The survey measured error checks, not refresh failures, and it assumes the result applies to a median accountant."
+    },
+    {
+      "title": "Numbers that look finished",
+      "text": "Panko's audit summary puts the weighted average of audited spreadsheets with important errors at 83%. The page is undated and covers spreadsheets in general. Stale Power Query output is one way those errors reach a client report, so every refresh needs a check."
+    },
+    {
+      "title": "Pressure in busy season",
+      "text": "Distinct's 2026 survey found 57% of respondents called busy season somewhat or extremely stressful. Another 78% worked more than 50 hours a week. A refresh that fails on a deadline day costs more than the few minutes it takes to read the error."
+    },
+    {
+      "title": "Data exposure from workarounds",
+      "text": "Turning off privacy levels or copying files to unapproved storage can expose client data. Microsoft's privacy page warns that Ignore the Privacy Levels can reveal sensitive or confidential data. A working refresh does not justify breaking your firm's data rules."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The query loads to the Data Model",
+      "text": "Microsoft's support page says refresh for queries loaded to the Data Model is not yet supported in Excel for the web. People often load queries there to build PivotTables from several tables. The refresh then fails in the browser, even when the source is fine. Check each query's load setting before you blame the source."
+    },
+    {
+      "title": "The workbook sits in a third-party cloud location",
+      "text": "Microsoft lists refresh for workbooks saved in a third-party cloud location as not yet supported. A file that syncs through a non-Microsoft service can fail even when the source works. The error does not always say this clearly. If the file lives outside OneDrive or SharePoint, test a copy in one of those locations first."
+    },
+    {
+      "title": "The source needs an on-premises data gateway",
+      "text": "Some sources sit on a server inside your office network. Microsoft's page says refresh for sources that need an on-premises data gateway is not supported in Excel for the web. A database on a local server is a common example. The browser version is unlikely to reach it. Ask the owner whether a cloud copy or an export exists."
+    },
+    {
+      "title": "The account hit the 1000 connection limit",
+      "text": "Microsoft says refresh in Excel for the web is limited to 1000 connections per user. Its support page does not explain how connections are counted for you. A separate Tech Community post mentions a limit of 1000 data source credentials. The two numbers may measure different things, so ask IT if many workbooks refresh under one account."
+    },
+    {
+      "title": "Saved credentials are stale or missing",
+      "text": "Authenticated sources need a login. Microsoft says you may be asked to log in the first time you refresh a query. If a saved login expired, or the login belongs to someone who left, the refresh fails. Clearing permissions and signing in again tests this cause in a few minutes."
+    },
+    {
+      "title": "Excel for Mac crashes on Refresh All",
+      "text": "A Microsoft Q&A thread reports Excel for Mac 16.114.1 crashing with EXC_BAD_ACCESS on Data > Refresh All. The workbook had 14 Power Queries, and the crash began after macOS 26.7.2. Refreshing each query on its own worked. No official Microsoft fix appears in the thread, so confirm your own version and symptoms first."
+    },
+    {
+      "title": "Old advice about what refreshes on the web",
+      "text": "A July 2024 Tech Community answer said Excel for the web refreshes only queries based on sources in the same file or OData with anonymous access. Microsoft's July 2025 post made refresh generally available for selected authenticated sources. Older answers can send you chasing a limit that no longer applies. Check the date on every answer before you act on it."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm which Excel you are using",
+      "text": "Open the file. If it runs in a browser tab, you are in Excel for the web. If it opens in the Mac app, you are in Excel for Mac. In the Mac app, check the version under Excel > About Excel. Write the version in your test notes, because some failures happen in only one of the two products."
+    },
+    {
+      "title": "Refresh one query at a time",
+      "text": "In the Mac app, right-click the query table and choose Refresh. Test each query alone. Write down which ones pass and which fail, with the exact error text. The Q&A thread reports that single refreshes worked when Refresh All crashed. Fix the failing query first, then test the full workbook again."
+    },
+    {
+      "title": "Clear permissions and sign in again",
+      "text": "In the Mac app, go to Data > Get Data > Data Source Settings. Select the connection, then choose Clear Permissions. Microsoft's 2024 Mac post gives Data > Connection > Clear Permissions as the path in some versions, so use whichever label you see. Refresh the query and sign in with the account that has access to the source."
+    },
+    {
+      "title": "Test a copy in a supported location",
+      "text": "Save a copy of the workbook to OneDrive or SharePoint, then refresh it there. If the copy works, the storage location was the likely problem. Keep the original untouched until the file owner agrees to a move. Do not test with client files in a personal cloud folder."
+    },
+    {
+      "title": "Ask about Data Model and gateway queries",
+      "text": "Microsoft lists Data Model and on-premises gateway refresh as unsupported in Excel for the web. Ask the file owner whether the query can load to a worksheet table, or whether a cloud copy of the source exists. Test any change on a copy first. Do not change the source system without the owner's approval."
+    },
+    {
+      "title": "Check the source against Microsoft's list",
+      "text": "Open Microsoft's Power Query data sources page and find your source type. Anonymous sources such as Table/Range and OData Feed are listed. Organizational sources such as SharePoint files and Dataverse are listed. User and password sources such as SQL Server and PostgreSQL are listed too. If your source is not on that list, look for another route with the owner."
+    },
+    {
+      "title": "Test the Beta channel only on a copy",
+      "text": "A Q&A thread says switching to the Beta channel, version 16.116, fixed the crash for some users. A moderator called this an unofficial workaround, not a confirmed fix. If you test it, use a copy of the workbook. Check your firm's rules on software versions before you switch channels on a work Mac."
+    },
+    {
+      "title": "Do not turn off privacy checks",
+      "text": "Microsoft's privacy page warns that the Ignore the Privacy Levels option can reveal sensitive or confidential data. It is not enabled by default. Excel for Mac does not support privacy levels at all. Turning checks off to force a refresh trades a broken query for a data exposure risk. Leave that setting alone."
+    },
+    {
+      "title": "Report the crash and check totals by hand",
+      "text": "Report a Mac crash through Excel > Help > Feedback. Include the Excel version, the macOS version and the number of queries. Until a fix is confirmed, check key totals by hand after each refresh. Compare them with the source report or a prior month. The check takes minutes, and it catches stale numbers."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this refresh error mean?",
+      "capability": "explain",
+      "result": "Lazur reads the message on your screen and explains it out loud in plain English."
+    },
+    {
+      "say": "Where is Data Source Settings?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the menu item. You click it yourself."
+    },
+    {
+      "say": "Walk me through Clear Permissions.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step."
+    },
+    {
+      "say": "Draft a note to IT about this error.",
+      "capability": "draft",
+      "result": "Lazur drafts the message and types it where you ask. You read it and send it yourself."
+    },
+    {
+      "say": "Hold fn and talk me through my test notes.",
+      "capability": "dictate",
+      "result": "Dictation types clean text at the cursor in any app, with snippets and a personal dictionary."
+    },
+    {
+      "say": "Check Microsoft's current limits for Power Query.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the page dates yourself."
+    },
+    {
+      "say": "Remind me to retest the refresh on Thursday.",
+      "capability": "everyday",
+      "result": "Lazur sets an Apple Reminders item by voice."
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I clear the saved login for this query?",
+    "capability": "point",
+    "result": "Lazur circles Data Source Settings in the Data menu and labels it. You click it yourself and clear the permissions there.",
+    "shell": "sheet",
+    "context": "Excel for Mac desktop app, Data menu open",
+    "output": "A circle and a label on Data Source Settings in the Data menu",
+    "pointsAt": "Data Source Settings"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Confirm the app and version",
+      "text": "Open the file and check whether it runs in Chrome or in the Mac app. In the Mac app, open Excel > About Excel and note the version. Write down the query names, the source type and where the file is stored."
+    },
+    {
+      "label": "Day 2",
+      "title": "Test each query alone",
+      "text": "In the Mac app, right-click each query table and choose Refresh. Log which queries pass and which fail, with the exact error text. Fix the first failing query before you test the rest."
+    },
+    {
+      "label": "Day 3",
+      "title": "Clear permissions and sign in",
+      "text": "Go to Data > Get Data > Data Source Settings. Select the connection, choose Clear Permissions, then refresh and sign in with the account that has access to the source. Note whether the login prompt appears again."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check storage and source limits",
+      "text": "Compare each source with Microsoft's support page. Confirm that no query loads to the Data Model and none needs an on-premises gateway. If the file sits outside OneDrive or SharePoint, test a copy in a supported location."
+    },
+    {
+      "label": "Day 5",
+      "title": "Send one clean note",
+      "text": "Write to the file owner or IT with the error text, the Excel version, the app you used and the test results. Keep client names out of the message unless your firm allows them. Ask Lazur to draft the note if that helps."
+    }
+  ],
+  "apps": [
+    "excel",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "power-query-not-refreshing-excel-web",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/power-query-not-refreshing-excel-web/power-query-not-refreshing-in-excel-for-1-bbc627.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Accountant at a laptop reviewing a spreadsheet in Excel for the web on a desk",
+      "caption": "Checking a workbook before a client deadline",
+      "keywords": [
+        "power query not refreshing in excel for the web",
+        "Accountants",
+        "Power Query refresh fails in Excel for the web",
+        "Mac",
+        "accountant laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Altnet",
+        "url": "https://pixabay.com/users/Altnet-9205206/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/financial-planning-finance-business-4010999/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/power-query-not-refreshing-excel-web/power-query-not-refreshing-in-excel-for-2-f8ebce.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person working on a MacBook at a desk with a spreadsheet on the screen",
+      "caption": "Excel on a Mac, one query at a time",
+      "keywords": [
+        "power query not refreshing in excel for the web",
+        "Accountants",
+        "Power Query refresh fails in Excel for the web",
+        "Mac",
+        "person using macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/power-query-not-refreshing-excel-web/power-query-not-refreshing-in-excel-for-3-394b81.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Accountant reviewing financial reports and numbers at an office desk",
+      "caption": "Confirming totals after every refresh",
+      "keywords": [
+        "power query not refreshing in excel for the web",
+        "Accountants",
+        "Power Query refresh fails in Excel for the web",
+        "Mac",
+        "accountant reviewing reports",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/audit-inspection-examination-4189560/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "power query not refreshing in excel for the web",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "power query refresh failed excel for the web": 1,
+      "excel for the web power query data source cannot be refreshed": 1,
+      "excel for mac power query refresh all crash": 1,
+      "power query refresh excel mac": 1,
+      "power query clear permissions mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

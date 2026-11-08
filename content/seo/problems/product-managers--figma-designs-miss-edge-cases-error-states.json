@@ -1,0 +1,590 @@
+{
+  "title": "Figma designs miss edge cases and error states: fixes for product managers on Mac",
+  "metaTitle": "Figma designs miss edge cases and error states: fixes for PMs",
+  "description": "Figma designs often skip empty, error and loading states. Here is why handoff misses them, what it costs, and fixes you can use on your Mac.",
+  "targetKeyword": "Figma designs miss edge cases and error states",
+  "secondaryKeywords": [
+    "design handoff edge cases",
+    "missing error states in Figma",
+    "Figma Dev Mode handoff",
+    "ready for dev Figma",
+    "empty and loading states design",
+    "design handoff checklist"
+  ],
+  "intro": "Figma designs miss edge cases and error states because many frames show only the happy path. That is the version where data loads, the user has items, and nothing fails. Developers then build what the frame shows, and guess at the rest. This page covers what the gap costs a product team, why it keeps happening, and fixes you can use this week without buying anything.",
+  "tldr": [
+    "Designs usually show the happy path. Empty, error, loading and no-permission states often get skipped.",
+    "The cost shows up as developer questions, rework, and bugs that customers find first.",
+    "In Standish CHAOS survey data, as Karl Wiegers reports it, incomplete requirements rank near the top for challenged projects.",
+    "Fix it with a state list per screen, annotations on complex parts, and a short walkthrough before you mark a frame ready for dev.",
+    "Lazur can explain what is on screen and draft your checklist. It cannot audit your Figma file for you."
+  ],
+  "stats": [
+    {
+      "value": "91%",
+      "label": "of developers think the design handoff could be improved, per Figma's 2025 research",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "Figma Resource Library: 79+ Design Statistics for 2026"
+    },
+    {
+      "value": "92%",
+      "label": "of designers think the design handoff could be improved, per Figma's 2025 research",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "Figma Resource Library: 79+ Design Statistics for 2026"
+    },
+    {
+      "value": "84%",
+      "label": "of designers say they collaborate with developers at least weekly",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "Figma Resource Library: 79+ Design Statistics for 2026"
+    },
+    {
+      "value": "12.3%",
+      "label": "of challenged-project survey responses cite incomplete requirements and specifications",
+      "sourceUrl": "https://www.cs.hmc.edu/~mike/courses/mike121/readings/requirements/reqtraps.html",
+      "sourceTitle": "Karl Wiegers, 10 Requirements Traps to Avoid (reprint)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Figma designs miss edge cases and error states in a real handoff"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your team designs a cart screen. The frame shows three items, a total, and a green Pay button. Nobody drew the empty cart. Nobody drew the screen for a price service that times out, or a coupon that expires while the user is on the page. Each one is a state. Each one is a question a developer must answer alone."
+    },
+    {
+      "type": "paragraph",
+      "text": "The happy path is not wrong. It is one of many screens the product will show. Figma's own handbook says design intent breaks down with the inevitable edge cases that come along with user-provided content. The same gap appears for any state a user can reach, not only the ones built from user input."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What it costs the team, in time and trust"
+    },
+    {
+      "type": "paragraph",
+      "text": "The cost is mostly time, and time has a price. The Bureau of Labor Statistics reports a median annual wage of $135,980 for software developers in May 2025. Every hour a developer spends guessing at an error state is an hour that salary pays for. Missing states rarely fail loudly. They show up as small costs that add up across a sprint."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Questions in Slack or Linear comments that stall a ticket for a day",
+        "Rework after QA finds an empty or error state nobody drew",
+        "Bugs that customers find before your team does",
+        "Support tickets that describe a screen nobody designed",
+        "Slower handoffs next time, because developers stop trusting the frames"
+      ]
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's 2025 designer-developer research reports that 91% of developers and 92% of designers believe the handoff could be improved. Frequent contact does not fix missing states. It only means the gap gets noticed sooner, if someone looks for it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Evidence from the requirements research"
+    },
+    {
+      "type": "paragraph",
+      "text": "Requirements research is older than most design tools, but it still gives a useful lens. Karl Wiegers summarized Standish Group CHAOS survey data covering 8,380 IT projects. The chart shows the top three factors he lists for challenged projects. These are shares of survey responses, not measured causes."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Academic critics question how that survey was run, so treat the numbers as a signal. The pattern still matches what you can check in your own bug list. Pull a handful of bugs from the last quarter. Ask whether anyone drew a state for each one. That count tells you more than any chart."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Figma's handbook leaves some states out",
+      "text": "Figma's developer handoff handbook covers edge cases from user-provided content. It does not walk through empty, error, or loading states. You have to draw those yourself, and you have to decide what they show."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: the empty cart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one screen. List every state a user can see on it. For the cart, that means items present, cart empty, prices loading, price service failed, coupon expired, item out of stock, and not signed in. Write the list before you open the Figma file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, decide what each state shows and what the user can do next. For the empty cart, the frame needs a message, a clear button back to browsing, and a layout that holds when there are no items. For a failed price service, decide whether to show the last known price or block checkout. That is a product call, so the PM makes it."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Write the decision down",
+      "text": "A developer can build a decision. A developer cannot build a blank space. If the answer is 'we do not know yet', mark the state TBD, with a name and a date next to it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Figma Dev Mode and the paid plan question"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dev Mode is part of Figma's paid plans. Figma's Help Center says it is available on Professional, Education, Organization, Government, and Enterprise plans. The pricing page lists Dev seat prices in USD, shown below."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Plan",
+        "Dev Mode included",
+        "Dev seat price (USD)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Professional",
+          "Yes",
+          "$12 per month",
+          "Billing period not stated on the pricing page."
+        ],
+        [
+          "Organization",
+          "Yes",
+          "$25 per month",
+          "Billed annually. Completed status is available."
+        ],
+        [
+          "Enterprise",
+          "Yes",
+          "$35 per month",
+          "Billed annually. Completed status is available."
+        ]
+      ],
+      "caption": "Figma pricing and Dev Mode plans, checked 2026-11-08. Confirm before you buy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the pricing page before you buy anything. You may already have a seat through your company. The state list, the walkthrough, and the acceptance criteria in this page work in a shared doc on any plan."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they fix this"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Drawing every state for every screen at once. Start with flows that take money, data, or sign-ins.",
+        "Marking a frame ready for dev before its states exist. That tells the team the work is finished.",
+        "Relying on comments as the only record. Long threads bury them. Put the states in a frame or a ticket.",
+        "Assuming Dev Mode shows behavior. It shows the specs of the frames you designed.",
+        "Skipping the developer. The person who builds the screen sees the gaps you missed.",
+        "Treating every missing state as a design problem. Many of them are product decisions."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac setup for a handoff review"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Figma desktop app for Mac runs on Apple silicon and Intel Macs. It needs macOS 12 Monterey or later, according to Figma's Help Center. You can also install a beta app next to the regular one. Figma labels it Figma Beta."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma removes support for older desktop versions six months after a release. Update the app the day before a review, not during the call. During the review, keep Figma in front and your state list beside it. Use ⌘ Tab to move between them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can point at a control and draw a circle around it. It can guide you one click at a time, waiting for each click. It does not click for you, edit your Figma file, or act as a plugin inside Figma."
+    },
+    {
+      "type": "paragraph",
+      "text": "For this problem, the useful jobs are small. Ask what a Dev Mode panel shows. Ask where an option sits. Hold fn to dictate your state list into Notion. Ask Lazur to draft acceptance criteria, then read them before you paste them into Linear. Lazur does not scan your file for missing states. You still decide which states matter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client and patient data in mockups"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your product handles client files or patient records, follow your employer's rules before you share a screen with any AI assistant. Lazur sends audio and the screenshot to AI providers to answer them. They are not stored. Use sample data in mockups and reviews when you can."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the state list alive after handoff"
+    },
+    {
+      "type": "paragraph",
+      "text": "States change after handoff. Someone adds an error message, a designer fixes a spacing bug, and a developer asks for a loading view. Dev Mode keeps frame history. Use Compare changes to see what moved between versions before you approve a build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mark frames ready for dev only after the states exist. If a frame changes later, add a comment that says what changed and why. Link that comment in the ticket so the next person can find it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why doesn't Figma flag missing edge cases for me?",
+      "answer": "Figma's Dev Mode guide covers ready for dev, Focus view, and Compare changes. It does not describe a check for missing states. Dev Mode shows specs for frames you drew, so a state nobody drew stays missing until someone adds it."
+    },
+    {
+      "question": "Do I need a paid Figma plan to fix this?",
+      "answer": "No. The state list, the walkthrough, and the acceptance criteria work on any plan. Dev Mode itself needs Professional or a higher plan, according to Figma's Help Center. Check Figma's pricing page for current prices."
+    },
+    {
+      "question": "How many states should each screen have?",
+      "answer": "Enough to cover what a user can see on that screen. A login screen has fewer states than a checkout. Start with states that touch money, data, or permissions. There is no fixed count that fits every product."
+    },
+    {
+      "question": "Is Lazur a Figma plugin?",
+      "answer": "No. Lazur is a voice assistant for the Mac, not a plugin or add-in for any app. It does not click or edit files for you. Hold ⌥ ⌘ and it can explain what is on your screen out loud."
+    },
+    {
+      "question": "Can Lazur read my whole Figma file and list the missing states?",
+      "answer": "No. Lazur sees your screen while you hold the shortcut, and it answers about what is visible. It cannot check the whole file for you. Use your state list as the check."
+    },
+    {
+      "question": "What about client or patient data in mockups?",
+      "answer": "Follow your employer's rules before you share screens with any AI assistant. Lazur sends audio and the screenshot to AI providers to answer, and does not store them. Use sample data in reviews when you can."
+    },
+    {
+      "question": "Do I need the Figma beta app?",
+      "answer": "No. The regular Figma desktop app for Mac is enough for most reviews. Figma can install a beta next to it, labeled Figma Beta, if you want to test new features."
+    },
+    {
+      "question": "Is there a Windows version of Lazur?",
+      "answer": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. Check the download page for the current requirements before you install."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Figma Resource Library: 79+ Design Statistics for 2026",
+      "url": "https://www.figma.com/resource-library/design-statistics/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Karl Wiegers, 10 Requirements Traps to Avoid (reprint)",
+      "url": "https://www.cs.hmc.edu/~mike/courses/mike121/readings/requirements/reqtraps.html",
+      "publisher": "Harvey Mudd College (reprint of Wiegers article)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The designer's handbook for developer handoff",
+      "url": "https://www.figma.com/blog/the-designers-handbook-for-developer-handoff/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Guide to Dev Mode in Figma",
+      "url": "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode-in-Figma",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Figma Pricing",
+      "url": "https://www.figma.com/pricing/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Guide to the Figma desktop app",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Software Developers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "missing edge cases in design handoff",
+  "costs": [
+    {
+      "title": "Developer time goes to questions",
+      "text": "Each open question costs time on both sides. A developer stops, writes a message, waits, then restarts the screen. The Bureau of Labor Statistics lists a median of $135,980 a year for software developers in May 2025, so that waiting has a real salary behind it. Count the questions in one sprint before you argue about the cost."
+    },
+    {
+      "title": "Rework after review or QA",
+      "text": "A screen built on guesses often needs a redesign once QA finds the empty state. The fix is rarely one line. It touches layout, copy, and tests. The rework lands after the team has moved on, which makes it slower and more annoying."
+    },
+    {
+      "title": "Bugs users find first",
+      "text": "Users reach edge cases quickly. A failed payment, an expired coupon, or a very long name can break a layout. If nobody designed those states, the first person to see them is a customer. That is the most expensive place to find a gap."
+    },
+    {
+      "title": "Missed dates on challenged projects",
+      "text": "Incomplete requirements sit near the top of Wiegers' list of factors on challenged projects, based on Standish CHAOS survey responses. That is opinion data, not a measured cause. Still, a late state becomes a late ticket, and late tickets move release dates."
+    },
+    {
+      "title": "Trust between design and engineering",
+      "text": "Every surprise error screen teaches a developer that the frames are not finished. Then the developer stops reading the frames closely. The next handoff gets slower, and both sides start writing long comments instead of drawing the states."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Designs show the happy path first",
+      "text": "Review sessions usually focus on the screen someone asked for. The main flow gets drawn, approved, and praised. The states get pushed to later, and later often means never. Look at your last few design reviews and count how many included an empty or error frame. A low count points to this cause."
+    },
+    {
+      "title": "Requirements arrive incomplete",
+      "text": "Karl Wiegers, summarizing Standish Group CHAOS survey data, lists incomplete requirements and specifications at 12.3% of responses on challenged projects. He also names a warning sign. Developers keep asking the analyst or customers many questions. If your developers ask about error messages on every ticket, the requirement was never finished."
+    },
+    {
+      "title": "Customers and product owners are not in the room",
+      "text": "Wiegers links missing requirements to weak customer involvement. Developers then make requirement decisions without adequate information. He recommends a product champion for each user class. Lack of user input ranks first in the same survey summary, at 12.8%. Name one person who speaks for each type of user, and ask that person about states."
+    },
+    {
+      "title": "Handoff is treated as a one-time event",
+      "text": "Many teams treat handoff as a single moment. The designer marks a frame ready, then moves on. Later changes live in chat threads and in people's memory. Figma's Dev Mode keeps frame history and a Compare changes view, but only if someone uses it. Without a record, the build drifts away from the file."
+    },
+    {
+      "title": "Specs show looks, not behavior",
+      "text": "Dev Mode shows measurements, colors, and assets for a frame. It cannot show a case that no frame contains. A developer who opens a file with no empty state sees nothing to copy. The gap looks like finished work, so nobody flags it until QA runs the flow."
+    },
+    {
+      "title": "Scope creep is often a missed requirement",
+      "text": "Wiegers states that apparent scope creep often means requirements were missed during elicitation. When a developer asks for an error screen in the middle of a sprint, the team pays for the gap twice. Treat every late request for a state as evidence that the list was short."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write a state list for every screen",
+      "text": "Before you open Figma, list every state a user can see on the screen. Include default, empty, loading, error, partial data, offline, no permission, very long text, and zero or maximum items. A simple matrix works well in Google Sheets. Put screens down the side, states across the top, and a status cell where each one meets. Keep the file where the whole team can edit it."
+    },
+    {
+      "title": "Draw the missing states next to the happy path",
+      "text": "Each state needs its own frame, placed beside the main flow so reviewers see the gap. Group the frames in one section and name them plainly, such as Cart, Empty. If a piece repeats across screens, a component keeps it consistent. Figma's help center and tutorials cover components in more detail."
+    },
+    {
+      "title": "Annotate the complex properties",
+      "text": "Figma's handbook recommends annotations for details that might make implementation more complex. It also suggests flagging properties that need extra attention so they stand out in Dev Mode. Use annotations for truncation rules, character limits, maximum counts, and the behavior when data is missing. One clear note saves a developer a message."
+    },
+    {
+      "title": "Use ready for dev as a finish line, not a start line",
+      "text": "Figma's Help Center says every plan that includes Dev Mode can set ready for dev on components, frames, and sections. Completed status is limited to Organization and Enterprise plans. Mark a frame ready for dev only when its states are drawn and annotated. Focus view then shows one ready frame at a time, which keeps the review focused."
+    },
+    {
+      "title": "Write acceptance criteria as test cases early",
+      "text": "Wiegers suggests writing test cases early, because they expose requirements nobody defined. Turn each state into a short case. Use a simple form: given the cart is empty, when the user opens it, then the screen shows a message and a button back to browsing. A tester can run the case. A developer can build against it."
+    },
+    {
+      "title": "Mark known gaps as TBD and set an owner",
+      "text": "Wiegers recommends marking known gaps with TBD markers and resolving them before design and construction. He adds that the goal is not a perfect spec. Put TBD beside any state nobody has decided. Give each one a name and a date. A TBD with an owner is progress. A blank space is a bug waiting to happen."
+    },
+    {
+      "title": "Run a short walkthrough before dev starts",
+      "text": "Sit with one developer and one QA person. Go screen by screen through the state list. Ask the developer what they would build for each state, and write down every answer that is not your answer. Those differences are the real gaps. Keep the meeting short, and keep it to the screens that take money or data."
+    },
+    {
+      "title": "Name a product champion for each user type",
+      "text": "Missing requirements often trace back to users nobody consulted. Pick one person for each type of user. That person answers state questions within a day, or sends the question to someone who can. Wiegers recommends this approach. It costs a little attention, not new software."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is Compare changes in this frame?",
+      "result": "Lazur draws a circle and a label around the option, so you click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Explain what this Dev Mode panel shows for the selected frame.",
+      "result": "Lazur reads the panel on screen and explains each part out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through marking this frame ready for dev.",
+      "result": "Lazur gives you one click at a time and waits for each click before it goes on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the state list into Notion.",
+      "result": "Your spoken list lands as clean, formatted text at the cursor, in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft acceptance criteria for these five states.",
+      "result": "Lazur writes the criteria as text for you to check before you paste it anywhere.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how other apps word empty cart screens.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to walk the states with dev tomorrow morning.",
+      "result": "Lazur adds an Apple Reminders entry you can see on your Mac.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Compare changes in this frame?",
+    "capability": "point",
+    "context": "Figma desktop app, Dev Mode open on a cart frame",
+    "output": "A circle and a label on the Compare changes option.",
+    "result": "Lazur draws a circle and a label around the option. You make the click yourself.",
+    "shell": "design",
+    "pointsAt": "Compare changes option"
+  },
+  "plan": [
+    {
+      "label": "Day 1 morning",
+      "title": "Find the gaps you already shipped",
+      "text": "Pull a few recent bugs from Linear or Slack. Mark each one that came from a state the design never drew. Put those in one list. You now have evidence for the team, not just an opinion about the process."
+    },
+    {
+      "label": "Day 1 afternoon",
+      "title": "Write the state list",
+      "text": "Pick one flow that handles money or data. List every state for each screen in Google Sheets or Notion. Add an owner column and a status column. Leave TBD where nobody has decided."
+    },
+    {
+      "label": "Day 2 morning",
+      "title": "Walk it with a developer",
+      "text": "Sit with one developer and one QA person for a short walkthrough. Go screen by screen. Write down every answer that differs from yours. Mark unresolved states TBD with a name next to each."
+    },
+    {
+      "label": "Day 2 afternoon",
+      "title": "Draw and annotate the gaps",
+      "text": "Draw missing states in Figma beside the happy path. Annotate limits, truncation, and empty data. Mark a frame ready for dev only after its states exist and are annotated."
+    },
+    {
+      "label": "Day 3",
+      "title": "Turn states into acceptance criteria",
+      "text": "Convert each state into a short test case in Linear. Use the form: given the condition, when the user acts, then the screen shows this. Read more about setting up Linear for product work at /for/product-managers/linear."
+    },
+    {
+      "label": "Day 5",
+      "title": "Check the first build",
+      "text": "After the first build, compare the built screens with the frames. For any frame that moved, use Compare changes in Dev Mode. Log each mismatch in the ticket, not in a chat thread."
+    }
+  ],
+  "apps": [
+    "figma",
+    "linear",
+    "notion",
+    "slack",
+    "google-sheets"
+  ],
+  "type": "problem",
+  "slug": "figma-designs-miss-edge-cases-error-states",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-designs-miss-edge-cases-error-states/figma-designs-miss-edge-cases-and-error-1-d9d901.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a laptop reviewing app screens during a design handoff review",
+      "caption": "Review the states together before the frame goes to dev.",
+      "keywords": [
+        "Figma designs miss edge cases and error states",
+        "Product managers",
+        "missing edge cases in design handoff",
+        "Mac",
+        "designer laptop design review",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tranmautritam",
+        "url": "https://pixabay.com/users/tranmautritam-498081/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/macbook-laptop-mockup-hands-616621/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-designs-miss-edge-cases-error-states/figma-designs-miss-edge-cases-and-error-2-7523d7.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Product team reviewing screens together at a laptop in a design handoff meeting",
+      "caption": "A short walkthrough tends to find gaps that one person misses.",
+      "keywords": [
+        "Figma designs miss edge cases and error states",
+        "Product managers",
+        "missing edge cases in design handoff",
+        "Mac",
+        "team meeting laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Carlos_Bonilla_Miranda",
+        "url": "https://pixabay.com/users/Carlos_Bonilla_Miranda-30101/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-office-job-workspace-team-106694/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-designs-miss-edge-cases-error-states/figma-designs-miss-edge-cases-and-error-3-040a67.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Software developer at a desk with a monitor reading design specs before building a screen",
+      "caption": "Developers build what the frame shows, and guess at the rest.",
+      "keywords": [
+        "Figma designs miss edge cases and error states",
+        "Product managers",
+        "missing edge cases in design handoff",
+        "Mac",
+        "developer desk monitor",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "hitesh0141",
+        "url": "https://pixabay.com/users/hitesh0141-2271740/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programming-code-imac-computer-2115930/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "Figma designs miss edge cases and error states",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "design handoff edge cases": 1,
+      "missing error states in Figma": 1,
+      "Figma Dev Mode handoff": 1,
+      "ready for dev Figma": 1,
+      "empty and loading states design": 1,
+      "design handoff checklist": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

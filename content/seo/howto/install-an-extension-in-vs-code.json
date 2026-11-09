@@ -1,0 +1,572 @@
+{
+  "title": "How to install an extension in VS Code on Mac: step by step for 2026",
+  "metaTitle": "How to Install an Extension in VS Code on Mac (2026)",
+  "description": "How to install an extension in VS Code on Mac: open the Extensions view with Shift-Command-X, click Install, and fix common errors.",
+  "targetKeyword": "how to install an extension in vs code on mac",
+  "secondaryKeywords": [
+    "install VS Code extension Mac",
+    "VS Code extensions Mac",
+    "install VSIX file VS Code Mac",
+    "VS Code extension not compatible",
+    "code command Mac VS Code",
+    "VS Code extension connect ETIMEDOUT",
+    "Extensions view VS Code Mac"
+  ],
+  "intro": "To install an extension in VS Code on Mac, press Shift-Command-X, search for the extension, open its page, and click Install. For a .vsix file you already downloaded, use Install from VSIX in the Extensions view or the Command Palette.",
+  "tldr": [
+    "Press Shift-Command-X, search for the extension, open its details page, and click Install.",
+    "Check the publisher name first. Since VS Code 1.97, a third-party publisher needs your confirmation on the first install.",
+    "For a .vsix file, use Install from VSIX. For Terminal installs, set up the code command first.",
+    "If an install fails with connect ETIMEDOUT, check your proxy settings before you try again."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all respondents in the 2025 Stack Overflow Developer Survey said they use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you install"
+    },
+    {
+      "type": "paragraph",
+      "text": "You need Visual Studio Code on your Mac and an internet connection. VS Code supports both Apple silicon and Intel Macs. Microsoft publishes three macOS downloads: Apple silicon, Intel, and Universal. The Universal build is meant for both chip types, so pick it when you are unsure."
+    },
+    {
+      "type": "paragraph",
+      "text": "Newer VS Code versions need newer macOS releases. Microsoft's FAQ says so, but it does not list a minimum version. The latest stable release is VS Code 1.145, dated November 4, 2026. The menu labels in this guide come from Microsoft's docs, so your screen may differ slightly on an older build."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Move VS Code into Applications. Open the .dmg and drag Visual Studio Code.app into the Applications folder.",
+        "Open VS Code from Applications, not from the disk image.",
+        "Write down the publisher name of the extension you want, if you know it.",
+        "If you sit behind a firewall, allow marketplace.visualstudio.com, *.gallery.vsassets.io, and *.gallerycdn.vsassets.io."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find the Extensions view on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "You have three ways in. Press Shift-Command-X, choose View > Extensions from the menu bar, or click the Extensions icon in the Activity Bar. The Activity Bar is the strip of icons along the edge of the window. All three open the same view. The keyboard shortcut is the fastest once it becomes habit."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Search for an extension by name or by ID"
+    },
+    {
+      "type": "paragraph",
+      "text": "Type a name in the search box at the top of the Extensions view. Many extensions have similar names, so read the publisher line under each result. For an exact match, search with @id:publisher.name. The ID joins the publisher and the extension name with a period. For example, @id:ms-python.python finds the Python extension from Microsoft."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you copied an ID from a README, a team chat, or a project file, the ID search saves time. It skips the lookalikes entirely. Names change more often than IDs, so the ID is the safer thing to keep in your notes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the details page before you click Install"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select an extension and its details page opens in the editor area. Read the description. Check who published it. Ask yourself whether it does the job you need. A short check takes less than a minute and prevents most wrong installs."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The publisher name matches the company or person you expect.",
+        "The description matches the task you have in mind.",
+        "The ID matches the one in your notes or in a project file, such as .vscode/extensions.json.",
+        "You expect a trust prompt if the publisher is a third party."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Confirm the trust prompt and finish the install"
+    },
+    {
+      "type": "paragraph",
+      "text": "Starting in VS Code 1.97, the first install from a third-party publisher shows a dialog. The dialog asks you to confirm that you trust the publisher. Read the name in the dialog. Confirm only if it matches the name you checked on the details page."
+    },
+    {
+      "type": "paragraph",
+      "text": "After you confirm, wait for the install to finish. The Install button changes to a Manage gear button when it is done. Until then, do not click it again. A second click adds no value and can confuse the status you are reading."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Enable, disable, and find extensions again"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Manage gear opens a menu. If an installed extension does nothing, it may be disabled. Search for @disabled in the Extensions view to list disabled extensions. Then open the gear menu and choose Enable. Choose Enable (Workspace) if you want the extension active only in the current project."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "About three in four respondents to the 2025 Stack Overflow survey said they use VS Code. That is a large audience, so the steps in this guide stick to what Microsoft documents."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install an older version or a pre-release build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Right-click an extension and choose Install Another Version to pick an older build. This helps when the newest release breaks your setup. Use the dropdown arrow on the Install button to choose Install Pre-Release Version. Microsoft does not give a version number for pre-releases on that page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pre-release builds can behave differently from the stable release. Use them on a test project first. Keep your normal projects on the stable build until you know the pre-release works for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install an extension from a .vsix file"
+    },
+    {
+      "type": "paragraph",
+      "text": "A .vsix file is an extension package you already have on disk. Use Install from VSIX from the dropdown in the Extensions view. You can also run Extensions: Install from VSIX from the Command Palette. Press Shift-Command-P to open the Command Palette, type the command name, and pick your file."
+    },
+    {
+      "type": "paragraph",
+      "text": "VSIX installs have auto-update turned off by default. A package you installed from a file will not update itself. Check the publisher's download page yourself when you want a newer build."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Method",
+        "Where to start",
+        "Best for"
+      ],
+      "rows": [
+        [
+          "Marketplace search",
+          "Extensions view, Shift-Command-X",
+          "Most extensions"
+        ],
+        [
+          "Specific version",
+          "Right-click the extension, then Install Another Version",
+          "Rolling back a broken update"
+        ],
+        [
+          "Pre-release",
+          "Dropdown arrow on the Install button",
+          "Testing early builds"
+        ],
+        [
+          "VSIX file",
+          "Extensions view dropdown or Shift-Command-P",
+          "Packages you already have on disk"
+        ],
+        [
+          "Command line",
+          "Terminal: code --install-extension",
+          "Scripts and repeat setups"
+        ]
+      ],
+      "caption": "Five ways to add an extension in VS Code on Mac, from Microsoft's docs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use the code command from Terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Terminal route needs the code command. Press Shift-Command-P, type shell command, and run Shell Command: Install 'code' and optionally 'copilot' commands in PATH. The Copilot prompt accepts Yes, No, or Escape. Answer as you like, then restart Terminal."
+    },
+    {
+      "type": "paragraph",
+      "text": "After the restart, run code --install-extension followed by an extension ID, or by the path to a .vsix file. Insiders builds use code-insiders instead of code. If you use both builds, check which command you typed before you install."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix a not compatible error"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some extensions refuse to install because they need a newer VS Code. Microsoft's docs do not explain this error. Treat the steps here as a starting point, not as an official fix. Update VS Code to the latest stable build, then try the install again."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the error stays, read the extension's Marketplace page for its requirements. Then try an older build with Install Another Version. Older builds sometimes match an older VS Code, so test one at a time."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix network errors such as connect ETIMEDOUT"
+    },
+    {
+      "type": "paragraph",
+      "text": "A message that says connect ETIMEDOUT during install usually means your Mac reaches the internet through a proxy. Microsoft's network page covers proxy support in detail. Your IT team can tell you the proxy address. Ask before you change any setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Older proxy settings still exist in VS Code. They include http.proxy, http.proxyStrictSSL, and http.proxyAuthorization. Change them only with a known address. A wrong value keeps the install failing and can hide the real cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Work with Gatekeeper warnings and missing files"
+    },
+    {
+      "type": "paragraph",
+      "text": "If VS Code itself will not open, check the file first. Microsoft's FAQ says missing files can come from antivirus quarantine settings, so check those and reinstall. The docs do not cover Gatekeeper warnings, so this guide gives no fix for them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Extensions in VS Code for the Web and remote windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the Web runs at vscode.dev. It runs only some extensions in the browser. Extensions that cannot run there show a warning icon with a Learn Why link. Installed extensions stay in browser local storage, and Settings Sync keeps them close to your desktop setup."
+    },
+    {
+      "type": "paragraph",
+      "text": "Remote windows are a separate case. Extensions do not sync to SSH, dev container, or WSL windows. If you work over SSH or in a dev container, install the extension again inside that remote window."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make on the first install"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Installing a lookalike. Two extensions can share a name, so check the publisher line.",
+        "Mixing Insiders and stable. Insiders uses code-insiders in Terminal, so the command differs.",
+        "Assuming a disabled extension is missing. It still shows as installed until you enable it.",
+        "Expecting a .vsix file to update itself. Auto-update is off by default for VSIX installs.",
+        "Skipping the trust dialog. Read the publisher name before you confirm."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the extension is installed"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open a project and test the extension on a small file first. Confirm that it does the job before you rely on it for real work. If you use VS Code all day, pin it to the Dock. Control-click the Dock icon and choose Options > Keep in Dock. The step-by-step guide is at [keep VS Code in the Dock](/how-to/keep-vs-code-in-the-dock-in-vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want Terminal access, read [how to install the code command in VS Code](/how-to/install-the-code-command-in-vs-code). For a wider setup, the [VS Code for developers on Mac](/for/developers/vs-code) page covers shortcuts and debugging."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is the Extensions view in VS Code on Mac?",
+      "answer": "Press Shift-Command-X, choose View > Extensions from the menu bar, or click the Extensions icon in the Activity Bar. All three open the same view."
+    },
+    {
+      "question": "Why does VS Code ask me to trust a publisher?",
+      "answer": "Starting in VS Code 1.97, the first install from a third-party publisher shows a trust dialog. Confirm only after you check that the publisher name matches the one you expected."
+    },
+    {
+      "question": "What is the difference between Install Another Version and Install Pre-Release Version?",
+      "answer": "Install Another Version lets you pick an older build from the list. Install Pre-Release Version installs a build the publisher marks as pre-release. Pre-release builds can change more often, so test them first."
+    },
+    {
+      "question": "Can I install an extension in VS Code for the Web on a Mac?",
+      "answer": "Only some extensions run at vscode.dev. Extensions that cannot run there show a warning icon. Installed extensions are stored in browser local storage."
+    },
+    {
+      "question": "Do extensions I install on my Mac show up in SSH or dev container windows?",
+      "answer": "No. Extensions do not sync to remote windows such as SSH, dev containers, or WSL. Install them again inside each remote window you use."
+    },
+    {
+      "question": "Can I install an extension without using the Extensions view?",
+      "answer": "Yes. Set up the code command with Shell Command: Install 'code' and optionally 'copilot' commands in PATH. Then run code --install-extension with an extension ID or a .vsix path."
+    },
+    {
+      "question": "Does VS Code have a version for Apple silicon Macs?",
+      "answer": "Yes. Microsoft lists separate Apple silicon, Intel, and Universal macOS downloads. The Universal download is meant for both chip types, so it is the safe pick if you are unsure."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Extension Marketplace: Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code on macOS: docs",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145 release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web: docs",
+      "url": "https://code.visualstudio.com/docs/setup/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code FAQ: docs",
+      "url": "https://code.visualstudio.com/docs/supporting/faq",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Network connections in VS Code: docs",
+      "url": "https://code.visualstudio.com/docs/setup/network",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Install a VS Code extension on a Mac",
+  "appliesTo": "VS Code on macOS, Apple silicon and Intel, current stable build 1.145",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed in the Applications folder",
+    "Internet access to the Extension Marketplace",
+    "A macOS version that your VS Code release supports",
+    "The publisher name or ID of the extension you want, if you know it"
+  ],
+  "steps": [
+    {
+      "name": "Open Visual Studio Code",
+      "text": "Open VS Code from the Applications folder, or from Launchpad if you pinned it there. Wait for the main window to appear before you continue. If the disk image is still open, eject it first."
+    },
+    {
+      "name": "Open the Extensions view",
+      "shortcut": "⇧⌘X",
+      "menuPath": [
+        "View",
+        "Extensions"
+      ],
+      "text": "Press Shift-Command-X. You can also choose View > Extensions from the menu bar, or click the Extensions icon in the Activity Bar. The Extensions view opens in the sidebar with a search box at the top."
+    },
+    {
+      "name": "Search for the extension",
+      "text": "Type the extension name in the search box, for example Python. For an exact match, type @id:publisher.name, such as @id:ms-python.python. Each result shows its publisher name under the title."
+    },
+    {
+      "name": "Open the details page",
+      "text": "Click the extension in the results. Its details page opens in the editor area. Read the description and check the publisher before you install anything."
+    },
+    {
+      "name": "Click Install",
+      "text": "Click the Install button on the details page. Wait for the install to finish. The button changes to a Manage gear button when it is done."
+    },
+    {
+      "name": "Confirm the trust prompt if it appears",
+      "text": "Since VS Code 1.97, the first install from a third-party publisher shows a dialog. Confirm that you trust the publisher only if the name matches the one you checked on the details page."
+    },
+    {
+      "name": "Enable the extension if needed",
+      "text": "Click the Manage gear button and choose Enable, or Enable (Workspace), if the extension is disabled. To list disabled extensions, search for @disabled in the Extensions view."
+    },
+    {
+      "name": "Install a .vsix file (optional)",
+      "shortcut": "⇧⌘P",
+      "menuPath": [
+        "View",
+        "Command Palette"
+      ],
+      "text": "Press Shift-Command-P, type Install from VSIX, and choose Extensions: Install from VSIX. Pick the .vsix file in the window that opens. You can also use Install from VSIX in the dropdown at the top of the Extensions view."
+    },
+    {
+      "name": "Set up the code command (optional)",
+      "shortcut": "⇧⌘P",
+      "text": "Press Shift-Command-P, type shell command, and run Shell Command: Install 'code' and optionally 'copilot' commands in PATH. Answer the Copilot prompt with Yes, No, or Escape. Restart Terminal, then run code . in a project folder to confirm it works."
+    },
+    {
+      "name": "Confirm the install",
+      "text": "Open the Extensions view, search for the extension name, and check that it shows the Manage gear. Open a file type the extension supports and test one feature. If nothing changes, use the troubleshooting list below."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Extensions view",
+      "keys": "⇧⌘X"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Find disabled extensions in the search box",
+      "keys": "@disabled"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Install fails with connect ETIMEDOUT",
+      "fix": "Your Mac probably reaches the internet through a proxy. Read Microsoft's network connections page for proxy support. Behind a firewall, allow marketplace.visualstudio.com, *.gallery.vsassets.io, and *.gallerycdn.vsassets.io. Ask your IT team before you change proxy settings."
+    },
+    {
+      "problem": "Installed extension does nothing",
+      "fix": "It is probably disabled. Search for @disabled in the Extensions view, click the Manage gear, and choose Enable, or Enable (Workspace) for the current project only."
+    },
+    {
+      "problem": "Terminal says command not found: code",
+      "fix": "Run Shell Command: Install 'code' and optionally 'copilot' commands in PATH from the Command Palette, then restart Terminal. Insiders users run code-insiders instead."
+    },
+    {
+      "problem": "Extension says it is not compatible with this VS Code version",
+      "fix": "Microsoft's docs do not explain this error. Update VS Code to the latest stable release and try again. If it still fails, read the extension's Marketplace page and try an older build with Install Another Version."
+    },
+    {
+      "problem": "VS Code will not open or a file looks missing",
+      "fix": "Check your antivirus quarantine settings, then reinstall VS Code. Newer VS Code releases need newer macOS versions, so check your macOS version as well."
+    },
+    {
+      "problem": "Extension is missing in an SSH or dev container window",
+      "fix": "Extensions do not sync to remote windows. Install the extension again inside that remote window."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Install button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Install button on the details page, so you can find it without hunting through the window.",
+    "shell": "code",
+    "pointsAt": "Install button",
+    "context": "Extension details page in VS Code on Mac",
+    "output": "Lazur points at the Install button and says its label out loud. You still click it yourself."
+  },
+  "type": "howto",
+  "slug": "install-an-extension-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-extension-in-vs-code/how-to-install-an-extension-in-vs-1-3e7227.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Developer at a Mac laptop learning how to install an extension in VS Code",
+      "caption": "A developer at a laptop, the usual setup for VS Code on Mac.",
+      "keywords": [
+        "how to install an extension in vs code on mac",
+        "VS Code",
+        "install an extension",
+        "Mac",
+        "developer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/macbook-laptop-computer-coding-926558/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-extension-in-vs-code/how-to-install-an-extension-in-vs-2-56f632.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a MacBook while searching for a VS Code extension",
+      "caption": "Search by name, or by the exact ID if you have it.",
+      "keywords": [
+        "how to install an extension in vs code on mac",
+        "VS Code",
+        "install an extension",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-extension-in-vs-code/how-to-install-an-extension-in-vs-3-c34c38.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Programmer at a desk checking the publisher before installing an extension",
+      "caption": "Check the publisher name before you click Install.",
+      "keywords": [
+        "how to install an extension in vs code on mac",
+        "VS Code",
+        "install an extension",
+        "Mac",
+        "programmer desk coffee",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Foundry",
+        "url": "https://pixabay.com/users/Foundry-923783/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coffee-glasses-workplace-mug-839234/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to install an extension in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "install VS Code extension Mac": 1,
+      "VS Code extensions Mac": 1,
+      "install VSIX file VS Code Mac": 1,
+      "VS Code extension not compatible": 1,
+      "code command Mac VS Code": 1,
+      "VS Code extension connect ETIMEDOUT": 1,
+      "Extensions view VS Code Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

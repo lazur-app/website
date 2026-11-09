@@ -1,6 +1,6 @@
-Content 2026-11-09: 220 written, 5 refused, 0 failed
+Content 2026-11-09: 271 written, 7 refused, 0 failed
 
-- howto: 40/120
+- howto: 91/120
 - apps: 0/9
 - roles: 21/12
 - role-apps: 60/60
@@ -228,3 +228,54 @@ howto:hide-gridlines-in-excel /how-to/hide-gridlines-in-excel
 howto:use-countifs-in-excel /how-to/use-countifs-in-excel
 howto:use-data-validation-in-excel /how-to/use-data-validation-in-excel
 howto:print-a-sheet-on-one-page-in-excel /how-to/print-a-sheet-on-one-page-in-excel
+howto:split-the-editor-in-vs-code /how-to/split-the-editor-in-vs-code
+howto:keep-vs-code-in-the-dock-in-vs-code /how-to/keep-vs-code-in-the-dock-in-vs-code
+howto:open-a-folder-from-the-terminal-in-vs-code /how-to/open-a-folder-from-the-terminal-in-vs-code
+howto:install-the-code-command-in-vs-code /how-to/install-the-code-command-in-vs-code
+howto:use-quick-analysis-in-excel /how-to/use-quick-analysis-in-excel
+howto:compare-two-columns-in-excel /how-to/compare-two-columns-in-excel
+howto:find-and-replace-across-files-in-vs-code /how-to/find-and-replace-across-files-in-vs-code
+howto:toggle-the-integrated-terminal-in-vs-code /how-to/toggle-the-integrated-terminal-in-vs-code
+howto:turn-on-word-wrap-in-vs-code /how-to/turn-on-word-wrap-in-vs-code
+howto:use-multiple-cursors-in-vs-code /how-to/use-multiple-cursors-in-vs-code
+howto:install-an-extension-in-vs-code /how-to/install-an-extension-in-vs-code
+howto:set-up-git-in-vs-code /how-to/set-up-git-in-vs-code
+howto:commit-changes-in-vs-code /how-to/commit-changes-in-vs-code
+howto:run-a-python-file-in-vs-code /how-to/run-a-python-file-in-vs-code
+howto:turn-on-auto-save-in-vs-code /how-to/turn-on-auto-save-in-vs-code
+howto:set-the-default-terminal-shell-in-vs-code /how-to/set-the-default-terminal-shell-in-vs-code
+howto:use-the-command-palette-in-vs-code /how-to/use-the-command-palette-in-vs-code
+howto:open-settings-json-in-vs-code /how-to/open-settings-json-in-vs-code
+howto:set-a-breakpoint-in-vs-code /how-to/set-a-breakpoint-in-vs-code
+howto:format-a-document-in-vs-code /how-to/format-a-document-in-vs-code
+howto:sync-settings-across-macs-in-vs-code /how-to/sync-settings-across-macs-in-vs-code
+howto:change-the-editor-font-size-in-vs-code /how-to/change-the-editor-font-size-in-vs-code
+howto:attach-a-file-in-chatgpt /how-to/attach-a-file-in-chatgpt
+howto:set-custom-instructions-in-chatgpt /how-to/set-custom-instructions-in-chatgpt
+howto:dictate-a-prompt-in-chatgpt /how-to/dictate-a-prompt-in-chatgpt
+howto:use-voice-mode-in-chatgpt /how-to/use-voice-mode-in-chatgpt
+howto:delete-a-chat-in-chatgpt /how-to/delete-a-chat-in-chatgpt
+howto:create-a-project-in-chatgpt /how-to/create-a-project-in-chatgpt
+howto:export-your-chatgpt-data-in-chatgpt /how-to/export-your-chatgpt-data-in-chatgpt
+howto:share-a-chat-in-chatgpt /how-to/share-a-chat-in-chatgpt
+howto:turn-off-chat-history-in-chatgpt /how-to/turn-off-chat-history-in-chatgpt
+howto:use-custom-gpts-in-chatgpt /how-to/use-custom-gpts-in-chatgpt
+howto:generate-an-image-in-chatgpt /how-to/generate-an-image-in-chatgpt
+howto:pin-a-chat-in-chatgpt /how-to/pin-a-chat-in-chatgpt
+howto:use-canvas-in-chatgpt /how-to/use-canvas-in-chatgpt
+howto:connect-google-drive-in-chatgpt /how-to/connect-google-drive-in-chatgpt
+howto:sign-out-of-chatgpt-in-chatgpt /how-to/sign-out-of-chatgpt-in-chatgpt
+howto:change-the-model-in-chatgpt /how-to/change-the-model-in-chatgpt
+howto:use-temporary-chat-in-chatgpt /how-to/use-temporary-chat-in-chatgpt
+howto:search-your-chat-history-in-chatgpt /how-to/search-your-chat-history-in-chatgpt
+howto:share-your-screen-with-chatgpt-in-chatgpt /how-to/share-your-screen-with-chatgpt-in-chatgpt
+howto:turn-on-memory-in-chatgpt /how-to/turn-on-memory-in-chatgpt
+howto:use-siri-in-keynote-in-keynote /how-to/use-siri-in-keynote-in-keynote
+howto:add-a-video-to-a-slide-in-keynote /how-to/add-a-video-to-a-slide-in-keynote
+howto:play-a-slideshow-on-a-second-display-in-keynote /how-to/play-a-slideshow-on-a-second-display-in-keynote
+howto:animate-an-object-in-keynote /how-to/animate-an-object-in-keynote
+howto:import-a-theme-in-keynote /how-to/import-a-theme-in-keynote
+howto:edit-the-master-slide-in-keynote /how-to/edit-the-master-slide-in-keynote
+howto:add-a-transition-in-keynote /how-to/add-a-transition-in-keynote
+howto:add-a-hyperlink-to-text-in-keynote /how-to/add-a-hyperlink-to-text-in-keynote
+howto:insert-a-table-in-keynote /how-to/insert-a-table-in-keynote

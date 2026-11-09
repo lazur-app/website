@@ -1,0 +1,636 @@
+{
+  "title": "How to commit changes in VS Code on Mac: step by step for 2026",
+  "metaTitle": "How to Commit Changes in VS Code on Mac (Step by Step)",
+  "description": "How to commit changes in VS Code on Mac: open Source Control with ⌃⇧G, stage your files, type a message, and click Commit. Includes Git setup and fixes.",
+  "targetKeyword": "how to commit changes in vs code on mac",
+  "secondaryKeywords": [
+    "vs code source control mac",
+    "git commit in vs code",
+    "stage changes vs code mac",
+    "vs code commit message",
+    "undo last commit vs code",
+    "git user.name vs code mac",
+    "vs code commit all"
+  ],
+  "intro": "To commit changes in VS Code on Mac, open Source Control with ⌃⇧G, click the + next to each file you want to save, type a message in the box at the top, and click Commit. If Git does not know your name yet, set it once in Terminal before your first commit.",
+  "tldr": [
+    "Press ⌃⇧G to open Source Control. Hover over a file and click the + icon to stage it.",
+    "Type a short message in the commit message box at the top, then click Commit.",
+    "Set your Git name and email once with git config before your first commit.",
+    "Undo Last Commit only works on commits you have not pushed yet."
+  ],
+  "stats": [
+    {
+      "value": "1.145",
+      "label": "Latest stable VS Code release, November 4, 2026. The steps here match the 1.14x line.",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "VS Code Updates"
+    },
+    {
+      "value": "75.9%",
+      "label": "Of all respondents in the 2025 Stack Overflow survey use Visual Studio Code.",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A commit is a saved snapshot of your project, with a message that says what changed. Git keeps every commit in your repository's history, so you can look back, compare, or undo later. VS Code does not replace Git. It shows Git's work in a panel, so you can stage, commit, and undo without leaving the editor. The steps here match the 1.14x line of VS Code, which is current as of November 2026."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you commit in VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "You need VS Code on your Mac. The official setup page lists builds for Apple silicon, for Intel chips, and a Universal build that works on both. The latest stable release is 1.145, released November 4, 2026, with patches 1.145.1 and 1.145.2. Install the newest build so your menus match this guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "You also need Git, and your project folder must already be a Git repository. Stack Overflow's 2025 developer survey found that 75.9% of respondents use Visual Studio Code, so this workflow is common. Most of what you learn here carries over to other editors that use Git."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Run git --version in Terminal. A version number means Git is installed and available to VS Code.",
+        "Open your project with File > Open Folder. A folder with a hidden .git folder inside is a repository."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the folder is not a repository yet, run git init inside it from Terminal. Git then starts tracking changes in that folder, and Source Control has something to show you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open the Source Control view on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Source Control is the panel where VS Code shows Git work. Press ⌃⇧G to open it. That is Control, Shift, and G pressed together. You can also open it from the menu bar at View > Source Control. Menu names can shift between releases, so the shortcut is the safer bet."
+    },
+    {
+      "type": "paragraph",
+      "text": "The panel has two lists you need. Changes shows files Git sees as modified. Staged Changes shows the files that will go into your next commit. Only the files in Staged Changes get saved, so pay close attention to that list."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stage the files you want to save"
+    },
+    {
+      "type": "paragraph",
+      "text": "Staging is how you choose what goes into a commit. Hover over a file in Changes and click the + icon. You can also right-click the file and choose Stage Changes. Staged files move to the Staged Changes list. Unstaged files stay in your folder, and they stay out of the commit."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a common case. You fixed a typo in the README and rewrote a login function in the same session. Stage the README alone and commit it with a message like Fix typo in setup steps. Then stage the login file and commit that separately. Small commits are easier to review and easier to undo than one large commit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Review the diff before you commit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click a file in Changes to open its diff. The diff shows the lines Git added and removed, side by side. Read it the way a reviewer would. Look for debug output, leftover test values, and edits in files you did not mean to touch. Catching these now is much cheaper than a revert later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write a commit message people can read"
+    },
+    {
+      "type": "paragraph",
+      "text": "Type your message in the commit message input box at the top of the Source Control view. Keep the first line short and in the present tense. Say what changed, and add why if the reason is not obvious from the code. You will read these messages again when something breaks."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Weak message",
+        "Better message",
+        "Why it helps"
+      ],
+      "rows": [
+        [
+          "fix",
+          "Fix broken link in setup guide",
+          "Says what changed and where"
+        ],
+        [
+          "stuff",
+          "Add error handling to login form",
+          "Names the feature you touched"
+        ],
+        [
+          "update",
+          "Update Git identity steps for Mac",
+          "Gives a reason to look at it later"
+        ]
+      ],
+      "caption": "Compare a vague message with one that tells a reader what changed."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What happens when the message box is empty"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you click Commit with the box empty, VS Code opens a COMMIT_EDITMSG tab. Use it to write a longer message, with a short subject line and a body below it. This behavior depends on the git.useEditorAsCommitInput setting, which must be turned on. To stop without committing, select Cancel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Commit (Amend), Commit All, and other Commit options"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Commit button has a dropdown. Commit (Amend) rewrites your last commit. Use it to add a file you forgot or to fix the message on the commit you just made. The other commit choices sit in the More Actions menu, under Commit. They include Commit Staged (Amend), Commit All, and Undo Last Commit."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check before Commit All",
+      "text": "Commit All adds every pending file to the commit, not just the staged ones. Review the Changes list first. If a change has several parts, stage the files you want and use the normal Commit button."
+    },
+    {
+      "type": "paragraph",
+      "text": "Amend is safe on a commit you made a minute ago and have not shared. Once a commit sits on a shared branch, rewriting it can confuse teammates who already pulled it. In that case, add a new commit instead."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Undo the last commit before you push"
+    },
+    {
+      "type": "paragraph",
+      "text": "Undo Last Commit sits under More Actions, then Commit. It applies only to commits you have not pushed. Your changes stay staged, so you can fix them and commit again. Nothing in your files is lost, and the commit itself is removed from history."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the commit already reached the remote, the VS Code docs recommend git revert. Revert adds a new commit that reverses the old one, so the shared history stays intact."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Pushed commits",
+      "text": "Undo Last Commit does not change a pushed commit. Use git revert for those, so your teammates keep a clean history."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set your Git user.name and user.email once"
+    },
+    {
+      "type": "paragraph",
+      "text": "Git labels every commit with an author name and email. Set both once from Terminal. These are labels, not a sign-in, so setting them does not log you in anywhere."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run git config --global user.name 'Your Name' and then git config --global user.email 'you@example.com', using your own values. The --global flag applies them to every repository on your Mac. Leave it out to set them for one project only, while you are inside that folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Terminal from Applications > Utilities, or use the terminal inside VS Code. If you want a refresher on that panel, read the guide on toggling the integrated terminal listed at the end of this page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix the errors you hit when you commit or push"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Message or problem",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Make sure you configure your 'user.name' and 'user.email' in git",
+          "Set both values with git config in the repository folder, then retry the commit. Use --global to cover every repository."
+        ],
+        [
+          "Git not found",
+          "Run git --version where the repository is open. If it works in Terminal but not in VS Code, set git.path to the full path of the Git program."
+        ],
+        [
+          "Push rejected with non-fast-forward or fetch first",
+          "The remote has commits your branch lacks. Fetch, commit or stash local work, pull, resolve conflicts, then push. Do not force push."
+        ],
+        [
+          "Repeated password prompts",
+          "Background fetches from git.autofetch can cause them. Set up a credential helper, or turn off git.autofetch in Settings."
+        ]
+      ],
+      "caption": "Common Git errors in VS Code and the fix for each."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most errors come from identity, the Git path, or a remote that moved on. Read the message word by word before you change anything. The message usually names the exact setting or branch that needs attention."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for committing on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The official docs list the Mac shortcuts below. They do not list a shortcut for Commit itself. Some guides mention ⌘Enter, but the official sources do not confirm it, so do not rely on it. Open the Keyboard Shortcuts editor with ⌘K ⌘S and search for commit to see what your build uses."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Mac shortcut",
+        "Note"
+      ],
+      "rows": [
+        [
+          "Show Source Control",
+          "⌃⇧G",
+          "Opens the panel with Changes and Staged Changes"
+        ],
+        [
+          "Command Palette",
+          "⇧⌘P",
+          "Search any command by name"
+        ],
+        [
+          "Save file",
+          "⌘S",
+          "Save before you stage, so Git sees the final text"
+        ],
+        [
+          "Keyboard Shortcuts editor",
+          "⌘K ⌘S",
+          "Also under File > Preferences > Keyboard Shortcuts"
+        ]
+      ],
+      "caption": "Shortcuts from the official VS Code docs for Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Commit from VS Code for the Web"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the Web at vscode.dev can commit too. It supports GitHub through the GitHub Repositories extension, and it supports Azure Repos. Uncommitted work sits in browser storage until you commit it. The web version has no terminal and no debugger, so run git config in the desktop app instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some keyboard shortcuts behave differently in a browser. Command-W closes the browser tab, not the editor tab, for example. Commit on your Mac when you need full Git control."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they commit on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Committing files they did not mean to include. Check Staged Changes one more time before you click Commit.",
+        "Writing messages like fix or stuff. Your history gets hard to search, and nobody can tell what changed.",
+        "Reaching for Commit All out of habit. Stage files on purpose, especially when one change has several parts.",
+        "Forcing a push to get past a rejection. Fetch and pull instead, then push again.",
+        "Skipping the Git identity setup, then wondering why the commit fails. Set it once and you are done."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to confirm the commit went through"
+    },
+    {
+      "type": "paragraph",
+      "text": "After you click Commit, the files leave Staged Changes, and the new commit sits at the top of your branch history. If you want the commit on GitHub or Azure Repos, push it to the remote. Pushing is a separate step, so nothing leaves your Mac until you choose to share it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after your first commit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once committing feels normal, the integrated terminal lets you run Git commands without leaving VS Code. Read the [integrated terminal guide](/how-to/toggle-the-integrated-terminal-in-vs-code) next. For a wider setup, the [developer guide for VS Code on Mac](/for/developers/vs-code) covers Git, shortcuts, and debugging."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you split your screen to compare a diff with the code, the [split editor guide](/how-to/split-the-editor-in-vs-code) shows the shortcuts for that. Keep the Staged Changes list visible while you work, so the commit only holds what you meant to save."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the difference between staging and committing in VS Code?",
+      "answer": "Staging chooses which changes go into the next commit. Committing saves those staged changes to the repository with a message. A changed file that is not staged stays out of the commit until you stage it."
+    },
+    {
+      "question": "Why does VS Code open a COMMIT_EDITMSG tab when I click Commit?",
+      "answer": "You clicked Commit with an empty message box, so VS Code opens an editor for a longer message. This depends on the git.useEditorAsCommitInput setting. Select Cancel to stop without committing."
+    },
+    {
+      "question": "How do I undo a commit in VS Code on Mac?",
+      "answer": "Open the More Actions menu, go to Commit, and choose Undo Last Commit. It works only if you have not pushed the commit. Your changes stay staged. For a pushed commit, the VS Code docs recommend git revert."
+    },
+    {
+      "question": "Do I have to set my Git name and email every time?",
+      "answer": "No. Set them once with git config --global user.name and git config --global user.email. Git uses those values for every repository on your Mac. They label your commits and do not sign you in anywhere."
+    },
+    {
+      "question": "Is there a keyboard shortcut to commit in VS Code on Mac?",
+      "answer": "The official keyboard shortcut reference does not list one for commit. Some guides suggest ⌘Enter, but official docs do not confirm it. Open the Keyboard Shortcuts editor with ⌘K ⌘S and search for commit to see what your build uses."
+    },
+    {
+      "question": "Can I commit from VS Code for the Web in a browser?",
+      "answer": "Yes, to GitHub through the GitHub Repositories extension, or to Azure Repos. The web version has no terminal and no debugger, so use the desktop app for git config."
+    },
+    {
+      "question": "Why does my push fail with non-fast-forward?",
+      "answer": "The remote has commits your branch does not have. Fetch, pull, resolve any conflicts, then push again. The VS Code troubleshooting page says not to force push."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Source Control in VS Code (Overview)",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/overview",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Staging, Commits & Undo",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/staging-commits",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Quickstart: use source control in VS Code",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/quickstart",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Git Troubleshooting in VS Code",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/troubleshooting",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Setting up VS Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Key Bindings for Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/configure/keybindings",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Default Keyboard Shortcuts",
+      "url": "https://code.visualstudio.com/docs/reference/default-keybindings",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft (VS Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft (VS Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Commit changes in VS Code on Mac",
+  "appliesTo": "VS Code 1.14x on macOS, Apple silicon and Intel Macs",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed on your Mac, Apple silicon or Intel",
+    "A project folder that is already a Git repository",
+    "Git installed and working in Terminal",
+    "Your name and email address for Git commit labels"
+  ],
+  "steps": [
+    {
+      "name": "Confirm your Git name and email",
+      "text": "Git needs an author name and email before your first commit. Open Terminal and run the git config commands from the section above. Without them, the commit fails with a message about user.name and user.email. You only do this once per Mac.",
+      "tip": "Run git config --global --list to see which values Git will use."
+    },
+    {
+      "name": "Open the Source Control view",
+      "text": "Press ⌃⇧G to open Source Control. Your changed files appear in the Changes list. If the list is empty, check that the right folder is open and that it is a Git repository.",
+      "shortcut": "⌃⇧G",
+      "menuPath": [
+        "View",
+        "Source Control"
+      ],
+      "tip": "Menu names can change between releases. Trust the shortcut if your menu looks different."
+    },
+    {
+      "name": "Review the diff",
+      "text": "Click a file in Changes to open its diff. Added and removed lines show side by side. Look for debug output, stray test values, and edits you did not plan. Fix those now, before you stage anything.",
+      "tip": "Check every file you plan to commit, not only the one you changed last."
+    },
+    {
+      "name": "Stage the files for this commit",
+      "text": "Hover over a file in Changes and click the + icon. You can also right-click the file and choose Stage Changes. Each staged file moves to the Staged Changes list. Files you leave behind stay out of this commit.",
+      "tip": "Stage the smallest set of files that makes one logical change."
+    },
+    {
+      "name": "Check the Staged Changes list",
+      "text": "Look at Staged Changes one more time. It should list only the files that belong in this commit. If a file is wrong, move it back out, then stage the right one. This list is what Git saves.",
+      "tip": "A file in the wrong list is the most common reason a commit surprises people."
+    },
+    {
+      "name": "Type a commit message",
+      "text": "Click the commit message input box at the top of Source Control and type a short subject line. Write it in the present tense, such as Fix login redirect. Add a longer body only if the reason is not clear from the subject.",
+      "tip": "Aim for a subject line you can read in a list of commits without opening each one."
+    },
+    {
+      "name": "Click Commit",
+      "text": "Click Commit. The staged files leave Staged Changes, and Git saves the commit to your repository. If the message box is empty, VS Code opens COMMIT_EDITMSG so you can write one. Select Cancel to stop.",
+      "tip": "Use the dropdown next to Commit only when you want to amend the last commit."
+    },
+    {
+      "name": "Check the result and decide about pushing",
+      "text": "Confirm that Staged Changes is empty. Any file you left unstaged still shows in Changes, which is expected. Push when you want to share the commit with your remote. Pushing is a separate step, and nothing leaves your Mac until you do it."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Show Source Control",
+      "keys": "⌃⇧G"
+    },
+    {
+      "action": "Open Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Save file",
+      "keys": "⌘S"
+    },
+    {
+      "action": "Open Keyboard Shortcuts editor",
+      "keys": "⌘K ⌘S"
+    },
+    {
+      "action": "Open Explorer",
+      "keys": "⇧⌘E"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Make sure you configure your 'user.name' and 'user.email' in git",
+      "fix": "Set both values with git config in the repository folder, then retry the commit. Use --global to cover every repository on your Mac."
+    },
+    {
+      "problem": "Git not found",
+      "fix": "Run git --version where the repository is open. If it works in Terminal but not in VS Code, set git.path in Settings to the full path of the Git program."
+    },
+    {
+      "problem": "Push rejected: non-fast-forward or fetch first",
+      "fix": "The remote has commits your branch lacks. Fetch, commit or stash local work, pull, resolve any conflicts, then push. Do not force push."
+    },
+    {
+      "problem": "Repeated password prompts",
+      "fix": "Background fetches from git.autofetch can cause them. Set up a credential helper, or turn off git.autofetch in Settings."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Commit button in VS Code?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Commit button on your screen. You still click it yourself.",
+    "shell": "code",
+    "pointsAt": "Commit button",
+    "context": "Source Control view with a message typed in the box.",
+    "output": "Lazur points at the button and names it. It can also explain what the Commit dropdown does before you pick an option."
+  },
+  "type": "howto",
+  "slug": "commit-changes-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/commit-changes-in-vs-code/how-to-commit-changes-in-vs-code-1-9312bb.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Developer at a Mac reviewing code changes before they commit them in VS Code",
+      "caption": "Review every change before you commit.",
+      "keywords": [
+        "how to commit changes in vs code on mac",
+        "VS Code",
+        "commit changes",
+        "Mac",
+        "developer reviewing code laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yatsusimnetcojp",
+        "url": "https://pixabay.com/users/yatsusimnetcojp-14033705/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-css-html-php-4570799/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/commit-changes-in-vs-code/how-to-commit-changes-in-vs-code-2-f30f6e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing a commit message on a laptop while writing code at a desk",
+      "caption": "Short, clear commit messages save time later.",
+      "keywords": [
+        "how to commit changes in vs code on mac",
+        "VS Code",
+        "commit changes",
+        "Mac",
+        "person typing on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/commit-changes-in-vs-code/how-to-commit-changes-in-vs-code-3-8acade.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Mac laptop on a desk with a code editor open for a Git project",
+      "caption": "Git work often starts on a Mac desk like this one.",
+      "keywords": [
+        "how to commit changes in vs code on mac",
+        "VS Code",
+        "commit changes",
+        "Mac",
+        "mac laptop desk work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-computer-hands-keyboard-1839391/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to commit changes in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "vs code source control mac": 1,
+      "git commit in vs code": 1,
+      "stage changes vs code mac": 1,
+      "vs code commit message": 1,
+      "undo last commit vs code": 1,
+      "git user.name vs code mac": 1,
+      "vs code commit all": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

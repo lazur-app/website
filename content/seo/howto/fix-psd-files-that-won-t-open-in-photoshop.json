@@ -1,0 +1,640 @@
+{
+  "title": "How to fix psd files that wont open in Photoshop on Mac, step by step",
+  "metaTitle": "How to fix psd files that wont open in Photoshop on Mac",
+  "description": "How to fix psd files that wont open in Photoshop on Mac: set the app in Get Info, check File Handling, try the 27.6 checklist, then reset preferences.",
+  "targetKeyword": "how to fix psd files that wont open in photoshop on mac",
+  "secondaryKeywords": [
+    "photoshop psd won't open mac",
+    "photoshop file won't open mac",
+    "psd file won't open photoshop",
+    "photoshop 27.11 mac",
+    "change default app for psd mac",
+    "photoshop file handling mac",
+    "photoshop file greyed out mac"
+  ],
+  "intro": "A PSD that won't open in Photoshop on Mac usually has one of three causes: Finder sends it to the wrong app, a preference blocks it, or your Photoshop build has a bug. Start with Get Info to set Photoshop as the app, then check the File Handling preference, and reset preferences only if the file still won't open.",
+  "tldr": [
+    "In Finder, select the PSD, press ⌘I for Get Info, and set Photoshop under Open with. Use Change All only if every PSD should open in Photoshop.",
+    "If File > Open is greyed out, try File > Open Recent. That may point to the Photoshop 27.6.0 Mac bug, so update and test again.",
+    "Check File Handling under Edit > Preferences, then try the community checklist one change at a time.",
+    "Reset preferences last, and work on a copy of the file."
+  ],
+  "stats": [
+    {
+      "value": "30,000",
+      "label": "Maximum height and width in pixels for a PSD file",
+      "sourceUrl": "https://www.loc.gov/preservation/digital/formats/fdd/fdd000523.shtml",
+      "sourceTitle": "Adobe Photoshop Family format description (Library of Congress)"
+    },
+    {
+      "value": "2 GB",
+      "label": "Maximum file length for a PSD, per the same format description",
+      "sourceUrl": "https://www.loc.gov/preservation/digital/formats/fdd/fdd000523.shtml",
+      "sourceTitle": "Adobe Photoshop Family format description (Library of Congress)"
+    },
+    {
+      "value": "macOS 14.0",
+      "label": "Minimum macOS version for Photoshop 27.11, according to CGChannel",
+      "sourceUrl": "https://www.cgchannel.com/2026/10/adobe-releases-photoshop-27-11/",
+      "sourceTitle": "Adobe releases Photoshop 27.11 (CGChannel)"
+    },
+    {
+      "value": "27.6.0",
+      "label": "Photoshop build in the Mac File > Open bug report from one Adobe community thread",
+      "sourceUrl": "https://community.adobe.com/questions-712/cant-open-files-in-photoshop-v27-6-0-1560323",
+      "sourceTitle": "Cant open files in Photoshop v27.6.0 (Adobe Community)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A PSD that won't open usually fails for one of three reasons. Finder may be handing the file to another app. A preference may be blocking the open. Or the Photoshop build you run may have a bug. Photoshop 27.11 is the newest release we could confirm as of November 2026, so note your build before you start. Work from the cheapest test to the most drastic, and stop as soon as the file opens."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the file before you change Photoshop"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the file itself. In Finder, look at the name and size. The name should end in .psd. A file that is really a JPEG, a text file, or a half-finished download will fail no matter which settings you change. A file much smaller than the original, or one that shows zero bytes, usually means the copy did not finish. Download it again or ask for a fresh copy."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Size limits matter too. The Library of Congress describes the PSD format as capped at 30,000 pixels in height and width, with a file length limit of two gigabytes. Larger documents use PSB, which the same description says supports up to 300,000 pixels in any dimension. If the file is over the PSD limits, the person who saved it needs to save it as PSB."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Format",
+        "Largest width or height",
+        "File size limit"
+      ],
+      "rows": [
+        [
+          "PSD",
+          "30,000 pixels",
+          "2 GB"
+        ],
+        [
+          "PSB",
+          "300,000 pixels",
+          "4 exabytes"
+        ]
+      ],
+      "caption": "Format limits from the Library of Congress description, last updated 03/12/2025."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make a copy before you change anything. In Finder, select the PSD and choose File > Duplicate, or press ⌘D. Work on the copy. The fixes below change settings and file associations, not the pixels in the file. A copy still gives you a clean fallback if a later step goes wrong."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 1: Point the file at Photoshop in Finder"
+    },
+    {
+      "type": "paragraph",
+      "text": "macOS decides which app opens a file by looking at its type and the app set for it. You can change that choice for one file or for every file of that type. Apple's help page lists the steps for both. It does not say which macOS version it covers, so match the menu wording you see on your Mac."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Change All affects every PSD",
+      "text": "Apple warns against Change All if you only want one file to open in that app. Once you click it, every PSD on this Mac opens in Photoshop by default. Use it only when that is what you want."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a one-time open, Control-click the PSD, choose Open With, then pick Photoshop. Apple also lists dragging the file onto the Photoshop icon. Other PSDs keep opening in the app they used before. That makes this the safer test when you are not sure the association is the problem."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the result carefully. If the file opens after a one-time Open With, the association was the problem. You can then decide whether a permanent change is worth it. If the file still fails, the association is not the cause, so move on to Fix 2."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 2: Open the file from inside Photoshop"
+    },
+    {
+      "type": "paragraph",
+      "text": "If Finder opens the file and Photoshop still refuses, open it from inside the app. Start Photoshop, choose File > Open, select the PSD, and click Open. ⌘O should do the same thing. Adobe's help pages did not open for us, so check the File menu if the shortcut behaves differently on your build."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Photoshop 27.6.0, one Mac user reported that every File > Open option was greyed out. Double-clicking a PSD did nothing. Open Recent sometimes still worked. Quitting and relaunching restored opening only for a while. The report came from a MacBook Pro M4 and a Mac Studio, both running macOS 26.4.1."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "If File > Open is greyed out, try File > Open Recent first. If that is also dead, you are probably hitting the bug in that thread. The fix there is a newer build, not a settings change. One user said the same problem still happened on 27.7.0, so an update may not solve it alone."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your build before you go further. If you are not sure which version you have, read [how to check your Photoshop version in Photoshop on Mac](/how-to/check-your-photoshop-version-in-photoshop). The build number tells you which bug reports on this page may apply to you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 3: Check File Handling and the compatibility setting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Photoshop has a File Handling panel with an option called Maximize PSD and PSB File Compatibility. It offers three choices: Always, Never and Ask. The photoshopguides File Handling page gives the path as Edit > Preferences > File Handling. A search snippet suggested newer Macs show Photoshop > Settings instead. We could not confirm that on an Adobe page, so look in both places."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be clear about what this setting does. The guide says Maximize Compatibility adds a large amount of bloat to file size. It recommends Always for files shared with others or used in video software. It recommends Never for solo work where small files matter, and it advises against Ask. We found no Adobe source saying this setting decides whether an existing PSD opens. Set it to match how you work, and do not expect it to be the whole fix."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 4: Try the 27.6 Mac checklist from Adobe's community"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Community Manager posted a checklist for the 27.6 Mac problem in the Adobe thread. No user in the thread confirmed that any step worked, so treat these as tests, not a proven fix. Run them in order, and undo each change before you try the next one. That way you know which change helped, if any did."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Right-click the PSD, choose Get Info, and confirm Photoshop is associated and enabled.",
+        "In Photoshop's preferences, uncheck Use Graphics Processor.",
+        "Quit Photoshop, then hold Shift while you open it to skip plug-ins.",
+        "Move the PSD to your Mac's internal drive, then open it from there.",
+        "In Technology Previews, uncheck Enable Modern User Interface."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last item had a positive effect for one user, which is one report and not a test. Before you change the graphics setting, write down its current state so you can put it back. The thread also has at least one report that the bug continued into 27.7.0, so keep your version notes handy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a client PSD that will not open"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a client sends you a PSD. Double-clicking it in Finder opens another app, such as Preview, and Photoshop's File > Open does nothing when you pick it. Here is the order that saves the most time."
+    },
+    {
+      "type": "paragraph",
+      "text": "First, check Get Info. If Open with names Preview, Control-click the file, choose Open With, and pick Photoshop. If the file opens, you know the association was the problem. You do not need Change All, and other PSDs keep their current app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, suppose the file opens from Finder but File > Open is greyed out. That points at the 27.6 bug or a build issue. Check your version, then try File > Open Recent. If the file appears there and opens, record the build number and keep working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third, suppose the file opens in neither place. Check the dimensions in Image > Image Size. If the document is wider or taller than 30,000 pixels, it is outside the PSD format. The client needs to save it as PSB, and no preference will change that."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 5: Reset preferences as the last step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Resetting preferences clears Photoshop's saved settings. It also removes your workspace and custom options, so export any presets or actions you care about first. The [reset preferences guide](/how-to/reset-preferences-in-photoshop) covers two methods, so pick the one that matches your build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Results are mixed. In the Adobe thread, one user marked a preferences reset as the answer. Another said it did not work. A third said it did not fix the problem even after a clean reinstall. Expect a reset to help some people and not others, and keep a backup of your old settings until you know which setup you need."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make PSD problems last longer"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Clicking Change All when you meant one file. Every PSD on the Mac now opens in Photoshop. Use Open With for one-off opens.",
+        "Trusting the file icon. Get Info shows which app is set to open the file. It does not prove that app can open it, so test from inside Photoshop.",
+        "Resetting preferences first. That wastes time and removes settings you may want back.",
+        "Testing with one PSD only. If other PSDs open and this one does not, the file is the problem, not Photoshop.",
+        "Working on the only copy. Keep the original safe while you test each fix.",
+        "Changing several settings at once. You will not know which change helped."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Photoshop on the web and Creative Cloud files"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Photoshop on the web, the rules are different. A 2021 Gizmodo article says Photoshop on the web supports PSD but not RAW. It lists PNG, JPEG, PSD, PSDC, TIFF and HEIC as supported formats. It also says web users start with files in Creative Cloud storage, and new files save there. That article is from November 2021, so check Adobe's current comparison before you rely on it. We could not open that page while writing this."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Adobe's product page says there is no free version of Photoshop on the web. To edit your own photos you need a plan or a free trial. The page does not list system requirements. If the file opens in the web app but not on your Mac, the problem is probably your desktop install, not the PSD."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the PSD file itself is the problem"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the file is damaged, and no setting will help. Open another PSD from the same folder. If the other files open and this one does not, the file is the likely problem. Ask whoever made it for a fresh export or an older backup. If the file came from a download, download it again and compare the sizes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the dimensions too. Open Image > Image Size and read the width and height. A PSD over 30,000 pixels in either direction is outside the PSD format. Those files need PSB, and the person who saved them has to choose that format."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to send Adobe if nothing works"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The Photoshop build number, such as 27.6.0 or 27.11.",
+        "The macOS version. CGChannel says Photoshop 27.11 needs macOS 14.0 or later.",
+        "Whether File > Open is greyed out, or whether double-clicking the PSD does nothing.",
+        "The file's size and pixel dimensions.",
+        "The steps you tried, in order, and what changed after each one."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Post in Adobe's community if your symptoms match the 27.6 reports. Include your Mac model. The reported cases include a MacBook Pro M4 and a Mac Studio, so a note about your model helps others compare results."
+    },
+    {
+      "type": "paragraph",
+      "text": "If one step fixes the file, stop there. Undo the rest, keep the settings that worked, and write down your build number so you can check again after the next update."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why won't my PSD open in Photoshop on Mac?",
+      "answer": "Usually one of three things is wrong. Finder may send the file to another app, a preference may block the open, or the Photoshop build may have a bug. Start with Get Info, then test File > Open, then check settings."
+    },
+    {
+      "question": "What does Change All do in Get Info?",
+      "answer": "It sets Photoshop as the app for every file of that type, so every PSD on your Mac opens there by default. Apple says to use it only if you want that. For a single file, use Control-click, then Open With."
+    },
+    {
+      "question": "Should I set Maximize PSD and PSB File Compatibility to Always?",
+      "answer": "The photoshopguides guide recommends Always for files shared with others or used in video software. It recommends Never for solo work where small files matter, and it advises against Ask. The setting mainly affects saving, so it is unlikely to fix an open error by itself."
+    },
+    {
+      "question": "What is the largest PSD Photoshop can make?",
+      "answer": "The Library of Congress says the PSD format is capped at 30,000 pixels in height and width, with a two-gigabyte file length limit. PSB supports up to 300,000 pixels in any dimension."
+    },
+    {
+      "question": "Does Photoshop on the web open PSD files?",
+      "answer": "A 2021 Gizmodo article says yes for PSD, but not for RAW. It also says web files start in Creative Cloud storage. That article is dated, so check Adobe's current comparison before you rely on it."
+    },
+    {
+      "question": "Which macOS does Photoshop 27.11 need?",
+      "answer": "CGChannel says macOS 14.0 or later. Adobe's requirements page did not open for us, so confirm the number on Adobe's site before you upgrade."
+    },
+    {
+      "question": "Should I reinstall Photoshop first?",
+      "answer": "Not first. In the Adobe thread, one user said a clean reinstall did not fix the problem. Run the file and association tests, then check your build, before you reinstall."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Choose an app to open a file on Mac",
+      "url": "https://support.apple.com/guide/mac-help/choose-an-app-to-open-a-file-on-mac-mh35597/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Cant open files in Photoshop v27.6.0",
+      "url": "https://community.adobe.com/questions-712/cant-open-files-in-photoshop-v27-6-0-1560323",
+      "publisher": "Adobe Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Adobe releases Photoshop 27.11",
+      "url": "https://www.cgchannel.com/2026/10/adobe-releases-photoshop-27-11/",
+      "publisher": "CGChannel",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "File Handling Preferences: Saving Speed and File Compatibility",
+      "url": "https://photoshopguides.github.io/File%20Handling",
+      "publisher": "photoshopguides",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Adobe Photoshop Family format description",
+      "url": "https://www.loc.gov/preservation/digital/formats/fdd/fdd000523.shtml",
+      "publisher": "Library of Congress",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Here's What You Can and Can't Do With Photoshop on the Web",
+      "url": "https://gizmodo.com/heres-what-you-can-and-cant-do-with-photoshop-on-the-we-1847995693",
+      "publisher": "Gizmodo",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Adobe Photoshop (product page)",
+      "url": "https://www.adobe.com/products/photoshop.html",
+      "publisher": "Adobe",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Fix a PSD that won't open in Photoshop on Mac",
+  "appliesTo": "Photoshop on Mac, including 27.6.0 and 27.11 builds",
+  "timeMinutes": 25,
+  "difficulty": "Medium",
+  "requirements": [
+    "A Mac running macOS 14.0 or later if you use Photoshop 27.11, per CGChannel",
+    "A copy of the PSD on your Mac's internal drive",
+    "Finder access to the file and its folder",
+    "Photoshop installed on this Mac, with its build number noted",
+    "A note of every setting you change, so you can undo it"
+  ],
+  "steps": [
+    {
+      "name": "Check the file name and size",
+      "text": "In Finder, select the PSD and open Get Info. Confirm the name ends in .psd. Compare the size with the original if you have one. A size of zero bytes, or a file far smaller than expected, may mean the copy or download did not finish.",
+      "menuPath": [
+        "File",
+        "Get Info"
+      ],
+      "shortcut": "⌘I",
+      "tip": "Keep the original on a second drive if you have one."
+    },
+    {
+      "name": "Read the Open with setting",
+      "text": "In Get Info, click the disclosure arrow beside Open with. The pop-up should name Photoshop. If it names another app, or the field is empty, change it in the next step.",
+      "menuPath": [
+        "Get Info",
+        "Open with"
+      ],
+      "tip": "If Photoshop is missing from the pop-up, confirm it sits in your Applications folder."
+    },
+    {
+      "name": "Set Photoshop as the app",
+      "text": "Choose Photoshop from the pop-up. Click Change All only if every PSD on this Mac should open in Photoshop. Apple says Change All changes the app for all files of that type.",
+      "menuPath": [
+        "Open with",
+        "Photoshop",
+        "Change All"
+      ],
+      "tip": "Skip Change All if you only need this one file to open."
+    },
+    {
+      "name": "Open one file once",
+      "text": "Control-click the PSD and choose Open With, then Photoshop. This opens the file without changing the default for other PSDs. Apple also lists dragging the file onto the Photoshop icon.",
+      "menuPath": [
+        "Control-click",
+        "Open With",
+        "Photoshop"
+      ],
+      "tip": "Use this first if you are not sure the file association is the problem."
+    },
+    {
+      "name": "Open the file from inside Photoshop",
+      "text": "Launch Photoshop, choose File > Open, select the PSD, and click Open. If the menu is greyed out, the bug in the Adobe thread may be the cause.",
+      "menuPath": [
+        "File",
+        "Open"
+      ],
+      "shortcut": "⌘O",
+      "tip": "Adobe's pages did not open for us, so confirm ⌘O against the File menu first."
+    },
+    {
+      "name": "Try File > Open Recent",
+      "text": "If File > Open is greyed out, open the Open Recent submenu and pick the file. One Mac user said this worked when Open did not. Quitting and relaunching restored opening only for a while.",
+      "menuPath": [
+        "File",
+        "Open Recent"
+      ],
+      "tip": "If the file appears here but still fails, note that and move on."
+    },
+    {
+      "name": "Confirm your macOS version",
+      "text": "Choose About This Mac to see your macOS version. CGChannel says Photoshop 27.11 needs macOS 14.0 or later. Then check your Photoshop build with the version guide on this site.",
+      "menuPath": [
+        "Apple menu",
+        "About This Mac"
+      ],
+      "tip": "Write both numbers down before you change anything."
+    },
+    {
+      "name": "Check the File Handling preference",
+      "text": "Open Edit > Preferences > File Handling. Find Maximize PSD and PSB File Compatibility and write down whether it says Always, Never or Ask. A search snippet suggested newer Macs use Photoshop > Settings, so look there if Preferences is missing.",
+      "menuPath": [
+        "Edit",
+        "Preferences",
+        "File Handling"
+      ],
+      "tip": "Note the current value before you change it."
+    },
+    {
+      "name": "Turn off Use Graphics Processor",
+      "text": "In the Photoshop preferences, find Use Graphics Processor and uncheck it. The community checklist names this option but not the panel, so search the Preferences window if you cannot see it.",
+      "menuPath": [
+        "Edit",
+        "Preferences"
+      ],
+      "tip": "Turn it back on if the step does nothing, so your performance stays as it was."
+    },
+    {
+      "name": "Skip plug-ins with Shift at launch",
+      "text": "Quit Photoshop completely. Hold Shift while you open it from the Applications folder. The checklist says this skips plug-ins, which helps you test whether a plug-in is blocking the file.",
+      "menuPath": [
+        "Applications",
+        "Photoshop"
+      ],
+      "shortcut": "Shift at launch",
+      "tip": "Test the file right after launch, before you open anything else."
+    },
+    {
+      "name": "Open a copy from a local drive",
+      "text": "If the file sits on an external or network drive, copy it to your Mac's internal drive and open that copy. The community checklist recommends local drives for this problem.",
+      "tip": "Keep the external original until the fix is confirmed."
+    },
+    {
+      "name": "Uncheck Enable Modern User Interface",
+      "text": "Open Technology Previews in the preferences and uncheck Enable Modern User Interface. One user reported a positive effect on the 27.6 Mac problem. That is a single report, so test it before you keep the change.",
+      "menuPath": [
+        "Edit",
+        "Preferences",
+        "Technology Previews"
+      ],
+      "tip": "Undo this change if it does not help."
+    },
+    {
+      "name": "Reset preferences as the last step",
+      "text": "If nothing above works, reset Photoshop preferences. The reset guide on this site covers two methods for Photoshop 27.11 and older. Adobe has not confirmed the key combinations people report, so follow the guide rather than guessing.",
+      "tip": "Export your presets and actions before you reset."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Get Info in Finder",
+      "keys": "⌘I"
+    },
+    {
+      "action": "Open a file in Photoshop (confirm on File menu)",
+      "keys": "⌘O"
+    },
+    {
+      "action": "Duplicate the PSD in Finder",
+      "keys": "⌘D"
+    },
+    {
+      "action": "Skip plug-ins at launch (community checklist)",
+      "keys": "Shift at launch"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Double-clicking the PSD does nothing",
+      "fix": "Check Get Info for Photoshop under Open with. Then Control-click the file and use Open With, then Photoshop. If that works, the file association is the problem."
+    },
+    {
+      "problem": "File > Open is greyed out in Photoshop",
+      "fix": "Try File > Open Recent. Then check your build. Reported cases involved Photoshop 27.6.0 on macOS 26.4.1, and one user saw it on 27.7.0, so update and test again."
+    },
+    {
+      "problem": "The file opens but looks broken or blank",
+      "fix": "Open a different PSD to see whether the problem is the file. Ask the creator for a fresh export. If the file came from a download, download it again."
+    },
+    {
+      "problem": "The file is larger than the PSD limits",
+      "fix": "A PSD over 30,000 pixels in either direction, or over 2 GB, is outside the PSD format. Ask the creator to save it as PSB, which supports up to 300,000 pixels in any dimension."
+    },
+    {
+      "problem": "Resetting preferences made no difference",
+      "fix": "Community reports on the reset are mixed. Restore a backup of your settings if you made one, and send your build number and steps to Adobe if the problem remains."
+    },
+    {
+      "problem": "The file only opens after a relaunch",
+      "fix": "That matches a reported pattern, where quitting and relaunching restores opening for a time. Treat it as a workaround, and report the build number to Adobe."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Change All button?",
+    "capability": "point",
+    "result": "Lazur circles Change All in the Get Info window and labels it. You click it yourself. Lazur does not press the button for you.",
+    "shell": "design",
+    "pointsAt": "Change All",
+    "context": "Get Info window in Finder",
+    "output": "A circle and label around Change All, with a short note on what it does."
+  },
+  "type": "howto",
+  "slug": "fix-psd-files-that-won-t-open-in-photoshop",
+  "app": "photoshop",
+  "appName": "Photoshop",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-psd-files-that-won-t-open-in-photoshop/how-to-fix-psd-files-that-wont-1-a85059.jpg",
+      "width": 1280,
+      "height": 761,
+      "alt": "Designer at a desk working through a psd file that wont open in Photoshop on Mac",
+      "caption": "A desk setup for troubleshooting PSD files",
+      "keywords": [
+        "how to fix psd files that wont open in photoshop on mac",
+        "Photoshop",
+        "fix psd files that won't open",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-psd-files-that-won-t-open-in-photoshop/how-to-fix-psd-files-that-wont-2-85913b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a MacBook to check file settings for a psd that wont open in Photoshop on Mac",
+      "caption": "Checking file settings on a Mac",
+      "keywords": [
+        "how to fix psd files that wont open in photoshop on mac",
+        "Photoshop",
+        "fix psd files that won't open",
+        "Mac",
+        "person using macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-psd-files-that-won-t-open-in-photoshop/how-to-fix-psd-files-that-wont-3-166e35.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Graphic design work on a computer screen with layers, after a psd file fails to open",
+      "caption": "Layered design work in a creative app",
+      "keywords": [
+        "how to fix psd files that wont open in photoshop on mac",
+        "Photoshop",
+        "fix psd files that won't open",
+        "Mac",
+        "graphic design computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Zelta_Media_uae",
+        "url": "https://pixabay.com/users/Zelta_Media_uae-54089458/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-worker-computer-graphics-10238750/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to fix psd files that wont open in photoshop on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "photoshop psd won't open mac": 1,
+      "photoshop file won't open mac": 1,
+      "psd file won't open photoshop": 1,
+      "photoshop 27.11 mac": 1,
+      "change default app for psd mac": 1,
+      "photoshop file handling mac": 1,
+      "photoshop file greyed out mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

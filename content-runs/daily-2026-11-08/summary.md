@@ -1,6 +1,6 @@
-Content 2026-11-08: 240 written, 4 refused, 0 failed
+Content 2026-11-08: 295 written, 5 refused, 0 failed
 
-- howto: 60/120
+- howto: 115/120
 - apps: 2/9
 - roles: 19/12
 - role-apps: 60/60
@@ -248,3 +248,58 @@ howto:add-a-tag-to-a-file-in-finder /how-to/add-a-tag-to-a-file-in-finder
 howto:change-the-default-folder-for-new-windows-in-finder /how-to/change-the-default-folder-for-new-windows-in-finder
 howto:use-the-preview-pane-in-finder /how-to/use-the-preview-pane-in-finder
 howto:use-gallery-view-in-finder /how-to/use-gallery-view-in-finder
+howto:compress-a-file-in-finder /how-to/compress-a-file-in-finder
+howto:empty-the-trash-in-finder /how-to/empty-the-trash-in-finder
+howto:search-for-a-file-in-finder /how-to/search-for-a-file-in-finder
+howto:group-files-by-kind-in-finder /how-to/group-files-by-kind-in-finder
+howto:create-a-new-folder-in-finder /how-to/create-a-new-folder-in-finder
+howto:restore-a-file-from-the-trash-in-finder /how-to/restore-a-file-from-the-trash-in-finder
+howto:go-to-a-folder-in-finder /how-to/go-to-a-folder-in-finder
+howto:show-the-library-folder-in-finder /how-to/show-the-library-folder-in-finder
+howto:get-info-on-a-file-in-finder /how-to/get-info-on-a-file-in-finder
+howto:check-your-photoshop-version-in-photoshop /how-to/check-your-photoshop-version-in-photoshop
+howto:reset-preferences-in-photoshop /how-to/reset-preferences-in-photoshop
+howto:open-a-new-finder-window-in-finder /how-to/open-a-new-finder-window-in-finder
+howto:grant-full-disk-access-in-photoshop /how-to/grant-full-disk-access-in-photoshop
+howto:update-photoshop-in-photoshop /how-to/update-photoshop-in-photoshop
+howto:install-on-an-apple-silicon-mac-in-photoshop /how-to/install-on-an-apple-silicon-mac-in-photoshop
+howto:remove-a-background-in-photoshop /how-to/remove-a-background-in-photoshop
+howto:fix-psd-files-that-won-t-open-in-photoshop /how-to/fix-psd-files-that-won-t-open-in-photoshop
+howto:add-text-in-photoshop /how-to/add-text-in-photoshop
+howto:change-canvas-size-in-photoshop /how-to/change-canvas-size-in-photoshop
+howto:resize-an-image-in-photoshop /how-to/resize-an-image-in-photoshop
+howto:crop-an-image-in-photoshop /how-to/crop-an-image-in-photoshop
+howto:make-a-selection-in-photoshop /how-to/make-a-selection-in-photoshop
+howto:use-layer-masks-in-photoshop /how-to/use-layer-masks-in-photoshop
+howto:undo-a-step-in-photoshop /how-to/undo-a-step-in-photoshop
+howto:add-a-new-layer-in-photoshop /how-to/add-a-new-layer-in-photoshop
+howto:turn-on-the-grid-in-photoshop /how-to/turn-on-the-grid-in-photoshop
+howto:change-the-color-mode-in-photoshop /how-to/change-the-color-mode-in-photoshop
+howto:export-a-file-as-png-in-photoshop /how-to/export-a-file-as-png-in-photoshop
+howto:turn-on-notifications-in-canva /how-to/turn-on-notifications-in-canva
+howto:duplicate-a-design-in-canva /how-to/duplicate-a-design-in-canva
+howto:open-designs-from-the-dock-in-canva /how-to/open-designs-from-the-dock-in-canva
+howto:download-and-install-canva-in-canva /how-to/download-and-install-canva-in-canva
+howto:reset-the-desktop-app-in-canva /how-to/reset-the-desktop-app-in-canva
+howto:align-elements-in-canva /how-to/align-elements-in-canva
+howto:lock-an-element-in-canva /how-to/lock-an-element-in-canva
+howto:download-a-design-as-pdf-in-canva /how-to/download-a-design-as-pdf-in-canva
+howto:group-elements-in-canva /how-to/group-elements-in-canva
+howto:upload-a-font-in-canva /how-to/upload-a-font-in-canva
+howto:resize-a-design-in-canva /how-to/resize-a-design-in-canva
+howto:share-a-design-link-in-canva /how-to/share-a-design-link-in-canva
+howto:use-help-assistant-in-canva /how-to/use-help-assistant-in-canva
+howto:restore-a-deleted-design-in-canva /how-to/restore-a-deleted-design-in-canva
+howto:remove-a-background-in-canva /how-to/remove-a-background-in-canva
+howto:add-a-blank-page-in-canva /how-to/add-a-blank-page-in-canva
+howto:select-multiple-issues-in-linear /how-to/select-multiple-issues-in-linear
+howto:open-the-command-menu-in-linear /how-to/open-the-command-menu-in-linear
+howto:use-keyboard-shortcuts-in-canva /how-to/use-keyboard-shortcuts-in-canva
+howto:create-an-issue-in-linear /how-to/create-an-issue-in-linear
+howto:switch-between-list-and-board-in-linear /how-to/switch-between-list-and-board-in-linear
+howto:show-the-details-sidebar-in-linear /how-to/show-the-details-sidebar-in-linear
+howto:create-a-cycle-in-linear /how-to/create-a-cycle-in-linear
+howto:filter-issues-in-linear /how-to/filter-issues-in-linear
+howto:create-a-project-in-linear /how-to/create-a-project-in-linear
+howto:add-a-label-in-linear /how-to/add-a-label-in-linear
+howto:set-up-a-workflow-in-linear /how-to/set-up-a-workflow-in-linear

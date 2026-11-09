@@ -1,0 +1,628 @@
+{
+  "title": "LinkedIn InMail response rate: how to raise it on Mac for recruiters in 2026",
+  "metaTitle": "LinkedIn InMail Response Rate: Fix It on Mac in 2026",
+  "description": "LinkedIn Recruiter expects a 13% InMail response rate. Learn how to measure yours on Mac, why replies drop, and fixes that cost nothing.",
+  "targetKeyword": "linkedin inmail response rate",
+  "secondaryKeywords": [
+    "low inmail response rate",
+    "inmail improvement period",
+    "improve inmail response rate",
+    "linkedin inmail tips for recruiters",
+    "inmail response rate benchmark",
+    "linkedin recruiter inmail limits"
+  ],
+  "intro": "LinkedIn Recruiter expects at least a 13% InMail response rate on each seat. Fall below it on 100 or more InMails in a 14-day period and LinkedIn can switch off bulk InMail for at least two weeks. This page shows how to measure your rate, what pushes it down, and the fixes you can make today without buying anything.",
+  "tldr": [
+    "LinkedIn Recruiter expects 13% or higher, measured over 100 or more InMails in each 14-day period.",
+    "Shorter, individual messages did best in LinkedIn's own 2021 to 2022 data. Friday and Saturday sends did worse.",
+    "Build a free tracker in Google Sheets so you see your rate before LinkedIn shows a warning.",
+    "Open to Work candidates and company followers replied more often in LinkedIn's 2022 and 2023 posts."
+  ],
+  "stats": [
+    {
+      "value": "13%",
+      "label": "Minimum InMail response rate LinkedIn Recruiter expects on each seat",
+      "sourceUrl": "https://www.linkedin.com/help/recruiter/answer/a413271",
+      "sourceTitle": "InMail Improvement Period in Recruiter (LinkedIn Help Center)"
+    },
+    {
+      "value": "65%",
+      "label": "Of InMail responses that arrived within 24 hours, in LinkedIn's May 2021 to April 2022 data",
+      "sourceUrl": "https://www.linkedin.com/business/talent/blog/talent-strategy/these-inmails-get-best-response-rates",
+      "sourceTitle": "How to Improve Your InMail Response Rate, According to LinkedIn Data"
+    },
+    {
+      "value": "22%",
+      "label": "Above-average response rate for InMails under 400 characters, per LinkedIn's analysis",
+      "sourceUrl": "https://www.linkedin.com/business/talent/blog/talent-strategy/these-inmails-get-best-response-rates",
+      "sourceTitle": "How to Improve Your InMail Response Rate, According to LinkedIn Data"
+    },
+    {
+      "value": "$5,475",
+      "label": "SHRM average cost-per-hire for nonexecutive roles, across all channels",
+      "sourceUrl": "https://www.shrm.org/about/press-room/shrm-releases-2025-benchmarking-reports--how-does-your-organizat",
+      "sourceTitle": "SHRM Releases 2025 Benchmarking Reports"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start with the number LinkedIn uses"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your InMail response rate is the share of your messages that get a reply. For LinkedIn Recruiter seats, the rate has a hard floor. It must stay at or above 13% on 100 or more InMails sent in each 14-day assessment period."
+    },
+    {
+      "type": "paragraph",
+      "text": "Fall below that line and Recruiter shows a warning banner and dialog. If you do not raise the rate above 13%, the seat enters an InMail Improvement Period of 2 weeks. Bulk InMail is disabled during that period. You can still send one-to-one InMails, and those can raise the rate. If the rate is still at or below 13% at the end, the period runs another 14 days."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not wait for the banner",
+      "text": "The warning banner appears after the rate has already dropped. Check your number every week in your own sheet, so you see the trend before LinkedIn does."
+    },
+    {
+      "type": "paragraph",
+      "text": "This page does not confirm the exact menu path to LinkedIn's InMail report, so look for it inside your own Recruiter account. Treat LinkedIn's figure as the official one. Use your own tracker to watch the direction between checks."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a free InMail tracker in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A tracker shows your rate every week, not only when a warning appears. You need one row per InMail. A Google Sheets file works, and it costs nothing beyond the Google account you already use. Start with these columns."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What to enter",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "A: Candidate",
+          "Name or internal ID",
+          "One row per InMail"
+        ],
+        [
+          "B: Source",
+          "Search, Open to Work, follower, or referral",
+          "Shows which audiences reply"
+        ],
+        [
+          "C: Message",
+          "The exact text you sent",
+          "Lets you compare versions"
+        ],
+        [
+          "D: Characters",
+          "=LEN(C2)",
+          "Tests the 400 character rule"
+        ],
+        [
+          "E: Sent date",
+          "The day you clicked send",
+          "Sets the 14-day window"
+        ],
+        [
+          "F: Replied",
+          "Yes or No",
+          "Feeds the rate formula"
+        ],
+        [
+          "G: Reply date",
+          "The day the reply arrived",
+          "Needed for days to reply"
+        ],
+        [
+          "H: Days to reply",
+          "=G2-E2",
+          "Shows how fast replies arrive"
+        ]
+      ],
+      "caption": "Columns for a simple InMail tracker in Google Sheets."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set the file up in this order. Each step takes a few minutes, and none of them needs a paid add-on."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type the headers from the table into row 1. Freeze row 1 so the headers stay visible. See [how to freeze the top row](/how-to/freeze-the-top-row-in-google-sheets).",
+        "Make column F a dropdown with Yes and No. Follow [our dropdown guide](/how-to/create-a-dropdown-list-in-google-sheets).",
+        "In J1, type the first day of your 14-day window. In J2, type the last day.",
+        "In J3, enter =COUNTIFS(E2:E500,\">=\"&J1,E2:E500,\"<=\"&J2,F2:F500,\"Yes\")/COUNTIFS(E2:E500,\">=\"&J1,E2:E500,\"<=\"&J2). Format J3 as a percentage.",
+        "In J4, enter =IF(J3>=0.13,\"Above 13%\",\"Below 13%\") to see which side of the floor you are on."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the window has no sends yet, J3 shows an error. That is normal until you have data. The formula counts only the replies from messages sent inside the window, so keep the sent date in column E accurate."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Message length and timing that LinkedIn's data points to"
+    },
+    {
+      "type": "paragraph",
+      "text": "LinkedIn's 2022 analysis covered corporate recruiter InMails sent from May 2021 to April 2022. It counted responses within 30 days. InMails under 400 characters had response rates about 22% above average. Messages over 1,200 characters were about 11% below average."
+    },
+    {
+      "type": "paragraph",
+      "text": "LinkedIn's 2023 tips said messages over 800 characters see below-average rates. Those two thresholds do not match, so aim under 400 characters and test. Count each version with =LEN in column D of your sheet."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Monday was marginally the best send day in the 2022 analysis.",
+        "Sunday through Thursday sat within about 1% of the global average.",
+        "Friday was about 4% below average. Saturday was about 8% below.",
+        "Individually sent InMails had response rates roughly 15% higher than bulk sends."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Reply timing changes how you read your sheet. In the 2022 analysis, 65% of responses arrived within 24 hours, and 90% arrived within one week. By day seven, most replies had already come in. Judge a batch on the full 14-day window, not on day two."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Audience and personalization: what the data does and does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "LinkedIn reports that Open to Work candidates are 37% more likely to respond to InMails, based on its 2022 analysis. Its 2023 post puts that figure at about 35%. The same 2023 post says followers of the company were 81% more likely to respond."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shared history helps too. The 2023 tips say a shared former employer raises response chances by 27%. They also say personalized InMails can increase acceptance by 40%. Acceptance is not the same as response, so treat that figure as a separate signal."
+    },
+    {
+      "type": "paragraph",
+      "text": "All of these figures come from LinkedIn's own platform data. They show association, not cause, and no outside lab tested them. Use them to choose where to start, then check the results in your own sheet."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "A before and after example"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Before: a long template that opens with a general line about a great opportunity at your company, then lists perks and two questions. It runs past 1,200 characters and reads like a mass send.",
+        "After: a short note that opens with one true detail from the profile, names one reason you are reaching out, and asks one question about a short call.",
+        "Why it works: the reader sees a reason to reply, the message stays under 400 characters, and the question is easy to answer."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Notice what the second version leaves out. There is no company pitch, no list of perks, and no second question. Each of those cuts length and gives the reader more to answer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the rate low"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sending one template to a whole list, then wondering why replies stay flat. Bulk sends did worse than individual ones in LinkedIn's 2022 analysis.",
+        "Treating 13% as your goal. It is a floor for seat health. Your own trend over several windows tells you more about your search.",
+        "Sending most of the week's InMails on Friday afternoon or Saturday. Those days did worse in LinkedIn's data.",
+        "Mixing Open to Work candidates, followers, and cold searches into one number. Split the rate by source so one weak list does not hide a strong one.",
+        "Counting profile views as responses. Count only replies, the same way the tracker does."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: small batches and shared accounts"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 13% rule applies only once you send 100 or more InMails in a 14-day assessment period. A small batch can look bad in your sheet without triggering LinkedIn's rule. Read your own number with that in mind, and do not overreact to a short run."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a colleague sends from the same account, your sheet will not show their messages. Agree on one tracker for the account, or the rate you calculate will not match what LinkedIn shows."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Candidate details are personal data",
+      "text": "Check your company's data rules before you put candidate names in a sheet or paste a message into any AI tool. Use internal IDs where you can."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Follow up by email with Send Later in Apple Mail"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every follow up happens inside LinkedIn. If a candidate gives you an email address, you can schedule a follow up in Apple Mail on your Mac. Compose the message, then click the Send Later button. Choose a suggested time, or set your own date and time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scheduled messages sit in the Send Later mailbox. Double-click one, then click Edit to change it. Use the Delete button to remove it. Apple's guide does not list a macOS version for this feature, so your menus may look a little different on your release. See [Apple's Mail guide](https://support.apple.com/guide/mail/send-email-messages-mlhlp1098/mac)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test one change per window, then decide"
+    },
+    {
+      "type": "paragraph",
+      "text": "Make one change at a time. Keep the sheet for one full 14-day window, then compare the rate with the window before. If you change length and timing in the same week, you will not know which one helped."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the change and its start date in a notes tab, or in column C of a test row. The next review then has context. Without that log, a good number looks like luck and a bad number looks like a mystery."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "One change per window",
+      "text": "Write the change and the start date in your sheet before the first send. Compare the next window to the one before it, not to a number from memory."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, and what it does not do"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about what is on screen, and it answers out loud. It can point at things on screen and guide you one click at a time. You do the clicking. Lazur does not click buttons or send InMails for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation is included too. Hold fn to dictate clean text at the cursor in any app, with snippets, a personal dictionary, and clipboard slots. There is a free trial with no credit card. See [pricing](/pricing) for the current plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the tracker this week. It shows whether a fix worked, and it warns you about a slide before LinkedIn's banner does."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is a good LinkedIn InMail response rate?",
+      "answer": "LinkedIn's floor for Recruiter seats is 13%. It is measured over 100 or more InMails sent in each 14-day assessment period. No official benchmark sets a target for your roles, so use your own trend over several windows as the guide."
+    },
+    {
+      "question": "How do I check my InMail response rate?",
+      "answer": "Check the InMail report or response rate inside your LinkedIn Recruiter account. This page does not confirm the exact menu path, so look on the page you use most. Then keep your own Google Sheets tracker for weekly checks."
+    },
+    {
+      "question": "What happens if my rate drops below 13%?",
+      "answer": "Recruiter shows a warning banner and dialog first. If you do not raise the rate above 13%, the seat enters a two-week InMail Improvement Period with bulk InMail disabled. If the rate is still at or below 13% at the end, the period runs another 14 days. One-to-one InMails still send."
+    },
+    {
+      "question": "Do shorter InMails really get more replies?",
+      "answer": "In LinkedIn's 2022 analysis, InMails under 400 characters had response rates about 22% above average. That is correlation from LinkedIn's own data, not a controlled test. Send a short version next to your current one and compare the results."
+    },
+    {
+      "question": "Is Saturday or Friday a bad day to send InMails?",
+      "answer": "LinkedIn's 2022 analysis found Saturday about 8% below average and Friday about 4% below. Monday was marginally best. Sunday through Thursday sat within about 1% of the average. Send on weekdays where you can, and track the result."
+    },
+    {
+      "question": "Does the 13% rule apply to a small batch?",
+      "answer": "No. The rule counts only when you send 100 or more InMails in a 14-day assessment period. A smaller batch can still show a low rate in your sheet, but LinkedIn's rule does not apply to it."
+    },
+    {
+      "question": "Can Lazur send my InMails for me?",
+      "answer": "No. Lazur does not click buttons or operate LinkedIn for you. It can explain what is on screen, point at elements, guide you one step at a time, dictate text, and draft a message for you to review and send yourself."
+    },
+    {
+      "question": "Is it safe to paste candidate details into an AI tool?",
+      "answer": "Check your company's data rules first. Recruiters handle personal data, and employer policy can limit what you share with any tool. Lazur sends the audio and screenshot to AI providers to answer, and they are not stored."
+    }
+  ],
+  "sources": [
+    {
+      "title": "InMail Improvement Period in Recruiter",
+      "url": "https://www.linkedin.com/help/recruiter/answer/a413271",
+      "publisher": "LinkedIn Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to Improve Your InMail Response Rate, According to LinkedIn Data",
+      "url": "https://www.linkedin.com/business/talent/blog/talent-strategy/these-inmails-get-best-response-rates",
+      "publisher": "LinkedIn Talent Solutions blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "10 LinkedIn InMail Best Practices",
+      "url": "https://www.linkedin.com/business/talent/blog/product-tips/tips-for-writing-inmails-from-linkedin-recruiters",
+      "publisher": "LinkedIn Talent Solutions blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "SHRM Releases 2025 Benchmarking Reports: How Does Your Organization Compare?",
+      "url": "https://www.shrm.org/about/press-room/shrm-releases-2025-benchmarking-reports--how-does-your-organizat",
+      "publisher": "Society for Human Resource Management",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Human Resources Specialists: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Send email messages in Mail on Mac",
+      "url": "https://support.apple.com/guide/mail/send-email-messages-mlhlp1098/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "low inmail response rates",
+  "costs": [
+    {
+      "title": "Bulk sending gets switched off",
+      "text": "When the seat enters an InMail Improvement Period, bulk InMail is disabled for two weeks. If the rate is still at or below 13% at the end, the period runs another 14 days. During that time, the lists you rely on to fill a pipeline cannot go out in bulk. One-to-one InMails still send, so the work slows down rather than stops."
+    },
+    {
+      "title": "Hours spent rewriting and resending",
+      "text": "Every rewrite, resend, and manual check takes your time. Time is the cost you pay most often. For a rough proxy, BLS reports a median of $36.51 an hour for human resources specialists in May 2025. That is an HR specialist figure, not recruiter pay, so swap in your own rate."
+    },
+    {
+      "title": "Roles that stay open longer",
+      "text": "Slow outreach can keep a role open longer. SHRM's 2025 benchmark puts average cost-per-hire at $5,475 for nonexecutive roles. That figure covers all channels, not InMail alone, so do not read it as an InMail cost. Use it as context for what a slow hire can cost."
+    },
+    {
+      "title": "Candidates you never reach",
+      "text": "A low rate often means you lost people who would have answered a better message. LinkedIn's data ties response rates to length, timing, and personal detail. A report rarely shows the replies you never got, so the loss stays hidden until you track it yourself."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Long messages",
+      "text": "LinkedIn's 2022 analysis found InMails over 1,200 characters about 11% below average. The 2023 tips put the line lower, at 800 characters. A long message asks the reader to spend time before they know why it matters. A short message makes the reply cheap to write."
+    },
+    {
+      "title": "Bulk sends that read like templates",
+      "text": "In the same 2022 analysis, individually sent InMails had response rates roughly 15% higher than bulk sends. A message that could go to anyone gives the reader no reason to answer. Templates also make it hard to notice which lines work."
+    },
+    {
+      "title": "Cold audiences",
+      "text": "Open to Work candidates are about 35% to 37% more likely to respond, by LinkedIn's count. Followers of the company were 81% more likely to respond in the 2023 post. People who have never heard of your company start with less goodwill, so the rate falls for lists built from cold searches alone."
+    },
+    {
+      "title": "No personal hook in the first line",
+      "text": "LinkedIn's 2023 tips say a shared former employer raises response chances by 27%. Without a hook, the first line tells the reader nothing about why you chose them. The message then reads as a broadcast, even when you wrote it one at a time."
+    },
+    {
+      "title": "Weekend and late-week sends",
+      "text": "In the 2022 analysis, Friday ran about 4% below average and Saturday about 8% below. Sunday through Thursday sat near the average. A send on a weekend is easy to miss, and the data shows weaker replies on those days."
+    },
+    {
+      "title": "No tracker, so the drop goes unseen",
+      "text": "Without a tracker, most people notice a low rate only when LinkedIn shows a warning. By then the seat may already be restricted. A weekly check in a simple sheet shows the slide weeks earlier."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Measure your rate every week",
+      "text": "Build the tracker from this page in Google Sheets, with one row per InMail. Check the rate every seven days and compare it with the 13% floor. Use a 14-day window in the formula, so you measure the same kind of period LinkedIn uses."
+    },
+    {
+      "title": "Cut the first version to under 400 characters",
+      "text": "Write the first draft under 400 characters. LinkedIn's 2022 analysis found those messages about 22% above average. Cut the company pitch first. Keep one true reason you chose this person and one question. Count the result with =LEN in column D before you send."
+    },
+    {
+      "title": "Send one-to-one, and use bulk only to build a shortlist",
+      "text": "Use search and filters to build a shortlist, then write each message yourself. Individually sent InMails had response rates roughly 15% higher than bulk sends in LinkedIn's 2022 analysis. Start with the candidates who fit the role best, and personalize those first."
+    },
+    {
+      "title": "Lead with one real detail from the profile",
+      "text": "Name one thing you checked on the profile, such as a project, a skill, or a shared former employer. LinkedIn's 2023 tips say a shared former employer raises response chances by 27%. Use only details that are true and that you read yourself."
+    },
+    {
+      "title": "Target people who show they are open",
+      "text": "Filter for Open to Work candidates and people who follow your company. LinkedIn reports higher response rates for both groups. Message the people who fit the role from that filtered set, and keep your tracker split by source so you can see whether it helps."
+    },
+    {
+      "title": "Send Monday to Thursday, and follow up once",
+      "text": "Monday was marginally the best day in LinkedIn's 2022 data, and Sunday through Thursday sat near average. Avoid Friday and Saturday where you can. About 90% of responses arrived within one week, so give a message a week. Then send one short follow up under 400 characters. The follow up is advice, not a tested rule, so compare your own numbers."
+    },
+    {
+      "title": "Schedule the email follow up in Apple Mail",
+      "text": "If a candidate shares an email address, schedule your follow up with Send Later in Apple Mail. Compose the message, click Send Later, then pick a suggested time or set your own. You can edit or delete it from the Send Later mailbox until it goes out."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Hold ⌥ ⌘ and ask what the warning banner means.",
+      "result": "Lazur reads the screen and answers out loud, so you learn what the number means without leaving LinkedIn."
+    },
+    {
+      "capability": "point",
+      "say": "Ask Lazur where the InMail rate sits on this page.",
+      "result": "If the rate is on screen, Lazur draws a circle and a label around it. You still click it yourself."
+    },
+    {
+      "capability": "guide",
+      "say": "Ask Lazur to walk you through a dropdown in Google Sheets.",
+      "result": "Lazur gives one step at a time and waits for each click. You do the clicking."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate your message draft at the cursor.",
+      "result": "Lazur types clean, formatted text at the cursor in any app. Read it before you send anything."
+    },
+    {
+      "capability": "draft",
+      "say": "Ask Lazur to shorten this InMail and keep the project mention.",
+      "result": "Lazur drafts a shorter version. You review it and paste it into LinkedIn yourself."
+    },
+    {
+      "capability": "everyday",
+      "say": "Ask Lazur to set a Friday reminder to check my InMail rate.",
+      "result": "Lazur sets an Apple Reminders entry, so the weekly check has a time on your calendar."
+    }
+  ],
+  "demo": {
+    "capability": "draft",
+    "context": "A LinkedIn InMail to a candidate who follows our company",
+    "spoken": "Lazur, shorten this InMail and keep the project mention.",
+    "result": "Lazur returns a shorter draft that keeps the project mention. You read it, edit it, and send it yourself.",
+    "shell": "generic",
+    "output": "A draft that drops the company pitch and ends with one question."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pull your last 14 days",
+      "text": "Open your LinkedIn Recruiter account and find the InMail report or response rate. Note the number and the date. Count the InMails you sent in that window. If you sent fewer than 100, the 13% rule does not apply yet."
+    },
+    {
+      "label": "Day 2",
+      "title": "Build the tracker",
+      "text": "Set up the Google Sheets file from this page. Add the headers, the Yes and No dropdown, and the window formula. Enter the sends from the last 14 days so you have a baseline to compare against."
+    },
+    {
+      "label": "Day 3",
+      "title": "Rewrite one template",
+      "text": "Write one version under 400 characters. Keep one true detail from the profile, one reason for reaching out, and one question. Count it with =LEN in column D before you send it to anyone."
+    },
+    {
+      "label": "Day 4",
+      "title": "Split the list and time the sends",
+      "text": "Message your strongest candidates one-to-one. Send Monday to Thursday, since Monday was marginally best and Friday and Saturday did worse in LinkedIn's data. Log the date and source for each send in your sheet."
+    },
+    {
+      "label": "Day 5",
+      "title": "Check the first batch",
+      "text": "Compare the first replies with your baseline. Do not judge the change yet, because replies keep arriving for about a week. Write down what you changed and what you saw. Decide only after the full 14-day window closes."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "chrome",
+    "gmail"
+  ],
+  "type": "problem",
+  "slug": "linkedin-inmail-response-rate-low",
+  "role": "recruiters",
+  "roleName": "Recruiters",
+  "roleSingular": "recruiter",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/linkedin-inmail-response-rate-low/linkedin-inmail-response-rate-1-e7c576.jpg",
+      "width": 1280,
+      "height": 797,
+      "alt": "Recruiter at a laptop reviewing numbers for a LinkedIn InMail response rate",
+      "caption": "A recruiter checking outreach results on a laptop.",
+      "keywords": [
+        "linkedin inmail response rate",
+        "Recruiters",
+        "Low InMail response rates",
+        "Mac",
+        "recruiter at laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Isabelavoliveira",
+        "url": "https://pixabay.com/users/Isabelavoliveira-4958110/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/analyst-recruiter-research-6492859/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/linkedin-inmail-response-rate-low/linkedin-inmail-response-rate-2-04af3b.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Person at a desk with a laptop tracking their LinkedIn InMail response rate in a spreadsheet",
+      "caption": "A desk setup for weekly outreach tracking.",
+      "keywords": [
+        "linkedin inmail response rate",
+        "Recruiters",
+        "Low InMail response rates",
+        "Mac",
+        "office desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/linkedin-inmail-response-rate-low/linkedin-inmail-response-rate-3-35713e.jpg",
+      "width": 1280,
+      "height": 822,
+      "alt": "Job candidate on a video call, the kind of first conversation a strong LinkedIn InMail response rate can lead to",
+      "caption": "A first call often follows a reply to an InMail.",
+      "keywords": [
+        "linkedin inmail response rate",
+        "Recruiters",
+        "Low InMail response rates",
+        "Mac",
+        "job interview video call",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TruongDinhAnh",
+        "url": "https://pixabay.com/users/TruongDinhAnh-51794135/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/vietnam-women-street-people-daily-9908601/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "linkedin inmail response rate",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "low inmail response rate": 2,
+      "inmail improvement period": 5,
+      "improve inmail response rate": 1,
+      "linkedin inmail tips for recruiters": 1,
+      "inmail response rate benchmark": 1,
+      "linkedin recruiter inmail limits": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

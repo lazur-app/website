@@ -1,0 +1,649 @@
+{
+  "title": "How to evaluate AI feature output quality on Mac: a practical guide for product managers",
+  "metaTitle": "Evaluate AI feature output quality: a PM guide for Mac",
+  "description": "Evaluate AI feature output quality with a fixed test set, a short rubric and spot checks. Steps, costs and tools for product managers on Mac.",
+  "targetKeyword": "evaluate AI feature output quality",
+  "secondaryKeywords": [
+    "measure AI output quality",
+    "AI output quality metrics",
+    "LLM-as-a-judge grading",
+    "AI feature testing rubric",
+    "Promptfoo llm-rubric on Mac",
+    "test set for AI features",
+    "AI feature QA for product managers"
+  ],
+  "intro": "To evaluate AI feature output quality, you need the same inputs, the same scoring rules and a record of every run. Most teams start with a few demo prompts and a gut feeling. That works until a model update or a prompt edit quietly makes answers worse. This guide shows how to build a small test set, grade it and keep the results honest on your Mac.",
+  "tldr": [
+    "Build a fixed test set from real user inputs, not from demo prompts.",
+    "Score each output against a short rubric with one clear line per criterion.",
+    "Use a different model as the grader, then read a sample of its scores yourself.",
+    "Log every failure, and rerun the same set after each prompt or model change."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of U.S. desk workers got workslop, AI output that looks finished but does not move work forward, last month (self-reported)",
+      "sourceUrl": "https://www.betterup.com/workslop",
+      "sourceTitle": "Workslop: The Hidden Cost of AI-Generated Busywork (BetterUp)"
+    },
+    {
+      "value": "$186",
+      "label": "per employee per month lost to workslop, according to BetterUp's estimate",
+      "sourceUrl": "https://www.betterup.com/workslop",
+      "sourceTitle": "Workslop: The Hidden Cost of AI-Generated Busywork (BetterUp)"
+    },
+    {
+      "value": "56%",
+      "label": "of employees in KPMG's global study say they made mistakes at work because of AI",
+      "sourceUrl": "https://kpmg.com/xx/en/media/press-releases/2025/04/trust-of-ai-remains-a-critical-challenge.html",
+      "sourceTitle": "KPMG global study press release: trust of AI remains a critical challenge (April 2025)"
+    },
+    {
+      "value": "66%",
+      "label": "say many people rely on AI output without evaluating its accuracy, per KPMG's global study",
+      "sourceUrl": "https://kpmg.com/xx/en/media/press-releases/2025/04/trust-of-ai-remains-a-critical-challenge.html",
+      "sourceTitle": "KPMG global study press release: trust of AI remains a critical challenge (April 2025)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A normal feature has a right answer. A save button either saves the file or it does not. An AI feature can give a different answer to each input, and sometimes a different answer to the same input twice. A quick try in a demo rarely tells you how the feature behaves. You need many inputs, one scoring method, and a record you can compare over time."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What bad AI output costs your team"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bad output costs time before it costs anything else. BetterUp surveyed 1,150 full-time U.S. desk workers in September 2025. It found that 40% had received workslop in the last month. Workslop is AI-generated work that looks finished but does not move the task forward. The survey is self-reported, so read it as a signal, not a precise measure."
+    },
+    {
+      "type": "paragraph",
+      "text": "BetterUp puts the average fix at two hours per incident. It estimates $186 per employee per month, or about $9 million a year for a 10,000-person company. Those figures come from one vendor's research. Your team may see more or less. The more useful number is how many hours your own reviewers spend fixing AI output each week."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Where the cost shows up",
+        "Who pays it",
+        "Early warning sign"
+      ],
+      "rows": [
+        [
+          "Rework on drafts that look finished",
+          "The reviewer, then the author",
+          "Reviewers start rewriting whole sections"
+        ],
+        [
+          "Wrong facts reach customers",
+          "Support and the account owner",
+          "Tickets that quote the AI feature"
+        ],
+        [
+          "Trust drops in the feature",
+          "The product team",
+          "Users stop using it after one bad answer"
+        ],
+        [
+          "Slow releases",
+          "Engineering and QA",
+          "Every prompt change needs a long manual check"
+        ]
+      ],
+      "caption": "Where bad AI output usually costs money, and how to spot it early."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put a rough number on it before you argue about model quality. Ask three questions about last week. How many AI drafts did reviewers rewrite? How many tickets quoted a wrong AI answer? How long did the last prompt change take to check? The answers give you a cost you can defend in a planning meeting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why AI output quality slips past reviewers"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fastest way to fool yourself is to trust how a tool feels. In a July 2025 randomized trial, METR tracked 16 experienced open-source developers on 246 real issues. With AI tools allowed, the developers took 19% longer to finish. Before the study, they expected a 24% speedup. Afterward, they still believed AI had made them 20% faster."
+    },
+    {
+      "type": "paragraph",
+      "text": "That gap is the lesson for product managers. A feeling that the feature is good is a hypothesis, not data. METR also warns that these results used early-2025 tools and do not generalize to most software work. Treat the study as a warning about self-assessment, not as a fact about your product."
+    },
+    {
+      "type": "paragraph",
+      "text": "Reviewers miss errors for a similar reason. KPMG's 2025 global study surveyed more than 48,000 people across 47 countries. In its press release, 66% said many people rely on AI output without evaluating its accuracy. Another 56% said they had made mistakes at work because of AI. These are self-reports, and regional pages show slightly different numbers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 1: build a test set from real inputs"
+    },
+    {
+      "type": "paragraph",
+      "text": "A test set is a list of inputs your feature should handle, plus notes on what a good answer looks like. Pull the inputs from real use. Support tickets, search logs, sales call notes and your own past requests all work. Demo prompts are too clean. They show the feature working on the examples you picked, which is not the same as working on your users' messy text."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a few dozen inputs. Include easy cases, hard cases and awkward ones. Add long inputs, inputs with typos, inputs that mix two languages, and requests the feature should refuse. Put each input in its own row of a Google Sheets file, with columns for the input, the output and each score."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Very short inputs, such as one or two words",
+        "Very long inputs close to the length limit",
+        "Typos, slang and text pasted with stray formatting",
+        "Requests outside the feature's scope",
+        "Inputs with names, account numbers or other sensitive details"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Freeze the set once it is ready. If you swap inputs after you see results, the scores stop meaning anything. Add new failures as you find them, and keep the old cases too. Old cases show you when a fix in one area breaks another. You can filter the sheet by category with [the Google Sheets filter steps](/how-to/add-a-filter-to-a-range-in-google-sheets)."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check data rules first",
+      "text": "If your feature handles client, patient or customer records, follow your employer's rules before you paste any of it into an AI tool. Use redacted or made-up inputs when your rules require it. Ask your security or legal team when you are unsure."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 2: write a rubric before you read outputs"
+    },
+    {
+      "type": "paragraph",
+      "text": "A rubric is a short list of criteria. Each criterion has a clear way to score it. Write the rubric before you read any outputs. If you write it afterward, you will grade toward what you already like. Keep it short enough that a reviewer can apply it in a minute or two per output."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a feature that summarizes support tickets for an internal triage team. A useful rubric might ask these questions. Does the summary include every customer request? Does it add any fact that is not in the ticket? Does it use the right product names? Is it short enough to scan quickly? Score each line on a 5-point scale, where 1 is unusable and 5 needs no edits."
+    },
+    {
+      "type": "paragraph",
+      "text": "Define the low end too. Write one sentence that says what a 1 looks like for each criterion. Without that, two reviewers can score the same output differently and both feel right. Score a handful of outputs together first, then fix any line that starts an argument."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Split facts from style",
+      "text": "A summary can read well and still invent a deadline. Give facts their own line in the rubric. A fluent answer then cannot hide a wrong one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 3: use a second model as the grader"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reading every output by hand does not scale. Many teams ask a language model to grade outputs against the rubric instead. Researchers call this LLM-as-a-judge. In the MT-bench and Chatbot Arena paper, strong judges such as GPT-4 reached over 80% agreement with human preferences. That matched the agreement between humans."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same paper lists known weaknesses. Judges can favor the answer shown first, favor longer answers, and favor output from their own model family. They also reason imperfectly on some tasks. The benchmark tested chat answers, not product summaries, so the 80% figure does not carry over directly to your feature."
+    },
+    {
+      "type": "paragraph",
+      "text": "Anthropic's evaluation docs recommend using a different model from the one that generated the output, when you use an LLM for grading. If your feature runs on one model, grade with another. Then read a sample of the grader's scores yourself every week. Sampling is how you catch a grader that has drifted or has a blind spot."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not trust an unchecked grader",
+      "text": "A grader can sound confident and still be wrong. Read the outputs it marked as passes, not only the failures. If longer answers always win, fix the rubric before you trust the next run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to run an AI evaluation with Promptfoo on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Promptfoo is a command-line tool for running prompts against test cases. Its getting-started guide documents an install with Homebrew. Its config file, promptfooconfig.yaml, lists your prompts, inputs and checks. The steps below follow that guide. Check the current page before you run them, because commands and labels change."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Terminal with ⌘ Space, type Terminal, and press Return.",
+        "Run brew install promptfoo, then run promptfoo init --example getting-started.",
+        "Open promptfooconfig.yaml in a text editor. Replace the example prompt and inputs with your feature's.",
+        "Add an llm-rubric check for each criterion, written as a plain instruction, such as: The summary must not add facts absent from the ticket.",
+        "Run promptfoo eval, then run promptfoo view to open the results in your browser."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The llm-rubric check is a model-graded test of free-form instructions. The Promptfoo page uses the example 'Do not apologize.' Your rubric lines work the same way. Keep one criterion per check, so a failure tells you what went wrong. A check that covers four things at once tells you almost nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Save each results file with the date in its name, and keep the first run as your baseline. A saved baseline lets you compare the feature before and after a prompt change. That comparison matters more than any single score."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Side-by-side checks in Anthropic's Console"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your feature runs on Claude, Anthropic's Console has an Evaluate feature for prompts. The July 2024 launch post describes a Generate Test Case button, CSV import and side-by-side comparison of prompts. Subject matter experts score responses on a 5-point scale. Labels may have changed since then, so match the post's steps to what your Console shows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Side-by-side comparison suits product managers well. Show two prompt versions to a domain expert and ask which answer is better. Record the choice and the reason. Then sort the reasons by how often they come up. The most common reason usually points to the real problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make AI quality scores meaningless"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Testing only the demo prompts, which were picked because they work.",
+        "Running each input once, then treating one answer as the feature's behavior.",
+        "Changing the prompt, the model and the rubric in the same week.",
+        "Letting the generating model grade its own output.",
+        "Scoring without a baseline, so every number looks like progress or failure.",
+        "Reporting an average and hiding the failures users will notice.",
+        "Reading the summary score but never opening a failed output."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last mistake is the most common. A feature can average well and still fail on one customer type. Sort failures by input category. Keep a short list of must-pass cases, such as a refusal that must happen or a fact that must be right. One failed must-pass case should block the release, whatever the average says."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your evaluation work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on your screen, and Lazur answers out loud. Ask where a control is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not run Promptfoo, click buttons in the Console or grade outputs for you. It does not operate your spreadsheet. Use it to explain a rubric line, draft test inputs in your product's voice, or dictate reviewer notes. Hold fn to dictate clean text at the cursor in any app. You still choose the criteria and read the failures."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research jobs run in Lazur's own Chrome tabs, through the Lazur for Chrome extension. They return a summary and a report. That helps when you want to see how other teams grade AI output. Check each claim against its original source before it goes into a spec."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Still, follow your employer's rules before you hold the shortcut over client or patient data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: long outputs, unstable answers and small teams"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Long outputs, such as reports or generated code, need more than one score. Split them into sections and grade each section. Check the parts that matter most, such as numbers, names and links. A reviewer who skims a long answer can miss a made-up figure in the middle."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some outputs change from run to run. If the feature samples its answers, run each input more than once. An input that passes one run and fails the next is a finding. Record it as unstable, not as a pass. Unstable cases often point to a prompt that leaves too much open."
+    },
+    {
+      "type": "paragraph",
+      "text": "Small teams can start with one reviewer. Ask a second person to score a sample each week. When two people disagree, write down the reason and update the rubric. That habit turns disagreement into a better test."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the feature that causes the most rework this month. Build the input set first, then the rubric, then the baseline. Do not change the prompt until the baseline is saved. Every later score depends on that first file meaning something."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I evaluate AI feature output quality without writing code?",
+      "answer": "Yes. A Google Sheets file with inputs, outputs, rubric scores and a date column is enough to start. Use Anthropic's Console Evaluate feature or a reviewer panel for side-by-side checks. Code helps when you want to rerun many tests quickly, but it is not required for a first baseline."
+    },
+    {
+      "question": "How many test inputs do I need?",
+      "answer": "A few dozen real inputs is enough to start. Include the awkward cases, not only typical ones. Add each new failure to the set as you find it. Coverage of what users actually do matters more than the raw count."
+    },
+    {
+      "question": "Can the same model grade its own output?",
+      "answer": "Avoid it. Anthropic's evaluation docs recommend a different model for LLM-based grading. Even then, read a sample of the grader's scores yourself. A grader can favor longer answers or the answer it saw first."
+    },
+    {
+      "question": "How often should I rerun the test set?",
+      "answer": "Rerun it after every prompt change, model change or data change. Rerun it before each release too. Keep the results files so you can compare runs over time and spot regressions early."
+    },
+    {
+      "question": "Does Lazur score AI outputs for me?",
+      "answer": "No. Lazur can explain a rubric line, point at controls, draft test inputs and dictate notes. It does not run Promptfoo, click buttons in other apps or grade outputs. You still set the criteria and review the failures."
+    },
+    {
+      "question": "Is the METR result about product managers?",
+      "answer": "No. The study looked at experienced open-source developers using early-2025 tools. METR says the results do not generalize to most software work. Use it as a reminder that self-reports about speed and quality can be wrong."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Workslop: The Hidden Cost of AI-Generated Busywork",
+      "url": "https://www.betterup.com/workslop",
+      "publisher": "BetterUp",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "KPMG global study press release: trust of AI remains a critical challenge (April 2025)",
+      "url": "https://kpmg.com/xx/en/media/press-releases/2025/04/trust-of-ai-remains-a-critical-challenge.html",
+      "publisher": "KPMG International",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "publisher": "METR",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Promptfoo Getting Started",
+      "url": "https://www.promptfoo.dev/docs/getting-started/",
+      "publisher": "Promptfoo",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Using the Evaluation Tool",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/eval-tool",
+      "publisher": "Anthropic",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Evaluate prompts in the developer console",
+      "url": "https://claude.com/blog/evaluate-prompts",
+      "publisher": "Anthropic",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "measuring AI output quality",
+  "costs": [
+    {
+      "title": "Rework you do not see",
+      "text": "Each bad output that reaches a colleague costs a fix. BetterUp estimates about two hours per incident, based on its own survey. The time spreads across reviewers, so it rarely shows up in a sprint report. Count it before you argue about model quality."
+    },
+    {
+      "title": "Money per person",
+      "text": "BetterUp puts workslop at $186 per employee per month. Its estimate for a 10,000-person company is about $9 million a year. These are self-reported figures from one vendor, so use them to frame the conversation, not to set a budget."
+    },
+    {
+      "title": "Customer trust",
+      "text": "One confident wrong answer can end a user's trust in the whole feature. Users rarely report a near miss. They just stop using the feature. You see that drop in usage before you see a complaint."
+    },
+    {
+      "title": "Slower releases",
+      "text": "When nobody can say whether a prompt change is safe, teams stop changing prompts. Or they ship changes and check them by hand. Both slow the roadmap. A saved test set turns that debate into a short check."
+    },
+    {
+      "title": "Decisions made on impressions",
+      "text": "Teams that judge AI features by impression often pick the wrong fix. A demo that looks sharp can hide a failure on a common input type. The METR result shows how far a feeling can drift from the measured result."
+    }
+  ],
+  "causes": [
+    {
+      "title": "No single right answer",
+      "text": "A normal feature returns the same result for the same input. An AI feature varies. A test that passes once tells you little. Without a fixed set and a fixed rubric, you are comparing anecdotes."
+    },
+    {
+      "title": "Demo prompts hide failures",
+      "text": "Demos are chosen because they work. They are clean, short and familiar to the team. Real users write messy, long and odd inputs. The gap between those two sets is where quality problems live."
+    },
+    {
+      "title": "Feelings run high",
+      "text": "The METR trial found developers believed they were faster while measured timing showed slower work. People judge their own tools generously. A product manager is no different when the feature is theirs."
+    },
+    {
+      "title": "Fluent text earns trust",
+      "text": "Clear, confident writing looks correct. KPMG's global press release reports 66% saying many people rely on AI output without evaluating it. Reviewers skim fluent text and miss the invented detail."
+    },
+    {
+      "title": "Reviewers score differently",
+      "text": "Without a written rubric, one reviewer cares about tone and another about facts. Their scores then measure their preferences. Disagreement looks like noise, but it is usually a missing rule."
+    },
+    {
+      "title": "Ownership falls between teams",
+      "text": "Engineering runs the model, design shapes the flow and product owns the outcome. Evaluation can fall between those jobs. Someone has to own the test set, the rubric and the release check."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Freeze a baseline before you change anything",
+      "text": "Run the current version on your full input set and save the results with the date. This is your baseline. Do not edit the prompt, model or inputs until it is saved. Every later comparison depends on it."
+    },
+    {
+      "title": "Write must-pass cases as a release gate",
+      "text": "Pick the cases where a wrong answer is unacceptable, such as a required refusal, a legal disclaimer or a fact users act on. Mark them must-pass. A failure on one blocks the release, even when the average looks fine."
+    },
+    {
+      "title": "Grade with a different model, then sample",
+      "text": "Use a model other than the one that wrote the output. Read a sample of its passes and fails each week. If you disagree often, change the rubric line that caused it, then rerun the set."
+    },
+    {
+      "title": "Split long outputs into parts",
+      "text": "Score sections separately. Give numbers, names, dates and links their own line in the rubric. Those are the details reviewers skim past, and the details users check first."
+    },
+    {
+      "title": "Turn each failure into a tracked issue",
+      "text": "Create one Linear issue per failure, with the input and output attached. Label issues by feature area so patterns show up. Group the failures by label each Friday to see which area needs work first."
+    },
+    {
+      "title": "Calibrate reviewers in one session",
+      "text": "Put two or three reviewers on a call and have them score the same outputs. Compare scores line by line. Rewrite any rubric line that caused an argument. Repeat the session whenever a new reviewer joins."
+    },
+    {
+      "title": "Keep the rubric and decisions on one page",
+      "text": "Store the rubric, the baseline file link and a decision log in one Notion page. A dated log of what changed and why stops the same debate from returning every sprint."
+    },
+    {
+      "title": "Redact sensitive inputs before testing",
+      "text": "If inputs include client, patient or customer data, follow your employer's rules first. Use redacted or made-up copies for tests when those rules require it. Confirm the approach with your security or legal team before you start."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Explain what llm-rubric does in this config",
+      "result": "Lazur explains the check in plain words and points to the line it belongs on, based on what is on your screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the run button in this view?",
+      "result": "Lazur draws a circle and a label around the control. You press it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through adding a filter to the score column",
+      "result": "Lazur guides you one click at a time through Data > Create a filter in Google Sheets, waiting for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a dozen test inputs for a ticket summary",
+      "result": "Lazur drafts realistic inputs in your product's voice. You review each one before it goes into the set.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate these reviewer notes into the doc",
+      "result": "Hold fn and speak. Lazur types clean text at the cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find how other teams score AI output quality",
+      "result": "Lazur runs research in its own Chrome tabs and returns a summary and a report. Check each source before you rely on it.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I set the score column in this sheet?",
+    "capability": "point",
+    "result": "Lazur circles the score column header and labels it. You then type each 1 to 5 score into the cells yourself.",
+    "shell": "sheet",
+    "context": "Google Sheets, scoring table for support ticket summaries",
+    "output": "A circle and label around the score column, with a short spoken answer that names the column.",
+    "pointsAt": "Score column"
+  },
+  "plan": [
+    {
+      "label": "Monday",
+      "title": "Pick one feature and one user job",
+      "text": "Choose the feature that causes the most rework or support tickets. Write the job it does for users in one sentence. Leave the other features for later."
+    },
+    {
+      "label": "Tuesday",
+      "title": "Pull real inputs into a sheet",
+      "text": "Export a week of real inputs from tickets or logs. Add the edge cases, then freeze the list. Redact anything your employer's rules do not allow in tools."
+    },
+    {
+      "label": "Wednesday",
+      "title": "Write the rubric and save a baseline",
+      "text": "Draft a short rubric with a few criteria. Write one line that describes a score of 1 and one for a score of 5. Run the current version on every input and save the results file."
+    },
+    {
+      "label": "Thursday",
+      "title": "Grade with a second model and sample",
+      "text": "Set up the grader in Promptfoo or in the Console. Read a sample of its passes and fails yourself. Note each place you disagree and why, then update the rubric line."
+    },
+    {
+      "label": "Friday",
+      "title": "Log failures and agree on the gate",
+      "text": "Turn each failure into a tracked issue with the input attached. Mark the must-pass cases. Agree with engineering that a must-pass failure blocks the next release."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "linear",
+    "notion",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "evaluate-ai-feature-output-quality",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/evaluate-ai-feature-output-quality/evaluate-ai-feature-output-quality-1-9cc08d.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Team members looking at a laptop screen during a product review of AI results",
+      "caption": "Reviewers scoring AI output side by side.",
+      "keywords": [
+        "evaluate AI feature output quality",
+        "Product managers",
+        "measuring AI output quality",
+        "Mac",
+        "people at a Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/air-force-cargo-plane-aircraft-2178863/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/evaluate-ai-feature-output-quality/evaluate-ai-feature-output-quality-2-14291b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Product team meeting to evaluate AI feature output quality around a shared screen",
+      "caption": "A shared rubric keeps reviewers aligned.",
+      "keywords": [
+        "evaluate AI feature output quality",
+        "Product managers",
+        "measuring AI output quality",
+        "Mac",
+        "office team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/evaluate-ai-feature-output-quality/evaluate-ai-feature-output-quality-3-9e4962.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Laptop and notebook on a desk with a spreadsheet of test results",
+      "caption": "A spreadsheet of test inputs is a simple place to start.",
+      "keywords": [
+        "evaluate AI feature output quality",
+        "Product managers",
+        "measuring AI output quality",
+        "Mac",
+        "laptop work desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "evaluate AI feature output quality",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "measure AI output quality": 1,
+      "AI output quality metrics": 1,
+      "LLM-as-a-judge grading": 1,
+      "AI feature testing rubric": 1,
+      "Promptfoo llm-rubric on Mac": 1,
+      "test set for AI features": 1,
+      "AI feature QA for product managers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

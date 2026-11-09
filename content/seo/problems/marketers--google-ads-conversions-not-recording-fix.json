@@ -1,0 +1,650 @@
+{
+  "title": "Google Ads conversions not recording on Mac: causes and fixes for 2026",
+  "metaTitle": "Google Ads conversions not recording: Mac fixes for 2026",
+  "description": "Google Ads conversions not recording? Check tag status, click IDs, conversion windows and consent. Step-by-step fixes on Mac, no paid tools needed.",
+  "targetKeyword": "google ads conversions not recording",
+  "secondaryKeywords": [
+    "google ads conversion tracking not working",
+    "google ads conversions missing",
+    "google ads tag inactive",
+    "google ads no recent conversions",
+    "google ads conversion window",
+    "gclid google ads not tracking",
+    "google ads conversion tracking mac",
+    "google ads consent mode conversions"
+  ],
+  "intro": "If Google Ads conversions are not recording, the data is usually not gone. The cause is almost always a tag, a click ID, a conversion window, a reporting date or a consent setting that is off. Each one leaves a trace you can check, and this page shows where to look.",
+  "tldr": [
+    "Missing conversions are usually a setup, timing or consent problem, not lost data.",
+    "Check the status under Goals > Summary first. Tag inactive means no conversions for 7 days.",
+    "Run Tag Assistant from the conversion row, and enter a landing page URL, not the conversion page.",
+    "Check click IDs, the 30-day window, counting settings and the reporting date before you rebuild anything.",
+    "Lazur can point at the right menu and guide each click, but it does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "30 days",
+      "label": "Default click-through conversion window for Google Ads, so a late sale can still count.",
+      "sourceUrl": "https://support.google.com/google-ads/answer/3123169?hl=en",
+      "sourceTitle": "About conversion windows: Google Ads Help"
+    },
+    {
+      "value": "7 days",
+      "label": "With no recorded conversions in this time, Google marks a tag as inactive.",
+      "sourceUrl": "https://support.google.com/sa360/answer/9780742?hl=en",
+      "sourceTitle": "Check the tracking status of your Google Ads conversion action: Search Ads 360 Help"
+    },
+    {
+      "value": "90 days",
+      "label": "How long Google says it keeps a GCLID for offline conversion uploads.",
+      "sourceUrl": "https://support.google.com/google-ads/answer/13321563?hl=en",
+      "sourceTitle": "Fix discrepancies and errors in offline conversion imports: Google Ads Help"
+    },
+    {
+      "value": "70%",
+      "label": "Google's early 2021 estimate of clicks lost to consent choices that modeling recovers. Treat it as a rough early figure.",
+      "sourceUrl": "https://blog.google/products/marketingplatform/360/conversion-modeling-through-consent-mode-google-ads/",
+      "sourceTitle": "Conversion modeling through Consent Mode in Google Ads: Google Blog"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "In most cases the sale happened. Google Ads just never received a signal it could match to an ad click. Your sales or leads tool shows real orders, but the Conversions column stays at zero, or drops for no clear reason. Before you change a bid or a budget, find out which link in the chain broke. The tag, the click ID, the window, the reporting date and the consent rules each leave a trace you can check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What missing conversions cost you"
+    },
+    {
+      "type": "paragraph",
+      "text": "The cost is rarely the missing number itself. The cost is the decision you make next. If Google Ads thinks a campaign converts poorly, you may cut its budget, pause a good ad group or change bids. Each choice feels reasonable. Each one can be wrong, because it rests on incomplete data."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Budget moves away from campaigns that really work.",
+        "Bids get set against a signal that is too low.",
+        "Hours disappear into tags, reports and guesswork.",
+        "Client or boss reports disagree with your CRM or Analytics.",
+        "Old clicks become impossible to match once a window or the 90-day GCLID limit ends."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the cost you can measure. The Bureau of Labor Statistics puts the median pay for advertising, promotions and marketing managers at $79.70 an hour, using May 2025 data. That is an occupation median, not a figure for your role. Still, a long afternoon in tags and reports has a real price."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Missing or just late? Check the timing first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many missing conversions are only late. Google says conversion data can take up to 7 days to fully appear after significant changes or account linking. It recommends allowing 24 to 48 hours before you compare with Google Analytics. Offline conversions run on their own clock, and most process within 12 hours."
+    },
+    {
+      "type": "paragraph",
+      "text": "The reporting date confuses many people. Google Ads reports a conversion on the ad impression date by default. A sale on Friday from an ad shown on Tuesday counts under Tuesday. Switch to the 'by conv. time' columns when you want the day the sale happened. You can also export the data to Google Sheets and compare days side by side. See [Google Sheets for marketers on Mac](/for/marketers/google-sheets) for the basics."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Status in Google Ads",
+        "What Google says it means",
+        "Your first move"
+      ],
+      "rows": [
+        [
+          "Tag inactive",
+          "Google no longer sees your tag, and has not recorded any conversions in the last 7 days.",
+          "Run Troubleshoot with a landing page URL to see whether the tag loads."
+        ],
+        [
+          "No recent conversions",
+          "Google has seen your conversion tracking tag, but has not recorded any conversions in the last 7 days.",
+          "Test a real conversion yourself, then check the window and counting settings."
+        ]
+      ],
+      "caption": "Status meanings from Google's tracking status help page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Tag inactive is the label to fix first. It means Google cannot see the tag at all. No recent conversions is different. The tag still reports in, but your sales do not reach it. Those two labels point to different fixes, so read the exact text before you start editing."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run the Tag Assistant check in Google Ads"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google built a guided check for this problem. It runs from the Google Ads web app, so you can use it in Chrome on your Mac. Open a private window with ⇧ ⌘ N, so old cookies do not muddy the test. Then follow these steps."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Ads in Chrome and choose Goals > Summary.",
+        "Set Conversions to All conversions, so every action shows.",
+        "Hover over an action marked Unverified, Tag inactive or Needs attention, then choose Troubleshoot.",
+        "Enter a landing page or home page URL. Do not enter the conversion page.",
+        "Trigger the conversion the way the guide asks, such as a test form or order.",
+        "Refresh the page, then wait. Google says verified actions can appear after about 30 minutes.",
+        "If you use Google Tag Manager, enable debugging for the live container from within Tag Assistant first."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test from the landing page",
+      "text": "Enter your landing page, not the thank-you page. Google's guide asks for a landing or home page URL. Tag Assistant then walks you through the conversion, so you test the path a real visitor takes."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check click IDs and the 90-day limit"
+    },
+    {
+      "type": "paragraph",
+      "text": "A click ID is the value Google adds to your ad link, usually called gclid. It is how Google links a later sale or form fill to the click that started it. If the ID does not survive the trip, the conversion arrives without a click to match. That usually looks like a missing conversion."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask your developer to test this with a sample click ID in the landing page URL. Then complete the form or checkout in a private window. Check whether the ID is still there on the confirmation step. If it vanished after a redirect, the redirect is the problem. Redirects should keep URL parameters intact."
+    },
+    {
+      "type": "paragraph",
+      "text": "Offline conversions use the same ID, and the clock is strict. Google says it keeps the GCLID for 90 days. It also says an offline conversion cannot happen before the ad click. Google warns that time zones can differ between your upload and the Google Ads account, so check both."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Windows and counting settings that hide conversions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings can hide conversions even when tracking works. The default click-through window is 30 days. The default view-through window is 1 day, and engaged-view is 3 days. A sale that closes after the window ends does not count, however good the tag is."
+    },
+    {
+      "type": "paragraph",
+      "text": "Changes to a window apply only going forward. A shorter window stops counting past the new limit. A longer window does not bring back conversions Google already missed. Fix the cause first, then adjust the window only when your sales cycle really needs it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Count settings matter too. Google's discrepancy page lists 'every' and one-per-interaction counting as a cause of different numbers. If a lead form counts every time, one person who submits twice shows up twice. If it counts once, repeat sales disappear on purpose. Pick the setting per action, and write down why."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check the column first",
+      "text": "View-through conversions are left out of the Conversions column by default. Before you call a number missing, confirm which column and which date your report uses."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Consent, Safari and modeled conversions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Safari and Firefox limit third-party cookies, and some visitors decline consent. Google says conversions from those browsers and users are modeled. WebKit's tracking prevention deletes script-written storage after 7 days without user interaction. It also caps the expiry of some landing page cookies at 24 hours. A visitor who returns after a week may not match to the first click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Consent mode is the main setup choice. Google's developer guide says that when ad storage is denied, data still reaches Google, including the page URL and click information in URL parameters. Advanced mode can pass the click ID before consent. Google's early 2021 blog post said modeling recovered more than 70% of clicks lost to consent choices. That was an early result, and Google says it varies with consent rates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Modeling has limits. Google says accounts with very few weekly conversions may not get certain types of modeling. Modeled numbers also take up to 5 days to settle, and values can go up for several days. Ask your developer whether advanced consent mode is set up. Then wait before you judge a modeled gap."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can make without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every fix below uses Google's own tools and your existing site. You need Chrome, the Google Ads web app and, if you use it, Google Tag Manager. Google Ads Editor for Mac also exists, but it needs macOS 12 or later, so check your version before you install it. You do not need a new tool to fix a missing conversion."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Read the status for each conversion action, and change nothing yet.",
+        "Run the guided Tag Assistant test on any action marked wrong.",
+        "Confirm the click ID survives every redirect and form.",
+        "Compare the same dates and columns after a 24 to 48 hour wait.",
+        "Review the window and counting, then change one setting at a time.",
+        "Log each change with the date, the old value and the new value.",
+        "Recheck after 7 days, the same window Google uses for its inactive label."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you import offline conversions, check the GCLID age first. Google accepts uploads up to 90 days old, and it rejects conversions that happen before the click. When Google says a click is still processing, wait 12 hours before you re-upload it. GBRAID and WBRAID conversions can take up to 72 hours."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when chasing missing conversions"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is editing the tag before testing it. Every change makes the next test harder to read. Change one thing, test it, and write the result down before you touch anything else."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is comparing Google Ads with Google Analytics on the same day. Give the data time to sync. Then use the same attribution model and date range in both tools. Otherwise the gap looks bigger than it is, and you chase a difference that is only a setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is fixing in the wrong direction. Missing conversions are not always the only problem. If the numbers look too high, check for duplicate actions. Google says duplicates can inflate values, so switch them to Secondary or remove their value."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the Summary page is, and it draws a circle and a label around it. Ask how to run a check, and it guides you one click at a time, waiting for each click. It does not click for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur also helps with the writing around the fix. Hold fn to dictate a note into Slack or a doc. Ask Lazur to draft a message to your developer about the form. You review the text and send it yourself. Lazur sees the screen only while you hold the shortcut."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Regulated data",
+      "text": "If your ads track clients or patients, follow your employer rules before you share screens, emails or customer lists with any tool. That includes Lazur. Ask your IT or compliance team first, especially for health, legal or financial details."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want help with the next step, the free trial needs no credit card. See [pricing](/pricing) for plans, or [download](/download) the Mac app. Start with the status page, though. That check costs nothing and often points straight at the fix."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why are my Google Ads conversions not recording when my sales are?",
+      "answer": "Usually the signal is broken, not the sale. Check the tag status under Goals > Summary, then run the guided test. Next, confirm the click ID survives the form or checkout. Also check the date column and the window, since a late conversion can still count."
+    },
+    {
+      "question": "How long should I wait before I decide a conversion is missing?",
+      "answer": "Allow 24 to 48 hours before you compare with Google Analytics. Allow up to 7 days after big changes or account linking. Modeled conversions can take up to 5 days to settle. Offline conversions usually process within 12 hours, but GBRAID and WBRAID can take up to 72 hours."
+    },
+    {
+      "question": "What does Tag inactive mean in Google Ads?",
+      "answer": "Google means it no longer sees your tag, and has not recorded any conversions in the last 7 days. Run Troubleshoot with a landing page URL to find out whether the tag loads. Fix the tag, then test a real conversion before you trust the result."
+    },
+    {
+      "question": "Will changing the conversion window bring back old conversions?",
+      "answer": "No. Google says window changes apply only going forward. A shorter window stops counting after the new limit. A longer window does not recover conversions that were missed earlier, so fix the cause first."
+    },
+    {
+      "question": "Does Safari cause missing Google Ads conversions?",
+      "answer": "It can contribute. WebKit's tracking prevention deletes script-written storage after 7 days without user interaction, and it caps some landing page cookies at 24 hours. Google models many Safari conversions. The size of the effect on your account is not measured here, so check your own data."
+    },
+    {
+      "question": "Can Lazur fix my tags or change my settings?",
+      "answer": "No. Lazur points at things, explains them, guides you one click at a time and drafts text. It does not click buttons, edit tags or operate Google Ads for you. You make each change yourself."
+    },
+    {
+      "question": "Is it safe to share conversion data with an AI tool?",
+      "answer": "Follow your employer rules first, especially for client, patient or customer data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and are not stored. Content is never used to train AI models."
+    }
+  ],
+  "sources": [
+    {
+      "title": "About conversion windows: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/3123169?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Use Tag Assistant to troubleshoot your unverified or inactive conversion actions: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/10989978?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Check the tracking status of your Google Ads conversion action: Search Ads 360 Help",
+      "url": "https://support.google.com/sa360/answer/9780742?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Data discrepancies: Factors and troubleshooting: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/7457111?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "About modeled online conversions: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/10081327?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Conversion modeling through Consent Mode in Google Ads: Google Blog",
+      "url": "https://blog.google/products/marketingplatform/360/conversion-modeling-through-consent-mode-google-ads/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fix discrepancies and errors in offline conversion imports: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/13321563?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Offline conversion imports FAQs: Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/10029210?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Tracking Prevention in WebKit",
+      "url": "https://webkit.org/tracking-prevention/",
+      "publisher": "Apple WebKit",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Consent Mode: Google Tag Platform developer guide",
+      "url": "https://developers.google.com/tag-platform/security/guides/consent",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Advertising, Promotions, and Marketing Managers: BLS Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Ads Editor version 2.10: Google Ads Editor Help",
+      "url": "https://support.google.com/google-ads/editor/answer/16320144?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "conversions missing from google ads",
+  "costs": [
+    {
+      "title": "Bad signals for bids and budget",
+      "text": "Google Ads uses conversion data to judge what works. When it sees fewer conversions than you get, it can point budget at the wrong ads. You may cut a campaign that works, and keep one that only looks good because its sales are tracked."
+    },
+    {
+      "title": "Hours spent hunting",
+      "text": "Chasing missing conversions eats time. The Bureau of Labor Statistics lists a median pay of $79.70 per hour for advertising, promotions and marketing managers, using May 2025 data. That is an occupation median, not a figure for your role, but a long hunt still has a real cost."
+    },
+    {
+      "title": "History that cannot be rebuilt",
+      "text": "Some losses cannot be fixed later. A window change does not recover missed conversions. Offline GCLID records older than 90 days cannot be uploaded at all. Every week of silence can leave gaps you cannot fill."
+    },
+    {
+      "title": "Reports that nobody trusts",
+      "text": "When your CRM shows more sales than Google Ads, the team starts to doubt every chart. Clients ask why spend and results do not match. Trust takes longer to rebuild than a tag takes to fix."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The tag is broken or never fires",
+      "text": "A conversion tag is code on the page that tells Google Ads a sale or form fill happened. If the tag is missing from the thank-you page, was removed in a site update, or never loads, Google records nothing. Google Tag Manager adds one more step. If you use it, the live container must be published and the tag must fire on the right page. A tag that stays silent for 7 days shows up as Tag inactive."
+    },
+    {
+      "title": "Click IDs never reach the form",
+      "text": "Google Ads adds a click ID to your ad link. The form or checkout then has to keep that ID and send it with the conversion. Redirects, a cross-domain checkout, or a form that strips URL parameters can drop it. Without the ID, Google cannot match the sale to the ad click, so the conversion may not count."
+    },
+    {
+      "title": "The window closed before the conversion",
+      "text": "The default click-through window is 30 days. A person who clicks your ad and buys a month later can fall outside it. Someone may also have shortened the window in the past. Google applies window changes going forward only, so old clicks stay outside the new limit."
+    },
+    {
+      "title": "Counting and attribution hide conversions",
+      "text": "Count settings and attribution decide how conversions are shown. Google's data discrepancy page lists every and one-per-interaction counting, plus attribution model changes, as common reasons numbers differ. View-through conversions are also left out of the Conversions column by default. Check these before you assume tracking failed."
+    },
+    {
+      "title": "The report uses a different date or time zone",
+      "text": "Google reports conversions on the ad impression date by default. A sale on Friday from an ad shown on Tuesday counts on Tuesday. Offline uploads add a time zone problem, since Google warns that the upload and the account time zone can differ. Compare the same dates and the same columns before you conclude anything."
+    },
+    {
+      "title": "Consent choices and browser limits block the signal",
+      "text": "Safari and Firefox limit third-party cookies. Visitors who decline consent also send less data. Google models some of these conversions, which can take up to 5 days to settle and can change upward for several days. Modeling does not work the same way for every account, so do not treat a modeled gap as a bug."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Check the status first",
+      "text": "Open Google Ads, go to Goals > Summary, and set Conversions to All conversions. Read the status of each action. A Tag inactive or Unverified label tells you where to start. Do not edit any tag until you know which action has the problem, because one wrong edit can hide the next clue."
+    },
+    {
+      "title": "Run the guided Tag Assistant test",
+      "text": "Hover over the status, choose Troubleshoot, and enter a landing or home page URL. Trigger the conversion as the guide asks, then refresh. Google says verified actions can appear after about 30 minutes. If you use Google Tag Manager, enable debugging for the live container from within Tag Assistant first."
+    },
+    {
+      "title": "Test with a private window and a sample click ID",
+      "text": "Open a fresh Chrome private window with ⇧ ⌘ N. Load your landing page with a sample gclid value in the URL, then complete a test form or order. Do not click your own live ads to test, since Google Ads policies discourage it. Check the conversion in Google Ads once the delay has passed."
+    },
+    {
+      "title": "Compare the right columns after a wait",
+      "text": "Use the by conversion time columns when you want the day the sale happened. Allow 24 to 48 hours before you compare with Google Analytics. Use the same attribution model and date range in both tools. If you changed a tag recently, allow up to 7 days for full data."
+    },
+    {
+      "title": "Set the window and counting on purpose",
+      "text": "Keep the 30-day default unless your sales cycle is clearly longer or shorter. Counting leads once and purchases every time is a common pattern, but pick it per action and write down why. Remember that a window change does not recover earlier conversions."
+    },
+    {
+      "title": "Fix click IDs in forms and redirects",
+      "text": "Ask your developer to keep URL parameters on every redirect, and to pass the click ID into the form as a hidden field. Test each form after a site change, not just once at launch. If you run a cross-domain checkout, confirm the parameter survives each hop between domains."
+    },
+    {
+      "title": "Fix offline uploads before the cutoff",
+      "text": "Upload GCLID records within 90 days of the click, and never before the click happened. Match the time zone of the upload with the Google Ads account. If Google says a click is still processing, wait 12 hours before you re-upload it. Conversions keyed by GBRAID or WBRAID can take up to 72 hours."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Summary page under Goals?",
+      "result": "Lazur draws a circle and a label around Goals and the Summary item on your screen. You make the click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through Tag Assistant for this action.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does Tag inactive mean here?",
+      "result": "Hold ⌥ ⌘ and Lazur answers out loud, using what is on your screen, so you keep your hands on the keyboard.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate a note to the team about the tag.",
+      "result": "Hold fn, speak, and clean text lands at the cursor in Slack or Google Docs. You check the text before you send it.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a message to my developer about the form.",
+      "result": "Lazur drafts and types the text. You review it and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research Google's conversion window help pages.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report you can read later.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to recheck conversions on Friday.",
+      "result": "Lazur adds the reminder to Apple Reminders, so the recheck shows up when you need it.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Summary page under Goals?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Summary item. You make the click yourself.",
+    "shell": "generic",
+    "context": "Google Ads open in Chrome with the Goals menu visible",
+    "output": "A circle and label around Summary, and a spoken line that says what the page shows.",
+    "pointsAt": "Goals > Summary"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the statuses",
+      "text": "Open Google Ads in Chrome and go to Goals > Summary. Set Conversions to All conversions. Write down each action with its status. Do not change any tag yet, so you keep a clean starting point."
+    },
+    {
+      "label": "Day 2",
+      "title": "Run the guided test",
+      "text": "For each action marked Unverified, Tag inactive or Needs attention, choose Troubleshoot. Use a landing page URL, not the conversion page. Trigger the conversion as the guide asks, then wait for the result."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check the click IDs",
+      "text": "Ask your developer to load the landing page with a sample click ID, then complete the form in a private window. Check whether the ID survives each redirect and reaches the confirmation step."
+    },
+    {
+      "label": "Day 4",
+      "title": "Compare the right data",
+      "text": "Export the conversion report to Google Sheets and compare by conversion time with Google Analytics. Wait the 24 to 48 hours first. Mark any gap you cannot explain, so you can test it later."
+    },
+    {
+      "label": "Day 5",
+      "title": "Review windows and counting",
+      "text": "Open each conversion action's settings. Note the window, the count setting and which column it feeds. Change one setting at a time, and log the date, the old value and the new value."
+    },
+    {
+      "label": "Day 6",
+      "title": "Check offline and consent",
+      "text": "If you import offline conversions, check GCLID age and time zone. Ask your developer whether advanced consent mode is set up. Then decide which gaps are modeled and which need a real fix."
+    },
+    {
+      "label": "Day 7",
+      "title": "Recheck and tell the team",
+      "text": "Look at the statuses again. A tag still marked Tag inactive after 7 days needs a fix, not more waiting. Post the status, the changes and the open questions in Slack, so the team sees the same facts."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "google-ads-conversions-not-recording-fix",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-ads-conversions-not-recording-fix/google-ads-conversions-not-recording-1-072095.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a desk checking Google Ads conversion data on a laptop",
+      "caption": "Checking conversion data on a laptop at a desk.",
+      "keywords": [
+        "google ads conversions not recording",
+        "Marketers",
+        "Conversions missing from Google Ads",
+        "Mac",
+        "marketer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheInvestorPost",
+        "url": "https://pixabay.com/users/TheInvestorPost-19152356/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-stock-trading-iphone-5782412/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-ads-conversions-not-recording-fix/google-ads-conversions-not-recording-2-ef4149.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person using a Mac laptop in an office to review campaign results",
+      "caption": "Reviewing campaign results on a Mac.",
+      "keywords": [
+        "google ads conversions not recording",
+        "Marketers",
+        "Conversions missing from Google Ads",
+        "Mac",
+        "mac laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-ads-conversions-not-recording-fix/google-ads-conversions-not-recording-3-4c1a21.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Screen showing charts of campaign and conversion trends",
+      "caption": "Charts are often where a missing conversion shows up first.",
+      "keywords": [
+        "google ads conversions not recording",
+        "Marketers",
+        "Conversions missing from Google Ads",
+        "Mac",
+        "analytics charts screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yatsusimnetcojp",
+        "url": "https://pixabay.com/users/yatsusimnetcojp-14033705/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/data-chart-graph-monitor-marketing-4570804/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google ads conversions not recording",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "google ads conversion tracking not working": 1,
+      "google ads conversions missing": 1,
+      "google ads tag inactive": 1,
+      "google ads no recent conversions": 1,
+      "google ads conversion window": 1,
+      "gclid google ads not tracking": 1,
+      "google ads conversion tracking mac": 1,
+      "google ads consent mode conversions": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

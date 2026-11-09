@@ -1,0 +1,591 @@
+{
+  "title": "Excel db depreciation not matching the client's numbers on Mac: fixes for accountants",
+  "metaTitle": "Excel DB depreciation not matching? Fixes for accountants on Mac",
+  "description": "Excel DB depreciation not matching the client's numbers? See why DB rounds, prorates and differs from tax, then fix it on your Mac.",
+  "targetKeyword": "excel db depreciation not matching",
+  "secondaryKeywords": [
+    "Excel DB function depreciation Mac",
+    "declining balance depreciation Excel",
+    "book vs tax depreciation schedule accountant",
+    "depreciation schedule reconciliation client",
+    "Excel DB function month argument"
+  ],
+  "intro": "Excel's DB function will not match your client's numbers when the two sides use different rates, lives, placement months or rounding. Match those inputs first, then compare totals one asset at a time. Most gaps come from a book method on one side and a tax method on the other.",
+  "tldr": [
+    "Excel's DB function derives its rate from cost, salvage and life, rounds it to three decimals, and prorates by month.",
+    "Most gaps come from book versus tax methods, a placement month that differs, or a life that differs.",
+    "Compare one asset's inputs before you compare totals. Totals hide the cause.",
+    "Reconcile depreciation to the general ledger every month. Waiting for year-end builds a backlog."
+  ],
+  "stats": [
+    {
+      "value": "$40.23",
+      "label": "Median hourly wage for accountants and auditors, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Accountants and Auditors"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why your Excel DB schedule and the client's numbers disagree"
+    },
+    {
+      "type": "paragraph",
+      "text": "Both files can be right and still disagree. Excel's DB function uses one fixed formula. Your client's software may use a different method, a different life, or a tax rule. Each system follows its own inputs. The same asset can show two different annual charges."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not start by changing your formula. Start by listing the inputs for one asset on both sides. Write down the method, cost, salvage, life, placement month and rounding. Most mismatches show up once you put the two columns side by side."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a depreciation mismatch costs you in time and trust"
+    },
+    {
+      "type": "paragraph",
+      "text": "No study I could open measures how often this mismatch happens or how many hours it takes. You can still put a price on the time. The BLS lists the median accountant or auditor wage at $40.23 an hour in May 2025. Median pay is not a billing rate, but it gives you a floor for what an hour of chasing a gap costs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The bigger cost is rework. A schedule that is off by a rounding rule gets rebuilt, checked and sent again. If the gap reaches a filed return, you may need to amend work already done. Clients also notice when one asset shows different charges across two years of statements."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What the evidence covers",
+      "text": "The sources here explain how the methods work. They do not measure how often this problem happens. Treat any hour count from a vendor as a claim to test, not a benchmark."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Excel's DB function calculates each year"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel's DB function uses fixed declining balance depreciation. Each year it applies one rate to the cost that is still left to depreciate. The rate comes from the cost, the salvage value and the life. Excel then rounds that rate to three decimal places."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Rate: 1 minus the salvage divided by the cost, raised to the exponent 1 over the life, rounded to three decimals.",
+        "First year: cost times rate times the placement month, divided by 12.",
+        "Middle years: cost minus all earlier depreciation, times the rate.",
+        "Final partial year: the remaining cost times the rate times (12 minus the placement month), divided by 12."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Two inputs carry most of the weight. Salvage sets the rate, so a salvage value that differs from the client's changes every year. The month argument sets the first and last years. If you leave out the month, Excel assumes 12. That gives a full first year, which is a common reason an Excel schedule starts higher than the client's."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check the month argument",
+      "text": "Open every DB formula and read the month argument. An omitted month means 12, which gives a full first year. A wrong placement month shifts the first and last years in both directions."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel DB and client software usually differ"
+    },
+    {
+      "type": "paragraph",
+      "text": "Client software rarely says DB. It says declining balance at 150% or 200%, straight-line, or MACRS. Those labels describe a different rate rule. Excel's DB has no 150% or 200% setting, so a 200% schedule will not match Excel's DB row for row."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Rule",
+        "Excel DB function",
+        "What to check in client software"
+      ],
+      "rows": [
+        [
+          "Rate basis",
+          "Derived from cost, salvage and life",
+          "Declining balance at 150% or 200%, straight-line, or MACRS"
+        ],
+        [
+          "Rounding",
+          "Rate rounded to three decimals",
+          "Whether the software rounds the rate, the charge, or neither"
+        ],
+        [
+          "First-year proration",
+          "Placement month divided by 12",
+          "The placement convention the software uses"
+        ],
+        [
+          "Final year",
+          "Remaining months divided by 12",
+          "Recovery period and class from the tax tables"
+        ],
+        [
+          "Method labels",
+          "Fixed declining balance only",
+          "Labels as listed in FAM or Xero, with the setting for each asset"
+        ]
+      ],
+      "caption": "Where Excel DB and typical client software differ."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Book versus tax: the gap behind most mismatches"
+    },
+    {
+      "type": "paragraph",
+      "text": "Book depreciation and tax depreciation answer different questions. Book tracks how the asset is used, and straight-line is the most common book method. Tax depreciation follows fixed rules tied to the asset class. Thomson Reuters notes that tax recognizes expense faster than book."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the client's software runs tax and your Excel runs book, the early years will never match. That is not an error. Schedules M-1 and M-2 reconcile accounting income to taxable income. Companies with more than $10 million in assets use the more detailed Schedule M-3."
+    },
+    {
+      "type": "paragraph",
+      "text": "Section 179 and bonus treatment can move a large share of an asset into year one. The IRS describes Form 4562 as the form for depreciation and amortization deductions and Section 179 elections. Its page does not mention bonus depreciation, so check the Form 4562 instructions before you rely on that treatment."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked check on one asset"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use one asset and one set of inputs. Keep the numbers on paper or in a scratch tab until you know which input differs. The order below matters. It keeps you from chasing a total when the cause is a single cell."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy cost, salvage, life, placement month and method from the client's register.",
+        "Rebuild the rate in one Excel cell with the DB formula. Compare it with the client's rate before rounding.",
+        "Check the first-year charge. If it differs, look at the month argument and the placement convention first.",
+        "Compare the ending balance after year one. A small gap that grows each year points to rounding or salvage.",
+        "Only then compare totals across all assets."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Totals can hide the cause. Two assets can offset each other, so the total looks close while both rows are wrong. Check one row at a time, then add the rows up."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that catch careful people"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel also has DDB and VDB. They relate to DB but are not the same function. VDB can switch to straight-line in later years, so its schedule can look like a declining balance schedule for a while and then change. Confirm which function the file uses before you compare it with a 150% or 200% schedule."
+    },
+    {
+      "type": "paragraph",
+      "text": "Disposals and placement dates cause a second kind of gap. Sage warns that inconsistent or missing placement dates distort depreciation and reporting. If the client sold or retired an asset mid-year, your file may still carry it. Ask for the disposal date before you build the next year."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac specifics: Excel for Mac, Xero and QuickBooks"
+    },
+    {
+      "type": "paragraph",
+      "text": "In Excel for Mac, open the Formulas tab and choose Financial to find DB. To see formulas instead of results, press ⌃ ` (Control and the grave key). Microsoft's DB page explains the calculation. No Mac-specific Excel page was checked for this guide, so confirm the menu names on your version."
+    },
+    {
+      "type": "paragraph",
+      "text": "Xero's US fixed asset page lists straight-line, declining balance at 150% and 200%, and full depreciation on purchase through Section 179 or 100% bonus depreciation. Depreciation runs are manual. A Tax Depreciation Schedule can be shared with your accountant. Intuit lists QuickBooks Fixed Asset Manager only in Premier Accountant, Enterprise and Enterprise Accountant. Its page does not say whether it runs on Mac, so confirm before you plan around it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to ask your client for"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask for the records that explain the gap. A short, specific request gets a faster answer than a full copy of the books."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The fixed asset register, with cost, salvage, life and placement date for each asset.",
+        "The method for each asset, labeled book or tax, and the software setting used.",
+        "Disposals, transfers and write-offs, with dates.",
+        "The tax depreciation schedule, or the Form 4562 they filed.",
+        "Any Section 179 or bonus election, with the year it was taken."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data rules come first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Follow your employer's rules on client data before you paste a register into any AI tool. Your firm may limit what can leave its systems. If it allows the work, remove names and tax IDs first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. That does not replace your firm's policy."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they compare schedules"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Comparing ending balances only. Two schedules can reach the same balance by different paths.",
+        "Using the year-end date as the placement date.",
+        "Leaving the month argument out of DB and assuming the first year is partial.",
+        "Copying the client's life without checking the asset class and recovery period.",
+        "Calling a Section 179 or bonus year an error in the DB schedule.",
+        "Waiting until year-end to reconcile, which builds a backlog and raises error risk."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go from here"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one asset and one year. Add a variance column in Excel that shows the client's figure minus yours, and flag any row that is not zero. Keep book and tax on separate tabs, and tie both to the general ledger each month. For Excel habits that help with schedules, see [Excel for accountants on Mac](/for/accountants/excel). For cloud ledgers and client portals, see [Chrome for accountants on Mac](/for/accountants/chrome)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about what is on screen. It can circle the month argument, explain how DB works, or walk you through a menu one click at a time. It does not edit your file or click for you. You still check every number. Lazur has a Pro trial with no credit card, and prices are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why doesn't Excel's DB function match my client's depreciation?",
+      "answer": "Usually the method, life, salvage, placement month or rounding differs. Excel's DB derives its rate from cost, salvage and life, then rounds it to three decimals. Compare one asset's inputs before you compare totals."
+    },
+    {
+      "question": "Does Excel's DB function have a 200% option?",
+      "answer": "No. DB has no 150% or 200% setting. It works out the rate from salvage and life. Software that says 200% declining balance uses a different rate rule, so the two schedules will differ."
+    },
+    {
+      "question": "What does the month argument do in DB?",
+      "answer": "It sets the placement month for proration. The first year is cost times rate times the month, divided by 12. If you leave the month out, Excel uses 12, which gives a full first year."
+    },
+    {
+      "question": "Why does my first year look too high?",
+      "answer": "The most likely cause is a month argument that was left out or set to the wrong month. Check the placement date against the register. Then check whether the client uses a different convention."
+    },
+    {
+      "question": "Is a mismatch always a mistake?",
+      "answer": "No. Book and tax depreciation are built to differ. Reconcile the two with separate schedules, and write down the reason for each gap. Do not force one schedule to match the other."
+    },
+    {
+      "question": "Does Lazur check the numbers for me?",
+      "answer": "No. Lazur can explain the formula, point at the argument you ask about, and answer out loud. It does not edit your file or click buttons. You still check the numbers yourself."
+    }
+  ],
+  "sources": [
+    {
+      "title": "DB function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/db-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Understand terminology for the Fixed Asset Manager (FAM)",
+      "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/fixed-assets/understand-terminology-fixed-asset-manager-fam/L8xAP67Zs_US_en_US",
+      "publisher": "Intuit QuickBooks Learn & Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "What is the difference between book and tax depreciation?",
+      "url": "https://tax.thomsonreuters.com/blog/what-is-the-difference-between-book-and-tax-depreciation/",
+      "publisher": "Thomson Reuters Tax & Accounting",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "About Form 4562, Depreciation and Amortization",
+      "url": "https://www.irs.gov/forms-pubs/about-form-4562",
+      "publisher": "IRS",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Mindful fixed asset reporting: Best practices for cleaner reconciliations",
+      "url": "https://www.sage.com/en-us/blog/fixed-asset-reporting-cleaner-reconciliations/",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fixed asset software for small businesses",
+      "url": "https://www.xero.com/us/accounting-software/manage-fixed-assets/",
+      "publisher": "Xero",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Accountants and Auditors: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "depreciation schedule that differs from the client's numbers",
+  "costs": [
+    {
+      "title": "Staff time on every gap",
+      "text": "Every gap means someone rebuilds a schedule. At the BLS median of $40.23 an hour for accountants and auditors, that rework has a real price, even before any fee. Median pay is not a billing rate, so use your firm's own rate for the estimate."
+    },
+    {
+      "title": "Rework after the numbers move",
+      "text": "A rounding gap that reaches a filed return can mean amended work. Redoing a return costs more than the first build. It can also force a conversation with the client about numbers they already accepted."
+    },
+    {
+      "title": "Client trust",
+      "text": "Clients compare statements from year to year. When the same asset shows different charges in two years, the client asks which number is right. Explaining a method change takes time, and clients rarely ask for one."
+    },
+    {
+      "title": "Reconciliation risk",
+      "text": "Schedules M-1 and M-2 are where book income meets taxable income. If the depreciation schedules do not tie, the reconciliation carries the error forward. Check each year before anything is signed."
+    },
+    {
+      "title": "Month-end backlog",
+      "text": "Sage warns that delaying reconciliation until year-end creates a large backlog and higher error risk. A monthly tie-out takes less time than one year-end rescue, and the gap is smaller when you find it."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Book and tax methods differ on purpose",
+      "text": "Book depreciation and tax depreciation are built to differ. Tax rules set fixed recovery rules by asset class, and MACRS is the accelerated tax method. Book usually uses straight-line. If one side runs tax and the other runs book, the early years will never match, even with perfect data."
+    },
+    {
+      "title": "Excel DB has no 150% or 200% setting",
+      "text": "DB derives its rate from cost, salvage and life. Software labels such as 150% declining balance and 200% declining balance use a different factor. A schedule built with one rule will not match one built with the other, even when cost and life are identical."
+    },
+    {
+      "title": "The month argument shifts the first and last years",
+      "text": "DB prorates the first year by the placement month and the last year by the remaining months. If the placement month is wrong, the first year moves. If the month argument is left out, Excel assumes 12, which gives a full first year."
+    },
+    {
+      "title": "Rounding the rate to three decimals",
+      "text": "Excel rounds the rate to three decimal places before it calculates. The client's software may round at a different step, or not at all. The difference looks harmless in one year. Over the life of an asset, it can grow into a visible gap."
+    },
+    {
+      "title": "Lives, salvage values and placement dates differ",
+      "text": "A life in one file and a different class life in the other produce different rates. A salvage value entered in one place and left at zero in the other changes the rate too. Sage warns that inconsistent or missing placement dates can distort depreciation and reporting."
+    },
+    {
+      "title": "Bonus and Section 179 move year one",
+      "text": "Xero lists full depreciation on purchase through Section 179 or 100% bonus depreciation. An asset written off that way will not look like a DB schedule in year one. The IRS Form 4562 page covers Section 179 elections, so check which treatment the client filed."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm the method and the book or tax split",
+      "text": "Ask which software and which setting produced each schedule. Label every schedule book or tax. If the client's software can export a tax depreciation schedule, ask for that file. Stop comparing numbers until the method is known."
+    },
+    {
+      "title": "Rebuild one asset with identical inputs",
+      "text": "Pick one asset with a clean history. Rebuild its rate in Excel with DB, found under Formulas > Financial > DB. Compare year one first, then the ending balance. Move to the next asset only after that row ties."
+    },
+    {
+      "title": "Set the placement month and convention first",
+      "text": "Read the month argument in every DB formula. Check the placement date against the register, not the purchase invoice. If the client uses a different convention, write it down and match it in your file."
+    },
+    {
+      "title": "Keep book and tax on separate tabs",
+      "text": "Put each basis on its own tab with the same asset list. Use Schedules M-1 and M-2 as the bridge between book income and taxable income. A gap that a reconciliation explains is not an error. A gap nobody can explain is."
+    },
+    {
+      "title": "Reconcile depreciation to the ledger every month",
+      "text": "Sage advises reconciling depreciation back to the general ledger every month, without fail. It also advises confirming that the tax, GAAP and state books align, or at least understanding why they do not. A monthly tie-out shows the gap while it is still small."
+    },
+    {
+      "title": "Write down every gap you keep",
+      "text": "Some gaps are correct, and you will keep them. Keep a short note for each one. Record the cause, the method, the input that differs and the date you checked. Next year's review then starts from the note, not from scratch."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the month argument in this DB formula?",
+      "result": "Lazur draws a circle and a label around the month argument, so you can check the placement month against the register.",
+      "capability": "point"
+    },
+    {
+      "say": "Explain what DB does with the rate, in plain English.",
+      "result": "Lazur answers out loud and walks through the rate and the first-year proration, using the formula on your screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through showing formulas in this sheet.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking, and Lazur does not touch the file.",
+      "capability": "guide"
+    },
+    {
+      "say": "Research how Xero describes its declining balance option.",
+      "result": "Lazur runs research in its own Chrome tabs and returns a summary and report. Open the source pages yourself before you rely on them.",
+      "capability": "research"
+    },
+    {
+      "say": "Draft a note asking the client for their Form 4562.",
+      "result": "Lazur drafts and types the text for you. Read it, and remove client identifiers if your firm requires it, before you send.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to reconcile depreciation to the ledger at month end.",
+      "result": "Lazur adds an Apple Reminders item for month end. It is a reminder only. It does not check your ledger.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the month argument in this DB formula?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the month argument, so you can compare the placement month with the client's register.",
+    "shell": "sheet",
+    "context": "Excel for Mac, DB formula in the depreciation tab",
+    "pointsAt": "month argument",
+    "output": "Month argument: the month the asset was placed in service. If it is left out, Excel uses 12, which gives a full first year."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Rebuild one asset by hand",
+      "text": "Pick one asset with a clean history. Pull cost, salvage, life and placement month from the client's register. Rebuild the rate in one Excel cell with the DB function. Compare that rate with the client's rate before and after rounding."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the first-year charge",
+      "text": "Compare your first-year charge with the client's. If they differ, check the month argument and the placement convention first. Write down which input you changed, and why, before you move on."
+    },
+    {
+      "label": "Day 3",
+      "title": "Name the book and tax split",
+      "text": "Label each schedule as book or tax. Ask the client which software and which setting produced each one. Note any Section 179 or bonus election, and request the Form 4562 they filed."
+    },
+    {
+      "label": "Day 4",
+      "title": "Reconcile and document",
+      "text": "Add a variance column in Excel, client minus yours. Flag any row that is not zero, and tie each schedule to the general ledger. Save a short note for every gap you keep, so next year's review starts from it."
+    }
+  ],
+  "apps": [
+    "excel",
+    "chrome",
+    "outlook"
+  ],
+  "type": "problem",
+  "slug": "excel-db-depreciation-not-matching",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-db-depreciation-not-matching/excel-db-depreciation-not-matching-1-fbed79.jpg",
+      "width": 1280,
+      "height": 797,
+      "alt": "Accountant on a Mac at a desk, working out why Excel DB depreciation not matching the client's numbers",
+      "caption": "Checking a depreciation schedule at the desk",
+      "keywords": [
+        "excel db depreciation not matching",
+        "Accountants",
+        "DB depreciation schedule differs from client's numbers",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mohamed_hassan",
+        "url": "https://pixabay.com/users/Mohamed_hassan-5229782/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/financial-paper-accounting-banking-3573141/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-db-depreciation-not-matching/excel-db-depreciation-not-matching-2-2015cc.jpg",
+      "width": 1280,
+      "height": 878,
+      "alt": "Printed spreadsheets and a laptop on a desk, the kind of schedule compared line by line",
+      "caption": "Comparing schedules one asset at a time",
+      "keywords": [
+        "excel db depreciation not matching",
+        "Accountants",
+        "DB depreciation schedule differs from client's numbers",
+        "Mac",
+        "spreadsheet papers desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "1681551",
+        "url": "https://pixabay.com/users/1681551-1681551/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/art-paint-water-colors-desk-artist-1209519/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-db-depreciation-not-matching/excel-db-depreciation-not-matching-3-29350c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person at a Mac desk reviewing client records before sending a note",
+      "caption": "Reviewing client records on a Mac",
+      "keywords": [
+        "excel db depreciation not matching",
+        "Accountants",
+        "DB depreciation schedule differs from client's numbers",
+        "Mac",
+        "man working Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "SnapwireSnaps",
+        "url": "https://pixabay.com/users/SnapwireSnaps-692569/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-work-desk-business-person-597178/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel db depreciation not matching",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "Excel DB function depreciation Mac": 1,
+      "declining balance depreciation Excel": 1,
+      "book vs tax depreciation schedule accountant": 1,
+      "depreciation schedule reconciliation client": 1,
+      "Excel DB function month argument": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

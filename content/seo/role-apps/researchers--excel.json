@@ -1,0 +1,592 @@
+{
+  "title": "Excel for researchers on Mac: cleaning, charting and checking data in 2026",
+  "metaTitle": "Excel for Researchers on Mac: Clean, Chart and Check Data",
+  "description": "Excel for researchers on Mac: clean survey data, build pivot tables and charts, check formulas, and ask Lazur for help out loud, step by step.",
+  "targetKeyword": "excel for researchers on mac",
+  "secondaryKeywords": [
+    "excel for mac data cleaning",
+    "pivot tables on mac for research",
+    "excel charts for papers on mac",
+    "excel formula errors on mac",
+    "excel templates on mac",
+    "voice assistant for excel on mac",
+    "excel row limit for research data"
+  ],
+  "intro": "Excel for researchers on Mac covers the core work: cleaning exports, building pivot tables, checking formulas and making charts. Lazur adds voice help on top. It explains, points and guides you one click at a time, without touching your file.",
+  "tldr": [
+    "Excel for researchers on Mac handles cleaning, pivot tables, formulas and charts without extra software.",
+    "Keep the raw export untouched. Build every clean step on a second sheet so you can show what changed.",
+    "Format participant IDs as Text before import, or the leading zeros disappear.",
+    "Each Excel worksheet holds 1,048,576 rows and 16,384 columns, so plan for large files early.",
+    "Lazur explains, points and guides. It does not click buttons or edit your workbook for you."
+  ],
+  "stats": [
+    {
+      "value": "92%",
+      "label": "of surveyed office workers reshape spreadsheet data before it makes sense, about one hour per data set",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of data in spreadsheets"
+    },
+    {
+      "value": "44%",
+      "label": "of the survey respondents who build graphs and charts say it is easy",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of data in spreadsheets"
+    },
+    {
+      "value": "2.6",
+      "label": "spreadsheets open on a typical computer at any time, on average",
+      "sourceUrl": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "sourceTitle": "Excel Statistics: Facts and Figures (Original Research), Acuity Training"
+    },
+    {
+      "value": "38%",
+      "label": "of working time spent in a spreadsheet, on average",
+      "sourceUrl": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "sourceTitle": "Excel Statistics: Facts and Figures (Original Research), Acuity Training"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most researchers do not open Excel because they enjoy spreadsheets. A survey export, an instrument log or a lab results file arrived as a spreadsheet, and now someone has to make it usable. This page covers that job. It is written for people who use a Mac every day and need Excel for research without a data science course behind them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What researchers actually do in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The daily work is smaller than the word data suggests. You rename columns, drop test rows, fix dates and merge two exports that almost match. Then you summarize, chart and check the numbers before they reach a draft. Most of that work is reshaping, not math. The ThoughtSpot survey of 1,001 office workers in Australia, the UK and the US found the same pattern. Those people were not researchers, but the habits look familiar."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two numbers from the Acuity Training survey frame the rest of this page. People keep about 2.6 spreadsheets open at once, and they spend about 38% of their working time in one. Both are averages from office workers, not from academic labs. I found no Mac-specific survey of researchers, so treat these as signals, not benchmarks."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean research workbook usually has four kinds of sheet. Keep them in one file, so the chain of work is easy to follow."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Raw: the export exactly as the instrument or survey tool wrote it. Never edit this sheet.",
+        "Clean: a copy with fixed headers, set data types and flagged exclusions.",
+        "Analysis: pivot tables, summary formulas and a few helper columns.",
+        "Output: the tables and charts you paste into Word, Pages or slides."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Excel on Mac once, so every new workbook starts right"
+    },
+    {
+      "type": "paragraph",
+      "text": "You can make Excel start every new workbook from a template you control. Microsoft's support page describes the method. Open a workbook with your headers, styles and any standard named ranges. Then choose File > Save as Template, name the file Book and save it as an .xltx file. Use .xltm if the template holds macros."
+    },
+    {
+      "type": "paragraph",
+      "text": "The template folder sits inside your Library. Finder hides the Library by default. Press ⇧⌘G in Finder, paste the path and go there. Then save the template in the Start-up folder for Excel."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Set up a workbook with the headers and styles you reuse.",
+        "Choose File > Save as Template.",
+        "Name the file Book, then save it as .xltx, or .xltm if it has macros.",
+        "Save it to ~/Library/Group Containers/UBF8T346G9.Office/User Content/Start-up/Excel.",
+        "Quit Excel, reopen it and check that a new workbook uses your template."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check the template",
+      "text": "If a new workbook ignores your template, the file is probably in the wrong folder or saved with the wrong extension. Check the file name first. Microsoft's steps call for the name Book."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same start-up settings sit in one place. Open Excel > Preferences > Authoring > General. There you set Sheets in new workbook, plus the default font and size. The default body font is 12-point. Changes apply only to workbooks you create after you reopen Excel. Set them before a project starts, not halfway through one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean raw data without ruining the original"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cleaning is where most research workbooks go wrong. The usual mistake is editing the raw export in place. Once you save over it, you cannot show what the instrument recorded. Keep the raw sheet untouched. Build the clean sheet next to it, with formulas that point back to the raw values."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel makes one mistake that causes trouble in almost every study. A participant ID with a leading zero loses the zero when the file opens. Excel treats the column as a number, and numbers do not keep leading zeros. Your match against the consent log then fails for every affected ID, and the error looks like missing consent."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Problem",
+        "Fix on Mac",
+        "Where to find it"
+      ],
+      "rows": [
+        [
+          "Leading zeros vanish from IDs",
+          "Format the column as Text before you paste or import",
+          "Select the column, press ⌘1, choose Text"
+        ],
+        [
+          "Dates arrive as text or wrong numbers",
+          "Re-split and re-type the column",
+          "Data > Text to Columns"
+        ],
+        [
+          "Repeated participant rows",
+          "Remove exact copies in the clean sheet only",
+          "Data > Remove Duplicates"
+        ],
+        [
+          "Extra spaces break lookups",
+          "Trim the text in a helper column",
+          "Type =TRIM() in a new column, then fill down with ⌘D"
+        ]
+      ],
+      "caption": "Common cleaning problems in research exports, and the fix on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run Remove Duplicates only after you decide what counts as a duplicate. Two rows can share an ID and still hold different responses. Keep both, or flag the second one and filter it out. Write the rule in your methods, because a reviewer will ask about it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: reaction times across conditions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a full pass on one clean sheet. The raw sheet holds one row per trial. Columns hold the participant ID, the condition, the trial order, the reaction time in milliseconds and a flag for dropped trials. Filter out dropped trials in the clean sheet, never in the raw one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the clean range and press ⌘T to turn it into a table. Give the table a short name, such as Trials. Then choose Insert > PivotTable. Put condition in Rows and reaction time in Values. Change the value setting from Sum to Average. Add a Count of reaction time beside it, so you can see how many trials sit under each mean."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the same mean as a formula, so the paper and the workbook agree. In a cell away from the pivot, use =AVERAGEIFS(Trials[ReactionTime],Trials[Condition],B2), where B2 holds a condition label. If the two numbers differ, check the Filters area of the pivot first. A filter left switched on is the most common cause."
+    },
+    {
+      "type": "paragraph",
+      "text": "Last, write the method down while you still remember the rule. Record the filter, the number of dropped trials and the formula you used. Hold fn and dictate it at the cursor. Speaking the note is often faster than typing it after the analysis is done."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables and named tables for summaries"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table answers most first questions without a single formula. You can follow the full steps in [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). The short version is simple. Select your clean range or table, choose Insert > PivotTable, and drag fields into Rows, Columns and Values."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 update made Name Tables available on Mac and Windows. When you name a table, your formulas read in plain words. A formula like =AVERAGE(Trials[ReactionTime]) keeps working when you insert a row. A plain cell range can drift when rows move. Name the table before you write the first formula that uses it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check formulas before you trust a number"
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors in research spreadsheets rarely look like errors. They look like plausible numbers. Start with Show Formulas. Press ⌃` to see every formula on the sheet at once, then press it again to hide them. Scan for ranges that stop one row short or run into a total row."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A #DIV/0 error means you divided by zero or by an empty range. Check the range before you change the formula.",
+        "#N/A in a lookup means the value is not in the lookup range. Spaces and leading zeros are the usual causes.",
+        "AVERAGE skips blank cells but counts zeros. In most studies, a blank and a zero mean different things.",
+        "Select a formula cell and press ⌘[ to select the cells it reads from. Use it when a result looks wrong."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "IFERROR can hide the problems you need to see. Wrap a formula in it only after you know why the error appears. Hold ⌥⌘ and ask about the error cell. Lazur reads the formula and points at the range it uses, which is usually faster than hunting through the formula bar."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Charts for a paper, a poster or a slide"
+    },
+    {
+      "type": "paragraph",
+      "text": "Charts are where many people lose time. The ThoughtSpot survey found 87% of office workers build graphs and charts, but only 44% find it easy. The same survey says a single chart can take an average user 20 minutes or more. Knowing the usual steps makes the job shorter."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the question, then pick the chart type. Use Insert > Recommended Charts to see Excel's options for your data. Column charts compare groups. Line charts show change over time. Skip 3D effects, because they distort bar lengths. Add axis titles with units, and check the chart at the size it will print."
+    },
+    {
+      "type": "paragraph",
+      "text": "To use a chart in Word or Pages, select the chart, copy it, then choose Edit > Paste Special and paste it as a picture. A picture stays fixed when the workbook changes. Note the workbook name and sheet name in your figure notes, so you can rebuild the chart later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits you will hit with large research files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac suits most lab and survey files. It still has hard limits. Each worksheet holds 1,048,576 rows and 16,384 columns. A single cell holds up to 32,767 characters. Microsoft lists no hard file size limit in 64-bit environments. That does not mean a very large workbook stays fast."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open-text answers hit the cell limit more often than you expect. A long free-text response can run past 32,767 characters. Scan the longest responses in your export. If the cap appears, keep the full text in a separate file and link it by participant ID."
+    },
+    {
+      "type": "paragraph",
+      "text": "When a dataset comes close to the row limit, move the raw data into a database or a statistics package. Keep Excel for summary tables and final checks. If your data lives in Numbers, you can [export it to Excel](/how-to/export-a-spreadsheet-to-excel-in-numbers) first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps in Excel, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch, and you hold a key to talk to it. Hold ⌥⌘ to ask about anything on screen. Lazur answers out loud. It does not click buttons, edit your workbook or run formulas for you. It is not a plugin or add-in for Excel."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ask where a command is, and Lazur draws a circle and a label around it on screen.",
+        "Ask how to do a task, and Lazur guides you one click at a time, waiting for each click.",
+        "Hold fn to dictate a methods note, a figure caption or a comment at the cursor.",
+        "Ask for a background search, and the work runs in Lazur's own Chrome tabs. It comes back with a summary and a report.",
+        "Say a reminder out loud, and Lazur adds it to Apple Reminders."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters with research data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Still, check your ethics approval before you show identifiable participant data on screen, even for a moment."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sharing a research workbook with your lab"
+    },
+    {
+      "type": "paragraph",
+      "text": "Research spreadsheets rarely stay with one person. A CSCW '25 study interviewed 31 professional spreadsheet users about sharing their expertise. The authors found that people hold back. They weigh the timing of an interruption, and they worry that colleagues will dismiss spreadsheet knowledge. The authors link those barriers to feature-rich software that is easy to start with and hard to master over time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make your workbook easier to hand over. Add a Notes sheet as the first tab. List the purpose of each sheet, the exclusion rules and who changed what. A short README saves a colleague a lot of guesswork. It also gives a reviewer a clear path back to your numbers."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What changed on Mac in October 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says Name Tables is now available on Mac and Windows, after it was an Insider feature the month before. The same post says the clean data skill and skill builder in Copilot in Excel are rolling out to general availability on all platforms, Mac included. The skill recorder remains Insiders-only on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Feature timing differs by build. Before you plan a workflow around a new feature, choose Excel > About Excel and compare your version with Microsoft's release notes. If a feature you read about is missing, that is usually the reason."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes researchers make in Excel on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Editing the raw sheet. Keep it untouched, and build every clean step on a second sheet.",
+        "Reporting a mean without its count. Place a Count next to every average.",
+        "Letting Excel guess data types. Set IDs to Text, and check dates after every import.",
+        "Merging cells in a data table. Merged cells break sorting, filtering and pivot tables.",
+        "Forgetting that preference changes wait until Excel restarts. Reopen Excel before you test a new template.",
+        "Hiding errors with IFERROR before you know what caused them."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your first clean workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one data set you know well. Copy the raw sheet, run the table fixes, then build one pivot table you can explain to a colleague. Ask Lazur to point at each field as you add it, and to explain any formula you do not recognize. For the basics of the app, read the [Excel page](/apps/excel). The [download page](/download) has the installer, and the [pricing page](/pricing) covers the free trial and plans. The [researcher overview](/for/researchers) lists other tools for your kind of work."
+    }
+  ],
+  "chart": {
+    "title": "Share of office workers in the ThoughtSpot survey",
+    "bars": [
+      {
+        "label": "Reshape data",
+        "value": 92,
+        "highlight": true
+      },
+      {
+        "label": "Build charts",
+        "value": 87
+      },
+      {
+        "label": "Find charts easy",
+        "value": 44
+      },
+      {
+        "label": "Rate skills advanced",
+        "value": 30
+      }
+    ],
+    "note": "Survey of 1,001 office workers, not researchers. Values are percentages.",
+    "unit": "%",
+    "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+    "sourceTitle": "New research shows almost half of users struggle to make sense of data in spreadsheets"
+  },
+  "faq": [
+    {
+      "question": "Is Excel for researchers on Mac different from Excel on Windows?",
+      "answer": "The core functions match, but feature timing does not always match. Microsoft's October 2026 post says Name Tables is now available on Mac and Windows. The skill recorder in Copilot in Excel is still Insiders-only on Mac. Check Excel > About Excel and the release notes before you plan a workflow around a new feature."
+    },
+    {
+      "question": "Does Lazur edit my Excel workbook for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It points at things, explains formulas, guides you one click at a time and drafts text you can paste. It is not a plugin or add-in for Excel."
+    },
+    {
+      "question": "How many rows can Excel for Mac handle for research data?",
+      "answer": "Each worksheet holds 1,048,576 rows and 16,384 columns. Each cell holds up to 32,767 characters. Microsoft lists no hard file size limit in 64-bit environments, but that does not guarantee speed. Very large files are better kept in a database or statistics tool, with Excel used for summaries."
+    },
+    {
+      "question": "Why does Excel remove the leading zeros from my participant IDs?",
+      "answer": "Excel treats anything that looks like a number as a number, and a number does not keep leading zeros. Format the ID column as Text before you paste or import the data. Press ⌘1 to open Format Cells, then choose Text. Check the first few rows after every import."
+    },
+    {
+      "question": "Does Lazur send my research data to AI providers?",
+      "answer": "When you hold the shortcut, Lazur sends your audio and a screenshot to AI providers so it can answer. Those are not stored, and content is never used to train AI models. Lazur listens and looks only while you hold the key. Still, check your ethics approval before you show identifiable participant data on screen."
+    },
+    {
+      "question": "Can I use Numbers or Google Sheets instead of Excel for research data?",
+      "answer": "Yes, if your collaborators already work there. If your data lives in Numbers, you can export it to Excel first. Lazur works in any app you have open, so the voice help is the same. Pick the tool your collaborators can open without friction."
+    },
+    {
+      "question": "Is there a free way to try Lazur with my Excel work?",
+      "answer": "Lazur has a free Pro trial that needs no credit card. The trial starts the first time you open the app. The pricing page lists what each plan includes."
+    },
+    {
+      "question": "Where should I start if I have never built a pivot table?",
+      "answer": "Start with a clean table of one data set you know well. Follow the pivot table guide, then ask Lazur to point at each field as you add it. Count the rows under each result before you write anything down."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Customize how Excel starts in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/customize-how-excel-starts-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel Statistics: Facts and Figures (Original Research)",
+      "url": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "publisher": "Acuity Training",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "New research shows almost half of users struggle to make sense of data in spreadsheets",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How do you even know that stuff? Barriers to expertise sharing among spreadsheet users",
+      "url": "https://arxiv.org/abs/2506.09216",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this cell showing #DIV/0!?",
+    "capability": "explain",
+    "result": "Lazur reads the formula, points at the range it divides by, and says that range holds no values yet.",
+    "shell": "sheet",
+    "context": "Mean column in a clean sheet, Excel for Mac",
+    "output": "The divisor counts an empty range, so it returns zero. Check the range reference first. Then decide whether the blanks should be excluded or treated as missing data.",
+    "pointsAt": "the divide-by-zero cell"
+  },
+  "tasks": [
+    {
+      "say": "Where do I rename this table?",
+      "capability": "point",
+      "result": "Lazur circles the table name field and labels it. You type the new name yourself."
+    },
+    {
+      "say": "Walk me through Remove Duplicates.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time to Data > Remove Duplicates, and waits for each click before the next step."
+    },
+    {
+      "say": "Explain what this VLOOKUP is doing.",
+      "capability": "explain",
+      "result": "Lazur reads the formula and explains each argument in plain words, including what the exact match flag does."
+    },
+    {
+      "say": "Draft a methods note on how I cleaned the sheet.",
+      "capability": "draft",
+      "result": "Lazur types a short methods paragraph into the cell or document you point at. You edit it before it goes in your paper."
+    },
+    {
+      "say": "Dictate a note about the excluded trials.",
+      "capability": "dictate",
+      "result": "Hold fn, speak, and the words land at the cursor as clean text with punctuation added."
+    },
+    {
+      "say": "Research how to cite the Acuity survey.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary with a report you can open later."
+    },
+    {
+      "say": "Remind me Friday to recheck the exclusions.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders, so it sits next to your other lab work."
+    }
+  ],
+  "type": "role-app",
+  "slug": "researchers-excel",
+  "role": "researchers",
+  "app": "excel",
+  "roleName": "Researchers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/researchers-excel/excel-for-researchers-on-mac-1-7e1bfc.jpg",
+      "width": 1280,
+      "height": 914,
+      "alt": "Researcher at a Mac laptop checking a data spreadsheet at a desk, Excel for researchers on Mac",
+      "caption": "A clean data sheet is easier to check on a laptop at a desk",
+      "keywords": [
+        "excel for researchers on mac",
+        "Excel",
+        "Researchers",
+        "Mac",
+        "researcher laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "thumprchgo",
+        "url": "https://pixabay.com/users/thumprchgo-1500668/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/library-quiet-education-school-979896/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/researchers-excel/excel-for-researchers-on-mac-2-f4ad65.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Scientist reviewing charts and lab data on a laptop, a typical setting for Excel for researchers on Mac",
+      "caption": "Charts and summary tables often start as raw lab data",
+      "keywords": [
+        "excel for researchers on mac",
+        "Excel",
+        "Researchers",
+        "Mac",
+        "scientist data laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "supratimdas054",
+        "url": "https://pixabay.com/users/supratimdas054-21638892/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/plant-seedling-researcher-hands-6257392/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/researchers-excel/excel-for-researchers-on-mac-3-f02643.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Student working on a laptop with notes and a spreadsheet open, sharing research data with a group",
+      "caption": "Research spreadsheets often move between people and drafts",
+      "keywords": [
+        "excel for researchers on mac",
+        "Excel",
+        "Researchers",
+        "Mac",
+        "student laptop library",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Engin_Akyurt",
+        "url": "https://pixabay.com/users/Engin_Akyurt-3656355/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-book-to-read-library-youth-2701154/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for researchers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 9,
+    "secondary": {
+      "excel for mac data cleaning": 1,
+      "pivot tables on mac for research": 1,
+      "excel charts for papers on mac": 1,
+      "excel formula errors on mac": 1,
+      "excel templates on mac": 1,
+      "voice assistant for excel on mac": 1,
+      "excel row limit for research data": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

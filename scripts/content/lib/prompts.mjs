@@ -12,8 +12,9 @@ const today = () => new Date().toISOString().slice(0, 10);
 const VOICE = `VOICE: Lazur's site sounds like a sharp friend who is good with Macs. Calm, direct, a little dry. Short lines. Example of the voice: "Hold a key and talk. Lazur sees your screen, points at things, answers out loud and gets things done, in any app."`;
 
 const RESEARCH_RULES = `RESEARCH RULES:
-- Use WebSearch, then open the pages with WebFetch. Prefer the app maker's own help pages (support.microsoft.com, support.apple.com, help.figma.com, support.google.com, slack.com/help, the company's pricing page) and primary studies. Today is ${today()}.
-- Every fact gets the URL you actually opened. No URL, no fact.
+- Read the pages listed under READ THESE PAGES FIRST when there are any. Use Google Search only for what they do not cover, and use at most 3 searches. Prefer the app maker's own help pages (support.microsoft.com, support.apple.com, help.figma.com, support.google.com, slack.com/help, the company's pricing page) and primary studies. Today is ${today()}.
+- Gather everything this topic needs in this one answer; there is no second research step.
+- Every fact gets the URL of the page it came from (a page you read or a search result). No URL, no fact. Facts whose source cannot be confirmed are dropped by code.
 - Check the current version of the app and whether menus moved recently. Note old names ("formerly called…").
 - Collect 3 to 5 numbers worth showing that matter to the reader: how many people use or struggle with this, time it costs, limits that change what they can do, survey or study results. Not trivia like how many buttons a menu has or a build number. Each with its source. Never numbers about Lazur.
 - If sources disagree or something is unclear, say so in caveats.
@@ -130,34 +131,40 @@ RESEARCH NOTES:
 ${JSON.stringify(t.notes)}`,
 
   /** @param {{ role: {name: string, singular: string}, existing: string[], count: number }} t */
-  problemTopics: (t) => `Find ${t.count} distinct, real problems ${t.role.name.toLowerCase()} have in their work that people search for (e.g. "why do I lose focus while studying", "founders spending too much time on email"). Use WebSearch for evidence of demand: forum threads, People also ask, surveys. Each must be a different problem, not a rewording of another. Prefer problems where a voice assistant on a Mac that sees the screen, points, explains, drafts and dictates could honestly help, but include the problem only if it is real.
+  /** @param {{ role: {name: string, singular: string}, existing: string[], count: number, suggestions?: string[] }} t */
+  problemTopics: (t) => `Find ${t.count} distinct, real problems ${t.role.name.toLowerCase()} have in their work that people search for (e.g. "why do I lose focus while studying", "founders spending too much time on email"). Base them on these real Google autocomplete searches (what people actually type), plus your knowledge of the job:
+${(t.suggestions ?? []).slice(0, 150).join("\n")}
+Each must be a different problem, not a rewording of another. Prefer problems where a voice assistant on a Mac that sees the screen, points, explains, drafts and dictates could honestly help, but include the problem only if it is real.
 Do NOT repeat or closely overlap these existing ones:
 ${t.existing.join("\n")}
 For each: slug (lowercase, hyphens, 3 to 8 words), title (long-tail H1, 8 to 16 words, contains targetKeyword), targetKeyword (long-tail search phrase), task (the problem as a short noun phrase), why, evidenceUrl.
-${RESEARCH_RULES}`,
+Return JSON only, matching the schema. Never invent evidenceUrl values: leave it out unless you are sure of it.`,
 
   /** @param {{ existing: string[], count: number, apps: string[] }} t */
-  roleTopics: (t) => `Find ${t.count} jobs whose people spend most of the working day on a Mac or laptop and search for help with it (examples of the kind: paralegals, UX researchers, property managers, video editors, grant writers). Check search demand with WebSearch (job size, forums, "best tools for <job>").
+  roleTopics: (t) => `Find ${t.count} jobs whose people spend most of the working day on a Mac or laptop and search for help with it (examples of the kind: paralegals, UX researchers, property managers, video editors, grant writers). Pick jobs with many people and clear search demand for software help.
 Do NOT repeat these existing roles:
 ${t.existing.join("\n")}
 For each: slug (plural, lowercase, hyphens, e.g. "property-managers"), name (plural, e.g. "Property managers"), singular ("property manager"), apps (2 to 6 slugs ONLY from: ${t.apps.join(", ")}), keywords (1 to 3 long-tail searches like "ai assistant for property managers"), why (evidence).
-${RESEARCH_RULES}`,
+Return JSON only, matching the schema. Never invent evidenceUrl values: leave it out unless you are sure of it.`,
 
-  /** @param {{ apps: string[], existing: string[], count: number }} t */
+  /** @param {{ apps: string[], existing: string[], count: number, suggestions?: string[] }} t */
   howtoTopics: (t) => `Find ${t.count} how-to topics people search for, in the form "how to <task> in <app> on mac", for these Mac apps: ${t.apps.join(", ")}.
-Use WebSearch to check demand: autocomplete-style queries, "People also ask", help-center top articles, forum threads. Prefer tasks with clear steps and real search demand. Mac-specific angles are a plus.
+Pick from these real Google autocomplete searches (what people actually type). Only choose tasks that appear here or are a clear variant of one:
+${(t.suggestions ?? []).slice(0, 300).join("\n")}
+Prefer tasks with clear steps. Mac-specific angles are a plus.
 Do NOT propose anything that matches or is a near-duplicate of these existing slugs:
 ${t.existing.join("\n")}
 For each topic: slug "<task>-in-<app-slug>" (lowercase, hyphens), title "How to <task> in <App> on Mac", targetKeyword, app (app slug from: ${t.apps.join(", ")}), task (verb phrase, lowercase), why (evidence of demand), evidenceUrl.
-${RESEARCH_RULES}`,
+Return JSON only, matching the schema. Never invent evidenceUrl values: leave it out unless you are sure of it.`,
 
-  /** @param {{ seeds: string[], existing: string[], count: number }} t */
+  /** @param {{ seeds: string[], existing: string[], count: number, suggestions?: string[] }} t */
   blogTopics: (t) => `Plan ${t.count} new blog posts for lazur.app (a voice assistant for Mac in the notch; it sees your screen, points, answers out loud, drafts, dictates).
-Research real search demand around these seeds: ${t.seeds.join("; ")}. Pick topics a Mac user actually searches, that a useful article can answer, and where Lazur is a natural mention (not the whole point).
+Use these real Google autocomplete searches around the seeds (${t.seeds.join("; ")}) as the demand signal:
+${(t.suggestions ?? []).slice(0, 300).join("\n")} Pick topics a Mac user actually searches, that a useful article can answer, and where Lazur is a natural mention (not the whole point).
 Do NOT repeat or closely overlap any of these existing titles and keywords:
 ${t.existing.join("\n")}
 For each: slug, title (matches search intent), targetKeyword, why, evidenceUrl.
-${RESEARCH_RULES}`,
+Return JSON only, matching the schema. Never invent evidenceUrl values: leave it out unless you are sure of it.`,
 
   /** @param {{ topic: { title: string, targetKeyword: string } }} t */
   blogResearch: (t) => `Research a blog post: "${t.topic.title}" (keyword: "${t.topic.targetKeyword}"). Collect current, sourced facts, numbers, steps and expert sources that answer the query.

@@ -169,7 +169,7 @@ export const compareSchema = obj(
 export const researchSchema = obj(
   {
     summary: str(20, 1500),
-    facts: arr(obj({ fact: str(5, 400), sourceUrl: url, sourceTitle: str(3, 200) }), 3, 40),
+    facts: arr({ anyOf: [obj({ fact: str(5, 400), sourceUrl: url, sourceTitle: str(3, 200) }, ["fact"]), str(5, 400)] }, 3, 40),
     sources: arr(sourceSchema, 2, 20),
     searchQueries: arr(str(3, 120), 1, 20),
     caveats: arr(str(3, 300), 0, 10),

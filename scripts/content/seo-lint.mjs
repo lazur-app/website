@@ -64,4 +64,5 @@ for (const p of pages) {
 }
 
 console.log(`\nseo-lint: ${pages.length} pages, ${errorCount} errors, ${warnCount} warnings`);
-process.exit(errorCount > 0 ? 1 : 0);
+// Report only, unless content checks are on (CONTENT_CHECKS=on) or --strict is passed.
+process.exit(errorCount > 0 && (process.env.CONTENT_CHECKS === "on" || f.strict) ? 1 : 0);

@@ -1,8 +1,8 @@
 # Content automation
 
-Daily programmatic SEO for lazur.app. A GitHub Actions job runs every hour, writes researched pages
-with headless Claude Code on a Claude Code seat, checks every page in code, adds keyword-tagged
-photos, and makes one commit. Pushing to `main` deploys on Vercel.
+Daily programmatic SEO for lazur.app. A GitHub Actions job runs every hour, researches and writes
+pages with Google's Gemini API (cheap, pay per use), adds keyword-tagged photos, and makes one commit.
+Pushing to `main` deploys on Vercel. Every run's cost is recorded (see Costs below).
 
 **It is off.** Nothing runs on a schedule until you set the repo variable `CONTENT_DAILY_ENABLED=true`.
 
@@ -20,9 +20,15 @@ photos, and makes one commit. Pushing to `main` deploys on Vercel.
 | Blog | `/blog/<slug>` | `content/blog/*.md` | 5 |
 | Free tools | `/tools/<slug>` | hand-built in `src/components/tools` | not generated |
 
-Every page has **at least 2,000 words** of prose (`MIN_WORDS` in `src/lib/content/rules.mjs`, counted
-by code over intro, TL;DR, blocks, steps, FAQ and lists). Generated pages under it are refused. Pages
-written before the rule only warn in `seo-lint`, and the refresh job rewrites the thinnest pages first.
+Length: the target is **2,000 words** a page (`MIN_WORDS` in `src/lib/content/rules.mjs`). Small
+models write short, so when a draft is under it the model is asked up to twice to add new sections.
+Nothing is rejected for length.
+
+**Content checks are OFF by default** (Veer's call, 2026-11-09): whatever the model writes is
+published as long as it is valid JSON for the page template. The writing rules still go into every
+prompt as guidance. `CONTENT_CHECKS=on` (repo variable) brings back the full guards: banned words and
+dashes, word count, cited sources only, Lazur claims, keyword in the H1, fix rounds and rejection.
+`npm run content:lint` always reports what the guards would say, without blocking anything.
 
 Problem pages: a planner researches real problems per role (forums, People also ask, surveys) and
 rejects overlaps; each page covers what the problem costs, why it happens, fixes that work without
@@ -34,27 +40,30 @@ Old `/use-cases/*` URLs redirect to `/apps/*`.
 ## How one page gets written
 
 ```
-pick next target ─► research (Haiku + WebSearch/WebFetch, JSON: facts with URLs)
-                 ─► write (Haiku, no tools, JSON Schema for that page type)
+pick next target ─► research: cached facts about the app / role / competitor (no new search),
+                    plus at most ONE grounded Gemini call for the page's own topic
+                 ─► write (Gemini, JSON Schema for that page type)
+                 ─► expand up to twice if under 2,000 words
                  ─► assemble (code adds slug, dates, Lazur's own facts and prices)
-                 ─► guards ─fail─► one fix round with the error list ─fail─► refused.jsonl
-                 ─► images (Pixabay → re-encode → keyword file name → EXIF/XMP/IPTC → storage)
-                 ─► guards again (now with images) ─► content/seo/<type>/<slug>.json
+                 ─► images (Pixabay → re-encode → keyword file name → EXIF/XMP/IPTC → Vercel Blob)
+                 ─► content/seo/<type>/<slug>.json, cost recorded per page
 ```
 
-- **Targets.** How-to and blog topics come from planners that research search demand and dedupe
-  against every existing slug, title and keyword (`content/seo/_plan/*.jsonl` queues). App, role,
-  role × app and compare targets come from the lists in `src/lib/content/sources.mjs`.
-- **Model calls.** `scripts/content/lib/agent.mjs` runs `claude -p --output-format json --json-schema …`
-  with `--model haiku`, `--max-budget-usd` per call, and only `WebSearch,WebFetch` for research (no
-  tools for writing). Answers are validated against the schema; one correction round on failure.
-  Every call appends cost, tokens and duration to `usage.jsonl`.
-- **Guards** (`scripts/content/lib/guards.mjs`, rules in `src/lib/content/rules.mjs`): banned words and
-  AI tells, no em/en dashes, no exclamation marks, sentence length, unsupported Lazur claims (user
-  counts, results, testimonials, partnerships, "Lazur clicks/builds it for you"), keyword in title,
-  every stat and chart sourced, every internal link exists, Lazur prices match `lazur-facts.mjs`,
-  competitor prices need a URL on their own site and a check date, the H1 must be long tail (8 to 16 words) and contain the exact target keyword phrase, Lazur demos only use real
-  capabilities, image alt text and credits, no duplicate titles or keywords.
+- **Model:** `scripts/content/lib/agent.mjs` calls Gemini over REST. Key: `GEMINI_VERTEX_API_KEY`
+  (Vertex AI express key, starts `AQ.`) or `GEMINI_API_KEY` (Google AI Studio). Default model for both
+  research and writing: `gemini-3.1-flash-lite` (the only one enabled on the current Vertex key);
+  change with `CONTENT_RESEARCH_MODEL` / `CONTENT_WRITE_MODEL`.
+- **Research = one call:** Gemini writes plain-text notes while Google Search runs; code builds the
+  facts and sources from Google's grounding data (each sentence Google tied to a web page, with that
+  page's real URL). Known official help sites are read through URL context, which has no search fee.
+- **Research cache** (`content/research-cache/<kind>--<slug>.json`, 45 days): an app, a role or a
+  competitor is researched once and reused by every page about it. Role × app, app, role and compare
+  pages usually need no new search at all; how-to, problem and blog pages need one call each.
+- **Topic planning is free:** planners pull Google autocomplete suggestions (what people type,
+  cached 7 days) and pick topics with one ungrounded call. No search fees.
+- **Targets.** Topics dedupe against every existing slug, title and keyword (`content/seo/_plan/*.jsonl`).
+- **Guards** (only with `CONTENT_CHECKS=on`): `scripts/content/lib/guards.mjs`, rules in
+  `src/lib/content/rules.mjs`.
 - **Honesty by construction.** "Faster with Lazur" blocks can only show a capability id from
   `src/lib/content/lazur-facts.mjs` (explain, point, guide, dictate, draft, research, everyday).
   Lazur's row on compare pages is overwritten from that file, so the model cannot misstate our price.
@@ -136,17 +145,44 @@ per role). The same problem can appear for different roles; each page is written
   www.lazur.app and look like duplicate content. Same-URL markdown gives LLMs the clean text without
   that cost.
 
-## Running the job on a Claude Code seat (cloud) — the main way
+## Costs
 
-An hourly scheduled Claude Code cloud session on the seat runs the job. Its prompt is
-[`scripts/content/CLOUD-RUN.md`](scripts/content/CLOUD-RUN.md): pull main, `npm ci`, check keys,
-`daily.mjs --max-minutes=45`, `seo-lint`, `build-check.mjs`, commit, rebase, push to main, IndexNow,
-report. No `CLAUDE_CODE_OAUTH_TOKEN` is needed: the session's own `claude` does the model calls.
-The cloud environment needs `PIXABAY_API_KEY` and `BLOB_READ_WRITE_TOKEN`, network access to the
-open web (research), and push access to lazur-app/website.
+Every model call is logged to `content-runs/daily-<date>/usage.jsonl` with tokens, search queries and
+its USD cost at Google's list price. Each page's total is in that day's `manifest.json`
+(`cost_usd`), and `content-runs/COSTS.md` is rewritten after every run with a per-day table: pages,
+searches, total cost, cost per page.
 
-`scripts/content/build-check.mjs` is `next build` that works inside cloud sessions, whose proxy
-breaks Next's Google Fonts download (it fetches the font CSS itself and retries).
+Prices (Google pricing pages, read 2026-11-09): `gemini-3.1-flash-lite` $0.25 per million input
+tokens, $1.50 per million output; Google Search grounding on Gemini 3 is billed per search query,
+5,000 free a month, then $14 per 1,000.
+
+**Measured** (2026-11-09, 7 real pages, one of each type, empty research cache): $0.63 in total,
+about **$0.09 a page**; 33 search queries were $0.46 of that. With the cache warm, roughly 70% of
+pages (how-to, problem, blog) need one research call and the rest none, so expect about **$0.05 to
+$0.07 a page**:
+
+| Pages a day | Approx. cost a day | Approx. a month |
+| ---: | ---: | ---: |
+| 200 | $10 to $14 | $300 to $420 |
+| 300 | $15 to $21 | $450 to $630 |
+| 500 | $25 to $35 | $750 to $1,050 |
+| 700 | $35 to $49 | $1,050 to $1,470 |
+| 1,000 | $50 to $70 | $1,500 to $2,100 |
+
+Search is most of it. A Google AI Studio key (`GEMINI_API_KEY`) with `gemini-2.5-flash-lite` would cut
+that a lot: 2.5 bills grounding per prompt with 1,500 grounded prompts a day free, and its tokens are
+cheaper ($0.10 / $0.40). That model is not enabled on the current Vertex key.
+
+**Guards on spend** (repo variables): `CONTENT_MAX_USD_PER_DAY` (default 60) stops the run for the
+day; `CONTENT_MAX_SEARCHES_PER_DAY` (default 1400) stops grounding, after which only pages that can use
+cached research are written and the rest wait for the next day.
+
+## Running it
+
+GitHub Actions (below) is the main way now: it only needs API keys. A scheduled Claude Code cloud
+session can also run it with [`scripts/content/CLOUD-RUN.md`](scripts/content/CLOUD-RUN.md); the
+environment then needs the same keys. `scripts/content/build-check.mjs` is `next build` that works
+inside cloud sessions, whose proxy breaks Next's Google Fonts download.
 
 ## The ramp: 300, then 500, then 1,000 pages a day
 
@@ -165,30 +201,22 @@ rolls into the next type, ending with how-tos. On top, up to 20 old pages under 
 rewritten each day until none are left. Override with `CONTENT_DAILY_COUNTS` (`"300"` or
 `{"howto":40,"problems":20}`) or per-type flags.
 
-### Can one seat do 1,000 a day? The math
+### Can it do 1,000 a day?
 
-- **Time:** a page takes about 4.5 minutes of model time (measured: research 2.4 min, write 2 min)
-  plus about 20 seconds for images. With 6 pages in parallel and 45 working minutes an hour, one
-  hourly run writes up to about 60 pages, so 24 runs give about 1,400 a day. That covers 1,000 with
-  room for retries.
-- **Seat usage:** a measured page used about $0.13 of model usage, so 1,000 pages is roughly $130 a
-  day of usage on the seat. That is likely beyond what one subscription seat allows. When the limit
-  hits, calls fail, those items are retried next hour, and the day simply finishes short. Watch the
-  hourly reports: if 1,000 a day keeps falling short, add a second seat (a second scheduled session
-  with a different `CONTENT_CONCURRENCY`) or keep the ramp at 500.
-- **Pixabay:** at most 3 searches a page (cached 24 hours), so about 180 an hour against a limit of
-  6,000 an hour.
+- **Time:** a Gemini page takes about 20 to 50 seconds. With 6 in parallel and 40 working minutes an
+  hour, one hourly run writes well over 100 pages, so 1,000 a day fits easily.
+- **Cost:** see Costs above, roughly $50 to $70 a day at 1,000 pages, capped by
+  `CONTENT_MAX_USD_PER_DAY`.
+- **Pixabay:** at most 3 searches a page (cached 24 hours), well under 6,000 an hour.
 - **Vercel Blob:** about 3 photos of roughly 120 KB per page, so about 360 MB a day at 1,000 pages,
-  around 11 GB a month. Blob storage and traffic are billed by Vercel; check the usage page monthly.
+  around 11 GB a month, billed by Vercel.
 - **Deploys:** each hourly push deploys the site, up to 24 deploys a day.
-- **Google:** a young domain adding 1,000 pages a day gets crawled slowly at first. Quality (sources,
-  2,000+ words, a real answer up top) is what keeps that from being treated as scaled spam; do not
-  loosen the guards to hit the number.
+- **Google:** a young domain adding 1,000 pages a day gets crawled slowly at first.
 
 ## GitHub Actions
 
 `.github/workflows/content-daily.yml`: hourly at :17, Mondays 07:41 for refresh, one job at a time
-(`concurrency: content-daily`), 58-minute timeout. Steps: install, Claude Code CLI, generate, lint,
+(`concurrency: content-daily`), 58-minute timeout. Steps: install, check keys, generate, lint (report only),
 `npm run build`, one commit, push. Manual runs: Actions > content-daily > Run workflow, with
 `target=branch` to push to `content-test/<date>` instead of `main`, per-type counts, and `fake` to test
 the plumbing for free.
@@ -200,17 +228,19 @@ the plumbing for free.
 | `CONTENT_DAILY_ENABLED` | `true` turns the schedule on. Leave unset to keep it off. |
 | `CONTENT_COUNT_HOWTO`, `_APPS`, `_ROLES`, `_ROLE_APPS`, `_PROBLEMS`, `_COMPARE`, `_BLOG` | Per-day counts (defaults in `sources.mjs`: 100, 20, 15, 50, 30, 5, 5) |
 | `CONTENT_REFRESH_COUNT` | Pages rewritten each Monday (default 40) |
-| `CONTENT_CONCURRENCY` | Parallel pages (default 4) |
+| `CONTENT_CONCURRENCY` | Parallel pages (default 6) |
+| `CONTENT_MAX_USD_PER_DAY` | Daily spend cap in USD (default 60) |
+| `CONTENT_MAX_SEARCHES_PER_DAY` | Daily cap on Google Search queries (default 1400) |
+| `CONTENT_CHECKS` | `on` brings back the writing-rule guards (default off) |
 
-Env knobs for local runs: `CONTENT_RESEARCH_MODEL`, `CONTENT_WRITE_MODEL` (default `haiku`),
-`CONTENT_MAX_USD_PER_CALL` (default 0.75), `CONTENT_MIN_IMAGES` (2), `SEO_PRERENDER_LIMIT` (pages
+Env knobs for local runs: `CONTENT_RESEARCH_MODEL`, `CONTENT_WRITE_MODEL` (default
+`gemini-3.1-flash-lite`), `CONTENT_RESEARCH_TTL_DAYS` (45), `CONTENT_MIN_IMAGES` (2), `SEO_PRERENDER_LIMIT` (pages
 per type rendered at build time, default 1500; the rest render on first visit and are cached).
 
 ## What Veer needs to do to switch it on
 
 1. **Secrets** (Settings > Secrets and variables > Actions > Secrets):
-   - `CLAUDE_CODE_OAUTH_TOKEN`: run `claude setup-token` on a machine logged in to the Claude Code seat
-     that should pay for this.
+   - `GEMINI_VERTEX_API_KEY`: the Vertex AI express key (or `GEMINI_API_KEY` for a Google AI Studio key).
    - `PIXABAY_API_KEY`: free key from https://pixabay.com/api/docs/ (log in, the key is on that page).
    - `BLOB_READ_WRITE_TOKEN`: Vercel > Storage > create a Blob store connected to the website project
      > copy the read-write token.
@@ -232,7 +262,9 @@ per type rendered at build time, default 1500; the rest render on first visit an
 | `src/lib/content/keywords.mjs` | Keyword hits |
 | `src/lib/seo-pages/` | Types, loader, routes, links, JSON-LD, metadata, OG image |
 | `src/components/seo-pages/` | Design-system components and page templates (`docs/DESIGN-SYSTEM.md`) |
-| `scripts/content/lib/` | agent, schemas, prompts, guards, images, iptc, pipeline, core, fake |
+| `scripts/content/lib/` | agent (Gemini), research-cache, suggest (autocomplete), schemas, prompts, guards, images, iptc, pipeline, core, fake |
+| `content/research-cache/` | Cached research per app, role and competitor |
+| `content-runs/COSTS.md` | Cost per day and per page |
 | `scripts/content/daily.mjs` | The orchestrator |
 | `scripts/content/seo-lint.mjs` | Lint everything |
 | `scripts/content/screenshots.mjs` | Screenshot one page per type, mobile and desktop |

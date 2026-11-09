@@ -11,7 +11,11 @@ import path from "node:path";
 import matter from "gray-matter";
 import { APPS, BLOG_SEEDS, COMPETITORS, KEYWORD_PATTERNS, ROLES, appBySlug, roleBySlug as baseRoleBySlug } from "../../../src/lib/content/sources.mjs";
 import { LAZUR } from "../../../src/lib/content/lazur-facts.mjs";
+import { wordCount } from "../../../src/lib/content/keywords.mjs";
+import { MIN_WORDS } from "../../../src/lib/content/rules.mjs";
 import { research, write } from "./agent.mjs";
+import { cleanNotes, getCached, putCached } from "./research-cache.mjs";
+import { suggestions } from "./suggest.mjs";
 import { ROOT, allowedPaths, fileFor, logRefused, readAll, readJsonl, readType, savePage, today, urlFor, writeJsonl } from "./core.mjs";
 import { fake } from "./fake.mjs";
 import { guardPage, guardSummary } from "./guards.mjs";
@@ -23,6 +27,13 @@ import { appSchema, blogSchema, compareSchema, howtoSchema, problemSchema, resea
 const planDir = () => process.env.CONTENT_PLAN_DIR || path.join(ROOT, "content/seo/_plan");
 const queueFile = (/** @type {string} */ name) => path.join(planDir(), name);
 const MIN_IMAGES = Number(process.env.CONTENT_MIN_IMAGES ?? 2);
+
+/**
+ * Content checks (writing rules, word count, sources, claims, keyword in H1). OFF by default, as
+ * Veer asked on 2026-11-09: whatever the model writes is published as long as it is valid JSON for
+ * the template. CONTENT_CHECKS=on brings back the guards, fix rounds and source filtering.
+ */
+export const CHECKS_ON = process.env.CONTENT_CHECKS === "on";
 
 /** Where discovered roles live (CONTENT_ROLES_FILE overrides it for tests). */
 const rolesFile = () => process.env.CONTENT_ROLES_FILE || path.join(ROOT, "src/lib/content/roles-discovered.mjs");
@@ -292,6 +303,66 @@ export const SPECS = {
   },
 };
 
+/**
+ * What each page type researches. Entities (app, role, competitor) are cached and shared across
+ * pages; `topic` is the one page-specific grounded call (null when the entities are enough).
+ * @type {Record<string, { entities: (t: Target) => { kind: string, slug: string, prompt: string, urls: string[] }[], topic: (t: Target) => { prompt: string, urls: string[] } | null }>}
+ */
+const RESEARCH = {
+  howto: {
+    entities: (t) => [appEntity(t.app)],
+    topic: (t) => ({ prompt: SPECS.howto.research(t), urls: helpUrls(t.app) }),
+  },
+  apps: { entities: (t) => [appEntity(t.app)], topic: () => null },
+  roles: { entities: (t) => [roleEntity(t.role)], topic: () => null },
+  "role-apps": { entities: (t) => [appEntity(t.app), roleEntity(t.role)], topic: () => null },
+  problems: { entities: (t) => [roleEntity(t.role)], topic: (t) => ({ prompt: SPECS.problems.research(t), urls: [] }) },
+  compare: { entities: (t) => t.products.map((/** @type {string} */ s) => competitorEntity(s)), topic: () => null },
+  blog: { entities: () => [], topic: (t) => ({ prompt: SPECS.blog.research(t), urls: [] }) },
+};
+
+/** Official help sites, read via URL context (no search fee) before searching. @param {string} app */
+function helpUrls(app) {
+  const a = appBySlug(app);
+  return a ? [a.site] : [];
+}
+/** @param {string} slug */
+function appEntity(slug) {
+  const app = /** @type {any} */ (appBySlug(slug));
+  return { kind: "app", slug, prompt: prompts.appResearch({ app }), urls: [app.site] };
+}
+/** @param {string} slug */
+function roleEntity(slug) {
+  return { kind: "role", slug, prompt: prompts.roleResearch({ role: /** @type {any} */ (roleBySlug(slug)) }), urls: [] };
+}
+/** @param {string} slug */
+function competitorEntity(slug) {
+  const c = /** @type {any} */ (COMPETITORS.find((x) => x.slug === slug));
+  return { kind: "competitor", slug, prompt: prompts.compareResearch({ kind: "facts for one product", products: [c] }), urls: [c.pricingUrl ?? c.site] };
+}
+
+/**
+ * Gather notes for one page: cached entities first, at most ONE new grounded call per entity that
+ * is missing or stale, plus the page's own topic call if it has one.
+ * @param {string} flag @param {Target} t @param {string} runDir
+ */
+async function gather(flag, t, runDir) {
+  const def = RESEARCH[flag];
+  /** @type {Record<string, any>} */
+  const notes = {};
+  for (const e of def.entities(t)) {
+    let n = getCached(e.kind, e.slug);
+    if (!n) {
+      n = cleanNotes(await research({ prompt: e.prompt, urls: e.urls, schema: researchSchema, label: `${t.key}|research:${e.kind}:${e.slug}`, runDir, fake: () => fake.research() }));
+      if (process.env.CONTENT_AGENT_FAKE !== "1") putCached(e.kind, e.slug, n);
+    }
+    notes[`${e.kind}:${e.slug}`] = n;
+  }
+  const topic = def.topic(t);
+  if (topic) notes.topic = cleanNotes(await research({ prompt: topic.prompt, urls: topic.urls, schema: researchSchema, label: `${t.key}:research`, runDir, fake: () => fake.research() }));
+  return notes;
+}
+
 /** Write a blog page as markdown with frontmatter. @param {any} page @param {string} root */
 function saveBlog(page, root) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -310,26 +381,46 @@ function saveBlog(page, root) {
  * @param {Spec} spec
  * @param {Target} t
  * @param {{ runDir: string, images: boolean, outRoot?: string, existing?: any }} opts
- * @returns {Promise<{ status: "done" | "refused" | "failed", file?: string, url?: string, reason?: string }>}
+ * @returns {Promise<{ status: "done" | "refused" | "failed" | "deferred", file?: string, url?: string, reason?: string }>}
  */
 export async function generateOne(spec, t, opts) {
   const label = t.key;
   try {
-    const notes = await research({ prompt: spec.research(t), schema: researchSchema, label: `${label}:research`, runDir: opts.runDir, fake: () => fake.research() });
+    const notes = await gather(spec.flag, t, opts.runDir);
     const internal = spec.internal(t);
     const existingNote = opts.existing ? `\n\nTHIS IS A REFRESH of an existing page. Keep the same topic and slug, keep what is still true, update facts, prices and versions from the new research, and fix anything that breaks the rules. Existing page:\n${JSON.stringify(opts.existing).slice(0, 12000)}` : "";
     const prompt = spec.write(t, notes, internal) + existingNote;
     let draft = await write({ prompt, schema: spec.schema, label: `${label}:write`, runDir: opts.runDir, fake: () => fake.draft(spec.type, t) });
-    let page = spec.assemble(draft, t);
+    // Length: small models write short. Not a rejection: up to two "expand" passes add new sections
+    // until the page reaches MIN_WORDS (2,000). Whatever comes back after that is used.
+    for (let pass = 1; pass <= 2 && process.env.CONTENT_AGENT_FAKE !== "1"; pass++) {
+      const words = wordCount(spec.assemble(draft, t));
+      if (words >= MIN_WORDS) break;
+      const expandPrompt = `${prompt}\n\nYOUR DRAFT (${words} words):\n${JSON.stringify(draft)}\n\nThe page must be at least ${MIN_WORDS + 300} words of useful prose. Return the full JSON again with the same fields, keeping everything that is there and ADDING depth: new blocks with H2 sections that answer different sub-questions, worked examples, common mistakes, comparisons, what to do next, and more FAQ answers. Do not repeat points or pad sentences.`;
+      draft = await write({ prompt: expandPrompt, schema: spec.schema, label: `${label}:expand${pass}`, runDir: opts.runDir, fake: () => fake.draft(spec.type, t) });
+    }
+    // Sources: only URLs the research actually returned (or pages we read). Anything else the writer
+    // cites is dropped, and a stat that relied on it then fails the guard.
+    const verified = new Set(Object.values(notes).flatMap((/** @type {any} */ n) => (n?.sources ?? []).map((/** @type {any} */ s) => s.url)));
+    const keepVerified = (/** @type {any} */ p) => {
+      if (process.env.CONTENT_AGENT_FAKE === "1" || !CHECKS_ON) return p;
+      p.sources = (p.sources ?? []).filter((/** @type {any} */ s) => verified.has(s.url));
+      return p;
+    };
+    let page = keepVerified(spec.assemble(draft, t));
     const ctx = { type: page.type, allowedPaths: allowedPaths(), existingTitles: opts.existing ? undefined : new Set(readAll().map((p) => String(p.title).toLowerCase())) };
     if (page.type === "blog") ctx.allowedPaths.add(`/blog/${page.slug}`);
     let check = guardPage(page, ctx);
+    if (!CHECKS_ON) check = { errors: [], warnings: [...check.errors, ...check.warnings] };
 
-    if (check.errors.length) {
-      const fixPrompt = `${prompt}\n\nYOUR DRAFT:\n${JSON.stringify(draft)}\n\nCODE CHECKS FAILED. Fix every one of these and return the full corrected JSON:\n- ${check.errors.join("\n- ")}`;
-      draft = await write({ prompt: fixPrompt, schema: spec.schema, label: `${label}:fix`, runDir: opts.runDir, fake: () => fake.draft(spec.type, t) });
-      page = spec.assemble(draft, t);
+    // Up to two fix rounds: the errors go back to the writer with its draft.
+    for (let round = 1; round <= 2 && check.errors.length; round++) {
+      const fixPrompt = `${prompt}\n\nYOUR DRAFT:\n${JSON.stringify(draft)}\n\nCODE CHECKS FAILED. Fix every one of these and return the full corrected JSON. Only cite URLs from the research notes:\n- ${check.errors.join("\n- ")}`;
+      draft = await write({ prompt: fixPrompt, schema: spec.schema, label: `${label}:fix${round}`, runDir: opts.runDir, fake: () => fake.draft(spec.type, t) });
+      page = keepVerified(spec.assemble(draft, t));
       check = guardPage(page, ctx);
+    }
+    {
       if (check.errors.length) {
         logRefused(opts.runDir, { key: label, stage: "write", errors: check.errors, warnings: check.warnings });
         return { status: "refused", reason: guardSummary(check) };
@@ -344,7 +435,8 @@ export async function generateOne(spec, t, opts) {
     if (opts.images) {
       page.images = await imagesForPage({ type: page.type, slug: page.slug, keyword: page.targetKeyword, extraKeywords: spec.extraKeywords(t).filter(Boolean), queries: page.imageQueries ?? [] });
     }
-    const final = guardPage(page, { ...ctx, minImages: opts.images ? MIN_IMAGES : 0 });
+    const final = guardPage(page, { ...ctx, minImages: CHECKS_ON && opts.images ? MIN_IMAGES : 0 });
+    if (!CHECKS_ON) final.errors = [];
     if (final.errors.length) {
       logRefused(opts.runDir, { key: label, stage: "images", errors: final.errors });
       return { status: "refused", reason: guardSummary(final) };
@@ -356,6 +448,7 @@ export async function generateOne(spec, t, opts) {
     return { status: "done", file: path.relative(ROOT, file), url: urlFor(page) };
   } catch (e) {
     const reason = /** @type {Error} */ (e).message.slice(0, 500);
+    if (/** @type {any} */ (e).code === "BUDGET") return { status: "deferred", reason };
     logRefused(opts.runDir, { key: label, stage: "error", error: reason });
     return { status: "failed", reason };
   }
@@ -376,8 +469,10 @@ export async function planHowtoTopics(count, runDir = path.join(planDir(), "../.
   // Rotate through apps so one app does not take the whole queue.
   const perApp = new Map(APPS.map((a) => [a.slug, have.filter((s) => s.endsWith(`-in-${a.slug}`)).length + queued.filter((q) => q.app === a.slug).length]));
   const apps = [...APPS].sort((a, b) => (perApp.get(a.slug) ?? 0) - (perApp.get(b.slug) ?? 0)).slice(0, 6);
-  const res = await research({
-    prompt: prompts.howtoTopics({ apps: apps.map((a) => a.slug), existing: [...have, ...queued.map((q) => q.slug)], count }),
+  // Free demand signal: Google autocomplete for each app, then one ungrounded call to pick topics.
+  const sugg = await suggestions(apps.flatMap((a) => [`${a.name.toLowerCase()} mac how to`, `how to in ${a.name.toLowerCase()} on mac`]), { letters: true });
+  const res = await write({
+    prompt: prompts.howtoTopics({ apps: apps.map((a) => a.slug), existing: [...have, ...queued.map((q) => q.slug)], count, suggestions: sugg }),
     schema: topicsSchema,
     label: "plan:howto",
     runDir,
@@ -408,7 +503,7 @@ async function currentRoles() {
  */
 export async function planRoles(count, runDir = path.join(planDir(), "../../../content-runs/planner")) {
   const roles = await currentRoles();
-  const res = await research({
+  const res = await write({
     prompt: prompts.roleTopics({ existing: roles.map((r) => `${r.slug} | ${r.name}`), count, apps: APPS.map((a) => a.slug) }),
     schema: rolesSchema,
     label: "plan:roles",
@@ -438,8 +533,10 @@ export async function planProblemTopics(count, runDir = path.join(planDir(), "..
   let added = 0;
   for (const role of roles) {
     const existing = [...have, ...queued].filter((p) => p.role === role.slug).map((p) => `${p.slug} | ${p.title}`);
-    const res = await research({
-      prompt: prompts.problemTopics({ role, existing, count: Math.ceil(count / roles.length) }),
+    const plural = role.name.toLowerCase();
+    const sugg = await suggestions([`why do ${plural}`, `how can ${plural}`, `${plural} struggle with`, `${plural} spend too much time`, `${role.singular} burnout`, `${role.singular} problems`, `${plural} hate`]);
+    const res = await write({
+      prompt: prompts.problemTopics({ role, existing, count: Math.ceil(count / roles.length), suggestions: sugg }),
       schema: topicsSchema,
       label: `plan:problems:${role.slug}`,
       runDir,
@@ -462,7 +559,8 @@ export async function planBlogTopics(count, runDir = path.join(planDir(), "../..
   const posts = readType("blog");
   const queued = readJsonl(queueFile("blog-topics.jsonl"));
   const existing = [...posts.map((p) => `${p.slug} | ${p.title} | ${p.targetKeyword ?? ""}`), ...queued.map((q) => `${q.slug} | ${q.title} | ${q.targetKeyword}`)];
-  const res = await research({ prompt: prompts.blogTopics({ seeds: BLOG_SEEDS, existing, count }), schema: topicsSchema, label: "plan:blog", runDir, fake: () => fake.topics("blog", [], count) });
+  const sugg = await suggestions(BLOG_SEEDS, { letters: true });
+  const res = await write({ prompt: prompts.blogTopics({ seeds: BLOG_SEEDS, existing, count, suggestions: sugg }), schema: topicsSchema, label: "plan:blog", runDir, fake: () => fake.topics("blog", [], count) });
   const titles = new Set(existing.map((e) => e.split(" | ")[1]?.toLowerCase()));
   const seen = new Set([...posts.map((p) => p.slug), ...queued.map((q) => q.slug)]);
   const fresh = res.topics

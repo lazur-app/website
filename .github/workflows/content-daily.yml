@@ -46,10 +46,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 58
     env:
-      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+      # Model: Gemini. Either a Vertex AI express key or an AI Studio key works.
+      GEMINI_VERTEX_API_KEY: ${{ secrets.GEMINI_VERTEX_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
       BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
-      CONTENT_CONCURRENCY: ${{ vars.CONTENT_CONCURRENCY || '4' }}
+      CONTENT_CONCURRENCY: ${{ vars.CONTENT_CONCURRENCY || '6' }}
+      CONTENT_MAX_USD_PER_DAY: ${{ vars.CONTENT_MAX_USD_PER_DAY || '60' }}
+      CONTENT_MAX_SEARCHES_PER_DAY: ${{ vars.CONTENT_MAX_SEARCHES_PER_DAY || '1400' }}
+      CONTENT_CHECKS: ${{ vars.CONTENT_CHECKS || 'off' }}
       CONTENT_AGENT_FAKE: ${{ inputs.fake && '1' || '0' }}
       TZ: America/New_York
     steps:
@@ -64,15 +69,12 @@ jobs:
 
       - run: npm ci
 
-      - name: Install Claude Code CLI
-        if: ${{ !inputs.fake }}
-        run: npm install -g @anthropic-ai/claude-code
-
       - name: Check secrets
         if: ${{ !inputs.fake }}
         run: |
           missing=""
-          for s in CLAUDE_CODE_OAUTH_TOKEN PIXABAY_API_KEY BLOB_READ_WRITE_TOKEN; do
+          [ -z "$GEMINI_VERTEX_API_KEY$GEMINI_API_KEY" ] && missing="$missing GEMINI_VERTEX_API_KEY(or GEMINI_API_KEY)"
+          for s in PIXABAY_API_KEY BLOB_READ_WRITE_TOKEN; do
             [ -z "${!s}" ] && missing="$missing $s"
           done
           if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing (see CONTENT-AUTOMATION.md)"; exit 1; fi

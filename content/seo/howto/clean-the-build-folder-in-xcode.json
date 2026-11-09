@@ -1,0 +1,544 @@
+{
+  "title": "Clean build folder xcode mac: how to clean the build folder in Xcode 27",
+  "metaTitle": "Clean Build Folder Xcode Mac: Steps and Shortcut",
+  "description": "Clean build folder xcode mac steps: open Product > Clean Build Folder in Xcode 27, check the shortcut, then build again to confirm.",
+  "targetKeyword": "clean build folder xcode mac",
+  "secondaryKeywords": [
+    "clean build folder xcode",
+    "xcode clean build folder shortcut",
+    "xcode product menu clean",
+    "clean xcode build folder mac",
+    "xcode clean build errors",
+    "xcode clean and rebuild"
+  ],
+  "intro": "To clean the build folder in Xcode on Mac, open the Product menu and choose Clean Build Folder. The shortcut is Shift-Command-K in current cheat sheets, but an older Apple table lists Option-Shift-Command-K, so read the label in your own menu.",
+  "tldr": [
+    "Open your project in Xcode, then choose Product > Clean Build Folder.",
+    "Current cheat sheets list Shift-Command-K. Apple's archived table lists Option-Shift-Command-K.",
+    "Clean removes old build output. Your source code stays exactly as it is.",
+    "Build again afterward to see whether the error is gone."
+  ],
+  "stats": [
+    {
+      "value": "Sep 14, 2026",
+      "label": "Release date of Xcode 27, build 27A266a, the version these steps assume",
+      "sourceUrl": "https://developer.apple.com/news/releases/",
+      "sourceTitle": "Releases: Apple Developer"
+    },
+    {
+      "value": "27",
+      "label": "Major Xcode version covered on this page, listed as the current release",
+      "sourceUrl": "https://developer.apple.com/news/releases/",
+      "sourceTitle": "Releases: Apple Developer"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Clean Build Folder does"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode stores the output of each build in a build folder. That output includes compiled code, linked products, and files the app needs to run. Clean Build Folder deletes that output for the active project. The next build starts from nothing, so Xcode compiles every file again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your source code stays where it is. Clean Build Folder does not touch your Swift or Objective-C files, your assets, your storyboards, or your project settings. It works only on the output Xcode made. That is why you can run it whenever a build starts acting strange."
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode also reuses work it has already done. That reuse is the reason builds feel fast. Sometimes a stale result sticks around after you change a file, move a file, or edit a setting. Then the build fails with an error that looks wrong. Clean is the simplest way to rule that out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you clean: save your work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Save every file before you clean. Choose File > Save All from the menu bar. Cleaning does not change your source files, but an unsaved edit can still mislead you. You might build, see an old error, and blame the clean when the real issue sits in a file Xcode never saved."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check the scheme and destination at the top of the Xcode window. The scheme picker shows which target you build, and the destination shows where the app runs. The next build uses whichever scheme and destination you chose, so confirm both before you start again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: clean the build folder on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use these steps in the Xcode app on your Mac. The menu path stays the same from project to project. Only the project in the front window gets cleaned, so make sure the right one is active before you start."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The menu path is Product > Clean Build Folder. The shortcut is Shift-Command-K in current cheat sheets. Read the label in your own menu first, though, because the sources disagree. The next section explains why."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode clean build folder shortcut on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two sources disagree about the shortcut. A 2026 keyboard shortcut cheat sheet from KeyShortcuts.net lists Command-Shift-K for Clean Build Folder. Apple's archived Xcode Help table, written in the Xcode 4 era, lists Option-Shift-Command-K for the same item. The two do not match, so the menu label decides."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Product and look at the right side of the Clean Build Folder row. Use whatever shortcut it shows. Write it down once, so you do not have to check again the next time you need it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Source",
+        "Shortcut listed",
+        "Age of source"
+      ],
+      "rows": [
+        [
+          "KeyShortcuts.net cheat sheet",
+          "Shift-Command-K",
+          "2026"
+        ],
+        [
+          "Apple Xcode Help, archived table",
+          "Option-Shift-Command-K",
+          "Xcode 4 era"
+        ]
+      ],
+      "caption": "Two sources, two shortcuts, one menu item"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Product menu shows Shift-Command-K, use that. If it shows Option-Shift-Command-K, use that instead. Trust the menu over any web page, including this one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When you should clean the build folder"
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean is a reset, not a daily habit. Xcode reuses build output on purpose, and most builds do not need a clean. Reach for it when a build fails in a way your code does not explain."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Errors point at files you already deleted or renamed.",
+        "A build fails right after you changed signing certificates, provisioning profiles, or team settings.",
+        "A change to a file does not show up in the running app, even though the build succeeds.",
+        "Linker errors mention symbols that clearly exist in your code.",
+        "The error changes from build to build, and no code change explains it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Those cases point to stale output. If none of them fit, a clean will probably not help. Check the code and settings first, using the steps further down this page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What cleaning does not do"
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean does not fix a bug in your logic. It does not change your git history, and it does not delete your project folder from disk. Think of it as clearing a cache, not as a repair tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "Many people assume the clean removes everything Xcode ever built on the Mac. It targets the build output for the current project. Other projects keep their own output, and they keep working as before."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a rename that a clean cannot fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you renamed ProfileView.swift to AccountView.swift in Finder, outside Xcode. The file now has a red reference in the project navigator, and the build fails with a message about a missing file. The file on disk is fine. The project still points at the old name."
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean does not repair that reference. Select the red file in the navigator, remove the broken reference, then add the renamed file back into the target. After that, clean and build. The clean helps only after the reference is correct."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: an edit that never shows up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you change the text of a label in a SwiftUI view, build, and run. The old text still appears, yet the build reports success. Choose Product > Clean Build Folder, then Product > Build, then run again. If the new text appears, stale output was the cause. If it does not, check whether you edited a copy of the file instead of the one the app loads."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes people make"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Cleaning while a build or run is still going. Let it finish first, then clean.",
+        "Cleaning the wrong project. Check the window title before you open the menu.",
+        "Assuming a clean fixes a real code error. It clears old output, so the same error returns.",
+        "Forgetting to build afterward. A clean alone tells you nothing about the result.",
+        "Hunting for build output in Finder and deleting it by hand. Use the menu command instead, since it is the supported way to clear output.",
+        "Panicking over a slow build. The first build after a clean always takes longer."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last mistake catches many people. The build feels slow, so they think the clean broke something. It did not. Xcode is compiling everything once so it has fresh output to work with."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell whether the clean helped"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down the first error before you clean. After the clean and the build, compare the result. If the same error returns with the same file and line, stale output was not the cause. If the error is gone, you have your answer, and you can stop cleaning. If a new error appears, treat it as a fresh problem and start with the first one in the Issue navigator."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If Clean Build Folder is dimmed or missing"
+    },
+    {
+      "type": "paragraph",
+      "text": "The item usually looks dimmed when Xcode does not have an active project window in front. Click somewhere inside the project window, then open Product again. If the menu bar belongs to another app, the Product menu you see is not Xcode's."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the item still does not appear, quit Xcode with Xcode > Quit Xcode and reopen your project. Save your work first. The restart resets the state of the window, not your files."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur where the menu item is"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you cannot find the item, ask Lazur. Hold ⌥ ⌘ and say something like where is Clean Build Folder. Lazur looks at your screen, draws a circle and a label around the item, and answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "For longer tasks, ask Lazur to walk you through it. Lazur guides you one click at a time and waits for each click. You do the clicking. Lazur does not click for you, and it does not run Xcode."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Lazur runs on macOS, on Apple silicon and Intel Macs."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "More Xcode help lives on the [Lazur for Xcode](/apps/xcode) page. It covers how Lazur explains, points and dictates inside Xcode 27."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If errors stay after a clean"
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean is one step in a longer check. When the error stays, work through the target settings next. Select the target, open the Signing & Capabilities tab, and confirm the team and bundle identifier are correct."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then look at the first error in the Issue navigator, not the last one. Early errors often cause the later ones. Fix the first error, build again, and see what remains."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the same error comes back on every build, copy its exact text and search for it. Include your Xcode version in the search, because error wording changes between releases."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checklist for your next build"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the project window is in front.",
+        "Choose Product > Clean Build Folder.",
+        "Wait until Xcode shows no activity.",
+        "Choose Product > Build.",
+        "Read only the first error, fix it, and repeat."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the list short. Most stale-output problems need only these steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Xcode version this guide covers"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's releases page lists Xcode 27, build 27A266a, as released on Sep 14, 2026. Menus and shortcuts can shift between releases, so match these steps to your own copy. Open the About Xcode window from the Xcode menu if you are unsure which version you have."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Xcode every day, read the [Xcode for developers](/for/developers/xcode) page. It covers builds, errors and previews with Lazur in Xcode 27. If you are learning a new Mac app, [how to learn Logic Pro fast on Mac](/blog/logic-pro-learn-faster-screen-help) shows the same on-screen approach."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial and no credit card. The trial starts when you first open the app. See [pricing](/pricing) for the paid plans, or [download Lazur](/download) to try it on your Mac."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Clean Build Folder delete my code?",
+      "answer": "No. It removes build output that Xcode created, such as compiled files and products. Your Swift and Objective-C source files, storyboards, assets, and project settings stay in place. Keep your work in version control or a backup anyway."
+    },
+    {
+      "question": "Is the shortcut Shift-Command-K or Option-Shift-Command-K?",
+      "answer": "Current 2026 cheat sheets list Shift-Command-K. An archived Apple table from the Xcode 4 era lists Option-Shift-Command-K. Check the shortcut shown beside Clean Build Folder in your Product menu, because the menu is the final word for your copy of Xcode."
+    },
+    {
+      "question": "Should I clean the build folder before every build?",
+      "answer": "No. Xcode normally reuses build output to save time. Clean when you suspect stale output, after big changes to files or settings, or when an error makes no sense."
+    },
+    {
+      "question": "Does cleaning fix signing errors?",
+      "answer": "Sometimes. A clean can clear old output that carries an earlier signing result. If signing still fails, the problem is usually in the certificate, the provisioning profile, or the target's signing settings."
+    },
+    {
+      "question": "How long does a clean take?",
+      "answer": "It depends on the project size. The clean step itself is usually quick. The next build takes longer because Xcode compiles everything again from the start."
+    },
+    {
+      "question": "Can Lazur clean the build folder for me?",
+      "answer": "No. Lazur points at the menu item, explains it, and can guide you one click at a time. It does not click buttons or run Xcode for you. You choose the menu item yourself."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Releases: Apple Developer",
+      "url": "https://developer.apple.com/news/releases/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Menu Command Shortcuts (By Menu): Xcode Help (archived)",
+      "url": "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Xcode Keyboard Shortcuts: Printable Cheat Sheet (2026)",
+      "url": "https://keyshortcuts.net/xcode-shortcuts",
+      "publisher": "KeyShortcuts.net",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Clean the build folder in Xcode",
+  "appliesTo": "Xcode on Mac, any project or workspace",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Xcode installed",
+    "An Xcode project or workspace open in the front window",
+    "Xcode 27 or a recent version, so the menu items match these steps"
+  ],
+  "steps": [
+    {
+      "name": "Open your project",
+      "text": "Launch Xcode from the Dock or the Applications folder. Open the project or workspace you want to clean. Make sure its window is in front, with the scheme you build selected.",
+      "tip": "The clean applies to the project in the front window. Another open project keeps its own build output."
+    },
+    {
+      "name": "Open the Product menu",
+      "text": "Click Product in the menu bar at the top of the screen. The menu holds the build actions, including Build and Clean Build Folder.",
+      "menuPath": [
+        "Product"
+      ]
+    },
+    {
+      "name": "Choose Clean Build Folder",
+      "text": "Click Clean Build Folder. Xcode removes the build output for the active project. Your source files stay as they are.",
+      "menuPath": [
+        "Product",
+        "Clean Build Folder"
+      ],
+      "shortcut": "⇧⌘K",
+      "tip": "If the shortcut beside the item differs from this page, trust the label in your menu."
+    },
+    {
+      "name": "Wait for the clean to finish",
+      "text": "Watch the activity area at the top of the Xcode window. When Xcode shows no activity, the clean is done. Large projects take longer, so give them a moment before you build.",
+      "tip": "Do not start a new build or run while the clean is still going."
+    },
+    {
+      "name": "Build the project again",
+      "text": "Choose Product > Build. A clean followed by a build tells you whether the problem is gone. If the same error appears, the cause was not stale output.",
+      "menuPath": [
+        "Product",
+        "Build"
+      ]
+    },
+    {
+      "name": "Read the first error",
+      "text": "Open the Issue navigator and look at the first error in the list. Fix that one, then build again. Later errors often disappear once the first one is fixed."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Clean Build Folder (current cheat sheets)",
+      "keys": "⇧⌘K"
+    },
+    {
+      "action": "Clean Build Folder (archived Apple table)",
+      "keys": "⌥⇧⌘K"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Clean Build Folder is greyed out",
+      "fix": "Click inside the project window first so Xcode knows which project is active. Then open the Product menu again."
+    },
+    {
+      "problem": "Errors come back after a clean",
+      "fix": "Build once more to confirm. If the same error returns, check the target's signing settings under the Signing & Capabilities tab, then rebuild."
+    },
+    {
+      "problem": "The keyboard shortcut does nothing",
+      "fix": "Another app or a system setting may use that key combination. Use the Product menu instead, which runs the same command."
+    },
+    {
+      "problem": "The build is slow right after cleaning",
+      "fix": "This is expected. A clean forces Xcode to compile everything again, so the next build takes longer than usual."
+    },
+    {
+      "problem": "Xcode seems stuck after you choose Clean",
+      "fix": "Wait a minute. If the activity area still shows no change, save your work and quit with Xcode > Quit Xcode. Then reopen the project."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Clean Build Folder?",
+    "capability": "point",
+    "result": "Lazur circles Clean Build Folder under the Product menu and labels it on your screen.",
+    "shell": "code",
+    "context": "Xcode open with a project and the Product menu visible",
+    "output": "Lazur says where the item sits and what shortcut your menu shows. It then waits for your next question. You choose the menu item yourself.",
+    "pointsAt": "Clean Build Folder"
+  },
+  "type": "howto",
+  "slug": "clean-the-build-folder-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/clean-the-build-folder-in-xcode/clean-build-folder-xcode-mac-1-42d08b.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Developer working at a desk on a Mac laptop with code on the screen during a clean build folder task",
+      "caption": "A Mac laptop at a desk, the usual setting for Xcode work",
+      "keywords": [
+        "clean build folder xcode mac",
+        "Xcode",
+        "clean the build folder",
+        "Mac",
+        "programmer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Innovalabs",
+        "url": "https://pixabay.com/users/Innovalabs-22783312/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/clean-the-build-folder-in-xcode/clean-build-folder-xcode-mac-2-fbd5a4.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Close view of a Mac screen showing code, like an Xcode project window before a clean build folder",
+      "caption": "The project window is where you start the clean",
+      "keywords": [
+        "clean build folder xcode mac",
+        "Xcode",
+        "clean the build folder",
+        "Mac",
+        "mac laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/clean-the-build-folder-in-xcode/clean-build-folder-xcode-mac-3-c5e5e9.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Software developer in an office checking a build on a Mac before a clean build folder in Xcode on Mac",
+      "caption": "Clean the build folder when a build still shows old errors",
+      "keywords": [
+        "clean build folder xcode mac",
+        "Xcode",
+        "clean the build folder",
+        "Mac",
+        "software developer office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-desk-work-business-office-2557299/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "clean build folder xcode mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "clean build folder xcode": 6,
+      "xcode clean build folder shortcut": 2,
+      "xcode product menu clean": 1,
+      "clean xcode build folder mac": 1,
+      "xcode clean build errors": 1,
+      "xcode clean and rebuild": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

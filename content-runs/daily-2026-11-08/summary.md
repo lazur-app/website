@@ -1,6 +1,6 @@
-Content 2026-11-08: 184 written, 3 refused, 0 failed
+Content 2026-11-08: 240 written, 4 refused, 0 failed
 
-- howto: 4/120
+- howto: 60/120
 - apps: 2/9
 - roles: 19/12
 - role-apps: 60/60
@@ -192,3 +192,59 @@ howto:create-a-bulleted-list-in-pages /how-to/create-a-bulleted-list-in-pages
 howto:use-dictation-in-pages /how-to/use-dictation-in-pages
 howto:add-a-footnote-in-pages /how-to/add-a-footnote-in-pages
 howto:add-a-chart-in-pages /how-to/add-a-chart-in-pages
+howto:add-a-header-and-footer-in-pages /how-to/add-a-header-and-footer-in-pages
+howto:set-a-default-font-in-pages /how-to/set-a-default-font-in-pages
+howto:record-a-slide-show-in-powerpoint /how-to/record-a-slide-show-in-powerpoint
+howto:add-speaker-notes-in-powerpoint /how-to/add-speaker-notes-in-powerpoint
+howto:see-word-count-in-pages /how-to/see-word-count-in-pages
+howto:add-slide-numbers-in-powerpoint /how-to/add-slide-numbers-in-powerpoint
+howto:change-slide-size-in-powerpoint /how-to/change-slide-size-in-powerpoint
+howto:insert-a-video-in-powerpoint /how-to/insert-a-video-in-powerpoint
+howto:use-presenter-view-in-powerpoint /how-to/use-presenter-view-in-powerpoint
+howto:loop-a-slide-show-in-powerpoint /how-to/loop-a-slide-show-in-powerpoint
+howto:add-a-transition-in-powerpoint /how-to/add-a-transition-in-powerpoint
+howto:save-as-a-video-in-powerpoint /how-to/save-as-a-video-in-powerpoint
+howto:edit-the-slide-master-in-powerpoint /how-to/edit-the-slide-master-in-powerpoint
+howto:add-alt-text-to-an-image-in-powerpoint /how-to/add-alt-text-to-an-image-in-powerpoint
+howto:insert-an-icon-in-powerpoint /how-to/insert-an-icon-in-powerpoint
+howto:use-the-morph-transition-in-powerpoint /how-to/use-the-morph-transition-in-powerpoint
+howto:add-smartart-in-powerpoint /how-to/add-smartart-in-powerpoint
+howto:link-to-another-slide-in-powerpoint /how-to/link-to-another-slide-in-powerpoint
+howto:add-presenter-notes-in-keynote /how-to/add-presenter-notes-in-keynote
+howto:change-the-color-theme-in-vs-code /how-to/change-the-color-theme-in-vs-code
+howto:translate-a-web-page-in-chrome /how-to/translate-a-web-page-in-chrome
+howto:use-the-option-space-shortcut-in-chatgpt /how-to/use-the-option-space-shortcut-in-chatgpt
+howto:use-inline-edit-with-cmd-k-in-cursor /how-to/use-inline-edit-with-cmd-k-in-cursor
+howto:add-project-rules-in-cursor /how-to/add-project-rules-in-cursor
+howto:add-a-doc-for-docs-context-in-cursor /how-to/add-a-doc-for-docs-context-in-cursor
+howto:run-an-app-in-the-simulator-in-xcode /how-to/run-an-app-in-the-simulator-in-xcode
+howto:change-the-app-icon-in-xcode /how-to/change-the-app-icon-in-xcode
+howto:clean-the-build-folder-in-xcode /how-to/clean-the-build-folder-in-xcode
+howto:export-a-presentation-as-a-movie-in-keynote /how-to/export-a-presentation-as-a-movie-in-keynote
+howto:clear-browsing-data-in-chrome /how-to/clear-browsing-data-in-chrome
+howto:clear-browsing-history-in-safari /how-to/clear-browsing-history-in-safari
+howto:create-a-tab-group-in-safari /how-to/create-a-tab-group-in-safari
+howto:create-a-profile-in-safari /how-to/create-a-profile-in-safari
+howto:install-an-extension-in-safari /how-to/install-an-extension-in-safari
+howto:delete-cookies-in-safari /how-to/delete-cookies-in-safari
+howto:turn-on-private-browsing-in-safari /how-to/turn-on-private-browsing-in-safari
+howto:block-pop-ups-in-safari /how-to/block-pop-ups-in-safari
+howto:stop-cross-site-tracking-in-safari /how-to/stop-cross-site-tracking-in-safari
+howto:change-the-homepage-in-safari /how-to/change-the-homepage-in-safari
+howto:change-the-default-search-engine-in-safari /how-to/change-the-default-search-engine-in-safari
+howto:customize-the-toolbar-in-safari /how-to/customize-the-toolbar-in-safari
+howto:export-bookmarks-in-safari /how-to/export-bookmarks-in-safari
+howto:import-bookmarks-from-chrome-in-safari /how-to/import-bookmarks-from-chrome-in-safari
+howto:pin-a-tab-in-safari /how-to/pin-a-tab-in-safari
+howto:change-the-downloads-folder-in-safari /how-to/change-the-downloads-folder-in-safari
+howto:view-saved-passwords-in-safari /how-to/view-saved-passwords-in-safari
+howto:turn-on-the-develop-menu-in-safari /how-to/turn-on-the-develop-menu-in-safari
+howto:use-reader-mode-in-safari /how-to/use-reader-mode-in-safari
+howto:show-hidden-files-in-finder /how-to/show-hidden-files-in-finder
+howto:show-the-path-bar-in-finder /how-to/show-the-path-bar-in-finder
+howto:change-the-sidebar-in-finder /how-to/change-the-sidebar-in-finder
+howto:create-an-alias-in-finder /how-to/create-an-alias-in-finder
+howto:add-a-tag-to-a-file-in-finder /how-to/add-a-tag-to-a-file-in-finder
+howto:change-the-default-folder-for-new-windows-in-finder /how-to/change-the-default-folder-for-new-windows-in-finder
+howto:use-the-preview-pane-in-finder /how-to/use-the-preview-pane-in-finder
+howto:use-gallery-view-in-finder /how-to/use-gallery-view-in-finder

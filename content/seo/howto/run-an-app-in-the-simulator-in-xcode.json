@@ -1,0 +1,607 @@
+{
+  "title": "How to run app simulator xcode mac: step by step for Xcode 26 and Xcode 27",
+  "metaTitle": "How to Run App Simulator Xcode Mac: Xcode 26 and 27",
+  "description": "Steps to run app simulator xcode mac: pick a scheme and a simulated device, click Run, and see where the app opens in Xcode 26 or 27.",
+  "targetKeyword": "run app simulator xcode mac",
+  "secondaryKeywords": [
+    "run app in simulator xcode",
+    "xcode simulator mac",
+    "xcode 27 device hub",
+    "xcode run button simulator",
+    "xcode simulator no devices",
+    "open simulator from terminal xcode",
+    "xcode simulator not opening"
+  ],
+  "intro": "To run an app in the Simulator in Xcode on Mac, open your project, pick the app's scheme and a simulated device in the toolbar, then click Run. If the build succeeds, the app launches on that device, in the separate Simulator app on Xcode 26 or in Device Hub on Xcode 27.",
+  "tldr": [
+    "Choose your app's scheme in the scheme pop-up menu in the Xcode toolbar.",
+    "Choose a simulated device under the platform's Simulators heading, such as iPhone 17.",
+    "Click the Run button. If the build succeeds, the app launches on the simulated device.",
+    "On Xcode 27 the simulator lives in Device Hub. On Xcode 26 it opens in the Simulator app.",
+    "Xcode 27 needs macOS Tahoe 26.6 or later and only installs on Apple silicon Macs."
+  ],
+  "stats": [
+    {
+      "value": "September 14, 2026",
+      "label": "Xcode 27 generally available",
+      "sourceUrl": "https://developer.apple.com/news/releases/",
+      "sourceTitle": "Releases, Apple Developer"
+    },
+    {
+      "value": "26.6",
+      "label": "Minimum macOS Tahoe version for Xcode 27",
+      "sourceUrl": "https://developer.apple.com/support/xcode/",
+      "sourceTitle": "Xcode, Apple Developer Support"
+    },
+    {
+      "value": "27.2",
+      "label": "Newest stable Xcode 27 build in these sources, October 29, 2026",
+      "sourceUrl": "https://developer.apple.com/news/releases/",
+      "sourceTitle": "Releases, Apple Developer"
+    },
+    {
+      "value": "Apple silicon",
+      "label": "Only Mac chip that Xcode 27 installs on",
+      "sourceUrl": "https://blakecrosley.com/blog/xcode-27-drops-intel",
+      "sourceTitle": "Xcode 27 Drops Intel: What Stops and What Still Ships, Blake Crosley"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "The Simulator lets you run an iPhone, iPad, Apple Watch or Apple TV app on your Mac, so you can test it without the hardware in front of you. The core routine is short. Pick a scheme, pick a simulated device, click Run. The part that changes between Xcode versions is what opens after the build finishes, and that is where most confusion starts."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your macOS version first, because it decides which Xcode you can install. Xcode 27 requires macOS Tahoe 26.6 or later, according to Apple's Xcode support page. It installs only on Apple silicon Macs, so an Intel Mac cannot run it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode 26 has an older floor. It requires macOS Sequoia 15.6 through macOS Tahoe 26.x. If your Mac cannot reach Tahoe 26.6, Xcode 26 may be the version you can actually run. The steps below still apply to it, with one difference that the later sections explain."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Xcode 27: an Apple silicon Mac running macOS Tahoe 26.6 or later.",
+        "Xcode 26: a Mac running macOS Sequoia 15.6 through macOS Tahoe 26.x.",
+        "An Xcode project that builds on your Mac without errors.",
+        "Enough free disk space for the simulated devices and runtimes you plan to use."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode is a Mac app. Apple's help pages do not describe a web version, so you need Xcode installed on the Mac you are working on. Confirm that the project opens and builds before you aim for the Simulator. A build error stops Run before any simulator opens, so that error is the first thing to fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Xcode version are you on?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Xcode and check Xcode > About Xcode. The version number appears in the window that opens. Xcode 27 became generally available on September 14, 2026. The newest stable build in my sources is 27.2, released October 29, 2026. A 27.3 beta followed on November 3, 2026."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the stable release for daily work. Beta builds change often, and a beta can move features around, including the Simulator window. If you test on a beta, expect the steps in this guide to differ in small ways."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: run an app in the Simulator on Xcode 27"
+    },
+    {
+      "type": "paragraph",
+      "text": "These steps follow Apple's help page for running an app on a simulated device. That page does not list a menu path or a keyboard shortcut for Run, so the steps name the toolbar controls first and add the menu path as a backup. The same steps work on Xcode 26, but the window that opens at the end is different."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for Run and Stop"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you prefer the keyboard, Command-R runs the selected scheme on the selected device. Command-period stops the run. Both live in the Product menu, so open Product in the menu bar if a key does nothing. These shortcuts come from Xcode's standard menus, not from Apple's simulator help page, so check the Product menu on your own copy of Xcode."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a to-do app on iPhone 17 and iPad"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you built a to-do app with one scheme called TodoApp. You want to see how the layout looks on a phone and on a tablet. Open the scheme pop-up menu and choose TodoApp. Then choose iPhone 17 under the iOS Simulators heading and click Run."
+    },
+    {
+      "type": "paragraph",
+      "text": "When the phone version runs, open the device pop-up again and choose an iPad from the same heading. Click Run. Xcode builds again for the new device, and the app launches on the iPad. Compare the two screens side by side, then switch devices once more if you need a third size."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two destinations mean two runs. Keep the same scheme and change only the device. That way any difference you see comes from the device, not from a different build setting. If the iPad screen looks wrong, check the layout code before you blame the simulator."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode 27: Device Hub replaces the Simulator app"
+    },
+    {
+      "type": "paragraph",
+      "text": "On Xcode 27 the standalone Simulator app is gone. Apple says you manage every device that appears in Xcode as a run destination using Device Hub. Each simulated device opens as a detail view, and you select it from a source list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Xcode page says Device Hub lets you test an app on physical devices and simulators. It also offers dynamic resizing and adjustable appearance. Those two features help when you want to check several window sizes in one place."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "To open Device Hub without starting from Xcode, run open -a DeviceHub in Terminal. Expo's developer documentation gives that command for Xcode 27. On Xcode 26, the matching command is open -a Simulator."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode 26 and the separate Simulator app"
+    },
+    {
+      "type": "paragraph",
+      "text": "On Xcode 26, Run opens the Simulator as its own app after the build succeeds. You may need to switch to it from the Dock if it opens behind your editor. The Device menu holds the reset option. Expo's docs say Erase All Content and Settings sits there, and they suggest that step when reinstalling Expo Go fails."
+    },
+    {
+      "type": "paragraph",
+      "text": "Erasing content resets the simulated device. Anything you stored on that device goes away, including test accounts and saved data. Use it on purpose, not as a first guess. On Xcode 27, the same reset is in the Device menu inside Device Hub."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Item",
+        "Xcode 26",
+        "Xcode 27"
+      ],
+      "rows": [
+        [
+          "Where the simulator opens",
+          "Separate Simulator app",
+          "Device Hub"
+        ],
+        [
+          "Open from Terminal",
+          "open -a Simulator",
+          "open -a DeviceHub"
+        ],
+        [
+          "Minimum macOS",
+          "Sequoia 15.6 through Tahoe 26.x",
+          "Tahoe 26.6 or later"
+        ],
+        [
+          "Mac chip",
+          "Not stated in my sources",
+          "Apple silicon only"
+        ],
+        [
+          "Reset a simulated device",
+          "Device > Erase All Content and Settings",
+          "Device menu in Device Hub"
+        ]
+      ],
+      "caption": "Simulator differences between Xcode 26 and Xcode 27, from Apple and Expo docs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the simulator list is empty or won't start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes Run builds without trouble, but no device appears. Start in Terminal, because it shows what Xcode can see. Run xcrun simctl list devices available. The output lists each installed simulator by name."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the command line seems stuck, boot one device by its exact name. For example, xcrun simctl boot 'iPhone 17' starts that simulator. Then go back to Xcode and click Run. The name must match the list, including capital letters and spaces."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "xcrun simctl list devices available: lists the simulators Xcode can use.",
+        "xcrun simctl boot 'iPhone 17': starts one simulator by name.",
+        "open -a Simulator: opens the Simulator app on Xcode 26.",
+        "open -a DeviceHub: opens Device Hub on Xcode 27."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Skip the reset commands at first",
+      "text": "Older search results suggest xcrun simctl delete all or a CoreSimulator reset. Those commands can delete simulator data, and I did not verify those fixes. Try the list and boot commands first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build errors before the simulator opens"
+    },
+    {
+      "type": "paragraph",
+      "text": "If Run fails, the Simulator never launches. Read the first red error in the issue navigator, not the last one. The first error often causes the rest. Fix it, then click Run again."
+    },
+    {
+      "type": "paragraph",
+      "text": "A common cause is a scheme that points at the wrong target. Another is a device family your project does not support. Check the deployment settings for your target before you rerun the build."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Known gaps in Device Hub"
+    },
+    {
+      "type": "paragraph",
+      "text": "Device Hub was still in beta when developers wrote about it in June 2026. Commenters on Michael Tsai's blog listed features that were missing at that time. Read that list before you plan a long test session."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "No Debug menu, so no slow animations and no memory-warning simulation.",
+        "No pixel-accurate zoom and no pinch-to-zoom gestures.",
+        "CarPlay simulator support was removed.",
+        "Drag-and-drop file transfer is gone, and so is the copy-screenshot menu item.",
+        "Command-W does not close the Device Hub window."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Some of these may have changed since the June beta. My sources could not load the body text of Apple's Xcode 27 release notes, so I could not confirm the current list. Check Apple's release notes yourself before you rely on a missing feature."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Physical devices and the Run button"
+    },
+    {
+      "type": "paragraph",
+      "text": "Device Hub also manages physical devices as run destinations. A connected iPhone appears beside the simulators, so the Run button works the same way for it. A physical device needs its own setup, such as trust and signing. My sources do not cover that setup, so treat it as a separate task."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that waste time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Running the wrong scheme. The build succeeds, but it is not the app you meant to test.",
+        "Picking a device the project does not support. Check the device list before you assume a bug.",
+        "Looking for the Simulator app on Xcode 27. The window lives in Device Hub.",
+        "Following Xcode 26 screenshots on Xcode 27. Window names and menus have changed.",
+        "Clicking Run with the wrong device selected. Read the toolbar before each run."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these take ten seconds to avoid. Read the scheme and the device in the toolbar, then click Run. Repeat that habit each time you change either one."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the app launches"
+    },
+    {
+      "type": "paragraph",
+      "text": "A launched app is only the start. Use it the way a person would. Tap every screen, rotate the device if your app supports rotation, and try the edge cases first. Empty lists, long names and failed network calls show problems faster than the normal path does."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a short test list. Write down the device, the Xcode version, and the action that failed. That list saves time when you return to a bug after a day away. It also helps when you report the problem to a teammate."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is the Run button in Xcode on Mac?",
+      "answer": "It sits in the Xcode toolbar, next to the scheme pop-up menu. Apple's help page describes it as the Run button. Click it after you choose a scheme and a simulated device. The same action is under Product > Run in the menu bar."
+    },
+    {
+      "question": "Why does Xcode 27 not open the Simulator app?",
+      "answer": "Xcode 27 replaces the standalone Simulator app with Device Hub. Expo's documentation says to open Device Hub from Terminal with open -a DeviceHub."
+    },
+    {
+      "question": "Can I run an app in the Simulator on an Intel Mac?",
+      "answer": "Not with Xcode 27. Apple's Xcode 27 information says it only installs and runs on Apple silicon Macs. My sources do not say whether Xcode 26 runs on Intel, so check Apple's support page before you download."
+    },
+    {
+      "question": "Which macOS version do I need for Xcode 27?",
+      "answer": "You need macOS Tahoe 26.6 or later. Xcode 26 requires macOS Sequoia 15.6 through macOS Tahoe 26.x, according to Apple's support page."
+    },
+    {
+      "question": "Why is my simulator list empty?",
+      "answer": "Run xcrun simctl list devices available in Terminal to see what Xcode can use. If a device you need is missing, add it with Add Additional Simulators in the device menu."
+    },
+    {
+      "question": "Is Device Hub feature complete yet?",
+      "answer": "Not according to the June 2026 beta comments. Check Apple's current Xcode 27 release notes, because my sources could not load their body text."
+    },
+    {
+      "question": "What does Erase All Content and Settings do?",
+      "answer": "It resets the simulated device, which can fix some reinstall failures. Anything stored on that simulated device is erased, so use it on purpose."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Xcode, Apple Developer",
+      "url": "https://developer.apple.com/xcode/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Run an app on a simulated device (iOS, tvOS, watchOS), Xcode Help",
+      "url": "https://help.apple.com/xcode/mac/current/en.lproj/devfd9e28378.html",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Releases, Apple Developer",
+      "url": "https://developer.apple.com/news/releases/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Xcode, Apple Developer Support",
+      "url": "https://developer.apple.com/support/xcode/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "iOS Simulator, Expo documentation",
+      "url": "https://docs.expo.dev/workflow/ios-simulator/",
+      "publisher": "Expo",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Michael Tsai, Xcode 27's Device Hub",
+      "url": "https://mjtsai.com/blog/2026/06/25/xcode-27s-device-hub/",
+      "publisher": "Michael Tsai (blog)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Xcode 27 Drops Intel: What Stops and What Still Ships, Blake Crosley",
+      "url": "https://blakecrosley.com/blog/xcode-27-drops-intel",
+      "publisher": "Blake Crosley (blog)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Xcode 27 Release Notes, Apple Developer Documentation",
+      "url": "https://developer.apple.com/documentation/xcode-release-notes/xcode-27-release-notes",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Run an app in the Simulator in Xcode",
+  "appliesTo": "Xcode 26 and Xcode 27 on macOS Tahoe and Sequoia",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "An Apple silicon Mac running macOS Tahoe 26.6 or later for Xcode 27",
+    "macOS Sequoia 15.6 through macOS Tahoe 26.x for Xcode 26",
+    "An Xcode project that builds without errors",
+    "Enough free disk space for the simulated devices you plan to use"
+  ],
+  "steps": [
+    {
+      "name": "Check your Xcode version",
+      "text": "Open Xcode > About Xcode to see the version number. Xcode 27 needs macOS Tahoe 26.6 or later and an Apple silicon Mac. Xcode 26 needs macOS Sequoia 15.6 through Tahoe 26.x.",
+      "menuPath": [
+        "Xcode",
+        "About Xcode"
+      ],
+      "tip": "Use the stable release for daily work, not a beta."
+    },
+    {
+      "name": "Open your project",
+      "text": "Open the project or workspace file in Xcode. Wait for Xcode to finish loading the project before you touch the toolbar, so the scheme and device lists are ready.",
+      "tip": "Double-click the .xcodeproj or .xcworkspace file in Finder to open the project quickly."
+    },
+    {
+      "name": "Open the scheme pop-up menu",
+      "text": "In the toolbar, click the scheme pop-up menu. Choose the scheme that builds the app you want to run. A scheme controls what gets built and launched.",
+      "menuPath": [
+        "Toolbar",
+        "Scheme pop-up menu"
+      ]
+    },
+    {
+      "name": "Choose a simulated device",
+      "text": "Under the heading for your platform, such as iOS Simulators, pick a device like iPhone 17. Apple's wording is [Platform] Simulators, so tvOS and watchOS devices sit under their own headings."
+    },
+    {
+      "name": "Add a device you do not see",
+      "text": "If the device you want is missing, choose Add Additional Simulators, then pick the device family and version you need. Apple's steps list this as an optional step.",
+      "tip": "If the list still looks wrong, check the Terminal list from the troubleshooting section."
+    },
+    {
+      "name": "Click the Run button",
+      "text": "Click the Run button in the toolbar. Xcode builds the app for the device you chose. Watch the status area at the top of the window while the build runs.",
+      "shortcut": "⌘R",
+      "menuPath": [
+        "Product",
+        "Run"
+      ],
+      "tip": "Run uses the scheme and device selected at the moment you click, so check both first."
+    },
+    {
+      "name": "Wait for the simulated device",
+      "text": "If the build succeeds, the Simulator launches and runs your app on the simulated device. On Xcode 27, the device opens as a detail view in Device Hub, selected from a source list."
+    },
+    {
+      "name": "Test and stop the run",
+      "text": "Use the simulated device the way a user would. Stop the run from Xcode when you are finished, so the next build starts clean.",
+      "shortcut": "⌘.",
+      "menuPath": [
+        "Product",
+        "Stop"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Run the app on the selected device",
+      "keys": "⌘R"
+    },
+    {
+      "action": "Stop the running app",
+      "keys": "⌘."
+    },
+    {
+      "action": "Build without running",
+      "keys": "⌘B"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Run does nothing or looks unavailable",
+      "fix": "Check that a scheme and a device are both selected in the toolbar. Wait for Xcode to finish loading the project, then click Run again."
+    },
+    {
+      "problem": "The build fails and no simulator opens",
+      "fix": "Read the first error in the issue navigator. Fix it, then click Run. A failed build never reaches the Simulator."
+    },
+    {
+      "problem": "No simulator devices appear in the list",
+      "fix": "Run xcrun simctl list devices available in Terminal. If your device is missing, add it with Add Additional Simulators."
+    },
+    {
+      "problem": "A Device Hub feature you expected is missing",
+      "fix": "Check Apple's current Xcode 27 release notes. Gaps reported during the June 2026 beta may have been fixed in a newer build."
+    },
+    {
+      "problem": "Xcode 27 will not install on your Mac",
+      "fix": "Xcode 27 needs an Apple silicon Mac on macOS Tahoe 26.6 or later. Check Apple's Xcode support page for the versions your Mac can run."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Run button in Xcode?",
+    "capability": "point",
+    "context": "Xcode open, project loaded, a scheme chosen in the toolbar",
+    "pointsAt": "Run button",
+    "result": "Lazur circles the Run button in the toolbar and labels it on your screen. It shows you where the button is. It does not click it for you.",
+    "output": "Hold ⌥ ⌘ and ask. Lazur answers out loud and points at the control. For a longer walk through, ask Lazur to guide you through picking a device, one click at a time. It waits for each click.",
+    "shell": "code"
+  },
+  "type": "howto",
+  "slug": "run-an-app-in-the-simulator-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-an-app-in-the-simulator-in-xcode/run-app-simulator-xcode-mac-1-110a4e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Developer at a Mac who runs an app in the Simulator in Xcode on Mac",
+      "caption": "Checking an app build on a Mac before testing.",
+      "keywords": [
+        "run app simulator xcode mac",
+        "Xcode",
+        "run an app in the Simulator",
+        "Mac",
+        "developer Mac laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-an-app-in-the-simulator-in-xcode/run-app-simulator-xcode-mac-2-c430a4.jpg",
+      "width": 1280,
+      "height": 973,
+      "alt": "Person at a desk with a laptop, testing an app on a simulated device in Xcode on Mac",
+      "caption": "Test several screen sizes from one Mac.",
+      "keywords": [
+        "run app simulator xcode mac",
+        "Xcode",
+        "run an app in the Simulator",
+        "Mac",
+        "person laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mohamed_hassan",
+        "url": "https://pixabay.com/users/Mohamed_hassan-5229782/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/lamp-bulb-inspiration-invention-3066096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-an-app-in-the-simulator-in-xcode/run-app-simulator-xcode-mac-3-827175.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "iPhone and laptop on a desk, the setup for running an app in the Simulator",
+      "caption": "The Simulator covers devices you do not have on the desk.",
+      "keywords": [
+        "run app simulator xcode mac",
+        "Xcode",
+        "run an app in the Simulator",
+        "Mac",
+        "iPhone laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "run app simulator xcode mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "run app in simulator xcode": 1,
+      "xcode simulator mac": 1,
+      "xcode 27 device hub": 2,
+      "xcode run button simulator": 1,
+      "xcode simulator no devices": 1,
+      "open simulator from terminal xcode": 1,
+      "xcode simulator not opening": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

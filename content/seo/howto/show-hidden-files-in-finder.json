@@ -1,0 +1,543 @@
+{
+  "title": "How to show hidden files in Finder on Mac: shortcut, Terminal method, and fixes",
+  "metaTitle": "How to Show Hidden Files in Finder on Mac (Shortcut)",
+  "description": "How to show hidden files in Finder on Mac: click a Finder window, press ⇧⌘. to show them, press it again to hide. Terminal steps and fixes inside.",
+  "targetKeyword": "how to show hidden files in finder on mac",
+  "secondaryKeywords": [
+    "show hidden files Mac",
+    "Finder hidden files shortcut",
+    "show hidden files Terminal Mac",
+    "hide hidden files Finder Mac",
+    "Command Shift period Finder",
+    "show Library folder Mac",
+    "defaults write AppleShowAllFiles"
+  ],
+  "intro": "To show hidden files in Finder on Mac, click a Finder window so Finder is the active app, then press Shift, Command, and period together (⇧⌘.). Press the same keys again to hide them.",
+  "tldr": [
+    "Click a Finder window, then press Shift, Command, and period (⇧⌘.). Hidden files appear faded.",
+    "Press ⇧⌘. again to hide them. The shortcut does not work on the Desktop.",
+    "For hidden files that stay visible, run a defaults command in Terminal, then restart Finder.",
+    "Apple's keyboard shortcut list does not mention ⇧⌘., so check the result on your own Mac."
+  ],
+  "stats": [
+    {
+      "value": "⇧⌘.",
+      "label": "Shortcut that toggles hidden files in a Finder window, per MacRumors",
+      "sourceUrl": "https://www.macrumors.com/how-to/show-hidden-files-on-a-mac/",
+      "sourceTitle": "How to Show Hidden Files on a Mac: MacRumors"
+    },
+    {
+      "value": "2019",
+      "label": "Year of the MacRumors guide that describes this shortcut and the Terminal method",
+      "sourceUrl": "https://www.macrumors.com/how-to/show-hidden-files-on-a-mac/",
+      "sourceTitle": "How to Show Hidden Files on a Mac: MacRumors"
+    },
+    {
+      "value": "26",
+      "label": "macOS Tahoe version covered by the macmyths guide that documents the shortcut",
+      "sourceUrl": "https://macmyths.com/how-to-show-hidden-files-folders-on-mac-macos-tahoe-26/",
+      "sourceTitle": "How to Show Hidden Files & Folders on Mac in macOS Tahoe 26"
+    },
+    {
+      "value": "27",
+      "label": "macOS version Apple's current Mac Help is written for, where this shortcut is not confirmed",
+      "sourceUrl": "https://support.apple.com/guide/mac-help/welcome/mac",
+      "sourceTitle": "Mac Help: Apple Support"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "That short answer covers most cases. The rest of this page explains what the shortcut changes, how to keep hidden files visible, and what to try when nothing happens. Skip ahead to the troubleshooting list if the shortcut already failed for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat these steps as well documented by third parties, not as official Apple instructions. Apple's keyboard shortcut list, marked as published September 14, 2026, does not mention this shortcut. Check the result on your own Mac before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Show hidden files in Finder with the keyboard shortcut"
+    },
+    {
+      "type": "paragraph",
+      "text": "Finder has to be the active app first. Click a Finder window, not the Desktop. MacRumors says the shortcut does not work on the Desktop, so a click there wastes your time. Then open the folder you want to check. Your Home folder is a good place to start."
+    },
+    {
+      "type": "paragraph",
+      "text": "Press Shift, Command, and period together, written ⇧⌘. Hidden items appear, and they look faded or translucent. Press the same keys again to hide them. The macmyths guide says the shortcut does not rename or unhide files permanently."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What hidden files look like once they show"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hidden files are items that macOS keeps out of normal view. Many have names that start with a dot. A file called .zshrc, for example, holds settings for the zsh shell that Terminal uses. You only see these when the view changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "The faded look is the clue. A dimmed icon is still a real file. Leave it alone unless you know what it does. Many hidden files belong to apps, and deleting one can reset that app's settings."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Compare the three ways to reveal hidden files"
+    },
+    {
+      "type": "paragraph",
+      "text": "The sources describe three methods. They differ in how long they last and how much they change. Pick the one that matches your task, not the one you saw first."
+    },
+    {
+      "type": "table",
+      "caption": "Three methods to reveal hidden files on a Mac, and what each one changes",
+      "headers": [
+        "Method",
+        "What it changes",
+        "Stays on?"
+      ],
+      "rows": [
+        [
+          "⇧⌘. shortcut",
+          "Hidden items in the Finder window you have active",
+          "No. Each press flips the view"
+        ],
+        [
+          "defaults write, then killall Finder",
+          "The Finder setting for all Finder windows",
+          "Yes, until you change it back"
+        ],
+        [
+          "chflags hidden or chflags nohidden in Terminal",
+          "One file or folder that you choose",
+          "Yes, for that item until you change its flag"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For quick looks, use the shortcut. If you keep needing hidden files, use the Terminal setting. Use chflags only when one specific item must change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep hidden files visible with Terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcut is a switch you flip with each press. To keep hidden files visible, change the Finder setting itself. Open Applications > Utilities > Terminal, type the command below on one line, and press Return."
+    },
+    {
+      "type": "paragraph",
+      "text": "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+    },
+    {
+      "type": "paragraph",
+      "text": "The killall command restarts Finder. Finder windows may close and reopen during the restart, which is normal. When Finder comes back, hidden files stay visible until you change the setting again."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Hide them again or change the setting back"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press Shift, Command, and period once more to hide the items again in the shortcut view. To undo the Terminal setting, swap true for false and run the command again: defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sources disagree on the value format. MacRumors uses YES and NO, and some Apple Community posts use 1. The macos-defaults.com entry recommends true and false, so use those words."
+    },
+    {
+      "type": "paragraph",
+      "text": "To read the current value, run defaults read com.apple.finder AppleShowAllFiles in Terminal. If the output does not match what you expect, run the write command again and restart Finder."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reveal one hidden file with chflags"
+    },
+    {
+      "type": "paragraph",
+      "text": "Macworld describes a method for single items. Open Terminal, type chflags nohidden with a space after it, drag the item into the Terminal window, and press Return. The item then shows in Finder, although an open window may not update right away."
+    },
+    {
+      "type": "paragraph",
+      "text": "Macworld says to switch to another folder and come back if the change does not appear. To hide the item again, use chflags hidden with the same drag step. Write down the path of any item you change, so you can undo it later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reach the Library folder without a full reveal"
+    },
+    {
+      "type": "paragraph",
+      "text": "Library is the folder most people want from this topic. It sits inside your Home folder and stays hidden by default. Hold Option while you open the Go menu, and Library appears in the list. You do not need to change any setting for this."
+    },
+    {
+      "type": "paragraph",
+      "text": "The macmyths guide also says ⌘⇧. in your Home folder reveals ~/Library. Use the Go menu if you want a click path, and the shortcut if you already have the Finder window open."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When hidden files do not show up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with focus. The shortcut needs Finder to be the active app. Click inside a Finder window, then press the keys again. Most failed attempts come from a click on the Desktop or from another app being in front."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open and Save dialogs are a special case. Some guides say ⇧⌘. works there. The macmyths guide says results vary by app. Test it in the app you use before you depend on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hidden files on an external drive can behave differently. An Apple Community thread from August 8, 2025, on macOS 15.6 reported that chflags did not work on an external drive. The thread closed without a confirmed fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "Older threads show a different problem. One Apple Community thread about OS X 10.9 Mavericks reported that the AppleShowAllFiles setting did not stick. That thread also had no confirmed fix, so treat it as background, not as a fix for current releases."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with hidden files"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pressing the shortcut while the Desktop is active, then deciding Finder is broken.",
+        "Treating the shortcut as a permanent setting. It is a switch you flip with each press.",
+        "Running the Terminal command without killall Finder, then waiting for it to take effect. Restart Finder, or hold Option, right-click the Finder icon in the Dock, and click Relaunch, as MacRumors describes.",
+        "Deleting dimmed files because they look unused. Many belong to apps or to macOS itself.",
+        "Expecting an open window to update at once. Switch to another folder and come back, as Macworld advises.",
+        "Pasting a hidden-files command from a forum without reading it first. Check every command before you press Return."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your macOS version before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Versions matter here. Apple's Mac Help now uses macOS 27 Golden Gate as its version selector. The guides that document this shortcut cover macOS Tahoe 26. The MacRumors article from May 1, 2019 names no macOS version at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "The macos-defaults.com page lists tested versions from Catalina through Sonoma and does not list Tahoe. The Terminal command is therefore well documented, but no source here confirms it on your newest release. Test it, then decide."
+    },
+    {
+      "type": "paragraph",
+      "text": "To find your version, click the Apple menu, then choose About This Mac. Compare that number with the guide you are following. If they differ, expect small changes in menus and labels."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next with Finder and hidden files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once you can see hidden files, show only what you need. If you know a path, use the Go to Folder window with ⇧⌘G. Apple's keyboard shortcut list includes this shortcut under Finder and system shortcuts."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want help while you work, see [Lazur for Finder](/apps/finder). Lazur answers out loud and points at the control you need. It does not press the keys for you, so the toggle stays in your hands. You can get the app from [the download page](/download)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does ⇧⌘. work on macOS 27 Golden Gate?",
+      "answer": "The sources behind this page do not confirm it on macOS 27 Golden Gate. Apple's keyboard shortcut list does not mention it. Try it in a Finder window first. If it fails, use the Terminal command and check the result on your own screen."
+    },
+    {
+      "question": "Why don't hidden files appear on my Desktop?",
+      "answer": "MacRumors says the shortcut does not work on the Desktop. Open a folder in a Finder window, such as your Home folder, then press ⇧⌘. there."
+    },
+    {
+      "question": "Does showing hidden files change or delete them?",
+      "answer": "No. The macmyths guide says the shortcut does not rename or unhide files permanently. Showing them only changes what Finder displays. Deleting is a separate action that you must choose."
+    },
+    {
+      "question": "How do I hide hidden files again?",
+      "answer": "Press ⇧⌘. again in the same Finder window. If you changed the Terminal setting, run the same defaults command with false in place of true, then run killall Finder."
+    },
+    {
+      "question": "Is it safe to use Terminal for this?",
+      "answer": "The command changes one Finder preference and restarts Finder. Copy it exactly from a source you trust, and check each line before you press Return. Do not run commands you do not understand."
+    },
+    {
+      "question": "Can Lazur turn on hidden files for me?",
+      "answer": "No. Lazur does not press keys or change settings for you. Hold Option and Command, ask where the Go menu is, and Lazur circles it on screen. You do the pressing."
+    },
+    {
+      "question": "Should I open the Library folder?",
+      "answer": "Only when you need something specific in it. Move or delete nothing there unless a guide you trust names the exact file and says why it is safe to change."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How to Show Hidden Files on a Mac: MacRumors",
+      "url": "https://www.macrumors.com/how-to/show-hidden-files-on-a-mac/",
+      "publisher": "MacRumors",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to Show Hidden Files & Folders on Mac in macOS Tahoe 26",
+      "url": "https://macmyths.com/how-to-show-hidden-files-folders-on-mac-macos-tahoe-26/",
+      "publisher": "macmyths.com",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "macOS defaults > Finder > Show hidden files",
+      "url": "https://macos-defaults.com/finder/appleshowallfiles.html",
+      "publisher": "macos-defaults.com",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to reveal hidden files in macOS (and hide visible ones)",
+      "url": "https://www.macworld.com/article/342749/how-to-reveal-hidden-files-in-macos-and-hide-visible-ones.html",
+      "publisher": "Macworld",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Mac keyboard shortcuts: Apple Support",
+      "url": "https://support.apple.com/en-us/102650",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Mac Help: Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How do I PERMANENTLY show hidden files: Apple Community",
+      "url": "https://discussions.apple.com/thread/256112885",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Show hidden files won't stick: Apple Community",
+      "url": "https://discussions.apple.com/thread/5752220",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Show hidden files in Finder on a Mac",
+  "appliesTo": "Finder on Mac. Guides cover macOS Tahoe 26. Not confirmed on macOS 27 Golden Gate.",
+  "timeMinutes": 1,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Finder open to a folder window, not the Desktop",
+    "Terminal, in Applications > Utilities, only for the optional permanent setting",
+    "Your macOS version, since the guides cover Tahoe 26 and Apple's current help covers macOS 27"
+  ],
+  "steps": [
+    {
+      "name": "Make Finder the active app",
+      "text": "Click a Finder window that shows a folder. Click inside the window, not on the Desktop. The shortcut only works when Finder is the active app.",
+      "tip": "The app name beside the Apple menu should read Finder when Finder is active."
+    },
+    {
+      "name": "Open the folder you want to check",
+      "text": "Open your Home folder or the folder that holds the files you are looking for. Your Home folder is a good test, because it holds the Library folder.",
+      "tip": "If you are unsure where a file sits, open its folder first, then press the shortcut there."
+    },
+    {
+      "name": "Press Shift, Command, and period",
+      "shortcut": "⇧⌘.",
+      "text": "Hold Shift and Command, then press the period key. Hidden files and folders appear, and they look faded or translucent.",
+      "tip": "On a US keyboard, the period key is next to the comma key."
+    },
+    {
+      "name": "Look for the dimmed items",
+      "text": "Dimmed icons are the hidden files and folders. The shortcut changes what you see, not the files themselves. Leave any item you do not recognize alone."
+    },
+    {
+      "name": "Hide them again",
+      "shortcut": "⇧⌘.",
+      "text": "Press Shift, Command, and period once more. The faded items return to their normal hidden view. This step does not delete or rename anything."
+    },
+    {
+      "name": "Make the view stick in Terminal (optional)",
+      "menuPath": [
+        "Applications",
+        "Utilities",
+        "Terminal"
+      ],
+      "text": "Open Terminal, type defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder on one line, and press Return. Finder restarts, and its windows may close and reopen.",
+      "tip": "Swap true for false and run the same command to hide them again."
+    },
+    {
+      "name": "Confirm the change in an open window",
+      "text": "If nothing changes in an open Finder window, switch to another folder and come back. Macworld says the change may not appear until you do.",
+      "tip": "To read the stored value, run defaults read com.apple.finder AppleShowAllFiles in Terminal."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Show or hide hidden files in the active Finder window",
+      "keys": "⇧⌘."
+    },
+    {
+      "action": "Open the Go to Folder window in Finder",
+      "keys": "⇧⌘G"
+    },
+    {
+      "action": "Reveal Library in the Go menu",
+      "keys": "Hold ⌥, open Go"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Pressing ⇧⌘. does nothing.",
+      "fix": "Click inside a Finder window first. MacRumors says the shortcut does not work on the Desktop. Then press the keys again."
+    },
+    {
+      "problem": "Hidden files only show as faded icons.",
+      "fix": "That is how the shortcut displays them. It does not make them permanently visible. Use the Terminal command for a lasting setting, as covered above."
+    },
+    {
+      "problem": "chflags fails on an external drive.",
+      "fix": "An August 8, 2025 Apple Community thread on macOS 15.6 reported this with no confirmed fix. Use the Finder shortcut to view those files, and avoid running chflags on items you cannot identify."
+    },
+    {
+      "problem": "The Terminal setting does not stick.",
+      "fix": "Older Mavericks threads report this. Run defaults read com.apple.finder AppleShowAllFiles to check the value, then run the write command again with true and killall Finder."
+    },
+    {
+      "problem": "Finder windows closed after the command.",
+      "fix": "That is expected, because killall Finder restarts Finder. Reopen the windows you need, and hidden files stay visible."
+    },
+    {
+      "problem": "Open and Save dialogs do not show hidden files.",
+      "fix": "Results vary by app. The macmyths guide says ⌘⇧. may work there, so test it in the app you use. Finder steps may not apply inside other apps."
+    }
+  ],
+  "lazur": {
+    "spoken": "Hold Option and Command, then ask: where is the Go menu?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Go menu on your screen. Then it explains how to hold Option while you open it to reach Library. It does not open the menu for you.",
+    "shell": "generic",
+    "context": "You are in Finder and need the Library folder",
+    "pointsAt": "Go menu",
+    "output": "Lazur circles the Go menu, labels it, and says aloud what to hold while you open the menu. You open the menu and press the keys yourself."
+  },
+  "type": "howto",
+  "slug": "show-hidden-files-in-finder",
+  "app": "finder",
+  "appName": "Finder",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/show-hidden-files-in-finder/how-to-show-hidden-files-in-finder-1-afe0b3.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a desk using a MacBook to show hidden files in Finder on Mac",
+      "caption": "Checking folders in Finder on a MacBook",
+      "keywords": [
+        "how to show hidden files in finder on mac",
+        "Finder",
+        "show hidden files",
+        "Mac",
+        "person using MacBook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/show-hidden-files-in-finder/how-to-show-hidden-files-in-finder-2-b28a22.jpg",
+      "width": 1280,
+      "height": 912,
+      "alt": "Close up of a Mac keyboard with the Shift and Command keys for hidden files",
+      "caption": "The Shift and Command keys used in the shortcut",
+      "keywords": [
+        "how to show hidden files in finder on mac",
+        "Finder",
+        "show hidden files",
+        "Mac",
+        "Mac keyboard close up",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "decrand",
+        "url": "https://pixabay.com/users/decrand-14902286/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/piano-hands-music-musician-4841121/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/show-hidden-files-in-finder/how-to-show-hidden-files-in-finder-3-2a0cee.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man at a laptop reviewing files while learning how to show hidden files in Finder on Mac",
+      "caption": "Reviewing files on a laptop at work",
+      "keywords": [
+        "how to show hidden files in finder on mac",
+        "Finder",
+        "show hidden files",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to show hidden files in finder on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "show hidden files Mac": 1,
+      "Finder hidden files shortcut": 1,
+      "show hidden files Terminal Mac": 1,
+      "hide hidden files Finder Mac": 1,
+      "Command Shift period Finder": 1,
+      "show Library folder Mac": 1,
+      "defaults write AppleShowAllFiles": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

@@ -1,0 +1,550 @@
+{
+  "title": "How to set the default terminal shell in VS Code on Mac: step by step",
+  "metaTitle": "How to Set the Default Terminal Shell in VS Code on Mac",
+  "description": "Learn how to set the default terminal shell in VS Code on Mac using the Select Default Profile command, plus the settings and fixes that matter.",
+  "targetKeyword": "how to set the default terminal shell in vs code on mac",
+  "secondaryKeywords": [
+    "vs code default terminal mac",
+    "change terminal shell vs code mac",
+    "terminal select default profile vs code",
+    "defaultProfile.osx vs code",
+    "vs code zsh bash mac terminal",
+    "vs code integrated terminal shell mac"
+  ],
+  "intro": "To set the default terminal shell in VS Code on Mac, press ⇧⌘P, run Terminal: Select Default Profile, and pick the shell you want. VS Code saves that choice to the setting terminal.integrated.defaultProfile.osx, and new terminals open with it.",
+  "tldr": [
+    "Open the Command Palette with ⇧⌘P, then run Terminal: Select Default Profile.",
+    "Pick the shell from the list. VS Code writes the choice to terminal.integrated.defaultProfile.osx.",
+    "Open a new terminal with ⌃⇧` and check the shell name with ps -p $$.",
+    "If your shell is missing, add a profile with its full executable path in settings.json."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all respondents in the 2025 Stack Overflow survey used Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025, Technology"
+    },
+    {
+      "value": "1.145",
+      "label": "is the latest stable VS Code release, published November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "Visual Studio Code Updates"
+    },
+    {
+      "value": "26,143",
+      "label": "developers answered the development-environment question in the 2025 survey",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025, Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "The terminal in VS Code does not always open the shell you expect. Maybe you installed a newer shell with Homebrew and it never shows up in the list. Maybe a project keeps starting zsh when you want bash. VS Code has a documented command for this, and the change takes only a few seconds once you find it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which shell VS Code uses by default"
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, VS Code starts the shell named in $SHELL unless you change it. $SHELL is the login shell that macOS set for your user account. Terminals on macOS run as login shells by default, so they read your startup files when they open. Apple's Terminal guide says the default shell is zsh, but your own account may be set to something else."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the default shell with Select Default Profile"
+    },
+    {
+      "type": "paragraph",
+      "text": "The official route is a Command Palette command named Terminal: Select Default Profile. It lists the shells VS Code detected on your Mac. The one you choose becomes the default for new terminals. You do not need to edit a file for this, although the choice does end up in a settings file. The steps below cover the full flow, from opening the palette to checking the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⇧⌘P with VS Code in front, type the command name, and press Return on the match. If the name does not appear, check the spelling or try a shorter search, such as select default. Pick the exact command. A similar command, such as one that creates a terminal, will not change your default shell."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use the terminal dropdown instead"
+    },
+    {
+      "type": "paragraph",
+      "text": "The terminal panel has a plus button for new terminals, with a small arrow beside it. Click the arrow to see the list of profiles. The Select Default Profile item sits at the bottom of that menu, so you can change the default without opening the palette. Both routes write the same setting, so use whichever one you find faster."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check that the change worked"
+    },
+    {
+      "type": "paragraph",
+      "text": "The quickest test is a new terminal. Press ⌃⇧` and look at the prompt. Many prompts show the shell name, but a custom prompt can hide it, so run ps -p $$ as well. The COMMAND column shows the shell name, often with a leading dash for a login shell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Close any terminal that was already open before you made the change. An old terminal can make you think the setting failed, when it simply kept its earlier shell. A fresh terminal is the only fair test of the new default."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which setting controls which terminal"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting or route",
+        "Where you find it",
+        "What it changes"
+      ],
+      "rows": [
+        [
+          "Select Default Profile",
+          "Command Palette, or the terminal panel dropdown",
+          "The default shell for new VS Code terminals"
+        ],
+        [
+          "terminal.integrated.defaultProfile.osx",
+          "Preferences: Open User Settings (JSON)",
+          "The same default, stored as a profile name"
+        ],
+        [
+          "Shells open with",
+          "Terminal > Settings > General in Terminal.app",
+          "The shell Terminal.app opens, not VS Code"
+        ],
+        [
+          "$SHELL",
+          "Your macOS login shell for your account",
+          "The fallback VS Code uses when no default is set"
+        ],
+        [
+          "vscode.dev",
+          "A browser tab",
+          "No integrated terminal at all"
+        ]
+      ],
+      "caption": "Terminal settings on macOS and what each one changes"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the setting looks like in settings.json"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you pick a profile, VS Code writes its name to terminal.integrated.defaultProfile.osx. The value is a profile name, not a file path. For example, a line with that key set to `zsh` makes zsh the default for new terminals on macOS. The osx suffix marks the macOS version of the setting, and Windows and Linux have their own keys."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can open this file with the Command Palette command Preferences: Open User Settings (JSON). Edit it only if you are comfortable with JSON syntax. A missing comma or quote can break the file, so check the bracket and quote pairs after each edit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add a shell VS Code does not list"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the shell you want is not in the list. The profile list shows the shells VS Code detected, and each detected shell has a configure button beside it. Click that button to create a matching profile entry in settings.json. You can then point the default at that entry by name."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a shell VS Code did not detect, add a profile yourself under terminal.integrated.profiles.osx. Give it a name and the full path to the shell's executable. Then set terminal.integrated.defaultProfile.osx to that same name. Use the full path, because the profile needs an executable that exists on disk."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When VS Code keeps starting the wrong shell"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the checks in VS Code's troubleshooting guide. Work through them in order, and open a new terminal after each change so you can see the effect."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm that the value of terminal.integrated.defaultProfile.osx matches a profile name exactly, including capital letters.",
+        "Confirm that the matching entry in terminal.integrated.profiles.osx points to an executable that exists.",
+        "Check the User, Workspace, and Remote settings. A workspace setting can override your user setting.",
+        "Open the shell by itself in Terminal.app first. If it fails there, the problem is the shell, not VS Code."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the shell starts but your aliases or PATH entries are missing, the guide suggests setting terminal.integrated.inheritEnv to false. It also suggests giving the profile args set to an empty list. If you choose the empty list, move your aliases into ~/.bashrc or ~/.zshrc, the files that interactive shells read."
+    },
+    {
+      "type": "paragraph",
+      "text": "A common complaint is that the picker keeps choosing zsh on Apple silicon Macs. The official guide does not give a specific fix for that. Some third-party pages suggest running which zsh and echo $SHELL to compare paths. Treat those as checks, not confirmed fixes."
+    },
+    {
+      "type": "paragraph",
+      "text": "If nothing works, use Help > Report Issue. Include the full error message, the last terminal output, your VS Code version, your macOS version, and the shell path and version. The guide also asks for redacted Terminal and Pty Host logs, and for whether the terminal runs locally, in WSL, over SSH, or in a container."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Terminal.app has its own shell setting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Terminal.app, the app that ships with macOS, has a separate setting. Open Terminal > Settings > General and look at Shells open with. Choose Command (complete path) and enter the full shell path to change the shell Terminal.app opens. That setting does not change VS Code's terminal, so you still need the steps above."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "VS Code on the web has no terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you open VS Code in a browser at vscode.dev, you will not find an integrated terminal. The docs say the terminal and debugger are not available there. For terminal work, use the desktop app, GitHub Codespaces, or Remote Tunnels. The shell setting only applies to the desktop app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which VS Code version these steps match"
+    },
+    {
+      "type": "paragraph",
+      "text": "The latest stable release is 1.145, published November 4, 2026. Its release notes do not mention default profile or macOS shell changes. The same is true for 1.109 from January 2026, which covers terminal sandboxing and an untrusted workspace setting. Versions 1.143 and 1.144 were not checked for this page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Menu labels can shift between releases. If a label on your screen looks different, search the Command Palette for Select Default Profile instead, because that name is the documented route."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes to avoid"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing a shell path into defaultProfile.osx. The value must be a profile name.",
+        "Expecting Terminal.app to change. Its Shells open with setting is separate.",
+        "Using the Windows or Linux key on a Mac. The osx key is the one that applies here.",
+        "Picking a similar command that creates a terminal instead of Terminal: Select Default Profile.",
+        "Looking for a shortcut for Select Default Profile. The docs do not list one, so use the palette or the dropdown.",
+        "Forgetting a workspace setting. A project-level value can override your user setting."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts that help with the terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "These shortcuts cover most terminal work on a Mac. ⌃` shows or hides the terminal panel. ⌃⇧` opens a new terminal. ⌘\\ splits the terminal into two panes. The docs list no shortcut for choosing a default profile, so the palette is the way in."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after changing the shell"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the shell is right, you may want to show or hide the panel faster. [Toggle the integrated terminal in VS Code on Mac](/how-to/toggle-the-integrated-terminal-in-vs-code) covers that. If you work from the command line, [open a folder from the terminal in VS Code on Mac](/how-to/open-a-folder-from-the-terminal-in-vs-code) shows the next step."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the default boring. Pick the shell you use every day, and set project-specific shells in workspace settings only when a project needs them."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does changing this setting also change Terminal.app?",
+      "answer": "No. Terminal.app has its own Shells open with setting under Terminal > Settings > General. Changing VS Code's default profile leaves that setting alone, and changing that setting does not affect VS Code."
+    },
+    {
+      "question": "What shell does VS Code use if I never change it?",
+      "answer": "VS Code uses the value of $SHELL, which is your login shell. Apple's Terminal guide says the default shell is zsh, but your account may use a different login shell. Run echo $SHELL in Terminal.app to check."
+    },
+    {
+      "question": "Do I need to restart VS Code after changing the default?",
+      "answer": "The docs describe the setting as the default for new terminals. Open a new terminal with ⌃⇧` and check it with ps -p $$. Close any old terminal that was open before the change."
+    },
+    {
+      "question": "Can I make bash the default on a Mac?",
+      "answer": "Yes, if bash appears in the profile list. If it does not, add a profile under terminal.integrated.profiles.osx with the full path to bash, then select that profile name as the default."
+    },
+    {
+      "question": "Why does the setting name end in osx?",
+      "answer": "The osx suffix marks the macOS version of the setting. Windows and Linux use their own keys, so changing the Mac key does not change how VS Code behaves on those systems."
+    },
+    {
+      "question": "Can I set a different shell for one project?",
+      "answer": "Yes, through workspace settings, because a workspace value can override your user setting. Check the workspace settings first if one project keeps opening the wrong shell."
+    },
+    {
+      "question": "Is there a keyboard shortcut for Select Default Profile?",
+      "answer": "Not in the official docs that were checked. Open the Command Palette with ⇧⌘P and type the command name, or use the dropdown in the terminal panel if you prefer clicking."
+    },
+    {
+      "question": "Does this work in VS Code on the web?",
+      "answer": "No. VS Code for the web does not include an integrated terminal. Use the desktop app, GitHub Codespaces, or Remote Tunnels for terminal work."
+    },
+    {
+      "question": "What should I send if the problem continues?",
+      "answer": "Use Help > Report Issue. Include the full error, the last terminal output, your VS Code and macOS versions, the shell path and version, and the redacted Terminal and Pty Host logs."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Terminal Profiles, Visual Studio Code Docs",
+      "url": "https://code.visualstudio.com/docs/terminal/profiles",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Terminal Basics, Visual Studio Code Docs",
+      "url": "https://code.visualstudio.com/docs/terminal/basics",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Troubleshoot terminal launch failures and unexpected exits",
+      "url": "https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web, Visual Studio Code Docs",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Change the default shell, Apple Terminal User Guide",
+      "url": "https://support.apple.com/guide/terminal/trml113/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145 Release Notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.109 Release Notes",
+      "url": "https://code.visualstudio.com/updates/v1_109",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025, Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Set the default terminal shell in VS Code on Mac",
+  "appliesTo": "VS Code desktop on macOS, Apple silicon and Intel, latest stable 1.145",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code desktop app installed on a Mac, not the browser version",
+    "At least one shell installed, such as zsh or bash",
+    "Permission to edit your VS Code user settings"
+  ],
+  "steps": [
+    {
+      "name": "Open the Command Palette",
+      "text": "Bring VS Code to the front and press ⇧⌘P. A search box opens at the top of the window. The palette runs VS Code commands, including the one you need.",
+      "menuPath": [
+        "View",
+        "Command Palette"
+      ],
+      "shortcut": "⇧⌘P",
+      "tip": "If nothing opens, click inside the editor first so VS Code has keyboard focus."
+    },
+    {
+      "name": "Find the Select Default Profile command",
+      "text": "Type Terminal: Select Default Profile. The list narrows as you type. Choose the command with that exact name, then press Return.",
+      "tip": "If the name does not appear, check the spelling. Searching for select default also works."
+    },
+    {
+      "name": "Pick your shell",
+      "text": "VS Code shows the shells it detected on your Mac, such as zsh or bash. Click the one you want new terminals to use. The choice applies to new terminals.",
+      "tip": "Not sure which shell you use? Open Terminal.app and run echo $SHELL to see your login shell."
+    },
+    {
+      "name": "Open a new terminal to test",
+      "text": "Press ⌃⇧` to open a new terminal in VS Code. Run ps -p $$ and read the name in the COMMAND column. If it shows the shell you picked, the change worked.",
+      "shortcut": "⌃⇧`",
+      "tip": "If an old terminal is still open, close it and start a new one so you test the new default."
+    },
+    {
+      "name": "Use the dropdown as an alternative",
+      "text": "Click the small arrow beside the plus button in the terminal panel. Choose Select Default Profile at the bottom of the menu. It writes the same setting as the palette.",
+      "menuPath": [
+        "Terminal panel",
+        "Arrow beside plus button",
+        "Select Default Profile"
+      ],
+      "tip": "The dropdown is the quickest route when the terminal panel is already open."
+    },
+    {
+      "name": "Check the setting in settings.json",
+      "text": "Open the Command Palette and run Preferences: Open User Settings (JSON). Search the file for terminal.integrated.defaultProfile.osx. Its value should match the profile name you picked.",
+      "menuPath": [
+        "View",
+        "Command Palette",
+        "Preferences: Open User Settings (JSON)"
+      ],
+      "shortcut": "⇧⌘P",
+      "tip": "Use palette search to find the command, because menu layouts can change between releases."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open a new terminal",
+      "keys": "⌃⇧`"
+    },
+    {
+      "action": "Show or hide the terminal panel",
+      "keys": "⌃`"
+    },
+    {
+      "action": "Split the terminal",
+      "keys": "⌘\\"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "New terminals still open the old shell",
+      "fix": "Confirm that terminal.integrated.defaultProfile.osx matches a profile name exactly. Then close the old terminal and open a new one with ⌃⇧`."
+    },
+    {
+      "problem": "My shell is missing from the profile list",
+      "fix": "Click the configure button beside a detected shell, or add a profile under terminal.integrated.profiles.osx with the full executable path."
+    },
+    {
+      "problem": "The profile is set but the terminal fails to start",
+      "fix": "Confirm that the executable path exists and the args are valid. Preferences: Open User Settings (JSON) shows the profile definitions."
+    },
+    {
+      "problem": "Aliases or PATH entries are missing in the new shell",
+      "fix": "Try setting terminal.integrated.inheritEnv to false, or set the profile args to an empty list. If you use the empty list, move aliases into ~/.bashrc or ~/.zshrc."
+    },
+    {
+      "problem": "The picker keeps choosing zsh",
+      "fix": "Check the setting name and the workspace settings first. The official guide has no specific fix for this, so use Help > Report Issue if it persists."
+    },
+    {
+      "problem": "No terminal appears in a browser tab",
+      "fix": "vscode.dev has no integrated terminal. Use the desktop app, GitHub Codespaces, or Remote Tunnels instead."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Select Default Profile?",
+    "capability": "point",
+    "result": "Lazur circles the Select Default Profile command on your screen and labels it, so you can click it yourself.",
+    "shell": "code",
+    "pointsAt": "Select Default Profile",
+    "context": "The Command Palette is open and the command is not where you expect it to be.",
+    "output": "Lazur points at the command and answers out loud. It does not click, type, or change the setting for you."
+  },
+  "type": "howto",
+  "slug": "set-the-default-terminal-shell-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-the-default-terminal-shell-in-vs-code/how-to-set-the-default-terminal-shell-1-606dfc.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Developer at a MacBook learning how to set the default terminal shell in VS Code on Mac",
+      "caption": "Coding on a Mac laptop with an editor and terminal open",
+      "keywords": [
+        "how to set the default terminal shell in vs code on mac",
+        "VS Code",
+        "set the default terminal shell",
+        "Mac",
+        "developer mac laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-the-default-terminal-shell-in-vs-code/how-to-set-the-default-terminal-shell-2-958f6a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer typing code at a desk while configuring a terminal in VS Code on Mac",
+      "caption": "Terminal settings are part of everyday coding work",
+      "keywords": [
+        "how to set the default terminal shell in vs code on mac",
+        "VS Code",
+        "set the default terminal shell",
+        "Mac",
+        "programmer typing code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-coding-programming-html-2558224/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to set the default terminal shell in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "vs code default terminal mac": 1,
+      "change terminal shell vs code mac": 1,
+      "terminal select default profile vs code": 1,
+      "defaultProfile.osx vs code": 1,
+      "vs code zsh bash mac terminal": 1,
+      "vs code integrated terminal shell mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

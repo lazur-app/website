@@ -1,0 +1,667 @@
+{
+  "title": "PRD stuck in endless revisions: how to close a spec on Mac in 2026",
+  "metaTitle": "PRD stuck in endless revisions: close it on Mac",
+  "description": "A PRD stuck in endless revisions usually has no final decider or review deadline. See what it costs, why it happens and fixes you can use on Mac.",
+  "targetKeyword": "PRD stuck in endless revisions",
+  "secondaryKeywords": [
+    "endless PRD revisions",
+    "PRD revisions never finish",
+    "how to close a PRD",
+    "PRD version history Mac",
+    "product requirements document review process",
+    "stop PRD scope creep"
+  ],
+  "intro": "A PRD stuck in endless revisions usually has no single person who makes the final call. Its open questions also sit scattered across comments, chat threads and old drafts. This page covers what the loop costs, why it keeps going, and fixes you can start on your Mac today.",
+  "tldr": [
+    "A PRD stuck in endless revisions usually lacks a named decider, a review end date or one clean current draft.",
+    "The time cost is a proxy. Five hours a week at the BLS median hourly rate is about $11,800 a year in base pay.",
+    "Name the decider, freeze a named version, run two review rounds and move open questions into one table.",
+    "Google Docs Suggesting mode, Word Track Changes, Notion version history and Figma named versions all help, each with different limits.",
+    "Lazur can explain a long thread, point at what it finds and dictate or draft the decision note. It does not edit your PRD."
+  ],
+  "stats": [
+    {
+      "value": "60%",
+      "label": "of knowledge workers' time goes to 'work about work', per Asana's index of over 10,000 knowledge workers",
+      "sourceUrl": "https://asana.com/resources/why-work-about-work-is-bad",
+      "sourceTitle": "How Work About Work Gets in the Way of Real Work (Asana)"
+    },
+    {
+      "value": "$102,320",
+      "label": "median yearly pay for project management specialists, May 2025. A proxy only, not product manager pay",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm",
+      "sourceTitle": "Project Management Specialists, Occupational Outlook Handbook (BLS)"
+    },
+    {
+      "value": "171",
+      "label": "software projects in a study that found no evidence late fixes always cost much more",
+      "sourceUrl": "https://arxiv.org/abs/1609.04886",
+      "sourceTitle": "Are Delayed Issues Harder to Resolve? (arXiv)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Here is the usual pattern. You send a PRD for review on Monday. By Thursday it has 40 comments, three copies in email and two people arguing about one paragraph. Nobody can say which version is current. The next review starts from scratch, and the loop goes on."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What endless PRD revisions cost you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Nobody has measured how long PRD revisions take. I could not find a survey that tracks product manager review time. Treat every number here as a proxy. Use them to start a conversation, not to win an argument."
+    },
+    {
+      "type": "paragraph",
+      "text": "The closest hard figure comes from Asana. Its Anatomy of Work index, based on more than 10,000 knowledge workers, puts 60% of time into what it calls work about work. That bucket covers chasing status, switching apps and managing shifting priorities. A PRD loop lives there. Asana sells work management software, so read the number as a vendor's survey."
+    },
+    {
+      "type": "paragraph",
+      "text": "For base pay, the Bureau of Labor Statistics is a usable anchor. Its median for project management specialists was $102,320 in May 2025, or $49.19 an hour. That is a nearby job, not product management. Still, it shows the scale. Five hours a week for 48 working weeks comes to about $11,800 a year in base pay. That is 5 × 48 × $49.19, assuming 48 working weeks."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Revision hours per week",
+        "Yearly base pay cost",
+        "How it is calculated"
+      ],
+      "rows": [
+        [
+          "2 hours",
+          "about $4,700",
+          "2 × 48 × $49.19"
+        ],
+        [
+          "5 hours",
+          "about $11,800",
+          "5 × 48 × $49.19"
+        ],
+        [
+          "8 hours",
+          "about $18,900",
+          "8 × 48 × $49.19"
+        ]
+      ],
+      "caption": "Base pay only, at the BLS median hourly rate for project management specialists."
+    },
+    {
+      "type": "paragraph",
+      "text": "Base pay misses the bigger costs. A spec that never closes holds engineering and design. Sales asks for dates nobody can promise. Each week the document stays open, people plan around a guess. Those costs do not show up on a payslip, but your roadmap feels them."
+    },
+    {
+      "type": "paragraph",
+      "text": "You may hear that a late fix costs far more than an early one. Treat that claim with care. A study of 171 software projects, from 2006 to 2014, found no evidence for a consistent delayed issue effect. Use the cost of waiting you can see on your own calendar. Skip the scare numbers."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a PRD gets stuck in revisions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most loops trace back to the process around the document, not the writing. The research on requirements points to a few repeat patterns. Three patterns show up often. Each one has a sign you can spot early."
+    },
+    {
+      "type": "paragraph",
+      "text": "Requirements engineering surveys keep flagging the same problem. Researchers who surveyed 14 organisations in Austria and 74 in Brazil found that incomplete or hidden requirements rank among the most critical problems. A later analysis covered 228 organisations in 10 countries and proposed guidelines to prevent them. Neither abstract gives a percentage, so do not quote one."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sign is simple. The same question shows up in comments round after round, and nobody writes the answer into the PRD. Hidden requirements stay hidden because the document gives them nowhere to go. Add a place for them before the next round."
+    },
+    {
+      "type": "paragraph",
+      "text": "The first pattern is the missing decider. A PRD with five reviewers and no decider never closes. Each reviewer can ask for one more change, and nobody can say no. Amazon's 2016 shareholder letter describes many decisions as reversible 'two-way doors' that deserve a light process. That is expert opinion, not a study, but the logic holds for a spec."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second pattern is waiting for perfect information. The author wants every edge case answered before the review starts. The same letter says most decisions should be made with about 70% of the information you wish you had. Use that as a rule of thumb. A spec that is roughly 70% sure, with a date, usually beats one that waits for certainty."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third pattern is words that hide the disagreement. Two people read 'the user can export a report' and picture two different screens. The argument then runs for weeks in comments. A study of 50 mobile app development teams found loud paper prototyping was better for non-functional and UI requirements. The authors report this qualitatively, without effect sizes."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Signs your PRD is stuck in revisions"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The same question returns in three review rounds and nobody answers it in the document.",
+        "Two or more live versions circulate in email, chat or shared folders.",
+        "The review has no end date, or the end date has moved twice.",
+        "Nobody can name the decider when you ask.",
+        "The author rewrites sections the team already approved last week.",
+        "A new stakeholder joins late and asks to reopen settled scope."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a PRD that took six weeks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a made-up example to show how the loop grows. The numbers are invented for illustration, not taken from a study. A PRD goes to five reviewers. Each week adds a version, a round of comments and a new stakeholder. By week six, nobody remembers which version the build team uses."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Week",
+        "What happened",
+        "What would have closed it"
+      ],
+      "rows": [
+        [
+          "1",
+          "Draft sent to five reviewers, no decider named",
+          "Name the decider and a Friday deadline on day one"
+        ],
+        [
+          "2",
+          "38 comments, two new versions in email",
+          "One review round, with comments routed to one thread"
+        ],
+        [
+          "3",
+          "Engineering asks a new edge case question",
+          "Open question table with an owner and a due date"
+        ],
+        [
+          "4",
+          "Design disagrees on one screen, no mockup",
+          "A 30 minute sketch of the disputed screen"
+        ],
+        [
+          "5",
+          "Sales asks for an export field",
+          "Park the request in a backlog and note the reason"
+        ],
+        [
+          "6",
+          "Still open, third version in circulation",
+          "Decision meeting, decision log entry, version frozen"
+        ]
+      ],
+      "caption": "Invented example for illustration. Not real team data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Count the fixes in the right column. None of them needs a new tool. Each one needs a date, an owner or a shared place to put the answer. Most teams skip them because the loop feels like progress."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track changes and version history on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every tool keeps history a little differently. Use the one your team already opens. Below is what the official help pages say, with Mac menu paths where the sources give them."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Google Docs: at the top right, open the editing mode menu and choose Suggesting. Suggestions show in colour with deletions crossed out.",
+        "Word for Mac: go to Review > Track Changes so edits are marked. Microsoft's help says comments ask questions without changing the text.",
+        "Pages for Mac: the Pages User Guide for version 15.4 has a Track changes topic. Check your version before you follow its steps.",
+        "Notion: click ••• at the top of the page and choose Version history. You need at least Can edit access.",
+        "Figma: open the menu next to the file name and choose Show Version History. Save to Version History with ⌘⌥S to name a version."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Know how long the history lasts. Notion keeps 7 days on Free, 30 days on Plus and 90 days on Business. Figma keeps 30 days on Drafts and Starter, and paid plans keep full history of existing files. A PRD that runs for months needs a named snapshot in your own folder too."
+    },
+    {
+      "type": "paragraph",
+      "text": "Restoring is not always a clean undo. Notion's restore replaces the whole page with the version you chose. To keep one section, open the old version, copy the blocks you need and paste them into the current page. Figma's restore is non-destructive, so it is the safer one to test first."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Notion restore is all or nothing",
+      "text": "Restoring a Notion page replaces the whole page with the chosen version. Copy any sections you still need from the current page first, then restore."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes product managers make in the last round"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most people stall in the same few ways. Each mistake looks reasonable on the day. Here they are, with the fix for each."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reopening the whole PRD for one comment. Move that comment to the open questions table instead.",
+        "Sending the draft to everyone for a quick look. Each new reader adds a round of changes.",
+        "Treating a comment thread as a decision. Threads rarely end with a named choice and a date.",
+        "Rewriting for every change. Most changes need one sentence, not a new version.",
+        "Waiting for sign off with no date. Ask the approver for a deadline, even a soft one."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Edge case: when a PRD needs legal, security or compliance review, their timeline counts. Follow your employer's rules on which product data you can paste into AI tools. If the PRD includes customer or health data, check that policy before you use any assistant on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps on a stuck PRD"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It helps with reading a long thread, finding the open question and drafting a decision note. It does not click buttons, edit your document or work inside your tools for you."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a 40 comment thread is open in Google Docs. Hold ⌥⌘ and ask which questions are still open. Lazur answers out loud based on what it can see. Check that list against the thread before you post anything, because a voice answer can miss a reply."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate the decision note straight at the cursor in any app. Dictation is included, and it is unlimited on both paid plans. Add product names to your personal dictionary so they come out right the first time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is and Lazur draws a circle and a label around it on your screen. That helps when you need the owner field in a long Notion page. Ask how to do something and Lazur walks you through it one click at a time, waiting for each click."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run the close-out week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Give the close-out one week, and write the end date at the top of the PRD. If the decider cannot decide by then, decide with what you have. Write down what you chose and why. A dated decision you can revisit beats an open draft nobody reads."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Reversible or not?",
+      "text": "Mark each open decision as reversible or not. Decide the reversible ones within a day. Save the slow process for choices you cannot easily undo."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start small. Pick the one open question that blocks the most work. Give it one owner and one date. Then run the week plan. A loop often breaks at the first named decision, not at the last comment."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I know my PRD is stuck in endless revisions?",
+      "answer": "Look for repeats. If the same question returns over three rounds, or two versions circulate at once, the PRD is stuck. A missing decider or a review with no end date usually sits behind it. Name the decider and set a date for the next decision."
+    },
+    {
+      "question": "Is there data on how long PRD reviews take?",
+      "answer": "Not that I could find. No survey I opened measures PRD review time for product managers. The Asana work about work figure and the BLS pay median are proxies. Use them for scale, not as a claim about your team."
+    },
+    {
+      "question": "Should I stop taking feedback on the PRD?",
+      "answer": "No. Keep the feedback and change the rules. Collect comments in round one, decide in round two, and route new ideas to a backlog. Reviewers still get heard, and the document still closes."
+    },
+    {
+      "question": "Which tool should I use for track changes on Mac?",
+      "answer": "Use the tool your team already opens. Google Docs has Suggesting mode, Word has Track Changes and Figma has named versions. Notion has version history, but its restore replaces the whole page. Tell reviewers where the current draft lives."
+    },
+    {
+      "question": "How long does Notion keep old versions?",
+      "answer": "It depends on the plan. Free keeps 7 days, Plus keeps 30 days and Business keeps 90 days. Enterprise can keep any number of days. Check your plan before you rely on history for a spec that runs for months."
+    },
+    {
+      "question": "Can Lazur edit my PRD or send it for review?",
+      "answer": "No. Lazur does not click buttons, edit your files or operate other apps for you. It can explain what is on screen, point at things, answer out loud, dictate text and draft text that you paste in yourself."
+    },
+    {
+      "question": "Does Lazur send my PRD to AI providers?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer and are not stored. Content is never used to train AI models. Check your employer's rules before you use any AI tool on confidential product plans."
+    },
+    {
+      "question": "Is Lazur available on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned but not available. You can start with the Pro trial, which needs no credit card and starts when you first open the app."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How Work About Work Gets in the Way of Real Work",
+      "url": "https://asana.com/resources/why-work-about-work-is-bad",
+      "publisher": "Asana",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Project Management Specialists: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Preventing Incomplete/Hidden Requirements: Reflections on Survey Data from Austria and Brazil",
+      "url": "https://arxiv.org/abs/1612.00163",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Towards Guidelines for Preventing Critical Requirements Engineering Problems",
+      "url": "https://arxiv.org/abs/1611.08833",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Are Delayed Issues Harder to Resolve? Revisiting Cost-to-Fix of Defects throughout the Lifecycle",
+      "url": "https://arxiv.org/abs/1609.04886",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Loud and Interactive Paper Prototyping in Requirements Elicitation: What is it Good for?",
+      "url": "https://arxiv.org/abs/1807.07662",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "2016 Letter to Shareholders",
+      "url": "https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders",
+      "publisher": "Amazon",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Suggest edits in Google Docs",
+      "url": "https://support.google.com/docs/answer/6033474?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Give and receive feedback in Word",
+      "url": "https://support.microsoft.com/en-us/word/give-and-receive-feedback-in-word",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Pages User Guide for Mac",
+      "url": "https://support.apple.com/guide/pages/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Delete & restore content in Notion",
+      "url": "https://www.notion.com/help/duplicate-delete-and-restore-content",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "View and restore version history",
+      "url": "https://help.figma.com/hc/en-us/articles/360038006754-View-and-restore-version-history",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "endless prd revision cycles",
+  "costs": [
+    {
+      "title": "Base pay on your own hours",
+      "text": "Revision time is paid time. At the BLS median hourly rate for project management specialists, five hours a week comes to about $11,800 a year in base pay, assuming 48 working weeks. Your own rate will differ, so check your salary before you quote a figure."
+    },
+    {
+      "title": "Engineers and designers waiting",
+      "text": "A PRD that never closes holds the next step. Engineers wait to estimate. Designers wait for final copy. The team plans around a document that might change again. That waiting is hard to measure, but the team feels it in every sprint."
+    },
+    {
+      "title": "Trust in the document",
+      "text": "When a spec changes every week, readers stop reading it. They ask in meetings instead. The PRD then stops being the source of truth. You pay for that later in arguments about what was agreed. Rebuilding trust takes longer than any single review."
+    },
+    {
+      "title": "Decisions made twice",
+      "text": "The same question returns after a decision was already made. Someone reopens it in a new thread. The team spends another meeting on it. The cost is a second decision plus the time to explain the first one again."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Nobody can say no",
+      "text": "A review with five reviewers and no decider gives everyone a veto in practice. Each reviewer can ask for one more change. Without a named person to close each question, every request stays alive. The loop does not end because no one has the job of ending it."
+    },
+    {
+      "title": "Scope grows one reviewer at a time",
+      "text": "Each new reviewer brings a new use case. Sales wants an export field. Support wants a reminder. Security wants an audit trail. None of these is wrong. Together they reopen settled scope, and each one adds a version and a round."
+    },
+    {
+      "title": "Reviewers read for different goals",
+      "text": "Legal checks risk, engineering checks feasibility, design checks flows and sales checks the date. When each person reads for a different goal, the same paragraph gets three different edits. The author then has no single test to pass."
+    },
+    {
+      "title": "Answers live outside the document",
+      "text": "Decisions made on a call or in a Slack thread rarely reach the PRD. The author updates the doc later, from memory. Reviewers then comment on a version that no longer matches what was agreed. Write each decision into the document the same day."
+    },
+    {
+      "title": "The review has no end date",
+      "text": "A review with no date has no finish line. People keep commenting because nothing stops them. A date turns an endless loop into a deadline. It also tells reviewers that late comments go to the next version, not this one."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Name one decider and a date",
+      "text": "Put two lines at the top of the PRD. The first line names the decider, one person. The second line gives the date the review closes. Post the same two lines in the review thread. Nobody can ask for one more round without naming who decides it. This costs nothing and works in every tool."
+    },
+    {
+      "title": "Freeze a named version before each round",
+      "text": "Save a named snapshot before each review round. In Figma, open the menu next to the file name, choose Show Version History and use Save to Version History with ⌘⌥S. In Notion, check ••• > Version history for your baseline. Tell reviewers which version they are commenting on."
+    },
+    {
+      "title": "Run two rounds, not open-ended ones",
+      "text": "Round one collects comments. Round two collects decisions. Close comments on the draft after round one. In round two, reviewers reply approve or object, with one reason. Anything else goes to the next version. Set a date for each round before the first one starts."
+    },
+    {
+      "title": "Move open questions into one table",
+      "text": "Make a table with four columns: question, owner, due date and status. Put every open question there, even small ones. In Notion, a database works well. You can follow the steps in [How to create a database in Notion on Mac](/how-to/create-a-database-in-notion)."
+    },
+    {
+      "title": "Sketch the disputed screen",
+      "text": "When two people argue about one screen, stop writing and draw it. Spend 30 minutes in Figma or on paper on the screen everyone argues about. In a study of 50 mobile app teams, loud paper prototyping did better than meetings alone for UI and non-functional requirements. The authors report this qualitatively, so treat it as a lead."
+    },
+    {
+      "title": "Sort decisions into reversible and not",
+      "text": "For each open decision, ask whether you can undo it in a month. If yes, decide within a day and move on. If no, give it the full review. Amazon's 2016 letter calls the first kind two-way doors. It is expert opinion, not a study, but the split is easy to use."
+    },
+    {
+      "title": "Park new requests outside the PRD",
+      "text": "Each new idea gets one line: the request, the requester and a short note. Put it in Linear or in a Notion page marked for later. Reply in the thread with a link to that line. The PRD changes only when a decision changes."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "What is still open in this thread?",
+      "result": "Lazur reads what is on screen and answers out loud with a short list of open questions."
+    },
+    {
+      "capability": "point",
+      "say": "Where is the version history button?",
+      "result": "Lazur draws a circle and a label around the control on your screen."
+    },
+    {
+      "capability": "guide",
+      "say": "How do I turn on Suggesting mode?",
+      "result": "Lazur guides you one click at a time and waits for each click before it goes on."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the decision note.",
+      "result": "Clean text appears at the cursor in any app. Dictation is unlimited on both paid plans."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a decision note from these three bullets.",
+      "result": "Lazur drafts text you can edit before you paste it. It does not send anything for you."
+    },
+    {
+      "capability": "research",
+      "say": "Find how two public teams set review deadlines.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "capability": "everyday",
+      "say": "Set a timer for 20 minutes.",
+      "result": "Lazur sets the timer by voice, which helps you timebox one review round."
+    }
+  ],
+  "demo": {
+    "spoken": "What is still open in this PRD?",
+    "capability": "explain",
+    "result": "Lazur answers out loud with the open questions it can see, then points at the first unresolved one.",
+    "shell": "doc",
+    "context": "Notion PRD with a long comment thread",
+    "pointsAt": "first unresolved comment",
+    "output": "Lazur reads the comments on screen and speaks a short list of open questions. It then draws a circle and a label around the first unresolved comment. You check the list against the thread before you act on it."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Name the decider and the end date",
+      "text": "Add two lines at the top of the PRD: the decider and the date the review closes. Post the same lines in the review thread. If no one volunteers, ask your manager to name one today."
+    },
+    {
+      "label": "Day 2",
+      "title": "Freeze the draft and label it",
+      "text": "Save a named snapshot before the next round. In Figma, open the menu next to the file name, choose Show Version History and use Save to Version History with ⌘⌥S. In Notion, check ••• > Version history for your baseline."
+    },
+    {
+      "label": "Day 3",
+      "title": "Build the open questions table",
+      "text": "Hold ⌥⌘ and ask Lazur to list the open questions in the thread, then check that list yourself. Put every question in one table with an owner and a due date. Mark each row reversible or not."
+    },
+    {
+      "label": "Day 4",
+      "title": "Sketch the disputed screen",
+      "text": "Spend 30 minutes sketching the screen people argue about. Use Figma or paper. Walk two people through it. If the sketch settles the argument, write the answer into the PRD the same day."
+    },
+    {
+      "label": "Day 5",
+      "title": "Decide, log and park the rest",
+      "text": "Hold one 30 minute decision meeting. Write each decision in a decision log with the date and the reason. Park new requests in a backlog with a link back to the thread. Freeze the PRD as the agreed version one."
+    }
+  ],
+  "apps": [
+    "notion",
+    "figma",
+    "linear",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "prd-stuck-in-endless-revisions",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/prd-stuck-in-endless-revisions/prd-stuck-in-endless-revisions-1-9588da.jpg",
+      "width": 1280,
+      "height": 757,
+      "alt": "Product manager at a Mac laptop reviewing a PRD stuck in endless revisions with comments open",
+      "caption": "A product manager reviewing a draft on a laptop.",
+      "keywords": [
+        "PRD stuck in endless revisions",
+        "Product managers",
+        "endless PRD revision cycles",
+        "Mac",
+        "man working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/prd-stuck-in-endless-revisions/prd-stuck-in-endless-revisions-2-4739fd.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Product team gathered at a whiteboard working through open questions from a stuck PRD",
+      "caption": "A review meeting where open questions get settled.",
+      "keywords": [
+        "PRD stuck in endless revisions",
+        "Product managers",
+        "endless PRD revision cycles",
+        "Mac",
+        "team meeting whiteboard",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "vandesart",
+        "url": "https://pixabay.com/users/vandesart-39485690/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/team-office-board-grades-adhesives-10181201/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/prd-stuck-in-endless-revisions/prd-stuck-in-endless-revisions-3-3a96fb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing notes on a laptop in an office while drafting a decision note for a PRD",
+      "caption": "Writing the decision note once the review ends.",
+      "keywords": [
+        "PRD stuck in endless revisions",
+        "Product managers",
+        "endless PRD revision cycles",
+        "Mac",
+        "woman typing laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-woman-849827/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "PRD stuck in endless revisions",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "endless PRD revisions": 2,
+      "PRD revisions never finish": 1,
+      "how to close a PRD": 1,
+      "PRD version history Mac": 1,
+      "product requirements document review process": 1,
+      "stop PRD scope creep": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

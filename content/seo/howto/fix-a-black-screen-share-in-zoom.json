@@ -1,0 +1,575 @@
+{
+  "title": "How to fix black screen share in Zoom on Mac: permission first, then settings",
+  "metaTitle": "How to Fix Black Screen Share in Zoom on Mac",
+  "description": "Learn how to fix black screen share in Zoom on Mac: grant screen recording permission, restart Zoom, then check sharing settings and the web app.",
+  "targetKeyword": "how to fix black screen share in zoom on mac",
+  "secondaryKeywords": [
+    "zoom black screen share mac",
+    "zoom screen share black on macOS",
+    "zoom screen recording permission mac",
+    "zoom web app black screen mac",
+    "zoom share screen black macbook"
+  ],
+  "intro": "A black screen share in Zoom on Mac usually means macOS has not given Zoom permission to record your screen. Turn on Screen and System Audio Recording for Zoom in System Settings, quit Zoom completely, then reopen it and share again.",
+  "tldr": [
+    "Black usually means macOS has not granted Zoom screen recording permission.",
+    "Turn on Screen and System Audio Recording for Zoom, then press ⌘Q and reopen Zoom.",
+    "Check Share screen > Advanced in Zoom settings if the black share continues.",
+    "Web app users need their browser checked under Screen & System Audio Recording.",
+    "Update Zoom, confirm your macOS version, then restart your Mac as a last step."
+  ],
+  "stats": [
+    {
+      "value": "10.15",
+      "label": "Lowest macOS version the current Zoom Workplace desktop app supports",
+      "sourceUrl": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060748",
+      "sourceTitle": "Zoom Help Center: Zoom system requirements (KB0060748)"
+    },
+    {
+      "value": "7.0.0",
+      "label": "Zoom Workplace release that stopped supporting macOS 10.13 and 10.14",
+      "sourceUrl": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060748",
+      "sourceTitle": "Zoom Help Center: Zoom system requirements (KB0060748)"
+    },
+    {
+      "value": "6.7.7",
+      "label": "Last Zoom Workplace release for macOS versions below 10.15",
+      "sourceUrl": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060748",
+      "sourceTitle": "Zoom Help Center: Zoom system requirements (KB0060748)"
+    },
+    {
+      "value": "Monthly",
+      "label": "Sequoia screen recording re-approval prompts, per a 2024 beta report",
+      "sourceUrl": "https://9to5mac.com/2024/08/14/macos-sequoia-screen-recording-prompt-monthly/",
+      "sourceTitle": "9to5Mac: macOS Sequoia will now prompt you monthly (not weekly) for screen recording permissions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A black screen share looks like a broken app, but it is usually a permission problem. Zoom has to ask macOS for permission to record your screen. If macOS has not granted that permission, the shared image comes through as a black rectangle. Zoom's own help pages start with permissions, and so do third-party Mac guides. So start there too. Move on to Zoom's sharing settings only after the permission is on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a Zoom share turns black on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most black shares trace back to a short list of causes. Check them in the order below. Change one thing, test the share, and move on only if the screen is still black. Changing several settings at once hides which change actually helped."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Screen and System Audio Recording is off for Zoom in macOS.",
+        "Zoom was already running when you changed the permission, so it never picked up the change.",
+        "Zoom's Advanced sharing options need a change, mainly on macOS Big Sur or on Apple silicon Macs.",
+        "You use the Zoom web app, and your browser does not have screen recording permission."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix the screen recording permission for Zoom"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the permission. Click the Apple menu, then choose System Settings. In the sidebar, select Privacy & Security. Under Privacy, select Screen and System Audio Recording. Zoom's permissions article says to turn on the switch for Zoom. In the list, look for the row named zoom in lowercase. Mainspring's Mac guide shows the same row as zoom.us, so either name points to the right row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Turning the switch on is not enough if Zoom was already open. Zoom's article says a restart is required, and Zoom may prompt you to restart. Closing the window does not quit Zoom. Make Zoom the active app, press ⌘Q, then open Zoom again. Run a test share before you join a meeting that matters."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is how that plays out. Say you open Zoom for a morning client call, and the share shows a black rectangle. You open System Settings, find the Zoom row, and see the switch is off. You turn it on. If macOS asks you to confirm, approve the request. Then you press ⌘Q in Zoom, reopen it, and share your full screen. Your desktop appears, and you can start the call with confidence."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Zoom's sharing settings on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the permission is already on, open Zoom's settings. Click your profile picture, then choose Settings. Open the tab labeled Share screen, then click Advanced. In version 6.7.0 and later, you can also click the gear icon in the navigation bar. Zoom's settings article covers this path, but it does not list macOS-specific names for the Advanced options. The names below come from other sources, and the table says which is which."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting",
+        "Where it lives",
+        "When to try it"
+      ],
+      "rows": [
+        [
+          "Screen and System Audio Recording",
+          "System Settings > Privacy & Security",
+          "Any black share, check this first"
+        ],
+        [
+          "Use TCP connection for screen sharing",
+          "Settings > Share screen > Advanced",
+          "Big Sur, per Zoom's KB0059904 article"
+        ],
+        [
+          "Screen capture mode: Automatic or Legacy",
+          "Settings > Share screen > Advanced",
+          "Black or laggy shares on Apple silicon, third-party advice"
+        ],
+        [
+          "Browser checkbox",
+          "System Settings > Privacy & Security > Screen & System Audio Recording",
+          "Zoom Web App in Chrome, Firefox, Safari, or Edge"
+        ]
+      ],
+      "caption": "Sharing settings to check, in the order most people need them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Change one setting at a time. If you change several things and the share works, you will not know which change did it. Write down the original value before you touch anything. That way you can switch back if the change makes things worse."
+    },
+    {
+      "type": "paragraph",
+      "text": "Zoom's Big Sur article, KB0059904, lists Use TCP connection for screen sharing. Zoom calls the black screen a known Big Sur issue and says a fix is coming in a macOS update. That article gives no version numbers, so you cannot tell whether an update already fixed it. Zoom's newer general article, KB0060527, suggests a wireless connection or switching to TCP. Its steps cover Windows and Linux only. The two articles describe the connection type differently, so treat the wording in each as a hint, not a checklist."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Apple silicon, Mainspring's Mac guide suggests a second check. Its guide, updated in August 2026, says that if sharing looks black or laggy, you can switch Screen capture mode between Automatic and Legacy. Mainspring is a third-party site. Zoom's own pages did not confirm these option names, so treat this as a test, not a fix from Zoom. Write down the original value, try the other option, and switch back if nothing improves."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Zoom and macOS versions that matter for this fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "Zoom's current Mac app needs macOS 10.15 or later. Zoom's system requirements article says that starting with 7.0.0, the app no longer supports macOS 10.13 or 10.14. Zoom Workplace 6.7.7 is the last release for systems below 10.15. Check your macOS version first by choosing Apple menu > About This Mac. If your Mac runs an older system, a newer Zoom build will not fix the share. Install the last release that supports your system, then run the permission steps above."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix a black share in the Zoom web app on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The web app runs in your browser, so the browser needs permission too. Zoom's web app article says that on Mac you go to the Apple menu, then System Settings, then Privacy & Security, then Screen & System Audio Recording. Check the box next to your browser. The article names Google Chrome, Firefox, Safari, and Edge. It does not say you need to restart the browser after the change, so test the share first."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Choose Apple menu > System Settings, then select Privacy & Security.",
+        "Select Screen & System Audio Recording.",
+        "Check the box next to Chrome, Firefox, Safari, or Edge, whichever you use.",
+        "Join the meeting again in the browser and share. If the share is still black, quit the browser with ⌘Q and reopen it."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sequoia and repeated screen recording prompts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Screen recording permission is not always a one-time setting. A 2024 9to5Mac report said macOS Sequoia changed re-approval prompts from weekly to monthly in beta 6. The same report said Sequoia no longer asks for approval at every reboot. That report covers a beta, and the final shipped behavior is not confirmed here. Some later guides still describe weekly prompts, so check what your own Mac shows."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you dismissed a screen recording prompt, look for it again and approve it. Then quit Zoom with ⌘Q and reopen it, so Zoom picks up the approval. Repeated prompts are a sign that permission has lapsed, not that Zoom is broken."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the share black"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Turning the permission off and on, then sharing without quitting Zoom. Zoom's article says a restart is required if Zoom is running.",
+        "Turning on Zoom under Screen and System Audio Recording but leaving your browser unchecked for the web app.",
+        "Changing several settings at once, then not knowing which change worked.",
+        "Sharing one window when the problem is the whole screen, or the reverse. Test both before you decide the cause.",
+        "Skipping Zoom updates. Zoom's release notes list fixes by date, so an old build may be missing one you need.",
+        "Assuming a black share is a Zoom bug before you check the macOS permission."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Mac shortcuts you can trust"
+    },
+    {
+      "type": "paragraph",
+      "text": "Zoom's Meetings release notes list an October 19, 2026 Mac fix. That fix covers switching between multiple windows from the same app. It is not a black screen fix. Some guides also list ⌘⇧S to start or stop screen share, and ⌘⇧T to pause or resume it. Those shortcuts come from an OS X Daily article dated January 31, 2022. The article itself says to update Zoom if a keystroke does not work. Test them in your own copy of Zoom before you rely on them."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check shortcuts in Zoom first",
+      "text": "Open Zoom's keyboard shortcut panel and confirm ⌘⇧S before you rely on it. The 2022 article may be out of date."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If the share stays black after every step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Split the problem before you change more settings. Share your whole screen in a test meeting with yourself. If the whole screen is black, the cause is probably permission or Zoom itself. If one window is black and others work, the cause is that window or the app behind it. Next, confirm your macOS and Zoom versions, update Zoom, and restart your Mac. A restart is a blunt last step, but it can clear a stuck process."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Mac belongs to your employer, the privacy settings may be managed by an IT team. In that case, ask them to confirm that Zoom is allowed to record the screen. Bring the exact macOS version from About This Mac, and the Zoom version from your settings. Those two details shorten the support conversation a lot."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Rule out look-alike problems first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some problems look like a black share but start somewhere else. Your own preview may not show what other people see. If you can, ask a colleague to join the test meeting and tell you what they see. Also confirm which display you picked in Zoom's share screen. If you use more than one display, the wrong one can look black even when Zoom works."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps once the share works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down the setting you changed, and the macOS and Zoom versions you used. If the black share returns after an update, start with the permission again. Before an important meeting, run a short test share with yourself. A short test costs far less time than a client call where your shared screen shows as a black box."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Zoom share show black on Mac while my preview looks fine?",
+      "answer": "A black share usually means macOS has not granted Zoom screen recording permission. Turn that on in System Settings, quit Zoom with ⌘Q, reopen it, and test the share again."
+    },
+    {
+      "question": "Do I need to restart Zoom after turning on screen recording?",
+      "answer": "Zoom's permissions article says a restart is required if Zoom is already running. Quit it with ⌘Q and reopen it. Restart the whole Mac only as a last step if Zoom still shows black."
+    },
+    {
+      "question": "Where is Screen and System Audio Recording on macOS?",
+      "answer": "Go to Apple menu > System Settings > Privacy & Security. Under Privacy, select Screen and System Audio Recording. Older macOS versions may show this pane as Screen Recording."
+    },
+    {
+      "question": "Should I turn on the TCP setting for screen sharing on a newer Mac?",
+      "answer": "Zoom's Big Sur article presents Use TCP connection for screen sharing as a Big Sur workaround. Its newer general article suggests TCP without Mac steps. Try it only after the permission is on, and only if you are on Big Sur or the share is still black."
+    },
+    {
+      "question": "Why is my share black in the Zoom web app on Mac?",
+      "answer": "The browser needs permission too. Go to System Settings > Privacy & Security > Screen & System Audio Recording and check the box next to Chrome, Firefox, Safari, or Edge."
+    },
+    {
+      "question": "Which Zoom version should I run on an older Mac?",
+      "answer": "Zoom Workplace for Mac needs macOS 10.15 or later. Version 7.0.0 dropped macOS 10.13 and 10.14. If your Mac runs an older system, 6.7.7 is the last release for systems below 10.15."
+    }
+  ],
+  "sources": [
+    {
+      "title": "MacOS Big Sur black screen when screen sharing (KB0059904)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0059904",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Troubleshooting black screen during screen sharing (KB0060527)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060527",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Granting macOS permissions for Zoom (KB0064868)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064868",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Allowing microphone, camera, and screen share permissions in the Zoom Web App (KB0078476)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0078476",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Changing settings in the Zoom Workplace desktop and mobile app (KB0060612)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060612",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Zoom system requirements: Windows, macOS, Linux (KB0060748)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060748",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Zoom Meetings release notes (KB0080363)",
+      "url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0080363",
+      "publisher": "Zoom Help Center",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Zoom screen sharing on Mac: the settings worth changing",
+      "url": "https://trymainspring.com/blog/zoom-screen-share-settings-mac",
+      "publisher": "Mainspring",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "macOS Sequoia will now prompt you monthly (not weekly) for screen recording permissions",
+      "url": "https://9to5mac.com/2024/08/14/macos-sequoia-screen-recording-prompt-monthly/",
+      "publisher": "9to5Mac",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "37 Zoom Keyboard Shortcuts for Mac",
+      "url": "https://osxdaily.com/2022/01/31/zoom-keyboard-shortcuts-mac/",
+      "publisher": "OS X Daily",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Fix a black screen share in Zoom on Mac",
+  "appliesTo": "Zoom Workplace desktop app and Zoom web app on macOS 10.15 or later",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS 10.15 or later for the current Zoom Workplace app",
+    "The Zoom Workplace desktop app, or the Zoom web app in a browser",
+    "Access to System Settings on your Mac"
+  ],
+  "steps": [
+    {
+      "name": "Confirm the symptom",
+      "text": "Start a test meeting with yourself, share your full screen, and look at the result. A black rectangle is the pattern this fix targets. If the share looks normal, you do not need the permission change."
+    },
+    {
+      "name": "Open Privacy & Security",
+      "text": "Click the Apple menu, choose System Settings, then select Privacy & Security in the sidebar.",
+      "menuPath": [
+        "Apple menu",
+        "System Settings",
+        "Privacy & Security"
+      ]
+    },
+    {
+      "name": "Open Screen and System Audio Recording",
+      "text": "Under Privacy, select Screen and System Audio Recording. Older macOS versions may show this pane as Screen Recording.",
+      "menuPath": [
+        "Privacy & Security",
+        "Screen and System Audio Recording"
+      ]
+    },
+    {
+      "name": "Turn on Zoom",
+      "text": "Find the row named zoom or zoom.us, and turn on its switch. If macOS asks you to confirm, approve the request.",
+      "tip": "If Zoom is missing from the list, open Zoom once, then check the pane again."
+    },
+    {
+      "name": "Quit Zoom completely",
+      "text": "Zoom needs a restart if it was already running. Make Zoom the active app and press ⌘Q. Closing the window does not quit Zoom.",
+      "shortcut": "⌘Q",
+      "menuPath": [
+        "Zoom menu",
+        "Quit Zoom"
+      ]
+    },
+    {
+      "name": "Reopen Zoom and test",
+      "text": "Open Zoom, start a meeting with yourself, and share your full screen. Your desktop should appear, not a black box."
+    },
+    {
+      "name": "Open Zoom's sharing settings",
+      "text": "Click your profile picture, then choose Settings. In version 6.7.0 and later, you can also click the gear icon in the navigation bar. Open the tab labeled Share screen.",
+      "menuPath": [
+        "Profile picture",
+        "Settings",
+        "Share screen"
+      ]
+    },
+    {
+      "name": "Open the Advanced options",
+      "text": "Click Advanced on the Share screen tab. Change one setting at a time. On Big Sur, try Use TCP connection for screen sharing. On Apple silicon, you can try Screen capture mode, switching between Automatic and Legacy.",
+      "tip": "Write down the original value so you can switch back. Screen capture mode comes from a third-party guide.",
+      "menuPath": [
+        "Share screen",
+        "Advanced"
+      ]
+    },
+    {
+      "name": "Check the web app permission",
+      "text": "If you use Zoom in a browser, open System Settings, select Privacy & Security, then select Screen & System Audio Recording. Check the box next to your browser.",
+      "tip": "Zoom's article does not say you need to restart the browser, so test before you restart it.",
+      "menuPath": [
+        "Apple menu",
+        "System Settings",
+        "Privacy & Security",
+        "Screen & System Audio Recording"
+      ]
+    },
+    {
+      "name": "Update, then restart if needed",
+      "text": "Check your macOS version in About This Mac, and update Zoom to the latest version. If the share is still black, restart your Mac and test once more.",
+      "menuPath": [
+        "Apple menu",
+        "About This Mac"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Quit Zoom",
+      "keys": "⌘Q"
+    },
+    {
+      "action": "Start or stop screen share (2022 guide, confirm in Zoom)",
+      "keys": "⌘⇧S"
+    },
+    {
+      "action": "Pause or resume screen share (2022 guide, confirm in Zoom)",
+      "keys": "⌘⇧T"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Zoom is not listed under Screen and System Audio Recording",
+      "fix": "Open Zoom once, then go back to the pane and look again. If it still does not appear, quit Zoom with ⌘Q, reopen it, and check the list."
+    },
+    {
+      "problem": "The permission is on but the share is still black",
+      "fix": "Quit Zoom with ⌘Q and reopen it. Zoom's permissions article says a restart is needed if Zoom is already running."
+    },
+    {
+      "problem": "The share is black only in the web app",
+      "fix": "Check the box next to your browser under Screen & System Audio Recording, then quit the browser with ⌘Q and reopen it."
+    },
+    {
+      "problem": "The share is black and laggy on Apple silicon",
+      "fix": "Try Screen capture mode under Share screen > Advanced, switching between Automatic and Legacy. This comes from a third-party guide, so switch back if it does not help."
+    },
+    {
+      "problem": "The black share started after a macOS prompt",
+      "fix": "Approve any screen recording prompt macOS shows you. On Sequoia, these prompts may come back about once a month, according to a 2024 beta report."
+    }
+  ],
+  "lazur": {
+    "capability": "point",
+    "context": "Zoom share is black on Mac and you need the permission switch",
+    "pointsAt": "Privacy & Security",
+    "shell": "generic",
+    "spoken": "Where's the screen recording switch for Zoom?",
+    "result": "Lazur circles Privacy & Security on your screen, then points toward the Zoom row under Screen and System Audio Recording.",
+    "output": "Lazur points and explains. You flip the switch yourself, then press ⌘Q to quit Zoom and reopen it."
+  },
+  "type": "howto",
+  "slug": "fix-a-black-screen-share-in-zoom",
+  "app": "zoom",
+  "appName": "Zoom",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-a-black-screen-share-in-zoom/how-to-fix-black-screen-share-in-1-96f012.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man on a video call using a MacBook at a desk, troubleshooting a black screen share in Zoom on Mac",
+      "caption": "A video call on a MacBook",
+      "keywords": [
+        "how to fix black screen share in zoom on mac",
+        "Zoom",
+        "fix a black screen share",
+        "Mac",
+        "man laptop video call",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheInvestorPost",
+        "url": "https://pixabay.com/users/TheInvestorPost-19152356/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-broker-finance-stock-trading-5771545/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-a-black-screen-share-in-zoom/how-to-fix-black-screen-share-in-2-349903.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Woman working on a Mac laptop at a desk, checking the screen share before a Zoom meeting",
+      "caption": "Checking the screen share before a meeting",
+      "keywords": [
+        "how to fix black screen share in zoom on mac",
+        "Zoom",
+        "fix a black screen share",
+        "Mac",
+        "woman laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DigitalMarketingAgency",
+        "url": "https://pixabay.com/users/DigitalMarketingAgency-2670666/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/marketing-online-social-media-online-1427787/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-a-black-screen-share-in-zoom/how-to-fix-black-screen-share-in-3-0ea2ea.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on a home office desk, set up for Zoom screen sharing on a Mac",
+      "caption": "A home office set up for Zoom on Mac",
+      "keywords": [
+        "how to fix black screen share in zoom on mac",
+        "Zoom",
+        "fix a black screen share",
+        "Mac",
+        "home office laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ricardorv30",
+        "url": "https://pixabay.com/users/ricardorv30-2418232/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/workplace-workspace-home-office-5517744/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to fix black screen share in zoom on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "zoom black screen share mac": 1,
+      "zoom screen share black on macOS": 1,
+      "zoom screen recording permission mac": 1,
+      "zoom web app black screen mac": 1,
+      "zoom share screen black macbook": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

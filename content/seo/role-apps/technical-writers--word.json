@@ -1,0 +1,650 @@
+{
+  "title": "Word for technical writers on Mac: templates, styles and themes with Lazur in 2026",
+  "metaTitle": "Word for Technical Writers on Mac: Templates and Styles in 2026",
+  "description": "Word for technical writers on Mac: templates, styles, themes and Track Changes, plus how Lazur points at menus and dictates drafts in Word.",
+  "targetKeyword": "word for technical writers on mac",
+  "secondaryKeywords": [
+    "Word for Mac templates",
+    "Word for Mac styles",
+    "Word for Mac themes",
+    "Track Changes on Mac",
+    "Copilot button Word for Mac",
+    "dictate in Word on Mac"
+  ],
+  "intro": "Word for technical writers on Mac works well for file-based manuals built on styles, templates and themes. Lazur, a voice assistant that lives in the notch on your Mac, can point at the right menu, explain why a style changed and dictate draft text at your cursor. The rest of this page covers the Mac-specific setup that trips people up, with or without Lazur.",
+  "tldr": [
+    "Build a .dotx template with Heading, Code, Warning and Caption styles before you write a single section.",
+    "Word for Mac has no Manage Styles dialog. Manage styles through the Styles pane and your template instead.",
+    "Set brand colors and fonts in a saved theme from the Design tab. Colors or fonts Word for Mac lacks need PowerPoint for Mac.",
+    "Check your version under Word > About Word. Office Watch reports the Copilot button now sits in the top-right corner.",
+    "Hold fn to dictate prose, then type commands yourself, so flags and file paths stay exact."
+  ],
+  "stats": [
+    {
+      "value": "17%",
+      "label": "of writers in a 2014 K15t survey create content with no input from other stakeholders",
+      "sourceUrl": "https://www.k15t.com/blog/2014/12/techcomm-survey-results-how-technical-writers-collaborate-today",
+      "sourceTitle": "Techcomm Survey Results: How Technical Writers Collaborate Today (K15t)"
+    },
+    {
+      "value": "1 in 3",
+      "label": "respondents in the same 2014 survey use a content management system",
+      "sourceUrl": "https://www.k15t.com/blog/2014/12/techcomm-survey-results-how-technical-writers-collaborate-today",
+      "sourceTitle": "Techcomm Survey Results: How Technical Writers Collaborate Today (K15t)"
+    },
+    {
+      "value": "15%",
+      "label": "of respondents in the 2014 survey use a help authoring tool",
+      "sourceUrl": "https://www.k15t.com/blog/2014/12/techcomm-survey-results-how-technical-writers-collaborate-today",
+      "sourceTitle": "Techcomm Survey Results: How Technical Writers Collaborate Today (K15t)"
+    },
+    {
+      "value": "16.99",
+      "label": "Word for Mac version in Microsoft's release notes dated July 15, 2025, the newest feature entry I could read",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why technical writers still use Word on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Plenty of technical writers do their work in Word. The reasons are practical. Many teams already pay for it. Reviewers can open a .docx file without learning a new tool. A Word file can travel by email and still keep its formatting."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The best public data on this is old. A 2014 survey from K15t, a documentation tool vendor, found that over half of respondents use a file-based approach, such as Word or several FrameMaker documents. That is a rough picture. It is not a count of how many people use Word today."
+    },
+    {
+      "type": "paragraph",
+      "text": "Those numbers describe habits more than features. A single guide, a set of release notes or a short user manual fits Word well. A large library of topics that reuse the same warnings, with many owners, is harder. The rest of this page assumes you are in the first group, or that you are building toward it."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The numbers also show the gap that matters. Word handles writing well. It handles reuse and team process less well. Keep that in mind as you set up your files."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Old survey, rough picture",
+      "text": "The K15t survey is from 2014 and was run by a vendor. Use it for direction, not as a count of Word users today."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Word for Mac differs from Windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most Word guides online are written for Windows. On Mac, a few things work differently. Those differences catch technical writers out, especially the first time they look for a setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "The biggest gap is styles. Word for Mac has no Manage Styles dialog. A Microsoft Q&A thread from April 10, 2024 says the only route is editing the template XML, which is OOXML under the hood. Windows Word has the interface for managing styles. A Microsoft MVP in the same thread says the same. Most people should not edit template XML just to change a style."
+    },
+    {
+      "type": "paragraph",
+      "text": "Theme colors and fonts have a similar limit. Microsoft's theme article for Word for Mac says that if the colors or fonts you need are not available there, you create or customize the theme in PowerPoint for Mac. Then you apply it to the Word document."
+    },
+    {
+      "type": "paragraph",
+      "text": "These gaps are worth planning around:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "No Manage Styles dialog. Work in the Styles pane and in your template instead.",
+        "Theme colors and fonts that Word for Mac cannot set. Build them in PowerPoint for Mac.",
+        "The Copilot button. It sits in the top-right corner and cannot move onto the Ribbon, according to Office Watch.",
+        "Release notes that lag behind. Check your version before you trust a screenshot in an old guide."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a Word template for technical docs on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A template is the cheapest way to keep a manual consistent. You set it up once. Every new file starts with the same styles, page setup and headings. Build it before you write anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a blank document. Set the styles you need in the Styles pane on the Home tab. Heading 1 for chapters. Heading 2 for procedures. A body style with your font. A Code style in a monospace font. A Warning style with a shaded box. A Caption style for figures."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Format each style in the Styles pane on the Home tab. Use real styles, not bold paragraphs.",
+        "Choose File > Save As, then pick Word Template (.dotx) from the format menu.",
+        "Save it where your team can open it. Name it for the product and the document type.",
+        "Create each new document from the template. Keep the template file closed while you write."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Changes you make to styles in a template carry over to documents based on it. A Microsoft Q&A reply from an MVP says this applies to .dotx and .dotm templates. Test it once on a sample file before you rely on it for a real manual."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. You write a guide for a command line tool. Commands need a code font. Anything that deletes data needs a warning. Procedures need numbered steps. Build a Code style with a monospace font, a Warning style with a border and a numbered list style. Then type one sample page. If that looks right, the rest of the manual will too."
+    },
+    {
+      "type": "paragraph",
+      "text": "The common mistake is formatting each paragraph by hand. Direct formatting overrides the style. When you change the style later, the hand-formatted paragraphs stay as they were, and the document drifts out of sync."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test before you trust",
+      "text": "Make a sample file from the template. Change one heading style. Check that the sample updates, then delete it. Do this before you write a manual on top of the template."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Page setup and section breaks for a long manual"
+    },
+    {
+      "type": "paragraph",
+      "text": "A manual has parts that look different. The cover should have no page number. The table of contents may use its own numbering. Chapters should start on a fresh page. Word handles this with section breaks, not with blank lines."
+    },
+    {
+      "type": "paragraph",
+      "text": "Insert a section break from Layout > Breaks. Pick Next Page when a chapter must start on a new page. Then open the Header and Footer tab, and turn off Link to Previous, so each chapter can carry its own title in the header."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set margins once in the template, using Layout > Margins. Changing margins by hand in every file moves the page breaks in ways you did not plan. Save the margins into the template, then check that each chapter still starts where you expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "The common mistake is pressing Return many times to push a heading down the page. Those blank lines stay put when the text reflows. The page ends up half empty, or a heading lands at the bottom of a page with no text under it. Use a page break or a section break instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Themes for brand colors and fonts in Word for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A theme holds colors, fonts, paragraph spacing, watermarks, page color and page borders. You set these on the Design tab. A saved theme lets your team reuse the same look in every document it writes."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the Design tab and apply a base theme from the Themes gallery.",
+        "Adjust Colors, Fonts and Paragraph Spacing. Add a Watermark or Page Color if your template needs one.",
+        "Choose Themes > Save Current Theme, then name it after the product and the year.",
+        "Open a new document. Find your theme under Custom in the Themes gallery."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the color you need is missing from the Colors list, Word for Mac cannot add it. Create the theme in PowerPoint for Mac, then apply it to the Word document. That is the workaround Microsoft describes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test a theme on one real page before you lock it in. Tables, code blocks and warnings show problems fast. A color that looks fine on a title page can make a table hard to read."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Headings, navigation and the table of contents"
+    },
+    {
+      "type": "paragraph",
+      "text": "Headings do more than look neat. Word reads heading styles to build the Navigation pane, the table of contents and cross-references. Big bold text does none of that. It looks like a heading, but Word treats it as body text."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open View > Navigation Pane to check your structure. Every chapter and procedure should appear there. A missing entry usually means that paragraph uses direct formatting instead of a heading style. Fix the paragraph, then check again."
+    },
+    {
+      "type": "paragraph",
+      "text": "To build the table of contents, go to References > Table of Contents and pick a layout. Word fills it from your heading styles. Update it after big edits, or it will show old page numbers."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Code, warnings, captions and cross-references in Word"
+    },
+    {
+      "type": "paragraph",
+      "text": "Technical docs carry many small pieces. Commands, file paths, warnings, figure captions and links to other sections. Each piece should use a style or a feature. Manual fixes break the first time the layout moves."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the Code style for every command and file path. Pick a monospace font such as Menlo or Courier New. Smart quotes can creep into a command as you type or paste. A command pasted with curly quotes can fail in a terminal. Check for curly quotes before you publish."
+    },
+    {
+      "type": "paragraph",
+      "text": "For figure numbers, use References > Insert Caption. Captions then number themselves as you add or move figures. For a link to a figure or a section, use References > Cross-reference. The reference follows the target when the numbers change, after you update the fields."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give each warning its own style, not a bold line. Readers scan for shaded boxes first. Use the Warning style for anything that deletes data, changes a setting or cannot be undone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track Changes and review cycles with engineers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most technical writing gets reviewed by someone who does not write for a living. An engineer corrects a procedure. A product manager rewords a warning. You need to see every change and decide what to keep."
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn on Track Changes from the Review tab. Ask reviewers to keep Track Changes on. Then accept or reject each change in one pass."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Review > Compare when a reviewer sends back an untracked copy. Compare the two files, and Word shows the differences as tracked changes you can accept or reject."
+    },
+    {
+      "type": "paragraph",
+      "text": "The common mistake is sending a file with Track Changes still on. Readers then see every edit you made while drafting. Turn it off in the copy that goes out, and keep the tracked copy for the team."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Copilot button in Word for Mac in 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Copilot button in Word for Mac moved in 2026. Office Watch reported on June 3, 2026 that it now floats in the top-right corner. Office Watch calls it the Dynamic Action Button. It no longer sits on the Ribbon."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same article says the promised Move to Ribbon option became Move to upper corner. It also says you cannot turn the button off or move it onto the Ribbon. The placement carries over to future documents. Office Watch tested this on one machine, so your setup may differ."
+    },
+    {
+      "type": "paragraph",
+      "text": "Plan around the button, not around a hope that it moves. If your training guide says Copilot is on the Ribbon, it will confuse new hires. Check the real screen and write the guide from that."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What to check",
+        "Where to look",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Word version",
+          "Word > About Word",
+          "Guides and screenshots go stale between releases"
+        ],
+        [
+          "Copilot button",
+          "Top-right corner of the window",
+          "Old guides may show it on the Ribbon"
+        ],
+        [
+          "Theme in use",
+          "Design tab > Themes",
+          "Shows whether the file uses your saved look"
+        ],
+        [
+          "Track Changes status",
+          "Review tab",
+          "Stops tracked edits from reaching readers"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to check your Word for Mac version"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Word > About Word. That shows the version you run. Write it at the top of your template notes, so you know which guide fits your screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's release notes for Office for Mac list a Word entry dated July 15, 2025, Version 16.99. That entry lists a Copilot icon in the document margin for quick prompts and quick actions. It is the newest Word feature entry I could read."
+    },
+    {
+      "type": "paragraph",
+      "text": "In the part of those release notes I read, 2026 Word entries list only quality and performance improvements. I could not confirm the current version, or whether every 2026 ribbon change is official. Treat any guide older than your own version with care."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictation for technical writers in Word on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor, in any app. Word is one of those apps. You can talk through a procedure while you watch the screen, then fix the details afterward."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation struggles with product names and version strings. Add those terms to your personal dictionary before a big draft. Save standard warnings and support lines as snippets. Put file paths and version strings in clipboard slots, so you can paste them without retyping."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate prose. Type commands. Spoken words do not map well to flags, brackets and paths. A dictated command with one wrong character will fail. Speak the explanation, then type the command yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want to see how fast you speak compared with how fast you type, read [average speaking speed in words per minute](/blog/speaking-speed-words-per-minute). For the Word steps themselves, read [dictation in Word on Mac](/blog/dictate-in-word-mac-microsoft-365)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one install guide, start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is how the pieces fit on a short install guide. You have a template, a test machine and one reviewer. Work through the steps in this order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Create a new file from your template. Never write in the template file itself.",
+        "Dictate the overview with fn. Fix product names afterward, using the personal dictionary.",
+        "Type each command in the Code style. Check for curly quotes before you move on.",
+        "Mark every deletion step with the Warning style, so readers cannot miss it.",
+        "Turn on Track Changes and send the file to the engineer.",
+        "Insert the table of contents from References > Table of Contents. Then choose File > Save As and pick PDF for the final copy."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The result is a file that looks the same each time, with a clear review trail. Lazur helps at each step, but it does not do the work for you. Ask it where a menu is, and it circles the item. Ask it how to finish a task, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes in Word for Mac documentation"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Bold text used as headings. The Navigation pane and table of contents skip it.",
+        "Hand-editing paragraphs instead of changing the style. The document drifts out of sync.",
+        "Pasting full-size screenshots. Capture only the area you need with ⌘⇧4, then crop.",
+        "Leaving Track Changes on in the copy that goes to readers.",
+        "Trusting an old guide for a button that moved. Check Word > About Word first.",
+        "Saving edits into the template file. Create new documents from it instead.",
+        "Using a text box to lay out a diagram. Text boxes break when the text reflows. Use an image or a table."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Word is the wrong tool for documentation"
+    },
+    {
+      "type": "paragraph",
+      "text": "Word has limits once a documentation set grows. The K15t survey found that word processing and layout tools tend to lack content management and social collaboration functionality. It also said they may not give adequate support for documentation standards."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a test you can run. If the same warning lives in many manuals, and you must change it everywhere by hand, Word is wearing thin. If your team needs reviews across many writers, with tracked topics and approvals, look at a content management system or a help authoring tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "Word stays fine for a single guide, a set of release notes or a team that already shares .docx files. Move when reuse and review tracking cost you more time than writing does."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Build one template with Code, Warning and Caption styles, and save it as a .dotx file.",
+        "Open Word > About Word and write down your version.",
+        "Make one saved theme from the Design tab. Use PowerPoint for Mac if a color is missing.",
+        "Dictate one procedure with fn, then add its hard terms to your personal dictionary."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a voice assistant that points at menus and drafts text while you work, see [Lazur for Word](/apps/word). It works in any app, including Word. It is not a plugin or add-in, and it does not click buttons for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "For more on writing workflows, see [Word for writers on Mac](/for/writers/word). A free trial, with no credit card, starts when you first open the app. You can [download Lazur](/download) for Mac on Apple silicon or Intel."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Word for Mac have a Manage Styles dialog?",
+      "answer": "No. A Microsoft Q&A thread says Word for Mac has no Manage Styles dialog, while Windows Word does. The thread's only route is editing the template XML, which most people should avoid. Work in the Styles pane and in a .dotx template instead."
+    },
+    {
+      "question": "How do I save a theme in Word for Mac?",
+      "answer": "Set colors, fonts and spacing on the Design tab. Then choose Themes > Save Current Theme and give it a name. In any document after that, find it under Custom in the Themes gallery."
+    },
+    {
+      "question": "Why does my table of contents skip some sections?",
+      "answer": "Word builds the table of contents from heading styles. A section that uses bold text or direct formatting will not appear in it. Apply Heading 1 or Heading 2 to those lines, then update the table."
+    },
+    {
+      "question": "Where is the Copilot button in Word for Mac?",
+      "answer": "Office Watch reported on June 3, 2026 that it floats in the top-right corner as the Dynamic Action Button. It cannot be moved onto the Ribbon or fully turned off. Office Watch tested one machine, so check your own window."
+    },
+    {
+      "question": "Can Lazur build my template or edit my styles?",
+      "answer": "No. Lazur does not click buttons or edit files for you. It points at the menu, explains what a style does and drafts text. It guides you one click at a time, waiting for each click, and you make the change."
+    },
+    {
+      "question": "How does Lazur work with Word on a Mac?",
+      "answer": "Lazur runs across apps on your Mac, Word included. It does not run as an add-in inside Word, and it has no partnership with any app maker. It listens and looks at the screen only while you hold the shortcut."
+    },
+    {
+      "question": "What version of Word for Mac should I have?",
+      "answer": "Open Word > About Word to see yours. Microsoft's release notes list Version 16.99, dated July 15, 2025, as the newest feature entry I could read. I could not confirm the current version."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Windows is planned, not available. Lazur runs on macOS, on both Apple silicon and Intel Macs."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Customize, save, and apply a theme in Word for Mac",
+      "url": "https://support.microsoft.com/en-us/office/customize-save-and-apply-a-theme-in-word-for-mac-a3235fec-f6f0-4d85-ae34-81cbcc0745a1",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How do I manage styles? Mac User. Where is the Manage Styles dialog?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5331967/how-do-i-manage-styles-mac-user-where-is-the-manag",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Microsoft's Copilot 'Move to Ribbon' Arrives, But Not as Promised",
+      "url": "https://office-watch.com/2026/copilot-button-move-to-ribbon/",
+      "publisher": "Office Watch",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Techcomm Survey Results: How Technical Writers Collaborate Today",
+      "url": "https://www.k15t.com/blog/2014/12/techcomm-survey-results-how-technical-writers-collaborate-today",
+      "publisher": "K15t",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I save these colors as a theme?",
+    "capability": "point",
+    "result": "Lazur circles the Themes gallery on the Design tab, then points at Save Current Theme in the menu. You click it yourself.",
+    "shell": "doc",
+    "context": "Word for Mac, a manual with custom colors applied on the Design tab",
+    "output": "Open Design, then Themes, then Save Current Theme. Name it, and it appears under Custom in your other documents.",
+    "pointsAt": "Save Current Theme"
+  },
+  "tasks": [
+    {
+      "say": "Why did every heading in this document change color?",
+      "capability": "explain",
+      "result": "Lazur explains the likely cause, such as a theme or template change, and says where to check it on the Design tab."
+    },
+    {
+      "say": "Where do I save these colors as a theme?",
+      "capability": "point",
+      "result": "Lazur circles the Themes gallery on the Design tab, then points at Save Current Theme in the menu."
+    },
+    {
+      "say": "Walk me through saving this as a Word template.",
+      "capability": "guide",
+      "result": "Lazur guides you through File > Save As and the Word Template format, waiting for each click before the next step."
+    },
+    {
+      "say": "Walk me through turning on Track Changes for this file.",
+      "capability": "guide",
+      "result": "Lazur guides you to Review > Track Changes one click at a time, so you can confirm the setting before you start editing."
+    },
+    {
+      "say": "Hold fn and dictate the overview at my cursor.",
+      "capability": "dictate",
+      "result": "Your words land at the cursor as clean text with punctuation. Product names go into the personal dictionary afterward."
+    },
+    {
+      "say": "Draft a warning for a step that deletes the cache folder.",
+      "capability": "draft",
+      "result": "Lazur drafts the warning text and types it at your cursor, ready for the Warning style."
+    },
+    {
+      "say": "Find the Word for Mac release notes for this year.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary with links, so you can check each source."
+    },
+    {
+      "say": "Set a timer for my review session.",
+      "capability": "everyday",
+      "result": "Lazur starts the timer by voice and tells you when it ends, so your review block stays on schedule."
+    }
+  ],
+  "type": "role-app",
+  "slug": "technical-writers-word",
+  "role": "technical-writers",
+  "app": "word",
+  "roleName": "Technical writers",
+  "appName": "Word",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/technical-writers-word/word-for-technical-writers-on-mac-1-87ba4f.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "A technical writer at a desk with a Mac laptop, drafting documentation in Word for technical writers on Mac",
+      "caption": "Drafting a manual on a Mac laptop",
+      "keywords": [
+        "word for technical writers on mac",
+        "Word",
+        "Technical writers",
+        "Mac",
+        "technical writer laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Goumbik",
+        "url": "https://pixabay.com/users/Goumbik-3752482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/busy-home-desk-paper-laptop-view-1972166/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/technical-writers-word/word-for-technical-writers-on-mac-2-8a13fb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A developer at a desk with a laptop and handwritten notes, the source material technical writers turn into Word guides",
+      "caption": "Source notes that become a Word guide",
+      "keywords": [
+        "word for technical writers on mac",
+        "Word",
+        "Technical writers",
+        "Mac",
+        "developer desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TeeFarm",
+        "url": "https://pixabay.com/users/TeeFarm-199315/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/web-designer-coder-html-css-html5-2443766/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/technical-writers-word/word-for-technical-writers-on-mac-3-510524.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Two colleagues reviewing a printed document together at a table, like an engineer checking Track Changes edits",
+      "caption": "Reviewing a draft before it ships",
+      "keywords": [
+        "word for technical writers on mac",
+        "Word",
+        "Technical writers",
+        "Mac",
+        "team reviewing documents",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stevepb",
+        "url": "https://pixabay.com/users/stevepb-282134/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coins-currency-investment-insurance-948603/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "word for technical writers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "Word for Mac templates": 1,
+      "Word for Mac styles": 1,
+      "Word for Mac themes": 1,
+      "Track Changes on Mac": 1,
+      "Copilot button Word for Mac": 1,
+      "dictate in Word on Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

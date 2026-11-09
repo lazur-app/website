@@ -1,0 +1,593 @@
+{
+  "title": "Google Sheets for UX researchers on Mac in 2026: shortcuts, pivots, SUS scores, and Lazur",
+  "metaTitle": "Google Sheets for UX Researchers on Mac: Shortcuts, Pivots, SUS",
+  "description": "Google Sheets for UX researchers on Mac: shortcuts, pivot tables, SUS scoring, size limits, and where Lazur helps in your research sheets.",
+  "targetKeyword": "google sheets for ux researchers on mac",
+  "secondaryKeywords": [
+    "google sheets pivot table mac",
+    "google sheets keyboard shortcuts mac",
+    "SUS score google sheets",
+    "google sheets slow large spreadsheet mac",
+    "ux research spreadsheet template",
+    "google sheets qualitative coding"
+  ],
+  "intro": "Google Sheets runs in a browser on your Mac, and UX researchers use it for survey exports, usability results, SUS scores, and coding. Start with ⌘ / for shortcuts, Insert > Pivot table for summaries, and Option / for the Tool finder. When you get stuck, ask Lazur to point at the right control.",
+  "tldr": [
+    "Sheets runs in a browser on your Mac. Use ⌘ / for the shortcut list and Option / for the Tool finder.",
+    "Build pivot tables from Insert > Pivot table, and give every source column a header.",
+    "Score SUS by adjusting odd and even items, summing them, then multiplying by 2.5.",
+    "Slow sheets usually come from blank cells, volatile functions, array VLOOKUPs, and big IMPORTRANGE pulls.",
+    "Ask Lazur to point, explain, or guide. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "Cells allowed in one Google Sheets file, or a 100MB limit, per Google Drive help",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "File size and limits for Google Sheets"
+    },
+    {
+      "value": "200k",
+      "label": "Rows cap for Connected Sheets pivot tables",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "File size and limits for Google Sheets"
+    },
+    {
+      "value": "99%",
+      "label": "Of responding UX researchers said they run surveys at least sometimes, in a 2019 NN/g study",
+      "sourceUrl": "https://www.nngroup.com/articles/should-you-run-a-survey/",
+      "sourceTitle": "Should You Run a Survey?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "UX researchers use Google Sheets on a Mac for survey exports, usability session logs, SUS scores, and coding of open-ended answers. You open it in a browser on your Mac, and that works well for most of this job. This page covers setup, shortcuts, pivot tables, and the size limits that trip people up. It also shows where Lazur helps, and where it stops."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Google Sheets runs on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's pages did not confirm a native Mac app, so plan on a browser tab. Chrome, Safari, and Firefox can all open Sheets. Google's product page lists co-editing, revision history, sharing controls, and offline access. Revision history lets you roll back a bad cleanup. Sharing controls let you limit who can edit or view."
+    },
+    {
+      "type": "paragraph",
+      "text": "Know one Safari detail. A May 2023 Apple Community thread described large sheets in Safari loading the first rows, then stalling. Chrome and Firefox worked in the same report. The thread was later marked as a Google problem that Google fixed. If a big sheet hangs in Safari, open the same file in Chrome before you blame your data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets keyboard shortcuts on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google keeps the full shortcut list on one help page. Press ⌘ / inside a sheet to see it. The four shortcuts below cover most research work. Learn them in your first week, and you will reach for the menu bar less."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shortcut on Mac",
+        "What it does in Sheets"
+      ],
+      "rows": [
+        [
+          "⌘ /",
+          "Shows the full list of Sheets shortcuts"
+        ],
+        [
+          "⌘ f",
+          "Opens Find"
+        ],
+        [
+          "⌘ ⇧ H",
+          "Opens Find and replace, useful for renaming a label across every row"
+        ],
+        [
+          "⌥ /",
+          "Opens the Tool finder, a search for commands"
+        ]
+      ],
+      "caption": "Mac shortcuts from Google's Sheets help page."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Tool finder is the one to learn first. When a command hides in a menu, open the Tool finder and type the words you remember. Lazur can also help. Hold ⌥⌘ and ask where a command is, and Lazur circles it on screen and labels it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a research sheet that stays fast"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good research sheet has three layers. Keep the raw export on its own tab, and do not edit it. Put cleaned data on a second tab, with one row for each session or response. Put summaries, pivot tables, and charts on a third tab. When something breaks, you can trace it back to the export that came from your survey or session tool."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Name tabs by what they hold, such as raw_survey, clean_sessions, and summary.",
+        "Put one header in row 1 for every column. Pivot tables need headers.",
+        "Use one column for each variable. Never put two answers in one cell.",
+        "Use participant codes, not names, in the clean tab."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Delete empty rows and columns you do not use. A third-party guide by Ben Collins says blank cells slow Sheets down dramatically. Keep your data range tight, so formulas and pivots only read the rows that matter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for task success and time on task"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables answer the questions most usability studies ask. Which task failed most often? Which tasks took longest? Start with the clean tab. Select the source cells, including the header row. Then go to Insert > Pivot table, and choose a new sheet for the output so the raw data stays clean."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the cells in the clean tab, header row included.",
+        "Go to Insert > Pivot table, then choose a new sheet.",
+        "In the side panel, add the task column under Rows.",
+        "Add the completion column under Values, and set the summary you need.",
+        "Add time on task under Values, and set it to average."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help says a pivot table refreshes any time you change its source cells. You do not need a refresh button. If the numbers look stale, check the source range first. A range that stops early will miss rows, and Sheets will not warn you."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Turn off pivot suggestions",
+      "text": "Sheets can suggest pivot tables on its own. Go to Tools > Suggestion controls to turn suggestions off. Turn them off before you share a sheet with stakeholders, so the file stays clean."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "SUS score in Google Sheets: method and template"
+    },
+    {
+      "type": "paragraph",
+      "text": "The System Usability Scale, or SUS, turns a short questionnaire into one score. Lyssna offers a Google Sheets template for it. You export results as CSV, import them, and the scores calculate. If you want to build the sheet yourself, the method is simple. Here are the steps in plain order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "For each odd-numbered item, subtract 1 from the response.",
+        "For each even-numbered item, subtract the response from 5.",
+        "Add all the adjusted values for one participant together.",
+        "Multiply that total by 2.5 to get the SUS score."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "In the sheet, place each adjusted item in its own column. Use one SUM formula per participant row, then multiply the result by 2.5. Keep the raw responses beside the score, so you can check one row by hand. Check a few rows this way before you trust the whole column. Hold ⌥⌘ and ask Lazur to explain the formula on screen if you get stuck."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for skipped items. A blank answer changes the total, and a formula may treat it as zero. Decide your rule before you export. For example, you can drop any participant with a missing item. Write that rule on the summary tab, so a second researcher reads the same logic."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import survey and session exports without losing data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Survey and session tools usually export CSV files. Use File > Import in Sheets, then choose the file and the separator. Excel files work too. Google's Workspace page says you can open and edit Excel files in Sheets without making a copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Converting Excel files has one trap. Google's Drive help says a conversion drops any cell over 50,000 characters. Long interview quotes and open-ended answers are the usual victims. Before you convert, search the export for the longest text cells. Keep the original file, so you can compare the two after the import."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets size limits for research files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive help gives a file limit of up to 20 million cells or 100 MB. Connected Sheets lets you analyze BigQuery or Looker data without writing SQL. Its pivot tables cap at 200k rows. Extracts run to 500k rows or 5 million cells. Plan your structure before a study grows past those numbers."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Those limits rarely hit a single study. They hit a tracker that grows every month. When a file starts to lag, split the raw data by quarter into separate files, and keep one summary file that reads from them. Keep an index tab with the file names, so the next person can find the data fast."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Google Sheets is slow on Mac, and what to fix first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Slow sheets usually have a few causes, and you can check them in order. Ben Collins' guide says Google doubled the speed of calculations in a June 2024 update. Formula design still matters, though. These are the causes to check first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Blank cells. Delete empty rows and columns in the data range.",
+        "Volatile functions. TODAY, NOW, RAND, and RANDBETWEEN recalculate on every change.",
+        "Array VLOOKUPs. The guide says they run significantly slower than single VLOOKUPs.",
+        "Conditional formatting on large ranges. Limit the rule to the rows you actually use.",
+        "IMPORTRANGE. The guide says it can stall around 20,000 rows."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The TODAY case is easy to fix. In one blogger's test, 100,000 TODAY formulas took about 5.5 seconds. With a single cell reference, the same job took about 4.1 seconds. That test ran once, on an unknown date, so read it as a direction, not a benchmark. Put the date in one cell, and point your formulas at that cell."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Code open-ended answers in a sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Qualitative coding fits well in Sheets. Use one row for each quote. Add columns for participant code, task, and one or more theme labels. Filter by theme to read every quote that fits. Then build a pivot table that counts themes by task. Keep a codebook tab that defines each theme, so a second coder can match your labels."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates from the Template Gallery"
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates save setup time. Open the Template Gallery at the top right of the Sheets home page, and pick one. Google opens a copy, so the template stays unchanged. Some template features only work with a work or school account. Check that before you build a tracker on a personal account. If the menu has moved, look for the gallery on the home screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gemini in Sheets for cleanup and formula help"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Workspace page lists Gemini features in Sheets. You can build a sheet from a prompt, fill a column with Gemini, and ask it to write or debug a formula. Google's October 16, 2025 update adds multi-step edits. One prompt can add conditional formatting, add a pivot table, run find and replace, and clean up data in plain language."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use it for the boring cleanup. Ask it to merge 'Very satisfied' and 'very satisfied' into one label. Then check a sample of changed cells by eye. Review every automated edit before the sheet goes to a stakeholder, the same way you would check a colleague's work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits into your Sheets work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Lazur sees your screen only while you hold the shortcut. It points at things, explains steps, and guides you one click at a time. It waits for each click. It does not click for you or edit your files."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ask where a control is. Lazur draws a circle and a label around it.",
+        "Ask how to do a task. Lazur guides you one click at a time, waiting for each click.",
+        "Hold fn to dictate session notes at the cursor in any app.",
+        "Ask Lazur to draft a participant thank-you note or a finding summary.",
+        "Send a research question to run in Lazur's own Chrome tabs. It returns a summary and a report."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to walk you through your first pivot table. You keep your hands on the mouse, and each click waits for you. That can suit a first pivot better than a long video. Once you know the steps, ask Lazur for a shortcut or a quick formula check."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. It starts with a free trial that does not need a credit card. Check the [pricing page](/pricing) for current plans, and [download Lazur](/download) to try it on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes UX researchers make in Google Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mixing raw data and summaries on one tab. One careless edit can break both.",
+        "Leaving a column without a header. A pivot table needs a header for every column.",
+        "Editing the raw export. Copy it first, then change the copy.",
+        "Trusting a pivot table without a check. Compare a few totals with the raw rows.",
+        "Putting long quotes in cells, then converting from Excel. Cells over 50,000 characters get dropped.",
+        "Sharing with edit access when you meant view access.",
+        "Leaving pivot suggestions on in a file you share with stakeholders."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from speed. A deadline pushes you to skip the setup. Spend a few minutes on tabs and headers at the start. That time pays back when you add a second study and the first one still reads cleanly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Protect participant data in a shared sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Research sheets often hold personal details. Use participant codes rather than names. Check your organization's rules before you put interview data in a shared sheet. Google's sharing controls let you choose who can edit or view. Review those settings each time you share a file, not once a year."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models. A screenshot of a sheet can still show names or quotes. Hold the shortcut only when you need help, and close sensitive tabs first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after your first study"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one study. Build the three-tab layout, add headers, and make one pivot table. Then add the SUS template if you run usability questionnaires. If your team also works in Figma, read [Figma for UX researchers on Mac](/for/ux-researchers/figma) for FigJam templates and memory fixes. Sheets stays the place for the numbers. Your other tools can link back to it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a native Google Sheets app for Mac?",
+      "answer": "Google's pages did not confirm one, so treat Sheets as a browser app on your Mac. Open it in Chrome, Safari, or Firefox. If Safari stalls on a large file, try Chrome with the same file."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at controls, explains formulas, guides you one click at a time, answers out loud, and drafts text. You make each change in Sheets."
+    },
+    {
+      "question": "How big can a Google Sheets file get?",
+      "answer": "Google's Drive help says up to 20 million cells or 100 MB. Connected Sheets pivot tables cap at 200k rows. Split large raw data into separate files by quarter or by study, and keep a summary file that reads from them."
+    },
+    {
+      "question": "Why does my pivot table not match my data?",
+      "answer": "Check the source range first. Every column needs a header. The pivot refreshes when source cells change, so a range that stops early will miss rows. Look for blank rows inside the range, too."
+    },
+    {
+      "question": "Is a SUS score calculated in Sheets accurate?",
+      "answer": "It is accurate if you follow the method. Subtract 1 from each odd-numbered item, subtract the response from 5 for each even-numbered item, add the results, then multiply by 2.5. Check a few rows by hand."
+    },
+    {
+      "question": "Do I need a work account for Sheets templates?",
+      "answer": "Not for every template. Google says some template features only work with a work or school account. Open the Template Gallery at the top right of the home page, and check the template's notes before you build on it."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "Can Lazur run Gemini in Sheets for me?",
+      "answer": "No. Gemini runs inside Sheets, and Lazur does not operate other apps. Run Gemini yourself, and ask Lazur to explain what each change does before you accept it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Computer",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Create and use pivot tables - Computer",
+      "url": "https://support.google.com/docs/answer/1272900?hl=en-GB&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Use templates - Computer",
+      "url": "https://support.google.com/docs/answer/148833?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "File size and limits for Google Sheets",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google Drive Help",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Gemini in Google Sheets expanded editing capabilities",
+      "url": "https://workspaceupdates.googleblog.com/2025/10/expanded-editing-capabilities-gemini-in-google-sheets.html",
+      "publisher": "Google Workspace Updates",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Slow Google Sheets? 27 techniques",
+      "url": "https://www.benlcollins.com/spreadsheets/slow-google-sheets/",
+      "publisher": "Ben Collins",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "5/22/23 Safari hangs on Google Sheets",
+      "url": "https://discussions.apple.com/thread/254883283",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Should You Run a Survey?",
+      "url": "https://www.nngroup.com/articles/should-you-run-a-survey/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "SUS score calculation template",
+      "url": "https://www.lyssna.com/templates/sus-score-calculation/",
+      "publisher": "Lyssna",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the pivot table option?",
+    "capability": "point",
+    "result": "Lazur circles Insert in the menu bar, labels it, and says Pivot table sits in that menu. It waits for you to click.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome on a Mac, with the clean data tab open",
+    "pointsAt": "Insert menu",
+    "output": "That is Insert. Open it and choose Pivot table. Tell me when you have the side panel open."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Tool finder?",
+      "capability": "point",
+      "result": "Lazur circles the Tool finder and labels it. The Option slash shortcut also opens it from the keyboard."
+    },
+    {
+      "say": "Lazur, walk me through my first pivot table.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click. You stay in control of the sheet."
+    },
+    {
+      "say": "Lazur, why does my pivot show a header as data?",
+      "capability": "explain",
+      "result": "Lazur explains that each source column needs a header, then points at the top row so you can check it."
+    },
+    {
+      "say": "Lazur, explain this SUS formula in plain words.",
+      "capability": "explain",
+      "result": "Lazur walks through odd items minus 1, even items as 5 minus the response, the sum, and the 2.5 multiplier."
+    },
+    {
+      "say": "Lazur, my sheet is lagging. What do I check first?",
+      "capability": "guide",
+      "result": "Lazur lists the usual suspects: blank cells, volatile functions, array VLOOKUPs, and heavy conditional formatting."
+    },
+    {
+      "say": "Lazur, draft a thank-you note to my participants.",
+      "capability": "draft",
+      "result": "Lazur drafts a short note you can paste into your email or a comment."
+    },
+    {
+      "say": "Dictate my session notes for Tuesday.",
+      "capability": "dictate",
+      "result": "Hold fn, speak, and clean text lands at the cursor in any app."
+    },
+    {
+      "say": "Lazur, find recent research on SUS benchmarks.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report."
+    }
+  ],
+  "type": "role-app",
+  "slug": "ux-researchers-google-sheets",
+  "role": "ux-researchers",
+  "app": "google-sheets",
+  "roleName": "UX researchers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ux-researchers-google-sheets/google-sheets-for-ux-researchers-on-mac-1-cd7faf.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A UX researcher at a laptop reviewing Google Sheets for usability test results",
+      "caption": "A researcher reviews session data on a laptop.",
+      "keywords": [
+        "google sheets for ux researchers on mac",
+        "Google Sheets",
+        "UX researchers",
+        "Mac",
+        "researcher laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mac-computer-browser-2557572/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ux-researchers-google-sheets/google-sheets-for-ux-researchers-on-mac-2-573548.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "A person at a laptop working on a survey spreadsheet, the kind of data UX researchers keep in Google Sheets",
+      "caption": "Survey data in a spreadsheet is a daily task for many researchers.",
+      "keywords": [
+        "google sheets for ux researchers on mac",
+        "Google Sheets",
+        "UX researchers",
+        "Mac",
+        "person spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "niklaspatzig",
+        "url": "https://pixabay.com/users/niklaspatzig-16752629/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/internet-work-office-desk-business-5224078/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ux-researchers-google-sheets/google-sheets-for-ux-researchers-on-mac-3-5aee19.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A designer reviewing a usability study summary on a Mac at a desk",
+      "caption": "Summaries and charts often go to the wider product team.",
+      "keywords": [
+        "google sheets for ux researchers on mac",
+        "Google Sheets",
+        "UX researchers",
+        "Mac",
+        "office work laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-office-laptop-notebook-startup-599475/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for ux researchers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "google sheets pivot table mac": 1,
+      "google sheets keyboard shortcuts mac": 1,
+      "SUS score google sheets": 1,
+      "google sheets slow large spreadsheet mac": 1,
+      "ux research spreadsheet template": 1,
+      "google sheets qualitative coding": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

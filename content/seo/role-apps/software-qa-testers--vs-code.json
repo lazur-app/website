@@ -1,0 +1,585 @@
+{
+  "title": "Using vs code for software qa testers on mac: setup, shortcuts and bug reports in 2026",
+  "metaTitle": "VS Code for software QA testers on Mac: setup and shortcuts (2026)",
+  "description": "Set up VS Code for software QA testing on Mac: Test Explorer, debugging, coverage, shortcuts, and bug reports, plus how Lazur helps.",
+  "targetKeyword": "vs code for software qa testers on mac",
+  "secondaryKeywords": [
+    "VS Code for QA testers on Mac",
+    "VS Code Test Explorer on Mac",
+    "VS Code keyboard shortcuts for testers",
+    "VS Code debugging for QA",
+    "VS Code code coverage on Mac",
+    "bug reports in VS Code",
+    "Lazur for software QA testers"
+  ],
+  "intro": "VS Code works well for software QA testers on Mac, as long as you add a testing extension for your language. The editor runs natively on Apple silicon and Intel Macs, but it does not run tests by itself. This guide covers setup, the shortcuts that save time, debugging a failing test, coverage, and where Lazur fits.",
+  "tldr": [
+    "Install the testing extension for your language first. Test Explorer and gutter run buttons depend on it, not on VS Code alone.",
+    "Learn ⇧⌘P and ⌘K ⌘S early. Most test commands sit behind the Command Palette, and shortcuts live in the Keyboard Shortcuts editor.",
+    "Debug a failing test with a breakpoint before you file a bug. The state at that line usually shows whether the code or the test is wrong.",
+    "Lazur points, explains and drafts text. It does not click buttons or run your tests."
+  ],
+  "stats": [
+    {
+      "value": "Up to 82%",
+      "label": "of testers still use manual testing in their day-to-day work, per Katalon's blog",
+      "sourceUrl": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "sourceTitle": "Test Automation Statistics & Trends for 2025: Katalon"
+    },
+    {
+      "value": "55%",
+      "label": "of respondents cite insufficient time for thorough testing as a top challenge",
+      "sourceUrl": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "sourceTitle": "Test Automation Statistics & Trends for 2025: Katalon"
+    },
+    {
+      "value": "56%",
+      "label": "of QA teams still struggle to keep up with testing demands",
+      "sourceUrl": "https://katalon.com/reports/state-quality-2025",
+      "sourceTitle": "State of Software Quality Report 2025: Katalon"
+    },
+    {
+      "value": "1.4x",
+      "label": "how much more likely happy testers are to adopt automation than unhappy testers",
+      "sourceUrl": "https://katalon.com/reports/state-quality-2025",
+      "sourceTitle": "State of Software Quality Report 2025: Katalon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Start with the setup, because it decides what you can do. VS Code is an editor, and its testing features come from extensions. The VS Code testing docs say Test Explorer, gutter run controls, inline results and coverage depend on the testing extensions you install. Support also varies by language. If the Testing view stays empty, the extension is usually missing."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install VS Code on Mac for QA work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Download the Mac build from code.visualstudio.com. macOS builds come for Apple silicon and Intel, and a universal build covers both. Since version 1.109, released in January 2026, macOS installs arrive as a DMG image. Open the image and drag Visual Studio Code into Applications, the same way you install most Mac apps."
+    },
+    {
+      "type": "paragraph",
+      "text": "The current stable release is 1.145, released November 4, 2026. Check your version with Code > About. To update, open Code > Check for Updates. Since 1.109, a newer macOS update replaces a pending one, so you restart once instead of twice."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install the test extension for your language"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Python: install the Python extension, then add the test framework your team uses.",
+        "JavaScript or TypeScript: install the extension that matches your test runner.",
+        "Java, C# or Go: install the language support your team recommends, then reload the window.",
+        "Any language: open Extensions with ⇧⌘X, search for the framework name, and read its README first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Testing view after the install. Test Explorer lists the tests the extension found in your workspace. If the list is empty, check two things. Make sure you opened the project root, and reload the window from the Command Palette."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Why Test Explorer shows nothing"
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Open the right folder",
+      "text": "Use File > Open Folder and pick the project root. A subfolder can hide the config file the test extension needs, and then Test Explorer stays empty."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the Command Palette when a fix does not stick. Press ⇧⌘P, type Developer: Reload Window, and press Return. The window restarts and loads the new settings. Doing this after you change a test setting saves a lot of confusion."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for testers on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Learn four shortcuts before anything else. ⇧⌘P opens the Command Palette, where most testing commands live, including Test Explorer focus and reload. ⌘, opens Settings. ⇧⌘X opens Extensions. ⌘K ⌘S opens the Keyboard Shortcuts editor. VS Code's testing and keybinding docs list these."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shortcut",
+        "What it does",
+        "Why testers use it"
+      ],
+      "rows": [
+        [
+          "⇧⌘P",
+          "Command Palette",
+          "Reach test commands, focus Test Explorer, reload the window"
+        ],
+        [
+          "⌘,",
+          "Settings",
+          "Change editor and extension settings"
+        ],
+        [
+          "⇧⌘X",
+          "Extensions view",
+          "Install or check the test extension for your language"
+        ],
+        [
+          "⌘K ⌘S",
+          "Keyboard Shortcuts editor",
+          "Bind a key to a test command"
+        ],
+        [
+          "⌘; then ⇧⌘I",
+          "Toggle inline coverage",
+          "See covered lines in the editor"
+        ]
+      ],
+      "caption": "Shortcuts from VS Code's testing and keybinding docs. Confirm them on your build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcuts can fail without an error. VS Code's keybinding docs warn that a combo may not register when macOS or another app already uses it. Right-click any UI action and choose Configure Keybinding to change it. Then use Show Same Keybindings to find clashes."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check clashes before you rely on a key",
+      "text": "If a shortcut does nothing, another app may own that combo. Open the Keyboard Shortcuts editor, search for the key, and run Show Same Keybindings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run and debug a failing test in VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run one failing test, not the whole suite. Click the play button beside the test in Test Explorer, or use the run icon in the gutter next to the test function. The result shows inline next to the code. A narrow run is faster and easier to read."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "When the test fails, debug it. Set a breakpoint in the test or in the code under test. Choose debug from Test Explorer or the gutter. Add watch variables to see values change as the code runs. The testing docs describe breakpoints and watch variables for tests."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Re-running only failures",
+      "text": "VS Code's testing docs do not describe a re-run failed tests command. Some extensions may offer one. If yours does not, filter Test Explorer to failed tests and run that set."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Read the failure before you file it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the assertion message first, then the line number, then the captured output. Many bugs look like test bugs at first. Check whether the expected value is wrong. A wrong expectation is still a finding, but it goes to a different owner than a broken feature."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a login test that fails"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say the login test fails after a developer merges a change. Open the project root, find the test in Test Explorer, and run only that test. The inline result shows which assertion failed and on which line."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set a breakpoint on the line that reads the session value, then debug the test. Watch the variable as the code runs. If the value is right and the check is wrong, the test is at fault. If the value is wrong, you have a real bug."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the error text is hard to read, hold the Lazur shortcut with the error on screen. Lazur answers out loud and explains the message in plain words. You still decide the next step, and you check the explanation against the code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check code coverage without guessing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Coverage shows which lines a test run touched. It does not show that the tests check the right results. The VS Code testing docs describe a Test Coverage view, a gutter overlay, percentages in Explorer and a diff editor view. Turn on inline coverage with ⌘; then ⇧⌘I to see covered lines in the editor."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Run the tests with coverage from the Testing view.",
+        "Open the Test Coverage view and find the files with the lowest coverage.",
+        "Open one low file and look at the gutter. Covered and uncovered lines look different.",
+        "Write a test for one uncovered branch, run again, and compare the results."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Treating full coverage as finished work is a common mistake. A line can run with a wrong value and still count as covered. Use coverage to find gaps, then check that each test asserts a real result."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes software QA testers make in VS Code"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Installing VS Code and expecting Test Explorer to work with no extension.",
+        "Opening a subfolder, so the test config is out of view.",
+        "Trusting a shortcut that another app already claims.",
+        "Reading coverage as proof that the behavior is correct.",
+        "Running the whole suite when one test would show the bug.",
+        "Leaving test passwords or customer data on screen when you ask Lazur a question."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write bug reports developers can act on"
+    },
+    {
+      "type": "paragraph",
+      "text": "A useful bug report needs the steps, the expected result, the actual result and the build you tested. VS Code helps with the build. Open Code > About to read the version. Add the failing test name and the error text too, so the developer does not hunt for them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Draft the report in your tracker, not inside the code. Keep the steps in plain words that another person can follow. Name the file and the test. A short, exact report gets fixed faster than a long one full of guesses."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why time pressure makes testing harder"
+    },
+    {
+      "type": "paragraph",
+      "text": "Testers feel the squeeze. Katalon's 2025 quality work points to time and workload as top problems. Its blog cites 55% of respondents who name insufficient time as a challenge, and 44% who name high workload."
+    },
+    {
+      "type": "paragraph",
+      "text": "The vendor report adds more context. It says 56% of QA teams still struggle to keep up with testing demands. It also says happy testers are 1.4x more likely to adopt automation than unhappy testers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Katalon sells test automation, so read these figures with care. Its blog reports up to 82% of testers still use manual testing day to day. The blog cites a survey of 1,400 QA professionals, and the report page says more than 1,500. Treat the exact figures as directional."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you test"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It sees your screen and points at things. It does not click buttons, edit files or run your tests."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is. Lazur draws a circle and a label around it, so you find the Testing view or the Test Coverage view faster. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Dictate and draft around your test runs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate a bug summary at the cursor in any app. Lazur formats the text and types it where your cursor sits. A personal dictionary helps with product names and test IDs that a spell checker does not know."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to draft a summary when you need clean wording. Give it the facts you have, then edit the draft. Lazur drafts and types text. It does not decide what the bug is for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and what stays on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer. They are not stored. Content is never used to train AI models. Your memory of what you asked stays on the Mac."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Hide secrets before you hold the key",
+      "text": "Test accounts, API keys and customer records on screen can reach an AI provider when you ask a question. Close them or mask them first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Platform and pricing for QA testers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. There is a Pro trial that needs no credit card. It starts when you first open the app. Plan details live on the [pricing page](/pricing)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for VS Code or any other app. It has no partnerships with app makers. It works next to the editor, so your own setup stays as it is. For the editor on its own, read the [VS Code app page](/apps/vs-code). For developer setup, read [VS Code for developers on Mac](/for/developers/vs-code)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Your first week with VS Code as a tester"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install the test extension for your language and confirm Test Explorer lists your tests.",
+        "Bind one key to a test command in the Keyboard Shortcuts editor.",
+        "Run one failing test, then debug it with a breakpoint.",
+        "Write one bug report with the steps, expected result, actual result and build.",
+        "Try a point request on the Testing view once you have the app."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "When you are ready, get the app from the [download page](/download). Start with a point request, then move to explain requests when an error confuses you."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does VS Code run well for software QA testing on a Mac?",
+      "answer": "Yes. VS Code ships macOS builds for Apple silicon and Intel. The current stable release is 1.145. Testing features depend on a language extension, so install that first."
+    },
+    {
+      "question": "Why is Test Explorer empty in VS Code on Mac?",
+      "answer": "Usually the test extension is missing, or you opened a subfolder instead of the project root. Install the extension for your language, open the root folder, and reload the window."
+    },
+    {
+      "question": "Does VS Code have a built-in test runner?",
+      "answer": "The testing docs describe Test Explorer, gutter run controls and coverage. Those depend on language-specific testing extensions, so plan on installing one for your stack."
+    },
+    {
+      "question": "Can Lazur run my tests for me?",
+      "answer": "No. Lazur guides, points, explains and drafts text. It does not click buttons or operate other apps for you. Run the tests yourself, then ask Lazur to explain the result."
+    },
+    {
+      "question": "Does Lazur only work inside VS Code?",
+      "answer": "No. Lazur works in any app on the Mac. Hold Option and Command to ask about what is on screen. Lazur is not a plugin or add-in for any app."
+    },
+    {
+      "question": "Is Lazur available for Windows testers?",
+      "answer": "Not yet. Windows is planned, but it is not available. Lazur runs on macOS, on Apple silicon and Intel Macs."
+    },
+    {
+      "question": "Does my screen go to an AI provider when I use Lazur?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Hide secrets first."
+    },
+    {
+      "question": "How do I find the shortcut for a test command in VS Code?",
+      "answer": "Open the Command Palette with ⇧⌘P and search for test. To bind your own key, open the Keyboard Shortcuts editor with ⌘K ⌘S, then search for the command."
+    },
+    {
+      "question": "Does VS Code have a re-run failed tests button?",
+      "answer": "The VS Code testing docs do not describe one. Some test extensions may offer it. Check your extension's docs before you depend on it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Testing: Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/debugtest/testing",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Visual Studio Code 1.145 release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "January 2026 (version 1.109) release notes",
+      "url": "https://code.visualstudio.com/updates/v1_109",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts: Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/configure/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Test Automation Statistics & Trends for 2025: Katalon",
+      "url": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "publisher": "Katalon (vendor)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "State of Software Quality Report 2025: Katalon",
+      "url": "https://katalon.com/reports/state-quality-2025",
+      "publisher": "Katalon (vendor)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is Test Explorer in VS Code?",
+    "capability": "point",
+    "result": "Lazur circles the Testing view in the sidebar and labels it, so you can open Test Explorer next.",
+    "shell": "code",
+    "pointsAt": "Testing view in sidebar",
+    "context": "VS Code open on a Mac with the project root loaded and a test extension installed"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is Test Explorer in VS Code?",
+      "result": "Lazur circles the Testing view in the sidebar and labels it, so you know where to click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through running one failing test.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this assertion error mean?",
+      "result": "Lazur reads what is on screen and explains the error out loud in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate the steps for this bug into the ticket.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in the ticket.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a bug report from the notes I typed.",
+      "result": "Lazur drafts the report from your notes. You check the facts before you file it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how teams set coverage goals for Python tests.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary with a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Set a timer for this test run.",
+      "result": "Lazur sets the timer by voice, so you can keep your eyes on the results.",
+      "capability": "everyday"
+    },
+    {
+      "say": "How do I bind a key to a test command?",
+      "result": "Lazur guides you to the Keyboard Shortcuts editor and waits for each step.",
+      "capability": "guide"
+    }
+  ],
+  "type": "role-app",
+  "slug": "software-qa-testers-vs-code",
+  "role": "software-qa-testers",
+  "app": "vs-code",
+  "roleName": "Software QA testers",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-vs-code/vs-code-for-software-qa-testers-on-1-c1daa2.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Software QA tester working on a laptop with test results open, the kind of work done in VS Code on a Mac",
+      "caption": "Testers spend much of the day reading results and writing reports.",
+      "keywords": [
+        "vs code for software qa testers on mac",
+        "VS Code",
+        "Software QA testers",
+        "Mac",
+        "software tester laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "terydanphiri",
+        "url": "https://pixabay.com/users/terydanphiri-364063/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/editing-video-computer-7320125/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-vs-code/vs-code-for-software-qa-testers-on-2-bd0d7c.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Person typing code on a laptop, the editor work that software QA testers do in VS Code",
+      "caption": "Reading code is part of testing, not only clicking through screens.",
+      "keywords": [
+        "vs code for software qa testers on mac",
+        "VS Code",
+        "Software QA testers",
+        "Mac",
+        "person coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Yng_saad",
+        "url": "https://pixabay.com/users/Yng_saad-23159574/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacker-cyber-illegal-technology-6586113/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-vs-code/vs-code-for-software-qa-testers-on-3-a69a84.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Desk with a laptop and notes where a software QA tester writes a bug report on a Mac",
+      "caption": "A clear bug report saves a round trip with the developer.",
+      "keywords": [
+        "vs code for software qa testers on mac",
+        "VS Code",
+        "Software QA testers",
+        "Mac",
+        "bug report desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alban_Gogh",
+        "url": "https://pixabay.com/users/Alban_Gogh-28413822/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/insect-nature-garden-prairie-fauna-8094667/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "vs code for software qa testers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "VS Code for QA testers on Mac": 1,
+      "VS Code Test Explorer on Mac": 1,
+      "VS Code keyboard shortcuts for testers": 1,
+      "VS Code debugging for QA": 1,
+      "VS Code code coverage on Mac": 1,
+      "bug reports in VS Code": 1,
+      "Lazur for software QA testers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

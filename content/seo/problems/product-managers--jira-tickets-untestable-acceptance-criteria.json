@@ -1,0 +1,707 @@
+{
+  "title": "How to write Jira tickets with testable acceptance criteria on Mac, step by step",
+  "metaTitle": "Write Jira Tickets with Testable Acceptance Criteria (Mac Guide)",
+  "description": "Write Jira tickets with testable acceptance criteria on your Mac. Examples, a simple format, Jira template setup, and a checklist for product managers.",
+  "targetKeyword": "write Jira tickets with testable acceptance criteria",
+  "secondaryKeywords": [
+    "vague Jira tickets",
+    "Jira acceptance criteria template",
+    "Given When Then acceptance criteria",
+    "acceptance criteria examples for user stories",
+    "Jira description template Mac",
+    "Rovo generate acceptance criteria Jira",
+    "testable requirements for product managers"
+  ],
+  "problem": "vague jira tickets",
+  "intro": "To write Jira tickets with testable acceptance criteria, describe one behavior per line and make each line pass or fail. Add a clear outcome, a short scope, and enough detail that QA can test without asking you what you meant. This page covers the format, Jira setup on a Mac, and a routine you can run this week.",
+  "tldr": [
+    "Write each acceptance criterion as one behavior that a tester can check with a yes or no answer.",
+    "Use Given When Then for flows with a trigger. Use plain checklists for rules, limits, and permissions.",
+    "Write an out of scope section. Most scope arguments start there.",
+    "Jira Cloud runs in Chrome or Safari on a Mac. Set a description template so the format appears on every new ticket.",
+    "Rovo can draft criteria in Jira Cloud. Check every line against the design, the data, and what engineering can build."
+  ],
+  "stats": [
+    {
+      "value": "48%",
+      "label": "of 228 organizations in the NaPiRE survey named incomplete or hidden requirements as a problem",
+      "sourceUrl": "https://arxiv.org/html/1611.10288",
+      "sourceTitle": "Naming the Pain in Requirements Engineering (arXiv 1611.10288)"
+    },
+    {
+      "value": "33%",
+      "label": "named underspecified requirements that were too abstract and allowed several readings",
+      "sourceUrl": "https://arxiv.org/html/1611.10288",
+      "sourceTitle": "Naming the Pain in Requirements Engineering (arXiv 1611.10288)"
+    },
+    {
+      "value": "78%",
+      "label": "of 41 non-functional requirement rework tasks came from avoidable gaps in shared understanding",
+      "sourceUrl": "https://arxiv.org/abs/2007.01761",
+      "sourceTitle": "The Lack of Shared Understanding of Non-Functional Requirements in Continuous Software Engineering (arXiv 2007.01761)"
+    },
+    {
+      "value": "90%",
+      "label": "of 3,500 developers and managers in Atlassian's 2025 survey lose 6 or more hours a week to non-coding work. Vendor-run survey.",
+      "sourceUrl": "https://www.atlassian.com/blog/developer/developer-experience-report-2025",
+      "sourceTitle": "Atlassian research: AI adoption is rising, but friction persists"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What makes an acceptance criterion testable"
+    },
+    {
+      "type": "paragraph",
+      "text": "A testable acceptance criterion describes one behavior you can observe. A tester reads it, runs the feature, and answers yes or no. The line 'the page should load quickly' fails that test. Quickly means something different to every person who reads it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix is not a longer sentence. The fix names the starting state, the trigger, and the result. Someone can test that in a few minutes, without a meeting, and without guessing what you meant."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Vague line",
+        "Testable line",
+        "What changed"
+      ],
+      "rows": [
+        [
+          "Search should be fast",
+          "Results appear while the user types, with no refresh button",
+          "Replaces a judgment word with something visible"
+        ],
+        [
+          "Export should handle big files",
+          "A file with every column exports and opens in Google Sheets without errors",
+          "Names the case and the tool to test in"
+        ],
+        [
+          "Make the error message clear",
+          "The error names the field that failed and shows a valid example",
+          "Turns clear into content a tester can check"
+        ],
+        [
+          "Notifications should not be annoying",
+          "A user who turns off reminders gets no reminder email after that",
+          "Replaces a feeling with a rule"
+        ]
+      ],
+      "caption": "Vague lines and testable rewrites, with one change each."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Quick test",
+      "text": "Read the line aloud and ask whether a tester could write a yes or no check from it alone. If the answer is no, rewrite the line before anyone starts work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why vague Jira tickets happen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Vague tickets are common, and they are not a personal failing. In the NaPiRE survey, 48% of 228 organizations named incomplete or hidden requirements as a problem. Another 33% named requirements that were too abstract and allowed several readings."
+    },
+    {
+      "type": "paragraph",
+      "text": "That survey ran from 2014 to 2015, and it covers requirements work in general, not Jira tickets. Treat it as a pattern. It does not tell you how often your team writes vague lines."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "A second study looked at non-functional requirements, such as speed, security, and accessibility. Its authors found that 78% of 41 rework tasks came from avoidable gaps in shared understanding. Those gaps were avoidable, not bad luck."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be careful with the claim that a bug costs far more to fix late. A 2016 study of 171 projects found no evidence for that delayed-issue effect. You do not need that claim to justify better tickets. Count the rework in your own sprint comments instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to structure a Jira ticket with acceptance criteria"
+    },
+    {
+      "type": "paragraph",
+      "text": "A ticket that holds up under testing has a few clear parts. Each part answers a question that a developer or tester would otherwise ask you in Slack. Write them in this order, and keep the headings short."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Outcome: why this work exists, in one sentence a customer would recognize.",
+        "Scope: the user, the screen, and the rule that changes.",
+        "Acceptance criteria: observable behaviors, written as a checklist.",
+        "Out of scope: what the team should not build in this ticket.",
+        "Test notes: sample data, roles, and the edge cases that worry you most."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Coverage matters more than the exact order. Skip a part and someone will ask about it later. The part people skip most is out of scope. Without it, the criteria grow during the sprint, one reasonable request at a time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Given When Then acceptance criteria, and when to skip them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Given When Then is a format for behavior. Given sets the starting state. When names the action. Then names the result you can see. It works well for flows that have a trigger, such as password reset or checkout."
+    },
+    {
+      "type": "paragraph",
+      "text": "Given a user has requested a password reset, when they open the link after it expires, then they see a message that the link is no longer valid and can request a new one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Plain checklists work better for rules and limits. Examples include which roles can export data, or which fields are required on a form. Forcing those rules into Given When Then makes them longer, not clearer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one style per ticket and keep it. Mixing styles in one list makes testers slow down to decode the format. Consistency is easier to keep when the same template holds the headings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example of rewriting a vague Jira ticket"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a ticket most teams have seen. The title says Improve password reset. The description says users find the process confusing and support gets too many emails. Nothing in that text lets a tester say pass or fail."
+    },
+    {
+      "type": "paragraph",
+      "text": "Rewrite it by asking what the user sees and what the system stores. Then list the states that exist. A registered user, an unknown email, an expired link, a used link, and a double click each need an answer. Each answer becomes one line."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Given a registered email, when the user requests a reset, then they receive one email with a link.",
+        "Given a link older than the expiry window, when the user opens it, then they see an expired-link message and a button to request a new link.",
+        "Given an email that is not registered, when the user requests a reset, then the page shows the same confirmation as for a registered email.",
+        "Given a link that was already used, when the user opens it, then the new password form does not appear.",
+        "Out of scope: changes to the email template and to the sign-in page."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The third line is the one most people miss. It stops the reset page from revealing which emails have accounts. Ask your engineering lead to confirm the wording, because the product owns the behavior while engineering owns the security review."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a Jira description template on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Jira Cloud runs in your browser, so Mac users work in Chrome or Safari. Atlassian says support has ended for the Jira Cloud for Mac app, and version 148 is the final update. Open your board in the browser, then press ⌘ D to bookmark it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A template keeps the format in front of you each time you create a ticket. Atlassian describes two methods for a default description in Jira Cloud. The first uses Automation for Jira, with a rule that runs when a work item is created."
+    },
+    {
+      "type": "paragraph",
+      "text": "That rule sets the description to the existing text plus your template, using the {{issue.description}} placeholder. The second method is the third-party Default Values app from the Atlassian Marketplace. It pre-fills the description on the create screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check with your Jira admin before you install any app, because your company may limit what can be added. Atlassian's article applies to Cloud only. It does not say which project types each method supports, so test in a sandbox project first."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Ask your Jira admin which method your site allows.",
+        "Use a sandbox project that nobody else uses for real work.",
+        "Add the rule or app setting that puts your headings in the description.",
+        "Create a ticket and confirm the headings appear in the description box.",
+        "Edit the ticket and confirm your text is kept, not replaced.",
+        "Delete the sandbox project when the test is done."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Templates do not write criteria",
+      "text": "A template with empty headings becomes a checklist nobody fills in. Keep the headings short, and check in refinement that people actually fill them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Rovo to generate acceptance criteria in Jira, then check them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Atlassian's Rovo can generate acceptance criteria from a work item description. Open the description editor and use the Rovo icon, or type /rovo or /ai. Then choose the option to generate acceptance criteria from the work item description."
+    },
+    {
+      "type": "paragraph",
+      "text": "The generated text can be edited like any other text. Atlassian's support page does not say which plans or access levels include this action. Confirm it on your site before you plan a rollout."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat the output as a first draft. Check every generated line against the design, the data, and what engineering can build. A draft can invent a limit or a role that nobody agreed on. Delete any line you cannot trace to a source."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Review the criteria with engineering and QA before the sprint"
+    },
+    {
+      "type": "paragraph",
+      "text": "A short review catches many gaps before work starts. Read each criterion aloud with one developer and one tester. Ask the tester how they would check it. If the tester pauses, the line is not ready."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The review should stay on the criteria, not the solution. The developer can propose the approach later. Keep the meeting short, and keep a note of each rewrite so the same gap does not come back."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Judgment words like fast, easy, clean, or intuitive, with no check attached.",
+        "Criteria that describe a task, such as build the table, instead of a behavior.",
+        "No out of scope section, or one that says nothing useful.",
+        "Criteria added after the work started, without a note on why.",
+        "One ticket that describes several separate features."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with acceptance criteria in Jira"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first mistake is writing the solution as the criterion. The line 'Add a dropdown' tells engineering what to build, but not what a user should be able to do. Describe the result, then let engineering pick the control."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is writing criteria after the build. Criteria written from finished code tend to describe what was built. Write them first, then ask whether the build matches them."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is copying criteria between tickets. Two tickets can look alike and differ in one rule. A copied line carries the wrong rule into the second ticket, and nobody notices until testing."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth mistake is skipping edge cases because they feel minor. Edge cases generate many of the support questions after release. Ask what happens with empty input, missing permission, and a dropped connection."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with ticket writing, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold a key and talk. It sees your screen only while you hold the shortcut, and it answers out loud. It can point at things, guide you one click at a time, and type drafts at your cursor."
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not click buttons for you, edit Jira, or write into your ticket on its own. You still paste, save, and review. Hold ⌥⌘ to ask about anything on screen. Hold fn to dictate clean text at the cursor in any app."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation suits ticket writing, because you can speak the outcome, the users, and the edge cases faster than you type them. Then edit the words yourself. Dictation can mishear product names, so check feature names and rule wording."
+    },
+    {
+      "type": "paragraph",
+      "text": "For confusing text, hold ⌥⌘ over the criterion and ask Lazur to explain it in plain words. For a first draft from your notes, ask it to draft criteria. Check every line before you paste it into Jira."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters when tickets hold customer details or unreleased plans. Lazur sends audio and the screenshot to AI providers to answer, and they are not stored. Content is never used to train AI models. If your employer limits where work data can go, follow that rule first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the evidence on vague tickets does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "The research base is thinner than the advice. The NaPiRE figures come from 2014 and 2015. The Atlassian survey is run by a vendor and measures general non-coding friction, not ticket quality."
+    },
+    {
+      "type": "paragraph",
+      "text": "That survey reports that 90% of respondents lose 6 or more hours a week to non-coding work. The same report says 63% of respondents think leaders do not understand their pain points, up from 44% in 2024. Those figures do not show that vague tickets cause either problem."
+    },
+    {
+      "type": "paragraph",
+      "text": "No controlled study found here shows that acceptance-criteria formats or templates reduce rework. The fixes in this guide are working habits, not proven methods. Measure your own sprints before and after you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one ticket from this week and rewrite its criteria with the format above. Then run the short review before the next refinement. For the wider routine, read [how product managers use Slack](/for/product-managers/slack) and [Notion for PRD workflows](/for/product-managers/notion)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is an acceptance criterion in a Jira ticket?",
+      "answer": "An acceptance criterion is a condition the work must meet before the team calls it done. Most teams write them in the description, under a heading such as Acceptance criteria. Atlassian describes a work item as the basic unit of tracking, such as a bug, a task, or a request, so you may see both terms."
+    },
+    {
+      "question": "Should every ticket use Given When Then?",
+      "answer": "No. Use it for flows that have a trigger and a visible result, such as sign-in or password reset. Use a plain checklist for rules and limits. Keep one style inside each ticket so testers do not have to switch formats."
+    },
+    {
+      "question": "How many acceptance criteria belong in one ticket?",
+      "answer": "Enough to cover the behavior, and no more. If the list keeps growing, the ticket is probably two tickets. Split it, give each part its own outcome, and write an out of scope note for each part."
+    },
+    {
+      "question": "Is there a Jira app for Mac I can use?",
+      "answer": "Not for Jira Cloud. Atlassian's support page says support has ended for the Jira Cloud for Mac app, and version 148 is the final update. Use Jira in Chrome or Safari, and bookmark the board you use most with ⌘ D."
+    },
+    {
+      "question": "Does Rovo write good acceptance criteria?",
+      "answer": "It can produce a useful first draft when the description already has clear context. It can also invent rules. Check each line against the design, the data, and engineering's view. Atlassian's page does not state plan requirements, so confirm access on your site."
+    },
+    {
+      "question": "Can I use Lazur on tickets that contain customer data?",
+      "answer": "Follow your employer's rules first. Lazur sends audio and the screenshot to AI providers to answer your question, and they are not stored. Content is never used to train AI models. If your company bans AI tools for customer data, skip Lazur on those tickets."
+    },
+    {
+      "question": "Do testable criteria replace QA?",
+      "answer": "No. Testable criteria make QA faster and clearer. Testers still explore the product, look at edges nobody wrote down, and check how the change fits the wider product. The criteria set the minimum the team agrees on."
+    },
+    {
+      "question": "What if engineering says the criteria are too detailed?",
+      "answer": "Ask what they would change. Often the detail is the value, because it removes guessing. If the criteria describe a solution, move that to a technical note and keep the behavior in the criteria."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Naming the Pain in Requirements Engineering (arXiv 1611.10288)",
+      "url": "https://arxiv.org/html/1611.10288",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Lack of Shared Understanding of Non-Functional Requirements in Continuous Software Engineering (arXiv 2007.01761)",
+      "url": "https://arxiv.org/abs/2007.01761",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Are Delayed Issues Harder to Resolve? Revisiting Cost-to-Fix of Defects throughout the Lifecycle (arXiv 1609.04886)",
+      "url": "https://arxiv.org/abs/1609.04886",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Atlassian research: AI adoption is rising, but friction persists",
+      "url": "https://www.atlassian.com/blog/developer/developer-experience-report-2025",
+      "publisher": "Atlassian",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's new in Jira Cloud for macOS",
+      "url": "https://support.atlassian.com/jira-cloud-macos/docs/whats-new-in-jira-cloud-for-macos/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How to set a default description template for an issue type in Jira Cloud",
+      "url": "https://support.atlassian.com/automation/kb/how-to-set-a-default-description-template-for-an-issue-type-in-jira-cloud/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Use Rovo to help write or edit content",
+      "url": "https://support.atlassian.com/jira-software-cloud/docs/use-atlassian-intelligence-to-help-write-or-edit-content/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What is a work item?",
+      "url": "https://support.atlassian.com/jira-software-cloud/docs/what-is-a-work-item/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "costs": [
+    {
+      "title": "Rework and repeated questions",
+      "text": "Every unclear ticket starts a thread. Developers ask what the rule is, you answer, and then QA asks about the same case later. The same question costs time twice, once in the sprint and again at testing."
+    },
+    {
+      "title": "Engineers build the wrong thing",
+      "text": "When criteria are vague, the developer picks the reading that is easiest to build. The result looks finished, then fails your expectation in review. Fixing it means a second pass on code that is already on a branch."
+    },
+    {
+      "title": "QA cannot write a test",
+      "text": "A tester who cannot write a pass or fail check either guesses or waits. Guessing lets bugs through. Waiting keeps the ticket open. Both push back the release date."
+    },
+    {
+      "title": "Scope creep during the sprint",
+      "text": "A missing out of scope section lets extra work slide in. Someone adds a field, a role, or a report. The sprint gets longer, and the ticket still describes one small piece of work."
+    },
+    {
+      "title": "Trust with engineering",
+      "text": "Teams notice when tickets change after they start. Trust drops, and engineers start asking for a meeting before every ticket. Atlassian's survey reports that 63% of respondents think leaders do not understand their pain points, up from 44%, though it does not link that to tickets."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Time pressure",
+      "text": "NaPiRE respondents named lack of time as one of the most common causes, at 18% of mentions. When a ticket is due Friday, the criteria get one line. The easy line gets written, and the hard edge cases wait for later."
+    },
+    {
+      "title": "A solution written as the requirement",
+      "text": "Many tickets start with a solution the product manager already picked. The description then describes the button, not the outcome. A tester cannot check a button without knowing what it should let the user do."
+    },
+    {
+      "title": "Requirements that stay abstract",
+      "text": "NaPiRE found that 13% of organizations reported requirements that remain too abstract as a cause. Words like easy or intuitive pass review but fail testing. Nobody can tell whether the feature met them."
+    },
+    {
+      "title": "Knowledge that lives in one head",
+      "text": "The writer knows the customer, the earlier decision, and the edge case. Nobody else does. Hidden requirements were the most cited problem in NaPiRE, at 48% of organizations. The rule stays in one person's head until the sprint starts."
+    },
+    {
+      "title": "Gaps in shared understanding",
+      "text": "Werner and colleagues found that 78% of 41 rework tasks in non-functional requirements came from avoidable gaps in shared understanding. Speed, security, and accessibility often get a vague line and then a surprise at release."
+    },
+    {
+      "title": "No template and no review step",
+      "text": "A blank description box invites a short description. Without a review step, nobody checks the criteria before work starts. The gap stays hidden until testing finds it."
+    },
+    {
+      "title": "Criteria written after the build",
+      "text": "Criteria written from finished code describe what was built. They rarely describe what was needed. That is one reason a ticket can pass its own criteria and still miss the user."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write one behavior per line",
+      "text": "Each criterion should describe one thing a user or the system does. If a line joins two behaviors with and, split it. Then ask a tester to answer yes or no for each line."
+    },
+    {
+      "title": "Use Given When Then for flows",
+      "text": "Use it for anything with a trigger and a visible result. Keep the Given short and name only the state that changes the result. Reuse the same wording across tickets so testers recognize the pattern quickly."
+    },
+    {
+      "title": "Replace judgment words with checks",
+      "text": "Swap fast, easy, clean, and intuitive for something a tester can check. Ask what the user sees, how the result shows up, and who can see it. If you cannot name a check, ask engineering what they would measure."
+    },
+    {
+      "title": "Add an out of scope section",
+      "text": "List the adjacent work you are not doing. Name the screen, the role, or the report. This section gives you a sentence to point at when a new request arrives in the middle of a sprint."
+    },
+    {
+      "title": "Set a description template",
+      "text": "In Jira Cloud, use Automation for Jira to add your headings when a work item is created. Or use the Default Values app from the Marketplace if your admin approves it. Keep the headings short, and test on a sandbox project first."
+    },
+    {
+      "title": "Draft with Rovo, then edit",
+      "text": "Use Rovo's option to generate acceptance criteria from your description. Delete any line that has no source. Add the edge cases the draft did not know about, such as expired links or missing permissions."
+    },
+    {
+      "title": "Run a short criteria review",
+      "text": "Read each criterion aloud with one developer and one tester before the sprint. Ask the tester to describe the check. If the check is unclear, rewrite the line on the spot and move on."
+    },
+    {
+      "title": "Keep a criteria library in Notion",
+      "text": "Save your best criteria in Notion, one page per feature area. Link each new ticket to the closest page. Reuse the wording for common rules such as permissions, error messages, and empty states."
+    },
+    {
+      "title": "Measure rework, not feelings",
+      "text": "Count the comments that ask what a ticket meant, and count the tickets reopened after QA. Compare two sprints before and after the change. Those counts tell you more than a general impression of the team."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Lazur, explain this acceptance criterion in plain words.",
+      "result": "Hold ⌥⌘ with the ticket open. Lazur reads the line on screen and answers out loud, so you can test your own wording.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, where is the description field on this ticket?",
+      "result": "Lazur draws a circle and a label around the field. You still click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, walk me through adding a description template.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and speak the outcome, the users, and the edge cases.",
+      "result": "Dictation writes clean text at the cursor in any app. Check product names and rule wording before you save the ticket.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Lazur, draft acceptance criteria from these notes.",
+      "result": "Lazur types a draft at your cursor. Read every line against the design and the data before you keep it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Lazur, find how other teams write criteria for password reset.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the sources before you copy any wording.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, draft Given When Then criteria for this ticket.",
+    "capability": "draft",
+    "context": "Jira ticket open in Chrome, with a password reset description pasted in",
+    "output": "Given a registered email, when the user requests a reset, then they receive one email with a link.",
+    "result": "Lazur types the draft at the cursor. You read each line against the design before you keep it.",
+    "shell": "doc"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read one ticket aloud",
+      "text": "Choose a ticket already in the sprint. Read each criterion aloud. Mark every judgment word, such as easy or fast. Write down the question a developer asked you last week about that ticket."
+    },
+    {
+      "label": "Day 2",
+      "title": "Rewrite the criteria",
+      "text": "Use Given When Then for flows and a checklist for rules. Add an out of scope section. Name the edge cases, such as expired links, unknown users, and repeated clicks. Keep the wording plain."
+    },
+    {
+      "label": "Day 3",
+      "title": "Set up the template",
+      "text": "Ask your Jira admin which method your site allows. Test the template in a sandbox project. Confirm the headings appear on a new ticket and that your text survives an edit."
+    },
+    {
+      "label": "Day 4",
+      "title": "Run the review",
+      "text": "Book a short slot with one developer and one tester. Read each criterion aloud, and ask the tester how they would check it. Rewrite any line that gets a pause."
+    },
+    {
+      "label": "Day 5",
+      "title": "Count and compare",
+      "text": "Note how many comments asked what a ticket meant this week. Compare that count with the week before. Keep the template if the count falls. Change the format if it does not."
+    }
+  ],
+  "apps": [
+    "notion",
+    "slack",
+    "figma"
+  ],
+  "type": "problem",
+  "slug": "jira-tickets-untestable-acceptance-criteria",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/jira-tickets-untestable-acceptance-criteria/write-jira-tickets-with-testable-acceptance-criteria-1-f70f1d.jpg",
+      "width": 1280,
+      "height": 912,
+      "alt": "Product manager writing Jira tickets with testable acceptance criteria on a laptop",
+      "caption": "Writing criteria in the browser, then checking the wording.",
+      "keywords": [
+        "write Jira tickets with testable acceptance criteria",
+        "Product managers",
+        "vague Jira tickets",
+        "Mac",
+        "product manager laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "elvtimemaster",
+        "url": "https://pixabay.com/users/elvtimemaster-15395975/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/time-and-attendance-time-change-5049297/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/jira-tickets-untestable-acceptance-criteria/write-jira-tickets-with-testable-acceptance-criteria-2-15f6be.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Product manager and developers reviewing acceptance criteria at a whiteboard",
+      "caption": "A short review catches gaps before the sprint starts.",
+      "keywords": [
+        "write Jira tickets with testable acceptance criteria",
+        "Product managers",
+        "vague Jira tickets",
+        "Mac",
+        "team meeting whiteboard",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "425147",
+        "url": "https://pixabay.com/users/425147-425147/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/colleagues-seminar-presentation-437023/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/jira-tickets-untestable-acceptance-criteria/write-jira-tickets-with-testable-acceptance-criteria-3-af16a7.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing ticket descriptions at a desk with a Mac laptop",
+      "caption": "Typing or dictating, the criteria still need a line by line check.",
+      "keywords": [
+        "write Jira tickets with testable acceptance criteria",
+        "Product managers",
+        "vague Jira tickets",
+        "Mac",
+        "person typing desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "write Jira tickets with testable acceptance criteria",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "vague Jira tickets": 3,
+      "Jira acceptance criteria template": 1,
+      "Given When Then acceptance criteria": 2,
+      "acceptance criteria examples for user stories": 1,
+      "Jira description template Mac": 1,
+      "Rovo generate acceptance criteria Jira": 1,
+      "testable requirements for product managers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

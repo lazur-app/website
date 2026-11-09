@@ -1,0 +1,600 @@
+{
+  "title": "How to use conditional formatting in Google Sheets on Mac: rules, formulas and fixes",
+  "metaTitle": "How to use conditional formatting in Google Sheets on Mac",
+  "description": "Learn how to use conditional formatting in Google Sheets on Mac, with exact menu paths, custom formulas, rule order and fixes that work in the browser.",
+  "targetKeyword": "how to use conditional formatting in google sheets on mac",
+  "secondaryKeywords": [
+    "conditional formatting google sheets mac",
+    "google sheets custom formula formatting",
+    "google sheets color scale",
+    "google sheets conditional formatting not working",
+    "google sheets conditional formatting rule order",
+    "google sheets text contains formatting"
+  ],
+  "intro": "Select the cells, then choose Format > Conditional formatting. In the panel that opens on the right, pick a condition under Format cells if, choose a look under Formatting style, and click Done.",
+  "tldr": [
+    "Select your cells in Google Sheets in a Mac browser, then go to Format > Conditional formatting.",
+    "Choose a condition under Format cells if, pick a look under Formatting style, and click Done.",
+    "For formulas, choose Custom formula is and write the formula for the top-left cell of your range.",
+    "Stack rules with Add new rule, then drag them into order, since the first true rule sets the format.",
+    "If colors do not show, check the range, the rule order, and whether dates are stored as text."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of surveyed office workers often struggle to make sense of their spreadsheet data",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release: Almost half of users struggle to make sense of spreadsheet data"
+    },
+    {
+      "value": "70%",
+      "label": "of surveyed office workers say they are not proficient in spreadsheets",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release: Almost half of users struggle to make sense of spreadsheet data"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Google Sheets runs in your browser, so conditional formatting on a Mac happens in a browser tab. Google's help pages describe the steps for the browser version, and I found no Mac app for Sheets in them. Third-party guides say there is none. The steps below follow Google's own help page, and they call out the places where people get stuck."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you open the menu"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A Mac with a browser open to your Google Sheets file.",
+        "The cells you want to format. A header row is fine, but you can leave it out.",
+        "Columns with one data type each, such as all dates or all text, if you plan to use date or text rules."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you plan to work offline, use Google Chrome or Microsoft Edge. Google's offline help page names those two browsers only. Private and incognito windows are not supported, so open a normal window before you turn offline access on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open Conditional formatting in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by selecting the cells. Click the first cell, then drag to the last one. To cover a whole column, click its letter at the top of the sheet. Conditional formatting only touches the cells you select, so a wrong selection is the first thing to check when a rule does nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, click Format in the menu bar, then click Conditional formatting. A panel opens on the right side of the window. This panel is where you choose conditions, set colors and order your rules. Google's help page uses the labels Format cells if and Formatting style, and those labels appear in the panel."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can open the Format menu from the keyboard with Ctrl+Option+O. Google's Mac keyboard shortcut page lists that combination. The same page lists no shortcut for conditional formatting itself, so you still click the item. Some websites list longer key sequences. I could not confirm those from Google's pages, so treat them as unverified."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build your first rule with a condition"
+    },
+    {
+      "type": "paragraph",
+      "text": "A rule has two parts. The condition decides which cells qualify. The formatting style decides how those cells look. Under Format cells if, open the list and choose the test you want. For a plain text test, choose Text contains, then type the text in the box that appears."
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Formatting style, pick a fill color. The color fills the background of every matching cell. Then click Done to finish the rule, and check a few cells by eye before you add more rules."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: flag late orders"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a Status column holds the words Late, On track and Done. Select only the Status cells, not the header. Open Conditional formatting, choose Text contains, and type Late. Pick a light red fill, then click Done. Every Status cell that contains Late now shows red, and the other cells keep their normal look."
+    },
+    {
+      "type": "paragraph",
+      "text": "Text contains matches the word anywhere in a cell. A cell that reads Late payment also turns red. If that is too broad, switch to a custom formula that checks the exact value. The next section shows how to write one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Custom formula in Google Sheets for multi-column rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "A text or number condition only checks the cell it sits in. A custom formula can check other columns, and it lets you combine several tests. To build one, open Format cells if, choose Custom formula is, and type the formula into the Value or formula box. Set the look, then click Done."
+    },
+    {
+      "type": "paragraph",
+      "text": "The formula must match the top-left cell of the range you selected. If your selection starts at A2, write the formula for A2. Sheets then shifts the references for every other cell. The SheetSteps guide lists formulas anchored to the wrong row among the causes of failed rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a row highlight, select the whole table and use a formula such as =$B2=\"Late\". The dollar sign before B locks the column, so the test reads the Status column on every row. The row number still moves as the rule fills down."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Anchor check",
+      "text": "Before you trust a formula, type it into a spare cell on a row you expect to match. If it returns TRUE there, the rule should match that row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Custom formulas can reference only cells on the same sheet. To test a value on another sheet, use INDIRECT to build the reference. Google's help page points to INDIRECT for other sheets, so keep the formula short and test it in a helper cell first."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stack rules and set their order"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most real sheets need more than one rule. Click Add new rule to create another rule. Click an existing rule to edit it. Google's help page says Add new rule creates a rule, and clicking a rule edits it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Order matters. Sheets checks rules from top to bottom, and the first rule that is true sets the format. Point to a rule and drag it above or below the others to change its priority."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Order",
+        "Rule",
+        "Result"
+      ],
+      "rows": [
+        [
+          "1",
+          "Text contains Late",
+          "Light red fill"
+        ],
+        [
+          "2",
+          "Custom formula checks column B for Pending",
+          "Light yellow fill"
+        ]
+      ],
+      "caption": "Rules are checked top to bottom. The first true rule sets the format."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a cell matches both rules, the higher rule wins. Put the rule you care about most at the top. The SheetSteps guide lists overlapping rules and rule order among the causes of formats that fail, so check the list after each change."
+    },
+    {
+      "type": "paragraph",
+      "text": "To remove a rule, point to it and click the Remove icon. Then check the cells it used to color, since a higher rule can hide the rules below it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Color scale in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A color scale fades the cell color across a range of numbers. Open Conditional formatting, then click the Color scale tab. Choose a scale, set the minimum and maximum, and set an optional midpoint. Click Done."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set the minimum to the lowest value you care about, and the maximum to the highest. A midpoint marks where the color shifts from one shade to the next. Leave it off if you want a simple fade from low to high."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Text contains and wildcards"
+    },
+    {
+      "type": "paragraph",
+      "text": "Text contains and Text does not contain accept wildcards. A question mark matches one character. An asterisk matches zero or more characters. A tilde escapes either symbol, so a tilde followed by an asterisk matches a literal asterisk."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates cause a different kind of trouble. A rule that expects a date skips a value stored as text, because Sheets treats it as a word. Check the column before you build the rule. Convert text that looks like dates into real dates, then test the rule on a few cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mixed data types cause the same problem. A column with numbers, numbers stored as text and blank cells behaves differently under each condition. Clean the column first. The [duplicates guide](/how-to/remove-duplicate-rows-in-google-sheets) is a good place to start when the data has repeat rows."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Copying, pasting and where rules travel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Copying and pasting cells also copies their conditional formatting rules. If you paste a block into another area, its rules come with it. Check the rule list after each paste, and remove any rule you did not want."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pasting values only, with ⌘⇧V, is a separate action. Google's Mac shortcut page lists it for pasting values only. Use it when you want the numbers or text and not the look of the source cells."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Mac shortcut page lists Ctrl+Option+O for the Format menu, and ⌘/ to show the common shortcuts. It does not list a shortcut for conditional formatting. Use the menu for this feature, and use the shortcut list for the rest of the sheet. The guide to [showing keyboard shortcuts in Google Sheets on Mac](/how-to/show-keyboard-shortcuts-in-google-sheets) covers that list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets can also accept shortcuts from other spreadsheet apps. Open Help > Keyboard shortcuts and look at the bottom of the window for Enable compatible spreadsheet shortcuts. Google's page says the option is for shortcuts from other spreadsheet apps. It does not say whether the option works differently on a Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why conditional formatting does not work"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check the range first. A rule colors only the cells you selected.",
+        "Check the formula anchor. Write the formula for the top-left cell of the range.",
+        "Check the rule order. The first true rule sets the format.",
+        "Check the data type. Dates stored as text and mixed types stop conditions from matching.",
+        "Test the formula in a helper cell before you rely on it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help pages do not give version numbers for the web app, so labels in your panel can differ from the help text. Some guides call the range setting Apply to range. Google's page does not use that name. Match the meaning of each label, and check the live panel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How common is spreadsheet struggle"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet trouble is common, and the numbers below come from one survey. ThoughtSpot commissioned Sapio Research to ask 1,001 office workers in Australia, the UK and the US about their spreadsheets. The survey ran on October 27, 2022. It measured general struggle, not conditional formatting, so read the numbers as context."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same survey found that formulas are among the most-used features, at 50%. It also reported that Google Sheets is used by 55% of respondents, and Excel by 85%. Those figures describe office workers, not Mac users, so they do not show how many Mac users apply formatting."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with conditional formatting"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Selecting the header row, so the title row takes the rule's color too.",
+        "Writing a custom formula for the wrong cell, so every row checks the wrong value.",
+        "Stacking rules in the wrong order, so an early rule hides a later one.",
+        "Expecting a Mac shortcut that Google does not document, and losing time looking for it.",
+        "Pasting a block without checking which rules came with it.",
+        "Using dates stored as text, then wondering why a date rule skips them."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one rule on one column. Add a second rule only after the first one colors the right cells. Once the rules work, sorting makes the data easier to read. The [sort guide](/how-to/sort-data-by-column-in-google-sheets) covers that in Chrome."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you analyze data for work, the [Google Sheets page for data analysts](/for/data-analysts/google-sheets) covers cleanup and pivots on Mac. If you track tasks in rows, the [freeze the top row guide](/how-to/freeze-the-top-row-in-google-sheets) keeps headers visible while you scroll."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check offline access before a trip. Turn it on from Drive settings, or open the sheet, click the document status icon next to the title, and choose Turn on. Chrome or Edge must be your browser for this to work."
+    },
+    {
+      "type": "paragraph",
+      "text": "A few rules that you trust beat a long list that you do not. Keep the first rule simple, and build from there."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "Google's help pages describe the steps for the browser version of Sheets. I did not find an official Mac app in Google's documentation, and third-party guides say there is none. Use a browser tab, and use Chrome or Edge if you want offline access."
+    },
+    {
+      "question": "Is there a keyboard shortcut for conditional formatting in Google Sheets on Mac?",
+      "answer": "Google's Mac shortcut page does not list one. It lists Ctrl+Option+O for opening the Format menu, and then you click Conditional formatting. Some websites list longer key sequences, but I could not confirm them from Google's pages."
+    },
+    {
+      "question": "Why does my conditional formatting not show up?",
+      "answer": "Check the selected range first, then the formula anchor, then the rule order. Dates stored as text and mixed data types also stop rules from matching. The troubleshooting list covers each one in order."
+    },
+    {
+      "question": "Can a rule check a value on another sheet?",
+      "answer": "Custom formulas can reference only cells on the same sheet, according to Google's help page. Use INDIRECT to reach another sheet, and test the formula in a helper cell before you rely on it."
+    },
+    {
+      "question": "Does copying cells also copy conditional formatting?",
+      "answer": "Yes. Google's help page says copying and pasting cells also copies their conditional formatting rules. Check the rule list after you paste, and remove any rule that came along by mistake."
+    },
+    {
+      "question": "How do I delete a conditional formatting rule?",
+      "answer": "Open Conditional formatting, point to the rule, and click the Remove icon. Then check the cells it used to color, so you can confirm the color is gone."
+    },
+    {
+      "question": "Can I use Google Sheets offline on my Mac?",
+      "answer": "Yes, if you use Google Chrome or Microsoft Edge, according to Google's offline help page. Private and incognito windows are not supported. Turn it on in Drive settings, or open the sheet, click the document status icon next to the title, and choose Turn on."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use conditional formatting rules in Google Sheets - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/78413?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Computer - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Work on Google Docs, Sheets and Slides offline - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/6388102?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets conditional formatting not working: 8 checks",
+      "url": "https://www.sheetsteps.com/blog/google-sheets-conditional-formatting-not-working",
+      "publisher": "SheetSteps (third party)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "ThoughtSpot press release: Almost half of users struggle to make sense of spreadsheet data",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot (survey by Sapio Research)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Apply conditional formatting to cells in Google Sheets on Mac",
+  "appliesTo": "Google Sheets in a browser on any Mac running macOS",
+  "timeMinutes": 10,
+  "difficulty": "Medium",
+  "requirements": [
+    "A Mac with a browser open to Google Sheets",
+    "A spreadsheet with the cells you want to format",
+    "Columns with one data type each, such as dates or text, for the rules you plan to use",
+    "Edit access to the file, so you can save a rule"
+  ],
+  "steps": [
+    {
+      "name": "Open the sheet in a browser",
+      "text": "Open your spreadsheet in a browser tab on your Mac. Google's help pages describe the browser steps for conditional formatting. If you want offline access later, use Chrome or Edge, because Google's offline page names only those two.",
+      "tip": "Private or incognito windows do not support offline access, so use a normal window."
+    },
+    {
+      "name": "Select the cells",
+      "text": "Click the first cell you want to format, then drag to the last one. To cover a whole column, click its letter at the top of the sheet. Leave out the header row if you want it to keep its normal look.",
+      "tip": "A wrong selection is the first thing to check when a rule does nothing."
+    },
+    {
+      "name": "Open the Format menu",
+      "menuPath": [
+        "Format"
+      ],
+      "shortcut": "Ctrl+Option+O",
+      "text": "Click Format in the menu bar at the top of the screen. You can also press Ctrl+Option+O, which Google's Mac shortcut page lists for opening the Format menu.",
+      "tip": "Press ⌘/ to see the common shortcut list in Sheets."
+    },
+    {
+      "name": "Click Conditional formatting",
+      "menuPath": [
+        "Format",
+        "Conditional formatting"
+      ],
+      "text": "In the Format menu, click Conditional formatting. A panel opens on the right side of the window. You build, edit and order your rules in this panel.",
+      "tip": "Google's Mac shortcut page lists no shortcut for this item, so use the menu."
+    },
+    {
+      "name": "Pick a condition",
+      "text": "Under Format cells if, open the list and choose the test. For plain text, choose Text contains and type the text in the box that appears. Choose Custom formula is when you need a formula.",
+      "tip": "Text contains also accepts wildcards: ? for one character and * for zero or more."
+    },
+    {
+      "name": "Set the look",
+      "text": "Under Formatting style, choose a fill color for the cell background. The style sets how matching cells look. The condition decides only which cells match.",
+      "tip": "Pick a color that stands out from your other data, so the rule is easy to read."
+    },
+    {
+      "name": "Save the rule with Done",
+      "text": "Click Done to finish the rule. Matching cells in your selection now show the look you picked.",
+      "tip": "Check a few cells by eye before you add more rules."
+    },
+    {
+      "name": "Use a custom formula",
+      "text": "For a formula, choose Custom formula is under Format cells if. Type the formula into the Value or formula box. Write it for the top-left cell of your selection, such as A2, and Sheets applies it to the rest.",
+      "tip": "Custom formulas can reference only cells on the same sheet. Use INDIRECT for other sheets."
+    },
+    {
+      "name": "Add another rule",
+      "text": "Click Add new rule to create a second rule. To change an existing rule, click it. Google's help page says that clicking a rule edits it.",
+      "tip": "Two rules can match the same cell, so keep track of the order."
+    },
+    {
+      "name": "Drag rules into order",
+      "text": "Point to a rule and drag it above or below the others. Sheets checks rules from top to bottom. The first rule that is true sets the format.",
+      "tip": "Move the most specific rule to the top, so a broader rule does not hide it."
+    },
+    {
+      "name": "Remove a rule you no longer need",
+      "text": "Point to the rule and click the Remove icon. Then check the cells it used to color.",
+      "tip": "Copying cells also copies their rules, so check pasted areas too."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Format menu",
+      "keys": "⌃⌥O"
+    },
+    {
+      "action": "Show common keyboard shortcuts",
+      "keys": "⌘/"
+    },
+    {
+      "action": "Paste values only",
+      "keys": "⌘⇧V"
+    },
+    {
+      "action": "Open conditional formatting",
+      "keys": "None listed"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The rule colors nothing.",
+      "fix": "Check the selected range first, then the formula anchor. Test the formula in a helper cell. If it returns TRUE on a row you expect, the rule should match that row."
+    },
+    {
+      "problem": "The wrong rule's color shows.",
+      "fix": "Rules run top to bottom and the first true rule sets the format. Drag the rule you want to the top, then recheck the cells."
+    },
+    {
+      "problem": "Date rules skip some cells.",
+      "fix": "The values may be stored as text. Convert them to real dates, then test the rule on a few cells."
+    },
+    {
+      "problem": "A formula must check another sheet.",
+      "fix": "Custom formulas reference cells on the same sheet only. Use INDIRECT to point at another sheet, and test the result in a helper cell."
+    },
+    {
+      "problem": "Pasted cells bring rules you did not want.",
+      "fix": "Copying copies conditional formatting rules. Open Conditional formatting, find the rule for that range, point to it and click the Remove icon."
+    },
+    {
+      "problem": "Excel shortcuts do not work in Sheets.",
+      "fix": "Open Help > Keyboard shortcuts and look for Enable compatible spreadsheet shortcuts at the bottom of the window. Google's page says it is for shortcuts from other spreadsheet apps."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's Conditional formatting in Google Sheets on my Mac?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Conditional formatting item in the Format menu, so you can click it yourself.",
+    "shell": "sheet",
+    "context": "Google Sheets open in the browser, Format menu visible",
+    "output": "Lazur says the answer out loud and points at the menu item on your screen. It does not click for you.",
+    "pointsAt": "Conditional formatting"
+  },
+  "type": "howto",
+  "slug": "use-conditional-formatting-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-conditional-formatting-in-google-sheets/how-to-use-conditional-formatting-in-google-1-75cff0.jpg",
+      "width": 1280,
+      "height": 757,
+      "alt": "Person working on a Mac laptop at a desk, reviewing rows in a spreadsheet",
+      "caption": "A laptop at a desk, the usual setting for Sheets work",
+      "keywords": [
+        "how to use conditional formatting in google sheets on mac",
+        "Google Sheets",
+        "use conditional formatting",
+        "Mac",
+        "man using laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-conditional-formatting-in-google-sheets/how-to-use-conditional-formatting-in-google-2-c98dd6.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Woman on a Mac laptop reviewing rows before she sets up conditional formatting in Google Sheets on Mac",
+      "caption": "Checking data before you build a formatting rule",
+      "keywords": [
+        "how to use conditional formatting in google sheets on mac",
+        "Google Sheets",
+        "use conditional formatting",
+        "Mac",
+        "woman laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-indoors-decor-design-creative-2618511/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-conditional-formatting-in-google-sheets/how-to-use-conditional-formatting-in-google-3-a2f8d4.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Laptop on an office desk with data on screen, the kind of work where conditional formatting helps",
+      "caption": "Office data work on a laptop",
+      "keywords": [
+        "how to use conditional formatting in google sheets on mac",
+        "Google Sheets",
+        "use conditional formatting",
+        "Mac",
+        "office laptop data",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Goumbik",
+        "url": "https://pixabay.com/users/Goumbik-3752482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-business-notebook-statistics-2717014/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use conditional formatting in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "conditional formatting google sheets mac": 1,
+      "google sheets custom formula formatting": 1,
+      "google sheets color scale": 1,
+      "google sheets conditional formatting not working": 1,
+      "google sheets conditional formatting rule order": 1,
+      "google sheets text contains formatting": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

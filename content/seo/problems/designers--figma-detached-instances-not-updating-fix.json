@@ -1,0 +1,608 @@
+{
+  "title": "Figma detached instances not updating on Mac: causes and fixes for designers in 2026",
+  "metaTitle": "Figma detached instances not updating on Mac: causes and fixes",
+  "description": "A detached Figma instance never gets library updates again, by design. Here is how to tell, what to check, and how to get updates flowing on Mac.",
+  "targetKeyword": "figma detached instances not updating",
+  "secondaryKeywords": [
+    "figma library updates not showing",
+    "figma update instance from library",
+    "figma detach instance shortcut mac",
+    "figma review library updates",
+    "figma publish library update",
+    "figma swap instance keep overrides"
+  ],
+  "intro": "If a Figma instance stopped updating, it was probably detached. Detaching cuts the link to the component for good, so library changes never reach that copy. If the instance is still linked, the update is probably waiting in the Libraries panel for someone to accept it. This page shows how to tell the two cases apart, and what to do about each.",
+  "tldr": [
+    "A detached instance is cut off from its component. Figma says it stops applying component changes.",
+    "A linked instance may be waiting on an update. Check Review library updates and the Updates tab.",
+    "Updates only reach your file after someone publishes the library. Edits in the source file stay private until then.",
+    "Swap rather than detach when you need another version. Figma's swap article says overrides stay by default."
+  ],
+  "stats": [
+    {
+      "value": "67%",
+      "label": "of 2,220 surveyed professionals in a 2024 design systems survey cite keeping design and code in sync as a significant challenge",
+      "sourceUrl": "https://www.uxtools.co/survey/design-systems/overview",
+      "sourceTitle": "UX Tools: Design Systems survey overview"
+    },
+    {
+      "value": "46.3%",
+      "label": "of respondents cite significant inconsistencies between design system specs and the components built from them",
+      "sourceUrl": "https://www.uxtools.co/survey/design-systems/overview",
+      "sourceTitle": "UX Tools: Design Systems survey overview"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a detached instance never gets updates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Detaching turns an instance into a regular frame. The frame keeps the layers and properties it has at that moment. The link to the component goes away, and every future change goes with it. Figma's help center says a detached object no longer applies changes made to the component. So a detached copy is not broken. It works exactly as designed."
+    },
+    {
+      "type": "paragraph",
+      "text": "The trouble starts when a detach happens by accident. It also starts when someone detaches a copy to fix one color, then moves on. The copy looks fine until the library changes. Then it looks wrong, and nobody remembers the detach."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to check whether an instance is detached"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start on the canvas. Click the layer you think is an instance, then look at the Properties panel on the right. Run these checks in order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "A live instance shows its component name and an instance menu in the Properties panel.",
+        "A detached frame shows neither. It is a plain frame with the layers it had when you cut the link.",
+        "Right-click the layer. A live instance offers Detach instance in the menu. If that item is missing, the link is already gone."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How library updates reach your file"
+    },
+    {
+      "type": "paragraph",
+      "text": "A library update starts in the source file. Someone with edit access opens the Assets panel, clicks Libraries, and clicks Publish next to Current file. They add a summary, then click Publish. The summary appears in version history, so write it for the people who read it later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your file only sees the change after that publish. The Libraries button tooltip reads Review unpublished changes when the source file has edits that are not yet published. It reads Review library updates when your file has updates waiting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's publish article does not say whether consuming files get a notice. Do not count on one. Tell your team when you publish, in the channel they already read."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Walk through the review step in Figma"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the file that uses the component. Find Review library updates at the bottom of the left navigation.",
+        "Open the Updates tab in the Libraries panel.",
+        "Turn on Show updates for all pages. Figma's help says you need this to see every update.",
+        "Click Update instance to apply one update at a time. Click Update all to apply the whole list.",
+        "Check the copy on the canvas before you move on. The panel cannot visually compare hidden layers inside a component."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Reviewing and accepting updates needs edit access to the file. Without it, ask the file owner for edit rights. Do not detach your way around the review, because a detached copy can never be reviewed back into the library."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep updates from showing"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Detaching to fix one property. You fix that property and lose every future update for that copy.",
+        "Editing the source file and never publishing. Your team sees no change, so the library looks stale.",
+        "Reviewing only the current page. Updates on other pages stay out of sight until you turn on Show updates for all pages.",
+        "Accepting an update you cannot see whole. Hidden layers inside a component cannot be compared visually, so check them in the component file.",
+        "Trying to publish on Starter. Figma's Starter plan overview lists No team libraries, so there is no shared library to publish to."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The most expensive mistake is blaming Figma for a copy that was detached long ago. Check the detach first. Then check the review queue. Those two checks cover the causes Figma's help pages describe most directly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: the button that stopped matching"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you change the fill of a live button on a new screen. The fill override stays on that instance, and library updates still reach it. Later you detach the same button to change its label. Now the library's corner radius update never reaches that copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Libraries panel and you will not find the detached button in the review list. That is expected. The link is gone, so no review can bring the update back. The fix is to swap the frame back to the live component."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's swap article says overrides stay by default when you swap libraries. Test the swap on one button first. Then check the label and the fill before you swap a whole page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When detaching is the right call"
+    },
+    {
+      "type": "paragraph",
+      "text": "Detaching is not always a mistake. A one-off illustration, a mockup that will never ship, or a copy that must differ on purpose can all justify a detach. Detach on purpose. Then write the reason in the layer name or in the team channel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Know what you give up. That copy will never receive a fix from the library, including a fix you want later. Decide before you cut the link, not after the next publish."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the whole team on one version"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most stale instances are team problems, not single-file problems. One person publishes without a summary. Another never reviews. A third detaches a copy to get unstuck. A short rule set helps. Keep it short enough that people will read it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Write a publish summary that names the components that changed.",
+        "Post each publish in your team channel the same day.",
+        "Review pending updates after each publish, not whenever someone remembers.",
+        "Detach only with a reason on the layer or in the channel.",
+        "Swap a component when you need another version, instead of detaching it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Slack is the easy place to post the note. Hold fn and dictate it instead of typing. Dictation drops clean, formatted text at the cursor in any app. Read it back before you send it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ (Option and Command) to ask about anything on screen, and Lazur answers out loud. It points at things, explains what it sees, and guides you one click at a time. It waits for each click before it moves on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons or edit your file for you. It is not a plugin for Figma. For this problem, Lazur can show you where Review library updates is and draft the publish summary. You still make the design call and click the buttons yourself."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Menu paths and shortcuts for this workflow"
+    },
+    {
+      "type": "table",
+      "caption": "Labels can change between Figma builds. I could not confirm the current macOS build, so check your menu first.",
+      "headers": [
+        "Task",
+        "Where to find it on Mac"
+      ],
+      "rows": [
+        [
+          "Detach an instance",
+          "⌥⌘B, or right-click the instance and choose Detach instance"
+        ],
+        [
+          "Review library updates",
+          "Bottom of the left navigation, then the Updates tab"
+        ],
+        [
+          "Publish a library",
+          "Assets panel > Libraries > Publish next to Current file"
+        ],
+        [
+          "Undo a fresh mistake",
+          "⌘Z, right after the change"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Plan limits and what they cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "Libraries need a paid Figma plan, and Figma's pages do not agree on which plans qualify. Figma's Starter plan overview lists No team libraries under limited features. It also caps Starter at 3 Figma Design files in one folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's pricing page lists a Professional full seat at $16 per month and includes team-wide design libraries. Figma's sharing article lists libraries only on Education, Organization, Government, and Enterprise plans. Check the pricing page and your own plan before you buy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the evidence does and does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "I did not find a study that measures the time or money lost to stale components. The survey numbers on this page cover design systems in general. They do not measure library updates on their own."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fixes here come from Figma's help pages. Those pages document the steps. They do not test whether a step fixes a stale instance, so treat them as the documented route and check what you see on your screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some forum threads point at other causes, such as invalid items that block a publish. I did not open those threads to verify them, so this page leaves them out. The release notes I checked did not mention libraries or detaching either."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can a detached instance get updates again?",
+      "answer": "Figma's detach help does not describe a way to re-link a detached copy. A forum snippet suggested replacing the frame with a new instance. I did not confirm that in Figma's docs. Swap the live component in and test on one copy first."
+    },
+    {
+      "question": "Why do I see updates in the panel that my copy never gets?",
+      "answer": "The panel can hide updates on other pages, and updates to hidden layers are hard to compare. Turn on Show updates for all pages to see the full list. If the copy is detached, no library update will reach it."
+    },
+    {
+      "question": "Does Starter let me publish a team library?",
+      "answer": "No. Figma's Starter plan overview lists No team libraries under limited feature availability. Figma's help pages disagree on which paid plans include libraries, so check the pricing page and your own plan before you decide."
+    },
+    {
+      "question": "Will my teammates know when I publish?",
+      "answer": "Figma's publish article does not say whether consuming files get a notice. Do not rely on one. Post the publish summary in your team channel the same day you publish."
+    },
+    {
+      "question": "Can I see how many copies were detached?",
+      "answer": "Figma's library analytics tracks detaches for components, component sets, and variables. It is available only on Education (K-12), Organization, Government, and Enterprise plans. Guests and limited-access users are excluded. Data updates daily."
+    },
+    {
+      "question": "Does Lazur accept updates or detach layers for me?",
+      "answer": "No. Lazur does not click buttons or change your file. It can point at Review library updates, guide you one click at a time, and draft a publish summary. You make each change yourself."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Detach an instance from the component",
+      "url": "https://help.figma.com/hc/en-us/articles/360038665754-Detach-an-instance-from-the-component",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Track library and component usage",
+      "url": "https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Review and accept library updates",
+      "url": "https://help.figma.com/hc/en-us/articles/360039234193-Review-and-accept-library-updates",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Share libraries in an organization",
+      "url": "https://help.figma.com/hc/en-us/articles/360040529593-Share-libraries-in-an-organization",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Starter plan overview",
+      "url": "https://help.figma.com/hc/en-us/articles/13838684089751-Starter-plan-overview",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Swap style and component libraries",
+      "url": "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-style-and-component-libraries",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Pricing",
+      "url": "https://www.figma.com/pricing/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Downloads",
+      "url": "https://www.figma.com/downloads/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Release Notes",
+      "url": "https://www.figma.com/release-notes/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "UX Tools: Design Systems survey overview",
+      "url": "https://www.uxtools.co/survey/design-systems/overview",
+      "publisher": "UX Tools",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "components stop receiving library updates",
+  "costs": [
+    {
+      "title": "Copies drift from the library",
+      "text": "Each detached copy freezes at the moment you cut the link. Figma's help says it no longer applies component changes. Over time, screens in one product stop matching. Review rounds then catch the same mismatch again and again."
+    },
+    {
+      "title": "Reviews turn into hunts",
+      "text": "When a color or spacing change never reaches a copy, someone has to find it by eye. Nothing in the file flags the miss. It usually shows up late, during handoff or in a developer's build. Hidden layers make the hunt harder, because the review panel cannot compare them visually."
+    },
+    {
+      "title": "Developers build from stale copies",
+      "text": "Developers build from the copy they inspect. If that copy is out of date, the build is out of date too. Fixing it then means another round of changes, a new handoff, and a fresh check of every screen."
+    },
+    {
+      "title": "Libraries need a paid plan",
+      "text": "Figma's Starter plan overview lists No team libraries. Figma's pricing page lists a Professional full seat at $16 per month. Prices change, so check the pricing page before you plan a budget around it."
+    },
+    {
+      "title": "Trust in the library drops",
+      "text": "When designers stop trusting the library, they draw their own buttons. You then have the library, plus local copies that look almost the same. That gap is the real cost, and no export setting fixes it."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The instance was detached",
+      "text": "A detach cuts the link for good. Figma's help says the object stops applying component changes. The copy keeps its current layers and properties, so it looks fine until the library moves on. This is the most direct cause, and the one to check first."
+    },
+    {
+      "title": "The update was never published",
+      "text": "Library changes reach other files only after someone publishes. Edits in the source file stay private until then. The Libraries button tooltip reads Review unpublished changes on the source file when it has changes that are not yet published."
+    },
+    {
+      "title": "The update is waiting for review",
+      "text": "Updates sit in the Libraries panel until someone accepts them. Figma's review article says you can accept one instance with Update instance, or everything with Update all. Until then, the instance keeps its old version. The file looks stale, but nothing is broken."
+    },
+    {
+      "title": "Updates are on other pages",
+      "text": "The review panel does not show every update by default. Turn on Show updates for all pages to see the full list. Figma's help says this is how you see every update, so an update can exist and still stay out of sight."
+    },
+    {
+      "title": "Changes touch hidden layers",
+      "text": "Figma's review article says you cannot visually compare updates to hidden layers within a component. A change can land in a layer nobody sees. Teams then accept without checking, or skip the update entirely. Both choices leave the copy wrong."
+    },
+    {
+      "title": "Your role or plan blocks it",
+      "text": "Reviewing and accepting updates needs edit access to the file. A viewer can see an update but cannot accept it. Libraries also need a plan that includes team libraries, and Figma's help pages disagree on which plans those are. Check your own plan and role."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Swap instead of detaching",
+      "text": "Select the detached frame and swap in the live component. Figma's swap article says overrides stay by default when you swap libraries. Test the swap on one copy first, then check the text and fill after the swap."
+    },
+    {
+      "title": "Review updates in the right order",
+      "text": "Open the Updates tab, read the whole list, then apply updates one at a time with Update instance. Use Update all only after you have read the list. A bulk accept makes it harder to spot one bad change."
+    },
+    {
+      "title": "Turn on Show updates for all pages",
+      "text": "Open Review library updates, go to the Updates tab, and turn on Show updates for all pages. Figma's help says this is how you see every update. Do this before you decide that an instance has no update waiting."
+    },
+    {
+      "title": "Write a publish summary people can use",
+      "text": "The summary appears in version history. Name each component that changed and the property that changed, such as fill or corner radius. Write it for a reviewer who has never seen the file. Lazur can draft it for you."
+    },
+    {
+      "title": "Check hidden layers in the source",
+      "text": "The review view cannot compare updates to hidden layers visually. Open the component in the library file. Unhide what you need, compare it with the copy, then hide it again. Do this before you accept, not after."
+    },
+    {
+      "title": "Undo a fresh detach quickly",
+      "text": "If you detached a copy by mistake a moment ago, try ⌘Z right away. Figma's undo help covers creating a component, not detaching one, so check the result. Test on a single layer before you rely on it."
+    },
+    {
+      "title": "Give reviewers edit access",
+      "text": "Only people with edit access can accept updates. If a designer can only view the file, they cannot clear the review queue. Give edit access to the people who own the review, and keep everyone else on view."
+    },
+    {
+      "title": "Check your plan before you publish",
+      "text": "Starter lists No team libraries, so publishing needs a plan that includes them. Figma's pricing page lists team-wide design libraries under Professional. Confirm with your admin, because Figma's own pages disagree on which plans include libraries."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "point",
+      "say": "Where is Review library updates? Circle it for me.",
+      "result": "Lazur draws a circle and a label around the button on your screen. You click it yourself."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through publishing this library, one click at a time.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step."
+    },
+    {
+      "capability": "explain",
+      "say": "Why does this instance still look old?",
+      "result": "Lazur looks at your screen and answers out loud. Check its answer against the Properties panel, since it works from what is on screen."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a publish summary for the corner radius change.",
+      "result": "Lazur drafts the summary text. You read it, edit it, and paste it into the publish box."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the team note into Slack.",
+      "result": "Dictation types clean, formatted text at the cursor in Slack or any other app."
+    }
+  ],
+  "demo": {
+    "capability": "point",
+    "spoken": "Where is Review library updates in this file?",
+    "result": "Lazur circles the button and labels it on your screen. You click it yourself, so you still decide what gets accepted.",
+    "shell": "design",
+    "context": "Figma file with a library update waiting",
+    "output": "Lazur points at the Libraries entry at the bottom of the left navigation and names it.",
+    "pointsAt": "Review library updates"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the detached copies",
+      "text": "Open each screen that uses the library. Select each instance and check the Properties panel for the component name and the instance menu. Note every frame that has lost its link."
+    },
+    {
+      "label": "Day 2",
+      "title": "Decide on each copy",
+      "text": "For each detached copy, choose one path. Keep it detached if it must differ on purpose, and write the reason on the layer. Otherwise swap it back to the live component and check the result."
+    },
+    {
+      "label": "Day 3",
+      "title": "Publish with a summary",
+      "text": "Open the Assets panel, click Libraries, and click Publish next to Current file. Write a summary that names each changed component. Ask Lazur to draft it, then edit the draft before you publish."
+    },
+    {
+      "label": "Day 4",
+      "title": "Review pending updates",
+      "text": "In each consuming file, open Review library updates and the Updates tab. Turn on Show updates for all pages. Apply updates one at a time, and check each change on the canvas."
+    },
+    {
+      "label": "Day 5",
+      "title": "Tell the team",
+      "text": "Post the summary in your team channel. Hold fn and dictate a short note with the list of changed components. Read it back before you send it."
+    },
+    {
+      "label": "Day 6",
+      "title": "Set one rule",
+      "text": "Agree on one rule for detaching. A copy can be detached only with a reason written on the layer or in the channel. Revisit the rule when someone breaks it, not before."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "figma-detached-instances-not-updating-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-detached-instances-not-updating-fix/figma-detached-instances-not-updating-1-3d9573.jpg",
+      "width": 1280,
+      "height": 900,
+      "alt": "Designer working on a Mac laptop and reviewing a layout on the screen",
+      "caption": "A designer checks a layout on a Mac before the review.",
+      "keywords": [
+        "figma detached instances not updating",
+        "Designers",
+        "Components stop receiving library updates",
+        "Mac",
+        "designer mac laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mollyroselee",
+        "url": "https://pixabay.com/users/Mollyroselee-9214707/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/pine-trees-trees-pattern-design-9145950/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-detached-instances-not-updating-fix/figma-detached-instances-not-updating-2-9c1e18.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a desk with a monitor showing design files and components",
+      "caption": "Component files open on a second screen during a review.",
+      "keywords": [
+        "figma detached instances not updating",
+        "Designers",
+        "Components stop receiving library updates",
+        "Mac",
+        "designer desk screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DaveMeier",
+        "url": "https://pixabay.com/users/DaveMeier-361976/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/workstation-pc-mac-apple-inc-405747/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-detached-instances-not-updating-fix/figma-detached-instances-not-updating-3-eea0cb.jpg",
+      "width": 1280,
+      "height": 882,
+      "alt": "Design team reviewing a shared Figma file together at a table",
+      "caption": "A team review can catch a stale copy before handoff.",
+      "keywords": [
+        "figma detached instances not updating",
+        "Designers",
+        "Components stop receiving library updates",
+        "Mac",
+        "design team review",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cocoparisienne",
+        "url": "https://pixabay.com/users/cocoparisienne-127419/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/dogs-huskies-animal-dog-racing-2921382/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma detached instances not updating",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "figma library updates not showing": 1,
+      "figma update instance from library": 1,
+      "figma detach instance shortcut mac": 1,
+      "figma review library updates": 1,
+      "figma publish library update": 1,
+      "figma swap instance keep overrides": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

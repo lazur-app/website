@@ -1,0 +1,617 @@
+{
+  "title": "How to use Goal Seek in Excel on Mac: step by step for Microsoft 365",
+  "metaTitle": "How to Use Goal Seek in Excel on Mac: Steps for 2026",
+  "description": "Learn how to use Goal Seek in Excel on Mac: the Data tab steps, the dialog fields, Excel for the web limits, and fixes for common errors.",
+  "targetKeyword": "how to use goal seek in excel on mac",
+  "secondaryKeywords": [
+    "Goal Seek Excel Mac",
+    "What-If Analysis Excel Mac",
+    "Goal Seek not working Excel Mac",
+    "Goal Seek Excel for the web",
+    "Solver Excel Mac"
+  ],
+  "intro": "To use Goal Seek in Excel on Mac, open the workbook in the Excel desktop app, go to the Data tab, click What-If Analysis, then click Goal Seek. Enter the formula cell in Set cell, the target value in To value, and the input cell in By changing cell, then click OK.",
+  "tldr": [
+    "Goal Seek sits at Data > What-If Analysis > Goal Seek in the Excel desktop app.",
+    "It asks for three things: Set cell, To value, and By changing cell.",
+    "It adjusts one input only. Microsoft points to Solver when several inputs must change.",
+    "Excel for the web does not include Goal Seek, so open the file on your Mac in the desktop app.",
+    "Microsoft lists no keyboard shortcut for Goal Seek, so you click with a mouse or trackpad."
+  ],
+  "stats": [
+    {
+      "value": "None",
+      "label": "Keyboard shortcuts Microsoft lists for Goal Seek, What-If Analysis, or the Data tab",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/keyboard-shortcuts-in-excel-1798d9d5-842a-42b8-9c99-9b7213f0040f",
+      "sourceTitle": "Keyboard shortcuts in Excel (Microsoft Support)"
+    },
+    {
+      "value": "macOS 14",
+      "label": "Minimum macOS to keep receiving Microsoft 365 and Office for Mac updates",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Newest Excel for Mac build in Microsoft's release notes, dated Oct 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Goal Seek answers a backward question. You already know the result a formula should produce, and you want to know which input value gets you there. Instead of guessing and retyping numbers, you hand the formula to Goal Seek and let it search for the value."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Goal Seek is a desktop feature. You need Excel for Mac installed on your Mac, and the workbook must be open in that app. Microsoft's Goal Seek page covers three versions: Excel for Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac. If you run an older release, check your own menus before you follow the steps, because Microsoft's Mac page does not cover older releases."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Excel for Microsoft 365 for Mac, Excel 2024 for Mac, or Excel 2021 for Mac",
+        "The workbook open in the Excel desktop app, not in Excel for the web",
+        "A formula cell whose result depends on one input cell you can change",
+        "A target number that you want the formula to reach",
+        "A note of the original input value, so you can put it back"
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: Goal Seek on Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps below follow Microsoft's Mac instructions. Every move happens with the mouse or trackpad. Microsoft's Mac keyboard shortcut list has no shortcut for Goal Seek, What-If Analysis, or the Data tab. Work through the steps in order the first time, even if you already know Excel well."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where What-If Analysis sits on the Data tab"
+    },
+    {
+      "type": "paragraph",
+      "text": "What-If Analysis is a group of tools on the Data tab. Goal Seek is one of its commands. Data Tables sit in the same family of analysis tools, and they also need the desktop app. You reach for Goal Seek when you know the answer you want and need the input that produces it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the sheet so Goal Seek can work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Goal Seek needs a chain of cells. One input cell feeds a formula, and that formula produces a result. The result cell goes in Set cell. The input cell goes in By changing cell. If the chain breaks anywhere, Goal Seek cannot move the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a simple case. Your revenue cell multiplies units sold by price. You want revenue to reach a fixed target. Put the revenue cell in Set cell, the target in To value, and the units cell in By changing cell. Goal Seek then searches for the units value that brings revenue to the target."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "The formula must read the input",
+      "text": "Microsoft's page says the cell Goal Seek changes must be referenced by the formula in the Set cell. If the formula does not read the input cell, Goal Seek has nothing to adjust. Trace the chain before you open the dialog."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reading the three dialog fields"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Field",
+        "What goes there",
+        "Revenue example"
+      ],
+      "rows": [
+        [
+          "Set cell",
+          "The cell with the formula you want to resolve",
+          "The revenue cell"
+        ],
+        [
+          "To value",
+          "The result you want the formula to reach",
+          "The target revenue"
+        ],
+        [
+          "By changing cell",
+          "The one input cell Goal Seek is allowed to change",
+          "The units sold cell"
+        ]
+      ],
+      "caption": "The three Goal Seek fields and what each one expects."
+    },
+    {
+      "type": "paragraph",
+      "text": "Type the target in To value as a plain number. Use the exact figure you need, not a rounded guess. A rounded target can send the answer somewhere that looks right and still misses your real goal."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the Goal Seek Status dialog before you trust the answer"
+    },
+    {
+      "type": "paragraph",
+      "text": "After you click OK, Excel shows a Goal Seek Status dialog. A community answer on Microsoft's Q&A forum says this dialog shows whether Excel found a solution, along with the new input value. Read that value first, then check the Set cell in the sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Results are approximate. Goal Seek works toward the target and can land a little off it. Accept the value only after the Set cell matches your goal closely enough for your use."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Goal Seek changes only one input"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's page says Goal Seek works with only one variable input value. When your target depends on two or more inputs, Microsoft points you to the Solver add-in. Goal Seek is the right tool for a single unknown. It is the wrong tool for a model with several unknowns."
+    },
+    {
+      "type": "paragraph",
+      "text": "One workaround is to fix one input at a value you trust, then run Goal Seek on the other. That only works when the fixed value is reasonable. Treat it as a judgment call, and write down which input you held fixed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Goal Seek in Excel for the web and why it is missing"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the command is missing, check whether the file is open in a browser. A Microsoft Q&A community answer says Goal Seek is not available in Excel for the web. The same answer says Goal Seek, Data Tables, Solver, and Series need the Excel desktop app. The web version can show What-If results, but it cannot run those tools."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's page on recalculation and iteration says iteration settings are not available in Excel for the web. To change them, open the file in the desktop app through Open in Excel."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Excel for Mac desktop app",
+        "Excel for the web"
+      ],
+      "rows": [
+        [
+          "Run Goal Seek",
+          "Yes, from Data > What-If Analysis",
+          "Not available, per a Microsoft Q&A answer"
+        ],
+        [
+          "Change iteration settings",
+          "Yes",
+          "Not available, per Microsoft's recalculation page"
+        ],
+        [
+          "Run Solver, Data Tables, or Series",
+          "Yes",
+          "Not available, per a Microsoft Q&A answer"
+        ],
+        [
+          "Show What-If results",
+          "Yes",
+          "Displays results only"
+        ]
+      ],
+      "caption": "Which What-If tools each version of Excel can run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts and the ribbon on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's list of Excel keyboard shortcuts for Mac has no shortcut for What-If Analysis, Goal Seek, or the Data tab. The list does include ⌘ ⌥ R to expand or minimize the ribbon. Use it when the ribbon is collapsed and you cannot see the Data tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same list says Control+Option starts access keys only in Excel for the web on a Mac. It does not settle how access keys behave in the desktop app, so do not count on them. A mouse or trackpad is the safest route."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Excel for Mac version and macOS you need"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft lists the Goal Seek steps for Excel for Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac. Microsoft's release notes list the newest Excel for Mac build as 16.114.3, dated Oct 27, 2026. Microsoft describes that release as quality and performance improvements."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your macOS version matters for updates. Microsoft says a minimum of macOS 14 (Sonoma) is required to receive updates to Microsoft 365 and Office apps. Older macOS versions keep working, but they stop receiving updates, including security updates. Microsoft also says macOS 12 (Monterey) is the minimum to install versions 16.78 or later."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check before you update",
+      "text": "If your Mac runs an older macOS, the Goal Seek steps still match the Excel versions Microsoft lists. You will stop getting Office updates, though, so plan an upgrade before that happens."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that waste your time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing a fixed number into Set cell. Set cell needs the formula that produces the result.",
+        "Picking an input cell the formula never reads. Goal Seek cannot move a result that does not depend on the input.",
+        "Expecting two inputs to change. Goal Seek adjusts one, so use Solver for more.",
+        "Running the steps in Excel for the web, where the command is not available.",
+        "Skipping the copy of the original input. Write the old value down before you click OK."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failed runs come from the first two items. Trace the formula chain again before you rerun the command. A quick check saves a lot of guessing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Excel says it may not have found a solution"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the Goal Seek Status dialog says Excel may not have found a solution. Community discussions point to two usual causes. Either no exact answer exists for your target, or the Set cell does not link to the By changing cell. Check the link first, since it is the easier fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "A quick test helps you tell the two causes apart. Pick a target you can reach by hand, for example the result the formula gives for an input you type yourself. If Goal Seek finds that input, your setup works, and the original target was the problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Format the answer so it reads well"
+    },
+    {
+      "type": "paragraph",
+      "text": "Goal Seek writes the input value into your sheet, and that value can carry more decimal places than you want. Microsoft's Mac page says to use Increase Decimal or Decrease Decimal on the Home tab. Those buttons change how the number looks, not the value stored in the cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Windows page uses the Percentage button in the Number group for a similar step. On a Mac, skip that button and use the decimal buttons instead."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example you can test on a small model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you run Goal Seek on a live file, build a small test model. Use a blank sheet, so nothing you care about is at risk. The test shows you how the three fields behave before real numbers are involved."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type a starting value into an input cell and label it.",
+        "Write a formula that uses that input, such as a price multiplied by the input.",
+        "Pick a target you know the formula can reach.",
+        "Run Data > What-If Analysis > Goal Seek, then read the Goal Seek Status dialog.",
+        "Type the new input back in by hand and confirm the formula matches the target."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the hand check matches, the same steps will work on the real workbook. If it does not match, the formula chain has a gap, and you should fix it before you run the command again."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next after Goal Seek"
+    },
+    {
+      "type": "paragraph",
+      "text": "After the first run works, test the answer. Change the target a little and run Goal Seek again. If the input moves in a sensible direction, the model behaves as you expect. If the input jumps around, check each formula between the input and the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you need several inputs, learn Solver next. Microsoft points to Solver for that case, and Solver also needs the desktop app. If you build summary tables from the same data, see [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel) and [How to use XLOOKUP in Excel on Mac](/how-to/use-xlookup-in-excel)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is Goal Seek in Excel on Mac?",
+      "answer": "Open the workbook in the Excel desktop app, click the Data tab, click What-If Analysis, then click Goal Seek. Microsoft's Mac steps follow this path exactly. A community answer also places the command under a Forecast group, so look for the label if the layout differs."
+    },
+    {
+      "question": "Is there a keyboard shortcut for Goal Seek on Mac?",
+      "answer": "Not that Microsoft lists. Microsoft's Mac keyboard shortcut list has no shortcut for What-If Analysis, Goal Seek, or the Data tab. Use your mouse or trackpad to reach the command."
+    },
+    {
+      "question": "Can I use Goal Seek in Excel for the web?",
+      "answer": "Not according to a Microsoft Q&A community answer, which says Goal Seek is not available in Excel for the web. Open the file in the desktop app through Open in Excel. Microsoft also says iteration settings need the desktop app."
+    },
+    {
+      "question": "Which Excel versions on Mac include Goal Seek?",
+      "answer": "Microsoft's Goal Seek page lists Excel for Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac. Check your build against Microsoft's release notes if your menus look different from the steps."
+    },
+    {
+      "question": "Can Goal Seek change two cells at once?",
+      "answer": "No. Microsoft's page says Goal Seek works with only one variable input value. For more inputs, Microsoft points to the Solver add-in."
+    },
+    {
+      "question": "Does Goal Seek give an exact answer?",
+      "answer": "Not always. Results are approximate, so check the Set cell after you run it. Compare the value in the Set cell with your target before you rely on the input Goal Seek found."
+    },
+    {
+      "question": "Why does the Set cell need a formula?",
+      "answer": "Goal Seek works by changing an input and watching a formula react to it. Microsoft describes Set cell as the cell with the formula to resolve. A typed number has no link to the input, so there is nothing for Goal Seek to move."
+    },
+    {
+      "question": "What macOS do I need to keep getting Office updates?",
+      "answer": "Microsoft says a minimum of macOS 14 (Sonoma) is required to receive updates to Microsoft 365 and Office apps. Older macOS versions still run Office, but they stop receiving updates, including security updates."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use Goal Seek to find the result you want by adjusting an input value",
+      "url": "https://support.microsoft.com/en-us/excel/use-goal-seek-to-find-the-result-you-want-by-adjusting-an-input-value",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How can I access goal seek from my macbook excel online?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5282398/how-can-i-access-goal-seek-from-my-macbook-excel-o",
+      "publisher": "Microsoft Q&A (community answer)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/office/keyboard-shortcuts-in-excel-1798d9d5-842a-42b8-9c99-9b7213f0040f",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Change formula recalculation, iteration, or precision in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/change-formula-recalculation-iteration-or-precision-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Use Goal Seek in Excel for Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Microsoft 365 for Mac, Excel 2024 for Mac, or Excel 2021 for Mac",
+    "The workbook open in the Excel desktop app, not in Excel for the web",
+    "A formula cell whose result depends on one input cell you can change",
+    "A target number that you want the formula to reach",
+    "A note of the original input value, so you can put it back"
+  ],
+  "steps": [
+    {
+      "name": "Open the workbook in the desktop app",
+      "text": "Open the file in Excel for Mac, the desktop app on your Mac. Do not work from a browser tab. Goal Seek is not available in Excel for the web, so the command will be missing there.",
+      "tip": "If a file opened in a browser, choose Open in Excel to move it into the desktop app."
+    },
+    {
+      "name": "Check the formula chain",
+      "text": "Click the cell that shows the result you care about. Read its formula and confirm it uses the input cell you plan to change. If it does not, fix the chain first.",
+      "tip": "Read the formula in the formula bar so you see every cell it uses."
+    },
+    {
+      "name": "Open the Data tab",
+      "menuPath": [
+        "Data"
+      ],
+      "text": "Click the Data tab on the ribbon. The What-If Analysis tools live here.",
+      "tip": "Microsoft lists no shortcut for the Data tab, so click it with the mouse or trackpad."
+    },
+    {
+      "name": "Open What-If Analysis",
+      "menuPath": [
+        "Data",
+        "What-If Analysis"
+      ],
+      "text": "On the Data tab, click What-If Analysis. Its menu holds the analysis commands, including Goal Seek."
+    },
+    {
+      "name": "Choose Goal Seek",
+      "menuPath": [
+        "Data",
+        "What-If Analysis",
+        "Goal Seek"
+      ],
+      "text": "Click Goal Seek. The Goal Seek dialog opens with three fields to fill in.",
+      "tip": "A community answer places this command under a Forecast group. Microsoft's Mac page does not mention that group, so look for the Goal Seek label."
+    },
+    {
+      "name": "Fill in Set cell",
+      "text": "In Set cell, enter the cell that holds the formula. Click the cell in the sheet or type its address. This is the result you want to hit."
+    },
+    {
+      "name": "Fill in To value",
+      "text": "In To value, type the number you want the formula to reach. Enter a plain number, without text or units.",
+      "tip": "Keep the target in the same units as the result. A revenue target goes in revenue units."
+    },
+    {
+      "name": "Fill in By changing cell",
+      "text": "In By changing cell, enter the input cell. Goal Seek changes only this cell. Click the cell or type its address.",
+      "tip": "Write down this cell's current value before you continue, so you can put it back by hand."
+    },
+    {
+      "name": "Click OK",
+      "text": "Click OK. Goal Seek runs, then shows the Goal Seek Status dialog. Read whether it found a solution and note the new input value."
+    },
+    {
+      "name": "Check the Set cell",
+      "text": "Look at the Set cell in the sheet. It should show your target or a value very close to it. Results are approximate, so accept the answer only if the gap is small enough for your use."
+    },
+    {
+      "name": "Format the result",
+      "menuPath": [
+        "Home",
+        "Increase Decimal"
+      ],
+      "text": "If the new input shows too many decimal places, use the decimal buttons on the Home tab. Microsoft's Mac page names Increase Decimal and Decrease Decimal.",
+      "tip": "Formatting changes how the number looks. It does not change the value."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Expand or minimize the ribbon",
+      "keys": "⌘ ⌥ R"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Goal Seek is missing from the Data tab",
+      "fix": "Check that you are in the Excel desktop app, not Excel for the web. Confirm you use Excel for Microsoft 365, 2024, or 2021 for Mac. If the ribbon is collapsed, press ⌘ ⌥ R to expand or minimize it."
+    },
+    {
+      "problem": "Excel says it may not have found a solution",
+      "fix": "Check that the Set cell formula refers to the By changing cell. Then test a target you can reach by hand. If that test works, the original target was out of reach."
+    },
+    {
+      "problem": "The Set cell never matches the target",
+      "fix": "The formula may not read the input cell. Trace the chain. Also confirm that Set cell holds a formula, not a typed number."
+    },
+    {
+      "problem": "The answer is a little off the target",
+      "fix": "Goal Seek results are approximate. Check the Set cell, then decide whether the gap matters for your use. Run the command again if the gap is too large."
+    },
+    {
+      "problem": "The model needs two or more inputs",
+      "fix": "Goal Seek adjusts one input. Microsoft points to the Solver add-in for multiple inputs. Solver also runs only in the desktop app."
+    },
+    {
+      "problem": "Your menu does not match the steps",
+      "fix": "A community answer places What-If Analysis under a Forecast group, and Microsoft's Mac page does not. Look for the labels, check your build, and compare it with the newest build, 16.114.3."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is What-If Analysis, and walk me through Goal Seek?",
+    "capability": "guide",
+    "result": "Lazur draws a circle and a label around What-If Analysis on your screen. Ask for the full walkthrough, and it guides you one click at a time, waiting for each click.",
+    "shell": "sheet",
+    "context": "Excel for Mac open to a workbook, Data tab in view",
+    "output": "You still make each click. Lazur points, explains each field, and waits for you. It does not click buttons or change cells for you.",
+    "pointsAt": "What-If Analysis"
+  },
+  "type": "howto",
+  "slug": "use-goal-seek-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-goal-seek-in-excel/how-to-use-goal-seek-in-excel-1-5ad3b6.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a desk working on a spreadsheet on a laptop, the kind of Excel work where Goal Seek in Excel on Mac helps.",
+      "caption": "Spreadsheet work on a laptop at a desk.",
+      "keywords": [
+        "how to use goal seek in excel on mac",
+        "Excel",
+        "use Goal Seek",
+        "Mac",
+        "person working laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-goal-seek-in-excel/how-to-use-goal-seek-in-excel-2-44ca53.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Laptop screen showing rows of numbers, the kind of model where you would use Goal Seek in Excel on Mac.",
+      "caption": "Rows of numbers on a laptop screen.",
+      "keywords": [
+        "how to use goal seek in excel on mac",
+        "Excel",
+        "use Goal Seek",
+        "Mac",
+        "laptop screen numbers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Edar",
+        "url": "https://pixabay.com/users/Edar-609103/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/smartphone-mobile-phone-cell-phone-564152/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-goal-seek-in-excel/how-to-use-goal-seek-in-excel-3-8f981f.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person using a Mac at a desk, reviewing figures on screen before running a what-if check in Excel on Mac.",
+      "caption": "Reviewing figures on a Mac before a what-if check.",
+      "keywords": [
+        "how to use goal seek in excel on mac",
+        "Excel",
+        "use Goal Seek",
+        "Mac",
+        "man using Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use goal seek in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "Goal Seek Excel Mac": 1,
+      "What-If Analysis Excel Mac": 1,
+      "Goal Seek not working Excel Mac": 1,
+      "Goal Seek Excel for the web": 1,
+      "Solver Excel Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

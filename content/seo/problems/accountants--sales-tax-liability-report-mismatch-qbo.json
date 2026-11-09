@@ -1,0 +1,614 @@
+{
+  "title": "Sales tax liability report does not match the payment? Fixes for Mac accountants",
+  "metaTitle": "Sales tax liability report does not match? Fixes for Mac accountants",
+  "description": "The sales tax liability report does not match the payment when a journal entry or a date is off. Here is how to find it on a Mac, without buying anything.",
+  "targetKeyword": "sales tax liability report does not match",
+  "secondaryKeywords": [
+    "sales tax report payment mismatch",
+    "sales tax payable journal entry",
+    "sales tax due date by state",
+    "reconcile sales tax return and payment",
+    "sales tax payable balance does not match"
+  ],
+  "intro": "Your sales tax liability report does not match the payment window when the amount on the report differs from the return or the payment you sent. The cause is usually a process gap, not a conflicting deadline, because the states checked here set one due date for both the return and the payment. This page covers what the gap costs, why it happens, and how to close it on a Mac without buying anything.",
+  "tldr": [
+    "Filing and payment usually share one due date, so the mismatch comes from your process, not the calendar.",
+    "The usual culprits are journal entries posted after filing, payments dated wrong, and sales edited after the return.",
+    "Compare the liability report, the return and the payment for the same period before you pay.",
+    "Lazur can explain the figures and walk you through the checks, but it does not click buttons or edit your books."
+  ],
+  "stats": [
+    {
+      "value": "70%",
+      "label": "of 438 surveyed US tax professionals admitted errors or near-misses in the final 48 hours of tax season (2026 survey)",
+      "sourceUrl": "https://www.analytix.com/blog/tax-season-burnout",
+      "sourceTitle": "Analytix: Tax Season Burnout"
+    },
+    {
+      "value": "$30 billion",
+      "label": "estimated 2021 nationwide remote sales tax collections, per GAO, which found businesses face substantial compliance costs",
+      "sourceUrl": "https://www.gao.gov/products/gao-23-105359",
+      "sourceTitle": "GAO-23-105359: Remote Sales Tax (federal legislation could resolve some uncertainties)"
+    },
+    {
+      "value": "25 to 30 hours",
+      "label": "a month on manual sales tax work, per an Anrok vendor benchmark that is not independently verified",
+      "sourceUrl": "https://stacker.com/stories/business-economy/400k-compliance-cost-how-sales-tax-complexity-drains-saas-margins",
+      "sourceTitle": "Stacker: The $400K compliance cost (Anrok benchmark)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A mismatch shows up in one of three places. The liability report shows one amount, the return you filed shows another, and the payment you recorded shows a third. Each number can be right on its own. They just do not describe the same period, the same tax, or the same moment. Finding the gap is mostly matching work, and you can do it in Excel or Numbers with the files you already have."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a sales tax report and payment mismatch costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first cost is time. A 2026 survey of 438 US accountants and tax professionals found that 70% admitted errors or near-misses in the final 48 hours of tax season. That figure covers tax work in general, not sales tax alone, and the survey sponsor is not named. Treat it as a warning sign, not a rate for your own reports. Vendor numbers are weaker still. Anrok, a sales tax automation vendor, cites 25 to 30 hours a month of manual sales tax work, but its sample size and year are not stated."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second cost is penalties. In Alabama, a late return carries a failure to file penalty of the greater of 10% of the tax due or $50. A late payment carries a separate failure to pay penalty of 10% of the delinquent tax. A return filed on time can still come with a short payment and a penalty. Check the payment on its own, not only the return."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third cost is a lost discount. Texas gives a timely filing discount of 0.5% of tax reported and paid on time. Prepaying taxpayers can claim an extra 1.25%. If the payment misses the window, or the amount drifts from the return, that money can disappear. Confirm the current rules on the state's own site, because discounts and deadlines can change."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Read the survey carefully",
+      "text": "The 70% figure and the stress figures come from one survey of tax professionals, published on a blog with its sponsor unnamed. Use them to understand the pressure, not to predict your own error rate."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the liability report and the payment drift apart"
+    },
+    {
+      "type": "paragraph",
+      "text": "One pattern is named in QuickBooks Online's own help. If a return shows an unexpected balance due, check for journal entries posted to the sales tax payable account for that agency. Those entries can change the balance so it no longer matches the Sales Tax Liability report. Nothing in the state calendar moved. Your books did."
+    },
+    {
+      "type": "paragraph",
+      "text": "Other patterns are ordinary bookkeeping. A sale gets edited after the return is prepared. A refund posts in the wrong month. A payment gets dated on the day you sent it, while the agency may record a different day. Each change moves one number. Nobody notices until someone lines the three documents up."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A journal entry hits the sales tax payable account after you filed.",
+        "A sale or refund is edited after the return was prepared.",
+        "A payment is dated when you sent it, not when the agency shows it.",
+        "A return figure was typed by hand and one line was copied wrong.",
+        "A zero activity period gets skipped, even though Alabama requires a return with no activity."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: tracing a gap in one period"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your liability report for March shows a balance higher than the return. The return shows a smaller figure, and the payment matches the return. That pattern usually means something changed after filing. The report pulls the balance as it stands today. The return holds the figures you saved on filing day."
+    },
+    {
+      "type": "paragraph",
+      "text": "The order of checks matters. Start with the date range, because a range that is one day off can create a gap that looks like a real error. Then move to the entries, and only then to the sales themselves."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the report for the same start and end dates as the return, not the calendar month.",
+        "Filter transactions for the sales tax payable account to the period, then sort by date.",
+        "Compare each entry with the return line it should affect.",
+        "If one entry explains the gap, write it down with its date and memo.",
+        "If no entry explains it, check edited sales and payments dated in another month."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sales tax due dates by state: return and payment windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "The return and the payment usually share one deadline, but the details differ by state. The table lists the three states this page checked. Use each state's own calendar, and check it again each quarter, because weekend and holiday rules move due dates."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "State",
+        "Return and payment due",
+        "Electronic or timing rule",
+        "Penalty or discount to know"
+      ],
+      "rows": [
+        [
+          "Georgia",
+          "20th of the month after the period",
+          "Owing more than $500 on any return means filing and paying electronically",
+          "The page checked gives no separate early payment deadline"
+        ],
+        [
+          "Texas",
+          "20th, with quarterly filers due Jan 20, Apr 20, Jul 20 and Oct 20",
+          "A weekend or legal holiday moves the due date to the next working day",
+          "0.5% timely filing discount, plus an extra 1.25% for prepaying"
+        ],
+        [
+          "Alabama",
+          "On or before the 20th of the month after the month tax accrued",
+          "Electronic payment information must be sent by 4 p.m. Central on or before the due date",
+          "10% failure to pay penalty, plus a failure to file penalty of the greater of 10% or $50"
+        ]
+      ],
+      "caption": "Due dates and timing rules for three states, from each state's own pages."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two details trip people up. In Texas, a due date that lands on a weekend or legal holiday moves to the next working day. Texas TEXNET payments over $1,000,000 must be initiated by 8 p.m. CT on the banking business day before the due date. A large payment on a deadline day is exactly where a mismatch starts, so schedule it early."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Use the agency's calendar",
+      "text": "Tracker sites often list due dates with no source. We could not verify one tracker claim about Florida, so this page leaves it out. Confirm every date on the agency's own calendar before you set a reminder in Outlook or Calendar."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a one page reconciliation in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A single tab is enough. Open Excel for Mac, start a new workbook, and name the first tab Reconciliation. Use one row per state and period. Add these headers in row 1: Period, Liability report, Return filed, Payment, Report gap, and Payment gap. In row 2, type =B2-C2 in the Report gap column and =D2-C2 in the Payment gap column, then drag both down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep payments on a second tab so you do not type them twice. If that tab lists the period label in column A and the amount in column C, the Payment cell in row 2 can use =SUMIFS(Payments!C:C,Payments!A:A,A2). That formula adds every payment with the same label. Test it on one period first, then copy it down."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Type the period label the same way on both tabs, such as Mar GA, so the formula can match.",
+        "Turn on filters with Data > Filter so you can sort by any gap.",
+        "Sort the gap column from largest to smallest before you start the review.",
+        "Save the workbook with File > Save As, then keep a PDF of each report beside it.",
+        "Leave the payment cell blank until the agency confirmation arrives, so blank means not paid yet."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Trace journal entries that change the payable balance"
+    },
+    {
+      "type": "paragraph",
+      "text": "Journal entries are the hardest part, because they hide inside normal bookkeeping. Start with the account, not the report. Open the sales tax payable account for the agency in QuickBooks Online and list every transaction dated after the filing date. Compare each one with the return line it should affect."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not delete an entry to make the numbers match. Deleting hides what happened. If an entry is wrong, post a correcting entry and write a memo that names the period and the reason. If you are unsure, take it to the person who owns the client's books. Your employer's rules for client data and record changes apply here too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Record the payment so it lines up with the return"
+    },
+    {
+      "type": "paragraph",
+      "text": "In QuickBooks Online, the flow runs in a set order. Review the return under All apps > Sales Tax > Overview > Review sales tax. The return is filed with the agency, either through Intuit's electronic filing service in some states or on the agency's own site. Then record the payment using Record payment. Enter the date the agency shows for the payment, not the date you clicked send."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch partial payments. If you pay less than the return shows, the report will not match the payment, and that is correct. Record the amount actually paid, then note the remaining balance in the Payment gap column. A partial payment is a record of what happened, not an error to hide."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Keep the confirmation",
+      "text": "Save the agency confirmation with the period's files before you close the month. The confirmation and its date are your proof if the state asks later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep the mismatch alive"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Filing before the reconciliation is done, then fixing the books afterward.",
+        "Typing return figures by hand instead of copying them from the report.",
+        "Editing old invoices or refunds after the return is filed.",
+        "Recording the payment on the day you sent it, not the day the agency shows.",
+        "Logging a partial payment as a full payment, so the gap disappears on paper.",
+        "Keeping the reconciliation in your head instead of in a saved file."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The most expensive mistake is the quiet one. A gap nobody writes down looks fine until a notice or an audit arrives. Write one line for every gap, even a small one. The line proves you checked, and it saves the next person an afternoon of guessing."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and it answers out loud. Ask where the Sales Tax Liability report is, and Lazur draws a circle and a label around it. Ask how to record a payment, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate other apps for you. It cannot file the return or post the payment. It can explain a journal entry you are looking at, read a gap out loud, draft a note to a client, and type text where your cursor sits when you hold fn to dictate. Dictation is unlimited on both plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur's research feature runs in its own Chrome tabs and comes back with a summary and a report. Use it to gather the due date pages for each state you file in, then open each official page yourself before you trust it. For more Excel steps, see [Excel for accountants on Mac](/for/accountants/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Follow your employer's rules on client data before you point Lazur at a client file. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. If your firm has stricter rules, those win. The Pro plan starts with a three-day trial and no credit card, and the trial starts when you first open the app. Details are on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Multistate filers and edge cases"
+    },
+    {
+      "type": "paragraph",
+      "text": "Multistate filers have more chances for drift. GAO found that businesses face substantial compliance costs, and that state thresholds and rules differ, which creates a complex patchwork of requirements. Reconcile each state on its own tab. Do not net one state against another, even when the totals look close."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you cannot find the cause, stop digging and contact the state agency or the client's tax advisor. Write down the period, both amounts, and what you ruled out. A short note with those facts helps far more than a guess. If a filed return needs correcting, ask the agency how to amend it before you change anything."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my sales tax liability report not match the return?",
+      "answer": "Usually the report pulls today's balance, while the return holds the figures you filed. A journal entry, an edited sale or a late payment can change the report after filing. Compare both for the same period and look at entries posted after the filing date."
+    },
+    {
+      "question": "Should the return and the payment have the same due date?",
+      "answer": "In Georgia, Texas and Alabama, the return and the payment share one 20th-of-month due date. Rules differ on weekends, electronic filing and discounts. Check the state's own calendar each time, since rules can change."
+    },
+    {
+      "question": "Can I change the payable balance so the numbers match?",
+      "answer": "Avoid it. Deleting or editing history hides the cause. Post a correcting entry with a memo that names the period and reason. If the filed numbers were wrong, ask the agency how to amend the return."
+    },
+    {
+      "question": "Can I fix this without buying software?",
+      "answer": "Yes. A reconciliation tab in Excel, a PDF of each report and a dated payment record cover most cases. Sales tax automation tools exist, but the vendor figures we found are not independently verified, so test any tool before you trust it."
+    },
+    {
+      "question": "Does Lazur file the return or record the payment for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It explains what it sees, points at controls, guides you one click at a time, and drafts or dictates text."
+    },
+    {
+      "question": "Can I paste client sales tax data into Lazur?",
+      "answer": "Follow your employer's rules on client data first. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer and are not stored, and content is never used to train AI models."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Georgia Department of Revenue: File & Pay sales and use tax",
+      "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/file-pay",
+      "publisher": "Georgia Department of Revenue",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Texas Comptroller: Sales Tax",
+      "url": "https://comptroller.texas.gov/taxes/sales/",
+      "publisher": "Texas Comptroller of Public Accounts",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Alabama Department of Revenue: Due date calendar for sales and use tax",
+      "url": "https://www.revenue.alabama.gov/sales-use/due-date-calendar-for-taxes-administered-by-sales-use/",
+      "publisher": "Alabama Department of Revenue",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Intuit QuickBooks Help: File your sales tax return and record sales tax payments in QuickBooks Online",
+      "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/pay-sales-taxes/file-sales-tax-return-record-tax-payment-online/L7ZeSlAr1_US_en_US",
+      "publisher": "Intuit",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Analytix: Tax Season Burnout",
+      "url": "https://www.analytix.com/blog/tax-season-burnout",
+      "publisher": "Analytix",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "GAO-23-105359: Remote Sales Tax (federal legislation could resolve some uncertainties)",
+      "url": "https://www.gao.gov/products/gao-23-105359",
+      "publisher": "U.S. Government Accountability Office",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stacker: The $400K compliance cost (Anrok benchmark)",
+      "url": "https://stacker.com/stories/business-economy/400k-compliance-cost-how-sales-tax-complexity-drains-saas-margins",
+      "publisher": "Stacker",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "sales tax report and payment mismatch",
+  "costs": [
+    {
+      "title": "Penalties on a short payment",
+      "text": "In Alabama, a late payment carries a failure to pay penalty of 10% of the delinquent tax, separate from the failure to file penalty. A return filed on time can still leave a short payment with a penalty attached. Penalties are the cost you can measure most easily, so start there when you size the problem."
+    },
+    {
+      "title": "A timely discount you can lose",
+      "text": "Texas gives a timely filing discount of 0.5% of tax reported and paid on time, and prepaying taxpayers can claim an extra 1.25%. A payment that misses the window or does not match the reported amount can cost that discount. Check the state's own page before each filing, because discount rules can change."
+    },
+    {
+      "title": "Hours spent hunting the gap",
+      "text": "A gap is rarely hard to fix once you find it. Finding it takes the time. The vendor benchmark of 25 to 30 hours a month is one estimate, but its sample and year are not stated. Your own hours matter more, so time one reconciliation and multiply by how often you do it."
+    },
+    {
+      "title": "Stress and errors near the deadline",
+      "text": "A 2026 survey of 438 US tax professionals found that 70% admitted errors or near-misses in the final 48 hours of tax season. The survey covered tax work generally, not sales tax alone. A mismatch found on deadline day is the one that gets rushed and mistyped."
+    },
+    {
+      "title": "Client trust",
+      "text": "When a client asks why the report and the payment differ, a vague answer costs more than the gap itself. A written reconciliation with dates and a cause answers the question on one page. Without one, every difference looks like an error, even when it is not."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Journal entries posted after filing",
+      "text": "A journal entry posted to the sales tax payable account after the return is filed changes the balance on the report. QuickBooks Online warns about this exact pattern when a return shows an unexpected balance due. The report then shows a different figure than the one you filed. Nothing in the state calendar moved. Your books did."
+    },
+    {
+      "title": "Due date treated as the payment date",
+      "text": "Many people enter the due date as the payment date, or enter the day they sent the money. The payment date should match the agency's confirmation. A payment dated the wrong day can land in the wrong month, so the period looks open or the amount sits in the wrong place."
+    },
+    {
+      "title": "Sales edited after the return",
+      "text": "A customer invoice or refund changes after the return was prepared. The report reflects today's version of each sale. The return reflects the version you filed. Two versions of the same sale produce two totals, and the gap can look small enough to ignore."
+    },
+    {
+      "title": "Partial or split payments",
+      "text": "You pay part of the balance, or split one payment across two periods. The payment column then covers less than the liability. The two figures never agree on paper. This is correct behavior, but it looks like an error until you write the remaining balance down."
+    },
+    {
+      "title": "Hand typed return figures",
+      "text": "Someone types the return figures from the report and drops a digit or copies the wrong line. The return and the report then differ by a small amount, which is easy to skip. Copy figures from the report whenever you can, and check the total against it before you file."
+    },
+    {
+      "title": "Several states combined into one total",
+      "text": "Each state has its own return, due dates and rules. GAO described a complex patchwork of requirements across states. When you combine states in one total, a difference in one state hides inside the other. Keep each state on its own line."
+    },
+    {
+      "title": "Zero activity periods skipped",
+      "text": "A period with no sales can get skipped. Alabama requires a return even with no activity, so a skipped period leaves a hole in the trail. Log every state and period, including the zero ones, so the sequence stays complete."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Reconcile before you pay",
+      "text": "Run the sales tax liability report for the exact period on the return. Compare it with the return you filed and the payment you recorded. Do not pay until every gap has a written cause. If the numbers match on the first pass, that is a good sign, not a reason to skip the check."
+    },
+    {
+      "title": "Build one reconciliation tab",
+      "text": "Create a tab in Excel with one row per state and period. Add columns for the report, the return, the payment and two gap columns. Use formulas like =B2-C2 so each gap updates on its own. Keep the tab with the period's PDFs so the trail stays in one place."
+    },
+    {
+      "title": "Trace the payable account",
+      "text": "Open the sales tax payable account for the agency in QuickBooks Online and list every entry dated after the filing date. Match each entry to a line on the return, or write down why it is there. An entry you cannot explain is the first thing to ask about."
+    },
+    {
+      "title": "Correct with a new entry, not a delete",
+      "text": "Deleting an entry hides the history that explains the gap. Post a correcting entry instead, and write a memo that names the period and the reason. Your firm's rules on changing client records apply, so check them first."
+    },
+    {
+      "title": "Record the payment on the agency date",
+      "text": "Use the date and amount shown in the agency's confirmation, not the date you clicked send. Record the payment with Record payment in QuickBooks Online, then match it to the bank line. A payment that matches the bank but not the return is a partial payment, so note the balance."
+    },
+    {
+      "title": "Save a PDF of each report at filing",
+      "text": "Before you file, save the liability report as a PDF. In Chrome, choose File > Print, then pick Save as PDF from the Destination menu. A dated PDF shows what the report said on filing day, even after the live balance changes."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Lazur, what does this payable entry actually mean?",
+      "capability": "explain",
+      "result": "Lazur looks at the screen and explains the entry out loud, so you keep your place in the report."
+    },
+    {
+      "say": "Lazur, where is the Sales Tax Liability report?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the item in QuickBooks Online, so you find it faster in Chrome."
+    },
+    {
+      "say": "Lazur, walk me through recording this payment.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking."
+    },
+    {
+      "say": "Hold fn and dictate the variance note into the cell.",
+      "capability": "dictate",
+      "result": "Dictation types clean text at the cursor in any app, including an Excel cell. It is unlimited on both plans."
+    },
+    {
+      "say": "Lazur, draft a short note to my client about this gap.",
+      "capability": "draft",
+      "result": "Lazur drafts the text and types it where your cursor sits. You check every figure before anything goes out."
+    },
+    {
+      "say": "Lazur, gather the due date pages for these three states.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and returns a summary and report. You still open each official page yourself."
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, which cell should I check next?",
+    "capability": "guide",
+    "result": "Lazur points at the gap that is not zero, says which number to trace next, and waits while you check it.",
+    "shell": "sheet",
+    "context": "Reconciliation tab in Excel for Mac, one period",
+    "pointsAt": "Report gap column"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pull the three numbers",
+      "text": "Run the sales tax liability report for the exact period on the return. Open the return draft and the payment record. Save the report as a PDF in the period folder before anything changes."
+    },
+    {
+      "label": "Day 2",
+      "title": "Trace the payable account",
+      "text": "Open the sales tax payable account for each state. List every entry dated after the filing date. Write one line per entry in the reconciliation tab with its date, memo and amount."
+    },
+    {
+      "label": "Day 3",
+      "title": "Confirm each due date",
+      "text": "Open each state's own due date page. Compare it with your reminder in Outlook or Calendar. Fix any reminder that came from a tracker site rather than the agency."
+    },
+    {
+      "label": "Day 4",
+      "title": "Record the payment",
+      "text": "Enter the payment on the date the agency shows. Attach the confirmation to the period. Note any partial balance in the Payment gap column, not in the total."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write the variance note",
+      "text": "If a gap remains, write what it is and why. Draft the note with Lazur if that helps, then check every figure yourself before it goes to a client."
+    },
+    {
+      "label": "Next period",
+      "title": "Repeat before the deadline",
+      "text": "Run the same steps before the next due date. Keep the reconciliation tab, the PDFs and the note in one folder per period, so the trail survives the next review."
+    }
+  ],
+  "apps": [
+    "excel",
+    "chrome",
+    "outlook"
+  ],
+  "type": "problem",
+  "slug": "sales-tax-liability-report-mismatch-qbo",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/sales-tax-liability-report-mismatch-qbo/sales-tax-liability-report-does-not-match-1-fe80ed.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant at a laptop comparing a sales tax liability report with a payment record",
+      "caption": "Matching the report to the payment starts with one clean comparison.",
+      "keywords": [
+        "sales tax liability report does not match",
+        "Accountants",
+        "Sales tax report and payment window disagree",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "22594",
+        "url": "https://pixabay.com/users/22594-22594/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/calculator-ballpoint-pen-block-1516869/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/sales-tax-liability-report-mismatch-qbo/sales-tax-liability-report-does-not-match-2-920dc6.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Person at a Mac laptop checking tax figures in a spreadsheet",
+      "caption": "A reconciliation tab keeps the three numbers side by side.",
+      "keywords": [
+        "sales tax liability report does not match",
+        "Accountants",
+        "Sales tax report and payment window disagree",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/sales-tax-liability-report-mismatch-qbo/sales-tax-liability-report-does-not-match-3-f7e334.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Tax forms and papers spread across a desk during filing season",
+      "caption": "Filing season is when a sales tax mismatch gets missed.",
+      "keywords": [
+        "sales tax liability report does not match",
+        "Accountants",
+        "Sales tax report and payment window disagree",
+        "Mac",
+        "tax documents desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Cobanams",
+        "url": "https://pixabay.com/users/Cobanams-1761938/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/calculator-table-invoice-work-pay-1156121/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "sales tax liability report does not match",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "sales tax report payment mismatch": 1,
+      "sales tax payable journal entry": 1,
+      "sales tax due date by state": 1,
+      "reconcile sales tax return and payment": 1,
+      "sales tax payable balance does not match": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

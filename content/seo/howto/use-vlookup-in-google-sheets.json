@@ -1,0 +1,549 @@
+{
+  "title": "How to use VLOOKUP in Google Sheets on Mac: a browser walkthrough with fixes",
+  "metaTitle": "How to Use VLOOKUP in Google Sheets on Mac (Step by Step)",
+  "description": "Learn how to use VLOOKUP in Google Sheets on Mac, step by step. Covers the exact match formula, menu paths, shortcuts and fixes for #N/A errors.",
+  "targetKeyword": "how to use vlookup in google sheets on mac",
+  "secondaryKeywords": [
+    "vlookup in google sheets mac",
+    "vlookup exact match google sheets",
+    "vlookup n/a error google sheets",
+    "vlookup formula example google sheets",
+    "google sheets vlookup not working",
+    "vlookup lock range dollar sign",
+    "vlookup shortcut mac google sheets"
+  ],
+  "intro": "In a cell in Google Sheets on a Mac, type =VLOOKUP, then the value to find, the range, the column number, and FALSE. The formula searches the first column of the range, returns the value from the column you name, and shows #N/A when nothing matches.",
+  "tldr": [
+    "Type =VLOOKUP(search key, range, column number, FALSE) in the cell where the answer should appear.",
+    "The lookup value must sit in the first column of the range. VLOOKUP never looks to the left.",
+    "Press Fn+F4 to lock the range with dollar signs, then fill the formula down with ⌘D.",
+    "If you see #N/A, no match was found. Check for extra spaces and numbers stored as text."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What VLOOKUP does in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP does one job. You give it a value, and it finds that value in a list. Then it returns a related value from the same row. Think of a product code on one sheet and the product name you want on another."
+    },
+    {
+      "type": "paragraph",
+      "text": "The function searches the first column of the range you select. It moves down the rows until it finds a match. Then it returns the value from the column number you chose. Google's help page says VLOOKUP only returns the first match, so duplicates matter."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page lists the syntax as VLOOKUP(search_key, range, index, is_sorted). The table below explains each part in plain words."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Argument",
+        "What it means",
+        "Value in this guide"
+      ],
+      "rows": [
+        [
+          "search_key",
+          "The value to find, usually a cell such as A2",
+          "A2"
+        ],
+        [
+          "range",
+          "The block to search. Its first column holds the lookup values",
+          "Prices!A2:C5"
+        ],
+        [
+          "index",
+          "Which column of the range to return. The first column is 1",
+          "2"
+        ],
+        [
+          "is_sorted",
+          "FALSE for an exact match, which Google recommends. TRUE if you leave it out",
+          "FALSE"
+        ]
+      ],
+      "caption": "The four VLOOKUP arguments, based on Google's help page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up your data before you type"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your lookup column must be the first column of the range. VLOOKUP never looks left. If product codes sit in column C and names sit in column A, the formula cannot find the codes. Move the column first, or use a different formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the data clean. Google's help page says wildcards need an exact match, and it advises trimming extra spaces. It also says to store numbers and dates as numbers, not text. A code stored as text will not match the same code stored as a number."
+    },
+    {
+      "type": "paragraph",
+      "text": "For this guide, the product list sits on a sheet named Prices. Column A holds the product code, column B holds the product name, and column C holds the supplier. The Orders sheet has product codes in column A."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example you can copy"
+    },
+    {
+      "type": "paragraph",
+      "text": "On the Orders sheet, put a product code in cell A2. Then click cell B2 and type this formula:"
+    },
+    {
+      "type": "paragraph",
+      "text": "=VLOOKUP(A2, Prices!A2:C5, 2, FALSE)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read it in plain words. Take the code in A2. Find it in the first column of Prices, from row 2 to row 5. Return the value from the second column of that range, using an exact match."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's own example works the same way. The help page shows =VLOOKUP(\"Orange\", B4:D8, 3, FALSE) returning $1.01 from its sample table. Your numbers will differ, but the logic is the same."
+    },
+    {
+      "type": "paragraph",
+      "text": "When B2 shows the right name, the formula works. The next sections make it safe to copy down the column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why FALSE matters for exact matches"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth argument controls how the search works. FALSE means exact match, and Google's help page recommends it. If you leave the argument out, Sheets uses TRUE. TRUE expects the lookup column sorted in ascending order."
+    },
+    {
+      "type": "paragraph",
+      "text": "A sorted search can return a wrong answer with no error. It stops on a row that looks close enough. That is the mistake that hurts most, because the result looks normal. Type FALSE every time unless you have a clear reason not to."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lock the range so the formula copies correctly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Copy the formula down and the range moves with it. Row 3 would search Prices!A3:C6, and the match would miss. Lock the range with dollar signs so it stays fixed."
+    },
+    {
+      "type": "paragraph",
+      "text": "The formula becomes =VLOOKUP(A2, Prices!$A$2:$C$5, 2, FALSE). The search key A2 stays relative, so it moves down one row at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, click inside the range in the formula and press Fn+F4. Each press cycles the dollar signs. Then select B2 and the cells below it, and press ⌘D to fill down."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When you cannot find the menu item"
+    },
+    {
+      "type": "paragraph",
+      "text": "You can insert the function from the menu. Click the result cell, then choose Insert > Function > Lookup > VLOOKUP. The Google help pages I checked do not show this exact path, so treat it as a guide, not a guarantee."
+    },
+    {
+      "type": "paragraph",
+      "text": "Menu labels change between Sheets updates. If you cannot find the item, press Option+/ to open the Tool finder. Type VLOOKUP, then pick the function from the results."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for VLOOKUP on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google lists these shortcuts for Sheets on a Mac. Some keys need the Fn key, because the top row of a Mac keyboard controls brightness and volume by default."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's list shows Show all formulas as Ctrl+~ on Mac. That is unusual, so press it once on your own keyboard before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix the #N/A error in VLOOKUP"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common result is #N/A. It means the formula found no match. Google's help page says so, and it suggests wrapping the formula in IFNA."
+    },
+    {
+      "type": "paragraph",
+      "text": "This version shows a readable message instead: =IFNA(VLOOKUP(A2, Prices!$A$2:$C$5, 2, FALSE), \"Not found\"). The lookup still fails. The message just makes the gaps easy to spot."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that give wrong answers without errors"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Missing FALSE. Sheets assumes TRUE, and the formula may return a close but wrong row.",
+        "Extra spaces. A code with a trailing space will not match the same code without one. Trim the search key or clean the column.",
+        "Numbers stored as text. Numbers that sit left-aligned in a cell are often text. Convert them before you search.",
+        "Duplicate codes. VLOOKUP only returns the first match. A second row with the same code never appears.",
+        "Wildcards without FALSE. Google's help page says wildcards need an exact match. Keep FALSE if you use * or ?.",
+        "Ranges that shift. A range without dollar signs moves when you copy, and the lookup reads the wrong rows."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Duplicates are the hardest mistake to spot, because nothing looks broken. Check the lookup column for repeats first. Then read [how to remove duplicate rows in Google Sheets on Mac](/how-to/remove-duplicate-rows-in-google-sheets) before you trust the results."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test the formula before you copy it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick three codes whose answers you already know. Type them into the search cells and check each result by eye. If all three match, you can copy the formula down with confidence."
+    },
+    {
+      "type": "paragraph",
+      "text": "If one fails, check the spacing first. Then check whether the code is text or a number. Only after that should you look at FALSE, the range, or the column number."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When VLOOKUP is the wrong tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP cannot look left, and it returns only one match. If you need the value on the left, or every match, you need a different formula. Google's product page says Gemini in Sheets can write and explain formulas, and help fix formula errors."
+    },
+    {
+      "type": "paragraph",
+      "text": "Gemini is a useful second opinion. Ask it to explain your error, then check any formula it suggests against your own sheet before you paste it in."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sort the lookup table if you use TRUE. Freeze the top row so headers stay visible when the table is long. Read [how to sort data by column in Google Sheets on Mac](/how-to/sort-data-by-column-in-google-sheets) and [how to freeze the top row in Google Sheets on Mac](/how-to/freeze-the-top-row-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your data comes from a file, read [how to import a CSV file in Google Sheets on Mac](/how-to/import-a-csv-file-in-google-sheets). The formula steps here stay the same once the data is in."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on both Apple silicon and Intel Macs. Hold ⌥ ⌘ and ask where the Insert menu is, and Lazur circles it. Pricing starts with a free trial that needs no credit card, see [pricing](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I use VLOOKUP in an app or a browser on a Mac?",
+      "answer": "On a Mac you open Google Sheets in a browser, such as Chrome or Safari. The formula and the steps on this page stay the same in either browser."
+    },
+    {
+      "question": "What does FALSE mean in a VLOOKUP formula?",
+      "answer": "FALSE tells VLOOKUP to look for an exact match, and Google's help page recommends it. If you leave the argument out, Sheets uses TRUE, which expects the lookup column sorted in ascending order."
+    },
+    {
+      "question": "Why does my VLOOKUP show #N/A?",
+      "answer": "#N/A means no match was found. Check for extra spaces, numbers stored as text, and a missing FALSE. If a gap is expected, wrap the formula in IFNA so the cell shows a message instead."
+    },
+    {
+      "question": "Can VLOOKUP look to the left?",
+      "answer": "No. The lookup value must sit in the first column of the range. If your key is on the right, move the column or use a different formula."
+    },
+    {
+      "question": "Does VLOOKUP return every match?",
+      "answer": "No. VLOOKUP only returns the first match. If a code appears twice, the second row is ignored, so check for duplicates first."
+    },
+    {
+      "question": "How do I copy a VLOOKUP formula down a column on Mac?",
+      "answer": "Lock the table range with dollar signs. Press Fn+F4 on a reference to cycle the signs. Select the formula cell and the cells below it, then press ⌘D to fill down."
+    },
+    {
+      "question": "Can Lazur write the VLOOKUP for me?",
+      "answer": "Lazur can explain the formula out loud and point at menus while you work. It guides you one click at a time. It does not click buttons or operate Sheets for you, so you still type and press the keys."
+    },
+    {
+      "question": "What should I do if VLOOKUP returns the wrong column?",
+      "answer": "Recount the index from the first column of the range, not from column A of the sheet. The first column of your range is 1, whatever its letter. Then check that FALSE is the fourth argument."
+    }
+  ],
+  "sources": [
+    {
+      "title": "VLOOKUP - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/3093318",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets - Google Workspace",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Use VLOOKUP in Google Sheets on a Mac",
+  "appliesTo": "Google Sheets in Chrome or Safari on macOS",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "A Mac with Chrome or Safari, and a Google account with edit access to the sheet",
+    "Lookup data in columns, with the lookup values in the first column of the range",
+    "A plan for duplicate codes, since VLOOKUP only returns the first match"
+  ],
+  "steps": [
+    {
+      "name": "Open your data in Chrome or Safari",
+      "text": "Open the spreadsheet in Chrome or Safari on your Mac. Put the lookup codes in one sheet and the table to search in another. Confirm that the codes sit in the first column of the range."
+    },
+    {
+      "name": "Click the result cell and open the function",
+      "text": "Click the cell where the answer should appear. You can type =VLOOKUP and an opening bracket, or use the menu path shown here.",
+      "menuPath": [
+        "Insert",
+        "Function",
+        "Lookup",
+        "VLOOKUP"
+      ],
+      "tip": "That menu path comes from a third-party guide, not Google's help pages. Match the labels you see on your screen."
+    },
+    {
+      "name": "Type the search key",
+      "text": "Type the cell that holds the code to find, such as A2, then a comma. Use a cell reference, not a typed value, so the formula can copy down.",
+      "tip": "A cell reference lets the formula change with each row."
+    },
+    {
+      "name": "Select the range on the other sheet",
+      "text": "Type Prices!A2:C5, or click the Prices sheet and drag across the table. Then type a comma. The first column of this range holds the codes.",
+      "shortcut": "F2 or Ctrl+E",
+      "tip": "F2 or Ctrl+E turns on range selection while you write a formula, so you can click cells on another sheet."
+    },
+    {
+      "name": "Enter the column number",
+      "text": "Count the columns in the range, starting at 1 for the lookup column. In Prices!A2:C5, the product name sits in column 2. Type 2, then a comma.",
+      "tip": "If the result comes from the wrong column, recount. The number is relative to the range, not to the sheet."
+    },
+    {
+      "name": "Type FALSE and press Return",
+      "text": "Type FALSE, close the bracket, and press Return. FALSE asks for an exact match, which Google recommends. The cell now shows the matching name.",
+      "shortcut": "Return",
+      "tip": "Leave out FALSE and Sheets uses TRUE, which can return a close but wrong row without warning."
+    },
+    {
+      "name": "Lock the range with dollar signs",
+      "text": "Click inside Prices!A2:C5 in the formula. Press Fn+F4 until the range reads Prices!$A$2:$C$5. Leave A2 without dollar signs so it moves with each row.",
+      "shortcut": "Fn+F4",
+      "tip": "The top row on a Mac keyboard may need Fn. If nothing happens, hold Fn and press F4 again."
+    },
+    {
+      "name": "Fill the formula down the column",
+      "text": "Select cell B2 and the cells below it, down to the last product code. Press ⌘D to fill the formula down. Each row now looks up its own code.",
+      "shortcut": "⌘D",
+      "tip": "Check the last row first. If it shows #N/A, that code is missing from the product list."
+    },
+    {
+      "name": "Wrap the formula to handle gaps",
+      "text": "If some codes will not be in the list, wrap the formula in IFNA with a message such as Not found. Google's help page suggests IFNA for this case.",
+      "tip": "IFNA changes how the gap looks. It does not find the missing code."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Fill down",
+      "keys": "⌘D"
+    },
+    {
+      "action": "Paste values only",
+      "keys": "⌘⇧V"
+    },
+    {
+      "action": "Toggle absolute and relative references",
+      "keys": "Fn+F4"
+    },
+    {
+      "action": "Toggle range selection in a formula",
+      "keys": "F2 or Ctrl+E"
+    },
+    {
+      "action": "Toggle formula result previews",
+      "keys": "Fn+F9"
+    },
+    {
+      "action": "Show formula help",
+      "keys": "Shift+Fn+F1"
+    },
+    {
+      "action": "Resize the formula bar",
+      "keys": "Ctrl+Option+↑ or ↓"
+    },
+    {
+      "action": "Open Tool finder",
+      "keys": "Option+/"
+    },
+    {
+      "action": "Show all formulas (check on your keyboard)",
+      "keys": "Ctrl+~"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The cell shows #N/A",
+      "fix": "No match was found. Check the search key against the first column of the range. Look for extra spaces and numbers stored as text. If gaps are expected, wrap the formula in IFNA."
+    },
+    {
+      "problem": "The result comes from the wrong row",
+      "fix": "Check that FALSE is the fourth argument. Without it, Sheets assumes TRUE and may stop on a close match. Then check for duplicate codes."
+    },
+    {
+      "problem": "The result comes from the wrong column",
+      "fix": "Recount the index from the first column of the range. The first column is 1, whatever letter it has on the sheet."
+    },
+    {
+      "problem": "The formula changes when I copy it down",
+      "fix": "Add dollar signs to the range, for example Prices!$A$2:$C$5. Press Fn+F4 on the reference to cycle the signs, then fill down with ⌘D."
+    },
+    {
+      "problem": "The formula appears as plain text",
+      "fix": "The formula did not start with an equals sign. Click the cell, type = at the start, and press Return again."
+    },
+    {
+      "problem": "The lookup value sits to the right of the answer",
+      "fix": "VLOOKUP cannot look left. Move the lookup column to the front of the range, or use a different formula."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through VLOOKUP, one click at a time.",
+    "capability": "guide",
+    "result": "Lazur guides you one click at a time. It waits for each click, and circles the next menu or button you need.",
+    "shell": "sheet",
+    "context": "Google Sheets in Chrome or Safari on a Mac",
+    "pointsAt": "Insert menu",
+    "output": "Click Insert, then Function, then Lookup, then VLOOKUP. Tell me when the formula bar opens."
+  },
+  "type": "howto",
+  "slug": "use-vlookup-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-vlookup-in-google-sheets/how-to-use-vlookup-in-google-sheets-1-eab84b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a Mac laptop learning how to use VLOOKUP in Google Sheets on Mac",
+      "caption": "A laptop desk setup for working through spreadsheet formulas.",
+      "keywords": [
+        "how to use vlookup in google sheets on mac",
+        "Google Sheets",
+        "use VLOOKUP",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-vlookup-in-google-sheets/how-to-use-vlookup-in-google-sheets-2-a3b69d.jpg",
+      "width": 1280,
+      "height": 873,
+      "alt": "Office worker checking a spreadsheet before a VLOOKUP in Google Sheets on Mac",
+      "caption": "Checking product data before you write a lookup formula.",
+      "keywords": [
+        "how to use vlookup in google sheets on mac",
+        "Google Sheets",
+        "use VLOOKUP",
+        "Mac",
+        "office spreadsheet data",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ds_30",
+        "url": "https://pixabay.com/users/ds_30-1795490/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-pen-glasses-diagram-5598150/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-vlookup-in-google-sheets/how-to-use-vlookup-in-google-sheets-3-81207f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close-up of a Mac keyboard, the keys used for Google Sheets formula shortcuts",
+      "caption": "The keys behind the formula shortcuts on a Mac keyboard.",
+      "keywords": [
+        "how to use vlookup in google sheets on mac",
+        "Google Sheets",
+        "use VLOOKUP",
+        "Mac",
+        "mac keyboard close up",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cecigre",
+        "url": "https://pixabay.com/users/cecigre-874725/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/music-piano-instrument-sound-9828208/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use vlookup in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "vlookup in google sheets mac": 1,
+      "vlookup exact match google sheets": 1,
+      "vlookup n/a error google sheets": 1,
+      "vlookup formula example google sheets": 1,
+      "google sheets vlookup not working": 1,
+      "vlookup lock range dollar sign": 1,
+      "vlookup shortcut mac google sheets": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

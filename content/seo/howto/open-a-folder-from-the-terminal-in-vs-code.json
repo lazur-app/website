@@ -1,0 +1,588 @@
+{
+  "title": "How to open a folder from the terminal in VS Code on Mac: step by step",
+  "metaTitle": "Open a Folder from the Terminal in VS Code on Mac (2026)",
+  "description": "How to open a folder from the terminal in VS Code on Mac: install the code command, run code . in your project, and fix zsh errors.",
+  "targetKeyword": "how to open a folder from the terminal in vs code on mac",
+  "secondaryKeywords": [
+    "vs code open folder from terminal mac",
+    "code command vs code mac",
+    "vs code terminal code . command",
+    "vs code shell command install mac",
+    "zsh command not found code vs code",
+    "open vs code from terminal mac zsh"
+  ],
+  "intro": "To open a folder from the terminal in VS Code on Mac, install the code command once, then type code followed by a dot inside your project folder. Install it by opening the Command Palette with ⇧⌘P, running the Shell Command that adds code to PATH, and restarting Terminal.",
+  "tldr": [
+    "Press ⇧⌘P in VS Code, run the Shell Command that installs code in PATH, then restart Terminal.",
+    "In Terminal, cd into your project folder, then type code and a dot to open it in VS Code.",
+    "If you see zsh: command not found: code, rerun the install, open a new Terminal window, or add the PATH line to ~/.zprofile.",
+    "Add -r to reuse the last active window, or -n to open a new session instead."
+  ],
+  "stats": [
+    {
+      "value": "1.145",
+      "label": "Latest stable VS Code release in the official notes, dated November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates/v1_145",
+      "sourceTitle": "VS Code 1.145 release notes"
+    },
+    {
+      "value": "⇧⌘P",
+      "label": "Command Palette shortcut on macOS, per the official VS Code command line docs",
+      "sourceUrl": "https://code.visualstudio.com/docs/editor/command-line",
+      "sourceTitle": "Command Line Interface (VS Code docs)"
+    },
+    {
+      "value": "10.15",
+      "label": "macOS Catalina, the release where zsh became the default shell",
+      "sourceUrl": "https://support.apple.com/en-au/HT208050",
+      "sourceTitle": "Use zsh as the default shell on your Mac"
+    },
+    {
+      "value": "75.9%",
+      "label": "Share of all 2025 Stack Overflow survey respondents who use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "2025 Stack Overflow Developer Survey: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the code command does"
+    },
+    {
+      "type": "paragraph",
+      "text": "The code command is a small launcher that comes with VS Code. Once it sits on your PATH, Terminal can start VS Code and hand it a folder. PATH is the list of places your shell checks when you type a command name. Installing the command adds VS Code to that list, so you normally do this once."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Which shell you use matters, because it decides which file holds your PATH change. Apple made zsh the default shell starting with macOS 10.15 Catalina. Bash was the default in macOS 10.14 and earlier. Most current Macs therefore run zsh, and the manual fix goes in ~/.zprofile. Run echo $SHELL to see yours."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "VS Code installed in your Applications folder. The official Mac install page covers this.",
+        "Terminal, found at Applications > Utilities > Terminal, or opened from Spotlight with ⌘Space.",
+        "A current VS Code build. The menu wording can differ in older builds, so match the names you see.",
+        "The path to a project folder, such as ~/Projects/invoice-api. Finder shows it in the window title bar and in Get Info."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install the code command with the Command Palette"
+    },
+    {
+      "type": "paragraph",
+      "text": "The official macOS install page describes this route. Press ⇧⌘P to open the Command Palette, type shell command, and pick the entry that installs code. The docs give no menu-bar path for this step, so the keyboard route is the one to use. Some builds list the longer title Install 'code' and optionally 'copilot' commands in PATH. Others show the shorter Install 'code' command in PATH."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Restart Terminal first",
+      "text": "Terminal reads PATH when it starts. A window that was open before the install keeps the old value. Quit Terminal with ⌘Q, then open it again before you test."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open folders with code . and its flags"
+    },
+    {
+      "type": "paragraph",
+      "text": "The dot is the form you will use most. It means the folder you are in right now, so run cd first to get there. The CLI docs also show a named folder form, where you pass a path. Two flags control which window opens. The table lists the forms I checked in the docs."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Command",
+        "What it does"
+      ],
+      "rows": [
+        [
+          "code .",
+          "Opens the current folder in VS Code"
+        ],
+        [
+          "code ~/Projects/invoice-api",
+          "Opens a named folder from any location"
+        ],
+        [
+          "code -r .",
+          "Reuses the last active VS Code window"
+        ],
+        [
+          "code -n .",
+          "Opens a new session instead of restoring the previous one"
+        ],
+        [
+          "code --add ../shared-utils",
+          "Adds a folder to the last active window for a multi-root workspace"
+        ]
+      ],
+      "caption": "Forms of the code command from the official CLI docs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The --add flag matters when you work across more than one folder. It adds a folder to the last active window. If you add a second folder without saving a .code-workspace file, VS Code creates an untitled workspace. That workspace stays until you save it, so save it if you want to keep the layout."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: opening invoice-api from Terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your project lives at ~/Projects/invoice-api, and Terminal opens in your home folder. You have two clean options. Option one: type cd ~/Projects/invoice-api, press Return, then type code followed by a dot. Option two: stay where you are and type code ~/Projects/invoice-api. Both open the same project. Option one is handy when you also want to run git or other commands in that folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "A typo is the usual cause of a failed cd. Terminal prints no such file or directory and stays where it is. Fix the spelling, or type cd and a space, then drag the folder from Finder into the window. Terminal fills in the path for you. Press Return, then run code ."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use File > Open Folder when Terminal is not an option"
+    },
+    {
+      "type": "paragraph",
+      "text": "Terminal is not the only way in. The VS Code workspaces docs say you can open a folder from File > Open Folder, then select the folder. Use this when you do not want the command line, or when the code command is not installed yet. The docs I checked do not list a keyboard shortcut for this item, so look for one in the menu itself."
+    },
+    {
+      "type": "paragraph",
+      "text": "The window.openFoldersInNewWindow setting decides whether folders opened from the File menu reuse the current window or open a new one. Setting it to on always opens a new window. Go to Code > Settings > Settings, or press ⌘, to get there. Search for openFoldersInNewWindow."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix command not found: code on zsh"
+    },
+    {
+      "type": "paragraph",
+      "text": "The error comes from your shell. It cannot find a program named code anywhere on your PATH. Three causes are common. The install never ran or failed. Terminal was open during the install, so its PATH is stale. Or an old alias or PATH line overrides the command. The steps and fixes below handle each one."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add the VS Code folder to PATH by hand"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Shell Command never appears, you can add VS Code's bundled bin folder to PATH yourself. The folder is /Applications/Visual Studio Code.app/Contents/Resources/app/bin. Use the file that matches your shell, shown in the table."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shell",
+        "File to edit",
+        "When it applies"
+      ],
+      "rows": [
+        [
+          "zsh",
+          "~/.zprofile",
+          "Default on macOS 10.15 Catalina and later"
+        ],
+        [
+          "bash",
+          "~/.bash_profile",
+          "Default on macOS 10.14 and earlier, or after you switch to bash"
+        ]
+      ],
+      "caption": "Which file to edit for the manual PATH line."
+    },
+    {
+      "type": "paragraph",
+      "text": "Append the export line to the file, then open a new Terminal window. Test with which code. If the output shows a path, the command works. Keep the line to one copy, so the PATH stays tidy."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Append, do not overwrite",
+      "text": "Use >> to append. A single > replaces everything already in the file, including PATH lines you set earlier. Open the file in a text editor first if you are unsure."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Web version and browser limits"
+    },
+    {
+      "type": "paragraph",
+      "text": "The web version is a different tool. vscode.dev runs in the browser, and the VS Code web docs say the terminal and debugger are not available there. You can open local folders only in browsers with File System API support, which means Chrome or Edge. Remote repositories open through URLs such as https://vscode.dev/github/<organization>/<repo>, and that route also has no terminal."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which VS Code version this guide matches"
+    },
+    {
+      "type": "paragraph",
+      "text": "The latest stable release in the notes I checked is 1.145, dated November 4, 2026. Updates 1.145.1 and 1.145.2 followed it. The 1.145 release notes do not change the File menu, the Open Folder command, or how the code command treats folders. Version 1.146 appears only as an Insiders preview in the archive. If your menu labels differ, your build may be older or newer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with the code command"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Running code . in your home folder. The window opens a huge folder, so cd to the project first.",
+        "Typing code in a Terminal window opened before the install. Quit Terminal with ⌘Q and reopen it.",
+        "Leaving out quotes around a path with spaces. Use code \"My Project\" so the shell reads it as one name.",
+        "Typing code alone and expecting the folder to open. Add a dot or a path after code.",
+        "Editing the wrong shell file. zsh users edit ~/.zprofile, and bash users edit ~/.bash_profile.",
+        "Using > instead of >> when adding the export line, which wipes the file."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the command works, the next step is learning the editor. The guide to [changing the color theme in VS Code on Mac](/how-to/change-the-color-theme-in-vs-code) shows the Settings path and shortcuts. For a wider setup, see [VS Code for developers on Mac](/for/developers/vs-code)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a short note of your project paths in one place. Then the cd step takes seconds. Test which code after every macOS update, because the PATH file stays put but Terminal settings can change."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need to install anything extra to run code . in Terminal?",
+      "answer": "You need VS Code itself and the Shell Command that installs code in PATH. Nothing else is required. The install runs from the Command Palette, so you do not need a separate download."
+    },
+    {
+      "question": "Which shell does a Mac use by default?",
+      "answer": "Starting with macOS 10.15 Catalina, zsh is the default shell. Bash was the default in macOS 10.14 and earlier. Run echo $SHELL in Terminal to see what yours uses."
+    },
+    {
+      "question": "Does code . work in vscode.dev in the browser?",
+      "answer": "No. The web version has no terminal, so there is no command line to type into. You can open local folders in Chrome or Edge with File System API support, but that is not the same as running code ."
+    },
+    {
+      "question": "What is the difference between code . and File > Open Folder?",
+      "answer": "Both open a folder. code . starts from Terminal and works best when you already know the path. File > Open Folder works from the menu bar with no command line, as the VS Code workspaces docs describe."
+    },
+    {
+      "question": "Will this still work after VS Code updates?",
+      "answer": "The 1.145 release notes do not change the File menu, the Open Folder command, or the code command's folder behavior. Menu items can still move in later updates, so check the release notes if something breaks."
+    },
+    {
+      "question": "Why does my folder open in a new window every time?",
+      "answer": "Terminal behavior depends on the flags you use. Add -r to reuse the last active window, or -n for a new session. For folders opened from the File menu, check window.openFoldersInNewWindow in Settings."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Installing Visual Studio Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Command Line Interface (CLI)",
+      "url": "https://code.visualstudio.com/docs/editor/command-line",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Workspaces in Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/editor/workspaces",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "User Interface",
+      "url": "https://code.visualstudio.com/docs/getstarted/userinterface",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "FAQ",
+      "url": "https://code.visualstudio.com/docs/supporting/FAQ",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web",
+      "url": "https://code.visualstudio.com/docs/setup/vscode-web",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release Notes Archive",
+      "url": "https://code.visualstudio.com/updates/archive",
+      "publisher": "Microsoft / VS Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Use zsh as the default shell on your Mac",
+      "url": "https://support.apple.com/en-au/HT208050",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "2025 Stack Overflow Developer Survey: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Open a folder from the terminal in VS Code",
+  "appliesTo": "VS Code on macOS, desktop app, zsh and bash (macOS 10.15 and later)",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running a current macOS release, with VS Code installed in Applications",
+    "The Terminal app, found at Applications > Utilities > Terminal",
+    "A project folder you want to open, for example ~/Projects/invoice-api",
+    "VS Code 1.145 or later, or any current stable build"
+  ],
+  "steps": [
+    {
+      "name": "Open the Command Palette in VS Code",
+      "text": "Bring the VS Code window to the front, so you are not on Finder. Press ⇧⌘P, which means Shift, Command and P together. The Command Palette drops down from the top of the window. You can also choose View > Command Palette from the menu bar.",
+      "shortcut": "⇧⌘P",
+      "menuPath": [
+        "View",
+        "Command Palette"
+      ],
+      "tip": "If the keys do nothing, click inside the editor first, then press them again."
+    },
+    {
+      "name": "Run the Shell Command that installs code",
+      "text": "Type shell command into the palette. Pick the entry Shell Command: Install 'code' command in PATH, or Install 'code' and optionally 'copilot' commands in PATH, depending on your build. Press Return. The official docs give no menu-bar path for this entry.",
+      "tip": "Both titles install the code command. Pick whichever your build shows."
+    },
+    {
+      "name": "Answer the Copilot CLI prompt",
+      "text": "If VS Code asks about Copilot CLI, read the choice before you click. Yes installs Copilot CLI in an integrated terminal and adds code to PATH. No adds only code. Escape installs neither, so the code command stays missing.",
+      "tip": "The success message for code does not confirm that Copilot CLI finished installing. Watch the terminal output if you chose Yes."
+    },
+    {
+      "name": "Quit and reopen Terminal",
+      "text": "Quit Terminal fully with ⌘Q, then open it again. A new session reads the updated PATH. The VS Code docs say to restart the terminal, and quitting is the surest way to do that. Reopen Terminal from Spotlight by pressing ⌘Space and typing Terminal.",
+      "shortcut": "⌘Q",
+      "menuPath": [
+        "Terminal",
+        "Quit Terminal"
+      ],
+      "tip": "Closing only the window is not the same as quitting the app."
+    },
+    {
+      "name": "Test that the command exists",
+      "text": "In the new Terminal window, type which code and press Return. If the command is installed, Terminal prints a path to it. If it prints nothing or says not found, skip to the troubleshooting list below.",
+      "tip": "Run this test before you move on. It tells you whether the rest of the steps will work."
+    },
+    {
+      "name": "Move into your project folder",
+      "text": "Type cd, add a space, then the folder path. For example, cd ~/Projects/invoice-api. Press Return. Then type pwd and press Return to confirm where you are.",
+      "shortcut": "Tab",
+      "tip": "Press Tab after the first few letters of a folder name, and the shell completes it."
+    },
+    {
+      "name": "Open the current folder with code",
+      "text": "Type code, a space, then a dot. Press Return. VS Code opens the folder you are in as a window. The dot means the current folder, not a file.",
+      "tip": "If you run code . from the wrong folder, VS Code opens that folder instead. Check pwd first."
+    },
+    {
+      "name": "Open a folder without running cd first",
+      "text": "You can skip cd. Type code, a space, then the full path, such as code ~/Projects/invoice-api. Press Return. This works from any folder in Terminal.",
+      "tip": "Put the path in quotes if it has spaces, like code \"My Project\"."
+    },
+    {
+      "name": "Choose the window with flags",
+      "text": "Add -r to reuse the last active window, for example code -r ~/Projects/invoice-api. Add -n to open a new session instead of restoring the previous one, for example code -n ~/Projects/invoice-api.",
+      "tip": "Keep the flag directly after code, as in code -n ~/Projects/invoice-api."
+    },
+    {
+      "name": "Add code to PATH by hand if it never appears",
+      "text": "Run echo $SHELL to see your shell. If it ends in zsh, append the export line to ~/.zprofile. If it ends in bash, use ~/.bash_profile instead. For zsh, run: echo 'export PATH=\"$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin\"' >> ~/.zprofile. Then quit Terminal with ⌘Q and open it again.",
+      "shortcut": "⌘Q",
+      "tip": "Run the line once only. A second copy adds a duplicate PATH entry, which is harmless but messy."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Command Palette in VS Code",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Quit Terminal so a new session reads PATH",
+      "keys": "⌘Q"
+    },
+    {
+      "action": "Open Spotlight to find Terminal",
+      "keys": "⌘Space"
+    },
+    {
+      "action": "Open VS Code Settings",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Autocomplete a folder name in Terminal",
+      "keys": "Tab"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "zsh: command not found: code",
+      "fix": "Run the Shell Command again from the Command Palette. Quit Terminal with ⌘Q, open it again, and run which code. If it still fails, add the export line to ~/.zprofile as described above."
+    },
+    {
+      "problem": "Still not found after the install",
+      "fix": "Open a new Terminal window, not just a new tab in an old session. Then check ~/.zshrc and ~/.zprofile for an old alias named code. Remove it, open a new window, and test again."
+    },
+    {
+      "problem": "bash: code: command not found",
+      "fix": "You are probably running bash. Check with echo $SHELL. Add the same export line to ~/.bash_profile, then open a new Terminal window."
+    },
+    {
+      "problem": "The Command Palette does not list the Shell Command",
+      "fix": "Type shell command and read the full list, because builds use different titles. Update VS Code to the latest stable release. The notes I checked list 1.145 as the current stable build."
+    },
+    {
+      "problem": "code . opens my home folder",
+      "fix": "You ran the command from your home folder. Type cd followed by the project path, then run code again. Or use code with the full path from anywhere."
+    },
+    {
+      "problem": "The folder opens in the wrong window",
+      "fix": "Add -r to reuse the last active window, or -n to open a new session. For folders opened from the File menu, check window.openFoldersInNewWindow in Settings."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Command Palette in VS Code?",
+    "capability": "point",
+    "result": "Lazur circles View > Command Palette on your screen and labels it. You press the keys and run the install yourself.",
+    "shell": "code",
+    "context": "Mac, VS Code open, before running the Install code command in PATH step.",
+    "output": "Out loud, Lazur says the palette sits under the View menu, and the keys are Shift, Command and P. Press them, type shell command, then pick the install entry yourself.",
+    "pointsAt": "Command Palette"
+  },
+  "type": "howto",
+  "slug": "open-a-folder-from-the-terminal-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-a-folder-from-the-terminal-in-vs-code/how-to-open-a-folder-from-the-1-5ba8be.jpg",
+      "width": 1280,
+      "height": 842,
+      "alt": "Developer at a desk with a laptop, about to open a folder from the terminal in VS Code on Mac",
+      "caption": "A project ready to open in VS Code on a Mac.",
+      "keywords": [
+        "how to open a folder from the terminal in vs code on mac",
+        "VS Code",
+        "open a folder from the terminal",
+        "Mac",
+        "developer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2559978/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-a-folder-from-the-terminal-in-vs-code/how-to-open-a-folder-from-the-2-778ad0.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing commands on a MacBook while reviewing project files in a code editor",
+      "caption": "Typing the command takes less time than clicking through menus.",
+      "keywords": [
+        "how to open a folder from the terminal in vs code on mac",
+        "VS Code",
+        "open a folder from the terminal",
+        "Mac",
+        "man typing laptop code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "iAmMrRob",
+        "url": "https://pixabay.com/users/iAmMrRob-5387828/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacking-cyber-blackandwhite-crime-2903156/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-a-folder-from-the-terminal-in-vs-code/how-to-open-a-folder-from-the-3-456668.jpg",
+      "width": 1280,
+      "height": 721,
+      "alt": "Programmer working on a Mac in a cafe with a code editor open on the screen",
+      "caption": "The same steps work from any Terminal window on your Mac.",
+      "keywords": [
+        "how to open a folder from the terminal in vs code on mac",
+        "VS Code",
+        "open a folder from the terminal",
+        "Mac",
+        "coffee shop laptop work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/cafe-people-working-tables-chairs-698516/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to open a folder from the terminal in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "vs code open folder from terminal mac": 1,
+      "code command vs code mac": 1,
+      "vs code terminal code . command": 1,
+      "vs code shell command install mac": 1,
+      "zsh command not found code vs code": 1,
+      "open vs code from terminal mac zsh": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

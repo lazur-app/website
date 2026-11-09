@@ -1,37 +1,473 @@
 {
-  "slug": "cursor",
-  "app": "cursor",
-  "appName": "Cursor",
   "appCategory": "Developer tools",
-  "appUrl": "https://cursor.com",
-  "title": "Voice assistant for Cursor on Mac: explain errors, dictate prompts, write commit messages",
-  "metaTitle": "Voice assistant for Cursor on Mac: errors, prompts",
-  "description": "A voice assistant for Cursor on Mac: hold a key to get the error on screen explained, dictate long prompts into the agent, and draft commit messages.",
+  "title": "Voice assistant for Cursor on Mac: explain errors, dictate prompts, draft commits",
+  "metaTitle": "Voice assistant for Cursor on Mac: errors, prompts, commits",
+  "description": "Lazur is a voice assistant for Cursor on Mac. Hold ⌥ ⌘ to have an error explained, hold fn to dictate prompts, and draft commit messages.",
   "targetKeyword": "voice assistant for cursor on mac",
   "secondaryKeywords": [
     "voice coding cursor",
-    "dictate prompts cursor"
+    "dictate prompts cursor",
+    "cursor dictation mac",
+    "explain errors cursor mac",
+    "cursor commit messages mac"
   ],
-  "intro": "Lazur is a voice assistant for Cursor on your Mac. Hold ⌥ ⌘ to ask what the error on screen means, or hold fn to talk a long prompt into the agent box. It works next to Cursor's own AI.",
+  "intro": "Lazur is a voice assistant for Cursor on Mac. Hold ⌥ ⌘ to ask what the error on screen means, or hold fn to dictate a long prompt into Cursor's chat. It sits next to Cursor's own AI and does not replace the agent.",
   "tldr": [
-    "Hold ⌥ ⌘ on a red stack trace and ask “what does this mean?”. Lazur reads it and answers out loud.",
-    "Hold fn in Cursor's chat and say the whole prompt. Long context is easier to say than type.",
-    "Say “write a commit message for this” with the diff open, and it appears at your cursor."
+    "Hold ⌥ ⌘ on a stack trace and ask what it means. Lazur reads the screen and answers out loud.",
+    "Hold fn in Cursor's chat and say the whole prompt. Lazur types it at the cursor, so you can read it before you send.",
+    "Keep a diff on screen and ask for a commit message. Lazur types the draft where your cursor is. Read it before you commit."
+  ],
+  "stats": [
+    {
+      "value": "3.29",
+      "label": "Latest Cursor build for macOS on the download page",
+      "sourceUrl": "https://cursor.com/download",
+      "sourceTitle": "Cursor Download"
+    },
+    {
+      "value": "17.9%",
+      "label": "Share of all Stack Overflow 2025 respondents who named Cursor in the Dev IDEs question",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "31%",
+      "label": "Stack Overflow 2025 users who were currently using AI agents",
+      "sourceUrl": "https://stackoverflow.blog/2025/08/01/diving-into-the-results-of-the-2025-developer-survey/",
+      "sourceTitle": "Diving into the results of the 2025 Developer Survey"
+    },
+    {
+      "value": "50 GB",
+      "label": "Default Max Total Size cap in Cursor's troubleshooting guide",
+      "sourceUrl": "https://cursor.com/docs/troubleshooting/troubleshooting-guide",
+      "sourceTitle": "Cursor Docs: Troubleshooting Guide"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a voice assistant for Cursor on Mac does"
+    },
+    {
+      "type": "paragraph",
+      "text": "A voice assistant for Cursor on Mac listens while you hold a key, looks at your screen, and answers out loud. Lazur works that way, on top of the editor you already use. It does not edit files, click buttons, or run Cursor's agent for you. The agent still writes the code. Lazur covers the voice side around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "That split is useful. A lot of the slow part of working in Cursor is reading, finding, and typing. Lazur helps with the reading, the finding, the typing, and the drafting: an error on screen, a setting, a long prompt, and a commit message. Each one has its own shortcut or phrase, covered below."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask about an error on screen with ⌥ ⌘"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘, which is Option plus Command, and ask about anything on screen. Lazur takes a screenshot while you hold the keys and answers out loud. Let go and it stops listening. This works for the terminal and for error text in Cursor's chat."
+    },
+    {
+      "type": "paragraph",
+      "text": "Short, specific questions work best. Start with \"What does this error mean?\" Then follow up with \"Which line causes it?\" when a trace has many frames. Lazur only sees what is on screen, so scroll the part you care about into view first."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "\"What does this error mean?\" gets the plain-English cause.",
+        "\"Which of these frames is my code?\" helps when a trace mixes your files with dependencies.",
+        "\"Is this the same error as the one above?\" helps when the terminal has scrolled and you lost the start."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Edge case: a long stack trace often starts above the visible window. Lazur cannot read text that is off screen. Scroll up, then hold the keys again. This one catches people on their first week, because the top of the error is the part they need."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Scroll before you hold",
+      "text": "Scroll so the top of the error is visible before you hold ⌥ ⌘. One screen is all Lazur gets for each question."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Point at buttons and walk through Cursor features"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it on your screen. This helps when a menu has moved. The changelog logged entries on Nov 5 and Nov 6, 2026, and the download page lists Cursor 3.29 as the latest macOS build. Menus shift between releases, so trust the circle over your memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a task with several steps, ask Lazur to guide you. It gives you one step at a time and waits for each click. You do the clicking. Lazur does not operate Cursor for you, which keeps every change in your hands."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "\"Where's the settings button?\" points at it and labels it.",
+        "\"Walk me through turning on voice chat with an agent.\" gives you one step at a time.",
+        "\"Show me how to see all the keyboard shortcuts.\" points you to the path Cursor documents."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor's keyboard shortcut reference says ⌘ R then ⌘ S shows all shortcuts. The same reference lists ⌘ ⇧ P for the command palette, which lets you find any command by name. Ask Lazur to point at the menu if you forget the order."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate long prompts into Cursor's chat"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn in Cursor's chat, say the prompt, and let go. Lazur types the text at the cursor. This matters most for long prompts. A useful agent prompt names the file, the failing test, and what must not change. That takes a few seconds to say and much longer to type."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a before and after. Typed fast, a prompt reads \"fix the retry thing.\" Dictated with context, it reads: \"Refactor the billing hook so the retry logic lives in one place. Add a test for the rate limit case. Keep the public API the same.\" The second version gives the agent something to check its work against."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation is not perfect. Speech tools miss file names, function names, and package names. Read the text before you send it. Add your common names to Lazur's personal dictionary, so they come out right next time. Snippets can hold a standard closing line, such as a request to run the tests after each change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor's Return key queues a chat message by default. ⌘ Return force-sends it. Read the dictated text first, then choose the key. This order keeps a misheard word from going straight to the agent."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cursor dictation or Lazur dictation: which to use"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor has its own dictation. Cursor's docs say ⌘ ⇧ Space toggles it inside the IDE. Earlier releases called this Voice Mode. Lazur's dictation uses hold fn and types into any Mac app. Both are useful. The table shows where each one fits."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Question",
+        "Cursor dictation",
+        "Lazur dictation"
+      ],
+      "rows": [
+        [
+          "Shortcut",
+          "⌘ ⇧ Space toggles it",
+          "Hold fn"
+        ],
+        [
+          "Where text lands",
+          "Inside Cursor",
+          "Any Mac app, at the cursor"
+        ],
+        [
+          "Name in Cursor's changelog",
+          "Dictation (formerly Voice Mode)",
+          "Dictation"
+        ],
+        [
+          "Extras",
+          "Built into the editor",
+          "Snippets, personal dictionary, clipboard slots"
+        ]
+      ],
+      "caption": "Cursor column from Cursor's docs and changelog. Lazur column from Lazur's feature list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Voice chat is a separate feature. Cursor's changelog from Nov 6, 2026 adds realtime voice calls with agents in the Agents Window, the IDE, the web, and Cursor for iOS. Use voice chat to talk with the agent. Use dictation or Lazur to write prompts at the cursor."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Use one at a time",
+      "text": "Pick one dictation tool for each prompt. Two tools listening at once makes it unclear which text lands where."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Draft commit messages and text at the cursor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the diff on screen, hold ⌥ ⌘, and say \"write a commit message for this.\" Lazur reads the diff and types a draft where your cursor sits. Read it before you commit. Lazur sees one screen, so a long diff can be cut off."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give Lazur a hint when the change is narrow. Say \"write a commit message, the change is only in the retry logic, keep the subject short.\" A specific request usually gives a more focused subject line than a vague one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Edit the draft in place before you commit. Keep the subject short and say what changed and why. If the draft names the wrong file, fix that line rather than running the whole request again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Problems people run into in Cursor on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "These problems come from Cursor's troubleshooting guide and its recent community forum threads. Check each one before you reinstall anything. Lazur can help you read the messages, but the fixes are yours to run."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Blank screen on startup: move Cursor to the Trash, then reinstall from cursor.com/download.",
+        "\"Cursor is damaged\" warning: the guide says this does not mean the download is corrupted. Quit Cursor, force-quit leftover processes in Activity Monitor, and reopen it. Reinstall only if the warning stays.",
+        "Updates: press ⌘ ⇧ P, then run Cursor: Attempt Update.",
+        "Disk use: stored agent conversations usually drive disk use, more than extensions do. Max Worktrees defaults to 25, and Max Total Size defaults to 50 GB. Setting the size to 0 turns off that cap.",
+        "Forum threads: recent posts are dominated by Grok Bot issues. Others cover 1Password vault limits, the Agents window usage panel showing 0%, and voice chat failing to start workers."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the reading. Hold ⌥ ⌘ on an error dialog or a row in Activity Monitor, then ask what the message means. Lazur answers out loud. It does not quit apps, delete folders, or reinstall Cursor for you."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Quit before you reinstall",
+      "text": "The guide's steps assume Cursor is closed. Quit it first, then check Activity Monitor for leftover processes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with voice and Cursor"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking about the whole repo. Lazur sees one screen, so ask about the error or file in front of you.",
+        "Holding the keys after the error has scrolled away. Scroll first, then hold.",
+        "Trusting a dictated file name. Check paths and function names before you send.",
+        "Pressing Return too early. Return queues the chat message by default. Use ⌘ Return only when you mean to force-send.",
+        "Using an old shortcut list. Some third-party cheat sheets describe ⌘ K as inline edit. Cursor's docs say ⌘ I, ⌘ L, or ⌘ K toggle the sidepanel unless a mode is bound to them. Check the app."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcuts can change between releases. The download page lists 3.29 as the latest build, so re-check the reference after a big update. A quick check beats sending a prompt to the wrong box."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur can and cannot see"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models. Lazur keeps a memory of what you asked and did, on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sees the screen, not your files, your git history, or your Cursor account. It cannot read a repo you have not opened on screen. It cannot run tests, commit, or push. Those steps stay with you or with Cursor's agent."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Client code",
+      "text": "Check the privacy details on Lazur's site before you use it on client code. Screenshots show whatever is open, so close unrelated windows first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Lazur for Cursor on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor runs on macOS 12 (Monterey) or later, on Apple silicon and Intel. The quickstart lists a native .dmg installer. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install Cursor from cursor.com/download. The page lists 3.29 as the latest macOS build.",
+        "Open Cursor and wait for the editor to load. Fix a blank screen first if you see one.",
+        "Get Lazur from the [download page](/download) and open it.",
+        "Hold ⌥ ⌘ with a stack trace on screen and ask what it means.",
+        "Hold fn in Cursor's chat and dictate one sentence. Check that it lands in the box."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a free trial that starts the first time you open the app. No credit card is needed. Compare the plans on the [pricing page](/pricing) before the trial ends."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What heavy Cursor use costs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor's plans decide how much agent use you get. The pricing page lists Free at $0 with limited AI usage. Plus is $8 a month with a shared usage pool. Premium is $30 a month, with 4x more usage compared to Plus."
+    },
+    {
+      "type": "paragraph",
+      "text": "Allowances refresh weekly, so one heavy day does not wipe out the month. You can add top-offs once you reach your included usage. Third-party model usage is billed at API list price and sits outside plan prices. Teams start at $30 per user per month."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check the price",
+      "text": "Prices and allowances change. Read cursor.com/pricing on the day you decide, not from an older guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Who uses Cursor, and why voice fits the work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stack Overflow's 2025 Developer Survey asked over 300 questions of 49,000+ technologists. Cursor was 17.9% of all respondents in the Dev IDEs question, from 26,143 responses. The survey also reported that 31% of users were currently using AI agents."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many developers now write agent prompts all day. Long prompts are slow to type, which tempts you to cut the context. Voice keeps the context in. Lazur adds the error or diff from your screen, so you do not have to retype it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one job this week. Pick the error you see most, or the prompt you type most often. For the shortcut and rules side of Cursor, read the [Cursor guide for developers](/for/developers/cursor). For a fuller day across apps, read [a day with Lazur in Slack, email, and Cursor](/blog/a-day-with-lazur-slack-email-cursor)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If dictation is the bigger problem, the [AI dictation guide for developers](/blog/ai-dictation-for-developers) covers pull requests and Slack alongside Cursor prompts."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur edit my code?",
+      "answer": "No. Lazur explains what is on screen, answers out loud, and types text at your cursor when you ask. Cursor's agent makes the edits. Lazur does not click buttons or operate Cursor for you."
+    },
+    {
+      "question": "Is Lazur's dictation the same as Cursor's dictation?",
+      "answer": "No. Cursor's dictation toggles with ⌘ ⇧ Space inside the editor. Lazur uses hold fn and types into any Mac app. Cursor's voice chat with agents is a separate feature, added in the changelog on Nov 6, 2026."
+    },
+    {
+      "question": "Does it work in VS Code and Xcode too?",
+      "answer": "Lazur works on top of any Mac app, so the same shortcuts work outside Cursor. Its answers depend on what is on screen, not on the app. It is not a plugin or add-in for any app."
+    },
+    {
+      "question": "Why does macOS say Cursor is damaged?",
+      "answer": "Cursor's troubleshooting guide says the warning does not mean the download is corrupted. Quit Cursor, force-quit leftover processes in Activity Monitor, and reopen it. Reinstall from cursor.com/download if the warning stays."
+    },
+    {
+      "question": "Can it see my whole repo?",
+      "answer": "No. Lazur sees one screenshot, and only while you hold ⌥ ⌘. Open the files you want it to read on screen before you ask."
+    },
+    {
+      "question": "What happens to my audio and screenshots?",
+      "answer": "Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Lazur keeps a memory of what you asked and did on your Mac."
+    },
+    {
+      "question": "Which Macs does it run on?",
+      "answer": "Lazur runs on macOS on Apple silicon and Intel. Windows is planned, not available. Cursor needs macOS 12 (Monterey) or later, according to its quickstart."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cursor Download",
+      "url": "https://cursor.com/download",
+      "publisher": "Anysphere / Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Docs: Quickstart",
+      "url": "https://cursor.com/docs/get-started/quickstart",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Changelog",
+      "url": "https://cursor.com/changelog",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Docs: Keyboard Shortcuts",
+      "url": "https://cursor.com/docs/reference/keyboard-shortcuts",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Docs: Troubleshooting Guide",
+      "url": "https://cursor.com/docs/troubleshooting/troubleshooting-guide",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Community Forum: Support",
+      "url": "https://forum.cursor.com/c/support/21",
+      "publisher": "Cursor Community Forum",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Cursor Pricing",
+      "url": "https://cursor.com/pricing",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Diving into the results of the 2025 Developer Survey",
+      "url": "https://stackoverflow.blog/2025/08/01/diving-into-the-results-of-the-2025-developer-survey/",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    }
   ],
   "demos": [
     {
       "spoken": "what does this error mean?",
       "capability": "explain",
-      "result": "Your useEffect returns a promise. Effects must return nothing or a cleanup function. Move the async call inside.",
-      "context": "A React warning in the terminal",
-      "shell": "code"
+      "result": "Lazur reads the terminal error and says the package is missing from this copy of the project.",
+      "context": "Terminal shows Cannot find module after a fresh pull",
+      "shell": "code",
+      "pointsAt": "Terminal output",
+      "output": "Cannot find module 'zod'. The package is not installed in this copy of the project. Run npm install in the project root, then start the dev server again."
     },
     {
-      "spoken": "refactor the billing hook so the retry logic lives in one place and add a test for the 429 case, keep the public API the same",
+      "spoken": "where's the Cursor settings?",
+      "capability": "point",
+      "result": "Lazur circles the settings entry and labels it. Next time, press ⌘ ⇧ J to open it directly.",
+      "context": "You want to change a setting and forgot the shortcut",
+      "shell": "code",
+      "pointsAt": "Cursor Settings",
+      "output": "Circled: Cursor Settings. Shortcut from Cursor's docs: ⌘ ⇧ J."
+    },
+    {
+      "spoken": "add a test for the rate limit case and keep the public API the same",
       "capability": "dictate",
-      "result": "Typed the prompt into Cursor's chat box.",
-      "output": "Refactor the billing hook so the retry logic lives in one place. Add a test for the 429 case. Keep the public API the same.",
-      "shell": "code"
+      "result": "Lazur types the sentence into the chat box at the cursor. You read it, then press ⌘ Return to force-send.",
+      "context": "Cursor chat open, prompt box focused, you hold fn",
+      "shell": "code",
+      "output": "Add a test for the rate limit case. Keep the public API the same."
     }
   ],
   "asks": [
@@ -41,152 +477,132 @@
       "capability": "explain"
     },
     {
-      "say": "write a commit message for this diff",
-      "result": "Writes a commit message at your cursor.",
-      "capability": "draft"
+      "say": "where's the Cursor settings button?",
+      "result": "Circles the button on screen and labels it.",
+      "capability": "point"
     },
     {
-      "say": "where's the setting for rules?",
-      "result": "Points at Cursor Settings and walks you to Rules.",
+      "say": "walk me through turning on voice chat with an agent",
+      "result": "Gives you one step at a time and waits for each click.",
       "capability": "guide"
     },
     {
-      "say": "search the docs for useEffect cleanup",
-      "result": "Runs the search and opens the result.",
-      "capability": "everyday"
+      "say": "write a commit message for this diff",
+      "result": "Types a draft at the cursor. Read it before you commit.",
+      "capability": "draft"
     },
     {
-      "say": "timer for 25 minutes, focus",
-      "result": "Starts a timer in the notch.",
-      "capability": "everyday"
+      "say": "keep the public API the same",
+      "result": "Types the sentence at the cursor while you hold fn.",
+      "capability": "dictate"
     },
     {
-      "say": "explain this function",
-      "result": "Explains the selected code out loud.",
+      "say": "which line in this stack trace is mine?",
+      "result": "Explains which visible line looks like your code. It only sees the screen.",
       "capability": "explain"
-    }
-  ],
-  "stats": [],
-  "blocks": [
-    {
-      "type": "heading",
-      "text": "Why talk to your editor",
-      "level": 2
     },
     {
-      "type": "paragraph",
-      "text": "Prompts for coding agents are getting longer. The useful ones carry context: what you tried, what must not change, which test fails. Saying that takes seconds. Typing it is where people cut corners."
+      "say": "search the docs for useEffect cleanup",
+      "result": "Runs a web search for you.",
+      "capability": "everyday"
     },
     {
-      "type": "image",
-      "index": 1
-    },
-    {
-      "type": "heading",
-      "text": "Lazur and Cursor's own AI",
-      "level": 2
-    },
-    {
-      "type": "paragraph",
-      "text": "Cursor's agent edits code. Lazur does not. Lazur is the voice layer around it: it explains what is on screen, types your prompts, and handles the small stuff like timers and doc searches without leaving the editor."
-    },
-    {
-      "type": "lazur"
-    },
-    {
-      "type": "image",
-      "index": 2
-    }
-  ],
-  "faq": [
-    {
-      "question": "Does Lazur edit my code?",
-      "answer": "No. It explains what is on screen, writes text at your cursor when you ask, and types prompts by voice. Cursor's agent does the editing."
-    },
-    {
-      "question": "Does it work in VS Code and Xcode too?",
-      "answer": "Yes. It works on top of any Mac app."
-    },
-    {
-      "question": "Can it see my whole repo?",
-      "answer": "No. It sees one screenshot of your screen, only while you hold the shortcut."
-    }
-  ],
-  "sources": [
-    {
-      "title": "Cursor documentation",
-      "url": "https://docs.cursor.com",
-      "publisher": "Cursor",
-      "accessedAt": "2026-11-05"
+      "say": "research the 1Password error in the Cursor forum",
+      "result": "Runs in Lazur's own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
     }
   ],
   "type": "app",
+  "slug": "cursor",
+  "app": "cursor",
+  "appName": "Cursor",
+  "appUrl": "https://cursor.com",
   "publishedAt": "2026-11-05",
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-07",
   "images": [
     {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/app/cursor/voice-assistant-for-cursor-on-mac-1-7128da.jpg",
+      "url": "https://images.lazur.app/content-images/app/cursor/voice-assistant-for-cursor-on-mac-1-f5c6ae.jpg",
       "width": 1280,
-      "height": 854,
-      "alt": "Code, coding and computer. Voice assistant for Cursor on Mac",
-      "caption": "Voice assistant for Cursor on Mac",
+      "height": 983,
+      "alt": "Developer writing code on a Mac, the setting for a voice assistant for Cursor on Mac",
+      "caption": "Coding on a Mac",
       "keywords": [
         "voice assistant for cursor on mac",
         "Cursor",
-        "programmer code screen",
+        "voice assistant",
         "Mac",
+        "developer coding laptop",
         "Lazur"
       ],
       "credit": {
-        "name": "Pexels",
-        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
         "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/code-coding-computer-data-1839406/"
+        "sourceUrl": "https://pixabay.com/photos/laptop-macbook-computer-technology-926775/"
       }
     },
     {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/app/cursor/voice-assistant-for-cursor-on-mac-2-c82158.jpg",
+      "url": "https://images.lazur.app/content-images/app/cursor/voice-assistant-for-cursor-on-mac-2-ddd44a.jpg",
       "width": 1280,
-      "height": 854,
-      "alt": "Software developer, web developer and programmer. Voice assistant for Cursor on Mac",
-      "caption": "Cursor on a Mac",
+      "height": 823,
+      "alt": "Software developer typing at a desk, dictating prompts with a voice assistant for Cursor on Mac",
+      "caption": "Typing prompts at a desk",
       "keywords": [
         "voice assistant for cursor on mac",
         "Cursor",
-        "developer laptop night",
+        "voice assistant",
         "Mac",
+        "man typing code desk",
         "Lazur"
       ],
       "credit": {
-        "name": "Innovalabs",
-        "url": "https://pixabay.com/users/Innovalabs-22783312/",
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
         "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
       }
     },
     {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/app/cursor/voice-assistant-for-cursor-on-mac-3-ca06e3.jpg",
+      "url": "https://images.lazur.app/content-images/app/cursor/voice-assistant-for-cursor-on-mac-3-7b923e.jpg",
       "width": 1280,
       "height": 853,
-      "alt": "Woman, computers and office. Voice assistant for Cursor on Mac",
-      "caption": "Cursor on a Mac",
+      "alt": "Programmer reviewing code on a monitor in an office, the kind of work a voice assistant for Cursor on Mac supports",
+      "caption": "Reading an error on screen",
       "keywords": [
         "voice assistant for cursor on mac",
         "Cursor",
-        "software engineer desk",
+        "voice assistant",
         "Mac",
+        "programmer office screen",
         "Lazur"
       ],
       "credit": {
-        "name": "googlerankfaster",
-        "url": "https://pixabay.com/users/googlerankfaster-18082394/",
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
         "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/woman-computers-office-working-5653501/"
+        "sourceUrl": "https://pixabay.com/photos/guy-man-work-people-business-desk-2558210/"
       }
     }
   ],
+  "keywordHits": {
+    "target": "voice assistant for cursor on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 10,
+    "secondary": {
+      "voice coding cursor": 1,
+      "dictate prompts cursor": 1,
+      "cursor dictation mac": 1,
+      "explain errors cursor mac": 1,
+      "cursor commit messages mac": 1
+    }
+  },
   "generator": {
-    "by": "hand (fixture, migrated from /use-cases)",
-    "version": 1
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 2
   }
 }

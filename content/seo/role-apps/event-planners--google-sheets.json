@@ -1,0 +1,594 @@
+{
+  "title": "Google Sheets for event planners on Mac: shortcuts, limits, and what to ask Lazur",
+  "metaTitle": "Google Sheets for Event Planners on Mac: Shortcuts and Limits",
+  "description": "Set up Google Sheets for event planning on your Mac. Covers templates, Mac shortcuts, size limits, the calculation setting to check, and what to ask Lazur.",
+  "targetKeyword": "google sheets for event planners on mac",
+  "secondaryKeywords": [
+    "google sheets event planning template",
+    "event planning spreadsheet mac",
+    "google sheets keyboard shortcuts mac",
+    "google sheets cell limit",
+    "google sheets calculation settings",
+    "event budget google sheets",
+    "run of show spreadsheet"
+  ],
+  "intro": "Google Sheets works well for event planning on a Mac if you give each event its own file. Use it for budgets, vendor lists, and run of show schedules. Keep one master copy that you never edit, then duplicate it for each new event. This page covers setup, the Mac shortcuts worth learning, the limits you can hit, and what to ask Lazur while you work.",
+  "tldr": [
+    "Start from a template, then use File > Make a copy so the master stays clean.",
+    "Learn ⌘+D, ⌘+R, and ⌘+Option+= first. They cover most daily edits in a long vendor list.",
+    "A spreadsheet tops out at 20 million cells or 100MB, so split big multi-event work into separate files.",
+    "Check File > Settings > Calculation Settings before you trust a total, since manual calculation is off by default.",
+    "Ask Lazur where things are, how to do a step, or to dictate notes while you work in the sheet."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells per spreadsheet, or 100MB, the Google Sheets file cap",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: Google Sheets limits"
+    },
+    {
+      "value": "8 to 12 hours",
+      "label": "a week on spreadsheet admin, per Abastio. A vendor claim with no original study",
+      "sourceUrl": "https://abastio.com/blog/outgrown-spreadsheets-event-planning",
+      "sourceTitle": "5 Signs You've Outgrown Spreadsheets for Event Planning"
+    },
+    {
+      "value": "50,000 characters",
+      "label": "per cell. Excel files lose any cell above this limit on conversion",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: Google Sheets limits"
+    },
+    {
+      "value": "1% to 3%",
+      "label": "manual data entry error rate, per Abastio's vendor blog",
+      "sourceUrl": "https://abastio.com/blog/outgrown-spreadsheets-event-planning",
+      "sourceTitle": "5 Signs You've Outgrown Spreadsheets for Event Planning"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Google Sheets works well for event planning on a Mac if you give each event its own file. Use it for budgets, vendor lists, and run of show schedules. Keep one master copy that you never edit, then duplicate it for every new event. The rest of this page shows how to set that up, which Mac shortcuts earn their keep, and where the limits sit."
+    },
+    {
+      "type": "paragraph",
+      "text": "Think of the file as a working document, not a database. A single event fits in one file with a few tabs. Trouble starts when one file holds several events, a long vendor list, and months of notes. Plan for that early, so you do not rebuild in the middle of a busy season."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template, then make your own copy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Template Gallery from the top right of Google Sheets. Pick a template, and a copy opens in your account. Google's template help page describes this flow, so use it as your reference when a menu looks different."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your first edit should never touch the master. Use File > Make a copy to save your work to a new file. Name the copy with the event name and the date, so you can find it later in Drive."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's template page says some template features only work for work or school accounts. It does not mention event planning templates at all. Search the gallery for event, budget, or schedule and see what comes up. Treat third-party event templates as drafts until you check every formula yourself."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Keep a master file",
+      "text": "Never type into the master. Duplicate it for each event, so old numbers never carry into a new budget."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the tabs every event needs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most event work fits into a few tabs. Budget tracks money. Vendors tracks contacts, contracts, and deposits. Run of show tracks times, tasks, and owners. Add more tabs only when a real job needs them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give the budget tab the same columns every time. Item, Vendor, Estimate, Deposit, Paid, and Balance cover most cases. Make Balance a formula that subtracts Paid from Estimate. Do not type it by hand, because a typed number goes stale the moment a payment changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put totals in their own area, outside the columns they add up. A whole-column formula such as =SUM(D:D) placed inside column D counts itself, and Sheets flags that as a circular reference. For a total by vendor, write =SUMIF(B:B,\"Caterer\",D:D) in a cell outside columns B and D."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the vendor tab to one row per vendor. Store each phone number once. When a vendor changes, edit that row, instead of fixing the budget and the run of show separately. Duplicate entries are where most planners lose time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run of show works best with one row per task. Put the time in one column, the task in the next, and the owner after that. Use View > Freeze so the header row stays visible while you scroll on a laptop screen."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac shortcuts for Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "These shortcuts come from Google's keyboard shortcut page for Computer. They use the Command key, so they fit how a Mac works. Learn the first few well before you chase the rest."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘+D fills the selected cells down from the top cell.",
+        "⌘+R fills the selected cells right from the left cell.",
+        "⌘+Option+= inserts rows when rows are selected.",
+        "⌘+Option+M inserts a comment.",
+        "⌘+F opens find, so you can jump to a vendor name.",
+        "⌘+Z undoes your last change.",
+        "⌘+/ opens the full shortcut list."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Fill down is the one to practice. Type a formula in the first row, select the range below it, then press ⌘+D. The formula copies down without any dragging. That saves real time on a long vendor list."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a shortcut does nothing, click a cell first. Focus often sits on the address bar or a menu, so the keys never reach the grid."
+    },
+    {
+      "type": "paragraph",
+      "text": "Forgot a shortcut mid-task? Hold ⌥ ⌘ and ask Lazur. It answers out loud, so your hands stay on the keyboard. Lazur looks at your screen only while you hold the shortcut."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets limits for big events"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Drive Help says a spreadsheet in Google Sheets holds up to 20 million cells, or 100MB. Most event budgets never come close. A long run of notes, pasted contract text, and several events in one file can get there faster than you expect."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Number",
+        "What it means for you"
+      ],
+      "rows": [
+        [
+          "Cells per spreadsheet",
+          "20 million or 100MB",
+          "Split a multi-event file into separate files before you hit it"
+        ],
+        [
+          "Pivot tables in Connected Sheets",
+          "200,000 rows",
+          "Mostly relevant to BigQuery and Looker data, not budgets"
+        ],
+        [
+          "Connected Sheets extracts",
+          "500,000 rows or 5 million cells",
+          "Filter the data before you extract it"
+        ],
+        [
+          "Text in one cell from an Excel import",
+          "50,000 characters",
+          "Cells over this limit are removed on conversion"
+        ]
+      ],
+      "caption": "Limits from Google Drive Help, Google Sheets limits page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's product page describes Connected Sheets as a tool for BigQuery and Looker data. Most planners never use it, so the pivot row limit rarely matters for a budget."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel imports carry the biggest risk. Converting an Excel file to Sheets removes any cell with more than 50,000 characters. Check long cells before you convert, and move long contract text into a document that you link from the vendor row."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check before you convert",
+      "text": "Open the Excel file and look for long notes in cells. Those cells are removed on conversion, so find them first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Is Google Sheets enough for vendor work?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Vendor blogs make strong claims about spreadsheets. Abastio says planners using spreadsheets spend 8 to 12 hours a week on data entry, version management, and cross-referencing. It cites no original study for that figure."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same post says manual data entry carries a 1% to 3% error rate. It also says spreadsheets tend to break down past about 3 simultaneous events or 10 regularly coordinated vendors. Treat those as the seller's claims, not measured facts."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a practical test. Count how often you retype the same contact, deposit, or date in a month. If that count is high, fix your process before you buy anything. A clean set of tabs handles a single event with a modest vendor list well."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you look at dedicated event software, read each product's pricing and feature pages directly. Do not rely on a comparison post, including this one, for current prices or features."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets calculation settings to check first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google announced a manual calculation setting for Sheets in September 2026. It is off by default. You turn it on at File > Settings > Calculation Settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google says the setting reaches Workspace customers and Workspace Individual subscribers in a gradual rollout. Visibility can take up to 15 days, starting September 21, 2026. Admins cannot control it, so check your own account."
+    },
+    {
+      "type": "paragraph",
+      "text": "Why it matters: with manual calculation on, formulas may not update the way you expect. Open the setting before you send a budget to a client or a caterer. Then confirm one total by checking it against your own receipts."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not trust a total blindly",
+      "text": "A total that looks right can be stale. Confirm the calculation mode, then check one line by hand before you share the file."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sharing and offline access in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's product page lists co-editing with sharing permissions and revision history. Use both when a co-planner, a venue contact, and a client touch the same file. Permissions decide who can change what."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give vendors view access when they only need the schedule. Give edit rights to your co-planner and no one else. Revision history lets you roll back a bad paste, so check it before you assume a row is gone."
+    },
+    {
+      "type": "paragraph",
+      "text": "Offline access is on the same product page. Test it before you need it. Open the file, turn off Wi-Fi, and see what you can still edit. Do that a week before a site visit, not on the day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Gemini in Sheets appears on the product page too. Some Gemini features need a Workspace plan, so check your plan before you count on them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to ask Lazur while you work in Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen. Lazur sees your screen while you hold the shortcut, points at things, and answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "It does three useful things in a sheet. It points, so you find the menu or the button. It guides you one click at a time and waits for each click. It drafts and dictates text. Lazur does not click buttons or edit your sheet for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor. Speak a run of show note, then check the cell before you move on. Notes read better later when they come out formatted the first time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters with client budgets. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and are not stored. Content is never used to train AI models. Still, redact client names and bank details before you ask about them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. Get it from the [download page](/download), and check plans on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes planners make in Google Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Editing the master template instead of a copy. Use File > Make a copy first.",
+        "Sharing with edit rights when view access is enough.",
+        "Trusting a total without checking the calculation setting.",
+        "Retyping a phone number or deposit in two tabs. Store it once and reference it.",
+        "Pasting a whole Excel file without checking for long cells.",
+        "Keeping every event in one giant file. Split by event so you can archive old ones.",
+        "Skipping the offline test until the day you need it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these come from speed. A quick fix in the wrong file can cost a whole morning. Slow down for a couple of minutes at the start, and the rest of the event runs smoother."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short weekly routine that keeps the file clean"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spend a short block each week on the file. Check the vendor tab for open items, update the Paid column, and clear finished tasks from the run of show. Do it at the same time each week so the habit sticks."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then open revision history and scan for changes you did not make. This takes a few minutes. It catches the quiet errors that show up on event day, when there is no time to find them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to move beyond Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Move on when the file slows you down, or when the same data lives in too many places. The vendor figures above give a rough signal, but your own count is better. Track retyping and missed follow ups for a month before you decide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets can still be the right tool after that. Many planners keep Sheets for budgets and use a separate tool for vendor messages. Decide based on where your time goes, not on a blog's headline number."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your event planning spreadsheet"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Make a master template and duplicate it for your next event.",
+        "Learn ⌘+D and ⌘+Option+= first, then practice on a test tab.",
+        "Open File > Settings > Calculation Settings and confirm the mode.",
+        "Set vendors to view access only.",
+        "Try Lazur on your Mac from the [download page](/download)."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Google Sheets work on a Mac for event planning?",
+      "answer": "Yes. Google Sheets works on a Mac, and the shortcuts on this page use the Command key. Check Google's product page for the features your account includes, since some Gemini features need a Workspace plan."
+    },
+    {
+      "question": "What is the best Google Sheets template for event planners?",
+      "answer": "Google's help pages do not name an event planning template. Open the Template Gallery at the top right, search for event, budget, or schedule, then use File > Make a copy. Treat third-party templates as drafts and read every formula before you rely on one."
+    },
+    {
+      "question": "How many cells can a Google Sheets file hold?",
+      "answer": "Google Drive Help says spreadsheets in Google Sheets are limited to 20 million cells or 100MB. Split a large multi-event file into separate files before you reach either limit."
+    },
+    {
+      "question": "Why did my Excel import lose text?",
+      "answer": "Google says converting an Excel file to Sheets removes any cell with more than 50,000 characters. Check long cells before you convert, and move long contract text into a document you can link from the sheet."
+    },
+    {
+      "question": "What does ⌘+D do in Google Sheets?",
+      "answer": "⌘+D fills the selected cells down from the top cell. Type a formula once, select the range below it, then press ⌘+D to copy it down the column."
+    },
+    {
+      "question": "Where is the manual calculation setting in Google Sheets?",
+      "answer": "Go to File > Settings > Calculation Settings. Google says the setting is off by default. It started rolling out September 21, 2026, and can take up to 15 days to appear on an account."
+    },
+    {
+      "question": "Can Lazur edit my Google Sheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at things, guides you one click at a time, answers out loud, and drafts or dictates text."
+    },
+    {
+      "question": "Is it safe to ask Lazur about a client budget?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and are not stored. Redact client names and bank details before you ask."
+    },
+    {
+      "question": "Is Lazur available on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, but it is not available today."
+    },
+    {
+      "question": "Are the vendor numbers about planner time reliable?",
+      "answer": "They are vendor claims. Abastio cites no original study for its 8 to 12 hours a week figure. Use those numbers as a prompt to audit your own process, not as proof."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets: Computer",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Use templates: Computer, Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/148833?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "New manual calculation setting in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2026/09/new-manual-calculation-setting-in-Google-Sheets.html",
+      "publisher": "Google Workspace Updates",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Google Drive Help: Google Sheets limits",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "5 Signs You've Outgrown Spreadsheets for Event Planning",
+      "url": "https://abastio.com/blog/outgrown-spreadsheets-event-planning",
+      "publisher": "Abastio (vendor blog)",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the setting that stops my totals from updating on their own?",
+    "capability": "point",
+    "result": "Lazur circles the File menu and points at Settings, then names File > Settings > Calculation Settings. It does not change the setting for you.",
+    "shell": "sheet",
+    "context": "Budget tab in a Google Sheets file on a Mac",
+    "pointsAt": "File > Settings",
+    "output": "Manual calculation is off by default. Check the mode before you trust a total."
+  },
+  "tasks": [
+    {
+      "say": "Where is Make a copy in this menu?",
+      "result": "Lazur circles the File menu and points at Make a copy, so you duplicate the template before you edit it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through freezing the header row.",
+      "result": "Lazur guides you one click at a time through View > Freeze and waits for each click before it continues.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this SUMIF formula do?",
+      "result": "Lazur reads the formula on screen and explains which column it totals and which vendor it matches.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate a note: deposit due before the venue walk-through.",
+      "result": "Hold fn and speak. The text lands at the cursor, clean and formatted, in the cell you picked.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to the caterer asking to confirm headcount.",
+      "result": "Lazur drafts the text. You read it, change what you need, and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find the venue's loading dock rules and summarize them.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report you can check against the venue.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to confirm the florist on Friday.",
+      "result": "Lazur adds the reminder in Apple Reminders for the time you name.",
+      "capability": "everyday"
+    },
+    {
+      "say": "What shortcut fills a formula down?",
+      "result": "Lazur answers out loud: ⌘+D fills the selected cells down from the top cell.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "event-planners-google-sheets",
+  "role": "event-planners",
+  "app": "google-sheets",
+  "roleName": "Event planners",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/event-planners-google-sheets/google-sheets-for-event-planners-on-mac-1-0130f0.jpg",
+      "width": 1280,
+      "height": 768,
+      "alt": "Event planner using Google Sheets for event planners on Mac at a laptop",
+      "caption": "A run of show takes shape on a laptop screen.",
+      "keywords": [
+        "google sheets for event planners on mac",
+        "Google Sheets",
+        "Event planners",
+        "Mac",
+        "event planner laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "theglassdesk",
+        "url": "https://pixabay.com/users/theglassdesk-149631/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/desk-office-space-workspace-tidy-2325627/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/event-planners-google-sheets/google-sheets-for-event-planners-on-mac-2-53ffc7.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a Mac keyboard while reviewing a spreadsheet of event vendors",
+      "caption": "Keyboard shortcuts save time on long vendor lists.",
+      "keywords": [
+        "google sheets for event planners on mac",
+        "Google Sheets",
+        "Event planners",
+        "Mac",
+        "person typing laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "webandi",
+        "url": "https://pixabay.com/users/webandi-1460261/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-computer-laptop-technology-6105750/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/event-planners-google-sheets/google-sheets-for-event-planners-on-mac-3-45a9dd.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Desk with paper notes and a laptop used for planning an event schedule",
+      "caption": "Vendor lists and timelines live in one shared file.",
+      "keywords": [
+        "google sheets for event planners on mac",
+        "Google Sheets",
+        "Event planners",
+        "Mac",
+        "wedding planning desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/wedding-list-gift-list-few-love-5243221/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for event planners on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "google sheets event planning template": 1,
+      "event planning spreadsheet mac": 1,
+      "google sheets keyboard shortcuts mac": 1,
+      "google sheets cell limit": 1,
+      "google sheets calculation settings": 2,
+      "event budget google sheets": 1,
+      "run of show spreadsheet": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

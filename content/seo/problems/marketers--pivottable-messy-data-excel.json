@@ -1,0 +1,643 @@
+{
+  "title": "How to make a PivotTable from messy data in Excel on Mac, step by step",
+  "metaTitle": "How to make a PivotTable from messy data in Excel on Mac",
+  "description": "Clean a messy campaign export, turn it into an Excel table, and build a PivotTable on Mac. Includes fixes for wrong totals and weekly refresh steps.",
+  "targetKeyword": "how to make a PivotTable from messy data in Excel",
+  "secondaryKeywords": [
+    "PivotTable from exported campaign data",
+    "Excel PivotTable Mac",
+    "clean data for PivotTable",
+    "Excel table as PivotTable source",
+    "refresh PivotTable Excel Mac",
+    "pivot table Numbers Mac",
+    "Google Ads export pivot table"
+  ],
+  "intro": "To make a PivotTable from messy data in Excel on Mac, clean the export first, turn it into one table, and then go to Insert > PivotTable. Most failed pivots break at the cleaning step, not the pivot step. This guide covers cleaning, building, fixing wrong totals, and refreshing the pivot each week.",
+  "tldr": [
+    "Delete title rows, total rows, and blank rows so one header row sits at the top.",
+    "Press ⌘T to make the cleaned range an Excel table, then go to Insert > PivotTable.",
+    "Set Values to Sum, and check one total against the ad platform before you share it.",
+    "Refresh the pivot after each new export, and keep the raw file untouched."
+  ],
+  "stats": [
+    {
+      "value": "91%",
+      "label": "Share of spreadsheets with important errors in Panko's five core field audits (55 sheets)",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Panko: Audits of Operational Spreadsheets"
+    },
+    {
+      "value": "3.9%",
+      "label": "Cell error rate across 697 spreadsheets in Panko's development experiments",
+      "sourceUrl": "https://panko.com/ssr/DevelopmentExperiments.html",
+      "sourceTitle": "Panko: Spreadsheet Development Error Experiments"
+    },
+    {
+      "value": "14.5 hours",
+      "label": "Average weekly time senior marketers spent managing customer data collection, 2022 vendor survey",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: data efficiency survey"
+    },
+    {
+      "value": "1,048,576",
+      "label": "Rows on one Excel worksheet, per Microsoft's specifications and limits",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft Support: Excel specifications and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most pivot problems start before you click Insert. The export looks tidy in the ad platform, then it lands in Excel with title rows, total rows, numbers stored as text, and labels that do not match. A PivotTable reads every row as data. So a messy source gives you a neat table with wrong totals. That is the worst kind of error, because nothing looks broken."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why campaign exports break a PivotTable"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ad platforms build exports for people to read, not for a pivot to parse. A report often opens with a title and a date range. Totals sit at the bottom. Money columns may carry a currency symbol. None of this looks wrong on screen. All of it matters to a PivotTable."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A title or date range sits above the header row.",
+        "A total or average row sits at the bottom of the data.",
+        "Numbers align to the left, which often means they are stored as text.",
+        "One campaign appears under two or three spellings.",
+        "Two exports sit in one sheet, with a second header row in the middle."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean the export before you build the pivot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cleaning is the slow part, and most of the accuracy depends on it. Work on a copy. Keep the raw export in its own file or tab, so you can check your work against it later. Microsoft's data rules are simple. Use one header row, no blank rows or columns, no merged cells, and one data type per column."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Delete report titles, date ranges, and filter notes above the header row.",
+        "Delete total and average rows at the bottom of the data.",
+        "Remove blank rows and blank columns inside the block.",
+        "Unmerge cells, then give each column one short, unique header.",
+        "Convert text numbers into real numbers, then check one total against the platform.",
+        "Replace spelling variants of each campaign name with one clean label.",
+        "Turn every date into a real date in one format."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Clean a copy",
+      "text": "Cleaning in place feels faster. One wrong delete removes rows you may need later to reconcile against the platform. Keep the export unchanged, and do the cleaning in a second tab or workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the PivotTable on Mac, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by making the range an Excel table. Click one cell inside the cleaned data and press ⌘T. Check the range in the dialog, and confirm that My table has headers is ticked. Next, click one cell in the table and choose Insert > PivotTable. The Create PivotTable dialog confirms the range and where the pivot goes. Pick New Worksheet, then click OK. Keep the pivot off the data sheet, so a stray paste cannot overwrite the export."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Field",
+        "Drop it into",
+        "What you get"
+      ],
+      "rows": [
+        [
+          "Campaign",
+          "Rows",
+          "One line per campaign"
+        ],
+        [
+          "Date or week",
+          "Columns",
+          "One column per period, if you need a trend"
+        ],
+        [
+          "Spend",
+          "Values",
+          "Total spend for each campaign"
+        ],
+        [
+          "Conversions",
+          "Values",
+          "Total conversions for each campaign"
+        ],
+        [
+          "Channel",
+          "Filters",
+          "Limit the view to one channel at a time"
+        ]
+      ],
+      "caption": "A starting layout for a campaign summary. Change it to fit your report."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Numbers and Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If Excel is not your tool, Numbers and Google Sheets build the same kind of pivot. In Numbers, select the table, then choose Organize > Create Pivot Table. You can also click the Pivot Table toolbar button. Pick a new or current sheet, then add fields. A new pivot stays blank until you add fields. Numbers needs no cells merged across adjacent rows, and you must refresh the pivot after you change the source. In Google Sheets, select the data and go to Insert > Pivot table."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix numbers that look wrong in the pivot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most wrong totals come from three causes. The pivot counts instead of summing. A text number got skipped. Or a total row got added into the sum. Check the value field first. Right-click the value in the pivot, choose Field Settings, then set Summarize by to Sum. On Mac the menu says Field Settings, not Value Field Settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel defaults a field to Count when the column holds text. That is why a spend column can show a row count. Fix the source column first, then change the summary. Changing the summary alone will not fix text numbers."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check one total",
+      "text": "Pick one campaign and compare its spend with the ad platform's number for the same dates. If they match, the rest of the pivot is probably sound. If they do not, look for a total row, a text number, or a date filter."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Mistakes people make with campaign pivots"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Building the pivot on a range that stops one row short of the newest data.",
+        "Leaving a total row in, then wondering why spend looks doubled.",
+        "Sorting one column alone, which splits campaign names from their numbers.",
+        "Mixing real dates and text dates in one column, so grouping by date fails.",
+        "Trusting a pivot that nobody refreshed after the last export."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the pivot current when the export changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot is only as current as its source. Paste the new export into the same table, then right-click inside the pivot and choose Refresh. Microsoft calls Excel tables ideal PivotTable sources, because new rows and columns are picked up on refresh. If the total does not move, check the table range first. A range typed by hand is a common reason a pivot goes stale."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits and versions that change the plan"
+    },
+    {
+      "type": "paragraph",
+      "text": "Size matters first. An Excel worksheet allows 1,048,576 rows and 16,384 columns. A Google Ads upload spreadsheet must have 1 million rows or fewer and be 50MB or less. Uploads time out after 2 hours of processing. A Google Sheets file caps at 20 million cells or 100MB. If your export sits near a limit, filter it or split it by month, then combine the results by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version matters second. Power Query, which replays your cleaning steps each time you refresh, works on Excel for Mac only with Microsoft 365 for Mac. Microsoft says there is no Power Query support in Excel 2016 and Excel 2019 for Mac. Recommended PivotTables also needs a Microsoft 365 subscription. The manual steps in this guide work in older versions too, though you repeat the cleaning by hand."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check your version",
+      "text": "Open Excel > About Excel to see which version you run. If you are on an older release, plan to repeat the cleaning by hand each week."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What this costs you in time and accuracy"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2022 survey from Treasure Data, a data vendor, found senior marketers spend 14.5 hours a week on average managing customer data collection. Eighteen percent spend over 20 hours. The survey covers customer data more broadly than campaign reports. Treat it as a rough signal, not a measure of your own week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accuracy is the bigger cost. Raymond Panko runs a spreadsheet risk research site. His summary of field audits reports important errors in 91% of the 55 spreadsheets in five core studies. His development experiments found a cell error rate of 3.9% across 697 spreadsheets. Those studies looked at operational models and lab tasks, not campaign pivots. Use them as a warning, not a forecast."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short check before you share the pivot"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Totals match the ad platform for the same date range.",
+        "Row count in the table matches the export, minus any totals you removed.",
+        "No campaign appears twice under two labels.",
+        "The date range sits in the file name or on the first tab.",
+        "A colleague can find the source tab in under a minute."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for your Mac. Hold ⌥ ⌘ to ask about anything on your screen, and Lazur answers out loud. Ask where a command is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click buttons or edit files for you. The cleaning and the building stay with you."
+    },
+    {
+      "type": "paragraph",
+      "text": "The useful jobs here are finding commands, explaining a number you do not trust, and walking through a dialog you have not used before. Hold fn to dictate clean text at the cursor, for example a short note for your manager. Lazur runs on macOS only, and Windows is planned, not available."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for the same campaign data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the pivot is right, share it where your team reads it. For the sheet side of this work, see [Google Sheets for marketers](/for/marketers/google-sheets) and [how to count unique values in Google Sheets](/how-to/count-unique-values-in-google-sheets). Lazur plans and pricing are on the [pricing page](/pricing). Start with the Day 1 checklist, and build the pivot only after the totals match."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I make a PivotTable from a CSV export in Excel on Mac?",
+      "answer": "Yes. Open the CSV in Excel for Mac, check that dates and numbers came through as the right type, then clean the range as described above. CSV files do not keep formatting, so check every numeric column."
+    },
+    {
+      "question": "Why does my PivotTable miss this week's rows?",
+      "answer": "The pivot points at the range you selected when you built it. Convert the cleaned data to an Excel table, paste new rows into it, then refresh the pivot. Microsoft says tables pick up new rows on refresh."
+    },
+    {
+      "question": "Why does a spend column show a count?",
+      "answer": "Excel counts text values instead of summing them. Fix the column so every value is a number, then right-click the value, choose Field Settings, and set Summarize by to Sum."
+    },
+    {
+      "question": "Is Recommended PivotTables available on Mac?",
+      "answer": "It is limited to Microsoft 365 subscribers. It builds several layouts on a new sheet, which is useful for a quick look. It does not replace the cleaning step, so check the source before you trust a layout."
+    },
+    {
+      "question": "Who does the cleaning and the building when Lazur is open?",
+      "answer": "You do. Lazur does not click buttons or edit files. It can circle a command, guide you one click at a time, and explain a number out loud. The cleaning and the building stay with you."
+    },
+    {
+      "question": "Is my campaign data sent to an AI provider?",
+      "answer": "Lazur sends the audio and the screenshot to AI providers to answer, and they are not stored. Content is never used to train AI models. If the export holds client or customer data, follow your employer's rules before you use any tool."
+    },
+    {
+      "question": "Does this guide work for Excel on Windows?",
+      "answer": "The menu paths here are for Excel on Mac. Windows labels differ, and Microsoft's page notes that Mac calls the setting Field Settings. Lazur runs on macOS only, and Windows is planned, not available."
+    },
+    {
+      "question": "Where do the row limits come from?",
+      "answer": "Microsoft's Excel specifications list 1,048,576 rows per worksheet. Google Ads and Google Drive publish their own limits, and those pages are listed in the sources for this guide."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a PivotTable to analyze worksheet data",
+      "url": "https://support.microsoft.com/en-us/excel/get-started/create-a-pivottable-to-analyze-worksheet-data",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "About Power Query in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/about-power-query-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Create a pivot table in Numbers on Mac",
+      "url": "https://support.apple.com/guide/numbers/create-a-pivot-table-tan7f62056cf/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Format spreadsheets - Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/10702623?hl=en",
+      "publisher": "Google Ads Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "File size and limits for Google Sheets",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google Drive Help",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Spreadsheet Development Error Experiments",
+      "url": "https://panko.com/ssr/DevelopmentExperiments.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Audits of Operational Spreadsheets",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Treasure Data press release: data efficiency survey",
+      "url": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "publisher": "Treasure Data",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Microsoft 365: Compare all products",
+      "url": "https://www.microsoft.com/en-us/microsoft-365/buy/compare-all-microsoft-365-products",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "building pivottables from exported campaign data",
+  "costs": [
+    {
+      "title": "Hours each week",
+      "text": "Treasure Data's 2022 survey puts senior marketers at 14.5 hours a week managing customer data collection. Eighteen percent spend more than 20 hours. That covers customer data broadly, not only campaign pivots. Use it as a rough signal, then count your own hours for a week."
+    },
+    {
+      "title": "Wrong numbers in a shared deck",
+      "text": "Panko's audit summary reports important errors in 91% of 55 spreadsheets across five core field audits. Those audits covered operational models, and the samples are small. The lesson still holds. A pivot inherits every mistake in the table under it."
+    },
+    {
+      "title": "Rebuilding from scratch each week",
+      "text": "When the export layout shifts, a pivot built on a fixed range can quietly miss rows. The old total still looks plausible, so nobody checks. You find out only when someone asks why spend moved in a week that looked flat."
+    },
+    {
+      "title": "Row and cell limits",
+      "text": "An Excel worksheet holds 1,048,576 rows. Google Ads upload spreadsheets cap at 1 million rows and 50MB. Google Sheets files cap at 20 million cells or 100MB. A large export can hit a limit before the pivot is done, so you split the data and merge results by hand."
+    },
+    {
+      "title": "Software needed for Power Query",
+      "text": "Power Query repeats your cleaning steps on every refresh, which saves real time. On Excel for Mac it needs Microsoft 365 for Mac. Microsoft lists Microsoft 365 Personal at $9.99 a month or $99.99 a year, and that plan includes Excel. Check Microsoft's plan page for current prices."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Exports are built for reading",
+      "text": "Ad platforms format exports for people, not for analysis tools. You get title rows, summary rows at the bottom, currency symbols, and dates in a format that varies by report. The file looks tidy on screen. A pivot reads each row literally, so every one of those details counts."
+    },
+    {
+      "title": "Labels drift across exports",
+      "text": "The same campaign shows up as Spring_Sale, spring sale, and Spring Sale. The pivot treats them as three rows. Naming changes in the ad account, a new tracking template, or a copy and paste from a brief can all cause it. Each drift splits a campaign's totals in two."
+    },
+    {
+      "title": "Numbers stored as text",
+      "text": "Exports often store numbers as text, especially when they carry a currency symbol or a thousands separator. Sum ignores text values. The pivot may then show a count of rows where you expected spend. The fix is in the source column, not in the pivot."
+    },
+    {
+      "title": "Manual joins across files",
+      "text": "Many marketers combine two exports by pasting one under the other. Header rows repeat in the middle. Dates land in two formats. Blank rows separate the blocks. Microsoft's data rules exist because each of these breaks a pivot in a different way."
+    },
+    {
+      "title": "Human error in spreadsheets",
+      "text": "Panko's development experiments report a cell error rate of 3.9% across 697 spreadsheets. When individuals worked alone, the share of spreadsheets with errors ranged from 18% to 86% across studies. These are lab tasks, so treat them as a warning, not a forecast for your report."
+    },
+    {
+      "title": "A pivot built on a fixed range",
+      "text": "A pivot points at the cells you selected when you built it. Add next week's rows below the old ones, and the pivot stays blind to them until you change its source or use a table. Many stale totals come from this one habit, not from bad data."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Delete everything outside the data",
+      "text": "Keep one header row at the top. Delete report titles, date ranges, and filter notes above it. Delete total and summary rows at the bottom, and remove blank rows inside the block. Google Ads says you need not delete totals for an upload file. That guidance covers uploads, not pivots. In a pivot, a total row is just another row, so remove it."
+    },
+    {
+      "title": "Give each column one plain header",
+      "text": "Use one short header per column, with no line breaks and no merged cells. Drop units from the header when every value uses the same currency. Two columns with the same header, such as two Date columns, confuse the field list. Rename one of them before you build anything."
+    },
+    {
+      "title": "Turn text numbers into real numbers",
+      "text": "Select the column. If a green triangle appears in a cell corner, click it and choose Convert to Number. For a large column, strip currency symbols and thousands separators with Find and Replace first, then convert. Compare one total with the platform before you move on."
+    },
+    {
+      "title": "Map messy labels to clean ones",
+      "text": "Put the messy names in one column. Put the clean name next to each one on a second tab. Look up the clean name for every row, then pivot on that column. The setup takes time once. Each later export takes minutes instead of an afternoon."
+    },
+    {
+      "title": "Make the data an Excel table with ⌘T",
+      "text": "Click one cell inside the cleaned data and press ⌘T. Check that My table has headers is ticked. The table gets a name, and new rows join it when you refresh. Microsoft calls tables ideal sources for this reason."
+    },
+    {
+      "title": "Build the pivot on a new sheet",
+      "text": "Select a cell in the table, choose Insert > PivotTable, and pick New Worksheet in the Create PivotTable dialog. A separate sheet means the pivot cannot overwrite the export, and you can delete and rebuild it without losing your data."
+    },
+    {
+      "title": "Set Values to Sum",
+      "text": "Right-click a value in the pivot, choose Field Settings, then set Summarize by to Sum. Do this for spend and conversions separately, because each value field has its own setting. Then check one campaign against the platform's own report for the same dates."
+    },
+    {
+      "title": "Refresh after each export",
+      "text": "Paste the new export into the same table, then right-click inside the pivot and choose Refresh. If the pivot shows last week's total, check the table range before anything else. Compare totals with last week and note any new label that did not match."
+    },
+    {
+      "title": "Use Numbers or Google Sheets without Excel",
+      "text": "In Numbers, use Organize > Create Pivot Table with a source that has no merged cells across adjacent rows. In Google Sheets, select the clean data and use Insert > Pivot table. Both need the same clean source you would build in Excel, so cleaning comes first in every tool."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "point",
+      "say": "Where is PivotTable in Excel?",
+      "result": "Lazur draws a circle and a label around the command on your screen, so you find Insert > PivotTable without guessing."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through the Create PivotTable dialog, one click at a time.",
+      "result": "Lazur guides you one click at a time and waits for each click. That helps the first time you see the dialog."
+    },
+    {
+      "capability": "explain",
+      "say": "Why does this column show Count instead of Sum?",
+      "result": "Hold ⌥ ⌘ and ask about the screen. Lazur answers out loud, for example why a spend column shows a row count."
+    },
+    {
+      "capability": "dictate",
+      "say": "Dictate a short summary of this pivot for my manager.",
+      "result": "Hold fn to dictate clean text at the cursor in any app. Useful for a short note after you refresh."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a label mapping list from the names on my screen.",
+      "result": "Lazur drafts and types text, such as a mapping list or a summary email. Check every number against the source yourself."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me Monday morning to refresh the campaign pivot.",
+      "result": "Lazur sets an Apple Reminders reminder or a timer for the weekly refresh, so the routine does not depend on memory."
+    },
+    {
+      "capability": "research",
+      "say": "Look up each ad platform's export format rules and summarize them.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Useful when export rules change."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is PivotTable in Excel on my Mac?",
+    "capability": "point",
+    "result": "Lazur circles the command and labels it on screen. You still click it, and Excel does the rest.",
+    "shell": "sheet",
+    "context": "Excel for Mac with a cleaned campaign table open",
+    "output": "A circle and a label on the Insert menu item PivotTable.",
+    "pointsAt": "Insert > PivotTable"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pull and label the export",
+      "text": "Download the report as CSV or XLSX from the ad platform. Save the raw file, then write one line of notes with the date range and filters. Check that the first and last dates match the range you asked for."
+    },
+    {
+      "label": "Day 2",
+      "title": "Clean a working copy",
+      "text": "Copy the raw data into a working tab. Delete title rows, totals, and blanks, fix the headers, and turn text numbers into numbers. Standardize campaign names with a mapping tab, then check one total against the platform."
+    },
+    {
+      "label": "Day 3",
+      "title": "Build the pivot",
+      "text": "Make the range an Excel table with ⌘T. Insert the PivotTable on a new sheet, add campaign to Rows, and set spend and conversions to Sum. Compare one campaign with the platform before you share anything."
+    },
+    {
+      "label": "Every week",
+      "title": "Refresh and compare",
+      "text": "Paste the new export into the table, right-click the pivot, and choose Refresh. Compare totals with last week. Add any new label that did not match your mapping list."
+    },
+    {
+      "label": "Monthly",
+      "title": "Review the setup",
+      "text": "Remove dead campaign names from the mapping list. Check your row count against the limits in this guide. Save a finished copy of the workbook with the date in the file name."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "chrome"
+  ],
+  "type": "problem",
+  "slug": "pivottable-messy-data-excel",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/pivottable-messy-data-excel/how-to-make-a-pivottable-from-messy-1-59f4ae.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a Mac cleaning messy data in a spreadsheet before building a PivotTable",
+      "caption": "Cleaning the export takes most of the time.",
+      "keywords": [
+        "how to make a PivotTable from messy data in Excel",
+        "Marketers",
+        "Building PivotTables from exported campaign data",
+        "Mac",
+        "marketer Mac spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "kaboompics",
+        "url": "https://pixabay.com/users/kaboompics-1013994/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/marketing-advertisment-ads-791202/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/pivottable-messy-data-excel/how-to-make-a-pivottable-from-messy-2-1e86af.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on an office desk showing charts for a marketing report",
+      "caption": "Weekly reporting time adds up across a team.",
+      "keywords": [
+        "how to make a PivotTable from messy data in Excel",
+        "Marketers",
+        "Building PivotTables from exported campaign data",
+        "Mac",
+        "office laptop charts",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/analytics-charts-traffic-marketing-925379/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/pivottable-messy-data-excel/how-to-make-a-pivottable-from-messy-3-7aa7b0.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person using a Mac computer at a desk with a spreadsheet open",
+      "caption": "Lazur works from your screen, one step at a time.",
+      "keywords": [
+        "how to make a PivotTable from messy data in Excel",
+        "Marketers",
+        "Building PivotTables from exported campaign data",
+        "Mac",
+        "person using Mac computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to make a PivotTable from messy data in Excel",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "PivotTable from exported campaign data": 1,
+      "Excel PivotTable Mac": 1,
+      "clean data for PivotTable": 1,
+      "Excel table as PivotTable source": 1,
+      "refresh PivotTable Excel Mac": 1,
+      "pivot table Numbers Mac": 1,
+      "Google Ads export pivot table": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

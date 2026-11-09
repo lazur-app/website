@@ -1,0 +1,605 @@
+{
+  "title": "AI assistant for Xcode on Mac: how Lazur explains, points and dictates in Xcode 27",
+  "metaTitle": "AI Assistant for Xcode on Mac: Lazur in Xcode 27",
+  "description": "Lazur is a voice assistant for Xcode on Mac. Hold ⌥ ⌘ to ask about the screen, have buttons circled, and dictate text at the cursor.",
+  "targetKeyword": "ai assistant for xcode on mac",
+  "secondaryKeywords": [
+    "Xcode 27 on Mac",
+    "voice assistant for Xcode",
+    "Xcode keyboard shortcuts on Mac",
+    "Xcode code signing error help",
+    "dictate text in Xcode",
+    "Xcode Device Hub",
+    "Xcode App Store upload error"
+  ],
+  "intro": "An AI assistant for Xcode on Mac answers questions about what is on your screen and tells you what to do next. Lazur is a voice assistant that works this way. Hold ⌥ ⌘, which means Option and Command together, and ask out loud. Lazur explains the error, circles the button you need, or walks you through the next step. It does not click for you.",
+  "tldr": [
+    "Hold ⌥ ⌘ in Xcode and ask. Lazur sees your screen and answers out loud.",
+    "It explains build and signing errors, and it circles the control you need.",
+    "It walks you through steps one click at a time, waiting for each click.",
+    "Hold fn to dictate text at the cursor. Ask Lazur to draft text there too.",
+    "It does not click, edit files or run Xcode for you. Xcode 27 needs an Apple silicon Mac on macOS Tahoe 26.6 or later."
+  ],
+  "stats": [
+    {
+      "value": "27.2",
+      "label": "Latest stable Xcode point release, build 27B52, shipped October 29, 2026",
+      "sourceUrl": "https://developer.apple.com/news/releases/",
+      "sourceTitle": "Releases: Apple Developer"
+    },
+    {
+      "value": "10%",
+      "label": "of 26,143 Stack Overflow 2025 respondents used Xcode",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "26.6",
+      "label": "Lowest macOS Tahoe version Xcode 27 requires, per a blog quoting Apple's release notes",
+      "sourceUrl": "https://blakecrosley.com/blog/xcode-27-release",
+      "sourceTitle": "Xcode 27 Is Out: Requirements, Targets, and What Broke"
+    },
+    {
+      "value": "25",
+      "label": "Xcode Cloud compute hours per month included with Apple Developer Program membership",
+      "sourceUrl": "https://developer.apple.com/xcode-cloud/",
+      "sourceTitle": "Xcode Cloud: Apple Developer"
+    }
+  ],
+  "chart": {
+    "title": "Xcode use in the Stack Overflow 2025 survey, by group",
+    "bars": [
+      {
+        "label": "Professional developers",
+        "value": 10.6,
+        "highlight": true
+      },
+      {
+        "label": "Learners",
+        "value": 6.7
+      },
+      {
+        "label": "Professionals who use AI",
+        "value": 11
+      },
+      {
+        "label": "Learners who use AI",
+        "value": 6.8
+      }
+    ],
+    "note": "Share of each group that reported using Xcode. The survey covers all respondents, not only Apple platform developers.",
+    "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+    "sourceTitle": "Stack Overflow Developer Survey 2025: Technology",
+    "unit": "%"
+  },
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does inside Xcode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch at the top of your screen. Hold ⌥ ⌘, which means Option and Command together, and speak. Lazur looks at your screen only while you hold the keys. It answers out loud. Lazur is not a plugin or add-in for Xcode, so there is nothing to install inside the app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode is busy. The editor, the navigator, the issue list, the toolbar and the console all share the screen. A voice assistant helps here. You do not have to stop typing to hunt for the right panel. You ask, and Lazur answers from what it sees."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explain: ask what a message, warning or panel means. Lazur reads it on screen and answers out loud.",
+        "Point: ask where something is. Lazur draws a circle and a label around it on your screen.",
+        "Guide: ask how to do a task. Lazur gives one step at a time and waits for each click.",
+        "Draft: ask for text, such as a doc comment or release note. Lazur types it at your cursor.",
+        "Dictate: hold fn and speak. Lazur writes clean, formatted text at the cursor in any app."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The limits matter as much as the features. Lazur does not click buttons, press Run or edit files. It does not change your project or your build settings. When you need a step done, Lazur tells you which control to use and why. You do the clicking. Think of it as a colleague who sits beside you and points at the screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode problems people search for"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple does not publish a list of its most-visited Xcode help topics. The closest signal is the Apple Developer Forums Xcode tag. In one snapshot, the recurring threads covered code signing and provisioning, App Store upload validation, simulators and Device Hub, and device connection. Treat that as a guide, not search volume data, because it is one snapshot."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Problem",
+        "What it looks like",
+        "What to ask Lazur"
+      ],
+      "rows": [
+        [
+          "Code signing and provisioning",
+          "Team and App ID conflicts, or 'Unable to find a team with the given Team ID'",
+          "What does this signing error mean?"
+        ],
+        [
+          "Device install rejected",
+          "Install fails with error 0xe8008018",
+          "What does this install error say?"
+        ],
+        [
+          "App Store upload validation",
+          "'Invalid Signature', or 'Unsupported SDK or Xcode version' for Xcode 27.2",
+          "Why did the upload fail validation?"
+        ],
+        [
+          "Simulator and Device Hub threads",
+          "Simulator and device list problems in the Xcode tag",
+          "Where is Device Hub on screen?"
+        ],
+        [
+          "Apple Watch pairing",
+          "A pairing and connection thread with 30 replies",
+          "What does this pairing message mean?"
+        ],
+        [
+          "Coding agent permissions",
+          "'Xcode 27 crashes when coding agent asks for permission', with 16 replies",
+          "What is this permission prompt asking for?"
+        ]
+      ],
+      "caption": "Recurring Apple Developer Forums topics in the Xcode tag, accessed November 7, 2026."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these start with a message on screen. That is where Lazur helps first. Hold ⌥ ⌘, ask what the message says, and Lazur reads it back in plain English. It does not fix the setup for you. You still pick the team, the bundle identifier and the certificate. Lazur explains the choice. You make it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode 27 on Mac: check your hardware first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple released Xcode 27, build 27A266a, on September 14, 2026. The latest stable point release is Xcode 27.2, build 27B52, released October 29, 2026. Xcode 27.3 is in beta as of November 3, 2026. The previous line, Xcode 26.6, shipped June 25, 2026. Apple's releases page lists each build, so check it before you install."
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode 27 needs macOS Tahoe 26.6 or later. That requirement comes from a third-party blog that quotes Apple's release notes. Apple's Xcode page does not state a minimum macOS version, so read the release notes yourself before you update. Xcode 27 also runs only on Apple silicon Macs. Intel Macs can still build for Intel from a macOS version that supports Rosetta. They cannot run Xcode 27."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check your chip before you update",
+      "text": "Open Apple menu > About This Mac. Look for the chip name. If it says Intel, Xcode 27 will not run on that Mac. Stay on your current Xcode version, or use an Apple silicon Mac for Xcode 27."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode keyboard shortcuts on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcuts still save the most time. The only Apple shortcut table we could open is archived from 2011, so verify each one against your Product menu. It lists these commands."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Run: ⌘R",
+        "Build: ⌘B",
+        "Clean: ⇧⌘K",
+        "Stop: ⌘.",
+        "Run Without Building: ⌃⌘R",
+        "Clear Console: ⌘K"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The same archived table lists Test as ⌘T. Xcode may have changed that since 2011, so read the Product menu before you rely on it. Lazur can read a shortcut off an open menu. It cannot press keys for you. Ask Lazur to point at the menu item, then press the key yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Walk through a signing error with Lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a realistic sequence. You press ⌘R and a red signing error appears in the issue navigator. You do not know which setting caused it. Hold ⌥ ⌘ and work through these steps. Each step is short, and you do the clicking."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Ask: What does this signing error mean? Lazur explains the message out loud, using the words on screen.",
+        "Ask: Where is the team setting? Lazur circles the Signing & Capabilities area of your target settings.",
+        "Ask: Walk me through choosing the team. Lazur gives one step, then waits for your click before the next.",
+        "Press ⌘R again. If a new error shows up, hold ⌥ ⌘ and ask about that message."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur answers from what it sees. If the message is cut off, widen the window or open the full log first. Lazur cannot read text that is not on screen. Team IDs, certificates and App IDs live in your Apple Developer account. Lazur can explain them. It cannot sign in to your account or change those settings for you."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reading the console and issue list with Lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "The console at the bottom of Xcode fills fast. A single run can print many lines. Scroll to the first error, then hold ⌥ ⌘ and ask what it means. Lazur reads only what is visible, so scroll before you ask. Clear old output with ⌘K before a run. The archived table lists Clear Console as ⌘K, so confirm that in your version."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate and draft text at the cursor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation works in Xcode the way it works in Mail or Notes. Hold fn, speak, and let go. Lazur writes clean, formatted text at the cursor in any app. You can save snippets, add words to a personal dictionary and use clipboard slots. Add words that Swift developers use often, such as SwiftUI, your type names and your team's abbreviations."
+    },
+    {
+      "type": "paragraph",
+      "text": "Drafting is a different job. Ask Lazur for text, and it types the draft at your cursor. Good first drafts include a doc comment, a release note and a commit message. Read every line before you keep it. Lazur only knows what you tell it, so add the context a reviewer would need."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try a small test first. Put the cursor above a function. Hold fn and say what the function does in one short sentence. Compare what you hear with what you wanted. You will see how the output looks before you depend on it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode 27 coding agents and Lazur, side by side"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode 27 adds coding agents of its own. Apple's Xcode page says they run on the model of your choice. It names models from Anthropic, Google and OpenAI. It also says you can add any Agent Client Protocol agent or Model Context Protocol tool. Those agents work inside Xcode, on your project."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does a different job. It explains what is on screen, points at controls, walks you through steps and types text when you ask. A coding agent changes code. Lazur does not. If you want code changed, use Xcode's agents or your own tools. If you want to understand the screen in front of you, ask Lazur."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy when you ask about private code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer. They are not stored. Content is never used to train AI models. Lazur also keeps a memory of what you asked and did, and that memory stays on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "That still means code on your screen leaves your Mac when you ask about it. Check your employer's code policy before you hold ⌥ ⌘ over a private repository. Close sensitive files first. Remove API keys and passwords from view before you ask. Ask only about the part you need."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Numbers behind Xcode's audience and cloud builds"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stack Overflow's 2025 Developer Survey put Xcode at 10% of all 26,143 respondents. Among professional developers, Xcode usage was 10.6%. Among learners, it was 6.7%. Those are survey shares, not counts of Xcode users. The survey covered all respondents, not only Apple platform developers."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode Cloud is a separate cost question. Apple says Apple Developer Program membership includes 25 compute hours per month. Paid extra tiers include 100 hours for US$49.99 per month and 250 hours for US$99.99 per month. Check the Xcode Cloud page for current terms before you plan a build pipeline around them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases after you upgrade to Xcode 27"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build settings can break after the upgrade. According to the same blog, Xcode 27 sets minimum deployment targets at macOS 12, watchOS 9 and DriverKit 21. Targets set to macOS 27.0 will not build Universal by default. The -ld64 flag fails, and Apple's notes say -ld_classic is no longer supported. If one of these shows up on screen, ask Lazur to explain it and point at the setting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Devices need care too. Apple's Xcode page says Xcode 27 adds Device Hub for physical devices and simulators. Apple Watch pairing is a common thread, with 30 replies on the Xcode forum tag. Start with the cable, the trust prompt on the device and the device list in Xcode. Then ask Lazur what each message means."
+    },
+    {
+      "type": "paragraph",
+      "text": "Permission prompts from coding agents are a newer source of trouble. One of the most-engaged recent forum threads reports a crash when a coding agent asks for permission, with 16 replies. If it happens to you, note what the prompt asked before you restart. Lazur can explain a prompt that is still on screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with Lazur in Xcode"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Holding fn to ask a question. fn dictates text. Ask questions with ⌥ ⌘ instead.",
+        "Expecting Lazur to press Run. You press ⌘R. Lazur tells you which key to press.",
+        "Asking about a message that is off screen. Bring the message into view first.",
+        "Trusting a draft without reading it. Lazur types what you asked for, not what your project needs.",
+        "Trying to run Xcode 27 on an Intel Mac. It will not run there. Check About This Mac first.",
+        "Ignoring the fn key setting. If fn opens the emoji picker or switches input, change it in System Settings > Keyboard."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Try it on your next build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start small. Pick a build that already fails, not a live release. Ask one question about a message on screen. Then try a point request and a draft. Each one shows a different part of Lazur. Once those feel natural, use dictation for comments and notes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS on Apple silicon and Intel Macs. That means Lazur works on an Intel Mac even though Xcode 27 does not. Get Lazur from the [download page](/download). The [pricing page](/pricing) lists the plans. The free trial starts when you first open the app, and it needs no credit card."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur run inside Xcode?",
+      "answer": "No. Lazur is not a plugin or add-in for any app, Xcode included. It works from your screen while you hold ⌥ ⌘ or fn. Nothing installs inside Xcode, so there is nothing to add to your project or your toolbar."
+    },
+    {
+      "question": "Can Lazur fix my build errors for me?",
+      "answer": "No. Lazur explains errors, points at the controls involved and guides you one step at a time. It waits for each click. It does not click buttons, edit files or change your build settings."
+    },
+    {
+      "question": "Which macOS version does Xcode 27 need?",
+      "answer": "A blog post that quotes Apple's Xcode 27 release notes says macOS Tahoe 26.6 or later. Apple's Xcode page does not state a minimum. Read the release notes on Apple's releases page before you update."
+    },
+    {
+      "question": "Does Xcode 27 run on Intel Macs?",
+      "answer": "No. According to the same blog, Xcode 27 installs and runs only on Apple silicon Macs. Intel Macs can still build for Intel from a macOS version that supports Rosetta. Lazur itself runs on Intel Macs."
+    },
+    {
+      "question": "What is the shortcut to run an app in Xcode?",
+      "answer": "Run is ⌘R in Apple's archived shortcut table from 2011. Build is ⌘B and Stop is ⌘. Check the Product menu, because menu names and shortcuts can change between versions."
+    },
+    {
+      "question": "Does Lazur send my code to AI providers?",
+      "answer": "When you hold the shortcut, the audio and a screenshot go to AI providers so they can answer. They are not stored, and content is never used to train AI models. Avoid asking about code your policy does not allow you to share."
+    },
+    {
+      "question": "Does dictation work inside Xcode?",
+      "answer": "Yes. Hold fn, speak, and let go. Lazur writes clean, formatted text at the cursor in any app. If fn opens the emoji picker on your Mac, change the setting in System Settings > Keyboard."
+    },
+    {
+      "question": "Is there a free trial?",
+      "answer": "Lazur has a Pro trial with no credit card. The trial starts when you first open the app. The pricing page lists the plans and what each one includes."
+    },
+    {
+      "question": "Can Lazur show me Device Hub?",
+      "answer": "Apple says Xcode 27 adds Device Hub for physical devices and simulators. Ask Lazur where it is on screen, and it will circle it if it can see it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Xcode: Apple Developer",
+      "url": "https://developer.apple.com/xcode/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Releases: Apple Developer",
+      "url": "https://developer.apple.com/news/releases/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode 27 Is Out: Requirements, Targets, and What Broke",
+      "url": "https://blakecrosley.com/blog/xcode-27-release",
+      "publisher": "Blake Crosley",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode Cloud: Apple Developer",
+      "url": "https://developer.apple.com/xcode-cloud/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Menu Command Shortcuts (By Menu): Xcode Keyboard Shortcuts and Gestures (archived)",
+      "url": "https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/xcode_help-command_shortcuts/MenuCommands/MenuCommands014.html",
+      "publisher": "Apple (archived)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode: Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/tags/xcode",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "appCategory": "Developer tools",
+  "demos": [
+    {
+      "spoken": "What does this error mean?",
+      "capability": "explain",
+      "context": "Xcode shows a red signing error in the issue navigator after you press Run.",
+      "result": "Lazur reads the error on screen and explains it in plain words.",
+      "shell": "code",
+      "pointsAt": "Issue navigator",
+      "output": "Lazur says the error points to the signing setup for the team you picked, not to your Swift code. It suggests checking the team in Signing & Capabilities."
+    },
+    {
+      "spoken": "Where is the run destination?",
+      "capability": "point",
+      "context": "You want to run on a physical iPhone instead of the simulator.",
+      "result": "Lazur draws a circle and a label around the destination picker in the toolbar.",
+      "shell": "code",
+      "pointsAt": "Run destination picker",
+      "output": "Lazur circles the destination picker and labels it Run destination. You choose the device yourself."
+    },
+    {
+      "spoken": "Draft a doc comment for this function.",
+      "capability": "draft",
+      "context": "The cursor sits above a function declaration in the editor.",
+      "result": "Lazur types a short doc comment at the cursor. You read it, then keep or delete it.",
+      "shell": "code",
+      "pointsAt": "Editor cursor",
+      "output": "/// Returns the cart total, including tax, in the store's currency."
+    }
+  ],
+  "asks": [
+    {
+      "say": "What does this error mean?",
+      "result": "Lazur reads the message on screen and says what it means, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the scheme picker?",
+      "result": "Lazur circles the scheme picker and labels it so you can find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through adding my Apple ID to Xcode.",
+      "result": "Lazur gives one step at a time and waits for each click before the next.",
+      "capability": "guide"
+    },
+    {
+      "say": "What is the shortcut for Clean?",
+      "result": "If the Product menu is open, Lazur reads the shortcut off the screen. Otherwise it says it cannot see one.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a short release note for this build.",
+      "result": "Lazur types a draft at your cursor. Read it before you publish anything.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and speak the commit message.",
+      "result": "Lazur writes clean, formatted text at the cursor in the commit field.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Why did my upload fail validation?",
+      "result": "Lazur reads the validation message and explains what it says in plain English.",
+      "capability": "explain"
+    },
+    {
+      "say": "Set a timer for my test run.",
+      "result": "Lazur starts a timer while your tests run, so you know when to check back.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "app",
+  "slug": "xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "appUrl": "https://developer.apple.com/xcode/",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/app/xcode/ai-assistant-for-xcode-on-mac-1-7da099.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer working on a Mac at a desk, the setting for an AI assistant for Xcode on Mac",
+      "caption": "Daily Xcode work on a Mac",
+      "keywords": [
+        "ai assistant for xcode on mac",
+        "Xcode",
+        "voice assistant",
+        "Mac",
+        "developer working on Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-computer-hacker-hacking-1841550/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/app/xcode/ai-assistant-for-xcode-on-mac-2-5d4c64.jpg",
+      "width": 1280,
+      "height": 826,
+      "alt": "MacBook Pro on a desk, the kind of Apple silicon Mac that runs Xcode 27 and an AI assistant for Xcode on Mac",
+      "caption": "Apple silicon Mac for Xcode 27",
+      "keywords": [
+        "ai assistant for xcode on mac",
+        "Xcode",
+        "voice assistant",
+        "Mac",
+        "macbook pro desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-apple-macbook-room-2598310/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/app/xcode/ai-assistant-for-xcode-on-mac-3-3dcebc.jpg",
+      "width": 1280,
+      "height": 1216,
+      "alt": "Programmer typing code with a coffee nearby while using an AI assistant for Xcode on Mac",
+      "caption": "Voice help while you type",
+      "keywords": [
+        "ai assistant for xcode on mac",
+        "Xcode",
+        "voice assistant",
+        "Mac",
+        "programmer coffee code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "JanBaby",
+        "url": "https://pixabay.com/users/JanBaby-3005373/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-geek-talk-code-to-me-coffee-cup-2680204/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "ai assistant for xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "Xcode 27 on Mac": 2,
+      "voice assistant for Xcode": 2,
+      "Xcode keyboard shortcuts on Mac": 2,
+      "Xcode code signing error help": 1,
+      "dictate text in Xcode": 1,
+      "Xcode Device Hub": 1,
+      "Xcode App Store upload error": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

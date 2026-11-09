@@ -1,0 +1,522 @@
+{
+  "title": "How to compare two columns in Excel on Mac: step by step for Microsoft 365",
+  "metaTitle": "How to Compare Two Columns in Excel on Mac: Step by Step",
+  "description": "How to compare two columns in Excel on Mac with Conditional Formatting and a MATCH formula. Steps for Microsoft 365, Excel 2024 and 2021.",
+  "targetKeyword": "how to compare two columns in excel on mac",
+  "secondaryKeywords": [
+    "compare two columns excel mac",
+    "find duplicates in two columns excel mac",
+    "excel mac highlight duplicates",
+    "match values between two columns excel",
+    "excel mac conditional formatting duplicates",
+    "excel mac compare lists"
+  ],
+  "intro": "To compare two columns in Excel on Mac, select both columns, then go to Home > Conditional Formatting > Highlight Cells Rules > Duplicate Values to color values that repeat. To check which values in one column are missing from the other, use a MATCH formula in a helper column.",
+  "tldr": [
+    "Select both columns, then use Home > Conditional Formatting > Highlight Cells Rules > Duplicate Values to color repeated values.",
+    "For a list-to-list check, enter =IF(ISERROR(MATCH(A1,$C$1:$C$3,0)),\"\",A1) in cell B1, then fill it down.",
+    "Duplicate Values does not compare rows. Use =A2=B2 when the row position matters.",
+    "Fix numbers stored as text first, or a correct match can look like a blank.",
+    "Copy your sheet before you run Remove Duplicates, because that command permanently deletes data."
+  ],
+  "stats": [
+    {
+      "value": "16.114.3",
+      "label": "Latest Excel for Mac build in Microsoft's release notes, dated October 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    },
+    {
+      "value": "About 94%",
+      "label": "Share of operational spreadsheets with at least one error, per a vendor summary of Panko's research",
+      "sourceUrl": "https://www.datahubpro.co.uk/what-percentage-of-spreadsheets-have-errors",
+      "sourceTitle": "What % of spreadsheets have errors? (DataHub Pro)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most people who search this phrase need one of two answers. Some want to see which values repeat across two columns. Others want to know which item in column A is missing from column B. Those jobs look alike, but Excel handles them in different ways. This guide covers both, plus row-by-row checks, a formatting trap that breaks matches, and the mistakes that cost people the most time."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel version before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Excel and go to Excel > About Excel. The build number tells you which release you run. Microsoft's release notes list 16.114.3 (26102720) as the latest Excel for Mac build. That entry is dated October 27, 2026, and it mentions only quality and performance improvements. The steps below apply to Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The release notes also show what did change. Build 16.113, released September 16, 2026, added Copilot in Excel features such as a change history skill and chart and PivotTable skills. The notes I read show no Excel menu changes and no mention of Conditional Formatting or Duplicate Values. A third-party encyclopedia page listed 16.114.1 as the latest build, so treat Microsoft's page as the reference."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Highlight values that repeat across two columns"
+    },
+    {
+      "type": "paragraph",
+      "text": "Conditional formatting is the fastest route, and it leaves your data alone. Select both columns and apply the Duplicate Values rule. Excel colors every cell whose value appears more than once in that selection. That includes matches between the two columns. It also includes repeats inside one column, so a column can highlight its own repeats. Expect that, and do not treat it as a bug."
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose the option that matches your question. Duplicate flags any value that appears more than once. Unique flags values that appear only once in the selection. Start with duplicate when you want to find overlap between the two lists. Switch to unique when you want to find what stands alone."
+    },
+    {
+      "type": "paragraph",
+      "text": "Duplicate Values does not compare rows. A value in A2 can match a value in B9, and the rule still colors both. Microsoft's Mac page describes the rule in four steps. I did not find any mention of row alignment there. Treat the highlight as a value check, not a row check."
+    },
+    {
+      "type": "table",
+      "caption": "Mac menu paths used on this page, from Microsoft's Mac and web pages.",
+      "headers": [
+        "Task",
+        "Menu path"
+      ],
+      "rows": [
+        [
+          "Highlight repeated values",
+          "Home > Conditional Formatting > Highlight Cells Rules > Duplicate Values"
+        ],
+        [
+          "Select the highlighted cells",
+          "Edit > Find > Go To, then Special > Conditional formats"
+        ],
+        [
+          "Remove formats from cells",
+          "Edit > Clear > Formats"
+        ],
+        [
+          "Highlight in Excel for the web",
+          "Home > Styles > Conditional Formatting > Highlight Cell Rules > Duplicate Values"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find which values in column A are missing from column B"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the question most people actually have. Say column A holds order IDs, and column C holds the IDs your team approved. You want to know which orders are approved. Conditional formatting can flag overlaps, but it cannot pull out a clean list. A lookup formula can. Microsoft's method puts a MATCH inside an IF, in a helper column next to your list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Break the formula into parts. MATCH looks up the value in A1 inside $C$1:$C$3. It returns the position of the match, or an error when the value is missing. The 0 at the end asks for an exact match. ISERROR turns that error into TRUE. IF then returns a blank, and otherwise it returns the value from A1. The dollar signs lock the lookup range, so it stays fixed as you copy the formula down."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a small example. Column A holds five order IDs: 1001, 1002, 1003, 1004 and 1005. Column C holds three approved IDs: 1002, 1004 and 1006. After you fill the formula down to row 5, column B shows 1002 and 1004. The cells in rows 1, 3 and 5 stay blank. The 1006 in column C never appears, because the formula only checks column A."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check rows one by one"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes row position matters. Say column A holds a customer name and column B holds the name from a new export. You want to know whether each row still matches. Duplicate Values cannot answer that. A simple comparison can. Type =A2=B2 in a free column such as D2 and fill it down. Excel returns TRUE when the two cells match and FALSE when they do not. Filter for FALSE to see only the rows that differ."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix numbers stored as text before you compare"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many false mismatches come from numbers stored as text. Excel marks these cells with a small green triangle in the upper-left corner. Microsoft's guide says to click the error button and choose Convert to Number. You can also use Paste Special with Multiply by 1, which sits in the Clipboard group on the Home tab. On Mac, Paste Special is ⌘⌃V, but Microsoft marks that shortcut as not applying to every product. If it does nothing, use the Home tab. For a longer walkthrough, read [how to convert text to numbers in Excel on Mac](/how-to/convert-text-to-numbers-in-excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "The MATCH formula can hide this problem. A text 1002 does not match a number 1002, so the lookup fails. ISERROR catches the failure, and the cell goes blank. You get no error message to warn you. Third-party guides describe this mismatch, and I did not test it on a real Mac file. Check the formats before you trust a blank."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost people the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Selecting only one column with Duplicate Values, then expecting matches across two columns. Select both columns to see the overlap.",
+        "Forgetting the dollar signs in the lookup range. The range shifts as you fill down, and the results go wrong without a warning.",
+        "Running Remove Duplicates on your only copy of the data. Microsoft says it permanently deletes the duplicate data.",
+        "Leaving highlights on the sheet. The formatting stays until you clear it, so later checks look busier than they are.",
+        "Trusting a blank without checking formats. A text number can look like a missing value.",
+        "Ignoring wildcards. Microsoft's Duplicate Values rule treats * and ? as wildcards, even inside a formula."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Copy before you remove",
+      "text": "Remove Duplicates permanently deletes data. Copy the original data to another worksheet first, and remove any outlines or subtotals before you run it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Remove Duplicates lives on the Data tab. It deletes repeats from the data itself, not from the view. That is different from highlighting, which changes only the color of the cells. If you only need to see repeats, stick with conditional formatting. Save the destructive step for a copy you can throw away."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Excel for the web on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web uses a different ribbon path. Microsoft lists Home > Styles > Conditional Formatting > Highlight Cell Rules > Duplicate Values. You enter the values, then choose a fill, text or border color. Microsoft's page spells the menu item in the singular, so match the name you see on screen. Excel for the web also cannot apply conditional formatting to references that point to another workbook. Copy those values into the same workbook first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much to trust the matches"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common, and a comparison is only as good as its inputs. A DataHub Pro summary of Raymond Panko's spreadsheet research says about 94% of operational spreadsheets contain at least one error. DataHub Pro sells spreadsheet software. I could not open Panko's primary page, so treat that figure as a rough signal, not a precise measurement."
+    },
+    {
+      "type": "paragraph",
+      "text": "A small test helps more than any percentage. Copy ten or twenty rows to a new sheet. Run the steps there. Count the matches by hand, then compare that count with the formula result. If the two counts agree, run the same steps on the full sheet."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the matches feed a summary, a pivot table can count them by group. Read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel) for that part. If your lists start in Google Sheets, read [how to download Google Sheets as Excel on Mac](/how-to/download-as-excel-in-google-sheets) first, then run the steps here."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Duplicate Values compare two columns row by row?",
+      "answer": "No. Duplicate Values checks whether a value appears more than once in the selected range. It does not check whether A2 matches B2. For row-by-row checks, type =A2=B2 in a free column and fill it down."
+    },
+    {
+      "question": "Why does my MATCH formula show blank cells for values I know are in the list?",
+      "answer": "Check the formats first. A number stored as text does not match the same number stored as a number. The formula returns a blank rather than an error, so the mismatch looks like no match. Convert both columns to the same type, then fill the formula down again."
+    },
+    {
+      "question": "Will Remove Duplicates delete data on my Mac?",
+      "answer": "Yes. Microsoft says Remove Duplicates permanently deletes the duplicate data. Copy the original data to another worksheet before you run it, and remove any outlines or subtotals first."
+    },
+    {
+      "question": "Which Excel version do I need for this?",
+      "answer": "The steps on this page apply to Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. Microsoft's release notes show 16.114.3 as the latest build, and the notes I read show no change to these menus."
+    },
+    {
+      "question": "Can I do this in Excel for the web on a Mac?",
+      "answer": "Yes, with a different menu path. Use Home > Styles > Conditional Formatting > Highlight Cell Rules > Duplicate Values. Excel for the web cannot apply conditional formatting to references that point to another workbook."
+    },
+    {
+      "question": "Why do my highlights catch asterisks and question marks?",
+      "answer": "Microsoft's Duplicate Values rule treats * and ? as wildcards, even inside a formula. Test a few rows with those characters before you trust the highlight. A DBCS language setting can also make halfwidth and fullwidth characters match."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Highlight patterns and trends with conditional formatting in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/highlight-patterns-and-trends-with-conditional-formatting-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to compare data in two columns to find duplicates in Excel",
+      "url": "https://support.microsoft.com/en-us/office/how-to-compare-data-in-two-columns-to-find-duplicates-in-excel-fbeab47c-dd7a-4cf2-8aaf-50fc19d85dcc",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Common Office for Mac keyboard shortcuts",
+      "url": "https://support.microsoft.com/en-us/office/common-office-for-mac-keyboard-shortcuts-307f469a-1a05-4263-9b55-49df19a8b8ff",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Use conditional formatting to highlight information in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/use-conditional-formatting-to-highlight-information-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Find and remove duplicates",
+      "url": "https://support.microsoft.com/en-us/excel/find-and-remove-duplicates",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fix text-formatted numbers by applying a number format",
+      "url": "https://support.microsoft.com/en-us/excel/fix-text-formatted-numbers-by-applying-a-number-format",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "What % of spreadsheets have errors?",
+      "url": "https://www.datahubpro.co.uk/what-percentage-of-spreadsheets-have-errors",
+      "publisher": "DataHub Pro",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Compare two columns in Excel on Mac",
+  "appliesTo": "Microsoft 365, Excel 2024 and Excel 2021 for Mac",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Microsoft 365, Excel 2024 or Excel 2021 for Mac",
+    "Two columns of data on the same sheet",
+    "A copy of the sheet before you run Remove Duplicates"
+  ],
+  "steps": [
+    {
+      "name": "Select both columns",
+      "text": "Click the letter above the first column, then hold Command and click the letter above the second column. Both columns stay selected at once. For long lists, click the first cell and Shift-click the last one instead.",
+      "tip": "Leave out the header row. Otherwise, matching headers such as 'Order ID' will light up too."
+    },
+    {
+      "name": "Open Conditional Formatting",
+      "menuPath": [
+        "Home",
+        "Conditional Formatting"
+      ],
+      "text": "Click the Home tab on the ribbon. Then click Conditional Formatting. A list of rule types opens."
+    },
+    {
+      "name": "Open Highlight Cells Rules",
+      "menuPath": [
+        "Home",
+        "Conditional Formatting",
+        "Highlight Cells Rules"
+      ],
+      "text": "Point to Highlight Cells Rules. A submenu opens with the rule types. Move across slowly so the menu stays open."
+    },
+    {
+      "name": "Choose Duplicate Values",
+      "menuPath": [
+        "Home",
+        "Conditional Formatting",
+        "Highlight Cells Rules",
+        "Duplicate Values"
+      ],
+      "text": "Click Duplicate Values. A rule dialog opens for the range you selected."
+    },
+    {
+      "name": "Pick duplicate or unique",
+      "text": "Next to 'values in the selected range,' choose duplicate to flag repeats. Choose unique to flag values that appear only once.",
+      "tip": "Start with duplicate when you want the overlap between the two columns."
+    },
+    {
+      "name": "Confirm the rule",
+      "text": "Set the highlight style in the dialog, then confirm the rule. Dialog wording can change between builds, so read each option before you confirm.",
+      "tip": "The rule stays on the cells until you clear it. Step 13 shows how."
+    },
+    {
+      "name": "Set up the list-to-list layout",
+      "text": "Put your first list in column A starting at A1. Leave column B for the results. Put your second list in column C starting at C1. This layout matches Microsoft's worksheet example."
+    },
+    {
+      "name": "Enter the MATCH formula",
+      "text": "Click cell B1, type =IF(ISERROR(MATCH(A1,$C$1:$C$3,0)),\"\",A1), then press Return. Change $C$1:$C$3 so it covers your whole second list.",
+      "tip": "Keep the dollar signs. They lock the lookup range while the rest of the formula moves."
+    },
+    {
+      "name": "Fill the formula down",
+      "text": "Drag the small square at the bottom-right corner of B1 down to row 5. Excel copies the formula into each row next to column A.",
+      "tip": "Microsoft's worksheet page names Editing > Fill > Down with Windows labels. Use the fill handle on Mac instead."
+    },
+    {
+      "name": "Read the results",
+      "text": "Each cell in column B shows the value from column A when that value also appears in column C. A blank cell means no match. Count the blanks to see how many items are still missing."
+    },
+    {
+      "name": "Compare rows one by one",
+      "text": "Type =A2=B2 in a free column such as D2, press Return, then fill the formula down. TRUE means the two cells match. FALSE means they do not.",
+      "tip": "Use this when row position matters. Duplicate Values cannot tell you that."
+    },
+    {
+      "name": "Find the highlighted cells",
+      "menuPath": [
+        "Edit",
+        "Find",
+        "Go To"
+      ],
+      "text": "Click Edit > Find > Go To. In the Go To window, click Special, then choose Conditional formats. Excel selects the cells that carry a conditional format."
+    },
+    {
+      "name": "Clear the highlights",
+      "menuPath": [
+        "Edit",
+        "Clear",
+        "Formats"
+      ],
+      "text": "Select the cells you want to clean, then click Edit > Clear > Formats. This removes all formatting from the selection, not only the highlight, so use it where that is fine.",
+      "tip": "Check Home > Conditional Formatting for a Clear Rules option. I did not verify that option on a Mac."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Find (search cells for a value)",
+      "keys": "⌘F"
+    },
+    {
+      "action": "Paste Special (for the Multiply by 1 fix)",
+      "keys": "⌘⌃V"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Duplicate Values highlights repeats inside one column.",
+      "fix": "The rule checks the whole selection, so it cannot separate one column from the other. Use the MATCH formula for a strict list-to-list check."
+    },
+    {
+      "problem": "MATCH shows blank for a value you know is in the list.",
+      "fix": "Check formats and stray spaces first. A text number does not match a real number. Convert both columns to the same type, then fill the formula down again."
+    },
+    {
+      "problem": "The results shift when I fill the formula down.",
+      "fix": "The dollar signs are missing from the lookup range. Retype $C$1:$C$3 with the dollar signs, then fill down again."
+    },
+    {
+      "problem": "Remove Duplicates deleted rows I still need.",
+      "fix": "If you catch it right away, use Edit > Undo. Otherwise, restore the rows from your copy. Copy the sheet before you run the command next time."
+    },
+    {
+      "problem": "Highlights catch values with asterisks or question marks.",
+      "fix": "Duplicate Values treats * and ? as wildcards. Test a few rows that contain those characters before you trust the highlight."
+    },
+    {
+      "problem": "I cannot find Duplicate Values in Excel for the web.",
+      "fix": "Use Home > Styles > Conditional Formatting > Highlight Cell Rules > Duplicate Values. Conditional formatting cannot use references to another workbook, so copy those values in first."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Conditional Formatting in this sheet?",
+    "capability": "point",
+    "result": "Lazur circles Conditional Formatting on the Home tab and labels it. You still click it and choose the rule yourself.",
+    "shell": "sheet",
+    "context": "Excel for Mac with two columns selected on the Home tab",
+    "output": "Conditional Formatting is on the Home tab. Lazur circles it. Click it, then point to Highlight Cells Rules.",
+    "pointsAt": "Conditional Formatting"
+  },
+  "type": "howto",
+  "slug": "compare-two-columns-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/compare-two-columns-in-excel/how-to-compare-two-columns-in-excel-1-e7ca3f.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a laptop comparing two columns of data in a spreadsheet on a Mac",
+      "caption": "Checking two lists side by side in a spreadsheet.",
+      "keywords": [
+        "how to compare two columns in excel on mac",
+        "Excel",
+        "compare two columns",
+        "Mac",
+        "person laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/compare-two-columns-in-excel/how-to-compare-two-columns-in-excel-2-279bcd.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Office worker reviewing matched data on a computer screen before comparing columns in Excel",
+      "caption": "Reviewing matches before you act on them.",
+      "keywords": [
+        "how to compare two columns in excel on mac",
+        "Excel",
+        "compare two columns",
+        "Mac",
+        "office worker data screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "This_is_Engineering",
+        "url": "https://pixabay.com/users/This_is_Engineering-11384528/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/engineer-man-desk-working-8499949/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/compare-two-columns-in-excel/how-to-compare-two-columns-in-excel-3-473639.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Laptop on a desk with a spreadsheet open, ready to compare two columns in Excel on Mac",
+      "caption": "A desk setup for checking spreadsheet data.",
+      "keywords": [
+        "how to compare two columns in excel on mac",
+        "Excel",
+        "compare two columns",
+        "Mac",
+        "desk laptop work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to compare two columns in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "compare two columns excel mac": 1,
+      "find duplicates in two columns excel mac": 1,
+      "excel mac highlight duplicates": 1,
+      "match values between two columns excel": 1,
+      "excel mac conditional formatting duplicates": 1,
+      "excel mac compare lists": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "title": "After Effects expression disabled warning on Mac: causes and fixes for 2026",
+  "metaTitle": "After Effects expression disabled: causes and fixes for Mac",
+  "description": "The After Effects expression disabled warning means an expression hit an error. Causes, engine settings and fixes for designers on a Mac.",
+  "targetKeyword": "after effects expression disabled",
+  "secondaryKeywords": [
+    "after effects expression error",
+    "after effects expression not working",
+    "after effects expression engine",
+    "expression engine javascript legacy",
+    "after effects project settings expressions",
+    "after effects expression error mac"
+  ],
+  "intro": "The After Effects expression disabled warning means an expression failed to run. The property that uses it can stop following the expression, so the motion looks frozen or wrong. Most causes are small: a syntax error, a renamed layer or the wrong expression engine. This page covers each cause, the fixes you can try yourself, and where Lazur can help.",
+  "tldr": [
+    "The warning means After Effects hit an error in an expression. Read the full message before you change anything.",
+    "Common causes are a syntax error, a renamed layer or property, an object passed where a number is needed, and an engine mismatch.",
+    "Engine settings live under File > Project Settings > Expressions. Test any switch on a copy, because it can change the look.",
+    "Adobe's own help pages did not open for me, so check current Adobe help before you rely on a menu path.",
+    "Lazur can explain the message, point at menu items and guide you one click at a time. It does not click or edit for you."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the After Effects expression disabled warning means"
+    },
+    {
+      "type": "paragraph",
+      "text": "When an expression in After Effects fails, the program shows an error. The warning names the problem, and the property that uses the expression may stop moving the way you planned. That is the real risk. A frozen or wrong animation can pass a quick glance, so check the motion as well as the message."
+    },
+    {
+      "type": "paragraph",
+      "text": "The exact wording varies by build. One blog quotes an error that ends with 'something is undefined'. A forum thread from the CC 2019 era quotes 'Object of type found where a Number, Array, or Property is needed'. Copy your own message word for word, because the exact words point to the cause."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What I could not verify",
+      "text": "Adobe's own help pages returned errors to my fetches, so Adobe's exact wording and menu details are unverified here. The sources are a third-party blog, Adobe Community posts and a reference site. Check Adobe's current help before you rely on any single step on this page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the full message before you change anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the message, not the expression. Note the layer name, the property name and the line number if one appears. Those details narrow the cause fast. Change one thing at a time, because a pile of edits hides which change helped."
+    },
+    {
+      "type": "paragraph",
+      "text": "Line numbers matter. Adobe's expression changelog lists 17.0.2 as the release that fixed wrong line numbers in JavaScript expression error messages. On a later build, the line number should point at the code you need. On an older build, check the whole expression, not only the line the message gives you."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The layer name, spelled exactly, with spaces and capitals",
+        "The property name, such as Position, Scale or a slider control name",
+        "The line number, if the message shows one",
+        "The full error text, copied rather than paraphrased",
+        "Your After Effects version, from the About window"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from a real forum thread"
+    },
+    {
+      "type": "paragraph",
+      "text": "One Adobe Community post describes a user on After Effects CC 2019 who ran the Rubber Hose 2 script. Four 'Expression Disabled' errors appeared. Each one read 'Object of type found where a Number, Array, or Property is needed'. The message means the code handed a value of the wrong type to a function. A layer or property arrived where a plain number was expected."
+    },
+    {
+      "type": "paragraph",
+      "text": "The accepted answer admitted the cause was unclear. It suggested switching from the JavaScript engine to Legacy. The errors went away, but the animation looked worse to the user. The other engine kept the animation good and still threw errors. The engine change was a trade, not a repair."
+    },
+    {
+      "type": "paragraph",
+      "text": "What should you learn from it? Treat the engine switch as a test, not the first move. Find the expression that passes the wrong type. Then decide whether the engine still matters. Legacy is the likelier choice when an older project depends on behaviour the newer engine changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "JavaScript or Legacy ExtendScript: which engine to pick"
+    },
+    {
+      "type": "paragraph",
+      "text": "After Effects 16.0 (CC 19) brought in the JavaScript expression engine. Legacy ExtendScript is the older option. Both sit under the Expressions tab in Project Settings. The right choice depends on the project, and the table shows the trade-off in plain terms."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Engine",
+        "When it may help",
+        "What can go wrong"
+      ],
+      "rows": [
+        [
+          "JavaScript",
+          "New work and expressions written for the modern engine",
+          "Older scripts can throw errors or behave differently"
+        ],
+        [
+          "Legacy ExtendScript",
+          "Older projects that rely on the old behaviour",
+          "Errors may clear while the animation changes, as one forum user saw"
+        ],
+        [
+          "Either",
+          "Any project, after a test on a copy",
+          "Results differ by script, so compare the output"
+        ]
+      ],
+      "caption": "Trade-offs from the sources I opened. Test in your own project."
+    },
+    {
+      "type": "paragraph",
+      "text": "To find the setting, go to File > Project Settings > Expressions. One blog gives ⌘⌥⇧K to open Project Settings on a Mac. That source is older, and I could not confirm the shortcut or the path for After Effects 26.x. Adobe released 26.5 on September 9, 2026. CG Channel calls it a workflow and performance update, and its article does not describe expression changes. The path may still be right, so open the menu and look."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test on a copy",
+      "text": "Save a copy of the project before you change the engine. A switch can change how existing motion looks. Compare the copy with the original frame by frame, then replace the master file only when the motion matches."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Syntax mistakes that trigger the warning"
+    },
+    {
+      "type": "paragraph",
+      "text": "Syntax mistakes are the cheapest to fix and the easiest to miss. A missing closing quote, an unbalanced bracket or a stray comma can stop an expression from running. The message may point near the mistake rather than on it, so read the lines above and below the one it names."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Count opening and closing parentheses. Each opening bracket needs a partner.",
+        "Match every opening quote with a closing quote of the same type.",
+        "Retype quotes that came from a note, an email or a chat window. Curly quotes break code.",
+        "Check that function names are spelled and capitalized the way the language expects.",
+        "Look for stray characters at the end of a line, such as a trailing comma or a space."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste the expression into a plain text editor that shows line numbers. Count to the line the message names. A plain editor will not catch every error, but it shows the shape of the code. A missing bracket is easier to spot that way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Renamed layers, properties and language differences"
+    },
+    {
+      "type": "paragraph",
+      "text": "Expressions often point at other layers by name. A line such as thisComp.layer(\"Logo\") finds the layer only while the name matches. Rename the layer to Logo Final and the reference breaks. Nothing on the timeline warns you, which is why this one hurts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Property names cause the same trouble. Renamed slider controls and effect names can stop an expression from finding its target. One search excerpt also flags language mismatch as a cause. A project built in one language version can use property names that differ in another. I did not confirm the exact names in a primary source, so test each property after you open the file."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Duplicate composition names"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two compositions with the same name can send a reference to the wrong one. One search excerpt lists duplicate composition names as a cause. I did not open a primary page for that claim, so treat it as possible, not confirmed. Rename one composition, then check whether the warning clears."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they chase this warning"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Switching the engine on the master file and not on a copy",
+        "Fixing the first message and ignoring the rest of the list",
+        "Changing several things at once, so nobody knows what worked",
+        "Trusting the warning alone and not checking the motion",
+        "Assuming a newer build fixed the problem without testing the file"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix that works is usually the smallest change you can test. Make one change, preview, then move on. It feels slower, but it saves the afternoon you would spend guessing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A simple check before you render"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Preview the affected layers at the start, middle and end of the comp.",
+        "Confirm that no expression warning remains.",
+        "Compare the motion with the approved version on the same frames.",
+        "Save the fixed project as a new version, not over the old file.",
+        "Write the engine you used in a note for the team."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur can do here, and what it cannot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It can explain the message, point at Project Settings, and guide you one click at a time. It waits for each click, and you do the clicking. It does not edit your project or click buttons for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If your client contract or your agency limits AI tools, follow those rules before you ask about a project."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. The trial needs no credit card. See [pricing](/pricing) for plan details, or [download Lazur](/download) for the Mac app."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do if the warning stays"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the warning survives these checks, collect the full message and the expression text. Search the Adobe Community forum for the exact error wording in quotes. Forum answers conflict, and an answer that fixed one script may fail on yours. Test every suggestion on a copy and keep the one that holds up in playback."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does the After Effects expression disabled warning mean?",
+      "answer": "It means After Effects hit an error in an expression. The property may stop following the expression, so the motion can look frozen or wrong. Sources disagree on whether the expression stops running or keeps running, so check the motion on screen."
+    },
+    {
+      "question": "Why does my expression say disabled after I update After Effects?",
+      "answer": "Newer builds can change behaviour, and older expressions can fail after an update. I found no note that 26.5 changed expression handling. The CG Channel article on 26.5 describes performance work. Test the expression after updating and compare the output with the old version."
+    },
+    {
+      "question": "Should I use JavaScript or Legacy ExtendScript?",
+      "answer": "Use JavaScript for new expressions when they work. Use Legacy only when an older project needs it. Sources disagree on which engine is safer. Test on a copy and compare the animation before you keep a change."
+    },
+    {
+      "question": "Where is the expression engine setting on a Mac?",
+      "answer": "One blog gives File > Project Settings > Expressions, with ⌘⌥⇧K to open Project Settings. That source is older, and I could not verify the path for After Effects 26.x. Open the menu and look before you rely on it."
+    },
+    {
+      "question": "Does the warning mean my render will fail?",
+      "answer": "I could not confirm that from a primary source. Preview the frames you plan to render, and check the motion before you export the final file."
+    },
+    {
+      "question": "Can Lazur fix the expression for me?",
+      "answer": "No. Lazur explains the message, points at menu items and guides you one click at a time. It does not edit your project or click buttons for you. You make the change yourself."
+    },
+    {
+      "question": "Is this problem the same in Figma?",
+      "answer": "I did not research Figma, Illustrator or Sketch, so I make no claim about them. This page covers After Effects expressions only."
+    },
+    {
+      "question": "Is it safe to ask Lazur about a client project?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored. If a client contract or your agency limits AI tools, follow those rules first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How to Fix a Common After Effects Expression Error",
+      "url": "https://www.aescreens.com/blog/how-to-fix-a-common-after-effects-expression-error",
+      "publisher": "aescreens (third-party blog)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "When I use Rubber hose 'After Effects warning: Expression Disabled' 4 error messages pop up",
+      "url": "https://community.adobe.com/questions-529/when-i-use-rubber-hose-after-effects-warning-expression-disabled-4-error-messages-pop-up-73039",
+      "publisher": "Adobe Community forum (user posts, not official)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Changelog - After Effects Expression Reference",
+      "url": "https://ae-expressions.docsforadobe.dev/introduction/changelog/",
+      "publisher": "docsforadobe.dev (third-party reference)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Adobe releases After Effects 26.5, plus experimental new AI Assistant (CG Channel)",
+      "url": "https://www.cgchannel.com/2026/09/adobe-releases-after-effects-26-5-and-new-ai-assistant-in-beta/",
+      "publisher": "CG Channel",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "expression disabled warning in after effects",
+  "costs": [
+    {
+      "title": "Motion that fails without a clear sign",
+      "text": "An expression that fails can leave a layer in the wrong place or frozen. A still frame may look fine while the motion is wrong. You usually catch it only when you scrub or render. The warning alone is not enough to judge the file."
+    },
+    {
+      "title": "Time lost on the wrong fix",
+      "text": "Switching engines and rebuilding a comp takes longer than a syntax check. Start with the cheap checks. The engine switch is a bigger change, and it can alter work that already passed review."
+    },
+    {
+      "title": "Animation that changes after a switch",
+      "text": "One forum user found that Legacy cleared the errors but made the animation look worse. The other engine kept the animation good but still threw errors. You may trade one problem for another, so compare the output before you keep a change."
+    },
+    {
+      "title": "Late renders and client review",
+      "text": "A broken expression that slips through can reach a client review. Fixing it then costs you the review slot and some goodwill. I found no study that counts how often designers hit this warning or what it costs. Your own log is the best measure."
+    },
+    {
+      "title": "Software that keeps changing under you",
+      "text": "The Bureau of Labor Statistics says graphic designers must keep up with new and updated design software. Most use specialized design software for their work. Each release can change behaviour, so test expressions again after an update."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Expression engine mismatch",
+      "text": "The engine decides how After Effects reads your expression. JavaScript arrived with After Effects 16.0 (CC 19). Legacy ExtendScript is the older engine. An expression written for one can throw errors or behave differently in the other. A blog post says Legacy can break expressions. Check the engine in File > Project Settings > Expressions."
+    },
+    {
+      "title": "Syntax errors such as a missing quote",
+      "text": "A missing closing quote, an extra or missing parenthesis, or a stray character can stop an expression from running. One source gives a missing quote as an example of this warning. Read the line that the message names, then check each pair of quotes and brackets on that line."
+    },
+    {
+      "title": "Renamed layers or properties",
+      "text": "An expression that points at a layer by name breaks when the name changes. The line thisComp.layer(\"Logo\") stops working after you rename the layer. Renamed properties, such as a slider control, can break the same way. Search the expression for the old name before you rename anything else."
+    },
+    {
+      "title": "Language mismatch between versions",
+      "text": "Names of properties can differ between language versions of After Effects. A project built in one language can fail in another when the expression uses a local property name. One search excerpt flags this as a cause. I did not confirm the exact property names in a primary source."
+    },
+    {
+      "title": "An object where a number is needed",
+      "text": "The forum error reads 'Object of type found where a Number, Array, or Property is needed.' It means the code passed the wrong type of value to a function. The expression may return a layer or a property when the code needs a plain number. Check what each part of the expression returns, one part at a time."
+    },
+    {
+      "title": "Duplicate composition names",
+      "text": "A second composition with the same name can make a reference point to the wrong comp. One search excerpt lists this as a cause. I did not open a primary page for it, so treat it as possible rather than proven. Rename one composition and check the error again."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read the full error and note the line",
+      "text": "Copy the whole message before you change anything. Note the layer, the property and the line number if the message shows one. Adobe fixed wrong line numbers in JavaScript engine messages in 17.0.2, so later builds should point closer to the real line."
+    },
+    {
+      "title": "Fix quotes, brackets and commas",
+      "text": "Retype any quote that came from a note, an email or a chat window. Count the parentheses on the line, because each opening bracket needs its closing partner. Remove stray characters at line ends. Fix one error, preview, then move to the next message."
+    },
+    {
+      "title": "Match layer and property names exactly",
+      "text": "Copy the layer name from the Timeline instead of typing it from memory. Spelling, spaces and capital letters all count. If you renamed a layer, update every expression that points at it. Search the project for the old name to find them."
+    },
+    {
+      "title": "Test the other engine on a copy",
+      "text": "Save a copy of the project first. Open File > Project Settings > Expressions and switch the engine on the copy only. If the errors clear, compare the motion frame by frame with the original. One forum user saw the errors clear while the motion looked worse, so check both."
+    },
+    {
+      "title": "Rename duplicate compositions",
+      "text": "Find compositions with the same name in the Project panel and rename one of them. Update any expression that refers to the renamed comp, then preview. This fix is less certain than the others because its source is a search excerpt."
+    },
+    {
+      "title": "Isolate the failing expression",
+      "text": "If the message names no clear cause, turn expressions off one at a time, starting with the property the message names. When the warning goes away, you have found the expression to fix. Keep a short note of each change so you can undo it."
+    },
+    {
+      "title": "Check that the return type matches",
+      "text": "When the message mentions an object, check what each part of the expression returns. Add .value to a property reference when the code needs a number. Test a small piece on a spare layer before you put it back into the real project."
+    },
+    {
+      "title": "Search the forum for the exact error text",
+      "text": "Search the Adobe Community forum for the exact error wording, in quotes. Forum answers conflict, and an answer that fixed one script may fail on yours. Test any suggestion on a copy before you touch the master file."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this expression error mean?",
+      "result": "Hold ⌥⌘ with the error on screen. Lazur reads the message and explains it out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is Project Settings in this menu?",
+      "result": "Lazur circles the menu item and labels it. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through switching the expression engine on this copy.",
+      "result": "Lazur guides you one click at a time and waits for each click before it goes on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to my teammate asking for the project file.",
+      "result": "Lazur drafts the message. You read it and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find the current After Effects release notes for expressions.",
+      "result": "Research runs in Lazur's own Chrome tabs and returns a summary and a report. Some pages may not load, so check the sources yourself.",
+      "capability": "research"
+    },
+    {
+      "say": "Hold fn and dictate my test notes into the comment box.",
+      "result": "Dictation types clean text at the cursor in any app.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Project Settings in After Effects?",
+    "capability": "point",
+    "context": "After Effects open on a Mac, expression warning on screen",
+    "shell": "generic",
+    "pointsAt": "File > Project Settings",
+    "result": "Lazur circles the Project Settings item and labels it, so you know where to click.",
+    "output": "A circle and a label on the menu item, with the path said out loud. Lazur does not open the menu or click for you."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the error and save a copy",
+      "text": "Copy the full message and note the layer, property and line number. Save a copy of the project, then leave the master file untouched until the fix holds."
+    },
+    {
+      "label": "Day 2",
+      "title": "Fix syntax and names first",
+      "text": "Count brackets, retype any pasted quotes and match every layer and property name exactly. Fix one error, preview, then move to the next message in the list."
+    },
+    {
+      "label": "Day 3",
+      "title": "Test the engine on the copy",
+      "text": "Open File > Project Settings > Expressions on the copy and switch the engine there only. Compare the motion with the original on the same frames before you decide."
+    },
+    {
+      "label": "Before render",
+      "title": "Run a final motion check",
+      "text": "Preview the start, middle and end of each affected comp. Confirm no expression warning remains, then save the fixed project as a new version."
+    }
+  ],
+  "apps": [
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "after-effects-expression-disabled-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/after-effects-expression-disabled-fix/after-effects-expression-disabled-1-c9d402.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Motion designer working at a laptop on an animation project",
+      "caption": "Motion design work at a laptop",
+      "keywords": [
+        "after effects expression disabled",
+        "Designers",
+        "Expression fails with disabled warning",
+        "Mac",
+        "motion designer laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-home-office-creative-apple-581131/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/after-effects-expression-disabled-fix/after-effects-expression-disabled-2-594efe.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Video editing workstation with a monitor showing a timeline",
+      "caption": "A workstation built for timeline editing",
+      "keywords": [
+        "after effects expression disabled",
+        "Designers",
+        "Expression fails with disabled warning",
+        "Mac",
+        "video editing workstation",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "terydanphiri",
+        "url": "https://pixabay.com/users/terydanphiri-364063/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/editing-video-computer-7320126/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/after-effects-expression-disabled-fix/after-effects-expression-disabled-3-6a047b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a desk reviewing an After Effects animation on a monitor",
+      "caption": "Reviewing motion on screen before a render",
+      "keywords": [
+        "after effects expression disabled",
+        "Designers",
+        "Expression fails with disabled warning",
+        "Mac",
+        "designer reviewing screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hands-phone-smartphone-electronics-1851218/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "after effects expression disabled",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "after effects expression error": 2,
+      "after effects expression not working": 1,
+      "after effects expression engine": 1,
+      "expression engine javascript legacy": 1,
+      "after effects project settings expressions": 1,
+      "after effects expression error mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

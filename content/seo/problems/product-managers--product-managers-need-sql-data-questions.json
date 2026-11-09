@@ -1,0 +1,694 @@
+{
+  "title": "Product managers need SQL to answer data questions: Mac fixes for 2026",
+  "metaTitle": "Product managers need SQL to answer data questions: Mac fixes",
+  "description": "Product managers often need SQL to answer data questions, but not every time. Here are Mac fixes, their limits and what each one costs you.",
+  "targetKeyword": "product managers need SQL to answer data questions",
+  "secondaryKeywords": [
+    "answer data questions without SQL",
+    "SQL for product managers on Mac",
+    "ask data questions without SQL",
+    "Google Sheets pivot table without SQL",
+    "Excel Copilot Chat only mode Mac",
+    "Metabase Metabot Mac",
+    "product manager data analysis without SQL"
+  ],
+  "intro": "Product managers often need SQL to answer data questions, but not for every question. Many questions, like how many trial users finished setup last week, can be answered in a spreadsheet once someone exports the right table. This page covers what the wait costs, why the gap exists and the fixes you can use on a Mac today.",
+  "tldr": [
+    "You need SQL when the answer lives in raw tables that no dashboard or export shows.",
+    "The wait is the real cost. Survey data from 2020 suggests about half of data experts get follow-up questions after each request.",
+    "Write the question as a spec first: metric, population, dates and source. A spec removes guessing before anyone runs a query.",
+    "A pivot table in Google Sheets or Excel handles simple counts once you export one table. Check the total against a dashboard.",
+    "AI helpers do far better on clean benchmarks than on large company schemas. Check any query before you trust the number."
+  ],
+  "stats": [
+    {
+      "value": "76%",
+      "label": "of data experts say some of their team's time goes to ad hoc reports for business teams (2020 survey)",
+      "sourceUrl": "https://www.sigmacomputing.com/blog/breaking-down-the-data-language-barrier",
+      "sourceTitle": "Breaking Down the Data Language Barrier (Sigma Computing)"
+    },
+    {
+      "value": "53%",
+      "label": "of data experts get follow-up questions after an ad hoc request is fulfilled (2020 survey)",
+      "sourceUrl": "https://www.sigmacomputing.com/blog/breaking-down-the-data-language-barrier",
+      "sourceTitle": "Breaking Down the Data Language Barrier (Sigma Computing)"
+    },
+    {
+      "value": "21.3%",
+      "label": "of Spider 2.0 enterprise text-to-SQL tasks solved by an o1-preview based code agent",
+      "sourceUrl": "https://arxiv.org/abs/2411.07763",
+      "sourceTitle": "Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows (arXiv 2411.07763)"
+    },
+    {
+      "value": "16%",
+      "label": "GPT-4 zero-shot accuracy on enterprise questions asked directly over a SQL database",
+      "sourceUrl": "https://arxiv.org/abs/2311.07509",
+      "sourceTitle": "Knowledge graph vs SQL LLM accuracy (arXiv 2311.07509)"
+    }
+  ],
+  "chart": {
+    "title": "Text-to-SQL scores on three benchmarks",
+    "bars": [
+      {
+        "label": "Spider 1.0",
+        "value": 91.2
+      },
+      {
+        "label": "BIRD",
+        "value": 73
+      },
+      {
+        "label": "Spider 2.0",
+        "value": 21.3,
+        "highlight": true
+      }
+    ],
+    "unit": "%",
+    "note": "Spider 1.0 and BIRD scores are from the Spider 2.0 abstract. Spider 2.0 uses 632 enterprise tasks.",
+    "sourceUrl": "https://arxiv.org/abs/2411.07763",
+    "sourceTitle": "Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows"
+  },
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Do product managers need SQL to answer data questions?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes, yes. You need SQL when the answer sits in a raw table that no dashboard shows. You do not need it when a dashboard, an export or a saved view already holds the number. The trick is knowing which case you are in before you ask."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "If you have done this before, you know the pattern. You ask a simple question in Slack. The analyst replies with a follow-up. You answer. Two days later the number arrives, and it is not the number you expected."
+    },
+    {
+      "type": "paragraph",
+      "text": "The wait usually happens in the handoff. The data team owns the tables. You own the decision. Each handoff adds a round of questions, and each round adds time."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2020 survey of 801 US data experts found that 76% say some of their team's time goes to preparing ad hoc reports for business teams. Sigma, a BI vendor, commissioned it. It sampled data people, not product managers, so read it as a signal."
+    },
+    {
+      "type": "paragraph",
+      "text": "No survey I could find counts how many product managers cannot write SQL. This page does not give you a PM percentage. It gives you the pattern, the costs and the fixes that work without buying anything."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "No PM-specific number yet",
+      "text": "The closest data comes from data experts, not product managers. Treat the figures here as signals about the handoff, not as a count of your peers."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one question, several hidden decisions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a question that sounds simple. Did the new checkout reduce failed payments for mobile users last month? It looks like one question. In a database, it is a set of choices. Each choice changes the number you get back."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "What counts as a failed payment? A failed attempt, or a charge that still failed after retries?",
+        "What counts as mobile? A device field, a user agent string, or the app version?",
+        "What counts as the new checkout? A feature flag, a rollout date, or the experiment group?",
+        "What counts as last month? A calendar month, or the trailing window from today?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Answer those four choices, and the query gets short. Here is a simple shape that counts active subscriptions by plan: SELECT plan, COUNT(*) FROM subscriptions WHERE status = 'active' GROUP BY plan"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read it left to right. SELECT names the columns you want back. FROM names the table. WHERE filters the rows. GROUP BY splits the count into one row per plan. You can read a query like this without writing one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why AI helpers still get SQL wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "Text-to-SQL models look like the answer. Ask a chatbot for a query and you get clean SQL in seconds. The trouble shows up on real company schemas. Those schemas are large, messy and full of names that do not explain themselves."
+    },
+    {
+      "type": "paragraph",
+      "text": "Spider 2.0 tests this on 632 real-world enterprise workflow problems. The paper's abstract says an o1-preview based code agent solves only 21.3% of them. The paper reports 91.2% on Spider 1.0 and 73.0% on BIRD. Clean benchmarks overstate what you will see at work."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2023 paper by Sequeda, Allemang and Jacob tested GPT-4 on an insurance schema. Zero-shot questions asked directly over the SQL database were answered correctly 16% of the time. The same questions over a knowledge graph version of that database reached 54%. That is one schema and an older model. Still, the shape of the schema changed the result a lot."
+    },
+    {
+      "type": "paragraph",
+      "text": "What this means for you: a confident SQL answer from a chatbot is a draft. Check it against a total you already trust before you put it in a deck."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which questions fit a spreadsheet and which need SQL"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use this as a rough sort. Pick the cheapest path that gives the right definition. Moving to SQL should be the last step, not the first."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Question type",
+        "Usually fits",
+        "Watch for"
+      ],
+      "rows": [
+        [
+          "Totals or counts from one exported table",
+          "Pivot table in Google Sheets or Excel",
+          "Export row limits and stale data"
+        ],
+        [
+          "Trend by week or month, split by segment",
+          "Pivot table with a date column",
+          "Partial periods and time zones"
+        ],
+        [
+          "A number already on a dashboard",
+          "Open the dashboard, then filter it",
+          "The dashboard may use a different definition"
+        ],
+        [
+          "Data from two or more tables joined",
+          "Analyst or a saved query",
+          "Join keys that do not match cleanly"
+        ],
+        [
+          "A brand new metric nobody defined",
+          "Spec first, then an analyst",
+          "Definition fights before any query runs"
+        ]
+      ],
+      "caption": "Rough guide for common product questions, not a rule."
+    },
+    {
+      "type": "paragraph",
+      "text": "The table answers the what question. The what counts question comes first. Most wasted time comes from skipping it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can use today without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these fixes cost time, not money. Two AI options need a paid plan, and the text says so. Start with the free ones. They handle most small questions."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the question as a spec: metric, population, dates and source.",
+        "Search dashboards and Slack for an answer that already exists.",
+        "Export one table as CSV, then open it in Google Sheets.",
+        "Choose Data > Pivot table and rebuild one total you already trust.",
+        "Ask the analyst for a saved, rerunnable query, not a one-off number."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each step cuts a round trip. The spec removes guessing. The search removes duplicate work. The pivot removes the queue for simple counts. The saved query removes the next request."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use AI helpers on your Mac, and check the plan first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel Copilot opens from the Copilot icon in the lower-right corner of the Excel window. Choose Chat only mode when you want answers and no edits. In that mode Copilot analyzes workbook data and gives insights without changing the workbook."
+    },
+    {
+      "type": "paragraph",
+      "text": "Copilot in Excel depends on your Microsoft 365 subscription and your organization's settings. Microsoft says it may be unavailable depending on those. Ask your IT admin before you plan around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Google Sheets, click Ask Gemini at the top right. It opens a side panel that can create formulas, build charts and analyze BigQuery connected data. Google says the feature requires an eligible Google Workspace or Google AI plan."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple Numbers has Siri. Numbers 15.4 says you can ask Siri questions about Numbers to get quick answers. Numbers 14.3 says Siri can use ChatGPT to answer questions about your spreadsheet, and it requires Apple Intelligence. Apple's release notes list no dates, so check your version under Apple menu > About This Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Metabase is a different path. Metabot and the MCP server have been part of the free open source edition since Metabase 60, released April 2026. You host it yourself and connect your own AI provider. On a Mac, ⌘E opens the Metabot chat. + New > AI exploration starts one without a chart."
+    },
+    {
+      "type": "paragraph",
+      "text": "TablePlus runs SQL directly on macOS 12.0 or later, on Intel and Apple silicon Macs. Use it when you already have a query to run. It runs the SQL you write."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Power BI Q&A is ending",
+      "text": "If your team relies on Power BI Q&A, plan a move now. Microsoft's notice MC1218421 says Q&A and Q&A Setup will be fully retired by the end of December 2026. Existing Q&A visuals will stop working."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on your screen, and Lazur answers out loud. That helps when a query or a pivot setup is on screen and you do not follow it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click for you. It does not operate other apps for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not run a query against your database. It does not replace the analyst who knows which table is right. It explains the SQL you already have, guides the spreadsheet steps and dictates text at the cursor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation is useful for specs. Hold fn to dictate clean, formatted text at the cursor in any app. Speak the choices from the worked example, then paste the result into a Slack thread or a Linear ticket."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters here. Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Customer and patient data is different, so check your employer's rules first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they try this"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking for the data without naming a metric. You get a table, not an answer.",
+        "Trusting the first number without a total you already know.",
+        "Exporting a table that is capped or stale, and not checking the export date.",
+        "Pasting customer data into a tool your employer has not approved.",
+        "Building your reporting on a feature that is being retired.",
+        "Defining a metric in a Slack thread and never writing it down."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each mistake looks small. Together they turn one question into a long series of follow-ups and a number nobody trusts."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the question you asked most last month. Write its spec this week. Then decide whether it needs SQL, a pivot table or an analyst. Keep the specs in one place, so the next person does not start from zero. Notion can hold that library. See [Notion for product managers](/for/product-managers/notion)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your requests live in Slack, paste the spec into the thread before you ask. The analyst gets the context in one message. For more on setup, see [Slack for product managers](/for/product-managers/slack)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do product managers need to learn SQL?",
+      "answer": "Not always. Learning to read SQL helps you check answers and talk to analysts with precision. Writing complex queries is a different job. Start by reading a simple SELECT with a GROUP BY, then decide whether you want to write them."
+    },
+    {
+      "question": "Can a chatbot write the SQL for me?",
+      "answer": "It can draft SQL. Treat the draft as unverified. On enterprise tasks, the Spider 2.0 code agent solved 21.3% of tasks in the paper's abstract. Ask the model to explain each join, then check one total you already know before you use the number."
+    },
+    {
+      "question": "What is the fastest free fix?",
+      "answer": "Write the spec, then search for an answer that already exists. Both are free and quick. Next, export one table and build a pivot table in Google Sheets with Data > Pivot table."
+    },
+    {
+      "question": "Is Excel Copilot included with Microsoft 365 on Mac?",
+      "answer": "Copilot depends on your subscription and your organization's settings. Microsoft says it may be unavailable for that reason. Check with your IT admin. Chat only mode does not change the workbook."
+    },
+    {
+      "question": "Does Google Sheets Ask Gemini work on every plan?",
+      "answer": "No. Google's help page says the feature requires an eligible Google Workspace or Google AI plan. Ask your admin which plan your company has before you rely on it."
+    },
+    {
+      "question": "Can Numbers answer questions with Siri?",
+      "answer": "Apple's release notes say Numbers 15.4 lets you ask Siri questions about Numbers. Numbers 14.3 pairs Siri with ChatGPT and requires Apple Intelligence. Check your version under Apple menu > About This Mac."
+    },
+    {
+      "question": "Should I ask Lazur to write my SQL?",
+      "answer": "Lazur is built to explain, point, guide and draft text. It does not run queries against your database. Hold ⌥ ⌘ while a query is on screen, and Lazur explains what it does, out loud."
+    },
+    {
+      "question": "Is my data safe if I ask Lazur about it?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Follow your employer's rules for customer or patient data."
+    },
+    {
+      "question": "Is there a free trial?",
+      "answer": "Yes. The trial starts when you first open the app, and no credit card is needed. See the pricing page for current plans and limits."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Breaking Down the Data Language Barrier",
+      "url": "https://www.sigmacomputing.com/blog/breaking-down-the-data-language-barrier",
+      "publisher": "Sigma Computing",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows",
+      "url": "https://arxiv.org/abs/2411.07763",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Knowledge graph vs SQL LLM accuracy (arXiv 2311.07509)",
+      "url": "https://arxiv.org/abs/2311.07509",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "What's new in Numbers for Mac",
+      "url": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Get started with Copilot in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/copilot/get-started-with-copilot-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Collaborate with Gemini in Google Sheets - Computer",
+      "url": "https://support.google.com/docs/answer/14218565?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "MC1218421: Retirement of Power BI Q&A",
+      "url": "https://msmessagecenter.com/MC1218421",
+      "publisher": "Microsoft 365 Message Center mirror",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Natural language questions in open-source Metabase",
+      "url": "https://www.metabase.com/articles/ai-answers-open-source-metabase",
+      "publisher": "Metabase",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "TablePlus download",
+      "url": "https://tableplus.com/download/",
+      "publisher": "TablePlus",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "answering data questions without SQL",
+  "costs": [
+    {
+      "title": "Days of waiting for a simple count",
+      "text": "Each ad hoc request sits in someone else's queue. Your decision waits behind it. Sigma's 2020 survey found that about half of data experts get follow-up questions after they answer a request. Every follow-up is another round trip, and each round trip costs calendar time."
+    },
+    {
+      "title": "Decisions made on guesses",
+      "text": "When the number is slow, the roadmap moves on a hunch. A guessed retention figure can point a sprint at the wrong problem. The real cost is not the query. It is the build that ships in the wrong direction."
+    },
+    {
+      "title": "Analyst time you spend without noticing",
+      "text": "Each request lands on an analyst's desk. That work crowds out modeling and experiment analysis, the work only the data team can do. In the Sigma survey, 76% of data experts said some of their time goes to ad hoc reports for business teams."
+    },
+    {
+      "title": "Wrong numbers that look right",
+      "text": "A query can run without errors and still answer the wrong question. If one view counts anyone who logged in and another counts paid seats, both charts look fine. You find the gap in the review meeting, in front of the leadership team."
+    },
+    {
+      "title": "A skill gap that grows",
+      "text": "If you never read SQL, you never learn what the tables hold. Your questions stay vague, so follow-ups multiply. Each month the gap between what you want to know and what you can ask gets wider."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The schema is bigger than the question",
+      "text": "Company databases are wide. The Spider 2.0 paper notes that databases often contain over 1,000 columns. One metric can touch several tables, and table names like evt_2 do not explain what they hold. The schema was built for the app first, not for your question."
+    },
+    {
+      "title": "AI helpers guess at the schema",
+      "text": "A text-to-SQL model has to guess which table holds the thing you mean. Enterprise tasks give it many wrong options. The Spider 2.0 code agent solved 21.3% of its tasks, according to the paper's abstract. A confident query can still hit the wrong table."
+    },
+    {
+      "title": "Metric definitions live in code and in heads",
+      "text": "Retention, active user and conversion are often defined in code or in one analyst's head. Few teams keep a readable page for each. So every product manager asks again, and the answer depends on who you ask. A spec and a shared definitions page both fix this."
+    },
+    {
+      "title": "Analysts are the bottleneck by design",
+      "text": "Data teams answer questions for many people at once. Requests pile into a queue, and priority goes to the loudest team. The 76% figure from Sigma's survey describes this pattern. The cause is structure, not effort."
+    },
+    {
+      "title": "Vendor ask your data features come and go",
+      "text": "Microsoft is retiring Power BI Q&A by the end of December 2026. Its notice says existing Q&A visuals will stop working. Natural language features are still young, so do not build your reporting on one feature alone."
+    },
+    {
+      "title": "Older results still show the gap",
+      "text": "A 2023 test found GPT-4 answered 16% of questions correctly when asked directly over a SQL database. With the schema shown as a knowledge graph, accuracy reached 54%. Newer models may score higher, but the way the schema is presented still changed the result a lot."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write the question as a spec first",
+      "text": "Before you ask anyone or any tool, write four lines. Name the metric and its exact definition. Name the population, the date range and the table or dashboard you expect holds it. A spec costs only a few minutes, and it cuts the guessing that drives follow-ups."
+    },
+    {
+      "title": "Check for an existing answer before you ask",
+      "text": "Search your dashboards, saved views and past threads. In Slack, search the metric name and the word definition. Many questions were already answered last quarter. If an answer exists, compare its definition with your spec, then stop."
+    },
+    {
+      "title": "Export one table and pivot it in Google Sheets",
+      "text": "Export one table as CSV from the tool that holds it. Open the file in Google Sheets and choose Data > Pivot table. Put the date in Rows and the metric in Values. Check for export row limits, and compare one total with the dashboard."
+    },
+    {
+      "title": "Filter before you build formulas",
+      "text": "For a quick what happened last month question, filter the range first. In Google Sheets, select the data and choose Data > Create a filter. Filter by date and plan, then read the counts. For steps, see [how to add a filter in Google Sheets on Mac](/how-to/add-a-filter-to-a-range-in-google-sheets)."
+    },
+    {
+      "title": "Ask for a saved query, not a one-off",
+      "text": "When an analyst writes SQL for you, ask them to save it with a name and one line about what it counts. Ask for the dates to be parameters you can change. Next time you change two filters instead of waiting for a new request."
+    },
+    {
+      "title": "Learn to read a simple SELECT",
+      "text": "A simple query has a few parts: SELECT, FROM, WHERE and GROUP BY. SELECT picks the columns, FROM picks the table, WHERE filters rows and GROUP BY splits the result. Learn those words and you can check an analyst's query before you trust the number."
+    },
+    {
+      "title": "Check the number against a total you trust",
+      "text": "Pick one total you already trust, like a dashboard figure. Rebuild it in your pivot or query. If it matches, your filters are right. If it does not, compare the definitions line by line before the review meeting."
+    },
+    {
+      "title": "Use Excel Copilot or Gemini on a table you have",
+      "text": "Chat only mode in Excel and Ask Gemini in Google Sheets can answer questions about a table you already have. Both depend on your plan and admin settings, so this fix is not free. Use them to explore, then confirm the key figure with a pivot table you built yourself."
+    },
+    {
+      "title": "Try open source Metabase if your team can host it",
+      "text": "Metabase 60, released April 2026, includes Metabot in its free open source edition. You host it yourself and connect your own AI provider, so an engineer should be part of setup. On a Mac, ⌘E opens the Metabot chat. This fits a team that already runs its own tools."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Explain this query on my screen.",
+      "result": "Lazur reads the query on screen and answers out loud, naming the table, the filter and the grouping."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through Insert > PivotTable in Excel.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step."
+    },
+    {
+      "capability": "point",
+      "say": "Where is Ask Gemini in Google Sheets?",
+      "result": "Lazur draws a circle and a label around the button on your screen."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate my question spec.",
+      "result": "Clean text appears at the cursor, so you can paste the spec into a Slack thread or Linear ticket."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a message to my analyst about this metric.",
+      "result": "Lazur drafts and types the text, so you can edit the spec before you send it."
+    }
+  ],
+  "demo": {
+    "spoken": "What does this query count?",
+    "capability": "explain",
+    "result": "Lazur explains the query out loud, naming the table, the filter and what the GROUP BY splits the count by.",
+    "shell": "code",
+    "context": "SQL query open in a Mac editor",
+    "pointsAt": "GROUP BY line",
+    "output": "Spoken answer: the query counts active subscriptions for each plan, reading from the subscriptions table."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "List last month's data questions",
+      "text": "Open Slack search and your notes. Write down every data question you asked last month. Mark the ones you asked more than once, because those repeat and deserve a saved answer."
+    },
+    {
+      "label": "Day 2",
+      "title": "Write one spec per question",
+      "text": "For each marked question, write the metric, the population, the date range and the source you expect. Keep the specs in one Notion page, so the next request starts with a spec. For setup, see [Notion for product managers](/for/product-managers/notion)."
+    },
+    {
+      "label": "Day 3",
+      "title": "Look for existing answers",
+      "text": "Search dashboards, saved views and Slack for each metric name. Copy the link to any answer that matches your spec. If the definition differs, note the difference in the spec and hold off on asking again."
+    },
+    {
+      "label": "Day 4",
+      "title": "Pivot one table you trust",
+      "text": "Export one table as CSV. Open it in Google Sheets and choose Data > Pivot table. Rebuild one total you already know. If the numbers match, keep the pivot as the template for that question."
+    },
+    {
+      "label": "Day 5",
+      "title": "Read one saved query",
+      "text": "Ask an analyst for one saved query, or find one in your tool. Hold ⌥ ⌘ while it is on screen and ask what it counts. Write down each join and filter you do not understand, then ask about only those."
+    },
+    {
+      "label": "Day 6",
+      "title": "Pick your path for next month",
+      "text": "Choose one path for each question type: spec and analyst, pivot table, or an AI helper on a plan you already have. Check admin settings before you plan around Copilot or Ask Gemini."
+    }
+  ],
+  "apps": [
+    "google-sheets",
+    "notion",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "product-managers-need-sql-data-questions",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-managers-need-sql-data-questions/product-managers-need-sql-to-answer-data-1-7021d1.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Product manager at a laptop, deciding whether they need SQL to answer data questions",
+      "caption": "Checking a data question before asking for help.",
+      "keywords": [
+        "product managers need SQL to answer data questions",
+        "Product managers",
+        "answering data questions without SQL",
+        "Mac",
+        "person laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-man-laptop-mac-editing-2587997/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-managers-need-sql-data-questions/product-managers-need-sql-to-answer-data-2-815234.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Product team in a meeting, talking through metrics and dashboard numbers",
+      "caption": "A product team working through metrics in a meeting.",
+      "keywords": [
+        "product managers need SQL to answer data questions",
+        "Product managers",
+        "answering data questions without SQL",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-managers-need-sql-data-questions/product-managers-need-sql-to-answer-data-3-bb1305.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Charts and graphs on a laptop screen next to a notebook",
+      "caption": "Pivot tables and charts built from one exported table.",
+      "keywords": [
+        "product managers need SQL to answer data questions",
+        "Product managers",
+        "answering data questions without SQL",
+        "Mac",
+        "charts laptop screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-statistics-traffic-5837248/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "product managers need SQL to answer data questions",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "answer data questions without SQL": 1,
+      "SQL for product managers on Mac": 1,
+      "ask data questions without SQL": 1,
+      "Google Sheets pivot table without SQL": 1,
+      "Excel Copilot Chat only mode Mac": 1,
+      "Metabase Metabot Mac": 1,
+      "product manager data analysis without SQL": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

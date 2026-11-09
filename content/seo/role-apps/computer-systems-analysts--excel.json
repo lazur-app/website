@@ -1,0 +1,526 @@
+{
+  "title": "Excel for computer systems analysts on Mac: formulas and pivots in Microsoft 365",
+  "metaTitle": "Excel for Computer Systems Analysts on Mac: Formulas and Pivots",
+  "description": "Excel for computer systems analysts on Mac: lookups, cost models, PivotTables, and voice help from Lazur in Microsoft 365.",
+  "targetKeyword": "excel for computer systems analysts on mac",
+  "secondaryKeywords": [
+    "excel for computer systems analyst",
+    "excel formulas for systems analysts",
+    "excel pivot table on mac microsoft 365",
+    "xlookup on excel for mac",
+    "excel cost benefit model template",
+    "excel test log tracker",
+    "lazur voice assistant for excel on mac"
+  ],
+  "intro": "Excel for computer systems analysts on Mac means building cost models, test logs, and lookups in Microsoft 365 for Mac. Most of the work is ordinary Excel, and the steps below cover the parts that trip people up. Lazur, a voice assistant for the Mac, can point at buttons and explain formulas while you work.",
+  "tldr": [
+    "Computer systems analysts use Excel for cost models, test logs, lookups, and system inventories.",
+    "On Mac, start with Microsoft 365, a table made with ⌘T, and XLOOKUP for matching values.",
+    "Name your inputs, keep numbers out of formulas, and check totals against the raw export.",
+    "PivotTables summarize test results fast. Confirm Power Pivot on your copy first, since it may be missing on Mac.",
+    "Lazur points at buttons, explains formulas, and dictates text, but it never clicks for you."
+  ],
+  "stats": [
+    {
+      "value": "8%",
+      "label": "Projected employment growth for computer systems analysts from 2025 to 35, which BLS calls much faster than average.",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm",
+      "sourceTitle": "Computer Systems Analysts: Occupational Outlook Handbook"
+    },
+    {
+      "value": "$105,850",
+      "label": "Median pay for computer systems analysts in 2025, based on May 2025 data. That is $50.89 per hour.",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm",
+      "sourceTitle": "Computer Systems Analysts: Occupational Outlook Handbook"
+    },
+    {
+      "value": "94%",
+      "label": "Share of business spreadsheets reported to contain errors in a 2024 literature review, not a field audit.",
+      "sourceUrl": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "sourceTitle": "Study finds 94% of business spreadsheets have critical errors"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What computer systems analysts do with Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Computer systems analysts help a business decide how its IT systems should work. They weigh options, cost out upgrades, and make sure new systems run. The Bureau of Labor Statistics lists the core duties, and several of them produce tables of numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "The BLS page does not mention Excel or spreadsheets. So the link between this job and Excel is our inference, not a BLS claim. Still, the work is full of lists, costs, and test results. That is where a spreadsheet earns its place."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Cost-benefit analysis: one sheet that compares license, labor, and hosting costs for each option.",
+        "Test tracking: a log of test cases with owners, dates, and pass or fail results.",
+        "Requirements lists: a table of needs, sources, priorities, and current status.",
+        "Training material: a sheet of user roles and the tasks each role must learn.",
+        "System inventory: a list of systems, versions, owners, and the teams that depend on them."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these sheets share three traits. They pull data from other files, they total things, and other people read them. The sections below cover each trait with the Mac steps that matter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a workbook other people can read"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a table. Click one cell inside your data, then press ⌘T. Excel asks for the data range and whether the first row holds headers. Tick the headers box if it does, then click OK. Tables grow when you add rows, and formulas that point at them keep working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table so your formulas read clearly. Click any cell in the table. Go to Table Design > Table Name, type a short name such as Inventory or TestLog, and press Return. Short names with no spaces work best in formulas."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Naming at creation",
+      "text": "Microsoft's October 2026 What's New in Excel post says naming tables at creation is now generally available for Excel on Mac. It was an Insider feature before. If your dialog offers a name field, use it on day one."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build lookups between inventory and cost sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A lookup pulls one value from one table into another. Analysts use this to match a system to its owner or its annual cost. In Microsoft 365 for Mac, XLOOKUP is the function to learn first. It reads more clearly than the older INDEX and MATCH pair for most jobs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the pattern. Your cost table has a System column in column A. You want the owner from the Inventory table. In the owner column, type =XLOOKUP(A2,Inventory[System],Inventory[Owner],\"Not listed\") and press Return. The first argument is the value to find. The second is where to search. The third is what to return. The fourth is the text shown when nothing matches."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your results after each refresh. Count the rows that say Not listed. If that count jumps, the source changed or a name was typed differently. Trailing spaces cause most silent misses. Wrap the lookup value in TRIM when names arrive from email or chat."
+    },
+    {
+      "type": "paragraph",
+      "text": "When a formula returns an error, select the cell and ask Lazur what it does. Lazur explains each argument out loud. It does not change the formula for you, so you still type the fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Model costs without hiding your assumptions"
+    },
+    {
+      "type": "paragraph",
+      "text": "A cost-benefit sheet has three parts: inputs, calculations, and results. Keep inputs on their own tab. Label each input with its unit and its source. A reviewer should be able to change one input and watch the result move."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name your key inputs. Click a cell, click the Name Box at the left end of the formula bar, type a name such as LicenseCost, and press Return. Then write =LicenseCost*SeatCount instead of =Inputs!$C$4*Inputs!$B$9. The formula reads like a sentence, so the next person can check it fast."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep numbers out of formulas. A formula that multiplies by a typed value hides an assumption. Put the value in a labeled cell and point to it. Months per year, tax rate, and hourly rate all belong on the inputs tab."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Cost model mistakes to catch early"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Totals that are typed in by hand and never update.",
+        "Assumptions buried inside formulas.",
+        "Monthly and yearly prices mixed in the same column.",
+        "No owner or date on the inputs tab.",
+        "Results pasted as values, so nobody can trace them back."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Summarize test results with a PivotTable"
+    },
+    {
+      "type": "paragraph",
+      "text": "A PivotTable counts test results by owner, system, or status in a few clicks. Start from your test log table, not a loose range. The table keeps the PivotTable current as you add rows. Here is the sequence to follow."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click any cell in the test log table.",
+        "Go to Insert > PivotTable and choose New Worksheet.",
+        "Drag Owner to Rows.",
+        "Drag Status to Columns.",
+        "Drag Test ID to Values. Excel counts text fields by default."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Refresh the PivotTable after new rows arrive. Right-click inside it and choose Refresh, or go to Data > Refresh All. A PivotTable that looks stale is usually a refresh problem, not a data problem."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Pivot is a different matter. Some third-party sites say it is missing from Excel for Mac. I could not confirm that from Microsoft's own pages during research, so check your copy before you plan a data model around it. Excel > About Excel shows your version."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Spreadsheet errors and how to catch them"
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2024 literature review led by Prof. Pak-Lok Poon reported that 94% of spreadsheets used in business decision-making contain errors. The review summarized earlier research. It did not audit spreadsheets directly. Read the figure as a warning, not as a precise rate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build checks into the file. Add a control cell that sums the raw export and a second cell that sums the report. Use a check that returns TRUE when they match. If the check fails, stop before you send anything."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Formulas > Trace Precedents to see which cells feed a result. Arrows show the path. Press ⌘` to show formulas in every cell, then look for a row where the pattern breaks. If ⌘` does nothing on your keyboard, use Formulas > Show Formulas."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur for help while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥⌘ and ask about anything on your screen. Lazur sees the screen only while you hold the shortcut. It answers out loud. Ask where a button is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate text at the cursor in any app. Use it for cell notes, log comments, or a short summary of a test run. Dictation supports snippets, a personal dictionary, and clipboard slots, so phrases you repeat are quick to insert."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Where it lives in Excel",
+        "What Lazur does"
+      ],
+      "rows": [
+        [
+          "Find the PivotTable button",
+          "Insert tab",
+          "Circles and labels it, then waits for your click"
+        ],
+        [
+          "Explain a lookup that returns Not listed",
+          "Formula bar",
+          "Explains each argument out loud"
+        ],
+        [
+          "Name a table",
+          "Table Design tab",
+          "Guides each click, one at a time"
+        ],
+        [
+          "Draft a note to a system owner",
+          "Any app",
+          "Drafts the text and types it at your cursor"
+        ],
+        [
+          "Remind you to send the cost sheet",
+          "Apple Reminders",
+          "Adds the reminder by voice"
+        ]
+      ],
+      "caption": "Common requests and how Lazur handles each one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research runs in Lazur's own Chrome tabs, using the Lazur for Chrome extension. It comes back with a summary and a report. Use it to collect public vendor pages before you build a cost model. You still check every figure yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Mac limits before you plan the workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "For most daily work, Excel for Mac and Windows share the same core formulas. The gaps show up in data models, add-ins, and newer AI features. Check these points before you build anything that depends on them."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Get Data sits under Data > Get Data in Microsoft 365 for Mac. Confirm it on your copy before you build an import.",
+        "Power Pivot may not be available on Mac. This is unconfirmed, so verify it first.",
+        "Copilot's skill recorder is still Insider-only on Mac, per Microsoft's October 2026 post. Do not plan around it.",
+        "Microsoft's support pages do not label menu items as Mac-only. Check the ribbon on your own copy when a page and your screen disagree."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Habits that cause most spreadsheet trouble on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most problems come from habits, not from hard formulas. These four cause the most trouble for systems analysts."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Saving over the raw export. Copy the export to a new tab first, then work from the copy.",
+        "Sorting one column alone. Use a table, so every column moves together.",
+        "Pasting data with the wrong region settings. Check System Settings > General > Language & Region before you import dates or decimals.",
+        "Sending the file with old tabs and comments still inside. Clean the file before it leaves your Mac."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the workbook useful for the next person"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good analysis workbook survives a handoff. Add a README tab with the purpose, the source files, the owner, and the date of the last refresh. Write it as short lines. Nobody wants a page of prose about a spreadsheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Save a dated copy before you change a formula. On Mac, choose File > Save As or press ⇧⌘S. Keep one version for the decision and one for your working draft, so you can always show what changed and why."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Lazur is not an add-in",
+      "text": "Lazur is a voice assistant for the Mac. It is not a plugin or add-in for Excel or any other app. It does not click buttons or edit files for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Excel workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one file. Turn your test log or inventory into a table, add one lookup, and build one PivotTable. Then read the guides that match your next task: [how to make a pivot table in Excel](/how-to/make-a-pivot-table-in-excel), [the Excel assistant for Mac](/apps/excel), and [Excel for data analysts on Mac](/for/data-analysts/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. The Pro trial lasts three days, needs no credit card, and starts when you first open the app. Pro is $18 per month, or $15 per month billed annually, with 150 AI actions. See [pricing](/pricing) for details."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have Power Pivot?",
+      "answer": "I could not confirm this from Microsoft's own pages. Some third-party sites say Power Pivot is missing from Excel for Mac, and an older Microsoft page suggests the same. Check Excel > About Excel for your version, then test a small data model before you build a large one."
+    },
+    {
+      "question": "Which Excel should a computer systems analyst use on Mac?",
+      "answer": "Use Microsoft 365 for Mac. Naming tables at creation is now generally available on Mac, per Microsoft's October 2026 post. Older standalone versions may lack Get Data, so check before you plan an import."
+    },
+    {
+      "question": "Can Lazur click buttons or edit my workbook?",
+      "answer": "No. Lazur points at things, explains formulas, guides you one click at a time, and drafts or types text. It does not click buttons, edit files, or operate Excel for you."
+    },
+    {
+      "question": "Does Lazur watch my spreadsheet all the time?",
+      "answer": "No. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Does the BLS say analysts use Excel?",
+      "answer": "No. The BLS duties page does not mention Excel or spreadsheets. The Excel link on this page is our inference from the duties, such as cost analysis, testing, and training."
+    },
+    {
+      "question": "Is there a free trial of Lazur?",
+      "answer": "Yes. Lazur has a three-day Pro trial with no credit card. The trial starts when you first open the app. After that, Pro costs $18 per month, or $15 per month billed annually."
+    },
+    {
+      "question": "Why do my lookups break when I add rows?",
+      "answer": "Plain ranges stop at the last row you typed. Turn the data into a table with ⌘T, then use structured references such as Inventory[System]. The reference grows with the table."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Computer Systems Analysts: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Study finds 94% of business spreadsheets have critical errors",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel help",
+      "url": "https://support.microsoft.com/en-us/excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the PivotTable button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the PivotTable button on the Insert tab, then waits while you click it.",
+    "shell": "sheet",
+    "output": "It sits on the Insert tab. Click it, then pick the table you want to summarize.",
+    "context": "Microsoft 365 for Mac, with a test log open on screen.",
+    "pointsAt": "PivotTable button"
+  },
+  "tasks": [
+    {
+      "say": "Where is the PivotTable button in this version?",
+      "result": "Lazur draws a circle and a label around the Insert > PivotTable button, then waits for your click.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does this lookup show Not listed for half the systems?",
+      "result": "Lazur explains which argument is searching the wrong range, and why a trailing space can cause misses.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through naming the Inventory table, one click at a time.",
+      "result": "Lazur guides each click on Table Design, and waits until you finish one before it names the next.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to the system owner asking for the missing test logs.",
+      "result": "Lazur drafts the note and types it at your cursor, so you can read it before you send.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a summary of the failed tests into this cell.",
+      "result": "Hold fn, speak, and the text lands at the cursor in clean, formatted sentences.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find public pricing for this license and summarize it.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and report you can check.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to send the cost sheet to finance.",
+      "result": "Lazur adds an Apple Reminders item for Friday.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "computer-systems-analysts-excel",
+  "role": "computer-systems-analysts",
+  "app": "excel",
+  "roleName": "Computer systems analysts",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/computer-systems-analysts-excel/excel-for-computer-systems-analysts-on-mac-1-37210b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man working on a laptop at a desk, reviewing a workbook for computer systems analysts on Mac",
+      "caption": "A systems analyst reviewing a workbook at a desk.",
+      "keywords": [
+        "excel for computer systems analysts on mac",
+        "Excel",
+        "Computer systems analysts",
+        "Mac",
+        "man working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-office-employees-think-laptop-2838944/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/computer-systems-analysts-excel/excel-for-computer-systems-analysts-on-mac-2-2576ea.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person typing on a keyboard while entering test results into a spreadsheet on a Mac",
+      "caption": "Entering test results into a shared workbook.",
+      "keywords": [
+        "excel for computer systems analysts on mac",
+        "Excel",
+        "Computer systems analysts",
+        "Mac",
+        "person typing spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/computer-systems-analysts-excel/excel-for-computer-systems-analysts-on-mac-3-990ba2.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Computer screen showing data on an office desk, the kind of Excel work done on Mac",
+      "caption": "Cost models and test logs on one screen.",
+      "keywords": [
+        "excel for computer systems analysts on mac",
+        "Excel",
+        "Computer systems analysts",
+        "Mac",
+        "office desk computer screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-smartphone-desk-laptop-1282241/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for computer systems analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for computer systems analyst": 6,
+      "excel formulas for systems analysts": 1,
+      "excel pivot table on mac microsoft 365": 1,
+      "xlookup on excel for mac": 1,
+      "excel cost benefit model template": 1,
+      "excel test log tracker": 1,
+      "lazur voice assistant for excel on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

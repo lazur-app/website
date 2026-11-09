@@ -1,0 +1,559 @@
+{
+  "title": "Xcode for developers on Mac: builds, errors and previews with Lazur in Xcode 27",
+  "metaTitle": "Xcode for developers on Mac: builds, previews and voice help",
+  "description": "Xcode for developers on Mac: the setup, build speed, previews and voice help that matter in Xcode 27. Free fixes first, then Lazur.",
+  "targetKeyword": "xcode for developers on mac",
+  "secondaryKeywords": [
+    "xcode 27 setup on mac",
+    "xcode slow build times",
+    "xcode previews swiftui",
+    "xcode device hub",
+    "xcode instruments mac",
+    "xcode keyboard shortcuts",
+    "xcode cloud compute hours"
+  ],
+  "intro": "Xcode for developers on Mac is Apple's app for building, testing and debugging apps for iPhone, iPad, Mac and Apple Watch. The current release is Xcode 27, build 27A266a, dated September 14, 2026. This guide covers the daily snags in Xcode, with fixes that work without any extra tool. It also shows where Lazur, a voice assistant for the Mac, can point, explain and guide you.",
+  "tldr": [
+    "Xcode 27 (build 27A266a) is current, dated September 14, 2026. Confirm your chip and macOS version before you update.",
+    "Most slow builds trace back to Run Script phases with no declared inputs and outputs. Fix those before you touch anything else.",
+    "Learn six core shortcuts first. ⌘B builds, ⌘R runs, ⌘U tests, ⌘. stops, ⇧⌘K cleans the build folder and ⇧⌘O opens a file by name.",
+    "Lazur explains errors, points at controls, guides you one click at a time and dictates text. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "25",
+      "label": "compute hours per month included with Apple Developer Program membership, for Xcode Cloud",
+      "sourceUrl": "https://developer.apple.com/xcode-cloud/",
+      "sourceTitle": "Xcode Cloud | Apple Developer"
+    },
+    {
+      "value": "44s to 14s",
+      "label": "One team's build time after removing objective-c++ from MODULE_VERIFIER_SUPPORTED_LANGUAGES",
+      "sourceUrl": "https://developer.apple.com/forums/thread/763913",
+      "sourceTitle": "Xcode build time frustration | Apple Developer Forums"
+    },
+    {
+      "value": "10.0%",
+      "label": "of 13,193 total Stack Overflow 2026 respondents answered that they use Xcode",
+      "sourceUrl": "https://survey.stackoverflow.co/2026/technology/data/dev-ide",
+      "sourceTitle": "Stack Overflow Developer Survey 2026 | Dev IDEs"
+    },
+    {
+      "value": "1s vs 7s",
+      "label": "Empty iOS project build in Xcode compared with xcodebuild, from one forum poster",
+      "sourceUrl": "https://developer.apple.com/forums/thread/756120",
+      "sourceTitle": "Slow incremental build times with xcodebuild command | Apple Developer Forums"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "People search this phrase for three reasons. They are setting up Xcode on a new Mac. Their builds have slowed to a crawl. Or they want help inside Xcode without installing a plugin. This page covers all three, in the order you usually hit them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Mac before you install Xcode 27"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode 27 is a large update, and it does not suit every Mac. Check three things before you click Update. Look at your chip, your macOS version and the Xcode version your team uses. Each one can block a build or a launch."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Chip: a third-party summary says Xcode 27 installs only on Apple silicon Macs. Intel Macs should stay on an older Xcode.",
+        "macOS: the same summary says Xcode 27 needs macOS Tahoe 26.4 or later. A search result pointed to 26.6, so verify before you update.",
+        "Team: agree on the version with your team first. A project that builds on Xcode 26 may need small changes.",
+        "Disk space: Xcode and its simulators take real room. Check Storage in System Settings before the download. For a full guide, read [how to free system data storage on a Mac](/for/developers/problems/mac-system-data-storage-full-fix)."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Confirm the macOS minimum first",
+      "text": "The sources we could read do not agree on the macOS minimum for Xcode 27. Read the release notes on Apple's Releases page before you update. Treat a blog post as a lead, not the answer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create your first project the right way"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start from File > New > Project in Xcode. The Welcome window offers the same choice. Pick a platform, then pick a template. The three templates people use most are Single View App for iOS, App for macOS and Watch App for watchOS."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Choose File > New > Project, or click New Project on the Welcome window.",
+        "Pick the platform, such as iOS or macOS, then select the template you need.",
+        "Enter a product name and an organization identifier. Use a reverse domain style identifier, such as com.yourname.",
+        "Choose your team, language and interface. Add unit or UI test targets now if you plan to test. You can add them later, but it is quicker now.",
+        "Turn on Create Git repository on my Mac. Apple's help page recommends this option."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The Git choice matters more than it looks. When a merge goes wrong later, you need a clean history to return to. If it does go wrong, see [how to resolve git merge conflict markers step by step](/for/developers/problems/git-merge-conflict-markers-step-by-step)."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts and menu paths for Xcode on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need every shortcut on day one. Learn the six in the table first. Each one replaces a trip to the menu bar. Menu paths follow the order you click, so you can find the command again later."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Menu path",
+        "Shortcut"
+      ],
+      "rows": [
+        [
+          "Build",
+          "Product > Build",
+          "⌘B"
+        ],
+        [
+          "Run the app",
+          "Product > Run",
+          "⌘R"
+        ],
+        [
+          "Run tests",
+          "Product > Test",
+          "⌘U"
+        ],
+        [
+          "Stop a run",
+          "Product > Stop",
+          "⌘."
+        ],
+        [
+          "Clean the build folder",
+          "Product > Clean Build Folder",
+          "⇧⌘K"
+        ],
+        [
+          "Open a file by name",
+          "File > Open Quickly",
+          "⇧⌘O"
+        ]
+      ],
+      "caption": "Core Xcode actions. Menu names can shift between versions, so check the menu if a path differs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Navigators hold most of your debugging data. Press ⌘5 for the Issue navigator and ⌘9 for the Report navigator. The Report navigator keeps build logs, which you need for the speed work below. If a shortcut does nothing, another app may be taking the key first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Xcode builds get slow, and how to fix them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Slow builds come up often in Apple Developer Forums threads. Those posts are anecdotes, not a survey. Still, the same causes repeat across them, and most of them are fixable. Start with Run Script phases, then compiler settings, then provisioning."
+    },
+    {
+      "type": "paragraph",
+      "text": "The most useful advice comes from an Apple engineer in one thread. Declare inputs and outputs for every Run Script phase. Without them, Xcode cannot tell when the script needs to run again. It may run on every build, and that adds up."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "One team cut a build from 44 seconds to 14 seconds. They removed objective-c++ from MODULE_VERIFIER_SUPPORTED_LANGUAGES, a build setting. The trade-off is that the verifier no longer checks those files. Confirm your module build still passes before you keep the change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another thread reports ValidateEmbeddedBinary growing from about 5 seconds in Xcode 15 to about 15 seconds in Xcode 16. A reply traced part of the slowdown to explicit-module dependency scanning, controlled by CLANG_ENABLE_EXPLICIT_MODULES. Treat that as a lead, not a verdict. Measure before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "A timing routine you can repeat in one afternoon"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Clean the build folder with Product > Clean Build Folder (⇧⌘K). Then run Product > Build (⌘B) and note the time.",
+        "Open the Report navigator (⌘9) and read the log for the step with the longest time.",
+        "Open the target's Build Phases tab. Add input and output files to one Run Script phase.",
+        "Change one setting at a time. Build again and compare the times.",
+        "Keep a change only when the time drops and the app still runs."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Xcode and xcodebuild can disagree",
+      "text": "One poster measured an empty iOS project at about 1 second in Xcode and about 7 seconds with xcodebuild. The delay sat in the GatherProvisioningInputs phase. If command-line builds feel slow, run the same build inside Xcode to compare."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same thread holds a useful clue. A poster says Xcode 26.0 fixed the provisioning slowdown, and a reply says Xcode 26 no longer contacts developerservices2.apple.com. Apple did not confirm the root cause in that thread. If the delay persists, update Xcode and measure again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Previews, Device Hub and Instruments in Xcode 27"
+    },
+    {
+      "type": "paragraph",
+      "text": "Previews render a view while you work. Add the preview macro to a SwiftUI, UIKit or AppKit view. Apple says selecting a control in the preview highlights the matching line in the source editor. Use that link to jump from a broken layout to the code that drew it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two Xcode 27 changes need checking. A third-party summary says PreviewProvider is now deprecated in favor of the #Preview macro. It also says Device Hub replaces the simulator workflow. Apple describes Device Hub as a way to prototype and test on physical devices and simulators. Treat the menu details as unconfirmed until you see them on your own Mac."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Instruments charts CPU, disk, memory and GPU performance as graphical tracks over time. Run a profile with Product > Profile (⌘I). Record while you use the slow screen, then stop. Look for the track that climbs or spikes at the moment you feel the lag."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with memory if the app slows down after a long session. Start with CPU if one screen stutters right away. Pick the track that matches the symptom before you open the others."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in Xcode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin. It does not run inside Xcode, and it has no partnerships with app makers. It is a voice assistant that lives in the notch of your Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time. It waits for each click before it moves on. Lazur does not click for you, so you stay in control of Xcode."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Lazur types clean, formatted text at the cursor in any app. That works well for doc comments and commit notes. Read every line before you save, because speech tools make mistakes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research jobs run in Lazur's own Chrome tabs through the Lazur for Chrome extension. They come back with a summary and a report. That helps when you need to compare Xcode 27 notes with a forum thread."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. Read the privacy notes before you use it on client code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes developers make in Xcode"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting one forum post as a rule. Test the claim in your own project first.",
+        "Changing five build settings at once. You will not know which one helped.",
+        "Skipping the Git repository at project creation. Add it now so you can roll back a bad setting.",
+        "Updating Xcode in the middle of a release without checking the team version.",
+        "Reading only the first error. The first red line often sits below the real cause.",
+        "Ignoring a Run Script phase because it looks harmless. Those phases are common culprits in slow builds."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the previous Xcode installed until your project builds on the new one. Two versions cost disk space. They cost less than a missed deadline. Interruptions cost time too, so see [how to recover focus after interruptions while coding](/for/developers/problems/developer-context-switching-recovery-time)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Xcode Cloud compute hours and what they cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple Developer Program membership includes 25 compute hours per month for Xcode Cloud. Apple defines a compute hour as an hour used to run a task in the cloud, such as a build or automated tests. Extra tiers start at US$49.99 per month for 100 hours. Apple's page does not say whether unused hours roll over, so check before you plan around them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Xcode Cloud when you need builds that do not depend on one Mac. Keep local builds for learning and quick checks. A cloud build still runs your slow Run Script phase, so fix that phase first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How many developers use Xcode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stack Overflow's 2026 survey lists Xcode at 1,322 respondents, or 10.0% of 13,193 total. The 2025 survey put Xcode at 10% of respondents to the IDE question. These numbers measure usage, not satisfaction. They also do not count every Mac developer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm your Mac chip and macOS version against Apple's release notes.",
+        "Open one small project and time a clean build.",
+        "Add input and output files to one Run Script phase, then time it again.",
+        "Practice the six shortcuts for a week. Write them on a sticky note if you need to.",
+        "Ask Lazur to walk you through the Instruments setup on your own screen."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the free fixes above. If you want a voice helper on top, see [Xcode with Lazur](/apps/xcode) for what it does in Xcode 27. Check [plans and trials](/pricing) before you commit. If you also write in other editors, read [VS Code for developers on Mac](/for/developers/vs-code)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Which macOS version does Xcode 27 need?",
+      "answer": "Sources disagree. A third-party summary says macOS Tahoe 26.4 or later and Apple silicon only. We could not confirm this from Apple's release notes, so check them on Apple's Releases page before you update."
+    },
+    {
+      "question": "Why is my Xcode build slow?",
+      "answer": "Start with Run Script phases that lack declared inputs and outputs. Then check the module verifier and explicit module settings. Change one setting at a time and time each build."
+    },
+    {
+      "question": "Where do I find the build log in Xcode?",
+      "answer": "Press ⌘9 to open the Report navigator. Pick the latest build and read it from the top. Look for the step with the longest time."
+    },
+    {
+      "question": "How many Xcode Cloud hours come with membership?",
+      "answer": "Apple says Apple Developer Program membership includes 25 compute hours per month. Extra tiers start at US$49.99 per month for 100 hours. Check Apple's page for current terms."
+    },
+    {
+      "question": "Where did the 10% Xcode number come from?",
+      "answer": "Stack Overflow's 2026 survey lists Xcode at 1,322 respondents, or 10.0% of 13,193. It measures use among survey takers. It does not measure satisfaction or count every Mac developer."
+    },
+    {
+      "question": "Does Lazur work inside Xcode?",
+      "answer": "Lazur works next to Xcode, not inside it. It sees your screen only while you hold the shortcut. It points at controls, explains errors and guides you one click at a time. It does not click or edit for you."
+    },
+    {
+      "question": "What is the fastest way to open a file in Xcode?",
+      "answer": "Press ⇧⌘O for Open Quickly, then type part of the file name. Use ⌘5 to scan the build issues that list the files with errors."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Xcode | Apple Developer",
+      "url": "https://developer.apple.com/xcode/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode 27 (27A266a) | Releases | Apple Developer",
+      "url": "https://developer.apple.com/news/releases/?id=09142026h",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Create a project | Xcode Help",
+      "url": "https://help.apple.com/xcode/mac/current/en.lproj/dev07db0e578.html",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode Cloud | Apple Developer",
+      "url": "https://developer.apple.com/xcode-cloud/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025 | Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2026 | Dev IDEs",
+      "url": "https://survey.stackoverflow.co/2026/technology/data/dev-ide",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Slow incremental build times with xcodebuild command | Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/thread/756120",
+      "publisher": "Apple Developer Forums",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode build time frustration | Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/thread/763913",
+      "publisher": "Apple Developer Forums",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Xcode 27: Everything Developers Need to Know",
+      "url": "https://dev.to/arshtechpro/xcode-27-everything-developers-need-to-know-6lh",
+      "publisher": "DEV Community (third-party)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "What does this build error mean?",
+    "capability": "explain",
+    "result": "Lazur points at the red error and explains the likely cause out loud, so you can check the target before you change code.",
+    "shell": "code",
+    "context": "Xcode, a failed build with a linker error shown in the Issue navigator",
+    "output": "Example answer: The linker cannot find a symbol that your code calls. Check that the source file belongs to the app target under Build Phases.",
+    "pointsAt": "Issue navigator error row"
+  },
+  "tasks": [
+    {
+      "say": "What does this build error mean?",
+      "result": "Lazur reads the error on screen and explains the likely cause out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the scheme picker?",
+      "result": "Lazur draws a circle and a label around the scheme picker in Xcode's toolbar.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through creating a macOS app project.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate a doc comment for this function.",
+      "result": "Hold fn and speak. Lazur types clean text at your cursor, so review it before you save.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a unit test for the selected function.",
+      "result": "Lazur drafts the test text and can type it where your cursor is. Read it before you run it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research what changed in Xcode 27 previews.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to check the Instruments trace at 1 pm.",
+      "result": "Lazur sets a reminder in Apple Reminders for the time you name.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "developers-xcode",
+  "role": "developers",
+  "app": "xcode",
+  "roleName": "Developers",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-xcode/xcode-for-developers-on-mac-1-1db88f.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Programmer at a laptop writing app code, the kind of setup behind Xcode for developers on Mac",
+      "caption": "A developer reviewing code on a laptop.",
+      "keywords": [
+        "xcode for developers on mac",
+        "Xcode",
+        "Developers",
+        "Mac",
+        "programmer laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "This_is_Engineering",
+        "url": "https://pixabay.com/users/This_is_Engineering-11384528/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/engineer-engineering-software-4904878/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-xcode/xcode-for-developers-on-mac-2-e53076.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Macbook on a desk with code on screen during a long Xcode for developers on Mac session",
+      "caption": "A Mac on a desk during a long coding session.",
+      "keywords": [
+        "xcode for developers on mac",
+        "Xcode",
+        "Developers",
+        "Mac",
+        "macbook desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/technology-computer-code-javascript-1283624/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-xcode/xcode-for-developers-on-mac-3-e85262.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Software developer in an office checking builds and app code on a computer",
+      "caption": "A developer checking build results at a desk.",
+      "keywords": [
+        "xcode for developers on mac",
+        "Xcode",
+        "Developers",
+        "Mac",
+        "software developer office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/startup-business-people-students-849805/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "xcode for developers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "xcode 27 setup on mac": 1,
+      "xcode slow build times": 1,
+      "xcode previews swiftui": 1,
+      "xcode device hub": 1,
+      "xcode instruments mac": 1,
+      "xcode keyboard shortcuts": 1,
+      "xcode cloud compute hours": 2
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

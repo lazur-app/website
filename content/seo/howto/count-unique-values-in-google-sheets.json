@@ -1,0 +1,541 @@
+{
+  "title": "How to count unique values in Google Sheets on Mac: formulas and steps for Chrome",
+  "metaTitle": "How to Count Unique Values in Google Sheets on Mac",
+  "description": "Learn how to count unique values in Google Sheets on Mac with COUNTUNIQUE and Remove duplicates. Browser steps, Mac shortcuts, and fixes.",
+  "targetKeyword": "how to count unique values in google sheets on mac",
+  "secondaryKeywords": [
+    "COUNTUNIQUE Google Sheets Mac",
+    "count unique values Google Sheets",
+    "remove duplicates Google Sheets Mac",
+    "count distinct values Google Sheets",
+    "Google Sheets unique count formula",
+    "Google Sheets on Mac shortcuts"
+  ],
+  "intro": "To count unique values in Google Sheets on a Mac, type =COUNTUNIQUE(A2:A100) into an empty cell and change the range to match your data. Google Sheets runs in your browser, so you do this in Chrome or another browser, and the steps are the same as on Windows.",
+  "tldr": [
+    "Type =COUNTUNIQUE(A2:A100) in an empty cell to count the unique values in that range.",
+    "COUNTUNIQUE counts each distinct value once, so repeats do not add to the total.",
+    "To delete repeats instead, use Data > Data cleanup > Remove duplicates, which removes rows.",
+    "Google's help page does not say whether counting is case sensitive, so test your data first.",
+    "Google's pages do not describe a native Mac app, so you use Sheets in a browser."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells per Google Sheets spreadsheet, with a 100MB cap",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: file size and format limits"
+    },
+    {
+      "value": "500k",
+      "label": "rows per Connected Sheets extract, with a 5 million cell cap",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: file size and format limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Count unique values with COUNTUNIQUE"
+    },
+    {
+      "type": "paragraph",
+      "text": "COUNTUNIQUE is the function built for this job. Google's help page gives its syntax as COUNTUNIQUE(value1, [value2]), where value1 is required. Extra values are optional, so you can add more ranges after the first one."
+    },
+    {
+      "type": "paragraph",
+      "text": "In practice you pass one range. A range is a block of cells, written as the first cell, a colon, and the last cell. A2:A100 means cells A2 down to A100. Row 1 stays out because it usually holds the heading."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your fruit names sit in column A, from A2 to A100. Some names repeat. COUNTUNIQUE returns how many different names exist, not how many rows the list has."
+    },
+    {
+      "type": "paragraph",
+      "text": "The gap between those two numbers shows how much repetition is in the list. A list with many repeats gives a small answer. A list where every name is different gives the same answer as the row count."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Count unique values in a column, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps below use one column. They work the same way for any column, as long as the formula points at the right range. Follow them in order the first time, then reuse the formula whenever the list changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the count can differ from what you expect"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's COUNTUNIQUE help page does not say whether counting is case sensitive. It also does not say how blank cells or errors are handled. That leaves three checks you can run yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "First, test case. Type Apple in one empty cell and apple in another. Then run COUNTUNIQUE over those two cells. If you see two, case matters. If you see one, it does not."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, test blanks. Empty cells at the bottom of a range can change the answer. Narrow the range to the rows that hold data, then compare the answer with a count by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third, test spaces. A value with a trailing space can look identical to one without it. The count can treat them as different values, so check for stray spaces."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Extra spaces at the start or end of a value. Trim them first.",
+        "A range that stops early, such as A2:A50 when the list runs to row 100.",
+        "A header counted as data because the range starts at row 1.",
+        "Nonbreaking spaces, which Trim whitespace does not remove."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Trim spaces and clean the list before you count"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's cleanup tools live under Data > Data cleanup. Trim whitespace removes extra leading, trailing, and excessive spaces. Nonbreaking spaces are not trimmed, so look for them if the count still seems high."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run Trim whitespace on the range before you count. It changes the cells, so keep a copy of the sheet if you need the original text."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Remove duplicates in Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Counting and deleting are different jobs. COUNTUNIQUE leaves your data alone. Remove duplicates deletes the repeat rows from the range you select."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page gives the path as Data > Data cleanup > Remove duplicates. Google says cells count as duplicates when their values match, even if formatting or formulas differ. Google also says letter case does not make rows different in this command."
+    },
+    {
+      "type": "paragraph",
+      "text": "That rule is for Remove duplicates only. It does not tell you how COUNTUNIQUE handles case, so run your own test before you compare the two results."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Method",
+        "What it does",
+        "Changes your data"
+      ],
+      "rows": [
+        [
+          "COUNTUNIQUE",
+          "Counts distinct values in a range",
+          "No"
+        ],
+        [
+          "Remove duplicates",
+          "Deletes repeat rows from the selected range",
+          "Yes, rows are removed"
+        ],
+        [
+          "Trim whitespace",
+          "Removes extra leading, trailing, and excessive spaces",
+          "Yes, the text changes"
+        ]
+      ],
+      "caption": "Three tools for unique values, and what each one does to your sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install Google Sheets on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's pages do not describe a native Mac app for Sheets. Google's product page says you can create, view, and edit spreadsheets from a phone, tablet, or desktop. It also says you can work without an internet connection."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a Dock icon, Chrome can install the web app. A third-party guide from The Bricks, dated February 20, 2025, describes the route. Go to sheets.google.com, then click the install icon in the address bar."
+    },
+    {
+      "type": "paragraph",
+      "text": "Or open the three dot menu, choose Save and Share > Install Google Sheets, click Install, and drag the app to the Dock from Applications or Launchpad."
+    },
+    {
+      "type": "paragraph",
+      "text": "Safari works differently. File > Add to Dock pins the web page to the Dock. The same guide notes that Safari only pins the page, so it is not a full install."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Sheets shortcuts on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's shortcut page lists a small set of Mac keys. Show common keyboard shortcuts is ⌘ /. Tool finder, which used to be called Search the menus, is ⌥ /."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Tool finder when you know a command's name but not its menu. Type Remove duplicates, pick the match, and the command runs from the list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Undo is ⌘ z. Find is ⌘ f. Paste values only is ⌘ ⇧ v. Undo is the fastest fix when a removal goes wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's page lists no shortcut for Remove duplicates or Data cleanup. Use the Data menu or Tool finder for those commands."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when counting unique values"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is the range. A formula that stops at row 50 misses every row below it. Scroll to the bottom of the list and check the last row before you trust the number."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is counting the header. If the range starts at row 1, the heading becomes one more value. Start at row 2 to keep it out of the count."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is expecting a list. COUNTUNIQUE returns one number. It does not show you the values. If you need the values, sort the column and read them down, or remove duplicates in a copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth mistake is editing a shared sheet. Removing duplicates changes the file for everyone with edit access. Check with your team before you run it on a shared file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits to know for large sheets"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive limits page says a Google Sheets spreadsheet holds up to 20 million cells or 100MB. Connected Sheets extracts are capped at 500k rows or 5 million cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "For most lists, these limits never matter. If your list is near them, count a smaller range first, then split the file. Google's COUNTUNIQUE page lists a 30 value maximum, but it also says Sheets accepts more, so test big formulas first."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you count"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once you have the count, you may want to sort, filter, or summarize the list. These guides cover those steps for Google Sheets on Mac: [sort data by column](/how-to/sort-data-by-column-in-google-sheets), [filter a range](/how-to/add-a-filter-to-a-range-in-google-sheets), and [SUMIF](/how-to/use-sumif-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want to remove repeated rows for good, read [the duplicate rows guide](/how-to/remove-duplicate-rows-in-google-sheets) before you run the menu command. It covers the same command with more fixes."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a native Google Sheets app for Mac?",
+      "answer": "Google's product pages describe Sheets as a web app. They do not mention a native Mac app. You can install the web app from Chrome, which adds it to the Dock. Safari only pins the web page."
+    },
+    {
+      "question": "Does COUNTUNIQUE count letter case?",
+      "answer": "Google's help page does not say. Test with two cells that differ only by case, such as Apple and apple. Two results mean case matters. One result means it does not."
+    },
+    {
+      "question": "Does COUNTUNIQUE ignore blank cells?",
+      "answer": "The help page does not say how blanks are handled. Narrow the range to the rows that hold data, then compare the answer with a count by hand."
+    },
+    {
+      "question": "Can COUNTUNIQUE count unique rows across two columns?",
+      "answer": "Google's help page says counting unique rows across multiple columns is not supported. Test your exact range on a small sample before you rely on the answer."
+    },
+    {
+      "question": "Will Remove duplicates delete my data?",
+      "answer": "It removes the repeat rows in the range you select. Copy the sheet first. Use undo right away if the result is wrong, or check revision history for older changes."
+    },
+    {
+      "question": "Does Remove duplicates care about capital letters?",
+      "answer": "Google says duplicates are matched on value, ignoring letter case, formatting, or formulas. So Apple and apple count as duplicates in that command."
+    },
+    {
+      "question": "What is the size limit for a Google Sheets file?",
+      "answer": "Google's Drive limits page says up to 20 million cells or 100MB per spreadsheet. Connected Sheets extracts are capped at 500k rows or 5 million cells."
+    },
+    {
+      "question": "Why is my count higher than the unique names I see?",
+      "answer": "Hidden spaces, a range that misses rows, or a header inside the range can all push the count up. Trim spaces and check the range first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "COUNTUNIQUE - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/3093405?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Split text, remove duplicates, or trim whitespace - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/6325535?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive file size and format limits - Google Drive Help",
+      "url": "https://support.google.com/drive/answer/37603?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets - Google Workspace",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Add Google Sheets to Desktop Mac Using AI - The Bricks",
+      "url": "https://www.thebricks.com/resources/guide-how-to-add-google-sheets-to-desktop-mac-using-ai",
+      "publisher": "The Bricks",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Count unique values in a Google Sheets column on Mac",
+  "appliesTo": "Google Sheets in a browser on any recent macOS",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Google account with edit access to the spreadsheet",
+    "Chrome or another browser on your Mac",
+    "A column of values, with the heading in row 1",
+    "Google Sheets opened at sheets.google.com"
+  ],
+  "steps": [
+    {
+      "name": "Open your sheet in a browser",
+      "text": "Go to sheets.google.com in Chrome and open the spreadsheet. Google Sheets runs in the browser, so there is no separate app to launch first.",
+      "tip": "Any browser can open the same page. The menu names below come from Google's help pages."
+    },
+    {
+      "name": "Pick an empty cell for the answer",
+      "text": "Click an empty cell where the count should appear. Choose a cell outside the list, such as the cell next to your heading.",
+      "tip": "Keep the answer outside the range you count. Otherwise the formula may refer to itself."
+    },
+    {
+      "name": "Type the COUNTUNIQUE formula",
+      "text": "Type =COUNTUNIQUE(A2:A100), replacing A2:A100 with your own range. The equals sign tells Sheets that the text is a formula. The closing bracket ends the function.",
+      "tip": "You can drag across the cells with the mouse instead of typing the range. The range fills in as you select."
+    },
+    {
+      "name": "Confirm the formula",
+      "text": "Press Return to confirm. The cell shows the number of unique values. If you see an error, check the range spelling and the closing bracket.",
+      "shortcut": "Return",
+      "tip": "If the result looks odd, press ⌘ z to undo the entry and try again."
+    },
+    {
+      "name": "Check the count with a small sample",
+      "text": "Look at about ten rows and count the distinct values by hand. Compare your count with the formula. If they match, the range is right.",
+      "tip": "Type two values that differ only by capital letters in empty cells to test case."
+    },
+    {
+      "name": "Test a multiple column range",
+      "text": "Google's help page says counting unique rows across multiple columns is not supported. Try a two column range on a small sample before you rely on the result.",
+      "tip": "Write down the range you tested, so you can repeat the check later."
+    },
+    {
+      "name": "Find Remove duplicates with Tool finder",
+      "text": "Select your range first. Then press ⌥ / and type Remove duplicates. Tool finder lists the matching command, so you can choose it without hunting through the menus.",
+      "shortcut": "⌥ /",
+      "tip": "Tool finder was called Search the menus in older Google help pages."
+    },
+    {
+      "name": "Open Data cleanup and choose Remove duplicates",
+      "text": "Click Data in the menu bar. Choose Data cleanup, then Remove duplicates. In the dialog, pick the columns to check and say whether the data has headers.",
+      "menuPath": [
+        "Data",
+        "Data cleanup",
+        "Remove duplicates"
+      ],
+      "tip": "Selecting one cell inside a range removes duplicates from the whole range, according to Google's help page."
+    },
+    {
+      "name": "Undo a removal that went wrong",
+      "text": "Press ⌘ z right after the change to bring the rows back. For changes made earlier, use revision history, which has its own guide on this site.",
+      "shortcut": "⌘ z",
+      "tip": "Undo works best right after the change. Make a copy of the sheet first if the list matters."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Show common keyboard shortcuts",
+      "keys": "⌘ /"
+    },
+    {
+      "action": "Tool finder (formerly Search the menus)",
+      "keys": "⌥ /"
+    },
+    {
+      "action": "Undo",
+      "keys": "⌘ z"
+    },
+    {
+      "action": "Find",
+      "keys": "⌘ f"
+    },
+    {
+      "action": "Paste values only",
+      "keys": "⌘ ⇧ v"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The count is higher than the unique names you see",
+      "fix": "Check for extra spaces with Data > Data cleanup > Trim whitespace, run it on a copy, then count again. Nonbreaking spaces stay, so look for them separately."
+    },
+    {
+      "problem": "The count does not match your hand check",
+      "fix": "Look at the range first. Make sure it starts at row 2 and reaches the last row. Then test case with two cells that differ only by capital letters."
+    },
+    {
+      "problem": "Data cleanup or Remove duplicates is missing",
+      "fix": "Select a range first. If the Data menu shows no edit commands, you may have view-only access. Ask the file owner for edit access."
+    },
+    {
+      "problem": "Remove duplicates removed more rows than expected",
+      "fix": "Google matches values and ignores letter case, formatting, and formulas. Press ⌘ z right after the change, then check the columns you picked in the dialog."
+    },
+    {
+      "problem": "Tool finder does not open",
+      "fix": "Click into the sheet once, then press ⌥ /. The shortcut needs the sheet to be the active part of the page."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Data cleanup menu?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Data cleanup, so you can find it on the Data menu.",
+    "shell": "sheet",
+    "pointsAt": "Data cleanup",
+    "context": "Google Sheets open in Chrome with the Data menu visible",
+    "output": "Lazur answers out loud and points at the item on your screen. Ask it to walk you through Remove duplicates, and it guides you one click at a time, waiting for each click before the next step. It does not click for you."
+  },
+  "type": "howto",
+  "slug": "count-unique-values-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/count-unique-values-in-google-sheets/how-to-count-unique-values-in-google-1-5289c9.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a Mac laptop checking a spreadsheet, the kind of list where you count unique values in Google Sheets on Mac",
+      "caption": "A long column of repeated names is the usual starting point.",
+      "keywords": [
+        "how to count unique values in google sheets on mac",
+        "Google Sheets",
+        "count unique values",
+        "Mac",
+        "person laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/count-unique-values-in-google-sheets/how-to-count-unique-values-in-google-2-e7bbf8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man working on a MacBook at a desk, counting unique values in Google Sheets on Mac from a sales list",
+      "caption": "Counting unique values is routine work for anyone with a long list.",
+      "keywords": [
+        "how to count unique values in google sheets on mac",
+        "Google Sheets",
+        "count unique values",
+        "Mac",
+        "man macbook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-keyboard-technology-2586770/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/count-unique-values-in-google-sheets/how-to-count-unique-values-in-google-3-1884d7.jpg",
+      "width": 1280,
+      "height": 523,
+      "alt": "Laptop screen showing rows of data, the view you see when you count unique values in Google Sheets on Mac",
+      "caption": "Rows of data are where repeats hide.",
+      "keywords": [
+        "how to count unique values in google sheets on mac",
+        "Google Sheets",
+        "count unique values",
+        "Mac",
+        "data laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tumisu",
+        "url": "https://pixabay.com/users/Tumisu-148124/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/analytics-charts-business-woman-3265840/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to count unique values in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "COUNTUNIQUE Google Sheets Mac": 1,
+      "count unique values Google Sheets": 1,
+      "remove duplicates Google Sheets Mac": 1,
+      "count distinct values Google Sheets": 1,
+      "Google Sheets unique count formula": 1,
+      "Google Sheets on Mac shortcuts": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

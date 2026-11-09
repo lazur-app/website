@@ -1,0 +1,565 @@
+{
+  "title": "How to change color theme vs code mac on macOS: menu paths and shortcuts for 2026",
+  "metaTitle": "Change Color Theme VS Code Mac: 2026 Steps",
+  "description": "To change color theme vs code mac, press ⌘K then ⌘T, preview with the arrows, and press Return. Covers menu paths, auto dark mode, and reverting themes.",
+  "targetKeyword": "change color theme vs code mac",
+  "secondaryKeywords": [
+    "VS Code theme on Mac",
+    "VS Code dark mode Mac",
+    "VS Code color theme not changing",
+    "VS Code theme keeps reverting",
+    "workbench.colorTheme setting",
+    "VS Code auto dark mode macOS",
+    "VS Code theme vscode.dev"
+  ],
+  "intro": "To change color theme vs code mac, press ⌘K, release it, then press ⌘T. Use the Up and Down arrow keys to preview each theme, then press Return to keep the one you want.",
+  "tldr": [
+    "Press ⌘K, release it, then press ⌘T to open the Color Theme picker.",
+    "Use the Up and Down arrow keys to preview. Press Return to apply.",
+    "The menu route is File > Preferences > Theme > Color Theme.",
+    "The saved setting is workbench.colorTheme. Press ⌘, to find it in Settings.",
+    "If the theme keeps reverting, check window.autoDetectColorScheme first."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all 2025 Stack Overflow respondents use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025, Technology"
+    },
+    {
+      "value": "1.145",
+      "label": "current stable VS Code release, published November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "Visual Studio Code Updates"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most of the time you need two chords and one arrow key. Press ⌘K, release it, press ⌘T, then move with the arrows until the theme looks right. That covers the common case. The rest of this page covers the places where people get stuck. Those include menu names that differ between guides, themes that snap back, settings that compete, and the web version, which behaves differently."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to open the color theme picker on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code gives you three routes to the same picker. The keyboard shortcut is fastest once it becomes a habit. The menu is easiest the first time, because every label is readable. The Command Palette helps when you forget the other two. Pick the route that fits how you work."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Shortcut: press ⌘K, release it, then press ⌘T.",
+        "Menu: File > Preferences > Theme > Color Theme.",
+        "Command Palette: press ⇧⌘P, type Color Theme, then choose Preferences: Color Theme."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the menu path against your own screen. The official Color Themes page lists File > Preferences > Theme > Color Theme. A third-party guide from KindaCode, last updated 2023-09-02, lists Code > Settings > Theme > Color Theme instead. No official page confirms that second path. VS Code's menus sit in the menu bar at the top of the screen, so read that bar and follow what you see there."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How preview and apply work"
+    },
+    {
+      "type": "paragraph",
+      "text": "The picker previews each theme as you move through the list. Press the Down arrow to see the next theme. Press the Up arrow to go back. A preview is not the same as applying. Press Return when the theme you want is on screen, and the choice sticks."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say you want Dark Modern, the default preferred dark theme. Press ⌘K, release it, then press ⌘T. Move with the arrow keys until Dark Modern is highlighted. Look at the editor, the sidebar, and the status bar. If the contrast feels wrong, keep moving until you find a better match, then press Return."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dark Modern and Light Modern are the defaults for the preferred dark and light slots. Other themes come as extensions. Install one from the Extensions view, then open the picker again. The new theme appears in the same list, and you apply it the same way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where VS Code saves your theme choice"
+    },
+    {
+      "type": "paragraph",
+      "text": "The choice is saved as one setting, workbench.colorTheme. It goes in your user settings by default, so it applies to every project. Press ⌘, to open Settings, then search for color theme. The official Settings page also documents the macOS file path."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Location",
+        "How to reach it",
+        "Scope"
+      ],
+      "rows": [
+        [
+          "User settings",
+          "⌘, then search for workbench.colorTheme",
+          "Every project, unless a project overrides it"
+        ],
+        [
+          "Workspace settings",
+          "Settings editor, Workspace scope",
+          "Only the open project"
+        ],
+        [
+          "settings.json file",
+          "$HOME/Library/Application Support/Code/User/settings.json",
+          "Same as user settings"
+        ]
+      ],
+      "caption": "Where the color theme setting lives on macOS."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also edit the file by hand. The value must match the theme name exactly, including capitals and spaces. A typo will not match an installed theme, so check the value after every edit. Save the file, then look at the picker again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Make the theme follow macOS light and dark mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some people want VS Code to switch when the Mac does. The setting is window.autoDetectColorScheme. When it is on, VS Code follows the OS light or dark color scheme. Two more settings choose the theme for each case. Preferred Dark Color Theme defaults to Dark Modern. Preferred Light Color Theme defaults to Light Modern."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Settings with ⌘,.",
+        "Search for autoDetectColorScheme and turn it on.",
+        "Search for Preferred Dark Color Theme and pick your dark theme.",
+        "Search for Preferred Light Color Theme and pick your light theme.",
+        "Switch your Mac between light and dark appearance to test it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "High contrast has its own pair of settings. Preferred High Contrast Color Theme defaults to Dark High Contrast. Preferred High Contrast Light Color Theme defaults to Light High Contrast. Leave them alone unless you need high contrast often."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Two settings can compete",
+      "text": "The official Color Themes page does not say which setting wins when auto detect is on and workbench.colorTheme is also set. If your manual pick keeps changing, turn auto detect off, set the theme again, then test it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set a different theme for one project"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Workspace settings and set the color theme there. The official docs say a workspace-only theme can be set this way. Your other projects keep the theme from your user settings. To go back, remove the workspace value, and the user setting applies again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you are presenting on a projector and the dark theme washes out. Press ⌘K, release it, then press ⌘T. Press the Down arrow until Light Modern is highlighted. Watch the window change, then press Return. That applies it at the user level, so every project without a workspace value shows it too."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the theme keeps reverting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reverting is the problem people report most often. The likely cause is the automatic switch from the earlier section. Check window.autoDetectColorScheme first. If it is on, your preferred dark and light themes can replace the one you picked. The official docs do not state which setting wins, so test it on your own Mac before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "If nothing changes after you edit settings, reload or restart VS Code. A third-party KindaCode guide suggests this step first. A restart will not repair a wrong setting, so check the value afterward."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make the theme look unchanged"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Previewing without applying. Arrow keys only preview. Press Return to keep the choice.",
+        "Setting a workspace theme by accident. That project keeps its own theme while your other projects use the user setting.",
+        "Typing a theme name that does not match. The value must match an installed theme name exactly.",
+        "Editing settings.json without saving. Save the file, then check the picker again.",
+        "Expecting a desktop theme on vscode.dev. Only declarative themes run in the browser."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A quick test catches most of these. Change the theme, quit VS Code, reopen it, and look at the window again. If the theme matches your pick, you are done. If it does not, work through the checks earlier on this page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Changing the theme in VS Code for the web"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the web runs in your browser at vscode.dev. Color themes work there only when they are fully declarative, which means they contain no code. Only a subset of extensions runs in the browser at all. A theme you use on the desktop may not show up on the web."
+    },
+    {
+      "type": "paragraph",
+      "text": "Firefox needs a different key. The docs say ⇧⌘P does not launch the Command Palette in Firefox, so use F1 instead. The web docs do not describe a shortcut for the theme picker, so open it from the menu or the Command Palette. Theme preview links use the vscode.dev/editor/theme/ path followed by the extension ID."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which VS Code version this page covers"
+    },
+    {
+      "type": "paragraph",
+      "text": "The current stable release is Visual Studio Code 1.145, released November 4, 2026. Updates 1.145.1 and 1.145.2 are out as well. The 1.145 release notes do not mention theme changes, the color theme picker, or Mac menu changes. Those notes suggest these steps still apply. Check your own version if a menu looks different."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many developers use this editor, so the theme question comes up often. The 2025 Stack Overflow survey reports that 75.9% of all respondents use Visual Studio Code, compared with 29% for Visual Studio. Pick a theme you can read for hours, not one that only looks good in a screenshot."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for theme work"
+    },
+    {
+      "type": "paragraph",
+      "text": "The theme commands use ⌘ and ⇧ only. You do not need Option or Control for this task. A chord such as ⌘K ⌘T is two presses in order, not three keys held at once. The keybindings reference lists ⌘K ⌘S for Open Keyboard Shortcuts, which helps if you want to rebind a key later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Set the theme, then test it with a Mac appearance switch if you use auto detect. Keep the workspace setting for the one project that needs it. If you write code all day, the guide at [VS Code for developers on Mac](/for/developers/vs-code) covers shortcuts, debugging, and Git. Data work has its own notes at [VS Code for data scientists on Mac](/for/data-scientists/vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the theme still will not change, your build may differ from the notes used here. Check your version, then read the release notes for that version before you change anything else."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Which menu path is correct for VS Code on Mac?",
+      "answer": "The official Color Themes page lists File > Preferences > Theme > Color Theme. A 2023 third-party guide lists Code > Settings > Theme > Color Theme, and no official page confirmed that one. Check your own menu bar. The shortcut ⌘K ⌘T works either way."
+    },
+    {
+      "question": "Is ⌘K ⌘T one shortcut or two?",
+      "answer": "It is two chords pressed in order. Hold Command, press K, and let go. Then hold Command, press T. You do not need to hold all the keys at once."
+    },
+    {
+      "question": "Can each project have its own color theme?",
+      "answer": "Yes. The official docs say a workspace-only theme can be set in Workspace settings. Other projects keep the theme from your user settings. Remove the workspace value to go back to the user setting."
+    },
+    {
+      "question": "Why does my theme change when my Mac switches to dark mode?",
+      "answer": "Auto detect is probably on. The window.autoDetectColorScheme setting makes VS Code follow the macOS light or dark scheme, using your preferred light and dark themes. Turn it off in Settings if you want one fixed theme."
+    },
+    {
+      "question": "Does the color theme work on vscode.dev?",
+      "answer": "Only in part. A theme must be fully declarative to run in the browser. Only a subset of extensions runs there, so check the theme before you rely on it. Firefox does not launch the Command Palette with ⇧⌘P, so use F1 there."
+    },
+    {
+      "question": "Do I need to restart VS Code after I change the theme?",
+      "answer": "Usually no. Pressing Return applies the theme right away. If nothing changes, reload or restart VS Code. The KindaCode guide suggests that as a first fix, and it is a third-party source."
+    },
+    {
+      "question": "Which settings should I search for?",
+      "answer": "Search for workbench.colorTheme to see the saved theme. Search for window.autoDetectColorScheme to control automatic switching. The official Settings page says user settings live in settings.json at $HOME/Library/Application Support/Code/User/settings.json."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Color Themes, Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/configure/themes",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Color Themes (getstarted), Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/getstarted/themes",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "User and Workspace Settings, Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Key Bindings for Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/configure/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Setting up VS Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Visual Studio Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Visual Studio Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025, Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "VS Code: How To Change Color Theme, KindaCode",
+      "url": "https://www.kindacode.com/article/vs-code-how-to-change-color-theme",
+      "publisher": "KindaCode",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Change the color theme in VS Code on Mac",
+  "appliesTo": "Visual Studio Code 1.145 on macOS, using the official Color Themes steps",
+  "timeMinutes": 2,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS with Visual Studio Code installed",
+    "VS Code 1.145, the current stable release as of November 2026, or a close build",
+    "The Extensions view, if you want a theme that is not built in"
+  ],
+  "steps": [
+    {
+      "name": "Open the Color Theme picker with the shortcut",
+      "text": "Press ⌘K, release it, then press ⌘T. VS Code opens the list of themes and previews the highlighted one. This is the fastest route once it becomes a habit.",
+      "shortcut": "⌘K ⌘T",
+      "tip": "Press the keys in order, one chord after the other, not all at once."
+    },
+    {
+      "name": "Or open the picker from the menu",
+      "text": "Click File in the menu bar. Choose Preferences, then Theme, then Color Theme. Use this route when you want to read the labels, or when the shortcut does nothing.",
+      "menuPath": [
+        "File",
+        "Preferences",
+        "Theme",
+        "Color Theme"
+      ],
+      "tip": "If your menu names differ, follow what you see and check the menu path note above."
+    },
+    {
+      "name": "Preview each theme with the arrow keys",
+      "text": "Press the Down arrow to move to the next theme. Press the Up arrow to go back. The window previews each choice, but nothing is saved yet.",
+      "shortcut": "Down or Up arrow",
+      "tip": "Stop on a theme for a few seconds. Check the sidebar and the editor text, not only the background."
+    },
+    {
+      "name": "Apply the theme",
+      "text": "Press Return on the theme you want. The picker closes, and the theme stays. VS Code writes the choice to your user settings as workbench.colorTheme.",
+      "shortcut": "Return",
+      "tip": "The official docs write this key as Enter. On a Mac keyboard, use Return."
+    },
+    {
+      "name": "Confirm the saved setting",
+      "text": "Press ⌘, to open Settings. Search for workbench.colorTheme. The value shows the theme name you just applied. You can also edit the settings file by hand.",
+      "menuPath": [
+        "File",
+        "Preferences",
+        "Settings"
+      ],
+      "shortcut": "⌘,",
+      "tip": "The user settings file lives at $HOME/Library/Application Support/Code/User/settings.json."
+    },
+    {
+      "name": "Make the theme follow macOS appearance",
+      "text": "Search Settings for autoDetectColorScheme and turn it on. Then set Preferred Dark Color Theme and Preferred Light Color Theme. Switch your Mac between light and dark appearance to test it.",
+      "tip": "If you leave both preferred settings alone, the defaults are Dark Modern and Light Modern."
+    },
+    {
+      "name": "Set a theme for one project",
+      "text": "Open Workspace settings and set the color theme there. That project uses the value. Other projects keep the theme from your user settings.",
+      "tip": "To undo it, remove the workspace value. The user setting applies again."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Color Theme picker",
+      "keys": "⌘K ⌘T"
+    },
+    {
+      "action": "Open Settings",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open Keyboard Shortcuts",
+      "keys": "⌘K ⌘S"
+    },
+    {
+      "action": "Preview the next theme",
+      "keys": "Down arrow"
+    },
+    {
+      "action": "Preview the previous theme",
+      "keys": "Up arrow"
+    },
+    {
+      "action": "Apply the previewed theme",
+      "keys": "Return"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The theme reverts after a while or when the Mac changes mode.",
+      "fix": "Check window.autoDetectColorScheme in Settings. If it is on, set Preferred Dark Color Theme and Preferred Light Color Theme to what you want, or turn auto detect off."
+    },
+    {
+      "problem": "The arrow keys change the theme, but it does not stick.",
+      "fix": "You previewed without applying. Press Return on the theme you want, then check the value under workbench.colorTheme in Settings."
+    },
+    {
+      "problem": "The shortcut does nothing.",
+      "fix": "Use File > Preferences > Theme > Color Theme, or press ⇧⌘P and type Color Theme. If the picker still does not appear, quit VS Code and reopen it."
+    },
+    {
+      "problem": "My theme is missing from the picker.",
+      "fix": "Install the extension that provides it from the Extensions view, then open the picker again. If it still does not show, reload VS Code."
+    },
+    {
+      "problem": "The theme name in settings.json does not work.",
+      "fix": "Match the name exactly, including capital letters and spaces. Save the file, then reload VS Code and check the picker."
+    },
+    {
+      "problem": "The theme will not apply on vscode.dev.",
+      "fix": "Only fully declarative themes run in the browser, and only a subset of extensions runs there. Use the desktop app for themes that contain code."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the color theme picker in VS Code?",
+    "capability": "guide",
+    "result": "Lazur circles the Color Theme item and waits while you open each menu.",
+    "shell": "code",
+    "context": "VS Code on Mac, File menu, Preferences, Theme",
+    "output": "Lazur points at the Color Theme item and says the menu path out loud. It guides you one click at a time and waits for each click. It does not click for you.",
+    "pointsAt": "Color Theme"
+  },
+  "type": "howto",
+  "slug": "change-the-color-theme-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-color-theme-in-vs-code/change-color-theme-vs-code-mac-1-759e2b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer on a Mac deciding how to change color theme in VS Code at a desk",
+      "caption": "Picking a color theme takes seconds, but you will see it all day.",
+      "keywords": [
+        "change color theme vs code mac",
+        "VS Code",
+        "change the color theme",
+        "Mac",
+        "person using MacBook laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-color-theme-in-vs-code/change-color-theme-vs-code-mac-2-bcfc56.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer comparing light and dark color theme in VS Code on a Mac",
+      "caption": "Light or dark, the right color theme depends on the room and your eyes.",
+      "keywords": [
+        "change color theme vs code mac",
+        "VS Code",
+        "change the color theme",
+        "Mac",
+        "developer laptop desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-brick-wall-computer-cup-1854101/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-color-theme-in-vs-code/change-color-theme-vs-code-mac-3-8d9479.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a desk with a Mac, code editor open in a dark color theme",
+      "caption": "Dark color themes are common in code editors on macOS.",
+      "keywords": [
+        "change color theme vs code mac",
+        "VS Code",
+        "change the color theme",
+        "Mac",
+        "programmer dark screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Sunriseforever",
+        "url": "https://pixabay.com/users/Sunriseforever-6314823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programming-coding-6977450/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "change color theme vs code mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "VS Code theme on Mac": 1,
+      "VS Code dark mode Mac": 1,
+      "VS Code color theme not changing": 1,
+      "VS Code theme keeps reverting": 1,
+      "workbench.colorTheme setting": 1,
+      "VS Code auto dark mode macOS": 1,
+      "VS Code theme vscode.dev": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

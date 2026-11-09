@@ -1,0 +1,533 @@
+{
+  "title": "How to change the editor font size in VS Code on Mac: steps for 2026",
+  "metaTitle": "How to Change the Editor Font Size in VS Code on Mac",
+  "description": "Learn how to change the editor font size in VS Code on Mac using Settings, settings.json and zoom. Menu paths, shortcuts and fixes for 2026.",
+  "targetKeyword": "how to change the editor font size in vs code on mac",
+  "secondaryKeywords": [
+    "change VS Code font size on Mac",
+    "editor.fontSize VS Code",
+    "VS Code zoom in and out Mac",
+    "VS Code settings.json font size",
+    "VS Code terminal font size Mac"
+  ],
+  "intro": "To change the editor font size in VS Code on Mac, open Settings with ⌘, (Command and comma), search for editor.fontSize, and type a new number. The change applies as you type, and you can set the same value in settings.json if you prefer a text file.",
+  "tldr": [
+    "Press ⌘, to open Settings, then search for editor.fontSize.",
+    "Type a number in the Editor: Font Size box. The editor updates as you type.",
+    "To scale only the editor with the mouse, turn on editor.mouseWheelZoom and hold ⌘ while you scroll.",
+    "⌘= and ⌘- zoom the whole window, sidebar and menus included, so they are a different control.",
+    "If the size will not change, look for a workspace or language override."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all respondents used Visual Studio Code in the 2025 Stack Overflow Developer Survey",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the editor font size setting changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "The setting is called editor.fontSize. It controls the text in the code editor, the main area where your files open. It does not change the sidebar, the menus, or the terminal. The terminal has its own setting, called terminal.integrated.fontSize."
+    },
+    {
+      "type": "paragraph",
+      "text": "The official Tips and Tricks page uses 18 as an example value for the editor. It uses 14 for the terminal in the same example. Those numbers are examples, not recommendations. The official Default Settings page does not list the default, so run Preferences: Open Default Settings (JSON) to see what your build uses."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "That survey number is a useful reminder. Many people read code in this editor for hours each day. Text that is too small tires your eyes. Text that is too large fits fewer lines on screen. A size that suits you makes long sessions easier."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method 1: Change the size in Settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the route most people should use. The Settings editor applies each change as you make it. You can watch the code and stop when the text looks right. You do not need to save a file for the change to take effect."
+    },
+    {
+      "type": "paragraph",
+      "text": "On macOS, Settings sits under the Code menu. The official docs describe File > Preferences > Settings, so check which path your menu bar shows. Either way, the setting ID editor.fontSize stays the same, and that ID is the one to search for."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method 2: Edit settings.json"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some people prefer a text file. A text file is also easy to copy to another Mac. Open the user settings file with the Command Palette. Press ⇧⌘P, then run Preferences: Open User Settings (JSON). The file opens as a normal editor tab."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Press ⇧⌘P to open the Command Palette.",
+        "Type Preferences: Open User Settings (JSON) and press Return.",
+        "Find editor.fontSize in the file. If it is not there, add it inside the curly braces.",
+        "Type the setting as \"editor.fontSize\": 18, with a comma after it when another setting follows.",
+        "Save with ⌘S, then look at a code file to check the new size."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "JSON is strict. A missing comma, a missing quote, or an extra comma breaks the line. VS Code marks lines it cannot read, so check for underlines before you close the file. Keys are case-sensitive, so editor.fontsize with a lowercase s may be ignored."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the settings.json file lives on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The user settings file sits at $HOME/Library/Application Support/Code/User/settings.json. On your Mac, that is ~/Library/Application Support/Code/User/settings.json. The Library folder is hidden in Finder by default. To reach it, press ⇧⌘G in Finder, paste the path, and press Return."
+    },
+    {
+      "type": "paragraph",
+      "text": "This user file applies to every VS Code window on your Mac. A workspace file is different. It lives in the project folder, and it can override the user file for the same setting. The override section below explains why that matters."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use zoom to change the editor only"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code has two kinds of zoom. Window zoom scales everything on screen. Editor zoom scales only the code text. Mixing them up is the most common reason people think the font size setting is broken."
+    },
+    {
+      "type": "paragraph",
+      "text": "⌘= zooms the window in and ⌘- zooms it out. According to daily.dev, these keys also scale the sidebar, menus, and activity bar. The official Tips and Tricks page stores window zoom as window.zoomLevel, with 5 as an example value. Reset Zoom sits under View > Appearance > Reset Zoom, per the same guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "For editor-only zoom, open Settings and search editor.mouseWheelZoom. Turn it on. Then hold ⌘ and scroll over the code. Only the editor text changes. The Command Palette also has Editor Font Zoom commands, including Editor Font Zoom Reset. Resetting the editor font does not reset the window zoom."
+    },
+    {
+      "type": "table",
+      "caption": "Which control changes which part of VS Code",
+      "headers": [
+        "Control",
+        "What it changes",
+        "Where the value lives"
+      ],
+      "rows": [
+        [
+          "Settings search for editor.fontSize",
+          "Editor text only",
+          "editor.fontSize in settings.json"
+        ],
+        [
+          "⌘= and ⌘- (window zoom)",
+          "Whole window, including sidebar and menus",
+          "window.zoomLevel in settings.json"
+        ],
+        [
+          "⌘ plus scroll, with editor.mouseWheelZoom on",
+          "Editor text only",
+          "editor.mouseWheelZoom in settings.json"
+        ]
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the font size does not change"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings have scopes. VS Code applies them in a fixed order: default, user, workspace, then workspace folder for multi-root projects. Later scopes override earlier ones. A workspace value beats a user value for the same setting, so your change can look ignored."
+    },
+    {
+      "type": "paragraph",
+      "text": "Language overrides add one more layer. A block such as [python] can set its own editor size for Python files only. If your Python files look wrong, open the workspace settings and search for @lang:python. daily.dev suggests the same check."
+    },
+    {
+      "type": "paragraph",
+      "text": "Search @modified in the Settings search box to list only the settings you changed. If editor.fontSize shows up with a value you did not expect, you have found the override. Change or remove that value, and the editor follows the new number."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that waste time"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Changing terminal.integrated.fontSize and expecting the editor to follow. They are separate settings.",
+        "Pressing ⌘= and thinking only the editor changed. Those keys scale the whole window.",
+        "Expecting Reset Zoom to reset the editor font. It does not, according to daily.dev.",
+        "Editing a workspace settings file when you meant the user file. The two are separate files.",
+        "Typing a key name with the wrong case or spelling. Search finds the right entry, but a typed key in JSON must match exactly.",
+        "Leaving out a comma in settings.json. VS Code cannot use the value until the syntax is fixed."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick a size you can read for hours"
+    },
+    {
+      "type": "paragraph",
+      "text": "There is no single right number. Change the value in steps of one or two, then work in the editor for a few minutes. Small changes make it easier to notice when the text becomes comfortable. Go back and forth until one size feels right."
+    },
+    {
+      "type": "paragraph",
+      "text": "Think about where you sit. A laptop on a desk needs a different size than a monitor across the room. Some people keep the editor large and the terminal smaller. That is why the terminal has its own setting, and you should treat the two as separate choices."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the terminal font separate"
+    },
+    {
+      "type": "paragraph",
+      "text": "The integrated terminal reads terminal.integrated.fontSize. The official example uses 14. Search terminal font size in Settings to find it, or edit the same key in settings.json. If you want the terminal to match the editor, set both values to the same number."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full terminal steps, read [How to toggle the integrated terminal in VS Code on Mac](/how-to/toggle-the-integrated-terminal-in-vs-code). The same Settings search works for the terminal size."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Web version and other setups"
+    },
+    {
+      "type": "paragraph",
+      "text": "The browser version of VS Code runs at vscode.dev. It has no terminal and no debugger. Only a subset of extensions runs there. Some shortcuts also behave differently, because the browser claims them first. The official page lists ⌘W, which closes the browser tab, and ⇧⌘P in Firefox as examples."
+    },
+    {
+      "type": "paragraph",
+      "text": "I did not confirm the Settings steps in the browser version. If you use vscode.dev, check the Settings menu there before you rely on the steps in this guide. The desktop app is the version these steps describe."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the version you are running"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps follow the official VS Code docs. The latest stable release on the official updates page is 1.145, released November 4, 2026. The 1.145 notes do not mention font, zoom, or Settings changes. The steps should hold for that release."
+    },
+    {
+      "type": "paragraph",
+      "text": "I did not run a live build to confirm every menu label. If your labels do not match, search the Settings tab for editor.fontSize. That ID is the reliable match when a label changes between builds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you change the size"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the size feels right, you may want to change the theme or turn on word wrap. The [color theme guide](/how-to/change-the-color-theme-in-vs-code) walks through the theme picker. The [word wrap guide](/how-to/turn-on-word-wrap-in-vs-code) covers the setting that stops long lines running off the screen."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does changing the editor font size in VS Code also change the terminal?",
+      "answer": "No. The editor uses editor.fontSize, and the terminal uses terminal.integrated.fontSize. Change each one in Settings if you want both to match."
+    },
+    {
+      "question": "What is the keyboard shortcut to change the editor font size in VS Code on Mac?",
+      "answer": "There is no single shortcut for the editor setting. ⌘, opens Settings, and ⌘= and ⌘- zoom the whole window. To scale only the editor, turn on editor.mouseWheelZoom and hold ⌘ while you scroll."
+    },
+    {
+      "question": "Why does my font size seem to change back?",
+      "answer": "A workspace setting or a language override may hold a different value. Search @modified in Settings and check the Workspace tab for editor.fontSize or a [language] block."
+    },
+    {
+      "question": "Does Reset Zoom change the editor font size?",
+      "answer": "No. According to daily.dev, Reset Zoom does not reset the editor font. Run Editor Font Zoom Reset from the Command Palette to reset the editor font zoom."
+    },
+    {
+      "question": "Can I change the font size on vscode.dev?",
+      "answer": "Probably, but I did not confirm the browser steps. The web version has no terminal or debugger, and some shortcuts behave differently from the desktop app."
+    },
+    {
+      "question": "What number should I use for the editor font size?",
+      "answer": "The official docs use 18 as an example for the editor. There is no single right number. Change it in small steps until the text reads well at your usual distance from the screen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "VS Code docs: Settings (Getting Started)",
+      "url": "https://code.visualstudio.com/docs/getstarted/settings",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code docs: Tips and Tricks",
+      "url": "https://code.visualstudio.com/docs/getstarted/tips-and-tricks",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code docs: Configuring settings",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code docs: Default Settings reference",
+      "url": "https://code.visualstudio.com/docs/reference/default-settings",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code docs: Setup on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Release Notes",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web docs",
+      "url": "https://code.visualstudio.com/docs/setup/vscode-web",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "daily.dev: How to change the font size in VS Code, the settings, shortcuts and zoom explained",
+      "url": "https://daily.dev/blog/how-to-change-font-size-in-vs-code/",
+      "publisher": "daily.dev (third party)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Change the editor font size in VS Code on Mac",
+  "appliesTo": "VS Code 1.145 on macOS, Apple silicon or Intel",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed on macOS, Apple silicon or Intel",
+    "A code file open in the editor",
+    "About five minutes and a way to check the size on screen"
+  ],
+  "steps": [
+    {
+      "name": "Open the Settings editor",
+      "text": "Choose Code > Settings from the menu bar, or press ⌘, (Command and comma). A Settings tab opens over the editor area, and the editor stays visible behind it.",
+      "menuPath": [
+        "Code",
+        "Settings"
+      ],
+      "shortcut": "⌘,",
+      "tip": "If your menu shows File > Preferences > Settings instead, use that path. The official docs list it that way."
+    },
+    {
+      "name": "Search for the setting",
+      "text": "Click the search box at the top of the Settings tab. Type editor.fontSize. Results update as you type, so the matching entry appears quickly.",
+      "tip": "Searching the full ID is more exact than searching font size, which can also show other font settings."
+    },
+    {
+      "name": "Find Editor: Font Size",
+      "text": "Look for the entry labelled Editor: Font Size. Its ID is editor.fontSize. The box next to it holds the current number.",
+      "tip": "Labels can change slightly between builds. The ID editor.fontSize is the reliable match."
+    },
+    {
+      "name": "Type a new number",
+      "text": "Click the number box and type a value, such as 18. Press Tab or click elsewhere to leave the box. The change applies as you type.",
+      "tip": "Change the number in steps of one or two. Big jumps make it hard to find a size you like."
+    },
+    {
+      "name": "Check a code file",
+      "text": "Open a code file in the editor. The text should match the new size. If you have several file types open, check one of each, because a language override changes one file type only."
+    },
+    {
+      "name": "Confirm the change is saved",
+      "text": "Type @modified in the Settings search box. This lists only the settings you changed. If your change is in place, editor.fontSize appears in the list.",
+      "tip": "If the value is missing from the list, check the workspace tab for an override."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Settings",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Zoom the whole window in",
+      "keys": "⌘="
+    },
+    {
+      "action": "Zoom the whole window out",
+      "keys": "⌘-"
+    },
+    {
+      "action": "Zoom only the editor, with editor.mouseWheelZoom on",
+      "keys": "⌘ + scroll"
+    },
+    {
+      "action": "Save the settings.json file",
+      "keys": "⌘S"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The font size did not change in the editor.",
+      "fix": "Search @modified in Settings and look for editor.fontSize. Then check the Workspace tab and any [language] block, such as @lang:python. A workspace value wins over your user value."
+    },
+    {
+      "problem": "The sidebar and menus got bigger or smaller.",
+      "fix": "You used ⌘= or ⌘-, which zoom the whole window. To undo that, run View > Appearance > Reset Zoom, as daily.dev describes."
+    },
+    {
+      "problem": "Reset Zoom did not bring back the editor font size.",
+      "fix": "Reset Zoom only affects the window. Run Editor Font Zoom Reset from the Command Palette, or set editor.fontSize to the number you want."
+    },
+    {
+      "problem": "settings.json does not apply the new value.",
+      "fix": "Check for a missing comma or quote, and for a key typed with the wrong case, such as editor.fontsize. Keys must match exactly."
+    },
+    {
+      "problem": "Your menu says File > Preferences, not Code > Settings.",
+      "fix": "Use the path your menu shows. ⌘, opens Settings either way, and the setting ID editor.fontSize is the same."
+    },
+    {
+      "problem": "The web version behaves differently.",
+      "fix": "vscode.dev has no terminal or debugger, and some shortcuts differ. Use the desktop app for the steps in this guide."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the search box in Settings?",
+    "capability": "point",
+    "result": "Lazur circles the Settings search box and labels it. You still type editor.fontSize yourself.",
+    "shell": "code",
+    "pointsAt": "Search settings",
+    "context": "Settings tab open over the editor",
+    "output": "Lazur points at the search box and can explain out loud why editor.fontSize and terminal.integrated.fontSize are separate settings."
+  },
+  "type": "howto",
+  "slug": "change-the-editor-font-size-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-editor-font-size-in-vs-code/how-to-change-the-editor-font-size-1-3681ef.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a wooden desk looking at code on a laptop screen before changing the editor font size",
+      "caption": "Reading code all day makes the editor font size matter.",
+      "keywords": [
+        "how to change the editor font size in vs code on mac",
+        "VS Code",
+        "change the editor font size",
+        "Mac",
+        "developer coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-editor-font-size-in-vs-code/how-to-change-the-editor-font-size-2-dd75c8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "MacBook on a desk used for checking the editor font size in VS Code on Mac",
+      "caption": "A typical Mac setup for editing code at a desk.",
+      "keywords": [
+        "how to change the editor font size in vs code on mac",
+        "VS Code",
+        "change the editor font size",
+        "Mac",
+        "macbook desk work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-editor-font-size-in-vs-code/how-to-change-the-editor-font-size-3-b671f6.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person squinting at small text on a computer screen, the reason to adjust font size",
+      "caption": "Small text is hard to read during long sessions.",
+      "keywords": [
+        "how to change the editor font size in vs code on mac",
+        "VS Code",
+        "change the editor font size",
+        "Mac",
+        "person reading screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "whitedaemon",
+        "url": "https://pixabay.com/users/whitedaemon-1982503/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/young-woman-blonde-caf%C3%A9-bar-woman-4283986/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to change the editor font size in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "change VS Code font size on Mac": 1,
+      "editor.fontSize VS Code": 1,
+      "VS Code zoom in and out Mac": 1,
+      "VS Code settings.json font size": 1,
+      "VS Code terminal font size Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

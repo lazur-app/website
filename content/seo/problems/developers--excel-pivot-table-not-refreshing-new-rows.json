@@ -1,0 +1,581 @@
+{
+  "title": "Excel pivot table not refreshing new rows on Mac: fix the source range for Microsoft 365",
+  "metaTitle": "Excel pivot table not refreshing new rows: Mac fix",
+  "description": "Excel pivot table not refreshing new rows? The source range stops above your data. Widen it or switch to an Excel table, then refresh on Mac.",
+  "targetKeyword": "excel pivot table not refreshing new rows",
+  "secondaryKeywords": [
+    "pivot table not updating after refresh",
+    "pivot table source range Excel Mac",
+    "Change Data Source pivot table",
+    "excel pivot table new data not showing",
+    "refresh pivot table excel mac",
+    "pivot table Auto Refresh Excel"
+  ],
+  "intro": "Your PivotTable is not picking up new rows because its source range is fixed. Refresh only rereads the cells the PivotTable already points at, so rows added below that range stay out. Change the source to a wider range or an Excel table, then refresh. The steps below cover Excel for Microsoft 365 on Mac.",
+  "tldr": [
+    "Refresh rereads the source range. It does not widen the range to cover new rows.",
+    "Fix the range with PivotTable Analyze > Data > Change Data Source, then refresh.",
+    "An Excel table as the source is the stronger long-term fix. Microsoft does not confirm that tables expand on their own.",
+    "Check filters and slicers before you rebuild anything. They can hide rows the source already includes.",
+    "Auto Refresh is listed as Insider-only on Microsoft's page, so do not plan around it yet."
+  ],
+  "stats": [
+    {
+      "value": "91%",
+      "label": "of 55 operational spreadsheets in Panko's Core 5 audits had important errors",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets"
+    },
+    {
+      "value": "3.9%",
+      "label": "average cell error rate across 697 spreadsheets in Panko's development experiments",
+      "sourceUrl": "https://panko.com/ssr/DevelopmentExperiments.html",
+      "sourceTitle": "Spreadsheet Development Experiments"
+    },
+    {
+      "value": "$100,000",
+      "label": "or more. All 25 spreadsheets in a 2008 audit by Powell, Baker and Lawson had errors this large",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Refresh does one job. It reruns the PivotTable against the cells it already reads. If your new rows sit outside that range, the refresh finishes without an error and the new rows stay out. Nothing on screen tells you the summary is incomplete. That silence is why this problem wastes so much time."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Refresh does not pick up your new rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "A PivotTable does not watch your sheet. It stores a source, often a fixed range such as $A$1:$H$9. Contextures puts the problem plainly: a static range does not adjust when you add data. A record in a row past the range will not appear until you change the source. The range was usually typed in once, when the table had fewer rows. Nobody came back to update it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same thing happens with columns. If you add a column past the last column in the range, the new field never appears in the field list. Refresh cannot show what the source does not reach."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the source range first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by reading the range. Click any cell inside the PivotTable so the PivotTable Analyze tab appears. Then work through the steps below. Write down the range before you change anything, so you can undo it if needed."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click any cell inside the PivotTable.",
+        "Choose PivotTable Analyze > Data > Change Data Source.",
+        "Read the range in the box. Note the last row and the last column.",
+        "Compare that range with the last row of your data. Type the wider range, such as $A$1:$H$10, if the new rows are outside it.",
+        "Click OK, then choose PivotTable Analyze > Refresh."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the box matches your data, the source is fine. Move on to filters. If the box stops above your new rows, you have found the cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a range that stops at row 9"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your sales data sits in A1:H9. That is a header row and eight records. On Monday you type a ninth record in row 10. You refresh, and the total does not move. The PivotTable still reads A1:H9, so row 10 never enters the calculation. Change the source to $A$1:$H$10, refresh, and the total includes the new record."
+    },
+    {
+      "type": "paragraph",
+      "text": "Contextures ran a similar test with sample data. It changed the source to a named Excel table. Its total rose from 220 to 320 after it added a row and refreshed. That result comes from a third-party site, not Microsoft. It shows the mechanism, and you can repeat the test on your own file in a few minutes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Switch the source to an Excel table"
+    },
+    {
+      "type": "paragraph",
+      "text": "A better long-term fix is to turn your data into an Excel table and point the PivotTable at the table name. Select your data, then choose Insert > Table. Give the table a short name you can recognize, such as SalesData. Then open Change Data Source and type SalesData in the Table/Range box."
+    },
+    {
+      "type": "paragraph",
+      "text": "Contextures says a named table lets the source adjust as you add or delete rows. Microsoft's overview of Excel tables covers structured references. It does not say tables expand on their own, and it does not mention PivotTables. Treat the table fix as well supported in practice, but not confirmed by Microsoft. Test it once before you rely on it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Add one row directly under the table.",
+        "Refresh the PivotTable with PivotTable Analyze > Refresh.",
+        "Confirm the total or count changed.",
+        "Delete the test row, then refresh again to confirm the total returns."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the source is right but the numbers stay old"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the range is correct and the PivotTable still looks stale. Check three things in order. First, filters. A report filter or a slicer can hide items, including a new region or product name. Clear the filter, then refresh."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, the field list. A new column appears only after the source covers it, and you drag it into an area yourself. Third, other PivotTables on the same sheet or in the same workbook. Each one can point at its own source, so refreshing one does not update the rest."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "Try this first"
+      ],
+      "rows": [
+        [
+          "Total stops at an old row",
+          "Static range stops above the new rows",
+          "Change Data Source, then widen the range"
+        ],
+        [
+          "New row in the data, not in the PivotTable",
+          "A filter or slicer hides the item",
+          "Clear filters, check slicers, then refresh"
+        ],
+        [
+          "New column missing from the field list",
+          "Source range does not reach the column",
+          "Extend the range to include the column"
+        ],
+        [
+          "Only one PivotTable is stale",
+          "That PivotTable has its own source",
+          "Check its Change Data Source, then refresh"
+        ],
+        [
+          "Source cannot be changed directly",
+          "The PivotTable uses the Workbook Data Model",
+          "Rebuild it from a table or range"
+        ]
+      ],
+      "caption": "Symptoms, likely causes, and first checks for a stale PivotTable"
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Data Model sources",
+      "text": "Microsoft says that if a PivotTable is based on the Workbook Data Model, you cannot change its data source directly. Save a copy of the file, then rebuild the PivotTable from a table or range."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac specifics: refresh, Options, and Auto Refresh"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's refresh page says you can refresh from the PivotTable Analyze tab. Mac users can also control-click the PivotTable and choose Refresh. The same page says some Mac options sit behind a second selection of Options. I did not test that path on a Mac, so check it in your own build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto Refresh is the setting that sounds like the fix. It sits on the Data tab as a checkbox that reads Automatically refresh when the data source changes. Microsoft's page says Auto Refresh is currently available only to Microsoft 365 Insider program participants. It applies to every PivotTable on the same data source. That page may be out of date, so check your own menus before you plan around it."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Mac steps were not tested",
+      "text": "I did not run Excel on a Mac for this page. Menu names come from Microsoft's pages, which cover Excel for Microsoft 365 for Mac, 2024 and 2021. Menu wording can shift between builds, so match what you see on your screen."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep old data on the sheet"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing new rows below the range and assuming the PivotTable will catch them.",
+        "Leaving a blank row between old and new data. A table can stop at the gap, so the new rows fall outside it.",
+        "Fixing one PivotTable and forgetting a second one on the same sheet.",
+        "Numbers stored as text. A value field ignores text, so the total looks stale even when the rows are present.",
+        "Trusting the on-screen total without checking one value against the source."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last item deserves a habit. Pick one customer or one product, find its rows in the source, and add them by hand. If the PivotTable matches, the source is complete. If it does not, check the range first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases worth a minute"
+    },
+    {
+      "type": "paragraph",
+      "text": "A few cases behave differently. A PivotTable built from another workbook reads the saved version of that file, so save it before you refresh. A PivotTable built on the Data Model cannot be redirected directly, as covered above. A table can also split when a blank row sits inside the data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client and patient data: check the rules first"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the sheet holds client records, patient data, or other regulated details, follow your employer's rules before you copy the file or share a screenshot. Lazur sends what it sees to AI providers so it can answer you. Lazur's privacy summary says audio and the screenshot are not stored. Check with your IT or compliance team before you use Lazur on that kind of data."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the reading and the wording. It can point at Change Data Source, explain a dialog on screen, and guide you one click at a time. It waits for each click. It does not click for you, change the file, or check your data on its own. You still make the change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥⌘ to ask about anything on screen. Lazur answers out loud. Ask where a command is, and it draws a circle and a label around it. The Pro trial runs three days with no credit card. You can compare plans on [pricing](/pricing) before you decide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist for next time"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Convert the source data to an Excel table before you build the PivotTable.",
+        "Name the table with something you can recognize, such as SalesData.",
+        "Build the PivotTable from the table name, not a fixed cell range.",
+        "After each data change, refresh with PivotTable Analyze > Refresh.",
+        "Clear filters and check slicers before you blame the source.",
+        "Test one added row after each big import."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Refresh not add my new rows?",
+      "answer": "Refresh reruns the PivotTable against its saved source range. If the new rows sit outside that range, they stay out. Change the source to a wider range, or use an Excel table as the source."
+    },
+    {
+      "question": "Does Excel update the PivotTable source automatically?",
+      "answer": "Not by default. Microsoft's refresh page says Auto Refresh is currently available only to Microsoft 365 Insider program participants. That page may be out of date, so check the Data tab in your build."
+    },
+    {
+      "question": "How do I change the source on a Mac?",
+      "answer": "Click the PivotTable, then choose PivotTable Analyze > Data > Change Data Source. Edit the range or type a table name, click OK, and then choose PivotTable Analyze > Refresh."
+    },
+    {
+      "question": "Why do I still see old data after I change the source?",
+      "answer": "Refresh after you change the source. Then check filters and slicers. A filter can hide new items even when the source range is correct."
+    },
+    {
+      "question": "Is an Excel table better than a fixed range?",
+      "answer": "Contextures tested a named table and reported its total rose from 220 to 320 after a new row and refresh. That test is from a third-party site. Microsoft's table overview does not say tables expand on their own, so test it once on your file."
+    },
+    {
+      "question": "Can Lazur fix this for me?",
+      "answer": "Lazur can point at the Change Data Source command, explain what is on screen, and guide you one click at a time. It does not click for you or change the file. Hold ⌥⌘ to ask about the sheet."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Refresh PivotTable data",
+      "url": "https://support.microsoft.com/en-us/excel/refresh-pivottable-data",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Change the source data for a PivotTable",
+      "url": "https://support.microsoft.com/en-us/excel/change-the-source-data-for-a-pivottable",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Overview of Excel tables",
+      "url": "https://support.microsoft.com/en-us/office/overview-of-excel-tables-7ab0bb7d-3a9e-4b56-a3c9-6c94334e492c",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Fix and Update Pivot Table Source Data",
+      "url": "https://www.contextures.com/excelpivottablesourcedata.html",
+      "publisher": "Contextures",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Audits of Operational Spreadsheets",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond Panko, Spreadsheet Research",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Spreadsheet Development Experiments",
+      "url": "https://panko.com/ssr/DevelopmentExperiments.html",
+      "publisher": "Raymond Panko, Spreadsheet Research",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "excel pivot table showing old data after refresh",
+  "costs": [
+    {
+      "title": "Wrong totals that look finished",
+      "text": "A stale PivotTable still returns numbers. Refresh finishes with no error, so the summary looks complete. Someone can send a total that leaves out last week's rows, and nobody knows until a manager asks why the number did not move."
+    },
+    {
+      "title": "Hours spent rebuilding the same report",
+      "text": "Many people rebuild a PivotTable from scratch when the source is the real problem. That work repeats every time the data changes. No public study I found measures how long this takes, so estimate it from your own month."
+    },
+    {
+      "title": "Decisions made on partial data",
+      "text": "Panko's audits of operational spreadsheets, dated 1987 to 2008, found important errors in most of the files he reviewed. In one 2008 audit, all 25 spreadsheets had errors of $100,000 or more. Those figures cover spreadsheet errors in general, not stale PivotTables. A summary that misses rows can carry the same kind of risk."
+    },
+    {
+      "title": "Trust with your team",
+      "text": "Once a colleague finds a summary missing rows, they check every number you send after that. The checking takes time for both of you and slows the next report down. A refresh habit prevents that round of questions."
+    },
+    {
+      "title": "Data rules for shared files",
+      "text": "If the sheet holds client records, patient data, or other regulated details, a wrong or copied summary can also create a handling problem. Follow your employer's rules before you share or paste that data anywhere."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Static source range",
+      "text": "The PivotTable keeps the range you gave it when you built it. Excel does not rewrite that reference when you add rows below it. Refresh then rereads the same cells, so new rows never enter the calculation. Contextures names this as the cause, and the fix is to edit the reference."
+    },
+    {
+      "title": "Rows added outside the range",
+      "text": "New rows often sit just under the old data. A blank row between the old and new data, or a column added past the last one, falls outside the source. The PivotTable never reads it, even after you refresh."
+    },
+    {
+      "title": "Filters and slicers hiding items",
+      "text": "A PivotTable filter can hide new items, such as a new region or a new product code. The source may be correct while the view is filtered. Check the filter buttons and any slicers before you touch the source."
+    },
+    {
+      "title": "Several PivotTables with different sources",
+      "text": "Each PivotTable carries its own source. One report can update while another on the same sheet stays stale. Refreshing one does not fix the others, so check each report you send."
+    },
+    {
+      "title": "Data Model or external source",
+      "text": "Microsoft says a PivotTable built on the Workbook Data Model cannot have its data source changed directly. A PivotTable that reads another file depends on that file's saved version, so an unsaved change will not show."
+    },
+    {
+      "title": "Expecting Auto Refresh",
+      "text": "Auto Refresh would update the PivotTable when the source changes. Microsoft's page says it is available only to Insider program participants, so a regular Microsoft 365 account may not have it. People then assume the report is broken, when the feature is simply not on."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Widen the source range",
+      "text": "Open PivotTable Analyze > Data > Change Data Source and type a range that reaches the last row and column of your data. Use a pattern such as $A$1:$H$10, with your own columns and last row. Click OK, then refresh."
+    },
+    {
+      "title": "Use an Excel table as the source",
+      "text": "Select the data and choose Insert > Table. Name the table, then type that name in the Table/Range box under Change Data Source. Contextures reports its total rose from 220 to 320 after a new row and refresh. Test that on your own file."
+    },
+    {
+      "title": "Clear filters and slicers",
+      "text": "Click each filter button in the PivotTable and choose Clear Filter. Look for slicers on the sheet and clear them too. Then refresh. The new item should appear if a filter was the cause."
+    },
+    {
+      "title": "Refresh every PivotTable",
+      "text": "Use Refresh All when several PivotTables point at changed data. Refreshing only the one you are looking at can leave the others with old totals. Check each report before you send anything."
+    },
+    {
+      "title": "Rebuild from a table when the Data Model blocks you",
+      "text": "If the Data Model rule applies, you cannot change the source in place. Copy the data into a table on a new sheet, build a new PivotTable from that table name, and compare its totals with the old one before you replace it."
+    },
+    {
+      "title": "Use Auto Refresh only if you have it",
+      "text": "Look on the Data tab for the checkbox Automatically refresh when the data source changes. If it is not there, do not wait for it. Set a manual refresh routine instead."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is Change Data Source?",
+      "result": "Lazur draws a circle and a label around the command on screen, so you find it without hunting through the Analyze tab.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does my pivot skip the last row?",
+      "result": "Hold ⌥⌘ and ask. Lazur answers out loud from what is on screen, and it says what it cannot see.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through changing the source range, one click at a time.",
+      "result": "Lazur waits for each click before the next step. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to the file owner saying the pivot stops at row 9.",
+      "result": "Lazur drafts the message. You review it and send it from your own app.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a status update for the team.",
+      "result": "Hold fn to dictate clean text at the cursor in any app. Dictation is unlimited on Pro and Power.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Remind me to check the pivot source on Friday.",
+      "result": "Lazur adds an Apple Reminders item by voice, so the check does not depend on memory.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Change Data Source?",
+    "capability": "point",
+    "result": "Lazur circles the command on screen so you can click it yourself. It does not open the dialog for you.",
+    "shell": "sheet",
+    "context": "Excel for Microsoft 365 on Mac, PivotTable selected",
+    "output": "A circle and label around Change Data Source",
+    "pointsAt": "Change Data Source"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the source range",
+      "text": "Click the PivotTable, choose PivotTable Analyze > Data > Change Data Source, and write down the range. Compare its last row and last column with your data. Note any filters on the PivotTable."
+    },
+    {
+      "label": "Day 2",
+      "title": "Widen or convert the data",
+      "text": "Widen the range to include the new rows, or convert the data to an Excel table with Insert > Table. Name the table, point the PivotTable at that name, then refresh."
+    },
+    {
+      "label": "Day 3",
+      "title": "Test one added row",
+      "text": "Add a test row directly under the table. Refresh and check that the total moved. Delete the test row, refresh again, and confirm the total returns to its earlier value."
+    },
+    {
+      "label": "Week 1",
+      "title": "Set a refresh routine",
+      "text": "Before each report, refresh with PivotTable Analyze > Refresh, clear filters, and compare one total with the source. Repeat this after each big data import."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "excel-pivot-table-not-refreshing-new-rows",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-table-not-refreshing-new-rows/excel-pivot-table-not-refreshing-new-rows-1-03b26c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop checking a spreadsheet on a desk",
+      "caption": "Checking a summary against the source data",
+      "keywords": [
+        "excel pivot table not refreshing new rows",
+        "Developers",
+        "PivotTable not showing new data after refresh",
+        "Mac",
+        "person laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Wojtech",
+        "url": "https://pixabay.com/users/Wojtech-9711004/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/work-computer-laptop-writing-3758275/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-table-not-refreshing-new-rows/excel-pivot-table-not-refreshing-new-rows-2-ccd1d2.jpg",
+      "width": 1280,
+      "height": 991,
+      "alt": "Man at a laptop in an office reviewing data before a report",
+      "caption": "Reviewing a report before sending it",
+      "keywords": [
+        "excel pivot table not refreshing new rows",
+        "Developers",
+        "PivotTable not showing new data after refresh",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stephiejo",
+        "url": "https://pixabay.com/users/stephiejo-1409154/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-home-office-962848/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-pivot-table-not-refreshing-new-rows/excel-pivot-table-not-refreshing-new-rows-3-959278.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on a desk beside printed charts and handwritten notes",
+      "caption": "Printed charts and a laptop at work",
+      "keywords": [
+        "excel pivot table not refreshing new rows",
+        "Developers",
+        "PivotTable not showing new data after refresh",
+        "Mac",
+        "office desk laptop charts",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-work-coffee-chart-man-6062423/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel pivot table not refreshing new rows",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "pivot table not updating after refresh": 1,
+      "pivot table source range Excel Mac": 1,
+      "Change Data Source pivot table": 1,
+      "excel pivot table new data not showing": 1,
+      "refresh pivot table excel mac": 1,
+      "pivot table Auto Refresh Excel": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

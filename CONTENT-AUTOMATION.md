@@ -20,9 +20,9 @@ Pushing to `main` deploys on Vercel. Every run's cost is recorded (see Costs bel
 | Blog | `/blog/<slug>` | `content/blog/*.md` | 5 |
 | Free tools | `/tools/<slug>` | hand-built in `src/components/tools` | not generated |
 
-Length: the target is **2,000 words** a page (`MIN_WORDS` in `src/lib/content/rules.mjs`). Small
-models write short, so when a draft is under it the model is asked up to twice to add new sections.
-Nothing is rejected for length.
+Length: prompts ask for about 2,000 words, but pages are published at whatever length the model
+writes (Gemini Flash-Lite usually writes 800 to 2,000). Nothing is rejected for length.
+`CONTENT_EXPAND=on` adds up to two passes that ask for more sections when a page is under 2,000.
 
 **Content checks are OFF by default** (Veer's call, 2026-11-09): whatever the model writes is
 published as long as it is valid JSON for the page template. The writing rules still go into every
@@ -43,9 +43,8 @@ Old `/use-cases/*` URLs redirect to `/apps/*`.
 pick next target ─► research: cached facts about the app / role / competitor (no new search),
                     plus at most ONE grounded Gemini call for the page's own topic
                  ─► write (Gemini, JSON Schema for that page type)
-                 ─► expand up to twice if under 2,000 words
                  ─► assemble (code adds slug, dates, Lazur's own facts and prices)
-                 ─► images (Pixabay → re-encode → keyword file name → EXIF/XMP/IPTC → Vercel Blob)
+                 ─► images (Pixabay → re-encode → keyword file name → EXIF/XMP/IPTC → Cloudflare R2)
                  ─► content/seo/<type>/<slug>.json, cost recorded per page
 ```
 
@@ -88,13 +87,19 @@ pick next target ─► research: cached facts about the app / role / competitor
   Copyright), XMP (dc:subject, dc:description, dc:creator, AltTextAccessibility) and IPTC (2:25
   keywords, 2:120 caption, 2:80 by-line, via `iptc.mjs`).
 - Credit on the page: "Image by <user> from Pixabay", linking to the photo page.
-- **Storage is one function, `store()`**, so the vendor can change later: Vercel Blob when
-  `BLOB_READ_WRITE_TOKEN` is set; otherwise `public/content-images/<type>/<slug>/` for local runs and a
+- **Storage is one function, `store()`**, so the vendor can change later: Cloudflare R2 when the
+  `R2_*` variables are set (`lib/r2.mjs`); Vercel Blob when only `BLOB_READ_WRITE_TOKEN` is set (legacy); otherwise `public/content-images/<type>/<slug>/` for local runs and a
   handful of sample pages. The daily job in GitHub Actions refuses to write into `public/`.
 - Pages get 3 photos (`CONTENT_MIN_IMAGES` is the minimum, default 2). Product visuals (notch capsule,
   "you say / Lazur does" window), charts and OG images are drawn in code and need no files.
 - Existing pages without photos: `PIXABAY_API_KEY=... node scripts/content/fill-images.mjs [--blog]`.
-- **Blob store (set up 2026-11-06):** store `store_lFObMih1TPJ3SGPO` on the `lazur-website` project,
+- **R2 bucket (since 2026-11-07):** `lazur-content-images` on the lazur.app Cloudflare account, public at
+  `https://images.lazur.app`, same `content-images/<type>/<slug>/` paths. Env: `R2_ACCOUNT_ID`,
+  `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` (an R2 API token with Object Read & Write on that bucket),
+  optional `R2_BUCKET` / `R2_PUBLIC_URL`. The Hobby Blob store was suspended after ~2,000 uploads in its
+  first day (Advanced Operations limit), so every image was rebuilt from Pixabay and moved with
+  `scripts/content/migrate-images-to-r2.mjs`.
+- **Blob store (2026-11-06 to 2026-11-07, retired):** store `store_lFObMih1TPJ3SGPO` on the `lazur-website` project,
   public base URL `https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com`, files under
   `content-images/<type>/<slug>/`. The first 105 sample photos were moved there from `public/` with
   `scripts/content/migrate-images-to-blob.mjs`; nothing image-related lives in the repo now.
@@ -181,7 +186,8 @@ cached research are written and the rest wait for the next day.
 
 GitHub Actions (below) is the main way now: it only needs API keys. A scheduled Claude Code cloud
 session can also run it with [`scripts/content/CLOUD-RUN.md`](scripts/content/CLOUD-RUN.md); the
-environment then needs the same keys. `scripts/content/build-check.mjs` is `next build` that works
+environment then needs the same keys: a Gemini key, `PIXABAY_API_KEY` and the `R2_*` image storage
+variables (`R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`). `scripts/content/build-check.mjs` is `next build` that works
 inside cloud sessions, whose proxy breaks Next's Google Fonts download.
 
 ## The ramp: 300, then 500, then 1,000 pages a day
@@ -208,8 +214,8 @@ rewritten each day until none are left. Override with `CONTENT_DAILY_COUNTS` (`"
 - **Cost:** see Costs above, roughly $50 to $70 a day at 1,000 pages, capped by
   `CONTENT_MAX_USD_PER_DAY`.
 - **Pixabay:** at most 3 searches a page (cached 24 hours), well under 6,000 an hour.
-- **Vercel Blob:** about 3 photos of roughly 120 KB per page, so about 360 MB a day at 1,000 pages,
-  around 11 GB a month, billed by Vercel.
+- **Image storage (Cloudflare R2):** about 3 photos of roughly 120 KB per page, so about 360 MB a day at 1,000 pages,
+  around 11 GB a month.
 - **Deploys:** each hourly push deploys the site, up to 24 deploys a day.
 - **Google:** a young domain adding 1,000 pages a day gets crawled slowly at first.
 
@@ -241,9 +247,10 @@ per type rendered at build time, default 1500; the rest render on first visit an
 
 1. **Secrets** (Settings > Secrets and variables > Actions > Secrets):
    - `GEMINI_VERTEX_API_KEY`: the Vertex AI express key (or `GEMINI_API_KEY` for a Google AI Studio key).
+   - `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare R2 image storage.
    - `PIXABAY_API_KEY`: free key from https://pixabay.com/api/docs/ (log in, the key is on that page).
-   - `BLOB_READ_WRITE_TOKEN`: Vercel > Storage > create a Blob store connected to the website project
-     > copy the read-write token.
+   - `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`: Cloudflare > R2 > Manage API tokens >
+     create a token with Object Read & Write on the `lazur-content-images` bucket.
 2. **Test on a branch:** Actions > content-daily > Run workflow, `target=branch`, small counts
    (`howto=3, apps=1, compare=1, blog=1`). Read the pages on the Vercel preview for
    `content-test/<date>`, and check `refused.jsonl` and `usage.jsonl` in the run artifact.

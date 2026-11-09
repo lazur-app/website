@@ -1,0 +1,686 @@
+{
+  "title": "Search Console sitemap couldn't fetch or has errors: fixes for Mac users in 2026",
+  "metaTitle": "Search Console sitemap couldn't fetch or has errors: Mac fixes",
+  "description": "Search Console says your sitemap couldn't be fetched or has errors. See what each status means, why it happens, and the fixes you can run on your Mac.",
+  "targetKeyword": "search console sitemap couldn't fetch or has errors",
+  "secondaryKeywords": [
+    "submit sitemap google search console",
+    "sitemap couldn't be fetched",
+    "search console sitemap has errors",
+    "fix sitemap errors search console",
+    "sitemap fetch error google",
+    "search console sitemaps report",
+    "sitemap errors mac"
+  ],
+  "intro": "A sitemap that Search Console says couldn't be fetched has a download problem. A sitemap marked as having errors has a problem inside the file. Both are fixable on a Mac in Chrome, usually without paying for anything. This guide covers what the statuses mean, what the problem costs you, the usual causes, and fixes you can run yourself.",
+  "tldr": [
+    "Couldn't fetch means Google could not download your sitemap. Has errors means Google downloaded it but found problems inside.",
+    "Open the sitemap address in Chrome first. Most fetch failures come from a wrong address, a robots.txt block or a server error.",
+    "Common file errors include redirecting URLs, unescaped characters like the ampersand, and files over the size limit.",
+    "After a fix, resubmit in Indexing > Sitemaps and check the Last read date a few days later.",
+    "Lazur can explain the status on your screen and draft the ticket for your developer, but it does not click Submit for you."
+  ],
+  "stats": [
+    {
+      "value": "62%",
+      "label": "of top-1,000 sites that expose a sitemap had at least one flaw, per a vendor study",
+      "sourceUrl": "https://ppc.land/62-of-top-1-000-sites-with-a-sitemap-fail-at-least-one-check-lintlab-finds/",
+      "sourceTitle": "62% of top-1,000 sites with a sitemap fail at least one check, lintlab finds"
+    },
+    {
+      "value": "23.0%",
+      "label": "of the 400 sites with sitemaps had redirecting URLs, the most common flaw found",
+      "sourceUrl": "https://ppc.land/62-of-top-1-000-sites-with-a-sitemap-fail-at-least-one-check-lintlab-finds/",
+      "sourceTitle": "62% of top-1,000 sites with a sitemap fail at least one check, lintlab finds"
+    },
+    {
+      "value": "$79.70",
+      "label": "median hourly pay for advertising, promotions and marketing managers, 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers"
+    },
+    {
+      "value": "50MB",
+      "label": "uncompressed size limit for one sitemap file, with a cap of 50,000 URLs",
+      "sourceUrl": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "sourceTitle": "Build and submit a sitemap: Google Search Central"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the Sitemaps report tells you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Search Console, pick your property, then go to Indexing > Sitemaps in the left sidebar. You will see each sitemap Google knows about. Every row shows a status, a count of discovered URLs and a Last read date. The status tells you which kind of problem you have."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google uses three statuses. Success means Google fetched the file and read it without errors. Has errors means Google fetched it but found problems inside. Couldn't fetch means Google could not retrieve the file at all. Each status points to a different fix, so read it before you touch anything."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Success: fetched and read with no errors. It does not prove your pages are indexed.",
+        "Has errors: fetched, but some entries failed. URLs that parsed cleanly still go into the crawl queue.",
+        "Couldn't fetch: Google could not get the file. Check the address, robots.txt and the server first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Read Success carefully. It only tells you the file parsed. The pages in it still have to be found, crawled and indexed. Google also calls a submitted sitemap merely a hint, so it does not guarantee the file is downloaded or used."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a sitemap error costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Think about the cost in three buckets. There is your time, the pages that wait to be found, and the goodwill of the developers you ask for help. Each one shows up differently. The sections below show where the numbers are real and where they are not."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Treat the error rate as a signal",
+      "text": "A vendor study found at least one flaw on 62% of top-1,000 sites that expose a sitemap. The company that ran it sells a sitemap checker, and its figures were not independently verified. Read the number as a rough signal, not a verdict on your site."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why it happens: the usual causes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most sitemap errors come from a short list of problems. Google groups them into URL problems, domain or www mismatches, file size limits, syntax errors and download errors. Match what you see in the report to the table below, then work through that cause."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Status or error",
+        "What it usually means",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Couldn't fetch",
+          "Google could not download the file",
+          "Open the address in Chrome and look for a 404 or an error page"
+        ],
+        [
+          "Blocked",
+          "robots.txt blocks the sitemap path",
+          "Open /robots.txt and look for a Disallow rule"
+        ],
+        [
+          "Domain mismatch",
+          "URLs use a different host than the property",
+          "Compare www and non-www in the property and the file"
+        ],
+        [
+          "Syntax problem",
+          "Unescaped characters or invalid date formats",
+          "Search the file for the ampersand and check each date value"
+        ],
+        [
+          "Size limit",
+          "Over 50MB uncompressed or over 50,000 URLs",
+          "Count the URLs, then split the file into a sitemap index"
+        ],
+        [
+          "Redirecting URLs",
+          "Listed URLs send visitors to another address",
+          "Check a sample of listed URLs for a redirect"
+        ]
+      ],
+      "caption": "Common sitemap problems and a first check for each one."
+    },
+    {
+      "type": "paragraph",
+      "text": "The vendor study also looked at which flaws show up most. Redirecting URLs topped the list. It found them on 92 of the 400 sites with sitemaps, which is 23.0%. A redirect means the sitemap lists one address, and the server sends visitors to another. A sitemap should list the final address."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "The second most common flaw was an identical lastmod date across a whole file. The study found it on 88 sites, or 22.0%. If every page shows the same modification date, the date stops being a useful signal. Use the date each page actually changed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Download failures have their own causes. Google lists a sitemap blocked by robots.txt, an unresolved manual action, a wrong sitemap address that returns HTTP 404, temporary server problems and low crawl demand. Low crawl demand means Google has little reason to fetch the file often. Check that cause last, after the simple ones are ruled out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can do without buying anything"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Fix a Couldn't fetch status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start in Chrome. Click the address bar or press ⌘L, type your domain, then add /sitemap.xml or the address your sitemap uses. If the page loads and shows XML, the file exists. If you see a 404 page, the address is wrong or the file moved."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the sitemap address in Chrome and confirm it loads as XML, not an error page.",
+        "Open your domain with /robots.txt and look for a Disallow rule that covers the sitemap path.",
+        "If the file moved, update the address in your CMS or SEO plugin so it stops returning 404.",
+        "Run a live test on the sitemap address in the URL Inspection box until Page fetch reads Successful.",
+        "Go to Indexing > Sitemaps, paste the address into Add a new sitemap, then click Submit."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the page loads in your browser but Search Console still says it couldn't fetch, suspect the server. Temporary server problems can clear on their own. Ask your host or developer for server logs from the times Google tried. Then resubmit once the server responds cleanly."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Fix a Has errors status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Has errors means the file reached Google. Open it in Chrome and press ⌘F, then search for the ampersand. A raw ampersand breaks the syntax. Every ampersand inside a URL has to become the escaped form. Other special characters need escaping too."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check size and count next. Google's limit is 50MB uncompressed and 50,000 URLs for each sitemap. Larger sites split the list into several sitemaps and reference them from a sitemap index. A sitemap index can reference up to 50,000 sitemaps, and it must not exceed 50MB either."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the domain last. If your property is https://www.example.com, every URL in the file must use that host. A mix of www and non-www addresses causes a mismatch error. Pick one version, match the property to it, and update the sitemap."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a sitemap that couldn't be fetched after a site move"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a CMS update moved your sitemap from /sitemap.xml to /sitemap_index.xml. Search Console still lists the old address, and the Sitemaps report says Couldn't fetch. Open the old address in Chrome and you see a 404 page. Open the new address and you see XML."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Submit the new address in Indexing > Sitemaps. Then remove the old entry only after the new one reads Success. Removing the old entry does not erase the URLs Google already knows, so cleaning up does not cost you pages."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the new row a few days later. The Last read date should move forward. If it does not, go back and check robots.txt, the server and the file contents, in that order."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Submitting a sitemap the right way"
+    },
+    {
+      "type": "paragraph",
+      "text": "Submitting is the easy step, and it goes wrong when the file is not ready. Google's order is short. Confirm the property is yours, post the file, test it, then submit it. Skipping the test means you find out about problems later, inside the report."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm you have owner permission on the property in Search Console.",
+        "Post the sitemap file, ideally at the root of your domain.",
+        "Test it with URL Inspection until Page fetch reads Successful.",
+        "Open Indexing > Sitemaps, paste the URL into Add a new sitemap, then click Submit."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also point search engines to a sitemap with a Sitemap line in robots.txt, or by pinging. The sitemaps.org FAQ lists those options. For Google, the Sitemaps report is still the place to see the status and the errors in one spot."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Screaming Frog fits, and what it costs"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the list of URLs is the problem, a crawler checks each address in bulk. Screaming Frog SEO Spider runs on macOS, with Apple silicon and Intel builds. Its free version is capped at 500 URLs, which covers a small sitemap or a sample of a larger one."
+    },
+    {
+      "type": "paragraph",
+      "text": "A single paid licence is listed at €245 per year on the vendor's pricing page, with volume discounts for larger teams. The page shows euros only, and prices can change. Check the pricing page for the current figure in your currency."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the free version. Move to a paid licence only when the free cap blocks the check you need. A sample check can show whether a problem is widespread or a one-off."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. Hold ⌥ ⌘ while the Sitemaps report is open and ask what the status means. Lazur answers out loud and can circle the Sitemaps item or the Add a new sitemap box."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not fix the sitemap. It does not edit files, click Submit or change server settings. The fixes above still take your hands, and sometimes your developer's time when the problem sits on the server."
+    },
+    {
+      "type": "paragraph",
+      "text": "Where it helps is the routine around the fix. Ask Lazur to walk you through resubmitting, one click at a time, and it waits for each click. Ask it to draft the ticket with the status and the URL. Hold fn to dictate the ticket text at your cursor in any app."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with sitemap errors"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Deleting the sitemap to clear the error. Google keeps the URLs it already knows, so change the file and resubmit.",
+        "Treating Success as proof of indexing. Success only means the file read cleanly.",
+        "Editing a generated sitemap by hand. The next rebuild overwrites the change, so fix the setting that makes the file.",
+        "Ignoring a blank Last read date. A blank date means Google has no successful fetch on record.",
+        "Fixing one sitemap and skipping the rest. A large site can have several sitemaps, so check every row.",
+        "Assuming Bing works the same way. This guide did not verify Bing's steps, so check Bing Webmaster Tools' own help."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine for sitemap checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the Sitemaps report once a week, and after any site move, redesign or CMS update. Keep a short log in [Google Sheets](/for/marketers/google-sheets) with the date, the status, the Last read date and what you changed. A log turns a vague problem into a list you can hand to a developer."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the log grows, filter it by status to see which problems repeat. A repeat often points to one template or one plugin. Fix that source once instead of chasing the same entry again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the status first, then open the file in Chrome. Fix the smallest cause that matches the status. Resubmit, then check the Last read date in a few days. For help with ticket wording or the steps in the report, ask Lazur, or [download it](/download) and try it on your Mac."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does a Success status mean Google indexed my pages?",
+      "answer": "No. Success means Google fetched the sitemap and read it without errors. Indexing is a separate step. Check a single page with URL Inspection to see whether Google has indexed that address."
+    },
+    {
+      "question": "How long does Google keep retrying a sitemap that couldn't be fetched?",
+      "answer": "Google retries for a few days after a failed fetch. If the sitemap stays unavailable, it stops. Fix the cause, then resubmit so Google fetches the file again."
+    },
+    {
+      "question": "Will deleting the sitemap clear the error?",
+      "answer": "Deleting removes the sitemap from the Sitemaps report. Google does not forget the sitemap or the URLs listed in it. Fix the file first, then resubmit it so you can watch the new status."
+    },
+    {
+      "question": "What if the errors keep coming back after I fix them?",
+      "answer": "Google calls a sitemap a hint, not a guarantee. If errors return, look for a template, plugin or build step that generates the file wrong. A manual fix will not hold if the source keeps producing the same problem."
+    },
+    {
+      "question": "Can I fix this from a Mac without a developer?",
+      "answer": "Often, yes. A moved address, a robots.txt line or an escaped ampersand can be fixed in your CMS or SEO plugin if you have access. Server logs and host settings usually need your host or your developer."
+    },
+    {
+      "question": "Is Screaming Frog free on a Mac?",
+      "answer": "The free version is capped at 500 URLs. A single paid licence is listed at €245 per year on the vendor's pricing page. The page shows euros only, so check the current price in your currency."
+    },
+    {
+      "question": "Does Lazur check my sitemap for me?",
+      "answer": "No. Lazur explains what is on your screen while you hold ⌥ ⌘, and it can point at the controls. It does not edit your sitemap, click Submit or change server settings."
+    },
+    {
+      "question": "Does this guide cover Bing?",
+      "answer": "No. This guide covers Google Search Console only. Bing Webmaster Tools has its own sitemap tools, and this guide did not verify their steps. Check Bing's own help pages."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Sitemaps report: Search Console Help",
+      "url": "https://support.google.com/webmasters/answer/7451001?hl=en",
+      "publisher": "Google Search Central",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Build and submit a sitemap: Google Search Central",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "publisher": "Google Search Central",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "sitemaps.org FAQ",
+      "url": "https://www.sitemaps.org/faq.html",
+      "publisher": "sitemaps.org",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "62% of top-1,000 sites with a sitemap fail at least one check, lintlab finds",
+      "url": "https://ppc.land/62-of-top-1-000-sites-with-a-sitemap-fail-at-least-one-check-lintlab-finds/",
+      "publisher": "PPC Land",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "BLS Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Screaming Frog SEO Spider pricing",
+      "url": "https://www.screamingfrog.co.uk/seo-spider/pricing/",
+      "publisher": "Screaming Frog",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "sitemap errors in search console",
+  "costs": [
+    {
+      "title": "Your hours",
+      "text": "A sitemap check is small work that repeats. Every hour spent on it is pay you cannot spend on pages or campaigns. The BLS median for marketing managers was $79.70 per hour in 2025. Use it as a rough proxy, since no study measures sitemap work directly."
+    },
+    {
+      "title": "Pages found later",
+      "text": "A sitemap helps Google discover URLs, but Google treats it as a hint. When the file fails, new and updated pages wait for links or other signals to be found. Google stops retrying a failed fetch after a few days if the file stays unavailable."
+    },
+    {
+      "title": "Developer goodwill",
+      "text": "A vague ticket goes to the bottom of a queue. A ticket with the status, the exact address, the time and a screenshot gets read. The difference costs a few minutes now and saves a round of back and forth later."
+    },
+    {
+      "title": "Tool spend if you need a crawler",
+      "text": "The free Screaming Frog tier covers up to 500 URLs. A paid single licence is listed at €245 per year on the vendor's pricing page. Most sitemap fixes need no tool at all, so start free."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Redirecting URLs in the file",
+      "text": "The sitemap lists an address, and that address redirects somewhere else. Google's report can flag this, and the vendor study found it was the most common flaw. Update each entry to the final address so the file matches where pages live."
+    },
+    {
+      "title": "Bad characters and syntax",
+      "text": "A raw ampersand, an unescaped character or an invalid date format breaks the XML. Google requires UTF-8 encoding and escaped tag values. One bad character can stop the file from parsing cleanly, so the report may show errors for many URLs at once."
+    },
+    {
+      "title": "Too many URLs or a file that is too big",
+      "text": "A single sitemap is limited to 50MB uncompressed and 50,000 URLs. Go over either limit and the file has an error. Larger sites split the list into several sitemaps and tie them together with a sitemap index."
+    },
+    {
+      "title": "Wrong domain or www mismatch",
+      "text": "If the property is the www version and the sitemap lists the bare domain, Google sees URLs from a different host. Every URL in the file has to match the property you verified, or the report flags a mismatch."
+    },
+    {
+      "title": "Identical or made-up lastmod dates",
+      "text": "The vendor study found one identical lastmod date across a whole file on 88 sites. A date that never changes stops being useful as a sign of what changed. Use the real date each page changed."
+    },
+    {
+      "title": "Blocked, missing or failing address",
+      "text": "robots.txt can block the sitemap path. A wrong address returns HTTP 404. A server can also fail briefly with a temporary error. Each one shows up as Couldn't fetch, even when the file itself is fine."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Open the sitemap in Chrome first",
+      "text": "Type the sitemap address into Chrome. Press ⌘L to jump to the address bar. A page that loads as XML tells you the file exists. A 404 page or a login screen tells you the address or access is the problem. This check costs nothing and rules out the simplest causes."
+    },
+    {
+      "title": "Check robots.txt for a block",
+      "text": "Open your domain with /robots.txt at the end. Look for a Disallow line that covers the sitemap path. Remove or narrow the rule, then confirm the Sitemap line points to the right address. Google lists a robots.txt block as a cause of failed fetches."
+    },
+    {
+      "title": "Run URL Inspection on the sitemap",
+      "text": "Paste the sitemap address into the URL Inspection box at the top of Search Console. Run a live test and keep testing until Page fetch reads Successful. Only then submit the sitemap again in Indexing > Sitemaps."
+    },
+    {
+      "title": "Escape ampersands and fix syntax",
+      "text": "Search the file for the ampersand with ⌘F in Chrome, or in your editor. Replace each raw ampersand inside a URL with its escaped form. Check date values for the right format. Open the file in TextEdit with Format > Make Plain Text or ⇧⌘T, then save it as UTF-8."
+    },
+    {
+      "title": "Split large files into a sitemap index",
+      "text": "If the file is over 50MB or has more than 50,000 URLs, split it. List the smaller sitemaps in one sitemap index file, then submit the index. Check that each child sitemap reads correctly in the report after it is processed."
+    },
+    {
+      "title": "Match the domain and www version",
+      "text": "Pick the version you verified in Search Console, usually the one your site sends visitors to. Update every URL in the sitemap to that host. Visit both forms in Chrome to see which one your site uses as its main address."
+    },
+    {
+      "title": "Find redirects in a list",
+      "text": "Paste the URLs from the sitemap into Google Sheets, one per row, then sort and filter the list. Use find and replace to swap an old domain for the new one. For redirects, open a sample of addresses in Chrome or run a crawler. See [how to find and replace in Google Sheets](/how-to/find-and-replace-text-in-google-sheets)."
+    },
+    {
+      "title": "Resubmit and watch the Last read date",
+      "text": "After a fix, resubmit the sitemap. Check Indexing > Sitemaps a few days later. The Last read date should move forward, and the status should change. If it does not, go back through the earlier fixes in order."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does Couldn't fetch mean on this screen?",
+      "result": "Lazur answers out loud, using the status and text it can see while you hold ⌥ ⌘.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the URL Inspection box?",
+      "result": "Lazur draws a circle and a label around the box at the top of Search Console.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through resubmitting this sitemap",
+      "result": "Lazur gives one step at a time and waits for each click. It does not click Submit for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a ticket for my developer about this 404",
+      "result": "Lazur types the draft as text. You paste it into Slack, Google Docs or your ticket tool.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn, then dictate the error details",
+      "result": "Clean text appears at your cursor in any app, so you can dictate a ticket straight into Google Docs.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Remind me to recheck the sitemap on Friday",
+      "result": "Lazur adds a reminder in Apple Reminders for the recheck.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Research how Google describes Has errors",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report. Check the sources before you rely on it.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Sitemaps report in Search Console?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Sitemaps in the left sidebar, under Indexing.",
+    "shell": "generic",
+    "context": "Search Console open in Chrome on a Mac",
+    "output": "Circle and label on the Sitemaps item.",
+    "pointsAt": "Sitemaps in the sidebar"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the status",
+      "text": "Open Indexing > Sitemaps in Search Console. Write down the status, the sitemap address and the Last read date for each row. A blank Last read date means Google has no successful fetch on record."
+    },
+    {
+      "label": "Day 2",
+      "title": "Open the file in Chrome",
+      "text": "Press ⌘L, type your domain and the sitemap path, then press Return. You want XML, not a 404 page. Press ⌘F and search for the ampersand to catch raw characters in the URLs."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check robots.txt",
+      "text": "Open your domain with /robots.txt at the end. Look for Disallow rules that cover the sitemap path. Confirm the Sitemap line, if you have one, points to the right address."
+    },
+    {
+      "label": "Day 4",
+      "title": "Test and fix",
+      "text": "Run URL Inspection on the sitemap address until Page fetch reads Successful. Fix the file, or the plugin or CMS setting that builds it. Hand edits get overwritten, so change the source when you can."
+    },
+    {
+      "label": "Day 5",
+      "title": "Send one clear ticket",
+      "text": "Write one message with the status, the address, the time and a screenshot. Ask Lazur to draft it, then post it in Slack or your ticket tool so the developer can act on it."
+    },
+    {
+      "label": "Day 7",
+      "title": "Resubmit and recheck",
+      "text": "Resubmit in Indexing > Sitemaps, then check the Last read date a few days later. Set a reminder in Apple Reminders so the recheck actually happens."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "slack",
+    "google-docs",
+    "google-sheets"
+  ],
+  "chart": {
+    "title": "Flaws found on 400 top-1,000 sites with sitemaps",
+    "bars": [
+      {
+        "label": "Sites with a flaw",
+        "value": 248,
+        "highlight": true
+      },
+      {
+        "label": "Redirecting URLs",
+        "value": 92
+      },
+      {
+        "label": "Same lastmod date",
+        "value": 88
+      }
+    ],
+    "unit": "sites",
+    "note": "Counts out of 400 sites with a sitemap. Vendor study, not independently verified.",
+    "sourceUrl": "https://ppc.land/62-of-top-1-000-sites-with-a-sitemap-fail-at-least-one-check-lintlab-finds/",
+    "sourceTitle": "62% of top-1,000 sites with a sitemap fail at least one check, lintlab finds"
+  },
+  "type": "problem",
+  "slug": "sitemap-couldnt-fetch-has-errors",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/sitemap-couldnt-fetch-has-errors/search-console-sitemap-couldn-t-fetch-or-1-1e0f3c.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Marketer at a laptop going through a list of site issues, like a search console sitemap error.",
+      "caption": "A marketer working through a list of site issues.",
+      "keywords": [
+        "search console sitemap couldn't fetch or has errors",
+        "Marketers",
+        "Submitting a sitemap and reading its error status",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/sitemap-couldnt-fetch-has-errors/search-console-sitemap-couldn-t-fetch-or-2-197420.jpg",
+      "width": 1280,
+      "height": 857,
+      "alt": "Two colleagues at a desk looking at a screen together while they review a website issue.",
+      "caption": "A team reviewing a website issue together.",
+      "keywords": [
+        "search console sitemap couldn't fetch or has errors",
+        "Marketers",
+        "Submitting a sitemap and reading its error status",
+        "Mac",
+        "marketing team desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yourschantz",
+        "url": "https://pixabay.com/users/yourschantz-282976/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/socialmedia-facebook-twitter-952091/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/sitemap-couldnt-fetch-has-errors/search-console-sitemap-couldn-t-fetch-or-3-d229fe.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person typing on a Mac laptop at a desk, the kind of setup where sitemap checks happen.",
+      "caption": "Checking the Sitemaps report from a Mac.",
+      "keywords": [
+        "search console sitemap couldn't fetch or has errors",
+        "Marketers",
+        "Submitting a sitemap and reading its error status",
+        "Mac",
+        "man using Mac laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "search console sitemap couldn't fetch or has errors",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "submit sitemap google search console": 1,
+      "sitemap couldn't be fetched": 2,
+      "search console sitemap has errors": 1,
+      "fix sitemap errors search console": 1,
+      "sitemap fetch error google": 1,
+      "search console sitemaps report": 1,
+      "sitemap errors mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

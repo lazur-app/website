@@ -1,0 +1,577 @@
+{
+  "title": "Figma text box won't wrap on Mac: fix fixed-size and auto-width text in 2026",
+  "metaTitle": "Figma text box won't wrap on Mac: causes and fixes for 2026",
+  "description": "Figma text stops wrapping when the layer is Auto width, and stops growing when it is Fixed size. Here is how to check and fix both on Mac.",
+  "targetKeyword": "figma text box won't wrap",
+  "secondaryKeywords": [
+    "figma text not wrapping",
+    "figma text box won't grow",
+    "figma auto width text",
+    "figma fixed size text box",
+    "figma text wrap mac",
+    "powerpoint text box won't wrap mac",
+    "keynote table cell wrap text"
+  ],
+  "intro": "If your Figma text box won't wrap, the cause is almost always its sizing mode. Auto width layers grow sideways and only break a line at a Return or Enter. Fixed size layers keep the width and height you set, so the text cannot push them bigger. This page shows how to read the mode, switch it, and avoid the traps that bring the problem back.",
+  "tldr": [
+    "Auto width text never wraps. It only breaks lines at a Return or Enter.",
+    "Fixed size text never grows. Dragging a handle switches a layer to Fixed size.",
+    "Auto layout children need to resize. A fixed text child can overlap its neighbors.",
+    "PowerPoint for Mac: turn on Wrap text in shape and Resize shape to fit text.",
+    "Check the mode first, then redraw the box at a set width if you need wrapping."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the mode before you change anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the text layer itself, not the frame around it. Open the Design panel on the right and find the Text section. The resizing control there tells you which mode the layer uses. Figma's help article covers two modes in detail: Auto width and Fixed size. Read the label before you click, because each mode behaves differently."
+    },
+    {
+      "type": "paragraph",
+      "text": "A quick test shows the mode in about a minute. Double-click the text and type a long sentence with no Return. Watch what the layer does. If the line runs off to the right and the box gets wider, the layer is Auto width. If the box stays the same size and the text spills out, it is Fixed size. Press Esc when you finish."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Mode",
+        "Does it wrap?",
+        "Does it grow?",
+        "Use it for"
+      ],
+      "rows": [
+        [
+          "Auto width",
+          "No. Breaks only at Return or Enter",
+          "Yes, sideways",
+          "Labels, buttons, short headings"
+        ],
+        [
+          "Fixed size",
+          "Yes, at the width you set",
+          "No. Width and height stay put",
+          "Cards and frames with a set size"
+        ],
+        [
+          "Set width, height follows text (if offered)",
+          "Yes, at the width you set",
+          "Yes, downward, if your version offers it",
+          "Body copy and paragraphs"
+        ]
+      ],
+      "caption": "Behavior from Figma's help article. The auto height option is unverified in the sources I checked."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Auto width text never wraps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto width means the box fits the text. Figma makes the layer wider as you type. It does not add a second line. The only line break you get is a Return or Enter. So a paragraph pasted into an Auto width layer becomes one long line."
+    },
+    {
+      "type": "paragraph",
+      "text": "This surprises people who expect a text box to behave like a Word box. Auto width is built for short, single-line labels. If you need a paragraph, change the mode before you paste the copy. Changing it later also works, but check the spacing again afterward."
+    },
+    {
+      "type": "paragraph",
+      "text": "A worked example makes the difference clear. Say a card needs a two-line description. You click once with the Text tool and type. Every word runs off to the right. The card looks broken. The copy is fine. The mode is wrong."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixed size text, and why it stops growing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Fixed size is a frozen box. Figma keeps the width and height you set, no matter how much text you add. Figma's auto layout guide says fixed size text layers won't resize to accommodate text. Extra text spills past the edge of the layer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most people land in Fixed size by accident. Dragging a handle to make a box bigger changes the mode. Figma's help article says a manual change to the dimensions switches the layer to Fixed size. After that, the box stops growing. Press ⌘Z right after the drag if you want the old mode back."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Wrap style will not fix an Auto width box"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's type settings include a wrap style with two options, Balance and Pretty. You find it in the Typography section. Figma's help article describes it as a control over where lines break. It does not turn on wrapping for an Auto width layer. Auto width layers break only at Return or Enter, so wrap style has no effect on them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use wrap style to fine-tune a paragraph that already wraps. Use the mode to decide whether the text wraps at all. Keeping those two jobs apart saves a lot of trial and error."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Auto layout makes the problem spread"
+    },
+    {
+      "type": "paragraph",
+      "text": "Inside an auto layout frame, a fixed text child causes trouble. Figma says fixed size text layers won't resize to accommodate text. That can make the text overlap other layers in the frame. Figma advises against fixed size text boxes in auto layout, so switch the text to a mode that resizes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Max lines and max height are a common conflict. A text layer cannot have both. Figma's auto layout guide says setting max lines removes the max height setting. If you set a height limit first and then a line limit, the height limit goes away. Pick one limit on purpose."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hugging frames add a second twist. When the text width changes, a hugging parent frame changes its width to match. Figma's guide gives an example where the frame becomes 70px wide for a text layer that is 50px wide. A small copy change can move the whole frame. Check the frame after every big edit."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a caption that must wrap at a set width"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you need a caption under a photo. It must sit at a set width and wrap onto several lines. This route works in the current Figma desktop app. It assumes the layer you have is not already set up the way you want."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Press T, then click and drag on the canvas to draw a box at the width you want. Figma creates a Fixed size layer when you drag.",
+        "Click inside the box and paste the caption. Watch the lines break at the right edge.",
+        "Check the height. If the text spills past the bottom or leaves a gap, drag the bottom handle to fit. Dragging keeps the layer Fixed size.",
+        "If the Text section shows an auto height option, choose it so the height follows the copy.",
+        "Press Esc to leave text editing. Then reselect the layer and read its mode once more."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Re-check the height after every text edit. A fixed box does not warn you when the copy outgrows it. Your eye has to do that job."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "PowerPoint for Mac: turn wrapping and growth back on"
+    },
+    {
+      "type": "paragraph",
+      "text": "PowerPoint for Mac wraps text by default as you type in a text box or shape. If the text stops wrapping, someone turned wrapping off for that shape. Microsoft's help page covers the two switches that matter. Both live in the Format Shape pane."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Control-click the shape border, then choose Format Shape.",
+        "Open the Text Options tab.",
+        "Check Wrap text in shape to turn wrapping on. Clear it to turn wrapping off.",
+        "Select Resize shape to fit text if the box should grow with the copy."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check the autofit options",
+      "text": "Some third-party guides mention a Do Not AutoFit option. The Microsoft page I checked does not cover it. Look at the options in your own version before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keynote: wrap text in table cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "As far as I could verify, Keynote's wrap control works on table cells. To wrap text in one cell, Control-click the cell and choose Wrap Text. To apply it to a row, column, or whole table, open the Format sidebar, choose the Text tab, and use the Wrap text in cell checkbox under Style."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide does not cover standalone text boxes. I found no step for growing or shrinking one. Do not assume a Keynote text box behaves like a table cell. Test it with a long paragraph before you present."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that bring the problem back"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Resizing the frame after you edit the text. Each drag can switch a text layer to Fixed size.",
+        "Pasting copy with stray Return keys into an Auto width layer. Each Return adds a hard line break.",
+        "Setting max height and max lines together on one text layer. The height limit goes away.",
+        "Trusting wrap style to fix a box that cannot wrap. Wrap style only moves breaks in text that already wraps.",
+        "Assuming a fixed box will warn you. It will not. It lets the text spill past its edge.",
+        "Checking only the first draft of the copy. Test the longest version your client may send."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the layer looks right and still misbehaves"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the parent next. An auto layout frame or a hugging frame may set the size of the layer. Select the parent frame and read its layout settings in the Design panel. Look for fixed sizing on the child and hugging on the parent."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then test in isolation. Duplicate the layer, then move the duplicate outside the frame. Type a long sentence into it. If it wraps out there, the frame is the cause. If it still fails, the problem is in the layer's own mode."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Handing the file to developers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers build what the box says. A fixed box with copy that fits today can clip or overflow when the copy changes. Auto width text can run past a layout that was built for a paragraph. Your handoff should say which mode each text style uses."
+    },
+    {
+      "type": "paragraph",
+      "text": "Post a short note in Slack with the mode for each text style. List any fixed boxes you chose on purpose. Keep it to one screen. Developers read it while they build, so put the risky boxes first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research does and does not show"
+    },
+    {
+      "type": "paragraph",
+      "text": "I could not find a survey that measures how often text boxes stop wrapping. I also found no study that prices the lost time. The closest study tested PowerPoint infographic work with 16 participants. Their mean time was 33.40 minutes with PowerPoint and 18.26 minutes with the tool. That study covers infographics, not text box wrapping."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "What is not verified",
+      "text": "The auto height option appears in community posts, not in the Figma help article I checked. Confirm it in your own Text section before you plan a file around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fixes here come from vendor help pages. I did not test them on every app version. Treat each step as a starting point, then check it on your own file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can see what is on your screen while you hold the shortcut. It can point at the control you need and explain what it sees. It does not click or edit for you. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "For client files, check your employer and client rules before you share a screenshot with any AI tool. Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the basic steps behind this fix, read [How to add auto layout in Figma on Mac](/how-to/add-auto-layout-in-figma). For frame problems, the [auto layout fix guide](/for/designers/problems/figma-auto-layout-not-working-fix) goes deeper on the parent side."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why won't my Figma text box wrap?",
+      "answer": "Most often the layer is set to Auto width. Auto width layers break lines only at a Return or Enter, so long copy runs in one line. Redraw the box with the Text tool by clicking and dragging, which creates a Fixed size layer."
+    },
+    {
+      "question": "How do I make text wrap in Figma?",
+      "answer": "Give the text layer a set width. Press T, then click and drag on the canvas to draw a box. Paste or type the copy. Words wrap at the right edge of the box. Keep the height in mind, because a fixed box does not grow on its own."
+    },
+    {
+      "question": "Does wrap style Balance or Pretty make Figma text wrap?",
+      "answer": "No. Figma's help article describes wrap style as a control over where lines break. It does not turn wrapping on for an Auto width layer, which breaks only at Return or Enter."
+    },
+    {
+      "question": "Why won't my Figma text box grow when I add text?",
+      "answer": "The layer is probably Fixed size. Dragging a handle or changing the dimensions switches it to Fixed size. Choose an auto height option if your version shows one. If you cannot find it, check the Text section and re-check the box after each edit."
+    },
+    {
+      "question": "Can I undo a resize that stopped my text box from growing?",
+      "answer": "Yes, if you act right away. Press ⌘Z to step back. Undo also reverses any other change you made after the resize, so read the layer again before you keep going."
+    },
+    {
+      "question": "How do I turn wrapping back on in PowerPoint for Mac?",
+      "answer": "Control-click the shape border and choose Format Shape. Open Text Options and check Wrap text in shape. Microsoft's help page describes this switch for text boxes and shapes in Office for Mac."
+    },
+    {
+      "question": "Does Lazur fix the text box for me?",
+      "answer": "No. Lazur does not click buttons or edit files. It can explain what it sees on your screen, point at the control, and guide you one click at a time while it waits for each click."
+    },
+    {
+      "question": "Can I ask Lazur about a client file?",
+      "answer": "Only if your employer and client rules allow it. Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots are sent to AI providers to answer and are not stored."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Adjust text dimensions and resizing",
+      "url": "https://help.figma.com/hc/en-us/articles/27378154668951-Adjust-text-dimensions-and-resizing",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to auto layout",
+      "url": "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Set text direction and position in a text box or shape in Office for Mac",
+      "url": "https://support.microsoft.com/en-us/office/set-text-direction-and-position-in-a-text-box-or-shape-in-office-for-mac-7da0bbcf-017b-4086-8358-0d0fdf39df40",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Add and edit cell content in Keynote on Mac",
+      "url": "https://support.apple.com/guide/keynote/add-and-edit-cell-content-tanceb11031e/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Occupational Outlook Handbook: Graphic Designers",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "GraphiMind: LLM-centric Interface for Information Graphics Design",
+      "url": "https://arxiv.org/html/2401.13245v1",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "text box stops wrapping or growing",
+  "costs": [
+    {
+      "title": "Time lost to nudging boxes",
+      "text": "I found no study that measures time lost to text boxes that will not wrap. The closest test covers PowerPoint infographic work. Its 16 participants took a mean of 33.40 minutes with PowerPoint and 18.26 minutes with the tool. That gap is about infographics, not text boxes, so treat it as a rough signal."
+    },
+    {
+      "title": "Billable hours at the median rate",
+      "text": "The BLS puts median pay for graphic designers at $62,960 a year, or $30.27 an hour, for May 2025. Every hour spent nudging boxes is an hour not spent on paid design work. Small fixes add up when a file has dozens of frames."
+    },
+    {
+      "title": "Handoff rework and clipped copy",
+      "text": "Developers build what the box says. A fixed box with copy that fits today can clip once the copy changes. Each round of fixes adds review time for you and the developer. The wrong size can reach a client before anyone checks it."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Auto width layers never wrap",
+      "text": "Auto width fits the box to the text. The layer grows sideways as you type and breaks lines only at a Return or Enter. A paragraph pasted into this mode becomes one long line that runs off the artboard or into other layers. Figma's help article describes this behavior directly, so the layer is working as designed."
+    },
+    {
+      "title": "Fixed size layers never grow",
+      "text": "Fixed size keeps the width and height you set. Figma's auto layout guide says fixed size text layers won't resize to accommodate text. Extra copy spills past the edge of the box, which can make it overlap nearby layers. The box looks frozen because it is."
+    },
+    {
+      "title": "A drag switched the mode",
+      "text": "Changing a text layer's dimensions by hand switches it to Fixed size, according to Figma's help article. People often drag a handle to make a box bigger, then wonder why it stops growing. The drag is the cause, not the text."
+    },
+    {
+      "title": "Auto layout children are fixed",
+      "text": "In an auto layout frame, a fixed text child does not resize with its content. Figma advises against fixed size text boxes in auto layout. The text can overlap other layers, and the frame may look wrong after a small copy change."
+    },
+    {
+      "title": "Max lines and max height conflict",
+      "text": "A text layer cannot have both a max height and a set number of max lines. Figma's guide says setting max lines removes the max height setting. If you set a height limit first, then a line limit, the height limit goes away."
+    },
+    {
+      "title": "Hard returns and wrapping turned off",
+      "text": "Stray Return keys create hard line breaks, so copy can break in the wrong place even in a box that should wrap. In PowerPoint for Mac, Wrap text in shape can be turned off per shape, which stops wrapping entirely. Microsoft's help page describes that switch."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read the mode before you touch anything",
+      "text": "Select the text layer and open the Text section in the Design panel. Read the resizing control. Then run the quick test: double-click the text, type a long sentence with no Return, and watch the layer. Press Esc when you finish. This takes about a minute and tells you which problem you have."
+    },
+    {
+      "title": "Redraw the box at a set width",
+      "text": "For copy that must wrap, keep the old layer until the new one works. Press T, then click and drag on the canvas to draw the box at the width you want. Figma says click-and-drag creates a Fixed size layer. Paste the copy and check that it wraps at the edge."
+    },
+    {
+      "title": "Set the height to follow the text",
+      "text": "Look for an auto height option in the Text section. Some community posts describe one, but the Figma help article I checked does not list it, so confirm the name in your version. If you cannot find it, drag the bottom handle to fit, then re-check after every text edit."
+    },
+    {
+      "title": "Fix auto layout children",
+      "text": "Change the text layer so it resizes with its content instead of staying fixed. Figma advises against fixed size text boxes in auto layout. After the change, edit the copy to its longest version and check that the frame and its neighbors still hold their spacing."
+    },
+    {
+      "title": "Turn wrapping back on in PowerPoint for Mac",
+      "text": "Control-click the shape border and choose Format Shape. Open Text Options and check Wrap text in shape. To grow the box with the copy, select Resize shape to fit text in the same tab. Microsoft's help page covers both switches."
+    },
+    {
+      "title": "Use Wrap text in cell in Keynote tables",
+      "text": "For one cell, Control-click the cell and choose Wrap Text. For a row, column, or whole table, open the Format sidebar, choose the Text tab, and check Wrap text in cell under Style. Apple's guide covers table cells, not standalone text boxes."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why won't this text box wrap?",
+      "capability": "explain",
+      "result": "Lazur reads what is on your screen and says which sizing mode the layer seems to use. Check that against the Text section yourself before you change anything."
+    },
+    {
+      "say": "Where is the resizing control?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the control on your screen. You make the change. Lazur does not click for you."
+    },
+    {
+      "say": "Walk me through switching to a set width.",
+      "capability": "guide",
+      "result": "Lazur gives one step at a time and waits for your click before the next step. You stay in control of the file the whole time."
+    },
+    {
+      "say": "Hold fn and dictate a note for the developer.",
+      "capability": "dictate",
+      "result": "Hold fn to dictate formatted text at the cursor in any app. Use it for the handoff note, then read it back before you post it in Slack."
+    },
+    {
+      "say": "Draft a handoff note about text modes.",
+      "capability": "draft",
+      "result": "Lazur drafts and types a note you can edit. You review it and send it yourself. Lazur does not send messages for you."
+    }
+  ],
+  "demo": {
+    "spoken": "Why won't this text box wrap?",
+    "capability": "point",
+    "result": "Lazur circles the resizing control in the Text section and labels it. You choose the mode.",
+    "shell": "design",
+    "context": "Figma desktop, one text layer selected",
+    "output": "Lazur says the layer looks like Auto width, which breaks lines only at Return. It circles the resizing control and says to pick a set width mode if you need wrapping.",
+    "pointsAt": "resizing control"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the mode on every broken layer",
+      "text": "Select each text layer that misbehaves. Read the resizing control in the Text section. Run the quick test with a long sentence and no Return. Note the mode for each layer in a list you keep with the file."
+    },
+    {
+      "label": "Day 2",
+      "title": "Redraw the boxes that need to wrap",
+      "text": "Press T and click and drag to draw a box at the width you want. Paste the copy and check that it wraps at the edge. Keep the old layer until the new one works, then remove it."
+    },
+    {
+      "label": "Day 3",
+      "title": "Test the auto layout frames",
+      "text": "Edit the copy in each frame to its longest and shortest versions. Look for overlap and for frames that resize in ways you did not expect. Fix any fixed text children you find."
+    },
+    {
+      "label": "Day 4",
+      "title": "Write the handoff note",
+      "text": "Post a short note in Slack with the mode for each text style. List any fixed boxes you chose on purpose and why. Developers read it before they build, so keep it short and put the risky items first."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "figma-text-box-wont-wrap-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-text-box-wont-wrap-fix/figma-text-box-won-t-wrap-1-045d15.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a Mac fixing a Figma text box that won't wrap",
+      "caption": "Checking a text layout on a laptop before a handoff.",
+      "keywords": [
+        "figma text box won't wrap",
+        "Designers",
+        "Text box stops wrapping or growing",
+        "Mac",
+        "designer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mariakray",
+        "url": "https://pixabay.com/users/Mariakray-23567841/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/couch-computer-working-contemporary-6786502/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-text-box-wont-wrap-fix/figma-text-box-won-t-wrap-2-64d38f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Graphic designer at a desk reviewing text box sizing in a layout",
+      "caption": "Reviewing text sizing before the file goes to a client.",
+      "keywords": [
+        "figma text box won't wrap",
+        "Designers",
+        "Text box stops wrapping or growing",
+        "Mac",
+        "graphic designer desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "F1Digitals",
+        "url": "https://pixabay.com/users/F1Digitals-1568321/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-business-corporate-designer-7607337/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-text-box-wont-wrap-fix/figma-text-box-won-t-wrap-3-4def22.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Person using a Mac computer to adjust text settings in a design file",
+      "caption": "Adjusting text settings on a Mac.",
+      "keywords": [
+        "figma text box won't wrap",
+        "Designers",
+        "Text box stops wrapping or growing",
+        "Mac",
+        "person using Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "nicolasjaegergaard",
+        "url": "https://pixabay.com/users/nicolasjaegergaard-10481773/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/waterfall-fall-epic-nature-light-7091641/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma text box won't wrap",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "figma text not wrapping": 1,
+      "figma text box won't grow": 1,
+      "figma auto width text": 1,
+      "figma fixed size text box": 1,
+      "figma text wrap mac": 1,
+      "powerpoint text box won't wrap mac": 1,
+      "keynote table cell wrap text": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

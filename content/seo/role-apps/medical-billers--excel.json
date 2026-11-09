@@ -1,0 +1,688 @@
+{
+  "title": "Excel for medical billers on Mac: a claim tracker, Mac limits, and questions for Lazur",
+  "metaTitle": "Excel for Medical Billers on Mac: Claim Log and Mac Limits",
+  "description": "Excel for medical billers on Mac: build a claim and denial log, avoid Mac-only limits, and see what to ask Lazur while you work in Excel.",
+  "targetKeyword": "excel for medical billers on mac",
+  "secondaryKeywords": [
+    "excel for medical billing on mac",
+    "medical billing spreadsheet mac",
+    "excel denial tracker template mac",
+    "power query on mac excel",
+    "excel medical billing template",
+    "excel pivot table mac billing"
+  ],
+  "intro": "Excel for medical billers on Mac is a good fit for claim logs, payment totals, and denial tracking. You get tables, formulas, filters, and standard pivot tables. What you lose is Power Pivot, the Data Model, and ActiveX. This page shows how to build the sheet around those gaps, and what to ask Lazur while you work.",
+  "tldr": [
+    "Excel for Mac handles claim logs, payment totals, and denial tracking with tables, formulas, and standard pivot tables.",
+    "Power Pivot and the Data Model are not available on Mac, and ActiveX controls do not work.",
+    "Power Query on Mac loads results to a worksheet, so design your sheets around that limit.",
+    "Check your Excel build under Excel > About Microsoft Excel before you follow any menu path here.",
+    "Lazur can point, explain formulas, and dictate notes. It does not click buttons or edit your file."
+  ],
+  "stats": [
+    {
+      "value": "7% to 8%",
+      "label": "First-submission denial rate for medical groups, steady over the past four years, per MGMA benchmarking",
+      "sourceUrl": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+      "sourceTitle": "MGMA Stat: R holds steady for most practices but payer pressure persists in 2026"
+    },
+    {
+      "value": "48%",
+      "label": "Practice leaders who named denials and appeals as their largest source of revenue leakage in a January MGMA Stat poll",
+      "sourceUrl": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+      "sourceTitle": "MGMA Stat: R holds steady for most practices but payer pressure persists in 2026"
+    },
+    {
+      "value": "76%",
+      "label": "Hospital CFOs and revenue cycle leaders who named denial management as their most time-consuming task (556 respondents)",
+      "sourceUrl": "https://www.billingparadise.com/blog/time-spent-on-denial-management-by-revenue-cycle-leaders/",
+      "sourceTitle": "Time Spent on Denial Management by Revenue Cycle Leaders"
+    },
+    {
+      "value": "90%",
+      "label": "Denied claims that need human review before resubmission, per Experian Health data cited by BilNow",
+      "sourceUrl": "https://bilnow.com/medical-billing-statistics/",
+      "sourceTitle": "Medical Billing & Denial Statistics 2026"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How a medical biller's Excel file usually works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most billing sheets track claims one row at a time. Each row holds a claim number, a date submitted, a payer, the billed amount, the paid amount, and a status. Some offices add a second tab for patient balances. Others keep a separate denial log."
+    },
+    {
+      "type": "paragraph",
+      "text": "A row needs one clear status. A row that says sent, with no date, tells you nothing. A row that says denied, with the reason and the date you appealed, tells you what to do next. Plan your columns around the questions you ask every week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for medical billers on Mac handles this work well. Tables, formulas, filters, and standard pivot tables all run on Mac. The gaps are narrower than many people expect, but they change how you build the file."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why denials deserve the most space in your sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Denials take time. MGMA benchmarking puts first-submission denial rates for medical groups at 7% to 8% over the past four years. MGMA calls that steady but not optimized."
+    },
+    {
+      "type": "paragraph",
+      "text": "A January MGMA Stat poll asked practice leaders where revenue leaks out. 48% named denials and appeals as their largest source of leakage. The same article cites front-end issues at 23%."
+    },
+    {
+      "type": "paragraph",
+      "text": "A separate survey found 76% of 556 hospital CFOs and revenue cycle leaders named denial management as their most time-consuming task. Those respondents are not billers, and the publisher is not named on the page. Treat it as a rough signal."
+    },
+    {
+      "type": "paragraph",
+      "text": "BilNow, citing Experian Health data, says 90% of denied claims need human review before resubmission. That means the denial log is a work queue, not an archive. Build it so you can sort it by age and reason."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the claim log as an Excel table on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click one cell inside your data. Press ⌘T. Excel opens the Create Table box. Tick My table has headers if row one holds column names, then click OK."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table before you write any formulas. Microsoft's October 2026 What's New in Excel post says Name tables at creation now works for Mac users. Pick a short name such as tblClaims. Your formulas then read as tblClaims[Paid] instead of a cell range that breaks when rows change."
+    },
+    {
+      "type": "paragraph",
+      "text": "A table grows when you type directly under its last row. Formulas that point at fixed ranges do not grow. That gap causes silent totals that miss new claims. Tables avoid the problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Columns that make the claim log useful"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What goes in it",
+        "Why it helps"
+      ],
+      "rows": [
+        [
+          "Claim ID",
+          "Your internal claim number",
+          "Gives every lookup one unique key"
+        ],
+        [
+          "Date submitted",
+          "The date the claim left your office",
+          "Drives the Days Open formula"
+        ],
+        [
+          "Payer",
+          "Insurer name, picked from a drop-down",
+          "Lets SUMIFS total by payer"
+        ],
+        [
+          "Billed and Paid",
+          "Amounts stored as numbers",
+          "Text amounts add up to the wrong total"
+        ],
+        [
+          "Status",
+          "Submitted, Paid, Denied, or Appealed",
+          "One status per row keeps counts honest"
+        ],
+        [
+          "Denial reason",
+          "Reason from the remit, copied as written",
+          "Shows patterns across payers"
+        ]
+      ],
+      "caption": "A starting set of columns for a claim log. Rename them to match your practice system."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep patient names out of the file where you can. A claim ID does the same job for lookups. Your practice policy decides what the sheet may hold, so check that policy first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a status drop-down and highlight denials"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the Status cells. Go to Data > Data Validation. Choose List and type your statuses, separated by commas. Every row now gets a drop-down. Typos stop breaking your counts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, flag denied rows. Select the table and go to Home > Conditional Formatting > Highlight Cells Rules > Text that Contains. Type Denied, pick a color, and click OK. Denied rows stand out without a filter."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Use the same status words",
+      "text": "Pick your status words once and never retype them. A drop-down keeps Denied and denied from splitting your counts into two groups."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for payer totals and days waiting"
+    },
+    {
+      "type": "paragraph",
+      "text": "SUMIFS adds the amounts that match a condition. To total paid amounts for one payer, use =SUMIFS(tblClaims[Paid],tblClaims[Payer],A2). Put the payer name in A2, then copy the formula down your summary list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a column named Days Open for claims still waiting. Enter =IF([@Status]=\"Paid\",\"\",TODAY()-[@[Date submitted]]). Paid rows stay blank. Open rows count the days since you submitted. The value changes every day, so the column always reflects today."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sort Days Open from largest to smallest, and the oldest open claims rise to the top. That order is the work queue for the morning. Work the top of the list first, then move down."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break totals and lookups"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Numbers stored as text. They look right, but SUM skips them. Select the column and check the number format on the Home tab.",
+        "Trailing spaces in claim IDs. VLOOKUP returns #N/A when two IDs look the same but differ by a space. Wrap the lookup value in TRIM.",
+        "Fixed ranges that stop at the last row. Convert the data to a table instead.",
+        "Duplicate claim IDs after a re-import. Add a COUNTIF check column and filter for any count above one.",
+        "Saving over your only copy after a formula change. Save a dated copy first."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables on Mac and what Power Pivot takes away"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables work on Mac. Select a cell inside tblClaims, then go to Insert > PivotTable. Drag Payer to Rows, Paid to Values, and Status to Columns. You get a summary you can refresh after new claims arrive."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Pivot is the gap. A Microsoft Q&A answer says Power Pivot and the Data Model exist only in the Windows version. A third-party guide, citing Microsoft, says Power Pivot is not currently available on Excel for Mac. Plan for one flat table per job."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full pivot walk-through, read [How to make a pivot table in Excel on Mac: step by step for Microsoft 365](/how-to/make-a-pivot-table-in-excel). The steps there apply to the same menus you see in this file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac for payer and remit files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query lives under Data > Get Data. Microsoft's Mac page lists these sources: Excel Workbook, Text/CSV, XML, JSON, SQL Server Database, SharePoint Online List, OData, Blank Table, and Blank Query. If your payer portal exports CSV, Text/CSV is the source to use."
+    },
+    {
+      "type": "paragraph",
+      "text": "The SQL Server Database import is available only in Insiders Beta. Do not build a daily process on it yet. Stick with the sources that appear in the standard release."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shaping data in the Power Query Editor is generally available to Microsoft 365 subscribers on Excel for Mac 16.69 or later, per Microsoft. Check your build under Excel > About Microsoft Excel before you follow any menu path from this page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Close & Load places the result on a new sheet. The Mac page does not mention loading to the Data Model. Treat that option as unavailable on Mac, and plan your layout around a worksheet table."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Moving billing files between Mac and Windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many billing offices trade files with a Windows office, a clearinghouse, or a payer. The move can change more than the file name. The Maccove guide lists a few common problems, and each one can hide an error."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Column widths can shift. Reset them before you print or share a report.",
+        "Dates can move. With the 1904 date system, dates shift by four years. Check the date system setting under Excel > Preferences > Calculation.",
+        "Accented characters can garble in CSV files. Re-import the file with Text/CSV in Power Query and check the names before you save."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Confirm a sample of rows against the source file before you trust any total. Pick two claims you know well, and compare them line by line. A small check now saves a payer dispute later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Macros and ActiveX on Mac: what to rebuild"
+    },
+    {
+      "type": "paragraph",
+      "text": "ActiveX controls do not work on Mac. The Maccove guide suggests form controls as the alternative. If an old billing sheet has an ActiveX button, rebuild it with a form control."
+    },
+    {
+      "type": "paragraph",
+      "text": "VBA macros run into sandbox file-access limits on Mac. Hard-coded Windows paths break. MacScript is deprecated in favor of AppleScriptTask. If a macro writes to a folder on a Windows drive, rewrite the path before you run it."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test on a copy",
+      "text": "Run every rebuilt macro on a copy of the claim log. A macro that fails halfway can leave a half-updated file, so keep the dated backup from earlier."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts, the Fn key, and Excel build numbers on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Command replaces Ctrl for most Excel shortcuts. Some shortcuts split between Control and Command, so test a shortcut before you depend on it. These work in most current Mac builds."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘T turns the selected range into a table.",
+        "⌘D fills down from the cell above.",
+        "⌘R fills right from the cell to the left.",
+        "⌘Z undoes the last change.",
+        "⌘⇧↓ extends the selection to the bottom of a column."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Function keys need Fn unless you change the setting in System Settings > Keyboard. Ribbon KeyTips arrived in version 16.89 and are off by default, so the letter hints from Windows do not appear."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your version. One third-party guide tested Excel 16.114.1 on macOS 26.5. Build numbers change often, so look under Excel > About Microsoft Excel on your own Mac before you trust a menu path."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Copilot features in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says the Copilot in Excel clean data and skill builder features roll out to general availability on Windows, Mac, and web. The interactive canvas is Windows only, for Insiders."
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean data may help with messy payer exports. Run it on a copy, then compare the cleaned rows with the source. A tool that tidies text can also change a claim ID you need to match."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in the sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac, and it lives in the notch. Hold ⌥ ⌘ (hold Option + Command) to ask about anything on screen. Lazur answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. You do the clicks. Lazur does not click buttons, edit your file, or run Excel for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur works in any app, so the same help works in Excel, in Mail, and in your payer portal. Ask it about the formula in front of you, not about your patients."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictating denial notes at the cursor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. Click a notes cell, hold fn, speak, and release. The text lands where your cursor sits."
+    },
+    {
+      "type": "paragraph",
+      "text": "Snippets, a personal dictionary, and clipboard slots help with repeat work. Add payer names and common denial phrases to the personal dictionary, so the spelling comes out right. Dictation is unlimited on both Pro and Power."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate short notes. A note such as called the payer, reference in the remit, resubmit after review fits in one cell. Long paragraphs in a cell are hard to filter later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy rules before you put patient data near AI"
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check with compliance",
+      "text": "Billing sheets often hold patient information. Check your practice privacy policy with your compliance lead before you show patient details to any AI tool, including Lazur."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is what Lazur says about its own handling. It listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Those are product statements. They do not replace your own review. Use claim IDs in the sheet, and close or hide any columns with patient details before you hold the shortcut."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates for medical billing in Excel and what they leave out"
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates can save a long afternoon. Excel Access Expert offers a free medical billing template. Its page lists tracking submitted claims, reconciling payments with insurers, and monitoring outstanding balances. The page does not mention Mac compatibility or a date."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sourcetable has a medical bill tracker. Its Insurance Claims Monitor variant tracks claim numbers, submission dates, and processing status. Validation rules flag delayed claims and payment discrepancies. The page mentions EOB comparison only as a use case, and it does not mention Excel for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Neither page confirms the file works on your Mac. Open a copy, check every formula, and rebuild any macro before you trust a total. Public data on how billers use Excel is thin, so test against your own remits."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Monthly checklist for the claim log"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Filter Status for Denied, then check each reason against the remit.",
+        "Refresh any Power Query loads, and confirm the row count matches the source file.",
+        "Sort Days Open from largest to smallest, and work the oldest claims first.",
+        "Save a dated copy before you change any formula.",
+        "Ask Lazur to explain any formula you do not recognize, then check the answer in the cell."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the checklist short. A long list gets skipped in a busy month. Five steps you do every time beat twenty steps you do once."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next with your claim log"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one table, one status column, and one denial reason column. Add the Days Open formula after the table works. Build the pivot once the data is clean."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a feature on this page is missing from your Mac, check the Excel version first. Then decide whether to change the file or the workflow. For a broader helper, see [AI assistant for Excel on Mac](/apps/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. You can start a free trial with no credit card, or compare plans on [pricing](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have Power Pivot?",
+      "answer": "No. A Microsoft Q&A answer says Power Pivot and the Data Model exist only in the Windows version. A third-party guide citing Microsoft says Power Pivot is not currently available on Excel for Mac. Plan for one flat table per job."
+    },
+    {
+      "question": "Can I make pivot tables in Excel on Mac?",
+      "answer": "Yes. The Maccove guide says PivotTables work on both platforms. Select a cell inside your table, then go to Insert > PivotTable."
+    },
+    {
+      "question": "Which Excel version do I need for Power Query on Mac?",
+      "answer": "Microsoft says Power Query Editor shaping is generally available to Microsoft 365 subscribers on Excel for Mac 16.69 or later. Check your build under Excel > About Microsoft Excel."
+    },
+    {
+      "question": "Can Power Query load results into the Data Model on Mac?",
+      "answer": "Microsoft's Mac page does not mention the Data Model. Close & Load places results on a new sheet. Treat the Data Model as unavailable on Mac."
+    },
+    {
+      "question": "What can Lazur do inside Excel?",
+      "answer": "Lazur is a voice assistant for the Mac. It is not a plugin or add-in for any app. It sees your screen while you hold the shortcut, and it guides you. It does not click buttons or edit your file."
+    },
+    {
+      "question": "Does Lazur send my screen to anyone?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Check with your compliance lead before you share patient details with any AI tool."
+    },
+    {
+      "question": "Is there a free medical billing Excel template for Mac?",
+      "answer": "Free and paid templates exist, but the pages checked here do not confirm Mac compatibility. Excel Access Expert and Sourcetable list features, not platform support. Open any template on your Mac and test it on a copy first."
+    },
+    {
+      "question": "Why do my dates look four years off after a file transfer?",
+      "answer": "The file may use the 1904 date system. The Maccove guide says transfers between platforms can move dates by four years in that case. Check the date system setting under Excel > Preferences > Calculation."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Why isn't there an option for Power Pivot and Load to in the Mac version?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5537966/why-isn-t-there-an-option-for-power-pivot-and-load",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel for Mac vs Windows: What's Different in 2026",
+      "url": "https://maccove.com/blog/excel-mac-vs-windows-differences",
+      "publisher": "Maccove",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "MGMA Stat: R holds steady for most practices but payer pressure persists in 2026",
+      "url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+      "publisher": "MGMA",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Time Spent on Denial Management by Revenue Cycle Leaders",
+      "url": "https://www.billingparadise.com/blog/time-spent-on-denial-management-by-revenue-cycle-leaders/",
+      "publisher": "Billing Paradise",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Medical Billing & Denial Statistics 2026",
+      "url": "https://bilnow.com/medical-billing-statistics/",
+      "publisher": "BilNow",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Medical Billing Excel Spreadsheet",
+      "url": "https://excelaccessexpert.com/medical-billing-ms-excel-spreadsheet",
+      "publisher": "Excel Access Expert",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Medical Bill Tracker Excel Template",
+      "url": "https://sourcetable.com/excel-templates/medical-bill-tracker",
+      "publisher": "Sourcetable",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why does this SUMIFS show zero when the amounts look right?",
+    "capability": "explain",
+    "result": "Lazur reads the formula on screen and explains each argument. It points at the criteria cell and says to check it for extra spaces.",
+    "shell": "sheet",
+    "pointsAt": "Payer criteria cell",
+    "context": "Claim log on a Mac, SUMIFS total by payer, zero result",
+    "output": "A common cause is a space after the payer name in the criteria cell. SUMIFS needs an exact match, so the formula finds nothing. Check that cell first, delete the extra space, and recalculate."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Table Design tab?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the Table Design tab on screen, so you find it without searching the ribbon."
+    },
+    {
+      "say": "Lazur, why does this SUMIFS show zero?",
+      "capability": "explain",
+      "result": "Lazur reads the formula on screen, explains what each argument expects, and names the cell most likely to cause the mismatch."
+    },
+    {
+      "say": "Lazur, walk me through adding a drop-down to the Status column.",
+      "capability": "guide",
+      "result": "Lazur gives one step at a time and waits for each click. You make the clicks in Data > Data Validation."
+    },
+    {
+      "say": "Hold fn and dictate: called the payer, reference in the remit, resubmit after review.",
+      "capability": "dictate",
+      "result": "The text lands at the cursor in the notes cell, clean and formatted, with no retyping."
+    },
+    {
+      "say": "Lazur, draft a short appeal cover note for this denied claim.",
+      "capability": "draft",
+      "result": "Lazur drafts the text and types it where you ask. Check every fact against the remit before you send it."
+    },
+    {
+      "say": "Lazur, research the timely filing rules for this payer.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Verify each rule on the payer's own site."
+    },
+    {
+      "say": "Lazur, remind me to work the denied list this afternoon.",
+      "capability": "everyday",
+      "result": "Lazur adds a reminder in Apple Reminders so the denied list gets worked on schedule."
+    },
+    {
+      "say": "Lazur, what does this denial code on the remit mean?",
+      "capability": "explain",
+      "result": "Lazur reads the code on screen and explains it in plain words. Confirm the meaning against the payer's own code list."
+    }
+  ],
+  "type": "role-app",
+  "slug": "medical-billers-excel",
+  "role": "medical-billers",
+  "app": "excel",
+  "roleName": "Medical billers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-billers-excel/excel-for-medical-billers-on-mac-1-286319.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Medical billing specialist reviewing claim paperwork at a desk in a clinic office",
+      "caption": "Claims work often starts with paperwork and a spreadsheet.",
+      "keywords": [
+        "excel for medical billers on mac",
+        "Excel",
+        "Medical billers",
+        "Mac",
+        "medical billing office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/dentist-dental-chair-clinic-medical-2589771/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-billers-excel/excel-for-medical-billers-on-mac-2-eab644.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Person working on a laptop at a desk, reviewing rows of data for a medical billing sheet",
+      "caption": "A claim log lives on a laptop and changes every day.",
+      "keywords": [
+        "excel for medical billers on mac",
+        "Excel",
+        "Medical billers",
+        "Mac",
+        "person laptop office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-man-laptop-mac-editing-2587997/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/medical-billers-excel/excel-for-medical-billers-on-mac-3-8aebbe.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Healthcare administration desk with forms and a computer for medical billers",
+      "caption": "Denials and appeals run through forms like these.",
+      "keywords": [
+        "excel for medical billers on mac",
+        "Excel",
+        "Medical billers",
+        "Mac",
+        "healthcare paperwork desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "u_1xidl7z2ep",
+        "url": "https://pixabay.com/users/u_1xidl7z2ep-38269517/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apothecary-healthcare-specialist-8128318/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for medical billers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "excel for medical billing on mac": 1,
+      "medical billing spreadsheet mac": 1,
+      "excel denial tracker template mac": 1,
+      "power query on mac excel": 1,
+      "excel medical billing template": 1,
+      "excel pivot table mac billing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

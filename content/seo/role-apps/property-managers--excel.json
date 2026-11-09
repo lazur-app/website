@@ -1,0 +1,584 @@
+{
+  "title": "Excel for property managers on Mac: rent rolls, lease tracking and owner statements",
+  "metaTitle": "Excel for Property Managers on Mac: Rent Rolls and Leases",
+  "description": "Excel for property managers on Mac: rent rolls, lease expiry flags, owner statements and Power Query imports, plus where Lazur helps.",
+  "targetKeyword": "excel for property managers on mac",
+  "secondaryKeywords": [
+    "excel for property management on mac",
+    "rent roll template excel mac",
+    "lease expiration tracker excel",
+    "owner statement excel template",
+    "power query excel for mac",
+    "excel rent ledger template",
+    "property management spreadsheet mac"
+  ],
+  "intro": "Excel for property managers on Mac comes down to a few core sheets: a rent roll, a rent ledger, a lease expiration list, owner statements and a CapEx tracker. Excel for Mac in Microsoft 365 handles all of them with tables, formulas and imports. This guide shows how to set up each sheet, which formulas to copy, the limits you will hit and the mistakes that break a rent roll. It also covers where Lazur helps, and where it does not.",
+  "tldr": [
+    "Keep each record type on its own sheet, as a named Excel table with one row per unit or transaction.",
+    "Flag leases that end within 60 days with a Lease End date column and a formula that uses TODAY().",
+    "Build owner statements with SUMIFS over the ledger, then check each total against the raw data.",
+    "Test Power Query on your build first. Microsoft's Mac documents disagree about the editor.",
+    "Lazur points at buttons, guides you one click at a time and drafts text, but it never clicks for you."
+  ],
+  "stats": [
+    {
+      "value": "42%",
+      "label": "of a property management professional's week goes to routine operational work such as paperwork and data entry",
+      "sourceUrl": "https://www.appfolio.com/blog/naa-top-challenges-2025",
+      "sourceTitle": "New NAA Data Reveals: How to Close the Property Management Performance Gap With Unified Systems and AI, AppFolio"
+    },
+    {
+      "value": "24%",
+      "label": "of the week goes to reactive tasks, according to the same NAA research sponsored by AppFolio",
+      "sourceUrl": "https://www.appfolio.com/blog/naa-top-challenges-2025",
+      "sourceTitle": "New NAA Data Reveals: How to Close the Property Management Performance Gap With Unified Systems and AI, AppFolio"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows per worksheet in Excel, the same limit on Mac and Windows",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits, Microsoft Support"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most property managers on a Mac use Excel for the same five jobs. The rent roll lists every unit, tenant, rent amount and status. The rent ledger logs each charge and payment. A lease expiration list shows what needs renewing. Owner statements summarize income and costs for each property. A CapEx tracker records repairs and upgrades, with dates and costs. None of these needs an add-in. Excel for Mac handles all five with tables, formulas and a built-in import tool."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The five sheets most property managers keep in Excel"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Rent roll: one row per unit, with tenant, rent, deposit, status and lease end date.",
+        "Rent ledger: one row per charge or payment, with date, type, property and amount.",
+        "Lease expirations: the rent roll filtered to leases that end soon.",
+        "Owner statement: income and expenses for one property or owner, by month.",
+        "CapEx tracker: repairs and upgrades with dates, costs and notes on useful life."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the ledger separate from the rent roll. The roll answers what each unit looks like today. The ledger answers what happened and when. If you mix them, you get one row per unit with a dozen payment columns. Those break every time a tenant pays late or a fee posts twice."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a rent roll that Excel can filter and total"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one row per unit. Put the column names in row 1. Leave no blank columns, no merged cells and no notes above the header. Then turn the range into a table. Select the range and press ⌘ T, or go to Insert > Table. Tick 'My table has headers', then click OK."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table as you create it. Microsoft's October 2026 post says that option now works in Excel for Mac, after it was an Insider feature. Use a short name such as tblRentRoll. A formula can then read tblRentRoll[Rent] instead of $F$2:$F$118. The named version is easier to check, and it grows when you add a unit."
+    },
+    {
+      "type": "paragraph",
+      "text": "Freeze the header row with View > Freeze Panes > Freeze Top Row. Without it, the column names scroll off the screen when you reach the bottom of a long roll. That small step saves a lot of guessing about which column is which."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Flag leases that expire in the next 60 days"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the check most managers run every week. Add a column called Lease End and type real dates. Excel stores a date as a number, so it can sort and subtract. Text looks similar but does not count. If a date sits on the left of its cell, Excel read it as text. Right alignment usually means a real date."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, add a Renewal Flag column. The formula below marks any lease that ends within the next 60 days and is still in the future."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "Formula",
+        "What it returns"
+      ],
+      "rows": [
+        [
+          "Renewal flag",
+          "=IF(AND([@[Lease End]]>TODAY(),[@[Lease End]]<=TODAY()+60),\"Renew soon\",\"\")",
+          "Renew soon for leases ending within 60 days, blank otherwise"
+        ],
+        [
+          "Days left",
+          "=[@[Lease End]]-TODAY()",
+          "Days until the lease ends, negative once it has passed"
+        ],
+        [
+          "Monthly rent total",
+          "=SUBTOTAL(109,tblRentRoll[Rent])",
+          "Sum of visible rows only, so filtered totals stay correct"
+        ],
+        [
+          "Occupied units",
+          "=COUNTIF(tblRentRoll[Status],\"Occupied\")",
+          "Count of units marked occupied"
+        ],
+        [
+          "Vacancy rate",
+          "=COUNTIF(tblRentRoll[Status],\"Vacant\")/ROWS(tblRentRoll[Unit])",
+          "Share of units marked vacant"
+        ]
+      ],
+      "caption": "Starter formulas for a rent roll table named tblRentRoll with a Lease End column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is how the flag behaves. A lease that ends 57 days from today gets Renew soon. A lease that ends 70 days out does not. A lease that already ended returns blank, so the flag ignores it. Check expired leases separately, then filter the Renewal Flag column for Renew soon with Data > Filter."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build owner statements with SUMIFS"
+    },
+    {
+      "type": "paragraph",
+      "text": "An owner statement is a set of SUMIFS formulas over the ledger. Name the ledger table tblLedger. Put the property name in cell B1, the first day of the month in B2 and the last day in B3. The formula in the tip below totals rent for that property and month."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Owner rent total",
+      "text": "=SUMIFS(tblLedger[Amount],tblLedger[Property],$B$1,tblLedger[Type],\"Rent\",tblLedger[Date],\">=\"&$B$2,tblLedger[Date],\"<=\"&$B$3). Copy the row down and change the Type value for late fees, maintenance and management fees."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep expenses as positive numbers in the ledger. Subtract them on the statement line. Mixed signs cause errors that are hard to spot in a long list. A SUMIFS formula with the wrong criteria returns zero without any warning, so compare each total with the ledger once a month."
+    },
+    {
+      "type": "paragraph",
+      "text": "To audit a statement, press ⌘ ` to show every formula on the sheet at once. Press it again to go back to values. A quick scan finds a typed number that replaced a formula, which is an easy error to miss."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Import bank and payment exports with Power Query on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Retyping a monthly export wastes time and invites mistakes. Use Data > Get Data > Get Data (Power Query) to pull the file in. Microsoft's Mac article lists Excel Workbook, Text/CSV, XML, JSON, OData and a few other sources. SQL Server import is available in Insiders Beta only."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test the editor first",
+      "text": "Microsoft's Mac support article says authoring in the Power Query Editor is not available in Excel for Mac. A 2022 Microsoft Tech Community post, updated in 2023, says the editor is generally available on Mac from version 16.69. The two statements conflict. Open Excel > About Excel, note your build, then test on a copy of a real export."
+    },
+    {
+      "type": "paragraph",
+      "text": "The support article says shaping in the editor is limited to Microsoft 365 subscribers and needs version 16.69 (23010700) or later. If the editor does not open for you, load the export as a table and clean it by hand. That is slower, but it works on any build that opens the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the untouched export on its own sheet named Raw. You can then check any total against the original file when an owner asks a question. Paste each new export over Raw only after you have saved a dated copy of the workbook."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean tenant names, duplicates and stray spaces"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tenant lists get messy fast. One tenant can appear as Ana Ruiz, ana ruiz and Ana Ruiz with a trailing space. Excel treats those as three different values. Add a helper column with =TRIM(A2), copy it down, then use Edit > Paste Special > Values to replace the original text. TRIM does not fix capital letters, so pick one format for names and stick to it."
+    },
+    {
+      "type": "paragraph",
+      "text": "To remove duplicates, select the table and go to Data > Remove Duplicates. Choose the columns that identify a row, such as Unit and Tenant. Make a copy first. Excel deletes the extra rows when you confirm, and undo does not reach back after you save and close the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says the Copilot clean data skill finds issues such as extra spaces and duplicate values, then proposes fixes. Microsoft says the skill is rolling out to general availability on all platforms. You can call it with @clean-data or from the Skills menu. Read every proposed change. A fix that looks right on one row can change a name you meant to keep."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Know the limits before the sheet gets slow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel's limits are high. Each worksheet holds 1,048,576 rows and 16,384 columns. The limit is the same on Mac and Windows. Most property sheets never come close to the row limit. The limits you feel first are speed, long formulas and file size."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Value",
+        "What it means for a rent roll"
+      ],
+      "rows": [
+        [
+          "Worksheet rows",
+          "1,048,576",
+          "One row per unit or ledger line fits many years of data"
+        ],
+        [
+          "Worksheet columns",
+          "16,384",
+          "Far more than tenant, lease and owner fields need"
+        ],
+        [
+          "Characters per cell",
+          "32,767",
+          "Enough for long maintenance notes in one cell"
+        ],
+        [
+          "Formula length",
+          "8,192 characters",
+          "Long nested IF chains reach this before anything else"
+        ],
+        [
+          "Column width",
+          "255 characters",
+          "Wrap text in a wide notes column instead"
+        ]
+      ],
+      "caption": "Limits from Microsoft's Excel specifications and limits page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Formulas hit a different ceiling. Long nested IF chains approach the formula limit faster than you expect. If a formula gets that long, split it across helper columns. Each helper column is easier to test and easier to explain to an owner."
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed usually suffers from formulas that repeat across thousands of rows, not from the row count itself. Keep your ranges inside tables, and delete sheets you no longer use. A smaller file opens faster and sorts faster."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break rent rolls and owner statements"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Unit numbers like 0412 lose the leading zero when typed as numbers. Format the column as Text before you type, or enter them as Unit 0412.",
+        "Dates typed as text do not sort, filter or subtract. Check the alignment of the cell, then retype the value as a real date.",
+        "Merged cells in a header or body break sorting and table creation. Use Format > Cells > Alignment > Center Across Selection for a title that spans columns.",
+        "Typing over one formula in a column breaks the pattern. Press ⌘ ` after large edits to scan for the odd cell.",
+        "SUM includes hidden rows, while SUBTOTAL with 109 does not. Pick the one that matches the total you need.",
+        "One file for every owner and every year makes search hard. Keep one rent roll and one ledger, then build statements from them."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep dated copies before you clean or import"
+    },
+    {
+      "type": "paragraph",
+      "text": "Save a copy at the end of each month, such as Rent Roll 2026 11 end. Use File > Save As, or press ⇧ ⌘ S. A dated copy gives you something to compare against when an owner asks why a number changed. If the file lives in OneDrive or SharePoint, check your version history settings before you rely on them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do a task, and Lazur guides you one click at a time, waiting for each click before it goes on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files or operate other apps for you. You keep control of the workbook. That matters for a rent roll, because one wrong click can overwrite a column of tenant data. Use Lazur for questions like where is this button or what does this error mean, then do the clicks yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text into a cell or a note. Lazur can also draft text, such as a short note to a tenant about a late fee. Read the draft, change what needs changing, then send it from your own email."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. It is not an add-in for Excel, and it has no partnership with any app maker."
+    },
+    {
+      "type": "paragraph",
+      "text": "For more on the Excel side, see [AI assistant for Excel on Mac](/apps/excel). For the wider property work, see [AI assistant for property managers on Mac](/for/property-managers). Trial details are on the [pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template, then change it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stessa publishes free rental property spreadsheet templates for Excel and Google Sheets. Its rent roll tracks tenant details, rent payment status, occupancy, tenancy length, lease expiration, payment history and security deposit refunds. Its guide also lists a rent ledger, two income statement templates, a cash-flow report, a CapEx worksheet with depreciation tracking and a balance sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "These are general landlord templates, not Mac-specific ones. Stessa is also a property management software vendor, so its layouts reflect its own view of the work. Check whether the columns match how your firm bills owners before you copy one. Rename the columns to your own terms, then build the formulas on top."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a spreadsheet stops being enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "A workbook works while one person keeps it current. It gets harder when several staff edit the same rent roll, when owners want their own reports, or when leases live in another system. Know the point where a spreadsheet costs more time than it saves."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2025 NAA report, published by AppFolio on December 10, 2025, argues for unified systems and AI. The report says property management professionals devote 42% of their week to routine operational work, such as paperwork, data entry and admin. It says 24% goes to reactive tasks, such as putting out fires."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat those figures with care. AppFolio sponsored the research, and the page does not give a sample size or survey dates. Still, the numbers show how much of the week goes to repeat work. That repeat work is the part a spreadsheet can trim, and the part a connected system can trim further."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Turn your rent roll into a table named tblRentRoll, with one row per unit and no merged header cells.",
+        "Add Lease End as a real date column, then add the Renewal Flag formula from the table above.",
+        "Save a dated copy of the workbook before you import or remove duplicates.",
+        "Open Excel > About Excel and note the build number before you try Power Query.",
+        "Ask Lazur to point at Data > Filter if you cannot find it."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Excel for property managers on Mac different from the Windows version?",
+      "answer": "The core features match. The worksheet limits are the same, at 1,048,576 rows and 16,384 columns. Power Query is the main gap to check. Microsoft's Mac support article says authoring in the Power Query Editor is not available in Excel for Mac. A 2022 Microsoft post says the editor is generally available from version 16.69. Test an import on your own build before you rely on it."
+    },
+    {
+      "question": "Which Excel version do I need on Mac for these steps?",
+      "answer": "Naming a table at creation is now available in Excel for Mac, according to Microsoft's October 2026 post. Shaping data in Power Query needs a Microsoft 365 subscription and version 16.69 (23010700) or later. Open Excel > About Excel to see your build number."
+    },
+    {
+      "question": "How do I find leases that expire in the next 60 days?",
+      "answer": "Add a Lease End column with real dates. Then use a Renewal Flag formula with AND and TODAY, as shown in the table above, and filter for Renew soon. Check expired leases separately, because the flag returns blank for them."
+    },
+    {
+      "question": "Can Excel handle a large rent roll and ledger?",
+      "answer": "Usually yes. Each worksheet allows 1,048,576 rows, far more than most rent rolls need. Speed tends to suffer first, from long formulas and heavy sheets. If several people need to edit at the same time, a dedicated property management system may suit you better."
+    },
+    {
+      "question": "Does Excel on Mac have Power Pivot for owner reports?",
+      "answer": "This guide could not confirm that. Some search summaries say Power Pivot is missing on Mac, but one Microsoft Q&A answer disagrees. Check the Data tab in your build and Microsoft's current documentation before you plan around it. Pivot tables cover most simple owner summaries."
+    },
+    {
+      "question": "Does Lazur edit my Excel file?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps. It points at things, guides you one click at a time, answers out loud and drafts text. You do the clicks and keep control of the workbook."
+    },
+    {
+      "question": "Does Lazur send my tenant data to AI providers?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. Close sensitive sheets first if you want less on screen while you ask."
+    },
+    {
+      "question": "Is Lazur available for Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. You can read more on the [download page](/download)."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-gb/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Shape data with Power Query Editor in Excel for Mac",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/shape-data-with-power-query-editor-in-excel-for-mac/3359795",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "New NAA Data Reveals: How to Close the Property Management Performance Gap With Unified Systems and AI",
+      "url": "https://www.appfolio.com/blog/naa-top-challenges-2025",
+      "publisher": "AppFolio",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "10+ Free Rental Property Excel Spreadsheet Templates",
+      "url": "https://www.stessa.com/blog/rental-property-excel-spreadsheet/",
+      "publisher": "Stessa",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the filter button for the Lease End column?",
+    "capability": "point",
+    "result": "Lazur circles the Filter button on the Data tab and labels it. You click it yourself.",
+    "shell": "sheet",
+    "context": "Excel for Mac, rent roll table tblRentRoll open",
+    "output": "Lazur says: Go to the Data tab and click Filter. Arrows appear on each column header. Then open the Renewal Flag arrow and pick Renew soon.",
+    "pointsAt": "Filter button"
+  },
+  "tasks": [
+    {
+      "say": "Where is Get Data in this workbook?",
+      "result": "Lazur circles the Data tab and labels Get Data (Power Query) in the ribbon.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through importing this bank CSV.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does a #VALUE error in this cell mean?",
+      "result": "Lazur reads the formula on screen and explains the likely cause out loud, such as text where a number belongs.",
+      "capability": "explain"
+    },
+    {
+      "say": "Dictate this maintenance note into the cell.",
+      "result": "Hold fn and speak. Dictation turns your words into clean text at the cursor, using your snippets and dictionary.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Write a short note to a tenant about a late fee.",
+      "result": "Lazur drafts the note as text. You review, edit and send it from your own email.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find current rules for late fee caps in my state.",
+      "result": "Lazur runs the research in its own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to check leases ending in 60 days.",
+      "result": "Lazur adds the reminder to Apple Reminders for Friday.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "property-managers-excel",
+  "role": "property-managers",
+  "app": "excel",
+  "roleName": "Property managers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/property-managers-excel/excel-for-property-managers-on-mac-1-ef1c54.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Excel for property managers on Mac: a manager checks a rent roll on a laptop at a desk",
+      "caption": "A rent roll is the sheet most managers open first each week.",
+      "keywords": [
+        "excel for property managers on mac",
+        "Excel",
+        "Property managers",
+        "Mac",
+        "property manager laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-business-team-meeting-10181740/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/property-managers-excel/excel-for-property-managers-on-mac-2-16ef82.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Person reviewing rows of data on a laptop screen, the kind of lease tracking work in Excel on Mac",
+      "caption": "Ledgers and lease lists grow quickly, so set them up as tables early.",
+      "keywords": [
+        "excel for property managers on mac",
+        "Excel",
+        "Property managers",
+        "Mac",
+        "office spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "niklaspatzig",
+        "url": "https://pixabay.com/users/niklaspatzig-16752629/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-work-office-desk-business-5224082/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/property-managers-excel/excel-for-property-managers-on-mac-3-f72eba.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Apartment keys on a table, representing the rental units listed in a property manager's rent roll",
+      "caption": "One row per unit keeps a portfolio easy to read and filter.",
+      "keywords": [
+        "excel for property managers on mac",
+        "Excel",
+        "Property managers",
+        "Mac",
+        "apartment building keys",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "pierre9x6",
+        "url": "https://pixabay.com/users/pierre9x6-10217214/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apartment-colorful-building-4358755/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for property managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "excel for property management on mac": 1,
+      "rent roll template excel mac": 1,
+      "lease expiration tracker excel": 1,
+      "owner statement excel template": 1,
+      "power query excel for mac": 1,
+      "excel rent ledger template": 1,
+      "property management spreadsheet mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

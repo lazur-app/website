@@ -1,0 +1,551 @@
+{
+  "title": "Xero bank rules miscategorizing transactions on Mac: causes and fixes for 2026",
+  "metaTitle": "Xero bank rules miscategorizing transactions: causes and fixes",
+  "description": "Xero bank rules miscategorizing transactions usually come from rule order, broad text matches and short bank descriptions. Here is how to fix them on Mac.",
+  "targetKeyword": "xero bank rules miscategorizing transactions",
+  "secondaryKeywords": [
+    "xero bank rules order",
+    "xero bank rule wrong account",
+    "bank rules assigning wrong accounts",
+    "xero bank rules not working",
+    "fix xero bank rules on mac",
+    "xero bank rule conditions"
+  ],
+  "intro": "Xero bank rules miscategorizing transactions happen for two reasons. The rule text does not match what your bank sends, or the rule order sends a payment to the wrong account first. Xero applies bank rules in the order they are listed, so a broad rule above a specific one wins. This guide shows how to find the problem, fix the order and text, and check the result on a Mac.",
+  "tldr": [
+    "Xero applies bank rules in list order, so a broad rule above a specific one takes the payment.",
+    "Bank descriptions are short, coded and change over time, so text matches drift.",
+    "Put specific rules first, test on past transactions, and keep auto-confirm off for new rules.",
+    "No study measures how often this happens. Most fixes come from vendor guidance, not controlled tests."
+  ],
+  "stats": [
+    {
+      "value": "62%",
+      "label": "of 277 surveyed accountants were concerned about AI-generated errors",
+      "sourceUrl": "https://www.gsb.stanford.edu/insights/ai-reshaping-accounting-jobs-doing-boring-stuff",
+      "sourceTitle": "AI Is Reshaping Accounting Jobs by Doing the 'Boring' Stuff (Stanford GSB Insights)"
+    },
+    {
+      "value": "73.49%",
+      "label": "accuracy of fine-tuned models on held-out SME bank transaction descriptions",
+      "sourceUrl": "https://arxiv.org/abs/2508.05425",
+      "sourceTitle": "Categorising SME Bank Transactions with Machine Learning and Synthetic Data Generation (arXiv 2508.05425)"
+    },
+    {
+      "value": "2,000",
+      "label": "bank rules you can create in QuickBooks Online, with up to 5 conditions each",
+      "sourceUrl": "https://quickbooks.intuit.com/learn-support/en-us/help-article/banking/set-bank-rules-categorize-online-banking-online/L0mjJl0nD_US_en_US",
+      "sourceTitle": "Set up bank rules to categorize online banking transactions in QuickBooks Online (Intuit)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a bank rule grabs the wrong transaction"
+    },
+    {
+      "type": "paragraph",
+      "text": "A bank rule reads the description on a bank feed line. It checks that text against the conditions you set. If the text matches, the rule assigns the account you chose. The weak point is the text. Banks send short descriptions with codes, store numbers and payment processor names. Those strings change over time, so a rule that worked last quarter can miss this month, or match a vendor it was never meant for."
+    },
+    {
+      "type": "paragraph",
+      "text": "The authors of an arXiv paper on small business bank transactions name the same problem. They describe extreme abbreviations, limited context and imbalanced labels as the main challenge. Their fine-tuned models reached 73.49% accuracy on held-out data, and 90.36% on predictions the model rated high confidence. A plain text rule has less to work with than a trained model. Expect misses. The paper does not test Xero, so treat these figures as context, not an error rate for your books."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How rule order decides which account wins"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xero applies bank rules in the order they appear on the Bank rules screen. Xero's guidance, as mirrored by iShine Cloud, says a more restrictive rule with specific criteria should come before a less restrictive one. If the order is reversed, the broad rule wins every time it matches, including the transactions the specific rule was built for."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Rule one says the description contains AMAZON, and it assigns Office expenses. Rule two says it contains AMAZON WEB SERVICES, and it assigns Hosting. With rule one on top, every AWS charge lands in Office expenses. Rule two never gets its turn. Move rule two above rule one, and the AWS charges go to Hosting, while ordinary Amazon orders still go to Office expenses."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the real text before you write the rule. Your bank may print AWS or a shortened code instead of the full name. A condition that looks right on the vendor's invoice can match nothing on the bank feed. Pull several real descriptions for the same vendor, and build the condition from what appears there."
+    },
+    {
+      "type": "paragraph",
+      "text": "There is also a limit on Xero's side. A Xero Product Ideas request asks Xero to let you choose which rule applies when several match. A user reports that the first matching rule in the list is the only one suggested. The request has 33 votes and is marked submitted, and users were still reporting the gap in 2026. Do not assume a later rule will fix an earlier mistake."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your rule order in Xero, step by step"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Xero in Chrome and go to the bank account where the wrong postings appear.",
+        "Open the Bank rules screen for that account. Menu names can differ by region and version, so match the labels on your screen.",
+        "Read the rules from top to bottom. Note any rule with a short or broad text match, such as a common prefix or a short code.",
+        "Find every pair of rules that can match the same vendor. Those pairs are where order matters most.",
+        "Move the most specific rule above the broad one. Then recheck the transactions it changed.",
+        "Write down the old order before you change it, so you can roll back."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean vendor names on your Mac before you write rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "Xero runs in your browser, so Chrome does most of the work on a Mac. Press ⌘ F to find a vendor name on a bank feed page. Press ⌘ L to jump to the address bar when you need to reopen a Xero screen. Keep one Chrome window per bank account if you can. That way you do not edit a rule for the wrong account by mistake."
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean the vendor list before you write rules. Export your transactions from Xero if your plan allows it, then open the file in Excel or Numbers. In Excel, use File > Open and choose the file. Then use Data > Filter to sort the descriptions. Scan for odd spellings and codes next to the vendor name. The guide to [opening an Excel file in Numbers](/how-to/open-an-excel-file-in-numbers) covers the Numbers side, and [Excel help for accountants](/for/accountants/excel) is another place to start."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a client uses QuickBooks Desktop for Mac, its Renaming Rules do a similar cleaning job. You create them from the Downloaded Transactions window. Match types are Begins with, Contains, Ends with and Exactly matches. Matching ignores capital letters. Actions are Rename to or Don't rename. Intuit's article covers renaming only, so do not assume those rules set the account."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How many rules is too many"
+    },
+    {
+      "type": "paragraph",
+      "text": "QuickBooks Online lets you create up to 2,000 bank rules, and one rule can have up to 5 conditions. Those are QuickBooks limits, not Xero's. This guide could not confirm Xero's rule limits from its own help center, so check your account before you plan a large cleanup. A big rule count is not the real problem. Overlap is. A few rules that never overlap are safer than many rules that all match PAYPAL."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn off auto-confirm before you trust new rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "In QuickBooks Online, each rule has a setting called Automatically confirm transactions this rule applies to. When it is on, matching transactions post immediately. The path is All apps > Accounting > Rules. Leave that setting off for any new rule until you have checked its matches. Xero may offer a similar shortcut in some versions, so look for any option that posts without review and treat it the same way."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A review routine that catches errors early"
+    },
+    {
+      "type": "paragraph",
+      "text": "Review rule matches on a schedule, not only at year end. After each bank feed import, sort the posted transactions by account. Scan the lines a rule posted. Look for accounts that do not fit the vendor, such as a restaurant charge in Equipment. Check any account that changed since last month. A short weekly check beats a large clean up at close."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a rule log. For each rule, write the match text, the account, the date and the reason. When a posting looks wrong, the log shows whether the rule changed or the bank text did. That answer decides the fix. If the bank text changed, you need a new condition. If the rule changed, you need to find out who edited it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research does and does not tell you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most numbers around this topic describe the profession, not rule errors. The Bureau of Labor Statistics projects bookkeeping, accounting and auditing clerk jobs to fall 6% from 2025 to 2035. It links the decline to software automating many tasks. A Stanford GSB study of 277 accountants found 62% were concerned about AI-generated errors. Neither source measures how often bank rules assign the wrong account."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Stanford Insights article also reports that accountants who use AI spend 8.5% less time on routine back-office work. Those accountants also finalize monthly statements 7.5 days faster. That is a different question. The article gives no hours baseline, and it does not test bank rules. Use these figures to explain why errors matter, not as a measured error rate."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur can help with, and what it cannot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can point at a control and draw a circle and label around it. It can also guide you one click at a time, waiting for each click before it moves on. It does not click for you, and it does not edit your Xero rules. You make every change yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "That makes Lazur most useful for understanding and walking through. Ask what a condition means while the rule is on screen. Ask where the rule order list sits. Hold fn to dictate review notes into your rule log. Research runs in Lazur's own Chrome tabs and comes back with a summary and a report, which helps when you want a vendor's help page summarized. Check the sources it gives you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data and your employer's rules"
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Client data comes first",
+      "text": "Bank feeds show client names, account numbers and payment details. Follow your employer's rules before you show that data to any tool, including Lazur. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your firm restricts AI tools on client files, keep Lazur off those screens. You can still learn the rule logic on a practice file. Replace names and account numbers in a copy, then ask about the pattern instead of the client. The pattern is usually what needs fixing anyway."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that keep rule errors coming back"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Writing rules from one month of data. Test against several months, including unusual ones.",
+        "Using a short code in a Contains match. It catches unrelated vendors that share the letters.",
+        "Fixing the rule and forgetting the posted transactions. A rule change does not show which old postings were wrong.",
+        "Accepting a suggested account without reading the full description.",
+        "Letting several people add rules with no log. Nobody knows which rule is responsible."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the broad rules. Find any rule that matches a common word or a payment processor. Move the specific rules above it, test on past data, and write the change in your log. If you want a guided walk through the Bank rules screen, ask Lazur to point at the order list while you work. Check the [pricing page](/pricing) for plan details, and get the app from the [download page](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Xero apply more than one bank rule to a transaction?",
+      "answer": "Xero applies rules in the order they are listed. A Xero Product Ideas request reports that when several rules match, only the first one in the list is suggested. That request is marked submitted and has 33 votes. Users were still reporting the gap in 2026, so test the behavior on your own account."
+    },
+    {
+      "question": "Why did my bank rule post to the wrong account?",
+      "answer": "The usual causes are rule order, a condition that is too broad, or bank text that changed. Check the order first. Then open the transaction and read its full description, because the bank may print a shorter string than the vendor's name."
+    },
+    {
+      "question": "Will fixing a rule correct transactions that are already posted?",
+      "answer": "This guide could not confirm that from Xero's documentation. A rule change does not tell you which old postings were wrong. Search past transactions for the vendor name, and check each account yourself before you reclassify anything."
+    },
+    {
+      "question": "Is there a limit to how many bank rules I can create?",
+      "answer": "QuickBooks Online allows up to 2,000 bank rules, and one rule can have up to 5 conditions. This guide could not confirm Xero's limits from its own help center, so check the Bank rules screen or your plan details."
+    },
+    {
+      "question": "Can Lazur change my Xero bank rules for me?",
+      "answer": "No. Lazur does not click buttons or edit files for you. It can explain what is on screen, point at the Bank rules list, and guide you one click at a time. You make every change in Xero."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned but not available yet."
+    },
+    {
+      "question": "Is client data safe to show Lazur?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored. Content is never used to train AI models. Your employer's rules still decide what client data you may share, so follow them first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Bookkeeping, Accounting, and Auditing Clerks: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/office-and-administrative-support/bookkeeping-accounting-and-auditing-clerks.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "AI Is Reshaping Accounting Jobs by Doing the 'Boring' Stuff",
+      "url": "https://www.gsb.stanford.edu/insights/ai-reshaping-accounting-jobs-doing-boring-stuff",
+      "publisher": "Stanford Graduate School of Business",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Human + AI in Accounting: Early Evidence from the Field",
+      "url": "https://www.gsb.stanford.edu/faculty-research/publications/human-ai-accounting-early-evidence-field",
+      "publisher": "Stanford Graduate School of Business",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Categorising SME Bank Transactions with Machine Learning and Synthetic Data Generation",
+      "url": "https://arxiv.org/abs/2508.05425",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Set up bank rules to categorize online banking transactions in QuickBooks Online",
+      "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/banking/set-bank-rules-categorize-online-banking-online/L0mjJl0nD_US_en_US",
+      "publisher": "Intuit",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Categorize online bank transactions in QuickBooks Online",
+      "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/banking/categorize-match-online-bank-transactions-online/L1bTafTz3_US_en_US",
+      "publisher": "Intuit",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Manage renaming rules for payee names in QuickBooks Desktop for Mac",
+      "url": "https://quickbooks.intuit.com/learn-support/en-us/help-article/banking/manage-renaming-rules-payee-names-quickbooks-mac/L2OxRb7oN_US_en_US",
+      "publisher": "Intuit",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Create A Bank Rule (iShine Cloud mirror of Xero guidance)",
+      "url": "https://support.ishinecloud.sg/knowledgebase/article/KA-01125/en-us",
+      "publisher": "iShine Cloud",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Bank rules - Choose which rule to apply",
+      "url": "https://productideas.xero.com/forums/967136-banking-chart-of-accounts/suggestions/45204394-bank-rules-choose-which-rule-to-apply",
+      "publisher": "Xero Product Ideas",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "bank rules assigning transactions to wrong accounts",
+  "costs": [
+    {
+      "title": "Time spent finding and recoding",
+      "text": "Every wrong posting costs you a search, a check and a correction. No study measures how many hours that takes for a typical bookkeeping file, so count your own. Note how long your last correction took, then multiply by how often they happen. That number is your real cost."
+    },
+    {
+      "title": "Reports that look right but are not",
+      "text": "A wrong account changes category totals even when the bank balance is right. Your expense report can mislead a client without anyone noticing at first. A software payment sitting in Office expenses looks harmless until someone asks why software spend fell."
+    },
+    {
+      "title": "Slower month end",
+      "text": "The Stanford GSB article reports that accountants who use AI finalize monthly statements 7.5 days faster. Bad rules pull against that speed. Each mis-posted line needs a person to notice it, so messy rules can delay close. That link is an inference from the study, not a measured result for bank rules."
+    },
+    {
+      "title": "Client trust",
+      "text": "In the Stanford survey, 62% of 277 accountants were concerned about AI-generated errors. A rule that quietly posts the wrong account is a small error of a similar type. Clients notice when reports change between months, and they ask why."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Bank text is short and changes",
+      "text": "Bank feeds carry short, coded descriptions. The arXiv authors who studied SME transactions name extreme abbreviations and limited context as the main challenge. Processors also change their descriptors, so a rule that matched last quarter can miss this one. Expect drift, and review your rules on a schedule."
+    },
+    {
+      "title": "Rules are too broad",
+      "text": "A condition that checks for a short word catches several vendors at once. A rule meant for one software subscription can grab a grocery run if both share a token. Broad matches are the first thing to check when a posting looks wrong."
+    },
+    {
+      "title": "The order is wrong",
+      "text": "Xero applies bank rules in list order. A general rule above a specific one wins for every transaction it matches. A user report on Xero's idea forum says the first matching rule is the only one suggested. The fix is to order rules from specific to general."
+    },
+    {
+      "title": "Rules were written from one sample",
+      "text": "A rule built from one bank statement learns one spelling of the vendor. The next month may bring a different spelling, a new branch code or a refund line. A single sample rarely shows every variant, so the rule fails on the first variant it never saw."
+    },
+    {
+      "title": "Auto-confirm posts before anyone looks",
+      "text": "In QuickBooks Online, an automatic confirmation setting posts matching transactions immediately. A mistake that would have sat in review gets posted and reported. That turns a small rule error into a posted one, which takes more work to unwind."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Put specific rules above general ones",
+      "text": "Xero's guidance says a more restrictive rule with specific criteria should come before a less restrictive rule. Open the Bank rules screen and move each specific rule above any broad match it overlaps. Then test with past transactions for each vendor before you trust the new order."
+    },
+    {
+      "title": "Match a cleaned vendor name",
+      "text": "Clean the vendor text before you write rules. Export the transactions, open them in Excel or Numbers, and list the odd strings next to the vendor name you want. Write the rule on the clean form only when the bank text reliably contains it. Keep the mapping in a second tab so you can update it later."
+    },
+    {
+      "title": "Send low-confidence items to review",
+      "text": "Do not let every match post on its own. Treat new or unusual descriptions as items to check. Use the review area in your software. In QuickBooks Online, downloaded transactions can sit on the Pending tab with suggested categories until someone confirms them."
+    },
+    {
+      "title": "Keep auto-confirm off for new rules",
+      "text": "Turn off the automatic confirmation setting for any rule you have just written. In QuickBooks Online, the setting is in the rule window, labeled Automatically confirm transactions this rule applies to, under All apps > Accounting > Rules. Turn it on later, only after the rule has a clean review cycle behind it."
+    },
+    {
+      "title": "Test each rule on past data",
+      "text": "Before you trust a new rule, check it against several past months. Look for false matches as well as misses. A rule that catches the right vendor but also one unrelated payment needs a tighter condition before it goes live."
+    },
+    {
+      "title": "Keep a rule log",
+      "text": "Write each rule down with the match text, the account, the date and the reason. When a posting looks wrong, check the log first. You will know whether the rule changed, the bank text changed, or someone else edited the order."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Why did this payment go to Office expenses?",
+      "result": "Lazur explains out loud what it can see on screen about the match. It cannot read rules you have not opened."
+    },
+    {
+      "capability": "point",
+      "say": "Where is the rule order list?",
+      "result": "Lazur draws a circle and a label around the list on your screen, so you know where to look."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through moving a rule up.",
+      "result": "Lazur gives you one click at a time and waits for each click before the next step. You do the clicks."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn to dictate a rule log entry.",
+      "result": "Clean, formatted text lands at your cursor in any app, so the log entry takes less typing."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a short note about the reclassified expense.",
+      "result": "Lazur drafts and types the text for you to check before you send it. Keep client names out of the request."
+    },
+    {
+      "capability": "research",
+      "say": "Find how this processor shortens its descriptions.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the sources yourself."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to review rule matches on Friday.",
+      "result": "Lazur sets an Apple Reminders item by voice, so the weekly check happens."
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I change the order of my Xero bank rules?",
+    "capability": "point",
+    "result": "Lazur circles the Bank rules list and labels it, so you can find the order without hunting through the screen.",
+    "shell": "generic",
+    "context": "Xero Bank rules screen open in Chrome on a Mac",
+    "output": "A circle and a label on the Bank rules list, with a spoken answer.",
+    "pointsAt": "Bank rules list"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pull the posted list",
+      "text": "Export the transactions from Xero if your plan allows it. Open the file in Excel or Numbers. Sort by description and list every odd vendor string you see next to the name you expect."
+    },
+    {
+      "label": "Day 2",
+      "title": "Find the broad rules",
+      "text": "Read every rule from top to bottom on the Bank rules screen. Mark any rule with a short text match, a common prefix or a shared processor name. Those are the first candidates to tighten."
+    },
+    {
+      "label": "Day 3",
+      "title": "Reorder and test",
+      "text": "Move specific rules above the broad ones they overlap. Write down the old order first. Then recheck the past transactions each changed, and look for both missed matches and false matches."
+    },
+    {
+      "label": "Day 4",
+      "title": "Set the safety switches",
+      "text": "Confirm that automatic posting is off for every new rule. Start a rule log with match text, account, date and reason. Keep the log in a file your firm allows."
+    },
+    {
+      "label": "Friday",
+      "title": "Run the weekly review",
+      "text": "Sort posted transactions by account after each bank feed import. Scan the lines a rule posted, and check any account that changed since the last review. Set a reminder so the check happens every week."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "excel",
+    "numbers"
+  ],
+  "type": "problem",
+  "slug": "xero-bank-rules-wrong-category",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/xero-bank-rules-wrong-category/xero-bank-rules-miscategorizing-transactions-1-c78d96.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant working on a laptop at a desk while reviewing bank transactions for a client",
+      "caption": "Reviewing posted transactions is part of the weekly check.",
+      "keywords": [
+        "xero bank rules miscategorizing transactions",
+        "Accountants",
+        "Bank rules assign wrong accounts to transactions",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "JESHOOTS-com",
+        "url": "https://pixabay.com/users/JESHOOTS-com-264599/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/money-bank-shopping-calculator-2212965/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xero-bank-rules-wrong-category/xero-bank-rules-miscategorizing-transactions-2-fc9935.jpg",
+      "width": 1280,
+      "height": 589,
+      "alt": "Person using an Apple Mac computer at a desk, the setting where bank rules get checked",
+      "caption": "Most rule checks happen on a Mac in a browser tab.",
+      "keywords": [
+        "xero bank rules miscategorizing transactions",
+        "Accountants",
+        "Bank rules assign wrong accounts to transactions",
+        "Mac",
+        "person using Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Patrizia08",
+        "url": "https://pixabay.com/users/Patrizia08-92110/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/meditate-lake-mood-4882027/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/xero-bank-rules-wrong-category/xero-bank-rules-miscategorizing-transactions-3-994ef0.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Spreadsheet of bookkeeping transactions on a screen, the kind of list used to clean vendor names",
+      "caption": "A clean vendor list makes each rule more specific.",
+      "keywords": [
+        "xero bank rules miscategorizing transactions",
+        "Accountants",
+        "Bank rules assign wrong accounts to transactions",
+        "Mac",
+        "bookkeeping spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cpastrick",
+        "url": "https://pixabay.com/users/cpastrick-35190/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/ledger-accounting-business-money-1428230/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "xero bank rules miscategorizing transactions",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "xero bank rules order": 1,
+      "xero bank rule wrong account": 1,
+      "bank rules assigning wrong accounts": 1,
+      "xero bank rules not working": 1,
+      "fix xero bank rules on mac": 1,
+      "xero bank rule conditions": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

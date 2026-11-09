@@ -1,0 +1,533 @@
+{
+  "title": "Google Sheets for game designers on Mac: balancing stats, economy and progression in 2026",
+  "metaTitle": "Google Sheets for Game Designers on Mac: Balancing Guide",
+  "description": "Use Google Sheets for game designers on Mac to balance stats and economies. See the setup, Mac shortcuts, limits, and how Lazur helps in the sheet.",
+  "targetKeyword": "google sheets for game designers on mac",
+  "secondaryKeywords": [
+    "google sheets game balancing",
+    "game economy spreadsheet",
+    "Google Sheets keyboard shortcuts Mac",
+    "Google Sheets named ranges",
+    "game design spreadsheet setup",
+    "Google Sheets limits 20 million cells"
+  ],
+  "intro": "Google Sheets for game designers on Mac works well for balancing stats, economies, and progression. You use it in Chrome or Safari, and it covers the formulas, named bounds, and charts that most balancing work needs. This guide shows the setup, the Mac shortcuts, the limits to plan for, and where Lazur fits while you work.",
+  "tldr": [
+    "Use one row per item, a Globals tab with named min and max values, and 0 to 1 columns before you weight anything.",
+    "Color the headers for typed inputs, curves, and formulas, so you know which cells to trust.",
+    "Plan around the limits: 20 million cells or 100MB, a 6-minute Apps Script run, and 200k rows in a Connected Sheets pivot.",
+    "Ask Lazur to point, explain, or draft while you stay in the sheet. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells, or 100MB, for a spreadsheet in Google Sheets, per Google Drive Help",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    },
+    {
+      "value": "6 minutes",
+      "label": "maximum run time for one Apps Script execution, for consumer and Workspace accounts",
+      "sourceUrl": "https://developers.google.com/apps-script/guides/services/quotas",
+      "sourceTitle": "Quotas for Google Services: Apps Script"
+    },
+    {
+      "value": "3,000",
+      "label": "cells per request for Fill with Gemini, on the plans that include it",
+      "sourceUrl": "https://workspaceupdates.googleblog.com/2026/10",
+      "sourceTitle": "Google Workspace Updates: October 2026"
+    },
+    {
+      "value": "200k",
+      "label": "rows allowed in a Connected Sheets pivot table",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "Google Drive Help: File size and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most game designers who use Google Sheets do one of three jobs. They balance an economy, tune stats for a set of items or units, or lay out a progression curve for levels or experience points. All three need the same habits: clean inputs, named bounds, and formulas you can check by eye."
+    },
+    {
+      "type": "paragraph",
+      "text": "The most detailed public write-up of this method is a Game Developer article on economy balancing. It describes one row per object, a globals table, and normalized columns. That article uses Microsoft Excel and never mentions Google Sheets. So the Sheets steps below translate the ideas. They are not a copy of the article's workflow."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up one row per item and a Globals tab"
+    },
+    {
+      "type": "paragraph",
+      "text": "Put one item on each row. A weapon, a unit, a potion, or a level gets its own row, and each property gets its own column. Keep a second tab called Globals for numbers that apply to the whole game. Examples are the cheapest and most expensive cost you allow, or the largest reward a player can earn."
+    },
+    {
+      "type": "paragraph",
+      "text": "The article gives a clear reason for this split. It lowers a weapon's maximum cost from 90,000 to 50,000 because players can only collect 50,000 coins. The bound follows what a player can actually earn. Write that reason in the Globals tab next to the number, so the next person knows why it is set."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Freeze the header row so the headers stay visible. The [freeze top row guide](/how-to/freeze-the-top-row-in-google-sheets) walks through it.",
+        "Put the item name in column A, so every row has a label you can search.",
+        "Keep one Globals tab. Do not type the same bound into many formulas.",
+        "Add a Notes column at the far right for the reason behind each change.",
+        "Use a dropdown for categories like weapon or potion, so spelling stays consistent. The [dropdown guide](/how-to/create-a-dropdown-list-in-google-sheets) shows the steps."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Name your bounds with named ranges"
+    },
+    {
+      "type": "paragraph",
+      "text": "A named range gives a cell or a block of cells a readable name. Instead of pointing at Globals!B4 in every formula, you point at CostMin. Select the cell in Globals, then open Data > Named ranges and add it with a name. Names cannot contain spaces. CostMin and Cost_Min both work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Named ranges make formulas easier to read a week later. Compare =(B2-Globals!B4)/(Globals!B5-Globals!B4) with =(B2-CostMin)/(CostMax-CostMin). The second line says what it does. The first line makes you remember which tab and cell hold each bound."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Normalize to 0 to 1 before you weight anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Weighted averages only work when each input sits on the same scale. A cost in the tens of thousands and a damage value in the tens cannot be averaged fairly. Turn each value into a number between 0 and 1 first. The article describes this as a normalization column for each relevant value."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a cost in column B, use =(B2-CostMin)/(CostMax-CostMin). The lowest allowed cost returns 0. The highest allowed cost returns 1. Costs in between land somewhere along the scale, so you can compare a cost with a damage value."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for edge cases. A value outside the bounds returns a result below 0 or above 1. That result is a signal. Either the item breaks your bounds, or the bound is wrong. Decide which one, then fix the one that is wrong. Do not wrap the result in MIN and MAX to hide the warning."
+    },
+    {
+      "type": "paragraph",
+      "text": "Store the weights in cells too. Put each weight on the Globals tab and name it, such as W_Cost. Then a weighted mean looks like =(C2*W_Cost+D2*W_Damage)/(W_Cost+W_Damage). Change one weight, and every row updates. You never have to edit a formula to tune the game."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check one row by hand",
+      "text": "A weighted mean built on raw, unnormalized inputs still returns a number. The number looks plausible and quietly favors whichever input is largest. Pick one row, calculate it on paper, and compare it with the sheet before you copy the formula down."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Color code inputs, curves, and formulas"
+    },
+    {
+      "type": "paragraph",
+      "text": "The article uses three header colors. Green marks values you type by hand. Yellow marks columns that hold distribution curves. White marks formula outputs. The rule behind the colors is simple. Formula columns should change only as a last resort."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Green header: typed values. These are the only cells you change during a normal tuning pass.",
+        "Yellow header: curve or distribution values. Expect to edit these often, and test each change.",
+        "White header: formulas. Treat them as read-only until a rule changes.",
+        "Format > Conditional formatting: flag any normalized cell that falls below 0 or above 1."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "To color a header, select it and use the fill color button in the toolbar. Paint format copies the look to other headers of the same type. Use the same three colors every time, so anyone who opens the file can read it at a glance."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard shortcuts for balancing sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google publishes its own list of Mac shortcuts for Sheets. Most balancing work uses a handful of them. On a Mac, menus open with Control and Option held together, then a letter. For example, Ctrl+Option+D opens the Data menu."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "Why it helps a balance sheet"
+      ],
+      "rows": [
+        [
+          "Select a whole column",
+          "Ctrl+Space",
+          "Clear, format, or check one value type across every item"
+        ],
+        [
+          "Select a whole row",
+          "Shift+Space",
+          "Check one item across all of its columns"
+        ],
+        [
+          "Fill a formula down",
+          "⌘+D",
+          "Copy the formula from the cell above into the selected cells"
+        ],
+        [
+          "Insert a comment",
+          "⌘+Option+M",
+          "Record why a bound changed, where the next person sees it"
+        ],
+        [
+          "Open the Data menu",
+          "Ctrl+Option+D",
+          "Reach Named ranges and data tools without the mouse"
+        ],
+        [
+          "Show the shortcut list",
+          "⌘+/",
+          "Look up any shortcut that is not in this table"
+        ]
+      ],
+      "caption": "Shortcuts from Google's keyboard shortcuts help page for Sheets on a computer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ctrl+Space selects a column in Sheets. It is not the Command key. On a default Mac, Command+Space opens Spotlight, so the Control key matters here. Many people press the wrong key once, then assume Sheets is broken. Check the key before you retry."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Charts and distributions in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sheets now creates box-and-whisker charts natively. Google's October 2026 Workspace update says the chart includes quartile and outlier calculations. The Rapid Release rollout started October 22, 2026, and the Scheduled Release rollout started November 6, 2026. Check which release track your account uses before you plan around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Distribution curves are harder. The article calls adjusting them cumbersome, and says they can stump designers without balancing experience. A practical approach is to build the curve in a yellow column with plain formulas, then chart the output. You can change one number and watch the chart move."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "To make a chart, select the data, then go to Insert > Chart. The [chart guide](/how-to/make-a-chart-in-google-sheets) covers the chart editor step by step. Chart the normalized values as well as the raw ones, so you can see when a scale is off."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits to plan for before a sheet gets big"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Drive's help page says Sheets supports up to 20 million cells or 100MB for a spreadsheet. The page does not say whether that cap covers every tab. Some third-party guides still say 10 million. Treat Google's page as the reference when you plan a large economy model."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Connected Sheets adds its own ceilings. Pivot tables built on a connected data source stop at 200k rows. Extracts stop at 500k rows or 5 million cells. Excel conversion removes any cell with more than 50,000 characters, so long notes in older files can disappear. Check long text before you convert an old workbook."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scripts have limits too. Google's Apps Script quotas page sets a 6-minute maximum for each run, for consumer and Workspace accounts. Daily trigger time is 90 minutes on consumer accounts and 6 hours on Workspace. Fill with Gemini handles 3,000 cells per request, and only on plans that include it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes game designers make in Google Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing a bound into a formula. Change it once in Globals, and every formula follows. Miss one, and the numbers quietly disagree.",
+        "Weighting raw values. A large raw number wins the average. Normalize first.",
+        "Dragging a formula down each column by hand. Select the target cells and press ⌘+D, then check the last row, since a range can end early.",
+        "Forgetting the Excel conversion limit on old files. Check long text cells before you convert.",
+        "Tuning with no record of the last good version. Save a named version before a big pass."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Version history is your undo for a whole session. Open File > Version history > See version history to compare earlier states with the current one. The [revision history guide](/how-to/see-revision-history-in-google-sheets) shows the steps in more detail."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you stay in the sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs next to Sheets. It is not a plugin, an add-in, or part of the file. Hold ⌥ ⌘, which means Option and Command together, and ask about anything on screen. Lazur answers out loud. Ask where something is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you. It does not edit your file or operate Sheets. You still type each formula, pick each cell, and make each change. That keeps the balance decisions in your hands, where they belong when a bound is tied to what players can earn."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Lazur types clean, formatted text at the cursor in any app. Use it for design notes in a comment or a Notes column. Snippets, a personal dictionary, and clipboard slots help with names you type often, like CostMin and W_Cost."
+    },
+    {
+      "type": "paragraph",
+      "text": "For research, Lazur runs searches in its own Chrome tabs through the Lazur for Chrome extension. It comes back with a summary and a report. Use that for a quick read on how other studios describe their curves, then check the sources yourself before you change a number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer, and they are not stored. Content is never used to train AI models. If your balance numbers sit under an NDA, check that against your studio's rules before you ask about them."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your first balancing sheet"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Build the Globals tab with only the bounds you can justify. Write the reason beside each one.",
+        "Name each bound with Data > Named ranges, then reference the names in your formulas.",
+        "Normalize one column and check one row by hand before you copy the formula down.",
+        "Color the headers green, yellow, and white, and add conditional formatting for values outside 0 to 1.",
+        "Check your file size and any Apps Script plans against the limits above, before the model grows."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "When the setup works, save a named version, then start tuning. If you want Lazur beside you for the menus and the notes, get it from the [download page](/download). Pricing is on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I use Google Sheets for game design on a Mac?",
+      "answer": "Yes. Google Sheets runs in a browser on your Mac, and the menu paths in this guide match what you see in Chrome or Safari. Formulas, named ranges, charts, and co-editing all work there. Some Gemini features need a Workspace plan, so check your plan first."
+    },
+    {
+      "question": "What is the cell limit in Google Sheets?",
+      "answer": "Google Drive Help says up to 20 million cells or 100MB for a spreadsheet. The page does not say whether the cap covers every tab, so plan for the whole file. Some third-party guides still say 10 million."
+    },
+    {
+      "question": "Why normalize values to 0 to 1 before a weighted average?",
+      "answer": "A weighted average mixes its inputs. If one input is in the tens of thousands and another is in the tens, the big one decides the result. Normalizing puts both on the same 0 to 1 scale, so the weights mean what you intend."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet or click buttons for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It points, explains, guides you one click at a time, answers out loud, and drafts or types text. You make each change yourself."
+    },
+    {
+      "question": "Does Lazur see my balance data?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Is Lazur a Google Sheets add-on?",
+      "answer": "No. Lazur is not a plugin or add-in for any app, and it has no partnerships with app makers. It runs beside Sheets on your Mac."
+    },
+    {
+      "question": "Does Google Sheets have a box-and-whisker chart now?",
+      "answer": "Google's October 2026 Workspace update says Sheets creates box-and-whisker charts natively, with quartile and outlier calculations. The Rapid Release rollout started October 22, 2026, and the Scheduled Release rollout started November 6, 2026."
+    },
+    {
+      "question": "Where do I see past versions of a balance sheet?",
+      "answer": "Open File > Version history > See version history. You can compare earlier versions with the current one, and you can name a version before a risky change so you can find it later."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets (Computer)",
+      "url": "https://support.google.com/docs/answer/181110?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Drive Help: File size and limits",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Workspace Updates: October 2026",
+      "url": "https://workspaceupdates.googleblog.com/2026/10",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Quotas for Google Services: Apps Script",
+      "url": "https://developers.google.com/apps-script/guides/services/quotas",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "My Approach To Economy Balancing Using Spreadsheets",
+      "url": "https://www.gamedeveloper.com/design/my-approach-to-economy-balancing-using-spreadsheets",
+      "publisher": "Game Developer",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is Named ranges in this sheet?",
+    "capability": "point",
+    "result": "Lazur circles Named ranges under the Data menu and labels it. You click it yourself.",
+    "shell": "sheet",
+    "context": "Balancing sheet open in Chrome, Globals tab selected, cost bounds typed in the cells",
+    "output": "Lazur circles Named ranges under the Data menu and labels it, then waits while you open it.",
+    "pointsAt": "Named ranges"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is Named ranges in this sheet?",
+      "result": "Lazur circles the Data menu item and labels it, so you find it without hunting.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through naming this cell CostMax.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Explain why this weighted mean is above one.",
+      "result": "Lazur answers out loud from what is on screen, so you hear the likely cause before you edit anything.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a comment that explains why the max cost is 50,000.",
+      "result": "Lazur drafts the text. You paste it into a comment or the Globals notes column yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a design note: this weapon is too cheap for the early game.",
+      "result": "Hold fn and speak. Lazur types clean text at the cursor, so the note lands where you are working.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research how other studios describe progression curves.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "What is the shortcut to fill this formula down?",
+      "result": "Lazur says ⌘+D fills the selected cells from the cell above, then waits for your next question.",
+      "capability": "explain"
+    },
+    {
+      "say": "Set a timer while I rebalance this tab.",
+      "result": "Lazur sets the timer and tells you out loud when it ends.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "game-designers-google-sheets",
+  "role": "game-designers",
+  "app": "google-sheets",
+  "roleName": "Game designers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/game-designers-google-sheets/google-sheets-for-game-designers-on-mac-1-80a977.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Game designer working on a laptop at a desk, the setting where Google Sheets balancing work usually happens",
+      "caption": "A balancing pass usually happens at a desk, one spreadsheet tab at a time.",
+      "keywords": [
+        "google sheets for game designers on mac",
+        "Google Sheets",
+        "Game designers",
+        "Mac",
+        "game designer laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tolgahansoylu",
+        "url": "https://pixabay.com/users/tolgahansoylu-9818037/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-computer-technology-gaming-7090156/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/game-designers-google-sheets/google-sheets-for-game-designers-on-mac-2-c49f12.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Video game development team looking at screens with level and character design work on them",
+      "caption": "Charts from a balance sheet feed back into level and item design.",
+      "keywords": [
+        "google sheets for game designers on mac",
+        "Google Sheets",
+        "Game designers",
+        "Mac",
+        "video game development",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "bethL",
+        "url": "https://pixabay.com/users/bethL-510279/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/blocks-child-toy-education-game-503109/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/game-designers-google-sheets/google-sheets-for-game-designers-on-mac-3-39d999.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person using a Mac at a desk, checking rows in a Google Sheets file for game balance",
+      "caption": "Keep the Mac close, and check each formula before you trust the total.",
+      "keywords": [
+        "google sheets for game designers on mac",
+        "Google Sheets",
+        "Game designers",
+        "Mac",
+        "person working Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for game designers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "google sheets game balancing": 1,
+      "game economy spreadsheet": 1,
+      "Google Sheets keyboard shortcuts Mac": 1,
+      "Google Sheets named ranges": 1,
+      "game design spreadsheet setup": 1,
+      "Google Sheets limits 20 million cells": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,603 @@
+{
+  "title": "How to handle mid-sprint scope changes on Mac: a product manager's guide for 2026",
+  "metaTitle": "Mid-sprint scope changes: fixes for product managers on Mac",
+  "description": "Mid-sprint scope changes break plans. Learn what they cost, why they happen, and the fixes product managers can use on a Mac today.",
+  "targetKeyword": "mid-sprint scope changes",
+  "secondaryKeywords": [
+    "scope creep in a sprint",
+    "sprint scope change",
+    "change requests during a sprint",
+    "sprint goal protection",
+    "Linear cycle scope",
+    "Scrum Guide scope renegotiation"
+  ],
+  "intro": "Mid-sprint scope changes are work that gets added, swapped, or enlarged after a sprint has started. The 2020 Scrum Guide allows scope to be clarified and renegotiated with the Product Owner. That only holds if the Sprint Goal and quality stay protected.",
+  "tldr": [
+    "A mid-sprint scope change is any work added to a sprint after it starts, or work that grows once it is in progress.",
+    "The Scrum Guide lets you renegotiate scope with the Product Owner, as long as the Sprint Goal and quality hold.",
+    "Interruptions cost focus. A 2008 study, as summarized by a secondary source, found about 23 minutes 15 seconds to return to the original task.",
+    "Write a change rule, keep one visible scope line, and review changes at a fixed point each week.",
+    "Lazur can explain what is on screen, draft the change note, and dictate it into Slack. You still make the changes yourself."
+  ],
+  "stats": [
+    {
+      "value": "23 min 15 s",
+      "label": "average time to return to the original task after an outside interruption, 2008 study (secondary summary)",
+      "sourceUrl": "https://www.aftertone.io/common-productivity-questions/what-does-gloria-marks-research-say-about-interruptions/",
+      "sourceTitle": "What Does Gloria Mark's Research Say About Interruptions at Work? (Aftertone)"
+    },
+    {
+      "value": "36",
+      "label": "workers tracked in that 2008 study, per the same secondary summary",
+      "sourceUrl": "https://www.aftertone.io/common-productivity-questions/what-does-gloria-marks-research-say-about-interruptions/",
+      "sourceTitle": "What Does Gloria Mark's Research Say About Interruptions at Work? (Aftertone)"
+    },
+    {
+      "value": "9.9%",
+      "label": "of every dollar organizations waste on poor project performance, PMI survey from October 2017. Not specific to scope changes.",
+      "sourceUrl": "https://www.ghanabusinessnews.com/2018/02/19/businesses-around-the-world-waste-1m-every-20-seconds-survey/",
+      "sourceTitle": "Businesses around the world waste $1m every 20 seconds (Ghana Business News, citing PMI)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A mid-sprint scope change is any work that enters a sprint after it has started. Sometimes it is a new request. Sometimes it is a bug that jumps the queue. Sometimes it is an old story that grows from a small fix into a rebuild. All three land in the same sprint, and all three can break the plan. This page covers what they cost, why they happen, and what you can do about them on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a mid-sprint scope change looks like"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a sales lead asks for a bulk export on the second day of a sprint. Nobody in the room says no. The request becomes a new issue in Linear, and someone assigns it to a developer who is halfway through a login fix. The Sprint Goal still reads the same. The team now carries more work than it committed to, and the board does not explain why."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Addition: a new issue enters the sprint after it started.",
+        "Swap: a planned story leaves the sprint for an urgent request.",
+        "Growth: a story sized as small turns out to be large.",
+        "Reopening: a finished story returns with new acceptance criteria."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The first two are easy to see on a board. Growth is harder. It hides inside a story whose title never changed. Watch estimates and acceptance criteria, not only the issue list. A reopened story is also a change, even when the issue count stays flat."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What mid-sprint scope changes cost your team"
+    },
+    {
+      "type": "paragraph",
+      "text": "The biggest cost is focus, and it spreads across people. Gloria Mark and colleagues studied how interruptions affect workers. In a 2008 study, workers took an average of 23 minutes 15 seconds to return to the original task after an outside interruption. A secondary summary of that work says the study tracked 36 workers. Check the original paper before you quote these figures in a meeting, because summaries sometimes get dates and sample sizes wrong."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Money is harder to pin down. A Project Management Institute survey, conducted online in October 2017, found organizations waste 9.9% of every dollar on poor project performance. That figure covers projects in general. It does not measure sprint scope change, so do not attach it to your team."
+    },
+    {
+      "type": "table",
+      "caption": "Common costs of mid-sprint scope changes and who notices them first",
+      "headers": [
+        "Cost",
+        "What it looks like",
+        "Who feels it first"
+      ],
+      "rows": [
+        [
+          "Lost focus",
+          "Developers switch tasks and lose their place in the work",
+          "Engineers in the middle of a task"
+        ],
+        [
+          "Missed Sprint Goal",
+          "The original goal slips while new work lands",
+          "Product Owner and stakeholders"
+        ],
+        [
+          "Quality drop",
+          "Rushed work skips review or testing",
+          "QA and end users"
+        ],
+        [
+          "Hidden overtime",
+          "Extra work gets finished after hours",
+          "Developers and designers"
+        ],
+        [
+          "Lost trust",
+          "People stop believing the sprint plan",
+          "The whole team"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why mid-sprint scope changes keep happening"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most causes come from how work enters the team. Requests arrive in chat, email, and hallway talk. The sprint board sees none of it until someone types an issue. Product managers feel this most, because they are often the ones asked to say yes. The fix starts at that moment, not at the sprint review."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Not every change is a failure",
+      "text": "The Scrum Guide says scope may be clarified and renegotiated as more is learned. A change that protects the Sprint Goal can be a good call. The failure is a change nobody tracked, or one that broke the goal without a decision."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Linear shows a cycle that changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Linear calls a sprint a cycle. Its cycle graph has a gray line for total scope and a solid blue line for completed issues, according to Linear's docs. The gray line uses estimate points, or issue count when you do not use estimates. The docs do not say outright how mid-cycle additions move that line. Test this on a practice cycle before you rely on it in a meeting."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Extending a cycle cuts into the time for the following cycle.",
+        "Open issues generally roll over automatically when a cycle ends.",
+        "There is no way to keep unfinished issues in a closed cycle.",
+        "The cycle graph updates automatically as work in the cycle changes."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Extending a cycle looks like a fix. It moves the cost into the next cycle, and that team pays it without knowing why. Extend only when the team agrees on the trade-off. Otherwise, let unfinished work roll over and write the cause in your notes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Linear's desktop app runs on macOS Intel and on Apple Silicon. It downloads and installs updates automatically in the background. Linear's docs do not list a minimum macOS version, so check your own Mac before you plan an upgrade."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Jira reports scope change"
+    },
+    {
+      "type": "paragraph",
+      "text": "Jira's sprint reports count any issue added after the sprint start time as scope change, according to Atlassian's support article. That rule has one trap. If someone sets the sprint start time to a past timestamp, planned issues can show up as scope change. Atlassian's fix is to edit the sprint start time so it sits closer to when the sprint actually started."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check this before you blame the team. A wrong start time makes a clean sprint look messy. Community posts also disagree on whether the native sprint report shows scope change at all. Open your own report and confirm what it shows before you promise a chart to leadership."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Scrum rules you can quote in planning"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2020 Scrum Guide sets the ground rules. It says no changes should endanger the Sprint Goal, and quality does not decrease. It says the Product Backlog is refined as needed. It also says scope may be clarified and renegotiated with the Product Owner as more is learned. Only the Product Owner can cancel the Sprint."
+    },
+    {
+      "type": "paragraph",
+      "text": "That gives you a simple test. Does this change endanger the Sprint Goal? Does it lower quality? If both answers are no, the Product Owner can renegotiate scope with the team. If either answer is yes, the change waits for the next Sprint, or the Product Owner decides whether to cancel the current one."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make mid-sprint scope changes worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Saying yes in a hallway. The change exists before anyone writes it down.",
+        "Adding an issue without moving one out. The sprint grows and the goal stays the same.",
+        "Hiding growth inside estimates. A story that doubled should show up as a change.",
+        "Treating every change as a failure. People stop raising problems early.",
+        "Skipping the Product Owner. Renegotiation runs through them, according to the Scrum Guide."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes feel polite in the moment. That is why they repeat. The routine in the next section gives you a polite way to say not yet, and a record you can review later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: urgent bugs, outages, and a dead goal"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some changes should not wait. A production outage is the usual example. Handle it, then record it as a change with its reason. Do not pretend the sprint was clean. Your review later needs that record, and so does the next planning meeting."
+    },
+    {
+      "type": "paragraph",
+      "text": "A sprint can also stop. The Scrum Guide says only the Product Owner has the authority to cancel a Sprint. If the Sprint Goal is dead, ask the Product Owner to make that call. Do not quietly drop the goal and keep the timebox running. That tends to make the next planning harder."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for small favors too. A request that looks small still changes the sprint. Log it the same way as a large change. Small favors add up faster than most teams expect."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A routine for handling a change on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the same routine every time. It takes a few minutes, and it makes the next change easier. Run it when a request first reaches the team, not after the board already changed. Keep the Sprint Goal open in a window while you work, so you check each change against it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the request in one sentence, with the Sprint Goal next to it.",
+        "Ask the requester what happens if the work waits for the next sprint.",
+        "Check the Sprint Goal and quality. If either is at risk, bring in the Product Owner.",
+        "Make the trade-off visible. For each addition, name a planned issue that moves out.",
+        "Update the cycle or sprint in your tool, and add a note that gives the reason.",
+        "Post the change in the team's Slack channel so everyone reads the same thing."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Draft the note first",
+      "text": "Write the change note before you post it. A plain note cuts the back and forth. Ask Lazur to draft it from what you just said, then edit the result yourself before it goes out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits, honestly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where something is, and Lazur draws a circle and a label around it. Lazur does not click buttons or operate other apps for you. You still make every change yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "For this problem, the useful parts are simple. You can ask what the cycle graph means while it is on screen. You can hold fn to dictate a change note into Slack at the cursor. You can ask Lazur to draft the note, then edit it. Lazur can also run research in its own Chrome tabs and come back with a summary and a report."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and customer data on a sprint board"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Sprint boards often show customer names or contract details. Follow your employer's rules on that data before you ask Lazur about it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one rule this week. Write it down, share it with the team, and use it on the next request. A written rule matters more here than any tool setting. For the product side of this, see [Linear for product managers on Mac](/for/product-managers/linear) and [Slack for product managers on Mac](/for/product-managers/slack)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is a mid-sprint scope change?",
+      "answer": "It is any work added, swapped, or enlarged after the sprint starts. Jira's sprint reports count an issue added after the sprint start time as scope change. The Scrum Guide allows scope to be clarified and renegotiated during a Sprint."
+    },
+    {
+      "question": "Can a product manager add work to a sprint halfway through?",
+      "answer": "Yes, if the Sprint Goal and quality stay protected. If you are not the Product Owner, bring them in before the work enters the sprint. If the change puts the goal at risk, it waits or the Product Owner decides about cancelling."
+    },
+    {
+      "question": "Is a mid-sprint scope change always a failure?",
+      "answer": "No. The Scrum Guide says scope may be clarified as the team learns more. The problem is a change nobody tracked, or one that breaks the goal without anyone deciding to make the trade-off."
+    },
+    {
+      "question": "How much focus does an interruption cost?",
+      "answer": "A 2008 study, as summarized by Aftertone, reported an average of 23 minutes 15 seconds to return to the original task after an outside interruption. Check the original paper before you quote that number in a meeting."
+    },
+    {
+      "question": "Should I extend a Linear cycle when scope grows?",
+      "answer": "Be careful. Linear's docs say an extended cycle cuts into the time for the following cycle. Extending moves the cost forward, so decide that with the team on purpose."
+    },
+    {
+      "question": "Why does Jira show planned issues as scope change?",
+      "answer": "A sprint start time set to a past timestamp can cause it. Atlassian recommends editing the sprint start time so it is closer to when the sprint actually started."
+    },
+    {
+      "question": "Does Lazur change my Linear or Jira board for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps for you. It can point at what is on screen, guide you one step at a time, explain what you see, and draft text. You make the changes yourself."
+    },
+    {
+      "question": "Is Lazur available on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, but it is not available. Check the pricing page for plan details and the trial."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The 2020 Scrum Guide",
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "publisher": "Scrum.org / Scrum Guides (Schwaber & Sutherland)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Planned scope issues in sprint showing as scope change in burndown reports",
+      "url": "https://support.atlassian.com/jira/kb/planned-scope-issues-in-sprint-showing-as-scope-change-in-burndown-reports/",
+      "publisher": "Atlassian Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cycles",
+      "url": "https://linear.app/docs/use-cycles.md",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cycle graph",
+      "url": "https://linear.app/docs/cycle-graph.md",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Get the app",
+      "url": "https://linear.app/docs/get-the-app.md",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What Does Gloria Mark's Research Say About Interruptions at Work?",
+      "url": "https://www.aftertone.io/common-productivity-questions/what-does-gloria-marks-research-say-about-interruptions/",
+      "publisher": "Aftertone (secondary; cites Mark et al.)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Businesses around the world waste $1m every 20 seconds",
+      "url": "https://www.ghanabusinessnews.com/2018/02/19/businesses-around-the-world-waste-1m-every-20-seconds-survey/",
+      "publisher": "Ghana Business News (secondary; cites PMI 2018)",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "mid-sprint scope changes",
+  "costs": [
+    {
+      "title": "Lost focus on work in progress",
+      "text": "When work changes mid-task, people lose their place. A 2008 study, as summarized by Aftertone, found an average return of 23 minutes 15 seconds after an outside interruption. Count how many people are mid-task when a request lands."
+    },
+    {
+      "title": "A Sprint Goal that quietly slips",
+      "text": "The Scrum Guide says no changes should endanger the Sprint Goal. When work is added with no trade-off, the goal turns into a list of things. Stakeholders then see a missed goal they never agreed to."
+    },
+    {
+      "title": "Quality that drops under pressure",
+      "text": "The Scrum Guide says quality does not decrease. Scope that grows late often gets less testing. Those bugs return as next sprint's work, so the cost shows up later on the board."
+    },
+    {
+      "title": "Money you cannot pin to one sprint",
+      "text": "A PMI survey, conducted in October 2017, found organizations waste 9.9% of every dollar on poor project performance. That is a general figure, not a scope change figure. Use it as context, not as a number for your team."
+    },
+    {
+      "title": "Trust, which costs the most",
+      "text": "When a plan changes every week, people stop reading plans. Stakeholders then ask for status in meetings instead. That eats time, and it weakens the team's credibility on its own work."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Requests skip the backlog",
+      "text": "Sales, support, and executives ask for work in chat and in person. Those requests reach the team before they reach the backlog. The sprint then absorbs them, because they feel urgent. Look at where the request first appeared, not just where the issue was filed."
+    },
+    {
+      "title": "No agreed rule for change",
+      "text": "Many teams never write down when a change is allowed. Without a rule, each change becomes a new argument. The Scrum Guide gives the outline: renegotiate with the Product Owner, protect the Sprint Goal, and keep quality. Your team still has to decide the details."
+    },
+    {
+      "title": "Estimates that were too optimistic",
+      "text": "A story sized as small grows once someone starts it. The title stays the same, so the board looks clean. Growth is a scope change too. Track it when estimates move, not only when issues are added."
+    },
+    {
+      "title": "A vague Sprint Goal",
+      "text": "A vague goal lets almost anything fit. If the goal reads improve onboarding, a new export request seems to fit. A specific goal makes trade-offs obvious. The Scrum Guide calls the Sprint Goal the single objective for the Sprint."
+    },
+    {
+      "title": "The Product Owner is unavailable",
+      "text": "When the Product Owner is busy, developers pick up changes on their own. That feels fast. It moves the decision away from the person who owns the backlog, and the Scrum Guide puts that person at the center of renegotiation."
+    },
+    {
+      "title": "Tool settings that hide change",
+      "text": "Jira can flag a planned issue as scope change if the sprint start time is wrong. A wrong setting makes the report noisy. People then stop trusting the report, and real changes slip through without anyone noticing."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write a one-line change rule",
+      "text": "Agree on what a change needs before it enters the sprint. A fair starting rule: the Product Owner approves any change that adds work, and the team names what it drops. Put the rule in the team's Notion page, and read it at the start of each sprint planning."
+    },
+    {
+      "title": "Put the Sprint Goal at the top",
+      "text": "Write the Sprint Goal in one sentence at the top of the sprint board. Before you add work, check it against the goal. If the change does not serve the goal, it waits. This matches the Scrum Guide test of not endangering the goal."
+    },
+    {
+      "title": "Make every addition swap something",
+      "text": "For each new issue, name a planned issue that moves to the next sprint. If nothing can move, the Product Owner decides whether the change waits. This keeps total work close to what the team committed to."
+    },
+    {
+      "title": "Watch the scope line in Linear",
+      "text": "In Linear, the cycle graph's gray line shows total scope. Check it on the first day and again at the midpoint. If the line climbs, ask why before anyone asks for more time. Linear's docs do not spell out how mid-cycle additions move the line, so test this on a practice cycle first."
+    },
+    {
+      "title": "Fix Jira start times",
+      "text": "If Jira flags planned work as scope change, open the sprint and edit its start time to match when the sprint really began. Atlassian's support article recommends this exact fix. Then check the sprint report again to confirm the flags cleared."
+    },
+    {
+      "title": "Post each change where the team reads",
+      "text": "Post each change in the team's Slack channel with the reason and the trade-off. One clear message beats five side threads. Keep the decision in the top message, and use a thread only for discussion."
+    },
+    {
+      "title": "Review changes at a fixed point",
+      "text": "Hold a short check on the change log each week, or at the sprint midpoint. Count the changes, note their causes, and bring the top pattern to your retro. Patterns tell you more than single changes do."
+    },
+    {
+      "title": "Give non-urgent asks a parking lot",
+      "text": "Give requesters a place where their idea waits. Put it in the backlog with a date to review it in planning. Requesters accept a wait more easily when they see the next planning date. No controlled study of these fixes turned up in our research, so treat them as practice, not proof."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "point",
+      "say": "Where is the scope line on this cycle graph?",
+      "result": "Lazur draws a circle and a label around the gray scope line on your screen, then says what it shows."
+    },
+    {
+      "capability": "explain",
+      "say": "What does this burndown chart actually count?",
+      "result": "Lazur explains the chart on screen out loud, so you know what it counts before you report it."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the change note into Slack.",
+      "result": "Dictation types clean, formatted text at the cursor in any app. Read it over before you send it."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a note: the bulk export is in, and the login fix moves to next sprint.",
+      "result": "Lazur drafts the change note from what you said. You edit it and post it yourself."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through extending a cycle, one step at a time.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you."
+    },
+    {
+      "capability": "research",
+      "say": "Research how Jira defines scope change and summarize the help article.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the sources yourself."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to review scope changes on Friday.",
+      "result": "Lazur sets an Apple Reminders reminder by voice, so the weekly review does not slip."
+    }
+  ],
+  "demo": {
+    "capability": "point",
+    "context": "Linear cycle view, middle of a sprint",
+    "spoken": "Where is the scope line on this cycle graph?",
+    "pointsAt": "gray scope line",
+    "result": "Lazur draws a circle and a label around the gray line, then says what it shows.",
+    "output": "The gray line shows total scope, in estimate points or issue count. Confirm how mid-cycle additions move it on a practice cycle.",
+    "shell": "generic"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Write the change rule",
+      "text": "Sit down with the Product Owner for a short meeting. Agree on what a change must show before it enters the sprint: its effect on the Sprint Goal, its quality impact, and what leaves."
+    },
+    {
+      "label": "Day 2",
+      "title": "Set the Sprint Goal",
+      "text": "Write the Sprint Goal in one sentence at the top of the board or Notion page. Check it against every request that arrives that day, not only the big ones."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check the scope line",
+      "text": "Open the cycle graph in Linear, or the sprint report in Jira. Note the starting baseline. Confirm what your tool counts as scope change before you report it to anyone."
+    },
+    {
+      "label": "Day 4",
+      "title": "Run the change routine",
+      "text": "When a request arrives, use the six-step routine. Draft the note with Lazur, edit it, then post it in Slack with the trade-off stated in the first line."
+    },
+    {
+      "label": "Day 5",
+      "title": "Hold the review",
+      "text": "Look at every change from the sprint. Group them by cause, such as an unclear goal or a hallway request. Bring the top pattern to the retro, and agree on one change to try next sprint."
+    }
+  ],
+  "apps": [
+    "linear",
+    "slack",
+    "notion",
+    "google-sheets"
+  ],
+  "type": "problem",
+  "slug": "mid-sprint-scope-changes-engineering",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/mid-sprint-scope-changes-engineering/mid-sprint-scope-changes-1-87294c.jpg",
+      "width": 1280,
+      "height": 570,
+      "alt": "A product manager works on a laptop at a desk while reviewing a sprint plan for mid-sprint scope changes.",
+      "caption": "Reviewing the sprint plan before a change lands.",
+      "keywords": [
+        "mid-sprint scope changes",
+        "Product managers",
+        "Mac",
+        "product manager laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/time-time-management-stopwatch-3933688/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/mid-sprint-scope-changes-engineering/mid-sprint-scope-changes-2-ff3781.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A team meets around a table to talk through mid-sprint scope changes before they enter the sprint.",
+      "caption": "Talking through a change before it enters the sprint.",
+      "keywords": [
+        "mid-sprint scope changes",
+        "Product managers",
+        "Mac",
+        "team planning meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-team-regulation-consultation-4249390/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "mid-sprint scope changes",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 12,
+    "secondary": {
+      "scope creep in a sprint": 1,
+      "sprint scope change": 19,
+      "change requests during a sprint": 1,
+      "sprint goal protection": 1,
+      "Linear cycle scope": 1,
+      "Scrum Guide scope renegotiation": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

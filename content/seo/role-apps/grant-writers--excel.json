@@ -1,0 +1,619 @@
+{
+  "title": "Excel for grant writers on Mac: budget templates, narratives and tracking in 2026",
+  "metaTitle": "Excel for Grant Writers on Mac: Budgets, Narratives, Tracking",
+  "description": "Excel for grant writers on Mac: build budget workbooks, match narratives to numbers, track spending after award, and avoid Mac limits in Excel.",
+  "targetKeyword": "excel for grant writers on mac",
+  "secondaryKeywords": [
+    "grant budget template Excel Mac",
+    "indirect cost formula in Excel",
+    "budget narrative Excel formulas",
+    "track grant spending in Excel",
+    "Excel for Mac limits pivot tables",
+    "Excel budget template for grants"
+  ],
+  "intro": "Excel for grant writers on Mac comes down to three jobs. You build the budget, you match the narrative to its numbers, and you track real spending after the award starts. Microsoft 365 for Mac covers all three with templates, tables and formulas, but it has gaps you need to know about. This page covers the setup, the formulas, and the Mac limits. Lazur can point at cells and answer out loud while you work.",
+  "tldr": [
+    "Build the budget with the funder's categories, not your own.",
+    "Put the indirect rate in one named cell and point every indirect formula at it.",
+    "Add a check cell that reads total cost minus request minus match. It should show zero.",
+    "Use tables and table names so totals keep working when you add rows.",
+    "On Mac, avoid Data Model pivots and VBA-heavy tools. Check your build in Excel > About Excel."
+  ],
+  "stats": [
+    {
+      "value": "41.3%",
+      "label": "of respondents in one survey said one grant application takes 10 to 20 hours",
+      "sourceUrl": "https://www.instrumentl.com/blog/how-long-to-find-grants",
+      "sourceTitle": "How Long Does it Actually Take to Find Grants? Instrumentl"
+    },
+    {
+      "value": "25.21%",
+      "label": "named the budget as their least favorite grant section to write",
+      "sourceUrl": "https://www.instrumentl.com/blog/how-long-to-find-grants",
+      "sourceTitle": "How Long Does it Actually Take to Find Grants? Instrumentl"
+    },
+    {
+      "value": "44%",
+      "label": "of public-sector grant organizations still rely on spreadsheets or a mix of tools",
+      "sourceUrl": "https://eunasolutions.com/resources/how-grant-management-software-costs-work/",
+      "sourceTitle": "How Much Does Grant Management Software Cost for Government? Euna Solutions"
+    },
+    {
+      "value": "39%",
+      "label": "of grants staff spend up to half their working hours on manual tasks",
+      "sourceUrl": "https://eunasolutions.com/resources/how-grant-management-software-costs-work/",
+      "sourceTitle": "How Much Does Grant Management Software Cost for Government? Euna Solutions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What grant writers do in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most grant writers use Excel for three jobs. They build the budget. They check that the budget narrative matches it. Then they track real spending once the award starts. Each job breaks in a different way, so each needs its own habit. This page covers all three, plus the Mac limits that catch people out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Budget work takes real time. In one Instrumentl survey, 41.3% of respondents said one application takes 10 to 20 hours. The same article found that 25.21% named the budget as their least favorite section to write. The article does not state its sample size, so treat those percentages as a rough guide."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a grant budget template that follows the funder's categories"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the categories, not the numbers. Federal forms use SF-424A object classes: personnel, fringe, travel, equipment, supplies, contractual, construction, and other. Many foundation forms use different labels, and some add a match column. Match the funder's labels exactly, even when they look odd to you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Free templates save you the setup work. Givingarc's grant budget template follows the federal object classes and adds a match column that many foundation forms lack. Nonprofit Sheets offers a template too. It also works in Google Sheets, Apple Numbers, and LibreOffice, so you can test it in whatever you already use."
+    },
+    {
+      "type": "paragraph",
+      "text": "To start from a template, choose File > New from Template. Templates saved in your personal templates folder show up under the Personal tab. Keep one clean skeleton for each funder you apply to, and copy it for each new application."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Givingarc: an Excel file with four tabs named Budget, Settings, Justification, and Instructions.",
+        "Nonprofit Sheets: four tabs named Grant Budget, Budget Narrative, Budget vs Actual, and Instructions.",
+        "Pick the layout that fits your funder, then rename the tabs to match the form."
+      ]
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Budget line",
+        "What goes in it",
+        "Excel habit"
+      ],
+      "rows": [
+        [
+          "Personnel",
+          "Salary and effort for each staff member",
+          "One row per person, with rate and effort columns"
+        ],
+        [
+          "Fringe",
+          "Benefits, usually a rate applied to personnel",
+          "Put the fringe rate in one cell and multiply from it"
+        ],
+        [
+          "Travel",
+          "Trips tied to the project",
+          "Keep quantity, unit cost, and trip purpose in separate columns"
+        ],
+        [
+          "Equipment",
+          "Items above the funder's cost threshold",
+          "Flag each row so the indirect formula can skip it"
+        ],
+        [
+          "Supplies",
+          "Consumables and project materials",
+          "List each group, not every pen"
+        ],
+        [
+          "Indirect",
+          "Overhead on a base you define",
+          "Read the rate from a named cell, never retype it"
+        ]
+      ],
+      "caption": "A starter layout. Check each line against your funder's guidelines."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set one indirect cost formula that reads a single rate cell"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Givingarc template sets the indirect rate to the 15% de minimis rate on its Settings tab. You can enter a negotiated rate instead. The template computes indirect costs on modified total direct costs. That base leaves out flagged equipment, rent, participant support, and subaward amounts above $50,000."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the logic with made-up numbers. Say direct costs total $100,000, and $10,000 of that is flagged equipment. The base becomes $90,000. At 15%, indirect costs are $13,500. If your organization has a negotiated rate, only the rate cell changes, and every indirect row follows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the rate cell so your formulas read clearly. Select the rate cell, then choose Formulas > Define Name. Type IndirectRate as the name. Your indirect row can now read =IndirectRate*(TotalDirect-FlaggedEquipment), with the other cells named the same way."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check the base first",
+      "text": "Some funders cap indirect costs or define their own base. Read the funder's guidelines before you trust the 15% default. The template is a starting point, not the rule."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Make the match column add up before you submit"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Givingarc template compares the match column with total project cost on its Budget tab. It shows any shortfall in dollars. Build the same check yourself, even if your template skips it. Add a cell with total cost minus requested amount minus match. It should show zero."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep in-kind match in its own column so you can total it separately.",
+        "Type match amounts as numbers. A number stored as text won't add up in a SUM.",
+        "Use Home > Conditional Formatting to turn a non-zero check cell red."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write a budget narrative that matches the spreadsheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "A narrative fails when it drifts from the spreadsheet. Nonprofit Sheets says its narrative amounts flow straight from the budget tab. Copy that idea. Use the same order and category names as the budget. For each calculation, show quantity, unit cost, and the basis for the number."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can build the sentence with a formula. In a narrative cell, type =\"Personnel: \"&TEXT(C5,\"$#,##0\"). TEXT formats the number as dollars, and the ampersand joins the words to the amount. Fill the formula down, and the wording updates when the budget changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Drafting the wording is a separate job. Ask Lazur to draft a sentence for one budget line, then check every figure against the spreadsheet yourself. For full narrative sections, see [Word for grant writers](/for/grant-writers/word)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track grant spending in Excel after the award starts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Budget versus actual goes stale fast. Nonprofit Sheets advises checking it at least quarterly. For large awards, check monthly. Some funders require prior approval for moves above 10% between categories, so watch those lines closely."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use three columns for each budget line: Budgeted, Spent to date, and Remaining. Remaining is =Budgeted-Spent. Percent used is =Spent/Budgeted, formatted as a percent. In this made-up example, a supplies line is $20,000 and you have spent $14,000. Remaining is $6,000, and 70% is used."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn each range into a table. Select the range and press ⌘T, or choose Insert > Table. Tables extend when you add rows, and their formulas fill down on their own. This keeps a spending log from breaking every time a receipt arrives."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Name tables and avoid merged cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a table has a name, a formula can read =SUM(tblSpending[Amount]) instead of =SUM(D2:D40). The reference stays correct when you add rows. Keep names short and plain. tblPersonnel and tblTravel are easy to read later."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name at creation",
+      "text": "Microsoft's October 2026 Excel post says you can now name a table when you create it on Mac. Name it before your first formula uses it, so every formula picks up the name."
+    },
+    {
+      "type": "paragraph",
+      "text": "Avoid merged cells in budget headers. Microsoft's September 2026 post lists Center Across Selection on the Merge & Center menu for Windows and Mac. It is Insiders-only on both, with no general release date. Plain left-aligned headers sort and filter without trouble."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits that trip up grant workbooks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac Excel has gaps in pivot tables. Noble Desktop reports that pivot tables built on the Excel Data Model can't be filtered on Mac, and pivot charts are static. If your budget summary needs filters, build the pivot from a plain table range. The [pivot table guide](/how-to/make-a-pivot-table-in-excel) walks through the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query had bigger gaps. An Excel Campus article from May 11, 2022 said Mac had no connection-only queries, no From Folder option, and limited data sources. That article is older, so test any Power Query step in your own workbook before you plan around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Other gaps matter for shared budgets. Noble Desktop says the Quick Access Toolbar can't be imported or exported on Mac. Find and Replace by format isn't offered. You also can't set a default autosave location. Power Pivot and some add-ins lag behind Windows as well."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Avoid VBA on Mac",
+      "text": "UserForm work is much slower on Mac, the Properties window is missing, and VBA code collections can't be imported or exported. If a budget tool depends on macros, build it on Windows or ask your IT team."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Save a default Book template for new workbooks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's help page describes a default Book template. Open a workbook with your standard tabs and column headers. Choose File > Save as Template. Name it Book and pick the .xltx format. Save it to Library > Group Containers > UBF8T346G9.Office > User Content > Start-up > Excel, then restart Excel. Your next blank workbook starts from that layout."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean messy exports with Copilot in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Funder exports and accounting reports often arrive messy. Numbers come in as text, dates look wrong, and columns carry stray spaces. Copilot in Excel has a clean-data skill. Microsoft says it is generally available on all platforms, including Mac. Invoke it with @clean-data or from the Skills menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "The skill builder is also generally available on Mac. The skill recorder is still Insiders-only on Mac. Whether Copilot is included in your Microsoft 365 plan decides if you can use these at all. Ask whoever manages your Microsoft 365 account if you are unsure."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur for help while you stay in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur works alongside Excel. Hold Option Command and ask about the cell or formula you are looking at. Lazur answers out loud, and it can draw a circle and a label around the cell you mean. When you ask how to do something, it guides you one click at a time and waits for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Dictation writes clean, formatted text at the cursor in any app. That helps when you write justification text into a notes column. Snippets hold the organization description you paste into every budget. Your personal dictionary holds funder and program names, so they come out spelled right."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit your file, or run Excel for you. Background research is a different job. It runs in Lazur's own Chrome tabs and comes back with a summary and a report. Still, check any funder rule against the funder's own page before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost grant writers the most time"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Typing the indirect rate into every row. One rate change then needs many edits.",
+        "Hardcoding totals. A typed total never changes when a line changes.",
+        "Storing amounts as text. Imported numbers often arrive that way and drop out of sums.",
+        "Using category names the funder doesn't recognize. Rename them to match the form.",
+        "Letting the narrative drift from the budget. Check the two together before each submission.",
+        "Skipping the budget versus actual check. Overspending then shows up in the final report instead."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A PLOS ONE study surveyed 195 academics about federal grant applications. Those were researchers, not professional grant writers, so read it as a rough signal. The average proposal took about 116 PI hours. Time spent writing did not relate to whether a grant was funded. Researchers who wrote more grants got more funding."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much manual work spreadsheets create for grants teams"
+    },
+    {
+      "type": "paragraph",
+      "text": "Euna Solutions' 2026 State of Grants Management and Technology Report drew on responses from 51 public-sector grants professionals. It found that 44% of organizations still rely on spreadsheets or a mix of tools. It also found that 39% of grants staff spend up to half their working hours on manual tasks. Those tasks include data entry, documentation, and reporting. Another 14% spend more than three-quarters of their time on them."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Lock one template",
+      "text": "Keep one master template for each funder. Copy it for each application, instead of starting from last year's email attachment."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel build before you trust a feature"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some features arrive on a schedule, and builds differ across machines. Open Excel > About Excel to see yours. The Microsoft posts above describe what has shipped, but your build decides what you see. If a feature is missing, compare its post date with your build before you assume the feature is broken."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel ends and the funder's rules begin"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel does the math. It doesn't know your funder's rules. Keep a short rules sheet inside the workbook. List the funder's indirect policy, equipment threshold, and approval rule for budget moves. Add the page URL and the date you checked it, so you know when to check again."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want voice help while you work in Excel, Lazur is a Mac app that points at cells and answers out loud. It is not a plugin, and Lazur has no partnership with any app maker. Windows is planned, not available. See [pricing](/pricing) for current plans and the free trial."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm every indirect cell points at the named rate.",
+        "Check that the match check cell shows zero.",
+        "Compare the narrative figures with the budget tab.",
+        "Confirm category names match the funder's form.",
+        "Save the final version with the date in the file name."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have grant budget templates?",
+      "answer": "Yes. Givingarc and Nonprofit Sheets both offer free Excel budget templates. Givingarc's file has four tabs and puts the indirect rate on its Settings tab. Nonprofit Sheets' file includes a budget narrative tab and a budget versus actual tab. Both open in Excel for Mac."
+    },
+    {
+      "question": "Can I build a federal grant budget in Excel on Mac?",
+      "answer": "Yes, if your budget uses the federal categories. The Givingarc template follows the SF-424A object classes. Check the current form and instructions from the funder, because forms change. Excel does the math, but the funder's form sets the rules."
+    },
+    {
+      "question": "What is the best way to handle indirect costs in Excel?",
+      "answer": "Put the rate in one named cell. Flag equipment and other excluded lines so the base formula skips them. The Givingarc template defaults to 15% and allows a negotiated rate. Use the rate your organization actually has, not the default."
+    },
+    {
+      "question": "Can Lazur fill in my budget for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It can point at cells, explain formulas, guide you one click at a time, draft text, and dictate when you hold fn. You make the changes yourself."
+    },
+    {
+      "question": "Does Lazur see my grant budget file?",
+      "answer": "Lazur looks at your screen only while you hold Option Command. The screenshot and audio go to AI providers so they can answer, and they are not stored. Content is never used to train AI models. Still, check your funder's data rules before you share sensitive information."
+    },
+    {
+      "question": "Why can't I filter my pivot table on Mac?",
+      "answer": "If the pivot uses the Excel Data Model, Mac can't filter it. Noble Desktop reports this limit, and it also says pivot charts are static. Build the pivot from a regular table range instead. Test your own workbook first, because the article is a third-party source."
+    },
+    {
+      "question": "Is the Copilot clean-data skill available on Mac?",
+      "answer": "Microsoft's October 2026 Excel post says the clean-data skill is generally available on all platforms, including Mac. You invoke it with @clean-data or from the Skills menu. Whether you can use it depends on your Microsoft 365 plan."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Not yet. Lazur is a Mac app for Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "Is there a free trial for Lazur?",
+      "answer": "Yes. Lazur has a free trial that does not need a credit card. Check the pricing page for the current plans and what each one includes."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (September 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-september-2026/4549755",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Customize how Excel starts in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/customize-how-excel-starts-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Nonprofit Grant Budget Template",
+      "url": "https://givingarc.com/accounting_resources/nonprofit-grant-budget-template/",
+      "publisher": "Givingarc",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Grant Budget Template with Budget Narrative",
+      "url": "https://nonprofitsheets.com/grant-budget-template/",
+      "publisher": "Nonprofit Sheets",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel Update: Power Query Editor for Mac",
+      "url": "https://www.excelcampus.com/power-tools/power-query-editor-mac/",
+      "publisher": "Excel Campus",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Can I Use Excel on a Mac?",
+      "url": "https://www.nobledesktop.com/blog/can-i-use-excel-on-a-mac",
+      "publisher": "Noble Desktop",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How Long Does it Actually Take to Find Grants?",
+      "url": "https://www.instrumentl.com/blog/how-long-to-find-grants",
+      "publisher": "Instrumentl",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "To Apply or Not to Apply: A Survey Analysis of Grant Writing Costs and Benefits",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0118494",
+      "publisher": "PLOS ONE",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How Much Does Grant Management Software Cost for Government?",
+      "url": "https://eunasolutions.com/resources/how-grant-management-software-costs-work/",
+      "publisher": "Euna Solutions",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Hold Option Command and ask where the indirect rate is.",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the indirect rate cell, then says out loud what the cell holds.",
+    "shell": "sheet",
+    "context": "Budget tab of a grant workbook open in Excel for Mac",
+    "pointsAt": "Indirect rate cell",
+    "output": "Label on screen: Indirect rate. Spoken answer: the cell holds the rate that the indirect row uses."
+  },
+  "tasks": [
+    {
+      "say": "Where is the indirect rate cell in this budget?",
+      "result": "Lazur circles the cell and labels it on screen, so you find it without hunting across tabs.",
+      "capability": "point"
+    },
+    {
+      "say": "Explain what this formula does in the indirect row.",
+      "result": "Lazur reads the formula on screen and explains each part out loud, including what the excluded lines do.",
+      "capability": "explain"
+    },
+    {
+      "say": "How do I turn this range into a table?",
+      "result": "Lazur walks you through it one click at a time, and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the travel justification into the notes column.",
+      "result": "Your words land at the cursor as clean text, with names from your personal dictionary spelled right.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a one-paragraph narrative for the personnel line from these rows.",
+      "result": "Lazur types a draft at your cursor. You check every figure against the budget before you keep it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find the funder's current indirect cost policy and summarize it.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report you can check.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me on Friday to update actuals for the supplies line.",
+      "result": "Lazur adds an Apple Reminders item for the day you name.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Why is my check cell not showing zero?",
+      "result": "Lazur reads the check cell and explains, out loud, which lines are in the sum.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "grant-writers-excel",
+  "role": "grant-writers",
+  "app": "excel",
+  "roleName": "Grant writers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/grant-writers-excel/excel-for-grant-writers-on-mac-1-f3da7c.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Grant writer using Excel on a Mac laptop to check budget lines",
+      "caption": "Budget work, one line at a time.",
+      "keywords": [
+        "excel for grant writers on mac",
+        "Excel",
+        "Grant writers",
+        "Mac",
+        "grant writer laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Tama66",
+        "url": "https://pixabay.com/users/Tama66-1032521/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typewriter-write-old-vintage-8622984/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/grant-writers-excel/excel-for-grant-writers-on-mac-2-468708.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person checking a budget spreadsheet on a laptop screen at a desk",
+      "caption": "Checking the budget against actual spending.",
+      "keywords": [
+        "excel for grant writers on mac",
+        "Excel",
+        "Grant writers",
+        "Mac",
+        "budget spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Flyfin",
+        "url": "https://pixabay.com/users/Flyfin-30682062/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/finance-accounting-tax-7529921/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/grant-writers-excel/excel-for-grant-writers-on-mac-3-eb7464.jpg",
+      "width": 1280,
+      "height": 1024,
+      "alt": "Person writing a grant narrative at a desk beside an open laptop",
+      "caption": "Writing the narrative next to the numbers.",
+      "keywords": [
+        "excel for grant writers on mac",
+        "Excel",
+        "Grant writers",
+        "Mac",
+        "person writing desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Darkmoon_Art",
+        "url": "https://pixabay.com/users/Darkmoon_Art-1664300/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notepad-table-decoration-notes-3297994/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for grant writers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "grant budget template Excel Mac": 1,
+      "indirect cost formula in Excel": 1,
+      "budget narrative Excel formulas": 1,
+      "track grant spending in Excel": 2,
+      "Excel for Mac limits pivot tables": 1,
+      "Excel budget template for grants": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

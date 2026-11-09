@@ -1,0 +1,616 @@
+{
+  "title": "Why is my Mac battery draining so fast? Causes and free fixes for macOS Tahoe",
+  "metaTitle": "Why Is My Mac Battery Draining So Fast? Causes and Fixes",
+  "description": "Mac battery draining fast? Check Activity Monitor for energy hogs, turn on Low Power Mode and Optimized Battery Charging, and check battery health.",
+  "targetKeyword": "why is my mac battery draining so fast",
+  "secondaryKeywords": [
+    "mac battery drain fix",
+    "activity monitor energy tab",
+    "macos battery health",
+    "optimized battery charging mac",
+    "mac battery service recommended",
+    "low power mode mac",
+    "what uses battery on mac"
+  ],
+  "intro": "Your Mac battery drains fast for one of two reasons. Either an app or background process is using more power than it should, or the battery holds less charge than it did when it was new. This guide shows you how to tell which one you have, what the drain costs you, and which fixes you can use today without buying anything.",
+  "tldr": [
+    "Open Activity Monitor, click the Energy tab, and look at the top few rows first.",
+    "Turn on Low Power Mode on battery days and Optimized Battery Charging in System Settings > Battery.",
+    "Apple says a normal battery keeps up to 80% of its original capacity at its maximum cycle count. An older battery runs out sooner, even with the same use.",
+    "Heat and long periods at full charge both speed up battery aging. Keep the Mac cool and avoid hot bags and sunny windows.",
+    "If the battery shows Service Recommended, check AppleCare first. Apple does not publish a percentage for that warning."
+  ],
+  "stats": [
+    {
+      "value": "80%",
+      "label": "Apple says a normal battery keeps up to 80% of its original capacity at its maximum cycle count",
+      "sourceUrl": "https://support.apple.com/en-us/102589",
+      "sourceTitle": "About battery health management in Mac laptops with Apple silicon"
+    },
+    {
+      "value": "2 in 5",
+      "label": "Device users who ran out of battery at inopportune times, in a 2025 Australian survey of over 1,000 people",
+      "sourceUrl": "https://futurefive.com.au/story/battery-technology-woes-cut-productivity-for-aussies",
+      "sourceTitle": "Battery & technology woes cut productivity for Aussies"
+    },
+    {
+      "value": "35 °C",
+      "label": "Ambient temperature above which Apple says battery capacity can be permanently damaged",
+      "sourceUrl": "https://www.apple.com/batteries/maximizing-performance/",
+      "sourceTitle": "Batteries: Maximizing Performance (Apple)"
+    },
+    {
+      "value": "48%",
+      "label": "Faster battery aging at 90% charge than at 10%, in a 2025 simulation at 55 °C of lithium-ion cells",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12219620/",
+      "sourceTitle": "Impact of temperature and state-of-charge on long-term storage degradation in lithium-ion batteries"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check whether it is a sudden drain or slow decline"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by checking the pattern. Charge the Mac to a full charge, unplug it, and work the way you normally do. Write down the battery percentage at the start, then check it again after an hour of ordinary work. A sharp drop during plain tasks, like email and a few documents, points to an app or process. A normal drop with a short total runtime points to an older battery."
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down what you were doing during each check. A video call, a large build, or a long screen recording uses far more power than email. Repeat the test on a light day to compare. If the two results disagree, the heavy work explains the gap, not the battery."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find the app using the most energy in Activity Monitor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Activity Monitor is the built-in tool that shows what your Mac is doing. Press ⌘ Space, type Activity Monitor, and press Return. You can also open Finder and go to Applications > Utilities > Activity Monitor. Apple's Activity Monitor guide says the Energy pane shows how much energy the Mac uses and which apps or processes use the most."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Press ⌘ Space, type Activity Monitor, and press Return.",
+        "Click the Energy tab at the top of the window.",
+        "Find the energy column and sort by it, so the biggest users rise to the top.",
+        "Read the top few rows. Write down any app you do not recognize.",
+        "Quit an app you do not need with ⌘ Q, then repeat your first test."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Column names change between macOS versions, so look for the column that shows energy use rather than an exact label. Do not force quit processes you cannot name. Search the name first. A system process that stops can freeze an app or lose unsaved work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Low Power Mode and Optimized Battery Charging"
+    },
+    {
+      "type": "paragraph",
+      "text": "Low Power Mode is the simplest change for battery days. Apple says it is meant to reduce energy use to increase battery life. Open System Settings > Battery and set Low Power Mode separately for on battery and on power adapter. Apple does not publish a battery-life figure for it, so measure the difference on your own work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Optimized Battery Charging can hold charging past 80% until you need the full charge. Apple says it aims to reduce wear and improve lifespan. To check or change it, go to System Settings > Battery, click the info button next to Charging, and switch it on or off. The battery menu shows Charging On Hold when charging past 80% is delayed."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Before a long trip",
+      "text": "Choose Charge to Full Now when you know you will need every minute on battery. That override ends the hold for the charge you need. Turn Optimized Battery Charging back on once you are home and at a desk."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Charge Limit is a second option on Apple silicon Macs running macOS Tahoe 26.4 or later. It sets a ceiling between 80% and 100%. If your Mac shows it in Battery settings, a desk Mac that stays plugged in can stop at 80%. Apple's pages do not say how much that helps your Mac in particular, so keep the setting that suits your routine."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why heat and charge level wear the battery"
+    },
+    {
+      "type": "paragraph",
+      "text": "Battery aging depends on two things you control, temperature history and charging pattern. Apple says both affect the battery's chemical age, which sets its lifespan. Apple also says to avoid ambient temperatures above 35 °C, which can permanently damage capacity. Apple lists the MacBook operating range as 10° to 35 °C, or 50° to 95°F. A bag, a car seat, or a bed can push a Mac past that range."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "Likely cause",
+        "First check"
+      ],
+      "rows": [
+        [
+          "Drops fast during ordinary work",
+          "An app or background process",
+          "Energy tab in Activity Monitor"
+        ],
+        [
+          "Shorter runtime than when new",
+          "Lower battery capacity from age",
+          "Battery Health panel in Battery settings"
+        ],
+        [
+          "Hot to touch on a desk or bed",
+          "Heat, blocked airflow, or a hot room",
+          "Where the Mac sits and how it is covered"
+        ],
+        [
+          "Message says Service Recommended",
+          "Battery holds less charge than when new",
+          "Apple's pre-service checks"
+        ]
+      ],
+      "caption": "Quick triage for common patterns. Apple publishes no percentage for Service Recommended."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you pay for service, Apple suggests a short list. Check Optimized Battery Charging. Use an adapter rated for your Mac's wattage. Shut down, then do a 30-second reset with the lid closed. Run Apple Diagnostics. Work through these first, then decide whether service is worth it for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2025 study in RSC Advances simulated lithium-ion cells at 55 °C. After 12 months, growth in the battery's internal film, the SEI layer, was 1.57 nm per month at 90% charge and 1.06 nm per month at 10% charge. Raising the charge from 50% to 90% increased that growth by over 38%. This is a simulation with limited lab checks, and it models cells, not laptops. It shows direction, not how much your Mac will lose."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Mac that lives on a desk and stays plugged in most days is the best case for Optimized Battery Charging or a Charge Limit. A Mac you carry all day should stay cool. Its display should also not run brighter than you need."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that look like battery drain"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Charger or cable. Apple's service checklist starts with the adapter. Use one rated for your Mac's wattage, not an old phone charger.",
+        "Plugged-in gear. Apple says to disconnect unused accessories and drives. Check your desk setup before you blame the laptop.",
+        "Headphone drops. If your audio cuts out too, the problem may be the connection. See [why Bluetooth headphones keep disconnecting from Mac](/for/developers/problems/bluetooth-headphones-keep-disconnecting-mac).",
+        "Video calls. A call uses the camera, microphone, screen, and network at once. Compare a call with a document session before you blame the battery.",
+        "Heavy background jobs. Builds, indexers, and sync tools can run for a long time. If one sits at the top of the Energy tab, that is your answer."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste time and money"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Changing several settings at once. You cannot tell which one helped, so change one at a time.",
+        "Trusting one run. Battery results swing with the work you do, so repeat the test before you judge.",
+        "Buying a battery before checking AppleCare. A covered battery below 80% capacity is replaced at no charge.",
+        "Assuming a browser switch will fix it. Apple's Safari page claims up to 5 more hours of video streaming than Chrome, in its own test on prerelease software.",
+        "Ignoring heat. A Mac left in a hot car or bag ages faster than it should, according to Apple's guidance."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Service Recommended is not dead",
+      "text": "The warning means the battery holds less charge than it did when new. It does not mean the battery has failed. Run Apple's checks first, then decide whether a repair is worth it for your work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to take it in for service"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take the Mac in when the battery limits your work and the free checks did not help. Apple says a battery covered by an AppleCare Protection Plan is replaced at no charge if it keeps less than 80% of its original capacity. Without coverage, Apple charges a fee for battery service. Check Apple's repair page for your model, since prices are not listed here. Back up your data before any repair."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you work through this"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where something is and Lazur draws a circle and a label around it. Ask how to do something and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "On this problem, you can ask about the Energy tab while it is open, ask where the Battery settings sit, or have Lazur walk you through Optimized Battery Charging. Lazur does not click buttons, change settings, or operate apps for you. You stay in control of every change, and you decide what to quit."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Screen and work data",
+      "text": "Lazur looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. If the screen shows client or patient data, follow your employer's rules before you ask."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do if one app keeps topping the list"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the same app stays at the top of the Energy tab for several days, the next step is the app itself. Check its settings, update it, or remove an extension you do not use. Developer tools such as VS Code and Cursor run extensions and background tasks, so they are worth checking. See [VS Code for developers on Mac](/for/developers/vs-code) or [Cursor for developers on Mac](/for/developers/cursor) for setup notes. Test again after each change, and keep notes so you can see what helped."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is it normal for a Mac battery to drain fast during video calls?",
+      "answer": "A call uses the camera, microphone, screen, and network at once, so some drop is expected. If the drop is much faster than during other heavy work, open the Energy tab in Activity Monitor during a call and check the top rows."
+    },
+    {
+      "question": "Does a Mac battery drain faster as it ages?",
+      "answer": "Yes. Apple says a normal battery keeps up to 80% of its original capacity at its maximum cycle count. Less capacity means a shorter runtime, even when you use the Mac the same way."
+    },
+    {
+      "question": "Should I keep Low Power Mode on all the time?",
+      "answer": "Apple says Low Power Mode reduces energy use to increase battery life, and you can set it separately for battery and power adapter. Apple gives no battery-life figure, so turn it on for a normal day of work and compare."
+    },
+    {
+      "question": "Will Optimized Battery Charging make my battery last longer?",
+      "answer": "Apple says the feature aims to reduce wear and improve lifespan by holding charge past 80% until you need it. Apple does not promise a specific gain, so judge it by your own runtime over time."
+    },
+    {
+      "question": "What does Service Recommended mean on a Mac?",
+      "answer": "It means the battery holds less charge than it did when new. Apple does not publish a percentage for the warning. Run Apple's pre-service checks first, then contact Apple Support if the battery still limits your work."
+    },
+    {
+      "question": "Is Safari really better for battery life than Chrome?",
+      "answer": "Apple says Safari can stream up to 5 more hours of video than Chrome. That result comes from Apple's own test on a prerelease Safari version and one MacBook Air model. Test your own sites before you switch."
+    },
+    {
+      "question": "Can Lazur find the cause for me?",
+      "answer": "Lazur can see what is on screen while you hold Option and Command, answer out loud, and point at the Energy tab or Battery settings. It does not click buttons or change settings for you, so you still make each decision."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Battery & technology woes cut productivity for Aussies",
+      "url": "https://futurefive.com.au/story/battery-technology-woes-cut-productivity-for-aussies",
+      "publisher": "FutureFive",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About battery health management in Mac laptops with Apple silicon",
+      "url": "https://support.apple.com/en-us/102589",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About battery health management in Mac notebooks",
+      "url": "https://support.apple.com/ht211832",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About Optimized Battery Charging and Charge Limit on Mac",
+      "url": "https://support.apple.com/en-us/102338",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "If you see battery 'Service Recommended' on your Mac laptop",
+      "url": "https://support.apple.com/en-us/108376",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Batteries: Maximizing Performance",
+      "url": "https://www.apple.com/batteries/maximizing-performance/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Impact of temperature and state-of-charge on long-term storage degradation in lithium-ion batteries",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12219620/",
+      "publisher": "RSC Advances / PubMed Central",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Safari",
+      "url": "https://www.apple.com/safari/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Activity Monitor User Guide",
+      "url": "https://support.apple.com/guide/activity-monitor/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About Power Modes on your Mac",
+      "url": "https://support.apple.com/en-us/101613",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Save energy on your Mac",
+      "url": "https://support.apple.com/en-au/guide/mac-help/mh35848/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "mac battery running down quickly",
+  "costs": [
+    {
+      "title": "Unsaved work and lost time",
+      "text": "A 2025 survey of over 1,000 device users in Australia found that over a third had lost unsaved work. Two-fifths had run out of battery at inopportune times. The survey was not limited to Macs, and the article does not name who commissioned it. No study I could check measures how much time Mac battery drain costs people."
+    },
+    {
+      "title": "Repair bills you did not plan for",
+      "text": "Apple says a battery can be replaced for a fee when you do not have AppleCare. With an AppleCare Protection Plan, Apple replaces a battery at no charge if it keeps less than 80% of its original capacity. Over a quarter of people in the Australian survey reported unplanned costs from device failure, though that covered devices in general."
+    },
+    {
+      "title": "Shorter runtime every year",
+      "text": "Heat and high charge both speed battery aging. Apple says ambient heat above 35 °C can permanently damage capacity. Capacity lost to heat does not come back. Optimized Battery Charging or a Charge Limit, plus keeping the Mac out of hot cars, protects what you have left."
+    },
+    {
+      "title": "Attention spent on the battery",
+      "text": "A battery you cannot trust changes how you work. You plug in before every meeting, pick a seat near an outlet, and check the percentage every few minutes. That mental load is hard to measure, but it is real. Fixing the cause gives that attention back to your work."
+    }
+  ],
+  "causes": [
+    {
+      "title": "An app or background process is drawing power",
+      "text": "A common cause is an app or background process that uses far more energy than its job needs. Apple's Activity Monitor guide says the Energy pane shows how much energy the Mac uses and which apps or processes use the most. These problems can start after an update, a new extension, or a sync that gets stuck. The Energy tab finds the culprit faster than guessing does."
+    },
+    {
+      "title": "Screen brightness and long sessions",
+      "text": "Apple lists dimming the display among its battery-saving steps, so the screen matters. A bright display left on for hours works harder than a dim one. The effect adds up on a long train ride or a day away from an outlet. Dim it to the lowest level you can still read comfortably."
+    },
+    {
+      "title": "Wi-Fi, Bluetooth, and connected accessories",
+      "text": "Apple says to turn off Wi-Fi and Bluetooth when you do not need them. It also says to disconnect unused accessories and drives. Each connection can keep a small job running even when you are not using it. Check your desk setup as well as the laptop itself."
+    },
+    {
+      "title": "Heat from the room, a bag, or a bed",
+      "text": "Apple says to avoid ambient temperatures above 35 °C because heat can permanently damage battery capacity. Its MacBook operating range is 10° to 35 °C, or 50° to 95°F. A Mac in a hot car, on a sunny window ledge, or in a padded bag can exceed that range. Heat speeds the chemical aging that sets the battery's lifespan."
+    },
+    {
+      "title": "Battery age and lower capacity",
+      "text": "Apple says a normal battery keeps up to 80% of its original capacity at its maximum cycle count. A battery that has lost capacity runs out sooner, even when your apps behave the same. Apple says Battery Health Management monitors temperature history and charging patterns. On Apple silicon laptops, it can temporarily reduce the maximum charge."
+    },
+    {
+      "title": "Long periods at full charge",
+      "text": "A 2025 simulation found that higher charge and higher temperature both speed battery aging. The study modeled lithium-ion cells at 55 °C, not laptops, so treat it as a direction, not a forecast. Apple's storage guidance points the same way. For long storage, Apple suggests about 50% charge."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Find the energy hog in Activity Monitor",
+      "text": "Press ⌘ Space, type Activity Monitor, and press Return. Click the Energy tab, sort by the energy column, and read the top few rows. Note any app you do not recognize, and search its name before you act. Do not force quit a process you cannot name, since stopping a system process can freeze an app or lose unsaved work."
+    },
+    {
+      "title": "Use Low Power Mode on battery days",
+      "text": "Open System Settings > Battery and set Low Power Mode separately for on battery and on power adapter. Apple says the mode reduces energy use to increase battery life. Apple does not publish a battery-life figure for it. Turn it on for one full day of normal work, then decide whether to keep it."
+    },
+    {
+      "title": "Turn on Optimized Battery Charging",
+      "text": "Go to System Settings > Battery, click the info button next to Charging, and switch Optimized Battery Charging on. Apple says it can hold charging past 80% until you need the full charge. Use Charge to Full Now before a flight or a long day away from a charger. The battery menu shows Charging On Hold when charging is delayed."
+    },
+    {
+      "title": "Set a Charge Limit on Apple silicon",
+      "text": "Charge Limit sets a ceiling between 80% and 100%. Apple says it needs an Apple silicon Mac running macOS Tahoe 26.4 or later. If you see the option in Battery settings, a Mac that sits on a desk plugged in most days is the best fit. If you do not see it, check your macOS version first."
+    },
+    {
+      "title": "Dim the display and close idle apps",
+      "text": "Lower the display brightness to the lowest level you can read comfortably. Quit apps you are not using, including browser tabs you no longer need, with ⌘ Q for apps. Apple says apps you are not using may still run in the background. Make one change at a time, so you know which one helped."
+    },
+    {
+      "title": "Switch off radios and unplug idle gear",
+      "text": "Turn off Wi-Fi and Bluetooth in Control Center when you do not need them. Disconnect unused accessories and external drives, which Apple also lists as a way to save energy. Check the Wi-Fi and Bluetooth status in the menu bar before you leave your desk."
+    },
+    {
+      "title": "Let the Mac sleep when you step away",
+      "text": "Apple says to put the Mac to sleep when it is not in use. Choose Apple menu > Sleep when you walk away for a long meeting, rather than leaving the Mac awake on your desk. A sleeping Mac uses far less power than one that stays awake with nothing to do."
+    },
+    {
+      "title": "Keep the Mac in its temperature range",
+      "text": "Apple lists 10° to 35 °C (50° to 95°F) as the MacBook operating range. Keep the Mac off sunny windows, out of hot cars, and away from soft surfaces that trap heat. For long storage, Apple suggests about 50% charge, with a recharge every six months."
+    },
+    {
+      "title": "Check battery health before you pay",
+      "text": "Open the Battery Health panel in System Settings > Battery. If it shows Service Recommended, the battery holds less charge than when new. Check AppleCare, since a battery below 80% capacity is replaced at no charge under the plan. Then run Apple's checks, including the 30-second lid-closed reset and Apple Diagnostics."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Energy tab in Activity Monitor?",
+      "result": "Lazur draws a circle and a label around the Energy tab on your screen. You still click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "What is this app doing with my battery?",
+      "result": "Hold ⌥ ⌘ and ask about what is on screen. Lazur answers out loud and explains the rows it can see. You decide what to quit.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through turning on Optimized Battery Charging.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicks, and you can stop at any step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a log of when the battery dropped.",
+      "result": "Hold fn to dictate clean text at the cursor in any app. Useful for a battery log or a note for Apple Support.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Remind me to check battery health on Friday.",
+      "result": "Lazur sets the reminder in Apple Reminders by voice, so the battery check does not slip past you.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Find what Apple says about Service Recommended for my model.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Read the linked sources before you act.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I sort by energy use?",
+    "capability": "point",
+    "context": "Activity Monitor open on the Energy tab",
+    "pointsAt": "Energy tab",
+    "output": "Lazur draws a circle and a label around the Energy tab at the top of the Activity Monitor window, then says where to look.",
+    "result": "You find the tab in one glance. You still click it and read the list yourself.",
+    "shell": "generic"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Take a baseline",
+      "text": "Charge to a full charge, unplug, and use the Mac as you normally do for an hour. Write down the percentage before and after. Note what you were doing, since heavy work changes the result."
+    },
+    {
+      "label": "Day 2",
+      "title": "Read the Energy tab",
+      "text": "Open Activity Monitor, click Energy, and note the top few rows. Search the name of any app you do not recognize before you change anything about it."
+    },
+    {
+      "label": "Day 3",
+      "title": "Trim background load",
+      "text": "Quit apps you are not using with ⌘ Q. Count browser tabs and close the ones you do not need. Check developer tools like VS Code or Cursor for extensions you never use."
+    },
+    {
+      "label": "Day 4",
+      "title": "Change battery settings",
+      "text": "Turn on Low Power Mode for battery use and Optimized Battery Charging in System Settings > Battery. Change one setting, then keep using the Mac normally for the day."
+    },
+    {
+      "label": "Day 5",
+      "title": "Cut heat and idle draw",
+      "text": "Dim the display to the lowest level you can read comfortably. Turn off Wi-Fi and Bluetooth when idle, and unplug accessories you are not using. Keep the Mac out of direct sun and hot bags."
+    },
+    {
+      "label": "Day 6",
+      "title": "Check health and decide",
+      "text": "Open the Battery Health panel. If it shows Service Recommended, check AppleCare, then run Apple's pre-service checks before you contact Apple Support."
+    },
+    {
+      "label": "Day 7",
+      "title": "Repeat the baseline",
+      "text": "Run the Day 1 test again with the same kind of work. Compare the drop. Keep what helped, and undo any change that made no difference."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "slack",
+    "vs-code",
+    "cursor"
+  ],
+  "type": "problem",
+  "slug": "mac-battery-draining-fast-what-to-check",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/mac-battery-draining-fast-what-to-check/why-is-my-mac-battery-draining-so-1-f797bb.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Person working on a laptop at a desk, the moment you start asking why is my Mac battery draining so fast",
+      "caption": "Heavy work changes how fast a battery drops, so test with the same kind of work.",
+      "keywords": [
+        "why is my mac battery draining so fast",
+        "Developers",
+        "Mac battery running down quickly",
+        "Mac",
+        "person working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "spasibokras",
+        "url": "https://pixabay.com/users/spasibokras-2066404/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/a-restaurant-communication-food-1685939/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/mac-battery-draining-fast-what-to-check/why-is-my-mac-battery-draining-so-2-b794d8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop charging on a desk beside a cup, a common setup for Mac owners who keep the battery plugged in",
+      "caption": "A desk Mac that stays plugged in is a good case for charge limits.",
+      "keywords": [
+        "why is my mac battery draining so fast",
+        "Developers",
+        "Mac battery running down quickly",
+        "Mac",
+        "laptop charging desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tranmautritam",
+        "url": "https://pixabay.com/users/tranmautritam-498081/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/macbook-iphone-technology-apple-1093641/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/mac-battery-draining-fast-what-to-check/why-is-my-mac-battery-draining-so-3-5ce492.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a laptop in a cafe, where a Mac battery drains fast during long sessions away from a charger",
+      "caption": "Long sessions away from a charger make drain easy to notice.",
+      "keywords": [
+        "why is my mac battery draining so fast",
+        "Developers",
+        "Mac battery running down quickly",
+        "Mac",
+        "person laptop coffee shop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "OrnaW",
+        "url": "https://pixabay.com/users/OrnaW-8155178/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/women-students-coffee-shop-laptops-3978569/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "why is my mac battery draining so fast",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "mac battery drain fix": 1,
+      "activity monitor energy tab": 1,
+      "macos battery health": 1,
+      "optimized battery charging mac": 1,
+      "mac battery service recommended": 1,
+      "low power mode mac": 1,
+      "what uses battery on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

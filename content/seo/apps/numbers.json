@@ -1,0 +1,743 @@
+{
+  "title": "AI assistant for Numbers on Mac: explain, point and dictate in Numbers 15.4",
+  "metaTitle": "AI Assistant for Numbers on Mac: Voice Help in Numbers 15.4",
+  "description": "Lazur is an AI assistant for Numbers on Mac. Hold ⌥ ⌘ to ask about the sheet on screen. It answers out loud, points at controls and guides you.",
+  "targetKeyword": "ai assistant for numbers on mac",
+  "secondaryKeywords": [
+    "Numbers for Mac voice help",
+    "Numbers 15.4 features",
+    "Numbers formulas not calculating",
+    "Excel formulas in Numbers",
+    "Numbers SUM ignores text",
+    "dictation in Numbers on Mac",
+    "Numbers keyboard shortcuts Mac"
+  ],
+  "intro": "Lazur is an AI assistant for Numbers on Mac. Hold ⌥ ⌘ to ask about the sheet on your screen, and Lazur answers out loud. It points at controls, guides you through steps and drafts or dictates text at your cursor. Lazur works in any app, Numbers included. Numbers 15.4 requires macOS 26 or later.",
+  "tldr": [
+    "Lazur is a voice assistant for Numbers on Mac. Hold ⌥ ⌘ and ask about the sheet on your screen.",
+    "It explains errors, points at controls, guides you one click at a time, drafts text and dictates at the cursor.",
+    "It does not click buttons, edit cells or run formulas for you.",
+    "The common Numbers snags in Apple Community threads are display rounding, numbers stored as text and Excel formulas.",
+    "Numbers is free to use. Apple Creator Studio adds premium templates and AI features for $12.99 per month."
+  ],
+  "stats": [
+    {
+      "value": "15.4",
+      "label": "Numbers version that adds the ability to ask Siri questions about Numbers. It requires macOS 26 or later.",
+      "sourceUrl": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "sourceTitle": "What's new in Numbers on Mac | Apple Support"
+    },
+    {
+      "value": "$12.99",
+      "label": "per month for Apple Creator Studio, which adds premium templates. Numbers itself is free to use.",
+      "sourceUrl": "https://creatorstudio.apple.com/info/try",
+      "sourceTitle": "How to subscribe to Apple Creator Studio. Try it free."
+    },
+    {
+      "value": "4GB",
+      "label": "collaboration file size limit after Numbers 15.1 raised it.",
+      "sourceUrl": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "sourceTitle": "What's new in Numbers on Mac | Apple Support"
+    },
+    {
+      "value": "5",
+      "label": "header rows allowed per table, according to Apple. Apple does not state a maximum total row count.",
+      "sourceUrl": "https://support.apple.com/guide/numbers/add-or-remove-rows-and-columns-tan504013a74/mac",
+      "sourceTitle": "Add or remove rows and columns in Numbers on Mac | Apple Support"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur lives in the notch at the top of your Mac screen. Hold ⌥ ⌘ to talk. While you hold the keys, Lazur looks at your screen and listens. When you let go, it answers out loud. In Numbers, five jobs come up again and again."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explain: ask what an error, a warning or a formula result means. Lazur answers out loud.",
+        "Point: ask where a control is. Lazur draws a circle and a label around it on your screen.",
+        "Walk through: ask how to finish a task. Lazur guides you one click at a time and waits for each click.",
+        "Draft: ask for a note or a label. Lazur drafts the text and types it at your cursor.",
+        "Dictate: hold fn and speak. Clean, formatted text lands at the cursor in any app."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Those five jobs cover most of what people ask in a spreadsheet. The sections below show each one against a real problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur does not do"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons for you. It does not edit cells, run formulas or change your file. It is not a plugin or add-in for Numbers or any other app. You make every change yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "That limit matters in a spreadsheet. One edit can change every total on the sheet. An assistant that explains the problem and leaves the fix to you keeps you in control of the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Problems people search for in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "We could not find popularity data for Numbers questions. The problems below come from Apple Community threads, so read them as recurring patterns rather than measured counts. Three show up again and again."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Totals that look slightly off, because the display rounds the value.",
+        "Numbers stored as text, which SUM skips without a warning.",
+        "Excel formulas that stop working after you open the file in Numbers."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each one has a clear fix. Each one is easy to get wrong by guessing. The next sections take them in order, starting with the rounding problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why totals look wrong: display rounding"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers can show a value with fewer decimal places than it stores. A cell can look like it holds one value while the math uses a longer one. Add the shown values by hand and you can get a different total. A community thread describes exactly this gap."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Cell",
+        "What it stores",
+        "What it shows"
+      ],
+      "rows": [
+        [
+          "Each entry in the column",
+          "Full stored value",
+          "Rounded for display"
+        ],
+        [
+          "The total cell",
+          "Full sum of the stored values",
+          "Rounded for display"
+        ]
+      ],
+      "caption": "The shown values can add up to a different total than the one on screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is what that means in practice. You add the visible entries and get one answer. The total cell shows another, slightly different answer. Neither number is a typo. The display hides the difference."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix depends on the job. If you only need to read the sheet, check the stored value before you trust the total. Ask Lazur to point at the total and explain what it holds. If the displayed values must match the total exactly, round in the formula with ROUND, so the stored value is the rounded value."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Changing decimals does not change the math",
+      "text": "Showing fewer decimal places only changes the display. The stored value and the total stay the same. Use ROUND in the formula if the total must match what you show."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Numbers stored as text, and why SUM skips them"
+    },
+    {
+      "type": "paragraph",
+      "text": "A number stored as text looks like a number. It often sits on the left side of its cell, where text usually sits. SUM ignores it. The total comes out low, and Numbers does not flag it. That silence is what makes the problem hard to spot."
+    },
+    {
+      "type": "paragraph",
+      "text": "This often happens after you paste from a web page, a PDF or a bank export. Stray spaces and leading apostrophes cause it too. Use this check when a total looks low."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Look at the column. Values aligned left, among values aligned right, are the usual suspects.",
+        "Ask Lazur: 'Point at the total and explain why it might be low.' It names the cells it can see on screen.",
+        "Retype the suspect value or change its cell format to a number format. Then check the total again."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur only sees what is on your screen. It can flag a left-aligned value in view. It cannot scan every cell in a long sheet for you. Scroll the part you need into view before you ask."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel formulas that Numbers does not support"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers opens Excel files. Not every Excel formula carries over. Apple Community threads report that Numbers does not support most Excel array formulas. An imported formula can fail, and the cell shows an error or a wrong result."
+    },
+    {
+      "type": "paragraph",
+      "text": "One thread fixed the problem by replacing an array formula with SUMIF. The idea is simple. An array formula multiplies two ranges inside SUM. SUMIF does the same job with a condition and a sum range."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pattern: =SUMIF(range, \">\" & threshold, sum_range). Read it as: add up sum_range wherever range is greater than the threshold. Put the threshold in its own cell so you can change it later."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Compare each total with the total from the original Excel file.",
+        "Look for error values in any cell that used an array formula.",
+        "Rewrite the formula with a function Numbers supports, then compare the result again.",
+        "Keep the original file open until every total matches."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can explain an error on screen. Hold ⌥ ⌘ and ask what the error means. It can guide you through the rewrite too. You type the new formula yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to phrase a question Lazur can answer"
+    },
+    {
+      "type": "paragraph",
+      "text": "Good questions name the thing on screen. Lazur sees the window, so 'the total at the bottom of the expenses column' works. 'Why is my sheet wrong?' does not. Name the column, the cell or the exact error text. Say what you expected."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Weak: 'Fix this.' Better: 'Why does the total at the bottom of the expenses column differ from the rows above it?'",
+        "Weak: 'Make a chart.' Better: 'Walk me through a column chart of these two columns, with the months along the bottom.'",
+        "Weak: 'What is this?' Better: 'What does the error in this cell mean, and what usually causes it?'"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask one thing at a time. A short question gets a clear answer. A long question with three problems in it gets a muddled one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A monthly expenses sheet, start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is one session from start to finish. The sheet tracks monthly costs in one column. The total at the bottom looks lower than the months above it add up to. You hold ⌥ ⌘ and ask: 'Why is the total lower than the months above it?' Lazur reads the screen and answers out loud. It points at a month that sits left-aligned in its cell, and it says that value may be stored as text."
+    },
+    {
+      "type": "paragraph",
+      "text": "You then ask: 'Walk me through changing that value to a number.' Lazur guides you one step at a time. You retype the value. The total updates. Then you check the total against your bank statement, which no assistant can do for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Notice what did not happen. Lazur did not edit the cell. It did not guess at the other months. It answered from the screen, and you made the change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Walk-through: adding a chart without losing your place"
+    },
+    {
+      "type": "paragraph",
+      "text": "A walk-through is the mode for tasks with several steps. You say what you want. Lazur guides you one click at a time. It waits for each click before it names the next control, so you never fall behind on your own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you want a chart from two columns of sales. Hold ⌥ ⌘ and say: 'Walk me through adding a chart from these two columns.' Lazur names the first control to press. You press it. Lazur waits, then names the next one. The loop repeats until the chart appears."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the sheet in view while you talk. Lazur reads the screen when you hold the shortcut. If a menu is open or a sidebar is hidden, the next step may not match what you see. Say so, then ask again."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Hold the whole question",
+      "text": "Keep ⌥ ⌘ held until you finish speaking, then let go. Letting go early cuts the question short."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictating text at the cursor in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation is a separate job. Hold fn and speak. Clean, formatted text appears where your cursor sits. In Numbers that can be a cell, a text box, a note or a comment. Dictation is unlimited on both Lazur plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cells need care. If a cell is still in edit mode, the words go into that cell. Press Return or Tab to finish the cell first. Then click where the text belongs and dictate again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Three features help with repeat work. A personal dictionary holds names and codes that dictation often gets wrong, such as a client name or a product code. Snippets store lines you type every month, such as a report footer. Clipboard slots keep a value you need to paste later."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Drafting uses the other shortcut. Hold ⌥ ⌘ and say: 'Draft a short note to Sam about these totals.' Lazur drafts the note and types it at the cursor. Read it before you send it, and fix any wrong figure before it leaves your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts to learn before you ask for help"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some shortcuts save more time than any assistant. Learn these first. Apple lists them on its Numbers keyboard shortcuts page. Some can be changed in System Settings, so your list may differ from this one."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shortcut",
+        "What it does in Numbers"
+      ],
+      "rows": [
+        [
+          "⌘N",
+          "Open the template chooser"
+        ],
+        [
+          "⌘O",
+          "Open an existing spreadsheet"
+        ],
+        [
+          "⌘S",
+          "Save"
+        ],
+        [
+          "⇧⌘N",
+          "Add a new sheet"
+        ],
+        [
+          "⇧⌘S",
+          "Duplicate the spreadsheet"
+        ],
+        [
+          "⌘B, ⌘I, ⌘U",
+          "Bold, italic and underline"
+        ],
+        [
+          "⌘K",
+          "Turn text or an object into a link"
+        ],
+        [
+          "⌥Return",
+          "Start a new paragraph"
+        ]
+      ],
+      "caption": "Shortcuts from Apple's Numbers keyboard shortcuts page. Check your own settings if one does not work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur about a shortcut when you forget it. Hold ⌥ ⌘ and ask what the shortcut for a new sheet is. Lazur answers out loud. If a key does nothing on your Mac, check System Settings, because a changed shortcut will not match Apple's list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Apple's built-in options, and where Lazur fits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers already has some help built in. Numbers 15.4 adds the ability to ask Siri questions about Numbers. Numbers 15.3 added hiding or showing individual sheets for quick navigation. Subscribers can also generate editable shapes from a text description."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does a different job. It answers questions about the sheet on your screen right now. It points at controls and guides you through steps you choose. Use whichever tool answers your question faster."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test both on a copy of your own file before you rely on either. A copy keeps a mistake from reaching the real totals."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Numbers and Creator Studio cost"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers is free to create, view and edit spreadsheets, according to Apple. You do not need a subscription for the core app. Apple Creator Studio costs $12.99 per month or $129 per year for new subscribers after a free trial."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Creator Studio subscription adds premium templates for Numbers, along with other premium content and AI features. Students and educators pay $2.99 per month or $29.99 per year, according to Apple. Check Apple's page for current terms before you pay."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a separate purchase. Its plans are on /pricing. You can pay for Creator Studio, Lazur, both or neither. Lazur works in Numbers without Creator Studio."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Setup: what you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers 15.4 for Mac requires macOS 26 or later. To check your version, choose Numbers > About Numbers. The App Store lists version 15.4.2, released Oct 23. The download is about 661.2 MB, so start it on a stable connection."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on the Mac, on Apple silicon and on Intel. Windows is planned, not available. Start with the download from /download. There is a free Pro trial with no credit card. It starts the first time you open the app, so open it when you are ready to test."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give Lazur a few minutes on your own sheets first. Ask a question you already know the answer to. That shows you how it reads your screen before you need it under pressure."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy for sheets that hold real data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers files often hold payroll, client lists, invoices or account details. Know what leaves your Mac before you ask about one. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer. They are not stored."
+    },
+    {
+      "type": "paragraph",
+      "text": "Content is never used to train AI models. A screenshot can still show names, totals and account numbers, though. Hide sensitive columns or close the file before you hold the shortcut. Lazur only sees what is on screen when you ask."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with an AI assistant in Numbers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking for a fix and waiting for the change to appear. Lazur explains and guides. You make the change.",
+        "Trusting a total without checking the stored value. Display rounding hides the gap.",
+        "Letting go of ⌥ ⌘ halfway through a question, then getting an answer to a different question.",
+        "Dictating while a cell is in edit mode, then wondering where the words went.",
+        "Assuming Lazur can read the whole file. It reads the part of the sheet on your screen.",
+        "Planning around a row limit. Apple does not state a maximum total row count, and third-party figures disagree.",
+        "Forgetting that a shared file has other editors. Check who can edit before you change a key formula."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases to check before you rely on a total"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hidden sheets are a common trap. Numbers 15.3 added the option to hide or show individual sheets. If a total seems to come from nowhere, check whether a sheet is hidden. Ask Lazur to point at the sheet tabs, then ask where the total gets its values."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shared files raise the stakes. Numbers 15.1 raised the collaboration file size limit to 4GB. Numbers 15.4 adds a way to request access to collaborate on a shared spreadsheet. Check who can edit before you change anything in a shared sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Row counts come up often. Apple's page on adding or removing rows says a table can have up to five header rows, five header columns and five footer rows. It does not state a maximum total row or column count. A Gigasheet post claims 1,000,000 rows, but Apple does not confirm that figure. Test with your own data before a large import."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Choose Numbers > About Numbers. Update Numbers if it is older than 15.4.",
+        "Open a sheet you know well. Hold ⌥ ⌘ and ask one question about a number on it.",
+        "Ask for a walk-through on a task with several steps, such as a chart.",
+        "Add two names you use often to the personal dictionary, then test fn dictation.",
+        "Read the plans on /pricing before you pick one. Start with the free trial if you are unsure."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the first session short. Two or three questions on a real file tell you more than a long tour."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur work inside Numbers as a plugin?",
+      "answer": "No. Lazur is not a plugin or add-in for Numbers or any other app. It is a voice assistant for the Mac. It sees your screen while you hold ⌥ ⌘, answers out loud, and guides you through steps. It does not click buttons or edit cells for you."
+    },
+    {
+      "question": "Which Numbers version does this need?",
+      "answer": "Numbers 15.4 for Mac requires macOS 26 or later. Choose Numbers > About Numbers to check your version. Lazur runs on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "Is Numbers free to use?",
+      "answer": "Numbers is free to create, view and edit spreadsheets, according to Apple. Premium templates and AI features need Apple Creator Studio. That subscription costs $12.99 per month or $129 per year for new subscribers after a free trial."
+    },
+    {
+      "question": "Why does my Numbers total differ from the rows I add by hand?",
+      "answer": "Numbers may show a value with fewer decimal places than it stores. The total uses the stored value. Round in the formula with ROUND if the displayed values must match the total."
+    },
+    {
+      "question": "Why does SUM skip some of my numbers?",
+      "answer": "Some numbers are stored as text. They often align left, and SUM ignores them. Change the cell to a number format, retype the value, then check the total again."
+    },
+    {
+      "question": "Can Lazur read my whole spreadsheet?",
+      "answer": "No. Lazur reads what is on your screen when you hold the shortcut. Scroll to the part you need, then ask. Lazur cannot check every cell in a long sheet for you."
+    },
+    {
+      "question": "Does Lazur send my sheet to an AI provider?",
+      "answer": "When you hold the shortcut, audio and the screenshot go to AI providers to answer. They are not stored, and content is never used to train AI models. Hide sensitive columns before you ask."
+    },
+    {
+      "question": "Is there a free way to try Lazur with Numbers?",
+      "answer": "Lazur has a free Pro trial with no credit card. It starts the first time you open the app. See /pricing for the plans after the trial."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Numbers User Guide for Mac | Apple Support",
+      "url": "https://support.apple.com/guide/numbers/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What's new in Numbers on Mac | Apple Support",
+      "url": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Numbers: Make Spreadsheets | App Store | Apple",
+      "url": "https://apps.apple.com/us/app/numbers-make-spreadsheets/id361304891",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "How to subscribe to Apple Creator Studio. Try it free.",
+      "url": "https://creatorstudio.apple.com/info/try",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Keyboard shortcuts for Numbers on Mac | Apple Support",
+      "url": "https://support.apple.com/guide/numbers/keyboard-shortcuts-tana45192591/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Add or remove rows and columns in Numbers on Mac | Apple Support",
+      "url": "https://support.apple.com/guide/numbers/add-or-remove-rows-and-columns-tan504013a74/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Numbers calculation glitch? | Apple Community",
+      "url": "https://discussions.apple.com/thread/254431241",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel formula not working in Numbers | Apple Community",
+      "url": "https://discussions.apple.com/thread/255015446",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Apple Numbers Max Rows? 1,000,000 is the Limit",
+      "url": "https://www.gigasheet.com/post/apple-numbers-row-limit",
+      "publisher": "Gigasheet",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "appCategory": "Spreadsheets",
+  "demos": [
+    {
+      "spoken": "What does this error mean?",
+      "capability": "explain",
+      "result": "Lazur explains the error out loud and says what usually causes it.",
+      "context": "A cell in the expenses sheet shows an error after a formula change.",
+      "output": "Lazur says the formula divides by a cell that is empty or zero. It points at the cell that feeds the divisor and suggests checking that cell first. You make the fix.",
+      "pointsAt": "Error cell in the table",
+      "shell": "sheet"
+    },
+    {
+      "spoken": "Where do I change the number of decimal places?",
+      "capability": "point",
+      "result": "Lazur circles the control on screen and labels it.",
+      "context": "A totals column shows fewer decimals than the stored values hold.",
+      "output": "Lazur circles the decimal places control in the format area and labels it. It adds that changing decimals changes the display, not the stored value.",
+      "pointsAt": "Decimal places control",
+      "shell": "sheet"
+    },
+    {
+      "spoken": "Walk me through adding a chart from these two columns.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "context": "A monthly sales table needs a quick column chart for a team update.",
+      "output": "Lazur names the Chart button in the toolbar. You click it, and Lazur waits. Then it names the next control, one step at a time, until the chart is on the sheet.",
+      "pointsAt": "Chart button in toolbar",
+      "shell": "sheet"
+    }
+  ],
+  "asks": [
+    {
+      "say": "What does this error mean?",
+      "result": "Lazur reads the error on screen and explains what usually causes it, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where are the format controls?",
+      "result": "Lazur draws a circle and a label around the controls on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making a chart from these columns.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why is this total lower than the rows above it?",
+      "result": "Lazur points at likely causes on screen, such as left-aligned values, and explains each one. You check the cell.",
+      "capability": "explain"
+    },
+    {
+      "say": "Hold fn, then say: Check the March rows before I send this.",
+      "result": "Clean, formatted text appears at the cursor, including inside a Numbers cell or comment.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note to Sam about these totals.",
+      "result": "Lazur drafts the note and types it at the cursor. Read it before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Look up the Numbers shortcut for a new sheet and sum it up.",
+      "result": "Lazur runs the research in its own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to send this sheet to Sam at four.",
+      "result": "Lazur adds an Apple Reminders item for the time you name.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "app",
+  "slug": "numbers",
+  "app": "numbers",
+  "appName": "Numbers",
+  "appUrl": "https://www.apple.com/numbers/",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/app/numbers/ai-assistant-for-numbers-on-mac-1-278000.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person working on a laptop at a desk, the kind of spreadsheet work an AI assistant for Numbers on Mac helps with.",
+      "caption": "Spreadsheet work at a desk, where a voice assistant helps.",
+      "keywords": [
+        "ai assistant for numbers on mac",
+        "Numbers",
+        "voice assistant",
+        "Mac",
+        "person working on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/app/numbers/ai-assistant-for-numbers-on-mac-2-468b63.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A person at a desk using a Mac to check figures in a spreadsheet, where an AI assistant for Numbers on Mac helps.",
+      "caption": "Checking figures on a Mac before a report goes out.",
+      "keywords": [
+        "ai assistant for numbers on mac",
+        "Numbers",
+        "voice assistant",
+        "Mac",
+        "person using Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/app/numbers/ai-assistant-for-numbers-on-mac-3-50c790.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Colleagues reviewing totals on a shared spreadsheet, a common setting for an AI assistant for Numbers on Mac.",
+      "caption": "Reviewing totals together before a file is shared.",
+      "keywords": [
+        "ai assistant for numbers on mac",
+        "Numbers",
+        "voice assistant",
+        "Mac",
+        "office team spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "ai assistant for numbers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "Numbers for Mac voice help": 1,
+      "Numbers 15.4 features": 1,
+      "Numbers formulas not calculating": 1,
+      "Excel formulas in Numbers": 1,
+      "Numbers SUM ignores text": 1,
+      "dictation in Numbers on Mac": 1,
+      "Numbers keyboard shortcuts Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

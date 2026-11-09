@@ -1,0 +1,539 @@
+{
+  "title": "How to find and replace across files in VS Code on Mac: shortcuts and steps",
+  "metaTitle": "How to Find and Replace Across Files in VS Code on Mac",
+  "description": "How to find and replace across files in VS Code on Mac: press ⇧⌘H, type both terms, check the diff, then apply. Works in VS Code 1.145.",
+  "targetKeyword": "how to find and replace across files in vs code on mac",
+  "secondaryKeywords": [
+    "replace in files vs code mac",
+    "vs code find in files shortcut mac",
+    "vs code search and replace all files",
+    "vs code replace in one file mac",
+    "vs code regex find and replace mac",
+    "vs code search exclude files mac"
+  ],
+  "intro": "In VS Code on Mac, press ⇧⌘H to open Replace in Files, then type the text you want to find in the search box. Type the replacement in the Replace box, check the diff, then apply the change to one match, one file, or all files.",
+  "tldr": [
+    "Press ⇧⌘H to open Replace in Files. Press ⇧⌘F first if you only want to search.",
+    "Open a folder in VS Code. Without a folder, search covers only the files that are open.",
+    "Type the search text and the replacement, then read the diff before you apply anything.",
+    "Use ⌥⌘C, ⌥⌘W, and ⌥⌘R for Match Case, Whole Word, and regular expressions.",
+    "Commit your work first. The official docs do not confirm an undo for Replace All."
+  ],
+  "stats": [
+    {
+      "value": "⇧⌘H",
+      "label": "Replace in Files on macOS in VS Code's default keybindings list",
+      "sourceUrl": "https://code.visualstudio.com/docs/reference/default-keybindings",
+      "sourceTitle": "Default Keyboard Shortcuts (Visual Studio Code docs)"
+    },
+    {
+      "value": "1.145",
+      "label": "Latest stable VS Code release, published November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "Visual Studio Code Updates"
+    },
+    {
+      "value": "75.9%",
+      "label": "Of all 2025 Stack Overflow survey respondents reported using VS Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Find and replace across files changes the same text in every file of a project in one pass. In VS Code on Mac, it lives in the Search view. You search the folder, type the new text, read what will change, and then apply it. This guide covers the desktop app, the shortcuts that matter, and the cases where search quietly misses a file. Once you know the keys, the whole job takes less time than you expect."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open a folder before you search"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cross-file search needs a folder. If VS Code was not opened on a folder, search only runs on the files that are open right now. That is a common reason a replace seems to miss matches. Open your project with File > Open Folder, or drag the project folder onto the VS Code icon in the Dock. The folder name then appears at the top of the Explorer sidebar."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check your version",
+      "text": "Use VS Code 1.145 or later. The latest stable release is 1.145, published November 4, 2026. Its release notes list no keyboard shortcut changes and no changes to Find in Files or Replace in Files, so these steps still apply."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "VS Code find and replace shortcuts on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two shortcuts do most of the work. ⇧⌘F searches the folder, and ⇧⌘H adds the Replace box. The rest tune the search. The table lists each one from the official keybindings reference, along with what it does."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Mac shortcut",
+        "What it does"
+      ],
+      "rows": [
+        [
+          "Find in Files",
+          "⇧⌘F",
+          "Opens the Search view for the whole folder"
+        ],
+        [
+          "Replace in Files",
+          "⇧⌘H",
+          "Opens the Search view with the Replace box"
+        ],
+        [
+          "Toggle Search Details",
+          "⇧⌘J",
+          "Shows or hides the include and exclude fields"
+        ],
+        [
+          "Replace in one file",
+          "⌥⌘F",
+          "Opens find and replace in the open editor"
+        ],
+        [
+          "Match Case",
+          "⌥⌘C",
+          "Matches upper and lower case exactly"
+        ],
+        [
+          "Whole Word",
+          "⌥⌘W",
+          "Matches complete words only"
+        ],
+        [
+          "Regular expressions",
+          "⌥⌘R",
+          "Reads the search box as a pattern"
+        ]
+      ],
+      "caption": "Find and replace shortcuts for VS Code on macOS, from the official reference."
+    },
+    {
+      "type": "paragraph",
+      "text": "Notice that ⌥⌘F works on one file. It opens find and replace inside the editor you have open. For a change across the project, stay in the Search view with ⇧⌘H. The two look alike, so check which one you pressed before you type."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Preview the replace before you apply it"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Replace box is where you slow down. As soon as you type replacement text, VS Code shows a diff of the changes it plans to make. Nothing in your files changes until you apply it. Use that gap to read every match."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for matches inside longer words. A search for cat also hits category, and a search for id hits width when Whole Word is off. Press ⌥⌘W to turn on Whole Word, then search again and compare the results. Press ⌥⌘C too if your code treats Name and name as different words."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Narrow the search with include and exclude patterns"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⇧⌘J to open Toggle Search Details. Two boxes appear, files to include and files to exclude. Both take comma-separated glob patterns. A glob is a path pattern with wildcards. These patterns work well in practice:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "`src/**` limits the search to everything under the src folder.",
+        "`**/*.test.ts` finds test files anywhere in the project.",
+        "`**/node_modules/**` in the exclude box skips installed dependencies.",
+        "`docs/**, *.lock` in the exclude box skips the docs folder and lock files."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Glob patterns are case-sensitive on Linux and case-insensitive on Windows and macOS. On your Mac, `Src/**` and `src/**` match the same files. Copy the path from the Explorer sidebar so you do not have to guess at the case."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: rename a function across a project"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you want to rename `getUser` to `fetchUser` across a project. Press ⌥⌘W first, so `getUserName` stays unchanged. Then press ⇧⌘H, type `getUser` in the search box, and type `fetchUser` in the Replace box. Read the diff. If a test file uses the old name on purpose, press ⇧⌘J and exclude that file. Then apply the change to all files and run your tests. The diff is the reason to read first, because it shows what a broad match would have touched."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use regex in VS Code find and replace"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⌥⌘R to turn on regular expressions. The search box then reads patterns instead of plain text. For example, `user(\\d+)` finds the word user followed by digits. Put `account$1` in the Replace box, and `user42` becomes `account42`. The `$1` pulls in the first group from the search."
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn regex off again for ordinary text. With it on, a dot matches any character, and brackets and parentheses change the meaning of your search. A search for `v1.2` with regex on also matches `v1x2`, which is rarely what you want."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why VS Code search misses files or runs slowly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search in VS Code runs on ripgrep, a fast search tool. It respects your ignore rules. That is why files listed in `.gitignore` do not show up in results. The docs say to keep Use Exclude Settings and Ignore Files turned on. Turning it off makes search read more files, which can slow things down and raise CPU use."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Add `**/node_modules/**` to `search.exclude` in Settings.",
+        "Keep `search.useIgnoreFiles` enabled.",
+        "Set `search.followSymlinks` to false if a symlinked folder loops back on itself.",
+        "Narrow the search with include patterns, then widen it once the results look right."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each fix trades a little coverage for speed. Exclude dependency folders when you are changing your own code, and bring them back only when you need to search a library."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common Replace in Files mistakes on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Searching with no folder open, then assuming the whole project was covered.",
+        "Leaving regex on, then searching for a literal dot, bracket, or plus sign.",
+        "Replacing text inside comments, strings, or URLs without reading the diff.",
+        "Running a large Replace All with uncommitted work and no clean way back.",
+        "Expecting a file to appear in results when `.gitignore` hides it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each of these is cheap to avoid and slow to fix. Read the diff, commit before a broad change, and check the scope every time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Replace in Files on vscode.dev"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the Web runs in a browser sandbox. It has no terminal and no debugger, and only a subset of extensions run. The web docs do not say whether cross-file search covers unopened files, or whether Replace in Files works there. Use the desktop app for project-wide replaces. On the web, ⌘N opens a new window instead of a new file, and ⌘W closes the browser tab. The docs suggest ⌥⌘N and ⇧⌥⌘N as workarounds."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you still need to set up the command line, read [how to install the code command in VS Code on Mac](/how-to/install-the-code-command-in-vs-code). To compare two files while you replace, see [how to split the editor in VS Code on Mac](/how-to/split-the-editor-in-vs-code). The [VS Code for developers](/for/developers/vs-code) page covers Git and debugging in more depth."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want help on screen, Lazur is a voice assistant for the Mac. Hold ⌥⌘ and ask where a control is, and Lazur points at it. For a walk through the steps, ask it to guide you one click at a time. It does not click for you. See [Lazur for VS Code on Mac](/apps/vs-code) for what it covers."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does find and replace across files work without opening a folder in VS Code on Mac?",
+      "answer": "Not fully. If VS Code was not opened on a folder, cross-file search only runs on the files that are currently open. Open your project folder first, then press ⇧⌘H."
+    },
+    {
+      "question": "What is the shortcut for Replace in Files in VS Code on Mac?",
+      "answer": "Press ⇧⌘H, which is Shift, Command, and H. The official default keybindings list shows it for macOS. Find in Files is ⇧⌘F."
+    },
+    {
+      "question": "How do I replace text in one file only in VS Code on Mac?",
+      "answer": "Use ⌥⌘F. It opens find and replace inside the open editor, so the change stays in that file. Use ⇧⌘H when the change should cover the whole project."
+    },
+    {
+      "question": "Can I undo Replace All in VS Code on Mac?",
+      "answer": "The official docs do not say whether Replace All can be undone in one step. Commit your work in Git before a large replace, so you can restore the files if the result is wrong."
+    },
+    {
+      "question": "Why does VS Code skip some of my files during a search?",
+      "answer": "Search follows your ignore rules. With Use Exclude Settings and Ignore Files on, it skips anything in .gitignore and in the files.exclude and search.exclude settings. Turn that toggle off for one search if you need those files."
+    },
+    {
+      "question": "Does Lazur make the replacement for me?",
+      "answer": "No. Lazur does not click buttons or edit files for you. Ask it where the Replace box or the search details button is, and it circles that control on screen while you make the change."
+    },
+    {
+      "question": "Does VS Code 1.145 change these shortcuts?",
+      "answer": "The 1.145 release notes list no keyboard shortcut changes and no changes to Find in Files or Replace in Files. The steps on this page apply to 1.145."
+    },
+    {
+      "question": "How many developers use Visual Studio Code?",
+      "answer": "In the 2025 Stack Overflow Developer Survey, 75.9% of all respondents reported using Visual Studio Code. Among professional developers, the figure was 76.2%."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Basic Editing: Find and Replace Across Files (Visual Studio Code docs)",
+      "url": "https://code.visualstudio.com/docs/editing/codebasics",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Default Keyboard Shortcuts (Visual Studio Code docs)",
+      "url": "https://code.visualstudio.com/docs/reference/default-keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "November 2026 (version 1.145): Visual Studio Code release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code for the Web",
+      "url": "https://code.visualstudio.com/docs/setup/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Find and replace text across all files in a project",
+  "appliesTo": "VS Code 1.145 and later on the macOS desktop app",
+  "timeMinutes": 4,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code 1.145 or later, the latest stable release as of November 2026",
+    "A project folder open in VS Code, not a single file",
+    "The desktop app, not vscode.dev, for the full keyboard shortcuts",
+    "Git set up in the project, recommended before any large replace"
+  ],
+  "steps": [
+    {
+      "name": "Open your project folder",
+      "text": "Open the folder that holds your project, not a single file. Choose File > Open Folder, pick the folder, and click Open. Cross-file search needs a folder, so a single open file limits the search to that file.",
+      "tip": "The folder name appears at the top of the Explorer sidebar when the folder is open."
+    },
+    {
+      "name": "Open the Search view",
+      "shortcut": "⇧⌘F",
+      "text": "Press ⇧⌘F. The Search view opens in the sidebar with the cursor in the search box. Type the text you want to find. Results group by file.",
+      "tip": "Single-click a result to open that file at the match."
+    },
+    {
+      "name": "Open the Replace box",
+      "shortcut": "⇧⌘H",
+      "text": "Press ⇧⌘H to open Replace in Files. The Replace box sits under the search box. If it is hidden, click the small arrow at the left of the search box to expand it.",
+      "tip": "Press ⇧⌘J to show the include and exclude fields when you need them."
+    },
+    {
+      "name": "Set the search options",
+      "shortcut": "⌥⌘C",
+      "text": "Press ⌥⌘C to turn on Match Case, ⌥⌘W for Whole Word, and ⌥⌘R for regular expressions. Each one is a toggle. Press it again to turn it off.",
+      "tip": "Check the toggles before you read the results. They change which matches appear."
+    },
+    {
+      "name": "Type the replacement text",
+      "text": "Click the Replace box and type the new text. VS Code shows a diff of the changes it plans to make. Nothing in your files changes until you apply it.",
+      "tip": "If the diff shows too many matches, go back and tighten the search before you apply anything."
+    },
+    {
+      "name": "Read the diff",
+      "text": "Scroll through the results and open the changed files. Check every match you plan to replace. Look for hits inside longer words, comments, strings, and links that should stay the same."
+    },
+    {
+      "name": "Apply the replace",
+      "text": "Use the replace controls to apply one change, all matches in one file, or all matches across the project. Start with the smallest scope you can, then widen it once the results look right.",
+      "tip": "When you are unsure of a pattern, apply one change first. It is the fastest way to test the pattern."
+    },
+    {
+      "name": "Save, test, and commit",
+      "shortcut": "⌘S",
+      "text": "Save the changed files with ⌘S, run your tests or build, then commit the change in Git. A clean commit gives you a way back if the replace went too far."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Find in Files (open the Search view)",
+      "keys": "⇧⌘F"
+    },
+    {
+      "action": "Replace in Files (Search view with Replace box)",
+      "keys": "⇧⌘H"
+    },
+    {
+      "action": "Toggle Search Details (include and exclude fields)",
+      "keys": "⇧⌘J"
+    },
+    {
+      "action": "Replace in the current file only",
+      "keys": "⌥⌘F"
+    },
+    {
+      "action": "Toggle Match Case in the Search view",
+      "keys": "⌥⌘C"
+    },
+    {
+      "action": "Toggle Whole Word in the Search view",
+      "keys": "⌥⌘W"
+    },
+    {
+      "action": "Toggle regular expressions in the Search view",
+      "keys": "⌥⌘R"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "No results for text you can see in the editor",
+      "fix": "Check that a folder is open, not a single file. Then press ⇧⌘J and clear any include pattern that is too narrow."
+    },
+    {
+      "problem": "Some files are skipped",
+      "fix": "Files listed in .gitignore are skipped while Use Exclude Settings and Ignore Files is on. Turn that toggle off for one search if you need those files, then turn it back on."
+    },
+    {
+      "problem": "Search is slow or the fan spins up",
+      "fix": "Keep the exclude settings on. Add `**/node_modules/**` to search.exclude, keep search.useIgnoreFiles enabled, and set search.followSymlinks to false if a symlinked folder loops."
+    },
+    {
+      "problem": "The replace changed more than you wanted",
+      "fix": "Restore the file from Git with `git restore path/to/file`, but only if it has no unsaved edits you need. The docs do not confirm an undo for Replace All, so keep commits small."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Replace box in VS Code?",
+    "capability": "point",
+    "result": "Lazur circles the Toggle Search Details button so you can find the Replace box on screen.",
+    "shell": "code",
+    "context": "VS Code desktop on a Mac, with the Search view open in the sidebar",
+    "pointsAt": "Toggle Search Details",
+    "output": "The Replace box sits under the search box. If you can't see it, expand the Search widget or press ⇧⌘H."
+  },
+  "type": "howto",
+  "slug": "find-and-replace-across-files-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/find-and-replace-across-files-in-vs-code/how-to-find-and-replace-across-files-1-32c95f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a Mac reviewing project files before a find and replace in VS Code",
+      "caption": "Review the matches before you replace text across files.",
+      "keywords": [
+        "how to find and replace across files in vs code on mac",
+        "VS Code",
+        "find and replace across files",
+        "Mac",
+        "developer laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/find-and-replace-across-files-in-vs-code/how-to-find-and-replace-across-files-2-cee118.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a MacBook while searching across files in VS Code",
+      "caption": "Type the search text, then check every match.",
+      "keywords": [
+        "how to find and replace across files in vs code on mac",
+        "VS Code",
+        "find and replace across files",
+        "Mac",
+        "person typing macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/find-and-replace-across-files-in-vs-code/how-to-find-and-replace-across-files-3-d188b1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer looking at code on a screen during a find and replace task on a Mac",
+      "caption": "Check the diff, then apply the change.",
+      "keywords": [
+        "how to find and replace across files in vs code on mac",
+        "VS Code",
+        "find and replace across files",
+        "Mac",
+        "programmer screen code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Sunriseforever",
+        "url": "https://pixabay.com/users/Sunriseforever-6314823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programming-coding-6977450/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to find and replace across files in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "replace in files vs code mac": 1,
+      "vs code find in files shortcut mac": 1,
+      "vs code search and replace all files": 1,
+      "vs code replace in one file mac": 1,
+      "vs code regex find and replace mac": 1,
+      "vs code search exclude files mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,672 @@
+{
+  "title": "How to set a breakpoint in VS Code on Mac: steps for macOS and 2026",
+  "metaTitle": "How to Set a Breakpoint in VS Code on Mac (2026 Steps)",
+  "description": "Learn how to set a breakpoint in VS Code on Mac by clicking the margin or pressing F9, then fix dots that will not turn red.",
+  "targetKeyword": "how to set a breakpoint in vs code on mac",
+  "secondaryKeywords": [
+    "vs code breakpoint mac",
+    "vs code f9 breakpoint",
+    "vs code conditional breakpoint",
+    "vs code logpoint",
+    "vs code breakpoint not hitting",
+    "vs code breakpoint gray dot",
+    "vs code run and debug mac"
+  ],
+  "intro": "To set a breakpoint in VS Code on Mac, click the editor margin just left of the line number, and a red dot appears. Or place your cursor on that line and press F9, which turns the breakpoint on or off.",
+  "tldr": [
+    "Click the editor margin left of a line number. A solid red dot means the breakpoint is enabled.",
+    "Put the cursor on a line and press F9 to toggle a breakpoint. If F9 does nothing, check the Mac function key setting.",
+    "Press F5 to start debugging. The program pauses when it reaches an enabled breakpoint.",
+    "Conditional breakpoints, logpoints and function breakpoints use the right-click menu, the Command Palette and the BREAKPOINTS list."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a breakpoint does in VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "A breakpoint tells the debugger to pause your program on one line. When the program reaches that line, it stops before running it. You can then read variable values, check the call stack, and step through the code one line at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Breakpoints only work in debug mode. If you start the program without debugging, VS Code ignores every breakpoint you set. Press F5 to run in debug mode after you place them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set a breakpoint by clicking the editor margin"
+    },
+    {
+      "type": "paragraph",
+      "text": "The editor margin is the narrow strip to the left of the line numbers. Click it on the line where you want to pause. A solid red circle appears. That circle is an enabled breakpoint, and it stays until you remove it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Click the red circle again to remove the breakpoint. The line goes back to normal, and the debugger no longer stops there. Nothing else in your file changes."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pick a line that runs code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every line can hold a breakpoint. Comments and blank lines cannot. Many declarations cannot either. Choose a line that does real work, such as an assignment, a loop, an if statement, or a function call."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Good: a line that assigns or changes a value.",
+        "Good: the first line inside a function you want to inspect.",
+        "Poor: a comment, a blank line, or a line that holds only a closing brace.",
+        "Always check the dot after you click. A hollow gray circle means the debugger could not register it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A hollow gray circle usually means the line has no executable code, or the debugger does not support that file. Move the breakpoint to a nearby line that runs code, then check the dot again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use F9 when clicking is awkward"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click into the line you want, then press F9. The breakpoint toggles on that line. Press F9 again to remove it. This beats aiming at a thin strip in a long file, or when a trackpad makes small clicks hard."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Shortcut on Mac",
+        "What it does"
+      ],
+      "rows": [
+        [
+          "Set or remove a breakpoint",
+          "F9",
+          "Toggles a breakpoint on the line with the cursor"
+        ],
+        [
+          "Start debugging",
+          "F5",
+          "Runs the program with the debugger attached"
+        ],
+        [
+          "Open the Run and Debug view",
+          "⇧⌘D",
+          "Shows the BREAKPOINTS section and the debug controls"
+        ],
+        [
+          "Add an inline breakpoint",
+          "⇧F9",
+          "Adds one during a debugging session"
+        ],
+        [
+          "Open the Command Palette",
+          "⇧⌘P",
+          "Finds any VS Code command by name"
+        ],
+        [
+          "Open the Debug Console",
+          "⇧⌘Y",
+          "Shows debug output and evaluates expressions"
+        ]
+      ],
+      "caption": "Mac shortcuts from the VS Code debugging docs, US keyboard layout."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcuts assume a standard US keyboard layout. If you use another layout, some keys sit in a different place. To find a missing shortcut, open Preferences: Open Default Keyboard Shortcuts (JSON) from the Command Palette."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why F9 does nothing on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the most common snag. On a Mac keyboard, F9 is a function key. macOS can send the top row to system features instead of to apps like VS Code. So F9 can do nothing at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple controls this with a setting. Open System Settings, then go to Keyboard, Keyboard Shortcuts, and Function Keys. Turn on Use F1, F2, etc. keys as standard function keys. Apple describes this for macOS Ventura or later."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "No setting change needed",
+      "text": "Hold Fn and press F9 to send a standard F9 while the setting is off. Keyboards without an Fn key use Control instead, according to Apple's guide."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Breakpoint types and icons"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code uses several breakpoint types. Each one has its own shape in the editor and in the BREAKPOINTS list. Knowing the shapes tells you what kind of breakpoint you are looking at."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Type",
+        "Icon",
+        "How to add it"
+      ],
+      "rows": [
+        [
+          "Line",
+          "Filled red circle",
+          "Click the margin or press F9"
+        ],
+        [
+          "Conditional",
+          "Not described in the docs",
+          "Right-click the margin, then choose Add Conditional Breakpoint"
+        ],
+        [
+          "Function",
+          "Red triangle",
+          "Plus sign in the BREAKPOINTS section"
+        ],
+        [
+          "Data",
+          "Red hexagon",
+          "Right-click a variable, then choose a Break on action"
+        ],
+        [
+          "Logpoint",
+          "Diamond",
+          "Right-click the margin, then choose Add Logpoint"
+        ],
+        [
+          "Triggered",
+          "Not described in the docs",
+          "Right-click the margin, then choose Add Triggered Breakpoint"
+        ]
+      ],
+      "caption": "Icon shapes from the VS Code debugging docs. Some icons are not listed there."
+    },
+    {
+      "type": "paragraph",
+      "text": "Filled red means enabled. Filled gray means disabled. Hollow gray means the debugger could not register the breakpoint. Those three states matter more than the shape when something stops working."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conditional breakpoints and logpoints"
+    },
+    {
+      "type": "paragraph",
+      "text": "A conditional breakpoint pauses only when an expression is true. Use one when a loop runs many times and you care about one pass. Right-click the margin, choose Add Conditional Breakpoint, and type the expression."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a loop goes through every order in a list, and one order has the wrong total. Set a conditional breakpoint on the total line. Use a condition that matches only that order's ID. The program then pauses on that one pass and nowhere else."
+    },
+    {
+      "type": "paragraph",
+      "text": "Condition syntax follows your language and your debugger. A Python condition is ordinary Python. A JavaScript condition is ordinary JavaScript. Test the expression on a simple value first, because a typo can stop the breakpoint from firing."
+    },
+    {
+      "type": "paragraph",
+      "text": "A logpoint does not pause. It prints a message each time the line runs, so the program keeps moving. Add one from the margin menu, or run Debug: Add Logpoint from the Command Palette. Logpoints only work if your debugger supports them."
+    },
+    {
+      "type": "paragraph",
+      "text": "A triggered breakpoint waits for another breakpoint to be hit first. Use it when a bug shows up late in a sequence, and you want to skip the early steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Function breakpoints and the BREAKPOINTS list"
+    },
+    {
+      "type": "paragraph",
+      "text": "A function breakpoint pauses when a named function runs. You do not need to open the file that holds it. Open the Run and Debug view with ⇧⌘D, then click the plus sign in the BREAKPOINTS section and type the function name."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "The BREAKPOINTS section lists every breakpoint in your project. Click the pencil icon to edit one. That is the same Edit Breakpoint action you get from the margin menu, so you can add a condition after the fact."
+    },
+    {
+      "type": "paragraph",
+      "text": "A long list gets hard to scan. Set debug.breakpointsView.presentation to tree to group breakpoints by file. Set debug.showBreakpointsInOverviewRuler to show breakpoints on the scrollbar while you scroll."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start the debugger and watch it stop"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press F5 to start. If VS Code asks which debugger to use, choose the one that matches your language. VS Code creates a launch.json file when your app needs a specific entry point, arguments, or environment variables."
+    },
+    {
+      "type": "paragraph",
+      "text": "When the program reaches an enabled breakpoint, it pauses. Check the variables while it is stopped. Press F5 to continue to the next breakpoint. Press F11 to step into the function call on the paused line."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Debug Console with ⇧⌘Y to read program output while it is paused. You can also type an expression there to test a value before you change any code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with breakpoints on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clicking a comment or a blank line. The dot turns hollow gray and never stops.",
+        "Pressing a plain run command instead of starting the debugger. Breakpoints are skipped.",
+        "Assuming F9 works without checking the function key setting first.",
+        "Leaving an old condition on a breakpoint. The stop you want never happens.",
+        "Expecting a logpoint to pause. It only prints a message.",
+        "Debugging a copy of the file in another folder. Check which file path the debugger uses."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last mistake is common in projects with several folders. Open the file from the folder the debugger runs, then set the breakpoint there. Otherwise the dot looks right, and the code still never pauses."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Clean up before you share",
+      "text": "Remove breakpoints you no longer need before you share your screen or a recording. A stray red dot can confuse the next person who reads the code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a VS Code breakpoint does not hit"
+    },
+    {
+      "type": "paragraph",
+      "text": "The official debugging docs do not include a troubleshooting section for breakpoints that never trigger. Forum posts and GitHub issues offer fixes. Microsoft has not verified them, so treat them as checks to try, not guarantees."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the dot is filled red, not gray or hollow.",
+        "Confirm you started with F5 and not a plain run command.",
+        "Check that the program path in launch.json points at the file you edit.",
+        "For compiled or transpiled code, rebuild and check source maps or outFiles.",
+        "Restart VS Code, then start the session again."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The first two checks take almost no time, so start there. Move down the list only if the breakpoint still stays silent."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Breakpoints on the web and in remote setups"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the Web has no debugger and no terminal. You cannot set a breakpoint that stops code there. Use the desktop app on your Mac for debugging."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your code runs somewhere else, the VS Code docs list GitHub Codespaces and a remote tunnel as options for running, building, or debugging. Check the docs for the setup steps before you connect."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What changed in VS Code 1.145"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code 1.145 was released on November 4, 2026. The current update on the download page is 1.145.2. The release notes list no changes to the Run and Debug view, breakpoints, or the debugger."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version 1.110 came out on March 4, 2026. It renamed the Event Listener Breakpoints view to Browser Options. If you debug browser code, that is the name you will see. It also added an Emulate a focused page option."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check your version",
+      "text": "These steps were checked against the 1.145 docs. If a menu or label does not match your screen, check your version first, then compare with the current docs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keys and next steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once breakpoints feel natural, learn the step keys. The keybindings reference lists F9, F5, and F11, but it leaves out some stepping keys. Run Preferences: Open Default Keyboard Shortcuts (JSON) from the Command Palette to see the full list."
+    },
+    {
+      "type": "paragraph",
+      "text": "To run the file you are debugging, read [How to run a Python file in VS Code on Mac](/how-to/run-a-python-file-in-vs-code). To find the debugger you need, see [How to install an extension in VS Code on Mac](/how-to/install-an-extension-in-vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the Command Palette steps used above, see [How to use the command palette in VS Code on Mac](/how-to/use-the-command-palette-in-vs-code)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why is my breakpoint gray?",
+      "answer": "A filled gray dot means the breakpoint is disabled. A hollow gray dot means the debugger could not register it, often because the line has no executable code. Move the breakpoint to a line that runs code, then check the dot again."
+    },
+    {
+      "question": "Can I set a breakpoint before I press F5?",
+      "answer": "Yes. You can set breakpoints in the editor at any time. They only pause the program once you start debugging with F5. If you start without debugging, the program runs straight through them."
+    },
+    {
+      "question": "What is the difference between a breakpoint and a logpoint?",
+      "answer": "A breakpoint pauses the program on its line. A logpoint keeps the program running and prints a message instead. Logpoints show as diamonds, and they work only if your debugger supports them."
+    },
+    {
+      "question": "How do I remove every breakpoint at once?",
+      "answer": "The VS Code docs do not name one command that removes all breakpoints. Click each red dot in the editor, or press F9 on each line. The BREAKPOINTS section in the Run and Debug view also lists them, so you can check."
+    },
+    {
+      "question": "Are the shortcuts the same on Windows?",
+      "answer": "Not for every key. The debugging docs list Ctrl+Shift+D for the Run and Debug view on Windows and Linux, where Mac uses ⇧⌘D. Check the default keybindings reference for the rest, since it does not cover every command."
+    },
+    {
+      "question": "Why does a breakpoint work in one file but not another?",
+      "answer": "The file has to be part of the program the debugger runs, and the debugger must support that language. Check your launch.json configuration. If the program runs a different copy of the file, the breakpoint sits in a file that never runs."
+    },
+    {
+      "question": "Can I debug in VS Code for the Web?",
+      "answer": "No. VS Code for the Web does not include a debugger or a terminal. Use the desktop app on your Mac instead. GitHub Codespaces and a remote tunnel are other options listed in the docs."
+    },
+    {
+      "question": "Do I need an extension to set breakpoints?",
+      "answer": "You need a debugger for your language. If VS Code asks you to choose one when you press F5, pick the one that matches your code. If none is installed, install one from the Extensions view."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Debugging - Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/editor/debugging",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Debug code with Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/debugtest/debugging",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Default Keyboard Shortcuts - Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/reference/default-keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145 release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "February 2026 (version 1.110)",
+      "url": "https://code.visualstudio.com/updates/v1_110",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to use the function keys on your Mac",
+      "url": "https://support.apple.com/en-us/102439",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Set a breakpoint in VS Code on Mac",
+  "appliesTo": "VS Code 1.145 on macOS, checked November 2026",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed on macOS. These steps were checked against version 1.145.",
+    "A file with code that runs, such as a Python or JavaScript file.",
+    "A debugger for your language. VS Code asks you to choose one when you press F5.",
+    "The Mac setting for standard function keys, if F9 does nothing (see the steps)."
+  ],
+  "steps": [
+    {
+      "name": "Open the file and find a line of code",
+      "text": "Open the file you want to debug in the VS Code editor. Scroll to a line that does real work, such as an assignment, a loop, or a function call. Skip blank lines and comments.",
+      "tip": "Not sure where to start? Choose the first line inside the function you care about."
+    },
+    {
+      "name": "Click the editor margin",
+      "text": "Move the pointer to the narrow strip just left of the line number. Click once. A solid red circle appears, which means the breakpoint is enabled. Click the red circle again to remove it.",
+      "tip": "A hollow gray circle means the debugger could not register the breakpoint, often because the line has no code."
+    },
+    {
+      "name": "Or press F9 on the line",
+      "text": "Put the cursor anywhere on the line. Press F9. The breakpoint toggles on that line. Press F9 again to remove it.",
+      "shortcut": "F9",
+      "tip": "If F9 does nothing or triggers a Mac feature, go to the next step."
+    },
+    {
+      "name": "Fix F9 if it does nothing",
+      "text": "Open System Settings, then go to Keyboard, Keyboard Shortcuts, and Function Keys. Turn on Use F1, F2, etc. keys as standard function keys. Apple describes this for macOS Ventura or later.",
+      "menuPath": [
+        "System Settings",
+        "Keyboard",
+        "Keyboard Shortcuts",
+        "Function Keys"
+      ],
+      "tip": "Prefer not to change the setting? Hold Fn and press F9 instead while the setting is off."
+    },
+    {
+      "name": "Add a conditional breakpoint or logpoint",
+      "text": "Right-click the editor margin or an existing red dot. Choose Add Conditional Breakpoint, Add Logpoint, Add Triggered Breakpoint, or Edit Breakpoint. Type the condition or message that VS Code asks for.",
+      "tip": "Condition syntax depends on your debugger extension, so test it on a simple value first."
+    },
+    {
+      "name": "Start debugging",
+      "text": "Press F5. If VS Code asks for a debugger, choose the one for your language. The program runs, and it pauses when it reaches an enabled breakpoint.",
+      "shortcut": "F5",
+      "tip": "Starting without debugging skips breakpoints, so use F5 and not a plain run command."
+    },
+    {
+      "name": "Check the BREAKPOINTS list",
+      "text": "Press ⇧⌘D to open the Run and Debug view. Look at the BREAKPOINTS section. Filled red means enabled. Filled gray means disabled.",
+      "shortcut": "⇧⌘D",
+      "tip": "Use the pencil icon in the BREAKPOINTS section to edit a breakpoint."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Set or remove a breakpoint on the line",
+      "keys": "F9"
+    },
+    {
+      "action": "Add an inline breakpoint during debugging",
+      "keys": "⇧F9"
+    },
+    {
+      "action": "Start debugging",
+      "keys": "F5"
+    },
+    {
+      "action": "Open the Run and Debug view",
+      "keys": "⇧⌘D"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open the Debug Console",
+      "keys": "⇧⌘Y"
+    },
+    {
+      "action": "Step into a function call",
+      "keys": "F11"
+    },
+    {
+      "action": "Send a standard F9 while the function key setting is off",
+      "keys": "Fn+F9"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "F9 does nothing or triggers a Mac feature",
+      "fix": "Turn on Use F1, F2, etc. keys as standard function keys in System Settings > Keyboard > Keyboard Shortcuts > Function Keys. Or hold Fn and press F9. If that setting is missing, the keyboard may not be an Apple keyboard, so use the margin click."
+    },
+    {
+      "problem": "The breakpoint dot is hollow gray",
+      "fix": "The debugger could not register the breakpoint. Move it to a line with executable code, or check that your debugger supports the file type."
+    },
+    {
+      "problem": "The breakpoint never stops the program",
+      "fix": "Confirm the dot is filled red. Confirm you started with F5, not a plain run command. Check that the program path in launch.json points at the file you edit. Restart VS Code and try again. Microsoft does not document these checks as fixes."
+    },
+    {
+      "problem": "The program stops in a copy of the file or in the wrong place",
+      "fix": "This often comes from compiled or transpiled code. Rebuild the project and check source maps or outFiles in launch.json. This is a community fix, not an official VS Code troubleshooting step."
+    },
+    {
+      "problem": "A conditional breakpoint never pauses",
+      "fix": "Test the condition with a simple value. Check the syntax for your language and debugger, and read the debugger extension's documentation. Remove any old condition you no longer need."
+    },
+    {
+      "problem": "A logpoint does not pause",
+      "fix": "That is expected. A logpoint prints a message and keeps running. Use a conditional breakpoint if you need the program to pause."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Run and Debug button?",
+    "capability": "point",
+    "result": "Lazur circles the Run and Debug icon in VS Code and labels it. It does not click the icon for you.",
+    "shell": "code",
+    "pointsAt": "Run and Debug",
+    "context": "You are in VS Code on Mac and cannot find where to start debugging.",
+    "output": "Lazur draws a circle and a label around the Run and Debug icon, then says where it is out loud."
+  },
+  "type": "howto",
+  "slug": "set-a-breakpoint-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-a-breakpoint-in-vs-code/how-to-set-a-breakpoint-in-vs-1-435f41.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a laptop learning how to set a breakpoint in VS Code on Mac",
+      "caption": "Breakpoints let you pause code and inspect it line by line.",
+      "keywords": [
+        "how to set a breakpoint in vs code on mac",
+        "VS Code",
+        "set a breakpoint",
+        "Mac",
+        "developer debugging laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tookapic",
+        "url": "https://pixabay.com/users/tookapic-1386459/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/monitor-programming-933392/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-a-breakpoint-in-vs-code/how-to-set-a-breakpoint-in-vs-2-c170be.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Programmer at a Mac desk checking breakpoints in VS Code before debugging",
+      "caption": "Press F5 once your breakpoints are in place.",
+      "keywords": [
+        "how to set a breakpoint in vs code on mac",
+        "VS Code",
+        "set a breakpoint",
+        "Mac",
+        "programmer Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Innovalabs",
+        "url": "https://pixabay.com/users/Innovalabs-22783312/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-a-breakpoint-in-vs-code/how-to-set-a-breakpoint-in-vs-3-60b3bc.jpg",
+      "width": 1280,
+      "height": 703,
+      "alt": "Close view of code on a screen, with a breakpoint dot in the editor margin",
+      "caption": "The editor margin is the strip left of the line numbers.",
+      "keywords": [
+        "how to set a breakpoint in vs code on mac",
+        "VS Code",
+        "set a breakpoint",
+        "Mac",
+        "code editor screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Boskampi",
+        "url": "https://pixabay.com/users/Boskampi-3788146/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-computer-code-programming-1873831/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to set a breakpoint in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "vs code breakpoint mac": 1,
+      "vs code f9 breakpoint": 1,
+      "vs code conditional breakpoint": 1,
+      "vs code logpoint": 1,
+      "vs code breakpoint not hitting": 1,
+      "vs code breakpoint gray dot": 1,
+      "vs code run and debug mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

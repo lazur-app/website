@@ -1,0 +1,587 @@
+{
+  "title": "Discovered currently not indexed search console: what it means and how to fix it on Mac",
+  "metaTitle": "Discovered Currently Not Indexed Search Console: Fixes for Mac",
+  "description": "Google found the page but has not crawled it yet. Learn what this status means in Search Console, what it costs you, and fixes you can try on a Mac.",
+  "targetKeyword": "discovered currently not indexed search console",
+  "secondaryKeywords": [
+    "discovered not indexed google search console",
+    "page indexing report",
+    "google crawl budget for small sites",
+    "request indexing search console",
+    "submit sitemap google search console",
+    "internal links for indexing",
+    "pages not indexed mac"
+  ],
+  "intro": "In Search Console, a page marked Discovered currently not indexed means Google found the URL but has not crawled it yet. Google's help page says it rescheduled that crawl because it expected to overload your site. The help page gives no specific action for this status, so you need to work out the cause yourself. This guide covers what the status costs, why it happens, and fixes you can make without buying anything.",
+  "tldr": [
+    "Discovered currently not indexed means Google knows the URL but has not crawled it yet.",
+    "Google's help page ties the status to a rescheduled crawl, because Google expected to overload the site.",
+    "The usual fixes are faster server responses, fewer duplicate URLs, and normal internal links to each stuck page.",
+    "Clicking Request indexing again does not speed things up. Google says crawling can take days to weeks.",
+    "Lazur can explain the report, point at the row, and draft your developer note. It does not click or fix the site."
+  ],
+  "stats": [
+    {
+      "value": "61.94%",
+      "label": "of about 16 million sampled pages were reported as not indexed in one vendor study, with an undocumented method",
+      "sourceUrl": "https://indexcheckr.com/resources/google-indexing",
+      "sourceTitle": "IndexCheckr: Google indexing study"
+    },
+    {
+      "value": "70.63%",
+      "label": "of 33,930 pages submitted for indexing stayed unindexed after submission, per the same vendor study",
+      "sourceUrl": "https://indexcheckr.com/resources/google-indexing",
+      "sourceTitle": "IndexCheckr: Google indexing study"
+    },
+    {
+      "value": "59.7%",
+      "label": "of 75 SEO experts agree SEO takes 4 to 15 hours of work a week, counting all SEO work",
+      "sourceUrl": "https://morningscore.io/how-long-does-seo-take/",
+      "sourceTitle": "MorningScore: How long does SEO take"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to find this status in Search Console"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Search Console in your browser and go to the Page indexing report. Scroll to the list of reasons why pages are not indexed. Find the row named Discovered currently not indexed and open it. The count tells you how many URLs Google knows about but has not fetched. Google learned about those URLs from a sitemap or a link. Google has the address. It has not visited the page yet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Discovered and crawled are two different problems"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many people mix up two statuses. Crawled currently not indexed means Google fetched the page and chose not to index it. Google's help page calls that status common and says it doesn't necessarily indicate an issue that needs attention. Discovered sits earlier in the process. Google has the address but has not fetched the page at all. The two need different work. A discovered page needs help getting crawled. A crawled page needs a quality check. Sort your list into those two groups before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How long Google takes to act"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's recrawl guidance says crawling can take anywhere from a few days to a few weeks. It also says a recrawl request does not guarantee inclusion, and inclusion may never happen. Asking again does not help. Google says requesting a recrawl multiple times for the same URL won't get it crawled any faster. There is also a quota on individual URL submissions, though Google does not publish the number for the button. Spend your requests on the few pages that matter most. Fix the site so Google can crawl it on its own."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test one URL before you request indexing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you touch anything, test one URL. Paste the address into the URL inspection box at the top of Search Console. Read what Google reports for that URL. Then open the page yourself. Your goal is to see whether the page loads quickly, returns real content, and sits behind a clean address. Write the results down. You will compare them after your fixes."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the page in a private window. In Chrome, press ⇧⌘N.",
+        "Check that it loads without errors and shows the full content.",
+        "Look at the address for extra parts such as ?sort= or ?color=.",
+        "Check whether at least one other page on your site links to it with a normal link.",
+        "Open developer tools with ⌥⌘I in Chrome and note how long the page takes to load."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: sort links that multiply pages"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you run an online shop with a page for running shoes. The page has sort links. One link goes to a version sorted by price, and another goes to a version sorted by name. Each sorted version shows the same products in a different order. Google can find all of those addresses. It may spend its crawling on the copies and reach your important product pages later. The fix is to keep one clean address for each product list. Block the sorted copies with robots.txt, and list only the clean addresses in your sitemap. Then check the report again after a few weeks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google crawl budget for small sites: when it really matters"
+    },
+    {
+      "type": "paragraph",
+      "text": "Crawl budget gets blamed for almost everything. Google's crawl budget guide says it is aimed mainly at large sites. It names large sites with 1 million+ unique pages that change weekly, and medium or larger sites with 10,000+ pages that change daily. It also names sites where a large portion of URLs sit in this status. Google calls those thresholds rough estimates. Ahrefs reports that Gary Illyes said 90% of sites don't need to worry about crawl budget. If your site is much smaller, check server speed, internal links, and page quality first. Those are the likelier culprits."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the vendor numbers do and do not tell you"
+    },
+    {
+      "type": "paragraph",
+      "text": "You will see big percentages online. IndexCheckr, a vendor, reports that 61.94% of its pages were not indexed. It also reports that 70.63% of 33,930 submitted pages stayed unindexed after submission. Those numbers are useful warnings. They are not a measured industry rate. The study does not document its method. Its categories add up to about 14.59 million, not the 16 million sample it describes. Use the numbers to set expectations, not to decide how much to spend."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with stuck pages"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clicking Request indexing over and over. Google says repeat requests do not get the URL crawled faster.",
+        "Filling the sitemap with duplicate or filter URLs. Keep it to pages you want indexed.",
+        "Blocking pages you want found. Use robots.txt only for low-value variants.",
+        "Relying on buttons or menus with no real link. Google needs a normal anchor element with an href attribute.",
+        "Fixing one page while thin sections stay thin. Mueller's comments point to overall site quality as the bigger factor in most cases."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Free tools you can use on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search Console runs in your browser, so Chrome or Safari on your Mac is enough. For a crawl of your own site, Screaming Frog SEO Spider runs on macOS with both Apple silicon and Intel builds. The free version limits each crawl to 500 URLs. The paid licence is listed at £199 per year. The latest release is 25.1, dated 4 November 2026, and it is labeled as bug fixes. Check the download page before you install, because versions change."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use one week to work through the list"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spread the work over a week. The first two days are your own checks. The middle days depend on your developer and on the page owners who can add links. The last days are for waiting and rechecking, because Google needs time after each change. A one-day scramble usually leads to requests that repeat themselves and changes nobody can trace."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ and ask about anything on screen. Lazur answers out loud. Ask where the row is, and it draws a circle and a label around it. Ask how to test a URL, and it guides you one click at a time, waiting for each click. It does not click for you. It does not edit your site, change your server, or run Search Console on your behalf. You still make every change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy, and client data at an agency"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer you, and they are not stored. Content is never used to train AI models. Search Console can still show a client's domain, traffic, and URLs. If you work for an agency, follow your employer's and your client's data rules before you share a screen with any assistant."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pricing and the free trial"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial. No credit card is needed. The trial starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, and includes 150 AI actions. Power costs $120 a month, or $96 a month billed annually, with 1,000 AI actions. Dictation is unlimited on both plans. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. Check the pricing page for current terms."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Your next step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one URL and one fix. Most sites get the most from the server check and the internal links. Once those are clean, turn your remaining list into a short brief for the developer. If your sheet of URLs is messy, sort it with a filter first, using the steps in [adding a filter in Google Sheets](/how-to/add-a-filter-to-a-range-in-google-sheets). Write the brief in Google Docs, using the tips in [Google Docs for marketers](/for/marketers/google-docs). When you want a voice guide for the report, [download Lazur](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Discovered currently not indexed mean my page is broken?",
+      "answer": "Not necessarily. Google's help page ties the status to crawling. It says Google rescheduled the crawl because it expected to overload the site. Check the page itself, then check your server speed and internal links before you assume a fault in the page."
+    },
+    {
+      "question": "How is this different from Crawled currently not indexed?",
+      "answer": "Discovered means Google has the address but has not fetched the page. Crawled means Google fetched the page and chose not to index it. Google's help page calls the crawled status common and says it doesn't necessarily indicate an issue that needs attention."
+    },
+    {
+      "question": "Should I click Request indexing?",
+      "answer": "Click it once for the pages that matter most, and only after you fix the server, links, or duplicate URLs. Google says requesting a recrawl multiple times for the same URL won't get it crawled any faster. Individual submissions also have a quota that Google does not publish for the button."
+    },
+    {
+      "question": "How long until Google crawls the page?",
+      "answer": "Google says crawling can take anywhere from a few days to a few weeks. It does not promise that the page will be included. Plan to wait, then recheck the report and your sheet of URLs."
+    },
+    {
+      "question": "Does crawl budget matter for a small site?",
+      "answer": "Usually less than people think. Google's crawl budget guide is aimed mainly at large sites, such as those with 1 million+ unique pages that change weekly. Ahrefs reports that Gary Illyes said 90% of sites don't need to worry about crawl budget."
+    },
+    {
+      "question": "Do I need Screaming Frog for this?",
+      "answer": "No. Search Console and a clean sitemap cover much of the work. Screaming Frog helps when you want to crawl your own site from your Mac. The free version handles up to 500 URLs per crawl, and the paid licence is listed at £199 per year."
+    },
+    {
+      "question": "Can Lazur fix this for me?",
+      "answer": "No. Lazur explains what is on screen, points at rows, guides you one click at a time, and drafts text. It does not click buttons, edit your site, or change your server. You make the changes, and Lazur helps you understand the report and write the brief."
+    },
+    {
+      "question": "Does Lazur see my Search Console account?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. The audio and screenshot are sent to AI providers to answer you, and they are not stored. Check your agency or client rules before you share client data on screen."
+    },
+    {
+      "question": "Is there a free trial?",
+      "answer": "Yes. Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually. Check the pricing page for current terms."
+    },
+    {
+      "question": "Is Lazur available for Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, not available."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Console Help: Page indexing report",
+      "url": "https://support.google.com/webmasters/answer/7440203",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Managing crawl budget for large sites",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/large-site-managing-crawl-budget",
+      "publisher": "Google Search Central",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Ask Google to recrawl your URLs",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl",
+      "publisher": "Google Search Central",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Make links crawlable",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+      "publisher": "Google Search Central",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google On Fixing Discovered Currently Not Indexed",
+      "url": "https://www.searchenginejournal.com/fixing-discovered-currently-not-indexed/491432/",
+      "publisher": "Search Engine Journal",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Discovered - currently not indexed",
+      "url": "https://ahrefs.com/blog/discovered-currently-not-indexed/",
+      "publisher": "Ahrefs",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Indexing Study: Insights from 16 Million Pages",
+      "url": "https://indexcheckr.com/resources/google-indexing",
+      "publisher": "IndexCheckr",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How long does SEO take",
+      "url": "https://morningscore.io/how-long-does-seo-take/",
+      "publisher": "MorningScore",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Screaming Frog SEO Spider release history",
+      "url": "https://www.screamingfrog.co.uk/seo-spider/release-history/",
+      "publisher": "Screaming Frog",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Screaming Frog SEO Spider product page",
+      "url": "https://www.screamingfrog.co.uk/seo-spider/",
+      "publisher": "Screaming Frog",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "pages stuck at discovered currently not indexed",
+  "costs": [
+    {
+      "title": "Waiting with no date",
+      "text": "Google says crawling can take anywhere from a few days to a few weeks, and it does not promise inclusion. You cannot book a date for the crawl. Every week a page sits in this state is a week of lost search visibility for that page. That delay is the real cost, and it hits launches and campaigns that depend on the page being found."
+    },
+    {
+      "title": "Repeat requests that do nothing",
+      "text": "Each time you click Request indexing again on the same URL, you spend time and part of a limited quota for no gain. Google's guide says repeated requests do not get the URL crawled any faster. Google does not publish the quota number for the button, so treat each request as a scarce resource."
+    },
+    {
+      "title": "Hours spent on the wrong fix",
+      "text": "A MorningScore survey of 75 SEO experts found that 59.7% agree SEO takes 4 to 15 hours of work a week. That figure covers all SEO, not this status alone. It still shows how fast hours disappear when you chase a fix that misses the cause. Check server speed and links before you rewrite content."
+    },
+    {
+      "title": "Crawling spent on the wrong URLs",
+      "text": "When Google finds many variants of one page, its crawling spreads across them. Google's guide says to eliminate duplicate content so crawling focuses on unique content rather than unique URLs. Every sorted or filtered copy you leave open is a small drag on the pages you care about."
+    },
+    {
+      "title": "Developer time and back and forth",
+      "text": "Server and template fixes need an engineer. A vague ticket costs a round trip, and each round trip adds more waiting. Send one clear brief with the URLs, the status you see, and the changes you want. That brief saves the most time on your side and theirs."
+    },
+    {
+      "title": "Time value of the marketer role",
+      "text": "The US Bureau of Labor Statistics lists median pay for advertising, promotions, and marketing managers at $165,780 in May 2025. That is an occupation figure, not a cost of this status. Use it only to think about how valuable your hours are when you choose between a quick fix and a long wait."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Google expects to overload your server",
+      "text": "Google's help page says it rescheduled the crawl because it expected to overload the site. That is why the last crawl date can be empty. Google's crawl budget guide adds that if a site slows down, returns server errors, or sends rate limiting signals, the limit goes down and Google crawls less. Check response times first. A slow server can hold back a whole section of a site."
+    },
+    {
+      "title": "Too many similar URLs",
+      "text": "Sorted, filtered, and parameter versions of one page compete for the same crawling. Google's guide says to eliminate duplicate content so crawling goes to unique content, not unique URLs. Many small sites never hit this. Large catalogs and heavy filter menus are the usual trigger, because they create many addresses for the same products."
+    },
+    {
+      "title": "Weak internal links",
+      "text": "Google finds new pages to crawl partly through links. Its guidance says every page you care about should have a link from at least one other page on your site. A page that appears only in a sitemap, or only behind a script with no real link, has fewer ways in. Check each stuck URL for at least one normal link from a page Google already crawls."
+    },
+    {
+      "title": "Overall site quality",
+      "text": "In office-hours comments reported by Search Engine Journal in July 2023, Mueller said crawling can be limited by how well a site handles more crawling. The comments also said that in most cases the issue is overall website quality. Weak sections can lower the standing of the whole site. Look for thin, copied, or near-empty pages and fix or remove them."
+    },
+    {
+      "title": "The page is new or still queued",
+      "text": "A new page waits in the queue until Google gets to it. Google says crawling can take a few days to a few weeks. This is the least alarming cause on the list. Give the page time, link it from a crawled page, and recheck the report before you start rebuilding anything."
+    },
+    {
+      "title": "Sitemap gaps on large sites",
+      "text": "Google's recrawl guidance says that if you have large numbers of URLs, you should submit a sitemap. It calls a sitemap an important way for Google to discover URLs on your site. A missing or stale sitemap leaves discovery to links alone, which is slower when your site is large."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Speed up server responses",
+      "text": "Start here if the server is slow. Google's crawl budget guide says to improve server response times and to use HTTP caching with 304 responses. Ask your developer to look at slow templates, heavy scripts, and pages that are not cached. Test one URL after each change. Speed fixes usually need engineering, so put them first in your brief."
+    },
+    {
+      "title": "Consolidate duplicate and low-value URLs",
+      "text": "Pick one clean address for each page. Google advises eliminating duplicate content, and it advises blocking low-value variants with robots.txt, such as differently sorted versions of the same page. Keep the rule narrow. Block the sorted copies, not the product or article pages themselves."
+    },
+    {
+      "title": "Link stuck pages from pages Google crawls",
+      "text": "Find one or two strong pages that Google already crawls, such as a category page, a hub, or a popular article. Add a normal link from each one to the stuck URL. Google's guidance says crawlable links must be anchor elements with an href attribute. A button that only runs a script does not count as a crawlable link."
+    },
+    {
+      "title": "Submit a clean sitemap",
+      "text": "Submit a sitemap that lists the pages you want indexed, especially if your site has many URLs. Google calls the sitemap an important way to discover URLs. Keep it clean. Leave out filter pages, duplicates, and addresses that redirect elsewhere. Check the sitemap status in Search Console after you submit it."
+    },
+    {
+      "title": "Improve or prune thin sections",
+      "text": "Look at the section that holds your stuck pages. If it is thin, copied, or near-empty, improve it or remove it. Mueller's comments say overall site quality matters more than any one page in most cases. Lifting a weak section may help the rest of the site, even when the stuck pages themselves look fine."
+    },
+    {
+      "title": "Request indexing once for key pages",
+      "text": "After you fix the links and the server, request indexing once for your most important stuck pages. Do not repeat the request for the same URL. Google says repeated requests won't get the page crawled any faster. Then give Google time to crawl on its own schedule."
+    },
+    {
+      "title": "Crawl your own site with a free tool",
+      "text": "Screaming Frog SEO Spider runs on your Mac and crawls your site the way a bot does. The free version handles up to 500 URLs per crawl. For a larger site, the paid licence is listed at £199 per year. Use the crawl to check errors and page links, then compare the results with your list of stuck URLs."
+    },
+    {
+      "title": "Track every change in a sheet",
+      "text": "Put the stuck URLs in Google Sheets, one per row. Add columns for the date, the change you made, and the status you see on the next check. A sheet shows which fix moved which URL. It also stops you from repeating a request you already made."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does Discovered, currently not indexed mean here?",
+      "result": "Lazur explains out loud that Google has found the URL but has not crawled it yet, and where to look next.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Discovered row on this report?",
+      "result": "Lazur draws a circle and a label around the row on your screen, so you do not have to hunt for it.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through testing this URL.",
+      "result": "Lazur guides you one click at a time and waits for each click, so you stay in control of the inspection.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to my developer with these URLs.",
+      "result": "Lazur drafts a short brief with the URLs and statuses, and types it where your cursor sits. You read it before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate my notes into this doc.",
+      "result": "Hold fn to dictate clean, formatted text at the cursor in any app, such as a Google Docs brief.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research how Google describes this status.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the sources yourself before you rely on them.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to recheck the report in a week.",
+      "result": "Lazur adds an Apple Reminders entry for the recheck, so the follow-up does not depend on memory.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "What does Discovered, currently not indexed mean here?",
+    "capability": "explain",
+    "result": "Lazur answers out loud in plain words and points you to the row you are reading.",
+    "shell": "generic",
+    "context": "Page indexing report open in Chrome on a Mac.",
+    "output": "A spoken answer, plus a circle around the status row.",
+    "pointsAt": "Discovered row"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the report and copy the list",
+      "text": "Open the Page indexing report and find the Discovered currently not indexed row. Copy the URLs into a Google Sheets tab, one per row. Note the date at the top. Do not click Request indexing yet."
+    },
+    {
+      "label": "Day 2",
+      "title": "Sort the list into groups",
+      "text": "Filter the sheet by address pattern. Mark URLs with sort, filter, or session parameters as low value. Mark product, article, and category pages as high value. Keep the groups in separate columns so you can track each one."
+    },
+    {
+      "label": "Day 3",
+      "title": "Test three URLs by hand",
+      "text": "Open one high-value and one low-value URL in a private window in Chrome with ⇧⌘N. Check the load time with ⌥⌘I, the developer tools. Write down what you see. You will compare these notes after your fixes."
+    },
+    {
+      "label": "Day 4",
+      "title": "Write the developer brief",
+      "text": "Draft a short note with the high-value URLs, their statuses, the slow pages, and the URL patterns to block. Ask for one change at a time. Keep the brief to one page so the developer can act on it quickly."
+    },
+    {
+      "label": "Day 5",
+      "title": "Add normal internal links",
+      "text": "Pick a few crawled pages that already get traffic. Add normal links from them to the stuck high-value pages. Open each link in a browser to confirm that it reaches the right page."
+    },
+    {
+      "label": "Day 6",
+      "title": "Check the sitemap and request once",
+      "text": "Confirm the sitemap lists only clean, high-value URLs. Submit it in Search Console. Request indexing once for your most important stuck page. Do not repeat the request for the same URL."
+    },
+    {
+      "label": "Day 7",
+      "title": "Wait, then recheck",
+      "text": "Google says crawling can take a few days to a few weeks. Set a reminder for the recheck. When you return, compare the report with your Day 1 copy and note which URLs moved."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs"
+  ],
+  "type": "problem",
+  "slug": "search-console-discovered-currently-not-indexed",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-discovered-currently-not-indexed/discovered-currently-not-indexed-search-console-1-7beefc.jpg",
+      "width": 1280,
+      "height": 973,
+      "alt": "Marketer at a laptop checking website pages during a discovered currently not indexed search console review",
+      "caption": "Checking pages in the browser before you request anything.",
+      "keywords": [
+        "discovered currently not indexed search console",
+        "Marketers",
+        "Pages stuck at Discovered - currently not indexed",
+        "Mac",
+        "person laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Mohamed_hassan",
+        "url": "https://pixabay.com/users/Mohamed_hassan-5229782/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/lamp-bulb-inspiration-invention-3066096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-discovered-currently-not-indexed/discovered-currently-not-indexed-search-console-2-a4ee33.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Desk with a computer screen showing a website report, the kind of list that holds stuck pages.",
+      "caption": "A list of URLs is where the work starts.",
+      "keywords": [
+        "discovered currently not indexed search console",
+        "Marketers",
+        "Pages stuck at Discovered - currently not indexed",
+        "Mac",
+        "office desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-discovered-currently-not-indexed/discovered-currently-not-indexed-search-console-3-3afce4.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Marketing team talking through a developer brief about slow pages and internal links.",
+      "caption": "A short brief helps the developer act on the report.",
+      "keywords": [
+        "discovered currently not indexed search console",
+        "Marketers",
+        "Pages stuck at Discovered - currently not indexed",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "discovered currently not indexed search console",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "discovered not indexed google search console": 1,
+      "page indexing report": 4,
+      "google crawl budget for small sites": 2,
+      "request indexing search console": 1,
+      "submit sitemap google search console": 1,
+      "internal links for indexing": 1,
+      "pages not indexed mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

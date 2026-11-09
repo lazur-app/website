@@ -1,0 +1,574 @@
+{
+  "title": "Excel for executive assistants on Mac: trackers, lookups, pivots and voice help in 2026",
+  "metaTitle": "Excel for Executive Assistants on Mac: Templates, Lookups, Pivots",
+  "description": "Excel for executive assistants on Mac: templates, XLOOKUP, date math and pivots in Microsoft 365, plus voice help from Lazur while you work.",
+  "targetKeyword": "excel for executive assistants on mac",
+  "secondaryKeywords": [
+    "excel for executive assistants mac",
+    "excel templates for executive assistants",
+    "excel tips for executive assistants",
+    "xlookup excel mac",
+    "pivot table excel mac for assistants",
+    "excel date formulas for assistants",
+    "excel voice help mac"
+  ],
+  "intro": "Excel for executive assistants on Mac comes down to three jobs: reusable templates, reliable lookups and monthly pivot reports. Microsoft 365 for Mac covers all three with tools already inside the app. Lazur adds voice help while you work. Hold ⌥⌘ to ask where a button is or how to finish a step.",
+  "tldr": [
+    "Start every recurring sheet from a template, using File > New from Template, so each month begins clean.",
+    "Use XLOOKUP with a not found message, wrapped in TRIM, for contact and name lookups.",
+    "Pivot tables work on Mac. An unofficial Microsoft answer says Power Pivot cannot be enabled on Mac.",
+    "Hold ⌥⌘ to ask Lazur where a button is or how to finish a step. Lazur guides you one click at a time."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of office workers often struggle to make sense of their spreadsheet data. Survey of 1,001 office workers, October 2022.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of data in spreadsheets"
+    },
+    {
+      "value": "92%",
+      "label": "say they must reshape spreadsheet data to make it understandable, at about one hour per dataset.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "New research shows almost half of users struggle to make sense of data in spreadsheets"
+    },
+    {
+      "value": "38%",
+      "label": "of working time spent in a spreadsheet on average, per a 2022 survey of 1,000 office workers.",
+      "sourceUrl": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "sourceTitle": "Excel Statistics: Facts & Figures"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel templates for executive assistants on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most executive assistants keep the same few sheets open all week. The usual set is an expense report, a travel log, a leave planner, a timesheet and a monthly report for the executive. Most of this work repeats. The same expense report comes in every month. The same leave tracker gets updated every week. That makes it the easiest kind of work to speed up, because you set each sheet up once and reuse it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2022 survey of office workers found people keep about 2.6 spreadsheets open at any one time. The stats below come from the same kind of research. Read them as a rough guide to a typical week."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Those figures describe office workers in general. No survey of executive assistants on Excel use turned up in the research. Treat them as context, not as a benchmark for your role."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template instead of a blank sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not rebuild the expense report from scratch every month. Open File > New from Template in Excel for Mac. Personal templates you have saved appear under the Personal tab. Save your cleaned up version as a template once, then open a fresh copy each time."
+    },
+    {
+      "type": "paragraph",
+      "text": "To save a sheet as a template, use File > Save As and choose the Excel Template format in the file type list. Keep the blank master in one folder, and work only in copies."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ready made templates help when you start from nothing. Smartsheet lists 22 free Excel templates for Mac, including an Expense Report, a Timesheet and a Monthly Calendar. ElyxAI offers five free templates for executive assistants. They cover team schedules, expense reports, executive leave planning, monthly reporting, and contract and deadline tracking. Both are vendor pages, so check each layout against how your office works."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Make your own default",
+      "text": "Microsoft says a custom default workbook must be saved as Book.xltx or Book.xltm in the Start-up folder inside the Office container in your Library. It applies to Microsoft 365, Excel 2024 and Excel 2021 for Mac. Use it for a blank sheet with your standard headers already set."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "XLOOKUP for contacts, names and dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "A lookup finds one value by matching a key. Executive assistants use lookups for contact details, room codes and cost centers. In Microsoft 365 for Mac, XLOOKUP is the simplest way to do this. You give it the value to find, the column to search and the column to return."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Your contacts sit on a sheet named Contacts. Names are in column A and phone numbers are in column C. In cell D2 of your tracker, with the name in B2, enter =XLOOKUP(B2,Contacts!$A:$A,Contacts!$C:$C,\"Not in list\")."
+    },
+    {
+      "type": "paragraph",
+      "text": "If B2 matches a name in column A, Excel returns the phone number from column C. If nothing matches, the cell shows Not in list instead of #N/A. A plain message is easier to spot in a report than an error code."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two edge cases catch people. First, a trailing space breaks a match. A name typed as Jo Smith with a space at the end will not find Jo Smith. Wrap the lookup value in TRIM, as in =XLOOKUP(TRIM(B2),Contacts!$A:$A,Contacts!$C:$C,\"Not in list\"). Second, whole column references such as $A:$A pick up new rows as you add contacts. Fixed ranges like $A$2:$A$40 miss them."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep the lookup list on one sheet with a single header row.",
+        "Use the fourth argument for a not found message, so gaps show clearly.",
+        "Check one result by hand before you fill the whole column.",
+        "Fill a working formula down with ⌘D instead of retyping it."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Date formulas for leave, deadlines and timesheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Date math is where assistant sheets go quietly wrong. Excel stores each date as a number. That lets you subtract, add and count days. A date typed as text looks right but calculates as nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "To count working days between two dates, use NETWORKDAYS. Put the start date in B2, the end date in C2, and a list of public holidays in a range named Holidays. Then enter =NETWORKDAYS(B2,C2,Holidays). The count includes both end dates. Adjust the formula if your leave policy treats the first day differently."
+    },
+    {
+      "type": "paragraph",
+      "text": "To find the last day of a month, use EOMONTH. The formula =EOMONTH(B2,0) returns the month end for the date in B2. That helps with monthly reports and deadline tracking. EDATE moves a date forward or back by a set number of months."
+    },
+    {
+      "type": "paragraph",
+      "text": "To name the holiday range, select it, choose Formulas > Define Name and type Holidays. The name keeps your formula readable when you copy it to another tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "Text dates are the usual problem. If a date sits aligned to the left of its cell, Excel reads it as text. Select the column and choose Data > Text to Columns. Pick the date format that matches your data, then finish. Check one cell before you trust the whole column."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for monthly executive reports on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table turns a long list of expenses or meetings into a summary. You can total by person, by month or by category without writing formulas. Start with your data in one flat table. Use one header row and no blank rows inside the data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Select any cell in the table and choose Insert > PivotTable. Microsoft's October 2026 What's New post says you can name a table at creation in Excel for Windows and Mac. Give it a clear name, such as ExpenseData, so the pivot source reads well."
+    },
+    {
+      "type": "paragraph",
+      "text": "Drag Person into Rows, Category into Columns and Amount into Values. Set Amount to Sum. A Count tells you how many lines there are, which answers a different question. When you add rows to the source, Control-click the pivot and choose Refresh. If new rows do not appear, check that the table covers them."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a full walk through, see [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Power Pivot on Mac",
+      "text": "Power Pivot is the usual route to larger data models. A Microsoft Q&A answer dated March 2026 says Power Pivot cannot be enabled on macOS, with no supported workaround. That answer is labeled as an AI answer, not an official Microsoft statement. Check Microsoft's current documentation before you plan around it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: the monthly executive report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the sequence I would follow for a report built from an expense tracker. The first pass takes some care. After that, each month is a paste and a refresh."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click one cell inside the expense data and press ⌘T to make it a table.",
+        "Add a Month column with =EOMONTH(A2,0) so every row carries its month end.",
+        "Choose Insert > PivotTable, pick the table and place the pivot on a new sheet.",
+        "Set Category as Rows, Month as Columns and the sum of Amount as Values.",
+        "Add a check cell with =SUM(ExpenseData[Amount]) and compare it with the pivot grand total."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Save the sheet as a template when the layout is right. Next month, paste the new export directly under the table, then refresh the pivot. The structure stays the same, so the report stays stable."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean messy data before it reaches your executive"
+    },
+    {
+      "type": "paragraph",
+      "text": "Data from a vendor, a travel portal or a colleague often arrives messy. Names come in all capitals. Dates arrive as text. Duplicate rows appear after a second export. Clean a copy, never the original file."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trim spaces with =TRIM(A2), which removes extra spaces around and between words.",
+        "Fix capitals with =PROPER(A2), which turns ALL CAPS names into Title Case.",
+        "Remove duplicates from the table with Data > Remove Duplicates, choosing the columns that define a unique row.",
+        "Split a combined column with Data > Text to Columns and the Delimited option, then pick the separator."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For bigger cleanups, Microsoft says the Copilot in Excel clean data skill is rolling out to general availability on all platforms. Call it with @clean-data or from the Skills menu. The skill recorder is still Insider only on Mac, so you cannot record your own skill yet. Keep a copy of the raw export either way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Because it sees the sheet, you do not need to describe every cell. See [Lazur for Excel on Mac](/apps/excel) for more."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Three kinds of question come up most in Excel. Ask where a button is, and Lazur draws a circle and a label around it on your screen. Ask how to do a task, and Lazur guides you one click at a time, waiting for each click before the next step. Ask why something broke, and Lazur explains the likely cause in plain words."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Dictation writes clean, formatted text at the cursor in any app. Use it for the cover note that goes with a report, or for a comment on a cell. Snippets and a personal dictionary help with names you type every day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you, edit your file or run Excel. You stay in control of every change. Lazur can also handle timers, Apple Reminders and Calendar events while the sheet stays open."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check formulas before a sheet goes to your executive"
+    },
+    {
+      "type": "paragraph",
+      "text": "A sheet that looks right can still be wrong. A few checks take about a minute and catch most problems."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Formulas > Error Checking scans the sheet for error values such as #N/A, #REF and #DIV/0, which show up when a formula breaks.",
+        "Formulas > Show Formulas displays every formula at once, so you can scan each column.",
+        "Test one row by hand with a calculator, then compare the result with the formula."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Name your key totals. A name such as MonthlyTotal reads better in a formula than a bare cell reference. When a number looks odd, click the cell and read the formula bar before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste an assistant's afternoon"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Merged cells inside a table. Merged cells break sorting, filtering and pivots. Use alignment settings instead.",
+        "Numbers stored as text. Totals can come out wrong or sum to nothing. Re-enter the values or convert the column.",
+        "Typing over formulas. A total typed over a formula hides the error. Keep the formula and check it.",
+        "Editing the master template. Open a copy each month and keep the blank master in a folder you do not edit.",
+        "Deleting rows a formula depends on. This causes a #REF error. Press ⌘Z right away to undo.",
+        "Blank rows in pivot sources. They create empty items in the pivot. Clear them from the data first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these show up in the monthly report, not while you build the sheet. Check the report total against the source once a month. That single check catches most problems."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits to know before you build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac is not identical to Excel for Windows. Some features arrive later, and some are missing. Check the features you need before you build a workflow around them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query on Mac had limited sources in a May 2022 Excel Campus review. That review lists only two sources at the time, no connection only option and no From Folder option. It is an old review, so check what your current version offers before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel > About Excel shows your exact version. Compare it with Microsoft's release notes before you plan a change for the whole office."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy when a sheet holds confidential schedules"
+    },
+    {
+      "type": "paragraph",
+      "text": "An executive's calendar, travel and leave details are sensitive. Check your company's rules before you ask any AI tool about them. Some offices do not allow screen content to leave the building at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer. They are not stored. Content is never used to train AI models. Lazur keeps a memory of what you asked and did, and that memory stays on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your office rules forbid sending screen content to outside services, keep Lazur idle while that sheet is on screen. Use it for the sheets that are fine to share."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pricing and the trial"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a trial that needs no credit card. The Pro and Power plans are listed on the [pricing page](/pricing). Dictation is unlimited on both plans."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open File > New from Template and save your current expense sheet as a template.",
+        "Clean one month of data in a copy before you build the pivot.",
+        "Swap fragile lookups for XLOOKUP with a not found message.",
+        "Build one pivot for the monthly report and check it against the source total.",
+        "Hold ⌥⌘ the next time a formula breaks and ask Lazur what the error means."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac support pivot tables for executive assistants?",
+      "answer": "Yes. PivotTables are available on Mac through Insert > PivotTable. Power Pivot is the exception. A Microsoft Q&A answer from March 2026 says it cannot be enabled on macOS, but that answer is labeled as an AI answer. Check Microsoft's current documentation before you plan a data model."
+    },
+    {
+      "question": "Which formula should I use instead of VLOOKUP on Mac?",
+      "answer": "Use XLOOKUP in Microsoft 365 for Mac. You give it the lookup value, the lookup column, the return column and a not found message. It does not need a column number, so inserting a column does not break it."
+    },
+    {
+      "question": "How do I stop a template from changing every time I open it?",
+      "answer": "Save the blank version as a template and keep it in a folder you do not edit. Open a copy with File > New from Template each month. Save the finished version under a new name."
+    },
+    {
+      "question": "Can Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur sees the screen, points at things, explains, guides you one click at a time and drafts text. It does not click buttons, edit files or operate other apps for you."
+    },
+    {
+      "question": "Is it safe to ask Lazur about an executive's schedule?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your company's policy before you share confidential content with any outside service."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Lazur is for macOS, on Apple silicon and Intel Macs. Windows is planned but not available yet. Check the [download page](/download) for the current status."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Customize how Excel starts in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/customize-how-excel-starts-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Power Pivot on MacOS - Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5819949/power-pivot-on-macos",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel Update: Power Query Editor for Mac",
+      "url": "https://www.excelcampus.com/power-tools/power-query-editor-mac/",
+      "publisher": "Excel Campus",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Free Excel Templates for Mac - Smartsheet",
+      "url": "https://www.smartsheet.com/mac-excel-templates",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel Templates for Executive Assistant - ElyxAI",
+      "url": "https://getelyxai.com/en/excel-use-cases/executive-assistant",
+      "publisher": "ElyxAI",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "New research shows almost half of users struggle to make sense of data in spreadsheets",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel Statistics: Facts & Figures",
+      "url": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "publisher": "Acuity Training",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Why does this cell say Not in list?",
+    "capability": "explain",
+    "result": "Lazur reads the formula and the cell on screen, names the likely cause and points at the lookup value.",
+    "shell": "sheet",
+    "context": "Monthly expense tracker, cell D2 shows Not in list for a name that is in Contacts",
+    "output": "Likely cause: the name in B2 ends with a space, so the exact match fails. Change the lookup to =XLOOKUP(TRIM(B2),Contacts!$A:$A,Contacts!$C:$C,\"Not in list\") and fill the column down.",
+    "pointsAt": "cell D2"
+  },
+  "tasks": [
+    {
+      "say": "Why does this lookup return Not in list?",
+      "capability": "explain",
+      "result": "Lazur reads the formula on screen and names the likely cause, such as a stray space in the lookup value."
+    },
+    {
+      "say": "Where is the PivotTable option on this Mac?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the Insert menu or the PivotTable option on your screen."
+    },
+    {
+      "say": "Walk me through making a pivot from this tracker.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before it gives the next step."
+    },
+    {
+      "say": "Draft a short note to finance that the expense sheet is ready.",
+      "capability": "draft",
+      "result": "Lazur writes the note as text you can paste into an email or a cell."
+    },
+    {
+      "say": "Dictate the cover note for the leave report.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in the app you are using."
+    },
+    {
+      "say": "Find the public holiday list for next month.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "say": "Remind me to send the timesheet on Friday.",
+      "capability": "everyday",
+      "result": "Lazur adds an Apple Reminders item for the time you name."
+    },
+    {
+      "say": "Put the monthly report review on my calendar.",
+      "capability": "everyday",
+      "result": "Lazur adds a Calendar event for the day and time you give."
+    }
+  ],
+  "type": "role-app",
+  "slug": "executive-assistants-excel",
+  "role": "executive-assistants",
+  "app": "excel",
+  "roleName": "Executive assistants",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/executive-assistants-excel/excel-for-executive-assistants-on-mac-1-4b5c17.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "An executive assistant sitting at a desk with a laptop, ready to work in Excel for executive assistants on Mac",
+      "caption": "Assistant desk setup for a weekly spreadsheet routine",
+      "keywords": [
+        "excel for executive assistants on mac",
+        "Excel",
+        "Executive assistants",
+        "Mac",
+        "executive assistant desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "businessmagazine",
+        "url": "https://pixabay.com/users/businessmagazine-52973257/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-suit-newspaper-office-glasses-10542258/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/executive-assistants-excel/excel-for-executive-assistants-on-mac-2-dcd854.jpg",
+      "width": 1280,
+      "height": 995,
+      "alt": "Office worker typing on a laptop while reviewing data, the kind of work done in Excel for executive assistants on Mac",
+      "caption": "Reviewing a tracker before the monthly report goes out",
+      "keywords": [
+        "excel for executive assistants on mac",
+        "Excel",
+        "Executive assistants",
+        "Mac",
+        "office worker laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheDigitalArtist",
+        "url": "https://pixabay.com/users/TheDigitalArtist-202249/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/businessman-computer-professional-3406030/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/executive-assistants-excel/excel-for-executive-assistants-on-mac-3-ff4981.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person working through spreadsheet rows at an office desk, a common setting for Excel for executive assistants on Mac",
+      "caption": "Repeat sheets like these benefit from a saved template",
+      "keywords": [
+        "excel for executive assistants on mac",
+        "Excel",
+        "Executive assistants",
+        "Mac",
+        "office spreadsheet work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for executive assistants on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "excel for executive assistants mac": 1,
+      "excel templates for executive assistants": 2,
+      "excel tips for executive assistants": 1,
+      "xlookup excel mac": 1,
+      "pivot table excel mac for assistants": 1,
+      "excel date formulas for assistants": 1,
+      "excel voice help mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

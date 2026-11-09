@@ -50,7 +50,9 @@ jobs:
       GEMINI_VERTEX_API_KEY: ${{ secrets.GEMINI_VERTEX_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       CONTENT_CONCURRENCY: ${{ vars.CONTENT_CONCURRENCY || '6' }}
       CONTENT_MAX_USD_PER_DAY: ${{ vars.CONTENT_MAX_USD_PER_DAY || '60' }}
       CONTENT_MAX_SEARCHES_PER_DAY: ${{ vars.CONTENT_MAX_SEARCHES_PER_DAY || '1400' }}
@@ -74,7 +76,7 @@ jobs:
         run: |
           missing=""
           [ -z "$GEMINI_VERTEX_API_KEY$GEMINI_API_KEY" ] && missing="$missing GEMINI_VERTEX_API_KEY(or GEMINI_API_KEY)"
-          for s in PIXABAY_API_KEY BLOB_READ_WRITE_TOKEN; do
+          for s in PIXABAY_API_KEY R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY; do
             [ -z "${!s}" ] && missing="$missing $s"
           done
           if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing (see CONTENT-AUTOMATION.md)"; exit 1; fi

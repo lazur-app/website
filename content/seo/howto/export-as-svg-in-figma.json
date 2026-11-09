@@ -1,0 +1,471 @@
+{
+  "title": "How to export as SVG in Figma on Mac: single layers, frames and bulk export",
+  "metaTitle": "How to Export as SVG in Figma on Mac (Step by Step)",
+  "description": "How to export as SVG in Figma on Mac: select the layer, open Export, choose SVG, then click Export. Covers SVG settings, bulk export and copy as SVG.",
+  "targetKeyword": "how to export as svg in figma on mac",
+  "secondaryKeywords": [
+    "export svg figma mac",
+    "figma svg export settings",
+    "copy as svg figma",
+    "figma bulk export svg",
+    "figma outline text svg",
+    "figma export section missing"
+  ],
+  "intro": "To export as SVG in Figma on Mac, select the frame or layer, then open the Export section in the right sidebar. Click the plus, choose SVG, and click Export to save the file.",
+  "tldr": [
+    "Select the frame or layer, click the plus in the Export section, choose SVG, then click Export.",
+    "For several layers at once, use File > Export or press ⇧⌘E. For code without a file, right-click and choose Copy as SVG.",
+    "SVG export is 1x only, Outline text is on by default, and only center strokes carry over.",
+    "Use Preview before you export, then open the finished file in a browser to check it."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "SVG suits logos, icons and simple illustrations. The file stays sharp at any size, and most code editors and browsers can open it. Photos and textured artwork are a different case. For those, PNG or JPG usually works better. This page covers the single-layer export first. Then it covers bulk export, copying SVG without a file, the settings that change the output, and the mistakes that break a file. Read the steps first. Come back to the rest when something looks wrong."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export a single layer or frame as SVG"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the route most people need. Select the object first, so the export settings apply to it. Each export row holds one format and its settings. You choose the format, check the options, and then save. The export only affects the object you selected. Nothing else on the canvas gets exported with it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the Export section sits in each mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Export section moves depending on how you open the file. In Design mode, it sits at the bottom of the right sidebar. With view-only access, look under Properties. In Dev Mode, the section appears only when an object is selected, so click the layer first if you see nothing. If the section still does not show, read the troubleshooting list below before you start over."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the SVG options before you export"
+    },
+    {
+      "type": "paragraph",
+      "text": "The SVG options are short, but each one changes the file. Most icons look right with the defaults. Change one option at a time, then click Preview to see what it did. Here is what each option does, based on Figma's help article."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ignore overlapping layers: on by default. Change it only when the preview looks wrong.",
+        "Include bounding box: shown for text layers only. Use it when the text box matters in the file.",
+        "Include id attribute: adds an id to elements. Turn it on when a developer needs to target parts of the SVG in code.",
+        "Outline text: on by default when text is selected. Text becomes glyph shapes and stops being editable.",
+        "Simplify stroke: on by default for vector networks with inside or outside strokes.",
+        "Suffix: adds text to the end of the exported file name.",
+        "Scale: SVG supports only 1x, so larger sizes are not an option here."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Copy as SVG when you do not need a file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you want the code, not a file. Right-click the object, hover over Copy/Paste as, and select Copy as SVG. Figma places the SVG markup on your clipboard and creates no export file. Paste it into a code editor or a plain text file to read it. This route is quick for a single icon. It is less useful when someone needs a file to attach or upload."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export several layers at once with File > Export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bulk export handles sets, such as a row of icons, a group of screens or a batch of logos. Open the main menu and go to File > Export, or press ⇧⌘E. The modal lists every selection with its own export setting. Uncheck anything you want to skip, then click Export. Bulk export opens the bulk modal, so it does not replace the single-layer route."
+    },
+    {
+      "type": "paragraph",
+      "text": "Layer names matter here. A slash in a layer name creates folders when you export. A layer named button/pill/default exports into a button folder and a pill folder, and the file is named default. Name layers with that in mind, or you will get folders you did not plan for."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break SVG exports"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most broken SVGs come from a short list of causes. SVG Genie, a third-party guide to Figma exports, lists several of them. Its percentages have no source, so this page uses only the list. Check each item in Preview before you send the file."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "White background: a frame fill can end up in the file. Remove the fill if you need a transparent background.",
+        "Wrong fonts: text can render in another font unless Outline text is on. Keep Outline text on for logos.",
+        "Inside or outside strokes: only center strokes carry over. Set the stroke position to center first.",
+        "Blur missing: a background blur must sit on the layer itself. Apply it to that layer directly.",
+        "Clipped edges: shapes that cross the frame edge can be cut off. Move them inside the frame, or resize the frame.",
+        "Gradients that look wrong: check the gradient in Preview, then adjust the fill and export again."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Outline text decides whether text stays editable"
+    },
+    {
+      "type": "paragraph",
+      "text": "Outline text is the biggest choice in the SVG options. It is on by default when text is selected. With it on, Figma exports text as glyphs, which are shapes. The file looks the same on any machine, but nobody can edit the words. Turn it off to keep text as text. Then the file depends on the font, and a viewer without that font may see another typeface. For logos and icons, leave it on. For copy that changes often, turn it off and check the result in a browser."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sizing an SVG export in Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "SVG export in Figma supports only 1x. You cannot pick a larger scale in the SVG settings. If you need a bigger version, change the width and height values in the code, or use width and height variables. The artwork stays vector, so the size change lives in the code, not in the export dialog."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the Export section is missing or locked"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a refresh of the page. If the Export section still does not appear, the file owner may have restricted viewers from copying or exporting. View-only access needs the owner to allow copying and sharing before export is possible. Ask the owner to change that setting, or ask for edit access, then try again. The owner controls this, not you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Desktop app or browser: where your file ends up"
+    },
+    {
+      "type": "paragraph",
+      "text": "In the Figma desktop app, the export asks you to rename the file and choose a save location. Pick a project folder you will remember, not the Desktop, so the file is easy to find later. In the browser, the file goes to your browser's download location. That is usually the Downloads folder, unless you changed it in the browser settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Figma version and recent release notes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help pages do not list a desktop version for these steps, so this page does not tie them to a version number. Figma's release notes dated November 2 and November 6, 2026 cover shaders and selection. Neither one mentions SVG export. If your window looks different, update the app and read the labels on your own screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps while you export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘, which is Option and Command together, and ask about anything on screen. Lazur answers out loud. Ask where the Export section is, and Lazur draws a circle and a label around it. Ask how to export, and Lazur guides you one click at a time, waiting for each click. It does not click for you, and it does not operate Figma. You still make every click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "For more on voice help in Figma, see [Figma on Mac with Lazur](/apps/figma)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick check before you send the SVG"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run through this list before the file leaves your hands. It takes a minute and catches most problems from the list above."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Open the SVG in a browser and check edges, colors and text.",
+        "Open it in a code editor if a developer will use the markup.",
+        "Confirm the background is transparent if you need that.",
+        "Confirm the strokes are center strokes, or that the outline is what you expect.",
+        "Check the file name uses lowercase words and hyphens, such as pill-button.svg.",
+        "Keep the source frame in your Figma file so you can export again."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When SVG is the wrong format"
+    },
+    {
+      "type": "paragraph",
+      "text": "SVG works best for shapes, icons, logos and simple illustrations. Photos and textures do not suit vector files. Use PNG for raster images and set the export options for that format. Choose SVG only when a developer or a tool needs vector shapes. A wrong format costs more time than a quick export setting."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I export as SVG in Figma on Mac in the browser?",
+      "answer": "Yes. The steps match the desktop app. The browser saves the file to your download location instead of asking you to rename it and choose a folder."
+    },
+    {
+      "question": "Why is the text in my SVG not editable?",
+      "answer": "Outline text is on by default when text is selected. Figma then exports text as glyphs, which are shapes. Turn Outline text off in the SVG options if you need editable text in the file."
+    },
+    {
+      "question": "Can I export a bigger SVG in Figma?",
+      "answer": "Not from the SVG settings. Figma's export formats article says SVG scale is 1x only. Change the width and height values in the code, or use width and height variables."
+    },
+    {
+      "question": "Why are my inside and outside strokes missing?",
+      "answer": "Figma supports only center strokes in SVG. Inside and outside strokes come out as fills, so they can look wrong. Set the stroke position to center before you export."
+    },
+    {
+      "question": "Is there a way to copy the SVG without saving a file?",
+      "answer": "Yes. Right-click the object, hover over Copy/Paste as, and select Copy as SVG. Figma copies the markup and creates no export file."
+    },
+    {
+      "question": "Does Lazur export the SVG for me?",
+      "answer": "No. Lazur points at the Export section and the Export button, explains the settings, and guides you one click at a time. It does not click buttons or operate Figma for you."
+    },
+    {
+      "question": "Which Figma version do these steps match?",
+      "answer": "The Figma help pages do not list a desktop version for these steps, so this page does not tie them to one. The release notes for November 2 and November 6, 2026 do not mention SVG export."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Export static designs from Figma (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/360040028114-Export-from-Figma-Design",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Export formats and settings for static designs (Figma Help Center)",
+      "url": "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings-for-static-designs",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma product news and release notes",
+      "url": "https://www.figma.com/release-notes/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to Export SVG from Figma (SVG Genie)",
+      "url": "https://www.svggenie.com/blog/how-to-export-svg-from-figma",
+      "publisher": "SVG Genie",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Export a Figma layer or frame as SVG on Mac",
+  "appliesTo": "Figma desktop app and browser on macOS, Apple silicon and Intel Macs",
+  "timeMinutes": 3,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Figma file you can open, with at least view access",
+    "Export permission from the file owner if you only have view access",
+    "A frame, group or layer selected on the canvas",
+    "The Figma desktop app for Mac, or Figma in a browser"
+  ],
+  "steps": [
+    {
+      "name": "Select the frame or layer",
+      "text": "Open your file in the Figma desktop app or in the browser. Click the frame, group or layer you want on the canvas. The export settings belong to that object, so select the right one first.",
+      "tip": "To export a whole screen, select the frame that holds it, not the shapes inside."
+    },
+    {
+      "name": "Find the Export section",
+      "text": "Look at the right sidebar. In Design mode, scroll to the bottom to find the Export section. With view-only access, look under Properties. In Dev Mode, the section appears only when an object is selected.",
+      "tip": "If the section is missing, refresh the page and read the troubleshooting list."
+    },
+    {
+      "name": "Click the plus in the Export section",
+      "text": "Click the + icon in the Export section. A new export row appears with default settings for the selected object. Each row holds one format and its settings."
+    },
+    {
+      "name": "Choose SVG from the format dropdown",
+      "text": "Open the format dropdown in that row and choose SVG. Figma keeps the scale at 1x, because SVG supports only that scale.",
+      "tip": "Figma can change labels between releases, so read the dropdown on your own screen."
+    },
+    {
+      "name": "Set the SVG options",
+      "text": "Review the options under the format. Ignore overlapping layers and Outline text are on by default. Turn Outline text off only when you need editable text. Turn on Include id attribute when a developer needs element ids.",
+      "tip": "Change one setting at a time, then click Preview so you can see what changed."
+    },
+    {
+      "name": "Click Preview",
+      "text": "Click Preview to see the export before you save it. Check the edges, the colors, the text and any strokes. If something looks wrong, change the setting and preview again.",
+      "tip": "Preview is optional. Skipping it means you find problems after the file is saved."
+    },
+    {
+      "name": "Click Export and save the file",
+      "text": "Click Export. In the desktop app, Figma asks you to rename the file and choose where to save it. In the browser, the file goes straight to your download location.",
+      "tip": "Use lowercase names with hyphens, such as pill-button.svg, so the file is easy to use in code."
+    },
+    {
+      "name": "Alternative: bulk export with File > Export",
+      "menuPath": [
+        "Main menu",
+        "File",
+        "Export"
+      ],
+      "shortcut": "⇧⌘E",
+      "text": "To export several layers at once, open the main menu and go to File > Export, or press ⇧⌘E. The bulk modal lists each selection with its export setting. Uncheck anything you want to skip, then click Export.",
+      "tip": "The help article names this path but not the exact label on your Mac menu bar, so check your window if the names differ."
+    },
+    {
+      "name": "Alternative: copy SVG without a file",
+      "menuPath": [
+        "Right-click the object",
+        "Copy/Paste as",
+        "Copy as SVG"
+      ],
+      "text": "Right-click the object, hover over Copy/Paste as, and select Copy as SVG. Figma copies the SVG code without creating an export file. Paste it into a code editor or a text file to read it.",
+      "tip": "Copy as SVG skips the save dialog, so the file never lands in Downloads."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Bulk export (File > Export)",
+      "keys": "⇧⌘E"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Export section is missing",
+      "fix": "Refresh the page first. If it is still missing, the file owner may have restricted viewers from copying or exporting. Ask the owner to allow copying and sharing for your access level."
+    },
+    {
+      "problem": "View-only access cannot export",
+      "fix": "View-only access needs the file owner to allow copying and sharing before export is possible. Ask for that permission or for edit access, then try again."
+    },
+    {
+      "problem": "Text is not editable in the SVG",
+      "fix": "Outline text is on by default when text is selected. Turn it off in the SVG options if you need editable text, and check that the font is installed on the viewer's machine."
+    },
+    {
+      "problem": "Inside or outside strokes look wrong",
+      "fix": "Figma supports center strokes only in SVG. Inside and outside strokes come out as fills. Set the stroke position to center, then check Preview."
+    },
+    {
+      "problem": "The background is white",
+      "fix": "A frame fill can export as a white background. Remove the fill from the frame if you need a transparent background."
+    },
+    {
+      "problem": "The SVG file is very large",
+      "fix": "A third-party guide lists huge files as a common SVG problem. Remove hidden or unused layers, simplify the artwork, and export again to compare the size."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Export section? Walk me through it.",
+    "capability": "guide",
+    "result": "Lazur points at the Export section, then waits while you click the plus. You make every click.",
+    "shell": "design",
+    "context": "Figma desktop on Mac, a frame selected, Design mode",
+    "output": "Lazur circles the Export section in the right sidebar, then guides you to the format dropdown and the Export button, one click at a time.",
+    "pointsAt": "Export section"
+  },
+  "type": "howto",
+  "slug": "export-as-svg-in-figma",
+  "app": "figma",
+  "appName": "Figma",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/export-as-svg-in-figma/how-to-export-as-svg-in-figma-1-6c1da3.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer on a Mac learning how to export as SVG in Figma at a clean desk",
+      "caption": "A designer reviews vector artwork before export.",
+      "keywords": [
+        "how to export as svg in figma on mac",
+        "Figma",
+        "export as SVG",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cocoandwifi",
+        "url": "https://pixabay.com/users/cocoandwifi-4330980/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/home-office-person-work-web-design-4996834/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/export-as-svg-in-figma/how-to-export-as-svg-in-figma-2-5ffc9e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person working on a MacBook, checking a vector file before saving it",
+      "caption": "Checking the file on screen before export.",
+      "keywords": [
+        "how to export as svg in figma on mac",
+        "Figma",
+        "export as SVG",
+        "Mac",
+        "person using macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Felix-Mittermeier",
+        "url": "https://pixabay.com/users/Felix-Mittermeier-4397258/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/night-photograph-flashlight-ray-2183637/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/export-as-svg-in-figma/how-to-export-as-svg-in-figma-3-4091ca.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "A graphic design workspace with sketches and a laptop, where SVG files get exported",
+      "caption": "A typical setup for icon and logo work.",
+      "keywords": [
+        "how to export as svg in figma on mac",
+        "Figma",
+        "export as SVG",
+        "Mac",
+        "graphic design workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-desk-computer-technology-1834294/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to export as svg in figma on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "export svg figma mac": 1,
+      "figma svg export settings": 1,
+      "copy as svg figma": 4,
+      "figma bulk export svg": 1,
+      "figma outline text svg": 1,
+      "figma export section missing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

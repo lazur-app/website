@@ -1,0 +1,511 @@
+{
+  "title": "How to change the app icon in Xcode on Mac: change app icon xcode mac steps",
+  "metaTitle": "Change App Icon in Xcode on Mac: Step by Step",
+  "description": "Change app icon in Xcode on Mac: set the AppIcon asset, fill the macOS sizes or add an Icon Composer file. Menu paths for Xcode 27.",
+  "targetKeyword": "change app icon xcode mac",
+  "secondaryKeywords": [
+    "xcode app icon mac",
+    "AppIcon asset catalog Xcode",
+    "Icon Composer Xcode 27",
+    "macOS app icon size Xcode",
+    "Xcode App Icons Source pop-up",
+    "alternate app icon Xcode"
+  ],
+  "intro": "To change the app icon in Xcode on Mac, open the AppIcon set in Assets.xcassets, check Mac in the Attributes Inspector, and drag a PNG into each macOS size well. For a layered icon instead, drag a saved .icon file into the Project navigator, set App Icon Set Name to its file name, and use macOS Tahoe 26.4 or later.",
+  "tldr": [
+    "Classic route: open AppIcon, check Mac in the Attributes Inspector, then drag a PNG into each macOS size well.",
+    "Layered route: save an Icon Composer .icon file, drag it into the project, and set App Icon Set Name to its file name.",
+    "The 512 pt at 2x well takes the 1024 x 1024 App Store image, so start there.",
+    "Run Product > Clean Build Folder before you judge the result in the Dock."
+  ],
+  "stats": [
+    {
+      "value": "26.4",
+      "label": "Earliest macOS Tahoe release that Apple's Icon Composer page lists as required",
+      "sourceUrl": "https://developer.apple.com/icon-composer/",
+      "sourceTitle": "Icon Composer | Apple Developer"
+    },
+    {
+      "value": "1024 x 1024",
+      "label": "Pixel size of the App Store image, which goes in the 512 pt at 2x slot",
+      "sourceUrl": "https://developer.apple.com/forums/thread/654407",
+      "sourceTitle": "A 1024 x 1024 pixel app icon for your app must be added to the asset catalog in Xcode | Apple Developer Forums"
+    },
+    {
+      "value": "4",
+      "label": "Most foreground layers to keep in an Icon Composer icon",
+      "sourceUrl": "https://praeclarum.org/2025/09/12/app-icons.html",
+      "sourceTitle": "Updating App Icons for iOS and macOS 26 | praeclarum.org"
+    },
+    {
+      "value": "26.6",
+      "label": "macOS Tahoe version that Xcode 27 requires, per a secondary write-up of the release notes",
+      "sourceUrl": "https://blakecrosley.com/blog/xcode-27-release",
+      "sourceTitle": "Xcode 27 Is Out: Requirements, Targets, and What Broke | Blake Crosley"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Xcode and macOS versions first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with two version checks. Xcode 27 is the current release, and Apple's Xcode page lists it under What's new. A secondary write-up quoting the release notes says Xcode 27 shipped on September 14, 2026, as build 27A266a. It requires macOS Tahoe 26.6 or later and runs only on Apple silicon Macs."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your Mac runs an older macOS, you can still use the classic PNG route. Icon Composer is different. Apple's Icon Composer page says it needs macOS Tahoe 26.4 or later. That page does not name a required Xcode version, so check your own release notes before you start."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Where these steps come from",
+      "text": "Apple's help page on asset catalogs covers iOS and tvOS icon options. The Mac checkbox and the macOS sizes come from a 2020 developer forum thread and from third-party write-ups. Apple's macOS-specific pages could not be checked against these steps. Field names may differ slightly on your screen, so trust what you see."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find the icon set in your project"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your project in Xcode. In the Project navigator, the file list on the left, open Assets.xcassets. Most projects have a set named AppIcon. That set holds every icon image your app uses. If you do not see it, search the navigator for AppIcon."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also reach the icon from the target. Select the project at the top of the navigator. Pick your app under Targets, then open the General tab. Look for the App Icons Source pop-up. It names the set your target uses, and the arrow button next to it opens that set."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick the classic PNG route or the Icon Composer route"
+    },
+    {
+      "type": "paragraph",
+      "text": "You have two routes, and both end in the same place: an icon in your Dock. The classic route puts flat PNG files into size slots. The Icon Composer route builds a layered .icon file with depth and Liquid Glass effects. Pick one route per app. That keeps it clear which files the build reads."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Route",
+        "What you need",
+        "Where it lives in Xcode"
+      ],
+      "rows": [
+        [
+          "Classic PNG",
+          "PNG files for 16 to 512 pt at 1x and 2x, plus a 1024 x 1024 App Store image",
+          "AppIcon set in Assets.xcassets, with Mac checked"
+        ],
+        [
+          "Icon Composer",
+          "macOS Tahoe 26.4 or later and a saved .icon file with up to four foreground layers",
+          "A .icon file in the Project navigator, named in App Icon Set Name"
+        ]
+      ],
+      "caption": "The two routes side by side for macOS app icons in Xcode 27."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Option A: add PNG files to the macOS slots"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select AppIcon in the asset catalog. Open the Attributes Inspector, then check the Mac box. The macOS slots appear. You should see sizes 16, 32, 128, 256 and 512 points, each at 1x and 2x. The forum thread that documents this path dates from 2020, so confirm the slot names on your screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each 2x file has twice the pixel size of its 1x file. A 16 pt slot at 2x is 32 x 32 pixels. The 512 pt slot at 2x is 1024 x 1024 pixels, the same size as the App Store image. Get that one right first, because the error in the next section depends on it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your artwork is a 1024 x 1024 PNG called icon-1024.png. Drag it into the 512 pt at 2x well. Then make smaller copies for the other wells at the pixel sizes each well expects. Work from the largest file down, so every size comes from the same artwork."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Mistakes that leave the macOS icon blank or wrong"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Leaving the Mac box unchecked, so the macOS slots never appear.",
+        "Filling only the 1x wells and leaving every 2x well empty.",
+        "Dropping the 1024 x 1024 App Store image into the 16 pt well.",
+        "Exporting Icon Composer layers with shadows or transparency already baked in."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A common error says a 1024 x 1024 pixel app icon must be added to the asset catalog. A 2020 Apple Developer Forums thread reports the usual fix: check Mac in the Attributes Inspector, then fill the 512 pt at 2x well. The replies disagree on whether macOS icons can use transparency. No primary Apple source settles that, so test your icon in the Dock."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Option B: build a layered icon with Icon Composer"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Icon Composer makes layered Liquid Glass icons for iPhone, iPad, Mac and Apple Watch. Apple's page says it requires macOS Tahoe 26.4 or later. Keep foreground layers to four at most. Export them as SVG or PNG with no drop shadow and no transparency, because Icon Composer adds those effects itself."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Xcode 27 you can start from a template. Choose File > New > File From Template > Icon Composer Icon, under Resources. Otherwise, save the file from Icon Composer and bring it into the project in the next step. Either way, the .icon file is the thing Xcode reads."
+    },
+    {
+      "type": "paragraph",
+      "text": "Naming matters. Set App Icon Set Name to the file name without the .icon extension. A file called AppIcon.icon becomes AppIcon. Capital letters must match exactly. Typing the extension into that field is an easy slip, because the name looks like it should include it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the new icon may not show up"
+    },
+    {
+      "type": "paragraph",
+      "text": "macOS hides the .icon extension by default, which confused at least one developer. In a September 2025 write-up, the actool output did not reference the icon. The author added a CFBundleIconName key to Info.plist by hand. Treat that as a last resort. Confirm the name and clean the build first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Old builds can keep the old icon on screen. Run Product > Clean Build Folder first. Then run the app again and check the Dock. If the Dock looks right but Finder does not, open the built app in Finder and check the icon there."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "No shortcut for the icon itself",
+      "text": "The sources for this page list no keyboard shortcut for changing an app icon. Clean Build Folder (⇧⌘K) and Run (⌘R) are general Xcode commands you will use along the way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Alternate icons and Xcode 27"
+    },
+    {
+      "type": "paragraph",
+      "text": "Alternate app icons let a user choose a different icon for your app. One developer reported that alternate icons failed in Xcode 26 and worked in Xcode 27. That is one report. Test alternate icons in Xcode 27 on your own app before you promise them to users."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick checks before you ship"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the AppIcon set and confirm every macOS well is filled.",
+        "Build and run, then check the Dock at full size.",
+        "Confirm the 1024 x 1024 file sits in the 512 pt at 2x well.",
+        "Keep your Icon Composer source file so you can change layers later."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Save your Icon Composer file and your PNG exports in the project folder, so the next icon update is easy to make. If the icon still looks wrong, work through the troubleshooting list on this page. Each fix there matches one symptom."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is the app icon setting in Xcode on Mac?",
+      "answer": "It sits in two places. The General tab of your app target shows an App Icons Source pop-up, and the arrow button next to it opens the asset catalog. The AppIcon set in Assets.xcassets is where you drag the image files."
+    },
+    {
+      "question": "Do I need Icon Composer to change the Mac app icon?",
+      "answer": "No. The classic route uses PNG files in the macOS slots. Icon Composer is an option for layered icons, and Apple's page says it needs macOS Tahoe 26.4 or later."
+    },
+    {
+      "question": "What size should the 1024 x 1024 icon be?",
+      "answer": "Use 1024 x 1024 pixels for the 512 pt at 2x slot. That same file is the App Store image. The smaller wells need files at their own 1x and 2x pixel sizes."
+    },
+    {
+      "question": "Why does Xcode say my icon must be 1024 x 1024?",
+      "answer": "A 2020 forum thread shows this error is common when the macOS slots are missing. Check Mac in the Attributes Inspector, then fill the 512 pt at 2x slot with a 1024 x 1024 image."
+    },
+    {
+      "question": "Does checking Mac remove my iOS icon sizes?",
+      "answer": "No. The Mac checkbox adds macOS slots to the set you already have. Your iOS and tvOS slots stay in the same AppIcon set."
+    },
+    {
+      "question": "Can I change the app icon in Xcode on Windows or in a browser?",
+      "answer": "Xcode is a Mac app. The research for this page found no web version of Xcode, so you need a Mac to change the icon."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Xcode | Apple Developer",
+      "url": "https://developer.apple.com/xcode/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Create asset catalogs and sets | Xcode Help",
+      "url": "https://help.apple.com/xcode/mac/current/en.lproj/dev10510b1f7.html",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Icon Composer | Apple Developer",
+      "url": "https://developer.apple.com/icon-composer/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Adding Icon Composer icons to Xcode | Use Your Loaf",
+      "url": "https://useyourloaf.com/blog/adding-icon-composer-icons-to-xcode/",
+      "publisher": "Use Your Loaf",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Updating App Icons for iOS and macOS 26 | praeclarum.org",
+      "url": "https://praeclarum.org/2025/09/12/app-icons.html",
+      "publisher": "praeclarum.org",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Updating application icons for macOS 26 Tahoe and Liquid Glass | Successful Software",
+      "url": "https://successfulsoftware.net/2025/09/26/updating-application-icons-for-macos-26-tahoe-and-liquid-glass/",
+      "publisher": "Successful Software",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "A 1024 x 1024 pixel app icon for your app must be added to the asset catalog in Xcode | Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/thread/654407",
+      "publisher": "Apple Developer Forums",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Xcode 27 Is Out: Requirements, Targets, and What Broke | Blake Crosley",
+      "url": "https://blakecrosley.com/blog/xcode-27-release",
+      "publisher": "Blake Crosley",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Change the app icon in Xcode on Mac",
+  "appliesTo": "Xcode 27 on Apple silicon Mac, macOS Tahoe 26.6 or later",
+  "timeMinutes": 20,
+  "difficulty": "Medium",
+  "requirements": [
+    "A Mac with Apple silicon. A secondary source says Xcode 27 runs only on these Macs.",
+    "macOS Tahoe 26.6 or later for Xcode 27, per a secondary write-up of the release notes.",
+    "macOS Tahoe 26.4 or later if you want an Icon Composer icon.",
+    "A square 1024 x 1024 PNG for the App Store image.",
+    "An Xcode project with an asset catalog that contains an AppIcon set."
+  ],
+  "steps": [
+    {
+      "name": "Open AppIcon in the asset catalog",
+      "text": "Open your project in Xcode. In the Project navigator on the left, click Assets.xcassets, then click AppIcon. If your project names the set differently, open that set instead. This set holds every icon image your app uses.",
+      "tip": "Search the navigator for AppIcon if you cannot find it quickly."
+    },
+    {
+      "name": "Open the target's General tab",
+      "text": "Click the project at the top of the Project navigator. Under Targets, select your app. Open the General tab and find the App Icons Source pop-up. It names the icon set your target reads."
+    },
+    {
+      "name": "Open the set from the pop-up",
+      "text": "If the pop-up names a different set than the one you want, choose yours from it. Then click the arrow button next to the pop-up. Xcode opens the asset catalog at that set."
+    },
+    {
+      "name": "Check Mac in the Attributes Inspector",
+      "text": "Select AppIcon in the asset catalog. Open the Attributes Inspector on the right. Check the Mac box. The macOS slots for 16, 32, 128, 256 and 512 points appear, each at 1x and 2x."
+    },
+    {
+      "name": "Drag a PNG into each macOS well",
+      "text": "Drag each icon file from Finder into the well that matches its size and scale. Start with the 16 pt 1x well. Fill the 512 pt 2x well with the 1024 x 1024 App Store image. You can also choose Editor > Add Assets > Import.",
+      "menuPath": [
+        "Editor",
+        "Add Assets",
+        "Import"
+      ]
+    },
+    {
+      "name": "Create or save an Icon Composer file",
+      "text": "For a layered icon, use Icon Composer instead of steps 4 and 5. It requires macOS Tahoe 26.4 or later. In Xcode 27, choose File > New > File From Template > Icon Composer Icon, under Resources. Build your layers, then save the .icon file.",
+      "menuPath": [
+        "File",
+        "New",
+        "File From Template",
+        "Icon Composer Icon"
+      ]
+    },
+    {
+      "name": "Drag the .icon file into the Project navigator",
+      "text": "Drag the saved .icon file from Finder into the Project navigator. Xcode adds it to your project. Check that it appears in the list next to your other files."
+    },
+    {
+      "name": "Set App Icon Set Name to the file name",
+      "text": "Select your app target and open its settings. Set App Icon Set Name to the file name without the .icon extension. AppIcon.icon becomes AppIcon. Match the capital letters exactly."
+    },
+    {
+      "name": "Clean the build folder",
+      "text": "Choose Product > Clean Build Folder. Xcode removes old build products, so the next build starts from scratch.",
+      "menuPath": [
+        "Product",
+        "Clean Build Folder"
+      ],
+      "shortcut": "⇧⌘K",
+      "tip": "This is a general Xcode command. The sources list no shortcut for changing the icon itself."
+    },
+    {
+      "name": "Run the app and check the Dock",
+      "text": "Choose Product > Run, or press ⌘R. Check the icon in the Dock. Then open the built app in Finder and check it there too.",
+      "menuPath": [
+        "Product",
+        "Run"
+      ],
+      "shortcut": "⌘R"
+    }
+  ],
+  "shortcuts": [],
+  "troubleshooting": [
+    {
+      "problem": "The macOS slots do not appear in AppIcon.",
+      "fix": "Select AppIcon, open the Attributes Inspector, and check Mac. The macOS slots show only after that box is checked."
+    },
+    {
+      "problem": "Xcode says a 1024 x 1024 pixel app icon must be added.",
+      "fix": "Fill the 512 pt at 2x well with a 1024 x 1024 image. The 2020 forum thread reports this fix for Xcode 12 and later."
+    },
+    {
+      "problem": "The Icon Composer icon does not show on the Mac.",
+      "fix": "Confirm App Icon Set Name matches the file name without .icon. Show file extensions in Finder to see the real name. If it still fails, read the CFBundleIconName note above."
+    },
+    {
+      "problem": "The Dock still shows the old icon.",
+      "fix": "Run Product > Clean Build Folder, then run the app again. Quit and reopen the app if the old icon persists."
+    },
+    {
+      "problem": "Alternate icons do not change.",
+      "fix": "One developer reports alternate icons failed in Xcode 26 and worked in Xcode 27. Test them in Xcode 27 before you ship."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the App Icons Source pop-up?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the App Icons Source pop-up in the target's General tab.",
+    "shell": "code",
+    "pointsAt": "App Icons Source",
+    "context": "Xcode 27 target settings, General tab, while you pick the icon set.",
+    "output": "Lazur points at the pop-up and explains what it controls. It does not choose the set, drag the files, or click the arrow for you."
+  },
+  "type": "howto",
+  "slug": "change-the-app-icon-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-app-icon-in-xcode/change-app-icon-xcode-mac-1-618a97.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer working on a Mac laptop at a desk while changing an app icon in Xcode",
+      "caption": "A developer at a laptop, the setting for an Xcode project.",
+      "keywords": [
+        "change app icon xcode mac",
+        "Xcode",
+        "change the app icon",
+        "Mac",
+        "person working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-app-icon-in-xcode/change-app-icon-xcode-mac-2-3ce15e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Mac desk with a notebook, planning how to change the app icon in Xcode",
+      "caption": "A Mac workspace, where most Xcode icon work happens.",
+      "keywords": [
+        "change app icon xcode mac",
+        "Xcode",
+        "change the app icon",
+        "Mac",
+        "mac desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-books-computers-desk-desktop-1839046/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-app-icon-in-xcode/change-app-icon-xcode-mac-3-f91613.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close up of colorful app icons on a screen, the kind you change in Xcode on Mac",
+      "caption": "App icons on a screen, the result of the change.",
+      "keywords": [
+        "change app icon xcode mac",
+        "Xcode",
+        "change the app icon",
+        "Mac",
+        "app icons phone",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/mobile-phone-smartphone-keyboard-1917737/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "change app icon xcode mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 2,
+    "secondary": {
+      "xcode app icon mac": 1,
+      "AppIcon asset catalog Xcode": 1,
+      "Icon Composer Xcode 27": 1,
+      "macOS app icon size Xcode": 1,
+      "Xcode App Icons Source pop-up": 1,
+      "alternate app icon Xcode": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

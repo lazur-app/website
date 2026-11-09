@@ -1,4 +1,452 @@
 {
+  "title": "Voice assistant for developers on Mac in 2026: explain errors and dictate Cursor prompts",
+  "metaTitle": "Voice assistant for developers on Mac | Lazur",
+  "description": "A voice assistant for developers on Mac. Hold ⌥ ⌘ to have errors explained, settings pointed out and long prompts dictated into Cursor.",
+  "targetKeyword": "voice assistant for developers on mac",
+  "secondaryKeywords": [
+    "voice assistant for developers mac",
+    "AI voice assistant for developers on Mac",
+    "dictation for developers on Mac",
+    "voice assistant for Cursor on Mac",
+    "explain errors on Mac with voice"
+  ],
+  "intro": "Lazur is a voice assistant for developers on Mac. Hold ⌥ ⌘ to ask about what is on screen, and Lazur answers out loud. Hold fn to dictate long prompts into Cursor, VS Code or Xcode, with the text typed at your cursor.",
+  "tldr": [
+    "Hold ⌥ ⌘ with a stack trace on screen and Lazur explains it out loud.",
+    "Ask where a setting lives and Lazur circles it on your screen.",
+    "Hold fn to dictate long Cursor prompts at your cursor.",
+    "Ask for a commit message with the diff open and Lazur types a draft.",
+    "Lazur runs on Apple silicon and Intel Macs. Windows is planned, not available."
+  ],
+  "stats": [
+    {
+      "value": "57%",
+      "label": "Share of Microsoft 365 time the average employee spent communicating, in meetings, email and chat, 2023",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Will AI Fix Work? 2023 Work Trend Index, Microsoft WorkLab"
+    },
+    {
+      "value": "43%",
+      "label": "Share of Microsoft 365 time spent creating in Office apps, 2023",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Will AI Fix Work? 2023 Work Trend Index, Microsoft WorkLab"
+    },
+    {
+      "value": "8.8 hours",
+      "label": "A week on email for the top 25% of email users, Microsoft 2023",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Will AI Fix Work? 2023 Work Trend Index, Microsoft WorkLab"
+    },
+    {
+      "value": "Almost two-thirds",
+      "label": "Share of knowledge work time spent on work about work, Asana 2021 survey",
+      "sourceUrl": "https://asana.com/resources/anatomy-of-work-summary",
+      "sourceTitle": "The Anatomy of Work Index 2021, Asana"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a voice assistant for developers on Mac does"
+    },
+    {
+      "type": "paragraph",
+      "text": "A voice assistant for developers on Mac has three jobs. It sees the window in front of you, it answers out loud and it keeps your hands on the keyboard. Lazur does all three. Hold ⌥ ⌘, ask about what is on screen, and Lazur answers in your ear. It listens and looks at your screen only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you. It does not edit files, press buttons or run other apps. It points at things and walks you through steps, one click at a time. You make every change. That split suits developers, because your editor, terminal and build tools stay exactly where they are."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for any app, and it has no partnership with any app maker. You do not install anything into Cursor, Xcode or VS Code. Lazur works on top of whatever is open. It runs on Apple silicon and Intel Macs. Windows is planned, not available yet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur also keeps a memory of what you asked and did, kept on your Mac. That helps when you come back to a bug two days later. You can ask what you already tried."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where a developer's workday goes, according to the research"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a caveat. The large studies measure knowledge workers and office staff in general. The sources we checked do not measure developers' Mac days. Use these numbers as a rough map of where attention leaks, not as a score for your week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Asana's Anatomy of Work Index 2021 found that knowledge workers spend almost two-thirds of their time on work about work. The survey covered over 13,000 knowledge workers worldwide. Asana calls this work about work. Ask yourself how much of your Monday went to that kind of work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's 2023 Work Trend Index looked at how people used Microsoft 365. The average employee spent 57% of that time communicating, across meetings, email and chat. Creating in Office apps took 43%. The survey covered 31,000 workers in 31 markets, from February 1 to March 14, 2023."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The heaviest users show the pressure. The top 25% of email users spent 8.8 hours a week on email. The top 25% of meeting users spent 7.5 hours a week in meetings. Those are averages across a Microsoft 365 workforce, so your numbers will differ."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Messages that arrive mid-debug. A Slack thread pulls you out of a stack trace halfway through.",
+        "Settings you touch twice a year. Signing, build phases and cloud console options are hard to find again.",
+        "Prompts and commit messages you type by hand. Good prompts run long, and long typing is where people cut corners."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A voice assistant does not fix meetings. It does cut the three leaks above, because each one is a question, a lookup or a draft."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Explain an error on screen with an AI voice assistant"
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors are the most common job, so start there. Put the trace on screen, hold ⌥ ⌘ and ask, 'What does this error mean?' Lazur reads the text in front of you and explains it out loud. You do not copy anything into a chat window."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a common case. Your dev server stops with EADDRINUSE on port 3000. That code means another process already holds the port. It is often an old dev server you forgot to stop. A good answer says that in plain words, then offers two fixes: stop the old process, or start this one on another port."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask a follow-up while the error is still on screen. Try 'which process is holding it?' or 'how do I stop whatever is on port 3000?' Lazur answers from what is visible and what it knows. It cannot see processes that are not on screen, so run the command yourself after you read it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep the first line of the trace visible. The cause is usually near the top.",
+        "Say what you changed last. 'I just added a retry' beats 'it broke'.",
+        "Ask for the cause and the fix as two separate questions.",
+        "Read the answer against the code before you run anything."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Two mistakes come up a lot. People ask about a half-visible error, then get a guess. People also trust a fix they did not read. Treat Lazur as a fast colleague at the next desk, not as the final word on your build."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find settings in Xcode and VS Code by voice"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some settings you use once a year. Signing is the classic case. You set it up, it works for months, then it breaks and you cannot find the screen again. Open the project in Xcode and ask, 'Where is the signing team setting?' Lazur circles the Team menu on the Signing & Capabilities tab of your target."
+    },
+    {
+      "type": "paragraph",
+      "text": "Menus change between releases, so check the path on your own screen. In Xcode, Apple account sign-in lives under Xcode > Settings > Accounts. Ask 'where do I add my Apple ID?' and Lazur points at the Accounts area. You still click it yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code works the same way. Press ⌘ , to open Settings, then ask where a setting lives. Lazur points at the field once it is on screen. If the setting is not visible, Lazur cannot point at it, so search for it in the Settings field first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate long Cursor prompts with fn"
+    },
+    {
+      "type": "paragraph",
+      "text": "Good agent prompts carry context. A short prompt gets a short answer. A useful prompt names the file, the failing test, the limit you care about and the output you want. Typing all of that is slow, so people shorten it. Hold fn and talk the prompt instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation works in any app. Hold fn, speak, then let go. Lazur types clean, formatted text at the cursor. In Cursor, that means the chat box or the agent input. You read the text, then press Enter yourself. Lazur does not send the prompt for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a prompt you can say in one breath: 'In the checkout module, the coupon total is wrong when a coupon stacks with a gift card. Keep the public API. Add a test for both orders. Do not touch the tax code.' That becomes a full prompt, with punctuation, in one pass."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two features make this faster. Snippets hold text you repeat, such as your team's test command or a standard prompt header. The personal dictionary holds names and odd words, like internal service names or library names. Add them once. Dictation then has fewer wrong spellings of them."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sending without reading. Speech can miss brackets, symbols and file paths. Check those first.",
+        "Speaking secrets. Never say an API key, token or password into a prompt.",
+        "Leaving out file names. An agent guesses badly when the prompt names nothing."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Commit messages and pull request text by voice"
+    },
+    {
+      "type": "paragraph",
+      "text": "Commit messages are short, but they still take thought. Put the diff on screen, hold ⌥ ⌘ and ask, 'Write a commit message for this.' Lazur types a draft at your cursor. Read it against the diff before you commit. A draft can describe what the code does. It cannot know why you made the change unless you say so."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give it the why. Say 'write a commit message for this, the fix is for the retry bug in the webhook handler' and the subject line gets specific. Keep the subject short and in plain words."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pull request descriptions follow the same pattern. Ask for a summary, a test plan and a list of risks. Then copy the draft into GitHub yourself and fix anything it got wrong about your intent."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Slack and email while you code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chat is where focus breaks. A Slack thread pulls you out of a trace halfway through. Hold ⌥ ⌘ in Slack and ask 'what is the main question in this thread?' Lazur reads what is on screen and answers out loud. You decide whether it can wait."
+    },
+    {
+      "type": "paragraph",
+      "text": "Replies take time too. Hold fn and dictate a short answer, or ask for a draft: 'reply to Sam that the fix is in review and I will merge tomorrow.' Lazur types it into the box. Check the wording, then send it yourself. Read anything going to a customer twice."
+    },
+    {
+      "type": "paragraph",
+      "text": "Night messages are a habit problem more than a tool problem. If you check Slack after hours out of reflex, read [why people check Slack after hours](/for/developers/problems/slack-after-hours-messages-pressure-workers), then [fix Slack notifications on Mac](/how-to/fix-missing-notifications-in-slack) to match your working hours."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Walk through Xcode steps with guide mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you need a path, not an answer. Ask 'walk me through adding a Swift package to this project.' Lazur uses guide mode. It points at the first item, then waits. When you click it, Lazur moves to the next step. Each step waits for your click."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Xcode, the first step is File > Add Package Dependencies. Lazur points at that menu item and waits. After you open it, Lazur points at the package URL field. You type the URL and choose the version rule. That pace is slower than a blog post, and you see every step on your own screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use guide mode for setup you do once, such as adding a package or a new build configuration. For a bug you hit every day, ask for the explanation instead. It is faster. The [Xcode page for developers](/for/developers/xcode) covers builds, errors and previews in more detail."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy, source code and your employer's rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored. Content is never used to train AI models. Those facts describe the app. They do not replace your company's policy."
+    },
+    {
+      "type": "paragraph",
+      "text": "A screenshot can still carry things you did not mean to share. A stack trace may show customer IDs, internal hostnames or tokens in a URL. Before you hold ⌥ ⌘, close the tab, blur the value or move to a clean window."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your employer sets the rules on source code, secrets and customer data. Follow them. If your company does not allow outside AI tools on private repositories, do not use Lazur on those screens. This page makes no compliance claims about Lazur. Ask your security team what is approved before you roll it out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lazur pricing for developers: trial, Pro and Power"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial. No credit card is needed. The trial starts the first time you open the app, so open it on a day you have real work."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pro: $18/month, or $15/month billed annually. Includes 150 AI actions.",
+        "Power: $120/month, or $96/month billed annually. Includes 1,000 AI actions.",
+        "Dictation is unlimited on both plans."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose Pro if your use is mostly error questions, lookups and the odd prompt. Choose Power if you ask for help all day. Pricing can change, so check the [Lazur pricing page](/pricing) before you pay."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes developers make with a voice assistant on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asking with no error on screen. Lazur answers what it can see. Put the trace or the setting in view first.",
+        "Expecting clicks. Lazur does not click or edit. Use guide mode for steps.",
+        "Trusting a fix you did not read. Read every command and diff before you run or commit it.",
+        "Testing on a toy project. Use the trial on the repo you work in every day.",
+        "Planning for Windows. Lazur runs on Mac only, and Windows is planned, not available."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do in your first week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start small. On day one, use Lazur for errors and lookups only. On day two, dictate one prompt into Cursor. On day three, write one commit message from a real diff. By then you will know which jobs save you time and which ones you do faster by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "[Download Lazur for macOS](/download), then read the setup guides for [Cursor](/for/developers/cursor) and [VS Code](/for/developers/vs-code). Work through the [dictation guide for developers](/blog/ai-dictation-for-developers) if prompts are your main load."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur work in Cursor, VS Code and Xcode?",
+      "answer": "Yes. Lazur works on top of any Mac app, so it sees the editor, terminal or build window on your screen while you hold ⌥ ⌘. It is not a plugin or add-in for any of them, and it does not edit your code. You or your coding agent make the change."
+    },
+    {
+      "question": "Is a voice assistant safe to use with source code?",
+      "answer": "Check your employer's rules first. Lazur sees the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Blur secrets and customer data before you hold the shortcut."
+    },
+    {
+      "question": "Does Lazur type my prompt into Cursor and send it?",
+      "answer": "Lazur types the text, but it does not send it. Hold fn to dictate clean, formatted text at the cursor. You read the prompt, then press Enter yourself. Lazur does not press buttons for you."
+    },
+    {
+      "question": "What is the difference between explain, point and guide?",
+      "answer": "Ask 'what does this mean?' and Lazur explains it out loud. Ask 'where is it?' and Lazur draws a circle and a label around it on your screen. Ask 'how do I do this?' and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "question": "Does it work on Windows?",
+      "answer": "No. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available yet."
+    },
+    {
+      "question": "How much does Lazur cost for developers?",
+      "answer": "Lazur starts with a 3-day Pro trial, and no credit card is needed. Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions. Power costs $120/month, or $96/month billed annually, and includes 1,000 AI actions. Dictation is unlimited on both plans."
+    },
+    {
+      "question": "Is it always listening?",
+      "answer": "No. It listens and looks at your screen only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer you, and they are not stored."
+    },
+    {
+      "question": "Does Lazur replace my coding agent?",
+      "answer": "No. Lazur explains errors, points at settings, guides you through steps and types prompts or messages. Your coding agent still writes the code. Think of Lazur as the colleague who answers questions while you work."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Anatomy of Work Index 2021, Asana",
+      "url": "https://asana.com/resources/anatomy-of-work-summary",
+      "publisher": "Asana",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Will AI Fix Work? 2023 Work Trend Index, Microsoft WorkLab",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Lazur pricing",
+      "url": "https://www.lazur.app/pricing",
+      "publisher": "Lazur",
+      "accessedAt": "2026-11-05"
+    }
+  ],
+  "painPoints": [
+    {
+      "title": "Talking about the work",
+      "text": "Asana found knowledge workers spend almost two-thirds of their time on work about work. That research covers office workers in general, not developers, so treat it as a warning, not a score."
+    },
+    {
+      "title": "Chat and email take a big share",
+      "text": "In Microsoft's 2023 data, meetings took 23%, chat 19% and email 15% of Microsoft 365 time. Heavy email users spent 8.8 hours a week on email alone."
+    },
+    {
+      "title": "Errors break your flow",
+      "text": "A stack trace means copy, paste, then explain what you did before anyone can help. The explaining is the slow part, and it happens while the error keeps blocking you."
+    },
+    {
+      "title": "Prompts and settings you forget",
+      "text": "Good agent prompts carry context, and typing all of it is where people cut corners. Signing and build settings you touch twice a year are hard to find again."
+    }
+  ],
+  "day": [
+    {
+      "time": "08:45",
+      "say": "remind me at 10:00 to rebase the feature branch",
+      "result": "Adds an Apple Reminders item for 10:00 with that text.",
+      "capability": "everyday"
+    },
+    {
+      "time": "09:30",
+      "say": "what does this error mean?",
+      "result": "Reads the trace on screen and explains the likely cause out loud.",
+      "capability": "explain"
+    },
+    {
+      "time": "10:15",
+      "say": "where is the signing team setting?",
+      "result": "Circles the Team menu in Signing & Capabilities in Xcode.",
+      "capability": "point"
+    },
+    {
+      "time": "11:00",
+      "say": "walk me through adding a Swift package",
+      "result": "Guides you one step at a time, waiting for each click in Xcode.",
+      "capability": "guide"
+    },
+    {
+      "time": "13:00",
+      "say": "hold fn and talk the Cursor prompt",
+      "result": "Types the formatted prompt at the cursor in Cursor's chat. You read it and send it.",
+      "capability": "dictate"
+    },
+    {
+      "time": "14:30",
+      "say": "write a commit message for this diff",
+      "result": "Reads the diff on screen and types a draft at your cursor.",
+      "capability": "draft"
+    },
+    {
+      "time": "16:00",
+      "say": "timer for 25 minutes",
+      "result": "Starts a 25 minute timer.",
+      "capability": "everyday"
+    },
+    {
+      "time": "17:30",
+      "say": "reply to Sam that the fix is in review",
+      "result": "Types the reply in the Slack box. You check the wording and press send.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "why won't this build sign?",
+    "capability": "explain",
+    "result": "Explains the signing error and circles the Team menu in Signing & Capabilities.",
+    "shell": "code",
+    "context": "Xcode build log with a signing error on screen",
+    "pointsAt": "Team menu",
+    "output": "The build fails because Xcode cannot find a signing certificate for the team on this target. Check that your Apple ID is signed in under Xcode > Settings > Accounts. Then pick your team from the Team menu. I am circling it now."
+  },
   "type": "role",
   "slug": "developers",
   "role": "developers",
@@ -12,180 +460,92 @@
     "chrome",
     "linear"
   ],
-  "title": "Voice assistant for developers on Mac: explain errors and talk prompts into Cursor",
-  "metaTitle": "Voice assistant for developers on Mac",
-  "description": "A voice assistant for developers on Mac: get the error on screen explained, dictate long prompts into Cursor and write commit messages by voice.",
-  "targetKeyword": "voice assistant for developers on mac",
-  "secondaryKeywords": [
-    "voice assistant for developers mac"
-  ],
-  "intro": "Lazur is a voice assistant for developers on the Mac. Hold ⌥ ⌘ and ask what the error on screen means, where a setting lives, or for a commit message. Hold fn to talk long prompts into your coding agent.",
-  "tldr": [
-    "“What does this error mean?” with the stack trace on screen, answered out loud.",
-    "Talk long prompts into Cursor or Claude Code with fn.",
-    "“Write a commit message for this” with the diff open.",
-    "Works in any editor and terminal."
-  ],
-  "painPoints": [
-    {
-      "title": "Errors and unfamiliar code",
-      "text": "Copying a stack trace into a chat window, then explaining what you were doing."
-    },
-    {
-      "title": "Prompts got long",
-      "text": "Good agent prompts carry context. Typing all of it is where people cut corners."
-    },
-    {
-      "title": "Settings you use twice a year",
-      "text": "Signing certificates, build settings, cloud consoles."
-    }
-  ],
-  "day": [
-    {
-      "time": "9:30",
-      "say": "what does this error mean?",
-      "result": "Reads the trace on screen and explains it.",
-      "capability": "explain"
-    },
-    {
-      "time": "11:00",
-      "say": "where's the signing setting?",
-      "result": "Points at Signing & Capabilities in Xcode.",
-      "capability": "point"
-    },
-    {
-      "time": "14:00",
-      "say": "write a commit message for this",
-      "result": "Writes it at your cursor.",
-      "capability": "draft"
-    },
-    {
-      "time": "15:00",
-      "say": "search the docs for useEffect cleanup",
-      "result": "Runs the search.",
-      "capability": "everyday"
-    },
-    {
-      "time": "16:00",
-      "say": "timer for 25 minutes, focus",
-      "result": "Starts a timer.",
-      "capability": "everyday"
-    }
-  ],
-  "demo": {
-    "spoken": "what does this error mean?",
-    "capability": "explain",
-    "result": "The port is already in use. Another dev server is running on 3000. Stop it or start this one on 3001.",
-    "context": "A terminal with EADDRINUSE",
-    "shell": "code"
-  },
-  "stats": [],
-  "blocks": [
-    {
-      "type": "heading",
-      "text": "Next to your coding agent, not instead of it",
-      "level": 2
-    },
-    {
-      "type": "paragraph",
-      "text": "Lazur does not edit your code. Your agent does that. Lazur explains what is on screen, types your prompts by voice and handles the small stuff. See [Lazur in Cursor](/apps/cursor)."
-    },
-    {
-      "type": "image",
-      "index": 1
-    },
-    {
-      "type": "lazur"
-    },
-    {
-      "type": "image",
-      "index": 2
-    }
-  ],
-  "faq": [
-    {
-      "question": "Does Lazur work in every app?",
-      "answer": "Yes. It works on top of any Mac app: Mail, Slack, Chrome, Word, Figma, Cursor and the rest."
-    },
-    {
-      "question": "Is it always listening?",
-      "answer": "No. It listens and looks at your screen only while you hold the shortcut. Audio and the screenshot are not stored."
-    }
-  ],
-  "sources": [
-    {
-      "title": "Lazur pricing",
-      "url": "https://www.lazur.app/pricing",
-      "publisher": "Lazur",
-      "accessedAt": "2026-11-05"
-    }
-  ],
   "publishedAt": "2026-11-05",
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-07",
   "images": [
     {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role/developers/voice-assistant-for-developers-on-mac-1-e233fb.jpg",
+      "url": "https://images.lazur.app/content-images/role/developers/voice-assistant-for-developers-on-mac-1-adb7eb.jpg",
       "width": 1280,
       "height": 853,
-      "alt": "Programming, computer and environment. Voice assistant for developers on Mac",
-      "caption": "Voice assistant for developers on Mac",
+      "alt": "Developer working on a laptop with code on screen, the setting for a voice assistant for developers on Mac",
+      "caption": "Code on screen, voice on the side",
       "keywords": [
         "voice assistant for developers on mac",
         "Developers",
-        "programmer code screen",
+        "AI assistant",
         "Mac",
-        "Lazur"
-      ],
-      "credit": {
-        "name": "3844328",
-        "url": "https://pixabay.com/users/3844328-3844328/",
-        "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/programming-computer-environment-1857236/"
-      }
-    },
-    {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role/developers/voice-assistant-for-developers-on-mac-2-0804e0.jpg",
-      "width": 1280,
-      "height": 853,
-      "alt": "Work, desk and computer. Voice assistant for developers on Mac",
-      "caption": "Developers on a Mac",
-      "keywords": [
-        "voice assistant for developers on mac",
-        "Developers",
-        "developer laptop night",
-        "Mac",
-        "Lazur"
-      ],
-      "credit": {
-        "name": "tookapic",
-        "url": "https://pixabay.com/users/tookapic-1386459/",
-        "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/work-desk-computer-night-hacker-933061/"
-      }
-    },
-    {
-      "url": "https://lfobmih1tpj3sgpo.public.blob.vercel-storage.com/content-images/role/developers/voice-assistant-for-developers-on-mac-3-1d76df.jpg",
-      "width": 1280,
-      "height": 853,
-      "alt": "Code, coding and programming. Voice assistant for developers on Mac",
-      "caption": "Developers on a Mac",
-      "keywords": [
-        "voice assistant for developers on mac",
-        "Developers",
-        "software engineer desk",
-        "Mac",
+        "developer laptop coding",
         "Lazur"
       ],
       "credit": {
         "name": "StockSnap",
         "url": "https://pixabay.com/users/StockSnap-894430/",
         "source": "Pixabay",
-        "sourceUrl": "https://pixabay.com/photos/code-coding-programming-html-2558220/"
+        "sourceUrl": "https://pixabay.com/photos/macbook-laptop-computer-technology-2617705/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/developers/voice-assistant-for-developers-on-mac-2-73d6c9.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer at a desk with a monitor showing code during a voice assistant for developers on Mac workflow",
+      "caption": "Debugging at a desk",
+      "keywords": [
+        "voice assistant for developers on mac",
+        "Developers",
+        "AI assistant",
+        "Mac",
+        "programmer desk monitor",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "diegartenprofis",
+        "url": "https://pixabay.com/users/diegartenprofis-13853955/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/programmer-computer-code-4709802/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/developers/voice-assistant-for-developers-on-mac-3-cee6ae.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at an office desk typing on a laptop during a workday of coding and messages",
+      "caption": "A workday at the keyboard",
+      "keywords": [
+        "voice assistant for developers on mac",
+        "Developers",
+        "AI assistant",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
       }
     }
   ],
+  "keywordHits": {
+    "target": "voice assistant for developers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 10,
+    "secondary": {
+      "voice assistant for developers mac": 1,
+      "AI voice assistant for developers on Mac": 1,
+      "dictation for developers on Mac": 1,
+      "voice assistant for Cursor on Mac": 1,
+      "explain errors on Mac with voice": 1
+    }
+  },
   "generator": {
-    "by": "hand (fixture, from personas.ts)",
-    "version": 1
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 2
   }
 }

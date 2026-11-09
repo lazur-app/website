@@ -1,0 +1,624 @@
+{
+  "title": "Excel for procurement specialists on Mac: spend cleanup and pivots in Microsoft 365",
+  "metaTitle": "Excel for Procurement Specialists on Mac: Spend Data Guide",
+  "description": "Excel for procurement specialists on Mac: spend cleanup, supplier mapping, pivot tables, and questions to ask Lazur while you work in Microsoft 365.",
+  "targetKeyword": "excel for procurement specialists on mac",
+  "secondaryKeywords": [
+    "Excel spend analysis on Mac",
+    "supplier name cleanup in Excel",
+    "pivot table spend by supplier Excel",
+    "XLOOKUP supplier mapping Excel",
+    "Excel row limit spend data",
+    "Excel tables Mac procurement"
+  ],
+  "intro": "Excel for procurement specialists on Mac is mostly spend analysis. You clean a flat export of supplier transactions, map messy supplier names to one master list, then summarize spend with pivot tables by supplier and category. This guide covers the workbook layout, the Mac steps, the formulas that do the mapping, and where Lazur helps while your hands stay on the file.",
+  "tldr": [
+    "Create the table with ⌘T on Mac, and name it while you create it.",
+    "Clean supplier names once in a mapping tab, then use XLOOKUP with Unmapped as the fallback.",
+    "Build pivots from the table, refresh with Data > Refresh All, and check totals against Working.",
+    "Excel has a 1,048,576-row limit per sheet, so larger exports need Power Query or a database.",
+    "Lazur points, explains, and guides you one click at a time. It does not edit your workbook."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "Rows on one Excel worksheet, the ceiling for a flat spend table",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits (Microsoft Support)"
+    },
+    {
+      "value": "92%",
+      "label": "Office workers who say they must reshape spreadsheet data before it is understandable, a general survey",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "ThoughtSpot press release on spreadsheet data (Sapio Research survey)"
+    },
+    {
+      "value": "80%",
+      "label": "Share of spend Suplari says can stay under 80% classified with manual category rules, one vendor example",
+      "sourceUrl": "https://suplari.com/blog/spend-analysis-in-excel",
+      "sourceTitle": "Spend Analysis in Excel: Step-by-Step Guide (Suplari)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most procurement work in Excel on Mac is one job, repeated. A finance system exports every transaction for a period. You clean the supplier names, sort each line into a category, and summarize the result for a review. Microsoft 365 for Mac covers all of it. The hard part is the structure of the file, not any single feature."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a procurement workbook looks like on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A workable layout keeps raw data apart from logic. Suplari's spend analysis guide recommends a tab order where corrections happen only in mapping tabs, never in the raw export. Only one tab calculates. The others read from it. That habit alone prevents most of the errors covered later in this guide."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Tab",
+        "What it holds",
+        "Rule"
+      ],
+      "rows": [
+        [
+          "Raw_Data",
+          "The export exactly as it arrived",
+          "Never edit it. Replace it each cycle."
+        ],
+        [
+          "Supplier_Map",
+          "Messy supplier name to master name",
+          "Corrections go here, not in raw data."
+        ],
+        [
+          "Category_Map",
+          "GL codes and keywords mapped to categories",
+          "Keyword rules live here and get tested."
+        ],
+        [
+          "Working",
+          "Lookups and calculations",
+          "The only tab with calculating formulas."
+        ],
+        [
+          "Pivots",
+          "PivotTables built from Working",
+          "Refresh them. Do not rebuild them."
+        ],
+        [
+          "Dashboard",
+          "Charts and slicers for the review",
+          "Read only for the audience."
+        ]
+      ],
+      "caption": "Tab layout based on Suplari's spend analysis guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name each tab with the words your team already uses. A tab called Working makes sense to a buyer. Keep names short, because long names get cut off in the tab bar. Put the export date and the owner of each mapping tab in README, so the next person knows what they are looking at."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn the export into an Excel table before any formulas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the table, not the formulas. Click one cell inside the export and press ⌘T. Excel opens the Create Table dialog. Tick My table has headers, then click OK. A table grows when you add rows beneath it, and formulas that point at its columns keep working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table while you create it. Microsoft's October 2026 update says naming a table at creation now works in Excel for Mac, after a month as an Insider feature. Call the table Spend or Transactions. Then a formula reads =SUM(Spend[Amount]) instead of a fixed range that breaks when the export changes size."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Clean the headers first",
+      "text": "Every column header needs a unique name with no blanks. Excel gives a blank header a generic name, and that name breaks lookups later. Rename headers before you build anything on top of the table."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean supplier names with TRIM, SUBSTITUTE, and a mapping table"
+    },
+    {
+      "type": "paragraph",
+      "text": "Supplier names cause the most damage. One supplier can show up as Acme Corp, ACME CORP, Acme Corporation, and Acme Corp with a trailing space. Each variant splits the spend. Pivots then show several suppliers where you have one. Clean the name once, then map every variant to a master name."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a helper column in Working. =TRIM(A2) removes extra spaces at both ends and between words. Exports from ERP systems often add non-breaking spaces, which TRIM does not remove. Use =TRIM(SUBSTITUTE(A2,UNICHAR(160),\" \")) instead. UNICHAR is the safer choice on Mac, because CHAR maps codes differently in Mac Excel than in Windows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, build the mapping. Put each cleaned variant in Supplier_Map, one row per variant, with the master name beside it. Then pull the master name in Working with XLOOKUP, assuming the mapping is a table named Supplier_Map: =XLOOKUP(B2,Supplier_Map[Variant],Supplier_Map[Master Name],\"Unmapped\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth argument is what appears when nothing matches. Unmapped makes new suppliers visible. A blank or a zero hides them inside the totals. XLOOKUP ignores capital letters, so Acme and ACME match. It does not ignore a trailing space, so the trim step still matters."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Editing the raw export. Corrections vanish when the next export lands. Put them in Supplier_Map instead.",
+        "Duplicate keys in Supplier_Map. Run Data > Remove Duplicates on the variant column before you trust any lookup.",
+        "Using VLOOKUP with a column number. Insert a column and it reads the wrong field. XLOOKUP names the column, so it holds up better.",
+        "Leaving the fallback blank. A missing supplier then looks like zero spend, and the review never sees it."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "New names arrive every cycle",
+      "text": "Every refresh can bring new supplier names. Filter Working for Unmapped before you build any pivot. An unmapped supplier that reaches a summary changes the total without anyone noticing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Classify spend by category with rules you can audit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Category is the second cleanup job. Most teams start with GL codes, then add keyword rules for lines where the code is blank or wrong. A keyword rule can catch IT Services on a line with no code. It can also catch lines it should not, so every rule needs a test."
+    },
+    {
+      "type": "paragraph",
+      "text": "Suplari's guide says classification can stay under 80% when you rely only on manual rules at category level. That figure comes from one vendor, so treat it as a warning, not a benchmark. Track the share of spend left unclassified each cycle, and show that share on the Dashboard tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Mac, a simple keyword rule looks like this: =IF(ISNUMBER(SEARCH(\"laptop\",C2)),\"IT Hardware\",\"Other\"). SEARCH ignores capital letters. It also treats question marks and asterisks as wildcards, so a keyword with either one gives odd results. Keep the rules in Category_Map and test each one on real lines."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for substring traps. A keyword such as pay matches payroll, payment, and paying. Put longer, more specific keywords first. Then check the first few matches for each rule before you trust the category column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables and slicers for spend by supplier"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build pivots from the table, never from Raw_Data. Select any cell in Working, then go to Insert > PivotTable. Excel fills the source from the table name. Drag Master Name to Rows, Amount to Values, and Category to Filters. Numeric fields sum by default, so check the grand total against Working."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a slicer when a buyer needs to click through categories. With the pivot selected, go to PivotTable Analyze > Insert Slicer and tick Category. Place the slicer on the Dashboard tab, next to the chart it controls."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Run Data > Refresh All after you paste a new export.",
+        "Compare each pivot's grand total with the total of Working before you share it.",
+        "Name each pivot sheet for the question it answers, such as Spend by Supplier.",
+        "Rebuild a pivot only when the question changes, not when the data does."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Repeat work is the real cost. Suplari lists it as a main pain point. Each refresh repeats the cleanup and the pivot setup. A team that rebuilds by hand every cycle pays for the same work again and again."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: cleaning one period of spend"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take one period of transactions as a worked example. Paste the export into Raw_Data and leave it alone. Copy the columns you need into Working, convert that copy to a table named Spend, and add the helper columns there. The raw tab stays intact for the audit trail."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, scan for unmapped names. Filter Master Name for Unmapped. Add each new variant to Supplier_Map, then refresh the lookup. Run the keyword rules after that, and filter for lines still unclassified. Those lines go to a short list for a buyer to review. They do not go into the pivot as a catch-all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Last, build the pivots from Spend. Check that the grand total matches the sum of Amount in Spend. If it does, save a dated copy with File > Save As. Next month's cleanup then starts from a clean file, and this period's numbers stay as they were reviewed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that change your totals"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Credit notes and returns arrive as negative amounts. Decide whether to net them against the supplier or report them on their own line.",
+        "One invoice can split across categories. Keep one row per line, not per invoice, or category totals will double count.",
+        "Re-exports can repeat rows. Compare the row count with the previous export before you append anything.",
+        "Parent companies and subsidiaries often appear as separate suppliers. Map them to one master name only when the category team agrees.",
+        "Blank GL codes are not the same as wrong GL codes. Track each one as its own category so both stay visible.",
+        "Currency columns need a rule. Convert before you total, or total each currency on its own line."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Row limits, large exports, and Power Query on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel's worksheet grid has 1,048,576 rows and 16,384 columns. A spend export with more lines than that will not fit on one sheet. Microsoft's specification page does not mention Mac, so treat the published limit as the figure to check against your own file. Suplari says enterprises above roughly $1B in spend can run past it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query handles the bigger jobs. It loads an export, changes column types, removes columns, and appends files from more than one system before the data reaches the grid. Microsoft's Power Query limits page says loaded data fills at most 1,048,576 rows on a worksheet. Old .xls and .xlsb files cap imports at 255 columns. Newer .xlsx files have no stated column limit."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Mac, look for Data > Get Data. If the ribbon does not show it, check your build under Excel > About Excel and update Microsoft 365 before you give up on the approach."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Memory and 32-bit limits",
+      "text": "Microsoft's specification page describes a 32-bit process limit of 2 GB, shared by Excel, the workbook, and add-ins. If Excel runs out of memory on a large file, remove add-ins you do not use, and split the export by period."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard moves that save time on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘T creates a table from the current range.",
+        "⌘Z undoes a bad paste, which is the most common fix in cleanup work.",
+        "⌘↓ jumps to the last filled cell in the current column.",
+        "⌘⇧↓ selects down to that cell. Then ⌘D fills a formula down the selection.",
+        "⌘F opens Find, so you can search a supplier name across the workbook."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Symptoms, causes, and fixes in the mapping workbook"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Symptom",
+        "Likely cause",
+        "Fix"
+      ],
+      "rows": [
+        [
+          "Pivot total is off from Working",
+          "Pivot not refreshed after a new export",
+          "Run Data > Refresh All, then compare totals"
+        ],
+        [
+          "A supplier shows zero spend",
+          "Blank fallback in XLOOKUP",
+          "Set the fallback to Unmapped and filter for it"
+        ],
+        [
+          "Lookup returns #N/A for a known name",
+          "Trailing or non-breaking space in the key",
+          "Wrap the key in TRIM and SUBSTITUTE with UNICHAR"
+        ],
+        [
+          "Totals double after a merge",
+          "Duplicate keys in the mapping table",
+          "Run Data > Remove Duplicates on Supplier_Map"
+        ],
+        [
+          "Dates land a few years off",
+          "Mismatched date system",
+          "Check the date system option under Excel > Preferences > Calculation"
+        ]
+      ],
+      "caption": "Common problems in a supplier mapping workbook and how to fix them."
+    },
+    {
+      "type": "paragraph",
+      "text": "The date system problem is the sneaky one. Dates from a file that uses a different date system can land a few years off. They still look like dates, so the error is easy to miss. Check the setting before you trust a date filter on a file from another machine."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant that lives in the notch of your Mac. Hold ⌥⌘ and ask about anything on your screen. It answers out loud. It points at things, but it does not click buttons, edit your workbook, or run other apps for you. You make every change yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where a command lives, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. That suits a spend workbook, where one wrong click can move a whole column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation works separately. Hold fn to dictate clean, formatted text at the cursor in any app. Use it for a note to a category manager, a supplier email, or a comment on the Dashboard tab. A personal dictionary helps with supplier names that speech tools often get wrong. Dictation is unlimited on both plans."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check the screen first",
+      "text": "Lazur looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Supplier pricing can still be confidential, so hide the rate column before you ask about it. Follow your company's rules first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial, and you do not need a credit card. The trial starts when you first open the app. Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions. Power costs $120/month, or $96/month billed annually, and includes 1,000 AI actions. Dictation is unlimited on both. Check [pricing](/pricing) for current terms, or [download](/download) the app to try it on your Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checks before you send a spend pack"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Compare every pivot grand total with the total of Spend.",
+        "Filter Master Name for Unmapped and confirm nothing is left unexplained.",
+        "Check the largest suppliers for name variants that slipped through.",
+        "Confirm the date range matches the period in the file name and the email subject.",
+        "Remove any tab that holds personal data or rates the audience should not see."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a README tab with the export date, the owner of each mapping tab, and a short change log. That log lets a colleague pick up the file without a phone call. It also answers the question nobody asks until a number changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Excel can and cannot tell you about savings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel can total spend, show concentration, and flag off-contract buying. It cannot confirm that a saving happened. Suplari says Excel cannot confirm savings were realized. That gap matters when a category manager asks what the team actually saved last period."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Opportunities as a list of claims. Add the source line, the owner, and the date each claim was made. Track realized savings in the finance system or a contract register, and link each figure back to its source."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How common is Excel in procurement work?"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is still common in this work. A 2019 LevaData study found that half of procurement organizations use legacy tools such as Excel to store and analyze data. The article gives no sample size or method, so read it as a rough signal. A 2022 ThoughtSpot survey found that 92% of office workers must reshape spreadsheet data before it is understandable. The release says that averages about an hour per dataset. That survey covers office workers in general, not procurement."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most features in this guide exist in both Mac and Windows versions of Microsoft 365. Check any feature you rely on against your own build under Excel > About Excel. Then try the workflow on one period of data before you move a full year into the new layout."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I do procurement spend analysis in Excel on Mac, or do I need Windows?",
+      "answer": "You can do the core work on Mac. Excel Tables, XLOOKUP in current builds, PivotTables, slicers, and Power Query are all part of Microsoft 365 for Mac. Naming a table at creation reached Mac in the October 2026 update. If a feature is missing, check your build under Excel > About Excel."
+    },
+    {
+      "question": "What is the row limit for Excel on Mac?",
+      "answer": "Excel's worksheet grid holds 1,048,576 rows and 16,384 columns. Microsoft's specification page does not mention Mac separately, so check the limit against your own file. Suplari says enterprises above roughly $1B in spend can run past it. For larger data, use Power Query or a database."
+    },
+    {
+      "question": "Why does my XLOOKUP show a gap instead of a supplier name?",
+      "answer": "The usual cause is a hidden trailing space or a non-breaking space in the lookup key. Wrap the key in TRIM and SUBSTITUTE, with UNICHAR for the non-breaking character. Also set the fourth argument to Unmapped, so a miss shows up in the table instead of a blank."
+    },
+    {
+      "question": "Should I clean supplier names in Excel or in the ERP system?",
+      "answer": "Fix the source when your team can, because every downstream report benefits. When you cannot, a mapping table in Excel keeps the fix visible and easy to reverse. Keep corrections out of the raw export either way. Suplari's guide makes the same point for spend workbooks."
+    },
+    {
+      "question": "Can Lazur edit my spend workbook?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps for you. It points at things, answers out loud, and guides you one click at a time. Hold ⌥⌘ to ask about the screen, or hold fn to dictate text at the cursor."
+    },
+    {
+      "question": "How much does Lazur cost for procurement work?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. Pro is $18/month, or $15/month billed annually, with 150 AI actions. Power is $120/month, or $96/month billed annually, with 1,000 AI actions. Dictation is unlimited on both plans. Check the pricing page for current terms."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Power Query specifications and limits in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/power-query-specifications-and-limits-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "50% of procurement organizations use Excel for data analysis: study",
+      "url": "https://www.supplychaindive.com/news/50-procurement-organizations-excel-data-analysis/565622/",
+      "publisher": "Supply Chain Dive",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "New research shows almost half of users struggle to make sense of data in spreadsheets",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Spend Analysis in Excel: Step-by-Step Guide, Template Structure & When to Stop",
+      "url": "https://suplari.com/blog/spend-analysis-in-excel",
+      "publisher": "Suplari",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, walk me through turning this export into a table.",
+    "capability": "guide",
+    "result": "Lazur circles Insert > Table, then waits. You click, and it guides the next step until the export is a named table ready for pivots.",
+    "shell": "sheet",
+    "pointsAt": "Insert > Table",
+    "output": "Done when the header row is set, the range is a table, and the table has a name in Table Design."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the PivotTable command on this menu bar?",
+      "capability": "point",
+      "result": "Lazur circles the command and labels it, so you see where it sits before you click."
+    },
+    {
+      "say": "Walk me through building a pivot of spend by supplier.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time, waiting for each click, until Master Name is in Rows and Amount is in Values."
+    },
+    {
+      "say": "Why does this XLOOKUP show a gap instead of a supplier name?",
+      "capability": "explain",
+      "result": "Lazur reads the formula on screen and explains the likely cause, such as a trailing space, out loud."
+    },
+    {
+      "say": "Draft a note asking the supplier to confirm their legal name.",
+      "capability": "draft",
+      "result": "Lazur types a short draft for you to read and edit. Nothing is sent until you send it."
+    },
+    {
+      "say": "Dictate a note on this period's category spend for the review.",
+      "capability": "dictate",
+      "result": "Hold fn, speak, and release. The text lands at the cursor in clean, formatted form, in any app."
+    },
+    {
+      "say": "Research whether this supplier lists a parent company online.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report you can check."
+    },
+    {
+      "say": "What is on my calendar before the supplier review?",
+      "capability": "everyday",
+      "result": "Lazur reads your Calendar events out loud and can add a reminder for the review if you ask."
+    },
+    {
+      "say": "Explain what this Power Query step does to my columns.",
+      "capability": "explain",
+      "result": "Lazur reads the step on screen and explains what it changes, out loud, before you load the data."
+    }
+  ],
+  "type": "role-app",
+  "slug": "procurement-specialists-excel",
+  "role": "procurement-specialists",
+  "app": "excel",
+  "roleName": "Procurement specialists",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/procurement-specialists-excel/excel-for-procurement-specialists-on-mac-1-fd54c8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Procurement specialist at a Mac reviewing supplier spend in Excel",
+      "caption": "Spend review at a desk is the usual setting for this work.",
+      "keywords": [
+        "excel for procurement specialists on mac",
+        "Excel",
+        "Procurement specialists",
+        "Mac",
+        "procurement team laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "konkapo",
+        "url": "https://pixabay.com/users/konkapo-55292388/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/remote-work-online-meeting-10207354/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/procurement-specialists-excel/excel-for-procurement-specialists-on-mac-2-cd08fd.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Spreadsheet with rows of transaction data on an office desk",
+      "caption": "Transaction exports are the raw material of spend analysis.",
+      "keywords": [
+        "excel for procurement specialists on mac",
+        "Excel",
+        "Procurement specialists",
+        "Mac",
+        "spreadsheet office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "niklaspatzig",
+        "url": "https://pixabay.com/users/niklaspatzig-16752629/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/internet-work-office-desk-business-5224078/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/procurement-specialists-excel/excel-for-procurement-specialists-on-mac-3-6aadbb.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Man at a laptop working through a workbook with data columns",
+      "caption": "Cleaning one period of spend takes careful, repeatable steps.",
+      "keywords": [
+        "excel for procurement specialists on mac",
+        "Excel",
+        "Procurement specialists",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-code-programming-computer-2557468/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for procurement specialists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Excel spend analysis on Mac": 1,
+      "supplier name cleanup in Excel": 1,
+      "pivot table spend by supplier Excel": 1,
+      "XLOOKUP supplier mapping Excel": 1,
+      "Excel row limit spend data": 1,
+      "Excel tables Mac procurement": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,631 @@
+{
+  "title": "Cursor for developers on Mac: shortcuts, rules, and voice tasks with Lazur",
+  "metaTitle": "Cursor for Developers on Mac: Shortcuts, Rules, and Voice Help",
+  "description": "Cursor for developers on Mac: the Agent panel, Project Rules, real shortcuts, and where Lazur helps you talk through errors and prompts.",
+  "targetKeyword": "cursor for developers on mac",
+  "secondaryKeywords": [
+    "cursor agent mode mac",
+    "cursor keyboard shortcuts mac",
+    "cursor project rules mdc",
+    "cursor agent ask plan debug",
+    "voice assistant for cursor on mac",
+    "dictate prompts in cursor mac"
+  ],
+  "intro": "Cursor on a Mac runs mostly through the Agent panel. Press ⌘I to open it, then ⇧Tab to switch between Agent, Ask, Plan, and Debug. Lazur adds a voice layer beside Cursor. Hold ⌥⌘ and ask about anything on screen, and Lazur answers out loud.",
+  "tldr": [
+    "Press ⌘I to open the Agent panel. Press ⇧Tab to switch between Agent, Ask, Plan, and Debug.",
+    "Select code and press ⌘L or ⌘K to send it to Agent. The old inline edit role of ⌘K has been replaced.",
+    "Project Rules live in .cursor/rules as .mdc files. Plain .md files are ignored.",
+    "Hold ⌥⌘ to ask Lazur about anything on screen. Hold fn to dictate clean text at the cursor in any app.",
+    "A 2025 METR trial found experienced developers took 19% longer with AI allowed. Measure your own work before you assume a speedup."
+  ],
+  "stats": [
+    {
+      "value": "19%",
+      "label": "Longer task time with AI allowed in METR's 2025 trial of 16 experienced open-source developers",
+      "sourceUrl": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "sourceTitle": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity"
+    },
+    {
+      "value": "24%",
+      "label": "Speedup the developers in that trial predicted before they started",
+      "sourceUrl": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "sourceTitle": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity"
+    },
+    {
+      "value": "46%",
+      "label": "Developers who do not trust the accuracy of AI tool output, Stack Overflow 2025 survey",
+      "sourceUrl": "https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/",
+      "sourceTitle": "Stack Overflow 2025 Developer Survey press release"
+    },
+    {
+      "value": "45%",
+      "label": "Developers who say debugging AI-generated code is time-consuming",
+      "sourceUrl": "https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/",
+      "sourceTitle": "Stack Overflow 2025 Developer Survey press release"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most of your day in Cursor falls into three jobs. You ask questions about code, you change selected code, and you set rules that shape every answer. This page walks through each job with the real shortcuts, then shows where Lazur fits. Lazur is not a plugin for Cursor. It lives in the notch on your Mac, looks at your screen while you hold a key, and talks back."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open the Agent panel and pick the right mode"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⌘I to open the Agent panel. Type your prompt there and press Return. Before you send it, check the mode. Press ⇧Tab to cycle through the four modes. The mode decides what Cursor is allowed to do with your files."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Agent builds features, refactors code, fixes bugs, and can edit files.",
+        "Ask is read-only. Use it when you want an answer, not a change.",
+        "Plan drafts a plan first and edits only after you approve it.",
+        "Debug works on bugs that are hard to reproduce."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is staying in Agent for everything. A question about how a function works does not need edit rights. Switch to Ask, read the answer, and switch back only when you want a change. Ask mode is read-only, so nothing in your project moves while you learn."
+    },
+    {
+      "type": "paragraph",
+      "text": "Plan mode fits bigger jobs. It drafts a plan first and waits for your approval before it edits. Read the plan line by line. Cut the steps you do not want, then approve. A plan you approve is easier to review than a diff you find after the fact."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the mode in mind when you read the output. Agent can change files you did not mention. Open the diff before you keep anything, and check the file list first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Send selected code to Agent with ⌘L or ⌘K"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the lines you care about, then press ⌘L or ⌘K. Cursor sends the selection to Agent with your prompt. This is the fastest way to ask about one function, because Agent starts with the code in front of it. You do not have to paste or hunt for the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be careful with ⌘K. Older guides describe it as inline edit. Cursor's Agent help page says the old inline edit role of ⌘K has been replaced by the Agent workflow. If you learned Cursor from an older video, ⌘K will feel different. Check the help page when the behavior surprises you."
+    },
+    {
+      "type": "paragraph",
+      "text": "A good prompt names the file, the behavior, and the limit. A weak prompt says Fix this. A better prompt says: this retry loop never stops after a server error, so cap it at a small fixed count and keep the backoff. The second prompt tells Agent what done looks like. Write it once, and you skip the back-and-forth."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur where things are and what they mean"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥⌘ and ask a question about the screen. Lazur looks at your screen while you hold the keys, and it answers out loud. Your eyes stay on the code. That matters when you are deep in a function and do not want to look away."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Try asking where the Agent mode control is, or where dictation turns on. Lazur circles the spot. You still press the control yourself, because Lazur does not click for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click before it moves on. This suits settings you change once a month, the kind you forget between visits."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read errors without copying logs by hand"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most error work starts with a red message or a stack trace. Hold ⌥⌘ and ask what the message means. Lazur reads the text on screen and answers out loud. You hear the plain version first, then decide what to change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the full message on screen, not only the last line. The first line often names the cause, and the last line often names the file. If the error sits in a terminal panel, keep that panel visible too. Lazur can only answer about what it can see."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not edit your code. It explains. You still run the fix in Cursor, and you still read the diff. That split is the point. An answer you understand is safer than a patch you accept without reading."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate long prompts instead of typing them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Long prompts are where dictation pays off. Typing a few sentences of context takes longer than saying them. Speaking also gets you the detail, such as which edge case worries you, that short typed prompts leave out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor has its own dictation. Press ⌘⇧Space to toggle it inside the IDE. Cursor's changelog says the shortcut still works, and that the feature was earlier called Voice Mode. Recheck the shortcut after big updates, because shortcuts move."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur dictates in any app. Hold fn, speak, and release. Lazur types clean, formatted text at the cursor. It also has snippets, a personal dictionary, and clipboard slots. Add the names of your services and internal tools to the dictionary, so they come out spelled right. Dictation is unlimited on both Pro and Power."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictate the request. Type the exact file name, function name, and symbols yourself. Speech tools guess at code, and a wrong guess can look right until it runs. Read the text once before you send it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Job",
+        "First move in Cursor",
+        "Where Lazur helps"
+      ],
+      "rows": [
+        [
+          "Ask about a function",
+          "Select it, then press ⌘L",
+          "Hold ⌥⌘ and ask what it does"
+        ],
+        [
+          "Change how Agent behaves",
+          "Add a .mdc file in .cursor/rules",
+          "Lazur drafts the rule text"
+        ],
+        [
+          "Find a control",
+          "Look for it in the Agent panel",
+          "Ask where it is, and Lazur circles it"
+        ],
+        [
+          "Write a long prompt",
+          "Press ⌘I and type the short version",
+          "Hold fn and dictate the detail"
+        ]
+      ],
+      "caption": "Where each job starts in Cursor, and where Lazur fits in."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write Project Rules that Cursor reads"
+    },
+    {
+      "type": "paragraph",
+      "text": "Project Rules tell Cursor how your project works. Put them in the .cursor/rules folder inside your project. Each rule is a markdown file that ends in .mdc. A plain .md file is ignored, so the rule never applies. If a rule seems to do nothing, check the extension first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each rule has one of four types. Always Apply loads the rule every time. Apply Intelligently lets Cursor choose when the rule fits. Apply to Specific Files uses a glob, such as *.swift for Swift code. Apply Manually loads the rule only when you @-mention it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Rule type",
+        "Use it for",
+        "Example in a Mac app"
+      ],
+      "rows": [
+        [
+          "Always Apply",
+          "House style that applies everywhere",
+          "Use SwiftUI, not UIKit, for new screens"
+        ],
+        [
+          "Apply Intelligently",
+          "Guidance Cursor can pick when it fits",
+          "How we write Core Data migrations"
+        ],
+        [
+          "Apply to Specific Files",
+          "Rules tied to a file type or folder",
+          "Glob *.swift for Swift style"
+        ],
+        [
+          "Apply Manually",
+          "Long checklists you pull in on purpose",
+          "Release checklist, @-mentioned before a build"
+        ]
+      ],
+      "caption": "The four Project Rule types, from Cursor's rules documentation."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep each rule short. One rule should cover one job, such as naming, testing, or error handling. A long rule with many jobs gets harder to check. You will also find it harder to tell which line Cursor followed."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is copying a whole style guide into one file. Cursor does not need every rule your team has ever written. Start with the few rules you repeat in code review. Add more only when you see the same miss twice."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur to draft a rule before you save it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur drafts text, so it can write the first version of a rule. Say: draft a Project Rule for SwiftUI screens, where new screens use SwiftUI and state lives in observable models. Lazur drafts the text. You paste it into a new .mdc file in .cursor/rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the draft before you save it. Lazur does not know your team's habits, and it does not know which old pattern you want gone. You do. Edit the draft until it matches what you would tell a new hire in the first week."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research says about Cursor speed"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor does not make every developer faster. A 2025 randomized trial found the opposite for one group. METR tested 16 experienced open-source developers on 246 issues. When AI was allowed, they took 19% longer. Most of them used Cursor Pro with Claude 3.5 or 3.7 Sonnet. That setup is older than the current app, so read it as a warning, not a verdict."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The developers expected a speedup. Before the study they predicted AI would make them 24% faster. After the slowdown, they still estimated a 20% speedup. Feeling faster and being faster are different things. Time a few of your own tasks before you decide."
+    },
+    {
+      "type": "paragraph",
+      "text": "The follow-up is less clear. METR's February 2026 update found some evidence for speedup from late-2025 tools, but the data is unreliable. Among 10 original developers, the estimate was -18% task time, with a range from -38% to +9%. That range includes no change. The post does not mention Cursor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Stack Overflow's 2025 Developer Survey points at trust more than speed. 46% of developers said they do not trust the accuracy of AI tool output, up from 31% the year before. 45% said debugging AI-generated code is time-consuming. Both numbers explain why review habits matter more than the tool."
+    },
+    {
+      "type": "paragraph",
+      "text": "So where does the lost time go? Usually to a few places, and you can check each one. You accept a change without reading it. You ask a vague question and get a vague answer. You use a mode that does not fit the job. Each one costs minutes, and the minutes add up."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that slow you down in Cursor on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Staying in Agent for simple questions. Use Ask, which is read-only.",
+        "Expecting ⌘K to open inline edit. Cursor's help page says that role was replaced.",
+        "Saving rules as .md. Cursor ignores them. Use .mdc.",
+        "Pasting a whole style guide into one rule. Keep each rule to one job.",
+        "Accepting a large diff without reading it. Check every file it touched.",
+        "Dictating code symbols. Type file names and symbols yourself.",
+        "Assuming a shortcut stays the same. Recheck after big updates."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: fixing a failing test"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a test fails after a refactor. Select the failing function, press ⌘I, and switch to Ask with ⇧Tab. Ask why the test expects nil in that spot. Read the answer before you change anything. The answer often tells you whether the test or the code is wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, switch to Agent with ⇧Tab and select the function again. Press ⌘L and ask for the smallest fix that keeps the test's intent. Agent edits the file. Open the diff and check that it touched only the function you selected."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the test still fails, hold ⌥⌘ and ask Lazur what the new error means. Lazur reads the output on screen and answers out loud. Paste that answer back into Agent as context, then try once more. If the second try also fails, stop and read the code yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the version and plans before you rely on a feature"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor changes fast, so any guide can go stale. The changelog lists dated entries with no version numbers. Recent entries include Build Live Apps on Nov 5 and Voice Chat with Agents on Nov 6. Read cursor.com/changelog before you plan a workflow around a new feature."
+    },
+    {
+      "type": "paragraph",
+      "text": "Third-party sites give conflicting desktop version numbers, so do not trust one blog for the version. Check the version inside the app, then compare it with the changelog. If the menu labels differ from this page, trust the app over the page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pricing has moving parts. Cursor's pricing page says allowances refresh weekly. Third-party models bill at API list price, with optional spending caps, and they are available on Premium and above. The page also describes the Plus plan as Grok models only. We could not confirm that elsewhere, so check the pricing page before you choose a plan."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Cursor alone, or add Lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need Lazur to use Cursor. The Agent panel, the shortcuts, and Project Rules work on their own. Lazur helps when you want to ask about the screen without switching windows, or when you want to talk instead of type."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Cursor. It has no partnership with Cursor or with any app maker. It works in any app on your Mac, so Cursor is just another window. Ask a question, get an answer, and go back to your code."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur also does not click buttons, edit files, or run other apps. You stay in charge of every change. For more on the same workflow, read [Voice assistant for Cursor on Mac](/apps/cursor) and [Voice assistant for developers on Mac](/for/developers)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur sees and where your data goes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so Lazur can answer. They are not stored, and content is never used to train AI models. The screenshot includes whatever is visible, so close tokens, keys, and client files before you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, not available. Lazur does not change how Cursor stores your code, so check Cursor's own privacy settings as well."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A first hour with Cursor and Lazur"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open your project and press ⌘I. Switch to Ask with ⇧Tab and ask how one file works.",
+        "Create .cursor/rules and add one .mdc rule for your biggest style habit.",
+        "Select one function, press ⌘L, and ask for a single small change.",
+        "Read the diff. Keep only the changes you understand.",
+        "When an error appears, hold ⌥⌘ and ask Lazur what it means.",
+        "Hold fn to dictate your next long prompt, then check the text before you send it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Give yourself a week with this list. Note the one step that slowed you down most. Fix that step first, then move on. Small changes beat a full overhaul in week one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one job from this page and use it every day for a week. When you are ready, [download Lazur for Mac](/download). The trial starts when you first open the app, and it asks for no credit card. If you want more examples, read [AI dictation for developers](/blog/ai-dictation-for-developers)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the best way to start Cursor for developers on Mac?",
+      "answer": "Open the Agent panel with ⌘I, switch to Ask with ⇧Tab, and ask how one file works. Then select a function and press ⌘L to send it to Agent. Read every diff before you keep it."
+    },
+    {
+      "question": "Does ⌘K still open inline edit in Cursor?",
+      "answer": "Not the way older guides describe it. Cursor's Agent help page says the old inline edit role of ⌘K has been replaced by the Agent workflow. Use ⌘L or ⌘K to send selected code to Agent, and check the help page if the behavior differs."
+    },
+    {
+      "question": "Why does Cursor ignore my rule file?",
+      "answer": "Most often the file ends in .md. Cursor's rules documentation says plain .md files are ignored. Rename the file to .mdc and keep it inside the .cursor/rules folder."
+    },
+    {
+      "question": "Is Cursor slower when you use AI?",
+      "answer": "It can be, for some experienced developers. METR's 2025 trial found 19% longer task times with AI allowed, mostly with Cursor Pro and older Claude models. The 2026 follow-up was inconclusive and did not mention Cursor."
+    },
+    {
+      "question": "Does Lazur control Cursor for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It sees your screen while you hold ⌥⌘, answers out loud, circles things, and guides you one click at a time."
+    },
+    {
+      "question": "Does Lazur dictation replace Cursor's own dictation?",
+      "answer": "They are separate. Cursor's dictation uses ⌘⇧Space inside the IDE. Lazur dictation works in any app when you hold fn, and it types clean text at the cursor. Lazur is not a plugin for Cursor."
+    },
+    {
+      "question": "Is Lazur available on Windows?",
+      "answer": "No. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, but it is not available yet."
+    },
+    {
+      "question": "Does Lazur send my screen to AI providers?",
+      "answer": "Lazur looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Agent mode - Cursor Help",
+      "url": "https://cursor.com/help/ai-features/agent",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Rules - Cursor Docs",
+      "url": "https://cursor.com/docs/context/rules",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Cursor Changelog",
+      "url": "https://cursor.com/changelog",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Pricing - Cursor",
+      "url": "https://cursor.com/pricing",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "publisher": "METR",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "METR February 2026 uplift update",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "publisher": "METR",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Stack Overflow 2025 Developer Survey press release",
+      "url": "https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is Cursor ignoring this rule file?",
+    "capability": "explain",
+    "result": "Lazur reads the file name on screen and answers out loud. A .md file in .cursor/rules gets skipped, so rename it to .mdc.",
+    "shell": "code",
+    "context": "Cursor open on a project with a .cursor/rules folder",
+    "pointsAt": "rule file name"
+  },
+  "tasks": [
+    {
+      "say": "Hold ⌥⌘ and ask what this stack trace means.",
+      "result": "Lazur reads the error on screen and answers out loud in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Agent mode control?",
+      "result": "Lazur circles the mode control and labels it on screen. You press it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through starting an Agent prompt from this file.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate this request into the Agent box.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in the app you are using.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a Project Rule that says new SwiftUI screens use observable models.",
+      "result": "Lazur drafts the rule text. You paste it into a new .mdc file in .cursor/rules and read it first.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how Swift teams set up Cursor rules.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Write a commit message from the diff on screen.",
+      "result": "Lazur drafts a commit message from the diff you have open. You check it before you commit.",
+      "capability": "draft"
+    },
+    {
+      "say": "Set a timer for 25 minutes and remind me to review the agent diff.",
+      "result": "Lazur sets the timer and adds a reminder in Apple Reminders.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "developers-cursor",
+  "role": "developers",
+  "app": "cursor",
+  "roleName": "Developers",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-cursor/cursor-for-developers-on-mac-1-79998e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A developer at a laptop writing code, the everyday setting for cursor for developers on mac",
+      "caption": "Writing code at a laptop, the daily setting for Cursor",
+      "keywords": [
+        "cursor for developers on mac",
+        "Cursor",
+        "Developers",
+        "Mac",
+        "developer laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-cursor/cursor-for-developers-on-mac-2-785248.jpg",
+      "width": 1280,
+      "height": 917,
+      "alt": "A programmer working late at a desk with a screen showing code on a Mac",
+      "caption": "A late session at the desk, reviewing an agent diff",
+      "keywords": [
+        "cursor for developers on mac",
+        "Cursor",
+        "Developers",
+        "Mac",
+        "programmer desk night",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-business-man-from-above-2838918/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/developers-cursor/cursor-for-developers-on-mac-3-c9ad5c.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Close view of hands typing on a laptop keyboard during a coding session",
+      "caption": "Typing a short prompt before dictating the detail",
+      "keywords": [
+        "cursor for developers on mac",
+        "Cursor",
+        "Developers",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "rezwan0305",
+        "url": "https://pixabay.com/users/rezwan0305-25281576/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-working-work-from-home-6948268/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "cursor for developers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 6,
+    "secondary": {
+      "cursor agent mode mac": 1,
+      "cursor keyboard shortcuts mac": 1,
+      "cursor project rules mdc": 1,
+      "cursor agent ask plan debug": 1,
+      "voice assistant for cursor on mac": 2,
+      "dictate prompts in cursor mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

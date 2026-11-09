@@ -1,0 +1,587 @@
+{
+  "title": "AI assistant for data scientists on Mac: voice help for notebooks, SQL and email",
+  "metaTitle": "AI Assistant for Data Scientists on Mac: Voice Help in 2026",
+  "description": "Lazur is a voice assistant for data scientists on Mac. Hold ⌥ ⌘ to ask about a notebook error, chart or email, and hear the answer out loud.",
+  "targetKeyword": "ai assistant for data scientists",
+  "secondaryKeywords": [
+    "voice assistant for data scientists",
+    "AI helper for notebooks and SQL on Mac",
+    "AI for data cleaning on Mac",
+    "Jupyter notebook help on Mac",
+    "AI assistant for Excel on Mac",
+    "data scientist email and meetings tool"
+  ],
+  "intro": "An AI assistant for data scientists on Mac is a voice helper that sees your screen while you work. Lazur is one. Hold ⌥ ⌘ to ask about the notebook, chart or email in front of you, and Lazur answers out loud. Most of a data scientist's day goes to cleaning data and talking about the work, so that is where a helper earns its keep.",
+  "tldr": [
+    "Data scientists spend the most time cleaning and organizing data. The surveys are old or small, but they agree on that point.",
+    "Communication takes a large share of the week too. Meetings, chat and email fill the gaps between code runs.",
+    "Lazur sees the screen only while you hold ⌥ ⌘. It explains errors, points at things, guides you through steps and drafts text.",
+    "Lazur does not run your cells, click buttons or edit your files. You still run the code and make the change.",
+    "Check your employer's rules before you let any AI tool see customer, patient or payroll records."
+  ],
+  "stats": [
+    {
+      "value": "45%",
+      "label": "Share of time respondents said they spend loading and cleansing data (2020, 2,360 responses)",
+      "sourceUrl": "https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020",
+      "sourceTitle": "Anaconda: 2020 State of Data Science"
+    },
+    {
+      "value": "60%",
+      "label": "Share of time data scientists said they spend cleaning and organizing data (2016, about 80 respondents)",
+      "sourceUrl": "https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/",
+      "sourceTitle": "Forbes: Data Preparation Most Time-Consuming, Least Enjoyable Data Science Task, Survey Says"
+    },
+    {
+      "value": "57%",
+      "label": "Share of Microsoft 365 time spent on meetings, chat and email (2023, about 31,000 workers)",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Microsoft Work Lab: Work Trend Index 2023, Will AI Fix Work?"
+    },
+    {
+      "value": "8.8 hours",
+      "label": "A week on email for the heaviest 25% of email users (all workers, 2023)",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "sourceTitle": "Microsoft Work Lab: Work Trend Index 2023, Will AI Fix Work?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where a data scientist's day actually goes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most numbers on this topic come from older surveys. The best known is CrowdFlower's 2016 Data Science Report. It asked about 80 data scientists. They said 60% of their time goes to cleaning and organizing data, and 19% goes to collecting data sets. The sample is small and the survey is about ten years old. Treat the figure as a strong signal, not a fixed fact."
+    },
+    {
+      "type": "paragraph",
+      "text": "A larger survey points the same way. Anaconda's 2020 State of Data Science drew 2,360 responses from over 100 countries. On average, respondents said 45% of their time goes to loading and cleansing data. The two numbers differ, but both put data prep at the top of the list."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Communication is the other big share. Microsoft's 2023 Work Trend Index surveyed about 31,000 full-time workers in 31 markets. Teams meetings took 23% of their Microsoft 365 time. Teams chat took 19%. Email took 15%. Together, that is 57%."
+    },
+    {
+      "type": "paragraph",
+      "text": "No large survey splits out email and meeting time for data scientists alone. Read these numbers as the office norm for knowledge workers. Heavy users feel it most. The heaviest 25% of email users spent 8.8 hours a week on email. The heaviest 25% of meeting users spent 7.5 hours a week in meetings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Asana's Anatomy of Work index uses a different label. It calls the time away from real work 'work about work'. The index draws on more than 10,000 knowledge workers. Asana says about 60% of the workday goes there. That covers searching for information, switching apps and chasing status. The page does not give a survey year, so treat it as a vendor estimate."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why data cleaning takes the most time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cleaning is slow because real data is messy in small ways. Say you receive one file exported from three systems. The dates use three formats. The customer IDs lost their leading zeros when someone opened the file in Excel. Some missing values say N/A, some say 0, and some say -999. Each problem is small. Together they eat a day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the column that feeds the metric you have to report. Clean that column first. Leave the rest alone until a number looks wrong. Chasing every null in a wide file with dozens of columns wastes an afternoon. Here are four problems that show up in most exports."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mixed date formats: parse them once with pd.to_datetime, and pass format= when you know the pattern.",
+        "Lost leading zeros: read the ID column as text with dtype=str, so 00417 stays 00417.",
+        "Trailing spaces in column names: run df.columns = df.columns.str.strip() before any lookup, or you get a KeyError.",
+        "Duplicate keys after a join: pass validate='one_to_one' to pd.merge, so pandas warns you when a key repeats."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Check every fix with a count. Print the row count before and after each step. If the number moves when you did not expect it to, stop and look. A silent row drop is the worst bug in a pipeline, because nothing crashes and the chart still looks fine."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where voice help fits in notebook and SQL work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Voice help works best when your hands are busy. You have the notebook open. The error sits on screen. Hold ⌥ ⌘ and ask what it means. Lazur sees the screen, reads the traceback, points at the line and answers out loud. You keep typing the fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not run the cell, and it does not edit the notebook. Run the cell yourself. In a VS Code notebook, ⇧↩ runs the current cell and moves to the next one. ⌘↩ runs it and keeps the cursor in place, which helps when you tweak one value at a time. The [VS Code setup for data scientists](/for/data-scientists/vs-code) covers the rest of the notebook shortcuts. Lazur is not an extension for VS Code. It works beside the editor."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "SQL is the other place where a wrong answer hides. Hold ⌥ ⌘ on a query that returns the wrong grain, and ask why. Lazur reads the joins on screen and points at the one that multiplies rows. You fix the join and rerun the query in your own tool. Lazur does not connect to your warehouse."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor follows the same pattern. The [Cmd+K guide for Cursor](/how-to/use-inline-edit-with-cmd-k-in-cursor) explains how ⌘K works now, since Cursor changed what it sends to Agent. The [Cursor setup for data scientists](/for/data-scientists/cursor) covers notebooks, SQL and charts in one place."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Three voice moves for a notebook session"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explain: ask what a warning means, and why it appeared after the last join.",
+        "Point: ask where the chart axis label or the failing column sits on screen. Lazur circles it.",
+        "Dictate: hold fn and talk to write a comment, a commit message or a note to yourself at the cursor."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use voice for email, meetings and the status report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Email and chat are the part of the day most data scientists want to shrink. Start with Outlook for Mac. Microsoft ships it on a rolling monthly build cadence. Its release notes list version 16.114.3, dated October 27, 2026, as the latest entry at the time of writing. To check your build, open Outlook > About Outlook. Updates need macOS 14 Sonoma or later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation fits this work well. Hold fn and talk. Lazur types clean, formatted text at the cursor in any app. Dictate the status note first. Then ask Lazur to draft the reply to the product manager. Read the numbers back before you send. One changed digit in a churn rate can start a long meeting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Set up the personal dictionary with your model names, table names and team names. Dictation then spells them right the first time. Snippets handle the sentences you repeat every week, like the standup template or the standard data request text."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick the right app for each part of the job"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Part of the job",
+        "Where it happens",
+        "How Lazur helps"
+      ],
+      "rows": [
+        [
+          "Cleaning and joins",
+          "VS Code or Cursor notebook",
+          "Explains tracebacks and points at the failing line"
+        ],
+        [
+          "Quick checks and pivots",
+          "Excel for Mac",
+          "Explains formulas and walks you through pivot table steps"
+        ],
+        [
+          "Reports for non-technical readers",
+          "Numbers for Mac",
+          "Guides you through export steps"
+        ],
+        [
+          "Email and status updates",
+          "Outlook for Mac",
+          "Drafts replies and dictates notes"
+        ],
+        [
+          "Long docs and reference pages",
+          "Browser or PDF on screen",
+          "Explains the section you point at"
+        ]
+      ],
+      "caption": "Each row is a place where time gets lost. Lazur helps with explaining, pointing and writing, not clicking."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Numbers User Guide covers Numbers 15.4, so check that version under Numbers > About Numbers before you follow its steps. The [Excel page](/apps/excel) covers formulas and pivot tables. Fewer app switches save the most time. Each switch costs a trip to another window and a fresh search for where you were."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Copying the error by hand. Hold ⌥ ⌘ with the error on screen, so Lazur sees the exact text.",
+        "Asking vague questions. Say 'why does this join return more rows' instead of 'it's broken'.",
+        "Trusting an answer without a check. Run the cell and compare the row count before and after.",
+        "Pasting raw customer rows into a tool. Check your employer's rules first, and mask sensitive fields.",
+        "Expecting Lazur to do the work in the app. It guides you one step at a time and waits for you to act."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data privacy and your employer's rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "A data scientist often works with personal, financial or health data. Your employer decides what can leave the company and which tools may see it. Follow those rules. Do not treat a voice assistant as an exception."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Those facts describe how Lazur works. They do not decide what your company allows."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Before live records are on screen",
+      "text": "Close or mask customer, patient or payroll columns before you hold the shortcut. Use a sample with fake IDs when you can. This page makes no compliance claim for regulated data, so ask your data team first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mask first, then ask. A notebook with hashed IDs and no names is a safer thing to show any voice tool. If your work falls under a regulated rule, such as health or lending data, ask your privacy or compliance team before any AI tool sees the screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the job market says about the work"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Bureau of Labor Statistics counted about 275,600 data scientist jobs in 2025. It projects 35% growth from 2025 to 2035, which it calls much faster than average. The median pay in May 2025 was $120,230 a year. Some websites still cite older medians, so use BLS for current figures."
+    },
+    {
+      "type": "paragraph",
+      "text": "Demand is high, so the hours saved on cleaning and communication can go to analysis. BLS lists the core duties as identifying useful data, cleaning raw data so software can read it, building and testing models, presenting findings with visualizations, and recommending business decisions. Cleaning sits on that list. So does the presentation."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a KeyError in VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say cell 14 fails with a KeyError on 'cust_id'. The column looks present in the file preview. Nothing looks wrong. This trap shows up often in this kind of work. The fix is short once you see the cause."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Hold ⌥ ⌘ and ask: why is this KeyError happening?",
+        "Lazur reads the traceback, points at the failing line and answers out loud.",
+        "Print the column names as a list with print(df.columns.tolist()).",
+        "Find the space before the closing quote, then strip it with df.columns = df.columns.str.strip().",
+        "Run the cell with ⇧↩ and check the row count against the source file."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The last step matters most. A fix that clears the error can still drop rows. Compare the count, then move on."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Print the list first",
+      "text": "Printing df.columns.tolist() shows a hidden space as a gap before the closing quote. You see the problem in one line of output."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your numbers before the report goes out"
+    },
+    {
+      "type": "paragraph",
+      "text": "A clean notebook can still report the wrong number. Before a figure leaves your desk, compare it with a number you already trust. Use last month's total, a count from the source system or a small hand-checked sample of 20 rows. If the two disagree, the gap usually points at a join, a filter or a date boundary."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch the date boundaries most closely. Text dates sort as strings, so a value like 2026-9-30 can pass a filter meant to keep only October onward. Convert the column with pd.to_datetime first, then filter. Hold ⌥ ⌘ on the filter line and ask Lazur what rows it keeps. Lazur explains the logic. You make the change and run the cell."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to start this week"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Get Lazur from the [download page](/download) and open it once to start the 3-day Pro trial. No credit card is needed.",
+        "Test it on a real error from your own notebook, not a demo file.",
+        "Add your model names and column names to the personal dictionary.",
+        "Check your employer's data rules before you use it on live records.",
+        "Compare plans on the [pricing page](/pricing) when the trial ends. Dictation is unlimited on both Pro and Power."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If most of your work runs through Excel, the [Excel guide for Mac](/apps/excel) shows where Lazur helps with formulas and pivot tables. If it runs through notebooks, start with the VS Code or Cursor page for data scientists."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is an AI assistant for data scientists on Mac?",
+      "answer": "It is a helper you talk to while you work. Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about what is on screen, and Lazur answers out loud. It explains errors, points at things, guides you through steps and drafts text. It does not run your code or click buttons for you."
+    },
+    {
+      "question": "Does Lazur run my notebook or build my model?",
+      "answer": "No. Lazur explains what you see, points at the part you ask about and walks you through steps. You run the cell, train the model and make each change. That split keeps you in control of the code and the data."
+    },
+    {
+      "question": "Does Lazur work in VS Code and Cursor?",
+      "answer": "Lazur is not a plugin or add-in for any app, and it has no partnership with any app maker. It works beside the editor. Hold ⌥ ⌘ while the notebook is open, and Lazur reads the screen when you hold the shortcut."
+    },
+    {
+      "question": "Is my data safe if I use a voice assistant on work files?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Your employer's rules still apply, so check them before you use it on personal, client or patient data."
+    },
+    {
+      "question": "Can I use Lazur on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned but not available. The download page lists the current requirements."
+    },
+    {
+      "question": "How much does Lazur cost for data work?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. Pro is $18/month, or $15/month billed annually, with 150 AI actions. Power is $120/month, or $96/month billed annually, with 1,000 AI actions. Dictation is unlimited on both. Check the pricing page for the current terms."
+    },
+    {
+      "question": "Which Mac version does Outlook need for updates?",
+      "answer": "Outlook for Mac updates need macOS 14 Sonoma or later, according to Microsoft's release notes. Check your build under Outlook > About Outlook. Lazur's own minimum macOS version is on the download page."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Data Scientists: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/math/data-scientists.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Data Preparation Most Time-Consuming, Least Enjoyable Data Science Task, Survey Says",
+      "url": "https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/",
+      "publisher": "Forbes",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "2020 State of Data Science",
+      "url": "https://www.anaconda.com/resources/whitepaper/state-of-data-science-2020",
+      "publisher": "Anaconda",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Will AI Fix Work? (Work Trend Index 2023)",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work",
+      "publisher": "Microsoft Work Lab",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How Work About Work Gets in the Way of Real Work",
+      "url": "https://asana.com/resources/why-work-about-work-is-bad",
+      "publisher": "Asana",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Numbers User Guide for Mac",
+      "url": "https://support.apple.com/guide/numbers/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "painPoints": [
+    {
+      "title": "Cleaning eats the largest share",
+      "text": "Surveys put data prep at 45% to 60% of the day. Most of it is loading, fixing and checking messy files that were never built for analysis."
+    },
+    {
+      "title": "Searching for the right field or doc",
+      "text": "You search for a column name, a metric definition or the doc that explains it. Each search pulls you out of the notebook and breaks your train of thought."
+    },
+    {
+      "title": "Communication fills the gaps",
+      "text": "In one 2023 Microsoft survey of all workers, meetings, chat and email took 57% of Microsoft 365 time. Data work waits while the messages pile up."
+    },
+    {
+      "title": "Switching between apps",
+      "text": "Asana's index groups switching and status chasing under work about work. It says about 60% of the workday goes to that kind of activity."
+    },
+    {
+      "title": "Errors you have seen before",
+      "text": "A KeyError or a merge warning costs minutes each time. Reading it on screen, with the code beside it, is quicker than copying it into a search box."
+    }
+  ],
+  "day": [
+    {
+      "time": "08:40",
+      "say": "Summarize the email thread from the product team on screen.",
+      "result": "Lazur reads the thread on screen and answers out loud with the open questions and who owns each one.",
+      "capability": "explain"
+    },
+    {
+      "time": "09:10",
+      "say": "Why does this merge return more rows than the source table?",
+      "result": "Lazur reads the join on screen, explains that a repeated key multiplies rows, and points at the key column.",
+      "capability": "explain"
+    },
+    {
+      "time": "09:35",
+      "say": "Point at the column with the nulls in the preview.",
+      "result": "Lazur circles the column header on screen, so you can find it without scrolling.",
+      "capability": "point"
+    },
+    {
+      "time": "10:30",
+      "say": "Walk me through adding a train and test split to this notebook.",
+      "result": "Lazur guides you one step at a time and waits for each action before it gives the next step.",
+      "capability": "guide"
+    },
+    {
+      "time": "11:15",
+      "say": "Dictate my standup notes: cleaned the churn table, the join still duplicates some keys.",
+      "result": "Lazur types the notes at the cursor in your doc, with model and table names from your personal dictionary.",
+      "capability": "dictate"
+    },
+    {
+      "time": "13:20",
+      "say": "Draft a reply to Priya asking which churn definition she wants.",
+      "result": "Lazur drafts a short reply you can read, edit and send yourself.",
+      "capability": "draft"
+    },
+    {
+      "time": "14:00",
+      "say": "Find the retention dashboard doc and its metric definition.",
+      "result": "Lazur runs the search in its own Chrome tabs in the background and returns a summary with source links.",
+      "capability": "research"
+    },
+    {
+      "time": "16:40",
+      "say": "Remind me to re-run the model before the 17:00 review.",
+      "result": "Lazur adds the reminder to Apple Reminders for the time you named.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this KeyError happening, and where?",
+    "capability": "explain",
+    "context": "VS Code, Jupyter notebook open, cell 14 shows KeyError on cust_id",
+    "result": "Lazur reads the traceback on screen, names the failing line and points out that the column name has a space at the end.",
+    "shell": "code",
+    "pointsAt": "df['cust_id'] line 14",
+    "output": "The traceback fails on line 14, at df['cust_id']. The file header reads 'cust_id ' with a space after the name, so pandas cannot match it. Print df.columns.tolist() to check, then strip the spaces. Run the cell again and compare the row count."
+  },
+  "type": "role",
+  "slug": "data-scientists",
+  "role": "data-scientists",
+  "roleName": "Data scientists",
+  "roleSingular": "data scientist",
+  "apps": [
+    "vs-code",
+    "cursor",
+    "chatgpt",
+    "excel"
+  ],
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role/data-scientists/ai-assistant-for-data-scientists-1-0c766b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A data scientist at a laptop with charts on screen, one example of the work an AI assistant for data scientists supports",
+      "caption": "Cleaning and checking data takes most of the day.",
+      "keywords": [
+        "ai assistant for data scientists",
+        "Data scientists",
+        "AI assistant",
+        "Mac",
+        "data scientist laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/research-healthcare-medicine-7116736/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/data-scientists/ai-assistant-for-data-scientists-2-2f8a22.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A person works at a desk with a Mac laptop, notes and a coffee cup",
+      "caption": "Email and chat fill the gaps between code runs.",
+      "keywords": [
+        "ai assistant for data scientists",
+        "Data scientists",
+        "AI assistant",
+        "Mac",
+        "person working Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role/data-scientists/ai-assistant-for-data-scientists-3-14f1bb.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "A small team talks over a laptop during a meeting in an office",
+      "caption": "Meetings and status updates take a large share of the week.",
+      "keywords": [
+        "ai assistant for data scientists",
+        "Data scientists",
+        "AI assistant",
+        "Mac",
+        "office team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "ai assistant for data scientists",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "voice assistant for data scientists": 2,
+      "AI helper for notebooks and SQL on Mac": 1,
+      "AI for data cleaning on Mac": 1,
+      "Jupyter notebook help on Mac": 1,
+      "AI assistant for Excel on Mac": 1,
+      "data scientist email and meetings tool": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

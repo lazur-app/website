@@ -1,0 +1,651 @@
+{
+  "title": "Product analytics missing events: why they disappear and how to find them on Mac",
+  "metaTitle": "Product analytics missing events: Mac checks for PMs",
+  "description": "Product analytics missing events usually means a delay, a hidden report, a blocked call or a schema rule. Here is how to check each one on your Mac.",
+  "targetKeyword": "product analytics missing events",
+  "secondaryKeywords": [
+    "missing analytics events",
+    "why are my analytics events not showing",
+    "GA4 events not showing up",
+    "Mixpanel events not showing",
+    "Amplitude missing data",
+    "DebugView not showing events"
+  ],
+  "intro": "Product analytics missing events usually means the event is late, hidden, blocked, or rejected before it reaches your tool. Often the code is fine, and the data sits where you are not looking. This page shows how to sort each case on your Mac, what a gap costs your team, and which checks need no new software.",
+  "tldr": [
+    "Check the clock first. Amplitude says new items can take about 24 hours to appear. A third-party guide says GA4 can take 24 to 48 hours.",
+    "Then check hidden views. Mixpanel hides events that have not fired in 30 days from report dropdowns, but the raw data keeps them.",
+    "Use a live view to see if the event leaves the app: GA4 DebugView, Mixpanel debug, or Safari Web Inspector on your Mac.",
+    "Bring engineering in once you know the call leaves the app and gets dropped, rejected, or blocked.",
+    "Keep a short event spec in Notion or Google Sheets so the next gap is easy to spot."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "of data professionals' time goes to evaluating or checking data quality, per a 2022 vendor survey",
+      "sourceUrl": "https://montecarlo.ai/blog-2022-data-quality-survey",
+      "sourceTitle": "Data Engineers Spend Two Days Per Week Firefighting Bad Data"
+    },
+    {
+      "value": "75%",
+      "label": "of survey respondents take four or more hours to detect a data quality incident",
+      "sourceUrl": "https://montecarlo.ai/blog-2022-data-quality-survey",
+      "sourceTitle": "Data Engineers Spend Two Days Per Week Firefighting Bad Data"
+    },
+    {
+      "value": "3%",
+      "label": "of companies' data meets basic quality standards, per a 2017 Harvard Business Review headline",
+      "sourceUrl": "https://hbr.org/2017/09/only-3-of-companies-data-meets-basic-quality-standards",
+      "sourceTitle": "Only 3% of Companies' Data Meets Basic Quality Standards"
+    },
+    {
+      "value": "30 to 50%",
+      "label": "of users may lose events with client-side tracking, per Mixpanel's debugging guide",
+      "sourceUrl": "https://docs.mixpanel.com/docs/tracking-best-practices/debugging",
+      "sourceTitle": "Debugging (Mixpanel docs)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a missing event looks like"
+    },
+    {
+      "type": "paragraph",
+      "text": "A missing event shows up as a flat line where you expected a bump. A feature launches, people click the button, and the chart stays at zero. Or the web numbers look normal while your iOS app sends nothing. You usually notice when someone asks why the funnel dropped."
+    },
+    {
+      "type": "paragraph",
+      "text": "Missing events hurt in a quiet way. Nobody gets an error. The number is just lower than it should be, and people believe it. That is why the gap can run for weeks before anyone checks. Before you blame the code, sort the problem into one bucket: late, hidden, or never sent."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell late, hidden, and never sent events apart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the clock. Analytics tools take time to process data. Amplitude says new items can take about 24 hours to appear. A third-party guide, Analytics Mania, says waiting 24 to 48 hours for GA4 events is normal. If your event is newer than that window, wait before you dig."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Late: the event was sent, and the tool has not processed it yet.",
+        "Hidden: the event arrives, but the report, dropdown, or filter does not show it.",
+        "Never sent: the app or browser never makes the call, or something blocks the call."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each state has its own first check. Late needs patience and a time check. Hidden needs the raw data or the live debug view. Never sent needs a look at the network request while you trigger the action on a test device."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a signup event that stops at a release"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your team ships a new signup flow on a Tuesday. By Wednesday the dashboard shows signups near zero. The account table in your database keeps growing. That gap is your clue. The app creates accounts, so the app works. The event is the part that broke."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, open the live view and trigger signup on a test account. In GA4 that is DebugView. In Mixpanel, use the debug view in your test session. If the event shows up live but not in the report, you have a hidden or delayed problem. If it never shows up, the app is not sending it."
+    },
+    {
+      "type": "paragraph",
+      "text": "In a case like this, the release may have renamed the event. An event called signup_complete might have become sign_up_complete. Your saved report still filters on the old name, so it shows zero. That is a reporting fix, but you only know it after you see the new name in the live view."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the same gap looks different in each tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "Each tool hides gaps in a different place. The table below shows where to look first. Use it as a starting map, then check the vendor's docs for your plan and setup."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Tool",
+        "Look here first",
+        "A blank view often means"
+      ],
+      "rows": [
+        [
+          "Google Analytics 4",
+          "DebugView, with debug_mode set to true",
+          "Consent denied, an active internal filter, or a name over 40 characters"
+        ],
+        [
+          "Mixpanel",
+          "Lexicon and the debug view",
+          "Event hidden in Lexicon, no fire in 30 days, or a wrong data-residency host"
+        ],
+        [
+          "Amplitude",
+          "Event list and the tracking plan",
+          "The schema rejected the event, or the instrumentation limit was reached"
+        ],
+        [
+          "Mobile SDK",
+          "Flush settings and a test device",
+          "Events still queued when the app went to the background or closed"
+        ]
+      ],
+      "caption": "First places to look, based on vendor docs and one third-party guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a silent gap costs your team"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with time. A 2022 survey from Monte Carlo found that data professionals spend 40% of their time evaluating or checking data quality. Monte Carlo commissioned the survey, and it covers data problems in general, not only events. Treat it as a sign of the problem, not a measure of your team."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat the wider figures as warnings, not measurements of your app. None of these surveys measured missing analytics events directly. Your own live check tells you more than any industry average does."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "paragraph",
+      "text": "A few habits cause most of the detours. Teams change a report before they check the code. They trust a dropdown that hides older events. They test once on the web and call the job done. Avoid these mistakes early."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Renaming a report filter before you confirm what the app sends. You hide the real gap behind a new label.",
+        "Trusting a dropdown without checking Lexicon or the raw data. Mixpanel hides events that have not fired in the last 30 days.",
+        "Testing in a browser with ad blockers or denied consent. Calls can stop before they leave the page.",
+        "Testing only on the web when the gap is on iOS or Android. Mobile SDKs batch events and send them later.",
+        "Deleting event types to free room without a list. Amplitude says deleted items stop counting toward its limit, but hidden or blocked ones still count.",
+        "Sending engineering a message that says events are broken. Name the event, the state, and the test you ran."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac tools to see what your app sends"
+    },
+    {
+      "type": "paragraph",
+      "text": "You can see the request without buying anything. Safari has a built-in inspector. Go to Safari > Preferences, click Advanced, and tick Show Develop menu in menu bar. Apple's guide uses that path. Newer macOS versions may label the window Settings, so look for the Advanced tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then go to Develop > Show Web Inspector, or press ⌥⌘I. Open the Network tab. Trigger the action, then type the vendor name in the filter box, such as mixpanel, collect, or amplitude. If no request appears, the page never sent the call. If a request appears but fails, check its status and response."
+    },
+    {
+      "type": "paragraph",
+      "text": "For phone apps or desktop apps, Proxyman is a native macOS app that captures and decrypts HTTP(S) requests. Its site says it is free to start, with no credit card needed. Decrypting HTTPS needs extra setup, so read its guide before you start. Test only on devices and traffic you are allowed to inspect."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Keep customer data off the screen",
+      "text": "Lazur sees your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. If the page shows customer records, follow your employer's rules before you share it or ask about it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases that catch experienced teams"
+    },
+    {
+      "type": "paragraph",
+      "text": "Consent choices can hide events for some users. Google's DebugView help says events stay hidden in debug mode when consent mode is set and the user has not agreed to Analytics cookies. Your numbers can drop after a banner change, even though the code did not change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mobile apps add a delay of their own. Mixpanel's iOS SDK flushes queued events when the app goes to the background or every 60 seconds. Its docs recommend a manual flush before key moments such as sign-up or app shutdown. Ask engineering to confirm that call exists on your sign-up path."
+    },
+    {
+      "type": "paragraph",
+      "text": "Old events can miss the window too. Mixpanel says events older than 5 days, sent to the /track endpoint, are not ingested. A phone that stays offline for a week may send its queue too late to count. Check the event timestamps when you see a sudden drop after a long offline period."
+    },
+    {
+      "type": "paragraph",
+      "text": "Names can cause misses too. Analytics Mania lists event names over 40 characters as one cause of missing GA4 events. Keep names short and consistent. A pattern such as object_action is easy to scan in a shared spec, and easy to search in a report."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to bring in engineering"
+    },
+    {
+      "type": "paragraph",
+      "text": "Bring engineering in when you can show two things. The event fires in the live view or the network request, and the report still shows a gap. Then the question is about the SDK, the schema, the project setup, or a rule. Those are engineering areas, and they can act on them."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Make the note short. Include the event name, the device and app version, the test time, the state you think it is in, and a screenshot of the live view. Leave out customer data. A note like that is easier to act on than a message that says events are broken."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short weekly event check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once a week, run a short check on the events that drive your main decisions. You do not need a full audit. Keep the routine small enough that you do it every week, even in a busy release."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Pick the events that drive your main decision for the month.",
+        "Fire each one on a test account and watch the live view.",
+        "Compare counts with the database or payment system. A gap that keeps growing is a signal.",
+        "Check Lexicon for any event that has gone quiet for 30 days before you assume it is gone.",
+        "Write the result in one shared note so the next check starts from the last one."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and regulated data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Events can carry personal data. If your product handles health, money, or legal records, follow your employer's rules on that data. Do not paste raw customer rows into a chat tool to debug them. Use event names, counts, and timestamps instead. Those are usually enough to find the gap."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "How strong is this advice?",
+      "text": "The fixes here come from vendor documentation and one third-party guide. No controlled study tested them. Treat each one as a first check, not as proof that it works in your setup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one missing event this week. Run the clock check, then the live view, then the network trace. Write down which state it falls into. That one note will teach you more about your tracking than a long audit."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then set a reminder for the day after your next release. Ask Lazur to set it, or add it yourself in Apple Reminders. The check takes a few minutes when the routine stays short."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why are my product analytics events missing even though the code is live?",
+      "answer": "Live code can still send nothing. A consent banner can block calls, an SDK may not flush, or a tracking plan may reject the event. Check the live view first. If the event shows there, the gap is in reporting. If it does not, the app is not sending it."
+    },
+    {
+      "question": "How long should I wait before I decide an event is missing?",
+      "answer": "Amplitude says new items can take about 24 hours to appear. A third-party guide says 24 to 48 hours is normal for GA4 events. Wait that long, then check the live view and the raw data before you raise the alarm."
+    },
+    {
+      "question": "Does a missing event in one tool mean it is missing everywhere?",
+      "answer": "No. Each tool has its own rules. Mixpanel can hide an event from dropdowns while keeping it in raw data. Amplitude can reject an event that GA4 accepts. Check each tool on its own."
+    },
+    {
+      "question": "Can I see the event on my Mac without installing anything?",
+      "answer": "Yes, for web apps. Turn on Safari's Develop menu, open Show Web Inspector with ⌥⌘I, and watch the Network tab. Phone apps need extra setup, and Proxyman is one option to read about first."
+    },
+    {
+      "question": "Should I delete events that never show up?",
+      "answer": "Not yet. Confirm with your team that the event is unused. Amplitude says deleted items stop counting toward its limit, so deletion has a real effect. Write down what you removed and why."
+    },
+    {
+      "question": "Why does GA4 show my event under a different name?",
+      "answer": "A Modify event rule can rename it. Analytics Mania also lists event names over 40 characters as a cause of missing events. Check your rules, shorten long names, and confirm the new name in DebugView."
+    },
+    {
+      "question": "Does Lazur check my analytics account for me?",
+      "answer": "No. Lazur sees your screen only while you hold the shortcut. It does not click buttons or operate other apps for you. It can point at the right menu, explain a status out loud, and walk you through the steps one click at a time."
+    },
+    {
+      "question": "Is this only a problem for product managers?",
+      "answer": "No. Engineers, designers, and marketers see it too. Product managers often own the question of whether the number is right, so the first check often lands on your desk."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Missing or unexpected data",
+      "url": "https://amplitude.com/docs/faq/missing-data",
+      "publisher": "Amplitude",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Debugging",
+      "url": "https://docs.mixpanel.com/docs/tracking-best-practices/debugging",
+      "publisher": "Mixpanel",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Analytics Help: DebugView and debug mode",
+      "url": "https://support.google.com/analytics/answer/7201382",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "[Solved] Google Analytics 4 Events Not Showing Up in Reports?",
+      "url": "https://www.analyticsmania.com/post/google-analytics-4-events-not-showing-up-in-reports/",
+      "publisher": "Analytics Mania",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Data Engineers Spend Two Days Per Week Firefighting Bad Data",
+      "url": "https://montecarlo.ai/blog-2022-data-quality-survey",
+      "publisher": "Monte Carlo",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Only 3% of Companies' Data Meets Basic Quality Standards",
+      "url": "https://hbr.org/2017/09/only-3-of-companies-data-meets-basic-quality-standards",
+      "publisher": "Harvard Business Review",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Safari Developer Help: Develop menu",
+      "url": "https://support.apple.com/en-ie/guide/safari-developer/dev39df999c1/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Proxyman: HTTP debugging proxy for macOS",
+      "url": "https://proxyman.com/",
+      "publisher": "Proxyman",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "missing analytics events",
+  "costs": [
+    {
+      "title": "A bad bet on the roadmap",
+      "text": "If a feature looks like it failed, you may cut it. If it looks like it succeeded, you may build more on top of it. A missing event can push a decision in either direction. Teams rarely trace the decision back to tracking. Say the gap out loud before you act on the chart."
+    },
+    {
+      "title": "Experiments that read wrong",
+      "text": "A test with missing exposure or goal events can show a winner that did not win. It can also hide one that did. Check that both the exposure and the goal events fire in every variant before you call a result. If one arm loses more events than the other, the comparison is unfair."
+    },
+    {
+      "title": "Hours lost in the wrong place",
+      "text": "Teams often spend the first day arguing about the number. Engineers then chase code that works, while the real gap sits in the reporting setup. A short check of the live view separates the two problems before anyone opens a ticket."
+    },
+    {
+      "title": "Trust with engineering",
+      "text": "Each vague report gets sent back with questions. Engineers learn that analytics bugs take long to pin down, so they reply later. A clear note with the event name, the state, and the evidence protects both sides of the work."
+    },
+    {
+      "title": "Silent gaps on mobile",
+      "text": "Mobile data can arrive late or in batches. A gap on one day can look like a drop on the next. If you only check the web view, you may miss the problem for longer. Compare each platform separately when you review a release."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The SDK batches or drops the event",
+      "text": "Mobile SDKs queue events before they send them. Amplitude's mobile SDKs batch by default at 30 seconds or 30 events. Mixpanel's iOS SDK flushes when the app goes to the background or every 60 seconds. If the user closes the app before the next flush, the queued events may not go out in time. Mixpanel recommends calling flush before key moments such as sign-up."
+    },
+    {
+      "title": "The schema rejects unplanned events",
+      "text": "A tracking plan can block events you did not plan for. Amplitude says that if the tracking plan rejects unplanned events, it does not store the event or its properties. A typo in a new event name is one way this happens. Nothing in your app warns you when it does."
+    },
+    {
+      "title": "Ad blockers and consent choices",
+      "text": "Browsers and users can stop analytics calls before they leave the page. Analytics Mania lists ad blockers and consent mode with analytics storage denied as causes of missing GA4 events. Google's DebugView help adds that events stay hidden in debug mode when the user has not consented to Analytics cookies."
+    },
+    {
+      "title": "An instrumentation limit or a wrong host",
+      "text": "Amplitude says over-limit event types and properties cannot be queried. New events can run into its instrumentation limit. Mixpanel says events sent to the wrong data-residency host are not ingested. Both look like a silent gap from the report side, even though the app sent something."
+    },
+    {
+      "title": "The report hides the event",
+      "text": "Some tools hide events from menus without deleting them. Mixpanel can hide events in Lexicon. Its report dropdowns hide events that have not fired in the last 30 days. Event properties unused for 28 days are hidden the same way. The data is still there, but the dropdown does not show it."
+    },
+    {
+      "title": "Renamed rules and long names",
+      "text": "Analytics Mania lists Modify event rules and event names over 40 characters as causes of missing GA4 events. A rule that renames an event can make the name you expect hard to find. Check the rule list before you change the code, so you do not fix the wrong thing."
+    },
+    {
+      "title": "Filters and processing delay",
+      "text": "Active Internal or Developer traffic filters in GA4 can remove test traffic from reports. Data can also take 24 to 48 hours to appear, according to a third-party guide. These two causes look the same on the day you ship. Check the filter status before you assume the event is gone."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Check the live view before anything else",
+      "text": "Turn on debug mode, then trigger the action on a test account. In GA4, debug_mode must be set to true for the test session, because Google says setting it to false does not turn debug mode off. Watch DebugView's Seconds stream, which shows the last 60 seconds. If the event appears there, the app sends it."
+    },
+    {
+      "title": "Wait out the normal delay",
+      "text": "Give new events time before you decide they are gone. Amplitude says new items can take about 24 hours to appear. A third-party guide says 24 to 48 hours is normal for GA4. Write down the time you triggered the event, so you can compare it with the report later."
+    },
+    {
+      "title": "Trace the request in Safari",
+      "text": "Turn on Show Develop menu in Safari's Advanced settings. Open Develop > Show Web Inspector, or press ⌥⌘I. Open the Network tab, trigger the action, and filter by the vendor name. A request that never appears means the page did not send it. Apple's guide also lists a JavaScript Console in the same Develop menu."
+    },
+    {
+      "title": "Inspect phone or desktop traffic with Proxyman",
+      "text": "Proxyman is a native macOS app that captures and decrypts HTTP(S) requests. Its site says it is free to start, with no credit card needed. Use it on your own test devices to see whether a mobile event leaves the phone. Read its setup steps before you turn on HTTPS decryption, since that needs extra setup."
+    },
+    {
+      "title": "Use Mixpanel's own recovery steps",
+      "text": "Mixpanel's debugging guide covers Lexicon and the event dropdowns. Before you assume an event is gone, fire it once. Mixpanel says firing one instance, or typing the exact name in the dropdown search, brings a hidden event back. Then check Lexicon for a hidden status."
+    },
+    {
+      "title": "Ask for a flush before key moments",
+      "text": "Mixpanel recommends calling flush manually before key moments such as sign-up or app shutdown. Ask engineering to add that call to the sign-up path and the close path. Then compare the mobile count again after one test session on a real device."
+    },
+    {
+      "title": "Check consent and traffic filters",
+      "text": "Look at your consent banner setting and the GA4 traffic filters. If consent is denied, DebugView hides events for that user. If an Internal or Developer filter is active, your test traffic can vanish from reports. Change the filter only if your team agrees."
+    },
+    {
+      "title": "Trim unused event types on purpose",
+      "text": "If you hit an instrumentation limit, delete the event types you no longer use. Amplitude says hidden or blocked items still count toward the limit, but deleted items do not. Hiding an event does not free room. Keep a list of what you delete and why."
+    },
+    {
+      "title": "Keep names short and consistent",
+      "text": "Long event names can cause misses in GA4. Analytics Mania lists names over 40 characters as one cause. Use a simple pattern such as object_action, and write it in a shared spec. Check each renamed event in the live view before you trust the report."
+    },
+    {
+      "title": "Test in a clean browser and on a phone",
+      "text": "Ad blockers and privacy extensions can stop calls before they leave the page. Test once in a Safari window with content blockers turned off, then compare with your normal setup. Repeat the test on a phone for any event that fires in the app. A gap on one device only points to that device."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is DebugView in my GA4 property?",
+      "result": "Lazur circles the DebugView link in the menu and labels it. You still click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "What does Hidden mean on this Mixpanel Lexicon row?",
+      "result": "Lazur explains the status out loud and what it changes for your reports.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through turning on the Develop menu in Safari.",
+      "result": "Lazur guides you one click at a time and waits for each click before it goes on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the bug note into Slack.",
+      "result": "Your words land at the cursor as clean text. Add vendor terms to your personal dictionary so they are spelled right.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to engineering about the signup event.",
+      "result": "Lazur drafts the note with the event name, device, and test time. You edit it before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how consent mode affects GA4 event data.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and report. Check the sources it lists.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to check the signup event.",
+      "result": "Lazur adds the reminder to Apple Reminders for you to act on.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Develop menu?",
+    "capability": "point",
+    "result": "You see the exact menu to open, and you still open it yourself.",
+    "shell": "generic",
+    "context": "Safari open on a product dashboard during a missing-event check",
+    "pointsAt": "Develop menu",
+    "output": "Lazur circles the Develop menu in Safari's menu bar and labels it out loud. It does not open the menu or click anything for you."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Name the event and its state",
+      "text": "Write the event name, the screen where it fires, and the device. Note when it was last seen. Decide whether it looks late, hidden, or never sent, based on the clock so far."
+    },
+    {
+      "label": "Day 2",
+      "title": "Run the live view",
+      "text": "Trigger the action on a test account with debug mode on. In GA4 use DebugView, and watch the Seconds stream for the last 60 seconds. In Mixpanel, use the debug view in your test session."
+    },
+    {
+      "label": "Day 3",
+      "title": "Trace the network call",
+      "text": "Turn on Show Develop menu in Safari's Advanced settings, then open Develop > Show Web Inspector with ⌥⌘I. Filter the Network tab by the vendor name and repeat the action on the page."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check consent and filters",
+      "text": "Look at the consent banner setting and any internal traffic filters. A denied consent or an active filter can hide an event even when the app fires it correctly."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write the finding and ask",
+      "text": "Post one short note in Slack or Linear with the state, the evidence, and the next check. Ask engineering only about the part you could not see from outside the app."
+    }
+  ],
+  "apps": [
+    "notion",
+    "google-sheets",
+    "linear",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "product-analytics-missing-events-tracking",
+  "role": "product-managers",
+  "roleName": "Product managers",
+  "roleSingular": "product manager",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-analytics-missing-events-tracking/product-analytics-missing-events-1-052e70.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop checking product analytics for missing events",
+      "caption": "Checking a dashboard after a release.",
+      "keywords": [
+        "product analytics missing events",
+        "Product managers",
+        "missing analytics events",
+        "Mac",
+        "person working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-analytics-missing-events-tracking/product-analytics-missing-events-2-5ab938.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen with a data dashboard and charts, the kind product teams check for missing events",
+      "caption": "A flat line is often the first sign of a gap.",
+      "keywords": [
+        "product analytics missing events",
+        "Product managers",
+        "missing analytics events",
+        "Mac",
+        "data dashboard laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/analytics-charts-traffic-marketing-925379/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/product-analytics-missing-events-tracking/product-analytics-missing-events-3-b1f8a3.jpg",
+      "width": 1280,
+      "height": 771,
+      "alt": "Product team meeting in an office, discussing product analytics and missing events",
+      "caption": "Bring a clear note to engineering, not a guess.",
+      "keywords": [
+        "product analytics missing events",
+        "Product managers",
+        "missing analytics events",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RonaldCandonga",
+        "url": "https://pixabay.com/users/RonaldCandonga-17383039/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/job-office-team-business-internet-5382501/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "product analytics missing events",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "missing analytics events": 3,
+      "why are my analytics events not showing": 1,
+      "GA4 events not showing up": 1,
+      "Mixpanel events not showing": 1,
+      "Amplitude missing data": 1,
+      "DebugView not showing events": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

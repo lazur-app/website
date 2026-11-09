@@ -1,0 +1,596 @@
+{
+  "title": "How to format a document in VS Code on Mac: shortcut, menu and formatter steps",
+  "metaTitle": "How to Format a Document in VS Code on Mac (2026 Guide)",
+  "description": "Learn how to format a document in VS Code on Mac with Shift+Option+F, the Command Palette, and format on save settings for macOS.",
+  "targetKeyword": "how to format a document in vs code on mac",
+  "secondaryKeywords": [
+    "format document vs code mac",
+    "vs code format on save mac",
+    "vs code format selection shortcut",
+    "shift option f vs code mac",
+    "vs code default formatter mac",
+    "format document with vs code"
+  ],
+  "intro": "To format a document in VS Code on Mac, click inside the file and press Shift+Option+F (⇧⌥F). VS Code rewrites the layout of the whole file, and the right-click menu and Command Palette run the same command.",
+  "tldr": [
+    "Click inside the file, then press Shift+Option+F (⇧⌥F) to format the whole document.",
+    "Select some text and press ⌘K, let go, then press ⌘F to format only the selection.",
+    "Other languages need a formatter extension. Built-in support covers JavaScript, TypeScript, JSON, HTML and CSS.",
+    "Turn on editor.formatOnSave in Settings if you want formatting every time you save."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of 26,143 Stack Overflow 2025 respondents use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "182.7M",
+      "label": "npm downloads of Prettier in the week of November 2 to November 8, 2026",
+      "sourceUrl": "https://api.npmjs.org/downloads/point/last-week/prettier",
+      "sourceTitle": "npm downloads API: prettier (last week)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Formatting cleans up the layout of a file without changing what the code or text means. Spacing, indentation, line breaks and quote style get adjusted to match the rules for that language. You do not retype anything. One command does the work for the whole file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The fastest way: Shift+Option+F"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click somewhere inside the file you want to change. Then hold Shift and Option (⌥) and press F. VS Code formats the whole document in the active editor. That is the entire job."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcut is ⇧⌥F on macOS. Windows uses Shift+Alt+F, and Linux uses Ctrl+Shift+I. Those are the defaults in VS Code's official keybindings reference. If you switch between a Mac and a Windows machine, check the key labels before you press anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "Format Document is the right choice for a file you just opened, or one you pasted into. A file from a colleague may use different indentation than yours. Pasted code can arrive with spacing that does not match the rest of the file. One shortcut fixes both."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a messy JSON file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you open a JSON file where every value sits on one long line. Click inside the file and press ⇧⌥F. The braces, indentation and line breaks change, and the data stays the same. JSON has a built-in formatter, so you do not need to install anything for this."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same idea works for TypeScript. Open a file with uneven spacing, press ⇧⌥F, and the spacing lines up. Read through the result before you commit it. A formatter follows fixed rules, and your team may use different ones."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Format only the part you selected"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you want to change one function and leave the rest alone. Select those lines first. Then press ⌘K, let go, and press ⌘F. VS Code formats only the selected text and leaves the other lines untouched."
+    },
+    {
+      "type": "paragraph",
+      "text": "Format Selection uses two chords, so you press the keys in order. Do not hold all of them at once. On Windows and Linux, the same command is Ctrl+K Ctrl+F. The command also appears in the editor right-click menu."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Method",
+        "Shortcut or path",
+        "What it formats"
+      ],
+      "rows": [
+        [
+          "Format Document",
+          "⇧⌥F",
+          "The whole active file"
+        ],
+        [
+          "Format Selection",
+          "⌘K ⌘F",
+          "Only the selected text"
+        ],
+        [
+          "Command Palette",
+          "⇧⌘P, then type Format Document",
+          "The whole active file"
+        ],
+        [
+          "Right-click menu",
+          "Right-click in the editor, then choose Format Document or Format Selection",
+          "The whole file, or only the selection"
+        ],
+        [
+          "Format Document With",
+          "⇧⌘P, then type Format Document With",
+          "The whole file, using the formatter you pick"
+        ]
+      ],
+      "caption": "Ways to format a file in VS Code on Mac, and what each one touches."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run formatting from the Command Palette or right-click"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every shortcut is easy to remember. The Command Palette opens with ⇧⌘P. Type Format Document, then press Return. The command runs on the active file, the same as the shortcut does."
+    },
+    {
+      "type": "paragraph",
+      "text": "Right-click inside the editor to see the same commands in the context menu. Choose Format Document for the whole file. Choose Format Selection when you have highlighted text. Use the mouse if that feels faster to you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick a formatter when more than one is installed"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code includes built-in formatters for JavaScript, TypeScript, JSON, HTML and CSS. Most other languages need a formatter extension. Install one from the Extensions view before you expect results. Then the shortcut has something to run."
+    },
+    {
+      "type": "paragraph",
+      "text": "When two formatters can handle the same file, VS Code needs a choice. Open the Command Palette with ⇧⌘P and type Format Document With. Pick the formatter from the list. VS Code uses that formatter for this run, and you can choose again next time."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "No formatter for this file",
+      "text": "If Format Document does nothing, the language may have no formatter yet. Install a formatter extension for that language, then try the shortcut again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on format on save"
+    },
+    {
+      "type": "paragraph",
+      "text": "Format on save runs the formatter each time you save. The setting is editor.formatOnSave. It is off by default. Turn it on once and you rarely need the shortcut for routine cleanup."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Settings editor and search for editor.formatOnSave. Tick the box. The labels in Settings can change between releases, so search for the setting name rather than the wording on screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also turn it on for one language only. The settings reference uses formatOnSave as a per-language example for TypeScript and Markdown. Put the setting inside a language block in settings.json. Keep it to languages where you trust the formatter."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Save once with Format Document first, so you can see what the formatter changes.",
+        "Turn it on for one project at a time, then widen it if the results look right.",
+        "Check the diff before you commit, especially on a shared file.",
+        "If your team has a formatting rule, match the formatter the team uses."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set a default formatter for a language"
+    },
+    {
+      "type": "paragraph",
+      "text": "If two extensions can format TypeScript, one of them must win. Set a default for that language. Search the Command Palette for Default Formatter. Choose the extension you want for that file type."
+    },
+    {
+      "type": "paragraph",
+      "text": "The exact command wording may change, so search for default formatter rather than an exact title. Once set, the default applies to every file of that language until you change it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why formatting matters: the numbers"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2025 Stack Overflow Developer Survey had 26,143 responses. Of all respondents, 75.9% use Visual Studio Code. Among professional developers the figure is 76.2%. The survey is self-selected, so it describes its respondents, not every developer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Prettier, one of the most common formatters, logged about 182.7 million npm downloads in the week of November 2 to November 8, 2026. A download is not a user. It does show how often developers install a formatter."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes and how to fix them"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is pressing the shortcut with the wrong file active. Click inside the file first. The command acts on the active editor, so a click in another tab sends it to that file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another mistake is pressing ⇧⌥F in a file type with no formatter. Nothing changes, and it looks broken. Check that a formatter exists for the language, then try again."
+    },
+    {
+      "type": "paragraph",
+      "text": "A third mistake is changing keys without noticing. If ⇧⌥F does something else, a different command may use the same keys. Open the Keyboard Shortcuts editor with ⌘K ⌘S and search for format to see the bindings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Format in VS Code for the Web"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code for the Web runs in a browser at vscode.dev. Only a subset of extensions can run there. JSON, HTML and CSS get the strongest support, and other languages get less. The terminal and debugger are not available in the browser."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some keyboard shortcuts behave differently in the browser because the browser uses them too. The docs give Ctrl+N and Ctrl+W as examples. If a formatting shortcut fails there, use the Command Palette instead. Test on a copy of your file first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version notes for 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "This guide covers VS Code 1.145, the current stable release at the time of writing. VS Code's updates page lists 1.145.2 as the current download. Install the latest patch before you follow these steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sources checked did not show a recent change to the formatting shortcuts or menus. That is not proof that nothing changed. If a key behaves differently, check the Keyboard Shortcuts editor first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A quick checklist before you format"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click inside the file you want to format.",
+        "Confirm that a formatter exists for that language.",
+        "Press ⇧⌥F for the whole file, or select text and press ⌘K ⌘F.",
+        "Review the changes, then save.",
+        "Turn on format on save once you trust the results."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want saves to happen without thinking, read [how to turn on auto save in VS Code on Mac](/how-to/turn-on-auto-save-in-vs-code). To find commands faster, [how to use the command palette in VS Code on Mac](/how-to/use-the-command-palette-in-vs-code) goes deeper on the palette. If you need a formatter from the Marketplace, see [how to install an extension in VS Code on Mac](/how-to/install-an-extension-in-vs-code)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the shortcut to format a document in VS Code on Mac?",
+      "answer": "Click inside the file, then press Shift+Option+F (⇧⌥F). VS Code formats the whole active document. Windows uses Shift+Alt+F and Linux uses Ctrl+Shift+I."
+    },
+    {
+      "question": "How do I format only selected text in VS Code on Mac?",
+      "answer": "Select the text, press ⌘K, let go, then press ⌘F. That runs Format Selection. Format Document changes the whole file, so use the selection command when you want a smaller change."
+    },
+    {
+      "question": "Why does Format Document do nothing?",
+      "answer": "Usually the language has no formatter. Built-in formatters cover JavaScript, TypeScript, JSON, HTML and CSS. For other languages, install a formatter extension, then run the command again."
+    },
+    {
+      "question": "Does VS Code format on save by default?",
+      "answer": "No. The editor.formatOnSave setting is off by default. Turn it on in Settings by searching for that setting name and ticking the box."
+    },
+    {
+      "question": "What is Format Document With in VS Code?",
+      "answer": "It is a Command Palette command, opened with ⇧⌘P. Use it when more than one formatter can handle the file. You pick the formatter for that run."
+    },
+    {
+      "question": "Does the formatting shortcut work in VS Code for the Web?",
+      "answer": "Not always. Some shortcuts conflict with the browser, such as Ctrl+N and Ctrl+W. Use the Command Palette if a shortcut fails. Formatter support also depends on the language and the extension."
+    },
+    {
+      "question": "Does formatting change what my code does?",
+      "answer": "A formatter changes layout, such as spacing and line breaks. The aim is layout only. Still, review the diff before you commit, and run your tests if the project has them."
+    }
+  ],
+  "sources": [
+    {
+      "title": "VS Code Default Keyboard Shortcuts reference",
+      "url": "https://code.visualstudio.com/docs/reference/default-keybindings",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Basic Editing",
+      "url": "https://code.visualstudio.com/docs/editing/codebasics",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Key Bindings guide",
+      "url": "https://code.visualstudio.com/docs/getstarted/keybindings",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code User Settings",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "npm downloads API: prettier (last week)",
+      "url": "https://api.npmjs.org/downloads/point/last-week/prettier",
+      "publisher": "npm registry",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Format a document in VS Code on Mac",
+  "appliesTo": "VS Code on macOS, Apple silicon and Intel, version 1.145 or later",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with VS Code installed",
+    "A file open in the editor",
+    "A formatter for your language, or a file in JavaScript, TypeScript, JSON, HTML or CSS"
+  ],
+  "steps": [
+    {
+      "name": "Open the file",
+      "text": "Open the file in VS Code. Click its tab, or open it from the Explorer in the sidebar. Make sure the file is the active editor before you continue."
+    },
+    {
+      "name": "Click inside the editor",
+      "text": "Click anywhere in the text. The cursor must sit in the file you want to change. Shortcuts and commands act on the active editor."
+    },
+    {
+      "name": "Press Shift+Option+F",
+      "shortcut": "⇧⌥F",
+      "text": "Hold Shift and Option, then press F. VS Code formats the whole document. The layout changes, and the content stays the same.",
+      "tip": "On a Mac, Option is the key labeled Option or Alt. Both labels refer to the same key."
+    },
+    {
+      "name": "Check the result",
+      "text": "Scroll through the file and read the changes. Look at indentation, spacing and line breaks. Undo if the result is not what you expected."
+    },
+    {
+      "name": "Format a selection",
+      "shortcut": "⌘K ⌘F",
+      "text": "Select the lines you want to change. Press ⌘K, let go, then press ⌘F. Only the selected text is formatted.",
+      "tip": "Press the keys in order, not all at once. This is a two-chord shortcut."
+    },
+    {
+      "name": "Use the right-click menu",
+      "menuPath": [
+        "Right-click in the editor",
+        "Format Document"
+      ],
+      "text": "Control-click or right-click inside the editor. Choose Format Document for the whole file. Choose Format Selection if text is highlighted."
+    },
+    {
+      "name": "Open the Command Palette",
+      "shortcut": "⇧⌘P",
+      "text": "Press Shift, Command and P together. The Command Palette opens at the top of the window. Type the name of the command you want."
+    },
+    {
+      "name": "Run Format Document",
+      "menuPath": [
+        "Command Palette",
+        "Format Document"
+      ],
+      "text": "Type Format Document in the Command Palette and press Return. The active file is formatted with the default formatter for its language."
+    },
+    {
+      "name": "Choose a formatter",
+      "menuPath": [
+        "Command Palette",
+        "Format Document With"
+      ],
+      "text": "Type Format Document With and press Return. Pick the formatter from the list. VS Code formats the file with that choice."
+    },
+    {
+      "name": "Turn on format on save",
+      "text": "Open Settings and search for editor.formatOnSave. Tick the box. The file will format each time you save it.",
+      "tip": "Search for the setting name. Labels in the Settings editor can differ between releases."
+    },
+    {
+      "name": "Set a default formatter",
+      "text": "Open the Command Palette and search for Default Formatter. Choose the extension you want for that language. The choice applies to every file of that type.",
+      "tip": "If the command name differs, search for default formatter in lowercase."
+    },
+    {
+      "name": "Rebind the shortcut if needed",
+      "shortcut": "⌘K ⌘S",
+      "text": "Open the Keyboard Shortcuts editor with ⌘K ⌘S. Search for format. Click the binding you want to change and press the new keys."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Format Document (whole file)",
+      "keys": "⇧⌥F"
+    },
+    {
+      "action": "Format Selection",
+      "keys": "⌘K ⌘F"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open Keyboard Shortcuts editor",
+      "keys": "⌘K ⌘S"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Nothing changes when I press ⇧⌥F",
+      "fix": "Click inside the editor first. Then check that the file type has a formatter. Install one for that language if it does not."
+    },
+    {
+      "problem": "Format Document does nothing for a non-JavaScript file",
+      "fix": "Most languages need a formatter extension. Install one from the Extensions view, then run Format Document again."
+    },
+    {
+      "problem": "The wrong formatter runs",
+      "fix": "Run Format Document With from the Command Palette and pick the formatter. Set a default for that language if the problem keeps happening."
+    },
+    {
+      "problem": "Format on save does not run",
+      "fix": "Check that editor.formatOnSave is ticked in Settings. Also check that the file type has a formatter."
+    },
+    {
+      "problem": "⇧⌥F does something else",
+      "fix": "Another command may use those keys. Open Keyboard Shortcuts with ⌘K ⌘S, search for format, and check the binding."
+    },
+    {
+      "problem": "The shortcut fails in VS Code for the Web",
+      "fix": "Browser shortcuts can conflict with VS Code. Open the Command Palette with ⇧⌘P and run the command from there."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Format Document in VS Code?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Format Document on your screen, then answers out loud.",
+    "shell": "code",
+    "context": "VS Code on Mac, file open",
+    "output": "A circle and a short label on the Format Document command, plus a spoken answer.",
+    "pointsAt": "Format Document"
+  },
+  "type": "howto",
+  "slug": "format-a-document-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/format-a-document-in-vs-code/how-to-format-a-document-in-vs-1-987b05.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer typing code on a Mac laptop at a desk while formatting a document in VS Code",
+      "caption": "A Mac laptop at a desk, the usual setting for editing code.",
+      "keywords": [
+        "how to format a document in vs code on mac",
+        "VS Code",
+        "format a document",
+        "Mac",
+        "person typing on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/format-a-document-in-vs-code/how-to-format-a-document-in-vs-2-998543.jpg",
+      "width": 1280,
+      "height": 851,
+      "alt": "Close view of a MacBook screen with source code open in an editor window",
+      "caption": "Source code open on a MacBook, ready to format.",
+      "keywords": [
+        "how to format a document in vs code on mac",
+        "VS Code",
+        "format a document",
+        "Mac",
+        "macbook coding screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tookapic",
+        "url": "https://pixabay.com/users/tookapic-1386459/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/dictionary-online-technology-932327/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/format-a-document-in-vs-code/how-to-format-a-document-in-vs-3-d937bd.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Programmer at an office desk checking formatted code on a laptop screen",
+      "caption": "Checking a file after you format it.",
+      "keywords": [
+        "how to format a document in vs code on mac",
+        "VS Code",
+        "format a document",
+        "Mac",
+        "programmer office laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "USA-Reiseblogger",
+        "url": "https://pixabay.com/users/USA-Reiseblogger-328188/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-coding-computer-data-3385504/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to format a document in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "format document vs code mac": 1,
+      "vs code format on save mac": 1,
+      "vs code format selection shortcut": 1,
+      "shift option f vs code mac": 1,
+      "vs code default formatter mac": 1,
+      "format document with vs code": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,659 @@
+{
+  "title": "How to add project rules in Cursor on Mac: cursor project rules mac for 2026",
+  "metaTitle": "How to Add Project Rules in Cursor on Mac (2026 Guide)",
+  "description": "Cursor project rules Mac guide: add a .mdc rule in Customize or with /create-rule, pick the right rule type, and fix rules that never apply.",
+  "targetKeyword": "cursor project rules mac",
+  "secondaryKeywords": [
+    "cursor rules mdc file",
+    "cursor .cursor/rules folder",
+    "cursor rule types",
+    "create-rule cursor",
+    "cursor rules not applying",
+    "cursor AGENTS.md",
+    "cursor rules Customize"
+  ],
+  "intro": "To add a project rule in Cursor on Mac, open Customize in the sidebar, choose Rules, and click Add Rule. Cursor creates a new .mdc file in the .cursor/rules folder of your project, and then you pick a rule type, write the body, and check the status before you rely on it.",
+  "tldr": [
+    "Project rules are .mdc files in the .cursor/rules folder. A plain .md file there is ignored.",
+    "Open Customize in the sidebar, go to Rules, and click Add Rule to create one.",
+    "Choose one of four types: Always Apply, Apply Intelligently, Apply to Specific Files, or Apply Manually.",
+    "Keep each rule under 500 lines and confirm its status in the Rules list.",
+    "In Agent chat, type /create-rule to have Agent draft the file, then review it."
+  ],
+  "stats": [
+    {
+      "value": "500",
+      "label": "Recommended maximum line count for one rule file, per the Cursor rules docs",
+      "sourceUrl": "https://cursor.com/docs/context/rules",
+      "sourceTitle": "Rules: Cursor Docs (context/rules)"
+    },
+    {
+      "value": "4",
+      "label": "Rule type options in the Cursor type dropdown: Always Apply, Apply Intelligently, Apply to Specific Files, Apply Manually",
+      "sourceUrl": "https://cursor.com/docs/context/rules",
+      "sourceTitle": "Rules: Cursor Docs (context/rules)"
+    },
+    {
+      "value": "75.9%",
+      "label": "of 2,303 agent context files cover test procedures, in an arXiv study of 1,925 repositories",
+      "sourceUrl": "https://arxiv.org/abs/2511.12884",
+      "sourceTitle": "Agent READMEs: An Empirical Study of Context Files for Agentic Coding (arXiv 2511.12884)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a Cursor project rule does"
+    },
+    {
+      "type": "paragraph",
+      "text": "A project rule is a saved set of instructions for Agent. Cursor loads the rule when it applies, and Agent follows it while it works in your project. A good rule reads like a note you would leave for a new teammate. It says how tests are named, which folders hold what, and which libraries to avoid."
+    },
+    {
+      "type": "paragraph",
+      "text": "A rule is not the same as a prompt. You type a prompt once, for one task. A rule stays in the project and applies again the next time the same situation comes up. That saves you from pasting the same paragraph into every new chat."
+    },
+    {
+      "type": "paragraph",
+      "text": "Rules have limits. The docs say rules do not affect Cursor Tab or other AI features. Expect a rule to shape Agent's work, not the suggestions you see while you type."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Cursor keeps project rules on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Project rules live in a folder called .cursor/rules inside your project. Cursor stores each rule as an .mdc file there. The docs describe these files as version-controlled, so they travel with your code."
+    },
+    {
+      "type": "paragraph",
+      "text": "The file extension matters. A plain .md file in .cursor/rules is ignored by the rules system. You can write identical text in both files, and only the .mdc file loads. When a rule seems to do nothing, check the extension before anything else."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "File",
+        "Location",
+        "Used as a project rule?"
+      ],
+      "rows": [
+        [
+          "api-conventions.mdc",
+          ".cursor/rules/",
+          "Yes"
+        ],
+        [
+          "api-conventions.md",
+          ".cursor/rules/",
+          "No, ignored by the rules system"
+        ],
+        [
+          "AGENTS.md",
+          "Project root or a subfolder",
+          "Yes, plain Markdown with no frontmatter"
+        ],
+        [
+          "rules.mdc",
+          "Outside .cursor/rules/",
+          "Not recognized, per early user reports"
+        ]
+      ],
+      "caption": "How the file name and location decide whether Cursor reads a file."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add a rule from the Customize page"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps above show the full route. In short, you open Customize in the sidebar, choose Rules, and click Add Rule. Cursor creates the file, and you fill in the name, the type, and the body."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check your version",
+      "text": "The docs tie the Customize page to version 3.9, released June 22, 2026. If your build is older, the Rules screen can look different. Older guides describe a Cursor Settings > Rules path instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the steps in order. The type sets which fields you need, so choose it before you write the description or the globs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick the right rule type"
+    },
+    {
+      "type": "paragraph",
+      "text": "The type dropdown decides when Cursor loads a rule. It has four options. Each option sets the alwaysApply flag and the fields you need. Choose the type before you write anything else."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Always Apply: Cursor loads the rule in every chat. It sets alwaysApply to true. Use it for short, universal rules such as formatting or naming.",
+        "Apply Intelligently: Agent decides when the rule matters, based on the description. It needs a description. alwaysApply stays false and there are no globs.",
+        "Apply to Specific Files: Cursor loads the rule when files match your globs. It needs at least one glob. alwaysApply stays false.",
+        "Apply Manually: There is no description or glob. You bring the rule into a chat with an @-mention, when you want it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with Apply Intelligently for most rules. Switch to Apply to Specific Files when a rule belongs to one folder or one kind of file. Keep Always Apply for the few rules that should shape every answer."
+    },
+    {
+      "type": "paragraph",
+      "text": "Glob patterns are comma-separated. For a documentation folder, you might enter docs/**/*.md, docs/**/*.mdx. If no file matches the glob, the rule stays quiet. That is the most common reason a file-scoped rule does not apply."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write a rule body that Agent can follow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write the body as plain Markdown. Start with the rule itself in one sentence. Add the reason, then one short example of right and wrong. Agent handles direct, concrete instructions better than long essays."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the file under 500 lines. The docs recommend that limit. A long file mixes several jobs, and the parts you need most get buried. Split large rules into several focused files instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research on agent instruction files shows what developers usually write down. In a study of 2,303 context files from 1,925 repositories, most covered test procedures (75.9%) and implementation details (70.8%). Security (14.8%) and performance (14.5%) were rarely covered. These are open-source repositories, not Cursor user counts."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Mention files, do not paste them",
+      "text": "A mention like @service-template.ts makes Agent read the file with its tools when it needs to. Content that must always be in context belongs in the rule body instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "A useful body usually has four parts. It names the scope, lists exact names and commands, gives one example, and explains any rule that looks odd."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Scope: one line that says which code the rule covers.",
+        "Facts: the exact folder names, commands, and library names the project uses.",
+        "Example: one correct pattern and one pattern to avoid.",
+        "Reason: why a rule that looks strange exists, so Agent does not undo it."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create a rule from Agent chat with /create-rule"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you would rather describe the rule in words, open Agent chat and type /create-rule. Then describe what you want. Agent writes the file with frontmatter and saves it to .cursor/rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "Review what Agent wrote. Agent picks the type, description, and globs from your words, so check each field. Compare the file with the steps above before you trust it. A generated rule is a draft, not a finished rule."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check that a rule applies"
+    },
+    {
+      "type": "paragraph",
+      "text": "A saved rule is not the same as a working rule. Go to Customize, then Rules, and confirm the new rule appears with the status you expect. Then test it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⌘ N to start a new chat, so old messages do not hide the result. Ask for a task the rule should shape. Read the answer and the files Agent changes. If the rule is ignored, check the type and the globs first."
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple test works well. Pick one task the rule covers. Run it once without the rule and once with it. The difference shows you whether the rule does its job."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Team, project, and user rules: which one wins"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor has three layers of rules. Team Rules come first, then Project Rules, then User Rules. Team Rules are managed on the Cursor dashboard on Team and Enterprise plans. User Rules are set on the Customize page."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Enforce overrides your project",
+      "text": "A Team Rule marked Enforce is required. You cannot turn it off in Customize. A project rule that conflicts with it loses."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the team layer before you debug a project rule. A rule that seems ignored may be overruled by a higher layer. Look at the Team and User Rules on the same Customize page first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a Cursor rule does not apply"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failures are quiet. The rule stays in the list, but Agent does not follow it. The same handful of causes explain most of them."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The file ends in .md instead of .mdc.",
+        "The type is Apply Intelligently, and the description is empty.",
+        "The glob matches no real file in the project.",
+        "The file runs past 500 lines, and the key lines get lost.",
+        "The must-have fact sits behind a mention instead of in the body.",
+        "A Team Rule marked Enforce contradicts the project rule."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix one cause at a time. Save, start a new chat, and run the test again. Changing three things at once hides which fix worked."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep AGENTS.md and Cursor rules in step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many repositories keep more than one instruction file. In a study of 3,387 instruction files across 1,000 GitHub repositories, 42.2% of instruction-bearing repositories in the higher-popularity cohort kept multiple formats. The same study found that 16.1% of 386 manually examined section pairs gave divergent guidance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one source of truth for each rule. If the same guidance lives in AGENTS.md and in an .mdc file, edit both or delete one. Divergent copies are how an agent gets two answers to one question."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Older versions and menu paths on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The official docs give a sidebar route for rules and a few Mac shortcuts. They do not give a Mac-only menu path for rules. Do not expect a Cursor > Settings item to lead to Rules unless your build shows one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Project rules first arrived in version 0.45.2, around January 2025. The early screens were different from today's. Older guides say Cursor Settings > Rules. Current docs say Customize > Rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the steps here do not match your screen, check your version before you dig further. Update Cursor, then reopen the sidebar and look for Customize again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts that help with rules on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "No official shortcut creates a rule. A few shortcuts save clicks around the task. ⌘ ⇧ J opens Cursor settings, and ⌘ , opens General settings. ⌘ N starts a new chat, and ⇧ Tab rotates between Agent modes."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcut list has gaps. It lists ⌘ I, ⌘ L, and ⌘ K for the same sidepanel toggle, unless a mode changes it. Press ⌘ ⇧ P, search for Keyboard Shortcuts, and confirm any key in your build before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after your first rule"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one Always Apply rule for your coding style. Then add a file-scoped rule for the folder you edit most. Keep each rule short, and review the list once a month. Delete any rule that Agent no longer needs."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Cursor every day, the developer workflow page on this site covers more setups, including [Cursor for developers on Mac](/for/developers/cursor). Read it after your first rule works, not before."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where do Cursor project rules go on a Mac?",
+      "answer": "They go in the .cursor/rules folder inside your project. Cursor treats each rule as an .mdc file there. A plain .md file in the same folder is ignored, so check the extension first. Early user reports say rules outside that folder are not recognized."
+    },
+    {
+      "question": "Is there a keyboard shortcut to add a Cursor rule?",
+      "answer": "Not that the official shortcut list shows. The docs list no rules-specific shortcut. Press ⌘ ⇧ P and search for Keyboard Shortcuts to see the full list in your build. ⌘ ⇧ J opens Cursor settings."
+    },
+    {
+      "question": "What is the difference between project rules and user rules?",
+      "answer": "Project rules are files in the project, so they travel with the code. User Rules are set on the Customize page and belong to you, not the repository. When rules conflict, Team Rules win first, then Project Rules, then User Rules."
+    },
+    {
+      "question": "Does Cursor read AGENTS.md as well as .mdc rules?",
+      "answer": "Yes. AGENTS.md is plain Markdown with no frontmatter. It can sit in the project root or in subdirectories. Nested files combine with their parents, and more specific instructions take precedence."
+    },
+    {
+      "question": "Can a rule make Agent read a file?",
+      "answer": "A mention can do that. A mention like @service-template.ts makes Agent read the file with its tools when it needs to. Must-have content still belongs in the rule body, because a mention is only read when Agent decides it needs it."
+    },
+    {
+      "question": "Do project rules change Cursor Tab completions?",
+      "answer": "No. The docs say rules do not affect Cursor Tab or other AI features. Rules shape how Agent works, not the autocomplete you see while typing."
+    },
+    {
+      "question": "Will these steps work on an older version of Cursor?",
+      "answer": "Maybe not exactly. The docs tie the Customize page to version 3.9, released June 22, 2026. The first project rules arrived in version 0.45.2 in January 2025, and that screen looked different. Older guides mention Cursor Settings > Rules."
+    },
+    {
+      "question": "Do I need a Team plan to use project rules?",
+      "answer": "No. Project rules sit in your repository. Team Rules are managed on the Cursor dashboard, and that layer exists on Team and Enterprise plans only."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Rules: Cursor Docs (context/rules)",
+      "url": "https://cursor.com/docs/context/rules",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Rules: Cursor Docs (rules)",
+      "url": "https://cursor.com/docs/rules",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Keyboard Shortcuts: Cursor Docs (configuration/kbd)",
+      "url": "https://cursor.com/docs/configuration/kbd",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Customize Cursor: Cursor Changelog",
+      "url": "https://cursor.com/changelog/customize",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Release Notes",
+      "url": "https://cursor.com/docs/release-notes",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Cursor: Cursor Changelog",
+      "url": "https://cursor.com/changelog",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Using the project-rules in 0.45.2: Cursor Community Forum",
+      "url": "https://forum.cursor.com/t/using-the-project-rules-in-0-45-2/44447",
+      "publisher": "Cursor Community Forum",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Agent READMEs: An Empirical Study of Context Files for Agentic Coding (arXiv 2511.12884)",
+      "url": "https://arxiv.org/abs/2511.12884",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Toward an Evidence-Based Template for Agent Instruction Files (arXiv 2611.02383)",
+      "url": "https://arxiv.org/abs/2611.02383",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Add a project rule in Cursor on Mac",
+  "appliesTo": "Cursor on Mac with the Customize page (version 3.9 or later)",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Cursor on Mac, version 3.9 or later, for the Customize page",
+    "A project folder open in Cursor",
+    "A Team or Enterprise plan only if you manage Team Rules"
+  ],
+  "steps": [
+    {
+      "name": "Open the project folder in Cursor",
+      "text": "Open the project folder itself in Cursor, the folder that holds your code. Project rules belong to a project, so the rule ends up in the project you have open. Confirm the right project is open before you continue.",
+      "tip": "Opening a parent folder can put the rule in the wrong place. Open the folder that holds your code."
+    },
+    {
+      "name": "Open Customize in the sidebar",
+      "text": "Find the sidebar in the Cursor window and open Customize. This page manages plugins, skills, MCPs, subagents, rules, commands, and hooks at the user, team, or workspace level.",
+      "menuPath": [
+        "Sidebar",
+        "Customize"
+      ],
+      "tip": "The Customize page arrived in version 3.9. If you cannot find it, check your build before you look for a different screen."
+    },
+    {
+      "name": "Choose Rules",
+      "text": "Select Rules on the Customize page. You see every rule Cursor can use, with its status. User Rules live here too. Team Rules are managed on the Cursor dashboard on Team and Enterprise plans.",
+      "menuPath": [
+        "Customize",
+        "Rules"
+      ],
+      "tip": "Read the status beside each rule before you change anything."
+    },
+    {
+      "name": "Click Add Rule",
+      "text": "Click Add Rule. Cursor creates a new rule file in .cursor/rules. Give it a short, lowercase name with hyphens between words, such as api-conventions.",
+      "menuPath": [
+        "Rules",
+        "Add Rule"
+      ],
+      "tip": "Name the file after the job it does. A name like rule2 tells you nothing six months later."
+    },
+    {
+      "name": "Pick a rule type",
+      "text": "Open the type dropdown and choose one of four types: Always Apply, Apply Intelligently, Apply to Specific Files, or Apply Manually. The type decides when Cursor loads the rule, so choose it before you write the body.",
+      "tip": "If you are unsure, Apply Intelligently is the safest starting point for most rules."
+    },
+    {
+      "name": "Fill in the description or globs",
+      "text": "Apply Intelligently needs a description that says when the rule matters. Apply to Specific Files needs globs, comma-separated, such as docs/**/*.md, docs/**/*.mdx. The frontmatter also holds alwaysApply, which is true only for Always Apply.",
+      "tip": "A glob that matches no file keeps the rule silent. Test the pattern against a real path."
+    },
+    {
+      "name": "Write the rule body",
+      "text": "Below the frontmatter, write the rule in plain Markdown. State the rule first, add the reason, and show one short example. The docs recommend keeping each rule under 500 lines.",
+      "tip": "If the rule grows past 500 lines, split it into two files with narrower scopes."
+    },
+    {
+      "name": "Save and check the status",
+      "text": "Save the file. Return to Customize, then Rules, and confirm the new rule shows the status you expect. A rule with the wrong status will not load.",
+      "menuPath": [
+        "Customize",
+        "Rules"
+      ]
+    },
+    {
+      "name": "Test the rule in a new chat",
+      "text": "Press ⌘ N to start a new chat. Ask for a task the rule should shape, then read the answer. If the answer ignores the rule, go back to the type and the globs first.",
+      "shortcut": "⌘ N",
+      "tip": "A fresh chat keeps old context from hiding whether the rule works."
+    },
+    {
+      "name": "Or create the rule from Agent chat",
+      "text": "Open Agent chat and type /create-rule. Describe the rule in a sentence or two. Agent writes the file with frontmatter and saves it to .cursor/rules, then you review the fields.",
+      "tip": "Describe when the rule should apply, not only what it says."
+    },
+    {
+      "name": "Commit the rule with your code",
+      "text": "Project rules are version-controlled .mdc files, so commit them with the rest of the project. The rule then travels with the code to every clone of the repository."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Cursor settings",
+      "keys": "⌘ ⇧ J"
+    },
+    {
+      "action": "Open General settings",
+      "keys": "⌘ ,"
+    },
+    {
+      "action": "Start a new chat",
+      "keys": "⌘ N"
+    },
+    {
+      "action": "Open the Mode Menu",
+      "keys": "⌘ ."
+    },
+    {
+      "action": "Rotate between Agent modes",
+      "keys": "⇧ Tab"
+    },
+    {
+      "action": "Open the command palette, then search Keyboard Shortcuts",
+      "keys": "⌘ ⇧ P"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The rule never loads",
+      "fix": "Check the extension. A plain .md file in .cursor/rules is ignored. Rename the file to .mdc, then reopen the Rules list."
+    },
+    {
+      "problem": "An Apply Intelligently rule never applies",
+      "fix": "This type needs a description. Write one that says when the rule matters, save, and test again in a new chat."
+    },
+    {
+      "problem": "An Apply to Specific Files rule stays silent",
+      "fix": "The glob must match a real file you are working on. Test the pattern against a real path, and separate several patterns with commas."
+    },
+    {
+      "problem": "The rule file is too long",
+      "fix": "Split it into focused files. The docs recommend under 500 lines. Move long reference material into its own file and mention it with @."
+    },
+    {
+      "problem": "The Customize page is missing",
+      "fix": "Your build may predate version 3.9, released June 22, 2026. Update Cursor and check the sidebar again."
+    },
+    {
+      "problem": "A project rule loses to another rule",
+      "fix": "Team Rules come before Project Rules, and Enforce Team Rules cannot be turned off in Customize. Check the Team Rules first."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Add Rule button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Add Rule on your screen, so you can find it before you click.",
+    "shell": "code",
+    "context": "Cursor open on the Customize page with Rules selected",
+    "output": "Lazur says the next step out loud. It does not click for you.",
+    "pointsAt": "Add Rule"
+  },
+  "type": "howto",
+  "slug": "add-project-rules-in-cursor",
+  "app": "cursor",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-project-rules-in-cursor/cursor-project-rules-mac-1-f27686.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a Mac laptop setting up cursor project rules for an AI coding editor",
+      "caption": "A developer at a Mac in the middle of a coding session.",
+      "keywords": [
+        "cursor project rules mac",
+        "Cursor",
+        "add project rules",
+        "Mac",
+        "developer laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "27707",
+        "url": "https://pixabay.com/users/27707-27707/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-man-typing-1146825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-project-rules-in-cursor/cursor-project-rules-mac-2-b0da9d.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Programmer at a desk with a computer, reviewing instructions for a code project",
+      "caption": "Reviewing project instructions before a coding session.",
+      "keywords": [
+        "cursor project rules mac",
+        "Cursor",
+        "add project rules",
+        "Mac",
+        "programmer desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "FernandoZ",
+        "url": "https://pixabay.com/users/FernandoZ-50101426/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/work-environment-programming-10392555/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-project-rules-in-cursor/cursor-project-rules-mac-3-cfa58f.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Close view of a laptop screen showing lines of code in a project folder",
+      "caption": "A project folder full of code and config files.",
+      "keywords": [
+        "cursor project rules mac",
+        "Cursor",
+        "add project rules",
+        "Mac",
+        "laptop code screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "methodshop",
+        "url": "https://pixabay.com/users/methodshop-1460919/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacking-cyber-hacker-crime-2964100/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "cursor project rules mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "cursor rules mdc file": 1,
+      "cursor .cursor/rules folder": 1,
+      "cursor rule types": 1,
+      "create-rule cursor": 1,
+      "cursor rules not applying": 1,
+      "cursor AGENTS.md": 1,
+      "cursor rules Customize": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

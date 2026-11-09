@@ -1,0 +1,691 @@
+{
+  "title": "Why Illustrator CMYK colors look different on Mac, and how to fix it in 2026",
+  "metaTitle": "Illustrator CMYK colors look different? Causes and fixes on Mac",
+  "description": "Illustrator CMYK colors look different on screen because CMYK has a smaller color range than RGB. Check your Mac display profile, proof a test print, and fix it.",
+  "targetKeyword": "illustrator cmyk colors look different",
+  "secondaryKeywords": [
+    "print colors don't match screen",
+    "CMYK vs RGB colors in Illustrator",
+    "Mac display color profile for print",
+    "ColorSync Utility profile first aid",
+    "calibrate Mac display for print",
+    "Illustrator proof colors before printing"
+  ],
+  "intro": "Illustrator CMYK colors look different on screen because your Mac shows red, green, and blue light. The printer uses cyan, magenta, yellow, and black ink, which cannot reproduce every bright screen color. This guide covers the causes, what the mismatch costs, and fixes you can use on a Mac without buying anything.",
+  "tldr": [
+    "Your screen mixes red, green, and blue light. CMYK ink has a smaller range, so some bright screen colors cannot print.",
+    "Check your display color profile first in System Settings > Displays > Color profile.",
+    "Repair a damaged profile with ColorSync Utility, and calibrate only when you have a reason.",
+    "Convert to CMYK early in Illustrator, then proof a small test print on the final paper.",
+    "Compare color side by side, because your memory of a color is unreliable."
+  ],
+  "stats": [
+    {
+      "value": "40%",
+      "label": "Color choices that were correct in a small study of 40 students after a 5-second delay, reported secondhand",
+      "sourceUrl": "https://www.insights4print.ceo/2019/02/confirmed-our-color-memory-is-seriously-flawed-and-what-this-means-for-brand-colors/",
+      "sourceTitle": "CONFIRMED: our color memory is seriously flawed, insights4print"
+    },
+    {
+      "value": "13%",
+      "label": "Green choices that were correct in the same small study, the weakest color in the test",
+      "sourceUrl": "https://www.insights4print.ceo/2019/02/confirmed-our-color-memory-is-seriously-flawed-and-what-this-means-for-brand-colors/",
+      "sourceTitle": "CONFIRMED: our color memory is seriously flawed, insights4print"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why CMYK colors look different on your screen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your Mac makes color with light. Each pixel mixes red, green, and blue. Those three lights can produce very bright colors, such as a vivid electric green or a deep neon orange. Your printer does not use light. It lays down cyan, magenta, yellow, and black ink on paper. Ink takes light away instead of adding it, and the paper reflects what is left. That is why one file can look different on two devices."
+    },
+    {
+      "type": "paragraph",
+      "text": "The gap has a name: gamut. Gamut is the range of colors a device can show or print. CMYK cannot replicate the full RGB range, so some RGB colors cannot be reproduced on paper. The printer is not broken when that happens. It simply cannot make that color with ink."
+    },
+    {
+      "type": "paragraph",
+      "text": "Front-end software such as Fiery or Creo can narrow the gap between screen and print. It cannot make the printer's range bigger. Treat your screen as a preview, not a promise of the final ink."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the mismatch costs you in time, money, and trust"
+    },
+    {
+      "type": "paragraph",
+      "text": "Public data on this is thin. No study I could find measures how often designers hit this problem, or what it costs them. So the costs below are ones you can count yourself. Track them on your next two or three print jobs, and you will have real numbers for your own work."
+    },
+    {
+      "type": "paragraph",
+      "text": "A proof round is time you pay twice. You adjust the file, print a test, look again, and adjust once more. A reprint is worse. The first run is already paid for, and the wrong copies go in the bin. A client who sees a brand blue come back dull may question the other files you send."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Tell a file problem from a screen problem"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one question. Does the color look right on screen next to the proof, under the same light? If the proof and screen agree, the file is probably fine. If they do not agree, check your Mac display before you change any color values."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Print a small swatch of the color, not the full design.",
+        "Put the printed page next to the screen, in the same room and light.",
+        "Turn off Night Shift while you judge color, then turn it back on.",
+        "Note which colors shift, such as bright blues or greens.",
+        "Change one setting at a time, then print a new test."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why your memory is a poor judge of print colors"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Human color memory is weaker than it feels. In one small study, reported by insights4print, 40 students viewed a target color for 5 seconds. They then looked at a white card for 5 seconds and picked the color from 10 chips. Only 40% of choices were correct."
+    },
+    {
+      "type": "paragraph",
+      "text": "Green was the hardest color in that test. It was correct only 13% of the time. The article does not name the study's authors, so treat these numbers as a hint, not proof. The point still holds for your work. Do not match a color from memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "Compare the proof and the reference side by side. Look at the same spot each time. A color written on a sticky note does not help if you cannot see it again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Mac display color profile first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple says a Mac selects the recommended color profile for its display by default. So you usually do not need to change it. Some displays use built-in reference modes instead. Those include Pro Display XDR, Studio Display XDR, Studio Display, and 2021-or-later 14-inch and 16-inch MacBook Pro."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting",
+        "Where to find it",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "Color profile",
+          "System Settings > Displays > Color profile",
+          "Keep the recommended profile unless you have a specific reason to change it"
+        ],
+        [
+          "Reference modes",
+          "System Settings > Displays",
+          "Listed displays use built-in reference modes rather than the usual profile choice"
+        ],
+        [
+          "Custom profile",
+          "Color profile > Customize",
+          "Shows the option to add a calibrated profile. Use it after calibration or when a printer asks"
+        ],
+        [
+          "Night Shift",
+          "System Settings > Displays",
+          "A warm tint changes perceived color. Turn it off while you judge color"
+        ]
+      ],
+      "caption": "Display checks to run before you change any color profile."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you see a profile name you do not recognize, do not guess. Look up what the printer uses before you change anything. Switching the display to a random profile can make the shift worse."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Repair a broken color profile in ColorSync Utility"
+    },
+    {
+      "type": "paragraph",
+      "text": "ColorSync Utility has a tool called Profile First Aid. It sits in the toolbar. It runs Verify first, then repairs the profile. To open the app, press ⌘ Space, type ColorSync Utility, and press Return."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open ColorSync Utility and select the profile you want to check.",
+        "Click Profile First Aid in the toolbar, then let Verify finish.",
+        "If Verify finds a problem, run the repair and read the message it gives.",
+        "If the repair fails, check the file permissions in Finder."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple warns that profiles on a network or in locked folders may not be fixable. A profile missing a required tag may need extra data to rebuild. If that happens, stop retrying. Move to a clean profile from the printer or from the calibration step."
+    },
+    {
+      "type": "paragraph",
+      "text": "For permissions, hold ⌥ and open Go > Library in Finder. Go to ColorSync > Profiles. Select the .icc file, press ⌘ I, and confirm that you have read and write privileges."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Back up before you replace",
+      "text": "Copy the original .icc file to another folder before you change it. If the new profile causes new shifts, you can put the old file back in a minute."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Calibrate your display only when you have a reason"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guidance is direct. Calibrating your display usually is not necessary for a Mac in a typical home or office. Calibrate when a print shop asks for a specific standard, or when the screen clearly drifts from what you expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "To calibrate, open System Settings > Displays. Choose Color profile > Customize, then click Add. That opens Display Calibrator Assistant, which creates and applies a calibrated profile. Apple's page shows macOS 27 Golden Gate. On macOS 10.15, the path was Displays > Color > Calibrate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Owners of Pro Display XDR, Studio Display XDR, Studio Display, and 2021-or-later 14-inch and 16-inch MacBook Pro should use Pro Display Calibrator. Apple points those owners to it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Print standards use fixed targets for proofing. Monitor proofing, also called soft-proofing, uses a calibrated display to preview print. The usual white point is D50, which is 5000K. ISO 12646 calls for luminance of at least 160 cd/m²."
+    },
+    {
+      "type": "paragraph",
+      "text": "Soft proofing is approximate. A screen cannot show a color it cannot display, so some printer colors stay out of reach. Use it as a first check, then print a real proof."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Calibration is not a color fix",
+      "text": "Calibration cannot make the printer produce a color it cannot make. It only makes your screen a more honest preview of the print."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up CMYK in Illustrator before colors shift"
+    },
+    {
+      "type": "paragraph",
+      "text": "Design in CMYK when the job is headed for print. Mation recommends designing in CMYK for print and proofing a test copy before large runs. Working in RGB hides the shift until late. A bright blue that looks electric on screen can print duller than you expected."
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose CMYK when you create the document, or convert early in the project. A late conversion shows you the shifts at the end, when you have the least room to fix them. Look for the color mode options in the new document dialog, and check the names in your version."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Adobe's help pages on proofing and color settings change between versions. Search them for the exact menu names in your version of Illustrator. Do not rely on a menu path from an old forum post."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pick the printer's paper and profile before you pick final colors.",
+        "Check the brightest colors first, since they are most likely to fall outside CMYK.",
+        "Save the final CMYK values in a swatch list, not only as RGB hex codes.",
+        "Name the swatches so you and the printer use the same color.",
+        "Proof each new paper type before a large job."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Proof a small test print before the large run"
+    },
+    {
+      "type": "paragraph",
+      "text": "A proof is the cheapest way to find a color problem. Print a test page with the colors that matter. Place it under the same light you use for the screen. Mark the colors that look wrong, then change only those values in the file."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Print a swatch sheet with your key colors on the same paper as the final job.",
+        "Place the print beside the screen under steady light, away from a window.",
+        "Mark each color that looks off, and note the direction, such as too dull.",
+        "Adjust one color at a time, then print a new test.",
+        "Send the approved proof and the profile name to your printer."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Paper changes color. A glossy sheet and an uncoated sheet can show the same ink very differently. That is why a proof on the wrong paper tells you little about the final job."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask your printer for the profile before you send the file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your printer knows the press. Ask for the profile name they use for your paper and press, then set your document to match. Keep their answer with the job file, so you can find it next time."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2020 print buyer survey by NAPCO Research, sponsored by Canon U.S.A., covered over 200 print buyers or influencers. Color matching and consistency were rated high priority when choosing providers. The article gives no reprint or turnaround numbers, and a vendor sponsored the survey."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Which ICC profile do you use for this paper and press?",
+        "Which file format and color mode do you want for CMYK jobs?",
+        "Can you send a proof for a large run, and what does it cost?",
+        "Which paper stock should I design for?"
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make the mismatch worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Judging colors while the screen brightness keeps changing.",
+        "Checking proofs in a room with mixed light, like a window and a warm lamp.",
+        "Using a phone photo of the print as your color reference, since the camera changes white balance.",
+        "Trusting a color you remember from another file or another day.",
+        "Replacing profiles with random files from the internet.",
+        "Skipping the proof because the file looked right on screen."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example with one bright blue"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a client sends a bright brand blue. On your Mac it looks electric. You design the flyer in RGB, export a PDF, and send it to print. The proof comes back with the blue flat and a little purple. The fix is not to darken the screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Convert the blue to CMYK in the file and check the new values on a proof. Pick a blue that prints close to the original, and tell the client which part changed. Then check the chain. Is the screen profile recommended? Is the printer's profile the one you used? Did the proof use the final paper?"
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Two problems look like one",
+      "text": "A bad screen profile and a skipped proof can both make one blue look wrong. Fix the setup first, then judge the color."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can point at the Color profile setting and draw a circle around it. For a calibration walk through, ask Lazur to guide you one click at a time, so you stay in control."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons for you, edit your Illustrator file, or calibrate your display on its own. It looks at the screen only while you hold the shortcut. It cannot judge a printed page in your hand, so compare the proof yourself under steady light. You can [download Lazur](/download) to try it."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you also work in Photoshop, the same color rules apply. See [Photoshop for designers on Mac](/for/designers/photoshop) for the daily workflow."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the setup steady for the next job"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down your setup once. Record the display profile name, the printer's profile, the paper, and the color mode. Save it in the job folder, or in a note you can find with one search. The next job then starts from a known setup, not from memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check again after a macOS update or when you connect a different display. A quick spot check with a known color costs less time than a reprint, and it tells you early if something changed."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Illustrator CMYK color look brighter on screen than in print?",
+      "answer": "Your screen mixes red, green, and blue light. Print uses ink, and CMYK cannot reproduce every bright screen color. The brightest colors shift most. Check the bright colors first, and proof them on the final paper."
+    },
+    {
+      "question": "Will calibrating my Mac make my print match the screen exactly?",
+      "answer": "No. Calibration makes the screen a more accurate preview, but the printer still limits the colors it can make. Calibration cannot expand the printer's range, so some colors will still shift."
+    },
+    {
+      "question": "Do I need to calibrate my Mac display for print work?",
+      "answer": "Apple says calibration is usually not necessary for a Mac in a typical home or office. Calibrate when your print shop asks for a standard or when the screen clearly drifts. Start with the recommended profile."
+    },
+    {
+      "question": "Should I change my Mac color profile to match the printer?",
+      "answer": "Usually no. Keep the recommended profile on your Mac. Match the printer's profile in your document settings when the printer gives you the profile name and confirms it. Do not swap display profiles at random."
+    },
+    {
+      "question": "Where is the color profile setting on a Mac?",
+      "answer": "Open System Settings > Displays > Color profile. Apple's guide shows this path on macOS 27 Golden Gate. Older versions use different menus, so check the names on your own screen."
+    },
+    {
+      "question": "Can Lazur tell me if my printed colors are correct?",
+      "answer": "Lazur looks at your screen only while you hold ⌥ ⌘, and it cannot see a printed page in your hand. It can explain why colors shift and point at settings. Judge the proof yourself under steady light."
+    },
+    {
+      "question": "Where does the 40% color memory figure come from?",
+      "answer": "It comes from a small study of 40 students, reported by insights4print. The article does not name the authors, so treat it as a hint about color memory, not a settled result."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Change your Mac display's color profile",
+      "url": "https://support.apple.com/guide/mac-help/change-your-displays-color-profile-mchlf3ddc60d/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Calibrate your Mac using the Display Calibrator Assistant",
+      "url": "https://support.apple.com/guide/mac-help/calibrate-your-display-mchlp1109/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Check and repair color profiles in ColorSync Utility",
+      "url": "https://support.apple.com/guide/colorsync-utility/check-and-repair-color-profiles-csync003/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Monitor proofing",
+      "url": "https://en.wikipedia.org/wiki/Monitor_proofing",
+      "publisher": "Wikipedia",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Why Your Prints Don't Match Your Screen: RGB vs. CMYK Explained",
+      "url": "https://blog.mation.com/why-prints-dont-match-rgb-vs-cmyk",
+      "publisher": "Mation",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "CONFIRMED: our color memory is seriously flawed",
+      "url": "https://www.insights4print.ceo/2019/02/confirmed-our-color-memory-is-seriously-flawed-and-what-this-means-for-brand-colors/",
+      "publisher": "insights4print",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Print Buyer Survey Reveals Key Factors Influencing Provider Selection",
+      "url": "https://www.piworld.com/post/print-buyer-survey-reveals-key-factors-influencing-provider-selection/",
+      "publisher": "PI World",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "print colors that don't match the screen",
+  "costs": [
+    {
+      "title": "Proof rounds eat your schedule",
+      "text": "Every mismatch adds a round. You adjust the file, print a test, look again, and adjust once more. Each round costs printer time, your review time, and often a day of waiting. Count the rounds on your next job, and you will see the hidden cost."
+    },
+    {
+      "title": "Reprints cost money twice",
+      "text": "A reprint pays for the same job again. The first run is already paid for, and the wrong copies go in the bin. Ask your printer about reprint terms before a big job. Tell your client about the color risk early, since a shift on a large run is the expensive one."
+    },
+    {
+      "title": "Client trust drops when the brand looks wrong",
+      "text": "Brand color is often the first thing a client checks. A brand blue that prints dull can make them doubt the rest of the file. A 2020 survey sponsored by Canon found buyers rated color matching high priority when choosing providers. Show a proof and agree on the target before the run."
+    },
+    {
+      "title": "Your own time goes to guessing",
+      "text": "When you cannot tell whether the screen or the file is wrong, you guess. Guessing means changing values back and forth without knowing why. A simple swatch proof replaces the guess with a result you can show. Public data on this is thin, so track the time on your own jobs."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Light versus ink",
+      "text": "Your screen adds red, green, and blue light to make color. Your printer takes light away with cyan, magenta, yellow, and black ink. The two systems start from different places, so the same color value does not land in the same spot on both. You see that as a shift, but it is a difference in how the color is built."
+    },
+    {
+      "title": "CMYK has a smaller range than RGB",
+      "text": "CMYK cannot reproduce the full RGB range. Some bright greens, blues, and oranges that look fine on screen have no CMYK equivalent. The printer does not fail in that case. It makes the closest color the ink allows, and that color can look duller than the screen version."
+    },
+    {
+      "title": "A display profile that is off or wrong",
+      "text": "A Mac selects a recommended profile for its display by default. If a third-party profile, an old calibration, or a damaged profile file replaced it, the screen can show colors the file does not expect. The screen then misleads you in a steady way, and you may change the file to fix the wrong thing."
+    },
+    {
+      "title": "Paper and press change the result",
+      "text": "Paper stock changes how ink sits and how light bounces back to your eye. The same CMYK values can print differently on coated and uncoated paper. A press adds its own shift, too. Two printers can produce different results from the same file, which is why the printer's profile matters."
+    },
+    {
+      "title": "Your viewing conditions",
+      "text": "Room light, screen brightness, and warm tints such as Night Shift change what you see. A proof under a window looks different from the same proof under a steady lamp. Compare the proof and the screen in the same spot, at the same brightness, every time."
+    },
+    {
+      "title": "Conversion happens late",
+      "text": "Many files stay in RGB until export. Then the conversion to CMYK shifts the bright colors all at once. Designers meet the problem at the end, when there is little time to fix it. Early conversion spreads the work across the whole job."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Check the display profile in System Settings",
+      "text": "Open System Settings > Displays > Color profile. Keep the recommended profile unless you have a specific reason to change it. Write the profile name in your job notes, so you can see later whether it changed. This check takes a minute and needs no purchase."
+    },
+    {
+      "title": "Repair a damaged profile with ColorSync Utility",
+      "text": "Open ColorSync Utility, select the profile, and click Profile First Aid in the toolbar. Let Verify run, then repair. If the profile sits in a locked folder or on a network, the repair may fail. In that case, check the file permissions with ⌘ I in Finder."
+    },
+    {
+      "title": "Convert to CMYK early and watch the bright colors",
+      "text": "Set CMYK when you start the file, or convert early. Check the brightest blues, greens, and oranges first. Save the final CMYK values as swatches so you can reuse them. A late conversion leaves you no time to adjust, so do this before the design grows."
+    },
+    {
+      "title": "Proof a small test print on the final paper",
+      "text": "Print a swatch sheet with your key colors on the same paper as the final job. Put it under steady light next to your screen. Change only the colors that look wrong, then print a new test. Mation recommends proofing a test copy before large runs."
+    },
+    {
+      "title": "Ask your printer for their profile",
+      "text": "Ask for the ICC profile name they use for your paper and press. Set your document to match only when they confirm it. Keep the answer with the job file. If the printer offers a press check for large runs, take it."
+    },
+    {
+      "title": "Judge color under steady light",
+      "text": "Use one light source, away from windows. Set screen brightness to a fixed level before you compare. Turn off Night Shift while you judge color, then turn it back on. Compare the proof and the screen in the same spot every time you check."
+    },
+    {
+      "title": "Calibrate only when you have a reason",
+      "text": "Apple says calibration is usually not necessary for a Mac in a typical home or office. Calibrate when a print shop asks for a standard, or when your screen clearly drifts. Use Display Calibrator Assistant, or Pro Display Calibrator on the displays Apple lists for it."
+    },
+    {
+      "title": "Soft-proof for a quick first check",
+      "text": "Soft proofing uses a calibrated screen to preview print. It helps you catch obvious shifts fast. It cannot show colors the screen cannot display, so it stays approximate. Use it before a physical proof, not instead of one."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Color profile setting?",
+      "result": "Lazur draws a circle and a label around the Color profile control in System Settings, so you find it without hunting.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through calibrating my display",
+      "result": "Lazur guides you one click at a time and waits for each click, so you choose every setting yourself.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why does this bright green print dull?",
+      "result": "Lazur explains the gamut gap out loud, in plain language, so you can talk through the fix while you work.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft an email asking my printer for their profile",
+      "result": "Lazur drafts the email and types it out. You read it, change what you need, and send it from your own mail app.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate the proof notes",
+      "result": "Dictation types clean text at the cursor in any app, so you can note each shifted color while the proof is still in front of you.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find the paper profile my printer lists",
+      "result": "Lazur runs research in its own Chrome tabs and returns a summary and a report. Check the printer's own page before you use the name.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the color profile setting on my Mac?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Color profile control in System Settings, so you can see where to click.",
+    "shell": "design",
+    "context": "System Settings, Displays pane, macOS",
+    "output": "A circle and label around the Color profile control",
+    "pointsAt": "Color profile"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the display profile",
+      "text": "Open System Settings > Displays > Color profile and note the profile name. Write it in your job notes. If it says recommended, leave it alone. Turn off Night Shift while you judge color."
+    },
+    {
+      "label": "Day 2",
+      "title": "Repair or replace a bad profile",
+      "text": "Open ColorSync Utility, select the profile, and run Profile First Aid. If repair fails, check file permissions in Finder. Copy the original .icc file before you change anything."
+    },
+    {
+      "label": "Day 3",
+      "title": "Set CMYK before the design grows",
+      "text": "Convert the file to CMYK early, then mark the bright blues, greens, and oranges that shift most. Save the final CMYK values as swatches so you can reuse them."
+    },
+    {
+      "label": "Day 4",
+      "title": "Proof on the final paper",
+      "text": "Print a small swatch sheet on the paper the job will use. Compare it with the screen under the same light. Change only the colors that look wrong, then print a new test."
+    },
+    {
+      "label": "Day 5",
+      "title": "Confirm with the printer",
+      "text": "Email the printer for their profile name and paper details. Attach the approved proof and ask them to confirm the match before the large run."
+    }
+  ],
+  "apps": [
+    "photoshop",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "illustrator-cmyk-colors-look-different",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/illustrator-cmyk-colors-look-different/illustrator-cmyk-colors-look-different-1-129224.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Designer at a desk with a Mac, checking a CMYK print proof because Illustrator colors look different on screen",
+      "caption": "Checking a print proof against the screen.",
+      "keywords": [
+        "illustrator cmyk colors look different",
+        "Designers",
+        "Print colors don't match screen",
+        "Mac",
+        "designer at Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/illustrator-cmyk-colors-look-different/illustrator-cmyk-colors-look-different-2-b755cc.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Color swatch book open on a desk beside a laptop, used to judge print color by eye",
+      "caption": "Physical swatches help you judge print color.",
+      "keywords": [
+        "illustrator cmyk colors look different",
+        "Designers",
+        "Print colors don't match screen",
+        "Mac",
+        "color swatch book",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "stux",
+        "url": "https://pixabay.com/users/stux-12364/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/color-samples-trend-colors-1984238/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/illustrator-cmyk-colors-look-different/illustrator-cmyk-colors-look-different-3-b6b80b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Printing press with colored ink rollers in a print shop, where CMYK ink lands on paper",
+      "caption": "CMYK ink is laid down in layers on paper.",
+      "keywords": [
+        "illustrator cmyk colors look different",
+        "Designers",
+        "Print colors don't match screen",
+        "Mac",
+        "printing press ink",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "paine_z",
+        "url": "https://pixabay.com/users/paine_z-9934419/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/offset-printing-macine-3634411/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "illustrator cmyk colors look different",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "print colors don't match screen": 1,
+      "CMYK vs RGB colors in Illustrator": 1,
+      "Mac display color profile for print": 1,
+      "ColorSync Utility profile first aid": 1,
+      "calibrate Mac display for print": 1,
+      "Illustrator proof colors before printing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

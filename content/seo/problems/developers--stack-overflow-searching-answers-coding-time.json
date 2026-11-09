@@ -1,0 +1,577 @@
+{
+  "title": "How to stop wasting time searching for answers while coding on a Mac in 2026",
+  "metaTitle": "How to stop wasting time searching for coding answers on Mac",
+  "description": "Searching the web for every coding error costs more than it looks. Use exact-match search, check answer dates, set a limit, and log each fix.",
+  "targetKeyword": "how to stop wasting time searching for answers while coding",
+  "secondaryKeywords": [
+    "searching the web for coding errors",
+    "google search operators for programmers",
+    "stop searching for coding errors",
+    "coding error search tips Mac",
+    "check stack overflow answer date",
+    "offline documentation Mac developers"
+  ],
+  "intro": "To stop wasting time searching for answers while coding, search the exact error line in quotes, add your language and tool name, and check the date on every answer. Stop when your limit runs out, then switch to the official docs or ask a teammate. This page covers what the habit costs, why it happens, and the fixes that cost nothing.",
+  "tldr": [
+    "Search the exact error line in quotes. Drop file paths, stack frames, and your own variable names.",
+    "Check the posted date and the version on every answer before you copy anything.",
+    "Set a search limit before you start. When it runs out, switch to official docs or ask a teammate.",
+    "Keep a fix log, so the next time the same error appears, you search your own notes first.",
+    "Lazur explains what is on screen and talks you through clicks. It does not fix your code or click for you."
+  ],
+  "stats": [
+    {
+      "value": "83%",
+      "label": "of developers still use search engines to find answers (Stack Overflow 2026 survey)",
+      "sourceUrl": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "sourceTitle": "Stack Overflow 2026 Developer Survey"
+    },
+    {
+      "value": "70%",
+      "label": "of developers ask an AI agent for answers (Stack Overflow 2026 survey)",
+      "sourceUrl": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "sourceTitle": "Stack Overflow 2026 Developer Survey"
+    },
+    {
+      "value": "58.4%",
+      "label": "of obsolete Stack Overflow answers were probably already outdated when posted (arXiv 1903.12282)",
+      "sourceUrl": "https://arxiv.org/abs/1903.12282",
+      "sourceTitle": "An Empirical Study of Obsolete Answers on Stack Overflow"
+    },
+    {
+      "value": "52%",
+      "label": "of ChatGPT answers to 517 Stack Overflow questions contained incorrect information (arXiv 2308.02312)",
+      "sourceUrl": "https://arxiv.org/abs/2308.02312",
+      "sourceTitle": "Is Stack Overflow Obsolete? An Empirical Study of ChatGPT Answers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one Xcode error, three searches"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your build stops with the message 'Cannot find UserStore in scope'. You paste the whole message into Chrome. The results show threads about other projects, an answer for an old Xcode release, and a course for sale. You open three tabs and still do not know which line is wrong. That is time gone before you touch the code."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "The second search goes better because the query is narrower. You search for 'UserStore' in scope with quotes, add swift and Xcode, and add -course to drop the sellers. The first result is a short answer about a file missing from a build target. Select the file, press ⌥⌘1 to open the File inspector, and check Target Membership. In this example, the fix takes less time than the two failed tabs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The gap between the two searches is not talent. The first query asked a vague question. The second gave the exact symptom and the words that narrow the topic. Most wasted search time starts with that first vague query."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the error before you search for it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most errors say more than they seem to. Start with the first line, which names the problem. Then find the last line that points into your own code. Those two lines answer many questions before you open a browser. In Xcode, press ⌘5 to open the issue navigator, which lists every problem. Click one to jump to its line."
+    },
+    {
+      "type": "paragraph",
+      "text": "Copy only what you need from a log. A stack trace has many framework frames. Those frames look the same in every project, so they match unrelated threads. Keep the message, the symbol from your own code, and the tool version. Drop the rest."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the date and version before you trust an answer"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Read the posted date and the release the answer names.",
+        "Scroll to the comments under the top answer. Corrections often sit there.",
+        "Compare the answer with the official docs for your version.",
+        "Test the change in a small file, not in your main project.",
+        "Write the source link and the date in your fix log."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If an answer has no date, treat it as a lead, not a fix. Official docs usually state which version they describe. An old thread often leaves that out, so you have to rebuild the context yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where AI answers save time, and where they waste it"
+    },
+    {
+      "type": "paragraph",
+      "text": "AI tools are often quicker for the first step. Paste the error line, your language, and the tool version. Then ask for the likely cause and one check you can run. Ask for the source as well, and open it. The Stack Overflow survey found 93% of respondents say source attribution is needed to trust AI output."
+    },
+    {
+      "type": "paragraph",
+      "text": "The catch is the confident wrong answer. In the ChatGPT study, 52% of answers to 517 programming questions had incorrect information. Run the suggested code. If it fails, go back to the error text, not to a longer prompt. A longer prompt usually adds more text you have to check."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which source to use for which kind of error"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Source",
+        "Good for",
+        "Watch for"
+      ],
+      "rows": [
+        [
+          "Exact-phrase web search",
+          "Threads about one specific error message",
+          "Old answers and unrelated projects"
+        ],
+        [
+          "Official docs",
+          "Checking the current API and settings",
+          "Long pages, so skim for your version first"
+        ],
+        [
+          "Offline docs app",
+          "Quick lookups with no network",
+          "Subscription terms, so check the pricing page"
+        ],
+        [
+          "AI assistant",
+          "Explaining an error in plain words",
+          "Confident mistakes, so check the source"
+        ],
+        [
+          "Teammate in Slack",
+          "Context only your team knows",
+          "Interruptions, so write the question first"
+        ]
+      ],
+      "caption": "Where each source tends to help, and where it tends to fail."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edge cases: when the error is not in your code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some errors start outside your project. A system or Xcode update can change a build setting. A package can change its API between versions. A simulator can keep a stale state. Searching the error text alone may return the wrong fix, so add the tool version and the package version to the query."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the question 'what changed?' If the code worked yesterday, look at what updated. Check your last Git commit, the lock file for your packages, and the Xcode or system update history. A short list of changes often points at the cause faster than any search."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that make searching slower"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Searching the whole stack trace, with file paths and your own variable names.",
+        "Taking the first answer without reading its date or version.",
+        "Pasting a fix into the project before you know what it changes.",
+        "Searching the same error again next month because the fix was never written down.",
+        "Skipping the official docs when they answer the question on one page.",
+        "Opening a stack of tabs and reading none of them."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and client data before you ask for help"
+    },
+    {
+      "type": "paragraph",
+      "text": "When you ask Lazur about your screen, it listens and looks only while you hold the shortcut, Option and Command together. Audio and the screenshot go to AI providers to answer. They are not stored, and content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your code holds client data, patient data, or anything under a contract, follow your employer's rules before you share the screen or paste code into any tool. Close windows with private records, or redact them first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the reading and the small jobs around a search. It explains what is on screen, out loud. It points at a control you name, and it guides you one click at a time. It dictates text at the cursor, drafts a question for your team, and runs research in its own Chrome tabs. It also sets timers."
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not fix your code. It does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Cursor, VS Code, Xcode, or Slack. Treat its answer as a reading of your screen, and check it against the code and the docs. For Cursor, see [Lazur for Cursor](/apps/cursor). For plans and the trial, see [pricing](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one habit for this week. Put the error line in quotes, or start the fix log, and leave the rest for later. One habit is easier to keep than five. For the wider setup, see [Lazur for developers](/for/developers)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur fix my code for me?",
+      "answer": "No. Lazur explains what is on screen, points at controls you name, guides you one click at a time, and dictates or drafts text. It does not click buttons, edit files, or operate other apps for you. You make the change and test it."
+    },
+    {
+      "question": "Is it faster to search Google or ask an AI tool?",
+      "answer": "It depends on the error. Stack Overflow's 2026 survey reports that 83% of developers still use search engines for answers, and 70% ask an AI agent. Use whichever gets you to an answer you can check fastest, then verify it against the docs."
+    },
+    {
+      "question": "How do I tell if a Stack Overflow answer is out of date?",
+      "answer": "Check the posted date, the release it names, and the comments under it. In the obsolete-answer study, 58.4% of obsolete answers were probably already obsolete when posted. Only 20.5% were ever edited to update them."
+    },
+    {
+      "question": "Does Lazur watch my whole screen all the time?",
+      "answer": "No. Lazur listens and looks at the screen only while you hold the shortcut, Option and Command together. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "question": "Does Spotlight search the web?",
+      "answer": "Apple's Spotlight guide says to press Command-Space and start typing. It does not describe web search from Spotlight. Use Spotlight to open your browser, a docs app, or a project file, then search from the browser."
+    },
+    {
+      "question": "Is Dash a free way to search offline docs?",
+      "answer": "Dash is a macOS documentation browser. Its site says it has 200+ offline documentation sets and 100+ cheat sheets. Its purchase button leads to a subscribe page that does not state a price, so check their pricing page first. Official docs in your browser cost nothing."
+    },
+    {
+      "question": "What is the fastest change I can make today?",
+      "answer": "Put the error phrase in quotes and add one minus-sign exclusion. Then check the date on the first answer you open. Those two steps cost nothing and take seconds."
+    },
+    {
+      "question": "Should I paste client code into an AI tool?",
+      "answer": "Follow your employer's rules first. If the code holds client data, patient data, or anything under contract, do not paste it into a tool your employer has not approved. Redact names and keys before you share the screen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The results of the 2026 Developer Survey are here! - Stack Overflow Blog",
+      "url": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "An Empirical Study of Obsolete Answers on Stack Overflow (arXiv:1903.12282)",
+      "url": "https://arxiv.org/abs/1903.12282",
+      "publisher": "arXiv (Zhang et al.)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Is Stack Overflow Obsolete? An Empirical Study of the Characteristics of ChatGPT Answers (arXiv:2308.02312)",
+      "url": "https://arxiv.org/abs/2308.02312",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Are Large Language Models a Threat to Digital Public Goods? Evidence from Activity on Stack Overflow (arXiv:2307.07367)",
+      "url": "https://arxiv.org/abs/2307.07367",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Refine Google searches - Google Search Help",
+      "url": "https://support.google.com/websearch/answer/2466433",
+      "publisher": "Google",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Dash for macOS - API Documentation Browser, Snippet Manager",
+      "url": "https://kapeli.com/dash",
+      "publisher": "Kapeli",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Find what you need with Spotlight on Mac - Apple Support",
+      "url": "https://support.apple.com/guide/mac-help/find-what-you-need-with-spotlight-mchlp1008/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "problem": "searching the web for answers to coding errors",
+  "costs": [
+    {
+      "title": "Minutes you cannot see in one search",
+      "text": "One search takes seconds. The cost builds up in the chain: a vague query, three tabs that miss, a second query, then a fix you still have to test. No study I could open measures how many minutes a day this takes, so the number that matters is your own. Count your searches for one week before you decide the habit is small."
+    },
+    {
+      "title": "Fixes that were already outdated",
+      "text": "In one study of Stack Overflow answers that went obsolete, 58.4% were probably already outdated when first posted. Only 20.5% were ever edited to update them. A top-voted answer can still send you to the wrong API or build setting, and then you spend time proving it wrong."
+    },
+    {
+      "title": "Confident answers that are wrong",
+      "text": "A study accepted for CHI 2024 found that 52% of ChatGPT answers to 517 Stack Overflow questions contained incorrect information. The answers also read well, which makes them easy to trust. Checking them takes time, and so does the bug that comes from trusting one."
+    },
+    {
+      "title": "Focus that leaves with you",
+      "text": "Each trip out of the editor breaks your train of thought. You return to the code with less of the problem still in your head. The research I could find does not put a number on this for developers, so treat it as something to test. Notice how long it takes you to get back into the function after a search."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Error messages describe symptoms",
+      "text": "A compiler or runtime error says what failed, not why it failed. The same message can come from a typo, a missing file, a version mismatch, or a setting. A search for the message pulls all of those causes into the results. You then have to sort them, and that sorting is the slow part."
+    },
+    {
+      "title": "Your query carries too much noise",
+      "text": "Many people paste the whole log into the search box. File paths, memory addresses, and your own names do not match anyone else's code. The search engine matches the common words, so you get threads about other projects. Trim the query to the symptom and the framework name."
+    },
+    {
+      "title": "Answers age faster than tools",
+      "text": "APIs, SDKs, and build settings change. An answer written for an earlier release can fail on a newer one. In the obsolete-answer study, 58.4% were probably outdated when posted, and only 20.5% of the obsolete answers were ever updated. Votes show approval at the time. They do not show whether the answer still works."
+    },
+    {
+      "title": "Fewer fresh questions online",
+      "text": "A study by del Rio-Chanona, Laurentsyeva, and Wachs estimated a 16% drop in weekly Stack Overflow posts after ChatGPT launched. That is an estimate from a comparison model, not a count of your results. Less new discussion can mean fewer fresh threads for newer tools. Expect to find older answers, or none, for very new errors."
+    },
+    {
+      "title": "AI answers sound sure",
+      "text": "A fluent answer feels checked. In the ChatGPT study, 77% of answers were verbose, and 52% contained incorrect information. The length makes an answer feel thorough, so people accept it faster. That speed is where the time goes missing when the fix fails."
+    },
+    {
+      "title": "Searching feels like progress",
+      "text": "A new tab feels like movement. Reading the official docs feels slower, even when it is faster. The habit forms when a search gives you a quick hit often enough. Most people do not notice how many searches they run on a normal day until they write them down."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Put the exact error line in quotes",
+      "text": "Copy the one line that names the problem. Wrap it in Google quotes so the search looks for the phrase as written. Google's help page says quotes give an exact match. Example: cannot find type in quotes, then edit out your own names if they do not appear in other projects."
+    },
+    {
+      "title": "Exclude noise with a minus sign",
+      "text": "Google says to put a hyphen before a word to exclude it, with no space after the hyphen. Google's own example is jaguar speed -car. For a Swift error, add -tutorial or -course to drop the sellers. Use two or three exclusions at most, or you may drop the answer you need."
+    },
+    {
+      "title": "Limit the search to one site",
+      "text": "The site: operator limits results to one domain. Google's example is site:youtube.com cat videos. Use it with the domain of the official docs for your framework, with no space after the colon. A search on that domain can be quicker than scrolling through the open web."
+    },
+    {
+      "title": "Use Spotlight to open your docs, not to search the web",
+      "text": "Press Command-Space to open Spotlight, then start typing. Apple's Spotlight guide describes opening apps and files this way. It does not describe web search from Spotlight. Use it to open your browser, a docs app, or the project file you need, then search from the browser."
+    },
+    {
+      "title": "Read the first and last lines of the error",
+      "text": "The first line usually names the problem. The last line in a trace often points into your own code, which is the part you can change. Read both before you search. In Xcode, press ⌘5 to open the issue navigator, then click the problem to jump to the line."
+    },
+    {
+      "title": "Check the date and version before you copy",
+      "text": "Look at when the answer was posted and which release it names. Check the official changelog for that release. If the answer has no date, treat it as a lead, and test it in a small file first."
+    },
+    {
+      "title": "Use offline docs when the network or search fails",
+      "text": "Dash is a macOS documentation browser. Its site says it has 200+ offline documentation sets and 100+ cheat sheets, and that it supports MCP for AI assistants. Its purchase button leads to a subscribe page, and the page does not state a price, so check their pricing page. Official docs in your browser cost nothing."
+    },
+    {
+      "title": "Write the fix down in one line",
+      "text": "Keep a text file or a Notes note with four fields: the error, the cause, the fix, and the source with its date. Next time, press Command-F in that file before you open a browser. It takes seconds, and it beats a repeat search."
+    },
+    {
+      "title": "Set a limit, then change method",
+      "text": "Pick a limit before you start a bug hunt. When the limit runs out, stop searching. Read the official docs, reduce the code to a small test, or ask a teammate with the error and your versions. Lazur can set a timer by voice, so the limit runs while you work."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this error mean, and where should I look first?",
+      "result": "Hold ⌥ ⌘ while the error is on screen. Lazur answers out loud, so your eyes stay on the code.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the issue navigator?",
+      "result": "Lazur draws a circle and a label around the control you name. You press it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through the File inspector, one click at a time.",
+      "result": "Lazur guides you one click at a time and waits for each click. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate this into my fix log.",
+      "result": "Hold fn to dictate clean text at the cursor in any app, so the log line takes less typing.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short question for my team with this error and my versions.",
+      "result": "Lazur drafts the text. You read it, edit it, and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research the current fix for this error and summarize the sources.",
+      "result": "Research runs in Lazur's own Chrome tabs through the Lazur for Chrome extension, then returns a summary and a report. Check the sources yourself.",
+      "capability": "research"
+    },
+    {
+      "say": "Set a timer for my search limit.",
+      "result": "Timers are one of Lazur's everyday voice actions, so the limit runs while you keep working.",
+      "capability": "everyday"
+    }
+  ],
+  "demo": {
+    "spoken": "What does this error mean, and where should I look first?",
+    "capability": "explain",
+    "result": "Lazur reads the error on screen, answers out loud, and says where to look first. You still check the fix in your code.",
+    "shell": "code",
+    "context": "Xcode build log with one red error line",
+    "pointsAt": "error line",
+    "output": "A spoken answer about the error, naming the line to check first. Lazur does not change the file."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Start a one week search log",
+      "text": "For each error you search this week, write four things: the error, the query you used, the source that worked, and whether it worked the first time. Keep the file open beside your editor. The log gives you real numbers instead of a guess."
+    },
+    {
+      "label": "Day 2",
+      "title": "Learn three Google operators",
+      "text": "Practice quotes, the minus sign, and site: on one real error. Start with the exact phrase, then add one exclusion. Compare the first page of results each time, and note which query gave the cleanest answer."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check dates and versions on every answer",
+      "text": "Before you copy any answer, check its date, the release it names, and the comments under it. Test the change in a small file. Write the result in the log, with the source link."
+    },
+    {
+      "label": "Day 4",
+      "title": "Set a limit and a fallback",
+      "text": "Choose a search limit before you start a bug hunt. When the limit runs out, read the official docs for the API, or ask a teammate with the error and your versions. Use a timer, so you do not have to watch the clock."
+    },
+    {
+      "label": "Day 5",
+      "title": "Read your log and find the pattern",
+      "text": "Look for errors that came back. Those are the ones to fix at the source, such as a missing build setting, an outdated package, or a shortcut you never learned. Add the pattern to your project notes so the next person sees it."
+    },
+    {
+      "label": "Weekly",
+      "title": "Review what the search cost",
+      "text": "Count the searches in your log and the ones that worked the first time. Decide whether to keep the limit, drop a source, or write a team doc. Repeat the review each week for a month."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "xcode",
+    "cursor",
+    "vs-code",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "stack-overflow-searching-answers-coding-time",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/stack-overflow-searching-answers-coding-time/how-to-stop-wasting-time-searching-for-1-4185da.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Developer working on a laptop with code on the screen while searching for a coding error",
+      "caption": "Read the error on screen before you open a new tab.",
+      "keywords": [
+        "how to stop wasting time searching for answers while coding",
+        "Developers",
+        "Searching the web for answers to coding errors",
+        "Mac",
+        "developer laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yeiferr",
+        "url": "https://pixabay.com/users/yeiferr-13554766/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-laptop-tech-blue-computer-4795762/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/stack-overflow-searching-answers-coding-time/how-to-stop-wasting-time-searching-for-2-663205.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer at a desk with handwritten notes beside a laptop during a coding session",
+      "caption": "A short fix log saves you a repeat search.",
+      "keywords": [
+        "how to stop wasting time searching for answers while coding",
+        "Developers",
+        "Searching the web for answers to coding errors",
+        "Mac",
+        "programmer desk notes",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "6689062",
+        "url": "https://pixabay.com/users/6689062-6689062/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/journal-write-blank-pages-notes-2850091/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/stack-overflow-searching-answers-coding-time/how-to-stop-wasting-time-searching-for-3-988baf.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing a search query on a laptop keyboard while coding",
+      "caption": "Write the exact error line, not the whole log.",
+      "keywords": [
+        "how to stop wasting time searching for answers while coding",
+        "Developers",
+        "Searching the web for answers to coding errors",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to stop wasting time searching for answers while coding",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 2,
+    "secondary": {
+      "searching the web for coding errors": 1,
+      "google search operators for programmers": 1,
+      "stop searching for coding errors": 1,
+      "coding error search tips Mac": 1,
+      "check stack overflow answer date": 1,
+      "offline documentation Mac developers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,640 @@
+{
+  "title": "Why is my Figma file so slow on Mac? Causes and fixes for 2026",
+  "metaTitle": "Why is my Figma file so slow on Mac? Fixes for 2026",
+  "description": "Large Figma files lag or crash because the desktop app caps memory at 2GB per tab. Here is what causes it and the fixes you can try free.",
+  "targetKeyword": "why is my figma file so slow",
+  "secondaryKeywords": [
+    "figma file lagging on mac",
+    "figma crashes large file mac",
+    "figma memory usage mac",
+    "figma helper renderer memory",
+    "reduce figma file size",
+    "figma thumbnails only mode"
+  ],
+  "intro": "Your Figma file is slow because the desktop app caps how much memory each open file can use. Figma says the active memory limit is 2GB per browser tab, and that the limit also applies to the desktop app. Big files reach that line through hidden layers, too many variants, heavy images and many pages.",
+  "tldr": [
+    "Figma's desktop app runs each open file like a browser tab, with a 2GB active memory limit.",
+    "At 90% memory, Figma shows a red alert you cannot dismiss. At 100%, the file locks.",
+    "Most slow files carry hidden layers, duplicate variants, large images or too many pages.",
+    "Read the memory meter and Activity Monitor before you change anything, so you can measure each fix.",
+    "Most fixes cost nothing. Remove weight first, split files second, and reset the cache last."
+  ],
+  "stats": [
+    {
+      "value": "2GB",
+      "label": "Active memory limit per browser tab in Figma, which also applies to the desktop app",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "sourceTitle": "Reduce memory usage in files: Figma Help Center"
+    },
+    {
+      "value": "90%",
+      "label": "Memory use where Figma shows a red alert tile in the sidebar that you cannot dismiss",
+      "sourceUrl": "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "sourceTitle": "Reduce memory usage in files: Figma Help Center"
+    },
+    {
+      "value": "3 to 5 GB",
+      "label": "Memory used by three complex Figma files open as tabs, in one Mac blog test",
+      "sourceUrl": "https://www.theodorehq.com/shiny/blog/figma-mac-memory-usage",
+      "sourceTitle": "Figma on Mac: why 'Helper (Renderer)' eats RAM (Shiny)"
+    },
+    {
+      "value": "$30.27",
+      "label": "Median hourly pay for graphic designers in May 2025, per the U.S. Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers: Occupational Outlook Handbook, U.S. Bureau of Labor Statistics"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most slow Figma files run into the same limit. The desktop app gives each open file a memory budget, and a big file runs into it. Figma's help center says the active memory limit is 2GB per browser tab. The limit can vary by device, so your Mac may hit it sooner than a colleague's. The good news is that most fixes cost nothing. You remove what the file does not need, split what is too big, and shrink images before they land on the canvas."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a slow Figma file costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lag costs more than annoyance. Nielsen Norman Group lists 0.1 second as the limit for feeling that a system reacts instantly. It lists 1.0 second as the limit for keeping your flow of thought uninterrupted. A file that stalls for a second on every drag breaks that flow again and again. You stop noticing after a week, and that is the expensive part."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put a rough number on the time. The U.S. Bureau of Labor Statistics reports a May 2025 median pay of $62,960 a year for graphic designers, or $30.27 an hour. Say your file costs you 10 minutes a day in waiting and retries. Over 250 workdays, that comes to about 42 hours. At the median hourly rate, that is roughly $1,260 a year. The 250 workdays figure is my assumption, not a BLS number, so swap in your own days and rate."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Time one slow action",
+      "text": "Before you change anything, time one action that feels slow, such as moving a frame or opening a page. Write the number down. If it drops after the fixes below, you know the work paid off."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Figma gets slow on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's desktop app is built on Chromium, the engine behind many browsers. A Shiny blog post updated in April 2026 explains that each open document runs as a web page with its own rendering process. In Activity Monitor, these show up as Figma Helper (Renderer) processes. That is why the app behaves like a browser tab, and why its memory limit works like one too."
+    },
+    {
+      "type": "table",
+      "caption": "Memory thresholds from Figma's help center article on reducing memory usage.",
+      "headers": [
+        "Memory level",
+        "What Figma shows",
+        "What it means for you"
+      ],
+      "rows": [
+        [
+          "Below 90%",
+          "No red alert in the left sidebar",
+          "Normal editing. Keep an eye on the meter."
+        ],
+        [
+          "90%",
+          "A red alert tile that you cannot dismiss",
+          "The file is close to its limit. Remove weight now."
+        ],
+        [
+          "100%",
+          "The file locks and reports no memory available",
+          "You cannot edit. Restore a lighter version or open with thumbnails only."
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "File size changes the numbers. Shiny measured one simple Figma document at about 500 MB to 1 GB across all processes. A complex file with component libraries reached about 1 to 2 GB. Three complex files open as tabs used roughly 3 to 5 GB. These are one blog's tests, so treat them as a guide and check your own Mac."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "RAM matters too. Shiny says a 16 GB Mac rarely feels strain from these files. An 8 GB Mac may swap memory to the SSD, which slows everything, not only Figma. You do not need a new Mac to fix a file. You do need to know where you start, so you can tell whether the file or the machine is the problem."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the memory meter before you change anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a number, not a guess. Figma has a built-in memory meter, and macOS has one too. Use both. Then you know whether the file is heavy, or whether the whole Mac is short on memory."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "In Figma desktop, choose View > Memory usage to turn the meter on.",
+        "Open Manage memory and enable Show memory in layers panel, so memory shows up next to your layers.",
+        "Press ⌘ Space, type Activity Monitor, then open the Memory tab.",
+        "Read the memory pressure graph. Green means fine. Yellow means the Mac may need more RAM soon. Red means it needs more RAM now."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Activity Monitor guide describes those colors the same way. Green means the Mac uses its RAM efficiently. Yellow means it might eventually need more. Red means it needs more now. If Figma's meter climbs toward 90% while the Mac graph stays green, the file is the problem. If both go red, close other apps first, then run the check again."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Causes: hidden layers, variants and heavy images"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hidden layers are the quietest cost. Figma's help center calls them a big contributor to memory usage. Hiding a layer with the eye icon keeps it in the file. It still counts toward the file's memory, so it still adds weight. Designers hide options during a review and forget them for months. Then the file carries shapes nobody can see."
+    },
+    {
+      "type": "paragraph",
+      "text": "Component variants add up fast. Figma says it loads every component in a set. A set with every size, state and icon combination can hold many variants. Each one adds weight, even when you only use two of them. Boolean component properties can switch an icon or label on and off without a new variant."
+    },
+    {
+      "type": "paragraph",
+      "text": "Large images are the next big cost. Figma says high-resolution images, many pages and large imports can cause performance or memory issues. Imports include text, images and complex vectors with many points. A camera photo placed at full size costs far more than the small version your layout shows. Shrink it at the source, not in the canvas."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pages and stacked files are the last big cause. Figma says many pages can cause performance issues. A file that holds a year of explorations, a moodboard and a finished flow loads all of it when you open it. Several heavy files open as tabs add their memory together. Shiny's three-file test shows how quickly that total climbs."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can do today without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work from the lowest risk to the highest. Deleting dead layers is safe if you keep version history. Splitting files takes longer. Start with the quick wins, then read the meter again. Each step should lower the number you wrote down earlier."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Remove hidden layers and extra variants"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the layers panel and find the layers you hid. Delete any you no longer need. Keep old options in version history instead of in the live file. For variants, Figma recommends boolean component properties to toggle visibility, instead of extra variants and layers. One icon toggle can replace two separate icon variants. Test the new component on a scratch page before you delete the old variants."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Split pages and libraries into separate files"
+    },
+    {
+      "type": "paragraph",
+      "text": "To move a page, copy its contents, paste them into a new file, and check that the new file opens. Then delete the page from the original. Figma's help center describes this copy, paste and delete path. Libraries can also split into smaller libraries without breaking instance links, according to the same article. Check instances in other files after you split. Move one page first, then the rest."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Shrink large images before they reach the canvas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help center names the Downsize plugin for compressing large images on the canvas. You can also shrink images before import. In Photoshop, choose File > Export > Export As, set the size to the largest size your layout shows, and export a JPEG or PNG. Export retina detail only where the layout needs it. Smaller source files mean less memory for every collaborator who opens the file."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Open with thumbnails only or a lighter version"
+    },
+    {
+      "type": "paragraph",
+      "text": "When a file locks, you can still reach it. Add ?thumbnails-only=1 to the end of the file URL. Figma opens the file with low-resolution images, so you can remove weight. You can also restore a version that uses less memory from version history. Work in the restored copy, and keep the original untouched until the fix holds. The [restore steps for a previous version](/for/designers/problems/restore-a-previous-version-figma-file) cover that route."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reset the Figma cache as the last step"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the app stops responding, clear the desktop cache. Figma's help center suggests the built-in route first. In Figma, choose Help > Troubleshooting > Reset Figma and Restart. Only if the app stays frozen should you force-quit it, open Terminal, and run rm -rf \"$HOME/Library/Application Support/Figma\". Then relaunch Figma and check the meter."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check sync before you delete",
+      "text": "Figma's cache article does not mention unsynced or offline changes. Before you reset anything, confirm your latest edits have synced. Wait for the file to finish saving, then check that the changes appear in a browser tab."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac RAM and what to expect with big files"
+    },
+    {
+      "type": "table",
+      "caption": "Figures from one Shiny blog test. Your numbers will differ.",
+      "headers": [
+        "Mac or setup",
+        "Typical load in the test",
+        "What to expect"
+      ],
+      "rows": [
+        [
+          "8 GB Mac",
+          "Three complex files as tabs use about 3 to 5 GB",
+          "May swap memory to the SSD, which slows the whole Mac. Close tabs first."
+        ],
+        [
+          "16 GB Mac",
+          "Same kind of tab load",
+          "Rarely feels strain, according to the same post."
+        ],
+        [
+          "Any Mac, one complex file",
+          "About 1 to 2 GB with component libraries",
+          "Lower risk when it is the only file open."
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "More RAM is a long-term help, not a first step. Figma says the limit can vary by device, so a bigger Mac may not change a file that hits its cap. Fix the file first. Then check whether the Mac still swaps when you work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make it worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Hiding layers instead of deleting them. Hidden layers still count toward memory, so the meter stays high.",
+        "Keeping old versions of a file open as tabs. Each open tab adds its memory.",
+        "Resetting the cache first. It skips the cheap fixes and can put unsynced work at risk.",
+        "Shrinking images by eye inside Figma. Resize them at the source so the output stays predictable.",
+        "Blaming the Mac before reading Activity Monitor. Read the graph first, then decide.",
+        "Splitting a library without checking the instances in other files."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for the recovery step. Figma's help center says a locked file leaves recovery mode only after memory drops below 90%. If you see the lock, close other tabs, remove weight from the file, and check the meter again. Repeating the same action rarely helps, so reduce the file instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in this routine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. If you cannot find the memory panel, ask where it is. Lazur draws a circle and a label around it. For step-by-step help, ask Lazur to guide you. It guides one click at a time and waits for each click. Lazur does not click for you, so you still make each change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can also start a cleanup timer by voice, since timers are one of its everyday actions. Hold fn to dictate a checklist at the cursor, such as the layers to review. Lazur can draft a short note to your team, and you review it before you send. It does not edit your Figma file or delete layers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to tell the fix worked"
+    },
+    {
+      "type": "paragraph",
+      "text": "After each change, read the meter again and compare it with your first reading. A drop in Figma's memory number means the change helped. If the number does not move, the cause may sit somewhere else, often in open tabs or another heavy file. Write each reading next to the change you made. That log shows which fix mattered, and it makes the next slow file easier to diagnose."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the meter today. It takes five minutes and shows where the weight sits. If the file needs a lighter copy, read [how to restore a previous version in Figma](/for/designers/problems/restore-a-previous-version-figma-file). For the rest of your Mac setup, see the [Figma guide for designers](/for/designers/figma). When you want voice help while you work, see [Lazur pricing](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why is my Figma file slow only on my Mac?",
+      "answer": "The desktop app runs each file in a Chromium-based process with a memory cap. Your Mac's RAM, your open tabs and your other apps change how close you get to that cap. Read the memory meter, then compare the same file on another machine if you can."
+    },
+    {
+      "question": "What does the red alert in Figma mean?",
+      "answer": "At 90% memory, Figma shows a red alert tile in the left sidebar that you cannot dismiss. At 100%, the file locks and reports no available memory. Remove hidden layers and split pages before you reach that point."
+    },
+    {
+      "question": "Does resetting the Figma cache fix a slow file?",
+      "answer": "Sometimes, when the app stops responding. Figma's help center says to use Help > Troubleshooting > Reset Figma and Restart first. Confirm your changes have synced before you delete anything, because the article does not mention unsynced work."
+    },
+    {
+      "question": "Will more RAM fix a slow Figma file?",
+      "answer": "It can help the whole Mac, especially on 8 GB machines that may swap memory to the SSD. Figma says its limit can vary by device, though, so more RAM may not change a file that hits its cap. Fix the file first."
+    },
+    {
+      "question": "Is the Downsize plugin the only way to shrink images?",
+      "answer": "No. You can export smaller images from Photoshop with File > Export > Export As before you place them in Figma. Figma's help center names the Downsize plugin as one option for compressing images on the canvas."
+    },
+    {
+      "question": "Should I delete old pages to make the file faster?",
+      "answer": "Move them first. Copy a page into its own file, check that the new file opens and the instances still work, then delete the page from the original. Keep the original file for a while as a backup."
+    },
+    {
+      "question": "Can Lazur fix a slow Figma file for me?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It can point at the memory panel, guide you one click at a time, and answer questions out loud while you work."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Reduce memory usage in files: Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Clear the Figma desktop app cache: Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/22380853110551-Clear-the-Figma-desktop-app-cache",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma on Mac: why 'Helper (Renderer)' eats RAM (Shiny)",
+      "url": "https://www.theodorehq.com/shiny/blog/figma-mac-memory-usage",
+      "publisher": "Shiny (Theodore)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Check if your Mac needs more RAM in Activity Monitor, Apple Support",
+      "url": "https://support.apple.com/guide/activity-monitor/check-if-your-mac-needs-more-ram-actmntr34865/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers: Occupational Outlook Handbook, U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Response Times: The 3 Important Limits, Nielsen Norman Group",
+      "url": "https://www.nngroup.com/articles/response-times-3-important-limits/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "large figma file lags or crashes",
+  "costs": [
+    {
+      "title": "Hours lost to waiting",
+      "text": "A file that costs you 10 minutes a day adds up. Over 250 workdays, that is about 42 hours. The BLS May 2025 median of $30.27 an hour for graphic designers prices that time at roughly $1,260 a year. The 250-day count is an assumption you can change."
+    },
+    {
+      "title": "Changes lost in a lock",
+      "text": "At 100%, Figma locks the file and you cannot edit. Work that has not synced yet is the real risk. Figma's cache article does not mention unsynced changes, so do not assume a reset is safe. A few minutes of checking can save an afternoon of rebuilding."
+    },
+    {
+      "title": "Copies that drift apart",
+      "text": "Teams often split a slow file by duplicating it. Two copies of a library drift apart over a few weeks. Someone updates one copy, and the other stays old. Splitting by copy only works if you keep one source of truth, so plan the split before you copy anything."
+    },
+    {
+      "title": "Stalls that break your focus",
+      "text": "Nielsen Norman Group lists 1.0 second as the limit for keeping a user's flow of thought uninterrupted. A file that stalls on every drag breaks that limit again and again. You stop noticing the stall, and that is the expensive part."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The 2GB per-tab memory cap",
+      "text": "Figma's help center says the active memory limit is 2GB per browser tab, and that the limit also applies to desktop apps. The desktop app is built on Chromium, so each open file behaves like a web page with its own budget. The limit can vary by device. A file that runs fine alone can lock once you add the libraries and images it pulls in."
+    },
+    {
+      "title": "Hidden layers that still load",
+      "text": "Figma calls hidden layers a big contributor to memory usage. A hidden layer is still part of the file, so it still counts toward memory. Designers hide options during reviews and forget them. Months later, the file carries many shapes nobody can see."
+    },
+    {
+      "title": "Variants loaded as separate components",
+      "text": "Figma says it loads every component in a set. A set with every size, state and icon combination creates many variants, and each one adds weight. Boolean component properties can switch an icon or label on and off without a new variant, which keeps the set small."
+    },
+    {
+      "title": "Heavy images and large imports",
+      "text": "Figma's memory article says high-resolution images can cause performance or memory issues. Large imports of text, images and complex vectors with many points add weight too. A camera photo placed at full size costs far more than the small version your layout shows."
+    },
+    {
+      "title": "Many pages and stacked files",
+      "text": "Figma says many pages can cause performance issues. A file that holds a year of explorations, a moodboard and a finished flow loads a lot when you open it. Several heavy files open as tabs add their memory together. Shiny measured three complex files at roughly 3 to 5 GB."
+    },
+    {
+      "title": "Limited RAM on the Mac",
+      "text": "On an 8 GB Mac, Figma and your other apps compete for the same memory. Shiny says an 8 GB Mac may swap memory to the SSD, which slows everything. A 16 GB Mac rarely feels strain from these files, according to the same blog post."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Delete hidden layers and dead variants",
+      "text": "Open the layers panel and find the layers you hid. Delete any you no longer need. Keep old options in version history instead of the live file. Figma calls hidden layers a big contributor to memory usage, so this is often the fastest drop on the meter."
+    },
+    {
+      "title": "Use boolean component properties",
+      "text": "Replace extra variants with boolean component properties. Figma recommends boolean properties that toggle visibility, instead of extra variants and layers. Turn one icon into a true or false property. Test the component on a scratch page before you delete the old variants."
+    },
+    {
+      "title": "Split pages into separate files",
+      "text": "Copy a page, paste it into a new file, and check that the new file opens. Then delete the page from the original. Figma's help center describes this copy, paste and delete path. Move one page at a time, and keep the original file until the new one proves stable."
+    },
+    {
+      "title": "Split big libraries without breaking links",
+      "text": "Figma's help center says a library can be split into smaller libraries without breaking instance links. Start with the component groups that change least. After you split, open a file that uses the library and confirm the instances still point to the main component."
+    },
+    {
+      "title": "Shrink images before they reach the canvas",
+      "text": "Use the Downsize plugin, which Figma's help center names for compressing large images on the canvas. You can also shrink images in Photoshop first. Choose File > Export > Export As, set the size to the largest size your layout shows, and export a JPEG or PNG."
+    },
+    {
+      "title": "Open with thumbnails only or a lighter version",
+      "text": "If the file locks, add ?thumbnails-only=1 to the end of the file URL. Figma opens it with low-resolution images, so you can reach the file and remove weight. You can also restore a version that uses less memory from version history, as Figma suggests."
+    },
+    {
+      "title": "Reset the cache as the last step",
+      "text": "If the app stops responding, clear the desktop cache. Figma's path is Help > Troubleshooting > Reset Figma and Restart. Use the Terminal route only if the app stays frozen. Confirm your changes have synced first, because the article does not cover unsynced edits."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the memory usage option in Figma?",
+      "result": "Lazur circles the View menu and labels the item, so you know where to click. You make the click yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "What does this memory number mean?",
+      "result": "Lazur reads what is on your screen and answers out loud in plain words, such as what the red alert means.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through turning on the memory meter.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Set a timer for the layer cleanup.",
+      "result": "Lazur starts the timer by voice. You still do the cleanup in Figma yourself.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Hold fn and dictate my list of layers to review.",
+      "result": "Dictation goes in at the cursor in any app. Clean text lands where you are working, so you can paste it into a checklist.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to my team about splitting the file.",
+      "result": "Lazur drafts and types the text for you. You review it and decide what to send.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where do I turn on memory usage in this file?",
+    "capability": "point",
+    "result": "Lazur circles the View menu and labels Memory usage, so you know where to click.",
+    "shell": "design",
+    "context": "Figma desktop with a large file open and the View menu visible",
+    "output": "A circle and a short label on the View menu. You make the click yourself.",
+    "pointsAt": "View menu"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Read the meter",
+      "text": "Turn on Memory usage, then note the number with the file open. Time one slow action, such as moving a frame, and write the seconds down as your baseline."
+    },
+    {
+      "label": "Day 2",
+      "title": "Strip the file",
+      "text": "Delete hidden layers and dead variants. Check the meter after each batch you remove, not only once when you finish the session."
+    },
+    {
+      "label": "Day 3",
+      "title": "Convert variants",
+      "text": "Replace duplicate variants with boolean component properties. Test each component on a scratch page before you delete the old variants."
+    },
+    {
+      "label": "Day 4",
+      "title": "Shrink images",
+      "text": "Export the largest photos at display size from Photoshop, then replace them in Figma. Read the meter again and log the change."
+    },
+    {
+      "label": "Day 5",
+      "title": "Split one page",
+      "text": "Copy one page into a new file, check the instances, then delete it from the original. Split more only if the meter stays high."
+    },
+    {
+      "label": "Day 6",
+      "title": "Keep a lighter copy",
+      "text": "If the file still locks, restore a lighter version from version history into a copy. Leave the original untouched until the fix holds."
+    },
+    {
+      "label": "Day 7",
+      "title": "Reset as a last step",
+      "text": "If the app still hangs, confirm your changes have synced, then use Help > Troubleshooting > Reset Figma and Restart before any Terminal command."
+    }
+  ],
+  "apps": [
+    "figma",
+    "photoshop"
+  ],
+  "type": "problem",
+  "slug": "why-figma-file-so-slow-fixes",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/why-figma-file-so-slow-fixes/why-is-my-figma-file-so-slow-1-779763.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer working on a laptop at a desk with a design file open on screen",
+      "caption": "A designer checks a large file on a laptop before cutting weight.",
+      "keywords": [
+        "why is my figma file so slow",
+        "Designers",
+        "Large Figma file lags or crashes",
+        "Mac",
+        "designer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "F1Digitals",
+        "url": "https://pixabay.com/users/F1Digitals-1568321/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-business-corporate-designer-7607344/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/why-figma-file-so-slow-fixes/why-is-my-figma-file-so-slow-2-6eb831.jpg",
+      "width": 1280,
+      "height": 857,
+      "alt": "Graphic designer at a desk reviewing layouts on screen in a studio",
+      "caption": "Shrink images at the source before they reach the canvas.",
+      "keywords": [
+        "why is my figma file so slow",
+        "Designers",
+        "Large Figma file lags or crashes",
+        "Mac",
+        "graphic designer desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/pen-tablet-technology-business-926313/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/why-figma-file-so-slow-fixes/why-is-my-figma-file-so-slow-3-752619.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man using a MacBook at a desk to edit a digital design project",
+      "caption": "Check the memory meter on the Mac you use every day.",
+      "keywords": [
+        "why is my figma file so slow",
+        "Designers",
+        "Large Figma file lags or crashes",
+        "Mac",
+        "man using macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "why is my figma file so slow",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "figma file lagging on mac": 1,
+      "figma crashes large file mac": 1,
+      "figma memory usage mac": 1,
+      "figma helper renderer memory": 1,
+      "reduce figma file size": 1,
+      "figma thumbnails only mode": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,598 @@
+{
+  "title": "How to create a named range in Excel on Mac: step by step in Microsoft 365",
+  "metaTitle": "How to Create a Named Range in Excel on Mac (2026 Guide)",
+  "description": "Learn how to create a named range in Excel on Mac with ⌘F3, Create from Selection, and Name Manager. Steps, naming rules and common mistakes.",
+  "targetKeyword": "how to create a named range in excel on mac",
+  "secondaryKeywords": [
+    "named range excel mac",
+    "define name excel mac",
+    "create names from selection excel mac",
+    "name manager excel mac",
+    "excel named range shortcut mac",
+    "excel name rules"
+  ],
+  "intro": "To create a named range in Excel on Mac, select the cells, press ⌘F3, type a name, and click OK. To name several ranges at once from row or column labels, select the labeled cells and press ⇧⌘F3.",
+  "tldr": [
+    "Select the cells, press ⌘F3, type a name in the Name field, and click OK.",
+    "Use ⇧⌘F3 to name many ranges at once from your row or column labels.",
+    "Names can't contain spaces, can't look like cell references, and aren't case-sensitive.",
+    "Review your names in Formulas > Defined Names > Name Manager, and fix any that show errors."
+  ],
+  "stats": [
+    {
+      "value": "255",
+      "label": "characters allowed in a defined name",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/names-in-formulas",
+      "sourceTitle": "Names in formulas (Microsoft Support)"
+    },
+    {
+      "value": "255",
+      "label": "characters allowed in the optional comment on a name",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/use-the-name-manager-in-excel",
+      "sourceTitle": "Use the Name Manager in Excel (Microsoft Support)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A named range is a label that points at one cell or a block of cells. Excel keeps the label, then uses those cells whenever a formula asks for it. Compare =SUM(B2:B400) with =SUM(Q1_Sales). The second formula tells you what it adds up. It also still makes sense when you open the workbook months later."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a named range saves you time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Naming a range is quick. It pays off in three situations that come up often on a Mac."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "One input that many formulas share, such as a tax rate in a single cell.",
+        "A column of data, such as monthly sales in B2:B400, that totals and charts read from.",
+        "A lookup table, such as a price list, that formulas search again and again."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Editing a defined name updates every use of it in the workbook. If Q1_Sales points at the wrong block, you fix the name once in Name Manager. You do not have to edit each formula by hand."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the cells before you name them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the workbook and go to the sheet that holds the data. Click the first cell of the range, then drag or Shift-click to the last cell. Scroll to check both edges. A name points at exact cells, so a block one row too short quietly gives every formula that uses it the wrong result. Decide on the range before you name it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create one named range with Define Name"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the cells first, then press ⌘F3. Microsoft's keyboard shortcut list gives this key for the Define Name dialog in Excel for Microsoft 365, 2024 and 2021 for Mac. The dialog has four fields. Fill in the Name field, check Refers to, and click OK."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Field",
+        "What to enter",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Name",
+          "A label such as Q1_Sales",
+          "Must follow the naming rules in the next section."
+        ],
+        [
+          "Scope",
+          "Workbook (the default)",
+          "Pick one worksheet from the drop-down to limit the name to that sheet."
+        ],
+        [
+          "Comment",
+          "An optional note, such as the data source",
+          "Up to 255 characters."
+        ],
+        [
+          "Refers to",
+          "A cell range such as =Sales!$B$2:$B$400",
+          "Type = and the address, or use the collapse button to select cells on the sheet."
+        ]
+      ],
+      "caption": "Fields in the Define Name dialog, based on Microsoft's Use the Name Manager article."
+    },
+    {
+      "type": "paragraph",
+      "text": "Click OK when the fields look right. Then test the name in a formula before you move on. A name that works in a test cell is far easier to trust later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Naming rules Excel enforces"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel enforces a short list of rules. Some block a name when you create it. Others cause trouble later, when the workbook grows. Learn these rules once and most rejections stop."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The first character must be a letter, the _ character, or a backslash.",
+        "Later characters can be letters, numbers, periods, or the _ character.",
+        "No spaces. Use _ instead, such as Q1_Sales.",
+        "No cell references, such as Z$100 or R1C1.",
+        "The letters C, c, R, and r are not allowed on their own.",
+        "Up to 255 characters."
+      ]
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Name you type",
+        "Accepted?",
+        "Why"
+      ],
+      "rows": [
+        [
+          "Q1_Sales",
+          "Yes",
+          "Letters, numbers, and _ characters are fine."
+        ],
+        [
+          "Q1 Sales",
+          "No",
+          "Spaces are not allowed. Use _ instead."
+        ],
+        [
+          "1Q_Sales",
+          "No",
+          "The first character must be a letter, _, or a backslash."
+        ],
+        [
+          "Z100",
+          "No",
+          "Looks like a cell reference, and those are not allowed."
+        ],
+        [
+          "R",
+          "No",
+          "The letters C, c, R, and r are not allowed."
+        ],
+        [
+          "Tax.Rate",
+          "Yes",
+          "A period is allowed after the first character."
+        ]
+      ],
+      "caption": "Sample names checked against Microsoft's naming rules."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scope affects uniqueness. A name must be unique within its scope, but the same name can exist at different scopes. Names are not case-sensitive. If you create Sales and then SALES in the same workbook, Excel asks you to choose a unique name."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create several named ranges from labels"
+    },
+    {
+      "type": "paragraph",
+      "text": "Create from Selection saves time when your data already has labels. Excel reads each label and makes a name for the cells beside or below it. Select the labels and the data together. Then press ⇧⌘F3, or go to Formulas > Defined Names > Create from Selection."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Row 1 holds month headings from January to December. Column A holds product names. Select the whole block from A1 to M10, open Create from Selection, and tell Excel the labels sit in the top row. Excel creates one name for each month, and each name covers the cells under its heading."
+    },
+    {
+      "type": "paragraph",
+      "text": "Names created this way have workbook scope, so every sheet can use them. Check the new names in Name Manager afterward. A label with a space, a symbol, or a cell address may not be valid as a name. Fix the label on the sheet, then run the command again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use a named range in a formula"
+    },
+    {
+      "type": "paragraph",
+      "text": "To use a name, type = and the first letter or two of the name. Excel shows matching names in a list. Pick the name with the arrow keys or the mouse, then press Return. You can also go to Formulas > Use in Formula and choose the name from the list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Say Q1_Sales covers B2:B400. The formula =SUM(Q1_Sales) returns the same total as =SUM(B2:B400). The name makes the formula easier to read. If the range changes, you update the name in one place, and every formula that uses it follows."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit and delete names in Name Manager"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Formulas > Defined Names > Name Manager. The window lists every name in the workbook, with its scope and what it refers to. Use the filter options to narrow the list. Microsoft lists Names Scoped To Worksheet, Names Scoped To Workbook, Names With Errors, Names Without Errors, Defined Names, and Table Names as options."
+    },
+    {
+      "type": "paragraph",
+      "text": "To edit a name, select it and change the Refers to box. Editing updates all uses of the name in the workbook. To delete a name, search your formulas first. Removing a name that formulas still use breaks those formulas."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name Manager does not display names defined in VBA, and it does not display hidden names. If a formula uses a name you cannot find in the list, check the workbook for VBA code before you assume the name is missing."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick method: the Name Box"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Define and use names article also describes a faster method. Select a cell or range, click the Name Box at the left end of the formula bar, type the name, and press Return. Microsoft writes these steps for Windows and Web. If your Mac layout differs, use ⌘F3 instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with named ranges"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Including the header row when you use Define Name. The header becomes part of the range, so functions that count cells may count it too. Select data only.",
+        "Setting the scope to one sheet, then wondering why another sheet cannot use the name. Check Scope before you click OK.",
+        "Typing a space in the name. Excel rejects it. Use _ instead, such as Q1_Sales.",
+        "Using a cell address as a name, such as B2 or Z100. Excel does not accept it.",
+        "Assuming Name Manager shows every name. VBA names and hidden names do not appear there.",
+        "Naming ranges Data or Range1. Months later, nobody knows what those cells hold."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard details that trip people up"
+    },
+    {
+      "type": "paragraph",
+      "text": "Function keys cause the most trouble on a Mac. By default, function keys control the computer, not Excel. Excel function-key shortcuts therefore need the fn key, such as fn+F9 for Evaluate formula. If ⌘F3 does nothing, try fn+⌘F3. You can also change the function key setting in Keyboard settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel 365 for Mac aligns more shortcuts with Windows, and older Mac-only shortcuts still work. A shortcut you learned on Windows may work on your Mac, or it may need fn. Microsoft's Mac shortcut list does not include a shortcut for Name Manager, so use the ribbon path for that one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac versions and Excel for the web"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's keyboard shortcut list covers Excel for Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac. The steps on this page follow those versions. Menu names can change between releases. If your ribbon looks different, find the Defined Names group on the Formulas tab first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web works differently. Microsoft's Define and use names article describes creating a name by typing it in the Name Box. It does not describe Create from Selection on the web. If you work in a browser, start with the Name Box."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after you create names"
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the inputs and ranges that your formulas share first. Keep a short list of names on a sheet called Names, with a one-line comment for each. The comment field holds up to 255 characters, so it can record the data source and the date."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the next step is summarizing the data, read the [pivot table guide for Excel on Mac](/how-to/make-a-pivot-table-in-excel). It walks through building a summary from the same data you just named."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I create a named range in Excel on Mac with a keyboard shortcut?",
+      "answer": "Yes. Select the cells and press ⌘F3 to open the Define Name dialog, according to Microsoft's keyboard shortcut list for Excel on Mac. If that key does nothing, try fn+⌘F3. Microsoft also lists ⇧⌘F3 for the Create Names dialog, which builds names from labels in your selection."
+    },
+    {
+      "question": "Where is Name Manager on a Mac?",
+      "answer": "Go to Formulas > Defined Names > Name Manager. Microsoft gives this path for macOS. Microsoft's Mac shortcut list does not include a shortcut for Name Manager, so use the ribbon."
+    },
+    {
+      "question": "What is the difference between Define Name and Create from Selection?",
+      "answer": "Define Name makes one name for the cells you select. Create from Selection reads labels from the top row or left column and makes one name for each label. Names created with Create from Selection have workbook scope."
+    },
+    {
+      "question": "Why won't Excel accept a name with a space in it?",
+      "answer": "Names can't contain spaces. Microsoft's rules say the first character must be a letter, the _ character, or a backslash, and later characters can be letters, numbers, periods, or the _ character. Use Q1_Sales instead of Q1 Sales."
+    },
+    {
+      "question": "Are named ranges case-sensitive?",
+      "answer": "No. Excel treats Sales and SALES as the same name in one workbook. If you try to create both, Excel asks you to choose a unique name."
+    },
+    {
+      "question": "How long can a name or a comment be?",
+      "answer": "A name can contain up to 255 characters, according to Microsoft. The optional comment on a name also has a limit of 255 characters."
+    },
+    {
+      "question": "Can I create named ranges in Excel for the web?",
+      "answer": "Microsoft's documentation describes creating a name by typing it in the Name Box. It does not describe Create from Selection on the web. If you need Create from Selection, use Excel for Mac."
+    },
+    {
+      "question": "What happens to formulas if I change a name?",
+      "answer": "Editing a defined name updates all uses of it in the workbook, according to Microsoft. After each change, check Name Manager. Filter for names with errors if a formula breaks."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a named range from selected cells in an Excel worksheet",
+      "url": "https://support.microsoft.com/en-us/excel/create-a-named-range-from-selected-cells-in-an-excel-worksheet",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Define and use names in formulas",
+      "url": "https://support.microsoft.com/en-us/office/define-and-use-names-in-formulas-4d0f13ac-53b7-422e-afd2-abd7ff379c64",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Use the Name Manager in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/use-the-name-manager-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Names in formulas",
+      "url": "https://support.microsoft.com/en-us/excel/names-in-formulas",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel shortcuts on the Mac",
+      "url": "https://exceljet.net/articles/excel-shortcuts-on-the-mac",
+      "publisher": "ExcelJet",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Create a named range in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024 and Excel 2021 for Mac",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Mac, Microsoft 365, 2024, or 2021",
+    "A workbook you are allowed to save",
+    "The cells you want to name, on a sheet you can see",
+    "Names that follow the naming rules in this guide"
+  ],
+  "steps": [
+    {
+      "name": "Select the cells you want to name",
+      "text": "Open the workbook in Excel for Mac and go to the sheet with the data. Click the first cell of the range, then drag to the last cell. For a long column, click the first cell, scroll down, and Shift-click the last cell. The selection should cover only the data you want to name.",
+      "tip": "Select data cells only. Leave out the header unless you plan to use Create from Selection."
+    },
+    {
+      "name": "Open the Define Name dialog",
+      "text": "With the cells still selected, press ⌘F3. Microsoft's keyboard shortcut list gives this key for the Define Name dialog in Excel for Mac. If nothing happens, try fn+⌘F3. Microsoft's documentation does not give a Mac menu path for this dialog, so the shortcut is the reliable route.",
+      "shortcut": "⌘F3",
+      "tip": "If a different window opens, press Esc and check the shortcut list in Microsoft's Mac documentation."
+    },
+    {
+      "name": "Type the name",
+      "text": "In the Name field, type a short label that follows the rules, such as Q1_Sales. Use _ characters instead of spaces. Keep the name short enough to read inside a formula, and make it describe the data.",
+      "tip": "Names are not case-sensitive, so Q1_Sales and q1_sales count as the same name."
+    },
+    {
+      "name": "Check Scope and Refers to",
+      "text": "Leave Scope set to Workbook unless only one sheet needs the name. Check the Refers to box. It should show the sheet and the cell range, such as =Sales!$B$2:$B$400. If the range is wrong, fix it in this box before you click OK.",
+      "tip": "Use the collapse button beside Refers to to select cells on the sheet while the dialog stays open."
+    },
+    {
+      "name": "Add an optional comment and click OK",
+      "text": "The Comment field takes up to 255 characters. Write what the name is for, such as the data source and the date of the export. Click OK. The dialog closes, and the name is saved in the workbook.",
+      "tip": "A short comment helps a colleague who opens the file later understand the name."
+    },
+    {
+      "name": "Test the name in a formula",
+      "text": "In an empty cell, type = and the first letters of the name. Pick the name from the suggestion list, then press Return. For a range of numbers, try =SUM(Q1_Sales). The result should match a SUM of the raw cell addresses.",
+      "tip": "If the name does not appear in the list, check the spelling and the scope."
+    },
+    {
+      "name": "Create several names from labels (optional)",
+      "text": "Select the labels and the data together, such as A1 to M10 when the months sit in row 1 and the products sit in column A. Press ⇧⌘F3, or go to Formulas > Defined Names > Create from Selection. Choose the edge that holds the labels, then click OK.",
+      "menuPath": [
+        "Formulas",
+        "Defined Names",
+        "Create from Selection"
+      ],
+      "shortcut": "⇧⌘F3",
+      "tip": "Names created this way have workbook scope, so every sheet can use them."
+    },
+    {
+      "name": "Review the names in Name Manager",
+      "text": "Go to Formulas > Defined Names > Name Manager. Check the Refers to column for each name. Filter to Names With Errors to find broken names. Close the window when you are done.",
+      "menuPath": [
+        "Formulas",
+        "Defined Names",
+        "Name Manager"
+      ],
+      "tip": "Microsoft's Mac shortcut list has no shortcut for Name Manager, so use the ribbon path."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Define Name dialog",
+      "keys": "⌘F3"
+    },
+    {
+      "action": "Open Create Names from selection",
+      "keys": "⇧⌘F3"
+    },
+    {
+      "action": "Define Name, if ⌘F3 does nothing",
+      "keys": "fn+⌘F3"
+    },
+    {
+      "action": "Confirm a name or a formula",
+      "keys": "Return"
+    },
+    {
+      "action": "Cancel a dialog",
+      "keys": "Esc"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "⌘F3 does nothing or opens a different window",
+      "fix": "Try fn+⌘F3. On a Mac, function keys control the computer by default, so Excel's function-key shortcuts need the fn key. You can also change the function key setting in Keyboard settings."
+    },
+    {
+      "problem": "Excel rejects the name you typed",
+      "fix": "Remove spaces and any symbols other than _ and periods. Make sure the first character is a letter, _, or a backslash. Avoid cell addresses such as Z100 and the single letters C, c, R, and r."
+    },
+    {
+      "problem": "Excel asks you to choose a unique name",
+      "fix": "The name already exists in that scope, or it differs only in capital letters. Rename it, such as Q1_Sales_2, or create the name with a different scope."
+    },
+    {
+      "problem": "A name you created does not appear in Name Manager",
+      "fix": "Name Manager does not show names defined in VBA or hidden names. Check the workbook's VBA code, and use the filter options to look for the name by scope."
+    },
+    {
+      "problem": "A formula works on one sheet but not on another",
+      "fix": "The name is probably scoped to one worksheet. Check the Scope column in Name Manager. Then recreate the name at workbook scope if other sheets need it."
+    },
+    {
+      "problem": "Names from Create from Selection look wrong or are missing",
+      "fix": "Check the labels for spaces and symbols, because those labels may not be valid names. Fix the labels on the sheet, then run Create from Selection again."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Name Manager?",
+    "capability": "point",
+    "result": "Lazur circles the Name Manager button in the Defined Names group and labels it on screen.",
+    "shell": "sheet",
+    "pointsAt": "Name Manager",
+    "context": "You are on the Formulas tab and want to review your names.",
+    "output": "Lazur draws a circle and a label around the button, then says where it sits and what it does, out loud."
+  },
+  "type": "howto",
+  "slug": "create-a-named-range-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-named-range-in-excel/how-to-create-a-named-range-in-1-3fbf05.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person creating a named range in Excel on a Mac at a desk",
+      "caption": "Working in a spreadsheet on a Mac",
+      "keywords": [
+        "how to create a named range in excel on mac",
+        "Excel",
+        "create a named range",
+        "Mac",
+        "person working on macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-named-range-in-excel/how-to-create-a-named-range-in-2-16fec8.jpg",
+      "width": 1280,
+      "height": 985,
+      "alt": "Laptop screen with rows of spreadsheet data, the kind you would name in Excel on Mac",
+      "caption": "Rows of data worth naming",
+      "keywords": [
+        "how to create a named range in excel on mac",
+        "Excel",
+        "create a named range",
+        "Mac",
+        "spreadsheet data laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "B_A",
+        "url": "https://pixabay.com/users/B_A-363247/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacker-silhouette-hack-anonymous-3342696/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-named-range-in-excel/how-to-create-a-named-range-in-3-a0e608.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office desk with a computer ready for named range work in Excel on Mac",
+      "caption": "A typical desk for spreadsheet work",
+      "keywords": [
+        "how to create a named range in excel on mac",
+        "Excel",
+        "create a named range",
+        "Mac",
+        "office desk computer work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to create a named range in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "named range excel mac": 1,
+      "define name excel mac": 1,
+      "create names from selection excel mac": 1,
+      "name manager excel mac": 1,
+      "excel named range shortcut mac": 1,
+      "excel name rules": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

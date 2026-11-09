@@ -1,0 +1,602 @@
+{
+  "title": "How to set up Git in VS Code on Mac: install, configure, and commit for macOS",
+  "metaTitle": "How to Set Up Git in VS Code on Mac (2026 Guide)",
+  "description": "How to set up Git in VS Code on Mac: install Git, set your name and email, start a repository, and make your first commit in VS Code 1.145.",
+  "targetKeyword": "how to set up git in vs code on mac",
+  "secondaryKeywords": [
+    "set up git in vs code",
+    "git vs code mac",
+    "vs code git setup",
+    "install git on mac",
+    "initialize repository vs code mac",
+    "git config user.name vs code",
+    "publish to github vs code mac"
+  ],
+  "intro": "Install Git on your Mac, tell it your name and email, then open your project in VS Code and click Initialize Repository. After that, stage your files with + (Stage Changes), type a message, and click Commit to save your first snapshot.",
+  "tldr": [
+    "Install Git first. VS Code needs Git on your Mac before any Source Control feature works.",
+    "Run git --version in Terminal > New Terminal to confirm VS Code can find it.",
+    "Set user.name and user.email once with git config --global. Commits fail without them.",
+    "Open your folder, press ⌃⇧G, and click Initialize Repository.",
+    "Stage with +, write a message, and click Commit. Publishing to GitHub is optional."
+  ],
+  "stats": [
+    {
+      "value": "1.145",
+      "label": "Current stable VS Code release, dated November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates/v1_145",
+      "sourceTitle": "Visual Studio Code 1.145 release notes"
+    },
+    {
+      "value": "2.56.0",
+      "label": "Latest Git version listed on git-scm.com's macOS install page",
+      "sourceUrl": "https://git-scm.com/install/mac",
+      "sourceTitle": "Git: Install for macOS"
+    },
+    {
+      "value": "75.9%",
+      "label": "Of all 2025 Stack Overflow respondents said they use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow 2025 Developer Survey: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code is the editor. Git is the tool that records every change to your files, so you can go back, compare, and share. VS Code does not replace Git. It shows Git's work in a panel, so you can stage and commit with a few clicks instead of typing every command."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's quickstart says Git must be installed on your machine for VS Code to work. Local Git does not need a hosting account. You only need a GitHub account if you want to put the repository online. Most of this page works without an account of any kind."
+    },
+    {
+      "type": "paragraph",
+      "text": "The current stable release is VS Code 1.145, dated November 4, 2026. The release notes list 1.145.1 and 1.145.2 updates. The Mac download comes as a .dmg file. Drag VS Code into Applications, and choose the Universal, Intel, or Apple silicon build that matches your Mac. Microsoft's Mac setup page does not list a minimum macOS version, so check the download page if you run an older system."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "VS Code installed in Applications from the official .dmg download",
+        "Git installed on your Mac through Homebrew, MacPorts, or Xcode Command Line Tools",
+        "A project folder that holds at least one file you want to track",
+        "A GitHub account, only if you plan to publish the repository",
+        "Access to VS Code's terminal through Terminal > New Terminal"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install Git on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Git's install page lists four ways to get Git on macOS. Homebrew uses brew install git. MacPorts uses sudo port install git. Xcode Command Line Tools use xcode-select --install. The fourth option is a binary installer, and the page no longer links to it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Method",
+        "Command",
+        "What to know"
+      ],
+      "rows": [
+        [
+          "Homebrew",
+          "brew install git",
+          "Needs Homebrew already installed. Good if you use Homebrew for other tools."
+        ],
+        [
+          "MacPorts",
+          "sudo port install git",
+          "Needs MacPorts already installed."
+        ],
+        [
+          "Xcode Command Line Tools",
+          "xcode-select --install",
+          "Apple's build of Git. It may lag behind the latest release."
+        ],
+        [
+          "Binary installer",
+          "No longer linked from the page",
+          "Not recommended. Last updated for 2.33.0 in 2021."
+        ]
+      ],
+      "caption": "Git install options on macOS, from git-scm.com"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one method and stick with it. If you already use Homebrew, brew install git is the shortest path. If you do not, Xcode Command Line Tools give you Apple's build, but that copy may trail the newest release. Git's install page lists 2.56.0 as the latest version. After install, check the version you got with git --version."
+    },
+    {
+      "type": "paragraph",
+      "text": "Skip the old binary installer. The page last updated it for 2.33.0 in 2021. Either Homebrew or the Xcode tools is easier to update than a stale installer, and both keep the Git command in your shell."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Confirm VS Code can find Git"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your project in VS Code, then select Terminal > New Terminal. At the prompt, type git --version and press Return. You should see a line that starts with git version. That line means the command works in the shell VS Code uses."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you see command not found, or VS Code shows a Git not found message, restart VS Code. Microsoft's troubleshooting page gives that fix first. If Git works in Terminal but VS Code still cannot find it, open the Git Output window and set git.path to the full path of the Git executable. Then restart VS Code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Tell Git your name and email"
+    },
+    {
+      "type": "paragraph",
+      "text": "Git stamps every commit with an author name and an email address. You set them once with git config --global. Run these two commands in the VS Code terminal, with your own details inside the quotes: git config --global user.name \"Your Name\" and git config --global user.email \"you@example.com\"."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Ada Example types git config --global user.name \"Ada Example\", then git config --global user.email \"ada@example.com\". Git saves both values in its global config, so every repository on the Mac picks them up. Nothing else needs to change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Git identity is not a sign-in. Your name and email do not log you into GitHub or anything else. They only label your commits. Use the email you want attached to your work, because that address stays in the history."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Leaving out --global saves the values for one repository only, so new projects start blank.",
+        "Typing the name without quotes breaks when the name has a space in it.",
+        "Changing the values later does not rewrite commits you already made.",
+        "Skipping this step leads to the commit error about user.name and user.email."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Initialize a Git repository in VS Code on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose File > Open Folder. Pick the folder that holds your project, and confirm trust if VS Code asks. Next, open the Source Control view with ⌃⇧G. Click Initialize Repository. VS Code creates the Git repository in that folder, and the Changes list starts to show your files."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you do not see the Initialize Repository button, press ⇧⌘P to open the Command Palette. Run Git: Initialize Repository from there. Both paths do the same job, so use whichever one you can see."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the project folder itself, not a parent folder that holds many projects. VS Code does not automatically open a repository that sits in a parent folder. Use the notification or the Source Control welcome view to open it. You can also set git.openRepositoryInParentFolders to always if you want VS Code to find it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stage and commit your first change"
+    },
+    {
+      "type": "paragraph",
+      "text": "A commit is a saved snapshot of your project. Staging is the step where you pick which edits go into that snapshot. Hover over a file under Changes, then click + (Stage Changes). Staging marks the file for your next commit. To undo staging without losing your edits, click the minus icon labeled Unstage Changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Be careful with Discard Changes. It removes your edits from the file, and Git cannot bring uncommitted edits back. Unstage is the safe button. Discard is the one that throws work away, so read the label before you click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try it with a small file. Create notes.md in your project and write one line in it. The file appears under Changes. Stage it with +, type First note in the message box, and click Commit. Git now holds one commit, and the Changes list is empty again."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check the file list under Changes, and open any file you do not recognize.",
+        "Stage only the files that belong in this commit.",
+        "Write a message that says what changed, in plain words.",
+        "Click Commit, then confirm nothing is left in Changes."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Publish your repository to GitHub (optional)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Publishing creates a copy of the repository on GitHub, and you need a GitHub account for it. Press ⇧⌘P, run Publish to GitHub, sign in, and choose a repository name. Pick private visibility if the project is not ready for other people to see."
+    },
+    {
+      "type": "paragraph",
+      "text": "After the first publish, send new commits with More Actions, the button with three dots, then choose Push. Push uploads your commits to GitHub. If you skip publishing, the repository stays on your Mac, and you can still stage and commit as usual."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for Git in VS Code on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two shortcuts cover most of this workflow on a Mac. ⌃⇧G opens the Source Control view. ⇧⌘P opens the Command Palette, where you can run any Git command by name. On Windows and Linux, the Source Control shortcut is Ctrl+Shift+G."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Errors you may see and what they mean"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common error is the identity message. VS Code says to configure user.name and user.email in Git. Run both git config commands from earlier, then retry the commit. Existing commits do not change."
+    },
+    {
+      "type": "paragraph",
+      "text": "A push can fail with non-fast-forward or fetch first. That means the remote has commits you do not have locally. Fetch, review what came in, pull, resolve any conflicts, and push again. Do not force push, because a force push can erase someone else's work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Authentication failed and Permission denied (publickey) are sign-in problems. Fix your HTTPS credentials for the first one. Check your SSH keys for the second. The troubleshooting page covers both cases."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Xcode license error reads Agreeing to the Xcode/iOS license requires admin privileges. A Harvard Research Computing page dated 2019 gives the fix. Run sudo xcodebuild -license in Terminal, then retry the Git command. That page is old, so check Apple's current guidance if the fix does not work for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "If VS Code says a repository is potentially unsafe because another OS user owns it, review the location first. Then choose Manage Unsafe Repositories. That adds the path to Git's safe.directory setting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with Git in VS Code"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Initializing Git in a parent folder that holds many projects, then wondering why the wrong files show up.",
+        "Clicking Discard Changes when they meant Unstage.",
+        "Committing with a message that does not say what changed, so the history reads like noise.",
+        "Skipping the Git install, then blaming VS Code when Source Control stays blank.",
+        "Forgetting that identity is stored per commit, so a wrong email stays in old history.",
+        "Using a force push to clear a rejected push."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once your first commit works, learn branches and the diff view next. The developer track has more setup detail in [VS Code for developers on Mac](/for/developers/vs-code). If you want the code command in your terminal, read [how to install the code command in VS Code on Mac](/how-to/install-the-code-command-in-vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "To open a project from the terminal instead of File > Open Folder, read [how to open a folder from the terminal in VS Code on Mac](/how-to/open-a-folder-from-the-terminal-in-vs-code). The Source Control steps in this guide match VS Code 1.145, because its release notes list no Source Control menu or shortcut changes."
+    },
+    {
+      "type": "image",
+      "index": 1
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a GitHub account to use Git in VS Code on Mac?",
+      "answer": "No. Microsoft's source control overview says a hosting account is not needed for local Git. You only need GitHub if you want to publish or share the repository online."
+    },
+    {
+      "question": "Does VS Code install Git for me?",
+      "answer": "Git must already be on your Mac for VS Code to work. Install it first with Homebrew, MacPorts, or Xcode Command Line Tools, then open VS Code and check with git --version in the terminal."
+    },
+    {
+      "question": "Which Git install method should I pick on a Mac?",
+      "answer": "If you already use Homebrew, run brew install git. If you do not, xcode-select --install gives you Apple's build of Git. Apple's copy may lag behind the newest release, and git-scm.com lists 2.56.0 as the latest version."
+    },
+    {
+      "question": "What is the difference between Stage Changes and Commit?",
+      "answer": "Stage Changes picks a file for your next commit. Commit saves every staged file as one snapshot with the message you typed. Staging is optional for files you do not want to include yet."
+    },
+    {
+      "question": "Is Discard Changes the same as Unstage?",
+      "answer": "No. Unstage removes a file from the next commit and keeps your edits. Discard Changes removes the edits themselves. If you are unsure, choose Unstage."
+    },
+    {
+      "question": "Why does my commit fail with a user.name or user.email error?",
+      "answer": "Git needs both values before it can record a commit. Run git config --global user.name and git config --global user.email with your details, then retry the commit. Existing commits are not changed."
+    },
+    {
+      "question": "Does this guide work on Windows?",
+      "answer": "No. This page covers macOS. On Windows and Linux, Source Control uses Ctrl+Shift+G, and the Git install steps differ."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Quickstart: use source control in VS Code",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/quickstart",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Source control in VS Code",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/overview",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Git troubleshooting in VS Code",
+      "url": "https://code.visualstudio.com/docs/sourcecontrol/troubleshooting",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Set up VS Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft (Visual Studio Code docs)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145 release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft (Visual Studio Code)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Git: Install for macOS",
+      "url": "https://git-scm.com/install/mac",
+      "publisher": "Git project",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Harvard FAS Research Computing: Git and Apple license",
+      "url": "https://docs.rc.fas.harvard.edu/kb/git-apple-license/",
+      "publisher": "Harvard FAS Research Computing",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow 2025 Developer Survey: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Set up Git in VS Code on a Mac",
+  "appliesTo": "macOS with VS Code 1.145 and Git from Homebrew or Xcode Command Line Tools",
+  "timeMinutes": 20,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS, on Apple silicon or Intel",
+    "VS Code installed in Applications from the official .dmg download",
+    "Git installed with Homebrew, MacPorts, or Xcode Command Line Tools",
+    "A project folder, plus a GitHub account only if you plan to publish"
+  ],
+  "steps": [
+    {
+      "name": "Install Git",
+      "text": "Open the Terminal app and run brew install git if you use Homebrew. If you do not, run xcode-select --install and follow the prompts. Either route gives you a Git that VS Code can check."
+    },
+    {
+      "name": "Open the terminal in VS Code",
+      "menuPath": [
+        "Terminal",
+        "New Terminal"
+      ],
+      "text": "Select Terminal, then New Terminal. A shell opens inside VS Code, ready for Git commands."
+    },
+    {
+      "name": "Check the Git version",
+      "text": "Type git --version and press Return. A line that starts with git version confirms VS Code can find Git. If you see command not found, restart VS Code and try again."
+    },
+    {
+      "name": "Set your name",
+      "text": "Run git config --global user.name \"Your Name\", with your name inside the quotes.",
+      "tip": "Git writes this name on every commit you make."
+    },
+    {
+      "name": "Set your email",
+      "text": "Run git config --global user.email \"you@example.com\", using the email you want attached to your commits.",
+      "tip": "Use the same address on every machine, so your history stays consistent."
+    },
+    {
+      "name": "Open your project folder",
+      "menuPath": [
+        "File",
+        "Open Folder"
+      ],
+      "text": "Choose the folder that holds your project. Confirm trust if VS Code asks you to."
+    },
+    {
+      "name": "Open Source Control",
+      "shortcut": "⌃⇧G",
+      "text": "Press Control, Shift, and G together to show the Source Control view. On Windows and Linux, the shortcut is Ctrl+Shift+G."
+    },
+    {
+      "name": "Initialize the repository",
+      "text": "Click Initialize Repository. If that button is not visible, press ⇧⌘P and run Git: Initialize Repository from the Command Palette.",
+      "tip": "Both paths start the same Git command, so pick whichever you can see."
+    },
+    {
+      "name": "Stage a file",
+      "text": "Hover over the file under Changes, then click + (Stage Changes). To undo staging without losing edits, click the minus icon labeled Unstage Changes.",
+      "tip": "Discard Changes removes your edits. Read the label before you click it."
+    },
+    {
+      "name": "Write a message and commit",
+      "text": "Type a short message that says what changed, then click Commit.",
+      "tip": "A plain message is enough for a first commit. Describe the change, not the mood."
+    },
+    {
+      "name": "Publish to GitHub (optional)",
+      "shortcut": "⇧⌘P",
+      "text": "Press ⇧⌘P, run Publish to GitHub, sign in, choose a repository name, and pick private visibility. This step needs a GitHub account."
+    },
+    {
+      "name": "Push new commits",
+      "menuPath": [
+        "More Actions",
+        "Push"
+      ],
+      "text": "Click More Actions, the button with three dots, then choose Push. Push uploads your commits to GitHub."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Source Control view",
+      "keys": "⌃⇧G"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open Source Control on Windows or Linux",
+      "keys": "Ctrl+Shift+G"
+    },
+    {
+      "action": "Publish to GitHub from the Command Palette",
+      "keys": "⇧⌘P"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Git not found",
+      "fix": "Restart VS Code. If Git works in Terminal but not in VS Code, open the Git Output window, set git.path to the full path of the Git executable, then restart."
+    },
+    {
+      "problem": "Make sure you configure your user.name and user.email",
+      "fix": "Run git config user.name and git config user.email, globally or per repository, then retry the commit. Existing commits are not changed."
+    },
+    {
+      "problem": "Push rejected with non-fast-forward or fetch first",
+      "fix": "Fetch, review what came in, pull, resolve any conflicts, then push again. Do not force push."
+    },
+    {
+      "problem": "Authentication failed or Permission denied (publickey)",
+      "fix": "Correct your HTTPS credentials for the first message. For the second, check your SSH keys."
+    },
+    {
+      "problem": "Repository reported as potentially unsafe",
+      "fix": "Review the location, then select Manage Unsafe Repositories. VS Code adds it to Git's safe.directory setting."
+    },
+    {
+      "problem": "Agreeing to the Xcode/iOS license requires admin privileges",
+      "fix": "Run sudo xcodebuild -license in Terminal, then retry the Git command. This fix comes from a 2019 Harvard page, so check Apple's current guidance if it fails."
+    }
+  ],
+  "lazur": {
+    "capability": "point",
+    "context": "Source Control view open, project folder loaded, no repository yet",
+    "pointsAt": "Initialize Repository",
+    "shell": "code",
+    "spoken": "Where is the Initialize Repository button?",
+    "result": "Lazur draws a circle and a label around the button on your screen. You click it yourself. Lazur points, it does not click.",
+    "output": "It is in the Source Control panel. Click it once, and the Changes list starts showing your files."
+  },
+  "type": "howto",
+  "slug": "set-up-git-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-git-in-vs-code/how-to-set-up-git-in-vs-1-36c67f.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Developer typing code on a MacBook at a desk, the kind of setup for learning how to set up Git in VS Code on Mac",
+      "caption": "A Mac on a desk, ready for a first Git commit",
+      "keywords": [
+        "how to set up git in vs code on mac",
+        "VS Code",
+        "set up Git",
+        "Mac",
+        "macbook coding desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-dark-room-modern-2593016/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-git-in-vs-code/how-to-set-up-git-in-vs-2-9afc2e.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Person reviewing code on a laptop screen while setting up version control for a project",
+      "caption": "Reviewing changes before you commit",
+      "keywords": [
+        "how to set up git in vs code on mac",
+        "VS Code",
+        "set up Git",
+        "Mac",
+        "person laptop coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Yng_saad",
+        "url": "https://pixabay.com/users/Yng_saad-23159574/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacker-cyber-illegal-technology-6586113/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-git-in-vs-code/how-to-set-up-git-in-vs-3-88932b.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Developer at a desk with a laptop and notes, planning a Git repository setup in VS Code on a Mac",
+      "caption": "Planning the repository before you start",
+      "keywords": [
+        "how to set up git in vs code on mac",
+        "VS Code",
+        "set up Git",
+        "Mac",
+        "developer desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yeiferr",
+        "url": "https://pixabay.com/users/yeiferr-13554766/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-laptop-tech-blue-computer-4795762/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to set up git in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "set up git in vs code": 7,
+      "git vs code mac": 1,
+      "vs code git setup": 1,
+      "install git on mac": 1,
+      "initialize repository vs code mac": 1,
+      "git config user.name vs code": 1,
+      "publish to github vs code mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

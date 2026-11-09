@@ -1,0 +1,642 @@
+{
+  "title": "How to use cursor cmd k inline edit mac: Cmd+K now sends code to Agent",
+  "metaTitle": "Cursor cmd k inline edit Mac: what Cmd+K does now",
+  "description": "Cursor cmd k inline edit mac: on Mac, Cmd+K now sends selected code to Agent. Here is how to send it, review the diff and undo.",
+  "targetKeyword": "cursor cmd k inline edit mac",
+  "secondaryKeywords": [
+    "cursor inline edit mac",
+    "cursor cmd k not working",
+    "cursor cmd l agent mac",
+    "cursor restore checkpoint mac",
+    "cursor keyboard shortcuts mac",
+    "cursor agent modes shift tab",
+    "cursor cmd i agent mac"
+  ],
+  "intro": "On a Mac, Cmd+K no longer opens a small inline edit box in current Cursor. Select the code, press ⌘K, and Cursor sends those lines to Agent, where you type the change and review the result in a diff view.",
+  "tldr": [
+    "On Mac, Cmd+K now sends the selected code to Agent instead of opening a small inline edit box.",
+    "Select code, press ⌘K or ⌘L, type your instruction, then press Return.",
+    "Review every change in the diff view and reject the edits you don't want.",
+    "Restore Checkpoint reverts files only. It does not delete your chat messages.",
+    "If ⌘K does something else on your Mac, check the shortcut list with ⌘R then ⌘S."
+  ],
+  "stats": [
+    {
+      "value": "Apr 2, 2026",
+      "label": "Cursor 3.0 release, which introduced the Agents Window",
+      "sourceUrl": "https://cursor.com/changelog/3-0",
+      "sourceTitle": "Cursor Changelog: Cursor 3.0 'New Cursor Interface'"
+    },
+    {
+      "value": "Oct 26, 2026",
+      "label": "Date of the forum post saying the closest replacement for Cmd+K is Agent",
+      "sourceUrl": "https://forum.cursor.com/t/cmd-k-has-been-retired-from-terminal/176251",
+      "sourceTitle": "Cursor Community Forum: 'Cmd+K Has Been Retired' thread"
+    },
+    {
+      "value": "Nov 6, 2026",
+      "label": "Date of the newest Cursor changelog entry, which does not mention Cmd+K",
+      "sourceUrl": "https://cursor.com/changelog",
+      "sourceTitle": "Cursor Changelog"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "If you learned Cursor from an older guide, you may remember a small box that appeared over selected code when you pressed Cmd+K. That box is gone. Cursor's help page says Cmd+K used to open inline edit, and that workflow has been replaced. The replacement is Agent, the chat panel that can edit your files. This page covers the current steps and what each key does now."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Cmd+K does now on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the code you want to change, then press Cmd+K. Cursor sends the selection to the Agent chat, and the lines you selected appear there as a reference. Type what should change and press Return. Cmd+L does the same job, according to Cursor's inline-edit page. On Windows and Linux the keys are Ctrl+K and Ctrl+L."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Older tutorials can mislead you",
+      "text": "Some tutorials describe an inline edit dialog that opens over the code, with options for editing the full file. The current Cursor docs do not describe that dialog. If you can't find it, use Agent with the selection instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Cmd+K changed in Cursor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor 3.0 arrived on April 2, 2026. Its changelog calls it the new Cursor interface, and it introduced the Agents Window and Design Mode. In the current interface, Agent handles the edits that the old dialog used to handle. The docs say Cmd+K was replaced, but they do not name the exact release where the old dialog stopped working. Cursor's changelog lists dates, not version numbers, so official pages alone cannot pin the change to one version."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The keys you need on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of the work happens with five keys. ⌘K or ⌘L sends selected code to Agent. ⌘I opens the Agent panel without a selection. Shift+Tab switches between Agent modes. Cmd+Shift+Backspace stops a response that is still running. ⌘R then ⌘S opens the shortcut list, so you can check what each key is bound to."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Shortcut on Mac",
+        "What it does in current Cursor"
+      ],
+      "rows": [
+        [
+          "⌘K or ⌘L",
+          "Sends the selected code to Agent with those lines referenced"
+        ],
+        [
+          "⌘I",
+          "Opens the Agent panel"
+        ],
+        [
+          "⇧Tab",
+          "Cycles through Agent, Ask, Plan and Debug modes"
+        ],
+        [
+          "⌘⇧⌫",
+          "Cancels a response that is still generating"
+        ],
+        [
+          "⌘R then ⌘S",
+          "Opens the keyboard shortcut list"
+        ]
+      ],
+      "caption": "Shortcuts as listed in Cursor's inline edit and keyboard shortcut docs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cmd+K shows up twice in Cursor's shortcut reference. The list gives it as Toggle Sidepanel under General, and as Add selection to new chat under code selection. Those entries conflict with the help page, which says Cmd+K sends the selection to Agent. Treat the help page as current. If Cmd+K opens the side panel for you, your shortcut is bound differently, and you can change it in the list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much code to select before you press Cmd+K"
+    },
+    {
+      "type": "paragraph",
+      "text": "The selection sets the scope of the edit. Select too little and Agent may miss the context it needs. Select too much and the diff gets long and hard to read. A good rule is the smallest block that holds the whole change, plus a few lines around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A single line works when the fix is local, such as a wrong comparison operator or a typo in a variable name. A whole function works when the change touches its return value or its branches. A whole file works only when the change needs the full structure. For that last case, say so in the instruction, and check every changed line in the diff."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: fixing one function with Cmd+K"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you have a short function that crashes when the input is empty. Select the whole function. Press Cmd+K. In the Agent chat, type: return an empty list when the input is empty, and keep the rest of the logic the same. Press Return. Agent works on the lines you sent and shows its edit in the diff view. Read the change before you keep it, and check that nothing outside the function moved."
+    },
+    {
+      "type": "paragraph",
+      "text": "The instruction matters more than the key. A clear request gives a small diff. A vague one, such as make this better, gives Agent no target. You may get a large rewrite back, which takes longer to review and is harder to undo cleanly. Ask for one change at a time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A second example: fixing a SQL query"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose a query returns duplicate rows after a join. Select the query text, press Cmd+K, and type: keep one row per order_id, and keep the same columns. Agent sees the lines you selected. Check the new query by reading the join and the grouping. Then run it against a test database before you trust the result."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep real customer data out of the chat. A small sample of rows usually shows the same problem. If the query needs production data to reproduce the bug, describe the shape of the data instead of pasting it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to write a first instruction that works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Say what the code should do after the change, in one plain sentence.",
+        "Name anything that must stay the same, such as the function name or the return type.",
+        "Mention the language or framework if the selection is short and unclear.",
+        "Ask for one change at a time, then review it before you ask for the next."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Those four habits cover most cases. If the first result misses, send a follow-up in the same chat that names the exact line that is wrong. Agent can then correct that line without touching the rest of the code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Review the diff and reject unwanted edits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Agent shows its edits in the diff view. The docs say you review each change there and reject the ones you don't want, one at a time. They don't describe a separate accept button in the current pages, so look at the controls in the diff panel in your version. Pay the closest attention to edits outside your selection, since those are the ones that surprise people."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you keep anything, run through a short check. Did the function name stay the same? Did the return type change? Did any file outside your selection change? Does the code still run your tests? Each answer should be yes before you move on."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the whole result is wrong, don't patch it by hand right away. Undo first, then send a sharper instruction. Patching a bad edit can leave you with a mix of your fix and Agent's guess, which is harder to check."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Undo an edit with Restore Checkpoint"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hover over an earlier message in the Agent chat. Click Restore Checkpoint in the bottom right corner of that message. Cursor reverts the files to that point. The docs say this reverts files only and does not remove messages, so the conversation stays visible."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a shorter conversation, fork the chat from an earlier message instead. Forking suits a chat that has become noisy. Restore Checkpoint suits a case where the files are wrong. If you have your own edits in the same file, save a copy first, because the rollback reaches those files too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Agent, Ask, Plan and Debug modes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press Shift+Tab to cycle the modes, or use the mode picker. Each mode starts a fresh context, so details from the last mode do not carry over. Pick the mode before you type, since the mode shapes what Agent is allowed to do."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Agent reads your code and edits files.",
+        "Ask is read-only. It answers questions and does not edit anything.",
+        "Plan proposes a plan and edits after you approve it.",
+        "Debug works on a problem and can edit files."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Ask when you want an explanation first. Switch to Agent once you know exactly what should change. Plan helps when the change spans several parts of the code and you want to check the approach before any file changes."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Send terminal output to Agent"
+    },
+    {
+      "type": "paragraph",
+      "text": "The old Cmd+K habit also covered the terminal. A Cursor staff member wrote on the community forum that the closest replacement is Agent. To work from terminal output, select it and press Cmd+L first, then ask your question. The same post says updating Cursor won't bring the old behavior back."
+    },
+    {
+      "type": "paragraph",
+      "text": "Terminal output suits error messages well. Select the lines that show the error, send them to Agent, and ask what caused it. Then check the answer against the code before you change anything."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Cmd+K does nothing or does something else"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the shortcut list. Press ⌘R then ⌘S, or press ⌘⇧P and search for Keyboard Shortcuts. Look up Cmd+K and Cmd+L there. Cursor says every keybinding can be remapped in that list. Cursor's docs don't give a Cursor > Settings path for shortcuts, so use the Command Palette route rather than guessing a menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "Also check for a clash with another app. A utility or a system shortcut can claim the same key combination before Cursor sees it. Test the key in a plain text file in Cursor. If it works there, the problem is likely the selection or the file you were in."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with Cmd+K on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pressing Cmd+K with nothing selected. Select the code first, so Agent gets the lines you mean.",
+        "Asking for a rewrite of a whole file when only one function needs to change.",
+        "Accepting the result without reading the diff view, then finding an unrelated edit later.",
+        "Expecting Restore Checkpoint to delete chat messages. It only reverts files.",
+        "Following a tutorial that describes an inline dialog. The current docs describe Agent.",
+        "Switching modes mid-task and expecting the earlier context to carry over. Each mode starts fresh."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these come from old habits. The fix is the same each time. Select the code, say what you want, and read the diff before you keep anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the official docs confirm and what they don't"
+    },
+    {
+      "type": "paragraph",
+      "text": "The help page and the overview docs agree on the core workflow. Cmd+K sends selected code to Agent, you type the instruction, and you review the edits in the diff view. Cursor's own pages confirm those steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "Several details are not confirmed. No Mac menu path for shortcuts appears in the docs, so the Command Palette route is the one to use. The docs also don't name the Cursor version that removed the old dialog. Cursor's changelog lists dates, not version numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor 3.0 came out on April 2, 2026 and introduced the Agents Window. The changelog's newest entry is dated Nov 6, 2026, and it doesn't mention Cmd+K. Check which version your install runs before you rely on any single step here."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Try the worked example on a small function in a file you can afford to change. Press ⌘K, read the diff, and use Restore Checkpoint once so you know how undo works before you need it. Then open the shortcut list and confirm what ⌘K does on your machine."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "When an instruction goes wrong, change the instruction before you change the code. A narrower request in the same chat is usually faster than a manual fix on top of a bad edit."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Cmd+K still open an inline edit box in Cursor on Mac?",
+      "answer": "No. Cursor's help page says Cmd+K used to open inline edit, which has been replaced by its Agent workflow. On a Mac, Cmd+K now sends the selected code to Agent."
+    },
+    {
+      "question": "What is the difference between Cmd+K and Cmd+L?",
+      "answer": "The docs say both keys send the selection to Agent with those lines referenced. The forum post names Cmd+L for terminal output, so use whichever key you remember and check the shortcut list if one does something else."
+    },
+    {
+      "question": "Why does Cmd+K appear twice in Cursor's shortcut reference?",
+      "answer": "The keyboard reference lists Cmd+K as Toggle Sidepanel and as Add selection to new chat. Those entries conflict with the help page, so treat the help page as current and check your own shortcut list."
+    },
+    {
+      "question": "Can I get the old inline edit dialog back?",
+      "answer": "The current docs do not describe that dialog. A Cursor staff member wrote on the forum that updating won't bring it back. Use Agent with the selection for the same kind of change."
+    },
+    {
+      "question": "Does Restore Checkpoint delete my chat history?",
+      "answer": "No. Restore Checkpoint reverts files only and does not remove messages. If you want a shorter conversation, fork the chat from an earlier message instead."
+    },
+    {
+      "question": "Which mode should I use when I only have a question about code?",
+      "answer": "Use Ask. It is read-only, so it explains code without editing files. Switch to Agent when you know the change you want to make."
+    },
+    {
+      "question": "Does Cursor use the same keys on Windows?",
+      "answer": "The docs say Ctrl+K and Ctrl+L do the same job on Windows and Linux. This guide covers the Mac keys, so use the same steps with Ctrl in place of Cmd."
+    },
+    {
+      "question": "Is there a browser version of inline edit?",
+      "answer": "Cursor's docs do not describe a browser version of inline edit. The page at cursor.com/agents hosts Cloud Agents in the browser, which is a separate feature."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cursor Help: inline-edit page (titled Agent mode)",
+      "url": "https://cursor.com/help/ai-features/inline-edit",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Docs: Inline edit overview",
+      "url": "https://cursor.com/docs/inline-edit/overview",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Docs: Keyboard shortcuts",
+      "url": "https://cursor.com/docs/configuration/kbd",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Docs: Inline edit terminal page",
+      "url": "https://cursor.com/docs/inline-edit/terminal",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Community Forum: 'Cmd+K Has Been Retired' thread",
+      "url": "https://forum.cursor.com/t/cmd-k-has-been-retired-from-terminal/176251",
+      "publisher": "Cursor Community Forum",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Changelog",
+      "url": "https://cursor.com/changelog",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Changelog: Cursor 3.0 'New Cursor Interface'",
+      "url": "https://cursor.com/changelog/3-0",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "task": "Send selected code to Cursor Agent with Cmd+K on Mac",
+  "appliesTo": "Cursor desktop app on macOS, as documented on 2026-11-08",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Cursor desktop app installed on macOS",
+    "A project open with a file you can safely change",
+    "Cursor's keyboard shortcut list available with ⌘R then ⌘S if you need to check Cmd+K"
+  ],
+  "steps": [
+    {
+      "name": "Open the file you want to change",
+      "text": "Open the project in Cursor and open the file that holds the code. Save the file first, so you have a clean copy to compare against after the edit. Keep the file open while you work, since the diff view refers to it."
+    },
+    {
+      "name": "Select the code",
+      "text": "Select the lines you want Agent to see. Click and drag with the mouse, or hold Shift and press the arrow keys. Select the whole function when the change touches the whole function. A plain cursor position has no selection to send.",
+      "tip": "Select a little more than the change needs, so Agent sees the lines around it."
+    },
+    {
+      "name": "Press Cmd+K to send the selection to Agent",
+      "text": "Press ⌘K while the code is selected. Cursor sends the selection to the Agent chat, and the lines appear there as a reference. The docs say ⌘L does the same thing, so use whichever key you remember.",
+      "shortcut": "⌘K"
+    },
+    {
+      "name": "Type your instruction",
+      "text": "Type what should change, in plain words. Say what the code should do after the edit, and name anything that must stay the same. Keep it to one change, so the diff stays easy to read."
+    },
+    {
+      "name": "Press Return to run it",
+      "text": "Press Return to send the instruction. Agent starts working on the change. Watch the response in the chat while it runs, and do not edit the selected lines until it finishes.",
+      "shortcut": "Return"
+    },
+    {
+      "name": "Stop a response that runs the wrong way",
+      "text": "If Agent heads in the wrong direction, stop it. The keyboard reference lists ⌘⇧⌫ (Cmd+Shift+Backspace) as Cancel generation, and the Stop button halts a task too. Then send a corrected instruction in the same chat.",
+      "shortcut": "⌘⇧⌫"
+    },
+    {
+      "name": "Read every change in the diff view",
+      "text": "Open the diff view that shows Agent's edits. Read each change against the original. Check that any edit outside your selection is one you actually want. Reject any change you don't want, one edit at a time."
+    },
+    {
+      "name": "Keep the changes you want",
+      "text": "The docs describe rejecting edits one at a time in the diff view. They do not describe a separate accept button in the current pages. Look at the controls in the diff panel in your version, and leave the good changes in place."
+    },
+    {
+      "name": "Undo with Restore Checkpoint if the result is wrong",
+      "text": "Hover over an earlier message in the Agent chat. Click Restore Checkpoint in the bottom right corner of that message. Cursor reverts the files to that point. Messages stay in the chat, so you can still read what you asked."
+    },
+    {
+      "name": "Switch modes with Shift+Tab",
+      "text": "Press Shift+Tab to cycle through Agent, Ask, Plan and Debug. Ask is read-only, so it answers questions and does not edit files. Plan edits only after you approve its plan. Each mode starts a fresh context.",
+      "shortcut": "⇧Tab"
+    },
+    {
+      "name": "Open the Agent panel with Cmd+I",
+      "text": "Press ⌘I to open the Agent panel when you want to start a request without selecting code first. You can also use the mode picker in the panel. Keep using the same chat when you are continuing the same change.",
+      "shortcut": "⌘I"
+    },
+    {
+      "name": "Send terminal output to Agent",
+      "text": "Select the terminal output you want to discuss, then press ⌘L first. Type your question in Agent. A Cursor staff member wrote on the forum that this is the closest replacement for the old Cmd+K terminal habit.",
+      "shortcut": "⌘L"
+    },
+    {
+      "name": "Open the keyboard shortcut list",
+      "text": "Press ⌘R then ⌘S to open the keyboard shortcut list. You can also press ⌘⇧P, type Keyboard Shortcuts, and choose it. Find the Cmd+K and Cmd+L entries and check what each one is bound to.",
+      "shortcut": "⌘⇧P",
+      "menuPath": [
+        "Command Palette (⌘⇧P)",
+        "Keyboard Shortcuts"
+      ]
+    },
+    {
+      "name": "Remap Cmd+K if another command takes it",
+      "text": "Change the binding in that list to a key combination you don't use. Cursor says every keybinding can be remapped there. Then press the new key in a code file and confirm that Agent opens with the selection."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Send selected code to Agent",
+      "keys": "⌘K or ⌘L"
+    },
+    {
+      "action": "Open the Agent panel",
+      "keys": "⌘I"
+    },
+    {
+      "action": "Cycle Agent, Ask, Plan and Debug modes",
+      "keys": "⇧Tab"
+    },
+    {
+      "action": "Cancel generation",
+      "keys": "⌘⇧⌫"
+    },
+    {
+      "action": "Send selected terminal output to Agent",
+      "keys": "⌘L"
+    },
+    {
+      "action": "Open the keyboard shortcut list",
+      "keys": "⌘R then ⌘S"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⌘⇧P"
+    },
+    {
+      "action": "Toggle Agent layout",
+      "keys": "⌘E"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Cmd+K opens the side panel instead of sending code to Agent",
+      "fix": "The shortcut reference lists Cmd+K as Toggle Sidepanel too. Open the shortcut list with ⌘R then ⌘S, find Cmd+K, and rebind it if it is set to something else."
+    },
+    {
+      "problem": "Agent opens with no code referenced",
+      "fix": "You probably pressed the key without a selection. Select the lines first, then press ⌘K again. A plain cursor position has nothing to send."
+    },
+    {
+      "problem": "The edit changed code you never selected",
+      "fix": "Reject that change in the diff view. Then send a narrower instruction that names the function. If the whole result is wrong, use Restore Checkpoint on the message before the edit."
+    },
+    {
+      "problem": "Agent forgets a request you made in another mode",
+      "fix": "Each mode starts a fresh context. Repeat the important details in the new request, or stay in the same mode for the whole change."
+    },
+    {
+      "problem": "You want the old inline edit dialog back",
+      "fix": "The current docs do not describe that dialog. A Cursor staff member said updating won't bring it back. Use Agent with a selection instead."
+    },
+    {
+      "problem": "Cmd+K does nothing on your Mac",
+      "fix": "Check for a clash with another app or a system shortcut, then test the key in a plain text file in Cursor. If it works there, the problem is likely the selection or the file."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Restore Checkpoint button?",
+    "capability": "point",
+    "result": "Lazur circles the Restore Checkpoint button and labels it on your screen, so you know where to click.",
+    "shell": "code",
+    "context": "Cursor open on a Mac, with an Agent chat and an earlier message you want to undo",
+    "output": "Lazur answers out loud where the button sits, then explains that it reverts files only and keeps the messages. You click the button yourself. Lazur does not click for you.",
+    "pointsAt": "Restore Checkpoint"
+  },
+  "type": "howto",
+  "slug": "use-inline-edit-with-cmd-k-in-cursor",
+  "app": "cursor",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-inline-edit-with-cmd-k-in-cursor/cursor-cmd-k-inline-edit-mac-1-7ad86d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer editing code on a Mac laptop for a cursor cmd k inline edit task",
+      "caption": "Editing code on a Mac laptop",
+      "keywords": [
+        "cursor cmd k inline edit mac",
+        "Cursor",
+        "use inline edit with Cmd+K",
+        "Mac",
+        "developer coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-inline-edit-with-cmd-k-in-cursor/cursor-cmd-k-inline-edit-mac-2-5ef544.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer reviewing code changes on a laptop screen during a cursor cmd k inline edit review",
+      "caption": "Reviewing code changes before keeping them",
+      "keywords": [
+        "cursor cmd k inline edit mac",
+        "Cursor",
+        "use inline edit with Cmd+K",
+        "Mac",
+        "code review screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Elchinator",
+        "url": "https://pixabay.com/users/Elchinator-10722855/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/source-code-software-computer-4280758/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-inline-edit-with-cmd-k-in-cursor/cursor-cmd-k-inline-edit-mac-3-be7d7f.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person working at a Mac laptop on a desk, checking a cursor cmd k inline edit result",
+      "caption": "Checking an edit at a Mac desk",
+      "keywords": [
+        "cursor cmd k inline edit mac",
+        "Cursor",
+        "use inline edit with Cmd+K",
+        "Mac",
+        "Mac laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "cursor cmd k inline edit mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "cursor inline edit mac": 1,
+      "cursor cmd k not working": 1,
+      "cursor cmd l agent mac": 1,
+      "cursor restore checkpoint mac": 1,
+      "cursor keyboard shortcuts mac": 1,
+      "cursor agent modes shift tab": 1,
+      "cursor cmd i agent mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

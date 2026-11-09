@@ -1,0 +1,558 @@
+{
+  "title": "Excel for urban planners on Mac: formulas, pivot tables, and limits in Microsoft 365",
+  "metaTitle": "Excel for urban planners on Mac: formulas and pivot tables",
+  "description": "Excel for urban planners on Mac: pivot tables, formulas, row limits, Power Query gaps, and how Lazur helps you by voice while you work.",
+  "targetKeyword": "excel for urban planners on mac",
+  "secondaryKeywords": [
+    "excel for urban planners",
+    "excel for planners Mac",
+    "pivot table zoning Excel Mac",
+    "Power Query Excel for Mac",
+    "Excel row limit for large datasets",
+    "Excel for GIS data counts"
+  ],
+  "intro": "Excel for urban planners on Mac is a tabular tool that sits beside GIS and survey software. Use it to count parcels, pivot zoning data, clean survey exports, and build the tables that go into a staff report. It is not a mapping tool, so keep the spatial work in GIS and bring the numbers across.",
+  "tldr": [
+    "Excel for Mac handles counts, pivots, and cleanup well. Rows stop at 1,048,576 per worksheet, and large files slow down long before that.",
+    "Power Query on Mac can open and shape data, but you cannot author queries there. Check for version 16.69 (23010700) or later.",
+    "Build pivots from named tables, keep a raw data tab untouched, and watch for text-stored numbers and dropped leading zeros.",
+    "Lazur helps by voice in any Mac app. It points, explains, guides you one click at a time, and dictates notes. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows per Excel worksheet, the hard limit Microsoft lists for one sheet",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Microsoft Support: Excel specifications and limits"
+    },
+    {
+      "value": "100,000",
+      "label": "rows where City Data Intelligence says Excel slows to a crawl on large datasets",
+      "sourceUrl": "https://www.citydataintelligence.com/the-best-data-tools-for-urban-planners-in-2026-ranked-by-use-case/",
+      "sourceTitle": "City Data Intelligence: The Best Data Tools for Urban Planners in 2026"
+    },
+    {
+      "value": "76 percent",
+      "label": "of companies still use Excel for planning, alone or with other tools, in a corporate finance survey of 1,272 respondents",
+      "sourceUrl": "https://barc.com/news/the-planning-survey-24-the-most-comprehensive-analysis-of-the-planning-software-market/",
+      "sourceTitle": "BARC: The Planning Survey 24"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You do not need Excel to make maps. The maps come from GIS, the parcel data comes from the county assessor, and survey answers come from a form. Excel sits in the middle. It is where you filter a parcel export, count units by zoning district, and check the math before a number reaches a staff report."
+    },
+    {
+      "type": "paragraph",
+      "text": "City Data Intelligence calls Excel the most universally used data tool in local government. It credits Excel's familiarity, accessibility, and flexibility for ad hoc analysis. Those are the reasons most planners keep a workbook open all day, even when a bigger system exists."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits you hit on a Mac"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel handles a lot of rows, but it has a ceiling. One worksheet holds 1,048,576 rows and 16,384 columns, according to Microsoft. A county parcel file can pass that line. Rows past the limit do not load, so check the count before you open the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed shows up first. City Data Intelligence says a dataset of more than 100,000 rows slows Excel to a crawl. You feel it in filters, lookups, and pivot refreshes. Move the heavy joins out of the workbook when the file gets this big."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Figure",
+        "What it means for planners"
+      ],
+      "rows": [
+        [
+          "Rows per worksheet",
+          "1,048,576",
+          "Split county files by year or jurisdiction before you open them."
+        ],
+        [
+          "Columns per worksheet",
+          "16,384",
+          "Wide survey exports may need a transposed copy in a second tab."
+        ],
+        [
+          "Slowdown point",
+          "100,000 rows",
+          "Filters and lookups lag at this size. Plan for it early."
+        ],
+        [
+          "32-bit Excel memory",
+          "2 GB shared",
+          "The workbook and add-ins share one process address space."
+        ],
+        [
+          "Data Model on 32-bit",
+          "500 to 700 MB",
+          "A rough share of that 2 GB. Adding tables makes the file larger."
+        ]
+      ],
+      "caption": "Limits from Microsoft Support and City Data Intelligence. Check your version before you plan around them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your version matters. A 32-bit copy works within the 2 GB process limit. A 64-bit copy has no fixed file size cap, and memory becomes the constraint. Open Excel > About Excel to see which build you run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac: what works and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query pulls data from files and tables, then cleans it before it lands in a sheet. This is useful when a county sends a new export every quarter. The Mac version covers less ground than the Windows version, so know the gaps before you build a workflow around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says authoring in the Power Query Editor is not available in Excel for Mac. You can still open the editor to shape data. The shaping editor is generally available to Microsoft 365 subscribers on version 16.69 (23010700) or later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Import sources on Mac include Excel Workbook, Text/CSV, XML, JSON, SQL Server Database, SharePoint Online List, OData, Blank Table, and Blank Query. The SQL Server source appears only in Insiders Beta. Other databases need an ODBC driver on the Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Practical rule: use Power Query on the Mac to open and reshape a CSV that arrives on a schedule. If a query needs new steps, ask a colleague on Windows to author it. Microsoft says moving a VBA module from Windows to Mac takes two steps, so test it before the deadline."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for zoning and land use counts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables are the fastest way to count units by district. They also break quietly when the source data is messy. Start with a clean table, then build the pivot from it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click any cell in the parcel data. Press ⌘ T to turn the range into a table.",
+        "Name the table as you create it. Microsoft's October 2026 update says that option now reaches Excel for Mac.",
+        "Go to Insert > PivotTable, and pick the table name, not a cell range address.",
+        "Drag Zoning District to Rows and Units to Values. Set the Values field to Sum.",
+        "Drag Jurisdiction to Filters, so one file can answer many questions."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Common mistake: a unit count stored as text. The pivot then counts rows instead of adding units. Select the column and check the number format on the Home tab before you build the pivot."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another trap is a blank row inside the table. Excel stops the table at the blank line, and the pivot misses everything below it. Delete the gap, then refresh with Data > Refresh All."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full walkthrough, see [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for cleaning parcel and permit data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most planning workbooks need a handful of formulas. These cover the usual cases in a county file."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "TRIM removes extra spaces. Use =TRIM(A2) when an export adds trailing spaces to parcel IDs.",
+        "COUNTIFS counts rows that meet several conditions. Use it to count approved permits in one district.",
+        "SUMIFS adds a column only where the conditions match, such as total units in one zone.",
+        "XLOOKUP matches a parcel ID from one table to another. It ships with Microsoft 365, so older Office builds will show an error."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Leading zeros are a trap. Excel drops the zero in a parcel ID like 0012345 when it reads a CSV as numbers. Format the column as Text before you import, or set the type to text in Power Query."
+    },
+    {
+      "type": "paragraph",
+      "text": "Logic buried in cell formulas is hard to audit. City Data Intelligence names this as a common pain point. Keep a notes tab that records each formula's purpose and the date you last checked it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a zoning capacity check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say the planning commission asks how many units a district could hold after a rezoning. Work through it in this order. The steps are simple. The mistakes are in the inputs."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Put lot area in one column and allowed density in another. Confirm both use the same unit, such as acres or square feet.",
+        "Add a helper column that multiplies lot area by density. Format it as Number, not Text.",
+        "Add a constraint column. Lots with a recorded wetland or easement flag get a zero.",
+        "Sum the helper column with SUMIFS, so only eligible lots count toward the total.",
+        "Paste the total into a notes tab with the source file name and the export date."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The usual mistake is applying density to gross acreage. Many codes measure net acreage, which removes streets and constraints. Read the ordinance text before you pick the column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check your total against the GIS count. If the two differ, the gap is usually a lot that failed the constraint test, or a mismatch in the join. Do not trust the Excel total until you can explain the gap."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Survey data, public input, and forms"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Public outreach often starts with a form. APA Planning says planners can build surveys with Excel-based templates called XLSForms, using ODK, an open-source tool. They then deploy the form to phones with ODK Collect. The spreadsheet becomes the form design, so the logic lives in one place."
+    },
+    {
+      "type": "paragraph",
+      "text": "When the responses come back, export them to Excel. Rename headers to plain words, remove test entries, and keep the raw export untouched in its own tab. Work only on copies after that."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Monthly reports that rebuild every cycle"
+    },
+    {
+      "type": "paragraph",
+      "text": "A report built by hand gets rebuilt each cycle. City Data Intelligence lists this as a common pain point for planning offices. You can cut the rebuild time by fixing the structure of the workbook once."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep one raw data tab per cycle. Never type over it.",
+        "Make each raw tab a named table, so formulas read the table name instead of a cell address.",
+        "Build the summary tab with pivots or SUMIFS that point at the table names.",
+        "Save a PDF copy for the commission packet, and keep the workbook as the source."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "To save the PDF, use File > Save As and choose PDF in the format menu. Keep the workbook next to it, so a reviewer can trace each number back."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version and file risks to check now"
+    },
+    {
+      "type": "paragraph",
+      "text": "Old Office installs cause real trouble. TidBITS reported that Office 2019 for Mac would go read-only on 13 July 2026. In that mode you can view and print, but you cannot edit, save, or create new files."
+    },
+    {
+      "type": "paragraph",
+      "text": "TidBITS readers reported that some copies still saved files after that date, and that license checks may happen only monthly. Those are reader reports, not confirmed facts. Do not rely on them for a commission deadline."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your build under Excel > About Excel. If you still run Office 2019, move the active workbooks to a supported Microsoft 365 install before the next hearing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps inside Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It listens and looks only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. This helps when a ribbon layout changes between versions. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It points and explains. Your hands do the clicks, and the workbook stays yours."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate text at the cursor. Dictation works well for the notes that sit beside a workbook, such as a caveat or a line for the staff report. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is not used to train AI models."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Excel is the wrong tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel is good for the middle of the job. It is weaker for spatial work and for large automated pipelines. City Data Intelligence recommends Python or SQL for large or automated work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use GIS for geometry, such as parcel overlap, buffers, and distance to transit. Use Excel for the counts that sit on top of that geometry. Move data between them through a clean export, not a copy and paste from a map screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a workbook slows down every time you refresh it, move that step out. A script or database can run the heavy part, and Excel can keep the summary."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Excel workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one workbook you already maintain. Check its row count against the limit. Replace one hand-typed total with a formula. Name the table, then build one pivot from it."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a voice helper while you work, [download Lazur for the Mac](/download). Trial and plan details are on the [pricing page](/pricing). For Excel-specific help, read the [Excel page](/apps/excel)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac include Power Query?",
+      "answer": "Yes, but with limits. Microsoft says you can open the Power Query shaping editor on Excel for Mac, but authoring is not available there. The editor is generally available to Microsoft 365 subscribers on version 16.69 (23010700) or later. Check your build under Excel > About Excel."
+    },
+    {
+      "question": "How many rows can Excel for Mac hold?",
+      "answer": "One worksheet holds 1,048,576 rows and 16,384 columns, according to Microsoft. Performance drops well before that point. City Data Intelligence says a dataset of more than 100,000 rows slows Excel to a crawl, so split large county files early."
+    },
+    {
+      "question": "Can I make a pivot table in Excel on Mac?",
+      "answer": "Yes. Select a cell in a clean table, then go to Insert > PivotTable. Use the table name as the source. Blank rows and numbers stored as text are the two most common causes of wrong totals."
+    },
+    {
+      "question": "Should I use Excel or GIS for planning analysis?",
+      "answer": "Use both for different jobs. GIS handles geometry, such as overlap, buffers, and distance. Excel handles counts, pivots, and reports built on top of that geometry. City Data Intelligence recommends Python or SQL for large or automated work."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It points at things, explains formulas, guides you one click at a time, and dictates text. You make the changes in Excel yourself."
+    },
+    {
+      "question": "Will Office 2019 for Mac still work for planning reports?",
+      "answer": "TidBITS reported that Office 2019 for Mac would go read-only on 13 July 2026. Read-only mode lets you view and print, but not edit or save. Reader reports conflict on whether some copies still save. Move active work to a supported Microsoft 365 install."
+    },
+    {
+      "question": "Does Lazur see my data when I ask a question?",
+      "answer": "Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer your question. They are not stored, and content is not used to train AI models."
+    },
+    {
+      "question": "How common is Excel for planning work?",
+      "answer": "A BARC survey of 1,272 respondents found 76 percent of companies still use Excel for planning, alone or with other tools. That study covers corporate finance planning, not urban planning. Treat it as a proxy, not a planning benchmark."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Microsoft Support: Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Tech Community: What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "TidBITS: Office 2019 for Mac Goes Read-Only on 13 July 2026",
+      "url": "https://tidbits.com/2026/06/01/office-2019-for-mac-goes-read-only-on-13-july-2026/",
+      "publisher": "TidBITS",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "City Data Intelligence: The Best Data Tools for Urban Planners in 2026",
+      "url": "https://www.citydataintelligence.com/the-best-data-tools-for-urban-planners-in-2026-ranked-by-use-case/",
+      "publisher": "City Data Intelligence",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "APA Planning: 5 Tech Tools for Building Relevant and Reliable Urban Data Infrastructure",
+      "url": "https://www.planning.org/planning/2025/sep/5-tech-tools-for-building-relevant-and-reliable-urban-data-infrastructure/",
+      "publisher": "American Planning Association",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "BARC: The Planning Survey 24",
+      "url": "https://barc.com/news/the-planning-survey-24-the-most-comprehensive-analysis-of-the-planning-software-market/",
+      "publisher": "BARC",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, walk me through a pivot table of units by zoning district.",
+    "capability": "guide",
+    "result": "Lazur names each menu, circles it, and waits for your click before the next step.",
+    "shell": "sheet",
+    "context": "Parcel export open in Excel for Mac, with units in one column",
+    "output": "Lazur points at Insert > PivotTable and waits. You click it, then Lazur circles the next field to drag into Rows. Each step waits for you, so the table builds under your hands.",
+    "pointsAt": "Insert > PivotTable"
+  },
+  "tasks": [
+    {
+      "say": "What does this column header mean in this file?",
+      "result": "Lazur reads the header in context and explains it out loud, so you know what the county meant.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Parcel ID column?",
+      "result": "Lazur draws a circle and a label around the column, so you find it without scanning the sheet.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through a pivot table of units by zoning district.",
+      "result": "Lazur names each menu and waits for your click before it moves to the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why does this COUNTIFS return zero?",
+      "result": "Lazur explains the criteria mismatch, such as a trailing space in a zoning code, and where to fix it.",
+      "capability": "explain"
+    },
+    {
+      "say": "Find the state definition of net acreage for this county.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary with a report.",
+      "capability": "research"
+    },
+    {
+      "say": "The wetland flag needs a field check before the hearing.",
+      "result": "Hold fn and Lazur types clean text at the cursor, so the caveat lands in the staff note.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a two-line cover note for this table to the planning commission.",
+      "result": "Lazur drafts the text and types it where you need it, so you can edit before you send.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to re-export the parcel file on Friday.",
+      "result": "Lazur adds an Apple Reminders item, so the refresh does not depend on memory.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "urban-planners-excel",
+  "role": "urban-planners",
+  "app": "excel",
+  "roleName": "Urban planners",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/urban-planners-excel/excel-for-urban-planners-on-mac-1-667cdc.jpg",
+      "width": 1280,
+      "height": 719,
+      "alt": "Urban planner working on a Mac laptop, checking a spreadsheet of parcel data for a city project",
+      "caption": "Excel for urban planners on Mac starts with clean parcel tables.",
+      "keywords": [
+        "excel for urban planners on mac",
+        "Excel",
+        "Urban planners",
+        "Mac",
+        "urban planner laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-keyboard-technology-2586933/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/urban-planners-excel/excel-for-urban-planners-on-mac-2-8c37aa.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Planners and residents gathered at a public meeting about a neighborhood plan, with printed maps on a table",
+      "caption": "Survey results and public input often flow back into a workbook.",
+      "keywords": [
+        "excel for urban planners on mac",
+        "Excel",
+        "Urban planners",
+        "Mac",
+        "city planning meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Nickbar",
+        "url": "https://pixabay.com/users/Nickbar-1177651/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/time-clock-hour-minutes-hours-4484398/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/urban-planners-excel/excel-for-urban-planners-on-mac-3-d4beb0.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a desk reviewing a spreadsheet on a computer while preparing a report for planning staff",
+      "caption": "Monthly reports are easier when the workbook has one fixed structure.",
+      "keywords": [
+        "excel for urban planners on mac",
+        "Excel",
+        "Urban planners",
+        "Mac",
+        "office desk spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for urban planners on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "excel for urban planners": 7,
+      "excel for planners Mac": 1,
+      "pivot table zoning Excel Mac": 1,
+      "Power Query Excel for Mac": 1,
+      "Excel row limit for large datasets": 1,
+      "Excel for GIS data counts": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

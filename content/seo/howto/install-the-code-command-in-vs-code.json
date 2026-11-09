@@ -1,0 +1,530 @@
+{
+  "title": "How to install the code command in VS Code on Mac: Command Palette steps",
+  "metaTitle": "How to Install the Code Command in VS Code on Mac",
+  "description": "How to install the code command in VS Code on Mac: open the Command Palette, run the Shell Command, then test it with code . in Terminal.",
+  "targetKeyword": "how to install the code command in vs code on mac",
+  "secondaryKeywords": [
+    "code command vs code mac",
+    "install code command mac",
+    "vs code shell command path",
+    "code command not found mac",
+    "vs code command palette mac",
+    "open vs code from terminal mac",
+    "vs code path zsh bash mac"
+  ],
+  "intro": "To install the code command in VS Code on Mac, open the Command Palette with ⇧⌘P, run \"Shell Command: Install 'code' and optionally 'copilot' commands in PATH\", then restart Terminal. Type code . in any project folder to test it, and VS Code opens that folder.",
+  "tldr": [
+    "Open the Command Palette with ⇧⌘P while VS Code is the active app.",
+    "Run Shell Command: Install 'code' and optionally 'copilot' commands in PATH.",
+    "At the Copilot CLI prompt, Yes adds code and Copilot CLI, No adds only code, and Escape adds neither.",
+    "Quit and reopen Terminal, then run code . inside a project folder to test.",
+    "If the command is missing, add VS Code's bin folder to your shell profile by hand."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all 2025 Stack Overflow survey respondents said they use Visual Studio Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the code command does on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The code command is a launcher. You type it in Terminal, and it opens VS Code. Type code . inside a project folder, and the editor opens that folder as a workspace. Without the command, you open VS Code from Applications and hunt for the folder by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code ships weekly releases and updates itself. You set up the command once, then use it from any folder on your Mac. That is the whole point of the setup, so it is worth doing right the first time."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Mac and your VS Code app first"
+    },
+    {
+      "type": "paragraph",
+      "text": "You need the desktop app. The web version at vscode.dev runs in a browser and has no terminal, so it cannot give you a code command. Install the Mac app from the official download page first."
+    },
+    {
+      "type": "paragraph",
+      "text": "The download page lists Universal, Intel chip, and Apple silicon builds. Pick the build that matches your chip. If you are unsure, the Universal build covers both chip types. Not sure which chip you have? Choose Apple menu > About This Mac and read the chip name."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "VS Code sits in your Applications folder, not still inside the downloaded disk image.",
+        "You have opened VS Code from Applications at least once.",
+        "The Command Palette opens when you press ⇧⌘P in the VS Code window.",
+        "You know whether you use zsh or bash, in case you need the manual steps."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run the Shell Command from the Command Palette"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Command Palette holds most of VS Code's commands. Open it with ⇧⌘P while the VS Code window is active. A search box appears near the top of the window. Type shell command, and the list narrows to a few matches."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick Shell Command: Install 'code' and optionally 'copilot' commands in PATH. The official Mac setup page gives this as the current command. Press Return to run it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the Copilot CLI prompt means"
+    },
+    {
+      "type": "paragraph",
+      "text": "After you run the Shell Command, VS Code may ask about GitHub Copilot CLI. Your answer decides what gets installed. Check the table, then pick the answer that matches what you need."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Your answer",
+        "What gets installed",
+        "Pick it when"
+      ],
+      "rows": [
+        [
+          "Yes",
+          "Copilot CLI and the code command",
+          "You want the Copilot CLI tool too"
+        ],
+        [
+          "No",
+          "The code command only",
+          "You want code and nothing else"
+        ],
+        [
+          "Escape",
+          "Neither command",
+          "You want to decide later"
+        ]
+      ],
+      "caption": "Choices at the Copilot CLI prompt, per the VS Code Mac setup docs."
+    },
+    {
+      "type": "paragraph",
+      "text": "The success message only confirms the code command. The docs warn that Copilot CLI installs separately from PATH. Wait for the Copilot CLI terminal to finish before you assume it worked. If you do not use Copilot, choose No and skip the extra install."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test the code command in Terminal"
+    },
+    {
+      "type": "paragraph",
+      "text": "A new PATH value only takes effect in a new Terminal session. The docs say to restart the terminal, so do that now. Quit Terminal with Terminal > Quit Terminal or ⌘Q. Then reopen it from Applications > Utilities > Terminal."
+    },
+    {
+      "type": "paragraph",
+      "text": "Move into a folder. For example, run cd ~/Documents/my-project, and replace the path with your own folder. Then run code . and press Return. The dot stands for the current folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code should open that folder as a workspace. Look at the window title and the file list on the left. If your project files appear, the command works."
+    },
+    {
+      "type": "paragraph",
+      "text": "The FAQ adds one detail. Typing code with no folder opens VS Code with your last workspace. Typing code . opens the folder you are standing in, which is the test you want."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up PATH by hand if the command is missing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the Shell Command is missing from the list. You may see the older label, Shell Command: Install 'code' command in PATH. That label only appears when AI features are hidden or your organization disables Copilot CLI installation. In that case, the command skips the Copilot prompt."
+    },
+    {
+      "type": "paragraph",
+      "text": "The manual route adds VS Code's bin folder to your shell profile. Zsh reads ~/.zprofile. Bash reads ~/.bash_profile. Run echo $SHELL in Terminal to see which shell you use, then pick the matching file."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Add the export line to that file, then open a new Terminal window. Run which code. If it prints a path, the command is on PATH. Then run code . in a folder as before."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Honest note on the fixes",
+      "text": "The official pages do not cover errors such as command not found. The fixes in this guide come from the official PATH steps and the VS Code FAQ. Confirm each one on your own Mac before you rely on it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes when you install the code command"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Forgetting to restart Terminal, so the old PATH stays loaded in the open window.",
+        "Adding the export line twice. Check the file with cat before you edit it again.",
+        "Keeping an old code alias from an earlier VS Code version in your shell profile.",
+        "Typing code in Insiders when the Insiders command is code-insiders.",
+        "Opening vscode.dev and looking for a terminal that the web version does not have."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "VS Code Insiders, the web version, and other edge cases"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code Insiders is a separate preview build. Its command is code-insiders instead of code. The docs say to use that name for Insiders builds. If you run both editions, you can keep both commands and test each one by its own name."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shell profiles cause the most confusion. If you are not sure which file your Terminal reads, add the line to the file that matches your shell. Then open a new window and check with which code. A blank result means the line did not load."
+    },
+    {
+      "type": "paragraph",
+      "text": "The web version runs in your browser. The docs say the terminal is not available there, and the browser sandbox limits what code can run. That is why this command is a desktop feature. This is an inference from the web docs, not a line the docs state directly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How many developers use VS Code on Mac"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "In the 2025 Stack Overflow Developer Survey, 75.9% of all respondents said they use Visual Studio Code. Visual Studio, a different product, came in at 29%. The IDE question drew 26,143 responses, which the survey lists as 53.3% of respondents."
+    },
+    {
+      "type": "paragraph",
+      "text": "Those numbers measure general use. They say nothing about how many people run the code command. Treat them as context only, not as proof that the command setup is easy."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after the code command works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep your test folder. Run code . there whenever the command stops working. That check tells you fast whether PATH still holds after an update or a new Terminal setup."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want to change how the editor looks next, read [how to change the color theme in VS Code on Mac](/how-to/change-the-color-theme-in-vs-code). For notebooks and Python work, see [VS Code for data scientists on Mac](/for/data-scientists/vs-code)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does code not work in Terminal right after I install it?",
+      "answer": "Quit Terminal fully and open it again. A new PATH value only applies to new sessions. If it still fails, add the export line to ~/.zprofile for Zsh or ~/.bash_profile for Bash, then open a new window and test again."
+    },
+    {
+      "question": "Is the Shell Command the same thing as the code command?",
+      "answer": "Not quite. The Shell Command is the VS Code action that sets up the code command for you. You run it once. After that, you type code in Terminal from any folder."
+    },
+    {
+      "question": "Do I need GitHub Copilot CLI to use the code command?",
+      "answer": "No. At the Copilot CLI prompt, choose No to install only code. The docs say Copilot CLI installs separately from adding code to PATH, so skipping it does not break the command."
+    },
+    {
+      "question": "What does code . do exactly?",
+      "answer": "The dot points to the current folder. VS Code opens that folder as a workspace. Typing code with no folder opens VS Code with your last workspace, according to the VS Code FAQ."
+    },
+    {
+      "question": "Why does my Command Palette show a different label than this guide?",
+      "answer": "The older label, Install 'code' command in PATH, shows when AI features are hidden or your organization disables Copilot CLI installation. Both labels set up code. Only the longer one offers the Copilot CLI install."
+    },
+    {
+      "question": "Can I run the code command from vscode.dev?",
+      "answer": "No. The web version has no terminal, so there is nowhere to type code. Use the desktop app on your Mac for this command."
+    },
+    {
+      "question": "Does this work on both Apple silicon and Intel Macs?",
+      "answer": "The download page lists Universal, Intel chip, and Apple silicon builds, and the setup page says VS Code supports both Intel-based Macs and Macs with Apple silicon. The steps are the same on either chip."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Installing Visual Studio Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft / Visual Studio Code docs",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Command line interface in VS Code",
+      "url": "https://code.visualstudio.com/docs/editor/command-line",
+      "publisher": "Microsoft / Visual Studio Code docs",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft / Visual Studio Code docs",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code FAQ",
+      "url": "https://code.visualstudio.com/docs/supporting/faq",
+      "publisher": "Microsoft / Visual Studio Code docs",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Install the code command in VS Code on Mac",
+  "appliesTo": "VS Code desktop app on macOS, Apple silicon and Intel Macs",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code desktop app for Mac, in your Applications folder",
+    "A Mac with Apple silicon or an Intel chip",
+    "Access to Terminal, found in Applications > Utilities",
+    "A project folder to test with, such as ~/Documents/my-project"
+  ],
+  "steps": [
+    {
+      "name": "Open VS Code from Applications",
+      "text": "Open the downloaded .dmg file, drag Visual Studio Code into the Applications folder, then open the app from there. The download page lists Universal, Intel chip, and Apple silicon builds, so pick the one that matches your chip.",
+      "menuPath": [
+        "Finder",
+        "Applications",
+        "Visual Studio Code"
+      ],
+      "tip": "Eject the disk image after you drag the app, so you do not launch VS Code from it by mistake."
+    },
+    {
+      "name": "Open the Command Palette",
+      "text": "Click the VS Code window so it is active, then press ⇧⌘P. A search box opens near the top of the window.",
+      "shortcut": "⇧⌘P",
+      "menuPath": [
+        "View",
+        "Command Palette"
+      ],
+      "tip": "If the shortcut does nothing, click inside the VS Code window first. You can also choose View > Command Palette from the menu bar."
+    },
+    {
+      "name": "Find the Shell Command",
+      "text": "Type shell command in the search box. Choose Shell Command: Install 'code' and optionally 'copilot' commands in PATH from the list, then press Return.",
+      "tip": "The older label, Shell Command: Install 'code' command in PATH, appears only when AI features are hidden or your organization disables Copilot CLI installation."
+    },
+    {
+      "name": "Answer the Copilot CLI prompt",
+      "text": "If VS Code asks about GitHub Copilot CLI, choose Yes to install Copilot CLI and the code command. Choose No to add only code. Press Escape to install neither command.",
+      "tip": "Yes starts the Copilot CLI install in an integrated terminal. Let it finish before you close VS Code."
+    },
+    {
+      "name": "Wait for the success message",
+      "text": "Wait for the message that says the code command is installed. That message does not confirm that Copilot CLI finished, because Copilot CLI installs separately from PATH.",
+      "tip": "If you chose Yes, watch the integrated terminal until it shows the install is done."
+    },
+    {
+      "name": "Quit and reopen Terminal",
+      "text": "Quit Terminal completely, then open it again. A new PATH value only takes effect in a new session, so an open window keeps the old setting.",
+      "shortcut": "⌘Q",
+      "menuPath": [
+        "Terminal",
+        "Quit Terminal"
+      ],
+      "tip": "Find Terminal in Applications > Utilities, or search for it with Spotlight."
+    },
+    {
+      "name": "Move into a project folder",
+      "text": "Run cd ~/Documents/my-project in Terminal. Replace the path with a folder you use. The cd command moves Terminal into that folder.",
+      "tip": "Drag a folder onto the Terminal window to paste its path after cd, which saves typing."
+    },
+    {
+      "name": "Run code .",
+      "text": "Type code . and press Return. The dot means the current folder, so VS Code opens that folder as a workspace.",
+      "tip": "If Terminal says command not found, go to the troubleshooting list and try the manual PATH steps."
+    },
+    {
+      "name": "Check the workspace",
+      "text": "Look at the window title and the file list on the left. If your project files appear, the command works. Close the window when you finish.",
+      "tip": "Run code . again inside a second folder to confirm it opens each folder you pick."
+    },
+    {
+      "name": "Check which shell you use",
+      "text": "Run echo $SHELL in Terminal to see which shell you use. A result ending in zsh means you need ~/.zprofile. A result ending in bash means you need ~/.bash_profile.",
+      "tip": "Only do this if the Shell Command did not work. Otherwise you can skip the manual steps."
+    },
+    {
+      "name": "Add the PATH line to your profile",
+      "text": "For Zsh, run echo 'export PATH=\"$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin\"' >> ~/.zprofile. For Bash, use ~/.bash_profile in place of ~/.zprofile.",
+      "tip": "Run the line only once. Check the file with cat ~/.zprofile first, so you do not add it twice."
+    },
+    {
+      "name": "Open a new terminal and test",
+      "text": "Quit Terminal, open it again, then run which code. If it prints a path, the command is on PATH. Then run code . in a folder to confirm VS Code opens it.",
+      "tip": "Insiders builds use code-insiders instead of code. Test with that name instead."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Quit Terminal before you retest",
+      "keys": "⌘Q"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Shell Command is not in the Command Palette",
+      "fix": "Type shell command again and read each label. If only the older Install 'code' command in PATH label shows, AI features may be hidden or your organization may block Copilot CLI installation. Use the manual PATH steps in this guide."
+    },
+    {
+      "problem": "Terminal says command not found: code",
+      "fix": "Quit Terminal fully and open it again, since a new PATH value needs a new session. If it still fails, add the export line to ~/.zprofile for Zsh or ~/.bash_profile for Bash, then open a new window. The official docs do not list this exact error, so this fix comes from the PATH steps."
+    },
+    {
+      "problem": "code opens an old version or an old workspace",
+      "fix": "An old code alias from an earlier version may still sit in your shell profile. Open the profile file, delete that alias line, save, then rerun the Shell Command. The FAQ says typing code alone opens your last workspace."
+    },
+    {
+      "problem": "code . opens the wrong folder",
+      "fix": "The dot means the folder Terminal is in right now. Run pwd to print the current folder, cd to the right one, then run code . again."
+    },
+    {
+      "problem": "You use VS Code Insiders and code does nothing",
+      "fix": "Insiders builds use the command code-insiders. Run the Shell Command from the Insiders app, then test with code-insiders . in a project folder."
+    },
+    {
+      "problem": "You tried the command in vscode.dev",
+      "fix": "The web version has no terminal. Open the desktop app from Applications and run the command in Terminal there."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Command Palette, and walk me through the Shell Command?",
+    "capability": "guide",
+    "result": "Lazur circles the Command Palette, then guides you through the Shell Command one click at a time. It waits for each click, and it does not click for you.",
+    "shell": "code",
+    "pointsAt": "Command Palette",
+    "context": "VS Code open on a Mac, Shell Command not yet run",
+    "output": "Lazur answers out loud and points at each menu item as you go."
+  },
+  "type": "howto",
+  "slug": "install-the-code-command-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-code-command-in-vs-code/how-to-install-the-code-command-in-1-38c275.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer at a Mac learning how to install the code command in VS Code on Mac",
+      "caption": "Setting up a code editor on a Mac",
+      "keywords": [
+        "how to install the code command in vs code on mac",
+        "VS Code",
+        "install the code command",
+        "Mac",
+        "developer coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-code-command-in-vs-code/how-to-install-the-code-command-in-2-9e4b43.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "MacBook on a desk with a code editor open, the setup for how to install the code command in VS Code on Mac",
+      "caption": "A Mac set up for editing code",
+      "keywords": [
+        "how to install the code command in vs code on mac",
+        "VS Code",
+        "install the code command",
+        "Mac",
+        "macbook desk work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-code-command-in-vs-code/how-to-install-the-code-command-in-3-9b3970.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen showing lines of code, the kind of project folder you open with the code command",
+      "caption": "Opening a project folder from Terminal",
+      "keywords": [
+        "how to install the code command in vs code on mac",
+        "VS Code",
+        "install the code command",
+        "Mac",
+        "laptop code screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/neourban-laptop-hardware-computer-1808082/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to install the code command in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "code command vs code mac": 1,
+      "install code command mac": 1,
+      "vs code shell command path": 1,
+      "code command not found mac": 1,
+      "vs code command palette mac": 1,
+      "open vs code from terminal mac": 1,
+      "vs code path zsh bash mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

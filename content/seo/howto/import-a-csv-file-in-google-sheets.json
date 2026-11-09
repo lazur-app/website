@@ -1,0 +1,491 @@
+{
+  "title": "How to import csv into google sheets on mac: the File menu steps, with fixes",
+  "metaTitle": "How to Import CSV into Google Sheets on Mac: Steps",
+  "description": "Learn how to import csv into google sheets on mac: open File > Import, pick your CSV, set the separator, and click Import. Steps for the browser app.",
+  "targetKeyword": "how to import csv into google sheets on mac",
+  "secondaryKeywords": [
+    "import csv file google sheets",
+    "csv into google sheets mac",
+    "google sheets import options",
+    "google sheets separator character",
+    "import csv google sheets mac browser",
+    "google sheets replace data import"
+  ],
+  "intro": "To import a CSV into Google Sheets on a Mac, open a spreadsheet in your browser and click File > Import. Choose the CSV, pick an import location, set the separator character, then click Import.",
+  "tldr": [
+    "Open a spreadsheet in your browser, then click File > Import.",
+    "Choose the CSV file. It can't be password-protected.",
+    "Pick an import location. Replace options overwrite existing data.",
+    "Set the separator character: Comma for a standard CSV, Custom for anything else.",
+    "Click Import, then check the last row, the dates, and the numbers."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells per spreadsheet allowed for files created in or converted to Google Sheets",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "File size and limits (Google Drive Help)"
+    },
+    {
+      "value": "100 MB",
+      "label": "file size limit per spreadsheet on the same Google Drive help page",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "File size and limits (Google Drive Help)"
+    },
+    {
+      "value": "50,000",
+      "label": "characters in one cell, above which Google removes the cell when an Excel file converts",
+      "sourceUrl": "https://support.google.com/drive/answer/37603",
+      "sourceTitle": "File size and limits (Google Drive Help)"
+    },
+    {
+      "value": "13.0",
+      "label": "minimum macOS version for Google Drive for desktop, which is Ventura or higher",
+      "sourceUrl": "https://support.google.com/drive/answer/2375082?hl=en",
+      "sourceTitle": "Learn about system requirements & browsers (Google Drive Help)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you import: check the CSV file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most import problems start before you open Google Sheets. A CSV is plain text. Each row is one line, and a character, usually a comma, separates the values in that line. That simple format moves between apps easily. It also means small problems in the file turn into messy columns later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the file before you import it. If it asks for a password, Sheets can't use it. Remove the password in the app that saved the file, then save a fresh copy. Keep the original as a backup in case you need to start over."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Drive help sets size limits for spreadsheets. A spreadsheet created in or converted to Google Sheets can hold up to 20 million cells or 100 MB. Many everyday CSV files sit well below that. A large export from a database or an analytics tool can get close, so check before you import."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Confirm the file isn't password-protected.",
+        "Check that the file is under 100 MB.",
+        "Count the rows and columns, so you can compare them after the import.",
+        "If the data came from Excel, watch for long text. Google's limits page says cells over 50,000 characters are removed when an Excel file converts to Sheets.",
+        "Note which tab you'll import into. Replace options overwrite data, so know what's already there."
+      ]
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick the right import location"
+    },
+    {
+      "type": "paragraph",
+      "text": "The import location decides what happens to the data already in your spreadsheet. Pick the wrong one and you can overwrite work you wanted to keep. Google lists six options. Each one does a different job, and the names tell you most of what you need."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Create new spreadsheet: puts the CSV in a new file and leaves your current file alone.",
+        "Insert new sheets: adds the data as new tabs in the file you have open.",
+        "Replace spreadsheet: overwrites the whole file with the CSV.",
+        "Replace current sheet: overwrites the tab you are on.",
+        "Append rows to current sheet: adds the CSV rows under the rows already there.",
+        "Replace data starting at selected cell: overwrites data from the cell you select."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here's a common case. Your tracker already has headers in row 1, and you have a new export from another app. If the export also has a header row, appending copies that header under your data. Remove the header row from the CSV first, or import into a new tab to compare before you combine."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a first look, use Create new spreadsheet or Insert new sheets. You can check the result without touching your work. Then copy the rows you need across, or switch to the append option once you trust the file."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose the separator character"
+    },
+    {
+      "type": "paragraph",
+      "text": "The separator character tells Sheets where one value ends and the next begins. Google offers four choices: Detect automatically, Tab, Comma, and Custom. Start with Detect automatically when you're not sure what the file uses."
+    },
+    {
+      "type": "paragraph",
+      "text": "Comma is the right pick for a standard CSV. Quote marks matter here. Suppose one row holds a name, a city written as Lisbon, Portugal, and a job title. If the city sits inside quote marks, the row has three values. The quotes keep the comma inside the city from splitting it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Choose Custom when the file uses another character. Semicolon files often come from apps set to use commas for decimals. Choose Custom, then type the semicolon when Sheets asks for the character."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your columns look merged or split, the separator is the first thing to check. Import again with the right choice instead of fixing each cell by hand."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: importing a bank export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your bank lets you download a month of transactions as a CSV. The file has a header row, and each line holds a date, a description, and an amount. Your budget sheet already has headers in row 1 and transactions from row 2 down."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by importing into a new tab. Choose Insert new sheets, set the separator to Comma, then click Import. Check that the date column reads as dates and that a simple SUM over the amounts gives the total your bank shows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the new tab looks right, move the rows you need into the budget sheet. If you want to add the export straight under your existing rows, use Append rows to current sheet, but delete the header row from the CSV first. Otherwise the header lands as a data row in the middle of your budget."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "These mistakes show up again and again. Each one has a simple fix, and most of them take less time to avoid than to clean up."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clicking a Replace option without reading it. Replace options overwrite existing data, so undo right away if it happens.",
+        "Importing into the wrong tab. Check the tab name before you click Import.",
+        "Opening the CSV in Excel and saving over it. Excel can change values, such as ZIP codes with leading zeros, when it resaves a file.",
+        "Leaving Detect automatically on when the file uses semicolons, then blaming Sheets for the columns.",
+        "Expecting formatting to come along. A CSV holds values only, so colors, fonts, and formulas from the original app don't carry over."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Rename the new tab after the import, with the date or the source in the name. You will thank yourself when the next export lands next to the old one."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to check after the import"
+    },
+    {
+      "type": "paragraph",
+      "text": "Don't stop when the data appears. Scroll to the last row, then compare it with the row count in your original file. A missing row often points to a separator problem, or to a line break inside a quoted value."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check the numbers and dates. A value that lands as text won't add up in a formula, even if it looks like a number. Select a few cells in each column and read them before you build totals on top of the data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the data looks right, make the sheet easier to work with. [Freeze the top row](/how-to/freeze-the-top-row-in-google-sheets) so headers stay in view while you scroll. Then [sort the data by column](/how-to/sort-data-by-column-in-google-sheets) or [add a filter to a range](/how-to/add-a-filter-to-a-range-in-google-sheets) to find the rows you need."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the import created duplicates, [remove duplicate rows](/how-to/remove-duplicate-rows-in-google-sheets). If you overwrote data by accident, [check revision history](/how-to/see-revision-history-in-google-sheets) to find the version from before the import."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts that help on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut list for Sheets includes three Mac keys that help after an import. Find is ⌘F, Open is ⌘O, and Paste values only is ⌘⇧V."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's list doesn't include a shortcut for Import. Use the menu bar instead, with File > Import. That path is the one Google's own help page describes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste values only is useful when you move imported rows into another sheet. It pastes the values without the formatting, so the new sheet keeps its own look. For the full list, read [the shortcut guide for Sheets](/how-to/show-keyboard-shortcuts-in-google-sheets)."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where your CSV lives and which app to use"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your CSV might sit in a folder that syncs through Google Drive for desktop. That app needs macOS Ventura 13.0 or higher. If your Mac runs an older version, download the file to your Downloads folder and import it from there."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help pages describe Sheets as a browser app. They don't name a separate Mac app for it. The steps here use the browser version, so if your screen looks different, look for the File menu and then Import."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help pages don't show version numbers or update dates. The steps here aren't tied to one release, so a label may move after an update. Check Google's help center if a menu name doesn't match."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some sites online give different cell limits than Google does. Use Google's figure, 20 million cells, from the Drive help page when you plan a large import."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I import a CSV without replacing my current data?",
+      "answer": "Yes. Choose Insert new sheets or Create new spreadsheet in the import window. Insert new sheets adds the data as a new tab. Create new spreadsheet puts it in a separate file, so your current work stays as it is."
+    },
+    {
+      "question": "Why won't my CSV import into Google Sheets?",
+      "answer": "Start with the basics. Make sure the file isn't password-protected and stays under 100 MB and 20 million cells. If it's larger, split it into smaller files. Then reopen the file in a plain text editor to confirm it's still a CSV."
+    },
+    {
+      "question": "What's the difference between Replace current sheet and Replace spreadsheet?",
+      "answer": "Replace current sheet overwrites only the tab you have open. Replace spreadsheet overwrites the whole file, including any other tabs. If you're unsure, pick Insert new sheets so you can compare before you replace anything."
+    },
+    {
+      "question": "Should I pick Comma or Detect automatically as the separator?",
+      "answer": "Pick Comma when you know the file is a standard CSV. Pick Detect automatically when you're not sure. Use Custom when the file uses another character, such as a semicolon, and type that character."
+    },
+    {
+      "question": "Does Google Sheets have a separate Mac app?",
+      "answer": "Google's help pages describe Sheets as a browser app and don't name a Mac app. The steps here use the browser. If your menus look different, look for File, then Import."
+    },
+    {
+      "question": "How do I undo a bad import?",
+      "answer": "Use Edit > Undo right after the import. If you've made other changes since, open revision history and restore a version from before the import."
+    },
+    {
+      "question": "Why do my dates look wrong after importing?",
+      "answer": "Dates can land as text, or in a different format from your source file. Check a few cells, re-import with the right separator if the columns shifted, and format the column after the import. Then recheck your totals."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Import data into Google Sheets (Google Docs Editors Help)",
+      "url": "https://support.google.com/docs/answer/40608",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets (Google Docs Editors Help)",
+      "url": "https://support.google.com/docs/answer/181110",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "File size and limits (Google Drive Help)",
+      "url": "https://support.google.com/drive/answer/37603",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Learn about system requirements & browsers (Google Drive Help)",
+      "url": "https://support.google.com/drive/answer/2375082?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Import a CSV file into Google Sheets on a Mac",
+  "appliesTo": "Google Sheets opened in a browser on macOS",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with a browser that can run Google Sheets",
+    "A Google account with edit access to the spreadsheet",
+    "A CSV file that isn't password-protected",
+    "A decision on which import location to use"
+  ],
+  "steps": [
+    {
+      "name": "Open the spreadsheet you want",
+      "text": "On your Mac, open Google Sheets in your browser and sign in with the Google account that can edit the file. Open the spreadsheet you want to import into, or create a blank one first.",
+      "tip": "If you're unsure, start with a blank spreadsheet. Your existing work stays untouched."
+    },
+    {
+      "name": "Open the Import option",
+      "menuPath": [
+        "File",
+        "Import"
+      ],
+      "text": "With the spreadsheet open, click File in the menu bar, then choose Import. The import window opens.",
+      "tip": "Google's keyboard shortcut list shows no shortcut for Import, so use the menu."
+    },
+    {
+      "name": "Select your CSV file",
+      "text": "Choose the CSV file from your Mac. It can't be password-protected. If it is, remove the password in the app that saved it, then save a new copy.",
+      "tip": "Import a copy of the file and keep the original untouched in case you need to try again."
+    },
+    {
+      "name": "Pick an import location",
+      "text": "Choose one of six options. Create new spreadsheet makes a new file. Insert new sheets adds the data as new tabs. Replace spreadsheet overwrites the whole file. Replace current sheet overwrites the tab you have open. Append rows to current sheet adds rows under your existing data. Replace data starting at selected cell overwrites from the cell you pick.",
+      "tip": "Replace options erase existing data. If you're not sure, choose Insert new sheets."
+    },
+    {
+      "name": "Set the separator character",
+      "text": "Pick Detect automatically, Tab, Comma, or Custom. Choose Comma for a standard CSV. Choose Custom for another character, such as a semicolon, and type that character in.",
+      "tip": "If columns look merged or split after the import, the separator is the first setting to check."
+    },
+    {
+      "name": "Click Import",
+      "text": "Click Import. The data arrives in the location you picked.",
+      "tip": "Leave the original CSV where it is until you've checked the result."
+    },
+    {
+      "name": "Check the result",
+      "text": "Scroll to the last row and compare it with your original file. Check dates, numbers, and any long text in the first rows you can see.",
+      "tip": "Fix problems now, while the import is still fresh in your mind."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Find in the sheet",
+      "keys": "⌘F"
+    },
+    {
+      "action": "Open a file",
+      "keys": "⌘O"
+    },
+    {
+      "action": "Paste values only",
+      "keys": "⌘⇧V"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Import option isn't in the File menu",
+      "fix": "Open a spreadsheet first, then click File and look for Import. Google's steps start from inside an open spreadsheet."
+    },
+    {
+      "problem": "Google Sheets won't import the file",
+      "fix": "Check that the CSV isn't password-protected and is under the 100 MB limit. If the file is larger, split it into smaller files and import each part."
+    },
+    {
+      "problem": "Everything lands in one column",
+      "fix": "Import again with the correct separator. Choose Comma, or Custom with the character the file uses. Use Insert new sheets so you can compare the new tab with the old one."
+    },
+    {
+      "problem": "Dates or numbers look wrong",
+      "fix": "Check a few cells in the source file, then import again with the separator set correctly. Format the column after the import and recheck your totals."
+    },
+    {
+      "problem": "Accented letters or symbols look broken",
+      "fix": "Re-save the CSV from a text editor that supports Unicode, then import the new copy."
+    },
+    {
+      "problem": "The import overwrote my work",
+      "fix": "Use Edit > Undo right after the import. If you've made changes since, open revision history and restore a version from before the import."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is Import in Google Sheets?",
+    "capability": "point",
+    "context": "Google Sheets open in a browser on a Mac, with a spreadsheet on screen.",
+    "result": "Lazur draws a circle and a label around Import in the File menu, then answers out loud. You click it yourself.",
+    "shell": "sheet",
+    "pointsAt": "Import",
+    "output": "Lazur says where Import sits and points at it on your screen. You still choose the option and click Import yourself."
+  },
+  "type": "howto",
+  "slug": "import-a-csv-file-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/import-a-csv-file-in-google-sheets/how-to-import-csv-into-google-sheets-1-b3b882.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person working on a spreadsheet on a laptop, the kind of data you bring in when you import a CSV",
+      "caption": "Spreadsheet work starts with clean data in a CSV file.",
+      "keywords": [
+        "how to import csv into google sheets on mac",
+        "Google Sheets",
+        "import a CSV file",
+        "Mac",
+        "person laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/import-a-csv-file-in-google-sheets/how-to-import-csv-into-google-sheets-2-bf87a2.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man using a MacBook at a desk, learning how to import csv into google sheets on mac",
+      "caption": "Most imports take a few minutes at a browser window.",
+      "keywords": [
+        "how to import csv into google sheets on mac",
+        "Google Sheets",
+        "import a CSV file",
+        "Mac",
+        "man using macbook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-laptop-2563417/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/import-a-csv-file-in-google-sheets/how-to-import-csv-into-google-sheets-3-8bd855.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on an office desk showing rows of data before a CSV import into Google Sheets on a Mac",
+      "caption": "Check the data before and after every import.",
+      "keywords": [
+        "how to import csv into google sheets on mac",
+        "Google Sheets",
+        "import a CSV file",
+        "Mac",
+        "office desk laptop data",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fancycrave1",
+        "url": "https://pixabay.com/users/fancycrave1-1115284/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-human-hands-keyboard-typing-820274/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to import csv into google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "import csv file google sheets": 1,
+      "csv into google sheets mac": 1,
+      "google sheets import options": 1,
+      "google sheets separator character": 1,
+      "import csv google sheets mac browser": 1,
+      "google sheets replace data import": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -12,8 +12,8 @@ rewrite history, never touch other branches.
 
 1. `git checkout main && git pull --ff-only origin main`
 2. `npm ci`
-3. Check the environment: `GEMINI_VERTEX_API_KEY` (or `GEMINI_API_KEY`), `PIXABAY_API_KEY` and
-   `BLOB_READ_WRITE_TOKEN` must be set. If anything is missing, stop and report exactly what is missing. Do not try to work
+3. Check the environment: `GEMINI_VERTEX_API_KEY` (or `GEMINI_API_KEY`), `PIXABAY_API_KEY`,
+   `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` must be set. If anything is missing, stop and report exactly what is missing. Do not try to work
    around it.
 4. `node scripts/content/daily.mjs --max-minutes=45`
    It reads today's New York date, the automatic ramp (300 pages a day in week 1, 500 in week 2,

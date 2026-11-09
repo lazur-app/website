@@ -1,0 +1,596 @@
+{
+  "title": "How to use multiple cursors in VS Code on Mac: Option+Click, ⌘D and column selection",
+  "metaTitle": "How to Use Multiple Cursors in VS Code on Mac (2026)",
+  "description": "Learn how to use multiple cursors in VS Code on Mac with Option+Click, ⌥⌘↓, ⌘D and column selection. Menu paths and shortcuts for 2026.",
+  "targetKeyword": "how to use multiple cursors in vs code on mac",
+  "secondaryKeywords": [
+    "multiple cursors VS Code Mac",
+    "VS Code multi cursor shortcut Mac",
+    "Option click VS Code Mac",
+    "VS Code select all occurrences Mac",
+    "VS Code column selection Mac",
+    "Cmd click multiple cursors VS Code"
+  ],
+  "intro": "To use multiple cursors in VS Code on Mac, hold Option (⌥) and click each spot where you want one. Press ⌥⌘↓ or ⌥⌘↑ to add a cursor below or above, and press ⌘D to select the next match.",
+  "tldr": [
+    "Hold Option (⌥) and click to add a cursor at each spot you want to edit.",
+    "Press ⌥⌘↓ or ⌥⌘↑ to add cursors on the lines below or above.",
+    "Press ⌘D to select the next match, and ⇧⌘L to select every match at once.",
+    "Use Shift+Option+drag to make a column selection across lines.",
+    "Want Cmd+Click instead? Set editor.multiCursorModifier to ctrlCmd, or use the Selection menu switch."
+  ],
+  "stats": [
+    {
+      "value": "1.145",
+      "label": "Latest stable VS Code release in the docs, published 4 November 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "VS Code Updates"
+    },
+    {
+      "value": "70.9%",
+      "label": "Of Stack Overflow 2026 respondents who used a code editor in the past year used VS Code",
+      "sourceUrl": "https://survey.stackoverflow.co/2026/technology/data",
+      "sourceTitle": "Stack Overflow Developer Survey 2026: Technology data"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Multiple cursors let you edit several places in a file at once. Each cursor takes the same typed text, deletion or paste, so one change lands everywhere you put a cursor. On a Mac, this is one of the fastest ways to change lines that look alike. Examples include a list of function names, a set of config keys or a column of values. You do not need an extension for this. Multi-cursor is part of VS Code's editor, and the docs describe the behaviour as stable for years."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add multiple cursors with Option+Click"
+    },
+    {
+      "type": "paragraph",
+      "text": "Option+Click is the default way to add a cursor. The VS Code docs write this as Alt+Click, because Alt is the label on Windows keyboards. Apple's keyboard guide says the Alt key on those keyboards is used in place of Option. On your Mac keyboard, you press Option (⌥). Click once to place the first cursor, then hold Option and click each extra spot. Every click adds one more cursor."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click the first spot in the file to place a cursor.",
+        "Hold Option (⌥) and click the second spot.",
+        "Keep holding Option and click any other spots you need.",
+        "Type, delete or paste. The change appears at every cursor.",
+        "Read each spot before you save, especially when the lines differ slightly."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common mistake is clicking with Command instead of Option. With the default setting, Command-click does not add a cursor. If nothing happens, check which key you are holding. Also check that you have not changed the modifier setting. That change is covered in the Cmd+Click section below."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add cursors above and below with ⌥⌘↓ and ⌥⌘↑"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the keyboard when the same change applies to a run of lines. ⌥⌘↓ adds a cursor one line down. Press it again to keep going. ⌥⌘↑ adds a cursor one line up in the same way. Put the cursor on the first line, press the key until cursors sit on every line you need, then type. On Windows, the same jobs use Ctrl+Alt+Down and Ctrl+Alt+Up."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say you have a block of lines that each start with the same prefix, and you want to add a comment marker to every line. Click at the start of the first line. Press ⌥⌘↓ until a cursor sits on each line in the block. Type the marker once. Then scroll up and check the whole block before you save. A cursor that stops one line short is easy to miss."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Select every match with ⌘D and ⇧⌘L"
+    },
+    {
+      "type": "paragraph",
+      "text": "⌘D is the tool for renaming and quick edits. Put the cursor on a word and press ⌘D. The first press selects the word at the cursor. Each press after that adds a cursor at the next occurrence of the selection. ⇧⌘L skips the stepping and adds a cursor to every occurrence in one go. Press ⌘K ⌘D when one match should stay as it is. It skips the next matching occurrence and moves on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a rename example. You want to change userId to accountId inside one function. Put the cursor on userId and press ⌘D until every match you want is selected. If the next match belongs to another variable, press ⌘K ⌘D to skip it. Then type accountId once. Read the function again afterwards. A match inside a comment or string may have changed too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcut table for Mac and Windows"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Mac",
+        "Windows"
+      ],
+      "rows": [
+        [
+          "Add cursor with the mouse",
+          "Option+Click",
+          "Alt+Click"
+        ],
+        [
+          "Add cursor below",
+          "⌥⌘↓",
+          "Ctrl+Alt+Down"
+        ],
+        [
+          "Add cursor above",
+          "⌥⌘↑",
+          "Ctrl+Alt+Up"
+        ],
+        [
+          "Select word or next match",
+          "⌘D",
+          "Ctrl+D"
+        ],
+        [
+          "Skip next match",
+          "⌘K ⌘D",
+          "Ctrl+K Ctrl+D"
+        ],
+        [
+          "Select all occurrences",
+          "⇧⌘L",
+          "Ctrl+Shift+L"
+        ],
+        [
+          "Column selection",
+          "Shift+Option+drag",
+          "Shift+Alt+drag"
+        ]
+      ],
+      "caption": "Mac and Windows keys from the VS Code Basic editing and keybindings docs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the table as a translation. The Mac column swaps Ctrl for ⌘ and Alt for ⌥. Most of the time, that is the whole change. Tutorials written for Windows often give you the Ctrl keys, so check the Mac column before you decide a shortcut is broken."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Column selection with Shift+Option+drag"
+    },
+    {
+      "type": "paragraph",
+      "text": "Column selection, also called box selection, is for text with the same shape across lines. A table of values, a block of aligned comments or a set of short assignments all fit. Put the cursor in one corner of the block. Hold Shift and Option (⇧⌥), then drag to the opposite corner. VS Code places a cursor on each line inside the box."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the box is selected, typing and deleting apply to every line in it. Paste works too. If you copy several lines and paste them with multiple cursors, VS Code distributes the rows in document order. The editor.multiCursorPaste setting controls that behaviour. Check the result before you save, because a row in the wrong place is easy to miss."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Cmd+Click for multiple cursors instead"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some people prefer Command-click, because it matches how they select things in other apps. VS Code supports this through the editor.multiCursorModifier setting. The default value is alt, which means Option+Click on Mac. Set it to ctrlCmd and multi-cursor uses Cmd+Click on macOS, and Ctrl+Click on Windows and Linux."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can change the setting without editing JSON. The Basic editing docs name Selection menu items for switching between the two modes, Switch to Ctrl+Click for Multi-Cursor and Switch to Alt+Click for Multi-Cursor. The Mac label may read slightly differently in your build. Look for the multi-cursor item in the Selection menu and read it carefully."
+    },
+    {
+      "type": "paragraph",
+      "text": "Switching has a cost. Some users report that Cmd+Click stops opening definitions after the change. Those reports come from third-party posts, not the VS Code docs. The reported fix is to set the modifier back to alt. Test the switch in a real project before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check and change shortcuts in the Keyboard Shortcuts editor"
+    },
+    {
+      "type": "paragraph",
+      "text": "If a shortcut does nothing, another command may be using it. Open File > Preferences > Keyboard Shortcuts. On a Mac, you can also press ⌘K ⌘S to open the same editor. The Command Palette has a matching command, Preferences: Open Keyboard Shortcuts. Type the key or command name in the search box to see its current binding."
+    },
+    {
+      "type": "paragraph",
+      "text": "Right-click an entry and choose Show Same Keybindings. That lists every command that uses the same key, which is how you find a conflict. Choose Remove Keybinding if another command takes a shortcut you need for multi-cursor. The docs give only the File > Preferences path. If your menu bar looks different, the Command Palette route works the same way."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When not to use multiple cursors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Multiple cursors are not always the right tool. If each change depends on the one before it, a find and replace with a clear pattern is often safer. Use multiple cursors for edits you can check at a glance. A long list of small, similar changes is the sweet spot. A change that needs judgement on every line is not."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with multiple cursors on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pressing Command instead of Option, which does not add a cursor with the default setting.",
+        "Pressing Control+Arrow. On macOS, Control+Up Arrow opens Mission Control, and Control+Down Arrow shows the windows of the front app.",
+        "Expecting ⌘D to understand code. It matches text, so a repeated word in a comment can be picked too.",
+        "Typing before you check where the cursors landed. Look at every line first.",
+        "Using Windows keys from an old tutorial. Check the Mac column in the table above.",
+        "Assuming the shortcuts behave the same in the browser. The VS Code for the Web docs do not cover multi-cursor shortcuts."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "To find a clash with Control+Arrow, open System Settings > Keyboard > Keyboard Shortcuts > Mission Control. Turn off or change the Mission Control shortcut that uses Control+Arrow. Most multi-cursor shortcuts in this guide use Option and Command, so they do not clash with Mission Control in the first place."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which VS Code version this guide matches"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps match the VS Code docs dated 4 November 2026. The latest stable release in those docs is 1.145, released 4 November 2026. Updates 1.145.1 and 1.145.2 are also listed. The 1.145 headlines cover remote agents, automations, agent verbosity and file exclusions. None of them mention multi-cursor, Alt+Click or the Selection menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "The docs do not say which release first added these shortcuts, so this guide does not give a first version number. If a key does not match your build, compare your version with the 1.145 docs before you assume the shortcut is wrong."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A short practice run before real work"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Create a new file and type a short list. Put the same word on several lines.",
+        "Click the word, then press ⌘D until each copy is selected.",
+        "Type the replacement word once. Check each line.",
+        "If the result looks wrong, undo the change and try again. Press ⌘K ⌘D to skip one match you do not want.",
+        "Select the same word with ⇧⌘L and compare how the result looks."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Doing this on a throwaway file teaches the rhythm. ⌘D steps through matches one at a time, so you can check each one. ⇧⌘L is faster but gives you less control. Pick the one that fits the edit, not the one that feels quickest."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once multi-cursor feels natural, [split the editor in VS Code on Mac](/how-to/split-the-editor-in-vs-code) to compare two files side by side. If you want to change how the editor looks first, see [how to change the color theme in VS Code on Mac](/how-to/change-the-color-theme-in-vs-code). For terminal work, [install the code command in VS Code on Mac](/how-to/install-the-code-command-in-vs-code) so you can open folders from the shell."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does the VS Code guide say Alt+Click when I press Option?",
+      "answer": "VS Code's docs use the Windows label, Alt. Apple's keyboard guide says the Alt key on Windows keyboards is used in place of Option. On a Mac, press Option and click."
+    },
+    {
+      "question": "What is the difference between ⌘D and ⇧⌘L?",
+      "answer": "⌘D adds the next match one press at a time, so you can check each one. ⇧⌘L selects every occurrence and adds a cursor to each at once. Use ⌘D when you want control, and ⇧⌘L when every match should change."
+    },
+    {
+      "question": "Can I use Cmd+Click for multiple cursors on Mac?",
+      "answer": "Yes. Set editor.multiCursorModifier to ctrlCmd, or use the Selection menu item that switches the modifier. With ctrlCmd, Cmd+Click adds cursors on macOS. Some users report side effects, so test it first."
+    },
+    {
+      "question": "Which VS Code version does this guide match?",
+      "answer": "The steps match the VS Code docs dated 4 November 2026. The latest stable release in those docs is 1.145, released 4 November 2026. The docs do not say which version first added these shortcuts."
+    },
+    {
+      "question": "Do I need an extension to use multiple cursors?",
+      "answer": "No. Multi-cursor is part of the editor. The docs describe the behaviour as stable for years, and the shortcuts in this guide come from the Basic editing page."
+    },
+    {
+      "question": "Do multiple cursors work in VS Code for the Web on a Mac?",
+      "answer": "The VS Code for the Web docs do not cover multi-cursor shortcuts, so test them in your browser first. In the browser build, ⌘W closes the browser tab, which can catch you out."
+    },
+    {
+      "question": "How popular is VS Code with developers?",
+      "answer": "In the 2026 Stack Overflow survey, 70.9% of respondents who regularly used a code editor in the past year used Visual Studio Code. The survey is self-selected, so treat the figure as a signal, not a census."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Basic editing (VS Code docs)",
+      "url": "https://code.visualstudio.com/docs/editing/codebasics",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts (VS Code docs)",
+      "url": "https://code.visualstudio.com/docs/configure/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Key bindings (VS Code getting started)",
+      "url": "https://code.visualstudio.com/docs/getstarted/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Use modifier keys in Mac keyboard shortcuts",
+      "url": "https://support.apple.com/en-us/102650",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2026: Technology",
+      "url": "https://survey.stackoverflow.co/2026/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2026: Technology data",
+      "url": "https://survey.stackoverflow.co/2026/technology/data",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Add multiple cursors in VS Code on Mac",
+  "appliesTo": "VS Code on macOS, per the stable 1.145 docs (November 2026)",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed on your Mac",
+    "A text or code file open in the editor",
+    "A keyboard with Option and Command keys"
+  ],
+  "steps": [
+    {
+      "name": "Open a file",
+      "text": "Open the file in the editor. Multi-cursor works in any text file, including code, Markdown and plain text.",
+      "tip": "Start with a file where the same word or pattern repeats, so the shortcuts have something to act on."
+    },
+    {
+      "name": "Place the first cursor",
+      "text": "Click where you want the first cursor. A single click places one cursor in the text."
+    },
+    {
+      "name": "Add more cursors with Option+Click",
+      "text": "Hold Option (⌥) and click each extra spot. Each click adds one more cursor. This is the default setting on Mac.",
+      "shortcut": "⌥ + Click",
+      "tip": "If Command-click does nothing, you are holding the wrong key. Option is the default."
+    },
+    {
+      "name": "Add cursors above or below",
+      "text": "Press ⌥⌘↓ to add a cursor one line below, or ⌥⌘↑ to add one above. Keep pressing to add more lines.",
+      "shortcut": "⌥⌘↓ / ⌥⌘↑"
+    },
+    {
+      "name": "Select every match",
+      "text": "Select a word and press ⌘D. Press it again to add the next match. Press ⇧⌘L to select all matches in one step.",
+      "shortcut": "⌘D"
+    },
+    {
+      "name": "Skip a match you do not want",
+      "text": "Press ⌘K ⌘D to skip the next matching occurrence. Press ⌘D again to continue to the matches you want.",
+      "shortcut": "⌘K ⌘D"
+    },
+    {
+      "name": "Make a column selection",
+      "text": "Put the cursor in one corner of the block. Hold Shift and Option (⇧⌥), then drag to the opposite corner.",
+      "shortcut": "⇧⌥ + drag"
+    },
+    {
+      "name": "Switch to Cmd+Click if you prefer",
+      "text": "Open the Selection menu and choose the multi-cursor switch item. The docs name Switch to Ctrl+Click for Multi-Cursor and Switch to Alt+Click for Multi-Cursor. Check the Mac label on your build.",
+      "menuPath": [
+        "Selection",
+        "Switch to Ctrl+Click for Multi-Cursor"
+      ],
+      "tip": "Set editor.multiCursorModifier to ctrlCmd if you would rather edit settings directly."
+    },
+    {
+      "name": "Open the Keyboard Shortcuts editor",
+      "text": "Open the Keyboard Shortcuts editor to check or change a binding. Search for the command, then right-click the entry to find conflicts.",
+      "menuPath": [
+        "File",
+        "Preferences",
+        "Keyboard Shortcuts"
+      ],
+      "shortcut": "⌘K ⌘S"
+    },
+    {
+      "name": "Check for shortcut conflicts",
+      "text": "Right-click an entry and choose Show Same Keybindings. Use Remove Keybinding if another command takes a key you need.",
+      "tip": "The docs describe these two menu items in the Keyboard Shortcuts editor."
+    },
+    {
+      "name": "Practise on a test file",
+      "text": "Make a short test file and run through each shortcut once before you rely on it in real work."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Add cursor with the mouse",
+      "keys": "⌥ + Click"
+    },
+    {
+      "action": "Add cursor below",
+      "keys": "⌥⌘↓"
+    },
+    {
+      "action": "Add cursor above",
+      "keys": "⌥⌘↑"
+    },
+    {
+      "action": "Select word or next match",
+      "keys": "⌘D"
+    },
+    {
+      "action": "Skip next matching occurrence",
+      "keys": "⌘K ⌘D"
+    },
+    {
+      "action": "Select all occurrences",
+      "keys": "⇧⌘L"
+    },
+    {
+      "action": "Column selection",
+      "keys": "⇧⌥ + drag"
+    },
+    {
+      "action": "Keyboard Shortcuts editor",
+      "keys": "⌘K ⌘S"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Option+Click does not add a cursor",
+      "fix": "Check that editor.multiCursorModifier is alt, the default. If you switched it to ctrlCmd, use Cmd+Click instead. Or use the Selection menu switch to flip it back to Alt+Click."
+    },
+    {
+      "problem": "Control+Arrow opens Mission Control",
+      "fix": "Control+Up Arrow opens Mission Control by default on macOS. Open System Settings > Keyboard > Keyboard Shortcuts > Mission Control and change or turn off the clashing shortcut."
+    },
+    {
+      "problem": "⌘D picks a match you did not want",
+      "fix": "Press ⌘K ⌘D to skip the next match. Check the selection before you type, because ⌘D matches text, including text in comments."
+    },
+    {
+      "problem": "Cmd+Click stops opening definitions",
+      "fix": "Reports of this come from third-party posts, not the VS Code docs. The reported fix is to set editor.multiCursorModifier back to alt. Test before you change it for good."
+    },
+    {
+      "problem": "A shortcut does nothing",
+      "fix": "Open the Keyboard Shortcuts editor with ⌘K ⌘S, search for the command, right-click the entry and choose Show Same Keybindings to find the conflict."
+    },
+    {
+      "problem": "Shortcuts fail in VS Code for the Web",
+      "fix": "The web docs do not cover multi-cursor shortcuts, so test them first. In the browser build, ⌘W closes the browser tab."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Selection menu, and how do I switch to Ctrl+Click for multi-cursor?",
+    "capability": "guide",
+    "result": "Lazur points at the Selection menu, then waits for each click while you pick the multi-cursor item yourself.",
+    "shell": "code",
+    "pointsAt": "Selection menu",
+    "context": "VS Code open on a Mac, with the menu bar visible",
+    "output": "Lazur sees the menu labels on your screen, so it can tell you when your build words the item differently from the docs."
+  },
+  "type": "howto",
+  "slug": "use-multiple-cursors-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-multiple-cursors-in-vs-code/how-to-use-multiple-cursors-in-vs-1-f76f23.jpg",
+      "width": 1280,
+      "height": 917,
+      "alt": "Programmer typing code on a laptop, the kind of editing where multiple cursors save time in VS Code on Mac",
+      "caption": "Repeated edits across lines are where multiple cursors help most.",
+      "keywords": [
+        "how to use multiple cursors in vs code on mac",
+        "VS Code",
+        "use multiple cursors",
+        "Mac",
+        "programmer typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-business-man-from-above-2838918/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-multiple-cursors-in-vs-code/how-to-use-multiple-cursors-in-vs-2-25de63.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Developer working at a desk with a code editor open on a Mac, a common setup for VS Code on Mac users",
+      "caption": "A typical desk setup for editing code on a Mac.",
+      "keywords": [
+        "how to use multiple cursors in vs code on mac",
+        "VS Code",
+        "use multiple cursors",
+        "Mac",
+        "developer desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-multiple-cursors-in-vs-code/how-to-use-multiple-cursors-in-vs-3-90f797.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a MacBook in an office and reviewing text in a code editor before saving changes",
+      "caption": "Check every line after a multi-cursor edit, then save.",
+      "keywords": [
+        "how to use multiple cursors in vs code on mac",
+        "VS Code",
+        "use multiple cursors",
+        "Mac",
+        "macbook office work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use multiple cursors in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "multiple cursors VS Code Mac": 1,
+      "VS Code multi cursor shortcut Mac": 1,
+      "Option click VS Code Mac": 1,
+      "VS Code select all occurrences Mac": 1,
+      "VS Code column selection Mac": 1,
+      "Cmd click multiple cursors VS Code": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

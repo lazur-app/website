@@ -1,0 +1,692 @@
+{
+  "title": "Spotlight not finding files on Mac: causes and free fixes for developers",
+  "metaTitle": "Spotlight Not Finding Files on Mac: Causes and Free Fixes",
+  "description": "Spotlight not finding files on your Mac? See the likely causes, check Search Privacy, rebuild one folder, and fix iCloud gaps. Free steps, no purchase needed.",
+  "targetKeyword": "spotlight not finding files on mac",
+  "secondaryKeywords": [
+    "spotlight search missing files mac",
+    "mac spotlight index rebuild",
+    "spotlight search privacy folder",
+    "icloud drive files not showing in spotlight",
+    "mdutil reindex mac",
+    "spotlight not indexing new files mac"
+  ],
+  "intro": "If Spotlight is not finding files on your Mac, the cause is usually one of three things. The index may still be building, a folder may be on the Search Privacy list, or the file may be an iCloud Drive file that is not stored on your Mac. You can check all three for free in System Settings and Terminal, in the order below.",
+  "problem": "spotlight missing files on mac",
+  "tldr": [
+    "Check indexing first. Apple says Spotlight can take hours or even days to finish indexing.",
+    "Open System Settings > Spotlight > Search Privacy. Anything listed there is hidden from results.",
+    "Remove and re-add a folder to make Spotlight index it again. Apple documents this step.",
+    "iCloud Drive files that are not downloaded can drop out of results. Keep the ones you search downloaded.",
+    "Erase the whole index only as a last resort, with the Mac plugged in."
+  ],
+  "stats": [
+    {
+      "value": "Over 1 in 10",
+      "label": "employees spend more than four hours a week searching for digital documents, Adobe 2023 survey of 1,118 workers",
+      "sourceUrl": "https://blog.adobe.com/en/publish/2023/09/29/how-digital-organization-impacts-employees-workplace",
+      "sourceTitle": "Adobe Blog: How Digital Organization Impacts Employees and the Workplace (2023)"
+    },
+    {
+      "value": "25%",
+      "label": "of their time teams and leaders say they waste just searching for answers, 2025 State of Teams report",
+      "sourceUrl": "https://www.atlassian.com/blog/state-of-teams-2025",
+      "sourceTitle": "Atlassian: State of Teams 2025"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Spotlight works from a local index. The index lives on your Mac, and Apple says it stays on your device and is not shared with Apple or your other devices. When a file is missing from results, the index is either incomplete, blocked for that location, or out of date. Each state needs a different fix, so find out which one you have before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much a missing file costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most searches end in seconds. The failed ones cost more. You open the wrong version, dig through folders by hand, and ask a colleague to resend a file you already had. No public study I could open measures time lost to Spotlight alone, so the numbers here cover workplace search in general."
+    },
+    {
+      "type": "paragraph",
+      "text": "The clearest recent figure comes from Adobe. Its September 2023 survey of 1,118 employed Americans found that over 1 in 10 employees spend more than four hours a week searching for digital documents. The same survey found that 48% of employees name difficulty finding documents quickly as a top problem."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Atlassian's State of Teams 2025 report draws on 12,000 knowledge workers and 200 executives. It says leaders and teams waste 25% of their time searching for answers. The page does not say which executives were surveyed, so treat that figure as a rough signal, not a budget line."
+    },
+    {
+      "type": "paragraph",
+      "text": "Older numbers circulate too. KMWorld reviewed IDC research that puts time spent searching for information at 15% to 35% of a knowledge worker's day. Those studies date from 2001 to 2003. KMWorld also notes that its 1,000-worker example is hypothetical and that several statistics have no cited source."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Spotlight decides what to show you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spotlight does two jobs. It indexes your files in the background, then it answers each search from that index. If the index is behind, the answer is behind too. A file you saved a moment ago may not appear yet, while an old file appears right away."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple says indexing can take hours or even days, depending on how much data a Mac holds. It finishes faster when the Mac is idle, plugged in, and on Wi-Fi or Ethernet. A Mac on battery or on a slow connection can sit with an unfinished index for a long time."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The file must be on a disk or folder that Spotlight indexes, and that location must not be excluded.",
+        "The index for that disk must be built and current.",
+        "If the file lives in iCloud Drive, the file must be downloaded to your Mac before Spotlight can match its contents.",
+        "The search must look in the right place, with the right scope selected."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Five causes behind Spotlight not finding files on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check these in order. The first two take a minute to rule out. The later causes need more work, and they are easy to miss because the file looks present in Finder."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The index is still building"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the most ordinary cause, and it looks like a broken Mac. New Macs, restores, migrations, and large downloads hand Spotlight a lot of new data. Until the work finishes, recent files can be missing while older files still show. Waiting is the right first move, and it costs nothing."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "A folder or disk is on the Search Privacy list"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search Privacy is the list of places Spotlight skips. Anything on it stays out of results, even if you searched for its name a hundred times. A common trap is a cleanup tool or an old setting that added a whole project folder months ago. Check the list before you blame the index."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The iCloud file is not downloaded"
+    },
+    {
+      "type": "paragraph",
+      "text": "Files in iCloud Drive can exist in Finder as a placeholder with no local copy. Eclectic Light reported in July 2023 that Spotlight only reported hits in downloaded iCloud Drive files. With Optimize Mac Storage on, macOS can remove local copies, and those files then drop out of search. The file is still safe in iCloud, so it looks gone when it is not."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The index is stale or damaged"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the index is present but wrong. Moved or renamed files may still show their old locations. New files may never appear at all. Apple's Search Privacy trick re-indexes one location. A full erase with mdutil is the broader version of the same repair, so save it for when the smaller repair fails."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The search is scoped to the wrong place"
+    },
+    {
+      "type": "paragraph",
+      "text": "A search can be correct and still look empty. In a Finder window, the buttons above the results switch between This Mac and the current folder. If you are inside one folder, you will not see files elsewhere. Check the file name too, because a stray dash, a version suffix, or a spelling difference changes what matches."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Symptoms that point to each cause"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "Check first"
+      ],
+      "rows": [
+        [
+          "Recent files missing, older files found",
+          "Index still building",
+          "mdutil -s / in Terminal"
+        ],
+        [
+          "One folder never shows up at all",
+          "Folder on Search Privacy list",
+          "System Settings > Spotlight > Search Privacy"
+        ],
+        [
+          "File shows in Finder with a cloud icon",
+          "iCloud file not downloaded",
+          "Download the file, then search again"
+        ],
+        [
+          "Moved files appear in old places",
+          "Stale or damaged index",
+          "Re-index one folder, then consider a full rebuild"
+        ],
+        [
+          "Search finds nothing inside a folder window",
+          "Wrong scope",
+          "Switch the scope to This Mac"
+        ]
+      ],
+      "caption": "Match what you see to a likely cause, then check that step first."
+    },
+    {
+      "type": "paragraph",
+      "text": "The table is a starting point, not a diagnosis. Two causes can happen at once. A Mac that just finished a big update can show indexing delays and an excluded folder in the same afternoon."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can do without buying anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the steps that change nothing. Reading the index status and the Search Privacy list is safe. Re-adding one folder is easy to reverse. Erasing the whole index is the heaviest option, so it goes last. Every step below uses only System Settings, Finder, or Terminal."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Check indexing status first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Terminal from Applications > Utilities > Terminal. Type mdutil -s / and press Return. The output reports whether indexing is enabled for the startup disk. If indexing is still running, leave the Mac plugged in on Wi-Fi or Ethernet, and check again later rather than changing settings."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Review Search Privacy in System Settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open System Settings > Spotlight. Scroll if you need to, then click Search Privacy in the lower-right corner. Read the list. Select an entry and click the minus sign button to remove it, and its files return to results. Older macOS releases may label this pane Siri & Spotlight."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Re-index one folder the way Apple describes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's method rebuilds the index for one location only. It is gentler than erasing everything, and it is reversible. Follow these steps in order, and do not skip the wait."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open System Settings > Spotlight and click Search Privacy.",
+        "Click the plus sign button and add the folder or disk that is missing from results.",
+        "Wait a few seconds.",
+        "Select the same entry and click the minus sign button.",
+        "Click Done. Spotlight re-indexes that location."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not add a folder you want to keep out of search. This method is for a folder you want back in the index. Test with a file you know is there. If results are still wrong, move on to the next fix instead of repeating the same steps."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Keep iCloud files downloaded when you search"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the missing file lives in iCloud Drive, download it before you search. Open the folder in Finder and confirm the file opens without a cloud icon. Keep folders you search often on your Mac. Also check that iCloud Drive is not on the Search Privacy list, because Eclectic Light found downloaded files stay searchable only when it is not."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Search from Terminal while Spotlight catches up"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not have to wait for Spotlight to find a file. Type find ~ -iname '*invoice*' and press Return to search your home folder by name, without the index. Use mdfind -onlyin ~ 'invoice' when you want Spotlight's index. find can be slow across large folders, so start in the smallest folder that could hold the file."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Use your editor's search for code"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the missing files are source files, your editor does not need Spotlight. In VS Code and Cursor, press ⌘ P to open Quick Open, then type part of the file name. That search runs inside the editor and does not go through Spotlight. Setup notes live in [VS Code for developers on Mac](/for/developers/vs-code) and [Cursor for developers on Mac](/for/developers/cursor)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Last resort: erase and rebuild the index"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the steps above fail, you can erase the index for a volume. The mdutil man page says -E erases each local store for the volumes you name, which forces a rebuild. Third-party guides run sudo mdutil -E / on the startup disk. The man page does not say whether sudo is required, so read your own man page first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Expect a long rebuild. On a large startup disk, indexing can take hours or even days, as Apple warns for indexing in general. Keep the Mac plugged in, connected to Wi-Fi or Ethernet, and idle. Do not start it right before a deadline, because search stays patchy until the rebuild finishes."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Erase only when you must",
+      "text": "Erasing the index forces a full rebuild of that volume. Search stays patchy until it finishes. Run it only after you have checked Search Privacy and iCloud downloads, and only if you are comfortable entering an admin password in Terminal."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with Spotlight"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Erasing the index on day one, before giving the Mac time to finish indexing.",
+        "Excluding the whole internal disk to fix one missing folder. Apple says that stops app-update notifications.",
+        "Assuming an excluded folder was deleted. Removing it from Search Privacy brings its files back into results.",
+        "Assuming excluding a Time Machine backup disk stops indexing. Apple says that indexing is required for Time Machine and cannot be turned off.",
+        "Searching only inside the current folder, then deciding the file is gone.",
+        "Forgetting that a cloud-only file has no local copy for Spotlight to read."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from a developer's Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a developer who keeps client projects in a folder on an external drive. A search for a schema file returns nothing. The developer runs mdutil -s on the external drive first, and the status looks normal. Then they open Search Privacy and find an entry called Archive inside the project folder."
+    },
+    {
+      "type": "paragraph",
+      "text": "This example is made up, but the pattern is easy to fall into. The Archive entry was added months earlier, so every archived file was hidden from results. The fix was one visit to Search Privacy. The developer removed the entry, waited for the index to catch up, then searched again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Working with client or patient files"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your files hold client, patient, or case data, your employer's rules come first. Lawyers, nurses, accountants, and similar staff often have strict limits on what goes into outside tools. Check those rules before you share a screen with Lazur or paste file contents into a chat."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check your employer's rules",
+      "text": "Lazur looks at your screen only while you hold the shortcut. The screenshot goes to AI providers so they can answer you. If the screen shows client or patient data, follow your employer's rules on that data first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to stop and ask for help"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stop when indexing looks normal, Search Privacy is clean, the file is downloaded, and search still fails. At that point the cause may be a disk fault, a permissions problem, or a bug. If the Mac is managed by your employer, ask IT first. If it is your own Mac and the problem started after an update, contact Apple Support."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep a short note before you call. Write the file name, the folder, what Terminal showed, and what you changed. That note saves time for the person helping you and for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It can point at the control you need, guide you one click at a time, explain text on your screen, and draft a message to your IT team. It does not click buttons, change your settings, or run Terminal commands for you. You stay in control of every step."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Hold fn to dictate a clean note at the cursor in any app. You can see plans on the [pricing page](/pricing), and the free trial needs no credit card."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why is Spotlight not finding files I just saved on my Mac?",
+      "answer": "The index is probably still catching up. Apple says indexing can take hours or even days, and it runs faster when the Mac is idle, plugged in, and on Wi-Fi or Ethernet. Check mdutil -s / in Terminal, then give it time before you erase anything."
+    },
+    {
+      "question": "Does Spotlight search inside iCloud Drive files that are not downloaded?",
+      "answer": "Not in the way you expect. Eclectic Light reported in July 2023 that Spotlight only reported hits in downloaded iCloud Drive files. Download the file, then search again, and keep the folder downloaded if you search it often."
+    },
+    {
+      "question": "Will removing a folder from Search Privacy delete its files?",
+      "answer": "No. Apple says that removing an item from Search Privacy returns its files to results. Excluding a folder only hides it from search. It does not delete anything, and the files stay where they are."
+    },
+    {
+      "question": "Should I run sudo mdutil -E / to fix Spotlight?",
+      "answer": "Only as a last resort. Re-adding one folder to Search Privacy is gentler and often enough. Erasing the index forces a full rebuild that can take hours or even days, and the mdutil man page does not say whether sudo is required."
+    },
+    {
+      "question": "Does excluding my Time Machine backup disk stop Spotlight from indexing it?",
+      "answer": "No. Apple says Time Machine needs that indexing, and it cannot be turned off. Spotlight still skips non-backup items on that disk when you search, so excluding it does not give you the result you may expect."
+    },
+    {
+      "question": "Can Lazur fix Spotlight for me?",
+      "answer": "Not by itself. Lazur does not click buttons, change settings, or run Terminal commands. It can circle Search Privacy on screen, guide you one click at a time, explain Terminal output if you hold ⌥ ⌘, and draft a note to your IT team."
+    },
+    {
+      "question": "Is it safe to show client or patient files to Lazur?",
+      "answer": "Follow your employer's rules first. Lazur looks at the screen only while you hold the shortcut, and the screenshot goes to AI providers so they can answer. For client, patient, or case data, ask your employer before you share the screen."
+    },
+    {
+      "question": "What if Spotlight still misses files after all these steps?",
+      "answer": "Find files with find or mdfind in Terminal so you can keep working. Then contact IT if the Mac is managed, or Apple Support if it is your own Mac. Bring your notes about what you checked and changed."
+    }
+  ],
+  "sources": [
+    {
+      "title": "How Digital Organization Impacts Employees and the Workplace",
+      "url": "https://blog.adobe.com/en/publish/2023/09/29/how-digital-organization-impacts-employees-workplace",
+      "publisher": "Adobe Blog",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "State of Teams 2025 - Inside Atlassian",
+      "url": "https://www.atlassian.com/blog/state-of-teams-2025",
+      "publisher": "Atlassian",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The high cost of not finding information",
+      "url": "https://www.kmworld.com/Articles/Editorial/Features/The-high-cost-of-not-finding-information-9534.aspx",
+      "publisher": "KMWorld",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "About Spotlight indexing and search results on Apple devices",
+      "url": "https://support.apple.com/en-us/102321",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Prevent Spotlight searches in specific folders or disks",
+      "url": "https://support.apple.com/guide/mac-help/prevent-spotlight-searches-in-specific-folders-or-disks-mchl1bb43b84/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Spotlight settings on Mac",
+      "url": "https://support.apple.com/guide/mac-help/spotlight-settings-on-mac-mchl54d95e8a/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "mdutil(1) man page (mirror)",
+      "url": "https://keith.github.io/xcode-man-pages/mdutil.1.html",
+      "publisher": "keith.github.io (mirror of Apple man page)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Searching iCloud Drive with Spotlight",
+      "url": "https://eclecticlight.co/2023/07/19/searching-icloud-drive-with-spotlight/",
+      "publisher": "The Eclectic Light Company",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "costs": [
+    {
+      "title": "Time lost to hunting",
+      "text": "Every failed search turns into digging through folders by hand. Adobe's 2023 survey found that over 1 in 10 employees spend more than four hours a week searching for digital documents. That covers general search, not Spotlight alone, so use it as a sense of scale."
+    },
+    {
+      "title": "Work done twice",
+      "text": "A file you cannot find often gets recreated, re-requested, or exported again. The rebuilt copy may differ from the original. No public number tracks this cost on Macs, so count your own repeats for a week and see what it adds up to."
+    },
+    {
+      "title": "Wrong version, wrong decision",
+      "text": "A search that quietly returns an old file can send you to the wrong draft. If the index is stale, the newest file may be the one you cannot see. Check the modified date before you act on any result."
+    },
+    {
+      "title": "Hidden exclusions",
+      "text": "A folder on the Search Privacy list does not announce itself. You may believe a project is gone when Spotlight is only skipping it. Checking that list takes less time than rebuilding a project you thought you lost."
+    },
+    {
+      "title": "Trust in the tool",
+      "text": "When search fails often, people stop using it. They browse folders, bookmark paths, and keep duplicate copies on the desktop. That habit costs more over a month than any single failed search."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The index is still building",
+      "text": "Spotlight indexes in the background, and Apple says the process can take hours or even days. New Macs, restores, migrations, and large downloads all add work. Until the index catches up, recent files can be missing while older files still show up."
+    },
+    {
+      "title": "A folder or disk is on Search Privacy",
+      "text": "Search Privacy tells Spotlight to skip the folders and disks on its list. Those files never appear in results, even when you search for their exact names. Apple's help page also warns that excluding your whole internal disk stops app-update notifications."
+    },
+    {
+      "title": "The file is an iCloud Drive file you do not have",
+      "text": "Eclectic Light reported in July 2023 that Spotlight only reported hits in downloaded iCloud Drive files. With Optimize Mac Storage on, macOS can remove local copies, and those files then drop out of results until you download them again."
+    },
+    {
+      "title": "The index is stale or damaged",
+      "text": "Sometimes the index exists but is wrong. Moved or renamed files may still show old locations, or new files may never appear. Apple's Search Privacy method re-indexes one location, and a full erase with mdutil is the broader repair for the same problem."
+    },
+    {
+      "title": "The search is scoped to the wrong place",
+      "text": "A search limited to the current folder looks exactly like a missing file. Check the scope buttons above the Finder results, and check the file name for spelling, punctuation, or version suffixes that change what matches."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Check indexing status in Terminal",
+      "text": "Open Terminal from Applications > Utilities > Terminal and run mdutil -s /. The output tells you whether indexing is enabled for the startup disk. If indexing is still busy, plug in the Mac, connect to Wi-Fi or Ethernet, and check again later."
+    },
+    {
+      "title": "Review the Search Privacy list",
+      "text": "Open System Settings > Spotlight, then click Search Privacy in the lower-right corner. Select any entry you do not want excluded and click the minus sign button. Removing an item returns its files to results. Older macOS releases may call this pane Siri & Spotlight."
+    },
+    {
+      "title": "Re-index one folder the way Apple describes",
+      "text": "Add the folder with the plus sign button, wait a few seconds, select the same entry, and click the minus sign button. Then click Done. Apple says Spotlight re-indexes that location. Do this for one folder at a time, and test a search after each one."
+    },
+    {
+      "title": "Download the iCloud files you need",
+      "text": "Open the folder in Finder and confirm the file opens without a cloud icon. Keep the folders you search often on your Mac. Check that iCloud Drive is not on the Search Privacy list, because downloaded files stay searchable only when it is not."
+    },
+    {
+      "title": "Search from Terminal while you wait",
+      "text": "Run find ~ -iname '*invoice*' to search by file name without the index. Run mdfind -onlyin ~ 'invoice' when you want Spotlight's index. find can be slow across large folders, so start in the smallest folder that could hold the file."
+    },
+    {
+      "title": "Use your editor's search for code",
+      "text": "In VS Code and Cursor, press ⌘ P to open Quick Open, then type part of the file name. The search runs inside the editor and does not go through Spotlight. Use it for project files while Spotlight catches up."
+    },
+    {
+      "title": "Erase the index only as a last resort",
+      "text": "Run sudo mdutil -E / only after the steps above fail. It erases the index for the startup volume and forces a rebuild. Plan for a long wait, keep the Mac plugged in, and expect patchy search until the rebuild finishes."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is Search Privacy in my Spotlight settings?",
+      "result": "Lazur circles the Search Privacy button on your screen and labels it, then waits while you click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through adding and removing a folder from Search Privacy.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold ⌥ ⌘ and ask what this mdutil status line means.",
+      "result": "Lazur reads what is on your screen and answers out loud in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a message to my IT team about the folders Spotlight skips.",
+      "result": "Lazur drafts the text. You check it and send it yourself from your own email or chat app.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate a note about the iCloud files I still need.",
+      "result": "Dictation types clean, formatted text at your cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research Apple's Spotlight troubleshooting pages and summarize them.",
+      "result": "Lazur runs the research in its own Chrome tabs and comes back with a summary and report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Search Privacy in my Spotlight settings?",
+    "capability": "point",
+    "result": "Lazur circles the Search Privacy button on screen and labels it, then waits while you click it yourself.",
+    "shell": "generic",
+    "context": "System Settings, Spotlight pane",
+    "output": "Lazur circles Search Privacy in the lower-right corner and labels it. You click it yourself, and Lazur does not change any setting.",
+    "pointsAt": "Search Privacy"
+  },
+  "plan": [
+    {
+      "label": "Today",
+      "title": "Check status and Search Privacy",
+      "text": "Run mdutil -s / in Terminal and read the output. Then open System Settings > Spotlight > Search Privacy and remove any entry you do not want excluded. Write down what you changed so you can undo it."
+    },
+    {
+      "label": "Tonight",
+      "title": "Let the index finish",
+      "text": "Plug the Mac in, connect it to Wi-Fi or Ethernet, and leave it idle overnight if you can. Apple says indexing finishes faster in those conditions. Do not erase anything yet."
+    },
+    {
+      "label": "Day 2",
+      "title": "Re-index the one folder that matters",
+      "text": "If a folder is still missing, add it to Search Privacy, wait a few seconds, remove it, and click Done. Test a search for a file you know is there. Repeat for one folder at a time, not all of them."
+    },
+    {
+      "label": "Day 3",
+      "title": "Fix iCloud gaps, then decide",
+      "text": "Download the files you need and keep those folders local. If search still fails, use find or mdfind in Terminal to keep working, then contact IT or Apple Support with your notes. Erase the index only after the simpler steps fail."
+    }
+  ],
+  "apps": [
+    "cursor",
+    "vs-code",
+    "xcode"
+  ],
+  "type": "problem",
+  "slug": "spotlight-not-finding-files-mac-reindex",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/spotlight-not-finding-files-mac-reindex/spotlight-not-finding-files-on-mac-1-95a447.jpg",
+      "width": 1280,
+      "height": 719,
+      "alt": "Developer at a desk with a Mac laptop, checking Spotlight when files seem missing from search",
+      "caption": "Working on a Mac laptop at a desk",
+      "keywords": [
+        "spotlight not finding files on mac",
+        "Developers",
+        "Spotlight missing files on Mac",
+        "Mac",
+        "developer working at Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "jamesmarkosborne",
+        "url": "https://pixabay.com/users/jamesmarkosborne-1640589/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-html-digital-coding-web-1076536/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/spotlight-not-finding-files-mac-reindex/spotlight-not-finding-files-on-mac-2-06979a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop searching for a file that is hard to find on a Mac",
+      "caption": "Searching for a file on a laptop",
+      "keywords": [
+        "spotlight not finding files on mac",
+        "Developers",
+        "Spotlight missing files on Mac",
+        "Mac",
+        "person searching laptop files",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "RosZie",
+        "url": "https://pixabay.com/users/RosZie-6000120/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/folder-file-laptop-digital-analog-7382941/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/spotlight-not-finding-files-mac-reindex/spotlight-not-finding-files-on-mac-3-677a9d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office desk with a laptop and notebook, where file search on a Mac matters every day",
+      "caption": "A desk setup where file search matters daily",
+      "keywords": [
+        "spotlight not finding files on mac",
+        "Developers",
+        "Spotlight missing files on Mac",
+        "Mac",
+        "office desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-electronics-2565478/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "spotlight not finding files on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "spotlight search missing files mac": 1,
+      "mac spotlight index rebuild": 1,
+      "spotlight search privacy folder": 1,
+      "icloud drive files not showing in spotlight": 1,
+      "mdutil reindex mac": 1,
+      "spotlight not indexing new files mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

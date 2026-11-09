@@ -1,0 +1,721 @@
+{
+  "title": "How to run a Python file in VS Code on Mac: steps for macOS beginners",
+  "metaTitle": "How to Run a Python File in VS Code on Mac (2026 Guide)",
+  "description": "How to run a Python file in VS Code on Mac: install Python with Homebrew, add the Python extension, pick an interpreter, then click Run.",
+  "targetKeyword": "how to run a python file in vs code on mac",
+  "secondaryKeywords": [
+    "run python file vs code mac",
+    "install python with homebrew for vs code",
+    "select python interpreter vs code mac",
+    "python extension vs code mac",
+    "run python file in terminal vs code",
+    "modulenotfounderror vs code mac"
+  ],
+  "intro": "To run a Python file in VS Code on Mac, install Python 3 with Homebrew and add the Python extension. Then select that Python as your interpreter, open your .py file, and click the Run Python File button at the top right of the editor, which prints the output in VS Code's terminal.",
+  "tldr": [
+    "Install VS Code from the .dmg, then run Shell Command: Install 'code' command in PATH from ⇧⌘P.",
+    "Install Python with brew install python3. The macOS system Python is not supported by Microsoft.",
+    "Install the Python extension (ms-python.python), then select your interpreter from the status bar or ⇧⌘P.",
+    "Open your .py file, save with ⌘S, and click Run Python File at the top right of the editor.",
+    "If a module is missing, install it into the same interpreter with python3 -m pip install package-name."
+  ],
+  "stats": [
+    {
+      "value": "75.9%",
+      "label": "of all respondents in the 2025 Stack Overflow Developer Survey use Visual Studio Code.",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "57.9%",
+      "label": "of the same 2025 respondents use Python.",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    },
+    {
+      "value": "1.145",
+      "label": "is the latest stable VS Code release, dated November 4, 2026.",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "Visual Studio Code Updates"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most people who search this question have the same problem. They installed VS Code, opened a .py file, and got stuck. The file either did not run, or the output went somewhere they could not see. This guide fixes that in one pass. You will set up Python, choose the interpreter VS Code uses, and run a file in several ways."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "You need a Mac, Visual Studio Code, and Python 3 installed on purpose. Microsoft's macOS setup page lists Universal, Intel, and Apple silicon builds of VS Code. It does not state a minimum macOS version, so check your macOS version against the current VS Code docs if your Mac is older."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A Mac with Apple silicon or Intel. VS Code ships builds for both.",
+        "Visual Studio Code, stable release. The current stable release is 1.145.",
+        "Homebrew, used to install python3 from Terminal.",
+        "The Python extension by Microsoft, with the ID ms-python.python.",
+        "A folder for practice scripts, such as Documents/python-practice."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The list looks short, but the Python part trips up most people. Apple includes a Python with macOS. Microsoft's Python tutorial says that system Python is not supported. Install a separate Python 3 with Homebrew, and VS Code can use that one instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install Python 3 with Homebrew, not the system Python"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Terminal. Press ⌘Space, type Terminal, and press Return. You can also open Applications, then Utilities, then Terminal. Run brew install python3 and wait for it to finish."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, confirm the install. Run python3 --version. It prints the version of Python that your Terminal finds first. If the line starts with Python 3, you are set. If it says command not found, the Homebrew install did not finish, or the Terminal window was open before the install."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Command",
+        "What it does",
+        "What you should see"
+      ],
+      "rows": [
+        [
+          "brew install python3",
+          "Installs Python 3 with Homebrew",
+          "The install finishes without errors"
+        ],
+        [
+          "python3 --version",
+          "Prints the Python version your Terminal finds",
+          "A line that starts with Python 3"
+        ],
+        [
+          "python3 -m pip install numpy",
+          "Installs a package into the python3 you run",
+          "A success message from pip"
+        ]
+      ],
+      "caption": "Three Terminal commands you will use in this guide."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Installed Python while VS Code was open?",
+      "text": "Close VS Code and reopen it, or close the terminal and open a new one. VS Code may not see a Python that was installed while it was already running."
+    },
+    {
+      "type": "paragraph",
+      "text": "You will reuse all three commands. The first installs Python, the second checks it, and the third adds a package later in this guide. Keep the Terminal window open while you work through the steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add the Python extension"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Python extension gives VS Code its run buttons, environment tools, and Python debugger. Open the Extensions view from the Activity Bar on the left. Search for Python, pick the extension by Microsoft, and check that its ID is ms-python.python before you install it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Select the Python interpreter in VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "An interpreter is the Python program that runs your file. VS Code uses the interpreter you select. That choice drives the play button and the debugger, so it matters more than anything else on this page."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can pick it in two ways. Press ⇧⌘P, type Python: Select Interpreter, and choose the Python 3 you installed with Homebrew. Or look at the bottom status bar, which shows the Python version, and click it to switch."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a clean setup on one project, use Python: Create Environment from the Command Palette. Choose Venv, pick an interpreter, and VS Code creates an environment for the folder. Quick Create, started with the + in the Environment Managers view, names the environment .venv and uses the latest Python."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run Python: Select Interpreter again after you install or upgrade Python. That confirms which copy VS Code will use. It is a quick habit that saves a lot of confusion later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create hello.py and click Run Python File"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the folder that will hold your scripts with File > Open Folder. In the Explorer sidebar, click the New File button on the folder's toolbar, and name the file hello.py. Then type this line: print('Hello from VS Code')"
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⌘S to save. Then click the play button labeled Run Python File at the top right of the editor. VS Code opens a terminal in the bottom panel, runs python3 hello.py, and prints Hello from VS Code there."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft uses two labels for this button. The tutorial calls it Run Python File. The quick start calls it Run Python File in Terminal. Both start the same run, so look for the play icon in the top right corner of the editor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try a second file to test input. Create greet.py with name = input('Your name: ') on one line and print('Hello, ' + name) on the next. Run it, type your name at the prompt in the terminal, and press Return."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Save before you run",
+      "text": "The terminal runs the file as it is saved on disk. A dot on the file tab means you still have unsaved changes. Press ⌘S, then run again."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Other ways to run a Python file in VS Code"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Right-click in the editor and choose Run Python > Run Python File in Terminal. This saves the file first.",
+        "Select one or more lines and press Shift+Enter. VS Code sends the selection to a Python terminal.",
+        "Open the Command Palette with ⇧⌘P and run Python: Start Terminal REPL for an interactive Python prompt.",
+        "Open the integrated terminal with ⌃⇧` and type python3 hello.py yourself."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Shift+Enter is useful for testing one idea at a time. Smart Send can also send lines you did not mean to run. If that happens, set python.REPL.enableREPLSmartSend to false in your settings. Microsoft's tutorial gives this same fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start Terminal REPL suits exploring a library. It gives you a prompt where each line runs as you type it, using the interpreter you selected. Use the play button when you want the whole file to run from the top."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check which Python actually ran"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your Terminal and VS Code can use different Pythons. The terminal runs whatever comes first on your PATH. VS Code runs the interpreter shown in the status bar. When those two differ, results look confusing, and a script can pass in one place and fail in the other."
+    },
+    {
+      "type": "paragraph",
+      "text": "To see the truth, add two lines to the top of hello.py: import sys and print(sys.executable). Run the file. The path it prints is the interpreter that ran your code. Compare that path with the version shown in the status bar."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the two do not match, select the interpreter again with Python: Select Interpreter. Then open a new terminal, because a terminal that was already open can keep an older Python on its path."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run with the debugger when a script misbehaves"
+    },
+    {
+      "type": "paragraph",
+      "text": "The play button runs your file from top to bottom and then stops. The debugger pauses at lines you choose, so you can watch values change. Press F9 on a line to set a breakpoint. Then press F5 and choose Python File."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the run pauses, press F10 to step over a line and F11 to step into a function. Press ⇧F11 to step out of the current function. This helps when a script has too many print calls to read."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Shortcut",
+        "When you use it"
+      ],
+      "rows": [
+        [
+          "Toggle breakpoint",
+          "F9",
+          "Pause on a line"
+        ],
+        [
+          "Start debugging",
+          "F5",
+          "Run the file with the debugger"
+        ],
+        [
+          "Step over",
+          "F10",
+          "Run the current line, then stop on the next"
+        ],
+        [
+          "Step into",
+          "F11",
+          "Enter a function on the current line"
+        ],
+        [
+          "Step out",
+          "⇧F11",
+          "Finish the current function and return"
+        ],
+        [
+          "Restart",
+          "⇧⌘F5",
+          "Start the debug session again"
+        ],
+        [
+          "Stop",
+          "⇧F5",
+          "End the debug session"
+        ]
+      ],
+      "caption": "Debug shortcuts from Microsoft's Python tutorial."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Run Without Debugging",
+      "text": "Microsoft's keybinding page does not list a Mac shortcut for Run Without Debugging. It links to a macOS keyboard shortcut reference PDF instead. Check that PDF before you rely on a key."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install a package before you import it"
+    },
+    {
+      "type": "paragraph",
+      "text": "If a script imports a package that is not installed, Python stops with ModuleNotFoundError. The error means the selected interpreter does not have that package. Your Mac may have it in another Python, but VS Code does not use that one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Install the package into the selected interpreter. In the Python sidebar, open Environment Managers, right-click your environment, and choose Manage Packages. Or press ⌃⇧` to open a terminal and run python3 -m pip install numpy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try it on hello.py. Add import numpy on the first line and run the file. You should see ModuleNotFoundError. Install numpy, run again, and the error should go away."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that stop a script from running"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Running an unsaved file. Save with ⌘S first, or use Run Python File in Terminal, which saves for you.",
+        "Running the wrong interpreter. Check the version in the bottom status bar before you click play.",
+        "Using a Python installed while VS Code was open. Restart VS Code, then try again.",
+        "Getting an unwanted completion after typing as in an import. Type a space before you press Return.",
+        "Assuming the system Python is fine. Microsoft says it is not supported, so use Homebrew.",
+        "Expecting the web version to match the desktop app. It has real limits, covered below."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most failures come from one of these. Check the status bar first. It shows the active interpreter at a glance, and that answers most questions before you dig into settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Running Python in the browser instead"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft also documents an experimental Python for the Web option. You open insiders.vscode.dev with ?vscode-coi= added to the address, in Edge or Chrome. The source must be local, or a GitHub repository read through the GitHub Repositories extension."
+    },
+    {
+      "type": "paragraph",
+      "text": "The limits matter. The web version has no socket support, no thread or async support, no pip support, and no native Python modules. Use the desktop app on your Mac for anything that needs packages or networking."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your VS Code version"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's updates page lists 1.145 as the latest stable release, dated November 4, 2026. It also lists 1.144 and 1.143 before it, but it does not show their dates. Microsoft's pages do not describe a Mac-specific menu change in that range."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Labels do shift between releases. If your window says something slightly different, look for the same idea: the play button, the Command Palette, or the status bar. The steps still apply when the wording moves."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the play button works, learn the integrated terminal. It is where your script output lives, and you can run scripts from it. Open it with ⌃⇧` and read the [integrated terminal guide](/how-to/toggle-the-integrated-terminal-in-vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want to run scripts from any folder, install the code command first. The [install the code command guide](/how-to/install-the-code-command-in-vs-code) covers the Command Palette steps. Then use [open a folder from the terminal](/how-to/open-a-folder-from-the-terminal-in-vs-code) to start a project from the shell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add extensions carefully. Read [how to install an extension in VS Code on Mac](/how-to/install-an-extension-in-vs-code) before you add a second one, so you know where each setting lives."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "One interpreter per project",
+      "text": "Select the interpreter once for each project folder, then check the status bar before each run. That keeps your results consistent from day to day."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I run a Python file without the play button?",
+      "answer": "Yes. Right-click in the editor and choose Run Python > Run Python File in Terminal. You can also open the integrated terminal with ⌃⇧` and type python3 hello.py yourself."
+    },
+    {
+      "question": "Why does my Mac say python3: command not found in VS Code?",
+      "answer": "The usual cause is that Python 3 is not installed with Homebrew yet. Run brew install python3, then restart VS Code or open a new terminal. Select that Python as your interpreter after the install."
+    },
+    {
+      "question": "Is there a Mac shortcut to run a Python file?",
+      "answer": "Microsoft's pages do not list a shortcut for the play button. Shift+Enter runs a selection, and F5 starts debugging. Check the macOS shortcut reference PDF linked from the keybindings page before you rely on any other key."
+    },
+    {
+      "question": "Should I use the Python that comes with macOS?",
+      "answer": "Microsoft's Python tutorial says the macOS system Python is not supported. Install Python 3 with Homebrew, then select it as your interpreter in VS Code."
+    },
+    {
+      "question": "Why does an import still fail after I installed a package?",
+      "answer": "The package went into a different interpreter. Check the status bar, then install the package into the selected one with Manage Packages or python3 -m pip install package-name."
+    },
+    {
+      "question": "Can I run Python in the browser instead?",
+      "answer": "Only through the experimental Python for the Web option at insiders.vscode.dev, with ?vscode-coi= added to the address. It has no socket, thread or async, pip, or native module support, so use the desktop app for real projects."
+    },
+    {
+      "question": "Which VS Code version should I install?",
+      "answer": "Use the latest stable release. Microsoft's updates page lists 1.145, dated November 4, 2026, as the current stable version."
+    },
+    {
+      "question": "Why does the button label differ from this guide?",
+      "answer": "Microsoft's tutorial and quick start use different labels for the same play button. Look for the play icon at the top right of the editor, and check the tooltip if you are unsure."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Python in Visual Studio Code (official tutorial)",
+      "url": "https://code.visualstudio.com/docs/python/python-tutorial",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Python quick start (Visual Studio Code)",
+      "url": "https://code.visualstudio.com/docs/python/python-quick-start",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Python environments in VS Code",
+      "url": "https://code.visualstudio.com/docs/python/environments",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Python for the Web (experimental)",
+      "url": "https://code.visualstudio.com/docs/python/python-web",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Key bindings for Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/getstarted/keybindings",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Setting up VS Code on macOS",
+      "url": "https://code.visualstudio.com/docs/setup/mac",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft / Visual Studio Code",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Run a Python file in VS Code on Mac",
+  "appliesTo": "VS Code stable 1.145 on macOS with Python 3 installed through Homebrew",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Apple silicon or Intel. VS Code ships builds for both.",
+    "Visual Studio Code stable. The current stable release is 1.145.",
+    "Homebrew, used to install python3 from Terminal.",
+    "The Python extension by Microsoft, with the ID ms-python.python.",
+    "A folder for practice scripts, such as Documents/python-practice."
+  ],
+  "steps": [
+    {
+      "name": "Install Visual Studio Code",
+      "text": "Download the VS Code .dmg from Microsoft's Mac setup page. Open it and drag Visual Studio Code into your Applications folder. Open VS Code once to confirm it starts.",
+      "tip": "Microsoft ships Universal, Intel, and Apple silicon builds, so one download covers both kinds of Mac."
+    },
+    {
+      "name": "Install the code command",
+      "text": "Press ⇧⌘P to open the Command Palette. Type Shell Command: Install 'code' command in PATH and press Return. Restart Terminal, then run code . in a folder to check it works.",
+      "shortcut": "⇧⌘P",
+      "tip": "Insiders builds, or organizations that disable AI features, show a shorter label. Pick the one that mentions PATH."
+    },
+    {
+      "name": "Install Python 3 with Homebrew",
+      "text": "Open Terminal and run brew install python3. When it finishes, run python3 --version and read the version it prints. Do not rely on the Python that came with macOS for this guide.",
+      "tip": "If brew is not found, install Homebrew first, then open a new Terminal window."
+    },
+    {
+      "name": "Install the Python extension",
+      "text": "Open the Extensions view from the Activity Bar on the left. Search for Python, choose the extension by Microsoft, and click Install. Its ID is ms-python.python.",
+      "tip": "If several results look alike, search for ms-python.python to find the right one."
+    },
+    {
+      "name": "Select your interpreter",
+      "text": "Press ⇧⌘P, type Python: Select Interpreter, and choose the Python 3 you installed with Homebrew. Check the bottom status bar. It should show the same version.",
+      "shortcut": "⇧⌘P"
+    },
+    {
+      "name": "Create hello.py",
+      "text": "Open the folder that will hold your script. In the Explorer, click the New File button on the folder's toolbar. Name the file hello.py and type print('Hello from VS Code').",
+      "tip": "Keep the .py ending. VS Code uses it to recognize a Python file."
+    },
+    {
+      "name": "Save the file",
+      "text": "Press ⌘S to save before you run. A dot on the file tab means unsaved changes are still open.",
+      "shortcut": "⌘S"
+    },
+    {
+      "name": "Click the play button",
+      "text": "Click the play button labeled Run Python File at the top right of the editor. VS Code opens a terminal, runs python3 hello.py, and prints the output in the terminal panel.",
+      "tip": "If your version says Run Python File in Terminal, it is the same button."
+    },
+    {
+      "name": "Try the right-click route",
+      "text": "Right-click inside the editor and choose Run Python, then Run Python File in Terminal. The file saves first. Use this route if the play button is missing or you want every run in the terminal.",
+      "menuPath": [
+        "Right-click in editor",
+        "Run Python",
+        "Run Python File in Terminal"
+      ]
+    },
+    {
+      "name": "Run a selection with Shift+Enter",
+      "text": "Select one line or a block of code, then press Shift+Enter. VS Code sends the selection to a Python terminal, so you can see results one step at a time.",
+      "shortcut": "Shift+Enter"
+    },
+    {
+      "name": "Start the debugger",
+      "text": "Click the gutter beside a line number, or press F9, to set a breakpoint. Press F5 and choose Python File. Execution pauses at your breakpoint.",
+      "shortcut": "F5",
+      "tip": "Press ⇧⌘F5 to restart the debug session, or ⇧F5 to stop it."
+    },
+    {
+      "name": "Check which Python ran",
+      "text": "Add import sys and print(sys.executable) to the top of hello.py. Run it again. Compare the path it prints with the interpreter shown in the status bar.",
+      "tip": "If the paths differ, select the interpreter again and open a new terminal."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Save the current file",
+      "keys": "⌘S"
+    },
+    {
+      "action": "Run selection or line in Python terminal",
+      "keys": "Shift+Enter"
+    },
+    {
+      "action": "Start debugging with Python File",
+      "keys": "F5"
+    },
+    {
+      "action": "Toggle a breakpoint",
+      "keys": "F9"
+    },
+    {
+      "action": "Step over",
+      "keys": "F10"
+    },
+    {
+      "action": "Step into",
+      "keys": "F11"
+    },
+    {
+      "action": "Step out",
+      "keys": "⇧F11"
+    },
+    {
+      "action": "Restart the debug session",
+      "keys": "⇧⌘F5"
+    },
+    {
+      "action": "Stop the debug session",
+      "keys": "⇧F5"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "python3: command not found in the terminal",
+      "fix": "Install Python 3 with brew install python3, then restart VS Code and open a new terminal. Select the Homebrew Python as your interpreter."
+    },
+    {
+      "problem": "ModuleNotFoundError when you import a package",
+      "fix": "The package is missing from the selected interpreter. Install it with python3 -m pip install package-name in the same environment, then run the file again."
+    },
+    {
+      "problem": "A new Python does not appear in the interpreter list",
+      "fix": "Refresh environment discovery or restart VS Code. If it still does not appear, add its folder to workspaceSearchPaths or globalSearchPaths in settings."
+    },
+    {
+      "problem": "Shift+Enter sends extra lines you did not select",
+      "fix": "Set python.REPL.enableREPLSmartSend to false in your settings, then try the selection again."
+    },
+    {
+      "problem": "Typing as in an import triggers an unwanted completion",
+      "fix": "Type a space before you press Return. The completion will not appear on the new line."
+    },
+    {
+      "problem": "The play button does not appear",
+      "fix": "Confirm the file ends in .py and the Python extension is installed and enabled. Then use right-click > Run Python > Run Python File in Terminal as a fallback."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the run button?",
+    "capability": "point",
+    "result": "Lazur circles the Run Python File button at the top right of the editor and labels it, so you can click it yourself.",
+    "shell": "code",
+    "pointsAt": "Run Python File",
+    "context": "VS Code editor with hello.py open, play button at the top right",
+    "output": "Lazur draws a circle and a label around the button on your screen and says where it is out loud."
+  },
+  "type": "howto",
+  "slug": "run-a-python-file-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-python-file-in-vs-code/how-to-run-a-python-file-in-1-389561.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Developer typing Python code on a MacBook while running a file in VS Code",
+      "caption": "Writing and running a Python file on a Mac",
+      "keywords": [
+        "how to run a python file in vs code on mac",
+        "VS Code",
+        "run a Python file",
+        "Mac",
+        "person coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Yng_saad",
+        "url": "https://pixabay.com/users/Yng_saad-23159574/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hacker-cyber-illegal-technology-6586113/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-python-file-in-vs-code/how-to-run-a-python-file-in-2-2cfa76.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "MacBook on a desk with a code editor open for a Python file",
+      "caption": "A simple desk setup for Python on a Mac",
+      "keywords": [
+        "how to run a python file in vs code on mac",
+        "VS Code",
+        "run a Python file",
+        "Mac",
+        "macbook desk work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-python-file-in-vs-code/how-to-run-a-python-file-in-3-0366df.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Programmer checking Python output in a terminal panel on a Mac",
+      "caption": "Checking script output in the terminal",
+      "keywords": [
+        "how to run a python file in vs code on mac",
+        "VS Code",
+        "run a Python file",
+        "Mac",
+        "programmer terminal screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StuBaileyPhoto",
+        "url": "https://pixabay.com/users/StuBaileyPhoto-19245286/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/plane-seats-window-aviation-6511877/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to run a python file in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "run python file vs code mac": 1,
+      "install python with homebrew for vs code": 1,
+      "select python interpreter vs code mac": 1,
+      "python extension vs code mac": 1,
+      "run python file in terminal vs code": 1,
+      "modulenotfounderror vs code mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

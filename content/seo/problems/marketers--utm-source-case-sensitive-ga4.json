@@ -1,0 +1,611 @@
+{
+  "title": "utm source case sensitive in google analytics 4: why one campaign splits into rows on Mac",
+  "metaTitle": "utm source case sensitive in google analytics 4: fix split rows",
+  "description": "utm source case sensitive in Google Analytics 4 splits one campaign into several rows. Find the split on Mac, fix the links, and clean the old data.",
+  "targetKeyword": "utm source case sensitive in google analytics 4",
+  "secondaryKeywords": [
+    "utm campaign naming convention",
+    "utm parameters google analytics 4 lowercase",
+    "google analytics 4 not set utm",
+    "utm source google vs Google",
+    "google ads auto-tagging utm conflict",
+    "ga4 source medium split rows",
+    "utm lowercase standard practice"
+  ],
+  "intro": "utm source case sensitive in google analytics 4 means utm_source=Google and utm_source=google count as two sources. That is why one campaign can show up in several rows. The fix is one lowercase naming rule for every link, plus a clean-up of the links you already sent.",
+  "tldr": [
+    "GA4 treats utm_source=Google and utm_source=google as two different values.",
+    "Missing UTM parameters show up as (not set) rows, so check for them too.",
+    "Default channel groupings ignore case, so the channel view can look fine while source rows split.",
+    "Use lowercase for source, medium, and campaign, and match the campaign name exactly.",
+    "Test Google Ads auto-tagging before you trust manual UTMs on the same traffic."
+  ],
+  "stats": [
+    {
+      "value": "14.5 hours",
+      "label": "per week, on average, managing customer data collection (2022 vendor survey, not UTM work alone)",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: data efficiency survey (Sept 2022 fieldwork)"
+    },
+    {
+      "value": "18%",
+      "label": "of senior US marketers spend over 20 hours a week on customer data collection",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: data efficiency survey (Sept 2022 fieldwork)"
+    },
+    {
+      "value": "$165,780",
+      "label": "median annual pay for advertising, promotions, and marketing managers, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "If one campaign shows up in several rows in Google Analytics 4, capital letters are the usual cause. GA4 reads utm_source=Google and utm_source=google as two different sources. Google says so directly. The fix is one lowercase naming rule for every link, plus a clean-up of the links you already sent."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why utm source is case sensitive in Google Analytics 4"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the report in Chrome on your Mac. Go to Reports > Acquisition > Traffic acquisition. Then add the Session source / medium dimension from the report's dimension menu. Look at one campaign you know is split. The rows often look almost the same, and that is the trap. GA4 menus move from time to time, so if the path differs, search Google's help for Traffic acquisition."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Session source / medium",
+        "What GA4 does",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "google / cpc",
+          "Counts as one source and medium pair",
+          "Keep this spelling as the standard"
+        ],
+        [
+          "Google / cpc",
+          "Counts as a separate pair",
+          "Change to lowercase and merge the rows in your notes"
+        ],
+        [
+          "google / CPC",
+          "Counts as another separate pair",
+          "Change the medium to lowercase too"
+        ],
+        [
+          "(not set) / cpc",
+          "The source was missing from the link",
+          "Find the link and add a source"
+        ]
+      ],
+      "caption": "Example rows for one paid campaign. Your report will look different."
+    },
+    {
+      "type": "paragraph",
+      "text": "Case applies to each value you define. Google's help says case sensitivity applies for each value. So the source, the medium, and the campaign can each split on their own. One capital letter in any field is enough to create a new row."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How one campaign turns into several rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "The split starts in the link, not in the report. Every UTM value you type becomes a stored value. The report shows exactly what the links recorded. Two teammates can build two links for the same campaign and still get two rows. They only need to type a different capital letter or a different campaign name."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Source: Google and google create two sources.",
+        "Medium: CPC and cpc create two mediums.",
+        "Campaign: Spring_Sale and spring_sale create two campaigns.",
+        "Spacing: spring sale and spring_sale do not match, because names must match exactly."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google recommends one unique campaign name that matches the exact campaign name. Treat the campaign field like an ID. Two spellings give two IDs. Google also recommends lowercase as a standard practice. Those two rules prevent this kind of split."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why some links show as (not set)"
+    },
+    {
+      "type": "paragraph",
+      "text": "A missing parameter still gets recorded. Google says missing UTM parameters 'will result in (not set) values being present in reporting.' A link with a campaign but no source lands in a (not set) row. Sort by source and look for it. A (not set) row is not a new campaign. It is a link that needs a fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the channel view can look fine while sources split"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the confusing part. Google's default channel groupings say channel definitions are not case sensitive. So the channel report may group the upper and lower case versions into one channel. The source and medium report can still show separate rows. The channel total looks tidy, and the detail still splits."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's pages do not state this exact result. It follows from two of Google's rules, so treat it as an inference and check it in your own property. Pick one date range. Compare the channel total with the sum of the source rows that belong to it. If the totals match but the rows split, case is the likely cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Google Ads auto-tagging does to manual UTMs"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you run Google Ads and also tag links by hand, check which one wins. Google says auto-tagging is prioritized over manual tagging, and there is no override option. Google's page offers manual UTMs as the alternative, and it does not recommend running both."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's page does not say what happens when both are on. Test it in your own account. Click one ad, then click one link with manual UTMs. Compare the source and medium each one records. The result tells you which path wins for that traffic."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the split costs you in time and in bad numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "No study measures how often UTM splits happen, or how long the clean-up takes. Google's guidance does not measure outcomes either. So the cost you can see is mostly time, plus numbers you cannot trust. A campaign split across several rows looks smaller in each row than it is in total."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The best time figure we found is broader than UTMs. Treasure Data, a vendor that sells customer data tools, ran a national survey in September 2022. It included 500 U.S.-based senior marketers. On average, they spend 14.5 hours per week managing customer data collection. That covers the whole data job, not UTM cleanup alone."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Read the number carefully",
+      "text": "The 14.5-hour figure is for customer data collection, not UTM work alone. It comes from a 2022 vendor survey. Use it as a rough sign of effort. Do not use it as a UTM cost."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example for one marketer's week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the rough math. BLS lists a median annual wage of $165,780 for advertising, promotions, and marketing managers, based on May 2025 data. Divide that by 2,080 paid hours, a common convention rather than a BLS figure. You get about $79.71 an hour. At 14.5 hours a week, that is about $1,156 a week per person."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat this as an illustration. The BLS median covers all marketing managers, not people who fix UTM tags. The 14.5 hours covers customer data work in general. Your own number depends on how many links you run and how many tools feed your reports. Count your hours for two weeks, then decide whether the rule is worth a meeting."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can use today, with no new tools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the link. Choose one lowercase spelling for source, medium, and campaign, and write it down before you build another link. Use the campaign URL builder that Google provides, and type every value in lowercase. Copy the campaign name from your records instead of retyping it."
+    },
+    {
+      "type": "paragraph",
+      "text": "For old exports, use a formula. Put raw values in column B, starting at B2. In C2, type =LOWER(TRIM(B2)) and fill it down. LOWER changes capitals to lowercase. TRIM removes extra spaces at the start and end. Then copy column C and use Edit > Paste special > Values only before you sort. The clean column helps you compare totals. It does not change GA4. For more on filters, see [how to add a filter in Google Sheets](/how-to/add-a-filter-to-a-range-in-google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a naming sheet that every link follows"
+    },
+    {
+      "type": "paragraph",
+      "text": "A naming sheet is one table in Google Sheets. Make one row per campaign. Add columns for campaign name, source, medium, and the full link. Share the sheet with everyone who builds links. Put the naming rules in a Google Doc next to it, so new people read the rules first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the rules short. For example, the campaign name is spring_sale, the source is google, and the medium is cpc. Pick one separator and keep it. Do not rename a live campaign halfway through. Start a new name for a new campaign, and record the change in the sheet."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean up old links without losing track of history"
+    },
+    {
+      "type": "paragraph",
+      "text": "Plan as if old rows stay split. A new link fixes new traffic. It does not rewrite what the old links recorded. So add a mapping to your naming sheet. For example, Spring Sale in March maps to spring_sale. Anyone reading the report can then tell which name belongs to which period."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you compare periods, use the same mapping on both sides. If you compare March to April, add the March rows under the new name in your spreadsheet. Write the rule in the report notes. Anyone who opens the report later can check your work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps you read the report, find the field, and write the rules. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where Session campaign is, and Lazur draws a circle and a label around it. Ask how to change a setting, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or change your GA4 property for you. It does not fix your links. You make each change. Dictation is included. Hold fn to dictate clean text at the cursor in any app. Read dictated text before you paste it into a link, because any changed capital letter breaks a UTM value."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and client data before you share an export"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Still, check your employer's rules before you share client data or GA4 exports with any tool. Client contracts can set those rules too."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make during a UTM clean-up"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Lowercasing the campaign but not the source, so one row stays split.",
+        "Renaming a live campaign halfway through, so one campaign ends up with two names.",
+        "Trusting the channel report and skipping the source and medium rows.",
+        "Adding manual tags to Google Ads traffic and assuming they win.",
+        "Fixing the spreadsheet and forgetting the link that created the row."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from fixing the report instead of the link. Start with the link. The report only shows what the link told it. Once the link is clean, new rows stop, and the old ones stay as history."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one campaign. Find its split rows, write one lowercase name, and rebuild its links. Watch the report for one week. If the rows merge in the detail view, roll the same rule out to the rest of your campaigns."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does utm source case sensitive in Google Analytics 4 matter for my report?",
+      "answer": "GA4 stores each value as typed. Google says utm_source=google is different from utm_source=Google. Each spelling becomes its own row, so one campaign can look like several. Pick lowercase, use it everywhere, and new traffic follows the spelling in the link."
+    },
+    {
+      "question": "Should I lowercase the campaign name as well as the source?",
+      "answer": "Yes. Google recommends lowercase as a standard practice and a strict, case-sensitive naming convention for source, medium, and campaign. Case applies to each value you define, so one capital letter in the campaign name still splits that campaign."
+    },
+    {
+      "question": "What does (not set) mean in a UTM report?",
+      "answer": "It means a parameter was missing from the link. Google says missing UTM parameters result in (not set) values in reporting. Fix the link that produced the row, then check the next export to see if the row shrinks."
+    },
+    {
+      "question": "Why does the channel report look fine when the source rows split?",
+      "answer": "Google's default channel groupings say channel definitions are not case sensitive. The channel view can merge rows that the source and medium report keeps apart. This is an inference from those two rules, so check it in your own property."
+    },
+    {
+      "question": "Does Google Ads auto-tagging override my manual UTM tags?",
+      "answer": "Google says auto-tagging is prioritized over manual tagging, and there is no override option. Google does not say what happens when both are on, and it does not recommend running both. Test it in your own account before you rely on either."
+    },
+    {
+      "question": "Can Lazur fix my UTM links or my GA4 settings for me?",
+      "answer": "No. Lazur does not click buttons or edit files. It can explain the report, point at a field, guide you one click at a time, and draft the naming rules. You make each change yourself."
+    },
+    {
+      "question": "Can I dictate UTM values without breaking the case?",
+      "answer": "Be careful. Any capital letter changes the value, so read dictated text before you paste it into a link. Hold fn to dictate at the cursor in any app, then check each UTM value by eye."
+    }
+  ],
+  "sources": [
+    {
+      "title": "URL builders: Collect campaign data with custom URLs - Google Analytics Help",
+      "url": "https://support.google.com/analytics/answer/10917952?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Analytics Help: UTM parameters (answer 1033863)",
+      "url": "https://support.google.com/analytics/answer/1033863?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Analytics Help: Default channel groupings (answer 9756891)",
+      "url": "https://support.google.com/analytics/answer/9756891?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Ads Help: About auto-tagging (answer 3095550)",
+      "url": "https://support.google.com/google-ads/answer/3095550?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Treasure Data press release: data efficiency survey (Sept 2022 fieldwork)",
+      "url": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "publisher": "Treasure Data",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "BLS Occupational Outlook Handbook: Advertising, Promotions, and Marketing Managers",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "utm tags splitting one campaign into several rows",
+  "costs": [
+    {
+      "title": "Hours spent merging rows by hand",
+      "text": "Every split row adds a step. You merge rows, check spellings, and explain the totals to your team. The work repeats each reporting cycle, because the same split can come back with the next export if the links stay the same."
+    },
+    {
+      "title": "Campaigns that look smaller than they are",
+      "text": "When one campaign splits into several rows, each row looks small. The total is correct, but the row you check first is only a piece of it. A campaign can look weak when it is working. Add up its rows before you cut budget."
+    },
+    {
+      "title": "Decisions made on partial data",
+      "text": "Google Ads auto-tagging takes priority over manual tagging, and Google offers no override. If you rely on manual UTMs for Ads traffic, the numbers may come from a different tag than you expect. Check which path wins before you compare channels."
+    },
+    {
+      "title": "Awkward answers in client or leadership reports",
+      "text": "A report with split rows invites questions. Someone asks why Spring Sale numbers appear in several places. You then spend a meeting explaining capital letters. Fix the naming before the report goes out, not after."
+    },
+    {
+      "title": "Fixing the copy instead of the cause",
+      "text": "Teams often rename rows in a spreadsheet and call it done. The next export then brings the split back. Fixing the link stops the cause. Fixing the spreadsheet only cleans the copy you made."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Case sensitivity in every UTM value",
+      "text": "GA4 stores each value as typed. Google says utm_source=google is different from utm_source=Google, and case applies to each value you define. One capital letter in the source, medium, or campaign creates a new row. The rule is simple, and it is easy to break by accident."
+    },
+    {
+      "title": "No shared naming rule",
+      "text": "Most split reports come from more than one person building links. One person types Google, another types google, and a third copies an old link. Without a written rule, each person follows a private habit. Google recommends a strict, case-sensitive convention, and that only works when everyone can read it."
+    },
+    {
+      "title": "Campaign names that do not match exactly",
+      "text": "Google recommends one unique campaign name that matches the exact campaign name. A small change, such as spring-sale in one link and spring sale in another, or a trailing space, creates a second campaign. The report cannot tell that the two names were meant to match."
+    },
+    {
+      "title": "Missing parameters",
+      "text": "A link with no source, medium, or campaign still gets recorded. Google says missing parameters produce (not set) values in reporting. That row can look like a separate campaign, even when the traffic belongs to an existing one."
+    },
+    {
+      "title": "Channel groups that ignore case",
+      "text": "Google's default channel groupings say channel definitions are not case sensitive. The channel view can merge rows that the source and medium report keeps apart. Both views follow the rules they were given, so they can disagree, and that disagreement looks like a bug."
+    },
+    {
+      "title": "Google Ads auto-tagging takes priority",
+      "text": "Google says auto-tagging is prioritized over manual tagging, with no override option. If you also tag ad links by hand, the manual values may not show up for those clicks. Google does not say what happens when both are used, so verify it in your account."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Use one lowercase style everywhere",
+      "text": "Type every source, medium, and campaign value in lowercase. Google recommends lowercase as a standard practice. Do this in the URL builder and in every tracked link, including links you paste into emails and social posts."
+    },
+    {
+      "title": "Match the campaign name exactly",
+      "text": "Copy the campaign name from your naming sheet and paste it into the link. Do not retype it. Google recommends one unique name that matches the exact campaign name, so copying is the safest move."
+    },
+    {
+      "title": "Clean exports with LOWER and TRIM",
+      "text": "In Google Sheets, put =LOWER(TRIM(B2)) in a new column and fill it down. LOWER removes capital letters. TRIM removes extra spaces. Compare totals in the clean column against the raw rows before you trust the numbers."
+    },
+    {
+      "title": "Check the (not set) rows every week",
+      "text": "Sort the source column and look for (not set). Each row means a link was missing a parameter. Fix that link at the source, then the next export should show fewer of these rows."
+    },
+    {
+      "title": "Test Google Ads auto-tagging first",
+      "text": "Click one ad and one manually tagged link. Compare the source and medium each one records. Google says auto-tagging takes priority with no override, so decide which path you trust before you change your setup."
+    },
+    {
+      "title": "Compare channel totals with source rows",
+      "text": "Pick one date range. Add up the source rows that belong to a channel and compare the sum with the channel total. If the sum matches but the rows still split, the spelling is the fix."
+    },
+    {
+      "title": "Keep one naming sheet as the source of truth",
+      "text": "Keep one sheet with campaign name, source, medium, and full link. Anyone who builds a link checks the sheet first. The sheet also records old names, so history stays readable."
+    },
+    {
+      "title": "Save reused values as snippets",
+      "text": "Lazur keeps snippets, a personal dictionary, and clipboard slots. Save the lowercase values you reuse, so the spelling stays the same each time. Still read the text before you paste it into a link."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why are these two rows the same campaign?",
+      "capability": "explain",
+      "result": "Lazur explains the case rule out loud while the report stays on your screen."
+    },
+    {
+      "say": "Show me where the medium column is.",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the column you ask for."
+    },
+    {
+      "say": "Walk me through making a new link with lowercase values.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on."
+    },
+    {
+      "say": "Dictate my naming rules into this doc.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Clean text lands at the cursor in any app. Read the capitals before you paste."
+    },
+    {
+      "say": "Draft a note to my team about lowercase UTMs.",
+      "capability": "draft",
+      "result": "Lazur drafts the note and types it where your cursor sits, so you can edit it."
+    },
+    {
+      "say": "Research what Google says about auto-tagging.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report."
+    },
+    {
+      "say": "Remind me to check the not set rows on Friday.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders by voice."
+    }
+  ],
+  "demo": {
+    "spoken": "Why do these two rows count as one campaign?",
+    "capability": "point",
+    "result": "Lazur circles the Session source column and labels the two spellings, so you can see which value differs.",
+    "shell": "sheet",
+    "context": "GA4 export open in Google Sheets in Chrome",
+    "output": "Google and google listed as separate values",
+    "pointsAt": "Session source column"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Find the split in one report",
+      "text": "Open Google Analytics 4 in Chrome. Go to Reports > Acquisition > Traffic acquisition, and add Session source / medium. Filter for one campaign you know is split. Write down each spelling you see, plus any (not set) row."
+    },
+    {
+      "label": "Day 2",
+      "title": "Write the naming rule",
+      "text": "Pick lowercase for source, medium, and campaign. Choose one separator, such as a hyphen, and keep it in every name. Write the rule in a Google Doc, and build a naming sheet in Google Sheets. Share both with the team."
+    },
+    {
+      "label": "Day 3",
+      "title": "Rebuild the links",
+      "text": "Create new links for live campaigns with the campaign URL builder. Type each value in lowercase. Copy the campaign name from the naming sheet. Test one link in a private window and check the source it records."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check Google Ads tagging",
+      "text": "Open your Google Ads account and check whether auto-tagging is on. Compare the source of one ad click with one manually tagged link. Decide which path you trust before you change anything else."
+    },
+    {
+      "label": "Day 5",
+      "title": "Clean the export",
+      "text": "Export the report to Google Sheets. In a new column, use =LOWER(TRIM(B2)) and fill it down. Compare the totals with the raw rows. Keep the clean column for your weekly check of (not set) rows."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs"
+  ],
+  "type": "problem",
+  "slug": "utm-source-case-sensitive-ga4",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/utm-source-case-sensitive-ga4/utm-source-case-sensitive-in-google-analytics-1-6f9038.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a laptop on a desk reviewing Google Analytics 4 campaign rows for utm source case sensitive problems",
+      "caption": "Clean rows start with one naming rule for every link.",
+      "keywords": [
+        "utm source case sensitive in google analytics 4",
+        "Marketers",
+        "UTM tags splitting one campaign into several rows",
+        "Mac",
+        "marketer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TheInvestorPost",
+        "url": "https://pixabay.com/users/TheInvestorPost-19152356/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-stock-trading-iphone-5782411/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/utm-source-case-sensitive-ga4/utm-source-case-sensitive-in-google-analytics-2-0de8f0.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a laptop while checking the spelling of link names for a marketing campaign",
+      "caption": "A single capital letter in a link can create a new row.",
+      "keywords": [
+        "utm source case sensitive in google analytics 4",
+        "Marketers",
+        "UTM tags splitting one campaign into several rows",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/utm-source-case-sensitive-ga4/utm-source-case-sensitive-in-google-analytics-3-b00ec0.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Office worker checking a spreadsheet of campaign data on a laptop before a weekly report",
+      "caption": "A cleaned export makes totals easier to compare.",
+      "keywords": [
+        "utm source case sensitive in google analytics 4",
+        "Marketers",
+        "UTM tags splitting one campaign into several rows",
+        "Mac",
+        "office spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "utm source case sensitive in google analytics 4",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "utm campaign naming convention": 1,
+      "utm parameters google analytics 4 lowercase": 1,
+      "google analytics 4 not set utm": 1,
+      "utm source google vs Google": 1,
+      "google ads auto-tagging utm conflict": 1,
+      "ga4 source medium split rows": 1,
+      "utm lowercase standard practice": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

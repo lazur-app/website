@@ -1,0 +1,623 @@
+{
+  "title": "How to open settings.json in VS Code on Mac: three routes for macOS, 2026",
+  "metaTitle": "How to Open settings.json in VS Code on Mac (2026 Guide)",
+  "description": "How to open settings json in VS Code on Mac: press ⇧⌘P and run Preferences: Open User Settings (JSON), or use File > Preferences > Settings.",
+  "targetKeyword": "how to open settings json in vs code on mac",
+  "secondaryKeywords": [
+    "open settings.json vs code mac",
+    "vs code settings json location mac",
+    "vs code user settings mac",
+    "vscode settings json mac",
+    "vs code preferences open settings json",
+    "settings json vs code command palette"
+  ],
+  "intro": "To open settings.json in VS Code on Mac, press ⇧⌘P, type Preferences: Open User Settings (JSON), and press Return. You can also choose File > Preferences > Settings or press ⌘, to start from the Settings editor.",
+  "tldr": [
+    "Press ⇧⌘P, type Preferences: Open User Settings (JSON), then press Return.",
+    "Or choose File > Preferences > Settings, or press ⌘, to open the Settings editor.",
+    "User settings live at ~/Library/Application Support/Code/User/settings.json.",
+    "Project settings live in .vscode/settings.json and override your user settings for that project.",
+    "If you see Unable to write settings, look for a missing comma or a stray character."
+  ],
+  "stats": [
+    {
+      "value": "70.9%",
+      "label": "of 2026 Stack Overflow respondents said they use Visual Studio Code (9,350 of 13,193)",
+      "sourceUrl": "https://survey.stackoverflow.co/2026/technology/data/dev-ide",
+      "sourceTitle": "Stack Overflow Developer Survey 2026: Dev IDEs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open settings.json from the Command Palette"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Command Palette is the fastest route. It runs VS Code commands by name, and you find one by typing part of its name. Start by clicking inside the VS Code window so it is active."
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⇧⌘P. A search box appears at the top of the window. Type Preferences: Open User Settings (JSON), then choose the matching entry."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the suffix before you press Return. The entry that ends in (JSON) opens the file itself, which is what you want here. Pressing Return runs the highlighted command. If that entry does not show, scan the list for the one that ends in (JSON)."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open settings.json from the File menu"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you prefer menus, click File in the menu bar at the top of the screen. Choose Preferences > Settings, or press ⌘, (Command and comma). The Settings editor opens with two tabs, User and Workspace."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Settings editor is not the JSON file. It shows settings as forms with a search box, so you can change most things without typing any JSON. Pick the User tab for your personal settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some settings show an Edit in settings.json link. That link does not appear on every setting. When you do not see it, go back to the Command Palette route, which opens the file directly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why edit the JSON instead of the Settings editor?"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Settings editor covers most common settings with a search box. The JSON file helps when you want to copy a setting to another Mac, or when you need a key the editor does not show. Both routes change the same settings, so you can switch between them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the route that matches the job. Use the editor to browse and search. Use the file when you already know the key name and want to type it directly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: turn on word wrap in your user file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the user file with ⇧⌘P and Preferences: Open User Settings (JSON). Find the last line that holds a setting, which sits just above the closing brace. Add a comma at the end of that line if it has none."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a new line, type \"editor.wordWrap\": \"on\". Do not add a comma after it, because it is now the last entry. Then press ⌘S to save the file, and check whether long lines wrap in your editor."
+    },
+    {
+      "type": "paragraph",
+      "text": "If a red mark appears on the line above, you most likely forgot the comma. Fix that first, then check the result again. This small edit uses the same pattern as most changes you will make by hand."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Make ⌘, open the JSON file every time"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you edit the JSON file often, you may want ⌘, to skip the visual editor. Set the workbench.settings.editor setting to json. After that, File > Preferences > Settings and ⌘, open settings.json directly."
+    },
+    {
+      "type": "paragraph",
+      "text": "The change takes only a few moves. Press ⌘, to open the Settings editor. Search for workbench.settings.editor in the search box at the top. Set its value to json."
+    },
+    {
+      "type": "paragraph",
+      "text": "This changes what ⌘, does for every project, so write down the old value first. You can set it back at any time if you want the visual Settings editor again."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where the file lives on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The user settings file sits in your home folder. Its full path is $HOME/Library/Application Support/Code/User/settings.json. To reach it by hand, choose Go > Go to Folder in Finder and paste the path that starts with ~/Library."
+    },
+    {
+      "type": "table",
+      "caption": "Where each settings file lives and how to open it",
+      "headers": [
+        "File",
+        "Where it lives",
+        "How to open it"
+      ],
+      "rows": [
+        [
+          "User settings (default profile)",
+          "~/Library/Application Support/Code/User/settings.json",
+          "⇧⌘P, then Preferences: Open User Settings (JSON)"
+        ],
+        [
+          "Workspace settings",
+          "The .vscode/settings.json file in the project root",
+          "⇧⌘P, then Preferences: Open Workspace Settings (JSON)"
+        ],
+        [
+          "Non-default profile",
+          "~/Library/Application Support/Code/User/profiles/<profile ID>/settings.json",
+          "Exists only after you change a setting in that profile"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Profile files only appear after you change a setting in that profile. Until then, the folder may not contain the file at all. That is expected, not a sign that something broke. To open the default profile's file, run Preferences: Open Application Settings (JSON)."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "User and workspace settings: which one wins"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code reads settings in layers. The order runs Default, then User, then Workspace, then Workspace Folder. Policy settings always win when they are set."
+    },
+    {
+      "type": "paragraph",
+      "text": "Later layers override earlier ones. Simple values and arrays get replaced completely. Object values get merged, so keys from both files can survive."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the workspace file for rules that belong to one project. Keep personal taste, such as font and theme, in the user file. That keeps each shared project clean."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit settings.json without breaking it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings files use JSON. Each entry holds a key in double quotes, a colon, and a value. Entries are separated by commas, and the last entry has no comma after it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A line looks like this: `\"editor.wordWrap\": \"on\"`. The key sits on the left and the value on the right. Copy the pattern exactly, including the quote marks."
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code highlights malformed JSON in the editor. Watch for red marks and read the message next to them. Save only after the marks clear."
+    },
+    {
+      "type": "paragraph",
+      "text": "Change one setting at a time. Save, then check the result. If something breaks, press ⌘Z to undo the last edit before you try another fix."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix the Unable to write settings error"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code shows Unable to write settings when the file has a problem it cannot save past. The official settings docs say malformed JSON can cause this. A missing comma is one cause the docs name directly."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scroll to the spot where the red mark sits. Look at the line just above it. Two entries side by side need a comma between them. Add it, then press ⌘S to save."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the commas look right, look for stray characters. An extra brace, a curly quote, or an unclosed quote mark will break the file too. Delete the character, then save again."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they open settings.json"
+    },
+    {
+      "type": "paragraph",
+      "text": "One mistake is editing the workspace file when you meant the user file. Check the tab title and the file path before you type. Workspace files sit in .vscode/settings.json in the project root."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another mistake is adding a key you never changed and expecting it to show. The file usually holds only the settings you changed. You can type any valid key yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is a setting that seems ignored. A workspace value or a policy can override the user value you set. Check the workspace file before you blame VS Code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using VS Code in a browser"
+    },
+    {
+      "type": "paragraph",
+      "text": "The web version at vscode.dev works differently. Its docs list ⇧⌘P as the Command Palette shortcut, but that shortcut does not launch in Firefox. In Firefox, press F1 instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "The web docs also say the terminal and the debugger are not available in the browser. They do not say whether settings.json exists there. Do not assume the desktop steps work the same way in a browser."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Settings Sync and your settings file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings Sync keeps VS Code preferences consistent across devices. You turn it on or off from the Manage gear menu or the Accounts menu. The official docs list both places."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you use Settings Sync on more than one Mac, check its state before a big edit. Otherwise a change may appear on one machine and not the other, which is hard to trace."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How many people use VS Code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Plenty of developers use VS Code. In the 2026 Stack Overflow survey, 70.9% of respondents said they use Visual Studio Code, which is 9,350 of 13,193 people."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The 2025 survey put that figure at 75.9%, and it drew over 49,000 responses from 177 countries. The sources I checked do not explain the drop, and both figures count all respondents."
+    },
+    {
+      "type": "paragraph",
+      "text": "Why does this matter for you? Your settings file holds your setup for the editor you use every day. Knowing where it lives makes backups and moves much easier."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which VS Code version these steps cover"
+    },
+    {
+      "type": "paragraph",
+      "text": "The latest stable release I checked is 1.145, dated November 4, 2026. Its release notes cover file exclusion and managed settings. They do not cover the Settings editor or the Preferences menu."
+    },
+    {
+      "type": "paragraph",
+      "text": "I could not confirm that these exact steps stayed the same in older releases. The notes for 1.144 and earlier list titles only. If a menu label looks different on your Mac, trust the command name in the Command Palette."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you open the file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the file is open, you can change settings such as word wrap, auto save, or the color theme. Each has its own guide: [turn on word wrap](/how-to/turn-on-word-wrap-in-vs-code), [turn on auto save](/how-to/turn-on-auto-save-in-vs-code), and [change the color theme](/how-to/change-the-color-theme-in-vs-code)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you compare settings with code, [split the editor](/how-to/split-the-editor-in-vs-code) to keep both files on screen while you work."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the settings file small. Add keys as you need them, and remove the ones you no longer use. A short file is easier to read when something goes wrong."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is settings.json on a Mac?",
+      "answer": "For user settings, the file is at $HOME/Library/Application Support/Code/User/settings.json, inside your home folder. To reach it by hand, choose Go > Go to Folder in Finder and paste the path that starts with ~/Library. Workspace settings sit in .vscode/settings.json inside each project."
+    },
+    {
+      "question": "What is the shortcut to open settings.json?",
+      "answer": "The official docs list ⇧⌘P for the Command Palette, then the Preferences command for the JSON file. ⌘, opens the Settings editor. To make ⌘, open the JSON file, set workbench.settings.editor to json."
+    },
+    {
+      "question": "Why does ⇧⌘P not work for me?",
+      "answer": "Click inside the VS Code window first, so it has focus. Shortcuts follow your current keyboard layout, so check the key labels if the combination does not match. In Firefox on the web version, press F1 instead, because ⇧⌘P does not launch there."
+    },
+    {
+      "question": "Can I open settings.json in the browser version?",
+      "answer": "The official web docs do not say whether settings.json exists in vscode.dev, so this page cannot confirm the steps there. The same docs say the terminal and the debugger are not available in the browser."
+    },
+    {
+      "question": "What is the difference between user and workspace settings?",
+      "answer": "User settings apply to your VS Code setup in general. Workspace settings live in .vscode/settings.json and apply to one project. Workspace values override user values for that project, and policy settings win over both."
+    },
+    {
+      "question": "Why does Unable to write settings appear?",
+      "answer": "The official settings docs say malformed JSON can cause this error, and a missing comma is one cause they name. Look for red marks in the file, fix the spot they point to, and save again."
+    },
+    {
+      "question": "Does Settings Sync copy my settings to other Macs?",
+      "answer": "The Settings Sync docs say it keeps VS Code preferences consistent across devices. You turn it on or off from the Manage gear menu or the Accounts menu, so check that state before you assume a change will follow you."
+    },
+    {
+      "question": "Should I back up settings.json before I edit it?",
+      "answer": "Yes, for larger edits. Copy the file to a folder outside VS Code first, so you can restore the old version if a change goes wrong. Keep the copy somewhere you will remember."
+    },
+    {
+      "question": "Which version do these steps cover?",
+      "answer": "The steps were checked against the latest stable release I found, 1.145, dated November 4, 2026. No official note says the steps changed, but the notes for 1.144 and earlier list titles only, so older versions are not confirmed."
+    }
+  ],
+  "sources": [
+    {
+      "title": "User and workspace settings: VS Code Docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Settings: VS Code Docs (Getting Started)",
+      "url": "https://code.visualstudio.com/docs/getstarted/settings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "User Interface: VS Code Docs",
+      "url": "https://code.visualstudio.com/docs/getstarted/userinterface",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Key Bindings for Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/getstarted/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Updates: Release Notes",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web: VS Code Docs",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Settings Sync: VS Code Docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings-sync",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2026: Dev IDEs",
+      "url": "https://survey.stackoverflow.co/2026/technology/data/dev-ide",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025",
+      "url": "https://survey.stackoverflow.co/2025/",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Open settings.json in VS Code on Mac",
+  "appliesTo": "VS Code desktop app on macOS, checked against stable release 1.145",
+  "timeMinutes": 2,
+  "difficulty": "Easy",
+  "requirements": [
+    "VS Code installed on a Mac, Apple silicon or Intel",
+    "A stable release. These steps were checked against release 1.145",
+    "For project settings, the project folder open in VS Code"
+  ],
+  "steps": [
+    {
+      "name": "Open the Command Palette",
+      "text": "Click inside the VS Code window so it is active. Press ⇧⌘P, which means Shift, Command, and P together. A search box appears near the top of the window.",
+      "shortcut": "⇧⌘P",
+      "tip": "If nothing appears, click inside the editor first and try again."
+    },
+    {
+      "name": "Type the settings command",
+      "text": "Type Preferences: Open User Settings (JSON). The list narrows as you type. Choose the entry that ends in (JSON).",
+      "tip": "Read the full entry before you press Return, since similar names sit close together."
+    },
+    {
+      "name": "Open settings.json",
+      "text": "Press Return. VS Code opens settings.json in a new editor tab. Each setting appears as a key and a value, with quotes and commas.",
+      "shortcut": "Return",
+      "tip": "The tab name should read settings.json. If you see another file name, close it and run the command again."
+    },
+    {
+      "name": "Use the File menu instead",
+      "menuPath": [
+        "File",
+        "Preferences",
+        "Settings"
+      ],
+      "shortcut": "⌘,",
+      "text": "Click File in the menu bar at the top of the screen. Choose Preferences, then Settings. The Settings editor opens with User and Workspace tabs.",
+      "tip": "This route opens the visual editor first. Use step 5 to reach the file from there."
+    },
+    {
+      "name": "Jump to the file from a setting",
+      "text": "In the Settings editor, look for an Edit in settings.json link under some settings. Click it to open the file. Not every setting shows this link.",
+      "tip": "If the link is missing, go back to step 1. That route opens the file directly."
+    },
+    {
+      "name": "Make ⌘, open the JSON file",
+      "text": "Press ⌘, to open the Settings editor. Search for workbench.settings.editor in the search box. Set its value to json. Press ⌘, again to check.",
+      "shortcut": "⌘,",
+      "tip": "Write down the old value first, so you can switch back later."
+    },
+    {
+      "name": "Open the project workspace file",
+      "text": "Open the project folder in VS Code. Run Preferences: Open Workspace Settings (JSON) from the Command Palette. The file is .vscode/settings.json in the project root.",
+      "shortcut": "⇧⌘P",
+      "tip": "Use this file for rules that apply only to this project."
+    },
+    {
+      "name": "Save and check your change",
+      "text": "Press ⌘S to save. Then test the setting and see whether it behaves the way you expected. If it does not, press ⌘Z to undo.",
+      "shortcut": "⌘S",
+      "tip": "If the file shows an error, fix it before you test the setting."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Open the Settings editor",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Open Keyboard Shortcuts",
+      "keys": "⌘K ⌘S"
+    },
+    {
+      "action": "Save the open file",
+      "keys": "⌘S"
+    },
+    {
+      "action": "Command Palette in Firefox on vscode.dev",
+      "keys": "F1"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Command Palette does not open",
+      "fix": "Click inside the VS Code window first, so it has focus. Then press ⇧⌘P again. Shortcuts follow your current keyboard layout, so check the key labels if the combination does not match. In Firefox on the web version, use F1."
+    },
+    {
+      "problem": "⌘, opens the Settings editor, not the file",
+      "fix": "That is the default behavior. Set workbench.settings.editor to json as described above. If you want the visual editor back, set it to the value you wrote down."
+    },
+    {
+      "problem": "Unable to write settings appears",
+      "fix": "Look for red marks in the file. A missing comma between two entries can cause this. Fix the spot the mark points to, then save. The docs say malformed JSON is highlighted in the editor."
+    },
+    {
+      "problem": "The file for my new profile is missing",
+      "fix": "Profile files appear only after you change a setting in that profile. Change one setting, then look again in the profiles folder. To open the default profile's file, run Preferences: Open Application Settings (JSON)."
+    },
+    {
+      "problem": "A setting does not take effect",
+      "fix": "Check the workspace file, because it overrides user values for that project. Policy settings win over both. Simple values get replaced, so a workspace value can hide your user value completely."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where do I open settings.json in VS Code?",
+    "capability": "guide",
+    "result": "Lazur points at the File menu, then guides you through Preferences and Settings one click at a time, waiting for each click.",
+    "shell": "code",
+    "context": "VS Code open on a Mac, with the menu bar visible",
+    "output": "Lazur circles File in the menu bar and waits. When you click it, Lazur names the next item, Preferences, and keeps guiding you until you reach the settings file. You make every click yourself.",
+    "pointsAt": "File menu"
+  },
+  "type": "howto",
+  "slug": "open-settings-json-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-settings-json-in-vs-code/how-to-open-settings-json-in-vs-1-40ada7.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a MacBook, learning how to open settings json in VS Code on Mac",
+      "caption": "Editing a settings file takes a few careful keystrokes.",
+      "keywords": [
+        "how to open settings json in vs code on mac",
+        "VS Code",
+        "open settings.json",
+        "Mac",
+        "person typing MacBook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-settings-json-in-vs-code/how-to-open-settings-json-in-vs-2-5f94a6.jpg",
+      "width": 1280,
+      "height": 1280,
+      "alt": "Programmer at a laptop reviewing code, the kind of editor window where settings json lives",
+      "caption": "A code editor window, where most settings changes happen.",
+      "keywords": [
+        "how to open settings json in vs code on mac",
+        "VS Code",
+        "open settings.json",
+        "Mac",
+        "programmer laptop code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexandra_Koch",
+        "url": "https://pixabay.com/users/Alexandra_Koch-621802/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/ai-generated-woman-computer-laptop-7744006/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/open-settings-json-in-vs-code/how-to-open-settings-json-in-vs-3-15e4be.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "Developer desk with a Mac, notebook, and coffee while setting up VS Code",
+      "caption": "A clean desk makes editor setup easier to follow.",
+      "keywords": [
+        "how to open settings json in vs code on mac",
+        "VS Code",
+        "open settings.json",
+        "Mac",
+        "developer desk workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yeiferr",
+        "url": "https://pixabay.com/users/yeiferr-13554766/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-laptop-tech-blue-computer-4795762/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to open settings json in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "open settings.json vs code mac": 1,
+      "vs code settings json location mac": 1,
+      "vs code user settings mac": 1,
+      "vscode settings json mac": 1,
+      "vs code preferences open settings json": 1,
+      "settings json vs code command palette": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

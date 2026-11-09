@@ -1,0 +1,580 @@
+{
+  "title": "Chrome for translators on Mac: reading, checking and reviewing localized pages in 2026",
+  "metaTitle": "Chrome for Translators on Mac: Setup, Tips and Lazur",
+  "description": "Chrome for translators on Mac: use the Translate icon, language lists and DevTools locale checks, then ask Lazur to point and explain as you work.",
+  "targetKeyword": "chrome for translators on mac",
+  "secondaryKeywords": [
+    "translate a page in Chrome on Mac",
+    "translate selected text in Chrome",
+    "Chrome language settings for translators",
+    "Chrome DevTools locale emulation Mac",
+    "Chrome translate not working on Mac",
+    "localization QA in Chrome on Mac"
+  ],
+  "intro": "Chrome for translators on Mac is mainly a reading and review tool. Use it to read source-language pages, control when translation prompts appear and check how a localized site behaves. Chrome's built-in Translate is aimed at readers, so treat its output as a first pass. This guide covers the settings, the DevTools checks, what Chrome misses and where Lazur fits in.",
+  "tldr": [
+    "Read source pages with the Translate icon at the right end of the address bar, or right-click a selection.",
+    "Set your language lists in Settings > Languages > Google Translate so the prompts stop guessing.",
+    "Chrome misses placeholders, alt text, aria-labels and title text. Check those strings by hand.",
+    "Test locale formats with DevTools: press ⌘⌥I, then ⌘⇧P, and type Sensors.",
+    "Lazur points, explains, guides and drafts while you work. It does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "87.93%",
+      "label": "Freelance translators in the GTS 2025 survey who do post-editing. Directional, not representative.",
+      "sourceUrl": "https://blog.gts-translation.com/2025/04/07/the-state-of-machine-translation-post-editing-mtpe-in-2025-what-translators-think/",
+      "sourceTitle": "The State of Machine Translation Post-Editing (MTPE) in 2025"
+    },
+    {
+      "value": "66.18%",
+      "label": "Respondents who rate machine output as acceptable but in need of significant edits.",
+      "sourceUrl": "https://blog.gts-translation.com/2025/04/07/the-state-of-machine-translation-post-editing-mtpe-in-2025-what-translators-think/",
+      "sourceTitle": "The State of Machine Translation Post-Editing (MTPE) in 2025"
+    },
+    {
+      "value": "42%",
+      "label": "Translators in Acolad's 2025 survey who use AI tools daily. Sample size not stated.",
+      "sourceUrl": "https://www.acolad.com/en/services/translation/ai-translation-impact",
+      "sourceTitle": "AI in Translation: Key Findings from Acolad's Translators Survey"
+    },
+    {
+      "value": "157.0.8103.39",
+      "label": "Chrome stable build for Windows and macOS, dated 3 November 2026.",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Google_Chrome",
+      "sourceTitle": "Google Chrome, Wikipedia"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most translators on a Mac use Chrome as a reading tool. You open the source site, check a term, read the client's reference pages and look at how the localized version renders. Chrome can help with all of that. It can also mislead you if you treat its output as a finished translation. The built-in Translate feature is aimed at readers, not at localization teams. This guide covers the settings and checks that matter for your work. It also covers what Chrome misses, and where Lazur helps while your hands stay on the keyboard."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to translate a page in Chrome on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the source page and wait for it to finish loading. Then use the Translate icon at the right end of the address bar. You can also right-click the page and choose Translate to your language. Chrome shows the translated page in place, so you can read it from top to bottom."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click the Translate icon at the right end of the address bar, or right-click the page.",
+        "Pick your target language from the menu. If the menu offers the wrong one, choose More, then Choose another language.",
+        "Read the translated text. Check headings, buttons and menus first, because mistakes there stand out.",
+        "If translation fails or stalls, refresh the page with ⌘R and try again."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Refresh before you troubleshoot",
+      "text": "Google's help page says to refresh the page when translation does not work. Do that before you change any setting. A reload takes moments and rules out a stuck page."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to translate selected text in Chrome on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you need one paragraph, not the whole page. Highlight the text. Right-click and choose Translate selection to your language. Chrome shows the translation for that selection only. Say you are checking a German product description. Select the warranty paragraph alone, translate it and compare it with your draft."
+    },
+    {
+      "type": "paragraph",
+      "text": "To change the target language for a selection, select More, then Choose another language. Use the selection tool to read, not to produce client text. Copying machine output straight into a file skips the review your client pays for."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Chrome language settings for translators on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open More (⋮), then Settings, then Languages. Google Translate has its own section. The Use Google Translate toggle turns translation offers on or off. Two lists sit in the same section. Never offer to translate these languages stops the prompt for languages you read well. Automatically translate these languages sends matching pages to your reading language without asking."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting",
+        "Use it when",
+        "Example for your work"
+      ],
+      "rows": [
+        [
+          "Use Google Translate, off",
+          "Prompts get in the way of a review pass",
+          "Turn it off while you check a site's original layout"
+        ],
+        [
+          "Never offer to translate these languages",
+          "You read the language without help",
+          "Add English if you check English source text every day"
+        ],
+        [
+          "Automatically translate these languages",
+          "You always need that source language in your reading language",
+          "Add Japanese if you often read Japanese pages in English"
+        ]
+      ],
+      "caption": "Three language settings and when each one helps. Path: Settings > Languages > Google Translate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Review these lists every time a project changes. A language you read well today may need a new rule next month. Keep the lists short. A short list for languages you read unaided, and a second for languages you always need translated, is enough."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the Chrome translate prompt does not appear"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome decides when to offer translation with a heuristic. That is a guess based on the page, not a rule you can see. Polyglot, a localization tool vendor, says the prompt may never appear on short screens such as checkout or signup pages. Its post gives no failure rates, so treat that claim as a warning, not a measurement."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fix is simple. Click the Translate icon yourself when a page is in a language you do not read. Do not assume a missing prompt means the page is already in your language. Check the language of the page first, then decide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Chrome translation misses in a localized site"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome translates visible text. Translators care about much more than that. Polyglot says the browser misses placeholders, aria-labels, alt text and title text. Those strings show up in forms, screen readers and tooltips. A long translation in one of them can also break a layout."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Placeholders, the grey hint text inside an input field.",
+        "aria-label values, which screen readers announce to people who cannot see the page.",
+        "Alt text on images, which describes pictures for screen readers.",
+        "title attributes, which appear as tooltips when someone hovers over an element.",
+        "Brand names and product terms, which can be translated when they should stay in English.",
+        "The same button verb rendered two different ways on two screens."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Not a QA tool",
+      "text": "Do not use Chrome's translation to judge whether a site's localization is correct. Use it to read the source. Judge the localized version by reading its own strings, in its own language."
+    },
+    {
+      "type": "paragraph",
+      "text": "Polyglot also says Chrome rewrites text nodes in place, and that can break React apps. The linked issue was filed in 2017 and has more than 100 comments. If a localized web app goes blank or behaves oddly after translation, reload with translation off. Then report the bug with a screenshot and your Chrome version."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to check locale formats with DevTools in Chrome"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome DevTools can change what a page sees about your locale. Open DevTools with ⌘⌥I. Press ⌘⇧P to open the Command Menu inside DevTools. Type Sensors, then open the Sensors panel. Chrome's DevTools post for Chrome 83, from 2020, describes locale emulation there. Check the current panel, because the layout may have changed since then."
+    },
+    {
+      "type": "paragraph",
+      "text": "The emulation changes what the page reads through Intl APIs, navigator.language and navigator.languages, and the Accept-Language request header. If a site formats prices and dates from the browser, you will see the change. If it does not, the site may set its format on the server or in a cookie. Then the problem sits with the developer, not the browser. Write down which one you found."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Does Chrome on Mac show menus in another language"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not as a Chrome setting. Google's help page says Chrome on Mac follows the system's default language. The option called Display Google Chrome in this language is available only on Windows. To see Chrome's own menus in another language on a Mac, you change the language of macOS. That changes every app, so use a test user or a spare account for it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Chrome version to check on Mac before a review"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Chrome > About Google Chrome to see your build. Wikipedia and releases.sh both list 157.0.8103.39 as the stable macOS build, dated 3 November 2026. Chrome 158.0.8127.18 reached Windows on 4 November 2026. releases.sh says Mac will be coming shortly, as an early stable release to a small share of users. Write the version into every bug report, since translation behavior can change between builds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in a Chrome review on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘, Option and Command together, to ask about anything on screen. Lazur answers out loud. It sees the screen only while you hold the shortcut. It points at things, explains them and guides you through settings. It does not click for you, and it does not operate other apps."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to say to Lazur while you work in Chrome"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "“Lazur, where is the Translate icon?” Lazur draws a circle and a label around it.",
+        "“Lazur, what does this German error message mean?” Lazur explains it out loud.",
+        "“Lazur, walk me through adding Spanish to the Never offer list.” Lazur guides you click by click.",
+        "“Lazur, draft a short query to the client about this term.” You check the wording before you send it.",
+        "“Lazur, research how banks in the Netherlands name this account type.” The research runs in Lazur's own Chrome tabs, and you get a summary and a report.",
+        "Hold fn and dictate the QA notes. Dictation writes clean text at your cursor in any app."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How a guided task works in Chrome"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to walk you through a settings change, and it names the first place to click. Then it waits. You click, and it moves on to the next step. The waiting is deliberate. A guide that runs ahead of your screen causes wrong clicks, and on a settings page a wrong click can change more than you meant to."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use point when you need a location. Use explain when you need meaning. Use guide when a change has several steps. Use draft when you need words in your voice, and always read them before you send them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with Chrome translation"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Treating Chrome's output as a finished translation. Survey respondents often find machine output needs significant edits.",
+        "Skipping the refresh when translation stalls, then blaming the browser.",
+        "Assuming no prompt means the page is already in your language.",
+        "Checking visible text only, and missing alt text, placeholders and aria-labels.",
+        "Pasting confidential client text into an online tool without reading the contract first.",
+        "Using Chrome to judge a site's localization quality, when it only reads the source."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The effort is easy to underestimate. The GTS article says post-editing effort is often underestimated. A page that looks fine after Chrome translates it may still need a full pass with your glossary and termbase. Budget for that pass before you quote a rate."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How much post-editing work do translators do"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The GTS survey gives the clearest numbers here. It invited 3,300 professional freelance translators, and 212 responded. The stated margin of error is about 6.68%. Of respondents, 87.93% do post-editing. 66.18% rate machine output as acceptable but in need of significant edits. 21.74% call it poor and in need of extensive rework. The raw tables give slightly different splits, so treat the figures as directional."
+    },
+    {
+      "type": "paragraph",
+      "text": "Acolad's 2025 translators survey, dated 20 May 2025, reports that 79% of translators are familiar with AI tools. It says 42% use them daily and 21% use automated post-editing. The article does not state its sample size, so weigh it lightly."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Source",
+        "Who answered",
+        "Key figure"
+      ],
+      "rows": [
+        [
+          "GTS Translation, 2025",
+          "212 freelance translators out of 3,300 invited",
+          "87.93% do post-editing"
+        ],
+        [
+          "Acolad, May 2025",
+          "Sample size not stated",
+          "42% use AI tools daily"
+        ]
+      ],
+      "caption": "Two surveys on post-editing and AI use. Read both with care."
+    },
+    {
+      "type": "paragraph",
+      "text": "So what does this mean for Chrome? Chrome gives you a reading pass at no cost. It does not give you a glossary, a terminology check or a memory of past decisions. Those gaps are where a good part of the work sits. For tools that cover the rest, see [tools for translators on Mac](/for/translators)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A Chrome setup checklist for translators on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Chrome > About Google Chrome and note the version.",
+        "Go to Settings > Languages > Google Translate and set your two lists.",
+        "Test one localized page with the Translate icon and one selection.",
+        "Open DevTools with ⌘⌥I, then check locale formats with Sensors.",
+        "Keep your glossary in its own file, not inside Chrome.",
+        "Hold ⌥ ⌘ and ask Lazur to point at anything you cannot find."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lazur on Mac: requirements, pricing and privacy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. A free trial needs no credit card, and it starts the first time you open the app. Paid plans come in monthly and annual options. Dictation is unlimited on both. Check [pricing](/pricing) for current plans, and [download Lazur](/download) when you are ready."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer you, and Lazur says they are not stored. Content is never used to train AI models. Memory of what you asked and did stays on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Client material is still your call. Read the contract and any NDA before you send a page to an AI service, Lazur included. Hold the shortcut only when you need help. Close sensitive tabs before you ask a broad question about the screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Chrome review routine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one localized page this week. Set your language lists, run the Translate icon, then check locale formats in DevTools. Write down what Chrome missed. Then try [Chrome with Lazur](/apps/chrome) on the same page, and ask it to point, explain and guide. Keep the habits that save you time, and drop the ones that do not."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Chrome on Mac translate PDF files?",
+      "answer": "Google's help page does not say whether translation covers PDFs. Open one test PDF before you rely on it. Use the Translate icon or a selection to see what Chrome does with that file."
+    },
+    {
+      "question": "Why does Chrome not offer to translate my checkout page?",
+      "answer": "Chrome uses a heuristic to decide when to prompt. Short pages such as checkout or signup may never trigger the prompt. Click the Translate icon yourself instead."
+    },
+    {
+      "question": "Can I change Chrome's menus to another language on a Mac?",
+      "answer": "Not with a Chrome setting. Chrome on Mac follows the system's default language. The Display Google Chrome in this language option is Windows only, according to Google's help page."
+    },
+    {
+      "question": "Is Chrome's translation good enough for client work?",
+      "answer": "Use it to read source text. For client files, survey respondents say machine output often needs significant edits. Work from your own glossary and a full review pass."
+    },
+    {
+      "question": "What does Lazur do inside Chrome?",
+      "answer": "Lazur points at things, explains them out loud, guides you click by click and drafts text. It does not click buttons for you or edit files. Hold ⌥ ⌘ to ask about anything on screen."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "No. Lazur is for macOS, on Apple silicon and Intel Macs. Windows is planned, but it is not available yet."
+    },
+    {
+      "question": "Does Lazur watch my screen all the time?",
+      "answer": "No. It listens and looks at the screen only while you hold the shortcut. Lazur says audio and the screenshot are sent to AI providers to answer and are not stored."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Translate pages and change Chrome languages, Google Chrome Help",
+      "url": "https://support.google.com/chrome/answer/173424?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Chrome, Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Google_Chrome",
+      "publisher": "Wikipedia",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Chrome Release Notes & Changelog, releases.sh",
+      "url": "https://releases.sh/google/chrome",
+      "publisher": "releases.sh",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New In DevTools (Chrome 83)",
+      "url": "https://developer.chrome.com/blog/new-in-devtools-83/",
+      "publisher": "Google Chrome for Developers",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The State of Machine Translation Post-Editing (MTPE) in 2025: What Translators Think",
+      "url": "https://blog.gts-translation.com/2025/04/07/the-state-of-machine-translation-post-editing-mtpe-in-2025-what-translators-think/",
+      "publisher": "GTS Translation",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "AI in Translation: Key Findings from Acolad's Translators Survey",
+      "url": "https://www.acolad.com/en/services/translation/ai-translation-impact",
+      "publisher": "Acolad",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Why Chrome's Translate feature breaks your React app (and what to do instead)",
+      "url": "https://getpolyglot.ai/blog/chrome-translate-breaks-react",
+      "publisher": "Polyglot",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the Translate icon?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Translate icon at the right end of the address bar. You click it yourself.",
+    "shell": "generic",
+    "context": "Chrome on a German product page, address bar in view",
+    "output": "The Translate icon sits at the right end of the address bar. Click it to read the page in English. If nothing changes, refresh with ⌘R.",
+    "pointsAt": "Translate icon"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Translate icon?",
+      "result": "Lazur draws a circle and a label around the icon at the right end of the address bar. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, what does this German error message mean?",
+      "result": "Lazur explains the message out loud in plain English, using the words around it on the page.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, walk me through adding Spanish to the Never offer list.",
+      "result": "Lazur names each click, waits for you to make it, then names the next one. It does not click for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "Lazur, draft a short query to the client about this term.",
+      "result": "Lazur drafts the query in plain text. You check the wording and the term before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate the QA notes into this document.",
+      "result": "Dictation writes clean, formatted text at your cursor in any app, so the notes land where you are working.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Lazur, research how banks in the Netherlands name this account type.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report for you to read.",
+      "capability": "research"
+    },
+    {
+      "say": "Lazur, remind me to send the QA notes on Friday afternoon.",
+      "result": "Lazur adds the reminder to Apple Reminders for Friday afternoon, so the send does not slip past the week.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "translators-chrome",
+  "role": "translators",
+  "app": "chrome",
+  "roleName": "Translators",
+  "appName": "Chrome",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/translators-chrome/chrome-for-translators-on-mac-1-d60a92.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Translator at a desk reviewing a page in Chrome, part of a guide to Chrome for translators on Mac",
+      "caption": "Reviewing a localized page on a laptop.",
+      "keywords": [
+        "chrome for translators on mac",
+        "Chrome",
+        "Translators",
+        "Mac",
+        "translator working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/translators-chrome/chrome-for-translators-on-mac-2-daa712.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a Mac laptop at a desk while reading text on the screen",
+      "caption": "Reading a source page on a Mac.",
+      "keywords": [
+        "chrome for translators on mac",
+        "Chrome",
+        "Translators",
+        "Mac",
+        "person using Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "sanfengshan",
+        "url": "https://pixabay.com/users/sanfengshan-32140775/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-space-corridor-brief-7661651/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/translators-chrome/chrome-for-translators-on-mac-3-0bae6f.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Laptop and notebook on a desk, ready for a translation review session",
+      "caption": "A review session with a laptop and notes.",
+      "keywords": [
+        "chrome for translators on mac",
+        "Chrome",
+        "Translators",
+        "Mac",
+        "office desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "chrome for translators on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "translate a page in Chrome on Mac": 2,
+      "translate selected text in Chrome": 2,
+      "Chrome language settings for translators": 2,
+      "Chrome DevTools locale emulation Mac": 1,
+      "Chrome translate not working on Mac": 1,
+      "localization QA in Chrome on Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

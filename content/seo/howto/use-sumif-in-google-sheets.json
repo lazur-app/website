@@ -1,0 +1,520 @@
+{
+  "title": "How to use SUMIF in Google Sheets on Mac: step by step with examples",
+  "metaTitle": "How to Use SUMIF in Google Sheets on Mac (Step by Step)",
+  "description": "How to use SUMIF in Google Sheets on Mac: write the formula, use number and text criteria, and fix errors. Steps for Chrome, with shortcuts.",
+  "targetKeyword": "how to use sumif in google sheets on mac",
+  "secondaryKeywords": [
+    "sumif google sheets",
+    "sumif formula google sheets",
+    "sumif wildcards google sheets",
+    "sumifs google sheets mac",
+    "sumif criteria greater than google sheets",
+    "sumif not working google sheets"
+  ],
+  "intro": "To use SUMIF in Google Sheets on a Mac, click an empty cell and type =SUMIF(range, criterion, sum_range). The range is what you test, the criterion is the condition to match, and sum_range is the cells to add up, which you can leave out when they match the range.",
+  "tldr": [
+    "Type =SUMIF(range, criterion, sum_range) in an empty cell, then press Return.",
+    "Google's example is =SUMIF(A1:A10,\"Paid\",B1:B10), which adds the amounts whose status says Paid.",
+    "Put text criteria in quotation marks, and write number tests like \">20\" inside quotes too.",
+    "Use * and ? for partial matches, and put a ~ in front to match a literal * or ?.",
+    "SUMIF takes one criterion. For more than one, use SUMIFS, which Google documents on its own page."
+  ],
+  "stats": [
+    {
+      "value": "⌥ + /",
+      "label": "Opens the tool finder in Google Sheets on a Mac, where you can search for SUMIF",
+      "sourceUrl": "https://support.google.com/docs/answer/181110?hl=en",
+      "sourceTitle": "Keyboard shortcuts for Google Sheets (Computer), Google Docs Editors Help"
+    },
+    {
+      "value": "30%",
+      "label": "Faster to open and work in sheets with 1M+ cells, per Google's April 2026 post",
+      "sourceUrl": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "sourceTitle": "Google Workspace Updates: Faster performance and doubled cell limits in Google Sheets"
+    },
+    {
+      "value": "20 million",
+      "label": "Cell limit in a beta that Google says is up from 10 million cells",
+      "sourceUrl": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "sourceTitle": "Google Workspace Updates: Faster performance and doubled cell limits in Google Sheets"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "SUMIF adds up the cells that match a condition you set. Say your sheet lists invoices with a status column and an amount column. You want the total for paid invoices only. One SUMIF formula does that, and the total updates when the data changes. You do not need to filter the sheet or copy rows anywhere."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What SUMIF does in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "The function tests each cell in one range against a criterion. When a cell matches, SUMIF adds the matching value from a second range. Google's help page describes SUMIF as a conditional sum with a single criterion. That limit matters, and you will see why later in this guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets on a Mac runs in your browser. Google's help pages describe Sheets as a web app, and the Workspace product page does not mention a Mac desktop app. I could not find a native Mac app in Google's own materials. So the steps below use the browser window, with Chrome as the example. The formula itself is the same in any browser."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The SUMIF formula syntax, part by part"
+    },
+    {
+      "type": "paragraph",
+      "text": "The syntax is SUMIF(range, criterion, [sum_range]). The square brackets around sum_range tell you the last part is optional. Each part has one job. Mixing them up is an easy way to get a total that looks right but is not."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Part",
+        "What it is",
+        "Example"
+      ],
+      "rows": [
+        [
+          "range",
+          "The cells you test against the criterion",
+          "A1:A10"
+        ],
+        [
+          "criterion",
+          "The condition to match, in quotation marks when it is text",
+          "\"Paid\""
+        ],
+        [
+          "sum_range",
+          "The cells to add up, when they differ from range",
+          "B1:B10"
+        ]
+      ],
+      "caption": "The three parts of SUMIF in Google Sheets, based on Google's SUMIF help page."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's own example is =SUMIF(A1:A10,\"Paid\",B1:B10). Read it from left to right. Sheets checks each cell in A1 to A10 for the word Paid. For every row that matches, it adds the value in the same row of B1 to B10. The two ranges line up row by row, so keep them the same length."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: total only the paid rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a small table. Put headings in the first row, such as Invoice, Status, and Amount. Put the status of each invoice in one column and the amount in the next column. If status is in column A and amount is in column B, the formula is =SUMIF(A1:A10,\"Paid\",B1:B10). Change the letters and row numbers to match your own sheet."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Put the formula in a cell away from the data, such as a summary area to the right. Then you can read the total without scrolling through every row. If you add rows later, widen both ranges by the same amount. Otherwise the two ranges stop lining up, and the total becomes unreliable. Text criteria always need quotation marks. Google's example puts Paid in quotes, so keep that habit for every label you test."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Compare numbers with criteria like >20"
+    },
+    {
+      "type": "paragraph",
+      "text": "Criteria can also compare numbers. Google's help page gives =SUMIF(A1:A10,\">20\") as an example. There is no third part in that formula, so SUMIF adds the cells in A1:A10 that are greater than 20. The whole comparison goes inside the quotation marks, so the sign and the number stay together. Read the formula as a test on A1:A10 and a sum of the matches."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Match partial text with wildcards"
+    },
+    {
+      "type": "paragraph",
+      "text": "Wildcards let one criterion match many spellings. Google's SUMIF page describes two of them. A question mark matches any single character. An asterisk matches zero or more characters in a row. When you need a literal question mark or asterisk, put a tilde in front of it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "? matches any single character, so Pa?d matches Paid.",
+        "* matches zero or more characters, so Pa* matches Paid and Partial.",
+        "~? matches a literal question mark in your data.",
+        "~* matches a literal asterisk in your data."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When sum_range can be left out"
+    },
+    {
+      "type": "paragraph",
+      "text": "The sum_range part is optional. Google's help page says it is used when the range to sum is different from the range you test. If you test and add the same cells, you can leave the third part out. The >20 example does exactly that. Keep sum_range when the labels and the amounts sit in different columns, which is the usual case in an invoice or budget sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard shortcuts for the tool finder and redo"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Show the shortcut list: ⌘ + /",
+        "Open the tool finder to search for SUMIF: ⌥ + /",
+        "Redo: ⌘ + y, or ⌘ + ⇧ + z, or Fn + F4"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's shortcut page lists these keys for Sheets on a computer. The tool finder is a quick way to reach a function without digging through menus. Type SUMIF, pick it from the results, and keep typing the formula. If you want a longer walkthrough of the finder, see [how to use tool finder in Google Sheets on Mac](/how-to/use-the-tool-finder-in-google-sheets)."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes and how to fix them"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Leaving out quotation marks around text or a comparison, such as Paid with no marks.",
+        "Using ranges of different sizes. Keep A1:A10 and B1:B10 the same length.",
+        "Expecting a sum across several columns. Google says returning a sum across multiple columns is not supported.",
+        "Needing two conditions. SUMIF takes one criterion, so use SUMIFS instead.",
+        "Placing the formula inside the range it tests. Keep the total outside the data it adds up."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most errors come from one of these. Read the error message in the cell first. Then check each part of the formula against the list. Google's June 2026 post describes a Fix button for formula errors, which uses Gemini to analyze the data around the error. The post says it is rolling out to Workspace customers and does not mention Mac, so it may not show on your screen yet."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Working on large sheets and offline"
+    },
+    {
+      "type": "paragraph",
+      "text": "Long sheets make any formula work harder, and Google has been changing how Sheets handles size. Google's April 2026 Workspace Updates post says opening and working in spreadsheets with 1M+ cells is up to 30% faster, and filtering them is up to 60% faster. A beta raises the cell limit from 10 million to 20 million cells. Google says beta registrations will be processed in waves, so you may not have it yet."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's offline setup for Sheets uses Chrome or Edge. Install the Google Docs Offline Chrome extension, then open drive.google.com/drive/settings and turn on the option for recent Docs, Sheets, and Slides files. Private browsing is not allowed for offline use. To save a sheet offline, right-click it in Drive and choose Make available offline. Hold ⌘ while you click to select several files."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When SUMIF is not enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use SUMIFS when you need more than one condition. Google documents SUMIFS on its own help page, separate from SUMIF. The SUMIF page points to DSUM for multiple criteria. The argument order differs from SUMIF, so read the SUMIFS help page before you type it. A wrong order can give a total that looks plausible."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checking your total before you trust it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you share a total, test it. Pick a handful of matching rows, add their amounts with the plus key, and compare the result with the cell. Then change one status on purpose and watch the total move. If it does not move, the criterion is pointing at the wrong column, and the fix is in the range."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your totals need highlighting, read [how to use conditional formatting in Google Sheets on Mac](/how-to/use-conditional-formatting-in-google-sheets). To order rows by the amount column before you sum, see [how to sort data by column in Google Sheets on Mac](/how-to/sort-data-by-column-in-google-sheets). For more pages on spreadsheet work, see [Google Sheets for data analysts on Mac](/for/data-analysts/google-sheets)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does SUMIF work in a Google Sheets app on Mac?",
+      "answer": "Google describes Sheets as a web app, and I did not find a native Mac desktop app in its Help or product pages. Open the sheet in your browser, such as Chrome. The SUMIF formula works the same way in any browser."
+    },
+    {
+      "question": "What is the difference between SUMIF and SUMIFS?",
+      "answer": "SUMIF takes one criterion. Google's SUMIF page says it can only perform conditional sums with a single criterion. SUMIFS is the multi-criteria version, and Google documents it on its own page."
+    },
+    {
+      "question": "Can SUMIF add up a row across several columns?",
+      "answer": "No. Google's SUMIF page says returning a sum across multiple columns is not supported. Write one SUMIF per column, or use a different approach for that layout."
+    },
+    {
+      "question": "Why do text criteria need quotation marks?",
+      "answer": "Google's official example wraps Paid in quotation marks, and the help page says string criteria must be in quotes. Comparisons such as \">20\" go in quotes too."
+    },
+    {
+      "question": "How do I match a real question mark or asterisk in my data?",
+      "answer": "Put a tilde in front of it. Google's SUMIF page says ~ makes ? and * match literally, so ~? and ~* find the actual characters."
+    },
+    {
+      "question": "Can I use SUMIF in Google Sheets offline?",
+      "answer": "Yes, if you set up offline access. Google's Drive Help says to use Chrome or Edge, install the Google Docs Offline extension, and turn on offline editing in Drive settings. Private browsing is not allowed."
+    },
+    {
+      "question": "Which keys show the Google Sheets shortcut list on a Mac?",
+      "answer": "Press ⌘ + /. Google's keyboard shortcuts page lists this for Sheets on a computer. Use ⌥ + / to open the tool finder when you cannot remember where a function is."
+    },
+    {
+      "question": "Why does the Fix button not appear on my formula error?",
+      "answer": "Google's June 2026 post says the Fix button uses Gemini to analyze your data and correct the problem. It is rolling out to Workspace customers, and the post does not mention Mac. Your account may not have it yet."
+    }
+  ],
+  "sources": [
+    {
+      "title": "SUMIF - Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/3093583?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets (Computer), Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use Google Drive files offline - Computer - Google Drive Help",
+      "url": "https://support.google.com/drive/answer/2375012?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Sheets - Google Workspace",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Workspace Updates: Faster performance and doubled cell limits in Google Sheets",
+      "url": "https://workspaceupdates.googleblog.com/2026/04/faster-performance-and-doubled-cell-limits-in-Google-Sheets.html",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "June Workspace Drops: AI updates for Drive, Sheets, & Gmail",
+      "url": "https://workspace.google.com/blog/product-announcements/june-2026-workspace-feature-drop",
+      "publisher": "Google Workspace Blog",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Add up cells that match a condition with SUMIF",
+  "appliesTo": "Google Sheets web version in Chrome on Mac, 2026",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Google account with edit access to the spreadsheet",
+    "Google Sheets open in a browser on your Mac",
+    "One column of labels to test and one column of amounts to add",
+    "Chrome for the steps shown, or another browser with the same formula"
+  ],
+  "steps": [
+    {
+      "name": "Open the sheet in Chrome",
+      "text": "Go to drive.google.com in Chrome and open your spreadsheet. Sheets runs in the browser window, so there is no separate Mac app to launch. Put the labels in one column and the amounts in another, with headings in the top row.",
+      "tip": "If your sheet is in another browser, the formula is the same. Only the window looks different."
+    },
+    {
+      "name": "Click an empty cell for the total",
+      "text": "Click an empty cell where you want the total to show. Keep it outside the columns the formula tests, so the cell does not read its own result. A summary area to the right of the data works well.",
+      "tip": "Label the cell beside it, so you remember what the number means later."
+    },
+    {
+      "name": "Find SUMIF with the tool finder",
+      "text": "Press ⌥ + / to open the tool finder. Type SUMIF and choose it from the results. If you already know the function name, you can type it straight into the cell and skip this step.",
+      "shortcut": "⌥ + /"
+    },
+    {
+      "name": "Type the formula with its three parts",
+      "text": "Type =SUMIF( and then the range, the criterion, and the sum range, separated by commas. For a status column in A and amounts in B, type =SUMIF(A1:A10,\"Paid\",B1:B10). Google's SUMIF help page uses this same example.",
+      "tip": "Quotation marks go around the text you are matching, not around the cell reference."
+    },
+    {
+      "name": "Press Return and read the total",
+      "text": "Press Return to finish the formula. The cell shows the total of every amount in B1:B10 whose matching row in A1:A10 says Paid. Click the cell and read the formula in the formula bar to confirm your ranges.",
+      "shortcut": "Return"
+    },
+    {
+      "name": "Sum amounts above a number",
+      "text": "To add up amounts above a limit, type =SUMIF(A1:A10,\">20\") in a new cell. Google's help page gives this example. With no third part, the formula sums the matching cells in A1:A10 themselves.",
+      "tip": "The whole comparison, including the greater than sign, sits inside the quotation marks."
+    },
+    {
+      "name": "Match part of a word with a wildcard",
+      "text": "Type =SUMIF(A1:A10,\"Pa*\",B1:B10) to total every status that starts with Pa. The asterisk matches zero or more characters. Use a question mark for one character, such as Pa?d for Paid.",
+      "tip": "Wildcards only work inside the quoted criterion."
+    },
+    {
+      "name": "Check the total by hand",
+      "text": "Add a handful of matching amounts yourself with the plus key and compare the result with the cell. Then change one status on purpose and watch the total move. If it does not move, the criterion is pointing at the wrong column.",
+      "tip": "Undo the test change afterward. Redo keys are listed in the shortcuts below."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Show the Google Sheets shortcut list",
+      "keys": "⌘ + /"
+    },
+    {
+      "action": "Open the tool finder to search for a function",
+      "keys": "⌥ + /"
+    },
+    {
+      "action": "Redo (option 1)",
+      "keys": "⌘ + y"
+    },
+    {
+      "action": "Redo (option 2)",
+      "keys": "⌘ + ⇧ + z"
+    },
+    {
+      "action": "Redo (option 3)",
+      "keys": "Fn + F4"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The formula shows an error instead of a total",
+      "fix": "Read the message in the cell. Check that each text criterion has both quotation marks, that commas separate the parts, and that both ranges are the same size. Google's June 2026 Fix button may help, but its post does not mention Mac."
+    },
+    {
+      "problem": "The total is zero or lower than expected",
+      "fix": "Check that the criterion matches the cell text, with the same spelling and spaces. Add a few rows by hand and compare. Confirm that the third part points at the amount column, not the label column."
+    },
+    {
+      "problem": "A wildcard does not match a real asterisk or question mark",
+      "fix": "Put a tilde in front of the character. Google's SUMIF page says ~* matches a literal asterisk and ~? matches a literal question mark."
+    },
+    {
+      "problem": "You need a sum across several columns",
+      "fix": "SUMIF does not support sums across multiple columns, according to Google. Write one SUMIF per column, or use a layout with one amount column."
+    },
+    {
+      "problem": "You need two conditions at once",
+      "fix": "Use SUMIFS, which Google documents on its own help page. Check the argument order there before you type it, because it differs from SUMIF."
+    },
+    {
+      "problem": "The shortcut list or tool finder does not open",
+      "fix": "Use ⌘ + / for the shortcut list and ⌥ + / for the tool finder, as Google lists them. If nothing opens, click into the sheet first so the browser window is active, then try again."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the tool finder in Google Sheets?",
+    "capability": "point",
+    "context": "Google Sheets in Chrome on Mac, looking for SUMIF",
+    "result": "Lazur draws a circle and a label around the tool finder on your screen. You still press ⌥ + / yourself, because Lazur points and does not click.",
+    "output": "Press ⌥ + / to open the tool finder, then type SUMIF.",
+    "shell": "sheet",
+    "pointsAt": "Tool finder"
+  },
+  "type": "howto",
+  "slug": "use-sumif-in-google-sheets",
+  "app": "google-sheets",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-sumif-in-google-sheets/how-to-use-sumif-in-google-sheets-1-f1a707.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A person at a Mac laptop learning how to use SUMIF in Google Sheets on Mac",
+      "caption": "Working through a sheet in the browser on a Mac",
+      "keywords": [
+        "how to use sumif in google sheets on mac",
+        "Google Sheets",
+        "use SUMIF",
+        "Mac",
+        "person mac laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-sumif-in-google-sheets/how-to-use-sumif-in-google-sheets-2-313c28.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Accountant reviewing spreadsheet totals, the kind of data SUMIF is built to add up",
+      "caption": "Totals like these are what SUMIF handles well",
+      "keywords": [
+        "how to use sumif in google sheets on mac",
+        "Google Sheets",
+        "use SUMIF",
+        "Mac",
+        "accountant spreadsheet numbers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "tomfield",
+        "url": "https://pixabay.com/users/tomfield-4615284/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/spreadsheet-number-numbers-excel-2816806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-sumif-in-google-sheets/how-to-use-sumif-in-google-sheets-3-3c5016.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Laptop screen showing spreadsheet rows, the view when you check a SUMIF total",
+      "caption": "Checking a total against the rows behind it",
+      "keywords": [
+        "how to use sumif in google sheets on mac",
+        "Google Sheets",
+        "use SUMIF",
+        "Mac",
+        "laptop spreadsheet data",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TayebMEZAHDIA",
+        "url": "https://pixabay.com/users/TayebMEZAHDIA-4194100/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-laptop-notebook-technology-3174729/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use sumif in google sheets on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "sumif google sheets": 2,
+      "sumif formula google sheets": 1,
+      "sumif wildcards google sheets": 1,
+      "sumifs google sheets mac": 1,
+      "sumif criteria greater than google sheets": 1,
+      "sumif not working google sheets": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "title": "Sage 50 accounting not responding on Mac: what to try before you call Sage",
+  "metaTitle": "Sage 50 accounting not responding on Mac: fixes that cost nothing",
+  "description": "Sage 50 is Windows software, so a freeze on a Mac starts in a Windows setup. Check your setup, restart the services, then try these free fixes.",
+  "targetKeyword": "sage 50 accounting not responding",
+  "secondaryKeywords": [
+    "sage 50 could not be started",
+    "sage 50 accounting freezes",
+    "sage 50 won't start on mac",
+    "sage 50 mac parallels",
+    "sage 50 database connection manager",
+    "sage 50 not responding fix"
+  ],
+  "intro": "Sage 50 accounting not responding usually means the Sage window or its database service has stalled. On a Mac, Sage 50 desktop does not run natively, so the freeze happens in a Windows install, a virtual machine or a browser session. Work out which setup you run, then try the fixes below in order.",
+  "tldr": [
+    "Sage 50 desktop is Windows software. Sage's knowledge base says no release runs on macOS.",
+    "Most freezes trace back to a stuck Actian Zen or Database Connection Manager service, or to antivirus.",
+    "Restart the service, run Sage as administrator, then check antivirus. Reinstall only as a last resort.",
+    "On Apple silicon, Sage's 2026 requirements rule out ARM processors. Ask before you put client files there.",
+    "Back up before any change to a Windows VM or Boot Camp setup."
+  ],
+  "stats": [
+    {
+      "value": "5 hours",
+      "label": "a week lost moving, re-entering or reconciling data across tools (Intuit survey, 725 professionals)",
+      "sourceUrl": "https://www.firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "sourceTitle": "Firm of the Future: 2026 Accountant Technology Survey (Intuit)"
+    },
+    {
+      "value": "8 GB",
+      "label": "minimum RAM for Sage 50 Accounting U.S. Edition 2026, with a 2.0 GHz Intel or AMD processor",
+      "sourceUrl": "https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=251027140841793",
+      "sourceTitle": "Sage KB: System Requirements, Sage 50 U.S. Edition 2026"
+    },
+    {
+      "value": "Oct 14, 2025",
+      "label": "date Microsoft ended support for Windows 10, as quoted on Sage's 2026 requirements page",
+      "sourceUrl": "https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=251027140841793",
+      "sourceTitle": "Sage KB: System Requirements, Sage 50 U.S. Edition 2026"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Sage 50 Accounting is Windows software. Sage's own knowledge base says there is no release that runs on macOS. That one fact explains most of the confusion. When a Mac user reports that Sage 50 freezes or will not start, one of three setups is usually behind it: Boot Camp on an Intel Mac, Parallels, or the web-hosted Sage 50 Cloud in a browser."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Sage 50 freezes or will not start on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Windows shows Not Responding when it has lost contact with a window. Sage's knowledge base uses the phrase 'Sage 50 Accounting is not responding' for this case. The other message, 'Sage 50 could not be started', often points to the database engine that Sage needs at launch. Both messages point to the same parts: the Sage program, the Actian Zen database, and the Windows services between them."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Mac does not change those parts. It adds a layer. On an Intel Mac with Boot Camp, Windows runs directly on the hardware, and Sage installs as it would on any Windows PC. With Parallels, Windows runs inside a virtual machine. That is a second system with its own memory, updates and failure modes. When something stalls, check that layer before you blame Sage."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a Sage 50 freeze costs your practice"
+    },
+    {
+      "type": "paragraph",
+      "text": "A freeze costs more than the minutes you wait. You may lose your place in a batch of entries. You may reopen the file and re-check work that already saved. You may wonder whether the last save made it. That doubt slows the whole afternoon."
+    },
+    {
+      "type": "paragraph",
+      "text": "Intuit commissioned a May 2026 survey of 725 US accounting and bookkeeping professionals. It reports people losing about 5 hours a week moving, re-entering or reconciling information across tools. That figure covers every tool, not Sage alone. Treat it as a rough signal, not a measure of Sage failures."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Five hours a week is about 260 hours over 52 weeks. Some of that loss is Sage. Some is spreadsheets, email and re-keying. Sort the failures before you spend the hours. A short log of when Sage freezes shows the pattern faster than memory does."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two costs do not show up on a timesheet. The first is data risk. Sage's Mac article advises against virtualization on Intel Macs, citing performance loss and a greater risk of data corruption. The second is support time. Sage's own fix sheet ends with a phone number if the message returns, so a stuck morning can turn into a call."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check which setup you really run"
+    },
+    {
+      "type": "paragraph",
+      "text": "Write down your setup before you change anything. It takes two minutes. The answers decide which fixes apply to you, and which ones belong to your IT adviser."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Chip type: choose Apple menu > About This Mac. An Apple silicon Mac shows Chip. An Intel Mac shows Processor.",
+        "Windows route: Boot Camp, Parallels, or no Windows at all. Sage 50 Cloud runs in a browser such as Chrome.",
+        "Windows version inside: Windows 10 support ended on 14 Oct 2025. Sage's 2026 page recommends Windows 11 24H2 and higher.",
+        "Sage version: read the year in the Sage window title or in its About box.",
+        "Where the company file lives: on your Mac, inside the VM, or on a network share."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple silicon is the hard case. Sage's 2026 requirements say 'ARM-based processors not supported.' Parallels on an Apple silicon Mac runs only Arm versions of Windows. Put those two facts together and a Sage 50 desktop install on an M-series Mac is effectively unsupported. That is an inference from the two pages, not a sentence Sage writes. Ask Sage before you put client files on that setup."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Where it usually starts",
+        "First fix to try"
+      ],
+      "rows": [
+        [
+          "Sage 50 Accounting is not responding",
+          "Window stalled, or the connection manager hung",
+          "Restart the Sage 50 Database Connection Manager service"
+        ],
+        [
+          "Sage 50 could not be started",
+          "Actian Zen not running, or blocked at launch",
+          "Restart Actian Zen, then run as administrator"
+        ],
+        [
+          "Freezes after an antivirus change",
+          "Protected folders blocking Sage files",
+          "Allow Sage50Accounting.exe in the antivirus"
+        ],
+        [
+          "Freezes only inside Parallels",
+          "Virtual machine memory or pending Windows updates",
+          "Shut Windows down, restart, then check updates"
+        ]
+      ],
+      "caption": "Symptoms and the first fix, based on Sage's knowledge base and Parallels requirements."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sage 50 not responding fixes you can try for free"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the cheap fixes and test Sage after each step. Sage's own order for these errors is close to the list below. You follow the vendor's path, not a guess. Save your work and close Sage before each change."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Use the right shortcut. Delete any extra Sage shortcut on the desktop and open the one Sage installed. Sage's article asks for the correct desktop shortcut first.",
+        "Run as administrator. Right-click the shortcut and choose Properties > Compatibility. Tick Run this program as an administrator, then click OK.",
+        "Restart the computer. On a Mac with Parallels, shut Windows down from the Start menu and start it again. Do not force quit the VM first.",
+        "Restart the services. Press Windows key + R, type services.msc and press Enter. Restart the Sage 50 Database Connection Manager. Restart Actian Zen if it is listed.",
+        "Move the data file locally if a network path is involved. Back up first, then copy the company file to a folder on the same machine and open it from there.",
+        "Check antivirus. Allow the Sage executables, as covered in the next section.",
+        "Install Windows updates, then reinstall Actian Zen, then reinstall Sage 50. Back up before every reinstall."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Check antivirus and protected folders"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sage's antivirus article says AVG and Avast Protected Folders are on by default in recent versions. Allow Sage50Accounting.exe in both. Bitdefender Safe Files can block access as well. Remove Documents from its protected list, or store the company data in a new folder on C:."
+    },
+    {
+      "type": "paragraph",
+      "text": "On Windows Defender, open Windows Security > Virus & threat protection > Manage Controlled folder access. Allow the Sage executables there. Sage's article also mentions a short test with antivirus or the firewall turned off. Run that test only on a machine you control, and turn protection back on the same day."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Why restarting Actian Zen comes first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sage's article says restarting Actian Zen often resolves the issue when a full computer restart is not possible. That is the cheapest fix in this guide. Restart the service first, then open Sage. If the message returns, the problem is deeper, and a reinstall is the next step, not a random click."
+    },
+    {
+      "type": "paragraph",
+      "text": "A reinstall fixes many damaged installs. It also risks changing settings and paths. Keep a copy of the company data folder and your license details before you start. Reinstall in this order: Actian Zen, Windows updates, then Sage 50."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make a Sage 50 freeze worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Force quitting Sage while it writes. Let the window finish or close cleanly first. Force quit only when the window is dead.",
+        "Opening a second Sage copy on the same company file. Two copies can compete for the same data.",
+        "Changing a Parallels or Boot Camp setting without a backup. Sage warns about data corruption risk with virtualization on Intel Macs.",
+        "Turning off antivirus and leaving it off. Re-enable it the same day, with exceptions in place.",
+        "Ignoring the Windows version. Windows 10 support ended on 14 Oct 2025, so an old VM image needs a plan.",
+        "Blaming Sage first. Check the VM, the network path and antivirus before you reinstall."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "On the Mac side, Force Quit sits under Apple menu > Force Quit, or you can press ⌥⌘ Esc. Force quitting Parallels is a bigger step than closing a Windows window inside it. Shut Windows down from inside the VM first when you can."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and it answers out loud. Ask where a setting is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "It does not click buttons, edit files or run other apps for you. It is not a plugin or add-in for Sage, Parallels or Windows, and it has no partnership with any of them. When a Sage or Windows window is on your Mac screen, Lazur can look at it and point. You still make every click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Hold ⌥ ⌘ and ask what the Not Responding message means.",
+        "Ask where Manage Controlled folder access sits on the Windows screen.",
+        "Ask Lazur to walk you through the services window, one step at a time."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep client data safe while you troubleshoot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants work under confidentiality rules, and most firms add their own. Follow your employer's rules before you copy company files, screenshot client names or paste account numbers anywhere. Ask your IT owner whether an AI tool may appear on screens that show client data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sends audio and the screenshot to AI providers to answer, and they are not stored. Content is never used to train AI models. Those facts help you decide, but your firm's policy still decides. If the policy says no, do the troubleshooting without Lazur."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before any repair, make a backup you can restore. Copy the company data folder to an external drive. Open the copy once to confirm it works. Only then change services, antivirus or the VM. A backup you have not tested is a hope, not a backup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Questions to ask your IT adviser about Sage 50 on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Is the Windows install on Sage's listed requirements, including a supported Windows version?",
+        "Is the company file on a local drive, or on a network path?",
+        "Which antivirus product runs, and does it have protected folders?",
+        "Is Sage running on an Intel Mac with Boot Camp, or inside Parallels?",
+        "How long does a restore from backup take, and who runs it?"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If Sage 50 keeps freezing after every fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the same freeze returns after the services, antivirus and reinstall steps, the setup itself may be the problem. Sage's Mac article points Mac users to Sage 50 Cloud, which runs in a browser. You can check current costs on the [Sage pricing page](https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=221924750012565). This page gives no price, because none could be verified."
+    },
+    {
+      "type": "paragraph",
+      "text": "Moving data is a project, not a click. Plan it outside a close week. Test the move on a copy first, and keep the old setup until the new one has run a full cycle."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Sage 50 run on a Mac?",
+      "answer": "Not natively. Sage's knowledge base says no release of Sage 50 Accounting runs on macOS. Mac users are pointed to Sage 50 Cloud in a browser, or to a Windows install through Boot Camp or Parallels. Boot Camp needs a Windows license bought separately."
+    },
+    {
+      "question": "Why does Sage 50 say it is not responding?",
+      "answer": "Windows lost contact with the Sage window. Restart the Sage 50 Database Connection Manager service first, then run Sage as administrator. If the message returns, check antivirus and the data file location before you reinstall."
+    },
+    {
+      "question": "Can I run Sage 50 on an M-series Mac?",
+      "answer": "Sage's 2026 requirements say ARM-based processors are not supported. Parallels on Apple silicon runs only Arm versions of Windows. That makes a Sage 50 desktop install effectively unsupported, which is an inference from two pages. Ask Sage before you put client files there."
+    },
+    {
+      "question": "Will restarting Actian Zen delete my data?",
+      "answer": "Sage's article says restarting Actian Zen often resolves the issue when a full restart is not possible. Back up the company data first anyway. A stuck write can leave a file damaged, so a copy is your safety net."
+    },
+    {
+      "question": "Do I have to turn off antivirus to fix Sage?",
+      "answer": "No. Allow the Sage executables and folders instead. Sage's article mentions a short test with protection off. If you run that test, keep it brief and turn protection back on the same day."
+    },
+    {
+      "question": "What about the phone number in Sage's article?",
+      "answer": "Sage's not responding article says to call 888-522-2722 if the message returns. That number comes from Sage's Canadian knowledge base, so confirm the right support line for your country on Sage's site."
+    },
+    {
+      "question": "Is Lazur a fix for Sage 50?",
+      "answer": "No. Lazur is a voice assistant for the Mac. It explains messages, points at things on screen and guides you one click at a time. It does not click for you, and it is not a plugin for Sage."
+    },
+    {
+      "question": "Can Lazur see client data on my screen?",
+      "answer": "Lazur looks at the screen only while you hold the shortcut. It sends audio and the screenshot to AI providers to answer, and they are not stored. Follow your firm's rules before you show client data to any AI tool."
+    },
+    {
+      "question": "How much does Lazur cost?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. Pro is $18 a month, or $15 a month billed annually, with 150 AI actions. Power is $120 a month, or $96 a month billed annually, with 1,000 AI actions. Dictation is unlimited on both."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Sage KB: Does Sage 50 operate on Mac OS X computers?",
+      "url": "https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=221924750012565",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sage KB: System Requirements, Sage 50 U.S. Edition 2026",
+      "url": "https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=251027140841793",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sage KB: Sage 50 Accounting is not responding",
+      "url": "https://ca-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=221924850014428",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sage KB: Error 'Sage 50 could not be started'",
+      "url": "https://us-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=220924150010027",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Sage KB: Third-party utilities, antivirus and firewall issues with Sage 50",
+      "url": "https://ca-kb.sage.com/portal/app/portlets/results/viewsolution.jsp?solutionid=225924350086048",
+      "publisher": "Sage",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Parallels KB: Parallels Desktop 26 system requirements",
+      "url": "https://kb.parallels.com/en/131103",
+      "publisher": "Parallels",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Firm of the Future: 2026 Accountant Technology Survey (Intuit)",
+      "url": "https://www.firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "publisher": "Firm of the Future (Intuit)",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "sage 50 freezes or will not start",
+  "costs": [
+    {
+      "title": "Lost hours on each freeze",
+      "text": "Each freeze pulls you out of a task. You may lose your place in a batch of entries and re-check what already saved. Intuit's May 2026 survey found accountants losing about 5 hours a week moving, re-entering or reconciling data across tools. That covers all tools, so treat it as a signal, not a Sage number."
+    },
+    {
+      "title": "Data risk on a virtual machine",
+      "text": "Sage's Mac article advises against virtualization on Intel Macs. It cites performance loss and a greater risk of data corruption. A crash inside a VM can leave a company file in a bad state, so back up before any repair."
+    },
+    {
+      "title": "Windows license and VM upkeep",
+      "text": "Boot Camp and Parallels both need a Windows license bought separately. Parallels says Apple silicon Macs need at least 4 GB of RAM, with 16 GB recommended, and Windows needs at least 16 GB of disk space. Plan for that disk and memory before you commit client work to the setup."
+    },
+    {
+      "title": "Windows 10 and support gaps",
+      "text": "Windows 10 support ended on 14 Oct 2025, as Sage's 2026 requirements page quotes from Microsoft. Sage's page still lists Windows 10 21H1 as a minimum. An install that is out of support gets no new security updates, and that matters for client files."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Sage 50 is built for Windows",
+      "text": "Sage 50 Accounting is Windows software. Sage's knowledge base says no release runs on macOS. A Mac can run Windows through Boot Camp or Parallels, but the freeze then happens inside Windows. Start your troubleshooting there, not in the Mac menu bar."
+    },
+    {
+      "title": "Apple silicon falls outside the requirements",
+      "text": "Sage's 2026 U.S. requirements say ARM-based processors are not supported. Parallels on Apple silicon runs only Arm Windows. Sage lists Intel or AMD processors, so an M-series Mac sits outside the listed setup. Treat that as a warning about the setup, not a bug you can patch."
+    },
+    {
+      "title": "Antivirus blocks Sage files",
+      "text": "Protected folders and ransomware tools can stop Sage from writing its files. Sage's article names AVG and Avast Protected Folders, Bitdefender Safe Files, and Windows Defender Controlled Folder Access. A blocked write can look like a freeze, because the window waits for a file it cannot reach."
+    },
+    {
+      "title": "Stuck Actian Zen or connection manager",
+      "text": "Sage 50 uses the Actian Zen database and a Database Connection Manager service. If either one hangs, the Sage window waits, and Windows reports Not Responding. Sage's article says restarting Actian Zen often resolves the issue."
+    },
+    {
+      "title": "Data file on a network path or server",
+      "text": "When company data sits on a network share or a shared server, a slow or dropped connection can stall Sage. Sage's article suggests moving the data file to a local drive when a network problem is suspected, and rebooting the server. A VM that reads files over the network adds one more hop."
+    },
+    {
+      "title": "Old Windows and VM resources",
+      "text": "Windows 10 support ended on 14 Oct 2025, so an older install may lack current fixes. Sage's 2026 page recommends Windows 11 24H2 and higher. Parallels asks for at least 16 GB of disk space for Windows. A VM short of disk or memory can stall under load."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Restart the Sage services",
+      "text": "Restart the Sage 50 Database Connection Manager service and Actian Zen. Use Windows key + R, type services.msc, and press Enter. This is the cheapest fix in the guide. It costs one minute, and you can undo nothing by trying it."
+    },
+    {
+      "title": "Run Sage as administrator",
+      "text": "Right-click the Sage shortcut and choose Properties > Compatibility. Tick Run this program as an administrator, then click OK. Sage's article lists this step for the not responding message, so it is a vendor-backed first try."
+    },
+    {
+      "title": "Use the correct shortcut",
+      "text": "Delete duplicate Sage shortcuts and use the one that came with the install. An old shortcut can point to a path that no longer exists. Sage's article asks for the correct desktop shortcut before any other step."
+    },
+    {
+      "title": "Allow Sage through antivirus",
+      "text": "Allow Sage50Accounting.exe in AVG, Avast, Bitdefender or Windows Defender. In Windows Security, use Virus & threat protection > Manage Controlled folder access. Test once, then keep protection on with the exceptions in place."
+    },
+    {
+      "title": "Move the data file to a local drive",
+      "text": "If the company file sits on a network path, back it up first. Copy it to a folder on the same machine and open it from there. Sage's article suggests this step when a network problem is suspected."
+    },
+    {
+      "title": "Reinstall in the right order",
+      "text": "Reinstall Actian Zen, then install Windows updates, then reinstall Sage 50. Keep a backup and your license details before you start. Sage lists the reinstall as a later step, not a first one, so do not start there."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask what this message means",
+      "result": "Lazur answers out loud in plain words. You still check the fix against Sage's own article before you act.",
+      "capability": "explain"
+    },
+    {
+      "say": "Ask where Manage Controlled folder access is",
+      "result": "Lazur draws a circle and a label around the setting so you can find it on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through restarting the connection manager service",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves to the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to IT with the error text and the steps I tried",
+      "result": "Lazur drafts the text so you can edit it and send it yourself. It does not send email for you.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to back up the company folder on Friday at 5",
+      "result": "Lazur sets the reminder in Apple Reminders by voice. The backup itself stays with you.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Find Sage's current Mac guidance and summarize it",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report to read.",
+      "capability": "research"
+    },
+    {
+      "say": "Dictate my freeze log into my notes",
+      "result": "Hold fn to dictate clean, formatted text at the cursor in any app. Dictation is unlimited on Pro and Power.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Walk me through restarting the Sage 50 connection manager service.",
+    "capability": "guide",
+    "result": "Lazur names each step, points at the next control and waits for your click before it moves on.",
+    "shell": "generic",
+    "context": "Windows Services window open on a Mac screen, Parallels running Sage",
+    "output": "A step-by-step guide. Lazur points at each control. You press each button yourself.",
+    "pointsAt": "Restart"
+  },
+  "plan": [
+    {
+      "label": "Now",
+      "title": "Save and log the freeze",
+      "text": "Save your work, close Sage, and write down the exact message, the time and what you clicked. This log shows whether the freeze repeats at the same hour or after the same action."
+    },
+    {
+      "label": "Day 1",
+      "title": "Restart and run as administrator",
+      "text": "Restart the computer or the VM. Set Sage to run as administrator through Properties > Compatibility. Open Sage once. If it works, keep the setting and watch for the next freeze."
+    },
+    {
+      "label": "Day 2",
+      "title": "Restart the Sage services",
+      "text": "Open services.msc with Windows key + R. Restart the Sage 50 Database Connection Manager and Actian Zen. Test Sage with a small check before you open the full company data."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check antivirus and protected folders",
+      "text": "Look for Controlled folder access and any protected folders. Allow Sage50Accounting.exe, and remove Documents from Bitdefender Safe Files if it is on. Test once, then reopen Sage."
+    },
+    {
+      "label": "Week 1",
+      "title": "Back up, then reinstall if needed",
+      "text": "If the message keeps returning, back up the company data and test the copy. Reinstall in order: Actian Zen, Windows updates, then Sage 50. Write down the result in your log."
+    },
+    {
+      "label": "Monthly",
+      "title": "Review the setup",
+      "text": "Confirm your Windows version is supported, your VM has enough disk and memory, and the data file sits on a local drive. Ask IT to review the setup before a busy season."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "excel"
+  ],
+  "type": "problem",
+  "slug": "sage-50-accounting-not-responding",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/sage-50-accounting-not-responding/sage-50-accounting-not-responding-1-6c07d5.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant at a laptop at a desk, checking why Sage 50 accounting is not responding",
+      "caption": "A stalled accounting window costs more than the minutes you wait.",
+      "keywords": [
+        "sage 50 accounting not responding",
+        "Accountants",
+        "Sage 50 freezes or will not start",
+        "Mac",
+        "accountant laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/calculator-numbers-accounting-2620140/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/sage-50-accounting-not-responding/sage-50-accounting-not-responding-2-92c6da.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Person typing on a laptop beside paperwork, backing up company files before a repair",
+      "caption": "Back up the company file before any change to the setup.",
+      "keywords": [
+        "sage 50 accounting not responding",
+        "Accountants",
+        "Sage 50 freezes or will not start",
+        "Mac",
+        "person using laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "sage 50 accounting not responding",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "sage 50 could not be started": 3,
+      "sage 50 accounting freezes": 1,
+      "sage 50 won't start on mac": 1,
+      "sage 50 mac parallels": 1,
+      "sage 50 database connection manager": 6,
+      "sage 50 not responding fix": 2
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

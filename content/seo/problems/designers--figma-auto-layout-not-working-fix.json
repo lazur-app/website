@@ -1,0 +1,569 @@
+{
+  "title": "Figma auto layout not working on Mac: causes and fixes for 2026",
+  "metaTitle": "Figma Auto Layout Not Working on Mac: Causes and Fixes",
+  "description": "Figma auto layout not working? A Fill, Hug or Fixed setting is usually the cause. Here is how to find it and fix it on Mac.",
+  "targetKeyword": "figma auto layout not working",
+  "secondaryKeywords": [
+    "figma auto layout fill container",
+    "figma hug contents",
+    "figma auto layout fixed width",
+    "figma text not resizing",
+    "figma frame not resizing",
+    "figma auto layout on mac"
+  ],
+  "intro": "Figma auto layout not working usually means a sizing setting is working against you. The most common culprits are a child set to Fill, a parent set to Hug, and text layers fixed in size. This page shows how to find which one you have on your Mac, what the problem costs you, and how to fix it without buying anything. Nothing here needs a plugin or a paid add-on. You need the Figma desktop app and a copy of the frame to test on.",
+  "tldr": [
+    "Most surprises come from three settings: Fill container, Hug contents and Fixed.",
+    "A Fill child makes a Hug parent switch to Fixed on that axis, according to Figma's guide.",
+    "Typing a value into Width or Height also switches that axis to Fixed.",
+    "Fixed size text does not grow with its words. Change the text sizing first.",
+    "Check each axis, duplicate the frame, then test one change at a time."
+  ],
+  "stats": [
+    {
+      "value": "92%",
+      "label": "of designers believe the handoff process could be improved, per Figma's 2025 figures",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026, Figma"
+    },
+    {
+      "value": "25%",
+      "label": "fewer iteration cycles when designs are validated before development, citing a Forrester study",
+      "sourceUrl": "https://www.figma.com/resource-library/design-statistics/",
+      "sourceTitle": "79+ Design Statistics for 2026, Figma"
+    },
+    {
+      "value": "$30.27",
+      "label": "median hourly wage for graphic designers in 2025, US Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "Graphic Designers, Occupational Outlook Handbook"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the symptom looks like in Figma auto layout"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto layout is a frame that arranges its children and sizes itself to fit them. When it stops doing that, the symptom usually looks like one of three things. A card will not shrink to fit its text. A layer stretches past its edge. Or a frame refuses to grow when you add a line. Name the symptom before you touch anything, because each one has a different cause."
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the frame and compare its edges with its contents. If the edges sit tight around the children, the frame is probably hugging. If the width ignores the content, that axis is probably Fixed. Both guesses are quick to check, and the next section shows how."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the Width and Height settings first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Design panel on the right, then find the Layout section. The Width and Height dropdowns show the sizing rule for each axis. Write both values down. This takes less time than any fix on this page, and it tells you which setting to read next."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the frame on the canvas.",
+        "Open the Design panel on the right.",
+        "Read the Width dropdown in the Layout section, then the Height dropdown.",
+        "Select each child and read its own Width and Height.",
+        "Note any child set to Fill container."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If you see Fill on a child and Hug on its parent, you have found the most common conflict. Everything else on this page is a variation on that pattern."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: the card that will not shrink"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you build a card. It has a title, a body paragraph and a button. You set the card to Hug contents on width, so it fits its content. Then you set the body text to Fill container so it spans the card. Now you edit the body copy, and the card keeps its old width."
+    },
+    {
+      "type": "paragraph",
+      "text": "What happened? According to Figma's guide, a Fill child makes the Hug parent become Fixed on that axis. The card kept its last width and stopped hugging. Nothing is broken. The rule simply overrode what you meant."
+    },
+    {
+      "type": "paragraph",
+      "text": "Many tutorials recommend Fill on width and Hug on height for cards. That is convention from third-party blogs, not Figma guidance. Test it in your own file, with your own copy, before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Settings that change the rules"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Setting",
+        "What it does",
+        "What breaks"
+      ],
+      "rows": [
+        [
+          "Hug contents",
+          "Shrinks the frame to its children plus spacing",
+          "A Fill child makes this axis Fixed"
+        ],
+        [
+          "Fill container",
+          "Stretches a layer to take the space its parent has",
+          "Only works on children of an auto layout frame"
+        ],
+        [
+          "Fixed",
+          "Keeps the size you set",
+          "Content does not push the edge"
+        ],
+        [
+          "Min or max limits",
+          "Caps how far Hug or Fill can go",
+          "Text cannot use max height and max lines together"
+        ]
+      ],
+      "caption": "Behavior from Figma's auto layout guide. Check it in your own file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Typing a value into Width or Height also switches that axis to Fixed. So does resizing a layer by hand. Designers do this to correct one card, then forget. The frame now ignores its contents on that axis. Set the axis back on purpose, from the dropdown, when you finish."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Text layers that will not grow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's help page says fixed size text layers will not resize to fit their text. A text box with a set width and height clips or overflows when the copy changes. The same page advises against fixed size text boxes if you want a fully fluid layout. Let text grow with its content, then lock only the outer frame."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Select the text layer and read its sizing option in the Design panel.",
+        "Pick a mode that grows with the words for labels and paragraphs.",
+        "Type a long sentence into the layer to test it.",
+        "Undo the test with ⌘Z, or keep the copy if it works.",
+        "If you need a line limit, remember you cannot combine max height with max lines."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they try to fix it"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first mistake is fixing the child when the parent is the problem. Check both. The second is changing five settings at once. Then you cannot tell which change worked. The third is removing auto layout and rebuilding the spacing by hand. That can take far longer than a targeted fix."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ignore auto layout, formerly called absolute position, is useful for a badge or a corner icon. It is a bad place to hide a sizing bug. A layer set this way skips the spacing rules, so it can look right in one state and wrong in another."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What we could not verify",
+      "text": "Forum threads report Fill layers acting as Fixed, and some fixes come from community posts. Figma does not document those fixes. Treat them as things to try on a copy, not as guarantees."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Does your Mac and Figma version matter?"
+    },
+    {
+      "type": "paragraph",
+      "text": "Yes, in two ways. The Figma desktop app requires macOS 12 or later. It is optimized for Macs with Intel and Apple silicon processors. Check your macOS version under the Apple menu, through Apple > About This Mac, before you blame Figma."
+    },
+    {
+      "type": "paragraph",
+      "text": "Second, Figma's desktop help says previous versions lose support six months after release. A newer build can change how sizing behaves. The help page gives no current version number, so check for updates inside the app. Managed Macs may need an administrator to install them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Who should be careful with client files"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto layout bugs often show up in client work, and client files may be covered by a contract. Check your agency or client rules before you share screenshots or copy from a file. That applies to any AI tool, including Lazur. Ask your employer or client when you are not sure."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the lost time costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Put a number on it before you decide how much to fix. The Bureau of Labor Statistics lists a median hourly wage of $30.27 for graphic designers in 2025. Use that as a rough floor for what an hour costs you. Your own rate may be higher or lower."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "I could not find a study that measures how often designers hit auto layout surprises. Figma's statistics page cites a UserTesting study, which cites Forrester, on validation. Validating designs before development cut iteration cycles by 25 percent in that study. That finding covers validation in general, not auto layout. It is still a reason to test your frames early."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it stops"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur lives in the notch on your Mac. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It can circle the Width dropdown, explain what Hug or Fill means in plain words, and walk you through a fix one click at a time. It waits for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for Figma. You stay in control of the file. Lazur points and explains, and you make the change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next in Figma"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the frame is new to you, start with the basics. Our guide on [how to add auto layout in Figma on Mac](/how-to/add-auto-layout-in-figma) covers adding it from scratch. The [Figma for designers on Mac](/for/designers/figma) page covers desktop setup and memory fixes. For a fresh start, see [how to create a frame in Figma on Mac](/how-to/create-a-frame-in-figma)."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Duplicate before you test",
+      "text": "Press ⌘D on the frame. Run every test on the copy. Keep the original as a reference until the copy passes with real content. A failed test then costs you nothing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Trial details and plans are on the [pricing page](/pricing). Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available yet."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Figma frame stop hugging its contents?",
+      "answer": "Usually a child is set to Fill container. Figma's guide says a Fill child makes a Hug parent stop hugging on that axis and become Fixed. Check each child's sizing, then set the parent again."
+    },
+    {
+      "question": "Why does Fill container do nothing on my layer?",
+      "answer": "Fill only works on layers inside an auto layout frame, not on top-level frames. Add auto layout to the parent, then select the child again and set Fill."
+    },
+    {
+      "question": "Why does my text not resize in Figma auto layout?",
+      "answer": "Fixed size text layers do not resize to fit their text, per Figma's help page. Switch the text to a sizing mode that grows with the words. Avoid fixed size text boxes if you want a fluid layout."
+    },
+    {
+      "question": "Does updating Figma fix auto layout bugs?",
+      "answer": "It can. A newer desktop build may change sizing behavior, and older versions lose support six months after release. Figma's help page gives no current version number, so test on a copy after each update."
+    },
+    {
+      "question": "Is Ignore auto layout the same as absolute position?",
+      "answer": "Yes. Figma's help page says Ignore auto layout was formerly called absolute position, and it works the same way. Use it for a layer that should sit outside the spacing rules, such as a badge."
+    },
+    {
+      "question": "Can Lazur fix my Figma frame for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It can point at the setting, explain what it does, and guide you one click at a time. You make each change."
+    },
+    {
+      "question": "Is it safe to ask Lazur about a client Figma file?",
+      "answer": "Lazur listens and looks at the screen only while you hold ⌥⌘. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. Your contract still decides what you may share, so check it first."
+    },
+    {
+      "question": "Does this work on Windows?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. The Figma desktop app needs macOS 12 or later on Mac."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Guide to auto layout, Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to the Figma desktop app, Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "79+ Design Statistics for 2026, Figma",
+      "url": "https://www.figma.com/resource-library/design-statistics/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Graphic Designers, Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "auto layout frames behaving unexpectedly",
+  "costs": [
+    {
+      "title": "Time lost to trial and error",
+      "text": "No public study I could open measures how long designers lose to auto layout surprises. Figma's own research does not measure it either. What you can measure is your own time. Note how long one stuck frame takes you today. Most of the cost comes from small loops: click, undo, resize, check, repeat."
+    },
+    {
+      "title": "Your hourly rate in plain numbers",
+      "text": "The US Bureau of Labor Statistics lists a median hourly wage of $30.27 for graphic designers in 2025. That is a median for the whole field, not your rate. Use it as a rough floor. An hour of resizing frames costs about that much in paid time, before tools and overhead."
+    },
+    {
+      "title": "Handoff trouble that lands on developers",
+      "text": "Figma's 2025 figures say 92% of designers believe the handoff process could be improved. A frame that resizes wrong makes handoff harder to trust. A developer who cannot tell whether a width is fixed or fluid will stop and ask. Each question is another round."
+    },
+    {
+      "title": "Trust with clients and teammates",
+      "text": "A layout that breaks when someone edits a headline looks careless, even when the cause is one checkbox. You can explain the cause. The reviewer still sees a broken mockup. Build the sizing rules in before the review, not during it."
+    },
+    {
+      "title": "What the sources do not show",
+      "text": "I found no source that measures burnout, error rates or grades tied to auto layout. Treat any claim of that kind with care, including claims from us. The costs on this page are time, wages and trust, and only time and wages have numbers."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Fill only works inside an auto layout parent",
+      "text": "Fill container stretches a layer to take the space its parent has. Figma offers it only on children of an auto layout frame. A top-level frame on the canvas cannot use it. If Fill does nothing, check that the parent is an auto layout frame, and add auto layout to it first."
+    },
+    {
+      "title": "A Fill child turns a Hug parent into Fixed",
+      "text": "Figma's guide says a child set to Fill container makes the parent stop hugging its contents. The parent becomes Fixed on that axis. A card set to Hug on width, with a Fill child inside, keeps its last width. It does not shrink when the text changes. Third-party tutorials describe this conflict differently, so check it in your own file."
+    },
+    {
+      "title": "Typing a width switches the axis to Fixed",
+      "text": "Resizing a layer by hand, or typing a value into Width or Height, switches that axis to Fixed. Many designers do this to correct one card, then forget. The frame now ignores its contents on that axis. The fix is to set the axis back to Hug or Fill on purpose."
+    },
+    {
+      "title": "Fixed size text does not grow",
+      "text": "Figma's help page says fixed size text layers will not resize to fit their text. A text box with a set width and height will clip or overflow. Designers often create these by accident when they drag out a text box. A sizing mode that grows with the text keeps the layout fluid."
+    },
+    {
+      "title": "Min and max limits cap the change",
+      "text": "Min and max width or height limits are added from the Width or Height dropdown. They can be used with other resizing settings. A tight max width can look like a bug. The frame stops growing at that limit, and the text wraps. Check the limits first when a frame stops at an odd size."
+    },
+    {
+      "title": "Ignore auto layout skips the rules",
+      "text": "Ignore auto layout was formerly called absolute position, and it still works the same way. It keeps a layer outside the flow of its parent. A layer set this way does not follow the spacing rules. If a layer seems stuck in one place, check whether it ignores auto layout in the Design panel before you change padding."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Read each axis before you touch anything",
+      "text": "Select the frame. In the Design panel, look at the Layout section. Note the Width and Height dropdown for each axis: Hug contents, Fill container or Fixed. Write them down or take a screenshot. This takes a few seconds, and it shows which axis is working against you."
+    },
+    {
+      "title": "Decide which side wins for each axis",
+      "text": "Hug contents wants every child sized by its content. One child set to Fill blocks hugging on that axis. Decide which element should win. A button usually hugs its label. A card often fills its column while the text fills the card. That pattern is common convention, not a Figma rule, so test it. Pick one pattern per frame and keep to it."
+    },
+    {
+      "title": "Give text a sizing mode that grows",
+      "text": "Select the text layer. In the Design panel, open the text sizing options. Pick a mode that grows with the words, such as auto width for a label or auto height for a paragraph. A paragraph in a fixed box clips when the copy changes. Test it by typing a long sentence into the layer."
+    },
+    {
+      "title": "Use min and max on the frame",
+      "text": "Open the Width or Height dropdown on the frame and add a min or max value. This lets a card grow to a limit, then stop. Choose a max that suits your artboard. Do not set a max height and a max number of lines on the same text layer, because Figma does not allow both."
+    },
+    {
+      "title": "Change one setting, then re-test",
+      "text": "Change one setting at a time. After each change, type a long word, then a short one, into the text. Watch whether the frame grows and shrinks. If it works, you found the setting. If not, return to the previous value. One change per test shows you which setting caused the problem."
+    },
+    {
+      "title": "Duplicate the frame before you rebuild",
+      "text": "Before you remove auto layout or regroup anything, duplicate the frame with ⌘D. Work on the copy. Delete the broken original only after the copy passes with real content. Some designers remove auto layout and rebuild the spacing from scratch. That works, but it costs time and can lose settings you wanted to keep."
+    },
+    {
+      "title": "Try the community resets with care",
+      "text": "Some designers toggle auto layout off and on, or ungroup and regroup. Community threads report that these sometimes clear a stuck Fill. Figma does not document these as fixes. Try them only on a duplicate, and keep the one change at a time rule."
+    },
+    {
+      "title": "Move padding into a nested frame",
+      "text": "Some designers move the padding into a nested frame inside the card, instead of the card itself. This can stop a Fill child from fighting a Hug parent. It is a community workaround, not a documented Figma rule. Use it when the outer frame must stay fixed, and name the nested frame so the next person understands it."
+    },
+    {
+      "title": "Update the Figma desktop app",
+      "text": "Open the app and check for an update. Figma's desktop help says old versions lose support six months after release. A newer build can change how sizing behaves, so an odd bug may already be fixed. Managed Macs may need an administrator to install updates. Ask IT if an update is blocked."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Lazur, where is the Width setting for this frame?",
+      "result": "Lazur draws a circle and a label around the Width dropdown in the Design panel, so you can find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, why won't this card shrink when I delete text?",
+      "result": "While you hold ⌥⌘, Lazur sees the screen and answers out loud. It can explain whether the axis is Hug, Fill or Fixed, in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, walk me through setting the body text to fill the card.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking. Lazur does not change your file.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate a bug note for the team",
+      "result": "Hold fn to dictate clean, formatted text at the cursor in any app. Your bug note lands in the thread without retyping.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a bug report for the design team",
+      "result": "Lazur drafts and types the text for you. Read it, edit it, then send it yourself. Lazur does not send messages for you.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Hold ⌥⌘ and ask: where is the width setting?",
+    "capability": "point",
+    "result": "Lazur circles the Width dropdown and labels it, so you can see whether the axis is Hug, Fill or Fixed.",
+    "shell": "design",
+    "context": "Figma desktop, card frame selected, Design panel open",
+    "output": "Width dropdown circled, with a label.",
+    "pointsAt": "Width dropdown"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Reproduce the problem on a copy",
+      "text": "Duplicate the broken frame with ⌘D. Write down the Width and Height setting on each axis. Type a long sentence into the text layer and watch what happens. Note the one setting that breaks the pattern. You now have a test case, not a guess."
+    },
+    {
+      "label": "Day 2",
+      "title": "Change one setting, then test",
+      "text": "Pick one fix from this page. Change one axis or one text layer. Retest with a short word and a long sentence. Keep notes on each change. When the copy works, apply the same setting to the original file."
+    },
+    {
+      "label": "Day 3",
+      "title": "Check the Mac and the app",
+      "text": "Confirm your Mac runs macOS 12 or later. Open Figma and check for a desktop update. If your Mac is managed, ask IT for an update path. Retest the duplicate after any update, so you know which change mattered."
+    },
+    {
+      "label": "Day 4",
+      "title": "Write one rule for the team",
+      "text": "Write a single line for your team. For example: cards fill their column, and text inside uses a growing sizing mode. Put it on a notes page or in your design system. A short rule stops the same bug from returning in the next project."
+    },
+    {
+      "label": "Day 5",
+      "title": "Clean up the copies",
+      "text": "Delete the broken duplicates only after the fixed file passes your test with real content. Keep one reference frame. Mention the fix in your handoff note, so the developer does not guess at padding or widths."
+    }
+  ],
+  "apps": [
+    "figma"
+  ],
+  "type": "problem",
+  "slug": "figma-auto-layout-not-working-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-auto-layout-not-working-fix/figma-auto-layout-not-working-1-3cab72.jpg",
+      "width": 1280,
+      "height": 905,
+      "alt": "Designer at a Mac reviewing app screens while checking a figma auto layout fix",
+      "caption": "A designer checks a layout on a laptop.",
+      "keywords": [
+        "figma auto layout not working",
+        "Designers",
+        "Auto layout frames behaving unexpectedly",
+        "Mac",
+        "designer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexandra_Koch",
+        "url": "https://pixabay.com/users/Alexandra_Koch-621802/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-laptop-computer-digital-art-7754084/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-auto-layout-not-working-fix/figma-auto-layout-not-working-2-b0013e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a Mac keyboard at a wooden desk while working on design files",
+      "caption": "Designers often spend long stretches on a Mac.",
+      "keywords": [
+        "figma auto layout not working",
+        "Designers",
+        "Auto layout frames behaving unexpectedly",
+        "Mac",
+        "person using mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "thatsphotography",
+        "url": "https://pixabay.com/users/thatsphotography-3017066/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/girl-woman-female-person-mountain-1562025/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/figma-auto-layout-not-working-fix/figma-auto-layout-not-working-3-80ff4d.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Small design team reviewing screens together before handing work to developers",
+      "caption": "Handoff is where frame surprises get noticed.",
+      "keywords": [
+        "figma auto layout not working",
+        "Designers",
+        "Auto layout frames behaving unexpectedly",
+        "Mac",
+        "design team meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/chairs-conference-room-contemporary-2181994/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "figma auto layout not working",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "figma auto layout fill container": 1,
+      "figma hug contents": 1,
+      "figma auto layout fixed width": 1,
+      "figma text not resizing": 1,
+      "figma frame not resizing": 1,
+      "figma auto layout on mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "title": "How to use data validation in Excel on Mac: step by step for Microsoft 365",
+  "metaTitle": "How to use data validation in Excel on Mac (2026 steps)",
+  "description": "Learn how to use data validation in Excel on Mac. Build drop-down lists, set number limits, and fix errors in Microsoft 365 and Excel 2024.",
+  "targetKeyword": "how to use data validation in excel on mac",
+  "secondaryKeywords": [
+    "data validation Excel Mac",
+    "drop-down list Excel Mac",
+    "Excel data validation list",
+    "Excel Mac input message and error alert",
+    "remove data validation Excel Mac",
+    "Excel for Mac drop-down not showing"
+  ],
+  "intro": "To use data validation in Excel on Mac, select the cells, open the Data tab, click Data Validation, and choose an Allow type such as List. Excel then accepts only the values you allow, and a list shows a drop-down arrow in each cell.",
+  "tldr": [
+    "Select the cells, then go to Data > Tools > Data Validation.",
+    "Set Allow to List, then type your items or pick a range in Source.",
+    "Press Return or click Expand, then click OK to save the rule.",
+    "Use Clear All in the same dialog to remove the rule later.",
+    "Microsoft lists no Mac shortcut for the dialog. Test ⌥ Down Arrow on your build before you rely on it."
+  ],
+  "stats": [
+    {
+      "value": "7",
+      "label": "Allow types Microsoft lists under Data Validation: Whole Number, Decimal, List, Date, Time, Text Length and Custom",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/get-started/apply-data-validation-to-cells",
+      "sourceTitle": "Apply data validation to cells (Microsoft Support)"
+    },
+    {
+      "value": "225",
+      "label": "Characters Microsoft's drop-down article allows for an Input Message title and message (Windows steps)",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/create-a-drop-down-list-7693307a-59ef-400a-b769-c5402dce407b",
+      "sourceTitle": "Create a drop-down list (Microsoft Support)"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Latest Mac build in Microsoft's release notes, dated Oct 27, 2026, with quality fixes only",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What data validation does in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Data validation is a rule you attach to cells. Excel checks each entry against that rule. You decide what counts as valid. You also decide whether Excel blocks a bad entry or only warns about it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most people use it for a drop-down list, a limit on numbers or dates, or a custom rule. This guide starts with the drop-down list. The other rule types follow the same steps, with different settings."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start: version, sheet, and workbook checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps here match Excel for Microsoft 365 for Mac. Microsoft's article also covers Excel 2024 and Excel 2021 for Mac, and it says the steps do not change between those versions. If a label on your screen looks different, search the Data tab for Data Validation or Validate."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Data Validation command can be greyed out when the sheet is protected or the workbook is shared. Unprotect the sheet or stop sharing, then try again. The [sheet protection guide](/how-to/protect-a-sheet-with-a-password-in-excel) covers the password side."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Typing list items or pointing at a range"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Source box takes typed items or a range. Type items separated by commas, such as Not started,In progress,Done. Or select a range on the sheet, and the dialog shrinks so you can see the cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "Typed items stay fixed inside the rule. A range works better when the list will grow or change. Select only the items under the header, because a selected header shows up as a choice."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Header check",
+      "text": "Select the items under the header, not the header itself. Excel offers the header as a choice if you include it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Input message and error alert settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Input Message tab shows a note when someone selects the cell. Add a short title and a message that says what to enter. Microsoft's drop-down article allows up to 225 characters for the title and message. That figure comes from the Windows section, so check it on your Mac build."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Error Alert tab controls what happens with a bad entry. Stop blocks the value. Warning and Information show a message but still accept the value. Microsoft's articles name the third style differently, calling it Information in one and Important in the other."
+    },
+    {
+      "type": "paragraph",
+      "text": "A blank alert title is easy to miss. Excel then shows Microsoft Excel as the title and a default message. Write your own title so people know which rule fired."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Stop or Warning?",
+      "text": "Stop is strict. Warning lets someone keep a value that is not on the list, so use it only when that is the goal."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a status column in a project tracker"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your column holds project status. You want only Not started, In progress, or Done. Select the status cells, open Data Validation, set Allow to List, and type Not started,In progress,Done in Source."
+    },
+    {
+      "type": "paragraph",
+      "text": "On the Input Message tab, enter the title Status and the message Pick a status from the list. On the Error Alert tab, choose Stop. Write a message such as Only these statuses are allowed."
+    },
+    {
+      "type": "paragraph",
+      "text": "Click OK, then click a status cell and type Finished. Excel rejects it because Finished is not on the list. Type Done instead, and the entry is accepted. The test takes less time than the setup, and it proves the rule works."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Other rule types: numbers, dates, and custom formulas"
+    },
+    {
+      "type": "table",
+      "caption": "Microsoft lists seven Allow types. This table covers the six that are not List.",
+      "headers": [
+        "Allow type",
+        "What it checks",
+        "Example use"
+      ],
+      "rows": [
+        [
+          "Whole Number",
+          "Whole numbers only, within limits you set",
+          "Quantity ordered"
+        ],
+        [
+          "Decimal",
+          "Numbers with decimal places, within limits you set",
+          "Price per unit"
+        ],
+        [
+          "Date",
+          "Dates inside a start and end date you set",
+          "Invoice date in a reporting window"
+        ],
+        [
+          "Time",
+          "Times inside a range you set",
+          "Shift start time"
+        ],
+        [
+          "Text Length",
+          "Text up to or at least a length you set",
+          "Product code"
+        ],
+        [
+          "Custom",
+          "Any formula that returns TRUE for a valid entry",
+          "Unique IDs"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Number and date rules use the same dialog. Pick the type, then fill in the limits that appear. The fields change to match the type you choose."
+    },
+    {
+      "type": "paragraph",
+      "text": "Custom takes a formula, so it needs more care. For unique IDs, write a formula that counts how many times the value already appears in the column. Accept the entry only when it appears once. Use absolute references for the column, or the rule shifts as you apply it to more cells."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep a drop-down list up to date"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft recommends putting list entries in an Excel table. Select a cell in the range, then create the table. Microsoft's article gives Ctrl+T for this. On a Mac, you can also use the Table button on the Insert tab. Then point the Source box at the table column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says tables update drop-downs automatically when you add or remove items. The October 2026 What's New post also says named tables at creation are now available to Mac users, so you can name the table as you build it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Microsoft Q&A moderator adds a caveat. A list rule does not create a live link to its source, so chosen values stay as plain text. The workaround in that thread is a VBA macro. Test a changed item before you depend on the list."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Removing data validation from cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "Select the cells that have the rule. Open Data > Tools > Data Validation and click Clear All. Then click OK. The rule goes away, and the values already in the cells stay where they are."
+    },
+    {
+      "type": "paragraph",
+      "text": "To change a rule instead, open the same dialog and edit the settings. You do not need to clear it first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for the web: same feature, different labels"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web uses the same feature with the same steps. The labels differ, and the Tools group on the Data tab becomes the Data Tools group. Read the labels again before you click if you switch between the Mac app and the browser."
+    },
+    {
+      "type": "table",
+      "caption": "Labels Microsoft lists for the Mac app and Excel for the web.",
+      "headers": [
+        "Mac app label",
+        "Excel for the web label"
+      ],
+      "rows": [
+        [
+          "Tools group on the Data tab",
+          "Data Tools group"
+        ],
+        [
+          "Input Message tab",
+          "Show message"
+        ],
+        [
+          "Error Alert tab",
+          "Show Alert"
+        ],
+        [
+          "Error Alert style",
+          "Type"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts and what Microsoft documents"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's keyboard shortcut page does not list a Mac shortcut for the Data Validation dialog. It writes key names like Cmd, Option, and Ctrl. This guide uses the symbols ⌘, ⌥, ⌃, and ⇧ instead, so the keys match your keyboard."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcut worth knowing is ⌥ Down Arrow. On a cell, it opens the AutoComplete list. Microsoft documents the same key for filter and PivotTable pop-up menus. It does not document it for the validation drop-down, so test it on your build before you rely on it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Drop-down problems on Mac and how to fix them"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The Data Validation command is greyed out"
+    },
+    {
+      "type": "paragraph",
+      "text": "Protection or sharing is the usual cause. Unprotect the sheet from the Review tab or stop sharing the workbook, then open the dialog again."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The drop-down arrow does not appear"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Settings tab and confirm that In-cell dropdown is ticked. Then resize the cell, since a narrow cell can hide the arrow. The generic checks in a Microsoft Q&A thread include these same steps, so they are a good place to start."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The list opens outside the Excel window"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Microsoft Q&A poster reported this on an M1 Pro MacBook with an external display. The version was 16.71 on macOS 13.2.1. The list drew above the Excel window and could not be clicked in Mission Control. The thread has no accepted fix. The poster said In-cell dropdown was already ticked and resizing did not help."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "The list does not update when the source changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A list rule does not link live to its source. Use an Excel table, as described above, and test a change before you rely on it. If you need more than that, the Q&A workaround is a VBA macro, which needs more setup than this guide covers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with drop-down lists"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Including the header row in the Source range, so the header shows up as a choice.",
+        "Choosing Warning for a value that must match the list exactly. Warning lets the value through.",
+        "Leaving the alert title blank, so Excel shows Microsoft Excel as the title.",
+        "Typing items by hand, then editing the same list in several places that drift apart.",
+        "Trying to add a rule to a protected sheet without unprotecting it first.",
+        "Skipping the test. Type a bad value once before you share the file."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Mac build before you troubleshoot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's release notes list the latest Mac build as 16.114.3 (Build 26102720), released October 27, 2026. That entry says only quality and performance improvements. The notes for August 11 to October 27, 2026 mention no data validation changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "To find your build, open Excel > About Excel. If your screen differs from these steps, your build may be newer than the notes this guide used."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next with lists and rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "A named range makes a long Source address easier to read and reuse. The [named range guide](/how-to/create-a-named-range-in-excel) walks through the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the cells you validate hold numbers stored as text, fix that first with the [text to number guide](/how-to/convert-text-to-numbers-in-excel). Then your number rules check real numbers."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick check before you share the file"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select a cell and confirm that the arrow appears.",
+        "Type a value that is not on the list and check the alert.",
+        "Type an allowed value and confirm it stays in the cell.",
+        "Confirm that the header row is not in the Source range."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a keyboard shortcut for Data Validation on Mac?",
+      "answer": "Microsoft's keyboard shortcut page does not list one for this dialog. Use the Data tab, then the Data Validation button. On a cell, ⌥ Down Arrow opens the AutoComplete list, which is a different feature."
+    },
+    {
+      "question": "Which Excel versions support data validation on Mac?",
+      "answer": "Microsoft's article lists Microsoft 365, Excel 2024, and Excel 2021 for Mac. It also lists Excel 2019 and 2016 and says the steps have no version-specific differences. Check the Data tab if your labels differ."
+    },
+    {
+      "question": "Why does my drop-down list not update when I change the source?",
+      "answer": "A Microsoft Q&A moderator says a list rule does not create a live link to its source. Put the items in an Excel table, which Microsoft says updates drop-downs automatically, and test a change before you depend on it."
+    },
+    {
+      "question": "Can someone type a value that is not in the list?",
+      "answer": "Only with the Warning or Information style. Stop blocks the value. Warning and Information show a message but still accept the entry, so choose Stop when the list must be exact."
+    },
+    {
+      "question": "Why does the alert say Microsoft Excel?",
+      "answer": "Excel uses that title when the alert title is blank. Add a title on the Error Alert tab, and Excel shows your text in its place."
+    },
+    {
+      "question": "Does data validation work the same in Excel for the web?",
+      "answer": "The feature is the same, but the labels differ. Look for Show message, Show Alert, and Type, and find the controls in the Data Tools group."
+    },
+    {
+      "question": "How do I remove a drop-down list from a column?",
+      "answer": "Select the cells, open Data > Tools > Data Validation, click Clear All, and click OK. The values already in the cells stay where they are."
+    },
+    {
+      "question": "Why is the Data Validation command greyed out?",
+      "answer": "The sheet may be protected, or the workbook may be shared. Unprotect the sheet or stop sharing the workbook, then try the command again."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a drop-down list",
+      "url": "https://support.microsoft.com/en-us/office/create-a-drop-down-list-7693307a-59ef-400a-b769-c5402dce407b",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Apply data validation to cells",
+      "url": "https://support.microsoft.com/en-us/excel/get-started/apply-data-validation-to-cells",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel for Mac Data Validation Dropdown not showing in cell",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5199502/excel-for-mac-data-validation-dropdown-not-showing",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Data validation list values on excel worksheet for Mac OS not updating automatically",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5620495/data-validation-list-values-on-excel-worksheet-for",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Add a drop-down list with data validation in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Microsoft 365, Excel 2024, or Excel 2021 for Mac",
+    "A sheet that is not protected, in a workbook that is not shared",
+    "A list of items, typed in or already on the sheet",
+    "The Data tab, where the Data Validation button lives"
+  ],
+  "steps": [
+    {
+      "name": "Select the cells",
+      "text": "Click the first cell, then drag across the cells that need the rule. To add cells that are not next to each other, hold ⌘ while you click. Leave out any header row.",
+      "shortcut": "⌘ Click",
+      "tip": "Start with a few cells to test the rule before you apply it to a whole column."
+    },
+    {
+      "name": "Open the Data tab",
+      "text": "Click Data in the ribbon. The Tools group on this tab holds the Data Validation button.",
+      "menuPath": [
+        "Data"
+      ]
+    },
+    {
+      "name": "Click Data Validation",
+      "text": "In the Tools group, click Data Validation. Some builds label it Validate. The dialog opens on the Settings tab.",
+      "menuPath": [
+        "Data",
+        "Tools",
+        "Data Validation"
+      ],
+      "tip": "If the button is greyed out, the sheet may be protected or the workbook shared."
+    },
+    {
+      "name": "Set Allow to List",
+      "text": "Open the Allow pop-up on the Settings tab and choose List. A Source box appears below it.",
+      "menuPath": [
+        "Settings tab",
+        "Allow",
+        "List"
+      ]
+    },
+    {
+      "name": "Enter the list source",
+      "text": "Click in the Source box. Type items separated by commas, or select a range on the sheet. The dialog shrinks while you select, so the cells stay visible.",
+      "menuPath": [
+        "Settings tab",
+        "Source"
+      ],
+      "tip": "Typed items are fixed. A range picks up edits made to the range itself."
+    },
+    {
+      "name": "Restore the dialog",
+      "text": "Press Return or click Expand to bring the full dialog back. Confirm that the Source range does not include the header row.",
+      "shortcut": "Return"
+    },
+    {
+      "name": "Set the drop-down and blank rules",
+      "text": "Tick In-cell dropdown so each cell shows an arrow. Tick Ignore blank if empty cells should count as valid.",
+      "menuPath": [
+        "Settings tab",
+        "In-cell dropdown"
+      ]
+    },
+    {
+      "name": "Add an input message (optional)",
+      "text": "Open the Input Message tab. Add a short title and a message. Excel shows them when someone selects a cell in the range.",
+      "menuPath": [
+        "Input Message tab"
+      ]
+    },
+    {
+      "name": "Choose an error alert style",
+      "text": "On the Error Alert tab, pick Stop to block other values. Pick Warning or Information to show a message and still accept them.",
+      "menuPath": [
+        "Error Alert tab",
+        "Style"
+      ]
+    },
+    {
+      "name": "Click OK and test",
+      "text": "Click OK. Select a cell in the range and type a value that is not on the list. Excel should respond with the alert you chose.",
+      "menuPath": [
+        "OK"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Add a cell or range to the selection",
+      "keys": "⌘ Click"
+    },
+    {
+      "action": "Bring the full Data Validation dialog back after picking a range",
+      "keys": "Return"
+    },
+    {
+      "action": "Open the AutoComplete list on a cell (test on your build)",
+      "keys": "⌥ Down Arrow"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Data Validation is greyed out",
+      "fix": "The sheet is probably protected or the workbook is shared. Unprotect the sheet from the Review tab or stop sharing the workbook, then open the dialog again."
+    },
+    {
+      "problem": "The drop-down arrow does not appear",
+      "fix": "Open the Settings tab and confirm that In-cell dropdown is ticked. Then widen the column, since a narrow cell can hide the arrow."
+    },
+    {
+      "problem": "The list opens outside the Excel window",
+      "fix": "Reported on Excel 16.71 with an external display. The Microsoft Q&A thread has no accepted fix. Restart Excel, note your build number, and check the release notes for a fix."
+    },
+    {
+      "problem": "The list does not update when the source changes",
+      "fix": "Put the items in an Excel table and point Source at the table column. Test a change. If values still do not refresh, the Q&A workaround is a VBA macro."
+    },
+    {
+      "problem": "Excel shows Microsoft Excel as the alert title",
+      "fix": "The alert title was left blank. Open Data Validation, go to the Error Alert tab, and type a title."
+    },
+    {
+      "problem": "Someone can still type a value that is not on the list",
+      "fix": "The style is probably Warning or Information. Change it to Stop on the Error Alert tab."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through adding a drop-down list.",
+    "capability": "guide",
+    "result": "Lazur points at each control in order, then waits for your click before it moves on.",
+    "shell": "sheet",
+    "pointsAt": "Data Validation",
+    "context": "Excel for Mac, Data tab, Data Validation dialog, Settings tab.",
+    "output": "Lazur circles the Data tab, then Data Validation, then the Allow pop-up. You make each click. Lazur only looks at your screen while you hold ⌥ ⌘, and it answers out loud."
+  },
+  "type": "howto",
+  "slug": "use-data-validation-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-data-validation-in-excel/how-to-use-data-validation-in-excel-1-0918e2.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a desk learning how to use data validation in Excel on Mac",
+      "caption": "Working through a spreadsheet at a desk",
+      "keywords": [
+        "how to use data validation in excel on mac",
+        "Excel",
+        "use data validation",
+        "Mac",
+        "person using laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-data-validation-in-excel/how-to-use-data-validation-in-excel-2-a81b97.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Silver Mac laptop on an office desk beside a notebook for planning data entry",
+      "caption": "A Mac on a work desk",
+      "keywords": [
+        "how to use data validation in excel on mac",
+        "Excel",
+        "use data validation",
+        "Mac",
+        "Mac laptop office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-data-validation-in-excel/how-to-use-data-validation-in-excel-3-2ae1ae.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Team reviewing a spreadsheet on a laptop screen with data validation rules in place",
+      "caption": "Reviewing a shared spreadsheet",
+      "keywords": [
+        "how to use data validation in excel on mac",
+        "Excel",
+        "use data validation",
+        "Mac",
+        "office team spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use data validation in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "data validation Excel Mac": 2,
+      "drop-down list Excel Mac": 1,
+      "Excel data validation list": 1,
+      "Excel Mac input message and error alert": 1,
+      "remove data validation Excel Mac": 1,
+      "Excel for Mac drop-down not showing": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

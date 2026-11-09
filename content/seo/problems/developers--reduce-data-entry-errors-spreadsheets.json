@@ -1,0 +1,562 @@
+{
+  "title": "How to reduce data entry errors in spreadsheets on Mac: validation and checks",
+  "metaTitle": "How to reduce data entry errors in spreadsheets on Mac | Lazur",
+  "description": "Cut data entry errors in Excel and Google Sheets with dropdowns, data validation, paste checks, and a second pass. Steps for Mac and where Lazur fits.",
+  "targetKeyword": "how to reduce data entry errors in spreadsheets",
+  "secondaryKeywords": [
+    "data validation in Excel for Mac",
+    "dropdown list in Google Sheets",
+    "spreadsheet data entry mistakes",
+    "prevent typos in Excel",
+    "Circle Invalid Data in Excel",
+    "data entry errors in Google Sheets"
+  ],
+  "intro": "To reduce data entry errors in spreadsheets, check each value as it enters the sheet. Turn on data validation for typed columns, use dropdowns for repeated values, and check every paste before you trust it. The rest of this page shows the steps for Excel and Google Sheets on a Mac, what each one misses, and where a voice assistant can help without doing the work for you.",
+  "tldr": [
+    "Validation only checks what you type. Paste and fill can slip past it.",
+    "Excel does not flag existing bad values on its own. Run Circle Invalid Data to find them.",
+    "Dropdowns in Google Sheets reject unlisted values by default. Use a warning only when you need one.",
+    "Run a second-pass check on every import, paste, or dictated batch before you share the sheet."
+  ],
+  "stats": [
+    {
+      "value": "100",
+      "label": "errors from manual entry in one JAMIA Open site study, against 1 error from automated transfer",
+      "sourceUrl": "https://academic.oup.com/jamiaopen/article/8/5/ooaf139/8306999",
+      "sourceTitle": "Evaluating the Impact of EHR to EDC Technology on Workflow Efficiency: a Site Perspective"
+    },
+    {
+      "value": "58%",
+      "label": "more data points entered in one hour with automated transfer (4,768) than with manual entry (3,023)",
+      "sourceUrl": "https://academic.oup.com/jamiaopen/article/8/5/ooaf139/8306999",
+      "sourceTitle": "Evaluating the Impact of EHR to EDC Technology on Workflow Efficiency: a Site Perspective"
+    },
+    {
+      "value": "$37,790",
+      "label": "median annual wage for data entry keyers in the U.S., May 2023",
+      "sourceUrl": "https://www.bls.gov/oes/2023/may/oes439021.htm",
+      "sourceTitle": "Data Entry Keyers, OEWS May 2023 (U.S. Bureau of Labor Statistics)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What manual data entry mistakes cost you"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the first cost, and it hides in plain sight. A JAMIA Open study compared two ways to move data into a clinical trial system. Five data managers each spent one hour on each method. Manual entry produced 3,023 data points. Automated transfer produced 4,768, which is 58% more in the same hour. The study covered one oncology trial site, one EHR-to-EDC product, and structured lab and vitals data only. That makes it a signal, not a rate you can apply to your own sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors cost more than time. The same study logged 100 errors from manual entry and 1 error from automated transfer. The authors reported that as a 99% reduction. Their sensitivity analysis changes the picture. If the one automated error, a wrong visit date, counts as the 50 fields it touched, the reduction is about 50%. Both numbers are useful. Neither one predicts what your team will see."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Labor adds up too. The U.S. Bureau of Labor Statistics counted 154,230 data entry keyers in May 2023. Their median annual wage was $37,790. When someone rechecks a column, that is paid time spent on a fix instead of new work. Most of that time never shows up on a budget line."
+    },
+    {
+      "type": "paragraph",
+      "text": "The biggest cost is downstream. A wrong number in an invoice, a budget, or an inventory count gets copied. Someone sorts it, totals it, or builds a chart from it. By then the original typo has spread across several files. Fixing it later takes longer than checking it once at entry."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why data validation misses some typos"
+    },
+    {
+      "type": "paragraph",
+      "text": "Data validation is the built-in rule that checks what goes into a cell. Microsoft's guide says validation applies only when users type data directly in a cell. When data is copied or filled, the messages do not appear. That is the gap most people miss. A column can look locked down while a paste from an email brings in a bad value without a warning."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Way a value gets in",
+        "Checked by validation?",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Typed into a cell",
+          "Yes",
+          "Rule applies and shows its message"
+        ],
+        [
+          "Pasted from another file",
+          "No",
+          "Check the column after every paste"
+        ],
+        [
+          "Filled down or copied across",
+          "No",
+          "Check the first and last rows of the filled range"
+        ],
+        [
+          "Already in the sheet before the rule",
+          "Not flagged on its own",
+          "Run Circle Invalid Data in Excel"
+        ]
+      ],
+      "caption": "How validation treats each way a value enters a cell, based on Microsoft's data validation guide."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Paste is the gap",
+      "text": "Paste and fill both skip data validation in Excel. Treat every pasted or filled column as unchecked until you test it. A bad value looks the same on screen as a good one."
+    },
+    {
+      "type": "paragraph",
+      "text": "A validated sheet can still hold bad data. Excel does not notify you about existing invalid cells. Those values may have been there before the rule, or they may have come in by paste. You have to go looking for them. The same goes for any sheet that several people edited on different days."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a dropdown in Google Sheets"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the cells that should hold the dropdown. Keep the list of allowed values in one column so it is easy to edit.",
+        "Go to Data > Data validation > Add rule.",
+        "Choose the criteria for the list, then enter or select the values you allow.",
+        "Keep the default rejection setting. Or open Advanced options and choose Show a warning if you want people to decide for themselves.",
+        "Test it. Type a value that is not on the list and confirm the sheet reacts the way you expect."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Two details trip people up. Default rejection is strict. A colleague who needs a new category will be blocked until you update the list. Allow multiple selections works only for chip-format dropdowns. On mobile, you currently cannot select several options, even when the setting is on. Test on the device your team actually uses."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up data validation in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac has the same rule feature, but the menu path is the part to check. Microsoft's data validation page does not name Mac or Excel for the web. It also says validation for Excel for the web must be created in the desktop version. On most versions the command sits on the Data tab, under Data Validation. Search Excel's Help for the exact name in your version before you train a team on it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Select the cells you want to protect, such as a status or country column.",
+        "Open the Data tab and choose Data Validation.",
+        "On the Settings tab, set Allow to List, then type the allowed values separated by commas.",
+        "Add a message on the Error Alert tab so the rule explains itself.",
+        "Type a bad value to test the rule. Then paste one in to see the gap for yourself."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check the data that was already there. Microsoft's guide says you must use Circle Invalid Data to find existing bad values. Run it once after you add a rule, and again after each large import. Fix the values at the source where you can. Fixing only the cell you can see hides the problem from the next person."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Numbers on Mac for validated entry"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers is common on Mac, but Apple's Numbers for Mac guide does not cover data validation or restricted input. The guide we checked covers Numbers 15.4. Its only related entry is about checkboxes and other controls. Do not assume a dropdown behaves the way it does in Excel. Build a small test sheet, type a bad value, and watch what happens before you rely on it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A second-pass check for every paste or import"
+    },
+    {
+      "type": "paragraph",
+      "text": "Validation catches typed errors. A second pass catches almost everything else. Run it on every import, paste, or dictated batch. A small sheet takes a few minutes. A large one takes longer. Work through these checks in order, from the cheapest to the most thorough."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sort the column. Blanks, stray spaces, and odd values float to the top or bottom.",
+        "Filter each category. A value like Ohio with a trailing space shows up as its own entry.",
+        "Compare totals and row counts with the source. A mismatch tells you something moved or dropped out.",
+        "Spot-check a sample of rows against the original document, starting with the first and last rows of each paste.",
+        "Write the check date and your initials in a notes column, so the next person knows the sheet was reviewed."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Trace each error to its source before you fix it. If a date is wrong in one row, check whether the whole batch came from the same form or the same copy. A pattern points to a process fix. A single bad row points to a single fix. Mistakes repeat when you fix the cell and never fix the process."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold Option and Command together to ask about anything on screen, and it answers out loud. Ask where a setting is, and Lazur draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click. You stay in control of the mouse and the sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate text at the cursor in any app. That helps when you write notes, column labels, or instructions for a team sheet. Dictation does not check your data. Lazur does not click buttons, edit files, or operate other apps for you. It is not an add-in for Excel or Google Sheets, and it has no partnership with either company. Dictated numbers still need a read-back. Speak each value, then check it on screen."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Handling client, patient, or payroll data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some sheets hold data you cannot share freely. Client records, patient details, and payroll all fall in that group. Follow your employer's rules first. Do not paste protected data into a screenshot or a chat tool unless your policy allows it. Lazur sends the audio and the screenshot to AI providers to answer them. Those are not stored, and content is never used to train AI models. Your employer's answer wins, even if this page or the product says something different."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they fix spreadsheet errors"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting validation alone. A rule on a column does not clean the rows that were already wrong.",
+        "Pasting over a validated column. Paste skips the rule, so the bad value looks fine on screen.",
+        "Fixing one column and leaving its neighbors alone. A wrong date often sits next to a wrong ID.",
+        "Dictating numbers without reading them back. Speech tools can mishear digits, so check each value on screen.",
+        "Deleting a suspicious row without checking the source. You lose the only copy of the evidence you need.",
+        "Hiding errors with a lookup wrapper. An error that disappears is not a fixed error."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If your lookups return #N/A, the causes are usually mismatched keys. A trailing space or a different date format is a common one. Fix the source data first, then rebuild the lookup. Our guide to the [Excel VLOOKUP #N/A error on Mac](/for/developers/problems/excel-vlookup-na-error-fix-steps) covers the usual causes step by step."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start with one sheet this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the sheet with the most typing and the most damage if it is wrong. Add validation to its two or three most-typed columns first. Then run the second-pass checks on the next import. Track which errors come back. Repeat errors point to the next rule to add, or to the step in your process that needs a form instead of free typing."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel data validation stop all typos?",
+      "answer": "No. Validation checks typed entries only. Paste and fill skip it, and existing bad values are not flagged on their own. Run Circle Invalid Data after you add a rule and after each large import."
+    },
+    {
+      "question": "Why does Google Sheets reject a value I need?",
+      "answer": "Google Sheets rejects entries that do not match a dropdown list by default. If you want people to be able to enter other values, edit the rule, open Advanced options, and choose Show a warning instead."
+    },
+    {
+      "question": "Can I use data validation in Numbers on Mac?",
+      "answer": "Apple's Numbers for Mac guide, for Numbers 15.4, does not cover data validation or restricted input. Test any rule in a small sample sheet first. If you need a dropdown you can count on, Excel or Google Sheets documents the feature."
+    },
+    {
+      "question": "Is dictation a good way to enter numbers?",
+      "answer": "Dictation saves typing, but speech tools can mishear digits. Read each value back and check it on screen before you save. You can test how your own voice comes through with our dictation accuracy checker."
+    },
+    {
+      "question": "How do I find duplicates in a column?",
+      "answer": "Sort the column and scan neighboring rows. Filter the column to see each value once. Duplicates that look alike often differ by a trailing space, so check the raw text when two values seem identical."
+    },
+    {
+      "question": "Should I use Lazur with client or patient data?",
+      "answer": "Follow your employer's rules first. Lazur sends the audio and the screenshot to AI providers to answer, and they are not stored. Content is never used to train AI models. If your policy forbids sending that data to an AI tool, do not use it for that work."
+    },
+    {
+      "question": "What error rate should I expect in my own sheet?",
+      "answer": "We could not find a source for a general spreadsheet error rate that we would stand behind. The JAMIA Open study covered one site with five data managers. Measure your own sheet by checking a sample of rows against the source document."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Evaluating the Impact of Electronic Health Record to Electronic Data Capture Technology on Workflow Efficiency: a Site Perspective",
+      "url": "https://academic.oup.com/jamiaopen/article/8/5/ooaf139/8306999",
+      "publisher": "JAMIA Open (Oxford University Press)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "More on data validation",
+      "url": "https://support.microsoft.com/en-us/excel/more-on-data-validation",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Data validation in Google Sheets",
+      "url": "https://support.google.com/docs/answer/186103?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Data Entry Keyers, OEWS May 2023",
+      "url": "https://www.bls.gov/oes/2023/may/oes439021.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Numbers User Guide for Mac",
+      "url": "https://support.apple.com/guide/numbers/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "manual data entry mistakes in spreadsheets",
+  "costs": [
+    {
+      "title": "Time spent rechecking",
+      "text": "Manual entry is slow to verify. In the JAMIA Open site study, automated transfer produced 58% more data points than manual entry in one hour per method. Every rechecked column is an hour not spent on the work itself."
+    },
+    {
+      "title": "Errors that travel",
+      "text": "Manual entry produced 100 errors in that study, against 1 for automated transfer. Read the caveats. It was one site, five data managers, and one product. Still, the gap is large enough to show where to spend effort first."
+    },
+    {
+      "title": "Paid labor on fixes",
+      "text": "Data entry is paid work. The U.S. Bureau of Labor Statistics reported a median annual wage of $37,790 for data entry keyers in May 2023. A fix costs paid time on top of the original entry."
+    },
+    {
+      "title": "Decisions made on bad numbers",
+      "text": "A wrong total in a budget or a wrong ID in a customer list can change a decision. The cost depends on the decision, so no single dollar figure fits every sheet. Check the sheets with the highest stakes first."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Validation only checks typing",
+      "text": "Excel's data validation applies only when someone types directly into a cell. Any value that arrives another way is not tested. That is the single most common reason a sheet with rules still holds bad data."
+    },
+    {
+      "title": "Paste and fill skip the rules",
+      "text": "Microsoft's guide says messages do not appear when data is copied or filled. A person copying from an email, a PDF, or another workbook can bring in a value the rule would have rejected. The sheet looks correct because nothing warns anyone."
+    },
+    {
+      "title": "Existing bad values sit unflagged",
+      "text": "Excel does not notify you about invalid values that were in the sheet before the rule. A rule added last month protects new entries only. Old rows keep their errors until someone runs a check."
+    },
+    {
+      "title": "Free text where a list belongs",
+      "text": "When a column allows any text, people type what they remember. One customer can appear as NY, New York, and N.Y. Each version looks reasonable, but a filter or a count treats them as three different values."
+    },
+    {
+      "title": "Mixed formats in one column",
+      "text": "A date like 04/03/2026 can mean 4 March or 3 April, depending on the region set in the sheet and the reader. Mixed formats in one column make sorting and totals unreliable. Pick one format and write it at the top of the sheet."
+    },
+    {
+      "title": "Retyping from a second source",
+      "text": "Copying numbers from a printed form or a screen means reading and typing at once. Each step can drop or swap a digit. The more times a value is retyped, the more chances it has to change. Keep one source and reference it instead."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Use dropdowns for repeated values",
+      "text": "In Google Sheets, select the cells and go to Data > Data validation > Add rule. In Excel for Mac, use the Data Validation command on the Data tab. Dropdowns turn free text into a choice, which removes most variants of the same value."
+    },
+    {
+      "title": "Turn on validation, then test it",
+      "text": "A rule you have not tested is a guess. Type one value that should fail and confirm the sheet reacts. Then paste one value that should fail, so you know where the gap is before someone else finds it."
+    },
+    {
+      "title": "Run Circle Invalid Data after each import",
+      "text": "Microsoft's guide names Circle Invalid Data as the way to find existing invalid values in Excel. Run it after you add a rule and after each large paste or import. Fix the source values, not only the cells you see."
+    },
+    {
+      "title": "Run a second pass after every paste",
+      "text": "Sort the column, filter each category, and compare totals with the source document. Odd values, trailing spaces, and missing rows show up quickly this way. Do this every time, even when the sheet looks fine."
+    },
+    {
+      "title": "Pick one date format and write it down",
+      "text": "Choose a single format for dates and IDs, and note it in the sheet header. Use the same format for every person who edits the file. A format note removes most of the guessing from a shared sheet."
+    },
+    {
+      "title": "Enter each value in one place",
+      "text": "Store a value once, then reference it from other sheets with formulas. Retyping the same customer name in two places doubles the chance of a mismatch. One source cell is easier to check than five copies."
+    },
+    {
+      "title": "Collect input through a form when many people enter data",
+      "text": "When many people feed one sheet, collect the entries through a form instead of direct typing. A form can require fields and keep the answers in a sheet. Your team still checks the output, but the first pass is cleaner."
+    },
+    {
+      "title": "Read dictated numbers back",
+      "text": "Dictation is faster than typing for text, but digits need a check. Hold fn and dictate the label or note. Then read each number back against the source before you save the cell."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is Data Validation in this menu?",
+      "result": "Lazur draws a circle and a label around the command, so you find it and click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Why did this sheet reject my value?",
+      "result": "Lazur reads the warning on screen while you hold Option and Command, then explains what the rule expects, out loud.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through adding a dropdown in Google Sheets.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Let me dictate the entry checklist for the team.",
+      "result": "Hold fn to dictate clean text at the cursor in any app, then read it back before you share it.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short rule sheet for new people on the team.",
+      "result": "Lazur drafts plain text for a doc or a Slack message. You check it before you send it.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Data Validation in this menu?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Data Validation command, so you can click it yourself.",
+    "shell": "sheet",
+    "context": "Excel on Mac with the Data tab open",
+    "pointsAt": "Data Validation"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Audit the risky columns",
+      "text": "List the three columns with the most typing and the most damage if they are wrong. Mark which ones are typed, pasted, or dictated. Keep the list in a note the whole team can see."
+    },
+    {
+      "label": "Day 2",
+      "title": "Add rules to typed columns",
+      "text": "Add a dropdown or a Data Validation rule to each typed column. Test each rule with one value that should fail. Keep the error message short and plain."
+    },
+    {
+      "label": "Day 3",
+      "title": "Find existing bad values",
+      "text": "In Excel, run Circle Invalid Data across the sheet. Fix values at the source where you can. In Google Sheets, filter each dropdown column for values outside the list."
+    },
+    {
+      "label": "Day 4",
+      "title": "Put a check on every paste",
+      "text": "Before you paste, copy the source into a scratch sheet and look at it. After you paste, sort, filter, and compare totals with the source document."
+    },
+    {
+      "label": "Day 5",
+      "title": "Review what came back",
+      "text": "Look at which errors returned this week. A repeat error means a process gap, so change the form, the rule, or the instructions for that step."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "reduce-data-entry-errors-spreadsheets",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/reduce-data-entry-errors-spreadsheets/how-to-reduce-data-entry-errors-in-1-91c0ab.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing numbers into a spreadsheet on a laptop, the step where data entry errors start",
+      "caption": "Manual entry at a laptop is the step this page covers.",
+      "keywords": [
+        "how to reduce data entry errors in spreadsheets",
+        "Developers",
+        "Manual data entry mistakes in spreadsheets",
+        "Mac",
+        "person typing laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/reduce-data-entry-errors-spreadsheets/how-to-reduce-data-entry-errors-in-2-46ba8d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office worker checking a spreadsheet at a desk to reduce data entry errors",
+      "caption": "Checking rows against the source document.",
+      "keywords": [
+        "how to reduce data entry errors in spreadsheets",
+        "Developers",
+        "Manual data entry mistakes in spreadsheets",
+        "Mac",
+        "office worker desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-woman-startup-business-849820/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/reduce-data-entry-errors-spreadsheets/how-to-reduce-data-entry-errors-in-3-3ab253.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person reviewing paper documents against a spreadsheet to catch data entry errors",
+      "caption": "A second pass against the source catches what validation misses.",
+      "keywords": [
+        "how to reduce data entry errors in spreadsheets",
+        "Developers",
+        "Manual data entry mistakes in spreadsheets",
+        "Mac",
+        "person reviewing documents",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cocoparisienne",
+        "url": "https://pixabay.com/users/cocoparisienne-127419/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/s%C3%BCtterlin-handwriting-typography-1362879/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to reduce data entry errors in spreadsheets",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "data validation in Excel for Mac": 2,
+      "dropdown list in Google Sheets": 1,
+      "spreadsheet data entry mistakes": 1,
+      "prevent typos in Excel": 1,
+      "Circle Invalid Data in Excel": 2,
+      "data entry errors in Google Sheets": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,687 @@
+{
+  "title": "How to fix google analytics consent mode on Mac when visitors decline cookies",
+  "metaTitle": "google analytics consent mode: fix missing visits on Mac",
+  "description": "Visitors who decline cookies can drop out of GA4 reports. Here is why it happens, what it costs, and fixes you can check on your Mac.",
+  "targetKeyword": "google analytics consent mode",
+  "secondaryKeywords": [
+    "consent mode v2 GA4",
+    "GA4 missing data declined cookies",
+    "GA4 behavioral modeling eligibility",
+    "Tag Assistant consent tab",
+    "Safari ITP analytics missing visits",
+    "cookieless analytics alternative"
+  ],
+  "intro": "Google Analytics consent mode controls what GA4 can measure when a visitor declines cookies. Declined visits often go missing from standard reports, and a weak setup makes the gap bigger. This page covers why it happens, what it costs, and fixes you can check yourself on a Mac.",
+  "tldr": [
+    "Declined visits are missing from GA4 reports unless Google can model them, and modeling has strict gates.",
+    "A legally compliant banner led to rejection in 60% of visits in etracker's 2025 benchmark.",
+    "Most fixes are setup fixes. Set the consent default before any tag fires.",
+    "Check Tag Assistant's Consent tab, then read the GA4 report labels before you trust a trend.",
+    "Safari's tracking rules shorten cookie life, so test there too."
+  ],
+  "stats": [
+    {
+      "value": "60%",
+      "label": "of visits rejected consent-requiring processing under a legally compliant banner, per etracker's 2025 benchmark",
+      "sourceUrl": "https://www.etracker.com/en/cookie-consent-benchmarks/",
+      "sourceTitle": "etracker Cookie Consent Benchmark Study 2025"
+    },
+    {
+      "value": "11.8%",
+      "label": "of consent interface designs met minimal European-law requirements, per Nouwens et al. (CHI 2020)",
+      "sourceUrl": "https://arxiv.org/abs/2001.02479",
+      "sourceTitle": "Dark Patterns after the GDPR (arXiv 2001.02479)"
+    },
+    {
+      "value": "1,000",
+      "label": "events per day with analytics_storage denied, one of the gates for GA4 behavioral modeling",
+      "sourceUrl": "https://support.google.com/analytics/answer/11161109?hl=en",
+      "sourceTitle": "[GA4] Behavioral modeling for consent mode: Analytics Help"
+    },
+    {
+      "value": "22 to 23",
+      "label": "percentage points more consent when the opt-out button is removed from the first page, per Nouwens et al.",
+      "sourceUrl": "https://arxiv.org/abs/2001.02479",
+      "sourceTitle": "Dark Patterns after the GDPR (arXiv 2001.02479)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What missing visits look like in GA4"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the symptom, because it tells you which cause to check first. In GA4, open Reports > Acquisition > Traffic acquisition for the date range you care about. Compare the session total with your hosting or server count for the same days. Bots can inflate server counts, so filter them out where you can."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shape of the gap matters more than its size. A gap that grows after a banner change points to consent. A gap that shows up only in Safari points to tracking rules. A gap on every browser and every day often points to a broken tag."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Then read the report labels. GA4 can show a figure that includes estimated data, a figure that excludes it, or a notice that estimates are unavailable. These states look alike at a glance. Mixing them is an easy way to make two reports disagree."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What declining cookies costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the number that matters most. etracker's 2025 Cookie Consent Benchmark found that with a legally compliant design, consent-requiring processing is rejected in 60% of visits. Compliant designs also record about 14 percentage points less consent than non-compliant ones."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read that carefully. It does not say 60% of your traffic disappears from GA4. It says that on such a banner, most visits do not give the consent analytics needs. Whether GA4 estimates those visits depends on Google's modeling rules, and those rules have limits."
+    },
+    {
+      "type": "paragraph",
+      "text": "etracker also reports that service-sector websites face a loss of almost 50% of consent-requiring data under compliant design. The page gives no sample size, so treat it as etracker's finding, not a forecast for your site."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trends can mislead when decliners cluster on certain pages, campaigns, or devices.",
+        "Paid campaigns can look weaker if their visitors decline more often than other visitors.",
+        "Modeled conversions get less accurate when Google tags are delayed or blocked, according to Google's Tag Manager help.",
+        "Hours go into reconciling numbers that should match but do not."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the cost people feel most, and it is the hardest to measure. Keep your own log for a month. Write down the minutes you spend reconciling GA4 with another count. Your log will say more about your team than any outside survey."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How consent mode v2 handles decliners"
+    },
+    {
+      "type": "paragraph",
+      "text": "Consent mode v2 arrived with an update in November 2023. It added ad_user_data and ad_personalization next to ad_storage and analytics_storage. Google's sample default denies all four, so check your setup against that sample."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google says its behavioral modeling uses machine learning to model the behavior of users who decline analytics cookies. The model estimates missing data. It does not prove an exact count, so read the number as an estimate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ad storage has a side effect worth knowing. When ad_storage is denied, Google says new advertising cookies will not be set. Data sent to Google still includes the full page URL. Check your URLs for personal details before you trust the setup."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check whether GA4 modeling can run for you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Modeling has gates. Google says you need at least 1,000 events per day with analytics_storage denied, for at least 7 days. You also need at least 1,000 daily users with analytics_storage granted on 7 of the previous 28 days."
+    },
+    {
+      "type": "paragraph",
+      "text": "Meeting those numbers does not guarantee eligibility, Google warns. Say your site gets only a few hundred declined events a day. You miss the first gate, and the report has no estimate to show. Check this before you spend a week tuning the banner."
+    },
+    {
+      "type": "table",
+      "caption": "GA4 report labels, from Google's behavioral modeling help page.",
+      "headers": [
+        "Report label",
+        "What it means",
+        "What to do with it"
+      ],
+      "rows": [
+        [
+          "Including estimated user data",
+          "Analytics estimates missing data, including data tied to declined visits.",
+          "Use it for trends, and label the figure as modeled."
+        ],
+        [
+          "Excluding estimated user data",
+          "The report includes only data from consented visits.",
+          "Use it for the count you can defend in a meeting."
+        ],
+        [
+          "Estimated user data unavailable",
+          "The date range predates eligibility, or the property is not eligible.",
+          "Compare only dates with the same label, and check thresholds."
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A date range that starts before your property became eligible shows the unavailable label. Compare only dates that share the same label, or you will compare an estimate with a count."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 1: set the consent default before any tag fires"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the fix most setups need first. Google's Tag Manager help says to make sure the consent mode default command fires before any Google tags. If it runs late, Google tags fire as if consent mode is not in use at all. Work through these checks in order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Find where your default consent call lives, either in the page template or in Tag Manager.",
+        "Confirm it sits above every gtag('config') call and every Google tag.",
+        "Open the page in Tag Assistant and check the Consent tab for an ad_storage status.",
+        "If the Consent tab is blank, the default was never set. Fix that before anything else.",
+        "Reload the page in a new private window with ⇧ ⌘ N in Chrome, then check again."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask your developer to put the default in the page template, above every other script. That is the safest place. Tag Manager works too, as long as its default tag runs first. Test either choice before you trust it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 2: align the banner and the default regions"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the silent denial. Tag Assistant's help warns that a regional mismatch can leave a denied default in regions where no banner appears. Those visitors never see a choice, so they stay denied with no way to say yes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a site where the banner loads only for one country, but the default denies every visitor everywhere. Visitors in other countries never get asked. Align the banner's regions with the default's regions, then check a visit from each region."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check from another region",
+      "text": "Ask a colleague in another region to load the page. Their visit shows what the default does where no banner appears. Check the Consent tab during their visit too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 3: reconcile GA4 with your server count in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple sheet shows the gap in a few minutes. Copy the daily GA4 totals for one week into column B. Paste your hosting or server count for the same days into column C. Keep the dates in column A so each row lines up. For sheet basics, see [Google Sheets for marketers](/for/marketers/google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Put this formula in D2 and fill it down: =(C2-B2)/C2. Then select column D and pick Format > Number > Percent. A positive number means your server saw more visits than GA4 reported. A negative number means GA4 counted more, so check your server count for bots or caching first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the column over time. A steady gap suggests one cause that repeats each day, such as a set share of decliners on every page. A jump on a single date points to a change, such as a new banner, a tag update, or a theme change. Write the change date next to the jump, then compare the two periods."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix 4: test Safari, not just Chrome"
+    },
+    {
+      "type": "paragraph",
+      "text": "WebKit says its Intelligent Tracking Prevention blocks all third-party cookies, with no exceptions. It also deletes script-writable storage after 7 days of no user interaction with the website. Your analytics setup may rely on storage like this, so check Safari numbers on their own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Safari help covers Safari > Settings > Privacy > Prevent cross-site tracking. That option limits third-party trackers. Apple's page does not name Intelligent Tracking Prevention or describe first-party analytics. Use WebKit's page for the mechanism and Apple's page for the setting name."
+    },
+    {
+      "type": "paragraph",
+      "text": "WebKit also says JavaScript cookies on a landing page with link decoration get capped at 24 hours. That page is undated, and a third-party post claims a later change removed the cap. Check WebKit's release notes before you rely on the 24-hour number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the test in a normal Safari window. Load your most visited pages, then compare Safari visits in GA4 with your server count for the same day. Log the result in its own row, next to your Chrome gap."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When cookieless analytics makes sense"
+    },
+    {
+      "type": "paragraph",
+      "text": "A cookieless tool avoids the consent question for its own measurements. It does not repair your GA4 history, and its numbers will not match GA4. Plausible says on its home page that it is cookieless and needs no cookie banner. That is the vendor's own claim, so check it with your privacy team."
+    },
+    {
+      "type": "paragraph",
+      "text": "Plausible's home page lists Starter at $9 per month for one site, Growth at $14 per month for up to three sites, and Business at $19 per month for up to ten sites. These are vendor-listed prices. The pricing page was not available when we checked, so confirm the current figures there."
+    },
+    {
+      "type": "paragraph",
+      "text": "Cookiebot is a consent banner tool, not an analytics tool. Its pricing page says Premium tiers have no traffic limitations, and it claims Google Consent Mode support on every tier. Its prices appear in SEK, but the FAQ quotes EUR amounts that do not match, so confirm the figure on the page before you budget."
+    },
+    {
+      "type": "paragraph",
+      "text": "Running a second tool beside GA4 gives you a clean trend line for the same months. Do not switch mid-quarter without a plan for the old data. Keep both, label each one, and decide which number your team reports in meetings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make the gap worse"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Setting the consent default after a Google tag. Google says the tag then fires as if consent mode is not in use.",
+        "Hiding the reject button to lift consent. Nouwens et al. found that removing the opt-out button from the first page raised consent by 22 to 23 percentage points. That is a dark pattern, and the study treats it as one.",
+        "Reading modeled numbers as counted numbers. Label every estimate in the report and in your slides.",
+        "Blocking tags until consent, then wondering why conversions look off. Google says modeled conversions get less accurate when tags are delayed or blocked.",
+        "Skipping Safari because the test feels slow. Safari applies its own storage rules, so skipping it hides a real gap."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not copy dark patterns",
+      "text": "Hiding the reject button may lift your consent rate, but it is a manipulative design. Your privacy or legal team owns the banner rules for your region. Ask them before any design change, and follow your employer's rules on personal data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Many vendor blogs claim far bigger losses than the ones on this page. We could not verify those figures in a primary source, so this page leaves them out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can point at things on your screen, explain a setting out loud, and walk you through a click at a time. It does not click buttons, edit your setup, or change your tags. Your developer or tag owner still makes the change. You can [download Lazur](/download) for macOS."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the Consent tab is, and Lazur circles it and adds a label. Hold fn to dictate a clean note into Google Docs or Slack, then read it before you send anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy comes first when the screen shows data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If a screen shows customer personal data, follow your company's rules first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example from start to finish"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a small team after a banner redesign. The new banner is compliant, and the reject button sits next to accept. GA4 traffic dips, but the server count stays steady. The team opens Tag Assistant, finds a blank Consent tab, and learns the default fires after the Google tag."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "They move the default above the tags and reload in a fresh window. They check the banner regions and find the banner only loads in one country. Then they build a gap sheet. This is an illustrative example, not a client case, so run the same steps on your own data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to write down after the fix"
+    },
+    {
+      "type": "paragraph",
+      "text": "Writing this down matters more than people expect. The next person to open the report needs to know why the line changed. A short note in Google Docs does the job, and Lazur can draft the first version if you dictate the facts. Keep these items in the note."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The date you changed the consent default, and who changed it.",
+        "The banner vendor and the regions it covers.",
+        "The report label you used for each metric.",
+        "The Safari gap and the Chrome gap, kept as separate rows.",
+        "Any mismatch you found between banner regions and the default."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does GA4 miss visits from people who decline cookies?",
+      "answer": "GA4 needs consent to use analytics storage for a visitor. When the visitor declines, the standard report can leave that visit out unless Google can estimate it. Modeling runs only when your property meets Google's eligibility rules, so the gap can stay."
+    },
+    {
+      "question": "Does Google Analytics consent mode fix missing visits?",
+      "answer": "Not on its own. Consent mode tells Google tags what they may do. Google's modeling can estimate some missing data, but only after your property meets the thresholds. Check the report labels before you trust the number."
+    },
+    {
+      "question": "What changed in consent mode v2?",
+      "answer": "Google updated consent mode in November 2023. The update added ad_user_data and ad_personalization to ad_storage and analytics_storage. Google's sample default denies all four signals. Check the current developer guide, because Google may update it again."
+    },
+    {
+      "question": "How do I know if my consent default is set?",
+      "answer": "Open the page in Tag Assistant and check the Consent tab. If ad_storage has a status under Page Consent State, the default ran. A blank Consent tab means ad_storage was never set, so check the order of your tags next."
+    },
+    {
+      "question": "Why are Safari visits lower than Chrome visits?",
+      "answer": "Safari's Intelligent Tracking Prevention blocks third-party cookies and deletes script-writable storage after 7 days without user interaction. Those rules can shorten what GA4 sees on repeat visits. Compare the Safari and Chrome gaps separately, and check WebKit's release notes for current details."
+    },
+    {
+      "question": "Should I switch to a cookieless analytics tool?",
+      "answer": "It is a separate decision. Plausible says its tool is cookieless and needs no cookie banner, which is the vendor's own claim. Switching changes your history and your numbers, so run both tools for a while before you choose."
+    },
+    {
+      "question": "Does this apply if I work with client or patient data?",
+      "answer": "It can. Setup problems can touch personal data in URLs or events. If you work in a regulated job such as nursing, law, or accounting, follow your employer's rules on client or patient data before you test anything. Ask your privacy team for sign-off."
+    }
+  ],
+  "sources": [
+    {
+      "title": "etracker Cookie Consent Benchmark Study 2025",
+      "url": "https://www.etracker.com/en/cookie-consent-benchmarks/",
+      "publisher": "etracker",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Dark Patterns after the GDPR: Scraping Consent Pop-ups and Demonstrating their Influence (arXiv 2001.02479)",
+      "url": "https://arxiv.org/abs/2001.02479",
+      "publisher": "arXiv (Nouwens et al.)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "[GA4] Behavioral modeling for consent mode: Analytics Help",
+      "url": "https://support.google.com/analytics/answer/11161109?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Google Consent Mode: Tag Platform guide",
+      "url": "https://developers.google.com/tag-platform/security/guides/consent",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Unblock Google tags when using consent mode: Tag Manager Help",
+      "url": "https://support.google.com/tagmanager/answer/12962079?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Consent Mode troubleshooting for Google Ads: Tag Assistant Help",
+      "url": "https://support.google.com/tagassistant/answer/12005833?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Tracking Prevention in WebKit",
+      "url": "https://webkit.org/tracking-prevention/",
+      "publisher": "WebKit (Apple)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Prevent cross-site tracking in Safari on Mac: Apple Support",
+      "url": "https://support.apple.com/guide/safari/prevent-cross-site-tracking-sfri40732/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Plausible Analytics",
+      "url": "https://plausible.io/",
+      "publisher": "Plausible",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cookiebot Pricing",
+      "url": "https://www.cookiebot.com/en/pricing/",
+      "publisher": "Usercentrics",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Marketers spend almost one day a week grappling with data analysis: TransUnion UK Newsroom",
+      "url": "https://newsroom.transunion.co.uk/marketers-spend-almost-one-day-a-week-grappling-with-data-analysis/",
+      "publisher": "TransUnion UK",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "problem": "missing visits from users who decline cookies",
+  "costs": [
+    {
+      "title": "Undercounted decliners",
+      "text": "etracker's 2025 benchmark reports that consent-requiring processing is rejected in 60% of visits under a legally compliant banner. If you read the GA4 total as the full count, you read a partial picture as the whole picture."
+    },
+    {
+      "title": "Lower consent than you planned for",
+      "text": "etracker's benchmark also finds compliant designs record about 14 percentage points less consent than non-compliant ones. Plan your reports around that gap, not around the consent rate you hoped for."
+    },
+    {
+      "title": "Heavier losses in service sectors",
+      "text": "etracker reports almost 50% loss of consent-requiring data for service-sector websites under compliant design. It gives no sample size, so treat it as a warning to check your own gap, not as a forecast."
+    },
+    {
+      "title": "Hours spent reconciling",
+      "text": "The only survey we checked is from 2016. It found UK senior marketers spend an average of five hours and 36 minutes a week on data analysis. It did not measure reconciling consent gaps, so use it as context only."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Tags that fire before the consent default",
+      "text": "Google says that if the consent mode default command does not run before any Google tags fire, the tags behave as if consent mode is not in use. The site still works, so nobody notices. The fix lives in your setup, not your banner, so check the order first."
+    },
+    {
+      "title": "A banner that makes saying no easy",
+      "text": "Visitors who see a clear reject button decline more often. etracker found that with a legally compliant design, consent-requiring processing is rejected in 60% of visits. The banner works as designed, and your analytics feels the change."
+    },
+    {
+      "title": "Banner regions that do not match the default",
+      "text": "A default that denies visitors in regions with no banner leaves them with no choice. Tag Assistant's help warns about this exact mismatch. Those visitors stay denied, and the standard GA4 report leaves their visits out."
+    },
+    {
+      "title": "Modeling thresholds your site does not meet",
+      "text": "Google needs at least 1,000 events per day with analytics_storage denied, for at least 7 days. A site with low traffic can miss that gate. When it misses, the report shows no estimate, and the missing visits stay missing."
+    },
+    {
+      "title": "Safari's storage and cookie rules",
+      "text": "WebKit says Intelligent Tracking Prevention blocks all third-party cookies, with no exceptions. It also deletes script-writable storage after 7 days without user interaction. Visitors who return after a week can look new, which lowers repeat-visit counts."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Set the consent default before any tag",
+      "text": "Put the consent mode default above every Google tag, then confirm in Tag Assistant's Consent tab that ad_storage shows a status. Google's guide says no consent values are set by default, so this step falls to you. Work in the order the page loads."
+    },
+    {
+      "title": "Align banner regions with the default",
+      "text": "Compare the regions in your consent setup with the places your banner loads. A default that denies visitors where no banner appears leaves them stuck. Fix the mapping, then check a visit from each region in Tag Assistant."
+    },
+    {
+      "title": "Read the GA4 report labels first",
+      "text": "Before you compare two periods, check which label each report uses: including estimated data, excluding it, or unavailable. Compare only figures that share a label, and name the label on every slide you present."
+    },
+    {
+      "title": "Check modeling eligibility before you tune",
+      "text": "Confirm your property has enough declined events and granted users to meet Google's gates. If it does not, banner tuning will not bring back an estimate. Google says meeting the thresholds does not guarantee eligibility."
+    },
+    {
+      "title": "Reconcile GA4 with your server count",
+      "text": "Put daily GA4 totals and your hosting or server count in one sheet, then calculate the gap as a percentage. A steady gap suggests one repeating cause. A jump on one date suggests a change made on that day, so check your change log."
+    },
+    {
+      "title": "Test Safari and keep the gaps apart",
+      "text": "Load your most visited pages in a normal Safari window and compare with your server count. Keep the Safari and Chrome gaps in separate rows. Check WebKit's release notes before you rely on the 24-hour cookie cap."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Explain what the Consent tab status means in Tag Assistant",
+      "result": "Lazur answers out loud in plain words from what is on your screen. Check your banner settings with the vendor, because Lazur cannot see their configuration."
+    },
+    {
+      "capability": "point",
+      "say": "Where is the Tags Not Fired list?",
+      "result": "Lazur draws a circle and a label around the section. You make the click yourself."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through checking the Consent tab, one click at a time",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a note to my developer about the consent default order",
+      "result": "Lazur types a draft for you to review and edit before you send it to anyone."
+    },
+    {
+      "capability": "research",
+      "say": "Find Google's current consent mode docs and summarize the changes",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Check the sources before you act on them."
+    },
+    {
+      "capability": "everyday",
+      "say": "Remind me to check the GA4 gap on Monday",
+      "result": "Lazur adds the reminder to Apple Reminders."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Consent tab in Tag Assistant?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Consent tab, then you click through it yourself.",
+    "shell": "generic",
+    "context": "GA4 report and Tag Assistant open in Chrome on a site with a cookie banner",
+    "pointsAt": "Consent tab",
+    "output": "A circle and a label on the Consent tab in Tag Assistant. Lazur says out loud that a blank tab means ad_storage was never set, so check the default before you change anything else."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the consent default",
+      "text": "Open the page in Tag Assistant and read the Consent tab. If ad_storage has no status, find where the default call lives, and ask your developer to move it above every Google tag. Write down the date you checked."
+    },
+    {
+      "label": "Day 2",
+      "title": "Match banner regions to the default",
+      "text": "Ask a colleague in another region to load the page, then check the Consent tab from their visit. Compare the banner regions with the default regions in your setup. Note any mismatch for your developer."
+    },
+    {
+      "label": "Day 3",
+      "title": "Read the report labels",
+      "text": "In GA4, open Reports > Acquisition > Traffic acquisition for the last 28 days. Note which label each report shows. Compare only dates that share the same label."
+    },
+    {
+      "label": "Day 4",
+      "title": "Test Safari",
+      "text": "Load your most visited pages in a normal Safari window. Compare Safari visits with your server count for the same day, and log the gap in its own row next to the Chrome gap."
+    },
+    {
+      "label": "Day 5",
+      "title": "Build the gap sheet and change log",
+      "text": "Set up the gap sheet in Google Sheets with daily totals, the server count, and the gap percentage. Save a short change log in Google Docs, then share the link with your developer in Slack."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "google-analytics-consent-mode-missing-data",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-analytics-consent-mode-missing-data/google-analytics-consent-mode-1-8cd5ac.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Marketer at a laptop reviewing website traffic data, the work behind Google Analytics consent mode",
+      "caption": "Traffic data is where missing visits show up first.",
+      "keywords": [
+        "google analytics consent mode",
+        "Marketers",
+        "Reports missing visits from users who decline cookies",
+        "Mac",
+        "marketer laptop analytics",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "nattanan23",
+        "url": "https://pixabay.com/users/nattanan23-6312362/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hand-type-keyboard-money-finance-2722098/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-analytics-consent-mode-missing-data/google-analytics-consent-mode-2-f544fb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Website cookie consent banner with accept and reject choices on a laptop screen",
+      "caption": "The banner design decides how many visitors say no.",
+      "keywords": [
+        "google analytics consent mode",
+        "Marketers",
+        "Reports missing visits from users who decline cookies",
+        "Mac",
+        "cookie consent banner",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "JillWellington",
+        "url": "https://pixabay.com/users/JillWellington-334088/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/gingerbread-men-houses-background-3084961/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-analytics-consent-mode-missing-data/google-analytics-consent-mode-3-499d84.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Desk with a Mac and a notebook beside a spreadsheet of marketing numbers",
+      "caption": "A gap sheet takes one short session to build.",
+      "keywords": [
+        "google analytics consent mode",
+        "Marketers",
+        "Reports missing visits from users who decline cookies",
+        "Mac",
+        "desk with Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google analytics consent mode",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "consent mode v2 GA4": 1,
+      "GA4 missing data declined cookies": 1,
+      "GA4 behavioral modeling eligibility": 1,
+      "Tag Assistant consent tab": 1,
+      "Safari ITP analytics missing visits": 1,
+      "cookieless analytics alternative": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

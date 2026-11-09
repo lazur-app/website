@@ -1,0 +1,516 @@
+{
+  "appliesTo": "Numbers for Mac, the desktop app. Not Numbers for iCloud.",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Merged cells are the quickest way to let one label span several columns. A report title across the top of a table is the usual case. Numbers on Mac handles the job from one menu, but the menu only works when your selection follows a few rules. This guide covers the steps, what happens to your data, and the errors that stop the command from working."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to merge cells in Numbers on Mac, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "The merge command lives in the contextual menu, not the menu bar. Apple's Mac guide doesn't list a menu-bar path or a keyboard shortcut for merging. So you start from the selection and work from the Control-click menu. The numbered steps on this page follow that route. Check the labels in your copy, because Apple's page doesn't name the Numbers version it describes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which cells Numbers will merge"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers merges one rectangle of adjacent cells. It refuses cells that sit apart, cells that cross from a header into the body, and entire rows or columns. Most failed merges come from one of those three cases. Check the selection first, then right-click."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Adjacent cells that form one block, such as B2 through C4.",
+        "Cells from the same area. Keep header cells and body cells apart.",
+        "Individual cells. Selecting a whole row or column disables Merge Cells.",
+        "A table that doesn't depend on a form. Tables with merged cells can't use forms, as covered below."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What happens to your data when you merge"
+    },
+    {
+      "type": "paragraph",
+      "text": "Merging doesn't simply stack everything into one cell. What survives depends on how many cells hold content. Read the table below before you merge a column of prices, dates or totals."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Situation",
+        "What Numbers does"
+      ],
+      "rows": [
+        [
+          "Only one cell has content",
+          "The merged cell keeps that content and its formatting."
+        ],
+        [
+          "Several cells have content",
+          "All of the content is kept, but number, currency and date cells become text."
+        ],
+        [
+          "The top-left cell has a fill color",
+          "The fill color carries over to the merged cell."
+        ]
+      ],
+      "caption": "Merge results in Numbers for Mac, per Apple's Mac guide"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say B2 holds a product name, and C2 holds a price formatted as currency. Merge B2 and C2 and both values stay. C2 now shows as text, though, so it no longer behaves like a price. Retype it in a currency cell before you add it to anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "The safest habit is simple. Merge label cells, and keep numbers, currency and dates in their own cells. If you must merge a value cell, check it straight after the merge."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to unmerge cells in Numbers on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Unmerging reverses the layout, but it doesn't bring back lost data. Numbers moves all content from the merged cell into the first new cell. The new cells take the formatting and fill color of the former merged cell, so the block looks the same. Only the first cell holds content."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click the merged cell to select it.",
+        "Control-click the merged cell.",
+        "Choose Unmerge Cells from the menu.",
+        "Read the first cell, then type or paste content back into the other cells."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A cell that was never merged can't be unmerged. The menu item only works on cells you merged earlier. A single cell can't be split either."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas and merged cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "A merged cell has one address, its top-left cell. Apple's example uses C3. If you merge C3 with D3, every formula refers to C3, and no formula can use part of the merged block inside a cell range. Build formulas after the layout is final, or update them when the layout changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say you merge B1 and C1 into a title, and a total sits lower in the sheet. Point any formula that needs the title at B1, not C1. C1 isn't the address to use once the cells are merged."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Forms and merged cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "Tables with merged cells can't use forms. If a table is linked to a form, merging cells may clear the form. If data already came in through a form, you can't merge any cells in that table. Decide on forms first, then merge."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Numbers for iCloud works differently"
+    },
+    {
+      "type": "paragraph",
+      "text": "The web app takes a different route. Select the cells, click the Cell tab in the Format sidebar on the right, then click Merge under Merge Cells. To unmerge, select the merged cell and click Unmerge."
+    },
+    {
+      "type": "paragraph",
+      "text": "The web app has one big difference. Unmerging keeps data only in the top-left cell, so you copy and paste anything else back by hand. Forms from iOS spreadsheets are hidden in Numbers for iCloud, too."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Merge Cells is greyed out"
+    },
+    {
+      "type": "paragraph",
+      "text": "A dimmed command almost always means your selection broke one of the rules above. Work through these checks in order, starting with the selection."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Click one cell, then drag across the adjacent cells. Avoid selecting a whole row or column.",
+        "Check the header and body split. Don't merge a header cell with a body cell.",
+        "Look for a form link. A table linked to a form can't merge.",
+        "Confirm the cells are touching. Nonadjacent cells are refused."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If none of that fits, you may be on an older setup. An Apple Community thread about Numbers 3.1 on OS X Mavericks describes the same greyed out command. Its fixes included typing a centered title in the middle cell with Wrap Text off. That thread is old, so treat it as a workaround, not a rule."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Numbers version you have"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers now ships in two lines. Numbers 15.1 is a separate app that can sit beside 14.5, according to TidBITS. Version 15.1 requires macOS 15.6 Sequoia or later. Version 14.5 supports macOS 14.0 Sonoma and later, and it shows a launch dialog saying it won't receive updates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's What's new page lists Numbers 15.4 as the newest version. It says Numbers 15.4 for Mac requires macOS 26 or later. The page lists no merge, cell or menu change. The Mac merge guide doesn't name a version, so check the steps in your copy before you rely on them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Merged cells and spreadsheet habits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Merged cells look tidy, but they add rules. Formulas, forms and the merge itself all have limits, as covered above. Ask first whether a centered title in one cell would do the same job."
+    },
+    {
+      "type": "paragraph",
+      "text": "For context, a 2022 survey for ThoughtSpot found that on average 40% of office workers struggle to make sense of their data in spreadsheets. It covered spreadsheets in general, not Numbers on Mac. Treat the figure as background, not a Numbers benchmark."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you merge the cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the layout is set, the usual next jobs are sorting, filtering and formulas. Read [how to sort a table in Numbers on Mac](/how-to/sort-a-table-by-column-in-numbers) next, then [how to add a formula in Numbers on Mac](/how-to/add-a-formula-to-a-cell-in-numbers)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the file needs to go to someone who doesn't have Numbers, [how to export numbers to pdf on mac](/how-to/export-a-spreadsheet-to-pdf-in-numbers) covers that step."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with merged cells"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Merging a column of prices. Currency cells turn into text.",
+        "Selecting a header row and a data row together, then wondering why the command is dimmed.",
+        "Trying to unmerge a cell you never merged. Numbers can't split a cell that was never merged.",
+        "Expecting content from other cells to come back after an unmerge. It moves to the first cell.",
+        "Writing a formula that points at a cell inside the merged area."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you save, click the merged cell and read it. Check any formula that uses it. If a value now shows as text, retype it in a cell with the right format."
+    }
+  ],
+  "description": "How to merge cells in Numbers on Mac: select adjacent cells, Control-click them, choose Merge Cells. Covers unmerging, data loss and dimmed menus.",
+  "difficulty": "Easy",
+  "faq": [
+    {
+      "question": "Is there a keyboard shortcut to merge cells in Numbers on Mac?",
+      "answer": "Apple's Mac guide doesn't list one for merging or unmerging. The documented route is the Control-click menu on the selected cells. Use that menu each time, and check the result after you choose Merge Cells."
+    },
+    {
+      "question": "Why is Merge Cells greyed out in Numbers on Mac?",
+      "answer": "The usual causes are an entire row or column selected, or a header cell and a body cell selected together. Select a block of individual, adjacent cells and try again. If the table is linked to a form, merging isn't allowed."
+    },
+    {
+      "question": "Does merging cells delete my data in Numbers?",
+      "answer": "Not always. If only one cell has content, the merged cell keeps it. If several cells have content, Numbers keeps all of it, but cells with number, currency or date formats become text. Check those values after you merge."
+    },
+    {
+      "question": "Can I split a cell that was never merged?",
+      "answer": "No. A cell that was never merged can't be unmerged, and a single cell can't be split. Unmerge works only on cells you merged earlier."
+    },
+    {
+      "question": "Where does the content go after I unmerge cells?",
+      "answer": "Numbers moves all the content from the merged cell into the first new cell. The other new cells take the formatting and fill color of the former merged cell, but they start with no content. Retype or paste what you need."
+    },
+    {
+      "question": "Does Numbers for iCloud merge cells the same way?",
+      "answer": "Not quite. In the web app, select the cells, open the Cell tab in the Format sidebar, and click Merge under Merge Cells. Unmerging keeps data only in the top-left cell, so copy the rest back by hand."
+    },
+    {
+      "question": "Which version of Numbers do I need to merge cells?",
+      "answer": "Apple's Mac merge guide doesn't name a version, and Apple's What's new page lists no merge change for Numbers 15.4. Numbers 15.4 requires macOS 26 or later. Numbers 15.1 requires macOS 15.6 Sequoia or later."
+    },
+    {
+      "question": "Can I merge cells in a table that is linked to a form?",
+      "answer": "Usually not. Tables with merged cells can't use forms. Merging a table linked to a form may clear the form. If data was entered through a form, you can't merge any cells in that table."
+    },
+    {
+      "question": "Can I merge an entire column in Numbers?",
+      "answer": "No. Numbers won't merge entire columns or rows. Select a block of cells inside the column instead, such as the top cells of a title area."
+    }
+  ],
+  "intro": "To merge cells in Numbers on Mac, select two or more adjacent cells, Control-click the selection, and choose Merge Cells. To split a merged cell again, Control-click it and choose Unmerge Cells.",
+  "lazur": {
+    "spoken": "Where is the Merge Cells command?",
+    "capability": "point",
+    "result": "Lazur circles Merge Cells in the Control-click menu and labels it. You click the command yourself, because Lazur doesn't click for you.",
+    "shell": "sheet",
+    "pointsAt": "Merge Cells",
+    "context": "Numbers table with cells selected and the Control-click menu open",
+    "output": "Lazur draws a circle and a label around Merge Cells, then reads out what the command does. For a dimmed command, ask why, and Lazur explains which rule your selection broke."
+  },
+  "metaTitle": "How to Merge Cells in Numbers on Mac: Step by Step",
+  "requirements": [
+    "Numbers for Mac open, with a table in the sheet",
+    "Two or more adjacent cells to merge",
+    "A trackpad or mouse that can Control-click"
+  ],
+  "secondaryKeywords": [
+    "merge cells in numbers on mac",
+    "unmerge cells numbers mac",
+    "numbers mac merge cells greyed out",
+    "merge table cells numbers",
+    "numbers for icloud merge cells",
+    "split merged cells numbers mac"
+  ],
+  "shortcuts": [
+    {
+      "action": "Open the context menu on selected cells",
+      "keys": "Control-click"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Merge or unmerge cells in Numbers on Mac (Apple Support)",
+      "url": "https://support.apple.com/guide/numbers/merge-or-unmerge-cells-tan834b645e7/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Merge and unmerge cells in Numbers for iCloud (Apple Support)",
+      "url": "https://support.apple.com/guide/numbers-icloud/merge-and-unmerge-cells-gil77f80713e/icloud",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's new in Numbers on Mac (Apple Support)",
+      "url": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Pages, Keynote, and Numbers 15 Go Freemium",
+      "url": "https://tidbits.com/2026/02/06/pages-keynote-and-numbers-15-go-freemium/",
+      "publisher": "TidBITS",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Almost half of users struggle with spreadsheet data (ThoughtSpot press release)",
+      "url": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "publisher": "ThoughtSpot",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Why won't Numbers merge cells???",
+      "url": "https://discussions.apple.com/thread/6033574",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "stats": [
+    {
+      "value": "macOS 26",
+      "label": "Numbers 15.4 for Mac requires macOS 26 or later, according to Apple's What's new page.",
+      "sourceUrl": "https://support.apple.com/guide/numbers/whats-new-tan700f60676/mac",
+      "sourceTitle": "What's new in Numbers on Mac (Apple Support)"
+    },
+    {
+      "value": "40%",
+      "label": "of office workers struggle to make sense of spreadsheet data, on average. Sapio Research survey, October 2022.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "Almost half of users struggle with spreadsheet data (ThoughtSpot press release)"
+    },
+    {
+      "value": "20+ hours",
+      "label": "a month that knowledge workers spend in spreadsheets, per the same ThoughtSpot press release.",
+      "sourceUrl": "https://www.thoughtspot.com/press-releases/new-research-shows-almost-half-of-users-struggle-to-make-sense-of-data-in-spreadsheets",
+      "sourceTitle": "Almost half of users struggle with spreadsheet data (ThoughtSpot press release)"
+    }
+  ],
+  "steps": [
+    {
+      "name": "Open the table in Numbers for Mac",
+      "text": "Open the spreadsheet in Numbers for Mac and click the table you want to change. Scroll until the cells you need are on screen. Work in the table itself, not in a text box or a chart, because merging applies only to table cells."
+    },
+    {
+      "name": "Select the cells to merge",
+      "text": "Click the first cell in the block, then drag across the adjacent cells you want to join. The selection must form one connected rectangle, such as B2 through C4. Don't select a whole row or column, because Merge Cells won't be available.",
+      "tip": "If the selection spans a header and a body, split it into two separate merges."
+    },
+    {
+      "name": "Control-click the selection",
+      "text": "Control-click inside the selected cells. On a trackpad, a two-finger click works too. The contextual menu opens over the table. Keep the selection highlighted while the menu is open."
+    },
+    {
+      "name": "Choose Merge Cells",
+      "menuPath": [
+        "Control-click menu",
+        "Merge Cells"
+      ],
+      "text": "In the contextual menu, choose Merge Cells. The selected cells join into one cell. The merged cell takes the address of its top-left cell, so formulas should point there.",
+      "tip": "If Merge Cells is dimmed, the selection broke a rule. The troubleshooting section lists the common causes."
+    },
+    {
+      "name": "Check the content and formatting",
+      "text": "Click the merged cell and read what's inside. If several cells held values, look for number, currency or date cells that now show as text. Fix those values before you rely on the table.",
+      "tip": "Apple's guide lists no keyboard shortcut for merging, so use the menu each time."
+    }
+  ],
+  "targetKeyword": "how to merge cells in numbers on mac",
+  "task": "Merge table cells in Numbers on Mac",
+  "timeMinutes": 3,
+  "title": "How to merge cells in Numbers on Mac: table cells, Control-click steps and fixes",
+  "tldr": [
+    "Select two or more adjacent cells. Don't select whole rows or columns.",
+    "Control-click the selection and choose Merge Cells. Apple's Mac guide lists no keyboard shortcut for it.",
+    "If several cells hold content, all of it stays, but number, currency and date cells become text.",
+    "To split a merged cell, Control-click it and choose Unmerge Cells. Unmerge moves all content into the first new cell."
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Merge Cells is dimmed",
+      "fix": "Select individual adjacent cells, not whole rows or columns. Keep header cells and body cells in separate merges."
+    },
+    {
+      "problem": "Merge Cells won't work on this table",
+      "fix": "Check for a form link. Tables with merged cells can't use forms, and if data came in through a form, you can't merge any cells in that table."
+    },
+    {
+      "problem": "A number, currency or date now shows as text",
+      "fix": "Merged cells turn those cells into text. Retype the value in a cell with the number, currency or date format you need, then check any formula that uses it."
+    },
+    {
+      "problem": "A formula returns an unexpected result after a merge",
+      "fix": "Point the formula at the merged cell's top-left address. Don't reference a cell inside the merged area, and don't use part of a merged cell inside a range."
+    },
+    {
+      "problem": "Unmerge Cells doesn't appear for a cell",
+      "fix": "Only merged cells can be unmerged. A single cell can't be split, and a cell you never merged has nothing to undo."
+    }
+  ],
+  "type": "howto",
+  "slug": "merge-table-cells-in-numbers",
+  "app": "numbers",
+  "appName": "Numbers",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/merge-table-cells-in-numbers/how-to-merge-cells-in-numbers-on-1-5cafdc.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a laptop working on a spreadsheet table, the kind where you merge cells in Numbers on Mac",
+      "caption": "Merged cells often sit in the header row of a working table.",
+      "keywords": [
+        "how to merge cells in numbers on mac",
+        "Numbers",
+        "merge table cells",
+        "Mac",
+        "person working on laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/merge-table-cells-in-numbers/how-to-merge-cells-in-numbers-on-2-9453fc.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person using a MacBook at a desk, reviewing table data before they merge cells in Numbers",
+      "caption": "Check the data before you merge, not after.",
+      "keywords": [
+        "how to merge cells in numbers on mac",
+        "Numbers",
+        "merge table cells",
+        "Mac",
+        "person using MacBook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-keyboard-technology-2587222/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/merge-table-cells-in-numbers/how-to-merge-cells-in-numbers-on-3-ff5bad.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office desk with printed spreadsheet data and a laptop, the setting for checking merged cells in Numbers",
+      "caption": "Spreadsheets are still a daily tool for many office workers.",
+      "keywords": [
+        "how to merge cells in numbers on mac",
+        "Numbers",
+        "merge table cells",
+        "Mac",
+        "office spreadsheet data analysis",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AS_Photography",
+        "url": "https://pixabay.com/users/AS_Photography-1546875/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/modern-technologies-marketing-1263422/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to merge cells in numbers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "merge cells in numbers on mac": 10,
+      "unmerge cells numbers mac": 1,
+      "numbers mac merge cells greyed out": 1,
+      "merge table cells numbers": 1,
+      "numbers for icloud merge cells": 2,
+      "split merged cells numbers mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

@@ -1,0 +1,539 @@
+{
+  "title": "How to choose and read google analytics 4 attribution model channel credit on Mac",
+  "metaTitle": "Google Analytics 4 attribution model channel credit: Mac guide",
+  "description": "Pick the right GA4 reporting model, read channel credit as a range, and check numbers before you cut budget. Costs, causes, fixes and a week plan.",
+  "targetKeyword": "google analytics 4 attribution model channel credit",
+  "secondaryKeywords": [
+    "ga4 data-driven attribution",
+    "ga4 reporting attribution model",
+    "google analytics 4 last click attribution",
+    "channel credit attribution marketing",
+    "google ads data-driven attribution eligibility",
+    "utm parameters safari mac"
+  ],
+  "intro": "To choose a google analytics 4 attribution model channel credit setting on Mac, open Admin > Data display > Events in GA4 and find Key events attribution. For paid and organic channels you pick Data-driven (recommended) or Last click. Google removed the other models in November 2023. This guide covers what a wrong channel read costs you, why credit moves, and what to check before you trust it.",
+  "tldr": [
+    "Google Analytics 4 gives paid and organic channels two options: Data-driven (recommended) or Last click.",
+    "Changing the model re-divides credit for historical data too, so export your current report before you switch.",
+    "Read channel credit as a range, not one number. Large field experiments show ROI estimates with very wide error bars.",
+    "Survey data says only 18% of marketers can clearly tell each channel's impact, so most teams work with partial answers."
+  ],
+  "stats": [
+    {
+      "value": "18%",
+      "label": "of marketers say they can clearly determine the impact of each channel",
+      "sourceUrl": "https://ppc.land/36-of-marketers-keep-funding-channels-they-think-dont-work-funnel-finds/",
+      "sourceTitle": "36% of marketers keep funding channels they think don't work, Funnel finds (PPC Land)"
+    },
+    {
+      "value": "36%",
+      "label": "of in-house marketers kept funding a channel they believed was not working, because the numbers looked too good to cut",
+      "sourceUrl": "https://ppc.land/36-of-marketers-keep-funding-channels-they-think-dont-work-funnel-finds/",
+      "sourceTitle": "36% of marketers keep funding channels they think don't work, Funnel finds (PPC Land)"
+    },
+    {
+      "value": "Over 100",
+      "label": "percentage points wide, median ROI confidence interval across 25 large field experiments",
+      "sourceUrl": "https://econpapers.repec.org/RePEc:oup:qjecon:v:130:y:2015:i:4:p:1941-1973",
+      "sourceTitle": "EconPapers: The Unfavorable Economics of Measuring the Returns to Advertising"
+    },
+    {
+      "value": "3,000",
+      "label": "ad interactions and 300 conversions over 30 days to qualify some conversion actions for Google Ads data-driven attribution",
+      "sourceUrl": "https://support.google.com/google-ads/answer/10762625?hl=en",
+      "sourceTitle": "About Switch to DDA (data-driven attribution), Google Ads Help"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Start with the decision, then pick the model. In GA4, the setting that controls channel credit for key events sits at Admin > Data display > Events > Key events attribution. For paid and organic channels you choose Data-driven (recommended) or Last click. Google paid channels use Last click in this setting. Most of the confusion starts right here."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a wrong channel read costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "Budget is the first cost. In a 2026 survey sponsored by Funnel and produced with Ravn Research, 36% of in-house marketers kept funding a channel they believed did not work. The reason was simple. The numbers looked too good to cut. The survey does not say which attribution model those teams used, so it is not a verdict on any one model."
+    },
+    {
+      "type": "paragraph",
+      "text": "The survey is vendor sponsored and had 233 mainly in-house respondents. Field dates were not disclosed. Treat the results as a directional signal, not a market average, and check the source before you quote it in a meeting."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trust is the second cost. Only 10% of respondents reported high trust in their attribution model. 60% said moderate trust and 30% said low. Another 61% chose a metric because it told a more favorable story. And 29% stayed silent in a meeting when they knew the data was wrong or misleading. Once a team stops trusting the channel report, every budget talk turns into an argument about numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the third cost, and it is harder to see. None of the sources I checked measured how many hours teams spend on attribution. So use pay as a rough yardstick. The Bureau of Labor Statistics reports median pay of $165,780 a year, about $79.70 an hour, for advertising, promotions and marketing managers in May 2025. At that median, each hour spent rebuilding a channel report costs roughly $80. That is occupation-wide pay, not your salary, so treat it as a yardstick only."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pressure makes the cost worse. The Funnel survey found 80% of respondents felt at least moderate pressure to justify their value, and 31% felt significant pressure. Under that pressure, 59% said they prioritized activities because they were easier to measure. If a channel is easy to measure, it gets more attention in the report. That pulls spend toward it, whether or not it works."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What GA4 gives you for attribution"
+    },
+    {
+      "type": "paragraph",
+      "text": "GA4 offers two live options for paid and organic channels. Google removed first click, linear, time decay and position based models as of November 2023. Old slide decks may still name those models. They no longer appear as a choice in GA4. The setting covers key events, so it changes credit for the conversions you have marked as key events."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Data-driven (recommended): Google spreads credit across the touchpoints in each path, using your data. Google began data-driven attribution for paid and organic channels on November 1, 2021.",
+        "Last click: the channel right before the conversion gets the credit. Google paid channels use this option.",
+        "Decimal credit: data-driven results can split one conversion across channels. The credit can show as decimal fractions in key event and revenue columns."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the model and check what changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open GA4 in Chrome and sign in with the account that owns the property. Go to Admin > Data display > Events, then open Key events attribution. Find Reporting attribution model and check which option is selected. You need the Marketer role or above at the property level. If you cannot see the setting, ask the person who manages GA4 access to grant the role."
+    },
+    {
+      "type": "paragraph",
+      "text": "A change applies to historical and future data. The old numbers will shift in the same view the moment you save. Write the model, the date, and the reason in one line, so you can explain the shift later. Teams that skip this line spend the next meeting guessing why the channels moved."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reading channel credit without fooling yourself"
+    },
+    {
+      "type": "paragraph",
+      "text": "Channel credit is noisy even before you pick a model. Lewis and Rao studied 25 large field experiments with major U.S. retailers and brokerages, covering $2.8 million in digital ad spend. The median confidence interval on ROI was more than 100 percentage points wide. The lesson is not that attribution is useless. A single ROI figure can hide a very wide range."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a quick example of reading a switch. Say paid social looks strong under last click, and email looks weak. After you switch to data-driven, email gains credit and paid social loses some. Do not cut either channel on that change alone. Check whether total conversions moved, and whether a short pause in one channel shows the same pattern."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Comparing a data-driven month with a last click month, as if the model stayed the same.",
+        "Reading decimal credit as an error. It is fractional credit, so check the column header first.",
+        "Quoting a vendor survey or a slide as your own result.",
+        "Changing the model and cutting budget in the same week.",
+        "Forgetting that the setting covers key events only. A weak channel may simply feed a conversion you have not marked as a key event."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Google Ads has its own attribution rules"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you also run Google Ads, the attribution model lives there too, and it works differently. Google's help pages say first click, linear, time decay and position based models are no longer supported. Last click remains supported. Conversions on the removed models moved to data-driven attribution. Google's Switch to DDA page says some conversion actions need 3,000 ad interactions and 300 conversions over 30 days to qualify."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the data-driven attribution eligibility status for each conversion action before you trust its credit. Google's page does not say what happens when an action drops below the continuing threshold of 2,000 interactions and 200 conversions every 30 days. A 2026 third-party guide says those minimums were removed. I could not confirm that on Google's pages, so use the published numbers until Google says otherwise."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "UTMs and Safari on Mac"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Your browser changes what GA4 sees. WebKit says Safari removes a subset of query parameters used for pervasive cross-site tracking, before navigation happens. Campaign attribution parameters are allowed to pass through. WebKit did not publish the full list in that post, so do not assume every tag survives. Tag campaign links with UTM parameters, open a test link in Safari and in Chrome, and compare the source in GA4 Realtime. Press ⌘ L to jump to the address bar in either browser."
+    },
+    {
+      "type": "paragraph",
+      "text": "For analysis, export the channel report as a CSV and open it in Numbers on Mac. Apple's Numbers guide, shown as version 15.4, says you can group data into categories and build pivot tables to spot trends. Keep the same date range in both exports. If your team works in Google Sheets, the same check works there with Insert > Pivot table. See [Google Sheets for marketers on Mac](/for/marketers/google-sheets) for shortcuts and limits."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Who should check the rules first"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your job touches client or patient data, follow your employer's rules before you share a GA4 report with any tool. Event-level exports and customer lists can contain personal data. Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. Your employer's policy still decides what can leave your screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A one-week routine for channel credit"
+    },
+    {
+      "type": "paragraph",
+      "text": "The plan above spreads the work over five working days. Each step is short. The goal is one dated decision and one note, not a perfect attribution model. Skip any day that does not apply to your setup, but keep the export before you change anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "After you pick a model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Set a review date one month out and put it in the same note as the model choice. Share the note in Slack with the people who approve budget. Lazur runs on macOS, on Apple silicon and Intel Macs. The 3-day Pro trial starts when you first open the app and needs no credit card. Plans are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Which attribution model should I pick in GA4?",
+      "answer": "Start with Data-driven (recommended), since Google recommends it for paid and organic channels. Pick Last click if your team wants the simplest rule to explain to others. Whichever you pick, write down the date and the reason. Then compare it with a dated export before you move budget."
+    },
+    {
+      "question": "Why did last month's channel numbers change after I switched?",
+      "answer": "GA4 applies the reporting attribution model to historical and future data. Switching re-divides credit for past conversions too, so old reports will look different. Keep a dated export of the old view if you need the earlier numbers for a comparison."
+    },
+    {
+      "question": "Can I still choose first click, linear, or position-based in GA4?",
+      "answer": "No. Google's GA4 help page says first click, linear, time decay and position-based models were no longer available as of November 2023. Older templates and slide decks may still show them, so check which model produced any report you copy from."
+    },
+    {
+      "question": "What do decimal conversions in GA4 mean?",
+      "answer": "Data-driven attribution can split credit for one conversion across several channels. Google says the credit can show as decimal fractional credit in key event and revenue columns. It is not a bug. Read the value as a share of one conversion."
+    },
+    {
+      "question": "Does the Google Ads attribution setting match GA4?",
+      "answer": "No, they are separate. Google Ads lists last click as still supported, and it moved conversions from the removed models to data-driven attribution. Google Ads also has eligibility rules, including 3,000 ad interactions and 300 conversions over 30 days for some conversion actions."
+    },
+    {
+      "question": "Can Lazur change the attribution setting for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps for you. It can circle the setting, explain the options out loud, and guide you one click at a time while you make the change yourself."
+    },
+    {
+      "question": "Is it safe to show Lazur a GA4 report with customer data?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored. Your employer's rules still decide what can leave your screen, so check them first, especially for client or patient data."
+    },
+    {
+      "question": "Do I need Lazur to read channel credit?",
+      "answer": "No. GA4 shows the credit in its own reports. Lazur helps you find the setting, read the options, and draft the note. The 3-day Pro trial starts when you first open the app and needs no credit card."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Change the reporting attribution model for key events - Analytics Help",
+      "url": "https://support.google.com/analytics/answer/16291112?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "About attribution models - Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/6259715?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "About Switch to DDA (data-driven attribution) - Google Ads Help",
+      "url": "https://support.google.com/google-ads/answer/10762625?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "36% of marketers keep funding channels they think don't work, Funnel finds",
+      "url": "https://ppc.land/36-of-marketers-keep-funding-channels-they-think-dont-work-funnel-finds/",
+      "publisher": "PPC Land (reporting on Funnel and Ravn Research)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "The Unfavorable Economics of Measuring the Returns to Advertising (Lewis and Rao, QJE 2015)",
+      "url": "https://econpapers.repec.org/RePEc:oup:qjecon:v:130:y:2015:i:4:p:1941-1973",
+      "publisher": "EconPapers / RePEc",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Intro to analysis | Meridian | Google for Developers",
+      "url": "https://developers.google.com/meridian/geox/intro-to-analysis",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Private Browsing 2.0",
+      "url": "https://webkit.org/blog/15697/private-browsing-2-0/",
+      "publisher": "Apple WebKit",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Numbers User Guide for Mac",
+      "url": "https://support.apple.com/guide/numbers/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Advertising, Promotions, and Marketing Managers: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/management/advertising-promotions-and-marketing-managers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "choosing an attribution model and reading channel credit",
+  "costs": [
+    {
+      "title": "Budget kept on channels that do not work",
+      "text": "In the Funnel survey, 36% of in-house marketers kept funding a channel they believed was not working. The numbers looked too good to cut. The survey does not say which model those teams used. Still, the pattern is clear. A report that flatters a channel can keep money flowing to it long after the evidence weakens. Cutting the wrong channel costs money too, so the answer is to read credit carefully, not to cut in a hurry."
+    },
+    {
+      "title": "Lost trust in the channel report",
+      "text": "Only 10% of respondents in the Funnel survey reported high trust in their attribution model. 61% chose a metric because it told a more favorable story. 29% stayed silent when they knew the data was misleading. When people stop trusting the report, meetings turn into debates about numbers. Decisions slow down, and the loudest opinion wins more often than the best data."
+    },
+    {
+      "title": "Hours spent rebuilding reports",
+      "text": "No source I checked measured the hours teams spend on attribution. The BLS puts median pay for advertising, promotions and marketing managers at about $79.70 an hour in May 2025. Each hour spent rebuilding a channel report costs roughly $80 at that median. A model switch that triggers several rebuilds can cost more in time than the setting ever saved."
+    },
+    {
+      "title": "Budget pressure pushes toward easy numbers",
+      "text": "The Funnel survey found 80% of respondents felt at least moderate pressure to justify their value. 59% prioritized activities because they were easier to measure. When pressure is high, the report with the cleanest numbers gets the budget. That is a cost too, because the channels that matter most are not always the easiest to track."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The model changes who gets credit",
+      "text": "Each model splits credit by a different rule. Last click gives the whole conversion to the final channel before it. Data-driven spreads credit across the touchpoints in each path, using your data. The same month can show a different winner depending on which option you picked. The numbers did not break. The rule changed."
+    },
+    {
+      "title": "The setting covers key events, not every conversion",
+      "text": "The reporting attribution model applies to key events. If the event you mark as a key event is a soft signal, such as a form start, its credit will not match a sale. Check which events are marked as key events before you compare channels. A channel can look weak because it feeds a different event than the one your manager watches."
+    },
+    {
+      "title": "Old models and old habits stay in reports",
+      "text": "Google removed first click, linear, time decay and position based models as of November 2023. Templates, dashboards and copied reports may still show them. A team that compares a last click column with an older first click column will argue about numbers that were never comparable. Check which model produced every number you copy."
+    },
+    {
+      "title": "Low volume can stop data-driven from qualifying",
+      "text": "Google Ads says some conversion actions need 3,000 ad interactions and 300 conversions over 30 days to qualify for data-driven attribution. To stay eligible, they must keep producing 2,000 interactions and 200 conversions every 30 days. GA4's help page gives no minimum, so low volume is a question to ask, not a rule you can look up there."
+    },
+    {
+      "title": "Browsers and privacy settings drop tracking tags",
+      "text": "Safari removes a subset of query parameters used for cross-site tracking. A campaign link with a missing or stripped tag can show up as direct or referral traffic. The channel then loses credit it earned. The fix sits in how you tag links, not in the attribution model itself."
+    },
+    {
+      "title": "Measurement is noisy, even in controlled tests",
+      "text": "Lewis and Rao studied 25 large field experiments and found median ROI confidence intervals over 100 percentage points wide. They also found individual sales are highly volatile compared with ad cost per person. Any single attribution number carries error, whatever model you pick. Plan for ranges and tests, not one exact answer."
+    },
+    {
+      "title": "Incentives favor the number that looks good",
+      "text": "The Funnel survey found 61% of respondents chose a metric because it told a more favorable story. 59% prioritized activities that were easier to measure. When a report makes your work look good, fewer people ask hard questions. The incentive pushes you toward the report that flatters, so check that pull on purpose."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write the budget question before the model",
+      "text": "Name the decision first, such as whether to keep paying for one channel next quarter. Then choose the model and the metric that answer that question. Put the question at the top of your note, so the reason for the model stays visible when someone asks later."
+    },
+    {
+      "title": "Export a dated baseline before you switch",
+      "text": "Export the channel report for your date range as a CSV before you touch the setting. Name the file with the model and the date. After the change, export again with the same date range. GA4 shows only the active model, so these two files are how you compare them."
+    },
+    {
+      "title": "Check total conversions next to channel credit",
+      "text": "Credit moves between channels, but the total for the same key event should not jump because of the model. If total conversions move a lot after a switch, check the date range and the event setup first. Only then read the channel shifts as real changes in performance."
+    },
+    {
+      "title": "Run a pause or geo test before you cut a channel",
+      "text": "Reducing one channel for a short window shows whether its credit matched a real change. Google's Meridian documentation describes GeoX geo experiments that measure incremental campaign impact and report lift with confidence intervals. Read those results as ranges, and plan the test with whoever owns the budget."
+    },
+    {
+      "title": "Check Google Ads eligibility before you trust its credit",
+      "text": "Find the data-driven attribution eligibility status for each conversion action in Google Ads. Google's page says some actions need 3,000 ad interactions and 300 conversions over 30 days to qualify. It does not say what happens when an action falls below the continuing threshold, so check the status each month."
+    },
+    {
+      "title": "Tag every campaign link with UTMs",
+      "text": "Use the same utm_source, utm_medium and utm_campaign values across every link. Keep them lowercase and list them in one shared sheet, so channel names match in GA4. A single typo creates a new channel in your report, which splits its credit in two and makes both halves look smaller."
+    },
+    {
+      "title": "Keep one dated note for each model choice",
+      "text": "Write the model, the date, the reason, and the review date in one place. Link the export files in the note. When credit moves later, you can check whether the setting changed or the spend did. That answer ends most of the arguments before they start."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the reporting attribution model setting?",
+      "result": "Lazur draws a circle and a label around the setting on your screen, so you find it without searching Admin.",
+      "capability": "point"
+    },
+    {
+      "say": "What does data-driven attribution mean on this page?",
+      "result": "Lazur explains the option out loud, in plain words, based on the screen you show it.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through Key events attribution, one step at a time.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on. You make every change yourself.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a short note to my lead about the model change.",
+      "result": "Lazur drafts the text for you to read, edit and send yourself. It does not send anything for you.",
+      "capability": "draft"
+    },
+    {
+      "say": "Hold fn and dictate the model decision note.",
+      "result": "Hold fn to dictate clean, formatted text at the cursor in any app, so the note takes shape as you speak.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the reporting attribution model setting?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the setting on your screen. You make the change yourself.",
+    "shell": "generic",
+    "context": "GA4 Key events attribution page in Chrome",
+    "pointsAt": "Reporting attribution model"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Write the question",
+      "text": "Write the budget decision in one sentence, such as whether to keep paying for one channel next quarter. Note which key event matters most for that decision. Put both lines in a new Google Docs note."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the current setting",
+      "text": "Open Admin > Data display > Events > Key events attribution in GA4. Note the current reporting attribution model and your role. If you run Google Ads, check the data-driven attribution eligibility status for each conversion action."
+    },
+    {
+      "label": "Day 3",
+      "title": "Export a baseline",
+      "text": "Export the channel report for your date range as a CSV. Name the file with the model and the date. Do not change the setting yet, and do not cut any budget this week."
+    },
+    {
+      "label": "Day 4",
+      "title": "Change and compare",
+      "text": "Switch the model only if your decision needs it. Export the same report again with the same date range. Build a pivot table in Numbers or Google Sheets for each file, then compare channel credit and total conversions side by side."
+    },
+    {
+      "label": "Day 5",
+      "title": "Share one dated note",
+      "text": "Finish the Google Docs note with the model, the reason, and a review date one month out. Post the link in Slack for the people who approve budget, and ask them to challenge the reasoning."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs",
+    "slack"
+  ],
+  "chart": {
+    "title": "Share of marketers in the Funnel survey",
+    "bars": [
+      {
+        "label": "Clearly see each channel's impact",
+        "value": 18
+      },
+      {
+        "label": "High trust in attribution model",
+        "value": 10
+      },
+      {
+        "label": "Kept funding a channel they doubted",
+        "value": 36,
+        "highlight": true
+      },
+      {
+        "label": "Quiet when data was misleading",
+        "value": 29
+      }
+    ],
+    "unit": "%",
+    "note": "Vendor-sponsored survey of 233 mainly in-house respondents. Directional only.",
+    "sourceUrl": "https://ppc.land/36-of-marketers-keep-funding-channels-they-think-dont-work-funnel-finds/",
+    "sourceTitle": "36% of marketers keep funding channels they think don't work, Funnel finds (PPC Land)"
+  },
+  "type": "problem",
+  "slug": "ga4-attribution-model-channel-credit",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/ga4-attribution-model-channel-credit/google-analytics-4-attribution-model-channel-credit-1-e11d65.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a laptop reviewing google analytics 4 attribution model reports and channel charts",
+      "caption": "Reviewing channel reports before a budget decision.",
+      "keywords": [
+        "google analytics 4 attribution model channel credit",
+        "Marketers",
+        "Choosing an attribution model and reading channel credit",
+        "Mac",
+        "marketer laptop charts",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stock-market-charts-graphs-finance-2616931/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/ga4-attribution-model-channel-credit/google-analytics-4-attribution-model-channel-credit-2-71d7c0.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person at a Mac desk reading a marketing report on channel credit and conversions",
+      "caption": "Checking tagged links and export files in one place.",
+      "keywords": [
+        "google analytics 4 attribution model channel credit",
+        "Marketers",
+        "Choosing an attribution model and reading channel credit",
+        "Mac",
+        "person using mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google analytics 4 attribution model channel credit",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "ga4 data-driven attribution": 1,
+      "ga4 reporting attribution model": 1,
+      "google analytics 4 last click attribution": 1,
+      "channel credit attribution marketing": 1,
+      "google ads data-driven attribution eligibility": 1,
+      "utm parameters safari mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

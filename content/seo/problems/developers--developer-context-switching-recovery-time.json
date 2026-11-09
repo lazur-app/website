@@ -1,0 +1,630 @@
+{
+  "title": "How to recover focus after interruptions while coding on Mac, for developers",
+  "metaTitle": "How to recover focus after interruptions while coding on Mac",
+  "description": "Recover focus after interruptions while coding with a resume note, Focus modes, Slack pauses and a week plan. Fixes on Mac that cost nothing extra.",
+  "targetKeyword": "how to recover focus after interruptions while coding",
+  "secondaryKeywords": [
+    "losing time after interruptions while coding",
+    "developer focus after interruptions",
+    "resume coding after an interruption",
+    "Focus mode for developers on Mac",
+    "Slack notifications while coding",
+    "context switching for developers",
+    "deep work for software developers"
+  ],
+  "intro": "To recover focus after an interruption while coding, write one line that says where you stopped and what comes next. Then cut the interruptions you control, such as Slack pings and mail alerts. Most of the lost time goes to rebuilding the code in your head, not to the interruption itself.",
+  "tldr": [
+    "Write a one-line resume note before you answer, with the file, the symptom and the next step.",
+    "Use Focus on Mac to hold back alerts, scheduled by time or triggered when you open an app such as Xcode or Cursor.",
+    "Pause Slack with /dnd or the notification menu, and set working hours so pings wait for a set time.",
+    "The famous 23-minute refocus figure is not in the 2008 paper it is often cited for, so do not plan around it.",
+    "Lazur can answer questions about your screen out loud and point at things, but it does not resume your work for you."
+  ],
+  "stats": [
+    {
+      "value": "48%",
+      "label": "of knowledge workers say their work feels chaotic and fragmented, in Microsoft's 2025 survey of 31,000 people",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "sourceTitle": "Microsoft WorkLab: Breaking down the infinite workday"
+    },
+    {
+      "value": "2x",
+      "label": "task success for programmers given an automated resumption cue, compared with note-taking alone",
+      "sourceUrl": "https://www.microsoft.com/en-us/research/publication/evaluating-cues-for-resuming-interrupted-programming-tasks/",
+      "sourceTitle": "Evaluating Cues for Resuming Interrupted Programming Tasks"
+    },
+    {
+      "value": "$135,980",
+      "label": "median annual wage for software developers in May 2025, per the US Bureau of Labor Statistics",
+      "sourceUrl": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Software Developers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What losing time after interruptions costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "A typical loop goes like this. You trace a failing test in Cursor. A Slack message lands, and you answer it. Then you switch back to the editor and spend several minutes working out which function you were in and why the test failed."
+    },
+    {
+      "type": "paragraph",
+      "text": "The reply was quick. The rebuild is the slow part. While you code, you hold call chains, variable names and the next check in your head. An interruption pushes some of that out, and most of the lost time goes to getting it back."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How often developers get interrupted"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's 2025 Work Trend Index says people using Microsoft 365 are interrupted about every two minutes during core work hours, or 275 times a day. Microsoft counts meetings, emails and chats as pings. Its methodology says the 275 figure is based on the top 20% of users by ping volume, while the body text reads more broadly. Treat the number as a sign of scale, not a benchmark for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same research surveyed 31,000 knowledge workers across 31 markets. Nearly half of employees, 48%, said their work feels chaotic and fragmented. One in three said the pace of work over the past five years made it impossible to keep up. If your day feels cut into pieces, you share that feeling with a lot of people."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research says about resuming coding work"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most useful study for developers is Parnin and DeLine's CHI 2010 paper, Evaluating Cues for Resuming Interrupted Programming Tasks. They surveyed 371 programmers. Most relied heavily on note-taking when they picked up interrupted work."
+    },
+    {
+      "type": "paragraph",
+      "text": "In their lab study, developers who used an automated cue completed tasks with twice the success rate of developers who only took notes. Developers also preferred a chronological cue that shows past activity as code snippets. That points to what good recovery looks like. It shows the trail you walked, not a summary of it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the 23-minute refocus number is shaky"
+    },
+    {
+      "type": "paragraph",
+      "text": "You may have heard that it takes 23 minutes to refocus after an interruption. The number spreads fast, and it is shaky. A secondary analysis says the 2008 CHI paper by Mark, Gudith and Klocke, often cited for it, does not contain the figure at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "The closest published figure comes from Mark, Gonzalez and Harris at CHI 2005. Their paper reports an average of 22 minutes 37 seconds. That measures time to return to a project, not recovery of concentration. Secondary write-ups even disagree on the 2005 number, so check the paper itself before you quote it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Gloria Mark's website says attention on a screen averages 47 seconds, and that it is shrinking. The page names no study or year. Use it as a teaching line, not a measurement, and do not plan your week around it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one interruption, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you are mid-refactor in VS Code. A teammate pings you in Slack with a question about a deploy. You answer, then you come back. Here is what a resume note changes."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Before you reply, jot a resume note in a scratch file: 'Stopped in billing/invoice.ts. Rounding test fails on zero-amount lines. Next: check the tax helper.'",
+        "Reply to Slack in one line. Do not open a second round of the thread.",
+        "Read the note, then open the failing test.",
+        "Run only that test first, before the full suite."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Without the note, your first minutes go to hunting for your place. With the note, the first minutes go to the fix. Nothing here is complicated. The note moves the rebuild work onto paper, where it is quick to read."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Focus on Mac so alerts wait"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open System Settings, then click Focus in the sidebar. You can create up to ten custom Focuses. Make one called Coding and keep the rest for personal time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide says a Focus can turn on by time, by location, or by app. A time schedule matches your calendar. An app trigger fits when you want the block to start the moment you open the editor. Pick the trigger you will actually follow."
+    },
+    {
+      "type": "paragraph",
+      "text": "Focus Filters change what you see while a Focus is on. You can show selected calendars, selected Mail accounts, a People List in Messages, or a Tab Group in Safari. Start with Mail, since it is the easiest thing to glance at by reflex."
+    },
+    {
+      "type": "paragraph",
+      "text": "For a one-off block, use Control Centre and turn on Do Not Disturb. It silences all notifications at once. Turn it off when the block ends, or it will quietly hide messages you need later."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test the Focus once",
+      "text": "Turn on the Focus, then ask a colleague to send you a test message. Confirm the messages you truly need still reach you. Test it on a quiet afternoon, not in the middle of an incident."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Match each interruption source to a setting"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Interruption",
+        "Fix on Mac",
+        "Where to set it"
+      ],
+      "rows": [
+        [
+          "Slack threads and direct messages",
+          "Pause notifications or set working hours",
+          "Slack profile picture > Notifications, or Preferences > Working hours"
+        ],
+        [
+          "Calendars you do not need",
+          "Show only selected calendars during the Focus",
+          "System Settings > Focus, then Focus Filters > Calendar"
+        ],
+        [
+          "Mail arriving all day",
+          "Show only selected accounts during the Focus",
+          "System Settings > Focus, then Focus Filters > Mail"
+        ],
+        [
+          "Messages from people outside the block",
+          "Limit Messages to a People List",
+          "System Settings > Focus, then Focus Filters > Messages"
+        ],
+        [
+          "Browser tabs that pull you away",
+          "Limit Safari to one Tab Group",
+          "System Settings > Focus, then Focus Filters > Safari"
+        ]
+      ],
+      "caption": "Match each source to a setting, then set it once."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Slack: pause, schedule and use /dnd"
+    },
+    {
+      "type": "paragraph",
+      "text": "On Slack's desktop app, click your profile picture, hover over Notifications, and choose a time frame or Custom. Select Resume notifications when you want them back. For a standing schedule, open Preferences and find Working hours. The Allow notifications menu offers Every day, Weekdays, or Custom."
+    },
+    {
+      "type": "paragraph",
+      "text": "The slash commands are faster when you are already typing. /dnd for 15 mins silences notifications for a short block. /dnd until 17:00 holds them until a fixed time. /dnd off ends it early. A workspace admin's default schedule gives way to your own, so the setting is yours to change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Write a resume note that takes under a minute"
+    },
+    {
+      "type": "paragraph",
+      "text": "A good resume note names the file, the symptom and the next step. For example: Stopped in auth/session.ts. The refresh test fails only when the clock mock runs first. Next: check the order of setup hooks in the test file. You can read that in a few seconds, and it points you at the code."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the note where you will see it. A scratch file in the project works. So does a TODO comment that you delete later. Parnin and DeLine found that automated cues showing recent activity helped more than notes alone. You can copy the idea by keeping a running list of the commands and files you touched."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that eat your recovery window"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Muting Slack, then checking it every few minutes anyway. The alerts are gone, but the habit stays.",
+        "Writing a note that says fix the bug. A note needs a file, a symptom and a next step.",
+        "Rereading the whole file to find your place. A good note makes that search unnecessary.",
+        "Jumping to email or a tiny task to dodge the hard part. The small win feels good, but it resets nothing.",
+        "Turning on Focus all day and never checking whether it helps. Schedule it, then review it after a week."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes come from trying to stop interruptions with willpower. A setting you change once holds up better than a promise you make each morning."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a control is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "For interruptions, three parts are useful. Hold fn to dictate a resume note at the cursor in any app, so you speak it instead of typing it. Ask out loud what an error on screen means without leaving your editor. Ask how to set a Focus Filter, then follow the steps. For the wider set of developer tasks, see the [developer page](/for/developers)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons or operate other apps for you. It does not restore your editor, your open tabs or your place in a file. It keeps a memory of what you asked and did, on the Mac. Dictation is unlimited on both paid plans, but AI actions are capped by plan, so check [pricing](/pricing) before you rely on it every day."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Measure your own recovery time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read your interruption log at the end of the week. Look for the source that shows up most often and the one where you lost the longest time. Those two are rarely the same. Ask of each one whether it needed an answer right away. Most will not."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Regulated and client code: check the rules first"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you write code for clients, patients or regulated data, your employer's rules come first. Check them before you paste code, screenshots or dictated notes into any AI tool. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Your employer's policy may still say no, and that answer wins."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How long does it take to recover focus after an interruption while coding?",
+      "answer": "There is no reliable number for developers. The 23-minute figure is shaky, and the closest 2005 CHI paper measured time to return to a project, not concentration. Keep a short log for a week and use your own numbers."
+    },
+    {
+      "question": "Does Focus on Mac actually help developers stay on task?",
+      "answer": "Focus stops alerts from reaching you, which removes some interruptions at the source. The sources behind this page do not measure whether Focus or Slack pauses improve productivity. Test it for a week and compare your resume notes and your log."
+    },
+    {
+      "question": "What should a resume note include?",
+      "answer": "Write the file you were in, the symptom or question you were chasing, and the next action. One or two lines is enough. A note that says fix the bug does not help when you return."
+    },
+    {
+      "question": "Should I turn Slack notifications off completely?",
+      "answer": "Not always. Pause notifications for focused blocks and set working hours so pings wait for a set time. Keep one clear time each day to read the channels that matter."
+    },
+    {
+      "question": "Can Lazur pick up my code where I left off?",
+      "answer": "No. Lazur does not restore your editor state or your place in a file. It answers questions about what is on screen while you hold the shortcut, and you can dictate a note with fn."
+    },
+    {
+      "question": "Is it safe to use voice tools with client or patient code?",
+      "answer": "Follow your employer's rules before you use any voice or AI tool with client or patient data. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot are sent to AI providers to answer and are not stored."
+    },
+    {
+      "question": "Does this work on Windows?",
+      "answer": "Lazur is for macOS on Apple silicon and Intel. Windows is planned, not available. The Focus and Slack steps on this page are for the Mac apps."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Microsoft WorkLab: Breaking down the infinite workday",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "BLS Occupational Outlook Handbook: Software Developers",
+      "url": "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Evaluating Cues for Resuming Interrupted Programming Tasks",
+      "url": "https://www.microsoft.com/en-us/research/publication/evaluating-cues-for-resuming-interrupted-programming-tasks/",
+      "publisher": "Microsoft Research",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Set up a Focus on Mac",
+      "url": "https://support.apple.com/guide/mac-help/set-up-a-focus-to-stay-on-task-mchl613dc43f/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Pause your Slack notifications",
+      "url": "https://slack.com/help/articles/214908388-Pause-your-Slack-notifications",
+      "publisher": "Slack Help Center",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Gloria Mark, PhD - Home",
+      "url": "https://gloriamark.com/",
+      "publisher": "Gloria Mark",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Multitasking and task switching: the 23-minute claim",
+      "url": "https://healthresearchusa.net/23-minute-refocus-claim-cognitive-demands-work",
+      "publisher": "Health Research USA (secondary)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "How Long to Refocus After an Interruption? Real Data",
+      "url": "https://www.tryhugo.app/blog/how-long-to-refocus-after-interruption",
+      "publisher": "Hugo (secondary; cites primary CHI papers)",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "No Task Left Behind? Examining the Name of Fragmented Work",
+      "url": "https://research.manchester.ac.uk/en/publications/no-task-left-behind-examining-the-name-of-fragmented-work/",
+      "publisher": "University of Manchester Research Explorer",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "problem": "losing time after interruptions while coding",
+  "costs": [
+    {
+      "title": "Minutes you do not get back",
+      "text": "Each interruption adds a rebuild on top of the reply. The reply takes seconds. The rebuild can take several minutes, and it repeats every time a ping lands during a hard task."
+    },
+    {
+      "title": "Pay, roughly",
+      "text": "The BLS median annual wage for software developers was $135,980 in May 2025. On a 2,080-hour work year, that is about $65 an hour by simple arithmetic. Each lost minute is roughly a dollar of pay. Treat this as scale, not a bill."
+    },
+    {
+      "title": "The feeling of a fragmented day",
+      "text": "Microsoft's survey found nearly half of employees, 48%, say their work feels chaotic and fragmented. That feeling is a cost in its own right, even though no one tracks it on a timesheet."
+    },
+    {
+      "title": "Hard work gets crowded out",
+      "text": "Hard problems need long stretches. A stream of short replies crowds them out, so you finish the easy tickets and leave the hard bug open for the next day."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Working memory gets wiped",
+      "text": "While you code, you hold call chains, variable names and the next check in your head. An interruption pushes some of that out. Parnin and DeLine's study of programmers shows that people rebuild it by leaning on notes, which is slow without a written trail."
+    },
+    {
+      "title": "No written resume point",
+      "text": "Most developers stop in the middle of a thought. The file is still open, but the reason you opened it is gone. Without a written next step, the first minutes after a break go to re-deriving why you were there."
+    },
+    {
+      "title": "Alerts arrive on someone else's schedule",
+      "text": "Slack, mail and calendar alerts fire when other people send something. Each alert asks for a small decision: read it now or later. Even choosing later breaks the flow, because the choice takes attention too."
+    },
+    {
+      "title": "Quick replies feel like progress",
+      "text": "Answering a message clears a small item and gives a little relief. That relief hides the cost of returning to the code, which is where most of the time goes. The reply feels finished, and the rebuild does not."
+    },
+    {
+      "title": "Fragmented work with too many channels",
+      "text": "Microsoft's survey found one in three employees say the pace of work over five years has made it impossible to keep up. When the pace is that high, every interruption competes with the last one for your attention."
+    },
+    {
+      "title": "Shaky numbers make the problem feel fixed",
+      "text": "Quoted figures like 23 minutes make recovery sound like a fixed penalty. That can lead to shrugging the problem off, or to a plan built on a number that a secondary analysis says is not in the paper it cites."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Write a resume note before you answer",
+      "text": "Write where you are, the symptom and the next step in a scratch file. Keep it to one or two lines. When you return, read the note first. Parnin and DeLine found developers lean on notes, and automated cues showing recent activity did better still."
+    },
+    {
+      "title": "Create a Coding Focus in System Settings",
+      "text": "Open System Settings, click Focus, and create one called Coding. Schedule it by time, or set it to turn on when you open Xcode, Cursor or VS Code. Apple's guide describes three triggers: time, location and app."
+    },
+    {
+      "title": "Use Focus Filters to shrink what you see",
+      "text": "Calendar, Mail, Messages and Safari each have a filter. Show only the calendars or accounts you need, or limit Safari to a Tab Group. Less on screen means fewer tempting glances during the block."
+    },
+    {
+      "title": "Pause Slack for a fixed block",
+      "text": "Type /dnd for 15 mins to silence notifications for a short block, or /dnd until 17:00 to hold them until a set time. End it with /dnd off. You can also use the profile picture menu, then Notifications."
+    },
+    {
+      "title": "Set Slack working hours once",
+      "text": "Open Preferences and find Working hours. Choose Every day, Weekdays or Custom for when notifications arrive. Your own schedule overrides any default an admin sets, so the rule stays under your control."
+    },
+    {
+      "title": "Batch replies at set times",
+      "text": "Pick fixed times to read chat and mail, and keep Focus on outside them. Tell your team when you check, so they expect the short delay and do not treat silence as an emergency."
+    },
+    {
+      "title": "Dictate the note instead of typing it",
+      "text": "Hold fn and speak the resume note. Lazur dictates clean text at the cursor in any app. Speaking the note takes less effort than typing it, so you are more likely to write one at all."
+    },
+    {
+      "title": "Keep a plain log for a week",
+      "text": "Write each interruption in a text file: the source, the time, and when you were back in the code. The log shows which channel costs the most. Fix that one first, then check the log again."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥⌘ and ask what this error on screen means.",
+      "capability": "explain",
+      "result": "Lazur answers out loud about what is on screen while you hold the shortcut, so you can check an error without leaving the editor."
+    },
+    {
+      "say": "Ask where the Focus setting is in System Settings.",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the control on your screen. It points. It does not click for you."
+    },
+    {
+      "say": "Ask how to set a Focus Filter for Mail.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicks, and it tells you the next one."
+    },
+    {
+      "say": "Hold fn and speak the resume note.",
+      "capability": "dictate",
+      "result": "Lazur dictates clean, formatted text at the cursor in any app, so the note lands in your scratch file without typing."
+    },
+    {
+      "say": "Draft a short reply that says I will answer after lunch.",
+      "capability": "draft",
+      "result": "Lazur drafts and types the text for you. Read it before you send, then return to your note."
+    },
+    {
+      "say": "Set a timer for a focused block.",
+      "capability": "everyday",
+      "result": "Lazur sets timers by voice. It does not block other apps on its own, so turn on Focus or pause Slack yourself."
+    }
+  ],
+  "demo": {
+    "spoken": "Set a timer for a focused block and remind me to check Slack after it",
+    "capability": "everyday",
+    "result": "Lazur sets the timer by voice and confirms it out loud. You still turn on your Focus or pause Slack yourself.",
+    "shell": "code",
+    "context": "Cursor open, mid-refactor, Slack pings in the corner of the screen",
+    "output": "A timer for the focused block, confirmed out loud, with a reminder to check Slack when it ends."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Set up one Coding Focus",
+      "text": "Create a Focus in System Settings, schedule it for your main coding hours, and add a trigger for your editor. Test it once by asking a colleague to message you during the block."
+    },
+    {
+      "label": "Day 2",
+      "title": "Pause the loudest channel",
+      "text": "Find the channel that interrupts you most. Use /dnd in Slack during deep blocks, and set working hours so pings wait for a set time of day."
+    },
+    {
+      "label": "Day 3",
+      "title": "Start the resume note",
+      "text": "Each time you stop, write one line in a scratch file. Include the file, the symptom and the next step. Read the last line before you open the editor again."
+    },
+    {
+      "label": "Day 4",
+      "title": "Keep a simple log",
+      "text": "Note each interruption with its source, the time, and when you were back in the code. By the evening, look at which source appeared most."
+    },
+    {
+      "label": "Day 5",
+      "title": "Fix the top source",
+      "text": "Pick the source that cost you the most time and add a Focus Filter or Slack schedule for it. Decide whether the rest of the week needs the same change."
+    },
+    {
+      "label": "Weekend",
+      "title": "Keep what works",
+      "text": "Read the log and the notes. Keep the settings that cut the most loss and drop the ones you bypass without thinking."
+    }
+  ],
+  "apps": [
+    "cursor",
+    "vs-code",
+    "slack",
+    "chrome",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "developer-context-switching-recovery-time",
+  "role": "developers",
+  "roleName": "Developers",
+  "roleSingular": "developer",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/developer-context-switching-recovery-time/how-to-recover-focus-after-interruptions-while-1-8cd5d2.jpg",
+      "width": 1280,
+      "height": 848,
+      "alt": "Developer working on a laptop at a desk, focused on code for a developer's day",
+      "caption": "Focused work at a laptop, the setting most interruptions break into.",
+      "keywords": [
+        "how to recover focus after interruptions while coding",
+        "Developers",
+        "Losing time after interruptions while coding",
+        "Mac",
+        "developer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Goumbik",
+        "url": "https://pixabay.com/users/Goumbik-3752482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-technology-notebook-laptop-2717066/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/developer-context-switching-recovery-time/how-to-recover-focus-after-interruptions-while-2-d955fb.jpg",
+      "width": 1280,
+      "height": 599,
+      "alt": "Man typing code at a desk with a laptop screen during a coding session",
+      "caption": "Coding at a desk, where a short ping costs more than it looks.",
+      "keywords": [
+        "how to recover focus after interruptions while coding",
+        "Developers",
+        "Losing time after interruptions while coding",
+        "Mac",
+        "man coding desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/circuit-board-digitization-circuits-2528407/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/developer-context-switching-recovery-time/how-to-recover-focus-after-interruptions-while-3-dadd63.jpg",
+      "width": 1280,
+      "height": 866,
+      "alt": "Office desk with a phone and laptop, notifications arriving during focused work",
+      "caption": "Notifications arriving mid-task, the usual source of the break.",
+      "keywords": [
+        "how to recover focus after interruptions while coding",
+        "Developers",
+        "Losing time after interruptions while coding",
+        "Mac",
+        "office desk phone",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "rupixen",
+        "url": "https://pixabay.com/users/rupixen-11154019/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/pen-notebook-notepad-diary-4337521/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to recover focus after interruptions while coding",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "losing time after interruptions while coding": 2,
+      "developer focus after interruptions": 1,
+      "resume coding after an interruption": 1,
+      "Focus mode for developers on Mac": 1,
+      "Slack notifications while coding": 1,
+      "context switching for developers": 1,
+      "deep work for software developers": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

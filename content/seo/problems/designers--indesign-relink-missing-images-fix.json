@@ -1,0 +1,604 @@
+{
+  "title": "InDesign relink missing images on Mac: batch fix for designers in 2026",
+  "metaTitle": "InDesign relink missing images on Mac: batch fix in 2026",
+  "description": "Relink several missing images in InDesign on Mac: select the missing links, use Relink to Folder, and repeat for images in other folders.",
+  "targetKeyword": "indesign relink missing images",
+  "secondaryKeywords": [
+    "indesign missing links",
+    "relink images indesign mac",
+    "indesign links panel",
+    "relink to folder indesign",
+    "indesign missing image fix",
+    "indesign broken links"
+  ],
+  "intro": "To relink several missing images in InDesign on Mac, open Window > Links, select the missing links, and choose Relink to Folder. Tick Search for Missing Links in This Folder to catch matching files in that folder. InDesign has no one-click batch relink, so images in other folders need extra passes.",
+  "tldr": [
+    "Open Window > Links and find every missing link in the layout.",
+    "Click the first missing link, Shift-click the last, then choose Relink to Folder.",
+    "Tick Search for Missing Links in This Folder. It only searches that folder.",
+    "Images in other folders need one more pass each.",
+    "Gather files into one folder and keep their names before you relink."
+  ],
+  "stats": [
+    {
+      "value": "3 hours",
+      "label": "a week managing file versions for nearly three-quarters of 500+ surveyed designers (2020, vendor survey, not relinking alone)",
+      "sourceUrl": "https://www.santacruztechbeat.com/2020/04/09/survey-shows-multi-media-pros-agree-streamlining-access-radically-reduces-version-management-headaches/",
+      "sourceTitle": "Santa Cruz Tech Beat: version management survey (2020)"
+    },
+    {
+      "value": "$30.27",
+      "label": "median hourly pay for graphic designers, May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Graphic Designers"
+    },
+    {
+      "value": "17%",
+      "label": "of surveyed designers spend over 6 hours a week managing versions (2020 vendor survey)",
+      "sourceUrl": "https://www.santacruztechbeat.com/2020/04/09/survey-shows-multi-media-pros-agree-streamlining-access-radically-reduces-version-management-headaches/",
+      "sourceTitle": "Santa Cruz Tech Beat: version management survey (2020)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What missing image links cost you in InDesign"
+    },
+    {
+      "type": "paragraph",
+      "text": "A missing image link does not look like a big problem. InDesign shows a warning in the Links panel, and the layout still opens. The trouble starts when a file has forty broken links and the print date is three days away. Then the cost is hours, not clicks."
+    },
+    {
+      "type": "paragraph",
+      "text": "I found no study that measures time spent relinking images. The closest number comes from a 2020 survey of more than 500 design professionals. Santa Cruz Software, a vendor, commissioned it. Nearly three-quarters of respondents spend at least 3 hours a week managing versions. That covers version management in general, not relinking alone."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Hours a week",
+        "Pay at median rate",
+        "Four-week total"
+      ],
+      "rows": [
+        [
+          "1",
+          "$30.27",
+          "$121.08"
+        ],
+        [
+          "3",
+          "$90.81",
+          "$363.24"
+        ],
+        [
+          "6",
+          "$181.62",
+          "$726.48"
+        ]
+      ],
+      "caption": "Hand math on BLS median pay of $30.27 an hour. Not a published figure."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the table as a rough guide. Your hours, your rate and your project mix will differ. The point is that a small weekly habit adds up across a year."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not quote the survey as a relink stat",
+      "text": "The 3 hour figure covers version management from a vendor-sponsored survey. It does not measure relinking alone. Time one real layout yourself, and you will have a number you can defend."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why InDesign links break after you place an image"
+    },
+    {
+      "type": "paragraph",
+      "text": "InDesign does not store linked images inside the layout. It stores a link, which is a path to a file on your disk. When the file moves, gets renamed, or sits in a folder that moved, the path points to nothing. InDesign then marks the link as missing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most breaks come from a few patterns. These are the common ones, and you can check each one on your own machine."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Files were moved or renamed in Finder after you placed them.",
+        "A parent folder was renamed, so every path under it changed.",
+        "The layout moved to another Mac, or an external drive is not connected.",
+        "Files arrived without their folder structure, such as from a client or a zip download.",
+        "An older file was deleted, and a new version with a different name took its place."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The expert explanations I found are thin. I could not confirm how sync tools or file permissions change what InDesign sees. Treat those as things to test, not as settled causes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to batch relink missing images in InDesign on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start in the Links panel. Open it with Window > Links. Each missing link carries a warning icon. Select a link to see its file path and status, so you know which folder InDesign expects."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the layout and choose Window > Links.",
+        "Find the missing links. Each one carries a warning icon.",
+        "Click the first missing link, then Shift-click the last link in the run you want to fix.",
+        "Choose Relink to Folder.",
+        "Pick the folder that holds the replacement images.",
+        "Tick Search for Missing Links in This Folder, then click Open.",
+        "Check the Links panel again. Anything still missing needs another pass from its own folder."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The folder search only covers the folder you picked. InDesign relinks other missing files only when they sit in that folder. A layout with images in four folders needs four passes. Plan for that before you start."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Relink to Folder with a Shift-click selection"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Shift-click method is the closest thing to a batch relink in InDesign right now. An Adobe Community thread from September 2025 describes it. The person who started that thread asked Adobe for a true one-click option. No Adobe staff reply appears in the thread."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Shift-click range only works when the missing links sit next to each other. Scattered links need one selection per run. Select a run, choose Relink to Folder, and repeat. Count the runs before you start, so you know how many passes to expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same thread points to Adobe's UserVoice forum, where the request has about 5,346 ideas. That count shows the request is popular. It does not tell you when Adobe will act."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set a keyboard shortcut for Relink to Folder on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A community expert suggested a keyboard shortcut for Relink to Folder. It cuts clicks, but it does not make the job one step. To add one, open System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts. Choose InDesign, then add a shortcut with the menu title typed exactly as it appears."
+    },
+    {
+      "type": "paragraph",
+      "text": "One community post suggests ⌃⌥L in one setup. Check that it is free first, because macOS or another app may already use it. Another user said ⌘A did not select the missing links for them, so test select-all on a copy of your file before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make relinking take longer"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Relinking to an old version because the file name matches. Check the modified date in Finder before you pick the folder.",
+        "Renaming images in Finder after placing them, then expecting the folder search to find them.",
+        "Deleting links to make the warning go away. You lose the placed image, and an Adobe staffer called that workaround not the solution in an Illustrator bug thread.",
+        "Forgetting images in other folders, then finding them at the print check.",
+        "Skipping the final look at the Links panel."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes for missing images in Illustrator, Figma and Affinity"
+    },
+    {
+      "type": "paragraph",
+      "text": "This page covers InDesign, but many designers move between apps. An Illustrator bug report from October 2021, on Illustrator 26.0 for Windows, says the missing files prompt returns about 10 seconds after you choose No. A comment in October 2025 says it still happens."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma handles missing fonts with a bulk replace in the Missing fonts modal. The Figma help page covers fonts only and says nothing about broken image links. A replace updates all affected text for every collaborator, so save a version first. For the font side, read [Figma missing fonts when installed on Mac](/for/designers/problems/figma-missing-fonts-when-installed)."
+    },
+    {
+      "type": "paragraph",
+      "text": "In Affinity v3 on Windows, one forum user reported that Relink did nothing after converting a QuarkXPress file. That user replaced each photo by hand. This is one thread, not a survey, so do not read it as a common pattern."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Prevent broken links before your next handoff"
+    },
+    {
+      "type": "paragraph",
+      "text": "The best fix runs before the file leaves your Mac. Put the images in one folder and keep their names. Then run File > Package in InDesign, which gathers the linked files and fonts into one folder you can send."
+    },
+    {
+      "type": "paragraph",
+      "text": "Send that folder to the printer or client, not only the .indd file. Keep your working folder too, so you can check which version went out. Packaging does not fix a link that is already broken. Relink first, then package."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A routine for your next layout"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the plan below as a routine. Run it once on a small layout first. That shows you how InDesign handles your folder structure before a deadline. Then repeat the same steps on the real file."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in the relink routine"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not relink for you. It does not click buttons or operate InDesign. Hold ⌥ ⌘, which is Option plus Command, to ask about what is on screen. Lazur answers out loud and can circle a command so you can find it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps most with the parts that need a second look. Ask it to explain a warning, or to walk you through the clicks. It waits for each click before it gives the next step. You still make every click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation fits here too. Hold fn to dictate a note to your team about where the current images live. The text lands at your cursor, so it can go straight into Slack after a quick check."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. Pro is $18 a month, or $15 a month billed annually. Check the [pricing page](/pricing) before you decide."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Client and patient files",
+      "text": "If the layout holds client or patient data, check your employer's rules before you share your screen. Lazur sends audio and the screenshot to AI providers to answer. They are not stored."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, check fonts in the same layout. A missing font needs its own fix, and it shows its own warning. Open Font Book from Applications to see which families are installed on your Mac."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can InDesign relink all missing images in one click?",
+      "answer": "Not as far as I found. You can select a run of missing links, choose Relink to Folder, and tick Search for Missing Links in This Folder. An Adobe Community user asked for a true one-click option in September 2025, and no Adobe staff reply appears in that thread."
+    },
+    {
+      "question": "Why did only some of my images relink?",
+      "answer": "The folder search only covers the folder you picked. Images in other folders need a separate relink. Check the Links panel after each pass to see what is still missing."
+    },
+    {
+      "question": "Does relinking change how an image looks on the page?",
+      "answer": "It swaps the file behind the link. If the new file has different dimensions or crop, the placement can change. Check each page with many images after you relink."
+    },
+    {
+      "question": "Does relinking pick the newest version of an image?",
+      "answer": "Not by itself. InDesign links to whatever file you choose. Check the modified date in Finder and the file names before you pick the folder."
+    },
+    {
+      "question": "Can Lazur relink the images for me?",
+      "answer": "No. Lazur does not click buttons or operate InDesign. It can explain the warning, circle Relink to Folder on your screen, and guide you one click at a time."
+    },
+    {
+      "question": "Is missing font handling the same as missing images?",
+      "answer": "No. Fonts have their own alert and their own fix. In Figma, the Missing fonts modal can replace fonts in bulk, but the Figma help page says nothing about broken image links."
+    },
+    {
+      "question": "Should I share screenshots of client files with Lazur?",
+      "answer": "Check your employer's rules first. If the layout holds client or patient data, follow those rules before you share your screen. Lazur sends the screenshot to AI providers to answer, and it is not stored."
+    },
+    {
+      "question": "How do I stop the warnings from coming back?",
+      "answer": "Keep linked files in one folder, keep the names stable, and run File > Package before each handoff. Relinking fixes the links that are broken today. Packaging gives the printer one folder with the linked files gathered together."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Survey Shows Multi-Media Pros Agree Streamlining Access Radically Reduces Version Management Headaches",
+      "publisher": "Santa Cruz Tech Beat (contributed by Santa Cruz Software)",
+      "url": "https://www.santacruztechbeat.com/2020/04/09/survey-shows-multi-media-pros-agree-streamlining-access-radically-reduces-version-management-headaches/",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Occupational Outlook Handbook: Graphic Designers",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "InDesign Shorts: Tip #9 - Relinking Multiple Images",
+      "publisher": "RMR Consulting",
+      "url": "https://www.rmrconsult.com/indesign-shorts-tip-9-relinking-multiple-images/",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Add one click option to relink all missing links to a folder",
+      "publisher": "Adobe Community",
+      "url": "https://community.adobe.com/questions-671/add-one-click-option-to-relink-all-missing-links-to-a-folder-897469",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Missing Files Dialogue keeps re-appearing",
+      "publisher": "Adobe Illustrator UserVoice",
+      "url": "https://illustrator.uservoice.com/forums/601447-illustrator-desktop-bugs/suggestions/44367630-missing-files-dialogue-keeps-re-appearing",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Missing font alert in Figma Design",
+      "publisher": "Figma Help Center",
+      "url": "https://help.figma.com/hc/en-us/articles/360039956994-Missing-font-alert-in-Figma-Design",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Relink 'Missing' photos in Affinity v3",
+      "publisher": "Graphic Design Forum",
+      "url": "https://www.graphicdesignforum.com/t/relink-missing-photos-in-affinity-v3/34391",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "batch relink broken image links",
+  "costs": [
+    {
+      "title": "Hours you cannot spend on design",
+      "text": "A broken link costs time that you could spend on design work. Relinking takes a few clicks per run, but a layout with images in several folders needs several runs. Time one real project to see your own number."
+    },
+    {
+      "title": "Pay for the hours",
+      "text": "At the BLS median of $30.27 an hour, three hours a week is about $91 a week. That is my own calculation from BLS pay, not a published figure. The three hours is a version management figure from the survey, not a relinking figure."
+    },
+    {
+      "title": "Wrong versions reach the print run",
+      "text": "Relinking to the wrong file can put an old image on the page. If the file has the same name, the mistake is easy to miss. Check modified dates and the image on screen before you send the file."
+    },
+    {
+      "title": "Rushed fixes close to the deadline",
+      "text": "When links break late, people relink fast and skip the final check. That is when a stray missing image can reach the printer. Build the check into your routine so it does not depend on a rushed afternoon."
+    },
+    {
+      "title": "Placing images again from scratch",
+      "text": "Deleting a broken link to clear the warning also removes the placed image from the layout. You then place each image again and reset its size and position. An Adobe staffer called that delete-the-links approach not the solution in an Illustrator bug thread."
+    }
+  ],
+  "causes": [
+    {
+      "title": "InDesign stores a path, not the image",
+      "text": "A linked image lives as a file on your disk, and the layout keeps a path to it. When that path stops matching the file, InDesign shows the link as missing. The layout still shows a preview, so the problem can sit unnoticed until print or export."
+    },
+    {
+      "title": "Files or folders moved or got renamed",
+      "text": "Most breaks start with a move in Finder. Someone drags images into a new folder, or renames a folder that holds them. Every path under that folder then points to a place that no longer exists."
+    },
+    {
+      "title": "Another Mac or drive holds the files",
+      "text": "A layout that moves to another Mac, or to an external drive that is not connected, sees different paths. The images may be fine on the original machine. Reconnect the drive or copy the folder structure before you relink."
+    },
+    {
+      "title": "Files arrived without their folder structure",
+      "text": "Clients and collaborators often send images in a loose pile or a zip file. The folder structure that the layout expected never arrives. A flat folder of images still helps, because the folder search can match names in one place."
+    },
+    {
+      "title": "Cross-app conversions leave placeholders",
+      "text": "One Windows user reported that a QuarkXPress file converted in Affinity v3 showed every photo as missing. Update and Relink did nothing for that user. The same kind of conversion risk can apply to other apps, so check links right after you open a converted file."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Start in the Links panel with Window > Links",
+      "text": "Open the Links panel from the menu bar with Window > Links. Missing links carry a warning icon. Select one to see its file path and status. That tells you which folder InDesign expects, and you can compare it with where the files really are."
+    },
+    {
+      "title": "Select a run of missing links and relink them",
+      "text": "Click the first missing link, then Shift-click the last link in the run. Choose Relink to Folder. This is the closest thing to a batch relink in InDesign. It works best when the missing links sit next to each other in the list."
+    },
+    {
+      "title": "Tick Search for Missing Links in This Folder",
+      "text": "In the relink dialog, pick the folder with the replacement images. Tick Search for Missing Links in This Folder, then click Open. InDesign relinks other missing files in that folder. It does not search other folders, so repeat for each one."
+    },
+    {
+      "title": "Gather the images into one folder first",
+      "text": "Create a new folder in Finder with ⇧⌘N, then copy the current images into it. Keep the file names as they are. The folder search works on matching files, so a renamed copy may not match and needs a manual relink."
+    },
+    {
+      "title": "Set a shortcut for Relink to Folder",
+      "text": "Open System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts. Choose InDesign and add a shortcut, with the menu title typed exactly as Relink to Folder. A community post suggests ⌃⌥L in one setup. Check for clashes before you rely on it."
+    },
+    {
+      "title": "Find moved files with Finder search",
+      "text": "Press ⌘F in Finder, or ⌘Space for Spotlight, and search by file name. Look at the modified date before you relink to a file. If most of the images sit in one folder, that folder is your target."
+    },
+    {
+      "title": "Check fonts in Font Book, not the Links panel",
+      "text": "A missing font is a separate problem. Open Font Book from Applications to see which font families are installed on your Mac. Fix fonts there first, then return to the Links panel for images."
+    },
+    {
+      "title": "Run File > Package before every handoff",
+      "text": "In InDesign, File > Package gathers the document with its linked files and fonts into one folder. Send that folder to the printer or client. Relink any broken links before you package, because packaging does not repair them."
+    },
+    {
+      "title": "Use the right fix in Illustrator, Figma or Affinity",
+      "text": "Illustrator has a missing files prompt that one bug report says returns after you choose No. Figma's bulk replace covers fonts, not images. One Affinity thread reports replacing photos one by one. Plan for a manual pass in those apps."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What does this warning icon mean?",
+      "result": "Lazur explains the missing link out loud, so you know what to fix before you click anything.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is Relink to Folder?",
+      "result": "Lazur draws a circle and a label around the command on your screen. You still make the click.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through relinking these missing links.",
+      "result": "Lazur gives one step at a time and waits for each click before it gives the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a note to the team about the image folder.",
+      "result": "Clean, formatted text lands at your cursor, ready for a quick check before you send it.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a Slack message asking where the current images are.",
+      "result": "Lazur drafts the message and types it where your cursor is. You read it and send it yourself.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Relink to Folder in this panel?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around Relink to Folder. You make the click yourself.",
+    "shell": "design",
+    "context": "InDesign Links panel with missing links selected",
+    "output": "A circle and label on the command, plus a short spoken answer.",
+    "pointsAt": "Relink to Folder"
+  },
+  "plan": [
+    {
+      "label": "Before you open",
+      "title": "Collect the files",
+      "text": "Find the folder with the current images for this layout. Copy them into one new folder with ⇧⌘N for a new folder in Finder. Keep the file names unchanged, because the folder search depends on matching names."
+    },
+    {
+      "label": "Day 1 morning",
+      "title": "Relink one run at a time",
+      "text": "Open Window > Links. Select the missing links that sit next to each other, then choose Relink to Folder. Tick Search for Missing Links in This Folder and click Open. Repeat for each other folder that holds images."
+    },
+    {
+      "label": "Day 1 afternoon",
+      "title": "Check each relinked image",
+      "text": "Look at the Links panel again and confirm nothing is missing. Open the pages with the most images and check crop, placement and version on each one."
+    },
+    {
+      "label": "Day 2",
+      "title": "Fix stragglers and fonts",
+      "text": "Relink any leftover links one at a time. Then open Font Book from Applications and confirm that the fonts for this layout are installed."
+    },
+    {
+      "label": "Before handoff",
+      "title": "Package the layout",
+      "text": "Run File > Package so the linked files and fonts go into one folder. Send that folder, and keep your working copy so you can check which version went out."
+    }
+  ],
+  "apps": [
+    "photoshop",
+    "figma",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "indesign-relink-missing-images-fix",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/indesign-relink-missing-images-fix/indesign-relink-missing-images-1-5a1428.jpg",
+      "width": 1280,
+      "height": 761,
+      "alt": "A designer sits at a desk with a laptop showing a page layout",
+      "caption": "Layout work on a laptop, where broken image links often show up.",
+      "keywords": [
+        "indesign relink missing images",
+        "Designers",
+        "Batch relink broken image links",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/indesign-relink-missing-images-fix/indesign-relink-missing-images-2-f957fc.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "A graphic designer at a Mac computer reviewing a printed layout",
+      "caption": "Checking a layout at a Mac before it goes to print.",
+      "keywords": [
+        "indesign relink missing images",
+        "Designers",
+        "Batch relink broken image links",
+        "Mac",
+        "graphic designer mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fotoblend",
+        "url": "https://pixabay.com/users/fotoblend-87167/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/gifts-christmas-advent-background-9261249/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/indesign-relink-missing-images-fix/indesign-relink-missing-images-3-4cbe81.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Stack of paper folders and files on an office desk",
+      "caption": "Folders and files, where linked images usually live.",
+      "keywords": [
+        "indesign relink missing images",
+        "Designers",
+        "Batch relink broken image links",
+        "Mac",
+        "office folders files",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Angelo_Giordano",
+        "url": "https://pixabay.com/users/Angelo_Giordano-753934/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/collector-documents-office-folder-3930337/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "indesign relink missing images",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "indesign missing links": 1,
+      "relink images indesign mac": 1,
+      "indesign links panel": 2,
+      "relink to folder indesign": 1,
+      "indesign missing image fix": 1,
+      "indesign broken links": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -1,0 +1,691 @@
+{
+  "title": "Search console compare keywords year over year on Mac: steps, limits and fixes for 2026",
+  "metaTitle": "Search console compare keywords year over year on Mac",
+  "description": "Compare keyword clicks and impressions year over year in Search Console, what the 16 months of data allows, and fixes that work on a Mac.",
+  "targetKeyword": "search console compare keywords year over year",
+  "secondaryKeywords": [
+    "search console keyword comparison",
+    "search console 16 months data",
+    "compare queries year over year search console",
+    "search console export 1,000 rows",
+    "search analytics api rowLimit",
+    "search console bulk export bigquery",
+    "search console date range compare",
+    "google sheets year over year keywords"
+  ],
+  "intro": "You can compare keyword performance year over year in Search Console, but only inside a 16 month window. Open the Performance report, turn on Compare, and set the earlier year as the second period. The export also has gaps. Anonymized queries never appear as rows, and the web export stops at 1,000 rows.",
+  "tldr": [
+    "Search Console keeps 16 months of data, so a year over year keyword check only works inside that window.",
+    "Use Compare on the Queries tab of the Performance report to put two time periods side by side.",
+    "Anonymized queries never show as rows, and the web export stops at 1,000 rows.",
+    "For a full history, turn on the bulk export to BigQuery now, then compare the rows in your own dataset."
+  ],
+  "stats": [
+    {
+      "value": "16 months",
+      "label": "Search Console keeps data for the last 16 months, which caps any year over year keyword comparison.",
+      "sourceUrl": "https://support.google.com/analytics/answer/10737381?hl=en",
+      "sourceTitle": "Connect Search Console to Google Analytics, Analytics Help"
+    },
+    {
+      "value": "1,000 rows",
+      "label": "Most rows you can export through the Search Console user interface in one file.",
+      "sourceUrl": "https://developers.google.com/search/blog/2022/10/performance-data-deep-dive",
+      "sourceTitle": "Search Console performance data filtering and limits, Google Search Central Blog"
+    },
+    {
+      "value": "50,000 rows",
+      "label": "Daily limit per site per search type in the Search Analytics API and the Looker Studio connector.",
+      "sourceUrl": "https://developers.google.com/search/blog/2022/10/performance-data-deep-dive",
+      "sourceTitle": "Search Console performance data filtering and limits, Google Search Central Blog"
+    },
+    {
+      "value": "14.5 hours",
+      "label": "Average weekly time senior US marketers spend on customer data collection, per a September 2022 survey.",
+      "sourceUrl": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "sourceTitle": "Treasure Data press release: Data efficiency and better decisions survey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Search Console can compare, and what it hides"
+    },
+    {
+      "type": "paragraph",
+      "text": "Search Console can compare two time periods for the same keywords. That is the core of a year over year check. It cannot do everything you might want. It keeps a rolling 16 months of data, it hides some queries, and it caps exports. Learn those three limits before you start."
+    },
+    {
+      "type": "paragraph",
+      "text": "The comparison itself is simple. Open the Performance report, turn on Compare, and pick a second date range. Each query row then shows both periods and the difference. Exact labels can change when Google updates the page, so check what you see on screen."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "table",
+      "caption": "Limits that shape a keyword comparison in Search Console",
+      "headers": [
+        "Where the data comes from",
+        "Limit",
+        "What it means for you"
+      ],
+      "rows": [
+        [
+          "Performance report, default view",
+          "Past three months",
+          "The date range starts short, so widen it before you compare."
+        ],
+        [
+          "Performance report history",
+          "16 months",
+          "A year over year check works only for dates inside that window."
+        ],
+        [
+          "Export from the web interface",
+          "1,000 rows",
+          "The downloaded file holds the top rows only, not the full list."
+        ],
+        [
+          "Search Analytics API",
+          "50,000 rows per day per site per search type",
+          "Request up to 25,000 rows at a time with startRow to page through more."
+        ],
+        [
+          "Anonymized queries",
+          "Never shown as rows",
+          "Their clicks still count in totals, so the rows will not add up."
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check the window first",
+      "text": "Open the date filter before anything else. If the older period starts before the 16 month window, Search Console no longer has that data. It may survive only in a file you saved earlier."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a 16 month window blocks some year over year checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sixteen months sounds generous. It covers one full year and a little more. Today is 2026-11-09, so the window reaches back to about July 2025. A September 2026 versus September 2025 check fits inside it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A January 2026 versus January 2025 check does not fit. January 2025 sits before the window, so Search Console no longer shows those days. The same goes for any month that has dropped out of the report."
+    },
+    {
+      "type": "paragraph",
+      "text": "The window moves forward every day. A check you skip in October may be impossible in December. Pick the months you care about, then compare them while the data still exists."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: compare keywords for two years in Performance"
+    },
+    {
+      "type": "paragraph",
+      "text": "These steps use the web version of Search Console in Chrome. Match the words on screen rather than the exact position of each control, because Google moves things around."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Search Console in Chrome and choose the property you want. Pick the same domain or URL prefix you use in your other reports.",
+        "Go to Performance > Search results. This is the report that shows queries, clicks, impressions and position.",
+        "Click the date filter and set the current period, for example the last three months.",
+        "Open the Queries tab so each row is one search term.",
+        "Find Compare near the filters, turn it on, and choose the second time period. Use the same length as the first, shifted back one year.",
+        "Click Apply, then sort by clicks or by the change column to see the biggest moves.",
+        "Export or screenshot the rows before you change any filter. Adding a new comparison replaces the one you had."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the two periods the same length. Keep the same device, country and search type on both sides. A filter on only one side changes the numbers, even when your rankings did not move."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to read the change without fooling yourself"
+    },
+    {
+      "type": "paragraph",
+      "text": "A keyword that jumped is not always a win. Check impressions before you celebrate clicks. More impressions can lift clicks even when your page did not get better."
+    },
+    {
+      "type": "paragraph",
+      "text": "Daily comparisons create false dips. Google's help page says week or month granularity smooths out day-of-week effects. Switch to weekly or monthly rows when you want a trend, not a single weekday."
+    },
+    {
+      "type": "paragraph",
+      "text": "Grouping by page or by search appearance can change how click-through rate, impressions and clicks are calculated. Treat those numbers as a different measure from the plain query view."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Write the dates down",
+      "text": "Record both date ranges with exact start and end days in your notes. A comparison without dates cannot be repeated next quarter, and nobody can check your work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why some keyword rows never appear in the report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google hides some queries on purpose. Its Search Central blog describes anonymized queries as ones not issued by more than a few dozen users over a two to three month period. Their text never shows as a row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Their clicks still count in chart totals. So the rows in your table can add up to less than the total at the top. That gap is normal. It is not a mistake in your comparison."
+    },
+    {
+      "type": "paragraph",
+      "text": "The gap grows with long tail terms. Broad, high volume keywords usually compare cleanly. Rare phrases may vanish from one period and not the other. Do not read a missing phrase as a dead phrase."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export the rows and compare them in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "The web export stops at 1,000 rows. A small site may fit most of its queries inside that limit. A larger site needs the API or the bulk export. A plain export still works for a quick side by side check."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Export the Queries rows for each period from the Performance report. Save each file with its date range in the name.",
+        "Open Google Sheets in Chrome and create a new file. Put the earlier year on one tab and the later year on another.",
+        "Use the query text as the key. On a third tab, use =XLOOKUP to pull the matching clicks from the other year.",
+        "Add a change column. Subtract the earlier value from the later value, then divide by the earlier value for a percent change.",
+        "Mark queries that exist in only one year. Those are new or dropped terms, and they need their own review.",
+        "Sort by the change column using the steps in the sort tutorial."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste values only with ⌘ ⇧ V, so formulas from the source file do not carry over. Freeze the header row first so the column names stay visible while you scroll."
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP needs the matching column on the left of the value you want. XLOOKUP does not. If your export puts queries in column B, XLOOKUP saves you a step and a broken formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the earlier value is zero, a percent change formula fails. Wrap it in IFERROR so the cell shows a blank instead of an error. Then filter those blanks into their own list."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Get a full history with the bulk export to BigQuery"
+    },
+    {
+      "type": "paragraph",
+      "text": "The bulk export is the long term fix for the 16 month window. Google's help page says it is a daily export of performance data to BigQuery for the whole property, except anonymized queries."
+    },
+    {
+      "type": "paragraph",
+      "text": "The announcement describes an ongoing daily export. It does not say whether past data is backfilled. Do not assume you can pull last year's rows from it. Turn it on now, so next year has history you own."
+    },
+    {
+      "type": "paragraph",
+      "text": "BigQuery bills for storage and queries. Google's announcement does not list those charges. Check the BigQuery pricing page in Google Cloud, and ask whoever pays your cloud bill, before you switch it on."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Gaps remain after the export",
+      "text": "The bulk export also leaves out anonymized queries. Long tail comparisons still have gaps after you turn it on, so keep the reconciliation step."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pull more rows with the Search Analytics API"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Search Analytics API is for people who can write a script or ask a developer. It returns up to 50,000 rows per day per site per search type. The default returns 1,000 rows. rowLimit can go up to 25,000 per request, and startRow pages through the rest."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's API reference says the API does not guarantee every row. It returns the top ones. Read that line before you trust a total pulled from it."
+    },
+    {
+      "type": "paragraph",
+      "text": "dataState defaults to finalized data. Setting it to all adds fresh data that Google may still revise. Use fresh data only for recent days, and recheck those days later."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Looker Studio connector follows the same daily limit. Build the report once, then let it refresh instead of exporting by hand every month."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make year over year keyword data look wrong"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Comparing Web search with Image or Video search, then reading the change as a ranking shift.",
+        "Using a partial month. A half filled month will look like a sharp drop.",
+        "Mixing daily and weekly rows across the two periods.",
+        "Forgetting that the second period is a year back, so holidays and launches land on different days.",
+        "Trusting the row count. Anonymized queries and the export cap both hide terms.",
+        "Filtering by page on one side only, then comparing the totals."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why hand built comparisons break in quiet ways"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet work breaks in small ways. A lookup points at the wrong column after someone inserts one. A paste picks up a hidden row. Panko's review of spreadsheet research sums up the risk in one line."
+    },
+    {
+      "type": "paragraph",
+      "text": "The abstract reads: \"Fifteen years of research studies have concluded unanimously that spreadsheet errors are both common and non-trivial.\" It gives no percentages, so treat it as a warning, not a rate."
+    },
+    {
+      "type": "paragraph",
+      "text": "Reconcile before you present. Add up the query rows, compare them with the total at the top of the report, and explain the gap in one line. If the gap is larger than missing anonymized queries explain, find the error first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with this comparison"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons or pull your data for you. It helps with the parts you do by hand. Hold ⌥ ⌘ and ask where Compare sits on screen. Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to set a second date range, and Lazur guides you one click at a time. It waits for each click, so you stay in control of the report. Ask it to explain a missing row, and it answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate a note for your team. Dictation types clean text at the cursor in any app, including a summary in Google Docs or a message in Slack. Dictation is for your words, so check the numbers before you send them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy when you show Lazur a Search Console screen"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Search Console shows real customer queries. If your employer has rules about this kind of data, follow them before you paste rows into any tool, including Lazur."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start small and build the habit"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one keyword group. Compare the same month across two years, export both sides, and write down what is missing. Then turn on the bulk export, so next year's check has a baseline you can trust."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can Search Console compare keywords year over year?",
+      "answer": "Yes, but only inside a window. The Performance report keeps 16 months of data, so both periods must fall inside it. Use Compare on the Queries tab to set the second period."
+    },
+    {
+      "question": "Why is last January missing from my Search Console report?",
+      "answer": "The report keeps 16 months of data. If today is 2026-11-09, the window reaches back to about July 2025. Older days drop out of the report and do not come back."
+    },
+    {
+      "question": "Why does the export show fewer keywords than the total at the top?",
+      "answer": "Anonymized queries never appear as rows, but their clicks still count in totals. The web export also stops at 1,000 rows. Both gaps are normal, so reconcile them before you present the numbers."
+    },
+    {
+      "question": "How do I get more than 1,000 keywords?",
+      "answer": "Use the Search Analytics API. It returns up to 50,000 rows per day per site per search type, paged with startRow. The bulk export to BigQuery gives daily rows, but it still excludes anonymized queries."
+    },
+    {
+      "question": "Does the bulk export to BigQuery include past data?",
+      "answer": "Google's announcement does not say whether past data is backfilled. Turn it on now so future checks have history. Check BigQuery charges before you switch it on."
+    },
+    {
+      "question": "Can Lazur pull my Search Console data for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps for you. It can point at Compare, guide you one click at a time, explain the 16 month limit out loud, dictate notes, and draft text."
+    },
+    {
+      "question": "Should I compare by page as well as by query?",
+      "answer": "You can, but read the numbers with care. Google says grouping by page or search appearance may change how click-through rate, impressions and clicks are calculated."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Connect Search Console to Google Analytics, Analytics Help",
+      "url": "https://support.google.com/analytics/answer/10737381?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Performance report (Search Console Help)",
+      "url": "https://support.google.com/webmasters/answer/7576553?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Performance report (Search results): Advanced filtering and comparison, Search Console Help",
+      "url": "https://support.google.com/webmasters/answer/17011165?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Search Console performance data filtering and limits",
+      "url": "https://developers.google.com/search/blog/2022/10/performance-data-deep-dive",
+      "publisher": "Google Search Central Blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "About bulk data export of Search Console data to BigQuery, Search Console Help",
+      "url": "https://support.google.com/webmasters/answer/12918484?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Bulk data export: a new and powerful way to access your Search Console data",
+      "url": "https://developers.google.com/search/blog/2023/02/bulk-data-export",
+      "publisher": "Google Search Central Blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Search Analytics: query - Google Search Console API",
+      "url": "https://developers.google.com/webmaster-tools/v1/searchanalytics/query",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Treasure Data press release: Data efficiency and better decisions survey",
+      "url": "https://www.treasure.ai/press-releases/data-efficiency-better-decisions-marketers-consumers-survey/",
+      "publisher": "Treasure Data",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Spreadsheet Errors: What We Know. What We Think We Can Do",
+      "url": "https://arxiv.org/abs/0802.3457",
+      "publisher": "arXiv (Raymond Panko)",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "comparing keyword performance across years in search console",
+  "costs": [
+    {
+      "title": "Hours lost to manual exports",
+      "text": "Each comparison means exporting two periods, matching queries, and fixing formulas. A September 2022 Treasure Data survey of 500 senior US marketers found they spend on average 14.5 hours per week on customer data collection. That covers more than keyword work, so treat it as context, not a benchmark."
+    },
+    {
+      "title": "Decisions built on partial rows",
+      "text": "Missing rows change the story. Anonymized queries never show as rows, and the web export caps at 1,000 rows. If you cut a content plan from a list that hides the long tail, you may drop the wrong topics."
+    },
+    {
+      "title": "History that quietly disappears",
+      "text": "Data older than 16 months leaves the report. A team that never saved last year's rows cannot answer questions about last year. The cost shows up in a planning meeting, when someone asks why traffic changed and nobody has the baseline."
+    },
+    {
+      "title": "Changes that look real but are not",
+      "text": "Grouping by page or search appearance can change how clicks and impressions are calculated. Daily rows can show a dip that is only a quiet weekday. Both make a steady month look like a crisis."
+    }
+  ],
+  "causes": [
+    {
+      "title": "A rolling window, not a calendar",
+      "text": "Search Console keeps a rolling 16 months of data. The window moves every day, so a comparison that worked last month may fail this month. Many people assume the report keeps every year they have ever tracked. It does not."
+    },
+    {
+      "title": "Privacy thresholds hide rare queries",
+      "text": "Google describes anonymized queries as ones not issued by more than a few dozen users over a two to three month period. Their text is hidden, so they never show as rows. Long tail terms are the most likely to disappear from a year over year view."
+    },
+    {
+      "title": "Caps on export and API rows",
+      "text": "The web export is capped at 1,000 rows. The Search Analytics API caps at 50,000 rows per day per site per search type, and it returns the top rows, not every row. A full keyword list rarely fits in one file."
+    },
+    {
+      "title": "Comparison settings change the math",
+      "text": "Day-level comparisons pick up day-of-week effects. Grouping by page or search appearance can change how click-through rate and clicks are calculated. The same keyword can look different depending on the view you chose."
+    },
+    {
+      "title": "Only one comparison at a time",
+      "text": "The Performance report allows one active comparison. Adding a new comparison replaces the existing one. If you change a filter halfway through, you can lose the setup you had and not notice until the numbers look odd."
+    },
+    {
+      "title": "Spreadsheets add their own errors",
+      "text": "Most year over year checks end in a spreadsheet. Lookups break when columns move, and pasted ranges pick up hidden rows. Panko's review of spreadsheet research says these errors are common and not trivial."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Save both periods before the window moves",
+      "text": "Export the Queries rows for each period while the data still exists. Put the exact date range in each file name, then store the files in a shared folder. Do this every month, so your baseline never depends on the report keeping it for you."
+    },
+    {
+      "title": "Turn on the bulk export and let history build",
+      "text": "Set up the bulk export to BigQuery in Search Console if your team has a Google Cloud project. Google says it exports daily performance data for the whole property, except anonymized queries. Check BigQuery charges first, since the announcement does not list them."
+    },
+    {
+      "title": "Compare by week or month for trends",
+      "text": "Use weekly or monthly granularity when you want to see a direction. Google's help page says these settings smooth out day-of-week effects. Save daily rows for investigating a specific spike."
+    },
+    {
+      "title": "Use XLOOKUP and IFERROR in Google Sheets",
+      "text": "Match the two years on the query text with =XLOOKUP. Wrap percent change formulas in IFERROR so zero values show a blank instead of an error. Paste values only with ⌘ ⇧ V so source formulas do not carry over."
+    },
+    {
+      "title": "Reconcile the rows against the report total",
+      "text": "Add up the query rows and compare the sum with the total at the top of the report. Some gap is normal because of anonymized queries. Write the gap down, and investigate any difference that is larger than that."
+    },
+    {
+      "title": "Use the API when you need more rows",
+      "text": "If you can script, use rowLimit up to 25,000 and page with startRow. Set dataState to all only for recent days, since fresh data can change. Remember that the API returns top rows, so do not treat its totals as complete."
+    },
+    {
+      "title": "Review missing terms as their own list",
+      "text": "Pull the queries that appear in only one year into a separate list. Those are new or dropped terms, and they need their own review. Do not delete them from the comparison, because the missing rows tell you something."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask where Compare is.",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the Compare control, so you find it without hunting through filters."
+    },
+    {
+      "say": "Ask Lazur to walk me through a second date range.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking, so you see every change."
+    },
+    {
+      "say": "Ask Lazur why last January is missing.",
+      "capability": "explain",
+      "result": "Lazur answers out loud, using the 16 month rule and the dates on your screen."
+    },
+    {
+      "say": "Hold fn and dictate a summary for the team.",
+      "capability": "dictate",
+      "result": "Dictation types clean text at the cursor in any app. Check the numbers before you send the note."
+    },
+    {
+      "say": "Ask Lazur to draft a short brief on the keyword changes.",
+      "capability": "draft",
+      "result": "Lazur drafts the text from what you give it. You check every figure before it goes to anyone."
+    },
+    {
+      "say": "Ask Lazur to research how Google describes the 16 month limit now.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report you can read."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Compare option on this report?",
+    "capability": "point",
+    "result": "Lazur circles Compare near the filters and labels it, then waits while you choose the second period.",
+    "shell": "generic",
+    "context": "Search Console Performance report, Queries tab, open in Chrome",
+    "output": "A circle and a label on the Compare control, with a short spoken answer.",
+    "pointsAt": "Compare"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the window",
+      "text": "Open the date filter and note the earliest date you can still see. Write the two periods you want to compare, with exact start and end days, in a shared note."
+    },
+    {
+      "label": "Day 2",
+      "title": "Export both periods",
+      "text": "On the Queries tab, export each period and save the files with the date range in the name. Do this before you change any filter, because a new comparison replaces the old one."
+    },
+    {
+      "label": "Day 3",
+      "title": "Match the queries in Sheets",
+      "text": "Paste each year on its own tab. Use =XLOOKUP on the query text, then add a change column and wrap it in IFERROR for zero values."
+    },
+    {
+      "label": "Day 4",
+      "title": "Build the missing list",
+      "text": "Pull terms that appear in only one year into their own tab. Label them new or dropped, and note which ones matter for your content plan."
+    },
+    {
+      "label": "Day 5",
+      "title": "Reconcile the totals",
+      "text": "Add up the query rows and compare the sum with the report total. Write down the gap, then explain it with the anonymized query rule in one line."
+    },
+    {
+      "label": "Week 2",
+      "title": "Turn on the bulk export",
+      "text": "If your team has a Google Cloud project, set up the bulk export to BigQuery. Check BigQuery charges first, since the announcement does not list them."
+    },
+    {
+      "label": "Monthly",
+      "title": "Save the baseline",
+      "text": "Each month, export the last full month of queries and save it with the date range. Next year's comparison then has a baseline you own, even after the window moves on."
+    }
+  ],
+  "apps": [
+    "chrome",
+    "google-sheets",
+    "google-docs",
+    "slack"
+  ],
+  "type": "problem",
+  "slug": "search-console-compare-keywords-year-over-year",
+  "role": "marketers",
+  "roleName": "Marketers",
+  "roleSingular": "marketer",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-compare-keywords-year-over-year/search-console-compare-keywords-year-over-year-1-39fa37.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketer at a desk comparing keyword data on a laptop screen",
+      "caption": "Checking keyword trends on a laptop",
+      "keywords": [
+        "search console compare keywords year over year",
+        "Marketers",
+        "Comparing keyword performance across years in Search Console",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-compare-keywords-year-over-year/search-console-compare-keywords-year-over-year-2-bef7eb.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Marketing team reviewing search performance charts together in an office",
+      "caption": "A team reviewing search performance together",
+      "keywords": [
+        "search console compare keywords year over year",
+        "Marketers",
+        "Comparing keyword performance across years in Search Console",
+        "Mac",
+        "marketing team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/contact-visit-letter-e-mail-mail-2860030/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/search-console-compare-keywords-year-over-year/search-console-compare-keywords-year-over-year-3-0e6018.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Man using a Mac computer to review spreadsheet data at a desk",
+      "caption": "Reviewing exported rows on a Mac",
+      "keywords": [
+        "search console compare keywords year over year",
+        "Marketers",
+        "Comparing keyword performance across years in Search Console",
+        "Mac",
+        "man using Mac computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "search console compare keywords year over year",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "search console keyword comparison": 1,
+      "search console 16 months data": 1,
+      "compare queries year over year search console": 1,
+      "search console export 1,000 rows": 1,
+      "search analytics api rowLimit": 1,
+      "search console bulk export bigquery": 1,
+      "search console date range compare": 1,
+      "google sheets year over year keywords": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

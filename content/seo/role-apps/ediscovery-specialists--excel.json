@@ -1,0 +1,591 @@
+{
+  "title": "Excel for ediscovery specialists on Mac: load files, review tracking and voice help",
+  "metaTitle": "Excel for eDiscovery Specialists on Mac: Load Files and Tracking",
+  "description": "Excel for eDiscovery specialists on Mac: how to open load files safely, stay under sheet limits, track reviewers and get voice help from Lazur.",
+  "targetKeyword": "excel for ediscovery specialists on mac",
+  "secondaryKeywords": [
+    "excel load file mac",
+    "ediscovery load file excel",
+    "excel row limit mac",
+    "excel power query mac limitations",
+    "track reviewer productivity excel",
+    "ediscovery spreadsheet tips mac"
+  ],
+  "intro": "Excel for eDiscovery specialists on Mac handles three common jobs: reading load files, sorting exported metadata and checking reviewer output. It works for those jobs, but it has hard sheet limits, and Microsoft says Power Query authoring is not available on Mac. This guide covers how to open load files without losing data, what the Mac limits mean for big productions, and where Lazur helps while you work.",
+  "tldr": [
+    "Import ID columns as text, or the leading zeros in control numbers can disappear on the first save.",
+    "A worksheet in Excel for Mac holds 1,048,576 rows and 16,384 columns, so split big productions first.",
+    "Microsoft says Power Query authoring is not available in Excel for Mac, but refresh still works for text and CSV files.",
+    "Purview review-set exports must be downloaded within 30 days of completion, so put that deadline in Reminders.",
+    "Lazur points at columns, explains fields, dictates notes and drafts formulas while you work in Excel."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows per worksheet in Excel, the grid limit you check against first",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "30 days",
+      "label": "to download a Microsoft Purview review-set export after it completes",
+      "sourceUrl": "https://learn.microsoft.com/en-us/purview/edisc-review-set-export",
+      "sourceTitle": "Export items from a review set in eDiscovery"
+    },
+    {
+      "value": "41%",
+      "label": "of 101 legal professionals named lack of time as an individual challenge",
+      "sourceUrl": "https://www.nextpoint.com/ediscovery-blog/ediscovery-landscape-survey-2026",
+      "sourceTitle": "More Data, Fewer Resources: What's Holding Ediscovery Back"
+    },
+    {
+      "value": "58%",
+      "label": "named document management, review and reduction as a firm-level challenge",
+      "sourceUrl": "https://www.nextpoint.com/ediscovery-blog/ediscovery-landscape-survey-2026",
+      "sourceTitle": "More Data, Fewer Resources: What's Holding Ediscovery Back"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What eDiscovery specialists do in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for eDiscovery specialists on Mac is a reading and checking tool. It is not a review platform. Your review tool holds the documents, the tags and the history of who coded what. Excel holds the copies you pull out. You open a load file, check the metadata, sort it, count it and summarize it for a supervising attorney or project manager."
+    },
+    {
+      "type": "paragraph",
+      "text": "That split matters. Lexbe says its XLSX load file can be opened, searched and analyzed outside a litigation review database. Nextpoint describes processed metadata as a spreadsheet-like database view that users can sort and filter. In both cases, Excel is a tool for reading and checking, not the system of record."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Opening a load file without losing data"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most common damage happens on the first open. Excel reads a control number that starts with zeros and drops those zeros. Save the file, and they stay gone. Dates have a similar problem. Nextpoint says processing typically uses UTC timestamps, so the date in your sheet may not match the time a reviewer saw in the platform."
+    },
+    {
+      "type": "paragraph",
+      "text": "Nextpoint also says each file gets a DocumentID or control number, and that this is not a Bates number. Keep the two apart in your notes. Do not match or rename documents by Bates number unless your vendor confirms that field is in the load file."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Steps for a safe first open"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Copy the vendor file to a new folder. Work only on the copy.",
+        "Import the file instead of double-clicking it. If your copy shows Data > Get Data > From File > From Text/CSV, use it for plain text loads and set ID columns to Text.",
+        "Count the rows and compare the count to the document count in the vendor's transmittal letter.",
+        "Scan the ID and date columns for lost zeros and shifted dates before you sort anything.",
+        "Save under a new name, such as production_working_copy.xlsx, and leave the original alone."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Saved zeros do not come back",
+      "text": "Once Excel saves a converted column, the lost zeros stay lost. Keep the vendor original unchanged. Keep a text copy of every ID column you need for matching."
+    },
+    {
+      "type": "paragraph",
+      "text": "DAT and OPT files are plain text. Their field breaks are not simple commas, so a double-click can split columns in the wrong place. Lexbe says its production load file comes in DAT, OPT, DII and XLSX formats. Ask your vendor which one you received before you open it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits that matter for big productions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Excel specifications page lists the grid limits. A worksheet holds 1,048,576 rows and 16,384 columns. A single cell holds up to 32,767 characters. Those limits decide how you split work, so check them before a large open."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Limit",
+        "Value",
+        "What it means for a load file"
+      ],
+      "rows": [
+        [
+          "Rows per worksheet",
+          "1,048,576",
+          "A production with more rows than this will not fit on one sheet. Split it by volume or date range first."
+        ],
+        [
+          "Columns per worksheet",
+          "16,384",
+          "Most metadata sets fit. Count your fields against the load file's field list if you have many custom fields."
+        ],
+        [
+          "Characters per cell",
+          "32,767",
+          "Long extracted text or message bodies can exceed one cell. Ask the vendor whether text comes in separate files."
+        ]
+      ],
+      "caption": "Limits from Microsoft's Excel specifications page"
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not rely on Excel to warn you. Some pages claim Excel drops rows past the limit without a message. Microsoft's specifications page does not say that, so treat any count as unverified until you check it yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "A row count is your proof. Click the first data cell in column A, then press ⌘↓ to jump to the last row. Compare that row number with the vendor's document count, allowing for the header row. A mismatch means stop and find out why before you go further."
+    },
+    {
+      "type": "paragraph",
+      "text": "Long text is the other trap. Find out which columns carry full text. Pick one suspicious cell and use LEN to see how many characters it holds. A value near the 32,767 limit deserves a second look before you trust the column."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Filtering and sorting exported metadata"
+    },
+    {
+      "type": "paragraph",
+      "text": "Filtering takes most of your time. Turn on filters with ⌘⇧F, or go to Data > Filter. Click the arrow on any header to filter that field. Clear each filter before you move on, or the view stays narrower than you think."
+    },
+    {
+      "type": "paragraph",
+      "text": "Format the range as a table before you sort. Headers stay visible when you scroll, and formulas extend to new rows. Microsoft's October 2026 post says named tables at creation are now generally available on Mac, so you can name the table as you make it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked case. A supervising attorney wants every message from one custodian with a blank sent date. Filter the Custodian column to that name. Then filter the sent date column to blanks. Select the visible rows, copy them with ⌘C, and paste them into a new sheet with ⌘V."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Text dates sort wrong",
+      "text": "If a date column is stored as text, Excel sorts it alphabetically, not by time. Check the column format under Format > Cells before you sort. Convert the dates first, then sort."
+    },
+    {
+      "type": "paragraph",
+      "text": "Deduplication needs a decision before you start. Nextpoint says the vendor must confirm whether duplicates should be shown or removed. Get that answer first. Then use Data > Remove Duplicates on your working copy only. The command deletes rows from your sheet, and Excel's undo history does not survive a save and close."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Tracking reviewer output without short counts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your platform may already produce the productivity numbers. Lexbe says account admins can track each reviewer's daily productivity and generate an Excel report. The report can show document count, pages, activity or GB, at daily or hourly intervals."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the catch. Lexbe says the report exports only from the Table display, and the export reflects what is on screen. Filters you set first carry into the report. Clear every filter before you export, or the totals cover only the rows you left visible."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build your own check in Excel to match. Put a reviewer name in one cell and a date in the next. Then use COUNTIFS on the Reviewer and ReviewDate columns. Compare that total with the platform report. A gap usually means a leftover filter, a time zone shift or a reviewer name typed two ways."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the constraint. In Nextpoint's 2026 survey, 41% of respondents named lack of time as an individual challenge. Another 58% named document management, review and reduction as a firm-level challenge."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Who was surveyed",
+      "text": "The survey sampled 101 legal professionals, about 70% of them at law firms or legal services organizations. It covers legal professionals generally, not eDiscovery specialists alone, and it does not measure Excel use."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export deadlines and download windows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Exports run on clocks. Microsoft Purview says you must download content from an export within 30 days after the export completes. Export processes stay for the life of the case, so the download window is the one people miss."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Purview also cancels any export that runs more than seven days without finishing. Microsoft recommends splitting large exports into smaller batches, or using date ranges and filters. Plan the batches before you start the export, not after it fails."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the export option that fits your spreadsheet work. Export item report only creates the summary and item report, and hides the folder and path options. Export items with item report adds the documents, with optional text files, tags and redacted PDFs. If you need only metadata for Excel, the first option is the right one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the deadline outside Excel. Ask Lazur to remind you to download the export within 30 days, and it adds the reminder to Apple Reminders. Put the export name in the reminder so the right person checks it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac: what works and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query is how many analysts clean repeated imports. On Mac, it is narrower. Microsoft's Power Query page says authoring in the Power Query Editor is not available in Excel for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Refresh still works. Microsoft says refresh covers text or CSV files, Excel workbooks, XML and JSON files, local tables and ranges, and folders. The same page does not mention Power Pivot or the data model. Do not plan around either one until you check your copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "A practical split works well. Build the query on a Windows machine, or ask IT to build it, then open and refresh it on Mac. Check your build under Excel > About Excel. Microsoft's page cites version 16.69 in a note, but the wording does not say which feature it covers. Do not treat that number as a cutoff."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "What Microsoft ships for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 post says the clean data skill and skill builder are rolling out to general availability on all platforms, including Mac. The skill recorder is still Insider-only on Mac. The interactive canvas is Windows only. Plan your Mac work around the first, and treat the other two as later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas for checks, not for decisions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most formulas in this work check the export. They do not decide anything about a document. Keep formulas on the working copy, and label every helper column so a colleague can read it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "COUNTIFS counts rows that match two or more conditions, such as reviewer and date.",
+        "LEN returns the number of characters in a cell. Use it to find long text near the cell limit.",
+        "TRIM removes extra spaces that break filters and lookups.",
+        "ISBLANK flags rows that are missing a field, such as a blank sent date.",
+        "XLOOKUP matches an ID in one sheet to a row in another. Confirm your Mac version supports it first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked case. You want to flag rows where the text column is close to the cell limit. Add a helper column next to the text. Enter a LEN formula that points at the first text cell. Copy it down a few rows, check the results by hand, then fill the column. Sort the flags from largest to smallest."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to draft the formula. Describe the goal in plain words, such as flag any row where the text column is longer than the cell limit. Lazur types the formula text. You still test it, because a formula that looks right can point at the wrong column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that cost time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Saving the vendor file over the original, and losing leading zeros in control numbers.",
+        "Trusting a row count without comparing it to the vendor's document count.",
+        "Sorting dates stored as text, which puts them in alphabetical order.",
+        "Exporting a productivity report from a filtered view and treating the totals as complete.",
+        "Removing duplicates before the vendor confirms how duplicates should appear.",
+        "Letting an export sit past its 30-day download window."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch, and it sees the screen only while you hold the shortcut. Hold ⌥ ⌘ to ask about anything on screen. Lazur answers out loud. Ask where a column is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click. It does not click buttons or edit your files for you. Lazur also drafts and types text, so a short note to your vendor can start as a draft that you read before you send it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Your words land at the cursor as clean, formatted text in any app. That helps with reviewer notes and cell comments, where typing a full sentence is slow. Check the spelling of names and matter numbers before you save."
+    },
+    {
+      "type": "paragraph",
+      "text": "For more Excel help, see [Excel help for Mac](/apps/excel). When you are ready to try it, [download Lazur](/download) or compare [plans on the pricing page](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Excel is the wrong tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel reads and checks. Review decisions belong in the review platform, where the tags and audit history live. A spreadsheet cannot repair a review set that was built wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lexbe says a review set cannot take new documents once it is activated, and documents cannot be removed once added. Review sets also cannot be split once review has begun. Plan the set before you activate it. If you need a change, that is a conversation with your vendor, not a formula."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist before a spreadsheet goes to counsel"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the row count matches the vendor's document count.",
+        "Check control number and date columns for lost zeros and text dates.",
+        "Clear all filters before you run any productivity export.",
+        "Save the working copy under a new name and keep the vendor original.",
+        "Put the export download deadline in Apple Reminders.",
+        "Note which platform and export option produced each file."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can Excel for Mac open a Lexbe load file?",
+      "answer": "Lexbe says its XLSX load file can be opened, searched and analyzed outside a litigation review database. Its other production formats, such as DAT and OPT, are plain text. Those need an import step to split into columns. Ask your vendor which format you received."
+    },
+    {
+      "question": "Why did my control numbers lose their leading zeros?",
+      "answer": "Excel treats a column of digits as numbers by default, and numbers do not keep leading zeros. Import the column as text, and keep the vendor original unchanged. Once Excel saves the converted column, the zeros do not return."
+    },
+    {
+      "question": "How many rows fit on one Excel worksheet?",
+      "answer": "Microsoft's specifications page lists 1,048,576 rows and 16,384 columns per worksheet. Each cell holds up to 32,767 characters. Split a bigger production by volume or date range before you open it."
+    },
+    {
+      "question": "Can I build a Power Query on a Mac?",
+      "answer": "Microsoft says authoring in the Power Query Editor is not available in Excel for Mac. Refresh works for text or CSV files, Excel workbooks, XML and JSON files, local tables and ranges, and folders. Build the query on Windows, or ask IT for help."
+    },
+    {
+      "question": "How long do I have to download a Purview export?",
+      "answer": "Microsoft says you must download content within 30 days after the export completes. Export processes are kept for the life of the case. An export that runs more than seven days without finishing is canceled, so split large exports into batches."
+    },
+    {
+      "question": "Can Lazur do the work in Excel for me?",
+      "answer": "No. Lazur does not click buttons or edit files for you. It circles things on screen, guides you one click at a time, answers out loud and types drafted text. You still make every change in your file."
+    },
+    {
+      "question": "Should I run document review in Excel?",
+      "answer": "No. Excel is for reading and checking exported data. Review decisions, tags and audit history belong in the review platform. Lexbe says documents cannot be removed from a review set once they are added."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Export items from a review set in eDiscovery",
+      "url": "https://learn.microsoft.com/en-us/purview/edisc-review-set-export",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Production Load File - Lexbe Help",
+      "url": "https://help.ediscoveryplatform.com/home/technical-notes-available/production-load-file",
+      "publisher": "Lexbe",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Review Sets - Lexbe Help",
+      "url": "https://help.ediscoveryplatform.com/home/help/discovery-menu/review-sets",
+      "publisher": "Lexbe",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "More Data, Fewer Resources: What's Holding Ediscovery Back",
+      "url": "https://www.nextpoint.com/ediscovery-blog/ediscovery-landscape-survey-2026",
+      "publisher": "Nextpoint",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "More Data, Fewer Resources: What 100+ legal professionals say is holding ediscovery back in 2026",
+      "url": "https://edrm.net/2026/05/more-data-fewer-resources-what-100-legal-professionals-say-is-holding-ediscovery-back-in-2026/",
+      "publisher": "EDRM",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "4 Steps to an Efficient eDiscovery Data Processing Workflow",
+      "url": "https://www.nextpoint.com/ediscovery-blog/ediscovery-processing-workflow-streamline-document-review",
+      "publisher": "Nextpoint",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the custodian column?",
+    "capability": "point",
+    "result": "Lazur circles the Custodian header and labels it, so you can jump straight to the column.",
+    "shell": "sheet",
+    "context": "Load file open in Excel for Mac, with field names in the header row.",
+    "pointsAt": "Custodian header",
+    "output": "The Custodian header is in the header row, just left of DateSent. I have circled it for you."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, which column is the custodian field?",
+      "result": "Lazur circles the header and labels it, so you find the field without scrolling.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through filtering to one custodian with blank sent dates.",
+      "result": "Lazur names each menu and waits for your click before it moves to the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Why are these control numbers missing their leading zeros?",
+      "result": "Lazur explains that Excel converted the column to numbers, and what to do with the vendor original.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a COUNTIFS formula that counts rows per reviewer and date.",
+      "result": "Lazur types the formula text, and you test it on a few rows before you copy it down.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate this into the notes column: privilege call pending with the supervising attorney.",
+      "result": "Your words appear as clean text in the cell you have selected.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find the vendor's help page on load file formats and summarize it.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to download the export within 30 days.",
+      "result": "Lazur adds the reminder to Apple Reminders, so the deadline sits outside the spreadsheet.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "ediscovery-specialists-excel",
+  "role": "ediscovery-specialists",
+  "app": "excel",
+  "roleName": "eDiscovery specialists",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ediscovery-specialists-excel/excel-for-ediscovery-specialists-on-mac-1-408975.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Ediscovery specialist working in Excel on a Mac, checking exported metadata at a desk",
+      "caption": "Checking exported metadata at a laptop",
+      "keywords": [
+        "excel for ediscovery specialists on mac",
+        "Excel",
+        "eDiscovery specialists",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ediscovery-specialists-excel/excel-for-ediscovery-specialists-on-mac-2-700a71.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Desk with a laptop, papers and a notebook, the setting for spreadsheet work on document data",
+      "caption": "A desk set up for document review",
+      "keywords": [
+        "excel for ediscovery specialists on mac",
+        "Excel",
+        "eDiscovery specialists",
+        "Mac",
+        "office desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/ediscovery-specialists-excel/excel-for-ediscovery-specialists-on-mac-3-ea4c66.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Legal professional reviewing documents at a desk during an ediscovery project",
+      "caption": "Legal review work at a desk",
+      "keywords": [
+        "excel for ediscovery specialists on mac",
+        "Excel",
+        "eDiscovery specialists",
+        "Mac",
+        "lawyer reviewing documents",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AymaneJed",
+        "url": "https://pixabay.com/users/AymaneJed-1888423/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-office-hand-writing-3196481/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for ediscovery specialists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "excel load file mac": 1,
+      "ediscovery load file excel": 1,
+      "excel row limit mac": 1,
+      "excel power query mac limitations": 1,
+      "track reviewer productivity excel": 1,
+      "ediscovery spreadsheet tips mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

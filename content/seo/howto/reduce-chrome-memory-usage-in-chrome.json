@@ -1,0 +1,600 @@
+{
+  "title": "How to reduce chrome memory usage on mac: Memory Saver steps for Chrome on macOS",
+  "metaTitle": "How to Reduce Chrome Memory Usage on Mac (Steps)",
+  "description": "How to reduce Chrome memory usage on Mac: turn on Memory Saver under Settings > Performance, then check Activity Monitor for heavy apps.",
+  "targetKeyword": "how to reduce chrome memory usage on mac",
+  "secondaryKeywords": [
+    "chrome memory saver mac",
+    "chrome task manager mac",
+    "chrome energy saver mac",
+    "chrome using too much ram on mac",
+    "keep tabs active in chrome mac",
+    "chrome high memory usage mac"
+  ],
+  "intro": "To reduce Chrome memory usage on Mac, turn on Memory Saver under More (⋮) > Settings > Performance. Chrome then deactivates tabs you are not using and reloads them when you come back to them.",
+  "tldr": [
+    "Turn on Memory Saver: More (⋮) menu, then Settings, then Performance.",
+    "Start with the Balanced level, which Google marks as recommended.",
+    "Add video calls and dashboards to Always keep these sites active.",
+    "Use Chrome's Task Manager to find a heavy tab, and Activity Monitor for the whole Mac.",
+    "Check your version at chrome://settings/help before you start."
+  ],
+  "stats": [
+    {
+      "value": "148 MB",
+      "label": "Savings Google's Chrome homepage says Memory Saver can deliver. A caption, not a study.",
+      "sourceUrl": "https://www.google.com/chrome/",
+      "sourceTitle": "Google Chrome homepage"
+    },
+    {
+      "value": "3",
+      "label": "Memory Saver deactivation levels: Moderate, Balanced (recommended), and Maximum.",
+      "sourceUrl": "https://support.google.com/chrome/answer/12929150?hl=en",
+      "sourceTitle": "Personalize Chrome performance: Google Chrome Help"
+    },
+    {
+      "value": "30%",
+      "label": "Memory cut Google reportedly claims, relayed by iDownloadBlog. Not checked against Google's own post.",
+      "sourceUrl": "https://www.idownloadblog.com/2023/02/21/google-chrome-energy-saver-memory-saver-modes-launch/",
+      "sourceTitle": "How to use Chrome's battery and energy saver features on Mac"
+    },
+    {
+      "value": "152",
+      "label": "Latest stable Chrome in Google's release notes, dated September 1, 2026. Check yours.",
+      "sourceUrl": "https://support.google.com/chrome/a/answer/10314655?hl=en",
+      "sourceTitle": "Previous release notes: Chrome Enterprise and Education Help"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Every open tab keeps some memory, including tabs you have not touched in an hour. Chrome's built-in fix is Memory Saver. It deactivates tabs you are not using, which frees their memory. When you return to one of those tabs, Chrome reloads it automatically. You trade a short reload for memory that stays free while you work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Chrome memory use climbs on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome holds working data for every open tab. That includes pages you have read, videos you paused, and forms you started but did not finish. Extensions and background activity add to the total. A Mac can feel slow even when Chrome looks idle, because idle tabs still hold memory. Memory Saver goes after idle tabs. Activity Monitor shows you the rest of the Mac. Chrome's own Task Manager shows which tab or extension is heavy. Use all three tools, because each one answers a different question."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Chrome version first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Memory Saver help page does not say which Chrome version added the feature. It also does not say whether Memory Saver is on by default. Type chrome://settings/help in the address bar. Chrome shows your version number and tells you whether it is up to date. Write that number down if you need help later."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Chrome Enterprise release notes list Chrome 152 as the most recent stable entry. That entry is dated September 1, 2026. Today is November 9, 2026, so your version may be newer. If the Performance page is missing from your Settings, update Chrome first and check again."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Memory Saver levels: Moderate, Balanced, and Maximum"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome gives Memory Saver three deactivation levels. They are Moderate, Balanced, and Maximum. Google marks Balanced as recommended, so start there. Google's page names the levels but does not explain the exact difference between them. Test Balanced for a day. If idle tabs still use too much memory, try Maximum and watch how often tabs reload."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some tabs stay active no matter which level you pick. Google says Chrome blocks deactivation for these activities:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Active audio or video playback",
+        "Screen sharing",
+        "Active downloads",
+        "Partially filled forms",
+        "Pinned tabs",
+        "Connected USB or Bluetooth devices"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "This matters most for calls and meetings. A video call tab plays audio and video, so Chrome leaves it alone. Pinned tabs stay awake too. Pin the sites you open all day, and expect them to keep using memory. Do not pin a tab you only visit once a week."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep important sites awake with the exclusion list"
+    },
+    {
+      "type": "paragraph",
+      "text": "The exclusion list is a second safety net. Chrome keeps any site under Always keep these sites active from deactivating. Use it for a dashboard you watch, a chat app that must stay online, or a site that loses your place when it reloads. Add only the sites you need, because every excluded site keeps its memory."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Settings, then select Performance in the left sidebar.",
+        "Next to Always keep these sites active, click Add.",
+        "Choose Add current sites to add the tab you are looking at.",
+        "Or choose Add sites manually and type the address.",
+        "Use the format [scheme://][.]host[:port][/path][@query].",
+        "Wildcards work only in the path or query, not in the host."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The format lets you name a host, a port, or a path. For example, docs.example.com/board fits the format because it has a host and a path. Check the format before you save, because a typo means the site is not protected."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say you have a video call, a research board, and about a dozen articles open. Add the call and the board to the keep-active list, then choose Balanced. The articles are free to sleep, and the call and board stay live."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find the heavy tab with Chrome's Task Manager"
+    },
+    {
+      "type": "paragraph",
+      "text": "Memory Saver handles tabs you are not using. It does not tell you which tab is the problem. Chrome's Task Manager does. It lists your open tabs, extensions, and other Chrome processes, with the memory each one uses. Open it, scan the memory column, and look for the one number that stands out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's keyboard shortcut page lists Shift+Esc for the Task Manager, but only in the Windows section. Google lists no Task Manager shortcut for Mac. Some search results and third-party guides show other shortcuts, and they disagree with each other. Skip the guessing. Some sites give Window > Task Manager as the Mac menu route, but Google's own pages do not confirm it. Check your Window menu. If nothing matches, use Activity Monitor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Say one tab feels heavy while the rest feel normal. Open Task Manager, find that tab, and note its memory. Close it, then check whether the total drops. If it does, that tab was the cause, and you can decide whether you need it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Activity Monitor when Chrome is not the whole story"
+    },
+    {
+      "type": "paragraph",
+      "text": "Activity Monitor shows memory use for the whole Mac. Apple's Activity Monitor guide says you can monitor the amount of system memory in use there. Use it when your Mac slows down with Chrome open, but Chrome is only one of several apps. Open it from Applications > Utilities, or press ⌘ Space and type Activity Monitor."
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide does not explain the memory pressure colors, so this page does not explain them either. Read the memory numbers you can see. Quit apps you do not need. Click the app in front, then press ⌘Q. Then reopen only what you use today."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Energy Saver on a MacBook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Energy Saver sits on the same Performance page as Memory Saver. Google says it is available on Macs with a battery. It turns on when the Mac is unplugged or the battery is low, and it stays off while the Mac is plugged in. Next to the address bar, its icon offers Turn off now. Use that when you need full speed on battery."
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every Mac shows it. One Mac writer did not see Energy Saver on an M4 MacBook Pro in June 2026. If your Performance page has no Energy Saver section, you are not doing anything wrong. Check Google's help page again after an update."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "See memory use on the tab hover card"
+    },
+    {
+      "type": "paragraph",
+      "text": "Under Appearance on the Performance page, turn on Show memory usage on tab hover preview card. Google lists this as the only Mac-specific Memory Saver item. Hover over a tab, and Chrome shows its memory use. Leave it on while you test. Turn it off later if the extra detail bothers you."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quit and reopen Chrome without losing your place"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the fastest fix is a clean restart. Quit Chrome with ⌘Q, then open it again. Closing one window with ⌘⇧W closes only that window, so use it to shed a heavy window. If you close a tab by mistake, reopen it with ⌘⇧T."
+    },
+    {
+      "type": "paragraph",
+      "text": "Finish downloads and calls before you quit. Save partly filled forms before you leave the page. Bookmark the sites you return to often, so reopening them takes one click."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with Chrome memory"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Turning on Maximum before testing Balanced. Start with the recommended level.",
+        "Forgetting the keep-active list for a call or dashboard, then wondering why it reloaded.",
+        "Trusting a deactivated tab to show live data. Chrome reloads it when you open it, so check the numbers again.",
+        "Trying Shift+Esc on a Mac. Google lists it for Windows only.",
+        "Confusing Chrome's Settings with macOS System Settings. Memory Saver lives in Chrome.",
+        "Blaming Chrome for a slow Mac that is really another app. Check Activity Monitor first.",
+        "Copying a percentage from a blog post as if it were a test result. Measure on your own Mac."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When Chrome shows the Aw, Snap error or a site crashes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Chrome's error help says the Aw, Snap error means Chrome is having problems loading the page. Google's advice is to turn off an extension that stops a page from working. If only one site crashes, that site may be the cause. Reload that tab once. If it crashes again, close it and try the site in a new window."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's error help page does not mention out-of-memory fixes. A third-party guide suggests discarding inactive tabs at chrome://discards and restarting the GPU Process from Task Manager. That guide gives no sources for its figures, and it says some of its numbers are unverified. Treat those steps as optional, and test them on one tab first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the savings numbers really mean"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's Chrome homepage says a browser can save up to 148 MB of memory with Memory Saver mode. That line is a caption, not a study. It does not say which Mac, which tabs, or how long the test ran. Treat it as a best case some users may see, not a promise for your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Secondhand reports say Google claims Memory Saver can cut Chrome's memory use by up to 30%. iDownloadBlog attributes that claim to Google. Google's own post was not available to check. Other reports give larger figures that no source here confirms. No reliable survey here measures how many Mac users have this problem, so this page gives no rate. Measure before and after with the tab hover card and Task Manager, then decide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you change the settings"
+    },
+    {
+      "type": "paragraph",
+      "text": "Clear stored data only if you want a fresh start. [Clear browsing data in Chrome](/how-to/clear-browsing-data-in-chrome) covers the steps on a Mac. That clears stored data, which is a separate job from memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "If one heavy site keeps coming back, a separate profile can keep its tabs apart. See [create a Chrome profile](/how-to/create-a-chrome-profile-in-chrome). Remove extensions you no longer use. The [extension install guide](/how-to/install-an-extension-in-chrome) explains how they get added in the first place."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can point at each switch while you follow along. Ask where Memory Saver is, and Lazur circles it on your screen. Lazur starts with a three-day Pro trial with no credit card. See [pricing](/pricing) for the plans."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Memory Saver on by default in Chrome on Mac?",
+      "answer": "Google's help page does not say. Open More (⋮) > Settings > Performance and read the Memory Saver switch yourself. If it is already on, leave it on."
+    },
+    {
+      "question": "Which Memory Saver level should I pick?",
+      "answer": "Start with Balanced, which Google marks as recommended. Google does not explain the exact difference between levels, so watch how often tabs reload before you try Maximum."
+    },
+    {
+      "question": "Does closing a tab reduce Chrome memory use?",
+      "answer": "Closing a tab or window releases what Chrome holds for it. Quit Chrome with ⌘Q for a full reset. Memory Saver handles the tabs you leave open."
+    },
+    {
+      "question": "Is Shift+Esc the Task Manager shortcut on Mac?",
+      "answer": "Google lists Shift+Esc only under Windows. Google lists no Task Manager shortcut for Mac. Use the Window menu, or open Activity Monitor from Applications > Utilities."
+    },
+    {
+      "question": "Does Memory Saver cut memory by 30%?",
+      "answer": "Secondhand reports say Google claims up to 30%. Google's homepage caption says up to 148 MB. Neither is a study, so measure on your own Mac with Task Manager before you decide."
+    },
+    {
+      "question": "Will Memory Saver make pages reload?",
+      "answer": "Yes. Chrome reloads an inactive tab automatically when you open it. Add a site to the keep-active list if a reload costs you something."
+    },
+    {
+      "question": "Why don't I see Energy Saver on my MacBook?",
+      "answer": "Google says Energy Saver is available on Macs with a battery. One Mac writer did not see it on an M4 MacBook Pro in June 2026. Check again after you update Chrome."
+    },
+    {
+      "question": "Do I need to restart Chrome after changing these settings?",
+      "answer": "Google's help page does not say. If a tab behaves oddly after a change, quit Chrome with ⌘Q and reopen it to test."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Personalize Chrome performance: Google Chrome Help",
+      "url": "https://support.google.com/chrome/answer/12929150?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Previous release notes: Chrome Enterprise and Education Help",
+      "url": "https://support.google.com/chrome/a/answer/10314655?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Chrome keyboard shortcuts: Google Chrome Help",
+      "url": "https://support.google.com/chrome/answer/157179?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Get help with common error messages in Chrome: Google Chrome Help",
+      "url": "https://support.google.com/chrome/answer/95669?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Chrome",
+      "url": "https://www.google.com/chrome/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Activity Monitor User Guide: Apple Support",
+      "url": "https://support.apple.com/guide/activity-monitor/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to use Chrome's battery and energy saver features on Mac",
+      "url": "https://www.idownloadblog.com/2023/02/21/google-chrome-energy-saver-memory-saver-modes-launch/",
+      "publisher": "iDownloadBlog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fix Chrome Out of Memory: Supercharge Browser",
+      "url": "https://www.superchargebrowser.com/library/fix-chrome-out-of-memory/",
+      "publisher": "Supercharge Browser (third party)",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Reduce Chrome memory usage on a Mac",
+  "appliesTo": "Google Chrome on macOS, Settings > Performance",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Google Chrome installed",
+    "Chrome open, with its window in front",
+    "About 10 minutes to test the settings",
+    "A MacBook with a battery, if you want to check Energy Saver"
+  ],
+  "steps": [
+    {
+      "name": "Open Chrome Settings",
+      "text": "Click the More icon (⋮) at the top right of the Chrome window. Choose Settings. Settings opens in a tab. You can also press ⌘, to jump there directly.",
+      "menuPath": [
+        "More (⋮) menu",
+        "Settings"
+      ],
+      "shortcut": "⌘,",
+      "tip": "The shortcut ⌘, works from any Chrome window."
+    },
+    {
+      "name": "Open the Performance page",
+      "text": "In the left sidebar of Settings, select Performance. This page holds Memory Saver, Energy Saver, and the keep-active list.",
+      "menuPath": [
+        "Settings",
+        "Performance"
+      ],
+      "tip": "If you do not see Performance, update Chrome and check again."
+    },
+    {
+      "name": "Switch on Memory Saver",
+      "text": "Find Memory Saver and turn it on. Google's help page does not state the default, so read the switch before you change it. Leave it on if it already is.",
+      "menuPath": [
+        "Performance",
+        "Memory Saver"
+      ],
+      "tip": "Turning it off stops Chrome from deactivating tabs."
+    },
+    {
+      "name": "Choose a deactivation level",
+      "text": "Pick Moderate, Balanced, or Maximum. Balanced is marked recommended, so start there. Google does not explain the exact difference, so watch how often tabs reload.",
+      "menuPath": [
+        "Performance",
+        "Memory Saver",
+        "Balanced (recommended)"
+      ],
+      "tip": "Change one level at a time, so you can tell which one changed things."
+    },
+    {
+      "name": "Turn on inactive tab rings",
+      "text": "Turn on Inactive tabs appearance to place a ring around the icons of deactivated tabs. You can then see which tabs Chrome has put to sleep without clicking them.",
+      "menuPath": [
+        "Performance",
+        "Inactive tabs appearance"
+      ],
+      "tip": "Turn it on while you test, so you can see which tabs are sleeping."
+    },
+    {
+      "name": "Add sites you need awake",
+      "text": "Next to Always keep these sites active, click Add. Choose Add current sites for the tab in front of you, or Add sites manually to type an address.",
+      "menuPath": [
+        "Performance",
+        "Always keep these sites active",
+        "Add"
+      ],
+      "tip": "Manual entries follow the format [scheme://][.]host[:port][/path][@query]."
+    },
+    {
+      "name": "Show memory on tab hover",
+      "text": "Under Appearance, turn on Show memory usage on tab hover preview card. Hover over a tab to see its memory use.",
+      "menuPath": [
+        "Performance",
+        "Appearance",
+        "Show memory usage on tab hover"
+      ],
+      "tip": "This is the only Mac-specific Memory Saver item Google lists."
+    },
+    {
+      "name": "Check Energy Saver on a MacBook",
+      "text": "On a MacBook, look for Energy Saver on the same page. Choose a setting if it appears. It turns on by itself when the Mac is unplugged or the battery is low.",
+      "menuPath": [
+        "Performance",
+        "Energy Saver"
+      ],
+      "tip": "If Energy Saver is missing, check again after you update Chrome."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Chrome Settings",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Quit Google Chrome",
+      "keys": "⌘Q"
+    },
+    {
+      "action": "Close the current window",
+      "keys": "⌘⇧W"
+    },
+    {
+      "action": "Open a new tab",
+      "keys": "⌘T"
+    },
+    {
+      "action": "Reopen the last closed tab",
+      "keys": "⌘⇧T"
+    },
+    {
+      "action": "Open Spotlight to find Activity Monitor",
+      "keys": "⌘ Space"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "I can't find Memory Saver",
+      "fix": "Make sure you are in Chrome's Settings, not macOS System Settings. Go to More (⋮) > Settings, then select Performance."
+    },
+    {
+      "problem": "A site reloads and I lose my place",
+      "fix": "Add the site under Always keep these sites active. Try Balanced before Maximum, since Maximum deactivates tabs more aggressively."
+    },
+    {
+      "problem": "My Mac is slow but Chrome does not look heavy",
+      "fix": "Chrome may not be the cause. Check Activity Monitor for other apps, quit the ones you do not need, then retest."
+    },
+    {
+      "problem": "Shift+Esc does nothing on my Mac",
+      "fix": "Google lists Shift+Esc for Windows only. Check the Window menu, or open Activity Monitor instead."
+    },
+    {
+      "problem": "Aw, Snap error keeps appearing",
+      "fix": "Reload once. If one site keeps failing, turn off an extension that might block it, then test the site again."
+    },
+    {
+      "problem": "Energy Saver is not on my MacBook",
+      "fix": "Update Chrome, then check the Performance page again. Google says it needs a Mac with a battery."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Memory Saver switch?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Memory Saver switch on your screen. It explains what the switch does.",
+    "shell": "generic",
+    "pointsAt": "Memory Saver switch",
+    "context": "Chrome open on Settings > Performance",
+    "output": "Lazur answers out loud and points at the switch. You flip it yourself, one click at a time."
+  },
+  "type": "howto",
+  "slug": "reduce-chrome-memory-usage-in-chrome",
+  "app": "chrome",
+  "appName": "Chrome",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/reduce-chrome-memory-usage-in-chrome/how-to-reduce-chrome-memory-usage-on-1-648227.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a MacBook checking browser tabs, one way to reduce Chrome memory usage on Mac",
+      "caption": "Working on a Mac with several browser tabs open.",
+      "keywords": [
+        "how to reduce chrome memory usage on mac",
+        "Chrome",
+        "reduce Chrome memory usage",
+        "Mac",
+        "person using laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/reduce-chrome-memory-usage-in-chrome/how-to-reduce-chrome-memory-usage-on-2-0e4129.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop on a desk showing a web page, the kind of setup where Chrome memory use matters",
+      "caption": "A typical desk setup with a Mac and open work.",
+      "keywords": [
+        "how to reduce chrome memory usage on mac",
+        "Chrome",
+        "reduce Chrome memory usage",
+        "Mac",
+        "macbook desk work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/reduce-chrome-memory-usage-in-chrome/how-to-reduce-chrome-memory-usage-on-3-a31f45.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close-up of a MacBook keyboard and screen during everyday browser work",
+      "caption": "Everyday browsing on a MacBook.",
+      "keywords": [
+        "how to reduce chrome memory usage on mac",
+        "Chrome",
+        "reduce Chrome memory usage",
+        "Mac",
+        "laptop keyboard closeup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "kirill_makes_pics",
+        "url": "https://pixabay.com/users/kirill_makes_pics-5203613/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/create-creation-creativity-laptop-3026190/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to reduce chrome memory usage on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "chrome memory saver mac": 1,
+      "chrome task manager mac": 1,
+      "chrome energy saver mac": 1,
+      "chrome using too much ram on mac": 1,
+      "keep tabs active in chrome mac": 1,
+      "chrome high memory usage mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

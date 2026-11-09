@@ -1,0 +1,553 @@
+{
+  "title": "How to fix the 'application not supported' error: notion not supported on this mac fix",
+  "metaTitle": "Notion not supported on this Mac: how to fix it",
+  "description": "Notion not supported on this Mac fix: check your chip, reinstall the matching Notion build, then reset local data if the error stays.",
+  "targetKeyword": "notion not supported on this mac fix",
+  "secondaryKeywords": [
+    "notion app not supported on this mac",
+    "application not supported on this mac notion",
+    "notion desktop app mac error",
+    "notion apple silicon or intel mac",
+    "reset notion mac local data",
+    "notion macos 13 requirement"
+  ],
+  "intro": "The 'application not supported' error means the Notion download may not match your Mac's processor. Check your chip under Apple menu > About This Mac, uninstall Notion, then install the matching build from notion.com/desktop, and reset local data if the error stays.",
+  "tldr": [
+    "Notion's help page says the download may not match your Mac's processor, so the fix starts with the build.",
+    "Check your chip under Apple menu > About This Mac. Check the old app's Kind with ⌘I in Finder.",
+    "Uninstall Notion, then download the build that matches your chip from notion.com/desktop.",
+    "If the error stays, confirm macOS 13 or later, since the desktop app needs it. Reset local data last, because it logs you out."
+  ],
+  "stats": [
+    {
+      "value": "macOS 13",
+      "label": "Minimum macOS version for the Notion desktop app, per Notion's help center",
+      "sourceUrl": "https://www.notion.com/help/system-requirements-for-notion",
+      "sourceTitle": "System requirements for Notion: Notion Help Center"
+    },
+    {
+      "value": "⌘I",
+      "label": "Opens Get Info, which shows whether an app is Intel, Universal, or Apple silicon",
+      "sourceUrl": "https://support.apple.com/en-mk/102527",
+      "sourceTitle": "Using Intel-based apps on a Mac with Apple silicon, Apple Support"
+    },
+    {
+      "value": "macOS 27",
+      "label": "Latest macOS where Apple says Rosetta is available for Apple silicon Macs",
+      "sourceUrl": "https://support.apple.com/en-mk/102527",
+      "sourceTitle": "Using Intel-based apps on a Mac with Apple silicon, Apple Support"
+    },
+    {
+      "value": "v7.42.1",
+      "label": "Notion Mac build listed by a third-party tracker, dated Nov 4, 2026",
+      "sourceUrl": "https://releasebot.io/updates/notion",
+      "sourceTitle": "Notion Release Notes, Releasebot"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "You see it the moment you open Notion. The alert reads: You can’t open the application “Notion” because this application is not supported on this Mac. The message does not say what to do next. Notion’s help page fills that gap. It says the download may not match your processor. Its fix has three parts: uninstall the app, check Apple’s article for the compatible version, then download and install the correct one. The plan is short. The order matters, because you remove the wrong file first and add the right one second."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the ‘not supported on this Mac’ alert appears"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Mac runs on one of two processor families. Apple silicon Macs use Apple’s own chips. Intel Macs use Intel processors. An app is built for one of them, or for both. Apple’s support page quotes the Intel label as “made for a Mac with an Intel processor”. A Universal app carries code for both chips. When the code on your disk does not fit your chip, macOS refuses to open the app and shows this alert. That is the most direct reading of the error, and it matches what Notion’s help page says."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Notion leaves some gaps",
+      "text": "Notion’s help page says to match the build to your processor. It does not say whether Apple silicon or Intel is required, and it does not say which macOS version triggers the error. Use Get Info and About This Mac to make the match yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Notion not supported on this Mac fix: check your chip first"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with About This Mac. Click the Apple logo at the top left of the screen, then click About This Mac. The window shows your chip or processor and your macOS version. Write both down before you touch the app. You will compare them with the Kind line in the next section. Do not guess from the model name, because the chip is the detail that decides the match. Keep the macOS version in mind too. The desktop app needs macOS 13 or later. If your Mac runs something older, update macOS first."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Your Mac",
+        "Build to choose",
+        "Why it fits"
+      ],
+      "rows": [
+        [
+          "Apple silicon Mac",
+          "Apple silicon or Universal",
+          "Runs natively on Apple’s chips"
+        ],
+        [
+          "Intel Mac",
+          "Intel or Universal",
+          "Runs natively on Intel processors"
+        ]
+      ],
+      "caption": "Match the Kind line to your chip. Notion’s help page does not publish this table, so confirm the download first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read the Kind of the old Notion app before you delete it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your current copy of Notion holds the clue you need. Select Notion in Finder, press ⌘I, and read the Kind line. Apple shows one of three values: Intel, Universal, or Apple silicon. If Kind says Apple silicon on an Intel Mac, the mismatch is clear, and that fits the alert. If Kind says Intel on an Apple silicon Mac, the copy is an Intel-only build. Apple’s page says Intel apps can run on Apple silicon through Rosetta, so an Intel Kind is a clue, not proof of the cause. If Kind says Universal, the build fits both chips, so the processor is not the cause. Get Info works even when the app will not open. Read it before you uninstall, because the file disappears after that."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reinstall the matching Notion build cleanly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Go to notion.com/desktop and click Download for macOS, as Notion’s install guide describes. Open the downloaded file and complete the installation. Then open Notion and log in with your email address. Your pages come back from your account, since they sync. Once Notion is open, select it in Finder and press ⌘I again. The Kind line should match your chip, or read Universal. If it does, the mismatch is gone. If the alert still appears on launch, the processor was not the whole story, and the sections below apply."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the error stays: macOS version and Rosetta"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two other causes fit the message less well, and both are easy to rule out. The first is macOS. Notion’s desktop app requires macOS 13 or later, according to its system requirements page. Open System Settings > General > Software Update, install what it offers, then reinstall the app. The second is Rosetta. Apple says Rosetta is available for Apple silicon Macs running macOS 27 or earlier. It lets an Intel-only app run on an Apple silicon Mac. Apple also says that starting with macOS 28, Rosetta will be available only for certain older, unmaintained games."
+    },
+    {
+      "type": "paragraph",
+      "text": "A community thread about another app shows the Rosetta fix in action. The app was Inkscape, and the accepted answer was to right-click the app, choose Get Info, tick “Open using Rosetta”, then open it. Notion’s help page never mentions Rosetta, so treat that step as untested for Notion. Try it only as a short test on a copy you can remove. Do not use it in place of the matching build."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Rosetta is a stopgap",
+      "text": "Rosetta lets an Intel-only app run on an Apple silicon Mac. It does not fix a broken install. Reinstall the matching build first, and use Rosetta only as a short workaround while you wait for help from Notion."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the Privacy & Security setting"
+    },
+    {
+      "type": "paragraph",
+      "text": "A second community reply points at a different setting. Open System Settings > Privacy & Security > Security and check the “Allow applications from” option. The reply says that option should not be set to App Store. That thread was about another app, so its warning text may not match yours. Check this setting only if Notion is blocked after you install it. If you change it, set it back once Notion opens. A security setting protects the whole Mac, not one app, so keep changes small."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reset Notion’s local data safely"
+    },
+    {
+      "type": "paragraph",
+      "text": "The reset is the heavy option, so keep it for last. Notion’s reset guide says a reset logs you out. It also says synced data is not lost, so your pages return when you log in again. What the reset clears is the local copy the app keeps on your Mac. That copy can hold files from a bad install or a half-finished update. Clearing it gives the app a clean start. Use the in-app reset first, through Help > Troubleshooting > Reset & Erase All Local Data. Notion’s guide starts with View > Force reload, so run that first if the window looks stuck."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "If Notion will not open at all"
+    },
+    {
+      "type": "paragraph",
+      "text": "Deleting a folder by hand skips Notion’s own cleanup. Notion’s guide still describes this route for the case where the app will not open, so it is the right fallback. Check the folder name before you press Delete. The Library folder is hidden in Finder by default, so the Go To Folder route is the reliable way in. Delete only the Notion folder. Other folders in Application Support belong to other apps, so leave them alone."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that waste time with this error"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Downloading the same file again without checking the Kind line. The same wrong build returns the same alert.",
+        "Deleting the whole Library folder instead of the Notion folder inside Application Support. Other apps keep their settings there.",
+        "Uninstalling before reading Get Info. After the uninstall, the clue on your disk is gone.",
+        "Trusting a Notion browser tab as a full fix. The desktop app has features the browser tab does not show, such as the menu bar icon.",
+        "Treating a third-party release tracker as Notion's own word. Use the in-app Check for Updates instead.",
+        "Reading the Inkscape thread as a Notion fix. It was about a different app, with a different build."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Notion after the fix works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once Notion opens, check for updates with the in-app check described in the steps above. A third-party tracker, Releasebot, lists Notion Mac builds v7.42.1 and v7.42.3, both dated Nov 4, 2026. It says they fixed an issue where Command Search and Notion AI shortcuts could stop working. Releasebot is not Notion, so trust the in-app check over the tracker. If new features do not appear after an update, press ⌘R to refresh."
+    },
+    {
+      "type": "paragraph",
+      "text": "Links can still open in the browser after the fix. If that happens, click ••• at the top right, open More, and click Open in Mac app. Use Settings > Preferences to change Command Search or the menu bar icon. To turn Desktop beta on, open Settings > Preferences > Desktop beta. To leave it, click the Beta button, the bug icon in the tab bar, then choose Leave beta."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Still stuck? Gather these details first"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the alert returns after a clean reinstall and a reset, gather a few facts before you contact Notion through its help center. Write down the exact alert text, your Mac model, the chip, the macOS version, and the Kind line from Get Info. Note whether the error appears on launch or after a click. Also note whether the Rosetta tick or the Privacy setting changed anything. Those facts show that the basics are already checked."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Notion say it is not supported on this Mac?",
+      "answer": "Notion’s help page says the download may not match your processor. The fix is to reinstall the build that matches your chip. The alert itself does not name the build you need."
+    },
+    {
+      "question": "Do I need the Apple silicon or the Intel build of Notion?",
+      "answer": "Match the Kind line of your current app to your chip. Get Info shows Intel, Universal, or Apple silicon. Notion’s help does not say which build to pick, so confirm the file on the download page."
+    },
+    {
+      "question": "What macOS version does the Notion desktop app need?",
+      "answer": "Notion’s system requirements page lists macOS 13 or later for the desktop app. Check the version under About This Mac before you reinstall, and update first if it is older."
+    },
+    {
+      "question": "Will I lose my pages if I reset Notion?",
+      "answer": "Resetting logs you out. Notion’s reset guide says synced data is not lost, so your pages return when you log in again. Have your Notion login email ready before you start."
+    },
+    {
+      "question": "Does Rosetta fix this error?",
+      "answer": "Rosetta lets an Intel-only app run on an Apple silicon Mac, and Apple says it is available through macOS 27. Notion’s help page does not mention it. The Rosetta fix in the community thread was for a different app, so do not treat it as a Notion fix."
+    },
+    {
+      "question": "Can I use Notion in a browser while I fix this?",
+      "answer": "Yes, you can use the web app while you work on the desktop app. Safari, Firefox, and Edge need the last two major releases. Chrome has its own requirement on Notion’s system requirements page."
+    },
+    {
+      "question": "Is version 7.42.1 the fix for this alert?",
+      "answer": "No. Releasebot lists v7.42.1 as a Notion Mac build that fixed Command Search and Notion AI shortcuts. It is not listed as a fix for this alert. Use Check for Updates in the Notion menu to get the current build."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Notion for desktop (Mac & Windows): Notion Help Center",
+      "url": "https://www.notion.com/help/notion-for-desktop",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "System requirements for Notion: Notion Help Center",
+      "url": "https://www.notion.com/help/system-requirements-for-notion",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Reset the Notion app: Notion Help Center",
+      "url": "https://www.notion.com/help/reset-notion",
+      "publisher": "Notion",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Using Intel-based apps on a Mac with Apple silicon, Apple Support",
+      "url": "https://support.apple.com/en-mk/102527",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "How to resolve Application Not Supported, Apple Community thread",
+      "url": "https://discussions.apple.com/thread/256071169",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Notion Release Notes, Releasebot",
+      "url": "https://releasebot.io/updates/notion",
+      "publisher": "Releasebot (third-party tracker)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Fix the 'not supported on this Mac' error in Notion",
+  "appliesTo": "Notion desktop app on Apple silicon and Intel Macs, macOS 13 or later",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "A Mac on macOS 13 or later for the Notion desktop app",
+    "Your chip type, from About This Mac",
+    "Your Notion login email",
+    "Your Mac password, if macOS asks for it during install"
+  ],
+  "steps": [
+    {
+      "name": "Check your chip and macOS version",
+      "text": "Click the Apple logo at the top left of the screen, then click About This Mac. Find the chip or processor line. Apple silicon Macs list an Apple chip. Intel Macs list an Intel processor. The same window shows your macOS version. Write both down.",
+      "menuPath": [
+        "Apple menu",
+        "About This Mac"
+      ],
+      "tip": "The Apple logo sits at the top left of every Mac screen."
+    },
+    {
+      "name": "Read the Kind of the old Notion app",
+      "text": "Open Finder, go to Applications, and click Notion once to select it. Press ⌘I to open Get Info. Read the Kind line. Intel means the app is made for an Intel processor. Universal means it runs on both chips. Apple silicon means it is made for Apple silicon.",
+      "menuPath": [
+        "File",
+        "Get Info"
+      ],
+      "shortcut": "⌘I",
+      "tip": "Get Info works even when the app will not open, so you can check it when Notion is stuck."
+    },
+    {
+      "name": "Quit Notion",
+      "text": "Choose Notion > Quit Notion, or press ⌘Q while Notion is the active app. Quit before you delete anything, so the app is not running when you remove it.",
+      "menuPath": [
+        "Notion",
+        "Quit Notion"
+      ],
+      "shortcut": "⌘Q",
+      "tip": "If Notion does not respond to Quit, use Force Quit from the Apple menu."
+    },
+    {
+      "name": "Uninstall the old app",
+      "text": "Open Finder, go to Applications, and drag Notion to the Trash. Then empty the Trash. Notion’s help page lists uninstalling as the first part of the fix.",
+      "menuPath": [
+        "Go",
+        "Applications"
+      ],
+      "shortcut": "⇧⌘A",
+      "tip": "Keep the Kind line you wrote down. You will need it after the reinstall."
+    },
+    {
+      "name": "Download the build that matches your chip",
+      "text": "Go to notion.com/desktop and click Download for macOS. Notion’s help page does not say which build to pick, so use your chip from the first step and the Kind line from the second step. Keep the file in Downloads.",
+      "tip": "Match Apple silicon to Apple silicon or Universal. Match Intel to Intel or Universal."
+    },
+    {
+      "name": "Install and open Notion",
+      "text": "Open the downloaded file and complete the installation. Open Notion from Applications. If macOS asks for your password, enter it to continue.",
+      "tip": "Open Notion from Applications, not from the Downloads window, so the installed copy is the one that runs."
+    },
+    {
+      "name": "Log in with your email",
+      "text": "Open Notion and log in with the email address you use for Notion. Your pages sync with your account, so they return once you are logged in.",
+      "tip": "If your pages do not appear, check that you logged in with the same email as before."
+    },
+    {
+      "name": "Check the Kind line of the new app",
+      "text": "Select Notion in Applications and press ⌘I. The Kind line should match your chip, or read Universal. Then open Notion and confirm the alert is gone.",
+      "menuPath": [
+        "File",
+        "Get Info"
+      ],
+      "shortcut": "⌘I",
+      "tip": "If the Kind line does not match, download the file again from notion.com/desktop and reopen Get Info."
+    },
+    {
+      "name": "Check for updates in the app",
+      "text": "Click Notion in the menu bar, then click Check for Updates. Install anything it offers, then reopen Notion.",
+      "menuPath": [
+        "Notion",
+        "Check for Updates"
+      ],
+      "tip": "Notion’s help page lists this menu path for the Mac app."
+    },
+    {
+      "name": "Update macOS if the error stays",
+      "text": "Open System Settings, then go to General > Software Update. Install what it offers, restart if asked, and then reinstall the Notion app from the download step.",
+      "menuPath": [
+        "Apple menu",
+        "System Settings",
+        "General",
+        "Software Update"
+      ],
+      "tip": "The desktop app needs macOS 13 or later, so an older Mac needs this update first."
+    },
+    {
+      "name": "Reset Notion from inside the app",
+      "text": "Open Notion and choose View > Force reload. Then choose Help > Troubleshooting > Reset & Erase All Local Data. Notion logs you out. Log in again with your email to restore your synced pages.",
+      "menuPath": [
+        "Help",
+        "Troubleshooting",
+        "Reset & Erase All Local Data"
+      ],
+      "tip": "Use this only when Notion opens. If it will not open, go to the next step."
+    },
+    {
+      "name": "Delete the Notion folder by hand",
+      "text": "Quit Notion. In Finder, choose Go > Go To Folder, type /Users/<USERNAME>/Library/Application Support, and press Return. Replace USERNAME with your macOS short name. Move the Notion folder to the Trash, empty the Trash, then reinstall from the download step.",
+      "menuPath": [
+        "Go",
+        "Go To Folder"
+      ],
+      "shortcut": "⇧⌘G",
+      "tip": "Only move the Notion folder. Leave every other folder in Application Support alone."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Get Info for the Notion app",
+      "keys": "⌘I"
+    },
+    {
+      "action": "Quit Notion",
+      "keys": "⌘Q"
+    },
+    {
+      "action": "Go To Folder in Finder",
+      "keys": "⇧⌘G"
+    },
+    {
+      "action": "Go to the Applications folder in Finder",
+      "keys": "⇧⌘A"
+    },
+    {
+      "action": "Refresh Notion when new features are missing",
+      "keys": "⌘R"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The same error appears after a reinstall",
+      "fix": "Check the Kind line again with ⌘I. If it still does not match your chip, download the file again from notion.com/desktop. If it still fails, move on to the macOS version check."
+    },
+    {
+      "problem": "Notion will not open at all",
+      "fix": "Skip the in-app reset. Quit Notion, then use Go To Folder to move the Notion folder in Application Support to the Trash."
+    },
+    {
+      "problem": "Notion logged me out after the reset",
+      "fix": "That is expected. Log in with your email. Notion’s reset guide says synced data is not lost."
+    },
+    {
+      "problem": "I cannot find a Rosetta option for Notion",
+      "fix": "Notion’s help page does not mention Rosetta. Do not rely on a Rosetta tick for Notion. Reinstall the matching build instead."
+    },
+    {
+      "problem": "Notion is blocked after I install it",
+      "fix": "Check System Settings > Privacy & Security > Security and the Allow applications from option. Set it back after Notion opens."
+    },
+    {
+      "problem": "The downloaded file will not open",
+      "fix": "Download the file again from notion.com/desktop, then open it from Downloads and complete the installation."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through checking the Kind line, one click at a time.",
+    "capability": "guide",
+    "result": "Lazur circles File and then Get Info, and waits for each click before it moves on. You do the clicking.",
+    "shell": "doc",
+    "context": "Finder, Applications folder, the old Notion app selected",
+    "output": "Lazur points at each menu item in turn and can read the Kind line aloud when you ask what it says.",
+    "pointsAt": "Get Info"
+  },
+  "type": "howto",
+  "slug": "fix-the-application-not-supported-error-in-notion",
+  "app": "notion",
+  "appName": "Notion",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-the-application-not-supported-error-in-notion/notion-not-supported-on-this-mac-fix-1-040385.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Person working at a laptop on a desk, the setup where you fix a Notion not supported on this Mac error",
+      "caption": "A desk setup for everyday Notion work on a Mac",
+      "keywords": [
+        "notion not supported on this mac fix",
+        "Notion",
+        "fix the 'application not supported' error",
+        "Mac",
+        "person using laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-the-application-not-supported-error-in-notion/notion-not-supported-on-this-mac-fix-2-99d65d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close view of a MacBook on a desk while checking which Notion build fits the Mac",
+      "caption": "Checking the Mac before reinstalling Notion",
+      "keywords": [
+        "notion not supported on this mac fix",
+        "Notion",
+        "fix the 'application not supported' error",
+        "Mac",
+        "macbook desk closeup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "picjumbo_com",
+        "url": "https://pixabay.com/users/picjumbo_com-2130229/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/child-kid-play-study-color-learn-865116/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-the-application-not-supported-error-in-notion/notion-not-supported-on-this-mac-fix-3-e1cd60.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a Mac keyboard during a Notion reinstall and error check",
+      "caption": "Working through the Notion install steps",
+      "keywords": [
+        "notion not supported on this mac fix",
+        "Notion",
+        "fix the 'application not supported' error",
+        "Mac",
+        "person typing mac keyboard",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/keyboard-hardware-computer-70506/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "notion not supported on this mac fix",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "notion app not supported on this mac": 1,
+      "application not supported on this mac notion": 1,
+      "notion desktop app mac error": 1,
+      "notion apple silicon or intel mac": 1,
+      "reset notion mac local data": 1,
+      "notion macos 13 requirement": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

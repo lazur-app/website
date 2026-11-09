@@ -1,0 +1,663 @@
+{
+  "title": "How to use spill formulas in Excel on Mac: steps and fixes for Microsoft 365",
+  "metaTitle": "How to Use Spill Formulas in Excel on Mac: Steps",
+  "description": "Learn how to use spill formulas in Excel on Mac: enter one formula, reference whole spills with #, and fix spill errors step by step.",
+  "targetKeyword": "how to use spill formulas in excel on mac",
+  "secondaryKeywords": [
+    "spill formulas excel mac",
+    "#SPILL error Excel Mac",
+    "dynamic array formulas Mac",
+    "spilled range operator Excel",
+    "Excel for Mac spill range",
+    "Excel 2024 for Mac dynamic arrays",
+    "spill error Excel tables Mac"
+  ],
+  "intro": "To use a spill formula in Excel on Mac, type one formula in the top-left cell of the area you want, then press Return. Excel fills the cells below and to the right by itself, and those cells must be empty or Excel shows a #SPILL error.",
+  "tldr": [
+    "Type the formula in the top-left cell, press Return, and Excel fills the cells below and to the right.",
+    "Add # to the anchor cell, like =SUM(A2#), to reference the whole spill.",
+    "Put @ in front of a range when you want one value per row instead of a spill.",
+    "If you see a #SPILL error, click the error-checking alert, choose Select Obstructing Cells, then clear the blocking entries.",
+    "Spill formulas do not work inside Excel Tables, so convert the table to a range first."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows in an Excel worksheet, which whole-column spills can run past",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "16,384",
+      "label": "columns in an Excel worksheet",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "32,767",
+      "label": "characters allowed in a single cell",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a spill formula does"
+    },
+    {
+      "type": "paragraph",
+      "text": "A spill formula returns more than one value. Instead of filling one cell, it spills its results into the cells around it. You write the formula once, and the result area updates by itself when your data changes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel calls that filled area the spill range. The cell holding the formula is the anchor. Every spill formula has one anchor, and the spill grows out from it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft calls this behavior dynamic arrays. Its support pages list it for Excel for Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. Older Mac versions needed a legacy array formula, entered with a special key combination, or a formula copied down a column."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Mac versions support spill formulas"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Version",
+        "Spill support",
+        "What the source says"
+      ],
+      "rows": [
+        [
+          "Microsoft 365 for Mac",
+          "Yes",
+          "Listed in Microsoft's dynamic array article"
+        ],
+        [
+          "Excel 2024 for Mac",
+          "Yes",
+          "Listed in the same article"
+        ],
+        [
+          "Excel 2021 for Mac",
+          "Yes",
+          "Listed in the same article"
+        ],
+        [
+          "Excel 2019 and 2016",
+          "Verify first",
+          "Listed there too, but other sources say 2021 or Microsoft 365 is required"
+        ],
+        [
+          "Excel for the web",
+          "Not confirmed",
+          "Not in the article's Applies To list"
+        ]
+      ],
+      "caption": "Spill support by version, from Microsoft's dynamic array article (checked 2026-11-09)"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's list is not fully consistent. The same page names Excel 2019 and 2016, while other sources say you need Excel 2021 or Microsoft 365. If you are on an older build, test one formula before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "To check your build, open Excel and read the version in the About box. The latest Mac release I could open is version 16.114.3, build 26102720, dated October 27, 2026. Its release notes do not mention dynamic arrays or spill."
+    },
+    {
+      "type": "paragraph",
+      "text": "The only spill note in the Mac release notes I checked is from July 14, 2026, for version 16.111. It says PivotTables can collapse into one cell showing a #SPILL error when blocked. Spill errors can show up outside plain formulas."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Your first spill formula, with a worked example"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use a simple example to test the idea. Type =SEQUENCE(10) in cell A2. Excel fills A2 down to A11 with the numbers 1 to 10. Nothing else is needed, but the cells below A11 must stay empty."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once that works, change the 10 to 5. The spill shrinks to A2 through A6 on its own. That automatic resizing is what makes spill formulas useful compared with copied formulas."
+    },
+    {
+      "type": "paragraph",
+      "text": "Only the anchor cell holds the formula. The other cells in the spill show values, and you cannot edit one of them by itself. To change the result, edit the anchor."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Refer to a whole spill with the # operator"
+    },
+    {
+      "type": "paragraph",
+      "text": "Add # to the anchor reference to point at the whole spill. With =SEQUENCE(10) in A2, the formula =SUM(A2#) in C2 returns 55. That matches =SUM(A2:A11), the fixed range you would type without a spill."
+    },
+    {
+      "type": "paragraph",
+      "text": "The difference shows up when the data changes. A2# follows the spill and updates if its size changes. A fixed range such as A2:A11 stays the same, so you have to edit it by hand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try it with the change from before. Set the anchor to =SEQUENCE(5), and =SUM(A2#) in C2 drops to 15, the total of 1 through 5. The fixed range =SUM(A2:A11) still returns 55 and now adds blank cells, so it gives the wrong picture of your data."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Typing the # sign",
+      "text": "On a US keyboard, # is Shift and 3. Some Mac keyboard layouts put it elsewhere, so check the symbol before you type."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stop a formula from spilling with @"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you want one result per row, not a full spill. Put @ in front of the range. The formula =VLOOKUP(@A:A,A:C,2,FALSE), copied down a column, returns one value per row and does not spill."
+    },
+    {
+      "type": "paragraph",
+      "text": "The @ asks Excel for the single value that lines up with the same row. Microsoft calls this implicit intersection. Use it when a whole-column formula would otherwise run past the bottom of the sheet."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix a #SPILL error on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A #SPILL error means Excel found a result but could not place it. Start by clicking the error cell. Excel shows a dashed border around the range it wanted to fill."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, click the error-checking alert beside the cell and choose Select Obstructing Cells. Excel highlights what is in the way. Delete or move those entries, and the spill returns."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Keep spill ranges clear",
+      "text": "Do not type into a cell inside a spill range. Any entry there blocks the spill, and the anchor shows the #SPILL error."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Cause",
+        "What you see",
+        "Fix"
+      ],
+      "rows": [
+        [
+          "Spill range is not blank",
+          "Something sits in the cells the result needs",
+          "Select Obstructing Cells, then delete or move the entry"
+        ],
+        [
+          "Formula inside an Excel Table",
+          "The table blocks the spill",
+          "Move the formula outside the table, or convert the table to a range"
+        ],
+        [
+          "Merged cells in the way",
+          "A merged cell sits inside the spill range",
+          "Unmerge the cells, or move the formula"
+        ],
+        [
+          "Indeterminate size",
+          "The result size changes on every calculation",
+          "Replace RAND, RANDARRAY or RANDBETWEEN in the size argument with a fixed number"
+        ],
+        [
+          "Out of memory",
+          "The result is too large",
+          "Reference a smaller range"
+        ],
+        [
+          "Beyond the worksheet edge",
+          "A whole-column formula runs off the grid",
+          "Use a bounded range such as A2:A7, or add @"
+        ]
+      ],
+      "caption": "Common #SPILL causes and fixes, from Microsoft's spill error pages"
+    },
+    {
+      "type": "paragraph",
+      "text": "Find your cause in the table and apply the matching fix. Work through them in order if you are not sure which one applies. Most people find the cause in the first row."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Whole columns and the 1,048,576 row limit"
+    },
+    {
+      "type": "paragraph",
+      "text": "A worksheet has 1,048,576 rows and 16,384 columns. A whole-column reference covers all 1,048,576 rows. In dynamic-array Excel, a formula like =VLOOKUP(A:A,A:C,2,FALSE) tries to return about that many results, so the spill runs off the grid."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use a bounded range instead. =VLOOKUP(A2:A7,A:C,2,FALSE) spills only the rows you name, but it does not work inside a table. =VLOOKUP(A2,A:C,2,FALSE), copied down, works inside tables and does not spill."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each cell can hold up to 32,767 characters. That limit matters when a formula builds long text in every row."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Spill formulas and Excel Tables"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spilled array formulas are not supported in Excel Tables. Place the formula outside the table. If you want the table, convert it to a range first."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Microsoft Q&A thread from April 2021 gives the same answer. Its accepted answer is to convert the table to a range first. The thread names no Mac build, so treat it as general guidance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Convert the table from the Table Design tab. Microsoft's label for the command is Table Design > Tools > Convert to Range. I could not confirm those exact labels on a Mac screen, so check the ribbon if they differ."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you convert, make sure you do not need the table features. Converting turns the table into a plain range."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cross-workbook spills and closed files"
+    },
+    {
+      "type": "paragraph",
+      "text": "A cross-workbook dynamic array works only when both workbooks are open. Microsoft's spilled range operator page says it does not support references to closed workbooks, and those return #REF error values."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the source workbook again and the reference resolves. If a file looks broken after a restart, open both workbooks before you change any formula."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with spill formulas"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing into a cell inside the spill area after the formula is in place.",
+        "Using a whole-column reference without checking the 1,048,576 row limit.",
+        "Putting a spill formula inside an Excel Table and expecting it to work.",
+        "Using RAND, RANDARRAY or RANDBETWEEN to set the size of a spill.",
+        "Merging cells in the rows below a formula.",
+        "Using a fixed range like A2:A11 when the spill grows, so totals stay wrong."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Does spill work in Excel for the web on Mac?"
+    },
+    {
+      "type": "paragraph",
+      "text": "I could not confirm spill support in Excel for the web. Microsoft's dynamic array article does not list it in the Applies To section, so treat it as unknown. The steps on this page are for the desktop app on a Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you switch between the desktop app and the browser, test one formula in each before you rely on it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for spill work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's common Mac shortcut list covers the basics for working around spills. It does not list the spill commands themselves, so the menu and alert steps above do the real work."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Undo is the one to remember. If a spill lands in the wrong place, press ⌘Z before you change anything else."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "A spill formula gives you a live list. If that list needs grouping, totals or a summary by category, a pivot table may fit better. The [pivot table guide](/how-to/make-a-pivot-table-in-excel) walks through that on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep your spill ranges clear and label your anchor cells. A short note above each spill helps you find it again when a spill error appears later."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does spill work in Excel 2019 for Mac?",
+      "answer": "Microsoft's dynamic array article lists Excel 2019 and 2016, but other sources say spill needs Excel 2021 or Microsoft 365. Treat 2019 as unconfirmed and test one formula before you rely on it."
+    },
+    {
+      "question": "Why does my spill formula show a #SPILL error on a Mac?",
+      "answer": "The most common cause is an entry in the cells the result needs. Click the error-checking alert and choose Select Obstructing Cells. Clear the blocking entries, and the spill fills in."
+    },
+    {
+      "question": "Is the # operator the same as a colon range?",
+      "answer": "In Microsoft's example, =SUM(A2#) and =SUM(A2:A11) both return 55. The difference is that A2# follows the spill when its size changes, while a fixed range does not."
+    },
+    {
+      "question": "Can I use spill formulas inside an Excel Table on Mac?",
+      "answer": "No. Spilled array formulas are not supported in Excel Tables. Put the formula outside the table, or convert the table to a range first."
+    },
+    {
+      "question": "Do spill formulas work the same on Windows?",
+      "answer": "The steps match the Windows version, with ⌘ in place of Ctrl. Microsoft's pages do not give a separate Mac path for spill actions, so check the ribbon if a label differs."
+    },
+    {
+      "question": "Why does a RAND formula cause a spill error every time I recalculate?",
+      "answer": "RAND-type functions can change the size of the result on each calculation pass. Excel then cannot settle on a size and reports a spill error with an indeterminate size cause. Use a fixed size or a range instead."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dynamic array formulas and spilled array behavior",
+      "url": "https://support.microsoft.com/en-us/excel/dynamic-array-formulas-and-spilled-array-behavior",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to correct a #SPILL! error",
+      "url": "https://support.microsoft.com/en-us/excel/how-to-correct-a-spill-error",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "#SPILL! error - Extends beyond the worksheet's edge",
+      "url": "https://support.microsoft.com/en-us/office/-spill-error-extends-beyond-the-worksheet-s-edge-b3406d00-be0b-4a68-9976-40143ec7b55f",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Spilled range operator",
+      "url": "https://support.microsoft.com/en-us/excel/spilled-range-operator",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Common Office for Mac keyboard shortcuts",
+      "url": "https://support.microsoft.com/en-us/office/common-office-for-mac-keyboard-shortcuts-307f469a-1a05-4263-9b55-49df19a8b8ff",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Spill error in Excel for Mac Tables - Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5094066/spill-error-in-excel-for-mac-tables",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Use spill formulas in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024 and Excel 2021 for Mac",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Excel for Microsoft 365, Excel 2024 or Excel 2021 for Mac",
+    "A worksheet with a list of values, for example in column A",
+    "Empty cells below and to the right of the formula's first cell",
+    "Excel for the web is not confirmed for spill support"
+  ],
+  "steps": [
+    {
+      "name": "Check the cells the spill needs",
+      "text": "Choose the top-left cell of the result area. This is the anchor. Look at the cells below and to the right, and confirm they are empty. A spill cannot land on a cell that already holds a value."
+    },
+    {
+      "name": "Type a formula that returns several values",
+      "text": "Click the anchor cell and type =SEQUENCE(10). This formula returns the numbers 1 to 10, so it fills ten cells. Any formula that returns more than one value works the same way.",
+      "shortcut": "Return"
+    },
+    {
+      "name": "Press Return to commit",
+      "text": "Press Return. Excel fills the cells below and to the right of the anchor. The filled area is the spill range, and only the anchor holds the formula.",
+      "shortcut": "Return",
+      "tip": "If you see a spill error instead of numbers, skip to the error steps below."
+    },
+    {
+      "name": "Reference the whole spill with #",
+      "text": "Click a free cell, such as C2. Type =SUM(, click A2, type #, then close the bracket. The formula reads =SUM(A2#) and returns 55 for the ten-number example.",
+      "tip": "Type # with Shift and 3 on a US keyboard."
+    },
+    {
+      "name": "Use @ for one value per row",
+      "text": "Type a formula with @ in front of the range, such as =VLOOKUP(@A:A,A:C,2,FALSE). Press Return, then copy the formula down the column. Each row gets one value, and nothing spills."
+    },
+    {
+      "name": "Open the error-checking alert",
+      "text": "If a cell shows a #SPILL error, click that cell. Look for the error-checking alert icon next to it, and click the icon to open the menu."
+    },
+    {
+      "name": "Select the obstructing cells",
+      "text": "Choose Select Obstructing Cells from the alert menu. Excel highlights the entries blocking the spill. Delete or move those entries. The spill fills in once the range is clear.",
+      "menuPath": [
+        "Error-checking alert",
+        "Select Obstructing Cells"
+      ],
+      "tip": "Microsoft's pages use this wording. I could not confirm it on a Mac screen, so look for the same words."
+    },
+    {
+      "name": "Convert a table to a range",
+      "text": "If the formula sits inside an Excel Table, click inside the table. Open the Table Design tab and choose Convert to Range in the Tools group. Then move the spill formula into the new range.",
+      "menuPath": [
+        "Table Design",
+        "Tools",
+        "Convert to Range"
+      ],
+      "tip": "These labels come from Microsoft's Windows-style path. Check the ribbon on your Mac if a name differs."
+    },
+    {
+      "name": "Test the spill after an edit",
+      "text": "Change one value in your source list, such as the first number in column A. The spill should update on its own. If the spill error returns, repeat the alert steps."
+    },
+    {
+      "name": "Keep both workbooks open for cross-file spills",
+      "text": "If the spill reads from another workbook, open both files before you recalculate. Cross-workbook spills need both files open, or the reference can return #REF error values."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Commit a formula and let it spill",
+      "keys": "Return"
+    },
+    {
+      "action": "Undo a spill you did not mean to make",
+      "keys": "⌘Z"
+    },
+    {
+      "action": "Redo or repeat the last action",
+      "keys": "⌘Y"
+    },
+    {
+      "action": "Copy a spill result",
+      "keys": "⌘C"
+    },
+    {
+      "action": "Paste copied cells",
+      "keys": "⌘V"
+    },
+    {
+      "action": "Open Paste Special",
+      "keys": "⌘⌃V"
+    },
+    {
+      "action": "Find a value or formula",
+      "keys": "⌘F"
+    },
+    {
+      "action": "Close a dialog",
+      "keys": "Esc"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Spill error saying the spill range is not blank",
+      "fix": "Click the error-checking alert, choose Select Obstructing Cells, then delete or move the blocking entry."
+    },
+    {
+      "problem": "Spill error inside an Excel Table",
+      "fix": "Move the formula outside the table, or convert the table to a range first from the Table Design tab."
+    },
+    {
+      "problem": "Spill error from a formula that uses RAND, RANDARRAY or RANDBETWEEN",
+      "fix": "The size changes on each calculation. Use a fixed number, such as =SEQUENCE(1000), or reference a range instead."
+    },
+    {
+      "problem": "Spill error that extends beyond the worksheet edge",
+      "fix": "Replace a whole-column reference with a bounded range such as A2:A7, or add @ and copy the formula down."
+    },
+    {
+      "problem": "#REF error after reopening a file with a cross-workbook spill",
+      "fix": "Open both workbooks together. Cross-workbook spills need both files open to resolve."
+    },
+    {
+      "problem": "Spill error caused by merged cells",
+      "fix": "Unmerge the cells in the spill area, or move the formula to a clear area."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Convert to Range button?",
+    "capability": "point",
+    "context": "Converting a table to a range in Excel for Mac",
+    "result": "Lazur circles the button on your screen and labels it, so you find it without hunting through the ribbon. You still do the click yourself.",
+    "output": "Lazur points at Convert to Range and says where it sits. It does not click for you.",
+    "pointsAt": "Convert to Range",
+    "shell": "sheet"
+  },
+  "type": "howto",
+  "slug": "use-spill-formulas-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-spill-formulas-in-excel/how-to-use-spill-formulas-in-excel-1-92822e.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a desk working on a spreadsheet, the kind of Excel on Mac work where spill formulas save time",
+      "caption": "Working through a spreadsheet on a laptop",
+      "keywords": [
+        "how to use spill formulas in excel on mac",
+        "Excel",
+        "use spill formulas",
+        "Mac",
+        "person working laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-spill-formulas-in-excel/how-to-use-spill-formulas-in-excel-2-515efe.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man at a MacBook reviewing data, learning how to use spill formulas in Excel on Mac",
+      "caption": "Everyday Mac work at a desk",
+      "keywords": [
+        "how to use spill formulas in excel on mac",
+        "Excel",
+        "use spill formulas",
+        "Mac",
+        "man using macbook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-spill-formulas-in-excel/how-to-use-spill-formulas-in-excel-3-7b3fd8.jpg",
+      "width": 1280,
+      "height": 600,
+      "alt": "Analyst checking spreadsheet numbers on a screen before sharing a summary",
+      "caption": "Checking the numbers before you share them",
+      "keywords": [
+        "how to use spill formulas in excel on mac",
+        "Excel",
+        "use spill formulas",
+        "Mac",
+        "accountant reviewing spreadsheet data",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "4832970",
+        "url": "https://pixabay.com/users/4832970-4832970/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hand-business-technology-data-3044387/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use spill formulas in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "spill formulas excel mac": 1,
+      "#SPILL error Excel Mac": 1,
+      "dynamic array formulas Mac": 1,
+      "spilled range operator Excel": 1,
+      "Excel for Mac spill range": 1,
+      "Excel 2024 for Mac dynamic arrays": 1,
+      "spill error Excel tables Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

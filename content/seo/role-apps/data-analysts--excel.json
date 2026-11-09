@@ -1,0 +1,558 @@
+{
+  "title": "Excel for data analysts on Mac: cleaning, pivots, and Power Query in Microsoft 365",
+  "metaTitle": "Excel for Data Analysts on Mac: Pivots, Cleaning, and Lazur Help",
+  "description": "Excel for data analysts on Mac: the steps for cleaning data, PivotTables, and Power Query, plus how Lazur helps you find buttons in Excel.",
+  "targetKeyword": "excel for data analysts on mac",
+  "secondaryKeywords": [
+    "Excel for Mac PivotTable",
+    "Power Query on Mac",
+    "Excel keyboard shortcuts Mac",
+    "clean data in Excel for Mac",
+    "Excel for Mac 16.114",
+    "Excel errors on Mac"
+  ],
+  "intro": "Excel for data analysts on Mac comes down to three jobs: cleaning raw data, building PivotTables, and loading tables with Power Query. This page covers each one in Microsoft 365 for Mac, with the Mac shortcuts, the limits, and a crash report you should check before you start. Lazur can point, explain, and guide you through each step, but you do the clicking.",
+  "tldr": [
+    "Most analyst time goes to cleaning data. A 2016 survey of about 80 data scientists put it at 60%.",
+    "Two Mac shortcuts to learn first: ⌘⇧R opens the Sort dialog, and ⌥F12 opens the Power Query Editor.",
+    "Check your build under Excel > About Excel. A November 2026 thread reports crashes on some 16.114.x builds during PivotTable changes.",
+    "Lazur on a Mac: hold ⌥⌘ and ask where a button is. It circles the button and explains it. You click it yourself."
+  ],
+  "stats": [
+    {
+      "value": "60%",
+      "label": "of data scientist time goes to cleaning and organizing data, in a 2016 survey of about 80 data scientists",
+      "sourceUrl": "https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/",
+      "sourceTitle": "Forbes: Data preparation most time-consuming, least enjoyable data science task, survey says"
+    },
+    {
+      "value": "76%",
+      "label": "said data preparation was the least enjoyable part of their work, in the same survey",
+      "sourceUrl": "https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/",
+      "sourceTitle": "Forbes: Data preparation most time-consuming, least enjoyable data science task, survey says"
+    },
+    {
+      "value": "1,048,576",
+      "label": "rows per worksheet in Excel, with 16,384 columns",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "16.114.3",
+      "label": "latest Excel for Mac build in Microsoft release notes, released October 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What data analysts do in Excel on Mac all week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most analyst work in Excel is not fancy. You pull a file, fix it, count things, then send a number that someone trusts. A 2016 survey of about 80 data scientists found that cleaning and organizing data took 60% of their time. The same survey found 76% called data preparation the least enjoyable part of the job. Your week probably looks similar."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, that work runs through Microsoft 365 for Mac. The newest build in Microsoft release notes is 16.114.3, released October 27, 2026. Microsoft lists only quality and performance improvements for it. The release notes list no renamed features or menu moves, so the menus you know should still be where you left them."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean the data before you build anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean first, or every pivot repeats the mistake. The usual problems are numbers stored as text, dates in two formats, stray spaces, and duplicate rows from a bad export. Each one breaks sums and counts without a visible error. A total can look right and still be wrong."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check the header row. Every column needs one clear name, and no merged cells should sit inside the data.",
+        "Select a numeric column and read the status bar. If Sum is missing, the numbers are probably stored as text.",
+        "Split mixed dates with Data > Text to Columns. Choose Delimited, then set the date order that matches your source.",
+        "Trim stray spaces with =TRIM() in a helper column, then paste the results back as values.",
+        "Remove duplicates with Data > Data Tools > Remove Duplicates, after you confirm which columns define a unique row.",
+        "Turn the range into a table with ⌘T, so new rows join your formulas and pivots."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a small example. A customer export has some dates written day first and others written year first, in the same column. Excel treats the two groups as text, so a monthly total splits into two groups. Convert both formats to real dates, then group by month. The totals line up again, and the pivot stops lying to you."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a PivotTable on Mac step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a clean range. Click any cell inside the data, then choose Insert > PivotTable. Excel reads the range for you. Put the PivotTable on a new sheet so your raw data stays untouched. Drag fields into Rows, Columns, Values, and Filters. A text field in Values gives you a count, not a sum, so check the field setting first."
+    },
+    {
+      "type": "paragraph",
+      "text": "The full walkthrough with screenshots is in [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). If you prefer to be walked through it in real time, [Lazur's Excel page](/apps/excel) explains how the guidance works."
+    },
+    {
+      "type": "paragraph",
+      "text": "A PivotTable can hold up to 256 value fields and 256 report filters. Report filters can run out of memory before they hit that count. If a pivot feels slow, cut the number of filters first and test again."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "Note"
+      ],
+      "rows": [
+        [
+          "Open the Sort dialog",
+          "⌘⇧R",
+          "Works for PivotTable sorting"
+        ],
+        [
+          "Add or remove a filter",
+          "⌘⇧F or ⌃⇧L",
+          "Select a cell in the range first"
+        ],
+        [
+          "Show the filter list for a cell",
+          "⌥↓",
+          "Select the cell, then press the key"
+        ],
+        [
+          "Open Power Query Editor",
+          "⌥F12",
+          "Use it for loading and cleaning"
+        ],
+        [
+          "Page Down on a MacBook",
+          "fn+↓",
+          "Some keys need fn on the laptop keyboard"
+        ]
+      ],
+      "caption": "Shortcuts from Microsoft's Mac keyboard page. If one fails, check Apple's keyboard settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac: what to expect when loading data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query pulls tables in from files and folders, then records every step. Use it when the same cleaning happens every week. Open the editor with ⌥F12, or go to Data > Get Data. Keep the steps that matter, and delete the rest. A clean recipe beats a fresh manual cleanup each Monday."
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed is the weak spot. A 2020 Microsoft Q&A post from a Windows user reported about 6 minutes for the first connection to one table in a 25 MB .xlsb workbook. Each transformation step added about 6 more minutes. A Microsoft employee in that thread confirmed a bug where importing one sheet from legacy formats could read every sheet. The fix may not have reached that user's build. Treat those numbers as one Windows report, not a Mac benchmark."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Filter early",
+      "text": "Remove unused columns and filter rows near the top of the query. Fewer rows in each step means each step has less work to do."
+    },
+    {
+      "type": "paragraph",
+      "text": "Load to a table only when you need one. The Data Model has a hard size limit on 32-bit Excel, roughly 500 to 700 MB. 64-bit versions have no hard file size limit beyond memory and system resources. Check which version you run before you load a large file into the Data Model."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lookups and formulas that break quietly"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most lookup errors come from the data, not the formula. A trailing space makes a match fail. A number stored as text will not match a real number. Check both sides of the lookup before you blame the formula. The fix is usually one cleaning step."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clean the lookup key with =TRIM() or Text to Columns before you match.",
+        "Set the match type on purpose. Exact match is the safe default for IDs and codes.",
+        "Lock the table range with $ signs, so a copied formula still points at the right table.",
+        "Press F2 to see hidden text in a cell, such as a trailing space. On a MacBook, F2 may need fn, depending on your keyboard setting."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Size limits matter when you paste raw logs. A worksheet holds 1,048,576 rows and 16,384 columns. A log with more rows than that will not fit on one sheet. Load it with Power Query or split the file by date. The limit is on Microsoft's specification page, so check it before you plan a big import."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Excel build to run, and the PivotTable crash report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your build first. Open Excel > About Excel, then compare the number with Microsoft's release notes. Microsoft lists 16.114.3 (Build 26102720) from October 27, 2026. Its Excel entry reads only quality and performance improvements. Earlier, version 16.111 changed PivotTables so they can collapse into one cell that shows the #SPILL error."
+    },
+    {
+      "type": "paragraph",
+      "text": "A Microsoft Q&A thread posted November 3, 2026 reports Excel for Mac crashing when a PivotTable is created or its fields change, on 16.114.x builds. Several users say rolling back to 16.113.4 (Build 26100421) fixed it. No Microsoft staff reply appears in the thread, and the accepted answer is labeled as an AI answer. Treat the report as unconfirmed."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Save before you rebuild a pivot",
+      "text": "Save a copy of the workbook before you change PivotTable fields on 16.114.x. A crash can cost you changes you have not saved yet."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you hit the crash, write down the build number, the steps you took, and the file type. Post those details in the Microsoft Q&A thread or to Microsoft support. Clear notes help more than a guess about the cause. They also help your IT team if the problem spreads."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your Excel workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac, and it lives in the notch. Hold ⌥⌘, which is Option plus Command, and ask about anything on screen. Lazur answers out loud. It looks at your screen only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two modes matter most in Excel. Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click buttons, edit files, or operate other apps for you. You stay in control of the workbook."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a plugin or add-in for Excel. It works in any app on your Mac, so the same help works in Excel, Numbers, and your browser. That matters when your data comes from a web dashboard and your cleaning happens in a spreadsheet."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictation for notes, comments, and summaries"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. Analysts use it for cell notes, email summaries, and the text above a chart. Snippets, a personal dictionary, and clipboard slots handle the phrases you type again and again. Dictation is included with Lazur."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the personal dictionary for names your spellcheck flags. Client names, product codes, and team names are good candidates. Once a name is in the dictionary, dictation spells it the same way every time. That keeps a summary consistent across a month of reports."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy when Lazur looks at a spreadsheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Client spreadsheets often hold personal data, so know what leaves your Mac. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so Lazur can answer you. They are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your company's rules before you ask about a file that holds client or employee data. Some teams block AI tools on confidential files. Your policy comes first. If the rule is unclear, ask your admin before you hold the shortcut."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac keyboard quirks that waste analyst time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac keyboards send function keys as system keys by default. Excel expects F keys for many commands. On a MacBook, Page Down is fn+↓, and many F-key shortcuts need fn. The fix sits in Apple's keyboard settings. Turn on the option that uses all F1, F2 keys as standard function keys."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Open System Settings > Keyboard and turn on the standard function keys option.",
+        "Check Microsoft's Mac shortcut page before you use a Windows shortcut from memory.",
+        "Some macOS utilities grab shortcuts. Quit them if a shortcut does nothing in Excel.",
+        "Power Pivot has no section on the Mac shortcut page. Use the menus for it, not memorized keys."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes data analysts make on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Building a pivot on a range with blank header cells. Excel names the fields badly, and you rebuild the pivot later.",
+        "Pasting raw data onto the report sheet. Keep raw data on its own tab and never edit it in place.",
+        "Trusting a total without comparing the row count with the source. A filtered view can hide rows.",
+        "Ignoring a #SPILL error after a PivotTable change. Read what the pivot shows now before you copy it anywhere.",
+        "Following a Windows video step by step on a Mac. Menus and shortcuts differ, so match each step to the Mac layout."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start from a template when the layout is standard"
+    },
+    {
+      "type": "paragraph",
+      "text": "For a monthly report or a tracker, start from a template. On Mac, go to File > New from Template, search for what you need, then click Create. Microsoft also publishes accessible templates on its support site, which help if a screen reader or larger text matters to you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates save layout time. They do not fix a messy export. Clean the data first, then paste it into the template's input sheet. Keep formulas on the report sheet and inputs on the data sheet, so the template keeps working when the data changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Research and reports while you keep working"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can run research in the background. It works in Lazur's own Chrome tabs, through the Lazur for Chrome extension, then comes back with a summary and a report. Use it to check a vendor's export format, confirm a limit, or look up a formula reference. Ask a specific question. Vague questions get vague reports."
+    },
+    {
+      "type": "paragraph",
+      "text": "Verify every number before you use it. Open the source page yourself and compare the figure. Lazur saves you the search, not the check. That habit matters most when a figure goes into a report that someone else will rely on."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for this week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one recurring task and time it. Clean it once with Power Query or Text to Columns, then save the steps. Next, build one PivotTable on a new sheet and check its row count against the source. Then ask Lazur for the shortcut you forget most."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants who work in the same files can read [Excel for accountants on Mac](/for/accountants/excel) for closing-month habits. When you are ready, [download Lazur for Mac](/download). Pricing is on the [pricing page](/pricing), and the Pro trial starts when you first open the app."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Lazur work inside Excel for Mac as an add-in?",
+      "answer": "No. Lazur is a voice assistant for the Mac that works across apps. It is not a plugin or add-in for Excel, and it does not operate Excel for you. It points, explains, and guides you one click at a time."
+    },
+    {
+      "question": "Does Lazur click buttons or change my workbook?",
+      "answer": "No. Lazur points at things, explains them, answers out loud, and drafts text. When you ask how to do something, it guides you one click at a time and waits for each click. You do the clicking and the editing."
+    },
+    {
+      "question": "Is my spreadsheet data sent to AI providers?",
+      "answer": "Lazur listens and looks at your screen only while you hold the shortcut. Audio and the screenshot go to AI providers so Lazur can answer you. They are not stored, and content is never used to train AI models. Check your company's rules for client data."
+    },
+    {
+      "question": "Which Excel for Mac version should data analysts run right now?",
+      "answer": "Open Excel > About Excel and compare your build with Microsoft's release notes. The newest listed build is 16.114.3. A November 2026 thread reports PivotTable crashes on 16.114.x, and some users went back to 16.113.4. Microsoft has not confirmed that issue."
+    },
+    {
+      "question": "How many rows can Excel for Mac hold?",
+      "answer": "One worksheet holds 1,048,576 rows and 16,384 columns. A PivotTable can use up to 256 value fields and 256 report filters. For bigger data, load it with Power Query or split the file before you import."
+    },
+    {
+      "question": "Why is Power Query slow on my Mac?",
+      "answer": "Speed depends on file size, the source, and how many steps you add. A 2020 Windows user reported about 6 minutes for the first connection to one table in a 25 MB workbook. Remove unused columns early, and load only the sheets you need."
+    },
+    {
+      "question": "Does Lazur work on Windows too?",
+      "answer": "No. Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned but not available. The Pro trial starts when you first open the app, with no credit card."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Learn"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Support"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Support"
+    },
+    {
+      "title": "Video: Start with an accessible Excel template",
+      "url": "https://support.microsoft.com/en-us/office/video-start-with-an-accessible-excel-template-918db751-1585-41c5-9ddf-5d7a0915afaf",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Support"
+    },
+    {
+      "title": "Forbes: Data preparation most time-consuming, least enjoyable data science task, survey says",
+      "url": "https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/",
+      "accessedAt": "2026-11-06",
+      "publisher": "Forbes (Gil Press)"
+    },
+    {
+      "title": "Microsoft Q&A: Power Query Super Slow",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/167293/power-query-super-slow",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Q&A"
+    },
+    {
+      "title": "Microsoft Q&A: Pivot Table causes Excel to crash on macOS",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/6059112/pivot-table-causes-excel-to-crash-on-macos",
+      "accessedAt": "2026-11-06",
+      "publisher": "Microsoft Q&A"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Remove Duplicates?",
+    "capability": "point",
+    "result": "Lazur circles the Remove Duplicates button on the Data tab and labels it. You click it yourself.",
+    "shell": "sheet",
+    "context": "Cleaned customer export open in Excel for Mac",
+    "pointsAt": "Data > Remove Duplicates"
+  },
+  "tasks": [
+    {
+      "say": "Where is Remove Duplicates?",
+      "result": "Lazur circles the button on the Data tab and labels it. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does my pivot total come out a cent off?",
+      "result": "Lazur explains stored decimals and rounding, then names the cells and formats to check.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through grouping these dates by month in the PivotTable.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Remind me Monday morning to refresh the customer export.",
+      "result": "Lazur adds an Apple Reminders item for the time you name.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Draft a note to the team saying the quarter numbers are final.",
+      "result": "Lazur types a draft you can edit before you send it anywhere.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate: the refund rate excludes cancelled orders.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research the Microsoft page on Excel row and column limits.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "data-analysts-excel",
+  "role": "data-analysts",
+  "app": "excel",
+  "roleName": "Data analysts",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-excel/excel-for-data-analysts-on-mac-1-d79fcb.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Data analyst reviewing an Excel spreadsheet on a Mac laptop at a desk",
+      "caption": "Cleaning and checking data takes up much of an analyst's day.",
+      "keywords": [
+        "excel for data analysts on mac",
+        "Excel",
+        "Data analysts",
+        "Mac",
+        "data analyst laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-portrait-cybersecurity-10281354/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-excel/excel-for-data-analysts-on-mac-2-e95811.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office worker typing on a MacBook while checking numbers in a spreadsheet",
+      "caption": "Most Excel work on a Mac is checking the numbers before anyone sees them.",
+      "keywords": [
+        "excel for data analysts on mac",
+        "Excel",
+        "Data analysts",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "markusspiske",
+        "url": "https://pixabay.com/users/markusspiske-670330/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-mouse-office-co-working-582045/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-analysts-excel/excel-for-data-analysts-on-mac-3-4f6e46.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Laptop screen showing charts and a data table for an Excel report on Mac",
+      "caption": "A PivotTable often becomes the chart someone else reads.",
+      "keywords": [
+        "excel for data analysts on mac",
+        "Excel",
+        "Data analysts",
+        "Mac",
+        "spreadsheet charts laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "marhiiaf13",
+        "url": "https://pixabay.com/users/marhiiaf13-18122351/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/businessman-laptop-stocks-5647719/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for data analysts on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Excel for Mac PivotTable": 1,
+      "Power Query on Mac": 2,
+      "Excel keyboard shortcuts Mac": 1,
+      "clean data in Excel for Mac": 1,
+      "Excel for Mac 16.114": 1,
+      "Excel errors on Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

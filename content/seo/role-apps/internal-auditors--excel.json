@@ -1,0 +1,594 @@
+{
+  "title": "Excel for internal auditors on Mac: reconciliations, sampling and Power Query, 2026",
+  "metaTitle": "Excel for Internal Auditors on Mac: Steps and Voice Help, 2026",
+  "description": "Excel for internal auditors on Mac: reconciliations, sampling, math checks and Power Query limits on macOS, plus voice help from Lazur while you work.",
+  "targetKeyword": "excel for internal auditors on mac",
+  "secondaryKeywords": [
+    "internal audit Excel templates Mac",
+    "Excel reconciliation Mac",
+    "Power Query on Mac",
+    "Excel for auditors Mac",
+    "Excel formulas for auditors on Mac",
+    "internal audit sampling in Excel"
+  ],
+  "intro": "Excel for internal auditors on Mac means Microsoft Excel for macOS, used for reconciliations, sampling, error checks and issue logs. Most day-to-day features work the same as on Windows. The gaps to plan around are Power Query authoring, COM add-ins and a few data-model tools. This page covers the steps, the gaps and where Lazur helps while you work.",
+  "tldr": [
+    "Mac Excel handles most internal audit work, from lookups and filters to pivots and Remove Duplicates.",
+    "Power Query shaping works on Excel for Mac 16.69 or later, but you cannot author queries in the Power Query Editor on Mac.",
+    "Reconciliations are the biggest pain point. Trullion's survey found 49% of respondents name them as their top Excel challenge.",
+    "Check formulas with ⌘ ` and trace them with Formulas > Formula Auditing > Trace Precedents.",
+    "Lazur points, explains and walks you through each click. It does not click or edit the workbook for you."
+  ],
+  "stats": [
+    {
+      "value": "Nearly 70%",
+      "label": "of auditors spend more than half their time in spreadsheets",
+      "sourceUrl": "https://www.cpapracticeadvisor.com/2025/01/14/many-auditors-are-still-married-to-their-excel-spreadsheets-report-finds/154430/",
+      "sourceTitle": "Many Auditors Are Still Married to Their Excel Spreadsheets, Report Finds"
+    },
+    {
+      "value": "49%",
+      "label": "of surveyed auditors name time-consuming reconciliations as their biggest Excel challenge",
+      "sourceUrl": "https://trullion.com/forward-looking-statements-2025/state-of-audit-efficiency-report/",
+      "sourceTitle": "State of Audit Efficiency Report, Trullion"
+    },
+    {
+      "value": "42%",
+      "label": "name manual data entry errors as a major Excel challenge",
+      "sourceUrl": "https://trullion.com/forward-looking-statements-2025/state-of-audit-efficiency-report/",
+      "sourceTitle": "State of Audit Efficiency Report, Trullion"
+    },
+    {
+      "value": "51%",
+      "label": "spend more than 10 hours a week on data reconciliation",
+      "sourceUrl": "https://trullion.com/forward-looking-statements-2025/state-of-audit-efficiency-report/",
+      "sourceTitle": "State of Audit Efficiency Report, Trullion"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Start with the job, not the menu. Internal audit work on a Mac follows a pattern. You pull a population from a system export, tie it to a ledger, pick a sample, test it, and log what you find. Each step uses the same few features: lookups, filters, tables, pivots and conditional formatting. Learn those well and most weeks get easier."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How internal auditors use Excel on Mac every week"
+    },
+    {
+      "type": "paragraph",
+      "text": "The hard numbers come from a few surveys, and none of them isolate internal audit on a Mac. Trullion, which sells audit software, surveyed 43 U.S.-based auditors, according to its report page. A CPA Practice Advisor write-up of the same research gives a sample of 41. The figures still point the same way. Nearly 70% of auditors spend more than half their time in spreadsheets. Treat them as a signal, not a verdict."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same research shows where the time goes. Trullion reports that 51% spend more than 10 hours a week on data reconciliation. Another 59% spend more than five hours a week reading contracts and extracting data. Those are the tasks most of your workbooks will be built around."
+    },
+    {
+      "type": "paragraph",
+      "text": "The CPA Journal study points the same direction, with a caveat. Its 81 responses came mostly from external auditors recruited on LinkedIn. Among Big Four respondents, 83% said they use Excel always or often in substantive testing. The authors flag that technologically astute auditors are more likely to answer LinkedIn surveys."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reconciliations: the biggest time sink on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Reconciliations cause the most trouble, and the survey data agrees. Trullion found 49% of respondents named time-consuming reconciliations as their biggest Excel challenge. Manual data entry errors came next, at 42%. Both problems get smaller when the workbook does the matching and you review the exceptions."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by turning each list into a table. Select the range and press ⌘ T. Give the table a name that says what it holds, such as BankExport or GL_Extract. Microsoft says naming a table at creation now works on Mac too. Named tables keep formulas readable, and they keep ranges from breaking when rows get added."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build a matching key that will not drift. Put a helper column next to each list that joins the invoice number and the amount to the cent. A formula like =A2&\"|\"&TEXT(B2,\"0.00\") gives you one clean key per row. Then match on that key with XLOOKUP, if your Microsoft 365 build has it, or with INDEX and MATCH. Avoid VLOOKUP on the raw invoice number."
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP reads a column number, not a column name. If someone inserts a column in the export, the lookup can quietly return the wrong field. That is a common cause of reconciliations that look right and are not."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Count rows on each side before you match. A changed count means the export changed.",
+        "Total the amounts on each side and compare the totals, not just the matches.",
+        "Filter for unmatched rows and sort by amount, so large items come first.",
+        "Keep a raw copy of each export. Paste results into a new tab, never over the source.",
+        "Record the file name, pull date and preparer in the workpaper tab."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Hunting math errors and checking formulas on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trullion reports that 30% spend more than five hours a week hunting for math errors. You can shrink that time with three habits. Turn on formula view with ⌘ `. Scan each formula column for hardcoded numbers. Those are the errors that survive a quick review."
+    },
+    {
+      "type": "paragraph",
+      "text": "Trace the dependencies of a total with Formulas > Formula Auditing > Trace Precedents. Excel draws arrows back to the cells the total depends on. Then check that Formulas > Calculation Options is set to Automatic. A manual setting can leave totals out of date when you sign off the number."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Add a check cell",
+      "text": "Place a check cell beside every total. Use a formula like =SUM(C2:C500)-E2 and format the result so zero stands out. Any non-zero result tells you where to look before a reviewer asks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sampling and issue logs in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sampling is a clean job for Excel. Put a random number in a helper column with =RAND(), sort on it, and take the rows you need. The catch is that RAND recalculates every time the sheet changes. Your sample can move under you. Copy the values, then paste them with Edit > Paste Special > Values into a separate tab."
+    },
+    {
+      "type": "paragraph",
+      "text": "Issue logs need structure. Turn the log into a table, add dropdowns for risk rating and status with Data > Data Validation, and filter by owner before each meeting. Someka's internal audit template uses the same idea. Its database logs each issue by risk reference, and its dashboard shows four chart types. For the pivot steps, see [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Sorting a sample that still uses RAND. The rows reshuffle on every edit.",
+        "Merging cells in an issue log. Sorting and filtering stop working on merged ranges.",
+        "Dates stored as text. Ageing reports then show blanks or the wrong buckets.",
+        "Typing new rows under a filtered list. The new rows can fall outside the view."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac: what works and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query imports a messy export without retyping it. On Mac, Microsoft says shaping data is generally available to Microsoft 365 subscribers on Excel for Mac 16.69 or later. The newest Mac build Microsoft lists is 16.114.3, released October 27, 2026. Check your build with Help > Check for Updates before you plan a query."
+    },
+    {
+      "type": "paragraph",
+      "text": "The limit is authoring. Microsoft states that authoring in the Power Query Editor is not available in Excel for Mac. VBA does support Power Query authoring, so a macro can build a query for you. That route needs code and a check of your firm's policy."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Excel Workbook, for a file you already keep in the same project.",
+        "Text/CSV. Use Data > Get Data > From Text/CSV for bank files and system exports.",
+        "XML and JSON, for structured feeds from other systems.",
+        "SQL Server Database, which Microsoft says works only in Insiders Beta.",
+        "SharePoint Online List and OData, for data that lives in the cloud.",
+        "Blank Table and Blank Query, for building steps by hand."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A practical rule: shape the export once, set the column types, trim the spaces and load it as a table. Your reconciliation key then stays stable each time the export refreshes. Shaping once beats cleaning by hand every month."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Pivot, VBA and add-ins on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Pivot is the one to check first. A 2024 Microsoft Q&A answer from Mac Excel Help says Power Pivot is not available on Excel for Mac, and it recommends Power Query instead. This page could not confirm that against current help. Check it on your own build before you plan a data model around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "VBA is the Mac-friendly option. Microsoft Learn lists VBA macros as supported on Excel for Windows and Excel for Mac. COM add-ins are Windows only, so a Windows add-in will not run on your machine. Microsoft also says VBA covers more of the desktop client than Office Scripts do."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Macros and sharing",
+      "text": "Many audit teams limit macros in files that leave the team. Check your firm's policy before you send a macro-enabled workbook to a client or to a reviewer outside your group."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Templates for internal audit on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not have to build every control from scratch. Three options show up often. Each one states its Mac support differently, as the table shows. Check the details on the vendor's own page before you buy or download."
+    },
+    {
+      "type": "table",
+      "caption": "Vendor claims as stated on each page. Test before you rely on them.",
+      "headers": [
+        "Template",
+        "Mac support stated",
+        "Macros",
+        "Cost shown on page"
+      ],
+      "rows": [
+        [
+          "Someka Internal Audit Excel Template",
+          "Works on Mac and Windows, compatible with Excel 2010 and later",
+          "None, no VBA macros",
+          "Add-ons from $19.95, membership $99 per month, base license not shown"
+        ],
+        [
+          "SimpleSheets Internal Audit Checklist",
+          "Lists Office 365 for Mac among supported versions",
+          "Not stated on the page I read",
+          "Check their site"
+        ],
+        [
+          "AuditNet Internal Controls Assessment Template",
+          "No Excel version or Mac requirement stated",
+          "Not stated on the page",
+          "Free .xlsx download, 53 KB"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Someka's template has no VBA macros, which helps if your team blocks them. The page lists add-ons at $19.95 for technical support and $250.00 for customization. Its membership costs $99 a month for more than 400 templates. The base license price is not on the page I read, so check their pricing page."
+    },
+    {
+      "type": "paragraph",
+      "text": "AuditNet's Internal Controls Assessment Template is free. It is a 53 KB .xlsx file with a template, instructions and an example workbook. The page does not state an Excel version or Mac requirement, so open it on your Mac and test it with dummy data."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test every template before it touches real work. Check that formulas calculate, dropdowns work and charts draw. A vendor's Mac claim is a starting point. Your own test settles it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac habits that slow internal auditors down"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Function keys. Many Mac keyboards need fn with F2 to edit a cell. Turn on the standard function key setting in System Settings > Keyboard if you use F keys often.",
+        "Command and Control. Most Excel shortcuts use ⌘ on a Mac, not Ctrl. Learn ⌘ T, ⌘ Z and ⌘ ` first.",
+        "Right click. Control plus click opens the context menu on a Mac trackpad, which does the same job as a right click.",
+        "Where files live. Save audit workbooks to OneDrive or SharePoint, so version history stays with the file. A desktop copy has no history trail."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant that lives in the notch on your Mac. Hold ⌥ ⌘, Option and Command together, and ask about anything on screen. Lazur answers out loud. Ask where something is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you, and it does not edit your workbook. It runs as its own app beside Excel, and it is not a plugin or add-in for Excel. You stay in control of every cell, and you can explain each step to a reviewer."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "The best use cases are formula questions and small errands. Point at a formula and ask what it does. Ask for a timer during a sample review. Ask Lazur to research a sampling standard, and it runs the search in its own Chrome tabs, then comes back with a summary and a report."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. The text lands at the cursor in any app, formatted. That helps when you write exception summaries at the end of a long day. A personal dictionary lets you add control IDs and audit terms once, so they come out right after that."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is not a replacement for knowing the workbook. It helps you find the button, read the formula and keep your notes moving. For the wider picture of the tool, see [Lazur for Excel on Mac](/apps/excel). For plans, see [pricing](/pricing)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your Mac this week"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Help > Check for Updates in Excel and install what it offers.",
+        "Convert your two main lists to tables with ⌘ T, then name them.",
+        "Add a check cell beside each total in your last reconciliation.",
+        "Test one template from the table on dummy data before you use it.",
+        "Ask Lazur to explain one formula you inherited from a colleague."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the reconciliation key and one check cell. Templates and macros can come later, once the basics hold. A workbook that matches cleanly every time is worth more than a dashboard that only looks good."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Excel for Mac good enough for internal audit work?",
+      "answer": "For most day-to-day work, yes. Lookups, filters, tables, pivots and VBA macros all run on Mac. The gaps are narrower. You cannot author Power Query steps in the Power Query Editor on Mac, and COM add-ins are Windows only. Check the features your workpapers depend on before you commit."
+    },
+    {
+      "question": "Does Excel for Mac support VBA macros?",
+      "answer": "Yes. Microsoft Learn lists VBA macros as supported on Excel for Windows and Excel for Mac. Your firm may still block macros in shared files, so check that policy first."
+    },
+    {
+      "question": "Can I use Power Query on a Mac?",
+      "answer": "You can shape data with Power Query on Excel for Mac 16.69 or later, in Microsoft 365. You cannot author queries in the Power Query Editor on Mac. VBA can author them, if you are comfortable writing code."
+    },
+    {
+      "question": "Which version of Excel for Mac should I install?",
+      "answer": "Install the latest build from Help > Check for Updates. The newest build Microsoft lists in its release notes is 16.114.3, released October 27, 2026. Those notes can lag the newest release, so compare your build number with the list under Help > About Excel."
+    },
+    {
+      "question": "Is there a free internal audit template for Mac?",
+      "answer": "AuditNet offers a free Internal Controls Assessment Template as a 53 KB .xlsx file. The page does not state a Mac requirement, so test it on your machine first. Paid options from Someka and SimpleSheets say they support Mac, but those are vendor claims."
+    },
+    {
+      "question": "How reliable is the survey data on internal auditors?",
+      "answer": "Not very. The best-known figures come from Trullion, a vendor that sells audit software, and its sample covers auditors broadly. The CPA Journal study mostly covers external auditors. No source I found measures internal audit Excel use on a Mac alone."
+    },
+    {
+      "question": "Does Lazur change my workbook?",
+      "answer": "No. Lazur does not click buttons, edit files or operate other apps for you. It points at things, explains formulas, guides you one click at a time, and drafts or types text when you ask. You keep control of every cell."
+    },
+    {
+      "question": "Where does Lazur send what it sees?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your firm's data rules before you show client data to any AI tool."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Power Pivot for Excel Mac (Microsoft Q&A, 2024)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5312827/hi-jennifer-regarding-power-pivot-for-mac-you-repl",
+      "publisher": "Microsoft Learn Q&A",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Differences between Office Scripts and VBA macros",
+      "url": "https://learn.microsoft.com/en-us/office/dev/scripts/resources/vba-differences",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Many Auditors Are Still Married to Their Excel Spreadsheets, Report Finds",
+      "url": "https://www.cpapracticeadvisor.com/2025/01/14/many-auditors-are-still-married-to-their-excel-spreadsheets-report-finds/154430/",
+      "publisher": "CPA Practice Advisor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Use of Data Analytics in Auditing",
+      "url": "https://www.cpajournal.com/2023/09/13/the-use-of-data-analytics-in-auditing/",
+      "publisher": "The CPA Journal",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "State of Audit Efficiency Report",
+      "url": "https://trullion.com/forward-looking-statements-2025/state-of-audit-efficiency-report/",
+      "publisher": "Trullion",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Internal Audit Excel Template",
+      "url": "https://www.someka.net/products/internal-audit-excel-template/",
+      "publisher": "Someka",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Internal Audit Checklist & Evaluation Excel Template",
+      "url": "https://www.simplesheets.co/internal-audit",
+      "publisher": "SimpleSheets",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Internal Controls Assessment Template",
+      "url": "https://www.auditnet.org/viewdocument/internal-controls-assessment-templa-3?CommunityKey=ae648391-c89e-46ce-8ff9-018af6a9cde7&tab=librarydocuments",
+      "publisher": "AuditNet",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why does this lookup return #N/A?",
+    "capability": "explain",
+    "result": "Lazur reads the formula and the cell it points to, then explains out loud that the lookup key matches no row in the ledger.",
+    "shell": "sheet",
+    "context": "Reconciliation tab, lookup against the ledger export",
+    "output": "The invoice ID in the export has a trailing space, so the exact match fails. Trim the column with TRIM, or re-import the file with the text type set.",
+    "pointsAt": "the #N/A cell in column D"
+  },
+  "tasks": [
+    {
+      "say": "Where is Remove Duplicates on this Mac?",
+      "result": "Lazur draws a circle and a label around the Remove Duplicates button on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does this total not match the sum of the rows?",
+      "result": "Lazur reads the total formula and says which range it skips, such as a hidden or text-formatted row.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through building a pivot table of exceptions by owner.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to the process owner about the missing approvals.",
+      "result": "Lazur drafts the note and types it at your cursor, so you can edit it before it goes anywhere.",
+      "capability": "draft"
+    },
+    {
+      "say": "Control 4.2 tested, no exceptions in the sample.",
+      "result": "Hold fn and speak. Dictation drops clean, formatted text at the cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Set a timer for the sample review.",
+      "result": "Lazur starts the timer by voice, so the review stays on schedule while you keep working.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Find current guidance on sampling for controls testing.",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report while you keep working.",
+      "capability": "research"
+    }
+  ],
+  "chart": {
+    "title": "Biggest Excel challenges for surveyed auditors",
+    "bars": [
+      {
+        "label": "Time-consuming reconciliations",
+        "value": 49,
+        "highlight": true
+      },
+      {
+        "label": "Manual data entry errors",
+        "value": 42
+      },
+      {
+        "label": "Limited collaboration",
+        "value": 5
+      },
+      {
+        "label": "Version control issues",
+        "value": 4
+      }
+    ],
+    "unit": "%",
+    "note": "Share of respondents who named each challenge. Vendor survey of U.S. auditors, not limited to internal audit.",
+    "sourceUrl": "https://trullion.com/forward-looking-statements-2025/state-of-audit-efficiency-report/",
+    "sourceTitle": "State of Audit Efficiency Report, Trullion"
+  },
+  "type": "role-app",
+  "slug": "internal-auditors-excel",
+  "role": "internal-auditors",
+  "app": "excel",
+  "roleName": "Internal auditors",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/internal-auditors-excel/excel-for-internal-auditors-on-mac-1-b0de3a.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Auditor at a desk reviewing a spreadsheet on a laptop, the kind of work behind excel for internal auditors on mac",
+      "caption": "Reviewing a workbook at a desk",
+      "keywords": [
+        "excel for internal auditors on mac",
+        "Excel",
+        "Internal auditors",
+        "Mac",
+        "auditor working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/internal-auditors-excel/excel-for-internal-auditors-on-mac-2-2ca671.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Close-up of financial figures on a screen during a reconciliation, a common task for excel for internal auditors on mac",
+      "caption": "Matching figures line by line",
+      "keywords": [
+        "excel for internal auditors on mac",
+        "Excel",
+        "Internal auditors",
+        "Mac",
+        "accountant spreadsheet analysis",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "loufre",
+        "url": "https://pixabay.com/users/loufre-2697555/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/application-money-money-calculator-1756269/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/internal-auditors-excel/excel-for-internal-auditors-on-mac-3-53d145.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Professional using a MacBook in an office, the setting for excel for internal auditors on mac work",
+      "caption": "Working in Excel on a MacBook",
+      "keywords": [
+        "excel for internal auditors on mac",
+        "Excel",
+        "Internal auditors",
+        "Mac",
+        "man using MacBook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for internal auditors on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 8,
+    "secondary": {
+      "internal audit Excel templates Mac": 1,
+      "Excel reconciliation Mac": 1,
+      "Power Query on Mac": 2,
+      "Excel for auditors Mac": 1,
+      "Excel formulas for auditors on Mac": 1,
+      "internal audit sampling in Excel": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

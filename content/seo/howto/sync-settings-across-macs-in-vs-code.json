@@ -1,0 +1,646 @@
+{
+  "title": "How to sync settings across Macs in VS Code on Mac: Settings Sync steps for 2026",
+  "metaTitle": "How to sync settings across Macs in VS Code on Mac",
+  "description": "Learn how to sync settings across Macs in VS Code with Settings Sync: turn it on, choose categories, sign in with GitHub or Microsoft, and troubleshoot.",
+  "targetKeyword": "how to sync settings across macs in vs code",
+  "secondaryKeywords": [
+    "sync VS Code settings on Mac",
+    "VS Code Settings Sync",
+    "VS Code sync extensions Mac",
+    "VS Code keyboard shortcuts sync",
+    "turn off Settings Sync VS Code",
+    "VS Code profiles sync Mac"
+  ],
+  "intro": "To sync settings across Macs in VS Code, turn on Settings Sync from the Manage gear menu and sign in with a Microsoft or GitHub account. Use that same account on every Mac, then pick a conflict option when VS Code asks, which often means keeping the cloud copy.",
+  "tldr": [
+    "Turn on Settings Sync from the Manage gear menu, then choose Backup and Sync Settings.",
+    "Sign in with the same Microsoft or GitHub account on every Mac.",
+    "On the second Mac, Accept Remote keeps the cloud copy and overwrites that Mac's local settings.",
+    "Extensions do not sync to SSH, dev container, or WSL windows, so install those again there.",
+    "To stop syncing on one Mac, choose Settings Sync: Turn Off and leave the cloud box unchecked."
+  ],
+  "stats": [
+    {
+      "value": "1.145",
+      "label": "Latest stable VS Code release, published November 4, 2026",
+      "sourceUrl": "https://code.visualstudio.com/updates",
+      "sourceTitle": "VS Code Updates"
+    },
+    {
+      "value": "100 KB",
+      "label": "Size limit for the Settings, Keyboard Shortcuts, and Tasks categories",
+      "sourceUrl": "https://code.visualstudio.com/docs/configure/settings-sync",
+      "sourceTitle": "Settings Sync: Visual Studio Code Docs"
+    },
+    {
+      "value": "20",
+      "label": "Profiles the Profiles category can sync",
+      "sourceUrl": "https://code.visualstudio.com/docs/configure/settings-sync",
+      "sourceTitle": "Settings Sync: Visual Studio Code Docs"
+    },
+    {
+      "value": "75.9%",
+      "label": "Share of 2025 Stack Overflow respondents who use VS Code, general use not sync",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/technology",
+      "sourceTitle": "Stack Overflow Developer Survey 2025: Technology"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "If you work on a laptop at home and another Mac at the office, you know the problem. The font is too small on one machine. The theme is wrong on the other. Your shortcuts work on one Mac and not the second. VS Code fixes this with a built-in feature called Settings Sync. It stores your choices in your Microsoft or GitHub account, then applies them on every Mac where you sign in."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Many developers already use VS Code. In the 2025 Stack Overflow Developer Survey, 75.9% of respondents said they use it, though that figure covers general use, not sync. This guide walks through the desktop app on macOS. It covers the first setup, the second Mac, the conflict prompt, and the controls you need later. The official docs do not include Mac screenshots, so if a label looks different on your build, search for Settings Sync in the Command Palette."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Settings Sync copies on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings Sync works by category. You choose which categories travel with your account, and each category syncs on its own. The official docs list these: Settings, Keyboard Shortcuts, Snippets, Tasks, MCP Servers, UI State, Extensions, Profiles, and Prompts and Instructions. Tasks sync only at the user level, so a task tied to one project stays on the machine where you made it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Settings: your user settings, such as font size, word wrap, and editor behavior.",
+        "Keyboard Shortcuts: any custom key bindings you saved in the Keyboard Shortcuts editor.",
+        "Snippets: the snippet files you wrote for each language.",
+        "Extensions: the extensions you installed, which install again on your other Mac.",
+        "Profiles: named sets of settings you switch between, with up to 20 profiles.",
+        "Prompts and Instructions: your saved prompts and instructions for AI features."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Not everything belongs in the cloud. If one value in your settings points to a path that exists only on one Mac, sync copies that path everywhere. Edit the value so it works on both Macs, or remove it from your user settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start: account, version, and second Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A Microsoft or GitHub account. GitHub Enterprise Server and Microsoft Sovereign Cloud accounts are not supported.",
+        "A current stable build of VS Code. The latest stable release is 1.145, released November 4, 2026.",
+        "A working browser on each Mac, because the sign-in finishes in the browser.",
+        "Internet access on both Macs during the first sync."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "To check your build, open the Code menu and choose About Visual Studio Code. If you are behind the latest release, update first. Then decide on the account before you turn anything on. Use one account for every Mac. Each account keeps its own cloud copy, so a second account gives you a second, empty set of settings."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on Settings Sync on your first Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start on the Mac whose settings you trust most. The first Mac seeds the cloud copy, so its settings become the starting point for every other machine. If you start on a fresh install, you will push default settings to your other Mac. Check the editor first, then turn sync on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sign-in is the only step that leaves VS Code. Everything else happens inside the editor, so keep the browser window handy until the sign-in completes."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on Settings Sync on your second Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your work Mac uses a bigger font than your home Mac. You turn on sync at home with the same account. VS Code finds data in the cloud that differs from the data on this Mac, so it asks what to do. Your choice decides which version wins. Read the prompt before you click anything."
+    },
+    {
+      "type": "table",
+      "caption": "Conflict options from the Settings Sync docs",
+      "headers": [
+        "Choice",
+        "What it does",
+        "Pick it when"
+      ],
+      "rows": [
+        [
+          "Accept Local, or Replace Remote",
+          "Keeps the settings on this Mac and writes them to the cloud",
+          "This Mac holds the settings you want everywhere"
+        ],
+        [
+          "Accept Remote, or Replace Local",
+          "Keeps the cloud settings and overwrites this Mac",
+          "The cloud copy is the one you want"
+        ],
+        [
+          "Show Conflicts",
+          "Opens both sides so you can edit, then select Complete Merge",
+          "You want some values from each Mac"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For a first sync on a second Mac, Accept Remote is usually the safest choice. It keeps the cloud copy you built on the first Mac and drops the defaults on this one. Use Show Conflicts when you want a mix. You might keep the theme from the cloud and the keyboard shortcuts from this Mac."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose which categories sync on each Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Manage gear menu and choose Settings Sync: Configure to change categories. The change applies to that Mac only. Keep the categories the same on both machines unless you have a clear reason. If one Mac skips a category, changes in that category never reach it."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Profiles for work and home",
+      "text": "Turn on Profiles if you switch between work and personal setups. Each profile can hold its own settings, and the Profiles category syncs up to 20 profiles."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts across Macs, Windows, and Linux"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keyboard shortcuts sync per operating system by default. Two Macs with the same account share one set, so nothing special happens there. The split matters only when you also use Windows or Linux with that account. Those machines keep their own set, so a Mac shortcut does not overwrite a Windows one."
+    },
+    {
+      "type": "paragraph",
+      "text": "To share one set across every system, clear the setting named settingsSync.keybindingsPerPlatform. Open the Settings editor with ⌘, and search for that name. Check your shortcuts afterward, because a binding that works on Windows may use a key your Mac keyboard lacks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Extensions: what syncs and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Extensions sync to normal local windows. They do not sync to or from remote windows, such as SSH, dev containers, or WSL. If you open a project on a server, install the extensions there again. Installing on your Mac does not put them on the server."
+    },
+    {
+      "type": "paragraph",
+      "text": "A useful habit is to install new extensions on your main Mac first. After a short wait, open the Extensions view on the second Mac. If something is missing, open the Manage gear menu and confirm that the Settings Sync is On entry is there."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Size limits: 100 KB per category and 20 profiles"
+    },
+    {
+      "type": "paragraph",
+      "text": "Settings, keyboard shortcuts, and user tasks must each be 100 KB or smaller. If a category goes over that limit, VS Code disables that category. The symptom is one category that stops updating while everything else keeps working. Trim the file, then turn the category back on."
+    },
+    {
+      "type": "paragraph",
+      "text": "Profiles have a cap of their own. The Profiles category syncs up to 20 profiles. If you keep more than 20 profiles, remove the ones you no longer use before you expect all of them to sync."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stable and Insiders keep separate sync"
+    },
+    {
+      "type": "paragraph",
+      "text": "Stable and Insiders use separate sync services by default. If you run both builds on one Mac, a setting you change in Stable will not show up in Insiders. To share data, select the Stable sync service when you turn on sync in Insiders. Pick one build for daily work to avoid surprises."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to turn off Settings Sync on one Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "You might turn sync off on an old laptop you are retiring, or on a shared machine. Turning it off on one Mac does not remove the cloud copy by default. Your other Macs keep syncing with that data."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the Manage gear menu and select Settings Sync is On.",
+        "Choose Settings Sync: Turn Off, then select Turn off.",
+        "Leave the box for clearing cloud data unchecked unless you want to remove data everywhere."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check before clearing the cloud",
+      "text": "Checking the box that turns off sync on all your devices also clears the cloud data. Every Mac loses the synced copy. Copy your settings file first. Press ⇧⌘P and run Preferences: Open User Settings (JSON) to open it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix Cannot sign in and other Settings Sync errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "One error that shows up in third-party troubleshooting notes is Turning on Settings Sync failed: Cannot sign in. Those notes suggest running Settings Sync: Reset Extension, then Accounts: Remove Account, then fully quitting and restarting VS Code. That advice comes from a third-party site, not from Microsoft, so try the basic checks first."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Confirm the account is a Microsoft or GitHub account, not an unsupported type.",
+        "Quit VS Code fully with ⌘Q, then reopen it and try the sign-in again.",
+        "Make sure the browser sign-in finished. VS Code waits for that step.",
+        "If problems persist, launch from Terminal with the verbose flag and read the logs described below."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The official docs say extra keychain setup is usually unnecessary on macOS. If problems continue, start VS Code from Terminal with `code --verbose --vmodule='*/components/os_crypt/*=1'`. The code command must be installed first, so [install the code command in VS Code on Mac](/how-to/install-the-code-command-in-vs-code) if you have not. Then open the Log (Settings Sync) and Account output channels from the View menu and read the messages."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Settings Sync and VS Code for the Web"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you open VS Code for the Web at vscode.dev, the rules change a little. Installed extensions live in the browser's local storage, according to the official web page. That page recommends Settings Sync to keep extensions consistent across instances. It gives no menu labels for turning sync on in the web version, so the desktop steps above are the ones to follow."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when syncing Macs"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Signing in with two different accounts. Each account keeps its own cloud copy, so the Macs never meet.",
+        "Starting on a fresh Mac and choosing the option that replaces the cloud copy. That erases the good settings.",
+        "Expecting extensions to follow you into an SSH or dev container window.",
+        "Turning on sync in Insiders and expecting Stable settings to appear without selecting the Stable sync service.",
+        "Letting one category grow past 100 KB, then wondering why it stopped syncing."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A quick test that sync works"
+    },
+    {
+      "type": "paragraph",
+      "text": "Make one small change on your first Mac, such as the editor font size. Open VS Code on the second Mac, wait a short moment, and look for the change. If it does not appear, open the Manage gear menu and confirm that the Settings Sync is On entry is there."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next after sync works"
+    },
+    {
+      "type": "paragraph",
+      "text": "With the same settings on both Macs, set up the tools you use every day. Start with Git, using [how to set up Git in VS Code on Mac](/how-to/set-up-git-in-vs-code). If you use the built-in terminal, [set the default terminal shell in VS Code on Mac](/how-to/set-the-default-terminal-shell-in-vs-code), then check that the shell matches on the second Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Install new extensions once on your main Mac. The [install an extension in VS Code on Mac](/how-to/install-an-extension-in-vs-code) steps cover the details. For the shortcuts you use most, the [command palette guide](/how-to/use-the-command-palette-in-vs-code) shows how ⇧⌘P finds almost anything."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does this work on every Mac?",
+      "answer": "The steps here use the VS Code desktop app on macOS. The official docs describe the same sign-in and sync flow on every platform, so the labels should match on any Mac build. The docs have no Mac screenshots, so check each label against your own screen."
+    },
+    {
+      "question": "Can I sync without a Microsoft or GitHub account?",
+      "answer": "No. Settings Sync supports Microsoft and GitHub accounts only. GitHub Enterprise Server and Microsoft Sovereign Cloud accounts are not supported, so use a standard account on every Mac."
+    },
+    {
+      "question": "Does Settings Sync copy my extensions?",
+      "answer": "Yes, when the Extensions category is on. Sync installs them on your other Mac. Extensions do not sync to or from remote windows such as SSH, dev containers, or WSL, so install those again on the remote side."
+    },
+    {
+      "question": "Is there a keyboard shortcut to turn on Settings Sync?",
+      "answer": "The official docs do not list a Mac shortcut for Settings Sync itself. Start from the Manage gear menu, or press ⇧⌘P and type Settings Sync to find the commands."
+    },
+    {
+      "question": "How do I stop syncing on one Mac without losing data everywhere?",
+      "answer": "Choose Settings Sync: Turn Off from the Manage gear menu, then select Turn off. Leave the cloud box unchecked, so the data stays in your account for your other Macs."
+    },
+    {
+      "question": "Why did one settings category stop syncing?",
+      "answer": "Check the size limit first. Settings, keyboard shortcuts, and user tasks must each be 100 KB or smaller. A category over that limit gets disabled, so trim the file and remove what you do not need."
+    },
+    {
+      "question": "Do Stable and Insiders share settings?",
+      "answer": "Not by default. They use separate sync services. To share data, select the Stable sync service when you turn on sync in Insiders."
+    },
+    {
+      "question": "Will my keyboard shortcuts match on Windows?",
+      "answer": "Keyboard shortcuts sync per operating system by default, so a Windows machine keeps its own set. Clear settingsSync.keybindingsPerPlatform if you want one set on every system."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Settings Sync: Visual Studio Code Docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings-sync",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Key Bindings for Visual Studio Code",
+      "url": "https://code.visualstudio.com/docs/configure/keybindings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "User and workspace settings: Visual Studio Code Docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code for the Web",
+      "url": "https://code.visualstudio.com/docs/remote/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Stack Overflow Developer Survey 2025: Technology",
+      "url": "https://survey.stackoverflow.co/2025/technology",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fix VS Code Settings Sync Failed: Cannot sign in",
+      "url": "https://errornotes.dev/en/errors/vscode/fix-vs-code-settings-sync-failed-turning-on-settings-sync-failed-cannot-sign-in",
+      "publisher": "errornotes.dev (third-party)",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Sync VS Code settings between two Macs",
+  "appliesTo": "VS Code desktop app on macOS, Apple silicon and Intel Macs",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Microsoft or GitHub account, not GitHub Enterprise Server or Microsoft Sovereign Cloud",
+    "A current stable build of VS Code, with 1.145 the latest release",
+    "A working browser on each Mac for the sign-in step",
+    "Both Macs online during the first sync"
+  ],
+  "steps": [
+    {
+      "name": "Open Settings Sync on your first Mac",
+      "text": "Open VS Code on the Mac whose settings you trust most. Click the gear icon at the bottom left, the Manage menu. Choose Backup and Sync Settings from the list.",
+      "menuPath": [
+        "Manage (gear icon)",
+        "Backup and Sync Settings"
+      ],
+      "tip": "The Accounts icon at the bottom of the Activity Bar leads to the same command."
+    },
+    {
+      "name": "Pick the categories to sync",
+      "text": "Turn on the categories you want on every Mac, such as Settings, Keyboard Shortcuts, Snippets, and Extensions. Leave out anything that only makes sense on one machine.",
+      "tip": "You can change categories later with Settings Sync: Configure."
+    },
+    {
+      "name": "Sign in with a Microsoft or GitHub account",
+      "text": "Select Sign in and pick an account type. Your browser opens. Finish the sign-in there, then return to VS Code and wait for sync to start.",
+      "menuPath": [
+        "Sign in"
+      ],
+      "tip": "Use the same account on every Mac. A second account starts an empty cloud copy."
+    },
+    {
+      "name": "Confirm sync is on",
+      "text": "Open the Manage gear menu again. The entry Settings Sync is On appears in the menu. That entry means this Mac is syncing.",
+      "menuPath": [
+        "Manage (gear icon)",
+        "Settings Sync is On"
+      ],
+      "tip": "If the entry is missing, the sign-in did not finish. Run the sign-in again."
+    },
+    {
+      "name": "Set up the second Mac",
+      "text": "On the second Mac, open VS Code and repeat the first four steps with the same account. A conflict prompt appears if the cloud copy and this Mac differ.",
+      "tip": "Sign in before you change any settings on the second Mac."
+    },
+    {
+      "name": "Resolve the conflict prompt",
+      "text": "Choose Accept Remote or Replace Local to take the cloud copy. Choose Accept Local or Replace Remote to keep this Mac. Choose Show Conflicts to edit both sides, then select Complete Merge.",
+      "tip": "Read the prompt twice. Each choice overwrites data on one side."
+    },
+    {
+      "name": "Change categories later",
+      "text": "Open the Manage gear menu and select Settings Sync: Configure. Check or clear categories, then confirm. The change applies to this Mac.",
+      "menuPath": [
+        "Manage (gear icon)",
+        "Settings Sync: Configure"
+      ]
+    },
+    {
+      "name": "Open your settings file",
+      "text": "Press ⇧⌘P, type Preferences: Open User Settings (JSON), and press Return. VS Code opens the settings file so you can review or copy it.",
+      "shortcut": "⇧⌘P",
+      "tip": "Copy this file before you turn off sync for every device."
+    },
+    {
+      "name": "Open Settings on a Mac",
+      "text": "Press ⌘, to open the Settings editor. Search for settingsSync.keybindingsPerPlatform here if you want one shortcut set across operating systems.",
+      "shortcut": "⌘,",
+      "menuPath": [
+        "Code",
+        "Settings",
+        "Settings"
+      ],
+      "tip": "The official docs show File > Preferences, which is the Windows and Linux layout."
+    },
+    {
+      "name": "Test the sync",
+      "text": "Change the editor font size on your first Mac. Open VS Code on the second Mac, wait a short moment, and check that the font size matches.",
+      "tip": "If nothing changes, check that Settings Sync is On appears on both Macs."
+    },
+    {
+      "name": "Turn off sync on one Mac",
+      "text": "Open the Manage gear menu and select Settings Sync is On. Choose Settings Sync: Turn Off, then select Turn off. Leave the cloud box unchecked to keep data for your other Macs.",
+      "menuPath": [
+        "Manage (gear icon)",
+        "Settings Sync is On",
+        "Settings Sync: Turn Off"
+      ],
+      "tip": "Checking the cloud box clears the data for every device."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Command Palette, search Settings Sync",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Settings editor",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Keyboard Shortcuts editor",
+      "keys": "⌘K ⌘S"
+    },
+    {
+      "action": "Quit VS Code before retrying sign-in",
+      "keys": "⌘Q"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Turning on Settings Sync failed: Cannot sign in",
+      "fix": "Check the account type, quit VS Code with ⌘Q, reopen it, and retry. A third-party guide suggests resetting the extension and removing the account, but that is not an official fix. Try the basics first."
+    },
+    {
+      "problem": "A settings category stopped syncing",
+      "fix": "Check the 100 KB limit for Settings, Keyboard Shortcuts, and Tasks. A category over the limit is disabled. Trim the file, then turn the category back on with Settings Sync: Configure."
+    },
+    {
+      "problem": "Extensions are missing in an SSH or dev container window",
+      "fix": "Settings Sync does not reach remote windows. Open the remote window and install the extensions there again."
+    },
+    {
+      "problem": "Shortcuts differ between my Mac and my Windows PC",
+      "fix": "Shortcuts sync per operating system by default. To share one set, clear settingsSync.keybindingsPerPlatform, then check for keys your Mac keyboard lacks."
+    },
+    {
+      "problem": "Stable settings do not appear in Insiders",
+      "fix": "Stable and Insiders use separate sync services. When you turn on sync in Insiders, select the Stable sync service to share the data."
+    },
+    {
+      "problem": "Sign-in keeps failing on a second Mac",
+      "fix": "Confirm both Macs use the same account type and finish the browser step. Then quit VS Code fully, reopen it, and try again."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through turning on Settings Sync.",
+    "capability": "guide",
+    "context": "VS Code desktop app on macOS, first sync on a Mac",
+    "output": "Spoken steps, one click at a time, with the Manage gear menu circled first",
+    "result": "Lazur points at each control and waits for your click. It does not click for you.",
+    "shell": "code",
+    "pointsAt": "Manage gear menu"
+  },
+  "type": "howto",
+  "slug": "sync-settings-across-macs-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/sync-settings-across-macs-in-vs-code/how-to-sync-settings-across-macs-in-1-9b8235.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Developer at a MacBook learning how to sync settings across Macs in VS Code",
+      "caption": "Setting up a second Mac with the same editor",
+      "keywords": [
+        "how to sync settings across macs in vs code",
+        "VS Code",
+        "sync settings across Macs",
+        "Mac",
+        "developer MacBook desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-dark-room-modern-2593016/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/sync-settings-across-macs-in-vs-code/how-to-sync-settings-across-macs-in-2-2a240e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Laptop screen with a code editor open, the setup you copy between two Macs",
+      "caption": "Coding on a laptop in a home office",
+      "keywords": [
+        "how to sync settings across macs in vs code",
+        "VS Code",
+        "sync settings across Macs",
+        "Mac",
+        "laptop code editor",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "yatsusimnetcojp",
+        "url": "https://pixabay.com/users/yatsusimnetcojp-14033705/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-css-html-php-4570799/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/sync-settings-across-macs-in-vs-code/how-to-sync-settings-across-macs-in-3-168a03.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person with coffee and a laptop, switching between a home Mac and an office Mac",
+      "caption": "Switching between a home and office Mac",
+      "keywords": [
+        "how to sync settings across macs in vs code",
+        "VS Code",
+        "sync settings across Macs",
+        "Mac",
+        "home office laptop coffee",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Daria-Yakovleva",
+        "url": "https://pixabay.com/users/Daria-Yakovleva-3938704/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-coffee-table-work-office-1971495/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to sync settings across macs in vs code",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "sync VS Code settings on Mac": 1,
+      "VS Code Settings Sync": 1,
+      "VS Code sync extensions Mac": 1,
+      "VS Code keyboard shortcuts sync": 1,
+      "turn off Settings Sync VS Code": 1,
+      "VS Code profiles sync Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

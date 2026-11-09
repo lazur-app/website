@@ -1,0 +1,609 @@
+{
+  "title": "Excel for insurance agents on Mac: renewals and commissions in Microsoft 365",
+  "metaTitle": "Excel for Insurance Agents on Mac: Renewals and Commissions",
+  "description": "Excel for insurance agents on Mac: renewal trackers, commission checks, pivots, and Mac limits. Ask Lazur for help while you work in Excel.",
+  "targetKeyword": "excel for insurance agents on mac",
+  "secondaryKeywords": [
+    "excel for insurance agencies",
+    "excel renewal tracker mac",
+    "commission reconciliation excel mac",
+    "excel tips for insurance agents",
+    "xlookup commission statement",
+    "excel for insurance agents mac voice help"
+  ],
+  "intro": "Excel for insurance agents on Mac handles the core agency jobs: renewal trackers, commission checks, and carrier statement matching. You use the same Microsoft 365 app that Windows users have, with a few Mac gaps to plan around. This guide covers setup, formulas, Mac limits, and where Lazur helps while the file is open.",
+  "tldr": [
+    "Build one named table for policies. Formulas then read Policies[Premium], which stays clear for months.",
+    "Match commission lines with XLOOKUP and TRIM. Give missing matches a visible label, not a blank.",
+    "Mac does not have Power Pivot or the Data Model. Plan Data Model work for a Windows PC.",
+    "Lazur points, explains, and guides one click at a time. It does not click buttons or edit your file."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows per Excel worksheet, with up to 16,384 columns. A policy export rarely comes close.",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits"
+    },
+    {
+      "value": "94%",
+      "label": "of operational spreadsheets examined contain at least one error, per DataHub Pro's summary of Raymond Panko's research",
+      "sourceUrl": "https://www.datahubpro.co.uk/what-percentage-of-spreadsheets-have-errors",
+      "sourceTitle": "What % of Spreadsheets Have Errors? (DataHub Pro)"
+    },
+    {
+      "value": "46%",
+      "label": "of independent agencies report using AI, up from 15% in 2024. This counts AI use in general, not Excel.",
+      "sourceUrl": "https://www.independentagent.com/news/big-i-and-future-one-release-2026-agency-universe-study/",
+      "sourceTitle": "Big 'I' and Future One Release 2026 Agency Universe Study"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "For most agency work, Excel is a list keeper. A renewal tracker tells you who comes up next. A commission sheet tells you whether the carrier paid what it owed. Those two jobs are where small errors turn into lost commission, so this guide starts there."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What insurance agents keep in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The same few files show up on most agency desks. Each file has a grain, meaning what one row represents. Pick the grain before you type anything. A policy list uses one row per policy term. A client list uses one row per person or household. Mixing the two breaks every total you build later."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Renewal tracker: policy number, client, carrier, premium, renewal date, and status.",
+        "Commission reconciliation: carrier statement lines matched to your policy list.",
+        "Prospect list: name, line of business, lead source, and next follow-up date.",
+        "Premium audit notes: what the carrier billed compared with what you quoted.",
+        "Producer or book report: a pivot by carrier, line, or producer."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep one file per job. A renewal tracker and a commission check can share a workbook. Separate files are easier to send and easier to lock down. Name each file with the carrier or the month, such as Renewals or Commission March."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build an Excel renewal tracker on Mac that lasts a year"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a clean table. Click any cell inside your data, then press ⌘ T. Excel asks whether the table has headers. Keep the box checked if row 1 holds labels. A table grows as you add rows, and formulas fill down on their own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table when you create it. Naming at creation became generally available on Mac in October 2026. Look for the Table Design tab, then the Table Name box at the left. Call the table Policies, not Table1. Formulas then read as Policies[Premium], which you can still understand months later."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What goes in it",
+        "Format tip"
+      ],
+      "rows": [
+        [
+          "Policy Number",
+          "Carrier policy ID, exactly as printed",
+          "Format the column as Text before you paste IDs"
+        ],
+        [
+          "Client",
+          "Named insured, last name first",
+          "Keep one spelling for each client"
+        ],
+        [
+          "Carrier",
+          "Carrier name from a drop-down list",
+          "Use Data > Data Validation to limit entries"
+        ],
+        [
+          "Premium",
+          "Annual premium as a number",
+          "Currency format, with no typed symbols"
+        ],
+        [
+          "Renewal Date",
+          "Date the policy comes up for renewal",
+          "Enter real dates, not text such as Jan 3"
+        ],
+        [
+          "Status",
+          "Quoted, bound, renewing, or lost",
+          "Use the same words every time"
+        ]
+      ],
+      "caption": "A starting layout for a renewal tracker. Adjust the columns to fit your lines."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Data Validation so carrier names stay clean"
+    },
+    {
+      "type": "paragraph",
+      "text": "Free-text carrier names split your pivots. One row says Acme Mutual and another says Acme Mutual Insurance. A pivot treats those as two carriers. Build a short list on a sheet named Lists. Then select the Carrier column and go to Data > Data Validation. Choose List and point it at the Lists sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find renewals in the next few weeks with FILTER"
+    },
+    {
+      "type": "paragraph",
+      "text": "Put the look-ahead window in one cell and name that cell DaysAhead. Then type this formula in an empty cell. FILTER is part of Microsoft 365 on Mac, and it spills the matching rows for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "=FILTER(Policies, (Policies[Renewal Date]>=TODAY()) * (Policies[Renewal Date]<=TODAY()+DaysAhead), \"None due\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "Read it in plain words. Keep each row where the renewal date falls between today and the window you set. If nothing matches, the cell shows None due. Wrap the whole formula in SORT when you want the list in date order."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two things break this formula. Dates stored as text fail the test, so FILTER skips them. Blank renewal dates drop out too. Scan the Renewal Date column for blanks before you trust a short list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add conditional formatting for the same window if you like color. Go to Home > Conditional Formatting > New Rule, choose the formula rule, and reuse the same date test. Color helps while you scroll. FILTER helps when you need the list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Commission checks with XLOOKUP and TRIM in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "A carrier statement and your policy list hold the same policy numbers in different shapes. One side has a trailing space. The other stores numbers as text. XLOOKUP then returns #N/A even though the policy exists. TRIM fixes the space. Matching the data type fixes the rest."
+    },
+    {
+      "type": "paragraph",
+      "text": "=XLOOKUP(TRIM(A2), Policies[Policy Number], Policies[Client], \"Not in tracker\")"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth argument matters. It is the text shown when nothing matches. A blank looks clean but hides problems. The words Not in tracker tell you which lines to review first."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the money check, add a second column. Look up the premium the same way. Multiply it by the commission rate from the carrier schedule. Subtract the amount paid. A difference of zero means the line matches. Anything else goes on your review list."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables on Mac, and the part Mac leaves out"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click inside the Policies table, then choose Insert > PivotTable. Drag Carrier to Rows and Premium to Values. Build one pivot for each question you hear most. Carrier totals, producer totals, and line of business totals are a good start."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac does not have Power Pivot or the Data Model. A February 2023 Microsoft Tech Community thread says Power Query for Mac does not support them. A community member wrote that, and no Microsoft staff reply appears. Treat it as a strong warning. If your book report needs the Data Model, build it on a Windows PC."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full menu walkthrough, read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). It covers field layout and the fixes people need most often."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac versions, limits, and 2026 changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Check your version before you chase a missing feature. Open Excel > About Excel from the menu bar. Microsoft lists macOS 12 or later, and app version 16.83 or later, as the minimum for Microsoft 365 apps on Mac. The newest Mac build in its release notes is 16.114.3, dated October 27, 2026. That update is quality fixes only."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Check",
+        "What to look for",
+        "Where to look"
+      ],
+      "rows": [
+        [
+          "macOS version",
+          "macOS 12 or later for current Office apps",
+          "Apple menu > About This Mac"
+        ],
+        [
+          "Excel version",
+          "16.83 or later, with 16.114.3 the newest build listed",
+          "Excel > About Excel"
+        ],
+        [
+          "Table naming",
+          "Names set at creation, generally available on Mac since October 2026",
+          "Table Design > Table Name"
+        ],
+        [
+          "Power Pivot and Data Model",
+          "Not available on Mac, per a community thread",
+          "Build that work on Windows"
+        ],
+        [
+          "Worksheet size",
+          "1,048,576 rows by 16,384 columns",
+          "Microsoft's specifications page"
+        ]
+      ],
+      "caption": "Mac checks for an insurance workbook, as of November 2026."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel 16.113, dated September 16, 2026, added Copilot change history, chat history, and chart and PivotTable skills for Mac. Those are Microsoft's features. Lazur is a separate app. Do not expect one to replace the other."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Spreadsheet mistakes that cost insurance agents time"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common. DataHub Pro summarizes Raymond Panko's audit research and says about 94% of operational spreadsheets contain at least one error. That is a secondary source. Use it as a reason to check, not as a rate for your agency."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Leading zeros vanish. A policy number that starts with zero loses it when Excel reads the entry as a number. Format the column as Text before you paste IDs.",
+        "Merged cells break sort and filter. Use Format > Cells, then Alignment, and choose Center Across Selection instead.",
+        "Dates typed as text sort in the wrong order. Select the column and fix the entries before you filter.",
+        "Totals typed by hand go stale. Use a formula that reads the table, so new rows count.",
+        "Two versions of one file drift apart. Keep one master copy and save dated copies for sending."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each of these is quick to fix once you see it. The hard part is catching it before the carrier does."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: a month-end commission check"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Export the carrier statement to a new workbook. Never type over the carrier file.",
+        "Turn the statement into a table with ⌘ T, then name it Statement in the Table Design tab.",
+        "Add a Client column with =XLOOKUP(TRIM(A2), Policies[Policy Number], Policies[Client], \"Not in tracker\"). The table fills it down.",
+        "Add a Premium column with the same lookup, returning Policies[Premium].",
+        "Add a Paid Diff column that compares the amount paid with the premium times the commission rate on your schedule.",
+        "Filter Paid Diff for anything that is not zero. Use the filter arrow in the header.",
+        "Filter Client for Not in tracker. Those policies may be new, cancelled, or mistyped.",
+        "Copy the exceptions to a sheet named Review. Send that list to the carrier or the producer who owns the file.",
+        "Fix the tracker, check the Client column again, and save a dated copy.",
+        "Insert a PivotTable from the Statement table with Insert > PivotTable for the monthly summary by carrier."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur at step three to explain the formula you pasted. Hold ⌥ ⌘ and ask in plain words. Lazur reads what is on screen and answers out loud."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps in Excel, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ to ask about anything on screen. Lazur sees your screen only while you hold the shortcut. Ask where something is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or run Excel for you. It is not an add-in for Excel. You make every change. Lazur tells you what to change and why."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictate file notes without typing them twice"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. Use it for file notes, call summaries, and carrier follow-ups. Keep numbers out of dictation. Type policy numbers and premiums yourself, then check them. Dictation can mishear an ID."
+    },
+    {
+      "type": "paragraph",
+      "text": "Snippets help with phrases you repeat, such as a standard note about a missing signature. A personal dictionary helps with carrier names that speech tools often get wrong. Clipboard slots keep a policy number handy while you look up the next one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy for client data in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your sheet holds client names and premiums. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "paragraph",
+      "text": "Screenshots still leave your Mac when you ask a question. Check your agency's rules first. When you can, hide personal columns or ask about the formula instead of the data. A formula explains itself without the client names."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A quick checklist before you trust the sheet"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The row count matches the carrier statement, minus the header row.",
+        "The statement total ties to the carrier's own summary total.",
+        "No #N/A or Not in tracker lines remain unreviewed.",
+        "A few policies match by hand against the carrier's portal.",
+        "A dated copy is saved before the file goes anywhere else."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If a check fails, go back to the step that feeds it. Fixing the output alone hides the cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for insurance agents on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Make a copy of your live renewal tracker and try the FILTER formula on the copy first. See [Excel on Mac with Lazur](/apps/excel) for wider Excel help. Email follow-ups usually live in Outlook, so [Outlook for insurance agents on Mac](/for/insurance-agents/outlook) is the next read."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want Lazur on your Mac, [download it](/download). The [pricing page](/pricing) lists the trial and the plans. Dictation is included on every plan."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have what insurance agents need?",
+      "answer": "Most of the core work runs fine on Mac. That includes tables, FILTER, XLOOKUP, and pivot tables. The main gap is Power Pivot and the Data Model, which a community thread says Mac lacks. Check Excel > About Excel first."
+    },
+    {
+      "question": "What macOS version do I need for Microsoft 365 Excel?",
+      "answer": "Microsoft's update page lists macOS 12 (Monterey) or later as the minimum for Microsoft 365 apps on Mac. It also lists app version 16.83 or later. Check both before you troubleshoot a missing feature."
+    },
+    {
+      "question": "Why does XLOOKUP return #N/A on my commission sheet?",
+      "answer": "The usual cause is a stray space or a number stored as text. Wrap the lookup value in TRIM and check the format of both columns. Add a fourth argument such as Not in tracker, so missing matches show clearly."
+    },
+    {
+      "question": "Can Lazur fill in my renewal tracker for me?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, and drafts text. It does not click buttons or edit your file. You type or paste the values yourself, and Lazur can help you choose the formula."
+    },
+    {
+      "question": "Is client data safe if I use Lazur while I work in Excel?",
+      "answer": "Lazur looks at the screen only while you hold the shortcut. Audio and screenshots go to AI providers to answer and are not stored. Content is never used to train AI models. Still, check your agency's rules and hide personal columns when you can."
+    },
+    {
+      "question": "Why did my dates sort in the wrong order?",
+      "answer": "The dates are probably stored as text. Excel sorts text alphabetically, so a date entry can land in the wrong place. Select the column, look for the Number Stored as Text warning, and convert the entries to real dates."
+    },
+    {
+      "question": "Can Mac Excel handle a large policy export?",
+      "answer": "Excel's worksheet grid holds 1,048,576 rows by 16,384 columns. A policy export rarely comes close to that size. Slow files usually come from heavy formulas, many links, or very large pivots rather than the grid limit."
+    },
+    {
+      "question": "Is Copilot in Excel the same as Lazur?",
+      "answer": "No. Copilot in Excel is a Microsoft feature. Excel 16.113 added Copilot change history, chat history, and chart and PivotTable skills on Mac. Lazur is a separate Mac app that points, explains, and guides you."
+    },
+    {
+      "question": "Does Lazur work with Excel on Windows?",
+      "answer": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. If you use Excel on a Windows PC, this guide still helps with the formulas, but Lazur will not run there."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Update Microsoft 365 or Office on your macOS or iOS device",
+      "url": "https://support.microsoft.com/en-us/office/lifecycle/officeinstall/update-m365-office-macos-ios",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Refresh Power Query loaded to Data Model in Excel Online OR in Mac",
+      "url": "https://techcommunity.microsoft.com/discussions/excelgeneral/refresh-power-query-loaded-to-data-model-in-excel-online-or-in-mac/3749712",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "What % of Spreadsheets Have Errors? (DataHub Pro)",
+      "url": "https://www.datahubpro.co.uk/what-percentage-of-spreadsheets-have-errors",
+      "publisher": "DataHub Pro",
+      "accessedAt": "2026-11-06"
+    },
+    {
+      "title": "Big 'I' and Future One Release 2026 Agency Universe Study",
+      "url": "https://www.independentagent.com/news/big-i-and-future-one-release-2026-agency-universe-study/",
+      "publisher": "Independent Agent (Big I)",
+      "accessedAt": "2026-11-06"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where is the Renewal Date column?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Renewal Date header. You sort or filter from there, and Lazur stays out of the file.",
+    "shell": "sheet",
+    "context": "Policies table open in Excel for Mac, about to sort by renewal date",
+    "output": "Renewal Date header circled. Label reads Renewal Date. Sort from the filter arrow in that header.",
+    "pointsAt": "Renewal Date header"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Renewal Date column in this sheet?",
+      "result": "Lazur draws a circle and a label around the header, so you can sort or filter it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does this lookup show Not in tracker for this policy?",
+      "result": "Lazur reads the formula on screen and explains the likely cause, such as a stray space in the policy number.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through a pivot table of premium by carrier.",
+      "result": "Lazur guides you one click at a time, waiting for each click, starting at Insert > PivotTable.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a note to the carrier about a premium that does not match.",
+      "result": "Lazur drafts a short, plain email you can edit before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate my file note for this renewal.",
+      "result": "Hold fn and the note lands at the cursor, with clean formatting. Check any numbers you dictated.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Research whether this carrier writes small restaurant liability accounts.",
+      "result": "Lazur runs the research in its own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me Friday to send the renewal list.",
+      "result": "Lazur adds the item to Apple Reminders for Friday.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Set a timer for my carrier callback.",
+      "result": "Lazur starts the timer by voice, so you can keep your hands on the file.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "insurance-agents-excel",
+  "role": "insurance-agents",
+  "app": "excel",
+  "roleName": "Insurance agents",
+  "appName": "Excel",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/insurance-agents-excel/excel-for-insurance-agents-on-mac-1-fd15c4.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Insurance agent at a desk with a laptop, reviewing a renewal list in a spreadsheet",
+      "caption": "Renewal and commission work at a desk, the setting for this guide.",
+      "keywords": [
+        "excel for insurance agents on mac",
+        "Excel",
+        "Insurance agents",
+        "Mac",
+        "insurance agent laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Schluesseldienst",
+        "url": "https://pixabay.com/users/Schluesseldienst-13794927/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/house-key-property-security-4516175/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/insurance-agents-excel/excel-for-insurance-agents-on-mac-2-e0c5e2.jpg",
+      "width": 1280,
+      "height": 757,
+      "alt": "Man at a Mac laptop in an office, looking at a spreadsheet on screen",
+      "caption": "A spreadsheet open on a Mac, the everyday setting for Excel on Mac.",
+      "keywords": [
+        "excel for insurance agents on mac",
+        "Excel",
+        "Insurance agents",
+        "Mac",
+        "man using laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/insurance-agents-excel/excel-for-insurance-agents-on-mac-3-42ab36.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Office desk with a computer and paperwork, where commission checks get done",
+      "caption": "A desk with a computer and paper files for carrier statements.",
+      "keywords": [
+        "excel for insurance agents on mac",
+        "Excel",
+        "Insurance agents",
+        "Mac",
+        "office desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/blueprints-entrepreneur-hands-1837238/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for insurance agents on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for insurance agencies": 1,
+      "excel renewal tracker mac": 1,
+      "commission reconciliation excel mac": 1,
+      "excel tips for insurance agents": 1,
+      "xlookup commission statement": 1,
+      "excel for insurance agents mac voice help": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

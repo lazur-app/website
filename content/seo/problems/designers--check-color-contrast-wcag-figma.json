@@ -1,0 +1,626 @@
+{
+  "title": "Check color contrast for WCAG in Figma on Mac: steps for designers in 2026",
+  "metaTitle": "Check color contrast for WCAG in Figma on Mac (2026 guide)",
+  "description": "Check color contrast for WCAG in Figma on Mac with the built-in color picker, AA and AAA thresholds, and free tools that test real screen colors.",
+  "targetKeyword": "check color contrast for wcag in figma",
+  "secondaryKeywords": [
+    "wcag contrast ratio figma",
+    "figma contrast checker",
+    "wcag 4.5:1 normal text",
+    "color contrast checker mac",
+    "figma color picker accessibility",
+    "wcag aa large text 3:1"
+  ],
+  "intro": "To check color contrast for WCAG in Figma on Mac, select the text layer, open its fill in the color picker, and click Check color contrast. Figma shows the ratio and whether each level passes. Normal text needs at least 4.5:1 for AA, and large text needs 3:1. This page walks through the steps, the thresholds, and the free checks you can run outside Figma.",
+  "tldr": [
+    "Select the text layer, click its Fill swatch, and choose Check color contrast in the color picker.",
+    "Normal text needs 4.5:1 for WCAG AA. Large text, 18 pt or 14 pt bold, needs 3:1.",
+    "WCAG does not round. A ratio of 4.499:1 fails 4.5:1, so nudge the color and check again.",
+    "Figma can auto-correct a failing color to the nearest compliant one. Review the new value against your palette.",
+    "Check the real background, the real font size, and a color blindness simulation before you hand off."
+  ],
+  "stats": [
+    {
+      "value": "83.9%",
+      "label": "of top-million home pages had low-contrast text in WebAIM's 2026 report, counting automated checks only",
+      "sourceUrl": "https://webaim.org/projects/million/",
+      "sourceTitle": "WebAIM: The WebAIM Million, 2026 report"
+    },
+    {
+      "value": "34",
+      "label": "distinct low-contrast text instances per home page on average, up 15% from 2025",
+      "sourceUrl": "https://webaim.org/projects/million/",
+      "sourceTitle": "WebAIM: The WebAIM Million, 2026 report"
+    },
+    {
+      "value": "1 in 12",
+      "label": "men have color vision deficiency, according to the National Eye Institute",
+      "sourceUrl": "https://nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",
+      "sourceTitle": "NEI: Color Blindness"
+    },
+    {
+      "value": "4.5:1",
+      "label": "contrast ratio WCAG 2.2 requires for normal text at AA",
+      "sourceUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "sourceTitle": "Understanding Success Criterion 1.4.3: Contrast (Minimum), W3C WCAG 2.2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check color contrast for WCAG in Figma, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's contrast view sits inside the color picker. Open it from the fill of the text layer, so you check the exact color you plan to ship. The feature is available on all plans. You need edit access to the file to apply a fix."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click the text layer on the canvas. If it sits under another layer, select it in the Layers panel.",
+        "In the right panel, go to Fill and click the color swatch. The color picker opens.",
+        "Click Check color contrast. The accessibility view opens inside the color modal.",
+        "Read the ratio, then the AA or AAA result for the category you need.",
+        "If an indicator fails, click it. Figma moves the value to the nearest compliant color.",
+        "Compare the new value with your palette. The nearest compliant color may not sit on your brand scale."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Menu names may differ",
+      "text": "Figma's help article uses an older video, although its text covers the newer UI3 interface. Labels can shift between updates. If you cannot find Check color contrast, open the current Figma Help Center article before you guess."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the category before you read the result"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's settings include Auto, Large text, Normal text, Graphics, and two levels, AA and AAA. Auto may choose a threshold that does not match how the layer is used. Set the category yourself when the layer is a heading, a button label, or an icon."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Text or part",
+        "Ratio needed",
+        "Level"
+      ],
+      "rows": [
+        [
+          "Normal text",
+          "4.5:1",
+          "AA"
+        ],
+        [
+          "Large text, 18 pt or 14 pt bold",
+          "3:1",
+          "AA"
+        ],
+        [
+          "Graphics and UI parts",
+          "3:1",
+          "AA"
+        ],
+        [
+          "Normal text",
+          "7:1",
+          "AAA"
+        ]
+      ],
+      "caption": "Thresholds from Figma's help article and the W3C WCAG 2.2 text"
+    },
+    {
+      "type": "paragraph",
+      "text": "AAA is the stricter level, and Figma lists it for text only. If your brief asks for AA, a pass at AA is the target. Use AAA as a stretch goal for body copy, where long reading matters most."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ratios are not rounded. WCAG says a computed 4.499:1 does not meet 4.5:1. Treat any ratio just under the line as a fail. Nudge the color darker or lighter, then check again. Do not stop at a number that only looks close."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a light grey caption on a white card"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say your product card has a caption in light grey on a white background. You want the caption to look quiet, so you pick a pale grey from your palette. Run the check on the caption fill. If Figma reports a fail for normal text, the caption is too faint for body-size type."
+    },
+    {
+      "type": "paragraph",
+      "text": "Click the failing indicator, and Figma moves the value to the nearest compliant color. Treat that value as a starting point, not a decision. If it lands on a grey your brand never uses, step darker within your own palette and run the check again."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then confirm the size. If the caption is 18 pt or larger, or 14 pt bold, the 3:1 threshold applies. A smaller caption needs 4.5:1, so a darker grey is usually the easier path."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the real background, not just the swatch"
+    },
+    {
+      "type": "paragraph",
+      "text": "A color only has a contrast ratio against something. Text on a gradient, a photo, or a hover state sits on a different background than your frame. Sample the actual background at the spot where the text sits. A check against white says nothing about a pale card in dark mode."
+    },
+    {
+      "type": "paragraph",
+      "text": "WCAG exempts some cases, including logos and brand names, inactive interface parts, and text in pictures with significant other visual content. Designers often apply the inactive-part exemption to any faded text. Read the exact wording in the W3C Understanding page before you rely on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "When the color is not in your file yet, use Figma's Color Contrast Checker page at figma.com/color-contrast-checker. Paste a foreground and a background HEX value. It returns a ratio and a pass or fail table for normal text, large text, and UI elements."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Free Mac tools for checking screen colors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Digital Color Meter reads the value of any pixel on your screen. Press ⌘ Space, type Digital Color Meter, and open it. Point the cursor at the color you want, and the value updates. It works in a browser, a PDF, or any other app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Vispero's free Colour Contrast Analyser, version 3.5.5, has an eyedropper for a color on a page or screen. It shows HEX by default. It reports results for WCAG 2.0, 2.1, and 2.2, and it installs from a Mac .dmg download."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use these tools when the color comes from outside Figma. Examples include a brand website, a client screenshot, or an older file. Figma's own check is faster when the color already lives in your file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Figma plugins for contrast checks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's blog lists two plugins from 2019. Able compares two selected objects, previews text, and simulates color blindness. Contrast Checker by Stark reports a ratio for two selected objects, with AA and AAA levels and their stricter AA+ and AAA+ versions."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Check plugin status first",
+      "text": "The Figma blog post is dated August 16, 2019. Open each plugin's Figma Community listing before you install it. Confirm it still runs in your version of Figma and in your file type."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Color blindness and color-only meaning"
+    },
+    {
+      "type": "paragraph",
+      "text": "The National Eye Institute says about 1 in 12 men have color vision deficiency. Many people do not know they have it, because symptoms are often mild. A contrast ratio does not show whether two status colors look alike to them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's Color Contrast Checker page includes a color blindness dropdown with four types: Protanopia, Deuteranopia, Tritanopia, and Achromatopsia. Run your red error and green success states through it. If the meaning depends only on color, add a label or an icon."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make contrast checks look clean"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Checking the swatch but not the text on top of it, which may sit on a photo or a gradient.",
+        "Trusting Auto and never setting the category for headings and button labels.",
+        "Rounding 4.499:1 up to 4.5:1 and calling it a pass.",
+        "Checking only the default state and skipping hover, focus, and pressed states.",
+        "Using a light tint for captions because it looks quiet on a calibrated screen.",
+        "Stopping after one screen, when a dark mode or a smaller size changes the pair."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in a contrast check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the parts that need a second pair of eyes. Hold ⌥ ⌘ and ask where Check color contrast is. Lazur draws a circle and a label around it on your screen. You still make the click yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to run the check, and Lazur guides you one click at a time. It waits for each click before it gives the next step. Ask what an AA fail means for the layer on screen, and Lazur answers out loud. It does not click buttons or change your file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate a handoff note into Slack or a Linear issue. Dictation types clean, formatted text at the cursor in any app. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Follow your employer and client rules before you share client designs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do after the check passes"
+    },
+    {
+      "type": "paragraph",
+      "text": "A passing ratio belongs in the handoff, not only in your head. Write the foreground and background HEX values, the ratio, and the category in a Figma comment or Slack thread. Developers can then test the same pair without guessing."
+    },
+    {
+      "type": "paragraph",
+      "text": "Contrast is one WCAG rule. A passing check does not cover keyboard use, focus states, alt text, or how a layout reads to a screen reader. Treat the contrast pass as one item on your accessibility list, not the whole list."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want a hands-on routine for Figma, the [Figma for designers page](/for/designers/figma) covers the desktop setup. You can start with the 3-day Pro trial on the [pricing page](/pricing), or [download Lazur](/download) for Mac."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Figma's contrast check cost extra?",
+      "answer": "Figma's help article says the contrast feature is available on all plans. You need edit access to the file to apply a fix. Confirm your own plan in Figma before you plan a team review."
+    },
+    {
+      "question": "Why does a ratio that looks like 4.5 still fail?",
+      "answer": "WCAG does not round computed ratios. A value of 4.499:1 does not meet 4.5:1. Look for the exact value the tool shows, adjust the color slightly, and check again."
+    },
+    {
+      "question": "What is the difference between AA and AAA in Figma?",
+      "answer": "AA needs 4.5:1 for normal text and 3:1 for large text and graphics. AAA needs 7:1 for normal text. Figma lists AAA for text only, so graphics are checked at AA."
+    },
+    {
+      "question": "Can I check a whole file at once?",
+      "answer": "The color picker check works one fill at a time. Figma's 2019 blog lists plugins that check selected objects, such as Stark's Contrast Checker. Confirm each plugin's current status in the Figma Community before you use it."
+    },
+    {
+      "question": "Does a passing contrast ratio make my design accessible?",
+      "answer": "No. Contrast is one WCAG rule. Keyboard use, focus states, alt text, and color-only meaning need their own checks. A pass is a good first step, not the whole audit."
+    },
+    {
+      "question": "Is Figma's Color Contrast Checker page free?",
+      "answer": "The page does not state pricing, so check the Figma site before you rely on it. The page takes HEX inputs and reports the ratio and an AA and AAA pass or fail table."
+    },
+    {
+      "question": "Can Lazur check contrast for me?",
+      "answer": "Lazur can point at the Check color contrast control, explain a result out loud, and guide you one click at a time. It does not click buttons or change your file, so the check and the fix stay in your hands."
+    },
+    {
+      "question": "Do I need a plugin to check contrast in Figma?",
+      "answer": "No. The built-in color picker check covers the basic test for fills. Plugins help when you want to compare two selected objects at once or simulate color blindness across a selection."
+    }
+  ],
+  "sources": [
+    {
+      "title": "WebAIM: The WebAIM Million, 2026 report",
+      "url": "https://webaim.org/projects/million/",
+      "publisher": "WebAIM",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Understanding Success Criterion 1.4.3: Contrast (Minimum), W3C WCAG 2.2",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "publisher": "W3C WAI",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "NEI: Color Blindness",
+      "url": "https://nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",
+      "publisher": "National Eye Institute",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "UsableNet: ADA Web Lawsuit Trends for 2026",
+      "url": "https://blog.usablenet.com/ada-web-lawsuit-trends-2026",
+      "publisher": "UsableNet",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Help Center: Update fills using the color picker",
+      "url": "https://help.figma.com/hc/en-us/articles/360041003774-Update-fills-using-the-color-picker",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Color Contrast Checker",
+      "url": "https://www.figma.com/color-contrast-checker/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Digital Color Meter User Guide for Mac, Apple Support",
+      "url": "https://support.apple.com/guide/digital-color-meter/welcome/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Vispero Color Contrast Checker (Colour Contrast Analyser)",
+      "url": "https://vispero.com/color-contrast-checker/",
+      "publisher": "Vispero (formerly TPGi)",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Blog: Tackle accessibility in your designs with these useful plugins",
+      "url": "https://www.figma.com/blog/design-for-everyone-with-these-accessibility-focused-plugins/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Low-Contrast Text Is Not the Answer, Nielsen Norman Group",
+      "url": "https://www.nngroup.com/articles/low-contrast/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Simulating Visibility and Reading Performance in Low Vision",
+      "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2021.671121/full",
+      "publisher": "Frontiers in Neuroscience",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "text color contrast for accessibility",
+  "costs": [
+    {
+      "title": "Rework after handoff",
+      "text": "A failed check found late means changed colors, updated components, and another review round. The sources here do not give a time or money figure for this rework. Measure your own rework on the last project you shipped, then compare it with the cost of checking early."
+    },
+    {
+      "title": "Readers who get excluded",
+      "text": "WebAIM's 2026 Million report found low-contrast text on 83.9% of top-million home pages, up from 79.1% in 2025. Each home page averaged 34 distinct instances. The report counts only issues that an automated tool can detect, so the real problem is larger."
+    },
+    {
+      "title": "Lawsuit exposure",
+      "text": "UsableNet counts more than 5,000 digital accessibility lawsuits by the end of 2025. It says nearly 70 percent of ADA web lawsuits target e-commerce. Its page does not name color contrast, so do not read these numbers as a contrast count."
+    },
+    {
+      "title": "Reading speed and trust",
+      "text": "NN/G says low-contrast text causes eye strain, lowers trust, and can make people leave a page, but it cites no study results. A 2021 Frontiers simulation found that maximum reading speed was mostly affected by contrast sensitivity, falling about 10 percent at 0.69 log units."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Minimalism and a premium look",
+      "text": "NN/G (2015) says designers use low-contrast text because minimalism is fashionable, and because the look suits sites that want a premium image. The article cites no study data for this. Treat it as a pattern to watch for, not a measured cause."
+    },
+    {
+      "title": "Copying big brands",
+      "text": "Designers often copy a large brand's pale text, assuming someone tested it. NN/G says that assumption is not always true. A brand site can fail WCAG, so a pass on its homepage proves nothing about your caption."
+    },
+    {
+      "title": "Checking the swatch, not the pair",
+      "text": "A color only has a ratio against a background. Designers check the caption fill on a clean white frame, then place it over a photo, a tint, or a hover state. The check passed for the wrong pair."
+    },
+    {
+      "title": "Checking in ideal light",
+      "text": "NN/G notes that low-contrast text is nearly impossible to read in bright sunlight. A calm studio screen hides a problem that a phone on a bus will show. Check the ratio first, then check the screen people actually use."
+    },
+    {
+      "title": "Trusting Auto",
+      "text": "Auto may choose a threshold that does not match the layer. A heading set to Normal text gets a stricter test than it needs. A small label set to Large text can pass when it should fail. Set the category yourself."
+    },
+    {
+      "title": "Tints from a brand palette",
+      "text": "Brand palettes often include light tints for backgrounds. Those tints look right on a card edge, so designers reuse them for body text. A tint built for decoration may not reach 4.5:1 on white, so run the check before you reuse it."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Run Check color contrast in the picker",
+      "text": "Select the text layer, open the Fill swatch, and click Check color contrast. Read the AA and AAA results for the category you chose. Click a failing indicator to move the value to the nearest compliant color, then review the new hex value."
+    },
+    {
+      "title": "Set the category by hand",
+      "text": "For headings and button labels, pick Large text. For body copy, pick Normal text. For icons and borders, pick Graphics. Auto is quick, but it can pick the wrong threshold for the job, so check the category each time."
+    },
+    {
+      "title": "Test pairs in Figma's Color Contrast Checker",
+      "text": "Open figma.com/color-contrast-checker and paste a foreground and a background HEX value. It reports a ratio and a pass or fail table for normal text, large text, and UI elements. Use its color blindness dropdown to test status colors."
+    },
+    {
+      "title": "Sample the real screen with Digital Color Meter",
+      "text": "Open Digital Color Meter from Spotlight with ⌘ Space. Point at the pixel you care about on screen. Use it when the color lives in a browser, a PDF, or another app, rather than in your Figma file."
+    },
+    {
+      "title": "Use the free Colour Contrast Analyser",
+      "text": "Download Vispero's free Colour Contrast Analyser, version 3.5.5, as a Mac .dmg. Its eyedropper reads a color on a page or screen and shows HEX by default. It reports results for WCAG 2.0, 2.1, and 2.2."
+    },
+    {
+      "title": "Darken within your own palette",
+      "text": "When a light caption fails, step darker within the same brand hue. Run the check after each step. Stop at the first step that passes at the size you use. This keeps the design on brand and avoids a random grey."
+    },
+    {
+      "title": "Add a plugin after you test it",
+      "text": "Able compares two selected objects and simulates color blindness. Stark's Contrast Checker reports ratios for two selected objects with AA and AAA levels. Both are listed in a 2019 Figma blog post, so confirm their current status in the Figma Community first."
+    },
+    {
+      "title": "Write the pair into the handoff",
+      "text": "Record each text and background pair with its hex values, ratio, and category. Put the note in a Figma comment or your Slack thread, so developers test the same pair you checked and nobody has to guess."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Check color contrast button?",
+      "result": "Lazur draws a circle and a label around the control on your screen. You make the click.",
+      "capability": "point"
+    },
+    {
+      "say": "What does this AA fail mean for this layer?",
+      "result": "Lazur explains the result out loud, using the screen you are looking at.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through a contrast check on this text.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate the handoff note.",
+      "result": "Dictation types clean, formatted text at the cursor in any app, including Slack and Linear.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a Slack note to my developer about the new caption color.",
+      "result": "Lazur drafts and types the text at your cursor. You read it before you send it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research WCAG 2.2 contrast rules for small captions.",
+      "result": "The research runs in Lazur's own Chrome tabs, with the Lazur for Chrome extension, and returns a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "capability": "point",
+    "spoken": "Where is the Check color contrast button?",
+    "shell": "design",
+    "context": "Figma text layer selected, color picker open",
+    "result": "Lazur draws a circle and a label around Check color contrast in the color modal. You make the click yourself.",
+    "output": "A circle and a label around the control. Lazur does not click it for you.",
+    "pointsAt": "Check color contrast"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Inventory the text styles",
+      "text": "List every text style in the file that people can read, including captions, labels, and disabled states. Note the size and weight for each, because the threshold depends on them."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check each pair in the picker",
+      "text": "Run each text fill through Check color contrast in the color picker. Set the category by hand for headings, labels, and body copy. Log the ratio for each pair."
+    },
+    {
+      "label": "Day 3",
+      "title": "Fix the failures in palette",
+      "text": "Darken or lighten each failing color within its own palette. Run the check again after every change. Stop at the first value that passes at its real size."
+    },
+    {
+      "label": "Day 4",
+      "title": "Test real backgrounds",
+      "text": "Place each fixed text style on its real background, including photos, gradients, hover, focus, and dark mode. Sample colors with Digital Color Meter when they live outside Figma."
+    },
+    {
+      "label": "Day 5",
+      "title": "Simulate color blindness",
+      "text": "Run status colors such as errors and success through the color blindness dropdown on Figma's Color Contrast Checker page. Add a label or an icon wherever color is the only signal."
+    },
+    {
+      "label": "Day 6",
+      "title": "Hand off with the numbers",
+      "text": "Write each pair with its hex values, ratio, and category in a Figma comment or Slack thread. Ask a developer to confirm the pair on a real screen before the design freezes."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "check-color-contrast-wcag-figma",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/check-color-contrast-wcag-figma/check-color-contrast-for-wcag-in-figma-1-77e7fa.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer at a laptop reviewing text color contrast on a design file",
+      "caption": "Checking text color on a laptop before handoff.",
+      "keywords": [
+        "check color contrast for wcag in figma",
+        "Designers",
+        "Verify text color contrast for accessibility",
+        "Mac",
+        "designer working laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "TeeFarm",
+        "url": "https://pixabay.com/users/TeeFarm-199315/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-workspace-web-design-work-2443749/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/check-color-contrast-wcag-figma/check-color-contrast-for-wcag-in-figma-2-572d8c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Graphic designer at a desk comparing color swatches for a palette review",
+      "caption": "Palette review starts with the colors on the desk.",
+      "keywords": [
+        "check color contrast for wcag in figma",
+        "Designers",
+        "Verify text color contrast for accessibility",
+        "Mac",
+        "graphic designer desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "F1Digitals",
+        "url": "https://pixabay.com/users/F1Digitals-1568321/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/woman-business-corporate-designer-7607340/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/check-color-contrast-wcag-figma/check-color-contrast-for-wcag-in-figma-3-a5b903.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Color swatches laid out for a contrast check on a screen design",
+      "caption": "Swatches are where a contrast check begins.",
+      "keywords": [
+        "check color contrast for wcag in figma",
+        "Designers",
+        "Verify text color contrast for accessibility",
+        "Mac",
+        "color swatches design",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "avantrend",
+        "url": "https://pixabay.com/users/avantrend-321510/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/color-fan-color-picker-to-dye-497004/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "check color contrast for wcag in figma",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "wcag contrast ratio figma": 1,
+      "figma contrast checker": 1,
+      "wcag 4.5:1 normal text": 1,
+      "color contrast checker mac": 1,
+      "figma color picker accessibility": 1,
+      "wcag aa large text 3:1": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

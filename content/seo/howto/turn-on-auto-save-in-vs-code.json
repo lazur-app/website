@@ -1,0 +1,505 @@
+{
+  "title": "How to turn on auto save in VS Code on Mac: File menu steps for 2026",
+  "metaTitle": "How to turn on auto save in VS Code on Mac (2026)",
+  "description": "Learn how to turn on auto save in VS Code on Mac with File > Auto Save, then set the delay in settings. Steps for macOS and fixes for common problems.",
+  "targetKeyword": "how to turn on auto save in vs code on mac",
+  "secondaryKeywords": [
+    "vs code auto save mac",
+    "files.autoSave vs code",
+    "vs code auto save delay",
+    "vs code auto save not working",
+    "turn off auto save vs code mac",
+    "vs code autosave settings.json",
+    "vs code save automatically mac"
+  ],
+  "intro": "To turn on auto save in VS Code on Mac, open the File menu and click Auto Save. VS Code then saves each file about one second after you stop typing, so you can stop pressing ⌘S for routine saves.",
+  "tldr": [
+    "Open File > Auto Save in the Mac menu bar to turn it on.",
+    "The default delay is 1000 ms, which is one second after you stop typing.",
+    "Set files.autoSave to afterDelay in Settings to get the same result with more control.",
+    "Check .vscode/settings.json in the project if auto save still does not save."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Auto save is off until you switch it on. VS Code expects you to save by hand, and on a Mac that means ⌘S. Most people forget that step at some point. A stray app switch can cost you a block of typing if the file never reached the disk. Auto save covers that gap by writing your changes for you."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on auto save from the File menu"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fastest route is the File menu. The official Basic editing docs call File > Auto Save the easiest way to turn it on. The item works as a switch. Turn it on and VS Code saves on a timer. Turn it off and the timer stops. You never open a settings file to use it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The toggle changes one setting, files.autoSave. It sets that value to afterDelay. The rest of your settings stay the same, so you can come back to the menu later without undoing other choices."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choose a save trigger that fits how you work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto save has four values, and the menu toggle only covers one of them. The table shows what each value does and who it suits."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Value",
+        "When VS Code saves",
+        "Best for"
+      ],
+      "rows": [
+        [
+          "off",
+          "Never on its own. You save with ⌘S",
+          "People who want full manual control"
+        ],
+        [
+          "afterDelay",
+          "After the delay in files.autoSaveDelay, 1000 ms by default",
+          "Most people, and the File > Auto Save toggle"
+        ],
+        [
+          "onFocusChange",
+          "When focus leaves the editor",
+          "People who jump between the editor and other panels"
+        ],
+        [
+          "onWindowChange",
+          "When focus leaves the VS Code window",
+          "People who switch to a browser or chat app often"
+        ]
+      ],
+      "caption": "The four values of files.autoSave, from the official docs."
+    },
+    {
+      "type": "paragraph",
+      "text": "afterDelay is the one most people want. The timer resets each time you type, so VS Code waits for a pause before it writes. With the default of 1000 ms, a pause of one second triggers the save. The file on disk stays a little behind your typing, but only by that pause."
+    },
+    {
+      "type": "paragraph",
+      "text": "onFocusChange and onWindowChange work differently. They do not save while you type. They save when you move somewhere else. They suit people who switch between the editor, a terminal, a browser, and a chat app many times a day."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set the delay and see what it does"
+    },
+    {
+      "type": "paragraph",
+      "text": "The delay lives in files.autoSaveDelay and is measured in milliseconds. The default is 1000. A higher number waits longer before it writes. A lower number writes sooner, which protects more of your work but also means more writes to disk."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a common case. You write a function in a Python file, pause to check a variable name, and keep typing. If your pauses are shorter than one second, VS Code keeps waiting. The save happens only when you stop for the full delay."
+    },
+    {
+      "type": "paragraph",
+      "text": "Change the value in small steps and test each one. Type a sentence, stop, and watch how long the dot on the tab takes to clear. If the wait feels too long or too short, adjust and test again. There is no single right number. Pick the one that matches your pauses."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit settings.json when you want full control"
+    },
+    {
+      "type": "paragraph",
+      "text": "The JSON route puts every auto save option in one file. Open Settings with ⌘, and search for files.autoSave to see the current value. For the raw file, run the Command Palette command Preferences: Open User Settings (JSON). User settings apply to every project on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Workspace settings are a separate file. They live in the .vscode folder inside a project, and they override your user settings. A project can quietly turn auto save off. If your change does nothing, check that folder first."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Auto save for some folders and languages"
+    },
+    {
+      "type": "paragraph",
+      "text": "VS Code 1.86, released in January 2024, let you set every Auto Save option per folder or per language. The official docs show an example that turns auto save off for LaTeX files. That pattern helps when one file type needs manual saves while the rest of your project saves on its own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two more settings narrow the rule. files.autoSaveWhenNoErrors skips auto save when a file has error markers. files.autoSaveWorkspaceFilesOnly limits auto save to files inside the workspace, so files you open from elsewhere stay under manual control."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes with auto save"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first mistake is assuming auto save commits to Git. It writes files to disk. It does not record a commit. If you want a history, commit on your own schedule. The [Git setup guide](/how-to/set-up-git-in-vs-code) walks through that part."
+    },
+    {
+      "type": "paragraph",
+      "text": "The second mistake is treating auto save as undo. It saves whatever state the file is in. If a half-finished edit breaks your code, auto save writes that break to disk too. Use Undo with ⌘Z to back out the edit, and commit your work as checkpoints."
+    },
+    {
+      "type": "paragraph",
+      "text": "The third mistake is trusting the menu checkmark alone. Test with a real edit. Type, pause, and watch the tab. That check takes only seconds and tells you more than the menu does."
+    },
+    {
+      "type": "paragraph",
+      "text": "The fourth mistake is pressing ⌘S out of habit and assuming it is wasted. It is not. A manual save still helps when you want the file written at an exact moment, such as right before you run a script."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Auto save in VS Code for the web"
+    },
+    {
+      "type": "paragraph",
+      "text": "The browser version at vscode.dev handles auto save differently. When it is on, auto save applies to local files. Edits to a remote repository stay in browser local storage until you commit them. A change that looks saved in a remote repo is not in the repository yet. Commit it to make it permanent."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your version before you search for the item"
+    },
+    {
+      "type": "paragraph",
+      "text": "The current stable release is VS Code 1.145, released November 4, 2026. Its release notes do not mention Auto Save, files.autoSave, or File menu changes. The last documented Auto Save change is in the 1.86 release notes from January 2024."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your File menu looks different from this guide, update VS Code first. Then compare the menu with the official docs. The docs give the Settings path as File > Preferences > Settings, but some Mac menus show it under Code. Use ⌘, to skip the guesswork."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn auto save off again"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open File > Auto Save and click it again to switch it off. You can also set files.autoSave to off in settings. Either way, your files go back to manual saves, and ⌘S saves them as before."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once auto save runs, you may want to tune the rest of your editor. Read [how to toggle the integrated terminal in VS Code on Mac](/how-to/toggle-the-integrated-terminal-in-vs-code) next, or set up [Git in VS Code on Mac](/how-to/set-up-git-in-vs-code) so your saved files get committed. The [VS Code page](/apps/vs-code) lists more guides for the same app."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is auto save on by default in VS Code on Mac?",
+      "answer": "The official docs do not state the default value of files.autoSave. Saving is explicit by default, so ⌘S is the save command. Check File > Auto Save or your settings to see what your install uses."
+    },
+    {
+      "question": "Is there a keyboard shortcut to turn on auto save on a Mac?",
+      "answer": "The docs do not document a macOS shortcut that toggles Auto Save. Use the File menu, or change files.autoSave in Settings, which opens with ⌘,. ⌘S still saves a file by hand."
+    },
+    {
+      "question": "How long does auto save wait before it saves on a Mac?",
+      "answer": "With the afterDelay value, the default wait is 1000 ms, which is one second. Change it with files.autoSaveDelay in Settings. The value is in milliseconds, so a higher number waits longer."
+    },
+    {
+      "question": "Does auto save commit my changes to Git?",
+      "answer": "No. Auto save writes files to disk. A Git commit is a separate step you take in the Source Control view or in a terminal. The Git setup guide covers the commit flow."
+    },
+    {
+      "question": "Why did auto save stop working after I turned it on?",
+      "answer": "The usual causes are a workspace setting that sets files.autoSave to off, error markers when files.autoSaveWhenNoErrors is on, and a syntax error in settings.json. Work through the troubleshooting steps on this page in that order."
+    },
+    {
+      "question": "Can I use auto save for some files only?",
+      "answer": "Yes, since VS Code 1.86 in January 2024. Auto Save settings can be set per folder or per language. The files.autoSaveWorkspaceFilesOnly setting also limits auto save to files inside the workspace."
+    },
+    {
+      "question": "Does auto save work in VS Code for the web?",
+      "answer": "It applies to local files when auto save is on. For remote repositories, edits stay in browser local storage until you commit them."
+    },
+    {
+      "question": "Which VS Code version should I use?",
+      "answer": "Use the current stable release, 1.145, released November 4, 2026. Its release notes do not mention Auto Save. The docs describe the File menu toggle, so a current build should have it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Basic editing - Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/editing/codebasics",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "User and Workspace Settings - Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/configure/settings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "January 2024 (version 1.86) release notes",
+      "url": "https://code.visualstudio.com/updates/v1_86",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Visual Studio Code 1.145 release notes",
+      "url": "https://code.visualstudio.com/updates/v1_145",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VS Code for the Web - Visual Studio Code docs",
+      "url": "https://code.visualstudio.com/docs/editor/vscode-web",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Turn on Auto Save in VS Code on a Mac",
+  "appliesTo": "VS Code on macOS, Apple silicon and Intel, current stable builds",
+  "timeMinutes": 3,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS with Visual Studio Code installed",
+    "A recent stable build of VS Code. The current stable release is 1.145, released November 4, 2026",
+    "A file already saved on disk to test the save behavior",
+    "Access to the project folder if you want to check a workspace setting"
+  ],
+  "steps": [
+    {
+      "name": "Make sure VS Code is the front app",
+      "text": "Click the VS Code window, or press ⌘Tab until VS Code is active. The menu bar at the top of the screen should now show the VS Code menus.",
+      "shortcut": "⌘Tab"
+    },
+    {
+      "name": "Open the File menu",
+      "text": "Click File in the menu bar at the top of the screen. The File menu drops down with the save items and the Auto Save item.",
+      "menuPath": [
+        "File"
+      ]
+    },
+    {
+      "name": "Click Auto Save",
+      "text": "Click Auto Save. VS Code sets files.autoSave to afterDelay, so it saves a file a short time after you stop typing.",
+      "menuPath": [
+        "File",
+        "Auto Save"
+      ],
+      "tip": "The official docs call this the easiest way to turn it on, so you do not need to edit any settings file."
+    },
+    {
+      "name": "Check the menu state",
+      "text": "Open the File menu again. If Auto Save has a checkmark beside it, the setting is on. The docs do not describe the checkmark in detail, so run the test in the next step to be sure.",
+      "menuPath": [
+        "File",
+        "Auto Save"
+      ],
+      "tip": "If the checkmark and the behavior disagree, trust the behavior."
+    },
+    {
+      "name": "Test it on a saved file",
+      "text": "Open a file you have already saved. Type a few characters, then stop for about a second. The dot on the file tab should clear without you pressing ⌘S."
+    },
+    {
+      "name": "Open Settings",
+      "text": "Press ⌘, to open the Settings editor. Search for files.autoSave to see the current save trigger, then search for files.autoSaveDelay to see the delay.",
+      "shortcut": "⌘,",
+      "menuPath": [
+        "File",
+        "Preferences",
+        "Settings"
+      ],
+      "tip": "The official docs list this menu path. Some guides show Settings under the Code menu, so check your menu bar. ⌘, works either way."
+    },
+    {
+      "name": "Pick a save trigger",
+      "text": "Set files.autoSave to afterDelay for timed saves. Use onFocusChange to save when focus leaves the editor, or onWindowChange to save when focus leaves the window."
+    },
+    {
+      "name": "Set the delay in milliseconds",
+      "text": "Set files.autoSaveDelay to a number. The value is in milliseconds, and the default is 1000, which is one second. Raise the number to wait longer before a save."
+    },
+    {
+      "name": "Open user settings as JSON",
+      "text": "Press ⇧⌘P to open the Command Palette. Type Preferences: Open User Settings (JSON) and press Return to open the file.",
+      "shortcut": "⇧⌘P"
+    },
+    {
+      "name": "Add the two keys",
+      "text": "Inside the braces, add a line for files.autoSave with the value afterDelay, and a line for files.autoSaveDelay with the value 1000. Put a comma after every line except the last one."
+    },
+    {
+      "name": "Save the settings file",
+      "text": "Save settings.json with ⌘S. Then repeat the test from the Test it step to confirm the change works.",
+      "shortcut": "⌘S"
+    },
+    {
+      "name": "Check for a workspace override",
+      "text": "If the setting seems to do nothing, open the project's .vscode folder and look for settings.json. A workspace value for files.autoSave overrides your user setting."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Save the active file by hand",
+      "keys": "⌘S"
+    },
+    {
+      "action": "Open Settings",
+      "keys": "⌘,"
+    },
+    {
+      "action": "Open the Command Palette",
+      "keys": "⇧⌘P"
+    },
+    {
+      "action": "Undo the last edit",
+      "keys": "⌘Z"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Auto Save is on but files still do not save",
+      "fix": "Check for a workspace setting. Open .vscode/settings.json in the project and look for files.autoSave set to off. Workspace settings override user settings, so that value wins."
+    },
+    {
+      "problem": "Saves stop when a file shows errors",
+      "fix": "Check files.autoSaveWhenNoErrors. When it is on, a file with error markers is not saved automatically. Fix the errors, or turn that setting off if you want saves anyway."
+    },
+    {
+      "problem": "A settings change does nothing",
+      "fix": "Check that settings.json has valid syntax, with commas between lines and matching quotes. A syntax error can cause a setting to be ignored. Fix it, save the file, and test again."
+    },
+    {
+      "problem": "Auto save does not seem to save on vscode.dev",
+      "fix": "On the web version, auto save applies to local files. Edits to a remote repository stay in browser local storage until you commit them. Commit the changes to write them to the repository."
+    },
+    {
+      "problem": "The Auto Save item is missing from the File menu",
+      "fix": "Make sure VS Code is the front app, then open File again. If it is still missing, update VS Code, compare your version with the current stable release, and use the files.autoSave setting instead."
+    },
+    {
+      "problem": "The checkmark and the behavior disagree",
+      "fix": "Trust the behavior. Type a few characters in a saved file, pause, and watch whether the dot on the tab clears. Reports exist of the web build's checkmark not updating, so the test is the better check."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's Auto Save in this menu?",
+    "capability": "point",
+    "result": "Lazur circles the Auto Save item in the File menu and labels it on screen.",
+    "shell": "code",
+    "context": "VS Code open on a Mac with the File menu showing",
+    "pointsAt": "Auto Save",
+    "output": "Lazur says where the item sits and what it does. It does not click it for you."
+  },
+  "type": "howto",
+  "slug": "turn-on-auto-save-in-vs-code",
+  "app": "vs-code",
+  "appName": "VS Code",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/turn-on-auto-save-in-vs-code/how-to-turn-on-auto-save-in-1-4c6417.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a laptop, representing how to turn on auto save in VS Code on Mac",
+      "caption": "Typing on a laptop, where auto save keeps your edits on disk.",
+      "keywords": [
+        "how to turn on auto save in vs code on mac",
+        "VS Code",
+        "turn on auto save",
+        "Mac",
+        "person typing on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/turn-on-auto-save-in-vs-code/how-to-turn-on-auto-save-in-2-9eede4.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Programmer at a desk writing code, the setting for how to turn on auto save in VS Code on Mac",
+      "caption": "Editing code at a desk, the setup where auto save helps most.",
+      "keywords": [
+        "how to turn on auto save in vs code on mac",
+        "VS Code",
+        "turn on auto save",
+        "Mac",
+        "programmer desk coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Innovalabs",
+        "url": "https://pixabay.com/users/Innovalabs-22783312/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/software-developer-web-developer-6521720/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/turn-on-auto-save-in-vs-code/how-to-turn-on-auto-save-in-3-066979.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Mac laptop on a desk, a typical setup for learning how to turn on auto save in VS Code on Mac",
+      "caption": "A Mac on a desk, the usual place to set up VS Code.",
+      "keywords": [
+        "how to turn on auto save in vs code on mac",
+        "VS Code",
+        "turn on auto save",
+        "Mac",
+        "mac laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to turn on auto save in vs code on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "vs code auto save mac": 1,
+      "files.autoSave vs code": 1,
+      "vs code auto save delay": 1,
+      "vs code auto save not working": 1,
+      "turn off auto save vs code mac": 1,
+      "vs code autosave settings.json": 1,
+      "vs code save automatically mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

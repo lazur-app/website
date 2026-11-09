@@ -1,0 +1,547 @@
+{
+  "title": "Excel for investor relations officers on Mac: formulas, consensus and voice help in 2026",
+  "metaTitle": "Excel for Investor Relations Officers on Mac: Formulas and Tips",
+  "description": "Excel for investor relations officers on Mac: consensus models, peer comparisons, shareholder analysis, Mac limits, Power Query and voice help from Lazur.",
+  "targetKeyword": "excel for investor relations officers on mac",
+  "secondaryKeywords": [
+    "excel for IR officers on mac",
+    "consensus model excel mac",
+    "peer comparison excel mac",
+    "power query excel mac",
+    "excel tips investor relations",
+    "pivot table excel mac investor relations"
+  ],
+  "intro": "Investor relations officers on Mac use Excel for consensus models, peer comparisons and shareholder analysis. The Mac version handles most of that work, but a few tools from Windows are missing. This guide covers a setup that works, the gaps to plan for, and the questions you can ask Lazur while you work.",
+  "tldr": [
+    "Excel for investor relations officers on Mac covers consensus models, peer tables and shareholder PivotTables well.",
+    "Power Pivot and the Data Model are not on Mac, so build PivotTables from one worksheet table.",
+    "Power Query on Mac imports workbooks, CSV, XML, JSON, SharePoint lists and OData, and refreshes them.",
+    "Tables, XLOOKUP and a date filter keep consensus numbers current and honest.",
+    "Lazur explains formulas and guides you through Excel out loud. It does not click or edit for you."
+  ],
+  "stats": [
+    {
+      "value": "75%",
+      "label": "Share of a Director of Investor Relations role that is IR, per a NIRI job posting",
+      "sourceUrl": "https://jobs.niri.org/job/8855/director-investor-relations/",
+      "sourceTitle": "Director, Investor Relations (NIRI job board)"
+    },
+    {
+      "value": "83%",
+      "label": "Operational spreadsheets with errors, weighted average across nine audits (Panko)",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets (Panko)"
+    },
+    {
+      "value": "0.2% to 0.9%",
+      "label": "Cell error rates reported in two field audits (Panko)",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets (Panko)"
+    },
+    {
+      "value": "16.113",
+      "label": "Excel for Mac build released Sept 16, 2026, with Copilot change-history skill",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What an investor relations officer does in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "A NIRI job posting for a Director of Investor Relations says investor relations is about 75% of the role. The rest is financial analysis, about 25%. The listed duties include the earnings release, a consensus model, 13-F and shareholder analysis, peer analyses, and the investor CRM. The posting does not mention Excel at all. That tells you Excel is assumed. Teams often skip listing the tools they use every day."
+    },
+    {
+      "type": "paragraph",
+      "text": "A second posting, for an investor relations associate, lists Excel as a required skill. It sits next to financial modeling and investor relations software. The associate maintains the IR database of shareholder records and tracks stock ownership trends. So the spreadsheet is part of the daily routine. It is not a side tool you open once a quarter."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a consensus model in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Consensus work depends on Excel more than any other IR task. Sell-side analysts send their own models, often as Excel files by email. Q4 Inc, a consensus software vendor, says IR teams receive raw Excel models that way. The same vendor says consensus tracking often relies on manual, ad hoc spreadsheet updates. Treat that as a vendor view, not a measured study. It still explains why these files pile up."
+    },
+    {
+      "type": "paragraph",
+      "text": "A plain setup works well on a Mac. Keep one tab for raw estimates, with one row per broker update. Keep a second tab for the summary. Each raw row should carry the broker name, the date received, and the metric. The summary then pulls from the raw list with formulas. Nobody retypes numbers from email."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Turn the estimates into a Table"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click inside the raw estimates and press ⌘T. Excel turns the range into a Table with headers and filter buttons. When you paste a new broker row under the last row, the Table grows to include it. Formulas that point at Table columns grow with it. That removes the step most people forget, which is extending the range by hand. Rename the Table in the Table Design tab so the formulas read clearly."
+    },
+    {
+      "type": "paragraph",
+      "text": "Stale estimates are the usual trap. An estimate from months ago can sit in the list and drag the average down. Filter by date before you average. One pattern works well. Put a cutoff date in a labeled cell, then use AVERAGEIFS. The formula looks like this: =AVERAGEIFS(Estimates[EPS], Estimates[Date], \">=\"&Cutoff). Change the cutoff cell and the consensus updates."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Paste each broker's estimate as a new row. Include the broker, the date and the metric.",
+        "Check that the Table grew to include the new row.",
+        "Set the cutoff cell to the date you want the average to start from.",
+        "Compare the new consensus with the last version you saved.",
+        "Save a dated copy before any big paste, so you can roll back."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Compare peers and shareholders with Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Peer tables are a grid of companies by metric. Keep the ticker in one column. Put each metric in its own column. Pull peer data with XLOOKUP on the ticker, so new rows fill in without copy and paste. The pattern is =XLOOKUP(Ticker, Peers[Ticker], Peers[Multiple]). Replace the names with the ones in your own sheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shareholder analysis starts with a list of holders and their positions. Most IR teams pull that list from a data vendor or from a summary of 13-F filings. Sort by position size first. Then group by holder type. A PivotTable answers how much stock sits with each holder type, with no extra formulas. Start one from Insert > PivotTable."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Mac has no Data Model",
+      "text": "Power Pivot and the Data Model are not on Mac. Build each PivotTable from one worksheet table. Keep that table clean, with one header row and no blank rows inside it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits to plan for before a deadline"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some Excel features work differently on Mac. Power Pivot and the Data Model are not available in Excel for Mac. A Microsoft Q&A community answer from Aug 29, 2025 says so. The same answer says Power Query on Mac can load only to a worksheet table. That answer comes from a community responder, not from Microsoft documentation. Confirm it on your own build before you depend on it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Feature",
+        "Excel for Mac",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Power Pivot and Data Model",
+          "Not available, per a Microsoft Q&A community answer",
+          "Build PivotTables from one worksheet table"
+        ],
+        [
+          "Power Query Editor authoring",
+          "Not available, per Microsoft. Queries can be written in VBA",
+          "Write queries on Windows and import the .bas file on Mac"
+        ],
+        [
+          "Workbook, Text/CSV, XML, JSON, SharePoint lists, OData",
+          "Supported, and refreshable",
+          "Use Data > Get Data for these sources"
+        ],
+        [
+          "SQL Server database",
+          "Insiders Beta only, per Microsoft",
+          "Export to CSV for a standard workflow"
+        ],
+        [
+          "Other databases",
+          "Needs a separately installed ODBC driver",
+          "Ask your IT team before you start"
+        ]
+      ],
+      "caption": "Power Query and data source limits in Excel for Mac, per Microsoft and community sources."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these gaps matter only for large data pulls. A consensus model and a peer table rarely need them. Plan around the gaps before a deadline, not during one. If a colleague uses Windows, agree on one file format you both can open."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query and data import on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Power Query on Mac can import Excel workbooks, Text and CSV files, XML, JSON, SharePoint Online lists, and OData. It can also refresh those imports. That covers most of what IR receives from a data vendor or a shared drive. Open the Data tab and look at Get Data to start."
+    },
+    {
+      "type": "paragraph",
+      "text": "Local file import became generally available on Mac in version 16.57, build 22011100. Microsoft's Tech Community post dates that to May 19, 2021. Microsoft 365 subscribers can open the Power Query Editor on version 16.69, build 23010700, or later. Microsoft still says authoring in the editor is not available on Mac, so queries are written with VBA. Check your version under Excel > About Excel."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for Mac release notes that change your workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac updates often focus on Copilot. Version 16.112, released Aug 11, 2026, lets Copilot work in cloud-saved workbooks with AutoSave off. Excel asks you to turn AutoSave on, but you can keep working without it. Version 16.113, released Sept 16, 2026, added change-history and chart and PivotTable skills to Copilot."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version 16.111, from July 14, 2026, changed how a blocked PivotTable behaves. It collapses into one cell that shows a spill error instead of failing outright. That helps when a pivot runs into another range. The latest build in Microsoft's notes is 16.114.3, from Oct 27, 2026. Microsoft lists it as quality and performance updates only."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check your build first",
+      "text": "Open Excel > About Excel and note the build number. Then read the matching entry on Microsoft's release notes page for Office for Mac before you plan around a feature."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel tips for IR work on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "These habits cover most of the daily work. They cost little time, and they prevent most of the rework. Start with the list below, then add the ones that fit your team."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep one folder per quarter. Name each file with the broker and the date received.",
+        "Turn every raw range into a Table with ⌘T, so formulas and filters grow with new rows.",
+        "Use XLOOKUP for peer pulls. Avoid copying values from one tab to another.",
+        "Use Formulas > Trace Precedents to see where a consensus cell gets its inputs.",
+        "Use Formulas > Show Formulas to check every formula on a sheet at once.",
+        "Use Formulas > Error Checking to find error values before a model goes out.",
+        "Protect the summary tab with Review > Protect Sheet, so nobody pastes over a formula.",
+        "Use Data > Data Validation to limit ticker cells to a list, so a typo cannot pull an empty row."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Store dates as real dates, not as text. Text dates sort in the wrong order, and they break date filters. If a date filter returns nothing, the column is probably text. Select the column, set the number format to Date in the Home tab, and retype one value to test it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that break IR spreadsheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common, and they are not only a beginner problem. Panko's audits found errors in 83% of operational spreadsheets, a weighted average across nine audits covering 163 spreadsheets. Those audits ran from 1987 to 2008. They cover operational spreadsheets, not IR files. Read the number as a warning, not a forecast for your model."
+    },
+    {
+      "type": "paragraph",
+      "text": "Where audits reported a cell error rate, it ran from 0.2% to 0.9%. Most audits did not report one. A single bad cell in a consensus summary can still move a headline number. That is why the checks below matter."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pasting values over a summary formula, so the next update does not flow through.",
+        "Averaging old estimates without a date filter.",
+        "Deleting a broker row that a formula still points at, which shows a reference error.",
+        "Storing numbers as text, which SUM skips.",
+        "Copying a formula down without checking whether the references moved."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple habit helps. After each update, compare the count of brokers in the raw list with the count in the summary. Then compare the consensus with the last saved version. If the change looks odd, trace the precedents before you send anything."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur about Excel while you work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold Option and Command to ask about anything on screen. Lazur answers out loud. Ask where a button lives, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "That helps with the Excel steps you rarely repeat. Think of a PivotTable from a new data pull, or a formula you inherited from a colleague. Paste the formula into a cell, hold the keys, and ask what it does. You get the answer out loud, with the cell still in view."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models. Lazur is not a plugin or add-in for Excel or any other app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That fits a note to a CFO or a reply to an analyst. Dictation is included on both paid plans. For Excel itself, read the [Excel page](/apps/excel) to see what Lazur can explain and point at."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Plans and the free trial"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a free trial, and it needs no credit card. The trial starts when you first open the app. Plan prices and included AI actions are on the [pricing page](/pricing). Check there before you pay, because prices can change."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one file. Open your current consensus model and check whether the raw estimates sit in a Table. If they do not, select the range and press ⌘T. Point the summary formulas at the Table columns. Then confirm your build under Excel > About Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the pivot steps, read [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). If you want Lazur on your Mac, [download it here](/download). Then compare the plans on the pricing page before the trial ends."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have what investor relations officers need?",
+      "answer": "Most daily IR work runs well in Excel for Mac. Consensus models, peer tables and PivotTables all work. The gaps are Power Pivot, the Data Model, and some Power Query features. Check those before you plan a large data build."
+    },
+    {
+      "question": "Can I use Power Pivot in Excel on Mac?",
+      "answer": "Power Pivot and the Data Model are not available in Excel for Mac, according to a Microsoft Q&A community answer from Aug 29, 2025. That answer is not official Microsoft documentation. Build PivotTables from one worksheet table instead."
+    },
+    {
+      "question": "What is a consensus model in investor relations?",
+      "answer": "It is a working file that collects sell-side analysts' estimates for a company and summarizes them into one view. Analysts often send their own Excel models, and the IR team rebuilds the summary from them. Keep each estimate dated, so old numbers can be filtered out."
+    },
+    {
+      "question": "Which Excel build should I run on Mac?",
+      "answer": "Run the current Microsoft 365 build your company allows. Check Excel > About Excel for your number. Microsoft's release notes list build 16.114.3 from Oct 27, 2026, as quality and performance updates only."
+    },
+    {
+      "question": "Does Lazur edit my Excel file?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, drafts and types text. It does not click buttons, edit files, or operate other apps for you."
+    },
+    {
+      "question": "Is Lazur an Excel add-in?",
+      "answer": "No. Lazur is not a plugin or add-in for any app. It is a voice assistant for the Mac that lives in the notch and works in any app."
+    },
+    {
+      "question": "Does Lazur send my screen to AI providers?",
+      "answer": "It listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you, and they are not stored. Content is never used to train AI models."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import and shape data in Excel for Mac (Power Query)",
+      "url": "https://support.microsoft.com/en-us/office/import-and-shape-data-in-excel-for-mac-power-query-7b2f337d-e7d2-4fdf-bf00-3dfbb1e5e9c5",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Why isn't there an option for Power Pivot and Load to in the Mac version?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5537966/why-isn-t-there-an-option-for-power-pivot-and-load",
+      "publisher": "Microsoft Q&A (community answer)",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Import data from local files using Power Query in Excel for Mac",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/import-data-from-local-files-using-power-query-in-excel-for-mac/2365521",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Audits of Operational Spreadsheets",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Director, Investor Relations (NIRI job board)",
+      "url": "https://jobs.niri.org/job/8855/director-investor-relations/",
+      "publisher": "NIRI Jobs",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Investor Relations Associate responsibilities and required skills",
+      "url": "https://spotterful.com/en/blog/job-description-template/investor-relations-associate-responsibilities-and-required-skills",
+      "publisher": "Spotterful",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Modern Consensus Management Buyer's Guide",
+      "url": "https://www.q4inc.com/resource-center/guides/consensus-management-buyers_guide",
+      "publisher": "Q4 Inc",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Hold Option and Command. Why is this average lower than last week?",
+    "capability": "explain",
+    "result": "Lazur reads the formula on screen, says the range stops before the newest estimates, and circles that range so you can fix it.",
+    "shell": "sheet",
+    "context": "Consensus summary tab, AVERAGEIFS formula returns a lower number than expected",
+    "pointsAt": "the AVERAGEIFS range",
+    "output": "Lazur answers out loud. A circle and a label appear over the range reference on the sheet."
+  },
+  "tasks": [
+    {
+      "say": "Hold Option and Command. What does this XLOOKUP return?",
+      "capability": "explain",
+      "result": "Lazur reads the formula on screen and explains each argument out loud."
+    },
+    {
+      "say": "Where is the PivotTable command?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around Insert > PivotTable in the menu bar."
+    },
+    {
+      "say": "Walk me through a PivotTable of holders by fund type.",
+      "capability": "guide",
+      "result": "Lazur gives one step at a time and waits for each click before the next step."
+    },
+    {
+      "say": "Hold fn and dictate a note to the CFO about the guidance question.",
+      "capability": "dictate",
+      "result": "Clean, formatted text lands at the cursor in the open email or document."
+    },
+    {
+      "say": "Draft a short reply to this analyst question about margins.",
+      "capability": "draft",
+      "result": "Lazur types a draft into your document, which you read and edit before sending."
+    },
+    {
+      "say": "Research the largest holders in our peer set.",
+      "capability": "research",
+      "result": "Lazur works in its own Chrome tabs and returns a summary and a report."
+    },
+    {
+      "say": "Remind me Thursday to refresh the consensus file.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders for Thursday."
+    },
+    {
+      "say": "Add the earnings call to my calendar for Thursday afternoon.",
+      "capability": "everyday",
+      "result": "Lazur creates the Calendar event you describe."
+    },
+    {
+      "say": "What does this IFERROR do, and should I keep it?",
+      "capability": "explain",
+      "result": "Lazur explains the error handling in plain words and says what the formula hides."
+    }
+  ],
+  "type": "role-app",
+  "slug": "investor-relations-officers-excel",
+  "role": "investor-relations-officers",
+  "app": "excel",
+  "roleName": "Investor relations officers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/investor-relations-officers-excel/excel-for-investor-relations-officers-on-mac-1-64c940.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Person at a laptop on an office desk, reviewing a spreadsheet for investor relations work on a Mac",
+      "caption": "A desk setup for spreadsheet work on a Mac.",
+      "keywords": [
+        "excel for investor relations officers on mac",
+        "Excel",
+        "Investor relations officers",
+        "Mac",
+        "person laptop office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/investor-relations-officers-excel/excel-for-investor-relations-officers-on-mac-2-5114dc.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Two colleagues looking at a financial table on a monitor during a planning meeting",
+      "caption": "Finance teams often review models together.",
+      "keywords": [
+        "excel for investor relations officers on mac",
+        "Excel",
+        "Investor relations officers",
+        "Mac",
+        "two people office screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AS_Photography",
+        "url": "https://pixabay.com/users/AS_Photography-1546875/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/internet-search-engine-tablet-1433323/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/investor-relations-officers-excel/excel-for-investor-relations-officers-on-mac-3-e1638d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Man at a laptop in an office with charts on the screen, the kind of setting for Excel analysis on Mac",
+      "caption": "A typical desk for spreadsheet work.",
+      "keywords": [
+        "excel for investor relations officers on mac",
+        "Excel",
+        "Investor relations officers",
+        "Mac",
+        "man working laptop charts",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-work-coffee-chart-man-6062431/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for investor relations officers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for IR officers on mac": 1,
+      "consensus model excel mac": 1,
+      "peer comparison excel mac": 1,
+      "power query excel mac": 1,
+      "excel tips investor relations": 1,
+      "pivot table excel mac investor relations": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

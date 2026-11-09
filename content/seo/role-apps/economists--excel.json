@@ -1,0 +1,693 @@
+{
+  "title": "Excel for economists on Mac: data cleaning, formulas and voice help in Microsoft 365",
+  "metaTitle": "Excel for economists on Mac: cleaning data and formulas",
+  "description": "Excel for economists on Mac: how to clean CSV files, check formulas and keep a record of changes, with Lazur answering questions on screen.",
+  "targetKeyword": "excel for economists on mac",
+  "secondaryKeywords": [
+    "excel for economists",
+    "excel data cleaning for economists",
+    "excel csv dates on mac",
+    "excel formulas for economists",
+    "excel pivot table economics",
+    "excel help on mac with voice"
+  ],
+  "intro": "Excel for economists on Mac is mostly data work. You import files, clean them, write simple formulas and check the results before anything reaches Stata or R. Lazur, a voice assistant for the Mac, can point at the right menu and answer questions while you work in Excel.",
+  "tldr": [
+    "Excel for Mac handles most first-pass economist work well, up to 1,048,576 rows on one worksheet.",
+    "Keep the raw file locked. Make every change in a new column or a new file.",
+    "CSV imports can change dates and codes. CSV exports drop formulas and round to the display format.",
+    "Use Excel to look and check. Move cleaning that must repeat into code.",
+    "Lazur points, explains and guides you one click at a time. It does not edit your workbook."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "Rows on one Excel worksheet, the hard cap for a single sheet",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits (Microsoft Support)"
+    },
+    {
+      "value": "80%",
+      "label": "Economics reproduction packages that include Stata, with no sign of decline over time",
+      "sourceUrl": "https://arxiv.org/html/2504.06507v2",
+      "sourceTitle": "The Software Behind the Stats (arXiv)"
+    },
+    {
+      "value": "40%",
+      "label": "Reproduction packages using two or more software types by 2024, up from under 10% in 2010",
+      "sourceUrl": "https://arxiv.org/html/2504.06507v2",
+      "sourceTitle": "The Software Behind the Stats (arXiv)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What economists actually do in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most economists do not run their main models in Excel. The spreadsheet work comes earlier. You receive a file from a statistics office, a survey firm or a data vendor. You open it, look at it, fix what is broken, and build a few summary numbers. Excel suits that first pass because you can see every cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, that work usually runs in Excel for Mac. The current build is version 16.114.3, released October 27, 2026. Check yours under Excel > About Excel. The build number matters when a bug report or a support answer depends on it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Import a CSV or survey export and check each column type.",
+        "Fix labels, extra spaces and codes that should stay as text.",
+        "Build indicator variables, such as a treated flag or a year dummy.",
+        "Filter and sort to find outliers, duplicates and missing values.",
+        "Make a quick pivot table to see whether the averages look sane."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each step is small. Each step can also change the data quietly. That is why the habits in the rest of this page matter."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel stops being the right tool"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel has hard limits. One worksheet holds 1,048,576 rows and 16,384 columns, according to Microsoft's support page on specifications and limits. A panel with more rows than that will not fit on one sheet. In 32-bit Excel, the Data Model is also limited to a 2 GB virtual address space. Microsoft says Data Model use may be limited to roughly 500 to 700 MB of that space."
+    },
+    {
+      "type": "paragraph",
+      "text": "The row count is not the biggest problem. The bigger problem is repeatability. A cleaning step done with clicks cannot be rerun on next year's file unless you click through it again. That is where code wins."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Job",
+        "Excel on Mac",
+        "Better fit"
+      ],
+      "rows": [
+        [
+          "Look at a survey file and fix labels",
+          "Fine in Excel",
+          "Excel is a good first stop"
+        ],
+        [
+          "Build a few indicator variables",
+          "Fine for a small file",
+          "Code, once the rule repeats"
+        ],
+        [
+          "Clean a file you will update monthly",
+          "Risky by hand",
+          "Stata, R or a saved script"
+        ],
+        [
+          "Work with more rows than one sheet holds",
+          "Does not fit",
+          "Stata, R or a database"
+        ],
+        [
+          "Run the regressions for a paper",
+          "Not the main tool",
+          "Stata, R or Python"
+        ]
+      ],
+      "caption": "Rough guide for economists on a Mac. The right tool depends on file size and how often the job repeats."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a project folder before you open the raw file"
+    },
+    {
+      "type": "paragraph",
+      "text": "J-PAL's guidance on data cleaning says never to overwrite the raw data file. It says to document judgment calls. It also says to create new variables rather than overwrite old ones, so a change can be reversed. The same habit appears in Brian Krauth's Intermediate Statistics for Economists course chapter, which sets up project folders with a raw-data subfolder."
+    },
+    {
+      "type": "paragraph",
+      "text": "A setup like this takes little time and saves a lot later."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Create one project folder for the study, such as Documents > Research > Wage Project.",
+        "Make a raw subfolder and put the original download in it, unchanged.",
+        "Select the raw file, press ⌘ I, and tick Locked in the General section.",
+        "Save your working copy under a new name, with the date in the name.",
+        "Keep a plain text note in the folder that lists each cleaning rule."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The locked raw file is your reset button. If a cleaning step goes wrong, you start again from the original."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: cleaning a wage survey file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you have a survey export with one row per worker. Column A holds a worker ID with leading zeros. Column B holds hourly wages, but some cells say NA. Column C holds a year. You want a clean wage column and a flag for workers paid above a cutoff."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the CSV through Data > Get Data > From File > From Text/CSV, and set the ID column to Text in the preview. If your version shows the menu differently, ask Lazur to point at it.",
+        "Make a new column D for cleaned wages. Do not overwrite column B.",
+        "In D2 type =IF(ISNUMBER(B2),B2,NA()) and fill it down.",
+        "Type the cutoff in H1. In E2 type =IF(D2>$H$1,1,0) and fill it down with ⌘ D.",
+        "Count the flags with a pivot table or COUNTIF, then check the count against a hand check of the source.",
+        "Write each rule in your note file, in the order you applied it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The point is not the formulas. The point is that each column has one job, and the raw data never changed. Flagging the gaps is useful too. Count the #N/A cells before you calculate any average, so the gap cannot hide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Clean a CSV without losing dates or codes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel guesses the type of each column when it opens a CSV. Krauth's chapter warns that Excel sometimes guesses dates wrong. It also notes that Excel once turned gene names into dates. A county code, a station ID or a survey code can change in the same way, with no warning on screen."
+    },
+    {
+      "type": "paragraph",
+      "text": "Fix the risk before it spreads. If the file is already open, select the column, then choose Data > Data Tools > Text to Columns. Pick Delimited or Fixed width. In the last step, set the column to Text. Codes with leading zeros keep their zeros only when the column is Text."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates need the same care. Check the date order you expect, such as month first or day first. Then test a few known dates by eye before you trust the whole column."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Export carefully",
+      "text": "On CSV export, Excel does not include formulas, and it rounds numbers to the display format of each cell. Export a values copy, then compare a few cells against the original workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Formulas economists use most, and how to check them"
+    },
+    {
+      "type": "paragraph",
+      "text": "A small set of habits covers most formula work. Use relative references for row-by-row steps. Use absolute references for a fixed cell, such as a cutoff or a base year. Use IF for indicator variables, and AND or OR when two conditions must hold together."
+    },
+    {
+      "type": "paragraph",
+      "text": "Absolute references use dollar signs, as in $H$1. Type the dollar signs by hand. Shortcuts for toggling them vary between Mac keyboard setups, so typing is the safer route."
+    },
+    {
+      "type": "paragraph",
+      "text": "Blank cells need care. In many comparisons, Excel treats a blank as zero. A missing wage can then pass a test you meant to fail. Add ISNUMBER to the test so gaps are caught on purpose."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your formulas before the output leaves your desk"
+    },
+    {
+      "type": "paragraph",
+      "text": "A formula that returns a number is not proof that the number is right. Check the logic against the source before you share a table."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Turn on formula view with ⌘ ` to see every formula on the sheet at once.",
+        "Select a result cell, then use Formulas > Formula Auditing > Trace Precedents to see which cells feed it.",
+        "Select a column and read the status bar for count, sum and blanks.",
+        "Compare totals to the source report, not to your last version of the file.",
+        "Count rows before and after every filter, merge or paste."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The Reinhart-Rogoff case from 2013 shows the cost of skipping this step. A coding error left several countries out of the averages in one figure of an economics paper. The authors acknowledged the error. They said it was not the main issue critics raised. A row count against the source is the simplest way to catch that kind of gap."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for a first look at the numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table answers the first question you ask, such as average wage by region and year. Select the data range, then choose Insert > PivotTable. Drag fields into Rows, Columns and Values. Read the count next to each average before you trust it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for version changes. In version 16.111, released July 14, 2026, a PivotTable can collapse into one cell that shows a spill error when something blocks it. If a pivot suddenly shows a single error cell, clear the cells in its path and refresh."
+    },
+    {
+      "type": "paragraph",
+      "text": "The full steps for building one are in [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel)."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Rebuild the same number",
+      "text": "Before a pivot number goes into a paper, rebuild it with a formula or in Stata. When two methods agree, you have a reason to trust the number."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Copilot in Excel changed for cleaning in late 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's October 2026 Excel update added features that matter for economists. Copilot can run a clean-data check with @clean-data or from the Skills menu. It looks for extra spaces, inconsistent formats, duplicates and wrong data types. It proposes fixes and lets you choose which ones to apply."
+    },
+    {
+      "type": "paragraph",
+      "text": "Version 16.113, released September 16, 2026, added a change-history skill to the Copilot pane. It summarizes workbook edits, shows who made them, and can undo edits or restore formulas. Chat history sits behind the menu icon in the same pane."
+    },
+    {
+      "type": "paragraph",
+      "text": "Naming tables as you create them also reached Excel for Mac in the October update. Named tables make formulas easier to read when you come back to a file later."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "An automatic fix is still a change",
+      "text": "Copy the raw file first, and note which fixes you accepted. J-PAL's guidance says changes made in Excel are not documented by default, even when a tool makes them for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Excel fits in an economics research workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel's share in economics research is hard to measure from public data. A study of economics reproduction packages found Stata in 80% or more of them, with no sign of decline over time. The study reports no shares for SAS or Excel, so it cannot tell you how often Excel is used."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mixed-software work is growing. By 2024, more than 40% of packages used two or more software types, up from fewer than 10% in 2010. The study drew on 1,906 papers from five economics journals in the Harvard Dataverse, and 4,617 papers from seven AEA journals in the AEA/ICPSR repository."
+    },
+    {
+      "type": "paragraph",
+      "text": "For you, the practical pattern is simple. Explore in Excel, then do the repeatable work in code. The spreadsheet becomes a checking tool, not the record of what you did."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes economists make in Excel, and how to avoid them"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Overwriting the raw column when a cleaning step goes wrong.",
+        "Trusting a CSV date that Excel guessed.",
+        "Saving a CSV and assuming the formulas came along.",
+        "Sorting one column without the rest of its row, which breaks the match.",
+        "Fixing values by hand in a few rows, then forgetting which rows changed.",
+        "Filtering a table and copying the visible rows without checking the count."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each mistake comes from the same cause. The change was not written down, and nothing checked it against the source. A locked raw file, a rule note and a row count fix most of them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Move the cleaning into code once the steps settle"
+    },
+    {
+      "type": "paragraph",
+      "text": "J-PAL recommends doing all cleaning in code, such as Stata or R, so every change is recorded. That is strict advice. It fits a paper that others will rerun. For a quick internal look, Excel is a reasonable place to start."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the rule in plain words first, in your note file.",
+        "Test the rule on a copy in Excel, and check a few rows by eye.",
+        "Translate the rule into a Stata do file or an R script.",
+        "Rerun the script on the raw file, then compare totals to the Excel copy.",
+        "Label the Excel file as a check, so nobody mistakes it for the record."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The move does not have to be all or nothing. Many economists keep Excel for the first look, and keep code for every step that feeds a table. Ask Lazur to walk you through the export settings if your menus look different."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Lazur helps with Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘, which is Option and Command together, to ask about anything on screen. Lazur sees your screen, points at the thing you ask about, and answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is and Lazur draws a circle and a label around it. Ask how to do something and Lazur guides you one click at a time, waiting for each click. That suits Excel, where menus shift between versions and people lose their place."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Dictation writes clean text at the cursor in any app. A note for a cell comment, a memo line or a file label can start as speech."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Lazur's product description says content is never used to train AI models. If your data is confidential, check your own rules before you ask about it."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Lazur does not run Excel",
+      "text": "Lazur points, explains, reads formulas and drafts text. You make every change in the workbook yourself. Lazur is not an add-in for Excel, and it has no partnerships with any app maker."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Shortcuts for the Excel tasks economists repeat"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "When to use it"
+      ],
+      "rows": [
+        [
+          "Undo a bad paste",
+          "⌘ Z",
+          "Right after the mistake, before saving"
+        ],
+        [
+          "Fill a formula down",
+          "⌘ D",
+          "Select the range first, including the top cell"
+        ],
+        [
+          "Insert today's date",
+          "⌘ ;",
+          "Good for a log, not for data values"
+        ],
+        [
+          "Toggle AutoFilter",
+          "⌘ ⇧ L",
+          "Filter, then check the row count"
+        ],
+        [
+          "Show all formulas",
+          "⌘ `",
+          "Look for pasted values that replaced formulas"
+        ]
+      ],
+      "caption": "Common Excel for Mac shortcuts on a standard keyboard. Keyboard settings can change them, so test each one on a copy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcuts save time, but only when you know what they do. Test each one on a copy of the file before you rely on it in a live workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A checklist before a number leaves your desk"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "The raw file is locked and unchanged.",
+        "The row count matches the source after each filter, join or paste.",
+        "Formulas were checked in formula view, with trace precedents on a key cell.",
+        "Codes and dates were checked as Text or as dates on screen.",
+        "Every cleaning rule is in a note file or in code."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Run through the list before you copy a number into a memo or a paper. A short check now is cheaper than a correction later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your work spans team spreadsheets, the [financial analyst page](/for/financial-analysts) covers similar Excel work. For Excel help across the app, see [Lazur for Excel on Mac](/apps/excel). Accountants with month-end files can start with [Excel for accountants on Mac](/for/accountants/excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want to try it, [download Lazur](/download) and start the free trial, which needs no credit card. Then ask it to walk you through your own file, one step at a time."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can Excel for Mac handle economics datasets?",
+      "answer": "For first-pass work, usually yes. One worksheet holds 1,048,576 rows and 16,384 columns. Larger panels need Stata, R or a database. In 32-bit Excel, the Data Model is limited to a 2 GB virtual address space."
+    },
+    {
+      "question": "Why do dates change when I open a CSV in Excel?",
+      "answer": "Excel guesses the type of each column on import. It can read a date with the wrong day or month. Krauth's chapter also notes that Excel once turned gene names into dates. Import code columns as Text, and check known dates by eye."
+    },
+    {
+      "question": "Should I clean my data in Excel or in Stata?",
+      "answer": "Use Excel to look at the data and try rules. Use Stata or R for any cleaning that must be documented or rerun. J-PAL recommends code so that every change is recorded."
+    },
+    {
+      "question": "Which version of Excel for Mac is current?",
+      "answer": "Version 16.114.3, build 26102720, was released October 27, 2026. Its release notes list quality and performance improvements only. Check your own version under Excel > About Excel."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet?",
+      "answer": "No. Lazur points at buttons, explains formulas, guides you one click at a time and drafts text. It does not click, type into or edit your workbook for you."
+    },
+    {
+      "question": "Is my data safe when I use Lazur with Excel?",
+      "answer": "Lazur listens and looks only while you hold the shortcut. Audio and screenshots go to AI providers to answer, and are not stored. Lazur says content is never used to train AI models. Check your own data rules before you share confidential files."
+    },
+    {
+      "question": "Do economists still use Excel for research?",
+      "answer": "Yes, mostly for first looks and checks. In the reproduction packages studied, Stata appeared in 80% or more. That study reports no shares for Excel, so the exact share of Excel use is unknown."
+    },
+    {
+      "question": "What is the most common Excel mistake in economics work?",
+      "answer": "Silent changes with no record. A pasted value, a sorted column or a guessed date can change results without any error message. Keep the raw file locked and write down each rule."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Excel specifications and limits (Microsoft Support)",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Release notes for Office for Mac (Microsoft Learn)",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "The Software Behind the Stats: A Student Exploration of Software Trends in Economics, Political Science, and Statistics",
+      "url": "https://arxiv.org/html/2504.06507v2",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Data cleaning and management",
+      "url": "https://www.povertyactionlab.org/resource/data-cleaning-and-management",
+      "publisher": "J-PAL",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Chapter 2 Basic data cleaning with Excel (Intermediate Statistics for Economists)",
+      "url": "https://bkrauth-is4e.share.connect.posit.cloud/basic-data-cleaning-with-excel.html",
+      "publisher": "Brian Krauth, IS4E",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "How not to Excel: Austerity economics paper is coding-flawed",
+      "url": "https://phys.org/news/2013-04-excel-austerity-economics-paper-coding-flawed.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is Text to Columns? I need to split these codes.",
+    "capability": "point",
+    "result": "Lazur circles Data > Data Tools > Text to Columns on screen, labels it, then waits while you open the wizard.",
+    "shell": "sheet",
+    "context": "Excel for Mac with a CSV open and codes in column A",
+    "output": "Text to Columns is on the Data tab, in the Data Tools group.",
+    "pointsAt": "Text to Columns"
+  },
+  "tasks": [
+    {
+      "say": "Why did my county codes lose their leading zeros?",
+      "result": "Lazur explains that Excel stored the codes as numbers, then shows how to set the column to Text.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is Text to Columns on this Mac?",
+      "result": "Lazur circles the button in the Data tab and labels it on screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making a dummy for treated firms.",
+      "result": "Lazur guides you one click at a time and waits after each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Read me the formula in F2 in plain English.",
+      "result": "Lazur reads the formula out loud and says which cells it uses.",
+      "capability": "explain"
+    },
+    {
+      "say": "Type a note for the cell comment: drop rows with missing wages, see memo.",
+      "result": "Lazur turns your speech into text you can paste into the comment.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short data dictionary for these column headers.",
+      "result": "Lazur drafts a plain list of columns, with a line for each unit you can check against the source.",
+      "capability": "draft"
+    },
+    {
+      "say": "Look up the current Excel row limit and tell me if my file fits.",
+      "result": "Lazur runs the lookup in its own Chrome tabs and returns a short summary with the source.",
+      "capability": "research"
+    },
+    {
+      "say": "What does this spill error in my pivot mean?",
+      "result": "Lazur explains that something blocks the pivot output, then points at the cells in the way.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "economists-excel",
+  "role": "economists",
+  "app": "excel",
+  "roleName": "Economists",
+  "appName": "Excel",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/economists-excel/excel-for-economists-on-mac-1-556dad.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Economist working on a Mac laptop at a desk while reviewing data for Excel for economists on Mac",
+      "caption": "A desk setup for a data cleaning session",
+      "keywords": [
+        "excel for economists on mac",
+        "Excel",
+        "Economists",
+        "Mac",
+        "economist laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/economists-excel/excel-for-economists-on-mac-2-0db71b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a laptop in an office while checking a spreadsheet of survey data",
+      "caption": "Checking a spreadsheet before a number is shared",
+      "keywords": [
+        "excel for economists on mac",
+        "Excel",
+        "Economists",
+        "Mac",
+        "person typing laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Engin_Akyurt",
+        "url": "https://pixabay.com/users/Engin_Akyurt-3656355/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-work-school-note-to-write-4628592/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/economists-excel/excel-for-economists-on-mac-3-d9b8dd.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Printed charts and a notebook on a desk beside a laptop, the kind of setting for an economics data review",
+      "caption": "Notes and charts beside the workbook",
+      "keywords": [
+        "excel for economists on mac",
+        "Excel",
+        "Economists",
+        "Mac",
+        "data charts desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-work-business-table-desk-2616585/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for economists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "excel for economists": 7,
+      "excel data cleaning for economists": 1,
+      "excel csv dates on mac": 1,
+      "excel formulas for economists": 1,
+      "excel pivot table economics": 1,
+      "excel help on mac with voice": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

@@ -1,0 +1,649 @@
+{
+  "title": "Google Sheets for hotel revenue managers on Mac: a daily setup for 2026",
+  "metaTitle": "Google Sheets for Hotel Revenue Managers on Mac: 2026 Setup",
+  "description": "Set up Google Sheets for hotel revenue management on a Mac: rooms on the books, booking pace, competitor rates, and the shortcuts that save time.",
+  "targetKeyword": "google sheets for hotel revenue managers on mac",
+  "secondaryKeywords": [
+    "hotel revenue management spreadsheet",
+    "rooms on the books tracker",
+    "hotel booking pace spreadsheet",
+    "competitor rate tracking spreadsheet",
+    "Google Sheets shortcuts on Mac",
+    "hotel rate plan spreadsheet"
+  ],
+  "intro": "Yes, Google Sheets works for hotel revenue management on a Mac, as long as the property is small. Most revenue managers use it to track rooms on the books, booking pace, competitor rates, and current rates by room type and channel. This guide shows how to set up those tabs in your browser, which Mac shortcuts save time, and where a spreadsheet stops being enough.",
+  "tldr": [
+    "Track four things: rooms on the books, pace against last year, competitor rates, and current rates by room type and channel.",
+    "AxisRooms says a spreadsheet works for properties under about 20 rooms with three or fewer OTAs.",
+    "Press ⌘⇧V to paste values only, and ⌘D to fill a formula down, according to Google's shortcut page.",
+    "Lazur points, explains, and guides you one click at a time. It does not click buttons or edit cells for you."
+  ],
+  "stats": [
+    {
+      "value": "20 million",
+      "label": "cells per Google Sheets file, or 100MB total, according to Google's limits page",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: Spreadsheet limits"
+    },
+    {
+      "value": "10 to 15 min",
+      "label": "for a daily rooms-on-books update covering the next 30 dates, an AxisRooms estimate",
+      "sourceUrl": "https://blog.axisrooms.com/revenue-management-excel-for-hotels/",
+      "sourceTitle": "Hotel Revenue Management Excel: AxisRooms blog"
+    },
+    {
+      "value": "Under 20",
+      "label": "rooms, the size where AxisRooms says a spreadsheet still works well",
+      "sourceUrl": "https://blog.axisrooms.com/revenue-management-excel-for-hotels/",
+      "sourceTitle": "Hotel Revenue Management Excel: AxisRooms blog"
+    },
+    {
+      "value": "50,000",
+      "label": "characters per cell before Google Sheets removes the cell on Excel conversion",
+      "sourceUrl": "https://support.google.com/drive/answer/37603?hl=en",
+      "sourceTitle": "Google Drive Help: Spreadsheet limits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What hotel revenue managers track in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most hotel revenue managers start in a spreadsheet, and the core work is easy to describe. You want to know how many rooms are sold for future dates. You want to compare that with the same period last year. You also want competitor rates and your own current rates. AxisRooms, a vendor that sells revenue management software, names those four tasks as the core of a hotel revenue spreadsheet."
+    },
+    {
+      "type": "paragraph",
+      "text": "In practice, the four tasks break down like this:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Rooms on the books for future dates, so you see gaps early.",
+        "Booking pace against the same period last year.",
+        "Competitor rates for the next 30 dates.",
+        "Current rates by room type and channel."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets covers all four without extra software. Anyone with a Google Account can create a spreadsheet, according to Google. The trouble starts when the same file has to carry more rooms, more channels, and more daily checks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up five tabs that cover the job"
+    },
+    {
+      "type": "paragraph",
+      "text": "AxisRooms suggests five templates. You do not need all five on the first day. Build the booking pace tracker and the rate plan reference table first. Those two drive most daily decisions. Add the rest after the habit sticks."
+    },
+    {
+      "type": "table",
+      "caption": "Five templates from AxisRooms, with a suggested use for each",
+      "headers": [
+        "Tab",
+        "What it holds",
+        "When you use it"
+      ],
+      "rows": [
+        [
+          "90-day booking pace tracker",
+          "Rooms on the books for future dates, against the same period last year",
+          "Daily update for the next 30 dates"
+        ],
+        [
+          "12-month demand calendar",
+          "Demand notes by date, such as local events and holidays",
+          "Weekly review"
+        ],
+        [
+          "Rate plan reference table",
+          "Current rates by room type and channel",
+          "Each time a rate changes"
+        ],
+        [
+          "Channel mix summary",
+          "Share of bookings by sales channel",
+          "Weekly review"
+        ],
+        [
+          "Weekly revenue review log",
+          "What you changed, and what happened after",
+          "Every week"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Put all five tabs in one file for one property. Formulas can reach across tabs in the same file, which keeps the rooms-on-books and rate numbers in step. Name each tab in plain words, because you will type those names into formulas later."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you run several properties, each one adds its own file or tab set. AxisRooms lists several properties as one of the points where a spreadsheet stops being enough. Keep that in mind before you copy the setup a third time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the rooms on the books tracker, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "This setup takes less time than it sounds. Follow these steps in your browser on a Mac."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Drive in your browser, then create a new Google Sheets file. Name it after the property.",
+        "In the first row, type these headers in columns A to E: Date, Day, Rooms on books, Same day last year, Pace gap.",
+        "In column A, type the next 30 dates, one per row, starting under the header. Select column A, then choose Format > Number > Date.",
+        "Type your rooms-on-books counts in column C and last year's counts in column D.",
+        "In E2, type =C2-D2 and press Return. Select E2, then press ⌘D to fill the formula down the column.",
+        "Freeze the top row so the headers stay visible. Follow how to freeze the top row in Google Sheets on Mac.",
+        "Choose Data > Create a filter, so you can sort the gap column. The steps are in how to add a filter to one range in Google Sheets on Mac."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The file is deliberately plain. Your counts come from a property system or a channel report, and you type or paste them in. Lazur does not fetch them for you, and it will not change cells. That step stays with you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Compare booking pace with last year without common errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pace is the gap between where you are now and where you were at the same point last year. The formula is =C2/D2-1. The result is a percentage. A negative number means you are behind last year."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two mistakes break this sheet fast. The first is comparing the same calendar date when the weekdays differ. A Saturday last year may not line up with a Saturday this year, so match weekdays in column D. The second is blank cells. An empty last-year cell gives an error. Wrap the formula like this: =IFERROR(C2/D2-1,\"\")."
+    },
+    {
+      "type": "paragraph",
+      "text": "Find and replace helps when you rename a column or fix a pattern across many rows. Press ⌘⇧H to open it. The steps are in how to find and replace in Google Sheets on Mac."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track competitor rates for the next 30 dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Competitor checks are the part of the job that slips first. AxisRooms estimates 15 to 20 minutes for a weekly competitor check. That is the author's estimate, and it has no cited source. Plan the time anyway, and keep the check on the same day each week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lay out the sheet so each row is one date. Put the date in column A and your BAR in column B. Put competitor rates in columns C to E. In column F, type =AVERAGE(C2:E2) for the competitor average. In column G, note the time you checked."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the timestamp, type the time by hand, or enter =NOW() and then paste it as a value. Pasting values with ⌘⇧V stops the time from changing every time the sheet recalculates."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use BAR to set tier floors. AxisRooms says High Demand rates typically sit 15 to 25 percent above BAR, and Peak rates typically sit 30 to 50 percent above BAR. Those are one vendor's typical ranges. In H2, type =B2*1.15 for the High Demand floor. In I2, type =B2*1.30 for the Peak floor. Change the multipliers to match your own tiers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a Friday that is behind pace"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is one date, walked through the sheet with the formulas above. Say a Friday in the next 30 dates shows a negative pace gap in column E. That tells you the room count is behind last year's count for the same weekday."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, check column F. If the competitor average sits above your BAR, your rate may be low for that night. If the average sits below your BAR, the gap may be a price problem. It may also be demand that has not arrived yet. The sheet cannot tell you which one. Your notes can."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then check the floor. If your BAR sits under the High Demand floor in column H, the rate plan table is the next stop. Confirm what is live on each channel for that room type, then decide. Write the decision in the weekly review log, with the time."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can ask Lazur for help at this step. Hold ⌥⌘, then ask what the pace gap means in column E. Lazur explains the cell in plain words. It does not change the rate for you."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check the formula twice",
+      "text": "Test a new formula on a few dates you already know. Compare the result with the number you expect before you trust the sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Record current rates by room type and channel"
+    },
+    {
+      "type": "paragraph",
+      "text": "The rate plan reference table answers one question. What is live right now, on each channel, for each room type? Keep one row per combination of room type and channel. Use columns for room type, channel, rate, last changed, and a short note."
+    },
+    {
+      "type": "paragraph",
+      "text": "Make the room type and channel columns dropdowns. Then the same channel name appears the same way every time. Select the column, choose Data > Data validation, and set the list. The full steps are in how to create a dropdown list in Google Sheets on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Flag rates that fall under your floor. Select the rate column, then choose Format > Conditional formatting. Set a rule that colors any rate under your floor, so the low ones stand out at a glance."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Competitor rates go stale",
+      "text": "A competitor rate from earlier today may not match the rate now. Log the time of each check, and treat older checks as history."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac shortcuts that save time in this job"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's shortcut page lists the keys below for Sheets on a Mac. Check that page before you rely on any key, because third-party guides often differ from it."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘⇧V pastes values only. Use it when you copy rates from a report, so you do not bring in formats or formulas.",
+        "⌘D fills the cell above down into the selected cells. Enter a formula once, then fill it down the column.",
+        "⌘⇧H opens find and replace.",
+        "⌃Space selects the whole column. Use it before you format or sort a column.",
+        "⌥/ opens Tool finder, which Google used to call Search the menus. Type what you want, and it finds the menu item.",
+        "⌃⌥H opens the Help menu."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur sits next to these shortcuts. Ask it for a key by name, and it answers out loud. It will not press the key for you."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits while you work in the sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen. Lazur sees your screen while you hold the shortcut, points at things, and answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where a column is, and Lazur draws a circle and a label around it on your screen. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. It does not click for you, and it does not edit cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That helps when you want to log a rate decision in the review log without typing it twice."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is how privacy works. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. A sheet with guest names still shows those names when you hold the shortcut, so close those windows first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to say to Lazur while the sheet is open"
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the column, the row, or the error. Lazur answers better when the exact label is on screen. A question like why is this cell an error works best with that cell selected. A question like where is the BAR column works best when the header is visible."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the question short and specific. Lazur can answer from the screen, so you do not need to describe the whole sheet. Ask about one cell, one column, or one step at a time."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Limits that matter once the sheet grows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Drive lists a cap of 20 million cells or 100MB total for each spreadsheet. The same help page does not state a maximum number of tabs or formulas. Test a large file before you rely on it."
+    },
+    {
+      "type": "table",
+      "caption": "Limits from Google Drive Help, spreadsheet limits page",
+      "headers": [
+        "Limit",
+        "Figure",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Cells per spreadsheet",
+          "20 million cells or 100MB",
+          "Move old years into an archive file"
+        ],
+        [
+          "Long text on Excel export",
+          "Cells over 50,000 characters are removed",
+          "Keep notes short, or keep them in a separate tab"
+        ],
+        [
+          "Connected Sheets pivot tables",
+          "200k rows",
+          "Filter the data before you pivot it"
+        ],
+        [
+          "Connected Sheets extracts",
+          "500k rows or 5m cells",
+          "Extract only the dates you need"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The Excel limit catches people most often. A long note in one cell is removed when you download the file as Excel. Download as Excel in Google Sheets on Mac covers the export steps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Google's AI features add, and what they need"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Sheets page describes features built on Gemini. Sheets canvas builds dashboards, heat maps, and Kanban boards from a text prompt. Fill with Gemini, formula writing, and error fixing are there too. Scenario solving and Connected Sheets for BigQuery or Looker data round out the list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some Gemini features need a Google Workspace plan. The page lists no prices. Check Google's pricing page before you plan a budget around them. The tracker in this guide uses plain formulas, so it works without any Gemini feature."
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat Gemini as a helper for formulas and errors, not as a source of rates. It writes formulas from your words. It cannot know your competitor rates unless you enter them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost revenue managers time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pasting with ⌘V when you want ⌘⇧V. The paste brings in formats and formulas you did not mean to copy.",
+        "Inserting rows inside a formula block without checking the ranges afterward. Insert a row above with care, then check the totals.",
+        "Updating the pace tracker once a week. The guide describes a daily update for the next 30 dates, and the daily habit catches a gap early.",
+        "Logging competitor checks without a time. A rate you cannot date is hard to trust.",
+        "Keeping guest names in view while you work on rates. Lazur sees what is on screen when you hold the shortcut, so close guest records first.",
+        "Running several properties in one file. AxisRooms says that is where spreadsheets break down."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A weekly routine based on the time estimates"
+    },
+    {
+      "type": "paragraph",
+      "text": "AxisRooms gives a time estimate for each task. Daily rooms-on-books updates for the next 30 dates take 10 to 15 minutes. The weekly review takes about 45 minutes. Weekly competitor checks take 15 to 20 minutes. These are author estimates with no cited source, so time your own first week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start each day with the pace tracker. Update the rate plan table when a rate changes. Run the competitor check on the same day each week. Close the week in the review log, and write one line for each change you made and why."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When a spreadsheet stops being enough"
+    },
+    {
+      "type": "paragraph",
+      "text": "AxisRooms says a spreadsheet works well for a property under about 20 rooms that manages three or fewer OTAs. Past that point, the guide lists warning signs. Manual competitor tracking falls behind. Rate automation becomes necessary. Several properties need managing. Forecasting goes beyond comparing with past pace."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use those signs as a checklist. If several apply, price a revenue management system before you add more tabs. A bigger sheet does not solve a speed problem."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Read the vendor's view",
+      "text": "AxisRooms sells revenue management systems, and its guide recommends them. Its time estimates and room threshold come from the author, not from a study."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the weekly review log either way. It is the record you will want when you compare one season with the next."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps"
+    },
+    {
+      "type": "paragraph",
+      "text": "Set up the pace tracker first, then add the rate plan table once the daily habit holds. If your property system or an owner's report needs another format, download as Excel or export as PDF. If you want a chart of pace across the next 30 dates, make a chart in Google Sheets on Mac shows the steps. For the Lazur app, the download page has the Mac version."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I run hotel revenue management in Google Sheets on a Mac?",
+      "answer": "Yes. Google Sheets runs in your browser on a Mac, and anyone with a Google Account can create a spreadsheet. The tracker in this guide uses plain formulas, so it does not need any Gemini feature. AxisRooms says it works well for small properties, and it gets harder to run as the property grows."
+    },
+    {
+      "question": "How many rooms is a spreadsheet good for?",
+      "answer": "AxisRooms says a spreadsheet works well for properties under about 20 rooms that manage three or fewer OTAs. The guide also lists signs that you have outgrown it, such as rate automation, several properties, and competitor tracking that falls behind. Treat that as one vendor's view."
+    },
+    {
+      "question": "How long does a daily rooms-on-books update take?",
+      "answer": "AxisRooms estimates 10 to 15 minutes for a daily update covering the next 30 dates. That is the author's estimate, and it has no cited source. Time your own process for a week, then plan around your real number."
+    },
+    {
+      "question": "What is the cell limit in Google Sheets?",
+      "answer": "Google Drive lists 20 million cells or 100MB total per spreadsheet. On Excel conversion, Google Sheets removes any cell with more than 50,000 characters. The Drive help page does not state a limit on tabs or formulas."
+    },
+    {
+      "question": "What is the Mac shortcut for pasting values only?",
+      "answer": "Press ⌘⇧V. It pastes values without formats or formulas. Google's keyboard shortcut page lists it for Google Sheets on a Mac."
+    },
+    {
+      "question": "Does Lazur edit my spreadsheet?",
+      "answer": "No. Lazur guides, points, explains, answers out loud, drafts, and types text when you dictate. It does not click buttons, edit cells, or operate other apps for you."
+    },
+    {
+      "question": "Are Google's Gemini features included in every plan?",
+      "answer": "No. Google's Sheets page says some Gemini features are only available on Google Workspace plans. The page lists no prices, so check Google's pricing page before you decide."
+    },
+    {
+      "question": "Is there a free trial of Lazur?",
+      "answer": "Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. Paid plans are listed on the pricing page."
+    },
+    {
+      "question": "Does Lazur send my spreadsheet data anywhere?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Close guest records before you ask."
+    },
+    {
+      "question": "Where is Tool finder in Google Sheets on a Mac?",
+      "answer": "Press ⌥/ to open Tool finder. Google's shortcut page says it was formerly called Search the menus. Type what you want, and it finds the menu item."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace: Google Sheets",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets (Computer), Google Docs Editors Help",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Google Drive Help: Spreadsheet limits",
+      "url": "https://support.google.com/drive/answer/37603?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Hotel Revenue Management Excel: AxisRooms blog",
+      "url": "https://blog.axisrooms.com/revenue-management-excel-for-hotels/",
+      "publisher": "AxisRooms (vendor blog)",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the pace column for next Friday?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Pace gap header, then names the column out loud.",
+    "shell": "sheet",
+    "context": "Rooms-on-books tracker open in Chrome on a Mac, header row visible",
+    "output": "The pace gap is column E, under the Pace gap header.",
+    "pointsAt": "Pace gap header"
+  },
+  "tasks": [
+    {
+      "say": "Where is the same day last year column?",
+      "result": "Lazur draws a circle and a label around the header, so you find it without scanning the sheet.",
+      "capability": "point"
+    },
+    {
+      "say": "Why does this pace cell show an error?",
+      "result": "Lazur reads the selected cell's formula in plain words and says what the error usually means.",
+      "capability": "explain"
+    },
+    {
+      "say": "Walk me through adding a filter to the gap column.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Note for the team: Friday is behind last year, check competitor rates first.",
+      "result": "Hold fn and speak. The text lands at the cursor in any app, including your review log.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a message to the front desk about the Saturday rate change.",
+      "result": "Lazur drafts the message as text. You read it, edit it, and send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research competitor rates for my list over the next 30 dates.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me every morning to update rooms on the books.",
+      "result": "Lazur adds a reminder to Apple Reminders, so the daily update stays on your list.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "hotel-revenue-managers-google-sheets",
+  "role": "hotel-revenue-managers",
+  "app": "google-sheets",
+  "roleName": "Hotel revenue managers",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/hotel-revenue-managers-google-sheets/google-sheets-for-hotel-revenue-managers-on-1-acecb2.jpg",
+      "width": 1280,
+      "height": 847,
+      "alt": "A revenue manager at a laptop checking rates in Google Sheets for hotel revenue managers on Mac",
+      "caption": "The front desk, where rate questions come up during the day.",
+      "keywords": [
+        "google sheets for hotel revenue managers on mac",
+        "Google Sheets",
+        "Hotel revenue managers",
+        "Mac",
+        "hotel front desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/hotel-reception-entrance-hall-595587/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/hotel-revenue-managers-google-sheets/google-sheets-for-hotel-revenue-managers-on-2-b7b554.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Person working on a laptop at a desk while reviewing a spreadsheet of hotel bookings",
+      "caption": "Reviewing bookings and rates at the desk.",
+      "keywords": [
+        "google sheets for hotel revenue managers on mac",
+        "Google Sheets",
+        "Hotel revenue managers",
+        "Mac",
+        "person laptop office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/hotel-revenue-managers-google-sheets/google-sheets-for-hotel-revenue-managers-on-3-d7d6cf.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Close view of a spreadsheet on a laptop screen, used to track bookings and room rates",
+      "caption": "The weekly review usually happens away from the front desk.",
+      "keywords": [
+        "google sheets for hotel revenue managers on mac",
+        "Google Sheets",
+        "Hotel revenue managers",
+        "Mac",
+        "laptop spreadsheet desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for hotel revenue managers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "hotel revenue management spreadsheet": 1,
+      "rooms on the books tracker": 2,
+      "hotel booking pace spreadsheet": 1,
+      "competitor rate tracking spreadsheet": 1,
+      "Google Sheets shortcuts on Mac": 1,
+      "hotel rate plan spreadsheet": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

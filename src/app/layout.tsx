@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Geist_Mono } from "next/font/google";
 import { DataFast } from "@/components/analytics/DataFast";
@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   },
   title: DEFAULT_TITLE,
   description: DEFAULT_DESCRIPTION,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     title: DEFAULT_TITLE,
     description: OG_DESCRIPTION,
@@ -45,6 +50,10 @@ export const metadata: Metadata = {
     description: OG_DESCRIPTION,
     images: [OG_IMAGE.url],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fffdfb",
 };
 
 export default function RootLayout({

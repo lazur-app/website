@@ -1,0 +1,650 @@
+{
+  "title": "Cursor for data scientists on Mac: notebooks, SQL, and charts with Lazur in 2026",
+  "metaTitle": "Cursor for Data Scientists on Mac: Notebooks, SQL and Setup",
+  "description": "Cursor for data scientists on Mac: Jupyter notebooks, pandas and SQL help, safe Agent edits, and voice help from Lazur in 2026.",
+  "targetKeyword": "cursor for data scientists on mac",
+  "secondaryKeywords": [
+    "Cursor notebooks on Mac",
+    "Jupyter notebooks in Cursor",
+    "Cursor pandas and scikit-learn help",
+    "Cursor SQL database MCP",
+    "Lazur voice assistant for Mac",
+    "Cursor data science setup"
+  ],
+  "intro": "Yes, Cursor works for data science on Mac, with a caveat. You can open Jupyter notebooks, run cells, and get help from Tab and Agent with pandas, NumPy and scikit-learn. Notebook support still has rough edges, so you need a few habits. This page covers setup, what works, what breaks, and where Lazur fits beside your editor.",
+  "tldr": [
+    "Install the Jupyter extension, ms-toolsai.jupyter, before you expect full notebook support in Cursor.",
+    "Commit before every Agent session that touches a notebook. Sources report undo problems on macOS.",
+    "Use Tab and Agent for pandas, NumPy, scikit-learn and SQL, then check row counts before you trust a result.",
+    "Give any database connection read-only access, and keep projects out of Desktop and Documents.",
+    "Hold ⌥⌘ to ask Lazur about the screen. It answers out loud and points. It does not edit your code."
+  ],
+  "stats": [
+    {
+      "value": "47.1%",
+      "label": "of all Stack Overflow 2025 respondents use AI tools daily, across all developers",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/ai",
+      "sourceTitle": "Stack Overflow 2025 Developer Survey: AI"
+    },
+    {
+      "value": "66%",
+      "label": "of respondents picked AI output that is almost right, but not quite, as a frustration",
+      "sourceUrl": "https://survey.stackoverflow.co/2025/ai",
+      "sourceTitle": "Stack Overflow 2025 Developer Survey: AI"
+    },
+    {
+      "value": "22%",
+      "label": "of 57 developers at one tech company saw little or no productivity gain",
+      "sourceUrl": "https://arxiv.org/html/2601.20112v1",
+      "sourceTitle": "Usage, Effects and Requirements for AI Coding Assistants in the Enterprise"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Setting up Cursor for data science on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the app. Download Cursor from cursor.com, move it to Applications, and open it. Then choose File > Open Folder and pick your project folder, not a single notebook. A folder gives the Agent your environment, your data files, and your Git history."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Press ⇧⌘X, search for Jupyter, and install ms-toolsai.jupyter.",
+        "Press ⇧⌘P, type Python: Select Interpreter, and choose a virtual environment inside the project.",
+        "No environment yet? Run python3 -m venv .venv in the Cursor terminal, then install your packages inside it.",
+        "Save your package list to requirements.txt so the setup survives a new Mac.",
+        "Open a .ipynb file and check that the kernel picker shows the same interpreter."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Protected folders",
+      "text": "Cursor 3.25 stopped file watching in protected folders such as Desktop and Documents. If your project lives there and new files do not appear, move it to a folder such as ~/Code and reopen it."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Data Science guide does not mention macOS by name. It uses Cmd labels such as Cmd+Shift+P, so the steps translate directly. The Mac details in this page come from Cursor's desktop release notes for versions 3.25 to 3.27. Read the guide for the workflow and the release notes for Mac changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Notebooks in Cursor: what works and what breaks"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor opens .ipynb files with cell execution and AI completion once the Jupyter extension is installed. The docs also say .py files support integrated cell execution. That second option matters if your team reviews changes in Git. A notebook is JSON under the hood, so its diffs are hard to read."
+    },
+    {
+      "type": "paragraph",
+      "text": "The rough edges are documented in public. A feature request for Jupyter notebook support opened on September 4, 2024. In May 2025, a forum user said the Agent could not read their .ipynb file. A Cursor staff reply on May 20, 2025 said Jupyter support was not available yet. Test the current build on a copy before you trust it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Notebook task",
+        "What the sources say",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Run .ipynb cells",
+          "Cursor docs say cell execution works after you install the Jupyter extension",
+          "Install ms-toolsai.jupyter first"
+        ],
+        [
+          "Agent edits a notebook",
+          "A February 2026 third-party report said accepted edits could not be undone or restored from an Agent checkpoint on macOS 2.4.28",
+          "Commit before each Agent session"
+        ],
+        [
+          "Agent reads a notebook",
+          "A May 2025 forum report said the Agent could not read a .ipynb file",
+          "Ask it a small question about one cell first"
+        ],
+        [
+          "Refactor a long workflow",
+          "Cursor staff suggested editing .py files in the February 2026 report",
+          "Move risky refactors into a .py file"
+        ]
+      ],
+      "caption": "Notebook behavior from the sources. Check your Cursor version before you rely on any row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a rule that works. Use notebooks for exploration and charts. Move code that must survive review into a .py file. The Python extension treats lines that start with # %% as cell markers, so you can still run one block at a time. For the notebook side in VS Code, read [VS Code for data scientists on Mac](/for/data-scientists/vs-code)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Tab and Agent with pandas, NumPy, and scikit-learn"
+    },
+    {
+      "type": "paragraph",
+      "text": "The guide says Tab and Agent work with pandas, NumPy, scikit-learn and SQL cell commands. Tab suggests the next line when the pattern is familiar. Agent handles a job you describe in plain words. Open chat with ⌘L when you want an answer, not an edit."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Worked example: a groupby that loses rows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you group a sales table by region to get average order value. Some rows have a blank region. pandas groupby drops rows with a missing key by default, because dropna is True. Your averages look clean, but those rows never reach the result. Ask the Agent to show a check that compares row counts before and after the groupby."
+    },
+    {
+      "type": "paragraph",
+      "text": "Prompts that work well for this job are short and specific:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Rewrite this loop as a vectorized pandas operation, and keep the same output columns.",
+        "Add a ColumnTransformer that scales numeric columns and one-hot encodes the category columns.",
+        "Explain why this merge returns more rows than the left table. Show a duplicated() check.",
+        "Add type hints and a docstring to this function. Do not change its behavior.",
+        "Write a pytest test that fails if any order_id appears twice."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Two habits cause most trouble. People accept the first suggestion without running the cell. They also ask for many changes in one prompt. Ask for one change, run the cell, and check the output. Small steps keep the notebook state easy to follow."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Check the output",
+      "text": "The Stack Overflow 2025 survey found 66% of respondents picked AI output that is almost right, but not quite, as a frustration. After each change, check a row count or a summary statistic before you move on."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Charts with Matplotlib, Plotly, and Seaborn"
+    },
+    {
+      "type": "paragraph",
+      "text": "The guide says Agents can generate Matplotlib, Plotly and Seaborn code. It describes that code as something you can replicate and share. Use that. Ask for a function that takes a DataFrame and returns a figure. A function reruns next month. A cell that plots one table does not."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give the prompt what a reviewer would ask for. Name the audience, the units, and the date range. Ask for axis labels with units and a title that states the finding. Ask the code to save the figure to a figures folder, so the chart outlives the notebook."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Querying databases from Cursor with SQL and MCP"
+    },
+    {
+      "type": "paragraph",
+      "text": "The guide says MCP servers let the agent query a database directly. It gives a Postgres MCP configuration as an example. It also names extensions for PostgreSQL, BigQuery, SQLite and Snowflake that run queries from the editor. Pick the route your database team already supports."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Create a read-only database user. Grant select on the schemas you need and nothing else.",
+        "Store the password in an environment variable, not in a file you commit to Git.",
+        "Add the MCP server in Cursor's MCP settings, using the guide's example as a template.",
+        "Ask the agent for a query first, and read it before you run it.",
+        "Save useful queries in a .sql file so a teammate can review them later."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Keep secrets out of prompts",
+      "text": "Never paste a production password into a chat prompt or a notebook cell. Use a read-only account and keep the secret in your shell environment."
+    },
+    {
+      "type": "paragraph",
+      "text": "The guide says Tab and Agent also work with SQL cell commands. Keep each command short. Long queries are easier to read in a .sql file, where syntax highlighting helps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Large datasets: Dask, Spark, and Remote-SSH"
+    },
+    {
+      "type": "paragraph",
+      "text": "pandas reads a whole file into memory by default. A small CSV is fine. A file bigger than your Mac's memory is not. The guide suggests Dask for larger data. It also suggests connecting to Spark clusters through Remote-SSH. Pick one route before you start the analysis, not after the laptop freezes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with a sample while you explore. Pass nrows to read_csv to load the first rows. Use chunksize when you need to scan the full file in pieces. Write a comment that says the notebook uses a sample, so nobody reads the results as final."
+    },
+    {
+      "type": "paragraph",
+      "text": "Remote-SSH runs Cursor against a machine with more memory. Your Mac stays the screen, and the other machine does the heavy work. Check with your platform team before you connect to a shared cluster."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Repeatable environments with a devcontainer"
+    },
+    {
+      "type": "paragraph",
+      "text": "The guide includes a .devcontainer template. It uses Python 3.11 and pins pandas to 2.3.0 in requirements.txt. Pinning matters. A pandas upgrade can change how a groupby or a merge behaves. Write the version your results came from into the README."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dev containers need Docker running on your Mac, so start Docker Desktop first. Then reopen the folder in the container. If the build fails, read the first error, not the last one. The first error usually names the cause."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Undo, commits, and Agent edits on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Git is your undo button for notebooks. Commit a clean state before each Agent session. Name the commit for the task, such as 'before agent: add scaler to churn model'. If the Agent breaks cells, restore the file from that commit."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac undo has changed in recent releases. In 3.26, ⌘Z undoes an archive and ⇧⌘Z re-archives. In 3.27, Edit > Undo and Redo act on the focused element. Click into the editor before you press ⌘Z, or the undo may hit a different panel."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run each Agent session the same way:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Commit the notebook, or copy it to a backup file.",
+        "Restart the kernel and run all cells once, so you know the baseline.",
+        "Give the Agent one task and name the cells it may touch.",
+        "Read the diff before you accept any edit.",
+        "Restart the kernel, run all cells again, then commit."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "What 3.26 fixed",
+      "text": "The 3.26 release fixed a notebook issue that touched edit fields the Agent did not change. That helps, but it does not replace a commit."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits beside Cursor"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. Ask where something is, and Lazur draws a circle and a label around it. It does not click buttons, edit files, or operate Cursor for you."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explains an error in a cell, out loud, and points at the line it came from.",
+        "Finds a control you cannot locate, such as the kernel picker, with a circle and a label.",
+        "Guides you through a menu path one click at a time, waiting for each click.",
+        "Drafts a Slack reply or a note, then types it at the cursor when you ask.",
+        "Runs research in its own Chrome tabs and returns a summary and a report."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation fits notebook work well. Markdown cells, commit messages and Slack updates all take typing time. Hold fn to dictate clean, formatted text at the cursor in any app. Snippets, a personal dictionary and clipboard slots keep repeated phrases short."
+    },
+    {
+      "type": "paragraph",
+      "text": "Notebooks often show customer rows, so think about what is on screen. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Close sensitive tabs before you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur keeps a memory of what you asked and did, on your Mac. Lazur runs on Apple silicon and Intel Macs. Windows is planned, not available. Lazur is not a plugin or add-in for Cursor, and it has no partnership with Cursor."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pricing for Cursor and Lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor's pricing page lists a Free plan at $0 a month, with limited agent and chat requests. It lists Plus at $8 a month, with basic usage in a shared AI usage pool. Plan wording changes, so check the live page before you pay."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Plan",
+        "Price",
+        "What is included"
+      ],
+      "rows": [
+        [
+          "Cursor Free",
+          "$0 a month",
+          "Limited agent requests and chat requests"
+        ],
+        [
+          "Cursor Plus",
+          "$8 a month",
+          "Basic usage in a shared AI usage pool"
+        ],
+        [
+          "Lazur Pro",
+          "$18 a month, or $15 a month billed annually",
+          "150 AI actions and unlimited dictation"
+        ],
+        [
+          "Lazur Power",
+          "$120 a month, or $96 a month billed annually",
+          "1,000 AI actions and unlimited dictation"
+        ]
+      ],
+      "caption": "Prices as listed on each company's site. Check both pages before you buy."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur starts with a 3-day Pro trial that needs no credit card. The trial starts the first time you open the app. Plan around AI actions, not dictation, because dictation is unlimited on both plans."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes data scientists make in Cursor"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Accepting an Agent edit to a notebook with no commit. One bad edit can cost you a clean state.",
+        "Trusting a groupby or merge because it ran. Check row counts before and after.",
+        "Connecting a database with write access. Start with a read-only user.",
+        "Keeping the project in Desktop or Documents, then wondering why new files do not show up.",
+        "Running cells on the wrong interpreter. Check the kernel picker first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The kernel mistake is the easiest to miss. Check the kernel picker before every long run, and compare it with the interpreter in the status bar."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the research says about AI coding help"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "These figures describe developers in general, not data scientists. In the Stack Overflow 2025 survey, 47.1% of all respondents use AI tools daily. Among professional developers, 50.6% do. Use these numbers as context, not as proof that your notebook work will speed up."
+    },
+    {
+      "type": "paragraph",
+      "text": "A study of 57 developers at one tech company found 88% perceived a productivity gain. It also found 13 of 57, or 22%, saw little or no gain. The study did not measure time saved. Treat it as a reason to test your own workflow."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for your first session"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Install ms-toolsai.jupyter and select the project interpreter.",
+        "Open a copy of one notebook and run every cell once.",
+        "Commit that clean state, then ask the Agent for one small change.",
+        "Create a read-only database user before you connect an MCP server.",
+        "Hold ⌥⌘ and ask Lazur to walk you through the kernel picker."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "For the developer side of this setup, read [Cursor for developers on Mac](/for/developers/cursor). For the voice side of Cursor, see [voice assistant for Cursor on Mac](/apps/cursor). Both pages cover related Cursor habits."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Cursor support Jupyter notebooks on Mac?",
+      "answer": "Yes, once you install the Jupyter extension, ms-toolsai.jupyter. Open a .ipynb file and run cells. Cursor's docs describe cell execution and AI completion for notebooks. Some users reported Agent problems in 2025 and 2026, so test your version on a copy first."
+    },
+    {
+      "question": "Can the Cursor Agent read and edit my .ipynb files?",
+      "answer": "It can, but reports vary. A May 2025 forum post said the Agent could not read a notebook. A February 2026 third-party report said accepted Agent edits could not be undone on macOS 2.4.28. Commit before each Agent session."
+    },
+    {
+      "question": "Is Cursor's Data Science guide specific to Mac?",
+      "answer": "No. The guide does not mention macOS by name. It uses Cmd labels such as Cmd+Shift+P. The Mac-specific notes in this page come from Cursor's desktop release notes for versions 3.25 to 3.27."
+    },
+    {
+      "question": "Does Lazur edit my code or click buttons in Cursor?",
+      "answer": "No. Lazur listens and looks only while you hold ⌥⌘. It answers out loud, points at things, and guides you one click at a time. It does not click buttons, edit files, or operate Cursor for you."
+    },
+    {
+      "question": "Can I use Lazur on Windows for data science?",
+      "answer": "Not yet. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available."
+    },
+    {
+      "question": "Where should database credentials go in an MCP setup?",
+      "answer": "Use a read-only database user. Keep the password in an environment variable, not in a file you commit to Git. Do not paste it into a chat prompt or a notebook cell."
+    },
+    {
+      "question": "Does pandas groupby drop rows with missing keys?",
+      "answer": "By default, yes. groupby uses dropna=True, so rows with a missing key are left out of the result. Pass dropna=False if those rows matter, and compare row counts before and after."
+    },
+    {
+      "question": "How much does Lazur cost for a data scientist?",
+      "answer": "Pro costs $18 a month, or $15 a month billed annually, with 150 AI actions. Power costs $120 a month, or $96 billed annually, with 1,000 AI actions. Dictation is unlimited on both. The 3-day Pro trial needs no credit card."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Data Science: Cursor Docs",
+      "url": "https://cursor.com/docs/cookbook/data-science",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Release Notes",
+      "url": "https://cursor.com/docs/release-notes",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Jupyter notebook is not compatible with Cursor ai, Cursor Community Forum",
+      "url": "https://forum.cursor.com/t/jupyter-notebook-is-not-compatible-with-cursor-ai/93716",
+      "publisher": "Cursor Community Forum",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Forum: Jupyter Notebook support feature request",
+      "url": "https://forum.cursor.com/t/jupyter-notebook-support",
+      "publisher": "Cursor Community Forum",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Jupyter notebooks in Cursor and VS Code: what works, Neoteo",
+      "url": "https://www.neoteo.com/en/what-cursor-and-vs-code-document-about-jupyter-notebooks",
+      "publisher": "Neoteo",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Cursor Pricing",
+      "url": "https://cursor.com/pricing",
+      "publisher": "Cursor",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Stack Overflow 2025 Developer Survey: AI",
+      "url": "https://survey.stackoverflow.co/2025/ai",
+      "publisher": "Stack Overflow",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Usage, Effects and Requirements for AI Coding Assistants in the Enterprise: An Empirical Study",
+      "url": "https://arxiv.org/html/2601.20112v1",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-08"
+    },
+    {
+      "title": "Lazur pricing and product facts",
+      "url": "https://lazur.app/pricing",
+      "publisher": "Lazur",
+      "accessedAt": "2026-11-08"
+    }
+  ],
+  "demo": {
+    "spoken": "Why does this merge return more rows than my left table?",
+    "capability": "explain",
+    "result": "Lazur answers out loud and points at the merge. The right table repeats some keys, so each left row is copied per match.",
+    "shell": "code",
+    "context": "Jupyter cell in Cursor, pandas merge on customer_id",
+    "output": "The right table has more than one row for some customer_id values, so pandas copies each left row once per match. Check with right['customer_id'].duplicated().sum(). Pass validate='many_to_one' to make pandas raise an error when that happens.",
+    "pointsAt": "merge call, line 14"
+  },
+  "tasks": [
+    {
+      "say": "Why did my groupby drop the rows where region is blank?",
+      "result": "Lazur explains that groupby drops missing keys by default. It points at the groupby call so you can pass dropna=False if the blanks matter.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Select Kernel button in this window?",
+      "result": "Lazur draws a circle and a label around the kernel picker. It does not click it for you.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through adding a holdout split with a fixed seed.",
+      "result": "Lazur guides you through each menu step and waits for you to finish each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate a note for the team: the churn score dropped after the new cohort arrived.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor, in Slack, a doc, or a markdown cell.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Find the current scikit-learn docs for ColumnTransformer.",
+      "result": "Lazur runs the search in its own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Remind me to rerun the backfill after lunch.",
+      "result": "Lazur adds the reminder by voice, so the backfill does not slip while you work in the notebook.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Draft a Slack reply that says the join drops rows with missing IDs.",
+      "result": "Lazur drafts the reply and types it where your cursor sits. You read it before you send.",
+      "capability": "draft"
+    }
+  ],
+  "type": "role-app",
+  "slug": "data-scientists-cursor",
+  "role": "data-scientists",
+  "app": "cursor",
+  "roleName": "Data scientists",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-cursor/cursor-for-data-scientists-on-mac-1-1c1566.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Data scientist working on a laptop with code open, a common setup for Cursor for data scientists on Mac",
+      "caption": "Notebook work often happens on a laptop, one cell at a time.",
+      "keywords": [
+        "cursor for data scientists on mac",
+        "Cursor",
+        "Data scientists",
+        "Mac",
+        "data scientist laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "felixioncool",
+        "url": "https://pixabay.com/users/felixioncool-324952/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/lab-laboratory-research-scientific-385348/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-cursor/cursor-for-data-scientists-on-mac-2-4d9e4d.jpg",
+      "width": 1280,
+      "height": 768,
+      "alt": "Person typing Python code on a laptop at a desk, the kind of work done in Cursor on Mac",
+      "caption": "Short sessions in one editor window keep notebook work focused.",
+      "keywords": [
+        "cursor for data scientists on mac",
+        "Cursor",
+        "Data scientists",
+        "Mac",
+        "person coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "rahu",
+        "url": "https://pixabay.com/users/rahu-4725201/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/web-design-coding-web-developing-2906159/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-cursor/cursor-for-data-scientists-on-mac-3-949443.jpg",
+      "width": 1280,
+      "height": 919,
+      "alt": "Woman at a desk reviewing charts on a computer screen during data analysis",
+      "caption": "Charts need a careful check before they go to a team.",
+      "keywords": [
+        "cursor for data scientists on mac",
+        "Cursor",
+        "Data scientists",
+        "Mac",
+        "woman working desk computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-woman-eyeglasses-laptop-2578008/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "cursor for data scientists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 5,
+    "secondary": {
+      "Cursor notebooks on Mac": 1,
+      "Jupyter notebooks in Cursor": 1,
+      "Cursor pandas and scikit-learn help": 1,
+      "Cursor SQL database MCP": 1,
+      "Lazur voice assistant for Mac": 1,
+      "Cursor data science setup": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

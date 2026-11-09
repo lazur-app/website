@@ -1,0 +1,631 @@
+{
+  "title": "How to build responsive layouts in Figma on Mac: auto layout, constraints and breakpoints",
+  "metaTitle": "Responsive layouts in Figma on Mac: auto layout fixes for 2026",
+  "description": "Build responsive layouts in Figma on Mac with auto layout, Fill container, constraints and breakpoint frames. Causes, fixes and a week plan.",
+  "targetKeyword": "responsive layouts in figma",
+  "secondaryKeywords": [
+    "figma auto layout responsive",
+    "figma fill container",
+    "figma constraints responsive",
+    "figma breakpoints frames",
+    "responsive design figma mac",
+    "figma responsive components beta"
+  ],
+  "intro": "To build responsive layouts in Figma, add auto layout to every frame, then set the child layers to Fill container so they stretch with their parent. A Figma design file does not resize the way a browser does, so you draw one frame per breakpoint and let auto layout handle the stretching inside each one. This guide covers what broken layouts cost, why they happen, fixes you can try without paying for anything, and where Lazur fits in.",
+  "tldr": [
+    "Add auto layout to each frame first. Set the child layers inside it to Fill container, not fixed sizes.",
+    "Build one frame per breakpoint, name each frame with its size, and keep the count small.",
+    "Use constraints only on layers that ignore auto layout, such as a badge pinned to a corner.",
+    "Set min and max widths so content stops stretching, then check every breakpoint before handoff."
+  ],
+  "stats": [
+    {
+      "value": "60.87%",
+      "label": "Share of worldwide page views from mobile devices in StatCounter's October 2026 data",
+      "sourceUrl": "https://gs.statcounter.com/platform-market-share/desktop-mobile/worldwide/",
+      "sourceTitle": "StatCounter: Desktop vs Mobile Market Share Worldwide"
+    },
+    {
+      "value": "65.9%",
+      "label": "Survey respondents who say they waste a quarter to half their time on design-delivery inefficiencies",
+      "sourceUrl": "https://blog.zeplin.io/design-delivery/designer-developer-collaboration-insights-and-statistics/",
+      "sourceTitle": "Zeplin Gazette: What goes wrong with designer-developer collaboration?"
+    },
+    {
+      "value": "2 to 3",
+      "label": "Breakpoints designers usually accommodate in practice, according to Nielsen Norman Group",
+      "sourceUrl": "https://www.nngroup.com/articles/breakpoints-in-responsive-design/",
+      "sourceTitle": "Nielsen Norman Group: Breakpoints in Responsive Design"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Most of the pain comes from one habit. You draw a desktop frame with fixed boxes, copy it, and resize the copy by hand. The mobile frame looks fine for a while, then falls apart when someone changes a heading. Auto layout prevents most of that, but only when you set it up before you build the screen."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why responsive layouts in Figma take longer than they should"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma is a design tool, not a browser. A frame does not know how a phone would stack its content. You make that decision, and Figma only follows the rules you set. When the rules are missing, every resize becomes a manual fix across several frames."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The numbers are useful but thin. StatCounter's worldwide page for October 2026 shows mobile at 60.87% and desktop at 39.13%. Other trackers report different shares, so check the current figure before you quote it to a client. The point holds either way. Most people will open your work on a phone, so the phone frame is not optional."
+    },
+    {
+      "type": "paragraph",
+      "text": "One survey gives a sense of the time cost. The DesignOps Assembly benchmarking report, shared by Zeplin in April 2024, found that 65.9% of respondents waste between one quarter and one half of their time on design-delivery inefficiencies. Zeplin sells design handoff tools, and the page does not state the sample size. Treat it as a signal, not a measurement of your team."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your Mac can handle this work. Figma's desktop app needs macOS 12 or later, and it is optimized for both Intel and Apple silicon. You do not need special hardware for responsive frames. You do need a file that stays light, which is covered later in this guide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up breakpoints before you draw anything"
+    },
+    {
+      "type": "paragraph",
+      "text": "Decide your sizes first. Nielsen Norman Group says designers usually accommodate only 2 to 3 breakpoints in practice. It recommends considering four basic sizes: extra small, small, medium, and large. Start with those four names. Add a fifth only when a real design needs it."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Breakpoint name",
+        "What it covers",
+        "Check first"
+      ],
+      "rows": [
+        [
+          "Extra small",
+          "Phones in portrait",
+          "Text wraps and buttons stay easy to tap"
+        ],
+        [
+          "Small",
+          "Large phones and small tablets",
+          "Cards keep their order when they stack"
+        ],
+        [
+          "Medium",
+          "Tablets",
+          "Two-column grids do not stretch too wide"
+        ],
+        [
+          "Large",
+          "Laptops and desktops",
+          "A max width stops content from growing forever"
+        ]
+      ],
+      "caption": "Four basic breakpoint names, based on Nielsen Norman Group's recommendation."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Create one frame per breakpoint and name it with the size, such as Large or Extra small.",
+        "Build the largest frame first. Figma's Sites guidance starts from the primary breakpoint, usually Desktop, and the same logic works in design files.",
+        "Add auto layout to the top-level frame of each breakpoint.",
+        "Copy the finished large frame and change only what the smaller sizes need.",
+        "Put the breakpoint name in each frame's layer name so developers read it too."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use auto layout as the default, not a fix you add later"
+    },
+    {
+      "type": "paragraph",
+      "text": "Auto layout is a set of rules for how children sit inside a frame. Figma's guide defines three resizing modes. Hug contents shrinks the frame to fit its children. Fill container stretches a layer to fill its parent, minus the spacing. Fixed keeps the size you set. Figma's guide lists auto layout as available on all plans, so this step costs nothing extra."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example from Figma's responsive card tutorial. Text layers hug their content by default, so they do not grow with the card. Set the metadata frame to Fill container. Then turn on truncation with max lines set to 1, so long titles cut off cleanly instead of pushing the card taller."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to use Fill container, Hug contents, and Fixed"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Fill container for anything that should widen or narrow with its parent, such as a title or an image.",
+        "Hug contents for buttons, tags, and badges that should size to their label.",
+        "Fixed for icons, avatars, and any element with a real size that must not change.",
+        "Fill container only appears when a layer sits inside another auto layout frame, so nest it first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is setting everything to Fixed because it looks right on the canvas. It looks right at one size. At the next size, the fixed layers stay put and leave gaps or overlap their neighbors. Check each choice by resizing the frame by its edge and watching what moves."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Constraints only where auto layout cannot reach"
+    },
+    {
+      "type": "paragraph",
+      "text": "Constraints decide how a layer moves when its frame resizes. Figma's auto layout guide says you cannot apply constraints to child objects in an auto layout frame, unless the object ignores the auto layout flow. That exception is what you need for a badge, a play button, or a close icon that should sit in a corner."
+    },
+    {
+      "type": "paragraph",
+      "text": "The card tutorial makes this concrete. The play button uses a horizontal constraint of Right and a vertical constraint of Bottom, so it stays in the bottom-right corner when the frame resizes. Set the button to ignore auto layout first, then set the constraints. Do not use constraints on ordinary text or rows, because they fight the auto layout rules."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set min and max widths so layouts stop stretching"
+    },
+    {
+      "type": "paragraph",
+      "text": "Min and max sizes keep a layout readable at both ends. Figma's tutorial gives a card frame a width range of 200 to 400 and a height range of 240 to 320. Once the card reaches those limits, it stops resizing. Figma's Sites guidance recommends a max width on the largest breakpoint for the same reason. Without one, a text block on a wide monitor runs across the whole screen, and the lines become hard to read."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit in the right breakpoint so changes do not cascade"
+    },
+    {
+      "type": "paragraph",
+      "text": "Edits travel in one direction in Figma Sites. Changes to objects in the primary breakpoint cascade to every secondary breakpoint, and changes in a secondary breakpoint apply only to that view. That rule explains most drift. Figma writes it for Sites, so in a design file, check each frame after every edit. Nothing guarantees the others match."
+    },
+    {
+      "type": "paragraph",
+      "text": "A habit that helps is to pick one frame as the master for content. Make every text and structure edit there first. Then walk through each other breakpoint and look for layers that did not follow. Do this check before you hand anything off."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Responsive components and variants in beta"
+    },
+    {
+      "type": "paragraph",
+      "text": "Figma's responsive component feature switches to the matching variant at each breakpoint. It works by matching breakpoint names to variant property values, so name the variants the same way you name the frames. The help article lists Starter, Professional, Education (not K-12), Organization, and Enterprise plans."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "This feature is still in beta",
+      "text": "Responsive components and Figma Sites are in beta. Behavior may change, so keep a copy of the component before you rebuild a whole system around it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not rebuild every component this week. Start with the three that appear on every screen, such as navigation, a card, and a button. Confirm they switch correctly at each size. Then extend the pattern to the rest of the file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that make responsive layouts drift"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mixing fixed widths and Fill container layers in the same row, so the row breaks at one size.",
+        "Adding auto layout to a child but not its parent, which leaves the child with no rules to follow.",
+        "Naming frames Frame 1 and Frame 2, so nobody knows which size they are.",
+        "Skipping min width, so text columns collapse to a sliver at the smallest size.",
+        "Using a full set of breakpoints for every component when the page needs only two sizes."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Hand off responsive layouts to developers in Slack and Linear"
+    },
+    {
+      "type": "paragraph",
+      "text": "Handoff is where drift becomes expensive. Post the frame link in a Slack channel with one line per breakpoint: its name, its width range, and what changes. If your team tracks design work in Linear, make one issue per breakpoint or per component, and link the frame in each. This does not replace a spec. It does make the developer's questions shorter."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep the file fast on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Large responsive files get slow. Each breakpoint frame adds layers, and deep nesting adds more. Keep one page per flow, and split very large pages. The guide to slow files covers memory and cache fixes: [why a Figma file is so slow on Mac](/for/designers/problems/why-figma-file-so-slow-fixes)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A one-week routine for responsive layouts"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the plan below as a rhythm, not a rigid schedule. Day 1 sets the breakpoints and the master frame. The next days add auto layout, Fill container, min and max widths, constraints, and then handoff. Each day ends with one check at every size."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where the Fill container option is, and Lazur circles it and labels it. Ask how to add auto layout, and Lazur guides you one click at a time, waiting for each click. You still make the change."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit your files, or operate Figma for you. It is not a plugin or add-in for Figma. It listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If your client agreement limits what you share with AI tools, follow it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the free steps in this guide. Lazur helps most when you are stuck on a setting you cannot find. You can compare plans on the [pricing page](/pricing). The Pro trial runs 3 days, needs no credit card, and starts when you first open the app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, read [how to add auto layout in Figma on Mac](/how-to/add-auto-layout-in-figma) and [how to create a frame in Figma on Mac](/how-to/create-a-frame-in-figma). If text will not wrap, see [the Figma text box fix](/for/designers/problems/figma-text-box-wont-wrap-fix)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Figma resize design files the way a browser does?",
+      "answer": "No. A design file holds separate frames, and each one is a fixed canvas until you set rules for it. You build one frame per breakpoint, then auto layout reflows the content inside each frame when you resize it. Figma Sites is a different product with its own breakpoints, and it is in beta."
+    },
+    {
+      "question": "What is the difference between Hug contents and Fill container?",
+      "answer": "Hug contents shrinks a frame or layer to fit what is inside it. Fill container stretches a layer to fill its parent, minus the spacing. Use Hug for buttons and tags, and Fill for titles, images, and rows that should follow the width of their container."
+    },
+    {
+      "question": "How many breakpoints should I make?",
+      "answer": "Nielsen Norman Group says designers usually accommodate only 2 to 3 breakpoints in practice. It recommends considering four basic sizes: extra small, small, medium, and large. Start with four names, and add more only when a real layout needs them."
+    },
+    {
+      "question": "Do I still need constraints if I use auto layout?",
+      "answer": "Yes, but only for a few layers. Figma's guide says you cannot apply constraints to children in an auto layout frame unless the child ignores the auto layout flow. Use constraints for corner elements like badges and icons, and leave the rest to auto layout."
+    },
+    {
+      "question": "Are responsive components available on my plan?",
+      "answer": "Responsive components are in beta. Figma's help article lists Starter, Professional, Education (not K-12), Organization, and Enterprise plans. Check the help article for the current list before you build a system around the feature."
+    },
+    {
+      "question": "Can Lazur fix my layout for me?",
+      "answer": "No. Lazur explains what you see, points at controls, guides you one click at a time, and can draft notes or text for you to paste. It does not click buttons or change your file. You make every change in Figma."
+    },
+    {
+      "question": "Does Lazur send my client files to AI providers?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If a client contract limits AI tools, follow the contract."
+    },
+    {
+      "question": "Does this guide work on Windows?",
+      "answer": "The Figma steps apply on any platform, but Lazur runs on Mac only. Windows support is planned, not available. The Figma desktop app here is described for macOS 12 or later on Intel and Apple silicon."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a responsive card with auto layout and constraints",
+      "url": "https://help.figma.com/hc/en-us/articles/18894664907287-Create-a-responsive-card-with-auto-layout-and-constraints",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Tips for creating a responsive webpage in Figma Sites",
+      "url": "https://help.figma.com/hc/en-us/articles/33257143505175-Tips-for-creating-a-responsive-webpage-in-Figma-Sites",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to auto layout",
+      "url": "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Create a responsive component that automatically adapts to each breakpoint",
+      "url": "https://help.figma.com/hc/en-us/articles/31242826664983-Create-a-responsive-component-that-automatically-adapts-to-each-breakpoint",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Guide to the Figma desktop app",
+      "url": "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "publisher": "Figma Help Center",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Figma Pricing",
+      "url": "https://www.figma.com/pricing/",
+      "publisher": "Figma",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Desktop vs Mobile Market Share Worldwide",
+      "url": "https://gs.statcounter.com/platform-market-share/desktop-mobile/worldwide/",
+      "publisher": "StatCounter",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Breakpoints in Responsive Design",
+      "url": "https://www.nngroup.com/articles/breakpoints-in-responsive-design/",
+      "publisher": "Nielsen Norman Group",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What goes wrong with designer-developer collaboration? new insights and solutions",
+      "url": "https://blog.zeplin.io/design-delivery/designer-developer-collaboration-insights-and-statistics/",
+      "publisher": "Zeplin Gazette",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "problem": "responsive layouts that break in figma",
+  "costs": [
+    {
+      "title": "Hours lost to handoff and rework",
+      "text": "Zeplin's April 2024 summary of the DesignOps Assembly benchmarking report says 65.9% of respondents waste a quarter to half their time on design-delivery inefficiencies. Zeplin also calculates that team members spend 10 to 20 hours a week on tasks that add no business value. That figure is Zeplin's own calculation, not a number the survey reports. Use it to start a conversation, not to justify a bill."
+    },
+    {
+      "title": "Layouts that break after a small edit",
+      "text": "Every change to a heading or a button can ripple through several frames. You check each size by hand, and you miss some. I found no study that measures error rates for responsive work in Figma. The cost you feel is your own time, so track it for one week before you decide what to change."
+    },
+    {
+      "title": "Plan costs if you need team features",
+      "text": "Figma's pricing page lists Starter as free. It lists Professional at $16 per month per Full seat, Organization at $55 per month, and Enterprise at $90 per month, all in USD. The page does not show an effective date, so check the pricing page for the current figure before you budget. The fixes in this guide do not need a paid seat."
+    },
+    {
+      "title": "Beta features that may change",
+      "text": "Responsive components and Figma Sites are in beta. Figma says behavior may change. If you rebuild a whole component library around a beta feature, you may need to rebuild it again. Keep the fixes that use stable tools, such as auto layout and constraints, as your base."
+    },
+    {
+      "title": "The setup afternoon",
+      "text": "Auto layout takes a while to learn. The first frame is slow, because you set rules before you see results. The later frames go faster, because the rules carry over. Budget one focused session for your master frame, then reuse what you built."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Frames do not follow their parents by default",
+      "text": "Figma's default resizing does not follow a parent frame. A text layer hugs its content, so it stays the same width when the card around it changes. Designers then resize the parent and expect the children to follow. They do not, unless you set the rules first."
+    },
+    {
+      "title": "Auto layout missing on the parent frame",
+      "text": "Children inside a frame without auto layout have no rules to follow. You may add Fill container to a layer, but the setting does nothing useful if its parent is a plain frame. Check the parent first, then the child."
+    },
+    {
+      "title": "Edits land in the wrong breakpoint",
+      "text": "Figma Sites guidance says changes in the primary breakpoint cascade to every secondary breakpoint, while changes in a secondary breakpoint apply only to that view. Edits in the wrong frame are a likely source of drift. A fix in the mobile frame may stay there, while a fix in the desktop frame may spread."
+    },
+    {
+      "title": "Breakpoints drift as device sizes change",
+      "text": "Nielsen Norman Group advises that breakpoints may need adjusting as device sizes change. Its example is a mobile breakpoint that needs to move to fit larger phone displays. If your breakpoints were set years ago, the frames may no longer match the screens people use."
+    },
+    {
+      "title": "Constraints fight auto layout",
+      "text": "Designers often set constraints on every layer, out of habit from older tools. In an auto layout frame, constraints on normal children do not apply. The layer then looks correct at one size and breaks at the next, because the rules are split between two systems."
+    },
+    {
+      "title": "Too many breakpoints, or none named",
+      "text": "Some files have seven frames with names like Frame 2 copy 3. Others have one frame and no plan for other sizes. Nielsen Norman Group says designers usually accommodate only 2 to 3 breakpoints. Without clear names, nobody knows which frame is the source of truth."
+    },
+    {
+      "title": "Components built for one size",
+      "text": "A component built for desktop often fails in a narrow frame, because its internal layers have fixed widths. Figma's responsive component feature, in beta, switches variants by breakpoint name. Without that setup, you need a separate component for each size, and each one can drift."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Add auto layout to the frame first",
+      "text": "Select the frame and press Shift+A (⇧A). Set the direction, spacing, and padding in the Design panel. Figma's guide says auto layout is available on all plans, so you can do this on the free Starter plan. Do it before you add more layers, because it is harder to add later."
+    },
+    {
+      "title": "Set child layers to Fill container",
+      "text": "Select a title, image, or row inside the auto layout frame. In the Design panel, change its horizontal or vertical resizing to Fill container. The layer now stretches with its parent, minus the spacing. If the option is missing, the layer is not nested inside another auto layout frame yet."
+    },
+    {
+      "title": "Use constraints only on layers that ignore auto layout",
+      "text": "For a badge or play button in a corner, first make the layer ignore auto layout. Then set its horizontal constraint to Right and its vertical constraint to Bottom, as Figma's card tutorial does. Leave ordinary text and rows on auto layout rules, so the two systems do not fight."
+    },
+    {
+      "title": "Set min and max widths on the key frames",
+      "text": "Open the frame and set a minimum and a maximum width. The card tutorial uses a width range of 200 to 400 and a height range of 240 to 320. Figma's Sites guidance recommends a max width on the largest breakpoint. This keeps long text readable on wide screens and stops tiny layouts from collapsing."
+    },
+    {
+      "title": "Pick a master breakpoint and check the others",
+      "text": "Choose one frame as the master, usually the largest one. Make text and structure edits there first. Then open each other frame and scroll through it. Look for layers that did not follow, or for gaps and overlaps. Fix the frame that drifted, not the master, unless the change belongs to every size."
+    },
+    {
+      "title": "Name breakpoints and reuse the names for variants",
+      "text": "Name frames with the size, such as Large, Medium, Small, and Extra small. If you use responsive components, name the variant values the same way. Figma matches breakpoint names to variant property values, so matching names prevent the wrong variant from showing."
+    },
+    {
+      "title": "Cap the breakpoints at four",
+      "text": "Start with the four basic sizes from Nielsen Norman Group: extra small, small, medium, and large. Add a fifth only when a real screen needs a layout that the four cannot cover. Fewer frames mean fewer places for drift to hide, and fewer frames to check before handoff."
+    },
+    {
+      "title": "Test by resizing the frame by its edge",
+      "text": "After you set the rules, drag the frame edge to make it wider and narrower. Watch what moves and what stays. If a layer jumps or overlaps, check its resizing setting and its parent. This test takes a minute and catches most mistakes before a developer does."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Why won't this text layer fill the card?",
+      "result": "Lazur explains that text layers hug their content by default, and points at the resizing setting.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Fill container option?",
+      "result": "Lazur circles the Fill container option on screen and labels it. You make the change yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through adding auto layout to this frame.",
+      "result": "Lazur guides you one click at a time, and waits for each click before it moves to the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn to dictate breakpoint notes into a Slack message.",
+      "result": "Lazur dictates clean, formatted text at the cursor in any app, including Slack and Figma comments.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a handoff note with each breakpoint and its width range.",
+      "result": "Lazur drafts the text, and you paste it where it belongs after you read it.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how other teams name their breakpoints.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Why won't this text layer fill the card?",
+    "capability": "explain",
+    "result": "Lazur explains hug contents and points at the resizing setting. You make the change.",
+    "shell": "design",
+    "context": "Figma desktop, text layer inside an auto layout card",
+    "output": "Text layers hug their content by default. Set the layer's resizing to Fill container inside the auto layout frame.",
+    "pointsAt": "Fill container"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Pick breakpoints and build the master frame",
+      "text": "Choose the sizes you need, starting from the four basic names. Build the largest frame first, name it, and add auto layout to its top-level frame. Keep the master in one file so every later edit has a single source."
+    },
+    {
+      "label": "Day 2",
+      "title": "Add auto layout to every frame and parent",
+      "text": "Work down the layer tree. Add auto layout to each frame that holds children, starting from the top. Check the spacing and padding at the master size before you move on."
+    },
+    {
+      "label": "Day 3",
+      "title": "Set Fill container and min and max widths",
+      "text": "Nest the layers that should stretch, then set them to Fill container. Set min and max widths on the key frames. Resize the frame by its edge and fix anything that jumps or overlaps."
+    },
+    {
+      "label": "Day 4",
+      "title": "Constraints for corners, then components",
+      "text": "Make corner elements ignore auto layout and set their constraints. Then build variants for the three components on every screen, and match their names to the frame names."
+    },
+    {
+      "label": "Day 5",
+      "title": "Handoff with frame links and clear names",
+      "text": "Post the frame link in Slack with one line per breakpoint. If you track work in Linear, make an issue per breakpoint or component. Check each frame name and each layer name once more before you send."
+    }
+  ],
+  "apps": [
+    "figma",
+    "slack",
+    "linear"
+  ],
+  "type": "problem",
+  "slug": "responsive-layouts-figma-breakpoints-auto-layout",
+  "role": "designers",
+  "roleName": "Designers",
+  "roleSingular": "designer",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/responsive-layouts-figma-breakpoints-auto-layout/responsive-layouts-in-figma-1-149fec.jpg",
+      "width": 1280,
+      "height": 761,
+      "alt": "Designer working on a laptop at a desk, reviewing screen layouts before building responsive layouts in Figma",
+      "caption": "A designer reviews screen layouts at a desk.",
+      "keywords": [
+        "responsive layouts in figma",
+        "Designers",
+        "Design responsive layouts in Figma",
+        "Mac",
+        "designer laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lukasbieri",
+        "url": "https://pixabay.com/users/lukasbieri-4664461/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-graphics-tablet-2838921/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/responsive-layouts-figma-breakpoints-auto-layout/responsive-layouts-in-figma-2-d9d9f2.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Designer reviewing app screen mockups on a monitor while planning responsive layouts in Figma",
+      "caption": "Comparing screen sizes before handoff.",
+      "keywords": [
+        "responsive layouts in figma",
+        "Designers",
+        "Design responsive layouts in Figma",
+        "Mac",
+        "ui design mockup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/blur-cellphone-close-up-design-1867748/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/responsive-layouts-figma-breakpoints-auto-layout/responsive-layouts-in-figma-3-d34136.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Mac on a desk in a home office, the setup for building responsive layouts in Figma all day",
+      "caption": "A Mac workspace for daily design work.",
+      "keywords": [
+        "responsive layouts in figma",
+        "Designers",
+        "Design responsive layouts in Figma",
+        "Mac",
+        "mac desk workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "responsive layouts in figma",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 9,
+    "secondary": {
+      "figma auto layout responsive": 1,
+      "figma fill container": 1,
+      "figma constraints responsive": 1,
+      "figma breakpoints frames": 1,
+      "responsive design figma mac": 1,
+      "figma responsive components beta": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

@@ -391,9 +391,9 @@ export async function generateOne(spec, t, opts) {
     const existingNote = opts.existing ? `\n\nTHIS IS A REFRESH of an existing page. Keep the same topic and slug, keep what is still true, update facts, prices and versions from the new research, and fix anything that breaks the rules. Existing page:\n${JSON.stringify(opts.existing).slice(0, 12000)}` : "";
     const prompt = spec.write(t, notes, internal) + existingNote;
     let draft = await write({ prompt, schema: spec.schema, label: `${label}:write`, runDir: opts.runDir, fake: () => fake.draft(spec.type, t) });
-    // Length: small models write short. Not a rejection: up to two "expand" passes add new sections
-    // until the page reaches MIN_WORDS (2,000). Whatever comes back after that is used.
-    for (let pass = 1; pass <= 2 && process.env.CONTENT_AGENT_FAKE !== "1"; pass++) {
+    // Optional length pass (CONTENT_EXPAND=on, off by default: Veer prefers pages at whatever length
+    // the model writes). When on, up to two passes ask for new sections until MIN_WORDS.
+    for (let pass = 1; pass <= 2 && process.env.CONTENT_EXPAND === "on" && process.env.CONTENT_AGENT_FAKE !== "1"; pass++) {
       const words = wordCount(spec.assemble(draft, t));
       if (words >= MIN_WORDS) break;
       const expandPrompt = `${prompt}\n\nYOUR DRAFT (${words} words):\n${JSON.stringify(draft)}\n\nThe page must be at least ${MIN_WORDS + 300} words of useful prose. Return the full JSON again with the same fields, keeping everything that is there and ADDING depth: new blocks with H2 sections that answer different sub-questions, worked examples, common mistakes, comparisons, what to do next, and more FAQ answers. Do not repeat points or pad sentences.`;

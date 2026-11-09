@@ -33,6 +33,7 @@ const DEMO_SCENE: Record<string, string> = {
   timer: "I'll start your timer, right in the notch",
   job: "this one I do in the background",
   type: "now I'll type it for you, as a list",
+  video: "watch me work, in every app",
 };
 
 const STOPS: Stop[] = [
@@ -46,10 +47,7 @@ const STOPS: Stop[] = [
   {
     id: "guide",
     steps: () => [
-      { target: "[data-guide=guide-start]", say: "stuck? I'll walk you through it", ms: 2000 },
-      { target: "[data-guide=guide-appearance]", say: "click here first", ms: 1700 },
-      { target: "[data-guide=guide-dark]", say: "now this one", ms: 1700 },
-      { target: "[data-guide=guide-done]", say: "done. that's it" },
+      { target: "[data-guide=guide-video]", say: "stuck? I'll walk you through it" },
     ],
   },
   {
@@ -58,6 +56,7 @@ const STOPS: Stop[] = [
       { target: "[data-guide=chip-0]", say: "try saying this", ms: 1500 },
       { target: "[data-guide=chip-1]", say: "or this", ms: 1300 },
       { target: "[data-guide=chip-2]", say: "or this one", ms: 1300 },
+      { target: "[data-guide=everyday-video]", say: "like this timer, right in the notch", ms: 2600 },
       { target: "[data-guide-section=everyday] h2", say: "I do all of these, out loud" },
     ],
   },

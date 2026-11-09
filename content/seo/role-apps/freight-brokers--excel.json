@@ -1,0 +1,650 @@
+{
+  "title": "Excel for freight brokers on Mac: loads, margins, and carrier invoices with Lazur",
+  "metaTitle": "Excel for Freight Brokers on Mac: Loads, Margins and Invoices",
+  "description": "Excel for freight brokers on Mac, covering load sheets, margin formulas, pivot tables, carrier invoice checks, and Mac limits, with voice help from Lazur.",
+  "targetKeyword": "excel for freight brokers on mac",
+  "secondaryKeywords": [
+    "excel for freight brokers",
+    "freight broker spreadsheet mac",
+    "excel pivot table freight broker",
+    "freight broker margin formula excel",
+    "carrier invoice check excel mac",
+    "freight load tracking excel mac"
+  ],
+  "intro": "Excel for freight brokers on Mac is mostly one load sheet, a margin column, and a few pivot tables. Mac Excel handles all three well, with a few gaps you need to plan around. This guide covers the setup, the formulas, the carrier invoice checks, and the Mac limits. Lazur helps when a formula breaks, but it does not do the work for you.",
+  "tldr": [
+    "Keep one flat load table, one row per load, and turn it into an Excel Table with ⌘T.",
+    "Power Pivot and the Data Model are not available in Excel for Mac, so build PivotTables on that flat table.",
+    "Check every carrier invoice against its rate confirmation. Laneproof's analysis finds about 1 in 12 has a line item mismatch.",
+    "Hold ⌥ ⌘ and ask Lazur to explain a broken formula or to walk you through a pivot, one click at a time."
+  ],
+  "stats": [
+    {
+      "value": "2%",
+      "label": "of brokerages have fully automated accounts receivable, per a December 2025 FreightWaves article sponsored by OTR Solutions",
+      "sourceUrl": "https://www.freightwaves.com/news/the-hidden-cost-of-manual-processes-in-freight-brokerage",
+      "sourceTitle": "FreightWaves: The hidden cost of manual processes in freight brokerage"
+    },
+    {
+      "value": "43%",
+      "label": "have partial receivables automation, with many manual steps still left, per the same FreightWaves article",
+      "sourceUrl": "https://www.freightwaves.com/news/the-hidden-cost-of-manual-processes-in-freight-brokerage",
+      "sourceTitle": "FreightWaves: The hidden cost of manual processes in freight brokerage"
+    },
+    {
+      "value": "1 in 12",
+      "label": "carrier invoices has at least one line item that does not match the rate confirmation, per Laneproof's analysis of 8,600 document sets",
+      "sourceUrl": "https://www.laneproof.com/blog/brokerage-operations-where-small-freight-brokers-lose-money",
+      "sourceTitle": "Laneproof: Brokerage Operations, Where Small Freight Brokers Lose Money"
+    },
+    {
+      "value": "91%",
+      "label": "cut in per-load invoicing time that Encounter Logistics, a 3PL, reported after automation (vendor-reported)",
+      "sourceUrl": "https://truckstop.com/blog/freight-broker-invoicing-time-savings/",
+      "sourceTitle": "Truckstop: Freight broker invoicing, real time savings"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What freight brokers track in Excel on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most freight brokers use Excel for four jobs. They track loads from tender to delivery. They work out margin on each load. They match carrier invoices to the agreed rate. They chase money owed to them. Your workbook probably covers all four, split across tabs and exported files."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac can do all four. PivotTables, formulas, dynamic arrays, and XLOOKUP work on both Mac and Windows, according to MacCove's 2026 comparison. The gaps sit in data modeling and add-ins. Most broker sheets never touch either, so those gaps matter less than people fear."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the load sheet with one row per load"
+    },
+    {
+      "type": "paragraph",
+      "text": "Your load sheet is the source for everything else. Keep one row per load and one column per fact. Avoid merged cells and subtotal rows inside the data. They break sorting, filters, and pivot tables. A clean sheet also makes the lookups in this guide work the first time."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Column",
+        "What goes in it",
+        "Why keep it"
+      ],
+      "rows": [
+        [
+          "Load number",
+          "Your internal ID, one per load",
+          "Lookups and invoice matching"
+        ],
+        [
+          "Pickup and delivery dates",
+          "Real Excel dates, not text",
+          "Aging and on-time reports"
+        ],
+        [
+          "Lane",
+          "Origin state to destination state",
+          "Pivot tables by lane"
+        ],
+        [
+          "Customer rate",
+          "What the shipper agreed to pay",
+          "Margin math"
+        ],
+        [
+          "Carrier cost",
+          "What you agreed to pay the carrier",
+          "Margin math and invoice checks"
+        ],
+        [
+          "Margin",
+          "Customer rate minus carrier cost",
+          "Ranking your best lanes"
+        ],
+        [
+          "Invoice status",
+          "Open, received, or paid",
+          "Receivables and payables"
+        ]
+      ],
+      "caption": "Starting columns for a broker load sheet. Match the names to your TMS export."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use real Excel dates, not text that looks like a date. Text dates sort in the wrong order and break aging reports. Type a date and check that it right-aligns. Text stays left. Dates from a TMS export often arrive as text, so convert them before you build anything on top of them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn the load data into an Excel Table on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "An Excel Table grows when you add a row. Formulas and pivot tables that point at it grow too. That fixes most of the complaints about missing new loads. Make the table first, then build everything else on it."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click one cell inside your load data. Keep the data free of blank rows.",
+        "Press ⌘T. Leave My table has headers ticked, then click OK.",
+        "Open the Table Design tab and type a clear name in the Table Name box, such as Loads.",
+        "If you are on a current build, name the table when you create it. Naming tables at creation reached Excel for Mac in October 2026."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Name it Loads",
+      "text": "Name the table Loads, not Table1. Formulas then read like Loads[Margin], which you can follow weeks later without a map."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Margin formulas you will copy every day"
+    },
+    {
+      "type": "paragraph",
+      "text": "Margin is the first number most brokers check. Put one margin formula in a Table column, and the whole column follows. Excel fills the formula down as you add loads, so you do not copy it by hand."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Margin dollars: =[@[Customer rate]]-[@[Carrier cost]]",
+        "Margin percent: =IFERROR([@Margin]/[@[Customer rate]],\"\")",
+        "Total margin for one lane: =SUMIFS(Loads[Margin],Loads[Lane],[@Lane])"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Averaging the margin percent column gives a misleading answer. A big load and a small load count the same. Divide total margin dollars by total customer rate instead. That is the weighted margin, and it is the number most owners ask for."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for loads with a customer rate of zero, such as a reroute with no billing. The IFERROR wrapper keeps those rows blank instead of showing a divide error."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check carrier invoices against the rate confirmation"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is where broker money leaks. Laneproof analyzed 8,600 document sets and found that roughly 1 in 12 carrier invoices has at least one line item that does not match the rate confirmation. That is vendor analysis, so test the rate on your own files before you trust it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Add a variance column next to carrier cost. Subtract the rate confirmation amount from the invoice amount. Round both sides to cents first. Otherwise tiny cent differences flag every row."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Add a column named Invoice variance to the Loads table.",
+        "Enter =ROUND([@[Invoice amount]],2)-ROUND([@[Rate con amount]],2) in that column.",
+        "Select the variance column. Go to Home > Conditional Formatting > New Rule.",
+        "Choose Format only cells with, set the rule to Cell Value, not equal to, enter 0, and pick a red fill."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If the 1 in 12 rate held across a 200 load month, you would see about 17 mismatched invoices to review. Laneproof's own cost example uses 200 loads, so treat that as an illustration, not a forecast."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables for lanes, carriers, and receivables"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pivot tables answer the questions your boss asks on Monday. Which lanes make money? Which customers owe the most? Which carriers invoice late? Build one PivotTable per question so each one stays simple."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click any cell in the Loads table.",
+        "Go to Insert > PivotTable. Excel fills in the table name for you.",
+        "Drag Lane to Rows, then drag Margin to Values and set it to Sum.",
+        "For receivables, drag Invoice status to Filters and Customer to Rows."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot built on a Table picks up new loads when you refresh. Use Data > Refresh All after you paste in a new week. If the numbers still look old, the pivot may point at a fixed range. The [pivot refresh fix](/for/developers/problems/excel-pivot-table-not-refreshing-new-rows) covers that case, and the [step by step pivot guide](/how-to/make-a-pivot-table-in-excel) covers the build."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Keep space around pivots",
+      "text": "Since version 16.111, a collapsed PivotTable can show a SPILL error if something blocks its spill area. Keep the cells below and to the right of a pivot clear."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Track receivables and aging without a finance system"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most brokers chase payment from memory. A short aging column fixes that. Calculate days open from the invoice date, then group the days into buckets that match your payment terms. A pivot table can count the loads in each bucket in seconds."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use a formula like =IF([@Status]=\"Paid\",\"\",TODAY()-[@[Invoice date]]). Paid loads show blank, and open loads show their age in days. Put the result in a column and filter on it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Only 2% of brokerages have fully automated accounts receivable, according to FreightWaves. Another 43% have partial automation, with many manual steps still left. A clean aging column is a practical step for most desks."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac limits to plan around before you build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac skips a few features that Windows brokers rely on. Know them now, so the file you build on your laptop still works in the office."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Power Pivot is not currently available on Excel for Mac. A 2019 Microsoft answer also says the Data Model option is unavailable there.",
+        "Power Query runs on Mac from version 16.69, with fewer data sources. From Web is not listed on Mac.",
+        "ActiveX controls do not run. Use Form controls for buttons and checkboxes instead.",
+        "Third-party COM and VSTO add-ins are Windows-only, so a Windows rate add-in will not load on your Mac.",
+        "Hard-coded Windows file paths in VBA break on Mac. Use relative paths, or let the user pick the file.",
+        "Python in Excel is available to Business and Enterprise users on the Current Channel from version 16.96."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "None of these stops a load sheet, margin math, or a pivot. They stop a fancy data model, a Windows add-in, or a macro that expects a Windows drive letter. Test any macro on a Mac before you share it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dates, CSV files, and the 1904 date system"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates cause more arguments than formulas do. A workbook can use the 1904 date system. If that file moves between Mac and Windows, dates can shift by four years and one day. Check the date system before you send a file to a carrier or customer on Windows."
+    },
+    {
+      "type": "paragraph",
+      "text": "CSV exports cause the second problem. Accents and carrier names can turn into garbage when a file opens in the wrong encoding. Go to File > Save As, open the format menu, and pick CSV UTF-8 before you save the export."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test one row first",
+      "text": "A date that shifted by four years looks like a payment that never arrived. Export one row, open it on the other platform, and check the date before you send the full file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts that change on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac Excel uses ⌘ where Windows uses Ctrl for most shortcuts. A few pairs split, and some keys need setup. These are the ones brokers reach for most."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘T turns the selected data into an Excel Table.",
+        "Control and the semicolon key enter today's date. Command and the semicolon key enter the current time, according to MacCove.",
+        "⌥ Return starts a new line inside a cell, which helps when you note a carrier's pickup instructions.",
+        "On a MacBook, function keys need Fn or the Function Keys setting in System Settings.",
+        "Turn on KeyTips in Excel > Preferences > Accessibility and set the activation key to Option. KeyTips are off by default."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "In MacCove's tests on version 16.114.1, Alt-style ribbon sequences did not finish from the keyboard, even with KeyTips on. Use the mouse for ribbon commands, and keep your shortcuts to the ⌘ set."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Time savings brokers can measure"
+    },
+    {
+      "type": "paragraph",
+      "text": "Brokers ask whether fixing the spreadsheet is worth the afternoon. The strongest numbers come from vendors. They are self-reported, and they describe automation tools, not Excel. Still, they show how big the gap is between re-keying and automated entry."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Company",
+        "Before",
+        "After",
+        "Reported change"
+      ],
+      "rows": [
+        [
+          "Encounter Logistics, a 3PL",
+          "2 to 3 hours per load",
+          "Under 5 minutes per load",
+          "91% cut"
+        ],
+        [
+          "Alliance Logistix",
+          "8 minutes per load",
+          "3 minutes per load",
+          "62% cut"
+        ],
+        [
+          "Artisan Logistics, heavy-haul brokerage",
+          "Dozens of spreadsheets and 40 pivot tables",
+          "Pivot tables retired",
+          "Up to 75% fewer repetitive invoicing steps"
+        ]
+      ],
+      "caption": "Vendor-reported results from a Truckstop write-up. Not independently verified."
+    },
+    {
+      "type": "paragraph",
+      "text": "Laneproof uses a cost model you can copy. It assumes about 6 minutes of TMS entry per load. At 200 loads, that is 20 hours a month. At the BLS truck transportation average of $31.94 an hour, that time costs about $638.80 a month. Laneproof calls the 6 minutes its own assumption, not a measured figure."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the same math on your own desk. Count loads per month, minutes per load, and your loaded hourly cost. Then decide how much a cleaner sheet is worth to you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits in your Excel workflow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do something, and it guides you one click at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or run the workbook for you. You make each change. Hold fn to dictate notes, such as a carrier call summary, straight into the cell you are in. The [Excel assistant page](/apps/excel) lists what it covers in Excel."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes brokers make in Excel"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Merged cells in the load table, which break sorting and filters.",
+        "Dates stored as text, which sort in the wrong order.",
+        "Averaging margin percent instead of dividing total margin by total rate.",
+        "A pivot pointing at a fixed range that stops at last week. The [pivot refresh fix](/for/developers/problems/excel-pivot-table-not-refreshing-new-rows) covers it.",
+        "A lookup returning #N/A because the key has a trailing space. The [VLOOKUP #N/A fix steps](/for/developers/problems/excel-vlookup-na-error-fix-steps) cover that case.",
+        "Saving an export without CSV UTF-8, then wondering why carrier names look broken."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these come from building too fast. Clean the table first, then add formulas and pivots."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next with this workbook"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Build the Loads table with the columns from the table above.",
+        "Add the margin dollars and margin percent columns as Table formulas.",
+        "Add a variance column and highlight every nonzero difference.",
+        "Make one PivotTable by lane and one by invoice status.",
+        "Hold ⌥ ⌘ when a formula breaks and ask Lazur what it sees on screen."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want voice help on your Mac, [download Lazur](/download). The free trial needs no credit card. Plans are on the [pricing page](/pricing)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac include Power Pivot for freight brokers?",
+      "answer": "No. Power Pivot is not currently available on Excel for Mac, according to MacCove's 2026 comparison. A 2019 Microsoft Q&A answer also says the Data Model option is unavailable there. Build PivotTables on one flat load table instead."
+    },
+    {
+      "question": "Which Excel for Mac version is current?",
+      "answer": "The latest build in Microsoft's Office for Mac release notes is 16.114.3 (Build 26102720), released October 27, 2026. It lists quality and performance improvements. To check yours, open Excel > About Excel."
+    },
+    {
+      "question": "Can I use Power Query for carrier data on a Mac?",
+      "answer": "Power Query works on Mac for Microsoft 365 from version 16.69. It has fewer data sources than Windows, and From Web is not listed on Mac. Test your connection on a Mac before you rely on it."
+    },
+    {
+      "question": "Does Lazur fill in formulas or edit my workbook?",
+      "answer": "No. Lazur sees your screen while you hold ⌥ ⌘, points at things, answers out loud, and guides you one click at a time. It does not click buttons or edit files for you. You make each change."
+    },
+    {
+      "question": "Why does my pivot table miss this week's loads?",
+      "answer": "The pivot usually points at a fixed range that ends before the new rows. Build the source as an Excel Table, then refresh with Data > Refresh All. The pivot refresh guide covers the source range fix."
+    },
+    {
+      "question": "Are the freight time savings figures reliable?",
+      "answer": "Treat them as vendor claims. Truckstop's write-up reports them from the companies involved, and they describe automation tools. Laneproof's labor cost uses an assumed 6 minutes per load. Measure your own desk before you decide."
+    },
+    {
+      "question": "Do KeyTips work on Excel for Mac?",
+      "answer": "Microsoft documents KeyTips on Mac from version 16.89. They are off by default. Turn them on in Excel > Preferences > Accessibility and set the activation key to Option. Keyboard sequences may still fail, so test them first."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Use the keyboard to work with the ribbon",
+      "url": "https://support.microsoft.com/en-us/office/use-the-keyboard-to-work-with-the-ribbon-954cd3f7-2f77-4983-978d-c09b20e31f0e",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel for Mac, Power Pivot w Office 365 Subscription",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5003409/excel-for-mac-power-pivot-w-office-365-subscriptio?forum=msoffice-msoffice_excel-mso_mac-mso_o365b",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Excel for Mac vs Windows: What's Different in 2026",
+      "url": "https://maccove.com/blog/excel-mac-vs-windows-differences",
+      "publisher": "MacCove",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "The hidden cost of manual processes in freight brokerage",
+      "url": "https://www.freightwaves.com/news/the-hidden-cost-of-manual-processes-in-freight-brokerage",
+      "publisher": "FreightWaves",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Freight broker invoicing: real time savings",
+      "url": "https://truckstop.com/blog/freight-broker-invoicing-time-savings/",
+      "publisher": "Truckstop",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Brokerage Operations: Where Small Freight Brokers Lose Money",
+      "url": "https://www.laneproof.com/blog/brokerage-operations-where-small-freight-brokers-lose-money",
+      "publisher": "Laneproof",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "demo": {
+    "spoken": "Why does this lookup show N/A?",
+    "capability": "explain",
+    "result": "Lazur reads the formula and the cell values on screen, then names the likely cause, such as a trailing space in the lookup key.",
+    "shell": "sheet",
+    "context": "Loads table, carrier lookup in column H",
+    "pointsAt": "the #N/A cells in column H",
+    "output": "Lazur answers out loud: the carrier code in column B has a trailing space, so the match fails. Trim the key, then fill the column down again."
+  },
+  "tasks": [
+    {
+      "say": "Why does this VLOOKUP show N/A?",
+      "result": "Lazur explains the most likely cause from the formula and the cells on screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the PivotTable button in this version?",
+      "result": "Lazur draws a circle and a label around Insert > PivotTable so you can find it fast.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through making a pivot of margin by lane.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate the carrier call summary into the notes column.",
+      "result": "Dictation types clean text at the cursor in the cell you are in, so you keep your hands on the keys.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a note to the carrier about the line item that does not match.",
+      "result": "Lazur drafts plain wording for you to review, then send from your own email.",
+      "capability": "draft"
+    },
+    {
+      "say": "Remind me to chase the open invoices on Friday.",
+      "result": "Lazur adds the reminder to Apple Reminders, so the follow-up shows up in your list.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Look up this carrier's safety record and summarize it.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "freight-brokers-excel",
+  "role": "freight-brokers",
+  "app": "excel",
+  "roleName": "Freight brokers",
+  "appName": "Excel",
+  "publishedAt": "2026-11-07",
+  "updatedAt": "2026-11-07",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/freight-brokers-excel/excel-for-freight-brokers-on-mac-1-e52d30.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Freight broker working at a desk with a laptop and paperwork for load tracking in Excel",
+      "caption": "Brokers track loads and margins on a laptop every day.",
+      "keywords": [
+        "excel for freight brokers on mac",
+        "Excel",
+        "Freight brokers",
+        "Mac",
+        "freight broker office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/freight-brokers-excel/excel-for-freight-brokers-on-mac-2-7cc694.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Man at a laptop reviewing a spreadsheet of shipping data on a desk",
+      "caption": "Pivot tables and margin columns live in a spreadsheet like this one.",
+      "keywords": [
+        "excel for freight brokers on mac",
+        "Excel",
+        "Freight brokers",
+        "Mac",
+        "man laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/freight-brokers-excel/excel-for-freight-brokers-on-mac-3-a9c869.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Semi trucks parked at a freight yard, the loads a broker tracks in Excel on a Mac",
+      "caption": "Every row in the load sheet is a truck somewhere on a lane.",
+      "keywords": [
+        "excel for freight brokers on mac",
+        "Excel",
+        "Freight brokers",
+        "Mac",
+        "semi trucks freight yard",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "denniscastro",
+        "url": "https://pixabay.com/users/denniscastro-1887/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/truck-crane-containers-port-2582041/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for freight brokers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "excel for freight brokers": 6,
+      "freight broker spreadsheet mac": 1,
+      "excel pivot table freight broker": 1,
+      "freight broker margin formula excel": 1,
+      "carrier invoice check excel mac": 1,
+      "freight load tracking excel mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-07",
+    "version": 1
+  }
+}

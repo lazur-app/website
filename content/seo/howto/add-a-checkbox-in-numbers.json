@@ -1,0 +1,524 @@
+{
+  "title": "How to add a checkbox in Numbers on Mac: table cells, Format sidebar, Data Format",
+  "metaTitle": "How to Add a Checkbox in Numbers on Mac (Step by Step)",
+  "description": "How to add a checkbox in Numbers on Mac: select table cells, open the Format sidebar, and choose Checkbox from the Data Format menu.",
+  "targetKeyword": "how to add a checkbox in numbers on mac",
+  "secondaryKeywords": [
+    "add a checkbox numbers mac",
+    "numbers checkbox cell",
+    "numbers data format checkbox",
+    "numbers mac checkbox formula",
+    "numbers checkbox keyboard shortcut",
+    "checkbox in numbers table"
+  ],
+  "intro": "To add a checkbox in Numbers on Mac, select the cells, click Format in the toolbar, open the Cell tab, and choose Checkbox from the Data Format pop-up menu. Each selected cell then shows a box that you click to check or clear.",
+  "tldr": [
+    "Numbers has no separate checkbox tool. You turn table cells into checkboxes instead.",
+    "Select the cells, click Format, open the Cell tab, then choose Checkbox from the Data Format pop-up menu.",
+    "Click a box to check it. Apple documents 1 to select all, 0 to clear all and Space bar to toggle.",
+    "A checkbox cell holds 1 or 0, so a formula can count checked boxes. A formula cannot tick the box for you."
+  ],
+  "stats": [
+    {
+      "value": "250",
+      "label": "Maximum items in a Numbers pop-up menu, per Apple's Mac guide",
+      "sourceUrl": "https://support.apple.com/guide/numbers/add-checkboxes-and-other-controls-to-cells-tan2a2aa073d/mac",
+      "sourceTitle": "Apple Support: Add controls to cells in Numbers on Mac"
+    },
+    {
+      "value": "15.4",
+      "label": "Latest stable Numbers release listed by Wikipedia, dated September 29, 2026",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Numbers_(spreadsheet)",
+      "sourceTitle": "Wikipedia: Numbers (spreadsheet)"
+    },
+    {
+      "value": "15.6",
+      "label": "Minimum macOS version Wikipedia lists as the requirement for Numbers",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Numbers_(spreadsheet)",
+      "sourceTitle": "Wikipedia: Numbers (spreadsheet)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Numbers does not have a checkbox tool that you drag onto the sheet. You make a checkbox by changing the format of table cells. Pick the cells, apply the Checkbox format, and each cell becomes a box you can tick. You can do this in a table you already built, so you do not need a new sheet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a checkbox cell stores"
+    },
+    {
+      "type": "paragraph",
+      "text": "A checkbox cell holds one of two values. A checked box holds 1, which Apple's guide calls true. An empty box holds 0, which means false. Apple says a checkbox cell can only hold those values. Typing Yes, No or an x into that column will not act as a checkbox."
+    },
+    {
+      "type": "paragraph",
+      "text": "That detail helps you later. A formula that adds up a column counts each checked box as 1. So a SUM over the column gives you the number of ticked items. Text in those cells does not count as a checked box, so keep the column clean."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you start: pick the right cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "Decide which cells need a box before you change the format. The format applies to everything you select. If you select the whole table by mistake, every cell turns into a checkbox. Select only the rows or columns that need one, such as a Done column."
+    },
+    {
+      "type": "paragraph",
+      "text": "Give the column a clear header. A header such as Packed or Done tells anyone who opens the sheet what the boxes mean. Headers also make later formulas easier to read. If you have no table yet, see [how to add a table in Numbers on Mac](/how-to/add-a-table-in-numbers) first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: add a checkbox to table cells"
+    },
+    {
+      "type": "paragraph",
+      "text": "The steps below follow the labels in Apple's Mac guide, so match the names you see on your screen. Apple's guide does not name a Numbers version. If your window looks different, check your version in Numbers > About Numbers before you go further."
+    },
+    {
+      "type": "table",
+      "caption": "Data Format options named in Apple's Numbers Mac guide.",
+      "headers": [
+        "Data Format option",
+        "What the cell becomes"
+      ],
+      "rows": [
+        [
+          "Checkbox",
+          "A box that stores 1 when checked and 0 when empty"
+        ],
+        [
+          "Star Rating",
+          "Stars for a score"
+        ],
+        [
+          "Slider",
+          "A draggable control for a number"
+        ],
+        [
+          "Stepper",
+          "Up and down arrows that change a number"
+        ],
+        [
+          "Pop-Up Menu",
+          "A list of up to 250 items you type in"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "All five options sit in the same pop-up menu. Checkbox is the one for yes or no answers. Star Rating, Slider and Stepper suit numbers and scores. Pop-Up Menu suits a short list of named choices, and it can hold up to 250 items."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard keys for checkboxes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's guide documents three keys for checkboxes. Press 1 to select all checkboxes. Press 0 to deselect all of them. Press Space bar to toggle the selected boxes. None of these uses a Command, Option, Control or Shift combination, so you do not need ⌘ for this task."
+    },
+    {
+      "type": "paragraph",
+      "text": "The toggle key has one catch. Apple says the top-left checkbox in your selection determines the toggle result. Test that on three or four cells before you use Space bar on a whole column."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the keys seem to do nothing, click a checkbox cell first. That makes the table active. For the general keys in Numbers, see [how to use keyboard shortcuts in Numbers on Mac](/how-to/use-keyboard-shortcuts-in-numbers)."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a packing checklist"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you keep a packing list for a trip. Column A holds the item names, such as passport, charger and rain jacket. Column B is where the boxes go. Select the cells in Column B, apply the Checkbox format, and tick each item as you pack it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now add a total. Put =SUM(B2:B12) in a cell below the list, away from the boxes, and label it Packed. Each checked box adds 1, so the total shows how many items you packed. Match the range to the length of your own list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, add a visible mark. In C2, type =IF(B2=1,\"✓\",\"\") and fill it down the column. The formula shows a check mark when the box in the same row holds 1. The pattern comes from an Apple Community answer, which used a different test."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Test on one row first",
+      "text": "Build the formula on one row, check the result, then fill it down. Apple's guide does not cover formulas that read checkbox values, so your own test is the proof."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checkbox or Pop-Up Menu: which one fits"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use a checkbox when the answer is yes or no. Packed or not packed is a good example. Use a Pop-Up Menu when the answer has several named states, such as To do, In progress and Done. A checkbox holds two states only, so it cannot show a third."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pop-Up Menus can hold up to 250 items. That is enough for a status column or a list of categories. If you want that route, read [how to create a drop-down list in Numbers on Mac](/how-to/create-a-drop-down-list-in-numbers)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with checkboxes in Numbers"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most problems come from a few habits. Check this list before you ask why a box will not appear or tick."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Formatting a whole table when only one column needs boxes. Select the cells first, then apply the format.",
+        "Typing Yes or No into a checkbox column. Checkbox cells hold only 1 or true, and 0 or false.",
+        "Expecting a formula to tick the box. An Apple Community answer says the Checkbox format cannot be set by formula.",
+        "Changing a text pop-up list into a number format. Apple says some conversions are not possible, and the control stays.",
+        "Pressing Space bar with one cell selected and expecting the whole column to change. Select the range first.",
+        "Skipping the test. Tick one box, clear it, and check the total before you fill the column."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If a column already holds text or an old control, clear it before you change the format. Apple says the existing control is not removed when a conversion fails. A clean start saves time."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version and app differences to check"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Mac guide does not name the Numbers version it covers. Treat its steps as the reference, then check your own build. Go to Numbers > About Numbers to read your version number."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wikipedia lists Numbers 15.4 as the latest stable release, dated September 29, 2026. It lists macOS 15.6 or later as the requirement. Numbers 15.1 for Mac arrived as a new app rather than an update to the old one. The old app no longer gets new features."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check which app you open before you follow these steps. If the menus differ from this guide, the new app is the safer place to test."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "iCloud.com is not confirmed",
+      "text": "Apple's iCloud guide lists the checkbox topic but gives no steps. Test on iCloud.com before you rely on it, or do the work in the Mac app."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using checkboxes on iCloud.com"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Numbers for iCloud guide has a page titled Add checkboxes and other controls to cells. That page gives no steps, menu paths or web limits. So the steps in this guide cover Numbers on Mac only."
+    },
+    {
+      "type": "paragraph",
+      "text": "If someone else opens the sheet on iCloud.com, ask them to test one box. Tick it, then check the total in your Mac copy. If the numbers disagree, use the Mac app for the checkbox column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Quick check before you share the sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Run through this list once before you send the file. Each check takes a few seconds."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the cells show boxes, not text or an old control.",
+        "Tick one box and clear it again to confirm the toggle works.",
+        "Press 1, then 0, to confirm the select all and deselect all keys work.",
+        "Check that any total or check mark changes when a box changes.",
+        "Open Numbers > About Numbers if your menus look different from this guide.",
+        "Test the boxes on a copy before you send the file to anyone else."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after you add checkboxes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the boxes work, you may want to sort or filter the rows. Test a sort on a copy first, because a sort moves whole rows. See [how to sort a table in Numbers on Mac by column](/how-to/sort-a-table-by-column-in-numbers) and [how to filter a table in Numbers on Mac](/how-to/filter-table-rows-in-numbers)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If other people will tick the boxes, share the sheet first. See [how to share a spreadsheet in Numbers on Mac](/how-to/share-a-spreadsheet-in-numbers) for invites and links. For formulas that count your boxes, see [how to add a formula in Numbers on Mac](/how-to/add-a-formula-to-a-cell-in-numbers). For a full overview of the app, see [the Numbers page](/apps/numbers)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a checkbox button in Numbers on Mac?",
+      "answer": "Not as a separate object. You turn table cells into checkboxes by choosing Checkbox from the Data Format pop-up menu in the Cell tab of the Format sidebar. Apple's Mac guide documents this method."
+    },
+    {
+      "question": "Which keys work with checkboxes in Numbers?",
+      "answer": "Apple lists 1 to select all checkboxes, 0 to deselect all, and Space bar to toggle the selected boxes. None of these uses a Command, Option, Control or Shift combination."
+    },
+    {
+      "question": "Can a formula tick a checkbox automatically?",
+      "answer": "Not according to an accepted Apple Community answer, which says the Checkbox format cannot be set by formula. A formula in another column can show a check mark instead, so test that setup on one row first."
+    },
+    {
+      "question": "Do checkboxes work in Numbers on iCloud.com?",
+      "answer": "Apple's iCloud guide lists the topic but gives no steps or web-specific limits. Check on iCloud.com before you rely on it, or use the Numbers app on your Mac."
+    },
+    {
+      "question": "Why does my Numbers menu look different from these steps?",
+      "answer": "Apple's Mac guide does not name a Numbers version. Wikipedia lists 15.4 as the latest stable release, and Numbers 15.1 for Mac arrived as a new app. Check Numbers > About Numbers to see your version."
+    },
+    {
+      "question": "How do I turn checkboxes back into normal cells?",
+      "answer": "The sources I checked do not give a removal step. Select the cells, open the Cell tab, and look at the Data Format options. Try this on a copy of the file first, because some control conversions are not possible."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apple Support: Add controls to cells in Numbers on Mac",
+      "url": "https://support.apple.com/guide/numbers/add-checkboxes-and-other-controls-to-cells-tan2a2aa073d/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Community: Conditional setting of a checkbox in Numbers (Mac)",
+      "url": "https://discussions.apple.com/thread/253769237",
+      "publisher": "Apple Community",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Wikipedia: Numbers (spreadsheet)",
+      "url": "https://en.wikipedia.org/wiki/Numbers_(spreadsheet)",
+      "publisher": "Wikipedia",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "9to5Mac: Pages, Keynote, Numbers and Pixelmator Pro just got new features",
+      "url": "https://9to5mac.com/2026/09/29/pages-keynote-numbers-and-pixelmator-pro-just-got-new-features/",
+      "publisher": "9to5Mac",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Support: Numbers for iCloud User Guide",
+      "url": "https://support.apple.com/guide/numbers-icloud/add-checkboxes-and-other-controls-to-cells-tan2a2aa073d/icloud",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    },
+    {
+      "title": "Apple Support: Numbers",
+      "url": "https://support.apple.com/numbers",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-07"
+    }
+  ],
+  "task": "Add a checkbox to table cells in Numbers on Mac",
+  "appliesTo": "Numbers for Mac with table cells, macOS 15.6 or later",
+  "timeMinutes": 3,
+  "difficulty": "Easy",
+  "requirements": [
+    "Numbers for Mac with a table open",
+    "The cells you want to turn into checkboxes",
+    "macOS 15.6 or later, per Wikipedia's listing"
+  ],
+  "steps": [
+    {
+      "name": "Select the cells",
+      "text": "Click the first cell that needs a box. Shift-click the last cell in the range, or drag across the cells. Select only the cells that need a box, because the format applies to everything you select.",
+      "tip": "If you select the wrong range, click again. Nothing changes until you choose a format."
+    },
+    {
+      "name": "Open the Format sidebar",
+      "text": "Click Format in the toolbar. The Format sidebar opens beside your sheet. Its tabs change with what you have selected, so the tabs you see may differ from this guide.",
+      "menuPath": [
+        "Toolbar",
+        "Format"
+      ],
+      "tip": "If the sidebar is already open, skip this step."
+    },
+    {
+      "name": "Click the Cell tab",
+      "text": "In the sidebar, click the Cell tab. The Data Format pop-up menu lives in this tab. If you do not see the tab, click a cell in the table again.",
+      "menuPath": [
+        "Format sidebar",
+        "Cell"
+      ]
+    },
+    {
+      "name": "Open the Data Format pop-up menu",
+      "text": "Click the Data Format pop-up menu. Its options are Checkbox, Star Rating, Slider, Stepper and Pop-Up Menu. For a yes or no answer, pick Checkbox.",
+      "menuPath": [
+        "Cell",
+        "Data Format"
+      ]
+    },
+    {
+      "name": "Choose Checkbox",
+      "text": "Choose Checkbox. Each selected cell shows an empty box. Cells that held text may still show the old content until you clear them.",
+      "menuPath": [
+        "Data Format",
+        "Checkbox"
+      ],
+      "tip": "If Checkbox does not appear or does not apply, see the troubleshooting list below."
+    },
+    {
+      "name": "Tick, clear or toggle the boxes",
+      "text": "Click a box to check it, and click again to clear it. Press 1 to select every checkbox. Press 0 to deselect them all. Press Space bar to toggle the selected boxes.",
+      "shortcut": "1, 0, Space bar",
+      "tip": "Apple says the top-left checkbox in your selection sets the toggle result, so test on a small group first."
+    },
+    {
+      "name": "Check the stored values",
+      "text": "Each checked box stores 1, and each empty box stores 0, as Apple's guide describes. Confirm this with a total before you build on the cells. A SUM that changes as you tick boxes shows the cells work.",
+      "tip": "Put the total in a cell away from the checkboxes. It is the easiest test."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Select all checkboxes",
+      "keys": "1"
+    },
+    {
+      "action": "Deselect all checkboxes",
+      "keys": "0"
+    },
+    {
+      "action": "Toggle the selected checkboxes",
+      "keys": "Space bar"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Cells still show text or the old control after you choose Checkbox",
+      "fix": "Apple says some control conversions are not possible, and the existing control is not removed. Clear the cells first, then choose Checkbox again. A text pop-up list cannot become a number format."
+    },
+    {
+      "problem": "A formula does not tick the box",
+      "fix": "An Apple Community answer says the Checkbox format is for user input and cannot be set by formula. Put a formula in another column to show a check mark instead."
+    },
+    {
+      "problem": "Number keys or Space bar do nothing",
+      "fix": "Click a checkbox cell first so the table is active. Apple documents these keys for checkboxes."
+    },
+    {
+      "problem": "Typing Yes or No into a checkbox cell does not work",
+      "fix": "A checkbox cell holds only 1 or true, and 0 or false. Tick the box instead, or use a Pop-Up Menu for text answers."
+    },
+    {
+      "problem": "You cannot find the Format button or the Cell tab",
+      "fix": "Click a cell in the table first, then look for Format in the toolbar. If you are on iCloud.com, the steps here are unconfirmed, so test in the Mac app."
+    },
+    {
+      "problem": "The toggle changes more boxes than you expected",
+      "fix": "Apple says the top-left checkbox in the selection determines the toggle result. Select a smaller range and test again."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Format button?",
+    "capability": "point",
+    "result": "Lazur circles the Format button on screen and labels it, so you know where to click next.",
+    "shell": "sheet",
+    "pointsAt": "Format button",
+    "context": "Numbers open on a table with cells selected",
+    "output": "Lazur points at the Format button. If you ask for the full path, Lazur guides you one click at a time, waiting for each click."
+  },
+  "type": "howto",
+  "slug": "add-a-checkbox-in-numbers",
+  "app": "numbers",
+  "appName": "Numbers",
+  "publishedAt": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-checkbox-in-numbers/how-to-add-a-checkbox-in-numbers-1-0c1f3f.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "A person at a desk typing on a laptop, the setting for adding a checkbox in Numbers on Mac",
+      "caption": "Working on a table at a desk",
+      "keywords": [
+        "how to add a checkbox in numbers on mac",
+        "Numbers",
+        "add a checkbox",
+        "Mac",
+        "person working at desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-checkbox-in-numbers/how-to-add-a-checkbox-in-numbers-2-908712.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A paper checklist on a desk, the kind of list you might track with a checkbox in Numbers on Mac",
+      "caption": "A checklist, the job checkboxes do best",
+      "keywords": [
+        "how to add a checkbox in numbers on mac",
+        "Numbers",
+        "add a checkbox",
+        "Mac",
+        "paper checklist on desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "borevina",
+        "url": "https://pixabay.com/users/borevina-9505414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/writing-pencil-note-shop-pink-3934298/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to add a checkbox in numbers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "add a checkbox numbers mac": 1,
+      "numbers checkbox cell": 1,
+      "numbers data format checkbox": 1,
+      "numbers mac checkbox formula": 1,
+      "numbers checkbox keyboard shortcut": 1,
+      "checkbox in numbers table": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-06",
+    "version": 1
+  }
+}

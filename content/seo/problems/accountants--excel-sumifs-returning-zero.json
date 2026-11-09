@@ -1,0 +1,724 @@
+{
+  "title": "Excel SUMIFS returning 0 on Mac: causes and fixes for accountants in Microsoft 365",
+  "metaTitle": "Excel SUMIFS returning 0 on Mac: causes and fixes",
+  "description": "SUMIFS returns 0 when text looks like numbers, criteria carry hidden spaces, or ranges don't match. Here are the fixes for Excel on Mac.",
+  "targetKeyword": "excel sumifs returning 0",
+  "secondaryKeywords": [
+    "sumifs returns 0",
+    "sumifs not working mac",
+    "sumifs numbers stored as text",
+    "sumifs trailing spaces criteria",
+    "sumifs criteria with dates",
+    "sumifs or logic two conditions",
+    "convert text to number excel mac"
+  ],
+  "intro": "SUMIFS returns 0 when Excel cannot match your criteria to the values in your sum range. The usual causes are numbers or dates stored as text, hidden spaces, criteria typed wrong, and ranges that do not line up. This page walks through each cause in Excel for Mac, with fixes you can run yourself without buying anything.",
+  "tldr": [
+    "Check first whether the values are real numbers. A cell can look like a number and still be text.",
+    "Look for hidden spaces, and for criteria typed inside quotes such as \">=K6\" instead of \">=\"&K6.",
+    "Make sure the sum range and each criteria range cover the same rows, and that the sum range comes first.",
+    "SUMIFS only does AND. For OR, add two SUMIFS formulas or use an array constant inside SUM.",
+    "Test every fix on a copy of the sheet, and follow your employer's rules on client data."
+  ],
+  "stats": [
+    {
+      "value": "3.6 hours",
+      "label": "per week that operations teams average fixing spreadsheet mistakes (2026 survey of 1,003 US operations professionals, not accountants)",
+      "sourceUrl": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "DOSS: Spreadsheet Errors research article"
+    },
+    {
+      "value": "$4,315",
+      "label": "average cost of a single significant spreadsheet error, per DOSS",
+      "sourceUrl": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "DOSS: Spreadsheet Errors research article"
+    },
+    {
+      "value": "5 hours",
+      "label": "per week accountants report losing moving, re-entering, or reconciling information across tools (2026 survey, not spreadsheet-specific)",
+      "sourceUrl": "https://www.firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "sourceTitle": "2026 Accountant Technology Survey (firmofthefuture.com)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A SUMIFS that returns 0 is usually not doing the math wrong. It is reporting that nothing matched. Most of the time the numbers are there, but Excel sees them as text, or the criteria do not match the cells exactly. Once you know where to look, most of these take minutes to fix."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How SUMIFS decides which rows to add"
+    },
+    {
+      "type": "paragraph",
+      "text": "SUMIFS adds the cells in a sum range when every condition you give it is true. The syntax is SUMIFS(sum_range, criteria_range1, criteria1, and so on). Microsoft puts the sum range first. The older SUMIF function puts it last, so keep the two formulas separate in your head."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each criteria range must have the same number of rows and columns as the sum range. Microsoft allows up to 127 range and criteria pairs. Text criteria need quotation marks. Inside the sum range, TRUE counts as 1 and FALSE counts as 0."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the formula as a set of tests. Each row must pass every test to count. If no row passes all of them, the total is 0. That sounds obvious, but it explains most zeros. The formula is not broken. The tests are stricter than your data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Six causes behind a zero result"
+    },
+    {
+      "type": "paragraph",
+      "text": "A third-party guide lists six common causes, and they match the rules Microsoft gives for SUMIFS. Work through them in order, because the first three are the quickest to test."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Numbers or dates stored as text. The cell looks like a number, but the test does not see it as one.",
+        "Criteria typed inside quotes. A cell reference inside quotation marks is read as plain text.",
+        "Trailing or non-breaking spaces in criteria or source cells. Two identical-looking values can still differ.",
+        "Ranges that drift after you insert, delete, or sort rows. The sum range and criteria range stop covering the same data.",
+        "OR logic written as AND. SUMIFS needs every condition to pass on the same row.",
+        "Manual calculation or a swapped argument order. Both make a total look settled when it is not."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The first three causes sit in the data. The last three sit in the formula or the workbook settings. Start with the data, since those three are the ones you can test in a few minutes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a zero costs an accountant"
+    },
+    {
+      "type": "paragraph",
+      "text": "A zero in a total does not look like an error. It looks like a real answer. Someone can read it, sign off on it, and move on. The cost is less about the formula and more about what happens next."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time is the first cost. DOSS surveyed 1,003 US operations professionals in 2026. Its teams averaged 3.6 hours a week fixing spreadsheet mistakes. Those respondents are not accountants, so treat the figure as a rough signal."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "DOSS also puts a price on one significant error at $4,315 on average. That is an operations figure too. Your own cost depends on how many clients rely on the total and how late you catch it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A wider review of business spreadsheets reported that 94% of spreadsheets used in decisions contain errors. The Phys.org write-up covers a 2024 literature review and gives no sample size, so read it as context, not proof."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants lose time in other ways too. A 2026 survey found accountants lose about 5 hours a week moving, re-entering, or reconciling information across tools. That survey did not measure spreadsheet zeros, so it is adjacent evidence."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the cells before you touch the formula"
+    },
+    {
+      "type": "paragraph",
+      "text": "Diagnose first and edit later. Click a blank cell beside your data. Type =ISNUMBER(C2), using the first cell in your sum range in place of C2. TRUE means Excel sees a real number. FALSE means the cell holds text."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Then test the criteria. In a blank cell next to a criteria value, type =LEN(A2) with the criteria cell in place of A2. Compare the count with the length you expect. A longer count than expected means hidden characters."
+    },
+    {
+      "type": "paragraph",
+      "text": "Look at the cells as well. Text numbers often sit left-aligned, while real numbers sit right-aligned by default. Excel may also show a small green triangle in the corner of a text number. Those hints help, but the ISNUMBER test is the proof."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Convert numbers and dates stored as text"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's fix is Convert to Number. Select the affected cells. Click the error indicator, the small warning icon at the top left of the selection. Then choose Convert to Number. Microsoft's page gives a Windows keyboard shortcut and no Mac steps, so use the mouse."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the warning icon never appears, background error checking may be off. On a Mac, open Excel's settings from the Excel menu, then find Error Checking under Formulas and Lists. Menu names change between versions, so search Excel's help if you cannot find them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates follow the same rule. A date stored as text never falls inside a date range, even when it looks right. Convert the column, run the ISNUMBER test again, and then re-run the total. Do not trust a date that only looks like one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not convert everything. Account codes, invoice numbers, and postcodes can carry leading zeros that matter. Converting them can strip those zeros, which breaks matches. Leave those columns as text and match them as text on both sides."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix criteria typed inside quotes"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the most common cause with dates and numbers, according to the Master Excel Functions guide. Say your criteria cell holds a start date. A formula such as =SUMIFS(C:C, A:A, \">=K6\") treats the characters >=K6 as the criteria. It never reads the value in K6."
+    },
+    {
+      "type": "paragraph",
+      "text": "Join the operator to the cell with an ampersand instead. Use =SUMIFS(C:C, A:A, \">=\"&K6). The quotes wrap only the operator, and the ampersand attaches the value in K6. Use the same pattern for other comparison tests."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test the new formula on one row before you fill it down the column. If it still returns zero, check the cell K6 with ISNUMBER and make sure it holds a real date or number."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Remove hidden spaces and non-breaking spaces"
+    },
+    {
+      "type": "paragraph",
+      "text": "Trailing spaces are invisible. Acme and Acme with one space at the end look the same in a cell, but SUMIFS sees two different values. Use a helper column to find out. In a blank column, type =TRIM(A2) and fill it down. Compare the results with the original."
+    },
+    {
+      "type": "paragraph",
+      "text": "TRIM does not remove every space. Text copied from a web page or a PDF often carries a non-breaking space. Use =TRIM(SUBSTITUTE(A2, UNICHAR(160), \" \")) to swap that character for a normal space first. UNICHAR(160) returns the non-breaking space, so the formula targets exactly that character."
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean both sides of the match. A clean criteria cell still returns zero if the source column is dirty. When the fixed column is right, paste the values back over the original, but only after you save a copy. Use Home > Paste > Values for that step."
+    },
+    {
+      "type": "paragraph",
+      "text": "Find & Replace can help too, through Home > Find & Select > Replace. Be careful. Replacing every space in a sheet can break names that need spaces. Run it on a copy, and only on the columns you checked."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Line up the sum range and criteria ranges"
+    },
+    {
+      "type": "paragraph",
+      "text": "Every range in SUMIFS must match in shape. Microsoft says each criteria range needs the same number of rows and columns as the sum range. When the sizes differ, you usually see an error value instead of a total. That error is loud, so it is easy to spot."
+    },
+    {
+      "type": "paragraph",
+      "text": "The zero is the quiet version. It appears when the ranges are the right size but point at the wrong rows. That often happens after you insert or delete rows, or sort one column without the rest of its data. Sorting a single column is a classic way to break a match."
+    },
+    {
+      "type": "paragraph",
+      "text": "Whole-column references such as A:A stay aligned when you insert rows, because they always cover the full column. They also pick up new entries without edits. Use them for ledgers that grow, and check the total after each big paste."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch the argument order too. In SUMIFS the sum range comes first. If you copy a SUMIF formula and forget to reorder it, the test runs against the wrong column. Read every argument in the formula bar."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Handle OR conditions and multiple criteria"
+    },
+    {
+      "type": "paragraph",
+      "text": "SUMIFS only does AND. Every condition must pass for a row to count. If you want rows where the region is East or West, one SUMIFS cannot do it. A row cannot be both, so the total returns zero."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two fixes work. Add two SUMIFS formulas together, one for East and one for West. Or wrap an array constant in SUM, such as =SUM(SUMIFS(C:C, A:A, {\"East\",\"West\"})). Compare both versions on the same data before you trust either one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Several AND conditions work fine. Each extra criteria pair narrows the rows that count. You can add many pairs, up to the Microsoft limit of 127, so you will rarely hit that limit."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check calculation mode and the formula itself"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the formula is right and the total is stale. If calculation is set to manual, Excel may not refresh the result after you change the data. Go to Formulas > Calculation Options and choose Automatic. If your version uses different menu names, search Excel's help for calculation options."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the full formula in the formula bar before you change anything. Look for a wrong column letter, a sheet name you did not expect, or a criteria cell on a different row. Compare it with a formula that works elsewhere in the same workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which Excel version you need on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft lists SUMIFS for Excel 2021, Excel 2024, and Microsoft 365, including the Mac versions. The latest Excel for Mac release in Microsoft's notes is 16.114.3, dated Oct 27, 2026. Its notes list only quality and performance changes, so do not expect an update to fix a formula mistake."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says macOS 14 is the minimum for receiving updates to Microsoft 365 and Office apps. If your Mac runs an older system, the fixes here still apply to the version you have. You may just not get the newest builds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Numbers on Mac: what changes"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers is Apple's spreadsheet app. Apple's help says its SUMIFS-type functions accept numeric comparison operators, wildcards, and regular expressions in conditions. That covers the operator and wildcard problems. It does not cover every text-number case."
+    },
+    {
+      "type": "paragraph",
+      "text": "The sources I checked do not show how Numbers treats a text number inside a SUMIFS condition. Apple's compatibility page lists SUMIFS as supported for Microsoft Office files, but it describes import, not identical behavior. Test a known row before you rely on a Numbers total. The steps for bringing Excel files over are in [how to open an Excel file in Numbers](/how-to/open-an-excel-file-in-numbers)."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test a fix without wrecking the workbook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you change a client file, copy the sheet. Right-click the sheet tab, choose Move or Copy, and tick the option to create a copy. Run every fix on that copy. Compare the totals against a source you trust, such as a bank statement or a trial balance."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep one check row. Put a manual sum of a few rows you can verify by hand next to the SUMIFS total. If the two differ, something upstream is still wrong. The check takes a minute, and it stops a silent zero from getting through."
+    },
+    {
+      "type": "paragraph",
+      "text": "Save the fixed workbook under a new name and keep the old one as a record. Accountants often need to show what changed and why. A dated copy makes that simple."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why these mistakes keep coming back"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these errors start at data entry, not in the formula. DOSS asked operations teams which error types they see. Manual data entry came first at 59%, then formula errors at 46% and copy-paste issues at 45%."
+    },
+    {
+      "type": "chart"
+    },
+    {
+      "type": "paragraph",
+      "text": "Those percentages add to more than 100%, so they are not one split of a single total. The mix is still a useful clue. Pasting from a PDF, a bank portal, or a web page brings in the formatting that SUMIFS trips on."
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple habit helps. After you paste data in, check one cell with ISNUMBER and one with TRIM. Note where each column came from. A note takes seconds and can save a rebuild later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that bring the zero back"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting a total without a check row. A zero can survive a fix that only touched one column.",
+        "Fixing one side of the match. A clean criteria cell cannot rescue a dirty source column.",
+        "Running Find & Replace across the whole sheet. Spaces inside names can disappear.",
+        "Converting account codes that need leading zeros. The codes change, and the matches fail.",
+        "Assuming a Mac menu matches the Windows steps you found online. Menu paths differ, so check the Mac version."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. It can point at the cell you mean and explain what it sees. It does not click buttons, type into Excel, or edit your workbook."
+    },
+    {
+      "type": "paragraph",
+      "text": "For steps, ask Lazur to walk you through it. Lazur guides you one click at a time and waits for each click. You stay in control of the file. That helps when you know the goal but not where the menu lives."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Explains a formula out loud while you hold ⌥ ⌘.",
+        "Circles and labels the cell you ask about, so you can check it for spaces or quotes.",
+        "Walks you through Convert to Number one click at a time.",
+        "Drafts a short note to a client or colleague about a corrected figure, for you to review.",
+        "Dictates clean text at the cursor with fn, in any app."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Client data first",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Content is never used to train AI models. Follow your employer's rules on client data before you use any tool on a live file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Plans and trial details are on the [pricing page](/pricing). Check it for the plan that fits your use. That page is the current source, not this article."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with ISNUMBER on one cell. If it returns FALSE, convert the column. If the criteria cell has a stray space, trim it. Then check the total against a row you can verify by hand. Once the zero is gone, look at the wider close. [Excel help for accountants on Mac](/for/accountants/excel) covers month-end steps, and the [XLOOKUP text and number fix](/for/accountants/problems/xlookup-na-text-number-mismatch) covers a related mismatch."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does SUMIFS return 0 when I can see the matching numbers?",
+      "answer": "The numbers you see may be text, or the criteria may not match them exactly. Run ISNUMBER on a cell from the sum range first. Then check the criteria for hidden spaces and for cell references typed inside quotes."
+    },
+    {
+      "question": "How do I tell if a number is stored as text on a Mac?",
+      "answer": "Use =ISNUMBER with a cell reference. TRUE means a real number and FALSE means text. Text numbers often sit left-aligned, and Excel may show a green triangle in the corner. Those signs help, but the ISNUMBER test is the proof."
+    },
+    {
+      "question": "Why does my SUMIFS return zero when both conditions look right?",
+      "answer": "Every criteria pair must pass for a row to count. If you need OR logic, use two SUMIFS formulas or an array constant inside SUM. Also check that both conditions can be true on the same row."
+    },
+    {
+      "question": "Does SUMIFS behave the same way in Numbers on Mac?",
+      "answer": "Apple's help says Numbers functions of this type accept comparison operators, wildcards, and regular expressions. Apple does not describe how text numbers behave inside SUMIFS conditions, so test a known row on a copy first."
+    },
+    {
+      "question": "Do I need the newest Excel to fix this?",
+      "answer": "No. SUMIFS is listed for Excel 2021, Excel 2024, and Microsoft 365 on Mac. The latest Excel for Mac release is 16.114.3, and its notes list only quality and performance changes. Do not expect an update to fix a formula mistake."
+    },
+    {
+      "question": "Can I paste client data into Lazur to debug a formula?",
+      "answer": "Follow your employer's rules first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. If your firm does not allow that, mask names and amounts before you ask."
+    },
+    {
+      "question": "Will Lazur fix the formula for me?",
+      "answer": "No. Lazur explains, points at cells, and guides you one click at a time. It does not click buttons, edit files, or operate Excel for you. You make the change and check the total."
+    }
+  ],
+  "sources": [
+    {
+      "title": "SUMIFS function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/sumifs-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Convert numbers stored as text to numbers in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/convert-numbers-stored-as-text-to-numbers-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Why SUMIFS Returns 0: 6 Causes and Fixes",
+      "url": "https://masterexcelfunctions.com/guides/sumifs-returns-zero",
+      "publisher": "Master Excel Functions",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Functions that accept conditions and wildcards",
+      "url": "https://support.apple.com/guide/functions/functions-accept-conditions-wildcards-ffac131919b/web",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Numbers - Compatibility",
+      "url": "https://www.apple.com/numbers/compatibility/",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "DOSS: Spreadsheet Errors research article",
+      "url": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "publisher": "DOSS",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Study finds 94% of business spreadsheets have critical errors",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "2026 Accountant Technology Survey",
+      "url": "https://www.firmofthefuture.com/news/accountant-tech-survey-2026/",
+      "publisher": "Firm of the Future",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "sumifs returning zero for matching data",
+  "costs": [
+    {
+      "title": "Hours lost to spreadsheet fixes",
+      "text": "DOSS surveyed 1,003 US operations professionals in 2026 and found teams average 3.6 hours a week fixing spreadsheet mistakes. Those respondents are not accountants. The figure shows the scale of the problem, not a benchmark for your firm."
+    },
+    {
+      "title": "The cost of one bad total",
+      "text": "DOSS reports a single significant spreadsheet error costs an organization an average of $4,315. That is an operations figure. Your cost depends on how many clients rely on the number and how late you catch it."
+    },
+    {
+      "title": "A zero that looks like an answer",
+      "text": "A zero does not trigger an error message. It looks like a real total, so someone can sign off on it. The cost shows up later, in a rework request, a client question, or a corrected filing."
+    },
+    {
+      "title": "Re-entry and reconciliation time",
+      "text": "A 2026 accountant survey found accountants lose about 5 hours a week moving, re-entering, or reconciling information across tools. That survey did not measure SUMIFS zeros, so treat it as adjacent evidence about lost time."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Numbers and dates stored as text",
+      "text": "Values often arrive as text from a bank export, a PDF, or a system that formats every field as text. The cell looks like a number. SUMIFS compares numeric conditions against numeric cells, so text values can fail the test and drop out of the total without any warning."
+    },
+    {
+      "title": "Criteria typed inside quotes",
+      "text": "When a cell reference sits inside quotation marks, Excel reads the reference as plain characters. The formula then looks for a value that matches the literal text K6 instead of the value in that cell. Nothing matches, so the result is zero."
+    },
+    {
+      "title": "Hidden and non-breaking spaces",
+      "text": "A trailing space is invisible in the cell. Acme and Acme with one space at the end are different text to SUMIFS. Text pasted from a web page can also carry a non-breaking space that TRIM does not remove."
+    },
+    {
+      "title": "Ranges that drift after edits",
+      "text": "Inserting, deleting, or sorting rows can move one range while another stays put. The formula then tests rows that no longer hold the right data. Mismatched sizes usually give an error value, so a zero usually means the sizes match but the rows are wrong."
+    },
+    {
+      "title": "OR logic written as AND",
+      "text": "Every condition in SUMIFS must pass for a row to count. Asking for East and West in two criteria pairs means a row must be both regions at once. No row is, so the result is zero, and no error appears."
+    },
+    {
+      "title": "Manual calculation and argument order",
+      "text": "A manual calculation setting can leave a stale result on screen after the data changes. Swapping the sum range and the criteria range, a habit carried over from SUMIF, can make the formula test the wrong column. Both problems produce results that look plausible."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Convert text to numbers and dates",
+      "text": "Run ISNUMBER on one cell first. Then select the affected column, click the error indicator, and choose Convert to Number. Re-run the total and compare it with a manual check. Keep codes that need leading zeros as text so they still match."
+    },
+    {
+      "title": "Join criteria with an ampersand",
+      "text": "Replace \">=K6\" with \">=\"&K6 so the operator is joined to the value in the cell. Use the same pattern for other comparison operators. Test the formula on one row before you fill it down the column."
+    },
+    {
+      "title": "Trim and clean the text with a helper column",
+      "text": "Add a helper column with =TRIM(SUBSTITUTE(A2, UNICHAR(160), \" \")) and fill it down. Compare the results with the original. Clean both the criteria and the source column, and paste the cleaned values back only after you save a copy."
+    },
+    {
+      "title": "Match range sizes and use whole columns",
+      "text": "Check that every range in the formula covers the same rows. Whole-column references such as A:A stay aligned when you insert rows. After a big paste or sort, read each range in the formula bar again to confirm it still points at the right data."
+    },
+    {
+      "title": "Use two SUMIFS or an array constant for OR",
+      "text": "Add two SUMIFS formulas, one for each value. Or wrap an array constant in SUM, such as SUM(SUMIFS(C:C, A:A, {\"East\",\"West\"})). Compare the two answers on the same data before you rely on either one."
+    },
+    {
+      "title": "Set calculation to Automatic and reread the formula",
+      "text": "Go to Formulas > Calculation Options and choose Automatic. Then click the zero cell and read every argument in the formula bar. Look for a wrong column letter, an unexpected sheet name, or a criteria cell on the wrong row."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask why this SUMIFS returns zero.",
+      "result": "Lazur reads the formula on screen and explains the likely cause out loud. You still decide what to change.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the criteria cell?",
+      "result": "Lazur draws a circle and a label around the cell, so you can check it for spaces or quotation marks.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through converting these to numbers.",
+      "result": "Lazur guides you one click at a time and waits for each click, so you keep control of the workbook.",
+      "capability": "guide"
+    },
+    {
+      "say": "Draft a short note to the client about the corrected total.",
+      "result": "Lazur drafts the message in plain words. You review it before anything is sent.",
+      "capability": "draft"
+    },
+    {
+      "say": "Dictate a comment for the reviewer.",
+      "result": "Hold fn to dictate clean text at the cursor in any app, such as a cell note or a review email.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Why is this SUMIFS returning zero?",
+    "capability": "explain",
+    "result": "Lazur points at the criteria cell and explains what it sees, such as a value that looks like text. You make the change yourself.",
+    "shell": "sheet",
+    "pointsAt": "criteria cell",
+    "context": "Excel for Mac, criteria cell typed with quotes",
+    "output": "A spoken answer that names the likely cause and the cell to check first."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the data types",
+      "text": "Run ISNUMBER on one cell from each column in the sum range. Note every column that returns FALSE. Those columns are your first suspects, and you will convert them on Day 2."
+    },
+    {
+      "label": "Day 2",
+      "title": "Convert text to numbers and dates",
+      "text": "Select each flagged column, click the error indicator, and choose Convert to Number. Recheck with ISNUMBER, then re-run the total. Keep account codes that need leading zeros as text."
+    },
+    {
+      "label": "Day 3",
+      "title": "Fix criteria and hidden spaces",
+      "text": "Replace criteria written inside quotes with the ampersand form. Build a TRIM helper column for text criteria and run it on the source column too. Compare totals after each change."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check ranges and OR logic",
+      "text": "Read each range in the formula bar and confirm the rows match. Replace any OR logic with two SUMIFS formulas or an array constant, then compare both versions on the same data."
+    },
+    {
+      "label": "Day 5",
+      "title": "Add a check row",
+      "text": "Put a manual sum of a few known rows beside the SUMIFS total. Save a copy of the fixed file under a new name so the change is on record."
+    }
+  ],
+  "apps": [
+    "excel",
+    "numbers"
+  ],
+  "chart": {
+    "title": "Share of DOSS respondents citing each spreadsheet error type",
+    "bars": [
+      {
+        "label": "Manual data entry",
+        "value": 59,
+        "highlight": true
+      },
+      {
+        "label": "Formula errors",
+        "value": 46
+      },
+      {
+        "label": "Copy-paste issues",
+        "value": 45
+      }
+    ],
+    "unit": "%",
+    "note": "The three bars add to more than 100%, so respondents could pick several types.",
+    "sourceUrl": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+    "sourceTitle": "DOSS: Spreadsheet Errors research article"
+  },
+  "type": "problem",
+  "slug": "excel-sumifs-returning-zero",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-sumifs-returning-zero/excel-sumifs-returning-0-1-a42145.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant checking Excel figures on a laptop at an office desk",
+      "caption": "An accountant checks figures on a laptop.",
+      "keywords": [
+        "excel sumifs returning 0",
+        "Accountants",
+        "SUMIFS returns zero for matching data",
+        "Mac",
+        "accountant laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "aathif_aarifeen",
+        "url": "https://pixabay.com/users/aathif_aarifeen-8929622/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-businessman-accounting-working-6874915/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-sumifs-returning-zero/excel-sumifs-returning-0-2-2aebd6.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person typing on a Mac at a desk beside a notebook and papers",
+      "caption": "Checking a workbook on a Mac.",
+      "keywords": [
+        "excel sumifs returning 0",
+        "Accountants",
+        "SUMIFS returns zero for matching data",
+        "Mac",
+        "person using Mac desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-sumifs-returning-zero/excel-sumifs-returning-0-3-c19b05.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Printed financial figures and a calculator on an office desk",
+      "caption": "Printed figures still get checked by hand.",
+      "keywords": [
+        "excel sumifs returning 0",
+        "Accountants",
+        "SUMIFS returns zero for matching data",
+        "Mac",
+        "office spreadsheet numbers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "inproperstyle",
+        "url": "https://pixabay.com/users/inproperstyle-617761/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/phone-keys-communication-1074238/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel sumifs returning 0",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "sumifs returns 0": 3,
+      "sumifs not working mac": 1,
+      "sumifs numbers stored as text": 1,
+      "sumifs trailing spaces criteria": 1,
+      "sumifs criteria with dates": 1,
+      "sumifs or logic two conditions": 1,
+      "convert text to number excel mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

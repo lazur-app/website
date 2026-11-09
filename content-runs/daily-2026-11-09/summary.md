@@ -1,6 +1,6 @@
-Content 2026-11-09: 271 written, 7 refused, 0 failed
+Content 2026-11-09: 299 written, 8 refused, 0 failed
 
-- howto: 91/120
+- howto: 118/120
 - apps: 0/9
 - roles: 21/12
 - role-apps: 60/60
@@ -279,3 +279,31 @@ howto:edit-the-master-slide-in-keynote /how-to/edit-the-master-slide-in-keynote
 howto:add-a-transition-in-keynote /how-to/add-a-transition-in-keynote
 howto:add-a-hyperlink-to-text-in-keynote /how-to/add-a-hyperlink-to-text-in-keynote
 howto:insert-a-table-in-keynote /how-to/insert-a-table-in-keynote
+howto:export-a-presentation-as-a-pdf-in-keynote /how-to/export-a-presentation-as-a-pdf-in-keynote
+howto:mask-an-image-in-keynote /how-to/mask-an-image-in-keynote
+howto:export-a-presentation-as-powerpoint-in-keynote /how-to/export-a-presentation-as-powerpoint-in-keynote
+howto:add-a-background-image-in-keynote /how-to/add-a-background-image-in-keynote
+howto:reorder-slides-in-keynote /how-to/reorder-slides-in-keynote
+howto:align-objects-with-guides-in-keynote /how-to/align-objects-with-guides-in-keynote
+howto:open-an-incognito-window-in-chrome /how-to/open-an-incognito-window-in-chrome
+howto:collaborate-on-a-shared-presentation-in-keynote /how-to/collaborate-on-a-shared-presentation-in-keynote
+howto:password-protect-a-presentation-in-keynote /how-to/password-protect-a-presentation-in-keynote
+howto:set-chrome-as-your-default-browser-in-chrome /how-to/set-chrome-as-your-default-browser-in-chrome
+howto:use-the-content-hub-in-keynote /how-to/use-the-content-hub-in-keynote
+howto:create-a-chrome-profile-in-chrome /how-to/create-a-chrome-profile-in-chrome
+howto:block-third-party-cookies-in-chrome /how-to/block-third-party-cookies-in-chrome
+howto:add-a-website-to-the-dock-in-chrome /how-to/add-a-website-to-the-dock-in-chrome
+howto:stop-videos-from-autoplaying-in-chrome /how-to/stop-videos-from-autoplaying-in-chrome
+howto:take-a-full-page-screenshot-in-chrome /how-to/take-a-full-page-screenshot-in-chrome
+howto:install-an-extension-in-chrome /how-to/install-an-extension-in-chrome
+howto:sync-bookmarks-across-devices-in-chrome /how-to/sync-bookmarks-across-devices-in-chrome
+howto:use-picture-in-picture-in-chrome /how-to/use-picture-in-picture-in-chrome
+howto:search-open-tabs-in-chrome /how-to/search-open-tabs-in-chrome
+howto:use-google-lens-in-chrome /how-to/use-google-lens-in-chrome
+howto:reduce-chrome-memory-usage-in-chrome /how-to/reduce-chrome-memory-usage-in-chrome
+howto:reopen-a-closed-tab-in-chrome /how-to/reopen-a-closed-tab-in-chrome
+howto:save-a-web-page-as-a-pdf-in-chrome /how-to/save-a-web-page-as-a-pdf-in-chrome
+howto:block-notifications-from-a-site-in-chrome /how-to/block-notifications-from-a-site-in-chrome
+howto:clear-site-data-for-one-website-in-chrome /how-to/clear-site-data-for-one-website-in-chrome
+howto:reset-chrome-settings-in-chrome /how-to/reset-chrome-settings-in-chrome
+refresh:app:chatgpt /apps/chatgpt

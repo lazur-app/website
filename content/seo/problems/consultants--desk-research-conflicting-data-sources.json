@@ -1,0 +1,592 @@
+{
+  "title": "Desk research with conflicting data sources on Mac, 2026: check figures across dates",
+  "metaTitle": "Desk research with conflicting data sources on Mac | Lazur",
+  "description": "When sources disagree, check figures across dates first. Here is how consultants can reconcile conflicting numbers in Excel and PowerPoint on Mac.",
+  "targetKeyword": "desk research with conflicting data sources",
+  "secondaryKeywords": [
+    "check figures across sources and dates",
+    "conflicting data in Excel on Mac",
+    "date system mismatch in Excel",
+    "verify numbers across client reports",
+    "source of truth for consulting data",
+    "linked charts in PowerPoint for Mac"
+  ],
+  "problem": "checking figures across sources and dates",
+  "intro": "Desk research with conflicting data sources means you have two or more numbers for the same thing and must choose one. Start by tracing each figure to its original publisher, its date and its unit before it reaches a slide. Many conflicts are small and easy to fix. A short routine catches them before a client does.",
+  "tldr": [
+    "Trace every figure to its original source, date and unit before you use it.",
+    "Check each workbook's date system. Excel for Mac can shift the same date by 1,462 days between systems.",
+    "Treat chart links in PowerPoint for Mac as untrusted until you test them.",
+    "Keep a one-page source log so the next person can see why you chose a number.",
+    "Lazur can explain formulas, point at cells and draft your note. It does not pick the right number for you."
+  ],
+  "stats": [
+    {
+      "value": "60%",
+      "label": "of work time goes to work about work, per Asana's vendor survey of 10,000+ knowledge workers",
+      "sourceUrl": "https://asana.com/resources/why-work-about-work-is-bad",
+      "sourceTitle": "How Work About Work Gets in the Way of Real Work (Asana)"
+    },
+    {
+      "value": "$48.97",
+      "label": "median hourly pay for management analysts (consultants), May 2025",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "sourceTitle": "Management Analysts: Occupational Outlook Handbook (BLS)"
+    },
+    {
+      "value": "1,462",
+      "label": "days between the 1900 and 1904 date systems in Excel",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/date-systems-in-excel",
+      "sourceTitle": "Date systems in Excel (Microsoft Support)"
+    },
+    {
+      "value": "15 of 20",
+      "label": "countries left in a spreadsheet average after a range error",
+      "sourceUrl": "https://theconversation.com/the-reinhart-rogoff-error-or-how-not-to-excel-at-economics-13646",
+      "sourceTitle": "The Reinhart-Rogoff error (The Conversation)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What conflicting data costs you"
+    },
+    {
+      "type": "paragraph",
+      "text": "The direct cost is time. Asana reports that 60% of a person's time at work goes to work about work, which includes hunting for information and chasing updates. That figure comes from a vendor survey, so treat it as a direction, not a measure. Your own week will tell you more. Count how long you spend finding and reconciling numbers for one deck, then compare that to the time you spend on the analysis itself."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Time has a price too. The U.S. Bureau of Labor Statistics puts the median pay for management analysts at $101,860 a year, or $48.97 an hour, based on May 2025 data. At that rate, an hour spent reconciling numbers costs about $49 in salary alone. That is before overhead and before any billing rate. Use the salary figure as a floor for your own estimate, not as the full cost."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When one wrong number reaches the client"
+    },
+    {
+      "type": "paragraph",
+      "text": "The most expensive cost is a wrong number that gets published. In a 2013 review of a widely cited economics spreadsheet, the averaging formula did not select the full row. Five countries fell out of the calculation, so only 15 of 20 were included. The Conversation reports that the average growth for countries with debt above 90% of GDP moved from a 0.1% decline to a 2.2% increase after the correction."
+    },
+    {
+      "type": "paragraph",
+      "text": "The lesson is not that spreadsheets are bad. One range that stops a row short can change the headline result. A total can look reasonable and still be wrong. Your checks should test the range and the row count, not only whether the total looks plausible."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: one market figure, three sources"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a client asks for the size of a market. You find one figure in a trade report, a different one in a government release, and a third in a press summary with no date. The three do not match, and nobody wrote down why. This is the normal state of desk research, not a sign that you did something wrong."
+    },
+    {
+      "type": "paragraph",
+      "text": "Start by sorting them. Put the publisher, the period the number describes, the publication date and the unit into four columns. Units cause more trouble than people expect. One source may report revenue while another reports sales volume, and the labels look close enough to pass."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "paragraph",
+      "text": "Now pick the source that matches the question. A government figure for a full year usually beats a press summary with no date. If two sources are equally good, report both and say why they differ. Do not average them to make the gap disappear. A blended number belongs to neither source, and a client will ask where it came from."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the date system before you trust a date in Excel for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dates cause a quiet kind of conflict. Excel stores each date as a serial number, and the starting point depends on the date system. Microsoft says the 1900 date system is the default in Excel 2016 for Mac and Excel for Mac 2011. Earlier Mac versions defaulted to 1904. The two systems differ by 1,462 days, so the same calendar date has two different serial numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Mixing workbooks is where the trouble starts. Microsoft says that when you paste dates from a 1904 workbook into a 1900 workbook, Excel converts them automatically unless Automatically convert date system is turned off. If that option is off, Excel asks you first. Dates copied as part of a chart cannot be converted this way, so you must convert them by hand."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open each workbook behind the deck and note its date system in the Calculation preference.",
+        "Open Excel's preferences with ⌘ , and find the Calculation section. Microsoft calls this a Calculation preference, but the label can shift between builds, so confirm it in your version.",
+        "Compare a date you know, such as a published release date, in both workbooks.",
+        "If the dates differ by about four years, you are looking at a date system mismatch. A shift of 1,462 days is roughly four years.",
+        "Convert the dates once, in one workbook, and record the conversion in your source log."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not assume the default. Microsoft's own page says earlier Mac versions used 1904, so an older workbook may still carry that setting. Check the setting in each file before you combine them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When linked charts disagree with the source file in PowerPoint for Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "A chart in a deck can look current while the numbers behind it are old. In a 2022 Microsoft Q&A thread, a Microsoft Community Moderator said a chart inserted in PowerPoint for Mac is linked to an Excel file. You can update it with Chart Design > Edit Data in Excel. An accepted answer in the same thread said Mac PowerPoint has no Link Manager and cannot update links to an Excel file."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Do not trust a chart link you have not tested",
+      "text": "The sources disagree on whether Mac PowerPoint can update linked charts. Change one value in the workbook and watch the slide before you send the deck to anyone."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test before you rely on either answer. Change one value in the source workbook and see whether the slide follows. If it does not, delete the chart object and rebuild it from the final workbook. The same thread also says that copying even one cell can embed the whole workbook, which makes the file heavier to send."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A routine for checking figures across sources and dates"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use this routine for any deck that mixes sources. Run it once per figure, not once per deck, so the log stays useful when a number moves. Each step takes a few minutes for a figure with a clear source. Figures with no clear source take longer, and that is the point of the check."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Write the claim in one sentence, with the unit and the period it covers.",
+        "Find the original publication, not a copy. Record the publisher, title, date and table or page.",
+        "Check the publication date and the period the number describes. These are often different.",
+        "Confirm the unit and any currency. Revenue and sales volume are not interchangeable.",
+        "Check that spreadsheet ranges and totals include every row. Trace precedents with Formulas > Formula Auditing > Trace Precedents.",
+        "Pick the source that best matches the question, and write down why.",
+        "If sources still disagree, show the range in the slide note and flag the gap to your manager."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the log in one place. A plain Excel sheet with columns for claim, value, source, date, period, unit and notes works well. Share it with the team. The next person can check your choice in minutes instead of repeating the search."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when reconciling data"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Averaging two conflicting sources to make the gap disappear.",
+        "Trusting the newest number without checking which period it covers.",
+        "Copying a figure into a slide and losing the source line.",
+        "Assuming two workbooks use the same date system.",
+        "Fixing a total without checking whether the range stops one row short.",
+        "Relying on a chart link you never tested."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Most of these mistakes share a root. The source stops traveling with the number once the number moves into a new file. Keep the source attached, even as a hidden tab or a note in the cell comment, and much of the drift stops."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a setting is and Lazur draws a circle and a label around it. Lazur does not change your workbook or pick the right figure. You still decide which number goes on the slide."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Check",
+        "What to look for",
+        "Where to look"
+      ],
+      "rows": [
+        [
+          "Date system",
+          "Serial numbers differ by 1,462 days between the 1900 and 1904 systems",
+          "Excel preferences, Calculation section"
+        ],
+        [
+          "Formula range",
+          "Totals that stop one row short of the source",
+          "Formulas > Formula Auditing > Trace Precedents"
+        ],
+        [
+          "Chart source",
+          "Slide values that no longer match the workbook",
+          "Chart Design > Edit Data in Excel"
+        ],
+        [
+          "Source line",
+          "Publisher, period and publication date for each figure",
+          "Your source log sheet"
+        ]
+      ],
+      "caption": "Quick checks before a figure goes on a slide"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data, employer rules and AI tools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many consulting files contain client data. Before you paste any of it into an AI tool, follow your firm's rules and your client contract. If your client work is regulated, follow the rules your employer gives you for that data. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one deck. Build its source log before you touch the slides. Then check the date systems and chart links in the workbooks it uses. For the spreadsheet side, see [Excel for consultants on Mac](/for/consultants/excel). For the slide side, see [PowerPoint for consultants on Mac](/for/consultants/powerpoint) and [rebuilding past consulting work from scratch](/for/consultants/problems/rebuilding-past-consulting-work-scratch)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then keep the habit on the next project. The routine works best when you run it on each new source as it arrives. Waiting until the end of a project means you check everything at the worst possible time."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "What should I do first when two sources disagree?",
+      "answer": "Find the original publication for each number, then write down its date, period and unit. Many conflicts resolve once the periods and units match. If they still disagree, show the range, name the source you chose and say why."
+    },
+    {
+      "question": "Should I use the newer number or the original?",
+      "answer": "Use the number that matches the question and the period. A newer figure can describe a different period or use a revised method. Read the methodology note before you swap a number, and record the choice in your log."
+    },
+    {
+      "question": "Does Excel for Mac use the 1900 or 1904 date system?",
+      "answer": "It depends on the workbook and the version. Microsoft says the 1900 date system is the default in Excel 2016 for Mac and Excel for Mac 2011, and that earlier Mac versions defaulted to 1904. Check the Calculation preference in each file rather than assuming."
+    },
+    {
+      "question": "Why do my dates look about four years off?",
+      "answer": "The two date systems differ by 1,462 days, which is roughly four years. If one workbook uses 1904 and the other uses 1900, a date can look four years wrong. Convert the dates once and record the change."
+    },
+    {
+      "question": "Can PowerPoint for Mac update a linked chart?",
+      "answer": "Sources disagree. A Microsoft Community Moderator says a chart inserted in PowerPoint for Mac is linked and can be updated with Chart Design > Edit Data in Excel. An accepted answer in the same thread says Mac PowerPoint cannot update links to an Excel file. Test your own chart before you rely on it."
+    },
+    {
+      "question": "Can Lazur tell me which number is correct?",
+      "answer": "No. Lazur can explain a formula, point at a cell, guide you through a setting, and run research in its own Chrome tabs, which returns a summary and a report. You check each source and decide which number belongs on the slide."
+    },
+    {
+      "question": "Can I paste client data into Lazur?",
+      "answer": "Follow your employer's rules and your client's rules first. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer and are not stored. Your firm's policy still comes first."
+    },
+    {
+      "question": "Is a vendor's time-share figure good evidence?",
+      "answer": "Treat it as a direction. Asana's 60% figure comes from its own survey of 10,000+ knowledge workers, not a study of consultants. Use it to start a conversation, then measure your own week."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Date systems in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/date-systems-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Management Analysts: Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How Work About Work Gets in the Way of Real Work",
+      "url": "https://asana.com/resources/why-work-about-work-is-bad",
+      "publisher": "Asana",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Edit links in PowerPoint for Mac",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5162084/edit-links-in-powerpoint-for-mac",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "The Reinhart-Rogoff error, or how not to Excel at economics",
+      "url": "https://theconversation.com/the-reinhart-rogoff-error-or-how-not-to-excel-at-economics-13646",
+      "publisher": "The Conversation",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "costs": [
+    {
+      "title": "Time lost to hunting for the right number",
+      "text": "Every conflict takes time before it takes judgment. You search for the original report, open a second file to compare, then message a colleague who has a third version. Asana calls this work about work. The cost adds up across a week, not in one dramatic moment. Count the hours you spend reconciling figures on one project to see whether the pattern holds for you."
+    },
+    {
+      "title": "The salary cost of an hour",
+      "text": "At the BLS median of $48.97 an hour for management analysts, an hour of reconciliation carries about $49 in salary cost. That is pay only. It does not include overhead or your firm's billing rate. Use it as a floor when you explain why source checks deserve time in the plan."
+    },
+    {
+      "title": "Rework when a number changes late",
+      "text": "A figure that moves after the deck is nearly done can touch many places. The slide, the chart, the executive summary and the email to the client all need an update. Catching a conflict early means changing one cell and one note. Catching it late means rebuilding several pieces under deadline pressure."
+    },
+    {
+      "title": "Credibility with the client",
+      "text": "A client who finds one bad figure starts checking everything else. Your slides lose the authority they had before. Rebuilding that trust costs far more than the check would have. Treat each source line as part of the deliverable, not a footnote added at the end."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Different periods behind the same label",
+      "text": "Two reports can both say 2025 and mean different things. One may describe a calendar year, another a fiscal year, and a third a forecast. The label looks identical, so nobody questions it. Write the period next to each figure, not only the publication date."
+    },
+    {
+      "title": "Date systems that do not match",
+      "text": "Excel for Mac workbooks can use the 1900 or the 1904 date system. The two differ by 1,462 days. A date can shift if you paste it without conversion, or if it arrives inside a chart, where Microsoft says you must convert it by hand. The shift looks like bad data, but it is a setting."
+    },
+    {
+      "title": "Copied numbers that went stale",
+      "text": "Someone copies a figure into a deck, then the source file gets an update. The slide keeps the old number and nothing flags the change. Copies drift because the link to the source is gone, or because the link was never there. A copy without a source line is hard to check later."
+    },
+    {
+      "title": "Unclear definitions and units",
+      "text": "Revenue, sales and bookings can sound like the same thing. Units vary too, with thousands, millions, local currency, or a share of a total. Two correct numbers can appear to conflict when they measure different things. Check the definition before you compare the two values."
+    },
+    {
+      "title": "Range and total errors",
+      "text": "A formula can quietly skip rows. The Reinhart-Rogoff spreadsheet averaged a range that stopped short, which left five countries out. Only 15 of 20 countries were in the average. The total still looked plausible, so the error stayed hidden. Test totals against a count of the source rows."
+    },
+    {
+      "title": "Chart links that do not update",
+      "text": "Chart links in PowerPoint for Mac have conflicting guidance. One accepted answer says Mac PowerPoint cannot update links to Excel. A Microsoft moderator says charts can be updated with Edit Data. Without a test, a slide can show values that no longer match the workbook behind it."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Keep a source log",
+      "text": "Make one sheet with columns for claim, value, unit, period, publisher, title, publication date and a note on why you chose the figure. Put the link or file name in the source column. Update the log whenever a number changes. Each figure takes a few minutes to log, and that saves the question later."
+    },
+    {
+      "title": "Trace each figure to its original",
+      "text": "Go back to the publisher, not the article that quoted it. Open the table or dataset and copy the exact label from it. If you only find a copy, say so in the log. A copy helps you find the original, but it is not proof of the number."
+    },
+    {
+      "title": "Match the period, not just the date",
+      "text": "Ask what the number describes. A figure published in 2025 may describe activity from an earlier year. Write the period in the slide note. When periods differ, adjust one source or drop it, and say which you did."
+    },
+    {
+      "title": "Test the date system before you combine workbooks",
+      "text": "Open each workbook and check its Calculation preference. Microsoft says the 1900 system is the default in Excel 2016 for Mac and Excel for Mac 2011, and earlier Mac versions defaulted to 1904. Do not assume. Convert dates once, in one file, and record the conversion in the log."
+    },
+    {
+      "title": "Trace precedents before you trust a total",
+      "text": "Select the total cell in Excel. Go to Formulas > Formula Auditing > Trace Precedents to see which cells feed it. Compare the number of rows in that range with the number of rows in the source. If a row is missing, fix the range and run the check again."
+    },
+    {
+      "title": "Show the range when sources still disagree",
+      "text": "Do not average two sources to hide the gap. Show the lower and higher values in the note, or pick one and name the other. A reader can then judge the gap for themselves. Your manager can decide whether the gap matters for the client."
+    },
+    {
+      "title": "Test a chart link before you rely on it",
+      "text": "Change one value in the source workbook and check whether the slide updates. If it does not, delete the chart object and rebuild it from the final file. Do this before the deck goes to anyone else, because a stale chart is hard to spot on screen."
+    },
+    {
+      "title": "Write the source line on every slide",
+      "text": "Put a source line under each chart and table. Include the publisher, the period and the publication date. A slide with a source line is easier to audit and easier to update when a number moves. It also answers the client's first question before they ask it."
+    },
+    {
+      "title": "Ask a second person to trace one figure",
+      "text": "Pick the most important numbers in a deck and ask a colleague to trace each one back to its source. A second pair of eyes catches different slips than your own review does. Keep it short. The goal is to test the log, not to run a formal audit."
+    },
+    {
+      "title": "Check who changed a workbook",
+      "text": "Microsoft's release notes list a change history skill in Copilot in Excel for Excel for Mac 16.113, dated September 16, 2026. It summarizes how a workbook has changed and identifies who made the edits. Check whether your license includes it before you rely on it."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "capability": "explain",
+      "say": "Hold ⌥ ⌘ and ask what this formula does.",
+      "result": "Lazur explains the formula out loud while you look at the sheet, so you can tell whether it covers the full range."
+    },
+    {
+      "capability": "point",
+      "say": "Where does this total get its number from?",
+      "result": "Lazur circles the input cells it points to and labels them on screen, so you can compare them with the source."
+    },
+    {
+      "capability": "guide",
+      "say": "Walk me through tracing precedents in Excel.",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves to the next step."
+    },
+    {
+      "capability": "dictate",
+      "say": "Hold fn and dictate the source, date and period.",
+      "result": "Dictation types clean text at the cursor in any app, so your source log entries take less time to write."
+    },
+    {
+      "capability": "draft",
+      "say": "Draft a short note explaining the two figures.",
+      "result": "Lazur drafts the message text. You read it, edit it and send it yourself."
+    },
+    {
+      "capability": "research",
+      "say": "Find the original publisher for this market figure.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. You still check each source before you use it."
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the date system setting for this workbook?",
+    "capability": "point",
+    "result": "Lazur circles the Calculation area in Excel's preferences and labels it. You open the setting and make the change yourself.",
+    "shell": "sheet",
+    "context": "Excel for Mac, two workbooks from one client",
+    "pointsAt": "Calculation setting"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Build the source log",
+      "text": "Pick one live deck and list every figure in it. Add each one to a source log with publisher, date, period and unit. Mark any figure you cannot trace yet, and leave it for Day 2."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the date systems",
+      "text": "Open each workbook behind the deck and check its date system in the Calculation preference. Convert dates once if the systems differ, then record the conversion in the log."
+    },
+    {
+      "label": "Day 3",
+      "title": "Trace the totals",
+      "text": "Trace precedents on each total that feeds a slide. Compare the rows in each range with the rows in the source. Fix any range that stops short and note the change."
+    },
+    {
+      "label": "Day 4",
+      "title": "Test the charts",
+      "text": "Change one value in each source workbook and check whether the linked chart in PowerPoint follows. Rebuild any chart that does not, then add a source line under it."
+    },
+    {
+      "label": "Day 5",
+      "title": "Write the conflict note",
+      "text": "Draft a short note for your manager or client that lists the conflicts, your choice and why you made it. Dictate or ask Lazur to draft the text, then read it yourself before you send."
+    }
+  ],
+  "apps": [
+    "excel",
+    "powerpoint",
+    "outlook"
+  ],
+  "type": "problem",
+  "slug": "desk-research-conflicting-data-sources",
+  "role": "consultants",
+  "roleName": "Consultants",
+  "roleSingular": "consultant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/desk-research-conflicting-data-sources/desk-research-with-conflicting-data-sources-1-71e686.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Consultant doing desk research on a laptop with conflicting data sources",
+      "caption": "Checking figures across several documents at one desk.",
+      "keywords": [
+        "desk research with conflicting data sources",
+        "Consultants",
+        "Check figures across sources and dates",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/desk-research-conflicting-data-sources/desk-research-with-conflicting-data-sources-2-8ae9b8.jpg",
+      "width": 1280,
+      "height": 1280,
+      "alt": "Printed reports and notes spread across an office desk during research",
+      "caption": "Several sources, several dates, and one number to choose.",
+      "keywords": [
+        "desk research with conflicting data sources",
+        "Consultants",
+        "Check figures across sources and dates",
+        "Mac",
+        "office papers desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "u_4mx5rfd1yn",
+        "url": "https://pixabay.com/users/u_4mx5rfd1yn-57572066/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stapler-blue-office-supplies-10544556/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/desk-research-conflicting-data-sources/desk-research-with-conflicting-data-sources-3-303f07.jpg",
+      "width": 1280,
+      "height": 757,
+      "alt": "Analyst reviewing a spreadsheet on a laptop in an office",
+      "caption": "Tracing each figure back to its original source.",
+      "keywords": [
+        "desk research with conflicting data sources",
+        "Consultants",
+        "Check figures across sources and dates",
+        "Mac",
+        "man laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-write-plan-desk-notes-pen-593333/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "desk research with conflicting data sources",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "check figures across sources and dates": 1,
+      "conflicting data in Excel on Mac": 1,
+      "date system mismatch in Excel": 1,
+      "verify numbers across client reports": 1,
+      "source of truth for consulting data": 1,
+      "linked charts in PowerPoint for Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

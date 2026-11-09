@@ -1,0 +1,621 @@
+{
+  "title": "VLOOKUP approximate match returns the wrong value on Mac: causes and fixes for accountants",
+  "metaTitle": "VLOOKUP approximate match wrong value on Mac: fixes for accountants",
+  "description": "VLOOKUP approximate match returns the wrong value without an error. Learn why it happens in Excel on Mac and how to get exact matches.",
+  "targetKeyword": "vlookup approximate match returns the wrong value",
+  "secondaryKeywords": [
+    "vlookup approximate match",
+    "vlookup range_lookup true",
+    "vlookup exact match fix",
+    "xlookup exact match default",
+    "vlookup sorted data requirement",
+    "vlookup wrong result mac"
+  ],
+  "intro": "VLOOKUP returns a wrong value without any error when the fourth argument is missing or set to TRUE. Excel then runs an approximate match. It finds the nearest smaller value in the first column and returns that row. Type FALSE or 0 as the fourth argument to get an exact match only.",
+  "tldr": [
+    "Approximate match is the default in VLOOKUP when the fourth argument is missing or TRUE.",
+    "With unsorted data or a missing key, the formula returns a plausible wrong value, not #N/A.",
+    "Type FALSE or 0 as the fourth argument to get exact matches on Mac.",
+    "In Microsoft 365, Excel 2024 or Excel 2021 for Mac, XLOOKUP returns exact matches by default.",
+    "Test each lookup with a key you know is missing before you trust the total."
+  ],
+  "stats": [
+    {
+      "value": "91%",
+      "label": "of 55 spreadsheets in Panko's core serious-error audits had errors",
+      "sourceUrl": "https://panko.com/ssr/Audits.html",
+      "sourceTitle": "Audits of Operational Spreadsheets: Raymond Panko"
+    },
+    {
+      "value": "3.6 hours",
+      "label": "a week spent fixing spreadsheet mistakes, reported by 1,003 US operations professionals",
+      "sourceUrl": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "sourceTitle": "How Spreadsheet Mistakes Are Costing Operations Teams Thousands: DOSS"
+    },
+    {
+      "value": "63%",
+      "label": "of errors found by one inspector working alone, in Panko's inspection experiments",
+      "sourceUrl": "https://panko.com/ssr/InspectionExperiments.html",
+      "sourceTitle": "Spreadsheet Inspection Experiments: Raymond Panko"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What approximate match means in VLOOKUP"
+    },
+    {
+      "type": "paragraph",
+      "text": "VLOOKUP takes four arguments. The fourth one, range_lookup, decides how Excel matches your key. Microsoft's VLOOKUP page says that if you don't specify anything, the default is always TRUE, which means approximate match. So leaving the fourth argument out gives you approximate match. Exact matching only happens when you type FALSE or 0."
+    },
+    {
+      "type": "paragraph",
+      "text": "Approximate match is built for sorted data. Think of tax brackets or commission tiers, where a number falls between two thresholds. Excel looks for the nearest smaller value in the first column and returns the result from that row. On a sorted list, that is what you want. On an unsorted list, the answer can be wrong and still look normal."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why the wrong result looks normal"
+    },
+    {
+      "type": "paragraph",
+      "text": "The trouble is that the failure is silent. Exceljet warns that VLOOKUP may quietly return an incorrect result when it doesn't find your lookup value. With unsorted data, there is no error at all. You see a number in the cell, and nothing tells you it came from the wrong row."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a small example. Column A holds invoice numbers 1005, 1010, 1020 and 1030. Column B holds the amounts. You look up 1025 with approximate match. Invoice 1025 does not exist, so Excel takes the nearest smaller number, 1020, and returns its amount. Your report now shows invoice 1020's amount in a row that asked about 1025."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the same lookup with FALSE. Excel returns #N/A. That error looks unpleasant, but it is the honest answer. It stops a wrong amount from moving into your totals without anyone noticing."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How common are spreadsheet errors like this one"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common, and much of the research is older than you might expect. Raymond Panko has compiled audits of operational spreadsheets, with studies running from 1992 to 2008. In the five core serious-error studies, 91% of 55 spreadsheets had errors. Those audits cover spreadsheet errors in general. They do not measure VLOOKUP alone, and they are not written for accountants."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the 2026 DOSS survey in context too. It asked 1,003 US operations professionals, not accountants, and a vendor ran it. Treat its numbers as a signal. Then check your own files, since your workbooks are what you answer for."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Causes that produce a wrong VLOOKUP result"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most wrong results trace back to a few setups. Check each one in the formula before you change anything else."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The fourth argument is missing, so Excel runs an approximate match.",
+        "The fourth argument is TRUE, but the first column is not sorted.",
+        "The key is not in the table, and approximate match returns the nearest smaller row.",
+        "The key sits outside the leftmost column, which is the only column VLOOKUP searches.",
+        "A value was typed or pasted into the wrong place before the formula ran."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The Mac angle is small. A 2021 Microsoft Q&A thread describes a Mac user who saw #N/A with the approximate setting. Microsoft's answer explains that with TRUE, a lookup value smaller than the smallest first-column value returns #N/A. That is one user's report, not a documented Mac bug. Read it as a reminder to check the table."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fixes you can use on Mac today"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most fixes take a few minutes. You do not need to buy anything to try them. Microsoft's Applies To list covers Excel for Microsoft 365, Excel 2024 and Excel 2021 for Mac. Start with the formula, then the table, then a test."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the formula first. Click the cell and read the formula bar at the top of the window. To edit inside the cell, press Fn + F2 on a Mac keyboard. Look at the last argument. If there is no fourth argument, or it says TRUE, you have found the problem. Here is the fixed version: =VLOOKUP(F2, A2:B200, 2, FALSE). It looks up F2 in column A and returns column B from the same row."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Click the cell that holds the VLOOKUP formula.",
+        "Add FALSE or 0 as the fourth argument, before the closing bracket.",
+        "Press Return and check the result against the source row.",
+        "Fill the formula down with ⌘ D only after the first row passes your test."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Use XLOOKUP where your version has it"
+    },
+    {
+      "type": "paragraph",
+      "text": "XLOOKUP returns exact matches by default, so you do not need to remember a fourth argument. Microsoft's XLOOKUP page gives match mode 0, exact match, as the default. Check your version before you rely on it. That page says XLOOKUP is not available in Excel 2016 and Excel 2019, yet it lists those versions under Applies To. Type =XLOOKUP in a blank cell. If the function appears in the autocomplete list, your version has it."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Sort the table only when you need approximate match"
+    },
+    {
+      "type": "paragraph",
+      "text": "Approximate match needs a sorted first column. Microsoft says the first column needs to be sorted alphabetically or numerically when you use TRUE or leave the argument out. If you truly need tiers, sort from smallest to largest with Data > Sort. Select every column of the table first. Sorting one column alone breaks each row's link to its amounts."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Select the whole table",
+      "text": "Before you sort, select every column in the table. If Excel asks whether to extend the selection, choose to extend it. A partial sort moves keys away from their amounts, and the lookups then return amounts for the wrong keys."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to test a VLOOKUP before you trust it"
+    },
+    {
+      "type": "paragraph",
+      "text": "A test takes about five minutes. Pick three keys from your table. Use one that exists, one that sits between two rows, and one smaller than the first value. Then compare what the formula returns with what you expect."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Test key",
+        "Exact match (FALSE)",
+        "Approximate match (TRUE or blank)"
+      ],
+      "rows": [
+        [
+          "A key that exists",
+          "Its own row's amount",
+          "Its own row's amount"
+        ],
+        [
+          "A key between two rows",
+          "#N/A",
+          "Amount from the row above"
+        ],
+        [
+          "A key below the first value",
+          "#N/A",
+          "#N/A"
+        ]
+      ],
+      "caption": "Expected results on a sorted lookup table with three test keys"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the middle row returns a value under exact match, check the formula again. It may still say TRUE, or the key may exist after all. Duplicate keys need a look too. VLOOKUP returns the first match it finds, so a second row with the same key stays hidden. Exceljet's guide on first and last matches covers that case."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they fix this"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Changing the sort but not the formula. A TRUE formula still runs approximate match on a sorted table.",
+        "Wrapping the formula in IFERROR to hide #N/A. That hides the missing key. It does not find it.",
+        "Assuming XLOOKUP is on every Mac. Check the version on the machine that will open the file.",
+        "Trusting your own single check. Panko's inspection experiments found that groups catch more errors than one inspector alone."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with this problem"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can explain, point, guide, draft and dictate. It does not click buttons or edit files for you. It is not an add-in for any app, and it has no partnerships with app makers. You still change the formula. Lazur helps you find the right cell and understand what the formula does."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ while the formula is on screen and ask why it returns a value that looks wrong. Lazur answers out loud. It can read what is on screen, so it can name a missing argument. Treat the answer as a starting point, then run the test table."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask Lazur to point at things. Hold ⌥ ⌘ and ask where the fourth argument is. Lazur draws a circle and a label around it. For the steps, ask Lazur to walk you through the change. It guides you one click at a time and waits for each click. You do the clicks."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation helps when you write up what you found. Hold fn to dictate a note at the cursor in any app. Dictation is unlimited on both paid plans. You can compare plan details on the [pricing page](/pricing)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Drafting helps when you need to explain the fix to a manager. Ask Lazur to draft a short note about the lookup change. Lazur types the text for you. Read it, edit it and send it yourself. Lazur does not send email for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy and client data"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers so they can answer, and they are not stored. Content is never used to train AI models. Those are Lazur's stated terms, not a review of your firm's obligations."
+    },
+    {
+      "type": "paragraph",
+      "text": "Accountants work with client data, and that data often carries rules. Follow your employer's rules on what you can share with an AI tool before you ask about a client file. If the rules say no, rebuild the problem with made-up numbers and ask about the formula instead."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If you use Numbers, check the match behavior too"
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple's Numbers function list includes both VLOOKUP and XLOOKUP. That page does not name a Numbers version. It also does not confirm the default match behavior, so run the same three-key test in Numbers before you rely on it. The [Numbers guide for accountants](/for/accountants/numbers) covers more of the basics."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the workbook that feeds your next client report. Change every approximate VLOOKUP you do not need. Then run the test table on the rest. If your sums also return zero, read the [SUMIFS returning zero guide](/for/accountants/problems/excel-sumifs-returning-zero)."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the wider Excel picture, the [Excel guide for accountants](/for/accountants/excel) covers closing the month and fixing errors in Microsoft 365. Come back to the test table whenever a formula changes."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does VLOOKUP return a value when the key is not in the list?",
+      "answer": "With the fourth argument omitted or set to TRUE, VLOOKUP runs an approximate match. It finds the nearest smaller value in the first column and returns that row's result. It does not show #N/A in that case, unless the key is smaller than the smallest value in the column. Type FALSE or 0 as the fourth argument to get exact matches."
+    },
+    {
+      "question": "Should I always use FALSE in VLOOKUP?",
+      "answer": "For IDs, invoice numbers, account codes and names, use FALSE. You want the exact row or nothing. Use TRUE only when the first column is sorted and you want the nearest threshold, such as a tier table. Note which one you chose if someone else will open the file."
+    },
+    {
+      "question": "Does XLOOKUP avoid this problem on Mac?",
+      "answer": "XLOOKUP returns exact matches by default, so you do not need a fourth argument. Microsoft lists Excel for Microsoft 365, Excel 2024 and Excel 2021 for Mac as supported for VLOOKUP, and those versions include XLOOKUP. Microsoft's XLOOKUP page also says it is not available in Excel 2016 and 2019, though it lists them. Check your version first."
+    },
+    {
+      "question": "Is this a bug in Excel for Mac?",
+      "answer": "No documented bug supports that claim. Microsoft's own docs say approximate match is the default and that the first column must be sorted. A Microsoft Q&A thread describes one Mac user's intermittent #N/A problem. That is one report, not an official bug, so check your table first."
+    },
+    {
+      "question": "My table is sorted, but the results are still wrong. What now?",
+      "answer": "Check the key and the setting. A sorted table with TRUE still returns the nearest smaller row for a missing key. Run the test table with a key you know is missing. If you get a value instead of #N/A, the formula is approximate. Switch to FALSE if you need exact matches."
+    },
+    {
+      "question": "Does Numbers have the same problem?",
+      "answer": "Apple's Numbers function list includes VLOOKUP and XLOOKUP. The list does not confirm the default match behavior. Run the same three-key test in Numbers before you rely on any result from it."
+    },
+    {
+      "question": "Can Lazur fix my formula for me?",
+      "answer": "No. Lazur explains formulas out loud, points at parts of the screen and guides you one click at a time. It does not edit your workbook or click buttons for you. You change the formula yourself, then test it with a key you know is missing."
+    },
+    {
+      "question": "How much time does this kind of error cost?",
+      "answer": "A 2026 DOSS survey of 1,003 US operations professionals reports an average of 3.6 hours a week fixing spreadsheet mistakes. That is not an accountant-specific figure. Track your own rework for one month to get a number that fits your work."
+    }
+  ],
+  "sources": [
+    {
+      "title": "VLOOKUP function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/vlookup-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "XLOOKUP function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/xlookup-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Danger: beware VLOOKUP defaults",
+      "url": "https://exceljet.net/articles/danger-beware-vlookup-defaults",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to lookup first and last match",
+      "url": "https://exceljet.net/articles/how-to-lookup-first-and-last-match",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Audits of Operational Spreadsheets",
+      "url": "https://panko.com/ssr/Audits.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Spreadsheet Inspection Experiments",
+      "url": "https://panko.com/ssr/InspectionExperiments.html",
+      "publisher": "Raymond Panko",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How Spreadsheet Mistakes Are Costing Operations Teams Thousands",
+      "url": "https://doss.com/research/spreadsheet-error-costs-operations-thousands",
+      "publisher": "DOSS",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Accountants and Auditors - Occupational Outlook Handbook",
+      "url": "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Numbers - Function list",
+      "url": "https://www.apple.com/au/mac/numbers/compatibility/functions.html",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "VLOOKUP not working on Macbook (Xlookup also)",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5137155/vlookup-not-working-on-macbook-(xlookup-also)",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "approximate vlookup returns wrong values",
+  "costs": [
+    {
+      "title": "Hours lost to fixing errors",
+      "text": "DOSS surveyed 1,003 US operations professionals in 2026. Teams reported an average of 3.6 hours a week fixing spreadsheet mistakes. The survey covers operations work, not accounting, so your own hours may be higher or lower. Track a month of rework before you decide what it costs you."
+    },
+    {
+      "title": "What one significant error costs",
+      "text": "DOSS reports an average cost of $4,315 for a single significant spreadsheet error. Organizations pay that cost. The figure comes from the same vendor-run survey. It is an average across organizations, not a per-accountant or per-firm number."
+    },
+    {
+      "title": "Errors slip past one reviewer",
+      "text": "A single reviewer misses errors. Panko's inspection experiments found that groups of three averaged 83% of errors found. A second check on key lookups takes minutes. Tracing a wrong figure back through a filed report takes far longer."
+    },
+    {
+      "title": "Silent errors reach client work",
+      "text": "A wrong VLOOKUP shows a normal number, not an error. The wrong figure can reach a client report, a tax file or an audit workpaper before anyone checks it. Nobody counts the errors they never saw, so the true cost stays unknown. Trust the test table more than your eyes."
+    },
+    {
+      "title": "Your hours have a price",
+      "text": "The BLS median pay for accountants and auditors was $83,680 a year, or $40.23 an hour, in May 2025. Every hour spent tracing a lookup is an hour not spent on review, advice or closing the books. That trade is worth weighing on your own calendar."
+    }
+  ],
+  "causes": [
+    {
+      "title": "The fourth argument is missing",
+      "text": "If you type only three arguments, Excel uses TRUE. Microsoft's VLOOKUP page says that when you don't specify anything, the default is always TRUE, or approximate match. The formula still runs. It just runs the wrong kind of search for an exact key. Look for the closing bracket after the column number. If nothing follows it, the fourth argument is missing."
+    },
+    {
+      "title": "The first column is not sorted",
+      "text": "Approximate match assumes the first column runs in order, from smallest to largest. Microsoft says it needs to be sorted alphabetically or numerically. When it is not, Excel can stop at the wrong row. It does not warn you. A list that looks tidy by eye can still be out of order in a few rows."
+    },
+    {
+      "title": "The key is not in the table",
+      "text": "A missing key is the clearest trigger for a silent wrong answer. With TRUE, Excel does not say the key is absent. It returns the row with the nearest smaller value. Exceljet warns that VLOOKUP may quietly return an incorrect result in this case. The fix is the same as before: use exact match so the missing key shows as #N/A."
+    },
+    {
+      "title": "The key sits outside the leftmost column",
+      "text": "VLOOKUP searches only the leftmost column of the table you give it. If your key lives in column C and the answer lives in column A, VLOOKUP cannot find it. A Microsoft Q&A answer says the same thing. Move the key column to the left, or use a function that can look in either direction, such as XLOOKUP."
+    },
+    {
+      "title": "Manual entry and copy-paste",
+      "text": "Many spreadsheet errors start before the formula runs. DOSS reports that manual data entry (59%) and copy-paste (45%) were among the top causes of spreadsheet mistakes in its 2026 survey of operations teams. A pasted block can shift rows, and a lookup then matches the wrong neighbor. Check the source data before you blame the formula."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Type FALSE or 0 as the fourth argument",
+      "text": "This is the core fix. Add FALSE or 0 before the closing bracket. Microsoft says FALSE searches for the exact value. Exceljet notes that adding 0 or FALSE forces an exact match. When no match exists, the formula returns #N/A instead of a nearby value."
+    },
+    {
+      "title": "Treat #N/A as a finding",
+      "text": "After the switch, some cells may show #N/A. Those rows have keys missing from the source table. Find out why each key is absent before you change anything. Fix the source, correct the key, or confirm the row should be empty. Hiding the error with IFERROR skips that step."
+    },
+    {
+      "title": "Use XLOOKUP where your version supports it",
+      "text": "XLOOKUP returns exact matches by default, so it avoids the fourth-argument trap. Microsoft describes XLOOKUP as an improved version of VLOOKUP. Confirm your Excel version first. Microsoft's pages conflict on Excel 2016 and Excel 2019, so do not assume support for those versions."
+    },
+    {
+      "title": "Use LOOKUP for the last match in unsorted data",
+      "text": "If you need the last matching row in an unsorted list, Exceljet offers this pattern: =LOOKUP(2,1/(item=F5),price). The division turns non-matches into errors, and LOOKUP skips those. Test it on a small range first. The formula is hard to read, so add a note beside it for the next person."
+    },
+    {
+      "title": "Sort only when you need approximate tiers",
+      "text": "Sorting is required for approximate match to work. Use it for tax brackets, commission tiers and similar lists. Select the whole table before you sort. A one-column sort breaks each row, so amounts land beside the wrong keys. For exact IDs, sorting does not help. Use FALSE instead."
+    },
+    {
+      "title": "Test with a key you know is missing",
+      "text": "Pick a key that is not in the table. Run the formula with FALSE. You should see #N/A. If you see a value, the formula is still approximate or the key exists after all. Keep that test row in the workbook so you can rerun it after future edits."
+    },
+    {
+      "title": "Get a second check on key lookups",
+      "text": "Ask a colleague to check a sample of lookups against the source documents. Follow your employer's rules before sharing client files with anyone, including an AI tool. A second pair of eyes catches what the formula cannot show you."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Hold ⌥ ⌘ and ask why this VLOOKUP returns a value.",
+      "result": "Lazur reads the formula on screen and explains out loud what the fourth argument does. Check its answer against the test table.",
+      "capability": "explain"
+    },
+    {
+      "say": "Hold ⌥ ⌘ and ask where the fourth argument is.",
+      "result": "Lazur draws a circle and a label around that part of the formula.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through changing this to exact match.",
+      "result": "Lazur guides you one click at a time and waits for each click. You make the change.",
+      "capability": "guide"
+    },
+    {
+      "say": "Hold fn and dictate a note about the test results.",
+      "result": "Dictated text lands at the cursor in any app. Dictation is unlimited on both paid plans.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note to my manager about the lookup fix.",
+      "result": "Lazur drafts the note and types it for you to read and edit. It does not send anything.",
+      "capability": "draft"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the fourth argument in this VLOOKUP?",
+    "capability": "point",
+    "result": "Lazur circles the fourth argument in the formula and labels it. You type FALSE or 0 yourself.",
+    "shell": "sheet",
+    "context": "Excel for Microsoft 365 on Mac, lookup formula selected",
+    "pointsAt": "fourth argument"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "List every VLOOKUP",
+      "text": "Press ⌘ F and search for VLOOKUP. Write down each formula, its lookup key and its table range. Keep the list in one place so you can check it later."
+    },
+    {
+      "label": "Day 2",
+      "title": "Flag approximate matches",
+      "text": "Mark every formula with three arguments or with TRUE in the fourth place. Those run approximate match. Mark any table whose first column you have not checked for sorting."
+    },
+    {
+      "label": "Day 3",
+      "title": "Switch to exact match",
+      "text": "Change the fourth argument to FALSE or 0 in each flagged formula. Read each result that changed. A #N/A now is a finding to explain, not an error to hide."
+    },
+    {
+      "label": "Day 4",
+      "title": "Run the test table",
+      "text": "Test one key that exists, one between two rows and one below the first value. Compare the results with the table in this guide. Fix any formula that does not match."
+    },
+    {
+      "label": "Day 5",
+      "title": "Get a second check",
+      "text": "Ask a colleague to check a sample of lookups against the source documents. Follow your employer's rules on sharing client files before you send anything to anyone."
+    }
+  ],
+  "apps": [
+    "excel",
+    "numbers"
+  ],
+  "type": "problem",
+  "slug": "vlookup-approximate-match-wrong-value",
+  "role": "accountants",
+  "roleName": "Accountants",
+  "roleSingular": "accountant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/vlookup-approximate-match-wrong-value/vlookup-approximate-match-returns-the-wrong-value-1-660dbe.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Accountant at a desk checking a VLOOKUP result on a laptop screen",
+      "caption": "Checking a lookup against the source table before you trust the total.",
+      "keywords": [
+        "vlookup approximate match returns the wrong value",
+        "Accountants",
+        "Approximate VLOOKUP returns wrong result",
+        "Mac",
+        "accountant laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "viarami",
+        "url": "https://pixabay.com/users/viarami-13458823/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/payment-invoice-cash-bills-money-5235118/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/vlookup-approximate-match-wrong-value/vlookup-approximate-match-returns-the-wrong-value-2-1c62aa.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Person working on a Mac computer at a desk with a notebook beside it",
+      "caption": "A test row takes a few minutes on the Mac you already use.",
+      "keywords": [
+        "vlookup approximate match returns the wrong value",
+        "Accountants",
+        "Approximate VLOOKUP returns wrong result",
+        "Mac",
+        "person using mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/vlookup-approximate-match-wrong-value/vlookup-approximate-match-returns-the-wrong-value-3-cafd0b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Printed financial reports on a desk beside a computer during month end close",
+      "caption": "Month-end reports often carry numbers pulled by lookups.",
+      "keywords": [
+        "vlookup approximate match returns the wrong value",
+        "Accountants",
+        "Approximate VLOOKUP returns wrong result",
+        "Mac",
+        "office spreadsheet papers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AlexanderStein",
+        "url": "https://pixabay.com/users/AlexanderStein-45237/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/colorful-papers-hues-colors-182220/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "vlookup approximate match returns the wrong value",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 3,
+    "secondary": {
+      "vlookup approximate match": 5,
+      "vlookup range_lookup true": 1,
+      "vlookup exact match fix": 1,
+      "xlookup exact match default": 1,
+      "vlookup sorted data requirement": 1,
+      "vlookup wrong result mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

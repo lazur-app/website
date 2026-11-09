@@ -1,0 +1,607 @@
+{
+  "title": "Google Classroom quiz grades not importing on Mac: causes and fixes for 2026",
+  "metaTitle": "Google Classroom quiz grades not importing? Causes and fixes",
+  "description": "Quiz grades not importing from Google Forms into Google Classroom? Check the quiz setup, attachments and email settings, then import again.",
+  "targetKeyword": "google classroom quiz grades not importing",
+  "secondaryKeywords": [
+    "google forms quiz grades not syncing to classroom",
+    "google classroom import grades from google forms",
+    "import grades button missing google classroom",
+    "google classroom quiz grade passback",
+    "google classroom quiz assignment setup"
+  ],
+  "intro": "Google documents the usual reasons quiz grades fail to import into Google Classroom. The quiz must be the only attachment, the form must collect email addresses, and grade importing must be on when you create the assignment. Check those three rules first. Then work through the fixes below in order, starting with the setup.",
+  "tldr": [
+    "Grade importing needs a quiz assignment with the form as the only attachment.",
+    "The form must collect email addresses, and students must share your domain.",
+    "Import overwrites every grade at once, and you cannot pick one student.",
+    "Editing after posting, or changing import settings, can block the import.",
+    "No Mac-only fix exists. Check the setup in Chrome, then wait out passback before you retry."
+  ],
+  "stats": [
+    {
+      "value": "5 hours",
+      "label": "median weekly time US teachers spend grading and giving feedback, 2022 survey",
+      "sourceUrl": "https://www.edweek.org/teaching-learning/how-teachers-spend-their-time-a-breakdown/2022/04",
+      "sourceTitle": "How Teachers Spend Their Time: A Breakdown (EdWeek, April 2022)"
+    },
+    {
+      "value": "54 hours",
+      "label": "median total work hours per week for the same teachers, 2022 survey",
+      "sourceUrl": "https://www.edweek.org/teaching-learning/how-teachers-spend-their-time-a-breakdown/2022/04",
+      "sourceTitle": "How Teachers Spend Their Time: A Breakdown (EdWeek, April 2022)"
+    },
+    {
+      "value": "9.9 hours",
+      "label": "average weekly marking time in a vendor-published survey of 258 US teachers, January 2025",
+      "sourceUrl": "https://learnosity.com/edtech-blog/a-third-of-us-teachers-considered-leaving-education-in-last-12-months-due-to-grading-workload/",
+      "sourceTitle": "Learnosity blog: a third of US teachers considered leaving due to grading workload"
+    },
+    {
+      "value": "5 to 10 seconds",
+      "label": "typical delay for a Classroom add-on grade passback, which can take up to 30 seconds",
+      "sourceUrl": "https://developers.google.com/classroom/add-ons/walkthroughs/grade-passback",
+      "sourceTitle": "Attachment grades and grade passback | Google for Developers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "You built the quiz in Google Forms, and students finished it. Now the scores sit in Forms, but the Google Classroom gradebook is empty or missing students. This is a frustrating gap, and it is not random. Google documents the rules for importing quiz grades, and most failed imports break one of them. Check the rules first. Then work through the fixes in order."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a failed import costs you each week"
+    },
+    {
+      "type": "paragraph",
+      "text": "Retyping quiz scores is slow, and it is easy to get wrong. No public study measures how often the Forms to Classroom import fails, so there is no failure rate to quote. You can measure the time pressure instead. In a 2022 EdWeek Research Center survey, commissioned by Merrimack College, teachers reported a median of 5 hours per week grading and giving feedback. The same teachers reported a median of 54 hours of total work per week. Every hour spent on manual entry comes out of that total."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "A bad import can cost more than a failed one. Google's help says the import brings in all grades at once. It overrides any grades already entered for that assignment. You cannot choose one student. If you typed a correction into Classroom earlier, the import can replace it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Late changes cause a quieter problem. Forms and Classroom store grades separately. If you fix an answer in Forms after the import, Classroom keeps the old score until you import again. The Forms page shows the new number, which makes the mismatch easy to miss."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why quiz grades fail to import into Classroom"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help page for quiz assignments lists the setup rules. Break one and the Import grades option may never appear. Other rules affect who gets graded. The first two rules are the ones Google ties to the missing option, so start there."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The form must be set up as a quiz, with grade importing on when you create the assignment.",
+        "The quiz must be the only attachment on a quiz assignment. Links and files count.",
+        "The form must collect student email addresses.",
+        "Students must be in the same domain as the teacher, and each student can respond only once.",
+        "Attaching the form as a link means grades cannot be imported at all."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "If Import grades is missing, look at the setup first. Google's help says the option is absent when the form was not set up as a quiz, or when grade importing was off at creation. These are choices you make at the start. The help page does not describe a repair for them after posting. If the setup was wrong, the cleanest path is a new assignment with the finished quiz attached. That is my advice, based on those rules."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Editing after posting and the all or nothing import"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's help says that changing import settings, or editing the assignment after saving or posting, may prevent importing grades. Treat posting as the point where your setup must be final. Finish the form, the answer key, and the assignment settings first. Then post."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the all or nothing rule in mind too. The import takes every grade at once, and you cannot select individual students. If only part of the grade comes from the quiz, import the quiz grades before you enter anything else for that assignment. Otherwise the import replaces work you already graded."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Third-party tools and LTI grade passback"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many schools do not use Classroom quizzes alone. Some grades flow from a learning management system (LMS) or an add-on tool through a connection called LTI. Google's Assignments LTI help names two common causes when a grade does not pass back to the LMS. Your admin may have set the LMS to block grade passback. Or a firewall may block requests from Assignments. Google advises LTI version 1.3 for best results."
+    },
+    {
+      "type": "paragraph",
+      "text": "Timing matters. Google's developer documentation says a typical Classroom add-on grade passback takes 5 to 10 seconds. It can take as long as 30 seconds. Wait that long before you call a grade failed. Then look at the Classroom page, because the next rule applies."
+    },
+    {
+      "type": "paragraph",
+      "text": "The developer docs say that with signed-in teacher credentials, no grades populate in Classroom until you take action in the Classroom interface. A missing grade may be waiting for you. The docs also say only one attachment can carry the Grade sync label. Removing that attachment does not move the label to another one. Check which attachment holds the label before you remove anything."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you see",
+        "Likely cause",
+        "Where to check first"
+      ],
+      "rows": [
+        [
+          "Import grades option missing",
+          "Form not set up as a quiz, or grade importing off at creation",
+          "Assignment setup and the form attachment"
+        ],
+        [
+          "Some grades missing after import",
+          "Form does not collect emails, or a student is outside your domain",
+          "Form email setting and student accounts"
+        ],
+        [
+          "Forms score changed, Classroom still shows the old score",
+          "Forms and Classroom store grades separately",
+          "Run the import again after the change"
+        ],
+        [
+          "Add-on or LMS grade never arrives",
+          "Admin passback block, firewall, or the wait window",
+          "LMS admin settings, then wait up to 30 seconds"
+        ]
+      ],
+      "caption": "Symptoms mapped to the checks Google's help points to."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix it in this order"
+    },
+    {
+      "type": "paragraph",
+      "text": "Work from the setup down to the connection. The first four steps are yours to do. The later steps may need your school's IT team. Google's labels can change on current screens, so read each step for its function, not its exact wording."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm the setup. Check that the form is a quiz and that the quiz is the only attachment, not a link. If Import grades is missing, the setup is the cause.",
+        "Remove extra attachments. Only the quiz can stay on a quiz assignment. Finish any short answer grading in Forms before you import.",
+        "Run the import. Use View assignment > Import grades > Import on the Student work page. Then compare a few students with the Forms responses.",
+        "Check the form and the people. Confirm the form collects student email addresses. Confirm students are in your domain, because outside accounts do not meet the rule.",
+        "Import again after any Forms change. The import overwrites the Classroom grade, so each change needs a fresh import.",
+        "If a third-party tool is involved, check passback with your admin before you retry."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Reload the Classroom tab with ⌘R after an admin change, so the page shows current data. Then try the import again. Do not run several imports in a row without checking the result. Each import overwrites the one before it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example you can copy"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you gave a quiz in the middle of a unit, and the quiz counts toward the final grade. You typed a few scores into Classroom by hand before the quiz was graded in Forms. Then you run Import grades. The import overwrites those hand typed scores, because it brings in every grade at once. The fix is to import the quiz grades first, before you enter other grades for that assignment."
+    },
+    {
+      "type": "paragraph",
+      "text": "Now a second scenario. A student asks you to re-check question four. You fix the answer key in Forms, and the student's score changes there. Classroom still shows the old score. Run the import again, and the new score overwrites the old one. Write the date of each import in your notes, so you know which version is current."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that waste the most time"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Attaching the form as a link instead of making it the quiz assignment.",
+        "Editing the assignment after posting, then wondering why the import stopped working.",
+        "Calling a grade missing before the passback window has passed.",
+        "Typing a correction into Classroom, then running Import grades. The import replaces the correction.",
+        "Skipping the email collection setting because the form works fine for students.",
+        "Running the import again and again without checking the result each time."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "If the import still fails, enter the scores by hand"
+    },
+    {
+      "type": "paragraph",
+      "text": "Manual entry is the fallback. Open the Forms responses and type each score into Classroom. It is slow, but you control every change, and a later import cannot overwrite your entries by surprise. Some third-party guides describe CSV exports and workarounds. Those guides were not verified here, so test any of them on a copy first."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What Lazur can and cannot do with this problem"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur cannot run the import for you. It does not click buttons, edit files, or operate Google Classroom. Think of it as a second pair of eyes on your screen. Hold ⌥⌘ and ask where the Import grades button is. Lazur draws a circle and a label around it, then answers out loud. For the clicks, ask Lazur to walk you through it one click at a time, and do each click yourself."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur also helps with wording. Ask it to draft a short note to your admin about LTI grade passback. Read the draft, change what you need, and send it from your own email. Hold fn to dictate a note to yourself about which students need re-entry. Dictation types clean text at the cursor in any app."
+    },
+    {
+      "type": "paragraph",
+      "text": "There is no Mac-specific fix for this problem. Apple's Classroom app guide for Mac was written for macOS Big Sur. It covers classes, student screens, and sharing content. It does not mention Google Classroom or importing grades. The real work happens in Chrome, Google Forms, and Google Classroom in the browser."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Protect student data while you troubleshoot"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. That still does not make student data safe to paste anywhere. Follow your school's rules on student records before you share names or scores with any tool."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If the import works, the next time saver is the grading routine itself. Read [Google Docs for teachers on Mac](/for/teachers/google-docs) for grading and offline work. If parents ask about a changed grade, the routine in [Gmail for teachers on Mac](/for/teachers/gmail) covers templates. Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. See [pricing](/pricing) for plan details."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why is the Import grades option missing?",
+      "answer": "Google's help says the form was not set up as a quiz, or grade importing was off when you created the assignment. Also check that the form is attached as the quiz, not as a link. Those settings come from the start. If they were wrong, a new assignment is the cleanest fix."
+    },
+    {
+      "question": "Does Import grades erase grades I already typed?",
+      "answer": "Yes, according to Google's help. The import brings in all grades at once and overrides any current grades for the assignment. You cannot pick one student. Import the quiz grades first, or enter the rest by hand after the import."
+    },
+    {
+      "question": "Can I import the grade for just one student?",
+      "answer": "No. Google says individual grades cannot be selected. The import is all or nothing for that assignment. If one student's grade is wrong, fix the Forms response, import again, then check the others against the responses."
+    },
+    {
+      "question": "Why are some grades still missing after the import?",
+      "answer": "Check that the form collects email addresses, that students are in your domain, and that the quiz is the only attachment. With signed-in teacher credentials, grades can wait for you to act in the Classroom interface. Look at the page before you assume the import failed."
+    },
+    {
+      "question": "If I change a score in Forms, does Classroom update on its own?",
+      "answer": "Not on its own. Forms and Classroom store grades separately. Google's help says you must import again to overwrite the Classroom grade after a Forms grade changes."
+    },
+    {
+      "question": "How long should I wait for a third-party grade to arrive?",
+      "answer": "Google's developer docs say a typical add-on grade passback takes 5 to 10 seconds, and can take as long as 30 seconds. If nothing arrives after that, check your admin settings and firewall, then contact your LMS admin."
+    },
+    {
+      "question": "Can Lazur fix the import for me?",
+      "answer": "No. Lazur does not click buttons or operate Google Classroom. It can point to the Import grades button, guide you one click at a time, explain a notice on screen, and draft a note to your admin. You do the clicks."
+    },
+    {
+      "question": "Is there a Mac app that handles Google Classroom quiz grades?",
+      "answer": "Not one I could confirm. Apple's Classroom app guide for Mac does not mention Google Classroom or grades. The import runs in Chrome, with Google Forms and Google Classroom in the browser."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create a quiz assignment | Classroom Help",
+      "url": "https://support.google.com/edu/classroom/answer/9095575?hl=en",
+      "publisher": "Google Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Grade & return an assignment | Computer | Classroom Help",
+      "url": "https://support.google.com/edu/classroom/answer/6020294?hl=en&co=GENIE.Platform%3DDesktop",
+      "publisher": "Google Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Attachment grades and grade passback | Google for Developers",
+      "url": "https://developers.google.com/classroom/add-ons/walkthroughs/grade-passback",
+      "publisher": "Google for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Troubleshooting | Google Workspace LTI Help",
+      "url": "https://support.google.com/edu/assignments/answer/9069220?hl=en",
+      "publisher": "Google Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How Teachers Spend Their Time: A Breakdown",
+      "url": "https://www.edweek.org/teaching-learning/how-teachers-spend-their-time-a-breakdown/2022/04",
+      "publisher": "Education Week",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "A third of US teachers considered leaving education due to grading workload",
+      "url": "https://learnosity.com/edtech-blog/a-third-of-us-teachers-considered-leaving-education-in-last-12-months-due-to-grading-workload/",
+      "publisher": "Learnosity (vendor blog citing Perspectus Global survey)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Apple Classroom User Guide for Mac",
+      "url": "https://support.apple.com/guide/classroom/welcome/mac",
+      "publisher": "Apple Support",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "quiz grades not importing into google classroom",
+  "costs": [
+    {
+      "title": "Hours of retyping",
+      "text": "Manual entry eats time you already do not have. A 2022 EdWeek survey reported a median of 5 hours per week on grading and feedback, within a median 54 hour work week. Every retyped score adds to that load. It also adds a typo you may not catch until a parent asks."
+    },
+    {
+      "title": "Overwritten grades",
+      "text": "The import replaces every grade for the assignment at once. If you corrected a score by hand, or a Forms change came after the import, you can lose the correct number. You cannot pick one student to protect. Check the gradebook after each import."
+    },
+    {
+      "title": "Students and parents see gaps",
+      "text": "A missing grade can look like missing work. A grade that did not update can look like your error. Parents may email about either one. Each reply costs time, and that time is not spent on lessons."
+    },
+    {
+      "title": "Wrong passback waits",
+      "text": "Third-party grades can take up to 30 seconds to pass back. A teacher who does not know that may assume the tool failed and enter grades a second time. Two versions of the same score create more cleanup later."
+    },
+    {
+      "title": "Lost trust in the setup",
+      "text": "After one failed import, some teachers stop trusting the connection. They re-enter everything by hand as a precaution. That is safe but slow. Test the setup on one small quiz before you rely on it for a full unit."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Quiz not set up as a quiz",
+      "text": "Google's help says the Import grades option is missing when the form was not set up as a quiz. Grade importing must also be on when you create the assignment. Those choices happen at the start, so check them before you post. If you are unsure, create a test assignment and confirm the option appears."
+    },
+    {
+      "title": "Form attached as a link",
+      "text": "Google says attaching the form as a link means grades cannot be imported. The form must be the quiz itself, and it must be the only attachment on a quiz assignment. A link looks harmless, and it is easy to add one to share a quiz. That habit can block the import."
+    },
+    {
+      "title": "Extra attachments on the assignment",
+      "text": "A quiz assignment should carry only the quiz. Extra files or links break that rule. Google's developer docs also say only one attachment can carry the Grade sync label for add-on passback. Removing that attachment does not move the label, so you may need to rebuild the setup."
+    },
+    {
+      "title": "Email collection off or domain mismatch",
+      "text": "Google's rule is that the form must collect student email addresses. Students must also be in the same domain as the teacher. Without those addresses, a response cannot be tied back to a student account. A student who signed in with an outside account is one example of a mismatch."
+    },
+    {
+      "title": "Editing after posting",
+      "text": "Google says editing the assignment after saving or posting may prevent importing grades. Changing import settings can do the same. It is easy to trigger when you tweak a quiz after students have already started it. Make revisions before you post, if you can."
+    },
+    {
+      "title": "Admin passback block or firewall",
+      "text": "For third-party tools, Google's Assignments LTI troubleshooting page lists two causes. The admin may have set the LMS to not allow grade passback. Or the LMS may sit behind a firewall that blocks requests from Assignments. Neither is a teacher setting. You need your admin to change them."
+    },
+    {
+      "title": "Forms changes after the import",
+      "text": "Forms and Classroom store grades separately. If you change a grade in Forms after the import, Classroom keeps the old score. You must import again to overwrite it. The Forms page shows the new number, so the mismatch is easy to miss."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Confirm the setup before anything else",
+      "text": "Check that the form is a quiz, attached as the only attachment, and not as a link. If Import grades is missing, the setup is the cause that Google's help points to. Start a new assignment with the finished form if the setup was wrong. That is my advice based on Google's rules, not a documented repair."
+    },
+    {
+      "title": "Remove extra attachments and finish the form",
+      "text": "A quiz assignment should carry only the quiz. Remove other files and links. Grade short answers in Forms first, then import. A grade you change later needs another import, so finish the Forms work before you run it."
+    },
+    {
+      "title": "Run View assignment > Import grades > Import",
+      "text": "Open the quiz assignment, click View assignment, then Import grades on the Student work page, then Import. Compare a few students against the Forms responses before you trust the totals. The import overwrites every grade for that assignment, so run it once you are ready."
+    },
+    {
+      "title": "Re-import after every Forms change",
+      "text": "Forms and Classroom keep separate grades. After you change a score in Forms, import again. The new import overwrites the old Classroom grade. Note the date of each import in your own records, so you know which version is current."
+    },
+    {
+      "title": "Check the email setting and the domain",
+      "text": "Make sure the form collects student email addresses. Make sure students are in your domain. Students who sign in with outside accounts do not meet the rule. Fix the form setting yourself, and ask your admin about any account that needs changing."
+    },
+    {
+      "title": "Wait, then check passback for third-party tools",
+      "text": "Google's developer docs give a typical delay of 5 to 10 seconds for add-on passback, and up to 30 seconds. With teacher credentials, grades can wait for you to act in the Classroom interface. Wait the full window, then check the Classroom page. If nothing arrives, go to your admin."
+    },
+    {
+      "title": "Ask your admin about passback and the firewall",
+      "text": "Two causes sit outside the teacher's control. Your admin may have blocked grade passback in the LMS. A firewall may block requests from Assignments. Ask whether passback is allowed and whether Assignments can reach the LMS. Ask whether the tool uses LTI version 1.3, which Google recommends."
+    },
+    {
+      "title": "Fall back to manual entry",
+      "text": "When the import keeps failing, enter scores by hand from the Forms responses. It is slow, but no later import will overwrite your entries by surprise. Some third-party guides describe CSV workarounds. Those guides were not verified here, so test any of them on a copy first."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is the Import grades button?",
+      "result": "Lazur draws a circle and a label around the button on your screen, so you can find it and click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through re-running the import.",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking, and Lazur does not operate Classroom for you.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this message on the Classroom page mean?",
+      "result": "Lazur reads what is on screen and answers out loud, so you can ask about the notice in place.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a note to my admin about LTI grade passback.",
+      "result": "Lazur drafts the text for you to review. You edit it and send it from your own email.",
+      "capability": "draft"
+    },
+    {
+      "say": "Set a timer for 30 seconds.",
+      "result": "Lazur sets the timer by voice, so you can wait out a passback window without watching the clock.",
+      "capability": "everyday"
+    },
+    {
+      "say": "Research how LTI 1.3 grade passback works.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report you can read later.",
+      "capability": "research"
+    },
+    {
+      "say": "Hold fn and dictate a note about students to re-enter.",
+      "result": "Dictation types clean text at the cursor in any app, so the note lands where you are working.",
+      "capability": "dictate"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Import grades button?",
+    "capability": "point",
+    "context": "Quiz assignment open in Chrome, Student work page visible",
+    "result": "Lazur draws a circle and a label around Import grades, so you can find it fast and click it yourself.",
+    "shell": "generic",
+    "pointsAt": "Import grades",
+    "output": "A circle and a label around the Import grades button on the Student work page."
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Check the quiz setup",
+      "text": "Open the form and confirm it is a quiz. Open the Classroom assignment and confirm the quiz is the only attachment, not a link. If the Import grades option is missing, plan a new assignment now, before more students submit."
+    },
+    {
+      "label": "Day 2",
+      "title": "Clean up the form and attachments",
+      "text": "Remove extra attachments. Confirm the form collects email addresses. Finish manual grading of short answers in Forms. Then leave the assignment alone until every setting is final."
+    },
+    {
+      "label": "Day 3",
+      "title": "Run the import once and check it",
+      "text": "Use View assignment > Import grades > Import. Compare a few students against the Forms responses. Write the date in your notes, so you know which import is current."
+    },
+    {
+      "label": "Day 4",
+      "title": "Check the LMS path if you use one",
+      "text": "If a third-party tool sends grades, ask your admin about passback settings and firewalls. Ask whether the tool uses LTI version 1.3. Wait 5 to 10 seconds, up to 30, before you decide a grade did not arrive."
+    },
+    {
+      "label": "Ongoing",
+      "title": "Re-import after every Forms change",
+      "text": "Each time you change a score in Forms, import again. Keep a short list of manual entries, so a later import does not surprise you."
+    }
+  ],
+  "apps": [
+    "gmail",
+    "google-docs"
+  ],
+  "type": "problem",
+  "slug": "google-classroom-quiz-grades-not-importing",
+  "role": "teachers",
+  "roleName": "Teachers",
+  "roleSingular": "teacher",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-classroom-quiz-grades-not-importing/google-classroom-quiz-grades-not-importing-1-273464.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Teacher at a Mac in a classroom checking Google Classroom quiz grades after an import",
+      "caption": "Checking quiz grades on a laptop between lessons.",
+      "keywords": [
+        "google classroom quiz grades not importing",
+        "Teachers",
+        "quiz grades failing to import into Classroom",
+        "Mac",
+        "teacher laptop classroom",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/children-different-drawings-faces-1853193/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-classroom-quiz-grades-not-importing/google-classroom-quiz-grades-not-importing-2-6ac825.jpg",
+      "width": 1280,
+      "height": 960,
+      "alt": "Teacher grading student papers at a desk with a laptop open beside them",
+      "caption": "Grading takes time, even with a laptop nearby.",
+      "keywords": [
+        "google classroom quiz grades not importing",
+        "Teachers",
+        "quiz grades failing to import into Classroom",
+        "Mac",
+        "teacher grading papers",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "andros1234",
+        "url": "https://pixabay.com/users/andros1234-139658/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/class-discussion-girls-study-child-302116/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/google-classroom-quiz-grades-not-importing/google-classroom-quiz-grades-not-importing-3-85f1d8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Student taking a quiz on a school laptop, the start of the grade trail",
+      "caption": "A quiz on a school laptop starts the grade trail.",
+      "keywords": [
+        "google classroom quiz grades not importing",
+        "Teachers",
+        "quiz grades failing to import into Classroom",
+        "Mac",
+        "student using laptop school",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "akshayapatra",
+        "url": "https://pixabay.com/users/akshayapatra-195187/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/children-infant-girl-school-306607/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google classroom quiz grades not importing",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "google forms quiz grades not syncing to classroom": 1,
+      "google classroom import grades from google forms": 1,
+      "import grades button missing google classroom": 1,
+      "google classroom quiz grade passback": 1,
+      "google classroom quiz assignment setup": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

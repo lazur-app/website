@@ -1,0 +1,612 @@
+{
+  "title": "Synthesizing interview transcripts for consulting on Mac: summaries and quotes in 2026",
+  "metaTitle": "Synthesizing interview transcripts for consulting on Mac, 2026",
+  "description": "Turn interview audio into summaries and pull quotes on a Mac. Get clean transcripts, check them against the audio, and avoid made-up quotes.",
+  "targetKeyword": "synthesizing interview transcripts for consulting",
+  "secondaryKeywords": [
+    "summarize interview transcripts Mac",
+    "pull quotes from interviews",
+    "transcribe client interviews on Mac",
+    "interview transcript summary consulting",
+    "consulting interview analysis in Excel",
+    "transcription tools for consultants"
+  ],
+  "intro": "To synthesize interview transcripts for consulting on a Mac, get clean text first. Then check it against the audio, and only then pull summaries and quotes. Expect the first two steps to take the most effort. This page covers that order, the tools that fit it, and the mistakes that reach client decks.",
+  "tldr": [
+    "Get a transcript before you summarize. A summary of a bad transcript is a confident guess.",
+    "Check every quote against the audio timestamp before it goes on a slide.",
+    "Code answers in a spreadsheet, one row per quote, so each theme traces back to a person.",
+    "Ask Lazur about what is on screen, then verify the answer yourself."
+  ],
+  "stats": [
+    {
+      "value": "76.4%",
+      "label": "Most time saved in arXiv paper 2503.13031, a 12-interview study, AI-assisted workflow versus manual transcription. Reported as up to this figure.",
+      "sourceUrl": "https://arxiv.org/abs/2503.13031",
+      "sourceTitle": "arXiv 2503.13031: AI-assisted transcription workflow for content analysis"
+    },
+    {
+      "value": "$48.97",
+      "label": "Median hourly pay for management analysts in May 2025, per BLS. A wage, not a billing rate.",
+      "sourceUrl": "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "sourceTitle": "BLS Occupational Outlook Handbook: Management Analysts"
+    },
+    {
+      "value": "2 minutes",
+      "label": "How often Microsoft says Microsoft 365 users are interrupted by a meeting, email, or notification, per its 2025 Work Trend Index.",
+      "sourceUrl": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "sourceTitle": "Microsoft Work Lab: Breaking down the infinite workday"
+    },
+    {
+      "value": "300 minutes",
+      "label": "Monthly transcription cap on Otter.ai's free Basic plan, shared across all transcription types.",
+      "sourceUrl": "https://otter.ai/pricing",
+      "sourceTitle": "Otter.ai Pricing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Synthesizing interview transcripts means turning hours of talk into a few findings you can defend. You read across interviews, group what people said, and pull the exact words that prove each point. For a consultant, the output is usually a summary memo, a set of themes, and a few quotes for a deck. Every claim needs to trace back to a named interview and a moment in the audio."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the work costs you in hours and money"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most consultants do this work after the call, not during it. The audio sits in a folder while the next project starts. The cost shows up later, as evenings spent replaying a recording to find one sentence. No consultant-specific survey of this time turned up in our research, so treat any single figure with care. The closest measured numbers come from adjacent work."
+    },
+    {
+      "type": "paragraph",
+      "text": "The most useful measured number comes from arXiv paper 2503.13031, which tested 12 interviews. Its AI-assisted workflow cut transcription time by up to 76.4% compared with manual transcription. The abstract reports no word error rate and no audio hours. It does not state the study's limitations in the abstract, so expect a smaller gain on your own work until you test it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Try the math on your own project. Assume manual cleanup takes you a full day. Even the best reported case leaves some work, so plan for a smaller saving. Then price your time. The BLS median pay for management analysts was $48.97 an hour in May 2025. That is a wage, not a billing rate, so use it as an internal cost when you compare options."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why automatic transcripts go wrong"
+    },
+    {
+      "type": "paragraph",
+      "text": "Automatic transcription is fast, but it is not a neutral copy of the audio. The Whisper model card says predictions may include text that is not spoken. That failure is called hallucination. The same card says the design makes repeated text likely. It also says the model was trained on 680,000 hours of audio and transcripts from the internet. Read these warnings as a reason to check, not as a verdict on any one app."
+    },
+    {
+      "type": "paragraph",
+      "text": "Two things follow from that. A transcript can look finished and still contain a sentence no one said. A summary also inherits every error in the text it reads. A tidy paragraph built on a wrong transcript looks checked, which makes it more dangerous than a rough note."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trusting the first pass. Listen to every line you plan to quote before it goes anywhere.",
+        "Leaving speaker labels wrong. A quote pinned to the wrong person is hard to explain to a client.",
+        "Missing repeated lines. Search for looped phrases, since a repeat can look like a second opinion.",
+        "Pasting client audio into any tool. Check your NDA and contract first."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Never quote a summary",
+      "text": "A summary is a paraphrase. Copy any quote from the checked transcript, then confirm its timestamp against the audio."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Choosing a transcription path on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The right tool depends on where the audio came from, who owns it, and how long each recording runs. The table lists limits as each maker states them on its own pricing or support page. Prices and limits change, so check the page on the day you decide."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option",
+        "Limit stated by the maker",
+        "Best fit"
+      ],
+      "caption": "Limits as each maker states them on its own page.",
+      "rows": [
+        [
+          "Apple Voice Memos",
+          "Not available in all countries or regions. Select the text, Control-click, then Copy. The help page does not state a minimum macOS version.",
+          "Short recordings you made yourself"
+        ],
+        [
+          "Teams audio recap",
+          "Needs a Microsoft 365 license and a Copilot license. Only meetings with saved transcripts. Up to 8 meetings per recap. Transcripts expire after 120 days.",
+          "Teams calls already saved inside Microsoft 365"
+        ],
+        [
+          "Otter.ai Basic (free)",
+          "300 minutes per user per month, 30 minutes per conversation, and 3 lifetime file imports.",
+          "Testing the method on one short call"
+        ],
+        [
+          "Otter.ai Pro",
+          "1,200 minutes per user per month, 90-minute conversations, and 10 monthly file imports.",
+          "Regular interview work, if the limits fit"
+        ],
+        [
+          "Granola",
+          "Basic is $0 with 30 days of meeting history. Business is $14 per user per month. The pricing page does not name macOS.",
+          "Meeting notes, once Mac support is confirmed"
+        ],
+        [
+          "Whisper-based local apps",
+          "The model card warns of hallucination and repeated text, and says real-time use is not possible out of the box.",
+          "Sensitive audio, only if your contract allows it, with a full check"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Otter's limits also conflict across third-party blogs, especially for the Business plan. Trust the pricing page, and confirm on otter.ai before you rely on any cap. Teams recaps have a different trap. They need a Copilot license, and they only work on meetings that have a saved transcript."
+    },
+    {
+      "type": "paragraph",
+      "text": "Interview audio often carries names, employers, and sometimes pay or health details. Client contracts and NDAs often limit where that data can go. Check them before you upload anything to a cloud service. The arXiv paper says its workflow suits local, offline use with sensitive data. That is one study's view, not a legal answer for your contract."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step by step: from audio to quotes you can use"
+    },
+    {
+      "type": "paragraph",
+      "text": "Follow this order for each interview set. It has one pass for the transcript, one for coding, and one for quotes. Skipping straight to quotes is an easy way to end up with a bad slide."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Name each file with a code, such as CL-01 for client one, interview one. Keep the consent note in the same folder.",
+        "Open the recording in Voice Memos and click the Transcription button to see the text. If you do not see the button, transcription may not be available in your region.",
+        "Listen while you read. Fix speaker labels and any line that looks wrong. Note the timestamp of each line you might quote.",
+        "Select the cleaned text, Control-click it, and choose Copy. You can also press ⌘C after you select.",
+        "Paste into an Excel sheet with one row per quote. Use columns for Interview, Timestamp, Quote, Theme, and Checked.",
+        "Turn on filters with Data > Filter, then filter by theme to see every quote for one idea.",
+        "Write each summary from the filtered rows, not from memory. Count how many interviews support each theme.",
+        "Build the quote slide in PowerPoint. Keep the interview code on every quote so a reviewer can trace it."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A small example shows why counts matter. Say half the interviews raise slow approvals, and only one mentions a missing data owner. The approvals theme deserves the top spot in the summary, and the data owner point needs a caveat. Put the count in the sentence. Readers trust a number they can check against the sheet."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Writing pull quotes that stand up to a client"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pull quote is a short, exact passage that carries one idea. Keep the words as spoken. If you cut filler, mark the cut with square brackets, not dots. Attribute the quote by role and company type when the interview was not on the record. The [PowerPoint for consultants on Mac](/for/consultants/powerpoint) page covers slide layouts that suit quotes."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Use exact words. Mark any cut with square brackets.",
+        "Attribute by role and company type unless consent covers the name.",
+        "Confirm the timestamp against the audio before the slide is final.",
+        "Keep one idea per quote. Two ideas are hard to read on a slide."
+      ]
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps with reading and wording"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It sees your screen and listens only while you hold the shortcut, which is ⌥ ⌘. Hold ⌥ ⌘ with the transcript open and ask a question, such as which interviews mention approvals. Lazur answers out loud. Check that answer against the audio before you use it, because a summary is still a guess until you verify it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur can also point. Ask where the Transcription button is, and it draws a circle and a label around it. Ask how to paste into a table, and it guides you one click at a time, waiting for each click. It does not click for you, and it does not edit your files."
+    },
+    {
+      "type": "paragraph",
+      "text": "Dictation runs the other way. Hold fn and speak, and clean text lands at the cursor in any app. Use it to type theme notes into the Theme column, or to speak a first draft of a follow-up note. Lazur can draft and type text for you, but you still read and edit it before it leaves your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur's stated policy is that audio and the screenshot go to AI providers to answer you. They are not stored, and content is never used to train AI models. A screenshot of a client transcript still leaves your Mac when you ask. If your contract forbids that, do not hold the shortcut over that file. Lazur runs on macOS, on Apple silicon and Intel. Windows is planned, not available. Get it from [the download page](/download)."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that cost you client trust"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Quoting the summary instead of the transcript. Paraphrases drift from what people said.",
+        "Counting themes by feel. Count how many interviews support each point, and show the count.",
+        "Skipping consent checks. Confirm the consent line in your interview script before you quote anyone.",
+        "Keeping the working file too open. Use speaker codes and a restricted name key.",
+        "Treating the first pass as final. Plan one full audio check before the deck is locked."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A one-week routine for a small interview project"
+    },
+    {
+      "type": "paragraph",
+      "text": "The plan below assumes one client project and a small set of interviews. Put the audio check on its own day, so it does not get squeezed at the end. Adjust the days to your deadline, but keep the order. The [Excel for consultants on Mac](/for/consultants/excel) page covers the sheet side in more detail."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Add an audit column",
+      "text": "Add a column called Checked. Mark a quote only after you hear it in the audio, and write the date. When the client asks where a line came from, you can answer in seconds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to ask your employer before you start"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask three questions before the first transcript. Which tools are approved for client audio? Does the client contract allow cloud transcription? Where should transcripts and quotes be stored? Your firm's answers beat any general advice on this page. Write the answers in the project folder, so the whole team works from the same rules."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the steps on one interview this week, and time each step. That timing tells you more than any vendor page. Then decide which steps to automate and which to keep by hand."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can Lazur turn an audio file into a transcript?",
+      "answer": "Lazur answers questions about what is on your screen, points at things, and types dictated text at the cursor. Transcribing audio files is not one of its listed features. Use Voice Memos, Teams, Otter, or another transcription tool for the first pass, then ask Lazur about the text on screen."
+    },
+    {
+      "question": "How accurate are automatic transcripts?",
+      "answer": "Accuracy depends on the audio and the tool. The arXiv paper reports time savings, but its abstract gives no word error rate. The Whisper model card warns of invented and repeated text. Check every quote against the recording before you use it."
+    },
+    {
+      "question": "Can I upload client interviews to an AI tool?",
+      "answer": "Only if your NDA, your client contract, and your firm's policy allow it. Many contracts limit where client data can go. Ask your employer's security or legal contact before you upload, and keep a record of the answer."
+    },
+    {
+      "question": "Do I need a paid plan for this?",
+      "answer": "Not for a first pass. Voice Memos can show a transcript on a Mac where transcription is available, and Excel filters cost nothing extra. Otter's free Basic plan allows 300 minutes per month, 30 minutes per conversation, and 3 lifetime file imports."
+    },
+    {
+      "question": "Why does my transcript include words nobody said?",
+      "answer": "Automatic speech recognition can create text that is not in the audio. The Whisper model card calls this hallucination and warns that the model can repeat text. Read the transcript against the audio at every timestamp you plan to quote."
+    },
+    {
+      "question": "Does Microsoft Teams write summaries of interviews for free?",
+      "answer": "Not on its own. Microsoft says audio recaps need a Microsoft 365 license and a Copilot license, and they work only on meetings with saved transcripts. A recap can combine up to 8 meetings, and transcripts expire after 120 days unless deleted sooner."
+    },
+    {
+      "question": "How do I quote someone without using their name?",
+      "answer": "Use their role and company type, such as operations lead at a mid-sized bank, if the consent you have allows it. Confirm the consent wording before the quote goes into a deck. If in doubt, drop the identifying detail, not the point."
+    },
+    {
+      "question": "How long should a theme summary be?",
+      "answer": "Keep each theme to a few sentences. Give the theme, the count of interviews that support it, and one exact quote. Add a caveat if only one or two people raised it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "arXiv 2503.13031: AI-assisted transcription workflow for content analysis",
+      "url": "https://arxiv.org/abs/2503.13031",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "BLS Occupational Outlook Handbook: Management Analysts",
+      "url": "https://www.bls.gov/ooh/business-and-financial/management-analysts.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Work Lab: Breaking down the infinite workday",
+      "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/breaking-down-infinite-workday",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: Listen to audio recaps of your meetings",
+      "url": "https://support.microsoft.com/en-us/teams/copilot/listen-to-audio-recaps-of-your-meetings",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Apple Support: View a Voice Memos transcription on Mac",
+      "url": "https://support.apple.com/guide/voice-memos/view-a-transcription-of-a-recording-vm4a03609f0d/mac",
+      "publisher": "Apple",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Otter.ai Pricing",
+      "url": "https://otter.ai/pricing",
+      "publisher": "Otter.ai",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Granola Pricing",
+      "url": "https://granola.ai/pricing",
+      "publisher": "Granola",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Hugging Face: openai/whisper-large model card",
+      "url": "https://huggingface.co/openai/whisper-large",
+      "publisher": "Hugging Face (OpenAI Whisper model card)",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "summarizing interview transcripts and pull quotes",
+  "costs": [
+    {
+      "title": "Hours of replaying audio",
+      "text": "Finding one sentence in a long recording can take minutes of replay. Multiply that by every quote you need for a deck. The time shows up in your evenings, not on an invoice, and it delays the next project."
+    },
+    {
+      "title": "Quotes that do not match the audio",
+      "text": "A quote that was paraphrased, misattributed, or pulled from a repeated line can reach the client. Once it sits in a deck, it reads as the client's own words, so a mistake is hard to walk back."
+    },
+    {
+      "title": "Your time at an internal rate",
+      "text": "The BLS median pay for management analysts was $48.97 an hour in May 2025. Multiply your own cleanup hours by that figure to see the internal cost. It is a wage, not a bill rate, so use it for comparison only."
+    },
+    {
+      "title": "Trust with the client",
+      "text": "A synthesis that cannot be traced back to interviews makes the team look careless. Clients ask how many people said a thing and where a line came from. A strong answer needs counts and timestamps ready."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Audio is slow to read",
+      "text": "Talk is loose. People repeat themselves, trail off, and change their minds mid-sentence. Reading a transcript cleanly takes longer than reading a memo of similar length, because you must listen as well. That is why the first pass feels like the bottleneck. It is also why skipping it causes problems later."
+    },
+    {
+      "title": "Automatic transcripts can invent text",
+      "text": "The Whisper model card says predictions may include text that was not spoken. It also says the design makes repetition likely. A transcript can look complete while holding a sentence no one said. Those errors read fluently, so they are easy to miss on a fast read."
+    },
+    {
+      "title": "Summaries inherit every transcript error",
+      "text": "A summary reads the text it is given. It does not hear the audio. If a name, a number, or a negation is wrong in the transcript, the summary repeats it with confidence. The tidy wording hides the mistake from the person who wrote it."
+    },
+    {
+      "title": "Interviews are not built for coding",
+      "text": "Interview guides ask open questions, so answers wander across topics. One answer can touch several themes at once. Without a coding sheet, each reader builds a different list from the same set. Counts then drift from one draft to the next."
+    },
+    {
+      "title": "Client rules slow the workflow down",
+      "text": "Audio often holds names, employers, and sensitive details. Many NDAs and client contracts limit where that data can be sent. Teams that cannot use a cloud tool fall back to manual listening, which is the slowest path. Knowing the rule early keeps the choice of tool honest."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Get a free first pass from Voice Memos",
+      "text": "Start with Apple's Voice Memos if transcription is available in your region. Open the recording, click the Transcription button, and read the text while you listen. Fix speaker names and any line that looks wrong. This costs nothing and sets up every later step."
+    },
+    {
+      "title": "Check each quote against the audio",
+      "text": "Before a quote goes into a deck, find its timestamp and play that line. If you cannot hear the words, drop the quote. Keep a Checked column with the date. The check takes less time than answering a client question about a line that was never said."
+    },
+    {
+      "title": "Build a coding sheet before you code",
+      "text": "Make one Excel sheet with columns for Interview, Timestamp, Quote, Theme, and Checked. Paste each cleaned quote as its own row. Filter by theme with Data > Filter. You can then sort, count, and trace every line without rereading the full set."
+    },
+    {
+      "title": "Count how many interviews support each theme",
+      "text": "Write the count next to each theme, such as 6 of 12. A count tells the reader how strong a point is. Avoid words like most unless the count backs them up. Counts also show when one loud interview is driving a theme."
+    },
+    {
+      "title": "Write summaries from the sheet, not from memory",
+      "text": "Open the filtered rows for one theme and write a short paragraph. Start with the theme itself, then give the count, then add the strongest exact quote. Repeat for each theme, then check each sentence against its rows before you move on."
+    },
+    {
+      "title": "Use speaker codes in the working file",
+      "text": "Label each speaker with a code such as CL-01-B. Keep the name key in a separate file with restricted access. The working sheet is then safer to share inside the team, and less damage happens if it is forwarded by mistake."
+    },
+    {
+      "title": "Give the audio check its own day",
+      "text": "Schedule one block for listening, not reading. Treat it like a client meeting that cannot move. Teams often skip this step when the deadline gets close, and that is when mistakes slip into the final deck."
+    },
+    {
+      "title": "Keep quotes short and attributed by role",
+      "text": "Pick one idea per quote, keep it to a line or two on a slide, and attribute by role and company type. A label such as operations lead at a mid-sized bank reads better than a vague tag like a客户 contact."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "What do these interviews say about slow approvals?",
+      "result": "Lazur answers out loud from the transcript on your screen. Check its answer against the audio before you use it.",
+      "capability": "explain"
+    },
+    {
+      "say": "Where is the Transcription button?",
+      "result": "Lazur draws a circle and a label around the button on screen. You click it yourself.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through copying this text into Excel.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "Dictate a theme note for this row.",
+      "result": "Hold fn and speak. Clean text lands at the cursor in any app, including Excel.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Draft a short note to the client about the quote check.",
+      "result": "Lazur drafts and types the text. You read and edit it before anything is sent.",
+      "capability": "draft"
+    },
+    {
+      "say": "Find public context on approval delays in banking.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Read each source before you cite it.",
+      "capability": "research"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Transcription button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the button on screen. It does not click the button for you.",
+    "shell": "generic",
+    "context": "Voice Memos transcript view on a Mac",
+    "pointsAt": "Transcription button"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Record and transcribe",
+      "text": "Save each interview with a code name. Open each recording in Voice Memos and click the Transcription button. Save the transcript text in a project folder. Do not move any client audio to a new tool yet."
+    },
+    {
+      "label": "Day 2",
+      "title": "Check the audio",
+      "text": "Listen to every line you might quote. Fix speaker labels and mark uncertain lines in the transcript. Note the timestamp of anything you plan to use, and leave the Checked column blank until you confirm it."
+    },
+    {
+      "label": "Day 3",
+      "title": "Code the interviews",
+      "text": "Paste cleaned lines into Excel, one row per quote. Add a theme label to each row, then filter by theme with Data > Filter. Only mark a row Checked after you hear it in the audio."
+    },
+    {
+      "label": "Day 4",
+      "title": "Write themes and counts",
+      "text": "Write a short summary for each theme from the filtered rows. Add the count of interviews behind each theme. Note any theme that rests on only one or two people, and say so in the text."
+    },
+    {
+      "label": "Day 5",
+      "title": "Quotes and review",
+      "text": "Choose one or two exact quotes per theme and build the slides in PowerPoint. Read the deck once against the Checked column, then share the draft with your manager in Outlook."
+    }
+  ],
+  "apps": [
+    "excel",
+    "powerpoint",
+    "outlook",
+    "zoom"
+  ],
+  "type": "problem",
+  "slug": "synthesizing-interview-transcripts-consulting",
+  "role": "consultants",
+  "roleName": "Consultants",
+  "roleSingular": "consultant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/synthesizing-interview-transcripts-consulting/synthesizing-interview-transcripts-for-consulting-1-78a203.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A consultant reviews interview notes at a desk while synthesizing interview transcripts for consulting",
+      "caption": "Reviewing notes before writing the summary.",
+      "keywords": [
+        "synthesizing interview transcripts for consulting",
+        "Consultants",
+        "Summarize transcripts and pull quotes",
+        "Mac",
+        "consultant reviewing notes",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Van3ssa_",
+        "url": "https://pixabay.com/users/Van3ssa_-13670757/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/mimosa-yellow-flowers-sheet-music-7910067/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/synthesizing-interview-transcripts-consulting/synthesizing-interview-transcripts-for-consulting-2-f9fe28.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A man works on a MacBook in an office, checking a transcript on screen against the audio",
+      "caption": "Checking the transcript against the audio.",
+      "keywords": [
+        "synthesizing interview transcripts for consulting",
+        "Consultants",
+        "Summarize transcripts and pull quotes",
+        "Mac",
+        "man using MacBook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/synthesizing-interview-transcripts-consulting/synthesizing-interview-transcripts-for-consulting-3-6733c0.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A small team meets at a table to group interview findings into themes for a client deck",
+      "caption": "Grouping findings into themes with the team.",
+      "keywords": [
+        "synthesizing interview transcripts for consulting",
+        "Consultants",
+        "Summarize transcripts and pull quotes",
+        "Mac",
+        "team meeting office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "synthesizing interview transcripts for consulting",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": false,
+    "inIntro": false,
+    "bodyCount": 4,
+    "secondary": {
+      "summarize interview transcripts Mac": 1,
+      "pull quotes from interviews": 1,
+      "transcribe client interviews on Mac": 1,
+      "interview transcript summary consulting": 1,
+      "consulting interview analysis in Excel": 1,
+      "transcription tools for consultants": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

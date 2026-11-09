@@ -1,0 +1,612 @@
+{
+  "title": "How to find and explain Excel financial model errors on Mac for Microsoft 365",
+  "metaTitle": "Excel Financial Model Errors on Mac: Find and Explain Them",
+  "description": "Find and explain excel financial model errors on Mac with Formula Auditing, error checks and a simple review routine. Costs, causes and fixes.",
+  "targetKeyword": "excel financial model errors",
+  "secondaryKeywords": [
+    "find formula errors in excel on mac",
+    "excel formula auditing mac",
+    "trace precedents excel mac",
+    "excel error checking preferences mac",
+    "financial model review checklist",
+    "evaluate formula excel mac",
+    "excel model audit"
+  ],
+  "intro": "To find Excel financial model errors on a Mac, start with the tools Excel already has. Open Formulas > Formula Auditing, then trace each output back to its inputs. Turn on error checking under Excel > Preferences > Error Checking. Explaining what went wrong takes the most care, and this page shows how to write it down.",
+  "tldr": [
+    "Start with Formulas > Formula Auditing in Excel for Microsoft 365 for Mac, then trace precedents for each output.",
+    "Turn on error checking in Excel > Preferences > Error Checking, and read each flag before you dismiss it.",
+    "Hard-coded numbers inside formulas cause many of the problems you will see. Microsoft's guidance says to avoid them.",
+    "Write one short note per error: the cell, what it shows, what it should show, and which outputs change.",
+    "Lazur can point at menu items and explain a formula out loud, but it does not edit your model."
+  ],
+  "stats": [
+    {
+      "value": "94%",
+      "label": "of business decision spreadsheets contain errors, per a 2024 literature review that Datarails cites",
+      "sourceUrl": "https://www.datarails.com/blog/excel-and-fpa-automation/",
+      "sourceTitle": "Datarails blog: FP&A Automation in Excel"
+    },
+    {
+      "value": "46%",
+      "label": "of FP&A time goes to data collection and validation, per a 2025 FP&A Trends Survey cited by Datarails",
+      "sourceUrl": "https://www.datarails.com/blog/excel-and-fpa-automation/",
+      "sourceTitle": "Datarails blog: FP&A Automation in Excel"
+    },
+    {
+      "value": "70% to 30%",
+      "label": "Share of report preparation time spent on data management and editing at GFKL, before and after moving reporting to SAS",
+      "sourceUrl": "https://www.forbes.com/sites/tomgroenfeldt/2013/02/19/solutions-to-spreadsheet-risk-post-jpms-london-whale/",
+      "sourceTitle": "Forbes: Solutions To Spreadsheet Risk Post JPM's London Whale"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What a formula error looks like in a financial model"
+    },
+    {
+      "type": "paragraph",
+      "text": "A formula error is a cell that returns the wrong result. Some errors are loud. You see a divide-by-zero error shown as #DIV/0, a broken reference shown as #REF, or a total that shows zero when it should not. Others are silent. A total includes one row too many, or a growth rate points at last year's input instead of this year's. Silent errors do the most damage, because nothing in the sheet warns you."
+    },
+    {
+      "type": "paragraph",
+      "text": "You meet this in models you did not build. A client sends a workbook with several tabs, a forecast that moves when you touch one input, and a file name that says final v7. Your job is to decide whether the numbers hold before anyone puts them on a slide. That is a review, not a rebuild, so your first goal is to find what is wrong."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What formula errors cost you and your client"
+    },
+    {
+      "type": "paragraph",
+      "text": "The cost shows up in three places: time, decisions and trust. Time is the easiest to see. Decisions get expensive when the model drives money. Trust is the slowest to repair. The sections below take each one in turn. Where the evidence is thin, I say so."
+    },
+    {
+      "type": "paragraph",
+      "text": "The money case is easy to misuse, so read it with care. JPMorgan's London Whale episode is the case most often cited for spreadsheet risk in finance. Forbes reports a $6 billion-plus loss, and quotes a Task Force Report about manual inputs in a VaR model. The same article does not put the loss on the spreadsheet alone."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "For a consultant, the money at risk usually belongs to the client, and the reputational cost lands on you. A wrong number in a board pack can cost you the next meeting. I did not find a study that prices that. Treat any figure you hear about it as a guess until you see its source."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why formula errors happen in financial models"
+    },
+    {
+      "type": "paragraph",
+      "text": "Research on spreadsheet errors is long-running and consistent. Raymond Panko's 2008 paper summarizes it, and its abstract says: 'Fifteen years of research studies have concluded unanimously that spreadsheet errors are both common and non-trivial.' The abstract gives no single error rate, so do not quote one from memory."
+    },
+    {
+      "type": "paragraph",
+      "text": "Most errors come from how models get built and changed. A model grows over months. Several people touch it. Each change is small, and nobody re-checks the whole thing after each edit. The result is a sheet that looked right the last time someone read it."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to find formula errors in Excel on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start in the Formulas tab. In Excel for Microsoft 365 for Mac, and in Excel 2024 and 2021 for Mac, the Formula Auditing group holds the tools you need. Open Formulas > Formula Auditing and you will see the commands in the table below. Use them in order: outputs first, then inputs, then the formulas in between."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Tool",
+        "Where on Mac",
+        "What it helps you see"
+      ],
+      "rows": [
+        [
+          "Trace Precedents",
+          "Formulas > Formula Auditing > Trace Precedents",
+          "Arrows to each cell that feeds the active cell"
+        ],
+        [
+          "Trace Dependents",
+          "Formulas > Formula Auditing > Trace Dependents",
+          "Arrows to every cell that uses the active cell"
+        ],
+        [
+          "Show Formulas",
+          "Formulas > Formula Auditing > Show Formulas",
+          "Every formula on the sheet, instead of results"
+        ],
+        [
+          "Evaluate Formula",
+          "Formulas > Formula Auditing > Evaluate Formula",
+          "A nested formula, one step at a time"
+        ],
+        [
+          "Error checking rules",
+          "Excel > Preferences > Error Checking",
+          "Which rules Excel uses to flag cells"
+        ]
+      ],
+      "caption": "Formula Auditing and error checking tools in Excel for Mac, as listed by Microsoft."
+    },
+    {
+      "type": "paragraph",
+      "text": "Evaluate Formula needs a caveat. Microsoft's pages list Excel 2024 and 2021 for Mac, but a Microsoft Q&A snippet from March 2025 says the feature is not implemented on Mac. I could not settle that from here. Open a nested formula and run Evaluate Formula. If nothing appears, check your build and Microsoft's current docs."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Trace precedents and dependents, step by step"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the output cell first, such as the number that feeds your summary slide. Choose Formulas > Formula Auditing > Trace Precedents. Arrows show each cell that directly feeds the active cell. Choose the command again to step back one more layer. Repeat until you reach the input cells, which hold typed values and no formula."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then go the other way. Select an input cell, such as a growth rate, and choose Formulas > Formula Auditing > Trace Dependents. The arrows show every cell that reacts when that input changes. If a cell you expected is missing from the arrows, the link is broken."
+    },
+    {
+      "type": "paragraph",
+      "text": "Arrows are fragile. Microsoft says tracer arrows disappear if you change the formula, insert or delete rows or columns, or delete or move cells. Trace first, edit second, and trace again when you finish. Never trust an arrow picture from a version of the file you have since changed."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Read every formula before you trust a total"
+    },
+    {
+      "type": "paragraph",
+      "text": "Show Formulas turns each cell from its result into its formula. Open it from Formulas > Formula Auditing > Show Formulas. Scan one row at a time. A healthy row has the same logic in every column. An odd cell in the middle of a row of formulas is the classic sign of a copy error."
+    },
+    {
+      "type": "paragraph",
+      "text": "This is slow, and it is the approach the research supports. Panko's abstract says that only one technique, cell-by-cell code inspection, has been demonstrated to be effective in reducing spreadsheet errors. Read the formulas. Do not just read the results."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Evaluate Formula on any formula with nested logic, such as an IF inside a lookup. Step through it and read each intermediate result. You will often see the exact step where the value goes wrong, even when the final number looks plausible."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Explain each error in writing"
+    },
+    {
+      "type": "paragraph",
+      "text": "An error you cannot explain is an error you cannot defend. Write a short note for each one. Start with the sheet and cell, and say what it shows. Then say what it should show and why. Last, say which outputs change when you fix it."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a typical pattern. Summary!D12 pulls revenue from a row that already includes a total. The fix is to point the cell at the detail row. Every output that depends on D12 moves once the double count goes, so the note should list those outputs by name. Keep the log in a separate sheet, not in the client's file."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a growth input that never reaches the model"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say a forecast grows revenue each year from a single growth input in C5. The first forecast column reads =B5*(1+$C$5). The dollar signs lock the input, so copying across keeps every year linked. Then one column gets its growth rate typed straight into the formula. The row still looks right, so the error hides."
+    },
+    {
+      "type": "paragraph",
+      "text": "Trace Dependents from C5 shows the arrows. The typed column has no arrow, and that gap is the clue. Show Formulas on that row makes the typed rate obvious. The note writes itself: this column ignores the growth input, and the fix is to link it to $C$5."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when they audit a model"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first mistake is trusting a result because it looks plausible. A total can look right and still double count. The second is fixing the symptom. Overwriting an output with a typed value hides the error and breaks the next update. The third is clearing error flags in bulk without writing down why."
+    },
+    {
+      "type": "paragraph",
+      "text": "Other mistakes cost time. Many reviewers audit only the summary tab, but errors usually sit in the detail tabs underneath. Others change the structure while they check. Inserting rows moves arrows and references, so trace again after each edit. Do not stop at formulas either. A correct formula fed a wrong assumption still gives a wrong answer, and you should say so in your note."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Client data and AI tools: check your rules first"
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Check client data rules first",
+      "text": "Client models often hold confidential figures. Before you paste a workbook, a screenshot or a cell range into any AI tool, check your employer's rules on client data. If the rules say no, keep the review inside tools your firm approves."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Those are the product facts. Your firm's rules still decide what you may share, and the stricter rule wins."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps, and where it does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur helps with the reading and the explaining. Hold ⌥ ⌘ and ask about the formula on screen, and Lazur answers out loud. Ask where a command sits and Lazur draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click. You can start with [Lazur for Mac](/download)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not audit your model for you in a verified way. It does not click buttons, edit files or operate Excel. A spoken answer about a formula can be wrong. Check it with Trace Precedents before you change anything. You make every edit, and you own the number that goes to the client."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What is still unknown"
+    },
+    {
+      "type": "paragraph",
+      "text": "Two Excel questions for Mac are still open. Evaluate Formula is listed for Excel 2024 and 2021 for Mac, but a Microsoft Q&A snippet says it is not implemented on Mac. Spreadsheet Compare is in question too. A 2017 Microsoft Q&A answer says it does not exist in Mac Excel, and that answer is old. Check the current Microsoft docs for your build before you plan around either."
+    },
+    {
+      "type": "paragraph",
+      "text": "I did not find a primary study that puts a number on money, grades or burnout caused by formula errors in consulting or student work. The figures here cover time, plus one large loss that was not a spreadsheet alone. Quote them with their limits."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build the habit, not a one-time audit"
+    },
+    {
+      "type": "paragraph",
+      "text": "A single audit finds today's errors. A habit catches the next ones. Keep error checking on, trace one output after each change, and write a short note for each fix. Pair this with the review plan below, then repeat it on the next model you inherit."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac find all formula errors for me?",
+      "answer": "No. Error checking flags some patterns, but it cannot tell whether your logic matches what the client meant. Read the formulas yourself, and trace each output back to its inputs."
+    },
+    {
+      "question": "Where is Trace Precedents on a Mac?",
+      "answer": "Choose Formulas > Formula Auditing > Trace Precedents. The same group holds Trace Dependents, Show Formulas and Evaluate Formula."
+    },
+    {
+      "question": "Does Evaluate Formula work in Excel for Mac?",
+      "answer": "Microsoft lists Excel 2024 and 2021 for Mac on its Evaluate Formula pages. A Microsoft Q&A snippet from March 2025 says the feature is not implemented on Mac. Open a nested formula in your build and see what appears, then check Microsoft's current docs."
+    },
+    {
+      "question": "Can I paste a client model into an AI tool?",
+      "answer": "Check your employer's rules on client data first. Lazur sends audio and the screenshot to AI providers only to answer, and they are not stored. Your firm's rules decide what you may share, and the stricter rule wins."
+    },
+    {
+      "question": "Can Lazur fix the formulas in my model?",
+      "answer": "No. Lazur points at things, explains formulas out loud, guides you one click at a time and drafts text. It does not click buttons, edit files or operate Excel for you."
+    },
+    {
+      "question": "Why do my tracer arrows disappear?",
+      "answer": "Microsoft says tracer arrows disappear if you change the formula, insert or delete rows or columns, or delete or move cells. Trace again after each edit."
+    },
+    {
+      "question": "Is Spreadsheet Compare available on Mac?",
+      "answer": "A 2017 Microsoft Q&A answer says it does not exist in Mac Excel. That answer may be out of date, so check Microsoft's current documentation for your version before you plan around it."
+    },
+    {
+      "question": "What is the single most useful habit?",
+      "answer": "After each change, trace one output back to its inputs. You learn the model's shape, and you catch a broken link while it is still small."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Datarails blog: FP&A Automation in Excel",
+      "url": "https://www.datarails.com/blog/excel-and-fpa-automation/",
+      "publisher": "Datarails (vendor)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "arXiv: Panko, Spreadsheet Errors: What We Know. What We Think We Can Do",
+      "url": "https://arxiv.org/abs/0802.3457",
+      "publisher": "arXiv (Raymond R. Panko)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Forbes: Solutions To Spreadsheet Risk Post JPM's London Whale",
+      "url": "https://www.forbes.com/sites/tomgroenfeldt/2013/02/19/solutions-to-spreadsheet-risk-post-jpms-london-whale/",
+      "publisher": "Forbes",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: Display the relationships between formulas and cells",
+      "url": "https://support.microsoft.com/en-us/excel/display-the-relationships-between-formulas-and-cells",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: Detect formula errors in Excel",
+      "url": "https://support.microsoft.com/en-us/office/detect-formula-errors-in-excel-3a8acca5-1d61-4702-80e0-99a36a2822c1",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: Evaluate a nested formula one step at a time",
+      "url": "https://support.microsoft.com/en-us/excel/evaluate-a-nested-formula-one-step-at-a-time",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Microsoft Support: How to avoid broken formulas in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/how-to-avoid-broken-formulas-in-excel",
+      "publisher": "Microsoft",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "problem": "formula errors in financial models",
+  "costs": [
+    {
+      "title": "Hours spent on checks",
+      "text": "Time is the cost you can measure best. A 2025 FP&A survey cited by Datarails found that 46% of FP&A time goes to data collection and validation. A model full of hidden errors fills your week with rechecking. Those hours go to proving the numbers, not to explaining what they mean."
+    },
+    {
+      "title": "Decisions made on wrong numbers",
+      "text": "The most expensive case in the research is JPMorgan's. Forbes reports a $6 billion-plus loss at its Chief Investment Office. A Task Force Report quoted in the article says manual inputs to a VaR spreadsheet increased the potential for errors. Forbes does not blame the spreadsheet alone, so read it as a warning about process."
+    },
+    {
+      "title": "Client trust and rework",
+      "text": "A client who finds one wrong total starts doubting the rest of the model. That reaction is common in review work, but I did not find a study that measures it. The rework lands on you: the file comes back, the deck changes, and the meeting moves. Plan for that from the start."
+    },
+    {
+      "title": "Money you cannot prove yet",
+      "text": "I found no primary study that puts a dollar value on formula errors in consulting work, student models or personal budgets. Any figure you hear is unverified. Say so when you quote a risk, and describe the error you actually found."
+    }
+  ],
+  "causes": [
+    {
+      "title": "Hard-coded numbers inside formulas",
+      "text": "A typed number inside a formula never changes when the assumption changes. Someone types a rate into a formula to test something, then forgets it. Microsoft's guidance says to avoid hard-coded constants and put values in cells instead."
+    },
+    {
+      "title": "Manual inputs pasted over formulas",
+      "text": "Someone pastes a value over a formula to get past a problem. The cell looks fine until the inputs move. The JPMorgan Task Force Report, as quoted by Forbes, said manual inputs to formulas increased the potential for errors."
+    },
+    {
+      "title": "Copied formulas with shifting references",
+      "text": "A formula copied to a new row or column can point at a neighbor instead of the cell you meant. Without absolute references, a copy can drift. One odd cell in a row of similar formulas is often the copy error."
+    },
+    {
+      "title": "Calculation set to manual",
+      "text": "If calculation is not automatic, the sheet can show results from an older state of the model. Microsoft's guidance says to keep automatic calculation on. Check this before you trust any total you did not watch change."
+    },
+    {
+      "title": "Many editors and no single review",
+      "text": "Models grow over months, and several people touch them. Each person makes a small change and assumes the rest still works. Nobody re-reads the whole sheet after each edit, so errors build up quietly between versions."
+    },
+    {
+      "title": "Errors are common by default",
+      "text": "Panko's 2008 paper summarizes years of spreadsheet research and concludes that errors are common and non-trivial. The paper treats error as the normal state of a spreadsheet, not as a rare accident. Assume your inherited model has errors until your checks say otherwise."
+    }
+  ],
+  "fixes": [
+    {
+      "title": "Turn on error checking",
+      "text": "Go to Excel > Preferences > Error Checking, and read which rules are switched on. Leave them on while you review. When a cell gets flagged, decide why it is wrong or why it is right, and write that reason down. Do not clear flags in bulk."
+    },
+    {
+      "title": "Replace hard-coded numbers with input cells",
+      "text": "Move each typed assumption into its own labeled input cell, then link the formulas to it. Microsoft's guidance says to avoid hard-coded constants and put values in cells. After the change, one edit updates every output that uses the input."
+    },
+    {
+      "title": "Trace from output back to input",
+      "text": "Start at the number on the summary slide. Choose Formulas > Formula Auditing > Trace Precedents, then repeat the command to go one layer further. Stop when you reach cells with typed values. Trace Dependents works the other way from an input."
+    },
+    {
+      "title": "Build check cells",
+      "text": "For each important total, build a second route to the same number, such as a sum of segments checked against the grand total. Put the difference in a check cell. Any value other than zero points you to a break. Keep the check cells visible to the next reader."
+    },
+    {
+      "title": "Read the formulas with Show Formulas",
+      "text": "Open Formulas > Formula Auditing > Show Formulas, then scan the detail tabs one row at a time. Look for a cell that breaks the pattern of its neighbors. Panko's abstract says cell-by-cell code inspection is the one technique it found demonstrated to be effective."
+    },
+    {
+      "title": "Step through nested formulas",
+      "text": "Use Formulas > Formula Auditing > Evaluate Formula on any formula with several functions nested inside each other. Read each intermediate result. Confirm the command exists in your build first, since Microsoft's Mac availability is unclear."
+    },
+    {
+      "title": "Confirm calculation is automatic",
+      "text": "Microsoft's page gives the Windows path File > Options > Formulas for the calculation settings. On a Mac, the path can differ, so ask Lazur to point at the setting or check Excel's Help for your version. Confirm the setting before you trust a total."
+    },
+    {
+      "title": "Get a second reader",
+      "text": "Ask a colleague to read the changed cells, not the whole model. A second reader catches the errors you stopped seeing because you wrote the formula. Give them the note for each fix so they know what to check."
+    },
+    {
+      "title": "Use Microsoft's checklist as a guide",
+      "text": "Microsoft's How to avoid broken formulas page lists 22 practices. You do not need all of them on day one. Pick the three that match the errors you found in this model, and use the rest on the next one."
+    }
+  ],
+  "lazurHelps": [
+    {
+      "say": "Where is Trace Precedents in this Excel window?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the command so you can find it fast. It does not press the command for you."
+    },
+    {
+      "say": "What does this formula do, and why does it return an error?",
+      "capability": "explain",
+      "result": "Lazur answers out loud about the formula in view. Check its reading with Trace Precedents before you change the cell."
+    },
+    {
+      "say": "Walk me through the Error Checking settings.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click. You do the clicking, and you can stop at any step."
+    },
+    {
+      "say": "Dictate the error note for cell D12.",
+      "capability": "dictate",
+      "result": "Hold fn and speak. Dictation types clean, formatted text at the cursor in any app, so the note gets written while the cell is still in view."
+    },
+    {
+      "say": "Draft a short email to the model owner listing the errors I found.",
+      "capability": "draft",
+      "result": "Lazur drafts the text. You read it, edit it and send it yourself from Outlook."
+    },
+    {
+      "say": "Check whether Evaluate Formula is available in my Excel for Mac build.",
+      "capability": "research",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report. Treat the report as a lead, then confirm it in your own app."
+    },
+    {
+      "say": "Remind me on Friday to re-check the model.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders, so the re-check does not depend on memory."
+    }
+  ],
+  "demo": {
+    "spoken": "What does this formula do, and why does it show zero?",
+    "capability": "explain",
+    "result": "Lazur reads the formula on screen and explains each part out loud. Check the answer with Trace Precedents before you change the cell.",
+    "shell": "sheet",
+    "context": "Excel for Mac, forecast tab, nested IF in a revenue row",
+    "output": "A spoken walk through the IF logic, naming the input cells it reads.",
+    "pointsAt": "formula bar"
+  },
+  "plan": [
+    {
+      "label": "Day 1",
+      "title": "Set up the checks",
+      "text": "Open Excel > Preferences > Error Checking and confirm the rules are switched on. Save a copy of the model under a new name before you touch anything. Note which tabs feed the client's summary page."
+    },
+    {
+      "label": "Day 2",
+      "title": "Trace the outputs",
+      "text": "Pick each summary number, then use Formulas > Formula Auditing > Trace Precedents until you reach input cells. Write each path down with sheet and cell names, so you can find it again on Day 4."
+    },
+    {
+      "label": "Day 3",
+      "title": "Read the formulas",
+      "text": "Use Show Formulas on the detail tabs and scan one row at a time. Flag any cell that breaks the pattern beside it. Do not fix anything yet. Just list what looks wrong."
+    },
+    {
+      "label": "Day 4",
+      "title": "Add checks and fix",
+      "text": "Build a second route for each important total and put the difference in a check cell. Replace hard-coded numbers with input cells. Re-run the checks after every change, not once at the end."
+    },
+    {
+      "label": "Day 5",
+      "title": "Explain and send",
+      "text": "Write a short note for each error with the cell, what it shows and what changes. Draft a summary email to the model owner in Outlook. If speaking is faster, dictate the notes with fn."
+    }
+  ],
+  "apps": [
+    "excel",
+    "outlook",
+    "powerpoint"
+  ],
+  "type": "problem",
+  "slug": "excel-financial-model-errors",
+  "role": "consultants",
+  "roleName": "Consultants",
+  "roleSingular": "consultant",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-financial-model-errors/excel-financial-model-errors-1-5a27af.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "Accountant reviewing an Excel financial model on a laptop at a desk",
+      "caption": "Reviewing a financial model line by line before it goes to a client.",
+      "keywords": [
+        "excel financial model errors",
+        "Consultants",
+        "Find and explain formula errors in a model",
+        "Mac",
+        "accountant laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Altnet",
+        "url": "https://pixabay.com/users/Altnet-9205206/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/financial-planning-finance-business-4010999/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-financial-model-errors/excel-financial-model-errors-2-6eb570.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Consultant working on a laptop in an office with printed notes on the desk",
+      "caption": "Tracing numbers back to their inputs before a deck goes out.",
+      "keywords": [
+        "excel financial model errors",
+        "Consultants",
+        "Find and explain formula errors in a model",
+        "Mac",
+        "man working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/problem/excel-financial-model-errors/excel-financial-model-errors-3-47246b.jpg",
+      "width": 1280,
+      "height": 880,
+      "alt": "Financial analyst at a desk with printed charts beside a computer",
+      "caption": "Checking totals and explaining each error in writing.",
+      "keywords": [
+        "excel financial model errors",
+        "Consultants",
+        "Find and explain formula errors in a model",
+        "Mac",
+        "financial analyst desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "jsachs99",
+        "url": "https://pixabay.com/users/jsachs99-15846023/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/skyscraper-modern-architecture-10482055/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel financial model errors",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "find formula errors in excel on mac": 2,
+      "excel formula auditing mac": 1,
+      "trace precedents excel mac": 1,
+      "excel error checking preferences mac": 1,
+      "financial model review checklist": 1,
+      "evaluate formula excel mac": 1,
+      "excel model audit": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

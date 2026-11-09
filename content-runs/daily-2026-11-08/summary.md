@@ -1,6 +1,6 @@
-Content 2026-11-08: 295 written, 5 refused, 0 failed
+Content 2026-11-08: 301 written, 6 refused, 0 failed
 
-- howto: 115/120
+- howto: 120/120
 - apps: 2/9
 - roles: 19/12
 - role-apps: 60/60
@@ -303,3 +303,9 @@ howto:filter-issues-in-linear /how-to/filter-issues-in-linear
 howto:create-a-project-in-linear /how-to/create-a-project-in-linear
 howto:add-a-label-in-linear /how-to/add-a-label-in-linear
 howto:set-up-a-workflow-in-linear /how-to/set-up-a-workflow-in-linear
+howto:create-a-custom-view-in-linear /how-to/create-a-custom-view-in-linear
+howto:set-a-due-date-in-linear /how-to/set-a-due-date-in-linear
+howto:assign-an-issue-in-linear /how-to/assign-an-issue-in-linear
+howto:create-a-sub-issue-in-linear /how-to/create-a-sub-issue-in-linear
+howto:link-a-github-pull-request-in-linear /how-to/link-a-github-pull-request-in-linear
+refresh:blog:ai-work-assistant-vs-dictation-app-vs-chatgpt /blog/ai-work-assistant-vs-dictation-app-vs-chatgpt

@@ -1,0 +1,678 @@
+{
+  "title": "How to link a github pull request in Linear on Mac: three methods that work",
+  "metaTitle": "How to link a github pull request in Linear on Mac",
+  "description": "How to link a github pull request in Linear on Mac: put the issue ID in the branch name or PR title, add a word like Fixes, then check the link.",
+  "targetKeyword": "how to link a github pull request in linear on mac",
+  "secondaryKeywords": [
+    "link github pull request to linear issue",
+    "linear github integration mac",
+    "linear linking words for pull requests",
+    "fixes ENG-123 pull request linear",
+    "copy git branch name linear",
+    "linear github pr not linking",
+    "linear reviews pull request mac"
+  ],
+  "intro": "To link a GitHub pull request in Linear on Mac, put the Linear issue ID, such as ENG-123, in the branch name, the PR title or the PR description. Add a linking word such as Fixes ENG-123, and Linear also moves the issue to its merge status when the PR merges.",
+  "tldr": [
+    "Put the Linear issue ID, such as ENG-123, in your branch name, PR title or PR description.",
+    "Add a closing word like Fixes to move the issue to its merge status when the PR merges.",
+    "Linking words in PR comments do not create links. Keep the ID out of comments.",
+    "An admin sets up the GitHub integration at Settings > Features > Integrations > GitHub. Each person connects a personal account under Connected accounts.",
+    "To take a wrong PR off an issue, click the three dots on the PR attachment and choose Remove."
+  ],
+  "stats": [],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A pull request that is not linked is easy to lose. Someone asks which code fixed a bug, and the answer lives in a tab nobody can find. Linking puts the pull request on the issue, so the history stays in one place."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What linking a GitHub pull request does in Linear"
+    },
+    {
+      "type": "paragraph",
+      "text": "A linked PR shows up as an attachment on the Linear issue. You can see its title and status without opening GitHub. When you use a closing word, Linear can also move the issue when the PR merges."
+    },
+    {
+      "type": "paragraph",
+      "text": "Linking works through text, not a button. Linear reads the issue ID in the branch name, the PR title and the PR description. Comments on the PR do not count, and that catches many people out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Time matters here too. Atlassian's 2025 developer experience report found that half of developers lose 10 or more hours a week to non-coding friction. Finding information and switching between tools are among the top sinks. That survey covers work in general, not PR linking, but a link is one small way to cut that friction."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Three ways to link a pull request in Linear"
+    },
+    {
+      "type": "paragraph",
+      "text": "Linear's GitHub docs describe three methods. You can use any of them. Most teams pick one and use it everywhere, so the rule stays the same for every PR."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Put the issue ID in the branch name.",
+        "Put the issue ID in the PR title or description, ideally with a linking word such as Fixes ENG-123.",
+        "Put a linking word and the issue ID in a commit message."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method one: link through the branch name on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the cleanest route. Open the issue in Linear and use the Copy git branch name action. Its shortcut is ⌘⇧. Linear's docs list it as the only keyboard shortcut for this flow."
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste the copied name into Terminal when you create the branch. Inside your repository folder, git switch -c followed by the name creates the branch and switches to it. Commit your work, then push with git push -u origin and the same name."
+    },
+    {
+      "type": "paragraph",
+      "text": "The branch name carries the ID, so Linear reads it from the start. You do not have to remember to add anything to the PR later. Anyone who reads the branch name sees which issue it serves."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Copy first",
+      "text": "Copy the branch name before you write any code. The ID is in the name from the first push, so you never have to rename the branch."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method two: add the issue ID to the PR title"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the pull request on GitHub. Put the issue ID in the title or the description. A plain ID links the PR. A linking word also tells Linear what the PR does to the issue."
+    },
+    {
+      "type": "paragraph",
+      "text": "A title could read Fixes ENG-123: retry failed uploads. Linear reads the ID and the closing word together. A description works the same way, and many teams put the ID there so the title stays short."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also edit a PR that is already open. Add the ID with a linking word to the title or description, and the link appears in Linear. Linking words in PR comments do not create links, so keep the ID out of comments."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Linking words that close a Linear issue"
+    },
+    {
+      "type": "paragraph",
+      "text": "Linking words are the words that sit next to the ID. Each word tells Linear how the PR relates to the issue. Closing words move the issue to the status named On PR or commit merge once the PR merges. The table below lists the groups from Linear's GitHub docs."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Word or words",
+        "What Linear does"
+      ],
+      "rows": [
+        [
+          "Fixes, Closes, Resolves, Implements",
+          "Links the PR. The issue moves to On PR or commit merge when the PR merges."
+        ],
+        [
+          "Ref, Refs, References, Part of, Contributes to, Toward(s)",
+          "Links the PR. The issue does not move to that status."
+        ],
+        [
+          "Relates to, Related to",
+          "Marks the PR as related. Status does not change."
+        ],
+        [
+          "updates",
+          "Creates Contributes links from commits and pull requests."
+        ]
+      ],
+      "caption": "Linking word groups from Linear's GitHub docs and changelog"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick the word that matches the change. A PR that only refactors a module should use Ref or Part of. Using Fixes on partial work moves the issue on merge, even when the work is not finished."
+    },
+    {
+      "type": "paragraph",
+      "text": "The docs also show newer words. The word updates, added in a September 24, 2026 changelog entry, creates Contributes links from commits and pull requests. A July 2, 2026 changelog group added Linear issue as a word that links PRs to issues. Check the changelog for later changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method three: link through commit messages"
+    },
+    {
+      "type": "paragraph",
+      "text": "Commits can link too. Write a linking word and the issue ID in the commit message, such as Fixes ENG-123 in the body. Linear reads commit messages only when commit linking is turned on."
+    },
+    {
+      "type": "paragraph",
+      "text": "This method helps when one PR holds several commits that touch different issues. Each commit can name the issue it works on, so the history explains itself. Keep the ID in the PR title or description as well, so the PR itself links."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up the GitHub integration in Linear on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "If no link ever appears, the GitHub integration may not be set up. Open Linear and go to Settings > Features > Integrations > GitHub. Linear's GitHub docs give this path, and it is the first place to check."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Menu names may differ",
+      "text": "Linear's docs give these paths without marking them for the Mac app. If a name on your screen differs, look for GitHub under Integrations and the same setting nearby."
+    },
+    {
+      "type": "paragraph",
+      "text": "Who installs the integration depends on scope. For organization-level access, a GitHub organization owner must install it. A repository administrator can install it for repository-level access. If you have neither role, ask one of them to set it up."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each person also connects a personal GitHub account. Go to Settings > Connected accounts. Without that connection, you do not see the PR and review information tied to your account. A GitHub account can connect to only one Linear workspace, so pick the right one."
+    },
+    {
+      "type": "paragraph",
+      "text": "Commit linking has its own switch. At the bottom of the GitHub settings page, find the commit linking toggle. Turn it on if you want method three to work."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the link on the Linear issue"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the issue in Linear and look for the PR attachment. Check that the title and status match the PR on GitHub. If the attachment is missing, the link did not form, so go back to the ID and the linking word."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the link exists, you can move around faster. Cmd-click a linked PR to open it in a new tab. Linear added this in a July 2, 2026 changelog group. The Linear changelog also lists O then G to open linked pull requests from the keyboard."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes that stop a pull request from linking"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Putting the ID in a PR comment. Comments do not create links, so move the ID into the title or description.",
+        "Typing the number wrong. Check ENG-123 against the issue before you push, since a typo can link to the wrong issue or to none.",
+        "Writing ignore or skip before the ID. Linear treats that as a request to skip linking.",
+        "Using a closing word on partial work. The issue moves on merge even if work remains.",
+        "Squash merging several PRs into one branch. Linear does not detect the earlier PRs' issues in the new PR, so link each issue again."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stop a link or create an issue from a PR"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes a PR mentions an issue that it should not link. Put skip or ignore in front of the ID. For example, Ignore ENG-123 in the description keeps the PR off that issue."
+    },
+    {
+      "type": "paragraph",
+      "text": "The reverse also works. Add {TEAM}-NEW to the PR description to create a new issue from the PR. With a team prefix of ENG, the text is ENG-NEW. Use this when the work has no issue yet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Remove a linked PR from a Linear issue"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the issue, click the three dots on the PR attachment, and choose Remove. Linear's docs describe this as the way to take a PR off an issue. Use it when you linked the wrong PR or the wrong issue."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Review pull requests in Linear with the Reviews section"
+    },
+    {
+      "type": "paragraph",
+      "text": "Linear has a Reviews section for code review. It lists PRs that need your attention, PRs you wrote, and reviews you took part in. Press G then R to open it. Press O then R to open a specific review."
+    },
+    {
+      "type": "paragraph",
+      "text": "Diffs switch between Unified and Split views with ⌘B on Mac. Linear's docs write this as Cmd or Ctrl plus B, so the Mac key is Command."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can also open a GitHub PR in Linear. Replace github.com in the PR URL with linear.review. The page then opens in Linear."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the Reviews tab is missing, go to Settings > Code & reviews and check that Enable code reviews is on. Each user also needs a personal GitHub connection to see PR and review information."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Linear plans and what the link needs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Linear's pricing page lists plans that matter here. Free has 250 issues and 2 teams, with unlimited members. Guided reviews are not included on Free."
+    },
+    {
+      "type": "paragraph",
+      "text": "Basic costs $10 per user per month billed yearly. It includes 5 teams, unlimited issues and Guided reviews. Business costs $16 per user per month billed yearly, with unlimited teams, Guided reviews and Diffs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the pricing page before you plan around a feature. Plans change, and that page is the source for current terms."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Squash merges, stacked PRs and merge status"
+    },
+    {
+      "type": "paragraph",
+      "text": "Squash merges change which links survive. When you squash several PRs into one branch, the earlier PRs lose their links in the new PR. Link each issue again in the new PR title or description."
+    },
+    {
+      "type": "paragraph",
+      "text": "Automatic Ready for merge steps have rules too. Linear's docs say they need GitHub reviews or checks to be required for the PR. Any failing check can block them, including a check that is not required."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mac app updates and macOS versions"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Linear Mac app updates itself in the background. Linear's Get the app page also documents a Terminal setting to turn off automatic updates. You must quit and relaunch the app for that change to take effect."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same page gives no minimum macOS version, and it does not state an app version number. If the app will not open on an older Mac, check the download page at linear.app/download before you troubleshoot the link itself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur fits when you link a PR"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘ and ask about anything on your screen, and Lazur answers out loud."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is and Lazur draws a circle and a label around it. Ask how to do something and Lazur guides you one click at a time, waiting for each click. It does not click for you, and it does not operate Linear or GitHub."
+    },
+    {
+      "type": "paragraph",
+      "text": "For this task, ask where the Connected accounts setting is, or ask Lazur to walk you through copying the branch name. You still make each click. Lazur is not a plugin or add-in for Linear, and it has no partnership with Linear."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at your screen only while you hold the shortcut. If you want to try it, [download Lazur](/download) for your Mac."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after the PR is linked"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the link works, the next question is usually about the issue itself. The guide to [creating an issue in Linear on Mac](/how-to/create-an-issue-in-linear) covers templates and drafts. The guide to [filtering issues in Linear on Mac](/how-to/filter-issues-in-linear) helps when a board gets busy."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a linking word to link a PR?",
+      "answer": "No. Putting the issue ID in the branch name, the PR title or the PR description links the PR. A linking word adds a rule. Closing words also move the issue to its merge status when the PR merges."
+    },
+    {
+      "question": "Why won't my PR link when I put the ID in a comment?",
+      "answer": "Linking words in PR comments do not create links. Edit the PR title or description instead. For an open PR, adding the ID with a linking word to the title or description adds the link."
+    },
+    {
+      "question": "Which words move the issue to the merge status?",
+      "answer": "Fixes, Closes, Resolves and Implements move the issue to On PR or commit merge when the PR merges. Ref, Refs, References, Part of, Contributes to and Toward(s) link the PR without that move."
+    },
+    {
+      "question": "Who has to set up the GitHub integration?",
+      "answer": "For organization-level access, a GitHub organization owner installs it. A repository administrator can install it for repository-level access. Each person also connects a personal GitHub account under Settings > Connected accounts."
+    },
+    {
+      "question": "Are the menu paths the same in the Mac app?",
+      "answer": "Linear's docs give the paths without a Mac label, so names can differ on your screen. Look for GitHub under Integrations and for Connected accounts under Settings. The linking rules come from Linear's GitHub docs."
+    },
+    {
+      "question": "Can Lazur link the pull request for me?",
+      "answer": "No. Lazur points at things and guides you one click at a time. It does not click buttons or operate Linear or GitHub. Ask where the Connected accounts setting is and it circles that item on your screen."
+    },
+    {
+      "question": "Which Linear plan includes Guided reviews?",
+      "answer": "Basic and Business include Guided reviews on Linear's pricing page. Free does not. Business also includes Diffs. Check the pricing page for current terms before you buy."
+    },
+    {
+      "question": "Why don't my squash-merged PRs link to the old issues?",
+      "answer": "Linear does not detect the earlier PRs' issues in the new PR after a squash merge of several PRs. Link each issue again in the new PR's title or description."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Linear Docs: GitHub",
+      "url": "https://linear.app/docs/github",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Docs: Reviews (Diffs)",
+      "url": "https://linear.app/docs/diffs",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Docs: Download Linear (Get the app)",
+      "url": "https://linear.app/docs/get-the-app",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Pricing",
+      "url": "https://linear.app/pricing",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Changelog",
+      "url": "https://linear.app/changelog",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Changelog: New controls for Linear coding agent (2026-09-24)",
+      "url": "https://linear.app/changelog/2026-09-24-new-controls-for-linear-coding-agent",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Linear Changelog: Initiative properties (2026-07-02 group)",
+      "url": "https://linear.app/changelog/2026-07-02-initiative-properties",
+      "publisher": "Linear",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Atlassian: Developer experience report 2025",
+      "url": "https://www.atlassian.com/blog/developer/developer-experience-report-2025",
+      "publisher": "Atlassian",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Link a GitHub pull request to a Linear issue",
+  "appliesTo": "Linear desktop app for Mac (Apple silicon and Intel) with GitHub pull requests",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Linear workspace where you can open issues",
+    "A GitHub account with access to the repository",
+    "The GitHub integration installed by an organization owner or a repository administrator",
+    "The Linear desktop app for Mac, from linear.app/download",
+    "Git and Terminal, for the branch steps"
+  ],
+  "steps": [
+    {
+      "name": "Open the GitHub integration settings",
+      "menuPath": [
+        "Settings",
+        "Features",
+        "Integrations",
+        "GitHub"
+      ],
+      "text": "In Linear, open Settings, then go to Features, then Integrations, then GitHub. Check that the integration is installed for your organization or for the repository.",
+      "tip": "If a name on your screen differs, look for GitHub under Integrations."
+    },
+    {
+      "name": "Connect your personal GitHub account",
+      "menuPath": [
+        "Settings",
+        "Connected accounts"
+      ],
+      "text": "Open Settings, then Connected accounts, and connect your own GitHub account. Each person needs this to see PR and review information tied to them.",
+      "tip": "One GitHub account can connect to only one Linear workspace."
+    },
+    {
+      "name": "Turn on commit linking if you need it",
+      "menuPath": [
+        "Settings",
+        "Features",
+        "Integrations",
+        "GitHub"
+      ],
+      "text": "At the bottom of the GitHub settings page, turn on the commit linking toggle. Skip this step if you link only through the branch name and PR text.",
+      "tip": "This switch only matters for method three, linking through commit messages."
+    },
+    {
+      "name": "Find the issue ID",
+      "text": "Open the issue in Linear and note its ID. The ID has the form TEAM-NUMBER, such as ENG-123. Type the exact ID in your branch name, PR title or PR description.",
+      "tip": "Check the number twice. A typo can link to the wrong issue or to none."
+    },
+    {
+      "name": "Copy the git branch name from the issue",
+      "shortcut": "⌘⇧.",
+      "text": "With the issue open, use the Copy git branch name action. On Mac, press ⌘⇧. The copied name carries the issue ID.",
+      "tip": "Copy before you write code, so the ID is in the branch from the first push."
+    },
+    {
+      "name": "Create the branch in Terminal",
+      "text": "Open Terminal in your repository folder. Run git switch -c and paste the copied name. Commit your work, then push with git push -u origin and the same name.",
+      "tip": "Use the exact name Linear copied. Do not retype it by hand."
+    },
+    {
+      "name": "Add a closing word to the PR",
+      "text": "On GitHub, open the pull request. In the title or description, write Fixes ENG-123, or use Closes, Resolves or Implements. Closing words move the issue on merge.",
+      "tip": "Use Ref or Part of when the PR only touches the issue."
+    },
+    {
+      "name": "Check the PR attachment on the issue",
+      "text": "Open the issue in Linear and look for the PR attachment. Confirm that its title and status match the PR on GitHub.",
+      "tip": "Cmd-click a linked PR to open it in a new tab."
+    },
+    {
+      "name": "Open linked PRs from the keyboard",
+      "shortcut": "O then G",
+      "text": "From an issue view, press O then G to open the linked pull requests. Linear's changelog lists this shortcut."
+    },
+    {
+      "name": "Remove a PR linked by mistake",
+      "menuPath": [
+        "Three dots on the PR attachment",
+        "Remove"
+      ],
+      "text": "Open the issue. Click the three dots on the PR attachment, then choose Remove. This takes the PR off the issue.",
+      "tip": "Use this for a wrong PR or a wrong issue, then link the right one."
+    },
+    {
+      "name": "Open the Reviews section",
+      "shortcut": "G then R",
+      "text": "Press G then R to open Reviews. It lists PRs that need your attention, PRs you wrote and reviews you joined. Press O then R to open a specific review.",
+      "tip": "If Reviews is missing, check Settings > Code & reviews for the Enable code reviews toggle."
+    },
+    {
+      "name": "Reconnect an integration that is out of sync",
+      "text": "Disconnect Linear from GitHub on GitHub's side. Reset the local database at linear.app/reset. Then reconnect the integration in Linear settings.",
+      "tip": "Linear's docs give this order. Follow it in this sequence."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Copy git branch name",
+      "keys": "⌘⇧."
+    },
+    {
+      "action": "Open the Reviews section",
+      "keys": "G then R"
+    },
+    {
+      "action": "Open a specific review",
+      "keys": "O then R"
+    },
+    {
+      "action": "Switch between Unified and Split diffs",
+      "keys": "⌘B"
+    },
+    {
+      "action": "Open linked pull requests from an issue view",
+      "keys": "O then G"
+    },
+    {
+      "action": "Open a linked PR in a new tab",
+      "keys": "Cmd-click"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The PR does not link to the issue.",
+      "fix": "Check that the ID is in the branch name, PR title or PR description, not a comment. Check the number against the issue. Remove any skip or ignore word in front of the ID."
+    },
+    {
+      "problem": "The PR is linked but the issue did not move on merge.",
+      "fix": "Check that you used a closing word such as Fixes, Closes, Resolves or Implements. Non-closing words such as Ref do not move the status."
+    },
+    {
+      "problem": "The GitHub integration is out of sync.",
+      "fix": "Disconnect Linear from GitHub on GitHub's side. Reset the local database at linear.app/reset, then reconnect the integration in Linear settings."
+    },
+    {
+      "problem": "The Reviews section is missing.",
+      "fix": "Turn on Enable code reviews under Settings > Code & reviews, and make sure your personal GitHub account is connected under Connected accounts."
+    },
+    {
+      "problem": "Earlier PRs lost their links after a squash merge.",
+      "fix": "Link each issue again in the new PR title or description. Linear does not detect the earlier PRs' issues in the new PR."
+    }
+  ],
+  "lazur": {
+    "spoken": "Walk me through linking this pull request to the issue.",
+    "capability": "guide",
+    "result": "Lazur points at each item in turn and waits for your click before it moves on. It does not click for you.",
+    "shell": "generic",
+    "pointsAt": "Connected accounts",
+    "context": "Linear desktop app on Mac, with Settings open",
+    "output": "Circles the next item on screen and explains it in a few words, then waits."
+  },
+  "type": "howto",
+  "slug": "link-a-github-pull-request-in-linear",
+  "app": "linear",
+  "appName": "Linear",
+  "publishedAt": "2026-11-08",
+  "updatedAt": "2026-11-08",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/link-a-github-pull-request-in-linear/how-to-link-a-github-pull-request-1-92256f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop checking code before linking a pull request in Linear on Mac",
+      "caption": "A developer checks a change before the pull request goes up.",
+      "keywords": [
+        "how to link a github pull request in linear on mac",
+        "Linear",
+        "link a github pull request",
+        "Mac",
+        "person working on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/entrepreneur-start-up-man-planning-593371/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/link-a-github-pull-request-in-linear/how-to-link-a-github-pull-request-2-fc8512.jpg",
+      "width": 1280,
+      "height": 1280,
+      "alt": "Developer at a desk with code on the screen, working on a github pull request",
+      "caption": "Coding work on a desk with a laptop open.",
+      "keywords": [
+        "how to link a github pull request in linear on mac",
+        "Linear",
+        "link a github pull request",
+        "Mac",
+        "developer desk code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "softradixtech",
+        "url": "https://pixabay.com/users/softradixtech-43856250/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/workplace-desktop-office-remote-8793724/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/link-a-github-pull-request-in-linear/how-to-link-a-github-pull-request-3-b28b10.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Team with laptops in an office discussing issues and pull requests",
+      "caption": "A team plans work in issues and reviews code together.",
+      "keywords": [
+        "how to link a github pull request in linear on mac",
+        "Linear",
+        "link a github pull request",
+        "Mac",
+        "team meeting laptops",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "089photoshootings",
+        "url": "https://pixabay.com/users/089photoshootings-4258482/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/people-business-meeting-1979261/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to link a github pull request in linear on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "link github pull request to linear issue": 1,
+      "linear github integration mac": 1,
+      "linear linking words for pull requests": 1,
+      "fixes ENG-123 pull request linear": 1,
+      "copy git branch name linear": 1,
+      "linear github pr not linking": 1,
+      "linear reviews pull request mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-08",
+    "version": 1
+  }
+}

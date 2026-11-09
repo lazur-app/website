@@ -1,0 +1,632 @@
+{
+  "title": "Chrome for software QA testers on Mac: DevTools, throttling and HAR steps for 2026",
+  "metaTitle": "Chrome for Software QA Testers on Mac: DevTools Guide",
+  "description": "Chrome for software QA testers on Mac: DevTools shortcuts, network throttling, Device Mode and HAR export steps, and how Lazur helps while you test.",
+  "targetKeyword": "chrome for software qa testers on mac",
+  "secondaryKeywords": [
+    "chrome devtools shortcuts mac",
+    "chrome network throttling mac",
+    "chrome device mode mac testing",
+    "export HAR file chrome mac",
+    "chrome console mac QA",
+    "chrome bug report mac"
+  ],
+  "intro": "Chrome for software QA testers on Mac runs on DevTools. Open it with ⌘⌥I, then use the Network, Console and Elements panels to reproduce, prove and report a bug. This guide covers the shortcuts, throttling, Device Mode and HAR steps you will use most. It also shows where Lazur fits while you stay in Chrome.",
+  "tldr": [
+    "Open DevTools with ⌘⌥I. Use ⌘⌥J for the Console and ⌘⇧P for the Command Menu.",
+    "Throttle the network from the Network panel to test slow connections before you file a bug.",
+    "HAR exports leave out Cookie, Set-Cookie and Authorization by default. Turn on the sensitive option only when you need it.",
+    "Read your Chrome build from chrome://version before you write a report, because the build changes what you see."
+  ],
+  "stats": [
+    {
+      "value": "Up to 82%",
+      "label": "of testers still use manual testing in their day-to-day work, per Katalon's survey of 1,400 QA professionals",
+      "sourceUrl": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "sourceTitle": "Test Automation Statistics & Trends for 2025 (Katalon)"
+    },
+    {
+      "value": "45%",
+      "label": "of those manual testers automate regression testing, per the same Katalon article",
+      "sourceUrl": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "sourceTitle": "Test Automation Statistics & Trends for 2025 (Katalon)"
+    },
+    {
+      "value": "15%",
+      "label": "of organizations have scaled Gen AI in quality engineering enterprise-wide, per the World Quality Report 2025-26",
+      "sourceUrl": "https://www.capgemini.com/insights/research-library/world-quality-report-2025-26/",
+      "sourceTitle": "World Quality Report 2025-26, Capgemini"
+    },
+    {
+      "value": "macOS 13",
+      "label": "minimum for new installs of Chrome 151, which drops support for macOS 12",
+      "sourceUrl": "https://support.google.com/chrome/a/answer/10314655?hl=en",
+      "sourceTitle": "Previous release notes, Chrome Enterprise and Education Help"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What QA testers actually do in Chrome on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most software QA testers on a Mac use Chrome for three jobs. They reproduce a bug. They prove what the browser sent and what came back. Then they describe the problem so a developer can fix it. Chrome's built-in DevTools covers all three. You do not need a second app to start."
+    },
+    {
+      "type": "paragraph",
+      "text": "DevTools opens beside the page or below it. Chrome calls that spot the docking position. Press ⌘⇧D to switch back to the last docking position when the panel lands somewhere awkward. Small fixes like this keep the window out of your way."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open DevTools on Mac with the right shortcut"
+    },
+    {
+      "type": "paragraph",
+      "text": "Learn four shortcuts first. ⌘⌥I opens DevTools on the panel you used last. ⌘⌥J goes straight to the Console. ⌘⌥C opens Elements. ⌘⇧P opens the Command Menu, where you can search for any DevTools action by name."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "⌘⌥I: open DevTools on the last panel you used",
+        "⌘⌥J: open DevTools on the Console",
+        "⌘⌥C: open the Elements panel",
+        "⌘⇧C: toggle inspect element mode, which Chrome's shortcut page also lists for Elements",
+        "⌘⇧P: open the Command Menu and search by action name",
+        "⌘⇧M: toggle Device Mode, a shortcut the Device Mode article does not mention",
+        "⌘⇧D: switch the DevTools window back to the last docking position"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The ⌘⇧C line is the one that confuses people. Chrome's shortcut page lists it twice for Mac. Test it on your own build before you rely on it. If it does not do what you expect, search the Command Menu with ⌘⇧P for the action name instead."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same problem shows up with ⌘⇧M. The shortcuts page calls it Toggle Device Mode. The Device Mode article describes a toolbar button and no dedicated shortcut. Try the shortcut first. If it fails, use the toolbar button."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reproduce a bug with the Network panel and ⌘F"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Network panel before you reproduce the bug. Trigger the failure once. Then click the request that looks wrong. The Headers, Payload and Response views show what the browser sent and what the server returned. That split helps you tell a page problem from a server problem."
+    },
+    {
+      "type": "paragraph",
+      "text": "Press ⌘F while the Network panel is active to search headers, payloads and responses. Search for an error message, a field name or a test order ID. The search reaches inside response bodies, so you can find a value without scrolling a long request list."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a simple case. A checkout button seems to do nothing. You open the Network panel, press the button, and find a request to the order endpoint. You search the response for the order ID and find an error message the page never showed. Now the bug report has evidence, not a guess."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Throttle the network to test slow connections"
+    },
+    {
+      "type": "paragraph",
+      "text": "Throttling slows the connection Chrome uses for the page. Use it to see what a slow user sees. Open the Network panel, then open the Network throttling drop-down. Pick Fast 4G, Slow 4G or 3G. Pick Offline to cut the connection completely."
+    },
+    {
+      "type": "paragraph",
+      "text": "The drop-down sits next to Disable cache. Choose Custom > Add when no preset matches the speed in a bug report. When throttling is on, the Network panel shows a warning icon. Look for that icon before you blame the app for slow loading."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Option",
+        "Where to find it",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "Fast 4G",
+          "Network throttling drop-down",
+          "Loading on a quick mobile connection"
+        ],
+        [
+          "Slow 4G",
+          "Network throttling drop-down",
+          "Loading states on a weaker signal"
+        ],
+        [
+          "3G",
+          "Network throttling drop-down",
+          "Timeouts and spinners that never stop"
+        ],
+        [
+          "Offline",
+          "Network throttling drop-down, next to Disable cache",
+          "What the page shows with no connection"
+        ],
+        [
+          "Custom",
+          "Custom > Add",
+          "A speed that matches the bug report exactly"
+        ]
+      ],
+      "caption": "Throttling options in the Chrome DevTools Network panel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn throttling off when the test ends. The warning icon tells you it is still on. A common mistake is to run the next test on a slow profile and file a bug that was never there."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test layouts with Device Mode at real widths"
+    },
+    {
+      "type": "paragraph",
+      "text": "Device Mode resizes the page to a device width. Chrome's own guide calls it a first-order approximation of how your page looks and feels on a mobile device. It does not run the code on a phone. Use it as a first pass, then check a real device when you are not sure."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Preset",
+        "Width"
+      ],
+      "rows": [
+        [
+          "Mobile S",
+          "320px"
+        ],
+        [
+          "Mobile M",
+          "375px"
+        ],
+        [
+          "Mobile L",
+          "425px"
+        ],
+        [
+          "Tablet",
+          "768px"
+        ],
+        [
+          "Laptop",
+          "1024px"
+        ],
+        [
+          "Laptop L",
+          "1440px"
+        ],
+        [
+          "4K",
+          "2560px"
+        ]
+      ],
+      "caption": "Device Mode width presets in Chrome DevTools"
+    },
+    {
+      "type": "paragraph",
+      "text": "Custom devices take a name, a width and a height. Use a custom device for a screen size your team supports that Chrome does not list. Write the width in every bug report, so a developer can reproduce it at the same size."
+    },
+    {
+      "type": "paragraph",
+      "text": "Avoid one common mistake. Do not report a Device Mode layout bug as if a real iPhone showed it. Say in the report that you used Device Mode, and name the preset or width. That one line prevents a round of back and forth."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check layout bugs in the Elements panel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Elements panel with ⌘⌥C when the bug looks visual. Elements shows the HTML of the page. Pick a part of the page and you see the markup behind it. That helps you tell a missing element from one that is hidden."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use ⌘⇧C when you want to point at the page instead of hunting through markup. Confirm what that shortcut does on your build first, because Chrome lists it twice on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Pair Elements with Device Mode. Set the width to Tablet at 768px, then inspect the element that breaks. Write the width and the element name in your report, so the developer can find the same part of the page."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Export a HAR file without leaking secrets"
+    },
+    {
+      "type": "paragraph",
+      "text": "A HAR file records the network traffic for a page. Developers ask for one because it shows the exact requests and responses. Chrome sanitizes the export by default. Cookie, Set-Cookie and Authorization are left out of the file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sensitive exports need an extra step. Open Settings > Preferences > Network. Turn on Allow to generate HAR with sensitive data. Then choose Export HAR (with sensitive data). Third-party guides use other menu labels, so check the labels in your build."
+    },
+    {
+      "type": "paragraph",
+      "text": "Importing works the other way. Drag a HAR file into the Requests table, or use the Import HAR button in the action bar. Imported requests keep their initiators, so you can trace where each one started."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the file before you share it. The default removes three headers. It does not promise that nothing sensitive is left in the body. Send the sanitized file in public tickets, and send the sensitive one only to people who need it."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use the Console and Recorder to repeat a flow"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the Console with ⌘⌥J, then reload the page. Read the first error in red, then the lines after it. The first error often explains the rest. Copy the exact message into the report, not your paraphrase."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Recorder panel saves a series of steps as a replayable recording. On Mac, ⌘E starts or stops recording. ⌘Enter replays it. ⌘B toggles the code view. ⌘C copies the whole recording or the step you have selected."
+    },
+    {
+      "type": "paragraph",
+      "text": "Record a flow once, then replay it after each fix. Copy the code into the ticket, so the developer runs the same steps you ran. Replaying a recording removes one source of human error from the retest."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keep Chrome and macOS in step with your test Macs"
+    },
+    {
+      "type": "paragraph",
+      "text": "Build version changes what DevTools shows, so write it down. Open chrome://version in the address bar and copy the build number into the report. Google's Chrome Releases blog posted a stable desktop update dated November 3, 2026. That post did not list a build number, so read yours from chrome://version."
+    },
+    {
+      "type": "paragraph",
+      "text": "macOS sets a floor. Chrome 150 is the last release to support macOS 12. Chrome 151 removes macOS 12 support, and new installs require macOS 13 or later. On macOS 12, Chrome keeps running but stops updating."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for stale release notes. The Chrome Enterprise release notes list Chrome 152 as the latest entry, dated September 1, 2026. That page is older than the November update, so do not use it to pick a build for your lab."
+    },
+    {
+      "type": "paragraph",
+      "text": "A test Mac on macOS 12 will fall behind. Check every Mac in the lab before you assign Chrome 151 work to it. A Mac that cannot update may give you reports from a build that does not match what your users run."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What AI can and cannot do for QA work right now"
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "Katalon's State of Quality Report 2025 interviewed 1,400 QA professionals, according to its article. The article says up to 82% of testers still use manual testing in their day-to-day work. About 45% of those manual testers automate regression testing. This is a vendor survey, not an independent study, so read it that way."
+    },
+    {
+      "type": "paragraph",
+      "text": "Capgemini's World Quality Report 2025-26 says only 15% of organizations have scaled Gen AI in quality engineering enterprise-wide. Gen AI was also the top-ranked skill for quality engineers, at 63%. Other secondary coverage gives different adoption figures, so quote only the 15% number."
+    },
+    {
+      "type": "paragraph",
+      "text": "No survey I could find measured how much time testers lose to DevTools friction. Treat any speed claim about a tool with care, including the ones on this page. Time the workflow on your own pages and decide from that."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to say to Lazur while you test in Chrome"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥⌘ to ask about anything on screen, and Lazur answers out loud. It sees your screen only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask where something is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. Lazur does not click for you. It does not operate other apps, so the clicking stays with you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. Use it for repro steps and report text. Snippets, a personal dictionary and clipboard slots help with the phrases you repeat every day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Research is the background option. Ask Lazur to research a question, and it runs in Lazur's own Chrome tabs through the Lazur for Chrome extension. It comes back with a summary and a report. Check the sources in that report before you rely on them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy matters on a test page. Lazur listens and looks only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If the page holds customer data, check your company rules first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: from checkout error to bug report"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is one pattern you can reuse. A customer says a promo code works on a phone but fails on a laptop. Work through it in this order."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open the page under test. Press ⌘⌥I and pick the Network tab.",
+        "Turn on Device Mode with ⌘⇧M, or use the toolbar button. Choose Mobile M at 375px and apply the promo code.",
+        "Turn Device Mode off. Test again at Laptop L, which is 1440px wide.",
+        "Press ⌘F in the Network panel and search for the promo code. Compare the request and response from each run.",
+        "Open the Console with ⌘⌥J. Note any error that appears at the moment of failure.",
+        "Export a HAR without sensitive data. Send the sensitive version only if the developer asks for it.",
+        "Write the report. Include the build from chrome://version, the macOS version, the width and the HAR file name."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The report now holds facts a developer can act on. It also says what you did not test, such as a real phone. Ask Lazur to draft the report from your notes. Then check every line before you file it."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes QA testers make in Chrome on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reproducing a bug before opening DevTools, so the request never shows in the Network panel.",
+        "Reporting a Device Mode layout as a phone bug without saying so.",
+        "Sharing a sensitive HAR file in a public ticket.",
+        "Leaving throttling on after the test, then blaming the app for slow loads.",
+        "Skipping the Chrome build number, so the developer cannot match your results.",
+        "Trusting the ⌘⇧C label in one list and ignoring the second entry."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What to do next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Pick one open bug from your queue and run it through the steps above. Write the Chrome build and the macOS version in the report. If you need a clean start between runs, clear your browsing data first, using the [steps for Chrome on macOS](/how-to/clear-browsing-data-in-chrome)."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you want Lazur on your Mac, the [download page](/download) has the install. You can compare plans on the [pricing page](/pricing) before you decide."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need to install anything to use DevTools on Mac?",
+      "answer": "No. DevTools comes built into Chrome. Open a page you want to test, then press ⌘⌥I. You need Chrome installed and a page to test."
+    },
+    {
+      "question": "Which shortcut opens the Console on Mac?",
+      "answer": "Press ⌘⌥J to open the Console in DevTools. Press ⌘⌥I to open DevTools on the panel you used last. Chrome's shortcut page is the place to confirm the list for your build."
+    },
+    {
+      "question": "Why does Chrome list ⌘⇧C twice?",
+      "answer": "Chrome's shortcut page lists ⌘⇧C once for toggling inspect element mode and once for opening the Elements panel. Test it on your build. If it does the wrong thing, search the Command Menu with ⌘⇧P."
+    },
+    {
+      "question": "Is Device Mode the same as testing on a real phone?",
+      "answer": "No. Chrome calls Device Mode a first-order approximation of how a page looks and feels on mobile. It does not run the code on a mobile device. Use a real device when you are not sure."
+    },
+    {
+      "question": "Is a HAR file safe to share?",
+      "answer": "The default export leaves out Cookie, Set-Cookie and Authorization. That does not make the whole file clean. Read it before you share it, and send the sensitive version only to people who need it."
+    },
+    {
+      "question": "How do I find my Chrome build on Mac?",
+      "answer": "Open chrome://version in the address bar. Copy the build number into your bug report. Do not rely on a blog post for the current number, because builds change often."
+    },
+    {
+      "question": "Will Chrome 151 run on an older Mac?",
+      "answer": "New installs of Chrome 151 require macOS 13 or later. On macOS 12, Chrome keeps running but stops updating. Check each Mac in your test lab before you assign work to it."
+    },
+    {
+      "question": "Can Lazur click through DevTools for me?",
+      "answer": "No. Lazur does not click buttons or operate other apps. It can point at the Network tab, explain what you see, guide you one click at a time, and draft text for you."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. This guide covers Chrome on Mac only."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Keyboard shortcuts | Chrome DevTools | Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/devtools/shortcuts",
+      "publisher": "Google Chrome for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Network features reference | Chrome DevTools | Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/devtools/network/reference",
+      "publisher": "Google Chrome for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Simulate mobile devices with device mode | Chrome DevTools",
+      "url": "https://developer.chrome.com/docs/devtools/device-mode",
+      "publisher": "Google Chrome for Developers",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Previous release notes, Chrome Enterprise and Education Help",
+      "url": "https://support.google.com/chrome/a/answer/10314655?hl=en",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Chrome Releases: Stable Channel Update for Desktop (2026-11-03)",
+      "url": "https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop.html",
+      "publisher": "Google Chrome Releases",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Test Automation Statistics & Trends for 2025 (Katalon)",
+      "url": "https://katalon.com/resources-center/blog/test-automation-statistics-for-2025",
+      "publisher": "Katalon",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "World Quality Report 2025-26, Capgemini",
+      "url": "https://www.capgemini.com/insights/research-library/world-quality-report-2025-26/",
+      "publisher": "Capgemini",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Where is the Network tab in this DevTools window?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Network tab on screen. You click it yourself.",
+    "shell": "generic",
+    "context": "Chrome DevTools docked at the bottom of a checkout page",
+    "output": "A circle and a label around the Network tab, with a spoken answer.",
+    "pointsAt": "Network tab"
+  },
+  "tasks": [
+    {
+      "say": "Where is the Network tab in this DevTools window?",
+      "result": "Lazur circles the Network tab and labels it on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Walk me through throttling this page to Slow 4G.",
+      "result": "Lazur guides you one click at a time and waits for each click before the next step.",
+      "capability": "guide"
+    },
+    {
+      "say": "What does this failed request in the Network panel mean?",
+      "result": "Lazur explains the response out loud, based on what is on your screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Draft a bug report from my notes, with steps and the console error.",
+      "result": "Lazur drafts the report text. You check every line, then paste it into your tracker.",
+      "capability": "draft"
+    },
+    {
+      "say": "Research how Chrome 151 changed macOS support for our test Macs.",
+      "result": "Research runs in Lazur's own Chrome tabs and comes back with a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Repro steps: open checkout, add an item, apply the promo code.",
+      "result": "Hold fn and speak. Lazur types clean, formatted text at the cursor in any app.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Which keyboard shortcut opens the Console on this Mac?",
+      "result": "Lazur answers out loud and can point at the Console tab if it is on screen.",
+      "capability": "explain"
+    }
+  ],
+  "type": "role-app",
+  "slug": "software-qa-testers-chrome",
+  "role": "software-qa-testers",
+  "app": "chrome",
+  "roleName": "Software QA testers",
+  "appName": "Chrome",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-chrome/chrome-for-software-qa-testers-on-mac-1-302bb2.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "A QA tester on a Mac laptop checks a web page for bugs in Chrome at a desk",
+      "caption": "Testing a web page on a laptop at a desk",
+      "keywords": [
+        "chrome for software qa testers on mac",
+        "Chrome",
+        "Software QA testers",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-chrome/chrome-for-software-qa-testers-on-mac-2-805163.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A Mac laptop on a desk, ready for Chrome browser testing by a software QA tester",
+      "caption": "A Mac set up for browser testing work",
+      "keywords": [
+        "chrome for software qa testers on mac",
+        "Chrome",
+        "Software QA testers",
+        "Mac",
+        "mac laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/software-qa-testers-chrome/chrome-for-software-qa-testers-on-mac-3-f9be12.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A developer reviews browser console errors on a laptop screen during QA testing",
+      "caption": "Reviewing console errors during a test pass",
+      "keywords": [
+        "chrome for software qa testers on mac",
+        "Chrome",
+        "Software QA testers",
+        "Mac",
+        "developer code screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Elchinator",
+        "url": "https://pixabay.com/users/Elchinator-10722855/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/source-code-software-computer-4280758/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "chrome for software qa testers on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "chrome devtools shortcuts mac": 1,
+      "chrome network throttling mac": 1,
+      "chrome device mode mac testing": 1,
+      "export HAR file chrome mac": 1,
+      "chrome console mac QA": 1,
+      "chrome bug report mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

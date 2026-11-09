@@ -1,0 +1,607 @@
+{
+  "title": "ChatGPT for Data Scientists on Mac in 2026: notebooks, SQL and spoken help with Lazur",
+  "metaTitle": "ChatGPT for Data Scientists on Mac (2026): Prompts, Checks and Lazur",
+  "description": "ChatGPT for data scientists on Mac: which jobs it handles, how to prompt for SQL and pandas, privacy limits, and how Lazur helps by voice.",
+  "targetKeyword": "chatgpt for data scientists on mac",
+  "secondaryKeywords": [
+    "ChatGPT for data science on Mac",
+    "ChatGPT for SQL on Mac",
+    "ChatGPT pandas help Mac",
+    "ChatGPT desktop app Mac 2026",
+    "ChatGPT Classic Mac",
+    "AI assistant for data scientists Mac",
+    "debug pandas traceback ChatGPT",
+    "voice assistant for data scientists Mac"
+  ],
+  "intro": "ChatGPT for data scientists on Mac helps most with the small jobs around your model. Think SQL drafts, unfamiliar pandas methods, and error messages you have not seen before. Use the ChatGPT desktop app, paste schemas instead of raw data, and check every result before it reaches a report. Lazur adds voice help that sees your screen while you hold ⌥⌘.",
+  "tldr": [
+    "Use ChatGPT on Mac for SQL drafts, pandas methods, and reading tracebacks.",
+    "Paste schemas, column types, and error lines. Keep customer rows out of the chat.",
+    "Check generated code on a small subset with a known answer before you trust a number.",
+    "Lazur adds voice help. Hold ⌥⌘ to ask about your screen, or hold fn to dictate."
+  ],
+  "stats": [
+    {
+      "value": "64.2%",
+      "label": "of respondents who named a primary generative-AI tool chose ChatGPT (391 of 609)",
+      "sourceUrl": "https://arxiv.org/html/2512.19644v3",
+      "sourceTitle": "A survey of generative AI adoption and perceived productivity among scientists who program (arXiv 2512.19644)"
+    },
+    {
+      "value": "3.9 of 5",
+      "label": "average self-reported productivity from 623 scientists who program, not measured code quality",
+      "sourceUrl": "https://arxiv.org/html/2512.19644v3",
+      "sourceTitle": "A survey of generative AI adoption and perceived productivity among scientists who program (arXiv 2512.19644)"
+    },
+    {
+      "value": "843",
+      "label": "respondents were US-based, in a non-random convenience sample",
+      "sourceUrl": "https://arxiv.org/html/2512.19644v3",
+      "sourceTitle": "A survey of generative AI adoption and perceived productivity among scientists who program (arXiv 2512.19644)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where ChatGPT fits in a data scientist's week on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most data scientists do not use ChatGPT for the core model. They use it for the small jobs around the model. On a Mac, that means a regex, a window function, a plot setting, or a stack trace you have never seen before. Those jobs eat more time than most people admit."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2025 survey of scientists who program points the same way. Of 609 respondents who named a primary generative-AI tool, 391 named ChatGPT. That is 64.2%. Only 88 picked a developer-specific tool such as GitHub Copilot, Claude Code, or Cursor, which is 14.4%. The sample is mostly academic and US-based, so read it as a signal, not a verdict on industry teams."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What studies show about scientists who use ChatGPT for code"
+    },
+    {
+      "type": "paragraph",
+      "text": "A CHI 2025 study by Gabrielle O'Brien interviewed scientists and reviewed their logs. The paper is titled How Scientists Use Large Language Models to Program. Its main finding is simple. Scientists mostly used code models as a retrieval tool. They used them to get oriented in unfamiliar languages and libraries."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same paper raises a risk. Code generation can influence the parameters of a scientific analysis without the person noticing. The scientists in the study built their own ways to judge whether generated code was usable. You need the same habit, even when the stakes are a dashboard and not a paper."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "paragraph",
+      "text": "The survey adds a caution about feelings. Self-reported productivity averaged 3.9 on a scale of 1 to 5, from 623 answers. The authors call these perceptions, not measured code quality. The model explained very little of the variation, so do not read the score as proof that ChatGPT makes your code better."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which ChatGPT app and plan to use on Mac in 2026"
+    },
+    {
+      "type": "paragraph",
+      "text": "On July 9, 2026, OpenAI combined Chat, Work, and Codex in one desktop app for macOS and Windows. The original app is now called ChatGPT Classic. If the window looks different from the one you remember, this is why. Check which mode you are in before you paste anything."
+    },
+    {
+      "type": "paragraph",
+      "text": "Your plan decides which model you get. Free and Go users get GPT-5.6 Terra in Work and Codex. Plus, Pro, Business, and Enterprise can choose Sol, Terra, or Luna and set an effort level. Ultra mode in Work is limited to Pro and Enterprise."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Plan",
+        "Model access, July 2026 app",
+        "Practical use for data work"
+      ],
+      "rows": [
+        [
+          "Free or Go",
+          "GPT-5.6 Terra in Work and Codex",
+          "Short lookups and reading error messages"
+        ],
+        [
+          "Plus",
+          "Choose Sol, Terra, or Luna, and an effort level",
+          "Regular SQL drafts and pandas help"
+        ],
+        [
+          "Business",
+          "Choose Sol, Terra, or Luna, and an effort level",
+          "Team work under company data rules"
+        ],
+        [
+          "Pro or Enterprise",
+          "Choose Sol, Terra, or Luna, and an effort level, plus ultra mode in Work",
+          "Long analysis sessions and refactors"
+        ]
+      ],
+      "caption": "Plan access as reported by 9to5Mac on July 9, 2026."
+    },
+    {
+      "type": "paragraph",
+      "text": "This page does not list file size or upload limits. Those limits could not be confirmed from OpenAI's help center, so check them in the app before you upload a large file."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to write ChatGPT prompts for SQL and pandas"
+    },
+    {
+      "type": "paragraph",
+      "text": "Give ChatGPT the shape of your data, not the data itself. A schema, the column types, and the question are enough for most SQL drafts. Paste a few rows only when the values are messy and you need to see them. Name the dialect too, because PostgreSQL and BigQuery write dates and joins differently."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Table names, column names, and types, copied from your schema or from df.dtypes.",
+        "The grain of each table, such as one row per order or one row per user per day.",
+        "The exact question, with the time window and any filter you need.",
+        "The database or dialect, and your pandas version, which you can read with print(pandas.__version__).",
+        "The output shape, such as one row per customer with a count column."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a prompt that works. My orders table has order_id, user_id, created_at as a timestamp, and amount as numeric. Write PostgreSQL that returns monthly revenue per user for the last year. Explain each join and each filter."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask for the explanation with the code. A query with a short note on each join is easier to check. Compare the logic against the grain you wrote down. If the grain and the join disagree, the number is wrong even when the query runs."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Schema first, rows second",
+      "text": "Paste the schema, not the customer table. A made-up sample with the same column types gives the same help. It also keeps real names out of the chat."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Debugging a traceback in ChatGPT without pasting the whole notebook"
+    },
+    {
+      "type": "paragraph",
+      "text": "Paste the last few lines of the traceback, plus the cell that raised it. The bottom line holds the exception type and message. The lines above show where the error started. Keep the failing cell and leave the rest of the notebook out."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a common case. You merge orders with users on user_id. The merge runs, and it returns zero rows. No error appears. The usual cause is a type mismatch. One table holds integers, and the other holds strings that look like integers. Nothing matches."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run df.dtypes on both tables and compare the user_id line. Then cast one side with astype before the merge, and check the row count again. Ask ChatGPT with the dtypes output and both row counts. The answer will point at the real cause, not a guess."
+    },
+    {
+      "type": "paragraph",
+      "text": "This pattern shows up beyond merges. Shape mismatches, missing columns, and silent empty results all leave clues in the same places. A small print call often tells you more than a full stack trace."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checking ChatGPT code before it changes an analysis"
+    },
+    {
+      "type": "paragraph",
+      "text": "Treat every generated line as a claim that needs a test. O'Brien's study names the quiet risk. Generated code can change an analysis parameter without you noticing. Common examples are a default join type, a dropna call, and a time zone on a timestamp column."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Run the code on a small subset where you already know the right answer.",
+        "Compare row counts before and after every join, filter, and groupby.",
+        "Search the code for dropna, fillna, how=, and drop_duplicates, then confirm each one.",
+        "Check null handling, since a missing value can drop out of a mean with no warning.",
+        "Check time zones on any timestamp before you group by day.",
+        "Save the prompt and the final code in the notebook, next to the result."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Defaults change quietly",
+      "text": "A pandas merge uses an inner join unless you say how. Unmatched rows drop out, and the code can still look right. Set how= on purpose, then compare the count."
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask ChatGPT to list every assumption in its answer. The list will not be complete. It still shows you where to look first. Then test those spots yourself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Privacy rules for ChatGPT on a work Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not paste customer records, personal data, or unreleased results into a chat unless your company allows it. A chat is not a private notebook. Read your team's data policy before the first paste, and ask if the policy is unclear."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Anonymize before you ask. Replace names with codes, and swap emails for placeholders. Keep the real key in your own notebook. Bring only the shape of the problem into the chat."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Computer History is off by default",
+      "text": "On macOS it is for Pro, Business, and Enterprise users, and it needs Memories. It records clicks, typing, shortcuts, and app switches, but not screenshots or audio. Temporary event files stay up to 48 hours. Clearing history cannot be undone."
+    },
+    {
+      "type": "paragraph",
+      "text": "Business and Enterprise admins must grant access first. Members still have to opt in. Leave it off unless you have read the rules and your admin agrees. Check the data controls in ChatGPT's settings as well."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Lazur next to ChatGPT on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac that lives in the notch. Hold ⌥⌘, which is Option and Command together, and ask about anything on screen. Lazur answers out loud. It sees the screen only while you hold the shortcut."
+    },
+    {
+      "type": "paragraph",
+      "text": "This helps when your hands stay on the keyboard. Ask Lazur what a chart axis means, or why a button is grayed out. Lazur points at the thing and explains it. Ask where the model picker is, and Lazur draws a circle and a label around it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ask how to do something, and Lazur guides you one click at a time. It waits for each click. If Lazur cannot see a window, check Apple menu > System Settings > Privacy & Security > Screen & System Audio Recording."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click for you, edit files, or operate ChatGPT or any other app. It is not an add-in for ChatGPT, and it has no partnership with any app maker."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Dictating prompts and notes while you code"
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate clean, formatted text at the cursor in any app. That works in the ChatGPT box, a notebook cell, or a commit message. Dictation is unlimited on both paid plans."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the personal dictionary for product names. Speech tools often mangle pandas, scikit-learn, or groupby. Add each term once. Then the next prompt comes out right."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A schema header for SQL prompts, with table grain and dialect.",
+        "A standard data check: row counts, nulls, duplicate keys, and the date range.",
+        "A source line for each notebook: the file name, the pull date, and the owner.",
+        "A review request that asks a teammate to list the assumptions in a result."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Clipboard slots help too. Keep the schema in one slot and the traceback in another. You can switch between the notebook and the chat without retyping either one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes data scientists make with ChatGPT"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Accepting the first answer. It often looks right and fails on edge cases.",
+        "Pasting full datasets. You share more than you meant, and the answer rarely gets better.",
+        "Forgetting the library version. Method names change between releases, and old code can fail quietly.",
+        "Asking which model to use without your data. The answer names what sounds common, not what fits your case.",
+        "Skipping the explanation. Code you cannot explain is code you cannot defend in review.",
+        "Losing good prompts. Save the ones that worked, because you will need them again."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "The biggest mistake is the quiet one. A number looks plausible but came from a bad join. Check it once against a known value, and the habit will carry over to the next analysis."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Option+Space and quick chat for short questions on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every question needs the full window. OpenAI's release notes list Pets quick chat via Option+Space for September 7 to 11, 2026. Use it for a one-line regex or a quick unit check. Keep longer analysis in the main window, where you can paste schemas and review code. For setup, see [how to use the Option+Space shortcut in ChatGPT](/how-to/use-the-option-space-shortcut-in-chatgpt)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Appshots works differently. In the May 2026 release notes, pressing both Command keys sends the frontmost window to Codex. That helps when a chart or traceback is on screen. Check the window for client names and keys before you send it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When ChatGPT is the wrong tool for a data science job"
+    },
+    {
+      "type": "paragraph",
+      "text": "ChatGPT struggles with work that depends on state. A notebook with cells run out of order is hard to reason about in a chat. A codebase with tests needs a tool that reads the files. A chat window does not see your pipeline unless you paste it."
+    },
+    {
+      "type": "paragraph",
+      "text": "For that work, try an editor-based assistant. See the guides for [Cursor](/for/data-scientists/cursor) and [VS Code](/for/data-scientists/vs-code). In the 2025 survey, 14.4% of respondents who named a primary tool chose a developer-specific tool. Most people still start in a chat window."
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple split works well. Use ChatGPT to think, draft, and read errors. Use your notebook or IDE to run, test, and keep the record."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Trying Lazur on a data science Mac: trial and plans"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur has a Pro trial that needs no credit card. The trial starts the first time you open the app. Paid plans come as Pro and Power. Dictation is unlimited on both."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check current prices on the [pricing page](/pricing) before you pay. Prices are kept there, so this guide does not repeat them. You can also [download Lazur](/download) to try the trial on your Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. If your analysis work lives on a Windows laptop, Lazur will not run there yet."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Lazur helps and where it does not"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Helps: pointing at a button, reading an error aloud, drafting a reply, and dictating a prompt.",
+        "Helps: voice timers, Apple Reminders, Calendar events, notes, music, and opening apps or links.",
+        "Helps: research jobs run in Lazur's own Chrome tabs and come back with a summary and a report.",
+        "Does not: click buttons, edit files, or operate ChatGPT or other apps for you.",
+        "Does not: run on Windows yet, since Windows is planned, not available."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Privacy works like this. Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps for data scientists using ChatGPT on Mac"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Check your ChatGPT mode and plan in the desktop app.",
+        "Write one schema header and save it as a snippet.",
+        "Pick one recent query, and check its row counts on a small subset.",
+        "Read the Computer History rules before you change any setting.",
+        "Try Lazur's trial when you want voice help on your screen."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is ChatGPT for data scientists on Mac the same as the Codex app?",
+      "answer": "They now share one desktop app. OpenAI merged the Codex app into the ChatGPT desktop app for macOS and Windows in July 2026. The original app is called ChatGPT Classic."
+    },
+    {
+      "question": "Can ChatGPT read my notebook or my CSV files directly?",
+      "answer": "It reads what you paste or upload in the chat. This guide does not list file size limits, so check the current limits in the app before you upload a large file. Lazur sees your screen only while you hold ⌥⌘."
+    },
+    {
+      "question": "Does Lazur click buttons inside ChatGPT for me?",
+      "answer": "No. Lazur points at things, draws a circle and a label around them, and guides you one click at a time. It waits for each click. It does not operate ChatGPT or any other app."
+    },
+    {
+      "question": "Is my data used to train AI models?",
+      "answer": "Lazur says its content is never used to train AI models. Audio and screenshots go to AI providers to answer, and they are not stored. For ChatGPT, check your account's data controls and your company's policy."
+    },
+    {
+      "question": "Should I turn on Computer History in ChatGPT?",
+      "answer": "Only if you have read the rules and your admin allows it. It is off by default. It captures typing and shortcuts, but not screenshots or audio. Clearing history cannot be undone."
+    },
+    {
+      "question": "Does Lazur work on Windows?",
+      "answer": "Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available. This page makes no claim about other systems."
+    },
+    {
+      "question": "Is ChatGPT reliable enough to check my statistics?",
+      "answer": "Treat it as a helper, not a checker. A study of scientists who program measured perceived productivity, not code quality. Test every number on a subset whose answer you already know."
+    }
+  ],
+  "sources": [
+    {
+      "title": "A survey of generative AI adoption and perceived productivity among scientists who program (arXiv 2512.19644)",
+      "url": "https://arxiv.org/html/2512.19644v3",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How Scientists Use Large Language Models to Program (arXiv 2502.17348)",
+      "url": "https://arxiv.org/abs/2502.17348",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "OpenAI unveils ChatGPT Work agent, GPT-5.6 models now available",
+      "url": "https://9to5mac.com/2026/07/09/openai-announcing-the-next-chapter-for-chatgpt-today-watch-here/",
+      "publisher": "9to5Mac",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "ChatGPT what's new",
+      "url": "https://learn.chatgpt.com/docs/whats-new",
+      "publisher": "OpenAI",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Computer History",
+      "url": "https://learn.chatgpt.com/docs/customization/computer-history",
+      "publisher": "OpenAI",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why does this merge return zero rows?",
+    "capability": "explain",
+    "result": "Illustrative sample, not a recorded test. Lazur reads the dtype lines and names the mismatched key.",
+    "shell": "chat",
+    "context": "A pandas merge in a notebook, with the ChatGPT window open beside it",
+    "output": "The user_id column is an integer in orders and a string in users. Nothing matches, so the merge returns zero rows. Cast one side with astype, then run the merge again and compare the row count.",
+    "pointsAt": "user_id dtype line"
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the model picker in ChatGPT?",
+      "result": "Lazur draws a circle and a label around the model picker on your screen.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, how do I attach a CSV to this chat?",
+      "result": "Lazur walks you through it one click at a time and waits for each click.",
+      "capability": "guide"
+    },
+    {
+      "say": "Lazur, what does this traceback mean?",
+      "result": "Lazur reads the error on screen and answers out loud in plain words.",
+      "capability": "explain"
+    },
+    {
+      "say": "Hold fn and dictate a prompt about a window function.",
+      "result": "Clean, formatted text lands at the cursor in the ChatGPT box.",
+      "capability": "dictate"
+    },
+    {
+      "say": "Lazur, draft a note to the data engineer about the missing rows.",
+      "result": "Lazur types a draft you can review. You send it yourself.",
+      "capability": "draft"
+    },
+    {
+      "say": "Lazur, research how our sources define an active user.",
+      "result": "The job runs in Lazur's own Chrome tabs and returns a summary and a report.",
+      "capability": "research"
+    },
+    {
+      "say": "Lazur, remind me to rerun the cohort check on Thursday afternoon.",
+      "result": "Lazur adds the item to Apple Reminders for you.",
+      "capability": "everyday"
+    }
+  ],
+  "type": "role-app",
+  "slug": "data-scientists-chatgpt",
+  "role": "data-scientists",
+  "app": "chatgpt",
+  "roleName": "Data scientists",
+  "appName": "ChatGPT",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-chatgpt/chatgpt-for-data-scientists-on-mac-1-b24b07.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Data scientist at a laptop reviewing a chart, the kind of desk where ChatGPT for data scientists on Mac gets used",
+      "caption": "A data scientist reviewing results on a laptop.",
+      "keywords": [
+        "chatgpt for data scientists on mac",
+        "ChatGPT",
+        "Data scientists",
+        "Mac",
+        "data scientist laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "cliffsmith23",
+        "url": "https://pixabay.com/users/cliffsmith23-38386472/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/memory-ram-computer-technology-8141642/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-chatgpt/chatgpt-for-data-scientists-on-mac-2-93e10a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing code on a laptop at a desk with notes beside the keyboard",
+      "caption": "Writing code and checking results at a desk.",
+      "keywords": [
+        "chatgpt for data scientists on mac",
+        "ChatGPT",
+        "Data scientists",
+        "Mac",
+        "person coding laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "geralt",
+        "url": "https://pixabay.com/users/geralt-9301/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/binary-hands-keyboard-tap-enter-2450188/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/data-scientists-chatgpt/chatgpt-for-data-scientists-on-mac-3-4a7c64.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Analyst reading a spreadsheet of numbers on a computer screen before sharing a report",
+      "caption": "Checking numbers before they go into a report.",
+      "keywords": [
+        "chatgpt for data scientists on mac",
+        "ChatGPT",
+        "Data scientists",
+        "Mac",
+        "analyst spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "chatgpt for data scientists on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "ChatGPT for data science on Mac": 1,
+      "ChatGPT for SQL on Mac": 1,
+      "ChatGPT pandas help Mac": 1,
+      "ChatGPT desktop app Mac 2026": 1,
+      "ChatGPT Classic Mac": 1,
+      "AI assistant for data scientists Mac": 1,
+      "debug pandas traceback ChatGPT": 1,
+      "voice assistant for data scientists Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

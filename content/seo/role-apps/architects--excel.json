@@ -1,0 +1,491 @@
+{
+  "title": "Excel for architects on Mac: a voice helper for schedules, formulas and pivot tables",
+  "metaTitle": "Excel for Architects on Mac: Voice Help in Excel",
+  "description": "Excel for architects on Mac, with Lazur. Ask out loud about formulas, pivot tables and schedule fixes while you stay in Excel on your Mac.",
+  "targetKeyword": "excel for architects on mac",
+  "secondaryKeywords": [
+    "excel for architects",
+    "excel schedules on mac",
+    "pivot table in excel on mac",
+    "excel formulas help on mac",
+    "power query excel for mac",
+    "lazur excel assistant"
+  ],
+  "intro": "Excel for architects on Mac handles the everyday work well. That means schedules, finish lists, quantity counts and cost sheets. The gaps are Power Pivot, the Data Model and most of the VBA tooling, and this page shows where they cause trouble. It also shows how to ask Lazur for help while you stay in Excel.",
+  "tldr": [
+    "Excel for Mac does not support Power Pivot or the Data Model. Build pivot tables from plain tables instead.",
+    "One worksheet holds 1,048,576 rows and 16,384 columns. Split very large lists before you reach that limit.",
+    "Mac VBA works with limits. UserForm design is slower, and the Properties window is missing.",
+    "Power Query on Mac has conflicting reports. Test the editor under Data > Get Data before you rely on it.",
+    "Hold ⌥ ⌘ and ask Lazur out loud. It points at what you need and guides you, but it does not click for you."
+  ],
+  "stats": [
+    {
+      "value": "1,048,576",
+      "label": "rows on one Excel worksheet, the limit that matters for long schedules and cost lists",
+      "sourceUrl": "https://learn.microsoft.com/en-us/answers/questions/5445256/excel-on-mac-data-model-features-are-not-supported",
+      "sourceTitle": "Excel on Mac data model features are not supported, Microsoft Q&A"
+    },
+    {
+      "value": "16,384",
+      "label": "columns on one Excel worksheet, as stated in the same Microsoft Q&A thread",
+      "sourceUrl": "https://learn.microsoft.com/en-us/answers/questions/5445256/excel-on-mac-data-model-features-are-not-supported",
+      "sourceTitle": "Excel on Mac data model features are not supported, Microsoft Q&A"
+    },
+    {
+      "value": "16.92",
+      "label": "Excel for Mac build where a reader reported the Power Query editor working, December 2024. A user report, not Microsoft.",
+      "sourceUrl": "https://www.excelcampus.com/power-tools/power-query-editor-mac/",
+      "sourceTitle": "Excel Update: Power Query Editor for Mac, Excel Campus"
+    },
+    {
+      "value": "4",
+      "label": "new functions in the September 2026 Insider release for Mac: FLATTEN, HAS, HASANY and HASALL",
+      "sourceUrl": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-september-2026/4549755",
+      "sourceTitle": "What's New in Excel (September 2026), Microsoft Tech Community"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "If you keep schedules, finish lists or cost estimates in Excel, most of the work is ordinary. Sorting, filtering, lookups and totals all run on a Mac. The trouble starts when a sheet gets large, when you want a pivot table that reads from a data model, or when a macro from a Windows colleague stops working. This page covers each case in order."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What works in Excel for Mac and what does not"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac covers the core of the program. You get worksheets, tables, formulas, filters and charts. Those tools carry most schedules. The gaps are narrower, but they show up fast when you open a file that someone built on Windows."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Feature",
+        "Excel for Mac",
+        "What to do"
+      ],
+      "rows": [
+        [
+          "Power Pivot",
+          "Not supported. Microsoft Q&A answers say so.",
+          "Build pivots from a plain table, or use Windows through a virtual machine."
+        ],
+        [
+          "Data Model",
+          "Not usable. Filtering an existing pivot can show a Data Model error.",
+          "Rebuild the pivot from a flat range or a named table."
+        ],
+        [
+          "Power Query editor",
+          "Reports conflict. An MVP says the full editor works. A Microsoft answer says editing needs Windows, Beta access or certain subscriptions.",
+          "Test Data > Get Data before you depend on it."
+        ],
+        [
+          "VBA UserForms",
+          "Slower to design. The Properties window is missing.",
+          "Build forms on Windows, or keep the logic in formulas."
+        ],
+        [
+          "External data sources",
+          "Mainly SQL, HTML, ODBC and Microsoft Query. Windows also reaches Access, the web and XML.",
+          "Export to CSV, or paste the table into a sheet."
+        ]
+      ],
+      "caption": "Mac limits from Microsoft Q&A and Noble Desktop, checked November 2026."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power Query on Mac: test it before you trust it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sources disagree about Power Query on Mac. An MVP wrote in January 2025 that the full editor comes with Mac Excel. A Microsoft Community Support answer in the same thread says editing needs Windows, Beta Channel access or specific subscriptions. Excel Campus reported in May 2022 that the editor was limited to the Insider Beta Channel at that time. A reader there said the editor worked on version 16.92 in December 2024. That comment is a user report, not a Microsoft statement."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the check on your own Mac. Open a blank workbook and choose Data > Get Data. Look for Power Query Editor in the menu. If you can start a query and edit its steps, you can use the editor for shaping lists. If you cannot, plan the query work on Windows, or ask a colleague who has it to build the query for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Row and column limits in a big schedule"
+    },
+    {
+      "type": "paragraph",
+      "text": "One worksheet holds 1,048,576 rows and 16,384 columns, according to an MVP in a Microsoft Q&A answer from April 2025. A door schedule with one row per door rarely reaches the row limit. A cost list exported from a project database can. When an export runs past that line, the rows beyond it do not fit on the sheet at all."
+    },
+    {
+      "type": "paragraph",
+      "text": "Split the list before it gets close. Divide it by level, phase or discipline, and put each part on its own sheet. Then build a summary sheet with totals that point at each part. Keep the summary formulas short, so you can check them by hand before you send the file out."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up a schedule as a named table"
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn your list into a table before you write formulas. Select the range and press ⌘ T. A table keeps headers in place, adds filter arrows and lets formulas refer to columns by name. Microsoft's October 2026 release notes say you can name a table when you create it, on Mac as well as Windows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name the table tblDoors or doors_L2, not Table1. A formula then reads =COUNTIFS(tblDoors[Level],\"L2\") instead of =COUNTIFS(D2:D400,\"L2\"). The named version keeps working when you add rows. The fixed range does not, because it stops at the last row you typed."
+    },
+    {
+      "type": "paragraph",
+      "text": "A common mistake is typing a total directly under the table. Excel can then treat the total as more data, and a filter can hide it. Put totals in a separate block above the table, or switch on the Total Row option in the Table Design tab."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Reading formulas you inherit from someone else"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many files arrive with formulas nobody explains. Read them from the outside in. Start with the cell that shows the result. Then follow each argument back to its source. Formulas > Trace Precedents draws arrows to the cells a formula uses, which shows where the numbers come from."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use Formulas > Evaluate Formula to step through a nested IF one piece at a time. Watch for ranges that stop one row short. That mistake returns a total that looks right, but it misses the last item on the list. Check the total against a second method before you trust it."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pivot tables on Mac without Power Pivot"
+    },
+    {
+      "type": "paragraph",
+      "text": "A pivot table works on Mac when it reads from a plain range or a named table. Select a cell inside tblDoors. Choose Insert > PivotTable. Drag Level to Rows, Finish to Columns and Door ID to Values, then set the Values field to Count. You get a count of each finish by level, with no Data Model involved."
+    },
+    {
+      "type": "paragraph",
+      "text": "Skip Power Pivot and the Data Model on a Mac. Microsoft's moderators say Excel for Mac does not support them. If a Windows colleague built a pivot on a Data Model, you may see a Data Model error when you filter it. The fix is a rebuilt pivot on flat data, or a Windows machine for that one file."
+    },
+    {
+      "type": "paragraph",
+      "text": "For the full click path, read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). It covers the Microsoft 365 steps from start to finish."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The 2026 functions and Center across selection"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's September 2026 Insider release adds lists, arrays in cells and nested arrays on Windows and Mac. It also adds four functions: FLATTEN, HAS, HASANY and HASALL. Insider features only appear on builds enrolled in the Insider program. If you do not see them, your build does not have them yet."
+    },
+    {
+      "type": "paragraph",
+      "text": "The same release adds a Center across selection button to the Merge and Center menu. It centers a title across columns without merging the cells. Merged cells cause trouble for sorting and copying, so use this button when you can. It is an Insider feature as well, so check your build first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Macros and VBA on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Mac Excel runs VBA, but the experience differs from Windows. Noble Desktop reports that UserForm development is slower, the Properties window is missing, and code collections cannot be imported or exported. Noble also says there were no VBA options for Excel on a Mac before the 2016 release of Excel for Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep macros small and documented. Copy each module's code into a text file in your project folder, so you still have it when a file moves between machines. If a macro needs a UserForm, build that form on Windows. Or ask whether the job can run as a formula or a query instead, which usually travels better."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make in Excel on a Mac"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Assuming a Windows add-in works. Noble Desktop says a few add-ins lag behind Windows, without naming them. Test the add-in before a deadline.",
+        "Building a pivot on a Data Model, then opening it on a Mac where the Data Model does not work.",
+        "Trusting Power Query without opening the editor first. Check Data > Get Data on your own machine.",
+        "Using a 2026 Insider function in a file that a colleague on a stable build has to open.",
+        "Forgetting the build number. Check it under Excel > About Excel. The newest Mac build I could verify is 16.95.4, from April 2025."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ask Lazur for help while you stay in Excel"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur is a voice assistant for the Mac. It lives in the notch. Hold ⌥ ⌘ to ask about anything on screen, and Lazur answers out loud. Ask where a button is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click. Lazur does not click for you."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold fn to dictate. Clean, formatted text lands at the cursor in any app. That helps when you write a note in a cell, a comment or an email draft. Dictation is unlimited on both plans, so long notes do not use up your AI actions."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. If your client files are sensitive, check your firm's rules before you ask about them."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked check on a finish schedule"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a short routine for a finish schedule. Turn the list into a table with ⌘ T, then name it. Add a Checked column. Use Data > Data Validation > List to give it two choices, Yes and No. Filter for No before each meeting. If a count comes back as zero when you expected a number, ask Lazur to explain the formula in that cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "The routine is simple on purpose. Each step can fail in a small way. A header with a stray space, a filter left on, or a validation list that does not match the spelling in the cells will cost more time than the routine saves. Check the filter arrows at the top of the table before you trust any count."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Mac version before you share a file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you send a workbook to a Windows colleague, check which Mac build you used. Open Excel > About Excel. Then compare the features in the file with Microsoft's What's New posts. Insider-only features may not behave the same on a stable build, so remove them or warn the recipient."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test add-ins on your Mac",
+      "text": "Noble Desktop says a few add-ins lag behind Windows but does not name them. Open each add-in on your Mac before a deadline, not during one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "[AI assistant for Excel on Mac](/apps/excel): help with formulas, buttons and pivot tables.",
+        "[How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel): the full click path for Microsoft 365.",
+        "[How to open an Excel file in Numbers on Mac](/how-to/open-an-excel-file-in-numbers): three methods if Numbers is your main app.",
+        "[Excel help for accountants on Mac](/for/accountants): a parallel guide for finance sheets.",
+        "[Lazur pricing](/pricing): the plans and the trial."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 1
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Power Pivot available in Excel for Mac?",
+      "answer": "No. Microsoft's Q&A moderators say Excel for Mac does not support Power Pivot or Data Model features. A May 2024 Microsoft Q&A answer quotes Mac Excel Help saying Power Pivot is not currently available on Excel for Mac. Build pivots from plain tables instead, or use Windows for files that need Power Pivot."
+    },
+    {
+      "question": "Can I make a pivot table in Excel on Mac?",
+      "answer": "Yes. Insert > PivotTable works from a plain range or a named table. The limit is the Data Model. A pivot that depends on it can show a Data Model error when you filter it on a Mac. Rebuild it from flat data to get around that."
+    },
+    {
+      "question": "Does Excel for Mac support VBA macros?",
+      "answer": "Yes, with limits. Noble Desktop says UserForm development is slower on Mac, the Properties window is missing, and code collections cannot be imported or exported. Keep macros small, and keep a copy of the code in a text file."
+    },
+    {
+      "question": "What is the row limit in Excel for Mac?",
+      "answer": "One worksheet holds 1,048,576 rows and 16,384 columns, according to an MVP in a Microsoft Q&A answer from April 2025. Split large lists across sheets or files before you reach that limit."
+    },
+    {
+      "question": "Is Power Query on Mac fully working?",
+      "answer": "Sources disagree. An MVP says the full editor is on Mac. A Microsoft Community Support answer says editing needs Windows, Beta access or certain subscriptions. Open Data > Get Data on your own Mac and test the editor before you rely on it."
+    },
+    {
+      "question": "Does Lazur edit my Excel file?",
+      "answer": "No. Lazur guides, points, explains and drafts text. It does not click buttons or change your cells. You do the clicks, and when Lazur guides you it waits for each one."
+    },
+    {
+      "question": "Does Lazur work with Excel on Windows?",
+      "answer": "Lazur is a Mac app for macOS, on Apple silicon and Intel Macs. Windows is planned, not available. This page is about Excel for Mac, and Lazur does not run inside Excel as an add-in."
+    },
+    {
+      "question": "Can Lazur see my drawings or client data?",
+      "answer": "Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Check your firm's rules before you share client data with any tool."
+    },
+    {
+      "question": "Which Excel build should I use on a Mac?",
+      "answer": "Use the newest build your IT team allows. The newest Mac build I could verify was 16.95.4, from April 2025. Check your own version under Excel > About Excel, and compare features with Microsoft's What's New posts."
+    }
+  ],
+  "sources": [
+    {
+      "title": "What's New in Excel (October 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-october-2026/4549758",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "What's New in Excel (September 2026)",
+      "url": "https://techcommunity.microsoft.com/blog/excelblog/whats-new-in-excel-september-2026/4549755",
+      "publisher": "Microsoft Tech Community",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel Update: Power Query Editor for Mac",
+      "url": "https://www.excelcampus.com/power-tools/power-query-editor-mac/",
+      "publisher": "Excel Campus",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Concurrent Excel for Mac and Excel for Windows on MacBook - Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5417013/concurrent-excel-for-mac-and-excel-for-windows-on",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Hi Jennifer, regarding power pivot for Mac - Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5312827/hi-jennifer-regarding-power-pivot-for-mac-you-repl",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel on Mac data model features are not supported - Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5445256/excel-on-mac-data-model-features-are-not-supported",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel on Mac vs. PC: Key Differences",
+      "url": "https://www.nobledesktop.com/blog/can-i-use-excel-on-a-mac",
+      "publisher": "Noble Desktop",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, where do I name this table?",
+    "capability": "point",
+    "result": "Lazur circles the Table Name box in the Table Design tab and says where it is. You type the name and press Return.",
+    "shell": "sheet",
+    "pointsAt": "Table Name box",
+    "context": "Door schedule open in Excel for Mac, table selected",
+    "output": "Table Name box, top left of the Table Design tab. Type tblDoors, then press Return."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, where is the Table Name box?",
+      "result": "Lazur circles the Table Name box in the Table Design tab and says where it is.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, why does this SUMIFS return zero?",
+      "result": "Lazur reads the formula on screen and says which range or criteria does not match the cells.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, walk me through a pivot of these finishes by level.",
+      "result": "Lazur guides you one click at a time and waits for each click before it goes on.",
+      "capability": "guide"
+    },
+    {
+      "say": "Lazur, explain what this nested IF does.",
+      "result": "Lazur explains each branch out loud, in plain words, from the formula on screen.",
+      "capability": "explain"
+    },
+    {
+      "say": "Lazur, can I open Power Query on this Mac?",
+      "result": "Lazur points you to Data > Get Data and says whether Power Query Editor appears in the list.",
+      "capability": "point"
+    },
+    {
+      "say": "Lazur, draft a short note to the consultant about the missing door rows.",
+      "result": "Lazur types a short draft you can edit before you send it from your own mail app.",
+      "capability": "draft"
+    },
+    {
+      "say": "Lazur, look up whether Center across selection is in my build.",
+      "result": "Lazur runs the search in its own Chrome tabs and comes back with a summary.",
+      "capability": "research"
+    }
+  ],
+  "type": "role-app",
+  "slug": "architects-excel",
+  "role": "architects",
+  "app": "excel",
+  "roleName": "Architects",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/architects-excel/excel-for-architects-on-mac-1-383061.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Architect at a desk with a laptop and drawings, the setting for Excel for architects on Mac",
+      "caption": "A desk with a laptop, a common setting for schedule work.",
+      "keywords": [
+        "excel for architects on mac",
+        "Excel",
+        "Architects",
+        "Mac",
+        "architect laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "mwitt1337",
+        "url": "https://pixabay.com/users/mwitt1337-889520/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/meeting-business-architect-office-2284501/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/architects-excel/excel-for-architects-on-mac-2-4c9fb3.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person working on a MacBook at an office desk, the setting for Excel for architects on Mac",
+      "caption": "Checking a spreadsheet on a Mac at the office.",
+      "keywords": [
+        "excel for architects on mac",
+        "Excel",
+        "Architects",
+        "Mac",
+        "man using macbook office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "excel for architects on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "excel for architects": 8,
+      "excel schedules on mac": 1,
+      "pivot table in excel on mac": 4,
+      "excel formulas help on mac": 1,
+      "power query excel for mac": 1,
+      "lazur excel assistant": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,561 @@
+{
+  "title": "Google Sheets for Founders on Mac: Models, Cash Runway, and Shortcuts for 2026",
+  "metaTitle": "Google Sheets for Founders on Mac: Runway, Shortcuts, Limits",
+  "description": "Google Sheets for founders on Mac, step by step: a cash runway formula, the ⌘ shortcuts, real limits, and how Lazur helps with questions on screen.",
+  "targetKeyword": "google sheets for founders on mac",
+  "secondaryKeywords": [
+    "google sheets cash runway formula",
+    "google sheets keyboard shortcuts mac",
+    "google sheets financial model",
+    "google sheets for startups",
+    "google sheets cell limit",
+    "google sheets for startup founders"
+  ],
+  "intro": "Google Sheets for founders on Mac runs in your browser, so there is nothing to install. Founders use it for early models: revenue, costs, cash runway, a basic three-statement model, and sharing the file with cofounders and advisors.",
+  "tldr": [
+    "Founders mostly use Google Sheets for early models: revenue build, cost structure, cash runway, and a basic three-statement model.",
+    "On a Mac, menu shortcuts use Ctrl+Option where Windows uses Alt. Command+Option+R hides or shows the menus.",
+    "Build runway as cash divided by net burn, keep inputs in one labeled Assumptions tab, and guard the formula with IFERROR.",
+    "Know the gaps. One vendor blog says Sheets lacks native XLOOKUP, and Google's own limit pages disagree on cell counts.",
+    "Lazur points, guides, and answers out loud while you hold ⌥ ⌘. It does not click buttons or edit your sheet for you."
+  ],
+  "stats": [
+    {
+      "value": "22%",
+      "label": "of operations professionals deal with spreadsheet errors daily, per a 2026 DOSS survey",
+      "sourceUrl": "https://en.wikipedia.org/wiki/List_of_spreadsheet_mistakes",
+      "sourceTitle": "List of spreadsheet mistakes (Wikipedia)"
+    },
+    {
+      "value": "20 million",
+      "label": "cells, the file limit on Google's help page, which conflicts with the 10 million figure from 2022",
+      "sourceUrl": "https://support.google.com/docs/answer/37603?hl=en",
+      "sourceTitle": "Google Docs Editors Help: file size and cell limits"
+    },
+    {
+      "value": "59%",
+      "label": "of survey respondents named manual data entry as the most common spreadsheet error",
+      "sourceUrl": "https://en.wikipedia.org/wiki/List_of_spreadsheet_mistakes",
+      "sourceTitle": "List of spreadsheet mistakes (Wikipedia)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What founders use Google Sheets for"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most founders use Google Sheets for early financial models. That usually means a revenue build, a cost structure, a cash runway calculation, and a basic three-statement model. The same file also becomes the thing everyone passes around. Cofounders edit it. Advisors comment on it. A fractional CFO may take ownership of the cost tabs."
+    },
+    {
+      "type": "paragraph",
+      "text": "Google Sheets on Mac runs in a browser tab, and Google keeps it updated for you. You do not install a version and patch it later. The trade-off is simple. Your file lives in Google Drive, so you need a connection, and sharing depends on the settings you choose."
+    },
+    {
+      "type": "paragraph",
+      "text": "Templates are the quickest start, but know what Google actually ships. Google's help page names CVs, budgets, and order forms as Google-created templates. To open one, open Sheets, click Template Gallery at the top right, and pick a template. A copy opens for editing, so your original stays clean. The same page does not mention invoice templates, so search the gallery before you assume one exists."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Keyboard shortcuts for Google Sheets on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "On a Mac, most Google Sheets shortcuts use ⌘ (Command). Menu shortcuts that use Alt on Windows use Ctrl+Option on Mac instead. Some navigation needs the Fn key with the arrow keys. Google's shortcut page lists the full set. These are the ones founders reach for most often."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Task",
+        "Mac shortcut",
+        "Why it helps a model"
+      ],
+      "rows": [
+        [
+          "Undo",
+          "⌘Z",
+          "Reverses a bad paste before it spreads through your formulas"
+        ],
+        [
+          "Find",
+          "⌘F",
+          "Locates a line item like Payroll across a long sheet"
+        ],
+        [
+          "Find and replace",
+          "⌘⇧H",
+          "Renames a label everywhere in one pass"
+        ],
+        [
+          "Fill down",
+          "⌘D",
+          "Copies a formula down a column of months"
+        ],
+        [
+          "Convert range to table",
+          "⌘⌥T",
+          "Turns a block of rows into a table you can filter"
+        ],
+        [
+          "Show or hide menus",
+          "⌘⌥R",
+          "Gives you more room on a small screen"
+        ],
+        [
+          "Show all shortcuts",
+          "⌘/",
+          "Opens the full list so you can search it"
+        ],
+        [
+          "Tool finder",
+          "⌥/",
+          "Searches for a menu action by name"
+        ]
+      ],
+      "caption": "Shortcuts from Google's Sheets shortcut list. Confirm them with ⌘/ in your own browser."
+    },
+    {
+      "type": "paragraph",
+      "text": "Shortcut lists change, and some keys clash with browser shortcuts. If a key does nothing, press ⌘/ and search the list for the action you want. Learn a few at a time. Pick the ones that replace a menu trip you make every day."
+    },
+    {
+      "type": "paragraph",
+      "text": "Hold ⌥ ⌘ and ask Lazur what a shortcut does on screen. Lazur answers out loud. It does not press the keys for you, so you still do the work, with the answer in your ear."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Building a cash runway formula in Google Sheets"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cash runway is how long your cash lasts at your current burn. The basic formula divides cash on hand by net monthly burn. Put cash in one cell, net burn in the next, and the runway in a third. Write the runway as a reference to those two cells, not as typed numbers. A typed number is invisible to the next reader."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep every input in an Assumptions tab. Each input gets its own labeled cell and, in the next column, a note on where the number came from. When a number changes, you change it once. Every other tab reads from it, so a forecast update does not break several tabs at once."
+    },
+    {
+      "type": "paragraph",
+      "text": "Edge cases matter more than the main formula. If net burn is zero, or the company is profitable, dividing by it returns an error or a meaningless figure. Wrap the formula in IFERROR and return a text label such as Not burning instead. Then check the sign. Some people enter burn as a positive number and others as a negative one. Pick one rule and write it in the label."
+    },
+    {
+      "type": "paragraph",
+      "text": "Name your key cells. Select the cash cell, then open Data > Named ranges and give it a name such as cash_today. The formula then reads as cash_today divided by net_burn. Your cofounder can read that without tracing cell addresses across tabs."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A worked example: a runway check in one sitting"
+    },
+    {
+      "type": "paragraph",
+      "text": "This setup takes one sitting. It uses cell addresses, not amounts, so you can drop in your own figures. Work through it in order, and check each step before you move on."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Open Google Sheets in your browser and start a blank file. Name it with the company name and the word Model.",
+        "Rename the first tab Assumptions. Put labels in column A and values in column B.",
+        "Enter cash on hand in B2 and net monthly burn in B3. Add the source of each number in column C.",
+        "In B4, type =IFERROR(B2/B3, \"Not burning\") and press Return. Check the result against a value you can calculate by hand.",
+        "Add a check cell in B5 that flags when B2 drops below zero. A red cell is easier to spot than a negative number in a long row."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Test the setup before you trust it. Set net burn to a value you know well and check the runway by hand. Then clear net burn and confirm the label appears. If burn is negative, the runway comes out negative, so add a check for that case too."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where Google Sheets falls short for a financial model"
+    },
+    {
+      "type": "paragraph",
+      "text": "A vendor blog on Excel and Google Sheets for startup models lists several gaps. It says Sheets lacks native XLOOKUP. It says Sheets has no equivalent to Excel's Data Table for sensitivity analysis, or to Power Query. It also says large models slow down past about 10k formula cells. That last point is the blog's claim, not measured data, so test your own file."
+    },
+    {
+      "type": "paragraph",
+      "text": "Check the function list yourself before you plan around a gap. Type the function name into a spare cell and see whether Sheets recognizes it. Vendor blogs age quickly, so the claim may be out of date by the time you read it."
+    },
+    {
+      "type": "paragraph",
+      "text": "You can cover most sensitivity questions with scenarios instead of a Data Table. Put a scenario cell at the top of the Assumptions tab. Add a dropdown with options such as Base, Downside, and Upside. Then point each key input at the value for the chosen scenario with an IF or INDEX formula. For the dropdown steps, see [how to create a dropdown list in Google Sheets on Mac](/how-to/create-a-dropdown-list-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your numbers live in a database, Connected Sheets may save you a copy-paste routine. Google's product page says it connects to BigQuery or Looker data without SQL. The same page lists third-party connections to QuickBooks, HubSpot, Salesforce, and Asana. Check which connections your plan includes before you build around one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Cell limits in Google Sheets to check before the model grows"
+    },
+    {
+      "type": "paragraph",
+      "text": "Cell limits cause the most confusion. In March 2022, Google raised the cell limit from up to 5 million cells to up to 10 million. It said the change applied to new, existing, and imported files. Google's file limits page now says up to 20 million cells or 100MB. The pages disagree, so check the limits page before you plan a large model."
+    },
+    {
+      "type": "paragraph",
+      "text": "Other limits matter sooner for founders who pull data in. Connected Sheets extracts cap at 500k rows or 5 million cells. Pivot tables cap at 200k rows. Importing an Excel file removes any cell with more than 50,000 characters, so a long note pasted into one cell can disappear."
+    },
+    {
+      "type": "paragraph",
+      "text": "When a file gets slow, look at the formula count first. Long chains of IMPORTRANGE, array formulas, and whole-column references add load. Replace whole-column references with fixed ranges that stop at the last row you use."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sharing with cofounders, advisors, and investors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sharing is where Sheets is strongest. Several people can edit at once. Changes are recorded in revision history, so you can see who changed a cash figure and when. The vendor blog contrasts this with Excel, where people often keep manual saved copies. For the steps, see [how to see revision history in Google Sheets on Mac](/how-to/see-revision-history-in-google-sheets)."
+    },
+    {
+      "type": "paragraph",
+      "text": "Investors read the file too. The same blog calls Excel the standard for formal diligence. It says a Google Sheets link at a Series A is not a disqualifier, but it is unusual. Plan for that. Keep an Excel export ready for diligence, and label it as a copy. The steps are in [how to download Google Sheets as Excel on Mac](/how-to/download-as-excel-in-google-sheets)."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Advisors who only need to look should get view-only access. Edit rights belong with the people who own a tab. Set that before you send the link, not after. The sharing steps are in [how to share a Google Sheet view only on Mac](/how-to/share-with-view-only-access-in-google-sheets)."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes founders make in shared sheets"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Typing numbers inside formulas. A growth rate hidden in a formula stays hidden from the next reader.",
+        "Mixing actuals and forecasts in one column. Give each type its own column, and shade forecast cells so nobody confuses them.",
+        "Copying a whole tab to make a new version. The copies drift apart fast. Use a scenario cell instead.",
+        "Deleting rows that other formulas point to. Hide them instead, using [hide rows and columns in Google Sheets on Mac](/how-to/hide-rows-and-columns-in-google-sheets).",
+        "Ignoring error cells. One #REF in a summary total can sit unnoticed for weeks.",
+        "Giving everyone edit access by default. Start with view access and widen it on purpose."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gemini in Sheets: useful for formulas, not for judgment"
+    },
+    {
+      "type": "paragraph",
+      "text": "Google's product page says Gemini in Sheets can build or edit a spreadsheet from a prompt. It can fill tables with summarized or categorized data, write formulas, explain errors, and surface insights. Some of these features need a Google Workspace plan, so check your account before you plan around them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Use it for the mechanical work. Ask it to explain an error or write a lookup formula, then test the result on inputs you already know. Do not let it set your growth rate or your hiring plan. Those decisions belong to you, and your cofounders should see the reasoning behind them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Spreadsheet errors are common, so build checks into the file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Spreadsheet errors are common. A 2026 survey by business-operations startup DOSS found that 22% of operations professionals deal with spreadsheet errors daily. In that survey, 59% named manual data entry as the most common error. Spreadsheet formulas came second, at 46%. These figures come from a Wikipedia summary, so check the original before you quote them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Wikipedia also cites a 2017 study that found up to 90% of spreadsheets had errors affecting their results. Wikipedia cites a ZDNet article rather than the study itself. Treat that number as secondhand."
+    },
+    {
+      "type": "paragraph",
+      "text": "Build checks you can see. Add a cell that compares a column total with the source total. Add a balance check across your three statements. Color a cell red when cash turns negative. A check that fails loudly is worth more than a summary that looks neat."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using Lazur during a Google Sheets model review"
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur works beside Google Sheets, not inside it. Hold ⌥ ⌘ and ask about anything on screen. Lazur listens and looks at the screen only while you hold the shortcut, then answers out loud. Ask where a row is, and Lazur draws a circle and a label around it. Ask how to do something, and Lazur guides you one click at a time, waiting for each click."
+    },
+    {
+      "type": "paragraph",
+      "text": "Lazur does not click buttons, edit files, or operate other apps for you. Hold fn to dictate clean text at the cursor in any app. Dictation fits notes like a label for a new tab or a comment for a cofounder. Lazur can also draft a longer message and type it where your cursor sits."
+    },
+    {
+      "type": "paragraph",
+      "text": "For questions that need reading, Lazur runs research in its own Chrome tabs and returns a summary and a report. Use that for questions like how other early-stage teams set up runway tabs. Check each source before you put a figure in a board deck."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you send the model: a short checklist"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Confirm every input sits in the Assumptions tab, with a label and a source note.",
+        "Search the file for typed numbers inside formulas, and move them into inputs.",
+        "Search for #REF, #DIV/0, and #N/A errors before you share.",
+        "Check that the cash check cell flags negative cash.",
+        "Set advisors to view-only. Give edit access to the people who own a tab.",
+        "Export an Excel copy if an investor may ask for one, and label it as a copy."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with one tab. Build the Assumptions tab first, then the runway formula, then the check cells. Each step fits in one sitting, and each one makes the next easier. When a Mac-specific step gets in the way, use the guides linked above, or ask Lazur to walk you through it. Lazur's plans and trial are on [the pricing page](/pricing), and the app is on [the download page](/download)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a Google Sheets app for Mac?",
+      "answer": "Google Sheets on Mac works in a browser tab, and Google keeps it updated for you. Bookmark Sheets in your browser to get there quickly. The steps in this guide assume you use it in the browser."
+    },
+    {
+      "question": "Which shortcut shows every Google Sheets shortcut on Mac?",
+      "answer": "Press ⌘/ in Google Sheets to open the shortcut list, then search it for the action you want. Option+/ opens the tool finder, which searches menu actions by name. If a key does nothing, check the list first."
+    },
+    {
+      "question": "How do I calculate cash runway in Google Sheets?",
+      "answer": "Divide cash on hand by net monthly burn. Put each number in its own labeled cell, then write the runway formula as a reference to those cells. Wrap it in IFERROR so zero burn returns a label instead of an error. Check the sign of burn too."
+    },
+    {
+      "question": "Does Google Sheets have XLOOKUP and a Data Table?",
+      "answer": "A vendor blog on startup models says Sheets lacks native XLOOKUP and has no equivalent to Excel's Data Table. Test the function in a spare cell, because the claim may be out of date. For sensitivity questions, use a scenario cell with a dropdown."
+    },
+    {
+      "question": "What is the cell limit in Google Sheets?",
+      "answer": "Google announced a rise to 10 million cells in March 2022. Its file limits page now says up to 20 million cells or 100MB. The pages disagree, so check the limits page before you plan a large model. Excel imports also remove cells over 50,000 characters."
+    },
+    {
+      "question": "Will investors accept a Google Sheets model?",
+      "answer": "A vendor blog says Excel is the standard for formal diligence, and a Sheets link at a Series A is not a disqualifier but is unusual. Keep an Excel export ready. Investor expectations vary, so ask your advisor what they prefer."
+    },
+    {
+      "question": "Can Lazur edit my Google Sheet for me?",
+      "answer": "No. Lazur does not click buttons, edit files, or operate other apps. It points at things, guides you one click at a time, answers out loud, and drafts or types text when you ask. You still make the edits."
+    },
+    {
+      "question": "Are the spreadsheet error statistics reliable?",
+      "answer": "The 22% and 59% figures come from a 2026 DOSS survey, read through a Wikipedia summary. Check the original survey before you quote it in a deck. The 90% figure comes from a 2017 study cited through a ZDNet article, so treat it as secondhand."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Workspace - Google Sheets",
+      "url": "https://workspace.google.com/products/sheets/",
+      "publisher": "Google",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts for Google Sheets (Computer)",
+      "url": "https://support.google.com/docs/answer/181110?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Create a file from a template",
+      "url": "https://support.google.com/docs/answer/148833?hl=en-GB",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Docs Editors Help: file size and cell limits",
+      "url": "https://support.google.com/docs/answer/37603?hl=en",
+      "publisher": "Google Docs Editors Help",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Google Workspace Updates: Google Sheets doubles cell limit",
+      "url": "https://workspaceupdates.googleblog.com/2022/03/ten-million-cells-google-sheets.html",
+      "publisher": "Google Workspace Updates Blog",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel vs. Google Sheets for Startup Financial Modeling",
+      "url": "https://www.raisereadybook.com/blog/excel-vs-google-sheets-for-startup-financial-modeling-the-honest-answer.html",
+      "publisher": "Raise Ready (vendor blog)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "List of spreadsheet mistakes",
+      "url": "https://en.wikipedia.org/wiki/List_of_spreadsheet_mistakes",
+      "publisher": "Wikipedia",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "demo": {
+    "spoken": "Lazur, why does this cell say DIV/0?",
+    "capability": "explain",
+    "result": "Lazur reads the formula on screen and says out loud that net burn is blank, so the runway division has nothing to divide by. It suggests a label instead of an error.",
+    "shell": "sheet",
+    "context": "Google Sheets in a browser on a Mac, runway tab, one cell shows an error",
+    "pointsAt": "Cell with DIV/0 error",
+    "output": "Net burn is blank, so the formula divides by zero. Fill in net burn, or wrap the formula in IFERROR to return a label instead of an error."
+  },
+  "tasks": [
+    {
+      "say": "Lazur, what does this formula actually calculate?",
+      "capability": "explain",
+      "result": "Lazur reads the formula on screen and explains each part out loud, including what the cell references point to."
+    },
+    {
+      "say": "Lazur, where is the net burn row?",
+      "capability": "point",
+      "result": "Lazur draws a circle and a label around the row, so you can find it without scanning every tab."
+    },
+    {
+      "say": "Lazur, walk me through making a filter on this range.",
+      "capability": "guide",
+      "result": "Lazur guides you one click at a time and waits for each click before it moves on."
+    },
+    {
+      "say": "Lazur, why does this cell show a DIV/0 error?",
+      "capability": "explain",
+      "result": "Lazur explains that the divisor is zero or blank, and points you to the input cell to check."
+    },
+    {
+      "say": "Lazur, draft a note to my cofounder about the burn change.",
+      "capability": "draft",
+      "result": "Lazur drafts the message in plain language, then types it where your cursor sits when you ask."
+    },
+    {
+      "say": "Hold fn, say the assumption, then release.",
+      "capability": "dictate",
+      "result": "Dictation types clean, formatted text at your cursor, so the note lands in the cell or comment you chose."
+    },
+    {
+      "say": "Lazur, look up how early-stage teams set up runway tabs.",
+      "capability": "research",
+      "result": "Lazur runs the search in its own Chrome tabs and returns a summary and a report to check."
+    },
+    {
+      "say": "Lazur, remind me to update the runway tab on Friday.",
+      "capability": "everyday",
+      "result": "Lazur adds the reminder to Apple Reminders, so the update does not slip past the week."
+    }
+  ],
+  "type": "role-app",
+  "slug": "founders-google-sheets",
+  "role": "founders",
+  "app": "google-sheets",
+  "roleName": "Founders",
+  "appName": "Google Sheets",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/role-app/founders-google-sheets/google-sheets-for-founders-on-mac-1-c33cc8.jpg",
+      "width": 1280,
+      "height": 714,
+      "alt": "Founder at a laptop reviewing a Google Sheets model for their startup, one of the tasks this page covers.",
+      "caption": "A founder reviewing a model on a laptop.",
+      "keywords": [
+        "google sheets for founders on mac",
+        "Google Sheets",
+        "Founders",
+        "Mac",
+        "person working laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "DesiFreeMusic",
+        "url": "https://pixabay.com/users/DesiFreeMusic-28163210/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/business-businessman-computer-10279402/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/founders-google-sheets/google-sheets-for-founders-on-mac-2-532ff1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Cofounders reviewing a Google Sheets financial model together at a table, planning cash runway.",
+      "caption": "Cofounders going through the numbers.",
+      "keywords": [
+        "google sheets for founders on mac",
+        "Google Sheets",
+        "Founders",
+        "Mac",
+        "startup founders meeting",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fh_media",
+        "url": "https://pixabay.com/users/fh_media-15196327/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/startup-person-man-3d-printing-4859743/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/role-app/founders-google-sheets/google-sheets-for-founders-on-mac-3-d64e36.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "A Mac laptop on a desk, the usual setup for Google Sheets work on a founder's own machine.",
+      "caption": "A Mac on a desk for model work.",
+      "keywords": [
+        "google sheets for founders on mac",
+        "Google Sheets",
+        "Founders",
+        "Mac",
+        "Mac laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "google sheets for founders on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "google sheets cash runway formula": 1,
+      "google sheets keyboard shortcuts mac": 1,
+      "google sheets financial model": 2,
+      "google sheets for startups": 1,
+      "google sheets cell limit": 1,
+      "google sheets for startup founders": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

@@ -1,0 +1,585 @@
+{
+  "title": "How to run a what-if analysis in Excel on Mac: three built-in tools",
+  "metaTitle": "How to Run a What-If Analysis in Excel on Mac",
+  "description": "Step by step: how to run a what if analysis in Excel on Mac using Goal Seek, Data Tables and Scenario Manager from the Data menu.",
+  "targetKeyword": "how to run a what if analysis in excel on mac",
+  "secondaryKeywords": [
+    "what if analysis excel mac",
+    "goal seek excel mac",
+    "excel data table mac",
+    "scenario manager excel mac",
+    "excel solver mac",
+    "what-if analysis data tab mac"
+  ],
+  "intro": "To run a what if analysis in Excel on Mac, open the Data tab and choose What-If Analysis. Goal Seek, Data Table and Scenario Manager each ask for a few fields, then one OK.",
+  "tldr": [
+    "Open the workbook in the Excel desktop app for Mac. Excel for the web shows results but cannot run these tools.",
+    "Goal Seek finds the input that produces one target result. It works with one changing cell.",
+    "Data Tables show a grid of results for a list of inputs, with at most two variables.",
+    "Scenario Manager stores named cases. Each scenario holds up to 32 changing cells.",
+    "On Mac, all three tools sit under Data > What-If Analysis. Solver is an add-in you load first."
+  ],
+  "stats": [
+    {
+      "value": "1",
+      "label": "changing cell per Goal Seek run, so use Solver for several inputs",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/use-goal-seek-to-find-the-result-you-want-by-adjusting-an-input-value",
+      "sourceTitle": "Use Goal Seek to find the result you want by adjusting an input value (Microsoft Support)"
+    },
+    {
+      "value": "2",
+      "label": "input variables a Data Table takes on Mac, so use scenarios for more",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/calculate-multiple-results-by-using-a-data-table-in-excel-for-mac",
+      "sourceTitle": "Calculate multiple results by using a data table in Excel for Mac (Microsoft Support)"
+    },
+    {
+      "value": "32",
+      "label": "changing cells allowed in each Scenario Manager scenario",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/switch-between-various-sets-of-values-by-using-scenarios",
+      "sourceTitle": "Switch between various sets of values by using scenarios (Microsoft Support)"
+    },
+    {
+      "value": "0.8% to 1.8%",
+      "label": "formula cells with errors in an earlier study of 50 spreadsheets",
+      "sourceUrl": "https://arxiv.org/abs/0801.0715",
+      "sourceTitle": "Impact of Errors in Operational Spreadsheets (arXiv:0801.0715)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "A what-if analysis asks a simple question. What happens to my result if this input changes? Excel for Mac answers that question with three built-in tools under the Data tab: Goal Seek, Data Table and Scenario Manager. Solver is a fourth tool, but it is an add-in, so you load it first. Each tool asks a slightly different question. Pick the one that matches yours before you open a dialog."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Find the What-If Analysis button on a Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your workbook in the Excel desktop app. Click the Data tab on the ribbon, then find the What-If Analysis button. Click it, and you see a menu with Goal Seek, Data Table and Scenario Manager. Microsoft's Mac pages use the menu path Data > What-If Analysis > Goal Seek, with the same pattern for the other two tools."
+    },
+    {
+      "type": "paragraph",
+      "text": "Some community answers describe a Forecast group on the Data tab, with What-If Analysis inside it. That layout matches the Windows ribbon. Microsoft's Mac steps do not mention a Forecast group. If your Data tab looks different, check your Excel version first, then look for What-If Analysis on the Data tab itself."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Pick the right tool for your question"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the question, not the menu. If you know the answer you want and need the input behind it, use Goal Seek. If you want to see many answers across a list of inputs, use a Data Table. If you want to compare named cases, use Scenario Manager. If several inputs must move together within limits, use Solver."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Goal Seek: you know the output you want and need the input that produces it.",
+        "Data Table: you want a grid of results for a list of input values.",
+        "Scenario Manager: you want named cases, such as a base case and a downside case, side by side.",
+        "Solver: you need to change several inputs at once, within limits. On Mac it is an add-in."
+      ]
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Your question",
+        "Tool to use",
+        "What you provide"
+      ],
+      "rows": [
+        [
+          "What input gives my profit target?",
+          "Goal Seek",
+          "One formula cell, one target value, one changing cell"
+        ],
+        [
+          "How does profit move across a list of prices?",
+          "Data Table",
+          "A formula, a list of input values, and the input cell"
+        ],
+        [
+          "How do the base case and downside case compare?",
+          "Scenario Manager",
+          "Named sets of changing cells, up to 32 per scenario"
+        ],
+        [
+          "Which mix of several inputs gives the best result?",
+          "Solver (add-in)",
+          "Several changing cells and the limits on them"
+        ]
+      ],
+      "caption": "Match the question to the tool before you open a dialog."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How Goal Seek works on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Goal Seek works backward. You name the result you want, and Excel changes one input until a formula reaches that result. The result must sit in a formula cell, called the Set cell. The input must be the changing cell, and the formula must depend on it. If the formula ignores the input, Goal Seek has nothing to adjust."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A Goal Seek example with a profit target"
+    },
+    {
+      "type": "paragraph",
+      "text": "Suppose the Profit cell multiplies the Units cell by the margin per unit. You want profit to reach a target you choose. Set Profit as the Set cell, type the target in the To value box, and choose Units as the By changing cell. Click OK. Excel adjusts Units until Profit matches the target."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the answer before you keep it. Goal Seek reports that it reached the target. It does not tell you whether the input is realistic. A units figure with decimals may need rounding, and you should judge the result against what you know about the business. Excel changes the input cell in place, so save a copy first if the old value matters."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data Tables: a grid of results for a list of inputs"
+    },
+    {
+      "type": "paragraph",
+      "text": "A Data Table fills a grid with the result of one formula for each input value in a list. Use it when you want to see how an output moves across a range. For a column of values, place the formula one row above the first value and one column to the right. Select the whole block before you open the dialog."
+    },
+    {
+      "type": "paragraph",
+      "text": "Then open Data > What-If Analysis > Data Table. For values in a column, enter the input cell in the Column input cell box, then click OK. For values in a row, use the Row input cell box instead. A Data Table on Mac takes at most two variables, and a two-variable table takes both inputs in one dialog."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: profit at a range of prices"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use the same Profit formula from the Goal Seek example. Put a list of prices down a column, then point the Column input cell at the Price cell. Excel calculates profit for each price in the grid. You can scan the column to see where profit crosses your target, which often helps more than one exact answer."
+    },
+    {
+      "type": "paragraph",
+      "text": "The grid also shows sensitivity. Look at how much the output moves when the input moves a little. If a small price change swings profit a lot, that is the place to check your assumptions first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Speed up data tables without slowing Excel down"
+    },
+    {
+      "type": "paragraph",
+      "text": "Large data tables can make Excel feel slow, because each edit can trigger a full recalculation. Excel for Mac has a setting for this. Go to Excel > Preferences > Formulas and Lists > Calculation, then choose Automatic except for data tables. Recalculate the tables yourself when you need the numbers to refresh."
+    },
+    {
+      "type": "paragraph",
+      "text": "To recalculate, select the formulas in the table and press F9. On some keyboards, press Fn+F9. Microsoft's Mac pages do not list a keyboard shortcut for Goal Seek, Data Table or Scenario Manager, so use the menu for those tools."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Scenario Manager: keep named cases side by side"
+    },
+    {
+      "type": "paragraph",
+      "text": "Scenario Manager stores sets of input values under names, so you can switch between them. Go to Data > What-If Analysis > Scenario Manager, click Add, and name the scenario. Select the changing cells for that case. Each scenario can hold up to 32 changing cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "When every case is set up, click Scenario Summary. Excel builds a summary or PivotTable report that lists the outputs for each scenario. Scenario reports do not recalculate on their own. If you change an input later, make a new report to see the new numbers."
+    },
+    {
+      "type": "paragraph",
+      "text": "Scenarios suit a handful of named cases, such as a base case, a best case and a downside case. For a continuous range of one input, a Data Table is often the better fit."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Solver for several inputs at once"
+    },
+    {
+      "type": "paragraph",
+      "text": "Goal Seek moves one input. When you need several inputs to move toward a best result, Microsoft points you to Solver. On Mac, Solver is an add-in, so it may not appear on the Data tab until you load it."
+    },
+    {
+      "type": "paragraph",
+      "text": "A 2023 community answer on Microsoft Q&A gives this path: Tools > Excel Add-Ins, check Solver Add-In, then click OK. The answer says Solver then appears at the right end of the Data tab, in the Analysis group. Microsoft's official Mac pages do not cover this path, so treat these as community steps, not official instructions."
+    },
+    {
+      "type": "paragraph",
+      "text": "Solver also needs an objective cell, changing cells and limits. This page covers only how to load it. Set up the model with the same care you would give any Goal Seek input."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes that give wrong answers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Using a plain value as the Set cell. Goal Seek needs a formula in the Set cell.",
+        "Choosing an input the formula never uses. The changing cell must feed the formula, directly or through other cells.",
+        "Treating one Goal Seek answer as the best answer. It finds a value that hits your target, nothing more.",
+        "Forgetting that a Data Table stops at two variables. Switch to scenarios for more inputs.",
+        "Reading an old scenario summary. Reports do not recalculate, so build a new one after changes.",
+        "Running the analysis in Excel for the web. The web version shows results but does not run these tools.",
+        "Overwriting a hard-coded input without a copy. Goal Seek replaces the input's value, so save first."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your model before you trust a result"
+    },
+    {
+      "type": "paragraph",
+      "text": "A what-if result is only as good as the formulas behind it. A 2008 paper by Powell, Lawson and Baker cites an earlier study of 50 spreadsheets. That study found errors in 0.8% to 1.8% of all formula cells, depending on how errors were defined. The same paper examined 25 operational spreadsheets from five organizations. It found that many errors had no quantitative impact, while some remaining errors had substantial effects."
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you act on a result, trace the formula that feeds the output. Change one input you already know, and confirm the output moves the way you expect. If the answer looks wrong, the formula is the first place to look."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for the web, supported versions, and your build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web can show what-if results, but it cannot run them. Microsoft's service description says Goal Seek, Data Tables, Solver and Series require the Excel desktop app. For Mac, Microsoft lists Excel for Microsoft 365, Excel 2024 and Excel 2021 among the applicable versions for these tools."
+    },
+    {
+      "type": "paragraph",
+      "text": "To check your build, open Excel and go to Excel > About Excel. The newest Mac build in Microsoft's release notes is 16.114.3 (Build 26102720), released October 27, 2026. Those October builds were quality and performance fixes, and the notes do not mention What-If changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "If your what-if result feeds a summary, the [pivot table steps for Mac](/how-to/make-a-pivot-table-in-excel) show the next move. If your model uses dates, [how to insert the current date in Excel on Mac](/how-to/insert-the-current-date-in-excel) covers that. For more Excel help, see the [Excel help page](/apps/excel)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is What-If Analysis in Excel for Mac?",
+      "answer": "It sits on the Data tab, as a button labeled What-If Analysis. Click it to see Goal Seek, Data Table and Scenario Manager. Microsoft's Mac pages give the path as Data > What-If Analysis."
+    },
+    {
+      "question": "Can I run Goal Seek in Excel for the web?",
+      "answer": "No. Microsoft's service description says Goal Seek, Data Tables, Solver and Series require the Excel desktop app. The web version shows results only, so open the file in Excel for Mac."
+    },
+    {
+      "question": "What is the difference between Goal Seek and a Data Table?",
+      "answer": "Goal Seek finds one input that produces one target result. A Data Table shows results for a whole list of inputs in a grid. Use Goal Seek to find a number, and a Data Table to see how the result moves."
+    },
+    {
+      "question": "Why does my data table show old numbers after I change an input?",
+      "answer": "The calculation setting may be Automatic except for data tables, which waits for you. Select the formulas in the table and press F9, or Fn+F9 on some keyboards."
+    },
+    {
+      "question": "Can Goal Seek change more than one cell?",
+      "answer": "No. Goal Seek works with one changing cell. For several inputs, Microsoft points to Solver, which is an add-in on Mac."
+    },
+    {
+      "question": "Are there keyboard shortcuts for What-If Analysis on Mac?",
+      "answer": "Microsoft's Mac pages do not list shortcuts for Goal Seek, Data Table or Scenario Manager. The one shortcut they list for this work is F9, which recalculates data tables."
+    },
+    {
+      "question": "Why does my Scenario Summary show numbers from an earlier run?",
+      "answer": "Scenario reports do not recalculate automatically. Build a new Scenario Summary after you change any input, and the report will show the current values."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use Goal Seek to find the result you want by adjusting an input value",
+      "url": "https://support.microsoft.com/en-us/excel/use-goal-seek-to-find-the-result-you-want-by-adjusting-an-input-value",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Calculate multiple results by using a data table in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/calculate-multiple-results-by-using-a-data-table-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Switch between various sets of values by using scenarios",
+      "url": "https://support.microsoft.com/en-us/excel/switch-between-various-sets-of-values-by-using-scenarios",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel for the web - Service Descriptions",
+      "url": "https://learn.microsoft.com/office365/servicedescriptions/office-online-service-description/excel-online",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How can I access goal seek from my macbook excel online?",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5282398/how-can-i-access-goal-seek-from-my-macbook-excel-o",
+      "publisher": "Microsoft Q&A (community)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "I am having issues installing the SOLVER add-in in Excel on my Mac",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5212000/i-am-having-issues-installing-the-solver-add-in-in",
+      "publisher": "Microsoft Q&A (community)",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Impact of Errors in Operational Spreadsheets (arXiv:0801.0715)",
+      "url": "https://arxiv.org/abs/0801.0715",
+      "publisher": "arXiv",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Run a what-if analysis in Excel on Mac",
+  "appliesTo": "Excel for Mac: Microsoft 365, Excel 2024 and Excel 2021",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Mac desktop app, such as Microsoft 365, Excel 2024 or Excel 2021",
+    "A workbook with a formula that depends on the input you want to test",
+    "Excel for the web does not run Goal Seek, Data Tables, Solver or Series"
+  ],
+  "steps": [
+    {
+      "name": "Open the workbook in the Excel desktop app",
+      "text": "Open the file in Excel for Mac, not Excel for the web. The web version shows results but cannot run Goal Seek, Data Tables, Solver or Series. Check your build under Excel > About Excel if you are unsure of your version."
+    },
+    {
+      "name": "Build the formula the answer depends on",
+      "text": "Make sure the cell that holds your target result contains a formula. That formula must use the input you want to change, directly or through other cells. Goal Seek has nothing to adjust if the formula ignores the input."
+    },
+    {
+      "name": "Open the Data tab",
+      "text": "Click the Data tab on the ribbon along the top of the Excel window. The What-If Analysis button lives on this tab.",
+      "menuPath": [
+        "Data"
+      ]
+    },
+    {
+      "name": "Open Goal Seek",
+      "text": "Click What-If Analysis, then choose Goal Seek. The Goal Seek dialog opens with three boxes: Set cell, To value and By changing cell.",
+      "menuPath": [
+        "Data",
+        "What-If Analysis",
+        "Goal Seek"
+      ]
+    },
+    {
+      "name": "Set the Set cell",
+      "text": "In the Set cell box, enter the formula cell that holds your result, such as a Profit cell. Click the cell in the sheet, or type its address."
+    },
+    {
+      "name": "Enter the target value",
+      "text": "In the To value box, type the result you want the Set cell to reach. For example, type the profit target you need."
+    },
+    {
+      "name": "Choose the changing cell",
+      "text": "In the By changing cell box, select the input cell Excel should adjust, such as a Units cell. Goal Seek accepts one changing cell. For several inputs, use Solver."
+    },
+    {
+      "name": "Run Goal Seek and read the result",
+      "text": "Click OK. Excel changes the input cell until the Set cell reaches the target, and it leaves the new value in the input cell. Check the answer against what you expect before you keep it.",
+      "tip": "Save a copy of the workbook first. Goal Seek overwrites the input's current value."
+    },
+    {
+      "name": "Set up a data table",
+      "text": "List the input values in a column. Place the formula in the row above the first value, one column to the right. Select the whole block, including the formula and the input values."
+    },
+    {
+      "name": "Open the Data Table dialog",
+      "text": "With the block still selected, go to the Data tab and open What-If Analysis, then choose Data Table.",
+      "menuPath": [
+        "Data",
+        "What-If Analysis",
+        "Data Table"
+      ]
+    },
+    {
+      "name": "Enter the input cell",
+      "text": "For values in a column, type the input cell address in the Column input cell box. For values across a row, use the Row input cell box. A two-variable table takes both inputs in this one dialog before you click OK."
+    },
+    {
+      "name": "Click OK and recalculate",
+      "text": "Click OK, and Excel fills the grid with results. If the grid does not update after a change, select the formulas and press F9. On some keyboards, press Fn+F9.",
+      "shortcut": "F9",
+      "tip": "If the workbook feels slow, set Excel > Preferences > Formulas and Lists > Calculation to Automatic except for data tables."
+    },
+    {
+      "name": "Open Scenario Manager and add cases",
+      "text": "Go to Data > What-If Analysis > Scenario Manager, then click Add to create a scenario. Name it, select the changing cells for that case, and repeat Add for each case. Each scenario can hold up to 32 changing cells.",
+      "menuPath": [
+        "Data",
+        "What-If Analysis",
+        "Scenario Manager"
+      ]
+    },
+    {
+      "name": "Build a scenario summary",
+      "text": "In Scenario Manager, click Scenario Summary. Excel creates a summary or PivotTable report that lists the outputs for each scenario side by side. Make a new report after any input changes."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Recalculate selected data table formulas (Fn+F9 on some keyboards)",
+      "keys": "F9"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Goal Seek or Data Table is missing",
+      "fix": "Confirm you are in the Excel desktop app for Mac, not Excel for the web. Then check your version under Excel > About Excel. Microsoft lists Microsoft 365, Excel 2024 and Excel 2021 for Mac among the applicable versions."
+    },
+    {
+      "problem": "Goal Seek returns a value that does not look right",
+      "fix": "Check that the Set cell holds a formula and that the formula uses the changing cell. Undo the change, test the formula by hand with a known input, then run Goal Seek again."
+    },
+    {
+      "problem": "The data table grid does not update",
+      "fix": "Go to Excel > Preferences > Formulas and Lists > Calculation. If it is set to Automatic except for data tables, select the formulas and press F9, or Fn+F9 on some keyboards."
+    },
+    {
+      "problem": "Scenario Summary shows numbers from an earlier run",
+      "fix": "Scenario reports are static. Run Scenario Summary again after you change any input."
+    },
+    {
+      "problem": "Solver does not appear on the Data tab",
+      "fix": "Load it with Tools > Excel Add-Ins, check Solver Add-In, then click OK. This path comes from a 2023 community answer, not official Microsoft steps. Save your workbook first."
+    },
+    {
+      "problem": "Excel says it cannot access Solver.xlam",
+      "fix": "A community answer suggests this fix only when Solver.xlam exists in the Add-Ins folder. Back up your files, quit Excel, and move the com.microsoft.excel or Microsoft.Excel folder in ~/Library/Containers to the Trash. Reopen Excel and load Solver again. The fix does not cover a missing file."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the What-If Analysis button?",
+    "capability": "point",
+    "result": "Lazur circles the What-If Analysis button on the Data tab and labels it. You do the clicking, and Lazur waits while you work through each step.",
+    "shell": "sheet",
+    "pointsAt": "What-If Analysis",
+    "context": "Excel for Mac with the Data tab open",
+    "output": "It sits on the Data tab. Lazur draws a circle around What-If Analysis so you can find it. Click it to see Goal Seek, Data Table and Scenario Manager. For a walkthrough one click at a time, ask Lazur to guide you."
+  },
+  "type": "howto",
+  "slug": "run-a-what-if-analysis-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-what-if-analysis-in-excel/how-to-run-a-what-if-analysis-1-8c6910.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a laptop on a desk, reviewing a spreadsheet for a what if analysis in Excel on Mac",
+      "caption": "A laptop open to a spreadsheet is the usual setting for this work.",
+      "keywords": [
+        "how to run a what if analysis in excel on mac",
+        "Excel",
+        "run a what-if analysis",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-what-if-analysis-in-excel/how-to-run-a-what-if-analysis-2-9a29d1.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Man comparing charts and numbers on a laptop, like reviewing Scenario Manager results in Excel",
+      "caption": "Comparing outputs side by side is what scenarios are for.",
+      "keywords": [
+        "how to run a what if analysis in excel on mac",
+        "Excel",
+        "run a what-if analysis",
+        "Mac",
+        "man spreadsheet charts laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-a-what-if-analysis-in-excel/how-to-run-a-what-if-analysis-3-126aa8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Office desk with a laptop and notebook, where Excel what-if analysis on a Mac often happens",
+      "caption": "Most what-if work happens at a desk, between other tasks.",
+      "keywords": [
+        "how to run a what if analysis in excel on mac",
+        "Excel",
+        "run a what-if analysis",
+        "Mac",
+        "office desk coffee laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to run a what if analysis in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "what if analysis excel mac": 1,
+      "goal seek excel mac": 1,
+      "excel data table mac": 1,
+      "scenario manager excel mac": 1,
+      "excel solver mac": 1,
+      "what-if analysis data tab mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

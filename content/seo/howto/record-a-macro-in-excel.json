@@ -1,0 +1,561 @@
+{
+  "title": "How to record a macro in Excel on Mac: step by step for Microsoft 365",
+  "metaTitle": "How to Record a Macro in Excel on Mac (Step by Step)",
+  "description": "How to record a macro in Excel on Mac: turn on the Developer tab, record your steps, set a shortcut and run it with a key. Steps for Microsoft 365.",
+  "targetKeyword": "how to record a macro in excel on mac",
+  "secondaryKeywords": [
+    "record macro Excel for Mac",
+    "Developer tab Excel for Mac",
+    "Excel for Mac macro shortcut key",
+    "relative references macro Excel Mac",
+    "Stop Recording Excel Mac",
+    "macro security Excel for Mac",
+    "Excel for the web macros"
+  ],
+  "intro": "To record a macro in Excel on Mac, first turn on the Developer tab in Excel > Preferences > Ribbon & Toolbar. Then choose Developer > Record Macro, name it, set a one-letter shortcut, do the task, and click Developer > Stop Recording.",
+  "tldr": [
+    "Turn on the Developer tab in Excel > Preferences > Ribbon & Toolbar, tick Developer under Main Tabs, then click Save.",
+    "Choose Developer > Record Macro, give it a name with no spaces, and set a one-letter shortcut key.",
+    "Do the task once, then click Developer > Stop Recording. Save the file as a macro-enabled .xlsm workbook.",
+    "Run the macro with Option+Command+letter for a lowercase shortcut, or Control+Shift+letter for an uppercase one."
+  ],
+  "stats": [
+    {
+      "value": "Over 40%",
+      "label": "of workers spend at least a quarter of their week on manual, repetitive tasks",
+      "sourceUrl": "https://www.smartsheet.com/content-center/product-news/automation/workers-waste-quarter-work-week-manual-repetitive-tasks",
+      "sourceTitle": "Smartsheet: How much time are you wasting on manual, repetitive tasks?"
+    },
+    {
+      "value": "16.114.3",
+      "label": "Latest Excel for Mac build in Microsoft's release notes, dated October 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Before you record: versions and what you need"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Developer tab guide for Mac covers Excel for Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. If you use one of those, the steps in this guide match your screen. You need the Excel app on your Mac, with the workbook open in that app and editable."
+    },
+    {
+      "type": "paragraph",
+      "text": "Recording a macro does not record a video. Excel writes down the actions you take, then replays them when you run the macro. The result is a small block of VBA code saved inside the workbook. You can open that code later, but you do not need to read it to use a basic macro."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Show the Developer tab on your Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The Developer tab holds every macro control. Record Macro, Stop Recording, Macros and Use Relative References all sit there. Excel for Mac hides the tab until you turn it on, so start in Preferences. Open Excel > Preferences, choose Ribbon & Toolbar, and tick Developer under Main Tabs. Click Save, then check the ribbon. If the tab still does not appear, quit Excel and open your workbook again."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a macro that formats a header row"
+    },
+    {
+      "type": "paragraph",
+      "text": "Say you get a sheet each Monday with column headers in row 1. You bold the headers, fill them grey and centre them. Doing that by hand takes a minute or two. Recording it once lets a single shortcut repeat the same formatting every week."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open the workbook with the header row in view. Leave Use Relative References off, because you want the macro to always format A1:F1. Click Record Macro, name it FormatHeader, set the shortcut to f, and click OK. Select A1:F1, apply bold, the grey fill and centring, then click Stop Recording."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "paragraph",
+      "text": "Do not name the macro FMT1. That is a valid cell address, because column FMT exists in Excel. Excel may show an error saying the name is not valid. FormatHeader works, and so does Format_Header. Spaces are not allowed, so Format Header fails."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Relative references: the setting that moves the macro"
+    },
+    {
+      "type": "paragraph",
+      "text": "A recorded macro repeats the addresses you clicked, unless relative references are on. With the toggle off, the macro always hits A1:F1, even if you run it on a sheet with the headers somewhere else. With Use Relative References on, Excel records your selection relative to the active cell."
+    },
+    {
+      "type": "paragraph",
+      "text": "Test both versions on a copy. Record a short macro with the toggle on, move to a different cell, run it, and see where the change lands. Then record again with the toggle off and compare. Keep the version that matches how your data is laid out."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: a macro that adds a total"
+    },
+    {
+      "type": "paragraph",
+      "text": "Now a second example. Say column B holds sales from row 2 down to row 40, and you want a total in B41 each time you paste new data. Click B41 first, because that cell becomes your starting point."
+    },
+    {
+      "type": "paragraph",
+      "text": "Turn on Use Relative References before you click Record Macro. Click Record Macro, name the macro AddTotal, keep This Workbook selected, and click OK. Type =SUM(B2:B40) in B41 and press Return. Then click Stop Recording."
+    },
+    {
+      "type": "paragraph",
+      "text": "With relative references on, the formula moves with the cell you start from. Run the macro from a different row and the total follows that row. Check the cell address after each run, because a macro that starts from the wrong cell writes its total in the wrong place."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Naming, storing and shortcut rules"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Macro name: start with a letter, then add letters, numbers or the _ character.",
+        "Macro name: no spaces, and no name that is also a cell reference, such as FMT1.",
+        "Store macro in: keep This Workbook selected, the only choice Microsoft lists for Mac.",
+        "Shortcut key: one letter, upper or lower case.",
+        "Lowercase letter: run with Option+Command+letter, or Control+letter.",
+        "Uppercase letter: run with Control+Shift+letter."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Macro security: why a recorded macro may not run"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for Mac sets macro rules in Excel > Preferences > Security. The three choices are Enable all macros, Disable all macros with notification and Disable all macros without notification. The default is Disable all macros with notification."
+    },
+    {
+      "type": "paragraph",
+      "text": "The default protects you from code in files you did not write. It also means a macro you recorded may stay blocked until you allow it. Check this setting first whenever a macro does nothing on a new Mac."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for the web cannot record or run macros"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web can open and keep a workbook that contains macros. It cannot create, run or edit VBA macros. If your file lives in a browser, select Open in Desktop App above the ribbon. Then record, run and edit in Excel for Mac, and save the file as a macro-enabled workbook."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Edit, review and delete a macro later"
+    },
+    {
+      "type": "paragraph",
+      "text": "Click Developer > Macros to see every macro in the open workbook. Select one, then choose Options to change its shortcut or description. Choose Edit to open the code editor. Inside the editor, F5 runs the macro, and F8 steps through it one line at a time."
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need to read the VBA code to use a basic macro. Opening it once still helps you see what the recorder stored. Microsoft's Developer tab article also covers deleting a macro, so read it before you remove anything from a file you rely on."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test the macro without breaking your file"
+    },
+    {
+      "type": "paragraph",
+      "text": "Save a copy with File > Save As before you run a new macro on live data. Run it on the copy, then check the cells that changed. If something looks wrong, record again from the starting cell rather than editing in a hurry."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the original file until the macro has worked on several copies. Macros repeat mistakes as fast as they repeat good steps, so a short check after each run pays off."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make when recording a macro"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Extra clicks. Every click you make is part of the recording, so plan the steps before you start.",
+        "No Stop Recording. Keep working after you finish and the macro keeps every action. Click Stop Recording as soon as you are done.",
+        "Clashing shortcuts. While the workbook is open, a macro shortcut overrides the matching Excel shortcut. Uppercase letters are safer, because they use Control+Shift.",
+        "Wrong starting cell. Check the active cell before you click Record Macro, especially when relative references are on.",
+        "Name rules. Spaces and cell-like names get rejected. Pick a name with letters, numbers and _ only.",
+        "Wrong file format. Save as a macro-enabled workbook, .xlsm, so the code stays in the file."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Does this still work in 2026?"
+    },
+    {
+      "type": "paragraph",
+      "text": "The latest Excel for Mac build in Microsoft's release notes is 16.114.3 (Build 26102720), dated October 27, 2026. The 2026 entries cover Office Scripts changes and quality fixes. They do not mention VBA, the Developer tab, the ribbon or Preferences, so the steps in this guide still apply. Later builds may exist, so check the release notes if a step looks different on your screen."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next with macros"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once your first macro works, you can build on it. Many macros read input from a named area, so name your input range before you record. Microsoft's Run a macro guide notes that a macro workbook can run a macro on open, through a Workbook_Open procedure. That needs code editing, so start with a short recorded macro first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Formulas and named ranges make macros easier to maintain. Read [how to create a named range in Excel on Mac](/how-to/create-a-named-range-in-excel) before you reuse a macro on a bigger file. If your work leans on lookups, [how to use XLOOKUP in Excel on Mac](/how-to/use-xlookup-in-excel) covers that side of the job."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does Excel for Mac have a keyboard shortcut for Record Macro?",
+      "answer": "Microsoft's Mac article does not list one, so click Record Macro on the Developer tab. The shortcut you set in the dialog is different. It runs the macro after you have recorded it."
+    },
+    {
+      "question": "Which versions of Excel for Mac support these steps?",
+      "answer": "Microsoft's Developer tab article covers Excel for Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. If you run an older version, check Excel > Preferences > Ribbon & Toolbar first. The menu items may look different."
+    },
+    {
+      "question": "Can I record a macro in Excel for the web?",
+      "answer": "No. Excel for the web cannot create, run or edit VBA macros. It can open and keep a workbook that has macros. Use Open in Desktop App above the ribbon to work on them in Excel for Mac."
+    },
+    {
+      "question": "Why does my macro not run when I open the file?",
+      "answer": "Check Excel > Preferences > Security. The default is Disable all macros with notification, so macros stay blocked until you allow them. Only choose Enable all macros for files you trust."
+    },
+    {
+      "question": "Can a macro shortcut break an Excel shortcut?",
+      "answer": "Yes. While the workbook is open, a macro shortcut overrides the matching Excel shortcut. Microsoft's example is Undo. An uppercase letter, which runs with Control+Shift, lowers the chance of a clash."
+    },
+    {
+      "question": "Do I need to save the workbook in a special format?",
+      "answer": "Save it as a macro-enabled workbook, .xlsm. Microsoft's guide on running macros describes this format for workbooks that contain macros. Keep your original file as a backup until the macro works on a copy."
+    },
+    {
+      "question": "How much time can a macro save?",
+      "answer": "It depends on the task. Smartsheet reports that over 40% of workers spend at least a quarter of their week on manual, repetitive tasks. That is a general figure, not a measure of your own week."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Use the Developer tab to create or delete a macro in Excel for Mac",
+      "url": "https://support.microsoft.com/en-us/excel/use-the-developer-tab-to-create-or-delete-a-macro-in-excel-for-mac",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Run a macro in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/run-a-macro-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Work with VBA macros in Excel for the web",
+      "url": "https://support.microsoft.com/en-us/excel/work-with-vba-macros-in-excel-for-the-web",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Enable or disable macros in Office for Mac",
+      "url": "https://support.microsoft.com/en-us/office/enable-or-disable-macros-in-office-for-mac-c2494c99-a637-4ce6-9b82-e02cbb85cb96",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Set preferences for macro security in Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/microsoft-365-apps/mac/set-preference-macro-security-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Smartsheet: How much time are you wasting on manual, repetitive tasks?",
+      "url": "https://www.smartsheet.com/content-center/product-news/automation/workers-waste-quarter-work-week-manual-repetitive-tasks",
+      "publisher": "Smartsheet",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Record a macro in Excel for Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024 and Excel 2021 for Mac",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Mac: Microsoft 365, Excel 2024 or Excel 2021",
+    "A workbook you can edit on your Mac",
+    "About 10 minutes and a test copy of your file"
+  ],
+  "steps": [
+    {
+      "name": "Open Excel Preferences",
+      "menuPath": [
+        "Excel",
+        "Preferences",
+        "Ribbon & Toolbar"
+      ],
+      "text": "Open Excel for Mac and choose Excel > Preferences. Click Ribbon & Toolbar. You will see the list of tabs that Excel shows on the ribbon.",
+      "tip": "Look at the Main Tabs list. The Developer tab sits there, not in the other tab groups."
+    },
+    {
+      "name": "Tick the Developer tab",
+      "menuPath": [
+        "Ribbon & Toolbar",
+        "Main Tabs",
+        "Developer"
+      ],
+      "text": "Under Main Tabs, tick Developer. Click Save. The Developer tab appears in the ribbon next to the other tabs.",
+      "tip": "If the tab does not show, return to Preferences and check the box once more."
+    },
+    {
+      "name": "Open the workbook and choose a start cell",
+      "text": "Open the workbook you want to automate. Click the cell where you want the macro to begin. The active cell matters if you use relative references.",
+      "tip": "Use a copy of the file for your first test, not your live workbook."
+    },
+    {
+      "name": "Turn on Use Relative References (optional)",
+      "menuPath": [
+        "Developer",
+        "Use Relative References"
+      ],
+      "text": "Only turn this on if the macro should work from wherever the active cell is. Turn it on before you click Record Macro. Leave it off to record fixed addresses such as A1:F1.",
+      "tip": "You can record the same steps twice, once each way, and compare the results."
+    },
+    {
+      "name": "Click Record Macro",
+      "menuPath": [
+        "Developer",
+        "Record Macro"
+      ],
+      "text": "Click Record Macro on the Developer tab. Microsoft's Mac guide does not list a keyboard shortcut for this button, so use the ribbon.",
+      "tip": "Wait for the Record Macro dialog to open before you do anything else. Anything you click first can be recorded."
+    },
+    {
+      "name": "Type a macro name",
+      "text": "In Macro name, type a name that starts with a letter. Use letters, numbers or _, with no spaces. Avoid names like FMT1, which look like a cell reference.",
+      "tip": "FormatHeader or Format_Header both work."
+    },
+    {
+      "name": "Check Store macro in",
+      "text": "Keep This Workbook selected in Store macro in. Microsoft's Mac guide names This Workbook as the storage choice, so the macro saves with this file.",
+      "tip": "If your version shows other choices, confirm the setting in the app before you record."
+    },
+    {
+      "name": "Set the shortcut key",
+      "text": "In Shortcut key, type one letter, upper or lower case. A lowercase letter runs with Option+Command. An uppercase letter runs with Control+Shift.",
+      "tip": "Pick a letter that Excel does not already use for a shortcut you need."
+    },
+    {
+      "name": "Add a description and click OK",
+      "text": "Type a short description, such as what the macro changes. Click OK, and Excel starts recording.",
+      "tip": "Write a description that says what the macro changes, so you recognise it later."
+    },
+    {
+      "name": "Perform the actions once",
+      "text": "Do the task exactly as you want it repeated. Select the cells, type, format or enter formulas. Move slowly and avoid stray clicks, because the recorder keeps them.",
+      "tip": "If you make a mistake, stop and record again from the start. A clean run is easier to trust."
+    },
+    {
+      "name": "Stop recording",
+      "menuPath": [
+        "Developer",
+        "Stop Recording"
+      ],
+      "text": "When the task is done, click Stop Recording on the Developer tab. Excel stops capturing actions, and the macro stays in the workbook.",
+      "tip": "Do not keep working after this step. Anything you do next will not be part of the macro."
+    },
+    {
+      "name": "Save as a macro-enabled workbook",
+      "menuPath": [
+        "File",
+        "Save As"
+      ],
+      "text": "Choose File > Save As. Pick the macro-enabled workbook format, .xlsm, then save. Microsoft's guide on running macros describes this format for workbooks that contain macros.",
+      "tip": "Keep your original file as a backup until the macro works on a copy."
+    },
+    {
+      "name": "Run the macro with its shortcut",
+      "shortcut": "⌥ ⌘ + letter",
+      "text": "Open the workbook and select the cells you want to change. Press Option+Command and your letter for a lowercase shortcut. For an uppercase shortcut, press Control+Shift and your letter.",
+      "tip": "If nothing happens, check that the workbook is open and that macros are allowed."
+    },
+    {
+      "name": "Review or edit the macro later",
+      "menuPath": [
+        "Developer",
+        "Macros"
+      ],
+      "text": "Click Macros to see the list. Choose Options to change the shortcut or description. Choose Edit to open the code editor, where F5 runs the macro.",
+      "tip": "Use Step Into with F8 to move through the code one line at a time."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Run a macro with a lowercase shortcut letter",
+      "keys": "⌥ ⌘ + letter"
+    },
+    {
+      "action": "Run a macro with a lowercase letter using Control",
+      "keys": "⌃ + letter"
+    },
+    {
+      "action": "Run a macro with an uppercase shortcut letter",
+      "keys": "⌃ ⇧ + letter"
+    },
+    {
+      "action": "Run the macro from the code editor",
+      "keys": "F5"
+    },
+    {
+      "action": "Step through a macro one line at a time",
+      "keys": "F8"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Developer tab does not appear",
+      "fix": "Open Excel > Preferences > Ribbon & Toolbar. Under Main Tabs, tick Developer, then click Save. Check that box first."
+    },
+    {
+      "problem": "Excel rejects the macro name",
+      "fix": "Start with a letter, use only letters, numbers and _, and avoid names like FMT1 that look like cell references. Stop and record again with a valid name."
+    },
+    {
+      "problem": "The macro does nothing when you run it",
+      "fix": "Check Excel > Preferences > Security. With Disable all macros with notification selected, macros stay blocked until you allow them. Enable all macros removes the block for every file, so use it only for files you trust."
+    },
+    {
+      "problem": "The shortcut triggers an Excel command instead",
+      "fix": "A macro shortcut overrides matching Excel shortcuts while the workbook is open. Record again with an uppercase letter, which runs with Control+Shift, or pick a different letter."
+    },
+    {
+      "problem": "The macro changes the wrong cells",
+      "fix": "The macro likely used fixed addresses. Turn on Use Relative References on the Developer tab before you record, then record again from the cell you want as the starting point."
+    },
+    {
+      "problem": "Record or run is unavailable in Excel for the web",
+      "fix": "Excel for the web cannot create, run or edit VBA macros. Select Open in Desktop App above the ribbon, then work in Excel for Mac."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the Record Macro button?",
+    "capability": "point",
+    "result": "Lazur circles Record Macro on the Developer tab and labels it. It points and explains, and you click the button yourself.",
+    "shell": "sheet",
+    "pointsAt": "Record Macro",
+    "context": "Mid-setup, after turning on the Developer tab."
+  },
+  "type": "howto",
+  "slug": "record-a-macro-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/record-a-macro-in-excel/how-to-record-a-macro-in-excel-1-1ee249.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person typing on a laptop at a desk while working on a spreadsheet they want to automate",
+      "caption": "Repeated spreadsheet work is what a macro handles best.",
+      "keywords": [
+        "how to record a macro in excel on mac",
+        "Excel",
+        "record a macro",
+        "Mac",
+        "person typing on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/record-a-macro-in-excel/how-to-record-a-macro-in-excel-2-a0b191.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Office desk with a spreadsheet open on a computer, the kind of file where a macro in Excel on Mac saves clicks",
+      "caption": "Formatting the same headers each week is a good first macro.",
+      "keywords": [
+        "how to record a macro in excel on mac",
+        "Excel",
+        "record a macro",
+        "Mac",
+        "office desk spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/record-a-macro-in-excel/how-to-record-a-macro-in-excel-3-75f42d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Worker at a MacBook in an office, learning how to record a macro in Excel on Mac",
+      "caption": "A Mac, a workbook and a few minutes are all you need.",
+      "keywords": [
+        "how to record a macro in excel on mac",
+        "Excel",
+        "record a macro",
+        "Mac",
+        "macbook office worker",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to record a macro in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "record macro Excel for Mac": 1,
+      "Developer tab Excel for Mac": 1,
+      "Excel for Mac macro shortcut key": 1,
+      "relative references macro Excel Mac": 1,
+      "Stop Recording Excel Mac": 1,
+      "macro security Excel for Mac": 1,
+      "Excel for the web macros": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

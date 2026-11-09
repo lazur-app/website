@@ -1,0 +1,569 @@
+{
+  "title": "How to convert text to numbers in Excel on Mac: fixes for Microsoft 365",
+  "metaTitle": "How to Convert Text to Numbers in Excel on Mac: Steps",
+  "description": "How to convert text to numbers in Excel on Mac: use the error indicator, Paste Special, or VALUE. Steps for Microsoft 365, plus fixes when it fails.",
+  "targetKeyword": "how to convert text to numbers in excel on mac",
+  "secondaryKeywords": [
+    "convert text to number excel mac",
+    "numbers stored as text excel mac",
+    "excel mac number stored as text fix",
+    "paste special multiply excel mac",
+    "background error checking excel mac",
+    "text to number excel mac formula"
+  ],
+  "intro": "To convert text to numbers in Excel on Mac, select the flagged cells, click the error indicator at their top-left corner, and choose Convert to Number. If no indicator appears, turn on background error checking in Excel > Preferences > Error Checking, or use a VALUE formula and Paste Values instead.",
+  "tldr": [
+    "Select the flagged cells, click the error indicator, and choose Convert to Number.",
+    "If no indicator appears, go to Excel > Preferences > Error Checking and turn on background error checking.",
+    "Changing the number format does not convert values that are already text.",
+    "When the flag is missing, put =VALUE() in a helper column, then Paste Values over the original cells.",
+    "Excel stores 15 digits of number precision, so keep long IDs as text."
+  ],
+  "stats": [
+    {
+      "value": "15",
+      "label": "Digits of number precision Microsoft lists as an Excel limit, so long IDs belong in text",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "sourceTitle": "Excel specifications and limits, Microsoft Support"
+    },
+    {
+      "value": "94%",
+      "label": "Of business spreadsheets reported to contain errors in a 2024 literature review, not a user survey",
+      "sourceUrl": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "sourceTitle": "Study finds 94% of business spreadsheets have critical errors, Phys.org"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Excel treats a value as text when it arrives that way. A number pasted from a web page, imported from a file, or typed after an apostrophe can land as text. The cell looks like a number. Excel still treats it as text, so formulas may skip it."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Excel keeps numbers as text on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "Numbers stored as text usually come from outside Excel. You might copy a column from a website, open an export from another system, or import a CSV file. Each route can carry values in text form. Excel then marks those cells so you can spot them and convert them."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's support guide on this problem covers Excel for Microsoft 365 for Mac, Excel 2024 and Excel 2021 for Mac, and the web app. It gives no Mac-specific menu paths or shortcuts. So this page labels every Mac-specific step. Some come from Microsoft's Mac pages, and some come from community threads."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Which method should you pick"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the error indicator if it shows up. If it doesn't, use VALUE with Paste Values. The Multiply by 1 method is the last resort, because one reported case changed the cell formatting."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Method",
+        "Best when",
+        "Watch for"
+      ],
+      "rows": [
+        [
+          "Error indicator",
+          "The flag appears on the cells you need",
+          "Some Mac builds may draw the indicator differently"
+        ],
+        [
+          "VALUE and Paste Values",
+          "No flag, or you want to check results first",
+          "Pasting before you check errors copies them into the originals"
+        ],
+        [
+          "Multiply by 1 with Paste Special",
+          "The other methods fail on a copy of the sheet",
+          "A 2023 Q&A original poster said it changed cell formatting"
+        ]
+      ],
+      "caption": "Three ways to convert text numbers in Excel on Mac"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method 1: Convert with the error indicator"
+    },
+    {
+      "type": "paragraph",
+      "text": "This route is the fastest, and it is the one Microsoft describes first. You select the flagged cells, click the error indicator in the top-left corner of the selection, and choose Convert to Number. Excel converts the values in place. The green triangles disappear."
+    },
+    {
+      "type": "paragraph",
+      "text": "Read the first three steps before you click anything. Select only the columns you want to fix. Leave headers and notes out of the selection, because they are not numbers. If you can't find the indicator, the next section explains the setting it depends on."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Turn on background error checking"
+    },
+    {
+      "type": "paragraph",
+      "text": "The indicator depends on a setting. Microsoft's Detect formula errors page says to open the Excel menu, choose Preferences, then Error Checking, and select Enable background error checking. Exceljet lists the same option as Turn on background error checking. Match the label to what your Excel shows."
+    },
+    {
+      "type": "paragraph",
+      "text": "Changing this setting doesn't convert anything. It only tells Excel to flag cells in the background. Select the cells again after you change it, so the flag has a chance to appear on them."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method 2: Use VALUE and Paste Values"
+    },
+    {
+      "type": "paragraph",
+      "text": "The VALUE function reads text and returns a number. You place it in a helper column, copy the results, and paste them as values over the original cells. Microsoft describes this method for Windows and the web, and says the web steps are the same. On a Mac, Command replaces Ctrl."
+    },
+    {
+      "type": "paragraph",
+      "text": "Take a simple case. Your amounts sit in column A, starting at row 2, and they look like numbers but act like text. Insert a blank column to the right. In the first helper cell, type =VALUE(A2), press Return, and fill the formula down to the last row of the list."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "When the helper column shows numbers, copy it with ⌘C. Click the first original cell and paste with Paste Special set to Values. The original column now holds real numbers. Delete the helper column last, after you check that the totals match what you expect."
+    },
+    {
+      "type": "paragraph",
+      "text": "Watch for errors in the helper column. If VALUE returns an error for a row, that cell holds text that is not a plain number, such as a note or a word. Fix or clear that cell before you paste. Otherwise the error lands in the original column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Method 3: Multiply by 1 with Paste Special"
+    },
+    {
+      "type": "paragraph",
+      "text": "This fallback comes from a 2023 Microsoft Q&A thread. An MVP named Bob Jones suggested it for Excel on Mac. Type 1 in an empty cell and copy it. Select the text cells, then choose Edit > Paste Special. Under Operation, pick Multiply, and click OK. Excel does the arithmetic on each value, so the results come out as numbers."
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Test on a copy",
+      "text": "In the one reported case, Multiply by 1 changed the cell formatting. Keep an untouched copy of the sheet before you run it on real data, and delete the 1 cell when you finish."
+    },
+    {
+      "type": "paragraph",
+      "text": "The original poster said the method worked. The thread also says the smart tag may no longer appear on their build. That matches what you may see on your Mac, so treat this method as a fallback, not a first choice."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why changing the number format doesn't work"
+    },
+    {
+      "type": "paragraph",
+      "text": "Many people open Home > Number group > Dialog Box Launcher and choose Number. In a 2023 Microsoft Q&A, a user on Excel 16.78.3 with macOS 12.7 found the values stayed as text. A volunteer moderator said changing the format does not change the values. The fix is the Convert to number option on the flagged cells."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's page on applying a number format describes this approach. That page lists only Windows shortcuts and names Excel 2013 as the applicable version. Use it as background. It is not the fix for current Mac builds."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check the converted column before you trust it"
+    },
+    {
+      "type": "paragraph",
+      "text": "Converting is only half the job. Type =SUM( in an empty cell below the column, drag across the converted cells, close the parenthesis, and press Return. Then compare the total with a figure you already know, such as a subtotal from the source system."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the total comes back as zero, the cells are still text. If it is short by a few rows, look for cells that hold a space or a note. Sorting the column once also helps. Converted numbers sort by size, and any text left behind sorts to the bottom."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Amounts versus long IDs: what to convert"
+    },
+    {
+      "type": "paragraph",
+      "text": "Not every text number should become a number. Amounts, quantities, and dates are safe to convert, because you will add or average them. Long identifiers such as account numbers, tracking codes, and card numbers need a different rule. Keep them as text."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft lists 15 digits as the number precision limit for Excel. The page doesn't say whether the limit applies to storage or display. Either way, a long ID is a poor fit for a number cell. That is the reason to keep IDs as text from the start."
+    },
+    {
+      "type": "paragraph",
+      "text": "A simple rule works on most sheets. Convert the columns you calculate with. Leave columns you only look up or sort by as text. If one column mixes both, select only the rows that hold amounts, not the whole column."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with text numbers"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Converting ID columns. Long IDs can lose precision once they become numbers, so keep them as text.",
+        "Changing the number format and expecting old values to update. They won't.",
+        "Deleting the helper column before pasting. You need it as the source for the values.",
+        "Using a plain Paste instead of Paste Special. A plain paste copies formulas, so the original column can keep running VALUE.",
+        "Skipping the backup. Multiply by 1 changed formatting in the one reported case.",
+        "Searching for a Mac shortcut for the error indicator. Microsoft lists Alt+Shift+F10, which is a Windows shortcut. No official Mac equivalent turned up in research."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel build before you troubleshoot"
+    },
+    {
+      "type": "paragraph",
+      "text": "The latest Mac build in Microsoft's release notes is Excel 16.114.3 (Build 26102720), released October 27, 2026. The notes describe quality and performance improvements. They do not describe changes to this feature. If your screen differs from this guide, check your build first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Excel > About Excel to see yours. The previous builds were 16.114.2 (Build 26102345) on October 26, 2026, and 16.114.1 (Build 26102031) on October 22, 2026. Newer builds may move menu items, so compare names, not positions."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How common is this problem?"
+    },
+    {
+      "type": "paragraph",
+      "text": "No survey of how often people hit this specific error turned up in research. The closest number comes from a 2024 literature review led by Pak-Lok Poon. It reported that 94% of spreadsheets used in business decision-making contain errors."
+    },
+    {
+      "type": "paragraph",
+      "text": "That review covers spreadsheet errors in general. It does not measure text-stored numbers, and the source gives no sample size. Use it as context for why checking your numbers matters, not as proof of how often this bug appears."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the numbers work, the usual next step is a total, a summary, or a lookup. A pivot table groups the cleaned amounts well. The pivot guide is at [How to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel). For matching values across sheets, read [How to use XLOOKUP in Excel on Mac](/how-to/use-xlookup-in-excel)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does Excel show numbers as text on Mac?",
+      "answer": "Excel stores a value as text when it arrives that way. Common sources are web pages, exports, CSV imports, and values typed after an apostrophe. Excel flags those cells so you can convert them."
+    },
+    {
+      "question": "Does the error indicator work in Excel for Mac?",
+      "answer": "Microsoft's guide lists Excel for Microsoft 365 for Mac, Excel 2024 for Mac, and Excel 2021 for Mac as applicable. A 2023 Q&A thread says the smart tag may be missing on some builds, so use VALUE if you don't see it."
+    },
+    {
+      "question": "Can I convert a whole column at once?",
+      "answer": "Yes, select the cells you want to fix, then use the error indicator on that selection. If the column also holds IDs or notes, select only the rows that hold amounts."
+    },
+    {
+      "question": "Should I convert every column in the sheet?",
+      "answer": "No. Convert the columns you add or average. Keep IDs, codes, and labels as text, because Excel stores only 15 digits of number precision."
+    },
+    {
+      "question": "What is the Mac shortcut for the error indicator?",
+      "answer": "No official Mac shortcut turned up for the error indicator. Microsoft lists Alt+Shift+F10, which is a Windows shortcut. For Paste Special on Mac, Exceljet lists ⌘⌃V."
+    },
+    {
+      "question": "Why didn't changing the number format fix my numbers?",
+      "answer": "Changing the format does not change the values already in the cells. Use the error indicator, VALUE with Paste Values, or the Multiply by 1 method instead."
+    },
+    {
+      "question": "Will the Multiply by 1 method change my formatting?",
+      "answer": "It might. The original poster in a 2023 Microsoft Q&A said it worked but changed their cell formatting. Test on a copy of the sheet first."
+    },
+    {
+      "question": "Why do my long account numbers change after conversion?",
+      "answer": "Microsoft lists a 15-digit number precision limit for Excel. Keep long IDs as text, and convert only the columns that hold amounts."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Convert numbers stored as text to numbers in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/convert-numbers-stored-as-text-to-numbers-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Fix text-formatted numbers by applying a number format",
+      "url": "https://support.microsoft.com/en-us/excel/fix-text-formatted-numbers-by-applying-a-number-format",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Detect formula errors in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/detect-formula-errors-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel on MacOS not changing cell data type, Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5261401/excel-on-macos-not-changing-cell-data-type",
+      "publisher": "Microsoft Learn Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Convert number stored as text to number: Excel 2016 for Mac High Sierra, Microsoft Q&A",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/4977181/convert-number-stored-as-text-to-number-excel-2016",
+      "publisher": "Microsoft Learn Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel specifications and limits",
+      "url": "https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel shortcuts on the Mac",
+      "url": "https://exceljet.net/articles/excel-shortcuts-on-the-mac",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel Options and Settings (Windows and Mac)",
+      "url": "https://exceljet.net/options",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Study finds 94% of business spreadsheets have critical errors",
+      "url": "https://phys.org/news/2024-08-business-spreadsheets-critical-errors.html",
+      "publisher": "Phys.org",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Convert text-stored numbers to real numbers in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024 and Excel 2021 on Mac",
+  "timeMinutes": 6,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Mac: Microsoft 365, Excel 2024, or Excel 2021, the versions Microsoft's guide lists",
+    "The sheet open, with the cells you want to fix visible",
+    "An untouched copy of the sheet for testing",
+    "Background error checking turned on, if you expect the error indicator"
+  ],
+  "steps": [
+    {
+      "name": "Select the flagged cells",
+      "text": "Click the first cell that holds a text number, then drag down to the last one in the column. Include only the cells that need converting. Leave headers and totals out of the selection. Look for a small green triangle in each cell's corner."
+    },
+    {
+      "name": "Click the error indicator",
+      "text": "Hover over the selection. An error indicator appears at the top-left corner of the selected cells. Click it to open the menu. Microsoft's guide uses this name, and Mac builds may draw the icon differently.",
+      "menuPath": [
+        "Error indicator"
+      ],
+      "tip": "If nothing appears, check the background error checking setting in the section above."
+    },
+    {
+      "name": "Choose Convert to Number",
+      "text": "In the menu, click Convert to Number. Excel changes the selected values into numbers. The green triangles disappear from those cells.",
+      "menuPath": [
+        "Error indicator",
+        "Convert to Number"
+      ]
+    },
+    {
+      "name": "Check the result",
+      "text": "Type =SUM( in an empty cell, drag across the column, close the parenthesis, and press Return. A total that matches what you expect means the cells now hold numbers."
+    },
+    {
+      "name": "Turn on background error checking if no flag appears",
+      "text": "Open Excel > Preferences > Error Checking. Select Enable background error checking. Some builds label it Turn on background error checking. Close the dialog, then select the cells again.",
+      "menuPath": [
+        "Excel",
+        "Preferences",
+        "Error Checking"
+      ],
+      "tip": "This setting only changes how Excel flags cells. It does not convert anything by itself."
+    },
+    {
+      "name": "Add a helper column with VALUE",
+      "text": "Insert a blank column next to the text values. In its first cell, type =VALUE( and click the first text cell. Close the parenthesis and press Return. Fill the formula down to the last row."
+    },
+    {
+      "name": "Copy the helper results",
+      "text": "Select the helper cells and press ⌘C. Then click the first original text cell so the paste lands in the right place.",
+      "shortcut": "⌘C"
+    },
+    {
+      "name": "Paste Values over the originals",
+      "text": "With the original cells selected, choose Home > Paste > Paste Special. Choose Values, then click OK. Check the totals, then delete the helper column.",
+      "menuPath": [
+        "Home",
+        "Paste",
+        "Paste Special"
+      ],
+      "shortcut": "⌘⌃V",
+      "tip": "Exceljet lists ⌘⌃V for Paste Special on Mac. Check it on your build."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Paste Special",
+      "keys": "⌘⌃V"
+    },
+    {
+      "action": "Copy selected cells",
+      "keys": "⌘C"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The Convert to Number option doesn't appear",
+      "fix": "Select the flagged cells again. Check Excel > Preferences > Error Checking and turn on background error checking. If the option still doesn't appear, use the VALUE method instead."
+    },
+    {
+      "problem": "Changing the number format left the numbers as text",
+      "fix": "Changing the format does not convert values already in the cells. Use the error indicator, VALUE with Paste Values, or the Multiply by 1 method."
+    },
+    {
+      "problem": "Cells still act like text after conversion",
+      "fix": "Look for hidden spaces. A 2018 Microsoft Q&A reply for Excel 2016 for Mac suggested =--TRIM(SUBSTITUTE(C1,CHAR(160),\"\")) to strip a non-breaking space. Test it on a copy first, because the thread did not confirm it on current builds."
+    },
+    {
+      "problem": "Multiply by 1 changed my cell formatting",
+      "fix": "A 2023 Q&A original poster reported the same change. Reapply the number format you want from Home > Number group > Dialog Box Launcher, and keep an untouched copy of the sheet next time."
+    },
+    {
+      "problem": "Long account or card numbers changed",
+      "fix": "Excel's number precision limit is 15 digits. Restore the column from your untouched copy, keep ID columns as text, and convert only the amount columns."
+    },
+    {
+      "problem": "The Paste Special shortcut does nothing",
+      "fix": "Use the menu instead. Choose Home > Paste > Paste Special, or Edit > Paste Special, and pick Values or Multiply from there."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Convert to Number option?",
+    "capability": "point",
+    "result": "Lazur circles Convert to Number and labels it on your screen. It explains what the change does to the selected cells, out loud. You click it yourself.",
+    "shell": "sheet",
+    "context": "Flagged text cells selected in an Excel sheet on your Mac.",
+    "pointsAt": "Convert to Number",
+    "output": "Lazur points at the option, then explains what the change does to the selected cells. It does not click the option or change the sheet."
+  },
+  "type": "howto",
+  "slug": "convert-text-to-numbers-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/convert-text-to-numbers-in-excel/how-to-convert-text-to-numbers-in-1-d1c425.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person at a desk converting text to numbers in Excel on a Mac laptop",
+      "caption": "Working through a spreadsheet on a Mac",
+      "keywords": [
+        "how to convert text to numbers in excel on mac",
+        "Excel",
+        "convert text to numbers",
+        "Mac",
+        "person working laptop desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-cup-gadgets-laptop-mug-1867096/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/convert-text-to-numbers-in-excel/how-to-convert-text-to-numbers-in-2-56c91c.jpg",
+      "width": 1280,
+      "height": 919,
+      "alt": "Accountant reviewing spreadsheet columns before converting text numbers in Excel on Mac",
+      "caption": "Checking columns before a bulk change",
+      "keywords": [
+        "how to convert text to numbers in excel on mac",
+        "Excel",
+        "convert text to numbers",
+        "Mac",
+        "accountant reviewing spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Alexas_Fotos",
+        "url": "https://pixabay.com/users/Alexas_Fotos-686414/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/tax-consultant-files-pile-of-files-3094819/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/convert-text-to-numbers-in-excel/how-to-convert-text-to-numbers-in-3-3e9874.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Man checking a spreadsheet on a laptop after fixing numbers stored as text in Excel on Mac",
+      "caption": "Verifying totals after conversion",
+      "keywords": [
+        "how to convert text to numbers in excel on mac",
+        "Excel",
+        "convert text to numbers",
+        "Mac",
+        "man using spreadsheet laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to convert text to numbers in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "convert text to number excel mac": 1,
+      "numbers stored as text excel mac": 1,
+      "excel mac number stored as text fix": 1,
+      "paste special multiply excel mac": 1,
+      "background error checking excel mac": 1,
+      "text to number excel mac formula": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

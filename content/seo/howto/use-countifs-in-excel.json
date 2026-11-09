@@ -1,0 +1,637 @@
+{
+  "title": "How to use COUNTIFS in Excel on Mac: step by step for Microsoft 365",
+  "metaTitle": "How to use COUNTIFS in Excel on Mac (Microsoft 365 steps)",
+  "description": "How to use COUNTIFS in Excel on Mac, step by step: menu paths, the Shift+F3 shortcut, worked examples, and fixes for #VALUE and #NAME errors.",
+  "targetKeyword": "how to use countifs in excel on mac",
+  "secondaryKeywords": [
+    "COUNTIFS Excel Mac",
+    "COUNTIFS formula Excel for Mac",
+    "COUNTIF vs COUNTIFS Excel",
+    "COUNTIFS multiple criteria Excel",
+    "Excel for Mac COUNTIFS errors",
+    "COUNTIFS wildcards Excel",
+    "Insert Function Excel for Mac"
+  ],
+  "intro": "COUNTIFS counts the rows where every condition you set is true. To use COUNTIFS in Excel on Mac, type =COUNTIFS( in a result cell, add a range and a condition for each pair, then press Return.",
+  "tldr": [
+    "COUNTIFS counts only the rows where every range meets its condition, and it accepts up to 127 range and condition pairs.",
+    "To start in Excel on Mac, type =COUNTIFS( in a result cell, or press Shift+F3 and pick COUNTIFS in the Insert Function dialog.",
+    "Keep every range the same length, put text criteria in double quotes, and keep each criteria string under 255 characters.",
+    "A closed linked workbook returns a #VALUE error. Open the linked file, press F9, then check the count again."
+  ],
+  "stats": [
+    {
+      "value": "127",
+      "label": "range and criteria pairs allowed in one COUNTIFS formula",
+      "sourceUrl": "https://support.microsoft.com/en-us/excel/functions/countifs-function",
+      "sourceTitle": "COUNTIFS function (Microsoft Support)"
+    },
+    {
+      "value": "255",
+      "label": "character limit for a criteria string; longer strings return a #VALUE error",
+      "sourceUrl": "https://support.microsoft.com/en-us/office/how-to-correct-a-value-error-in-the-countif-countifs-function-04a616cc-b119-4057-917f-b9b11f1f589d",
+      "sourceTitle": "How to correct a value error in the COUNTIF/COUNTIFS function (Microsoft Support)"
+    },
+    {
+      "value": "16.114.3",
+      "label": "newest Excel for Mac version in Microsoft's release notes when this guide was written",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Say your sheet is a sales list. Column A holds the region, column D holds units sold, and you want to count orders from the West region that sold more than a set number of units. COUNTIFS does that in one cell. It doesn't need a filter, a helper column, or any change to your data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What COUNTIFS does, in plain terms"
+    },
+    {
+      "type": "paragraph",
+      "text": "COUNTIFS is the plural version of COUNTIF. COUNTIF checks one range against one condition. COUNTIFS checks several ranges at the same time. A row counts only when every range meets its condition in that same row. That single rule explains most of what the function does, so keep it in mind as you read the rest of this guide."
+    },
+    {
+      "type": "paragraph",
+      "text": "Each range must match the row and column count of the first one. The ranges don't have to sit next to each other. They can come from any columns on the sheet. You can add up to 127 range and condition pairs in one formula, which is plenty for most day-to-day counting."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is the full syntax: COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2] and so on. Square brackets mean optional. The first pair is required. Every pair after that is optional, and each one adds another condition."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Argument",
+        "What it means",
+        "Example"
+      ],
+      "rows": [
+        [
+          "criteria_range1",
+          "The first range to check. Required.",
+          "A2:A500"
+        ],
+        [
+          "criteria1",
+          "The condition for that range. Required.",
+          "\"West\""
+        ],
+        [
+          "criteria_range2",
+          "A second range. Optional.",
+          "D2:D500"
+        ],
+        [
+          "criteria2",
+          "The condition for the second range.",
+          "\">=\"&F2"
+        ]
+      ],
+      "caption": "The arguments in COUNTIFS, with a worked example for each one."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up your data before you type"
+    },
+    {
+      "type": "paragraph",
+      "text": "Clean data makes COUNTIFS predictable. A few checks take a minute now and save you a debugging session later. Run through these before you write the formula, especially if the sheet came from someone else."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Match the row count. If the first range ends at row 500, every other range must end at row 500 too.",
+        "Store numbers as numbers. A value that looks like a number but sits as text can match in odd ways. A Microsoft Q&A thread shows COUNTIF treating '000123', 123 and '0123' as the same match.",
+        "Leave room to grow. Pick an end row with space below your data, or use a named range so the reference stays readable."
+      ]
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Worked example: count West region orders above a threshold"
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a concrete case. Column A holds the region name. Column D holds units sold. You want a count of rows where the region is West and units sold meet or beat a threshold. Type West in cell F1 and the threshold in cell F2. Put short labels in column E so you remember what each cell does."
+    },
+    {
+      "type": "paragraph",
+      "text": "The formula reads almost like a sentence: =COUNTIFS(A2:A500,F1,D2:D500,\">=\"&F2). Excel looks in A2 to A500 for the value in F1. In the same rows, it looks in D2 to D500 for units at or above the value in F2. It counts only the rows where both checks pass."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use cells for criteria instead of typed values"
+    },
+    {
+      "type": "paragraph",
+      "text": "Typed criteria work, but they lock the formula to one value. Put each condition in a cell and point the formula at that cell. When the question changes, you change F1 or F2, not the formula. The result updates on its own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Comparison operators need one extra step. Write the operator in quotes and join it to the cell with an ampersand. So \">=\"&F2 means greater than or equal to whatever F2 holds. The same pattern works for less than, not equal to, and the other operators. Only the operator changes."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Wildcards, blank criteria and text matches"
+    },
+    {
+      "type": "paragraph",
+      "text": "COUNTIFS accepts wildcards in text criteria. A question mark matches any single character. An asterisk matches any run of characters, including none. So \"West*\" matches West Coast, West Midlands, and plain West. To match a real question mark or asterisk, put a tilde in front of it, as in ~? or ~*."
+    },
+    {
+      "type": "paragraph",
+      "text": "A blank criteria cell is the case that surprises people. An empty cell used as a criteria is treated as 0, so the formula looks for zeros. Check any criteria cell that can be blank before you trust the count."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Errors you will see and how to fix them"
+    },
+    {
+      "type": "paragraph",
+      "text": "Most COUNTIFS errors come from a small set of causes. Microsoft's error pages list the same causes again and again, so the fixes below are worth remembering. Start with the message, then match it to the cause."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "#VALUE error with a closed workbook. The formula points at a linked workbook that isn't open. Open that file, return to your sheet, and press F9. Some MacBook keyboards need Fn held with F9.",
+        "#VALUE error with a long string. A criteria string longer than 255 characters fails. Shorten it, or split it into pieces joined with &.",
+        "#VALUE error with numbers stored as text. Convert the text to real numbers. Microsoft says text numbers cause more problems later, even when the result looks fine.",
+        "#NAME?. Check the function name for typos, text inside double quotation marks, a colon in each range, and any defined name you used.",
+        "This value doesn't match the data validation restrictions. A Mac user in a Microsoft Q&A thread saw this message. The accepted answer says to check Data > Data Validation > Settings > Allow on the result cell, then click Clear All and re-enter the formula."
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warning",
+      "title": "Fix the cause, not the symptom",
+      "text": "Don't wrap a #NAME? error in IFERROR to make it disappear. Microsoft warns that this hides the problem. Find the typo or the missing quote, and the error goes away on its own."
+    },
+    {
+      "type": "paragraph",
+      "text": "Linked workbooks are the sneaky case. The formula looks correct, and the result is still an error. The cause is simple: the source file isn't open. Open it, come back, and press F9 to refresh the result."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "COUNTIFS on Mac versions, Excel for the web and shortcuts"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Excel version",
+        "COUNTIFS on Microsoft's page",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Excel for Microsoft 365 for Mac",
+          "Listed",
+          "Subscription version, the one most people use today"
+        ],
+        [
+          "Excel 2024 for Mac",
+          "Listed",
+          "Same syntax as Microsoft 365"
+        ],
+        [
+          "Excel 2021 for Mac",
+          "Listed",
+          "Same syntax as Microsoft 365"
+        ],
+        [
+          "Excel 2019 for Mac",
+          "Not listed for Mac",
+          "Check your build before you rely on it"
+        ],
+        [
+          "Excel 2016 for Mac",
+          "Not listed for Mac",
+          "Check your build before you rely on it"
+        ],
+        [
+          "Excel for the web",
+          "Listed as Excel Web App",
+          "Same formula, different shortcuts"
+        ]
+      ],
+      "caption": "Which versions Microsoft's COUNTIFS page lists for Mac."
+    },
+    {
+      "type": "image",
+      "index": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's COUNTIFS page explains the syntax but doesn't include Mac menus. The menu paths in this guide come from Microsoft's general function pages, which put every function on the Formulas tab. If a label looks different on your ribbon, look on the Formulas tab first."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's Mac release notes list Excel 16.114.3 (build 26102720) dated October 27, 2026, as a quality and performance update. None of the three most recent builds, 16.114.1 through 16.114.3, lists a COUNTIFS change. To check your own version, open Excel > About Excel."
+    },
+    {
+      "type": "paragraph",
+      "text": "The Mac shortcut for Insert Function is Shift+F3, and Microsoft's Mac shortcut table lists it. Some keyboards need the Fn key as well, so try Fn+Shift+F3 if nothing opens. Microsoft also says many Ctrl shortcuts from Windows work with Control on a Mac, but not all of them do. Some clash with default macOS shortcuts."
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web works the same way for this formula. The shortcuts behave differently. Because it runs in a browser, the browser keeps some keys for itself, such as F1 and Ctrl+O. On a Mac, press Control+Option to start Ribbon access keys in Excel for the web."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mistakes people make with COUNTIFS"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mismatched ranges, such as A2:A500 paired with D2:D499. Fix the end row first, then recheck the count.",
+        "Forgetting quotes around text. Excel reads an unquoted word as a name, which leads to #NAME?.",
+        "Typing an operator without quotes. Write \">=\" with the quote marks, then join it to the cell.",
+        "Expecting a filter to change the count. COUNTIFS ignores which rows are hidden, so a filtered sheet still counts every match.",
+        "Counting numbers stored as text. The count can look plausible and still be wrong, with no error message.",
+        "Leaving an old criteria cell in place. If a result looks odd, check F1 and F2 first."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Several of these fail quietly. The formula returns a number, and the number is simply wrong. That is why a quick cross-check matters more than a clean-looking formula."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your count with a filter"
+    },
+    {
+      "type": "paragraph",
+      "text": "A quick cross-check catches most of the quiet mistakes. Turn on AutoFilter from the Data tab, set the same conditions you gave COUNTIFS, and count the visible rows. Both numbers should match. If they don't, look at text numbers and range sizes first."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "paragraph",
+      "text": "Use a filter for a one-time check, and keep the formula for the answer you need every week. The formula stays live when the data changes. A filter is only a view of the sheet, not a calculation, so it won't update the count for you."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Next steps after COUNTIFS"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once COUNTIFS feels normal, name your ranges. [Create a named range in Excel on Mac](/how-to/create-a-named-range-in-excel) turns A2:A500 into a name such as Region, so the formula reads more like a sentence and is easier to audit."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you want totals grouped by region instead of one count, a pivot table gives you that without a formula. Read [how to make a pivot table in Excel on Mac](/how-to/make-a-pivot-table-in-excel) for the steps."
+    },
+    {
+      "type": "paragraph",
+      "text": "If your numbers came in as text from another app, convert them before you count. The steps are in [how to convert text to numbers in Excel on Mac](/how-to/convert-text-to-numbers-in-excel)."
+    },
+    {
+      "type": "paragraph",
+      "text": "When you need a matching value from another table instead of a count, [how to use XLOOKUP in Excel on Mac](/how-to/use-xlookup-in-excel) covers that job."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does COUNTIFS work in Excel for Mac?",
+      "answer": "Yes. Microsoft's COUNTIFS page lists Excel for Microsoft 365 for Mac, Excel 2024 for Mac and Excel 2021 for Mac. The formula works the same way in Excel for Mac and Excel for the web."
+    },
+    {
+      "question": "What is the difference between COUNTIF and COUNTIFS?",
+      "answer": "COUNTIF checks one range against one condition. COUNTIFS checks up to 127 range and condition pairs, and a row counts only when every pair is met in that row."
+    },
+    {
+      "question": "Why does my COUNTIFS formula show a #VALUE error?",
+      "answer": "Microsoft's COUNTIF and COUNTIFS error page points to a closed linked workbook and to criteria strings longer than 255 characters. Open the linked file and press F9, or shorten the long string. Numbers stored as text can also cause trouble, so convert them to real numbers."
+    },
+    {
+      "question": "Why does my formula show #NAME?",
+      "answer": "Microsoft lists a typo in the function name, an undefined or misspelled defined name, text without double quotation marks, and a missing colon in a range reference. Check each one in the formula. Microsoft also advises against wrapping the error in IFERROR."
+    },
+    {
+      "question": "Can I use wildcards with COUNTIFS on Mac?",
+      "answer": "Yes. A question mark matches any single character, and an asterisk matches any sequence of characters. To count a real question mark or asterisk, put a tilde in front of it, such as ~? or ~*."
+    },
+    {
+      "question": "Why doesn't Shift+F3 open the Insert Function dialog on my Mac?",
+      "answer": "Microsoft's Mac shortcut table lists Shift+F3. Some MacBook keyboards need Fn held as well, so try Fn+Shift+F3. Some third-party sites list the Fn version, which is why the two can differ."
+    },
+    {
+      "question": "Why does COUNTIF count 123 and '000123' as the same value?",
+      "answer": "A Microsoft Q&A thread reports that COUNTIF treats '000123', 123 and '0123' as matches. The poster said a TEXT workaround did not fix it. Convert the cells to real numbers, then recount."
+    },
+    {
+      "question": "Does COUNTIFS work in Excel for the web?",
+      "answer": "The formula is the same. The shortcuts differ, because Excel for the web runs in a browser and browser shortcuts such as F1 and Ctrl+O belong to the browser. On a Mac, press Control+Option to start Ribbon access keys."
+    }
+  ],
+  "sources": [
+    {
+      "title": "COUNTIFS function",
+      "url": "https://support.microsoft.com/en-us/excel/functions/countifs-function",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Using functions and nested functions in Excel formulas",
+      "url": "https://support.microsoft.com/en-us/office/using-functions-and-nested-functions-in-excel-formulas-3f4cf298-ded7-4f91-bc80-607533b65f02",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to correct a #VALUE error in the COUNTIF/COUNTIFS function",
+      "url": "https://support.microsoft.com/en-us/office/how-to-correct-a-value-error-in-the-countif-countifs-function-04a616cc-b119-4057-917f-b9b11f1f589d",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to correct a #VALUE error",
+      "url": "https://support.microsoft.com/en-us/excel/how-to-correct-a-value-error",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "How to correct a #NAME? error",
+      "url": "https://support.microsoft.com/en-us/excel/how-to-correct-a-name-error",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Countif not working on Excel for Mac",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5971419/countif-not-working-on-excel-for-mac",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "COUNTIF & COUNTIFS errors for Numbers Stored as Text",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5335198/countif-countifs-errors-for-numbers-stored-as-text",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Count rows that meet several conditions in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365 for Mac, Excel 2024 for Mac, Excel 2021 for Mac",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Microsoft 365 for Mac, Excel 2024 for Mac, or Excel 2021 for Mac",
+    "A sheet with one row per record and a header row",
+    "Numbers stored as numbers, not as text, for any numeric condition"
+  ],
+  "steps": [
+    {
+      "name": "Pick the result cell",
+      "text": "Click the empty cell where the count should appear. A summary cell on the same sheet is the easiest to find later. Keep it outside the range you are counting, or the formula will count itself and report a circular reference.",
+      "tip": "If the cell shows your formula as plain text, its format is set to Text. Change the format to General, then retype the formula with the equals sign."
+    },
+    {
+      "name": "Start the formula",
+      "text": "Type an equals sign, then COUNTIFS and an opening parenthesis: =COUNTIFS( . As you type, Excel shows a tooltip that lists each argument in order. Watch the tooltip so you know which argument you are filling."
+    },
+    {
+      "name": "Enter the first range",
+      "text": "Type the first range address, such as A2:A500, or drag across the cells with the mouse. Then type a comma. Every range you add later must have the same number of rows as this one.",
+      "tip": "Use the same last row in every range. A2:A500 paired with D2:D499 is a size mismatch, and the formula won't work."
+    },
+    {
+      "name": "Enter the first condition",
+      "text": "Type the condition next. Text goes in double quotation marks, such as \"West\". A number can go in without quotes, such as 50. Then type a comma.",
+      "tip": "A cell reference works too. Type F1 instead of West, then change F1 whenever you need a different region."
+    },
+    {
+      "name": "Add the second range and condition",
+      "text": "Type the second range, a comma, and the second condition. For a greater than or equal to test, put the operator in quotes and join it to a cell: \">=\"&F2. Add more pairs the same way, up to 127 in total.",
+      "tip": "The ranges can come from any columns. They don't need to sit next to each other."
+    },
+    {
+      "name": "Close the formula and press Return",
+      "text": "Type a closing parenthesis, then press Return. Excel calculates the count, and the selection moves down one row. Click the result cell to see the full formula in the formula bar.",
+      "shortcut": "Return"
+    },
+    {
+      "name": "Open the Insert Function dialog instead",
+      "text": "If you would rather fill in boxes than type, select the result cell and press Shift+F3. You can also go to the Formulas tab and choose Insert Function. Search for COUNTIFS, select it, and click OK. The dialog shows each argument, a description, and the current result as you fill them in.",
+      "menuPath": [
+        "Formulas",
+        "Insert Function"
+      ],
+      "shortcut": "⇧F3",
+      "tip": "Some MacBook keyboards need Fn held with F3. If Shift+F3 does nothing, try Fn+Shift+F3."
+    },
+    {
+      "name": "Browse to COUNTIFS in the Formulas tab",
+      "text": "If you want to see every statistical function, go to the Formulas tab and open More Functions. Choose Statistical, then scroll to COUNTIFS. Select it and the same argument boxes appear.",
+      "menuPath": [
+        "Formulas",
+        "More Functions",
+        "Statistical",
+        "COUNTIFS"
+      ]
+    },
+    {
+      "name": "Check the count with a filter",
+      "text": "Turn on AutoFilter from the Data tab, set the same conditions you gave COUNTIFS, and count the visible rows. The two numbers should match. If they don't, check the text numbers and the range sizes first.",
+      "menuPath": [
+        "Data",
+        "Filter"
+      ],
+      "tip": "Turning on a filter does not change the COUNTIFS result. The formula still counts every matching row."
+    },
+    {
+      "name": "Edit a condition later",
+      "text": "Click the result cell, then press F2 to edit the formula in the cell. Change the condition, then press Return. If your conditions point at cells, you can change the cell value instead and leave the formula alone.",
+      "shortcut": "F2"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Insert Function dialog",
+      "keys": "⇧F3"
+    },
+    {
+      "action": "Insert Function, if Shift+F3 does nothing",
+      "keys": "Fn+⇧F3"
+    },
+    {
+      "action": "Finish a formula",
+      "keys": "Return"
+    },
+    {
+      "action": "Edit the selected cell",
+      "keys": "F2"
+    },
+    {
+      "action": "Recalculate after a linked file opens",
+      "keys": "F9"
+    },
+    {
+      "action": "Recalculate after a linked file opens, on some keyboards",
+      "keys": "Fn+F9"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "The formula shows as text",
+      "fix": "The cell is formatted as Text. Change the format to General, then retype the formula with the equals sign at the start."
+    },
+    {
+      "problem": "A #VALUE error appears in the result cell",
+      "fix": "Check for a closed linked workbook, a criteria string over 255 characters, or numbers stored as text. Open the linked file and press F9, shorten the string, or convert the text to numbers."
+    },
+    {
+      "problem": "#NAME? appears in the result cell",
+      "fix": "Check the spelling of COUNTIFS, quotation marks around text, colons in each range, and any defined names. Don't hide the error with IFERROR."
+    },
+    {
+      "problem": "The count is lower than expected",
+      "fix": "Look for numbers stored as text, stray spaces, and a range that stops too early. Compare the result with a filter on the same conditions."
+    },
+    {
+      "problem": "The count is higher than expected",
+      "fix": "Check the criteria for wildcards. A question mark or asterisk matches more than you may expect. Put a tilde in front of a literal one."
+    },
+    {
+      "problem": "A data validation message appears",
+      "fix": "Check Data > Data Validation > Settings > Allow on the result cell. Click Clear All, then re-enter the formula, as the accepted Microsoft Q&A answer suggests."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the Insert Function button?",
+    "capability": "point",
+    "result": "Lazur draws a circle and a label around the Insert Function button on the Formulas tab. You click it yourself. Lazur points, it doesn't press buttons.",
+    "shell": "sheet",
+    "pointsAt": "Insert Function",
+    "context": "Excel on Mac, Formulas tab open",
+    "output": "A circle and a label appear over the button on your screen. Ask again if you lose your place on the ribbon."
+  },
+  "type": "howto",
+  "slug": "use-countifs-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-countifs-in-excel/how-to-use-countifs-in-excel-on-1-8f35ff.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Person at a laptop checking a spreadsheet, the kind of table where you would use COUNTIFS in Excel on Mac",
+      "caption": "Counting rows that meet several conditions on a laptop",
+      "keywords": [
+        "how to use countifs in excel on mac",
+        "Excel",
+        "use COUNTIFS",
+        "Mac",
+        "person working laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-countifs-in-excel/how-to-use-countifs-in-excel-on-2-307959.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Laptop on an office desk with notes beside it, ready for a COUNTIFS in Excel on Mac session",
+      "caption": "A quick cross-check on the numbers before you share them",
+      "keywords": [
+        "how to use countifs in excel on mac",
+        "Excel",
+        "use COUNTIFS",
+        "Mac",
+        "laptop desk office work",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-countifs-in-excel/how-to-use-countifs-in-excel-on-3-20f76e.jpg",
+      "width": 1280,
+      "height": 823,
+      "alt": "Mac laptop open on a desk in an office, the setting for learning how to use COUNTIFS in Excel on Mac",
+      "caption": "A Mac set up for a day of spreadsheet work",
+      "keywords": [
+        "how to use countifs in excel on mac",
+        "Excel",
+        "use COUNTIFS",
+        "Mac",
+        "mac laptop office",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/typing-computer-man-workspace-work-849806/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use countifs in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "COUNTIFS Excel Mac": 1,
+      "COUNTIFS formula Excel for Mac": 1,
+      "COUNTIF vs COUNTIFS Excel": 1,
+      "COUNTIFS multiple criteria Excel": 1,
+      "Excel for Mac COUNTIFS errors": 1,
+      "COUNTIFS wildcards Excel": 1,
+      "Insert Function Excel for Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

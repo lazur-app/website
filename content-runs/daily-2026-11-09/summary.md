@@ -1,10 +1,10 @@
-Content 2026-11-09: 177 written, 1 refused, 1 failed
+Content 2026-11-09: 220 written, 5 refused, 0 failed
 
-- howto: 0/120
+- howto: 40/120
 - apps: 0/9
 - roles: 21/12
 - role-apps: 60/60
-- problems: 72/75
+- problems: 75/75
 - compare: 9/9
 - blog: 15/15
 
@@ -142,6 +142,7 @@ problem:accountants/undo-reconciliation-quickbooks-online /for/accountants/probl
 problem:teachers/differentiate-one-lesson-mixed-ability-class /for/teachers/problems/differentiate-one-lesson-mixed-ability-class
 problem:teachers/translate-school-letters-for-families /for/teachers/problems/translate-school-letters-for-families
 problem:accountants/vlookup-approximate-match-wrong-value /for/accountants/problems/vlookup-approximate-match-wrong-value
+problem:recruiters/boolean-xray-search-string-syntax /for/recruiters/problems/boolean-xray-search-string-syntax
 problem:recruiters/remember-interview-details-across-many-candidates /for/recruiters/problems/remember-interview-details-across-many-candidates
 problem:consultants/meeting-follow-up-email-action-items /for/consultants/problems/meeting-follow-up-email-action-items
 problem:consultants/email-overload-consultants-time /for/consultants/problems/email-overload-consultants-time
@@ -185,3 +186,45 @@ problem:recruiters/background-check-delays-start-dates /for/recruiters/problems/
 problem:teachers/answer-colleague-admin-emails-faster /for/teachers/problems/answer-colleague-admin-emails-faster
 problem:consultants/delivering-bad-news-clients /for/consultants/problems/delivering-bad-news-clients
 problem:teachers/write-ai-use-policy-for-class /for/teachers/problems/write-ai-use-policy-for-class
+problem:consultants/scope-creep-consulting-projects-say-no /for/consultants/problems/scope-creep-consulting-projects-say-no
+problem:teachers/manage-make-up-work-absent-students /for/teachers/problems/manage-make-up-work-absent-students
+howto:go-to-your-inbox-in-linear /how-to/go-to-your-inbox-in-linear
+howto:force-quit-canva-in-canva /how-to/force-quit-canva-in-canva
+howto:set-up-slack-notifications-in-linear /how-to/set-up-slack-notifications-in-linear
+howto:set-priority-in-linear /how-to/set-priority-in-linear
+howto:grant-camera-access-in-zoom /how-to/grant-camera-access-in-zoom
+howto:share-your-screen-in-zoom /how-to/share-your-screen-in-zoom
+howto:record-a-meeting-in-zoom /how-to/record-a-meeting-in-zoom
+howto:change-your-virtual-background-in-zoom /how-to/change-your-virtual-background-in-zoom
+howto:fix-a-black-screen-share-in-zoom /how-to/fix-a-black-screen-share-in-zoom
+howto:change-the-recording-location-in-zoom /how-to/change-the-recording-location-in-zoom
+howto:schedule-a-meeting-in-zoom /how-to/schedule-a-meeting-in-zoom
+howto:join-a-meeting-in-zoom /how-to/join-a-meeting-in-zoom
+howto:blur-your-background-in-zoom /how-to/blur-your-background-in-zoom
+howto:mute-yourself-in-zoom /how-to/mute-yourself-in-zoom
+howto:update-zoom-in-zoom /how-to/update-zoom-in-zoom
+howto:start-an-instant-meeting-in-zoom /how-to/start-an-instant-meeting-in-zoom
+howto:connect-zoom-to-google-calendar-in-zoom /how-to/connect-zoom-to-google-calendar-in-zoom
+howto:reinstall-zoom-in-zoom /how-to/reinstall-zoom-in-zoom
+howto:set-up-a-waiting-room-in-zoom /how-to/set-up-a-waiting-room-in-zoom
+howto:copy-an-invite-link-in-zoom /how-to/copy-an-invite-link-in-zoom
+howto:share-computer-sound-in-zoom /how-to/share-computer-sound-in-zoom
+howto:check-system-requirements-in-zoom /how-to/check-system-requirements-in-zoom
+howto:insert-the-current-date-in-excel /how-to/insert-the-current-date-in-excel
+howto:use-spill-formulas-in-excel /how-to/use-spill-formulas-in-excel
+howto:use-xlookup-in-excel /how-to/use-xlookup-in-excel
+howto:run-a-what-if-analysis-in-excel /how-to/run-a-what-if-analysis-in-excel
+howto:create-a-named-range-in-excel /how-to/create-a-named-range-in-excel
+howto:add-a-trendline-to-a-chart-in-excel /how-to/add-a-trendline-to-a-chart-in-excel
+howto:use-goal-seek-in-excel /how-to/use-goal-seek-in-excel
+howto:use-flash-fill-in-excel /how-to/use-flash-fill-in-excel
+howto:insert-a-sparkline-in-excel /how-to/insert-a-sparkline-in-excel
+howto:insert-a-checkbox-in-excel /how-to/insert-a-checkbox-in-excel
+howto:convert-text-to-numbers-in-excel /how-to/convert-text-to-numbers-in-excel
+howto:protect-a-sheet-with-a-password-in-excel /how-to/protect-a-sheet-with-a-password-in-excel
+howto:record-a-macro-in-excel /how-to/record-a-macro-in-excel
+howto:group-and-outline-rows-in-excel /how-to/group-and-outline-rows-in-excel
+howto:hide-gridlines-in-excel /how-to/hide-gridlines-in-excel
+howto:use-countifs-in-excel /how-to/use-countifs-in-excel
+howto:use-data-validation-in-excel /how-to/use-data-validation-in-excel
+howto:print-a-sheet-on-one-page-in-excel /how-to/print-a-sheet-on-one-page-in-excel

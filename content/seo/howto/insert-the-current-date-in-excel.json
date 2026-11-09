@@ -1,0 +1,516 @@
+{
+  "title": "How to insert the current date in Excel on Mac: shortcut, formula, and formatting",
+  "metaTitle": "How to Insert the Current Date in Excel on Mac, 2026",
+  "description": "Insert the current date in Excel on Mac with Control and the semicolon key, or type =TODAY() for a date that updates. Steps for Microsoft 365.",
+  "targetKeyword": "how to insert the current date in excel on mac",
+  "secondaryKeywords": [
+    "insert current date excel mac",
+    "excel mac date shortcut",
+    "today function excel mac",
+    "excel mac current time shortcut",
+    "excel date format mac",
+    "control semicolon excel mac"
+  ],
+  "intro": "Press Control and the semicolon key in the cell you want, and Excel on Mac enters today's date as a fixed value. If you need a date that updates each time the sheet recalculates, type =TODAY() in the cell instead.",
+  "tldr": [
+    "Click the cell, then press Control and the semicolon key to enter today's date as a fixed value.",
+    "For the time, press Command and the semicolon key. For both, press Control and semicolon, then Space, then Command and semicolon.",
+    "Type =TODAY() when the date must update each time the sheet recalculates.",
+    "If the cell shows 45213, press ⌘1, choose the Date category, then click OK."
+  ],
+  "stats": [
+    {
+      "value": "16.114.3",
+      "label": "Latest Excel for Mac build in Microsoft's release notes at research time, dated Oct 27, 2026",
+      "sourceUrl": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "sourceTitle": "Release notes for Office for Mac (Microsoft Learn)"
+    },
+    {
+      "value": "45213",
+      "label": "The number a date cell shows when it has no date format, fixed with ⌘1",
+      "sourceUrl": "https://maccove.com/blog/insert-date-time-shortcut-excel-mac",
+      "sourceTitle": "Insert Current Date and Time in Excel for Mac: Shortcuts (MacCove)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Excel on Mac gives you two kinds of date. The first is a fixed stamp, like the date you write on a signed form. The second is a live date that changes when the sheet recalculates. Decide which one you need before you type anything. It saves you a fix later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The fixed date shortcut on Mac"
+    },
+    {
+      "type": "paragraph",
+      "text": "The fastest route is a keyboard shortcut. Click the cell, then press Control and the semicolon key at the same time. Excel writes today's date into that cell as a fixed value. Microsoft lists this as the macOS shortcut for entering the date. The same article lists Command and the semicolon key for the time."
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft says its shortcuts refer to the US keyboard layout. If your Mac uses another layout, the semicolon key may sit in a different place. Find that key before you decide the shortcut is broken. Microsoft also notes that some macOS settings and utility apps can conflict with Excel shortcuts."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "What you want",
+        "Mac shortcut or formula",
+        "Does it update?"
+      ],
+      "rows": [
+        [
+          "Today's date",
+          "⌃ semicolon",
+          "No, it is a fixed value"
+        ],
+        [
+          "Current time",
+          "⌘ semicolon",
+          "No, it is a fixed value"
+        ],
+        [
+          "Date and time",
+          "⌃ semicolon, Space, ⌘ semicolon",
+          "No, it is a fixed value"
+        ],
+        [
+          "Date that updates",
+          "=TODAY()",
+          "Yes, when the sheet recalculates"
+        ],
+        [
+          "Date and time that updates",
+          "=NOW()",
+          "Yes, when the sheet recalculates"
+        ]
+      ],
+      "caption": "Fixed values versus live formulas in Excel for Mac, based on Microsoft Support guidance."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to use =TODAY() instead"
+    },
+    {
+      "type": "paragraph",
+      "text": "TODAY returns the current date. It recalculates only when the worksheet calculates, or when a macro that contains it runs. Microsoft describes it the same way. That makes it useful for a report that should show the run date. It makes it a poor choice for a record you need to freeze."
+    },
+    {
+      "type": "paragraph",
+      "text": "Here is a worked example. Put an invoice date in A2. In B2, type =TODAY()-A2. The result is the number of days since the invoice went out. That number grows each day you open the file, which is what an aging column needs. Format the cell as General, not as a date, or Excel may display a date instead of a count."
+    },
+    {
+      "type": "paragraph",
+      "text": "Keep the live formula only where it belongs. If you copy a result into a log, paste it as values so the date stops moving. On Mac, open the Edit menu, choose Paste Special, then pick Values in the dialog. The log then keeps the day it was written."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Current date and time with =NOW()"
+    },
+    {
+      "type": "paragraph",
+      "text": "NOW returns the date and the time. It recalculates the same way TODAY does. Use it for a status line that should show when a model last refreshed. For one timestamp that never changes, use Command and the semicolon key instead. Ask yourself whether the value should move. The answer picks the function."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Format the cell so the date displays correctly"
+    },
+    {
+      "type": "paragraph",
+      "text": "A date in Excel is a number underneath. Excel counts days from a starting point, then shows the result through a format. When a cell shows 45213, the value is fine but the format is missing. MacCove's guide gives the same fix. Apply a Date or Time format with ⌘1."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open Format Cells with ⌘1 on Mac. Go to the Number tab, pick Date in the Category list, then choose a Type. Microsoft's steps apply to Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac. Older versions may label things a little differently, so check the dialog you see."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "title": "Region-based formats",
+      "text": "Formats that start with an asterisk change when your Mac region changes. Formats without an asterisk stay put. To check the region, open System Settings, go to General, then Language & Region, then Region."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Fix dates that show the wrong day or month"
+    },
+    {
+      "type": "paragraph",
+      "text": "Some people see the day and month swapped. A Microsoft Q&A thread reports that dates typed as DD/MM/YY display as MM/DD/YY in Excel for Mac 16.107.2 on macOS Tahoe 26.2. The reporter had the Mac region set to Australia. The thread has no accepted answer."
+    },
+    {
+      "type": "paragraph",
+      "text": "A moderator suggests quitting Excel, checking Language and Region, and using a custom format such as dd/mm/yyyy in place of an asterisked built-in format. To build a custom format, select the cells, open Format Cells, and choose Custom in the Category list. Test the fix on a copy of your file first."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When the shortcut does nothing"
+    },
+    {
+      "type": "paragraph",
+      "text": "Start with the cell. If the cell is still in edit mode, the shortcut types into the formula bar instead. Press Esc to leave edit mode. Then click the cell and try again. This takes seconds to rule out."
+    },
+    {
+      "type": "paragraph",
+      "text": "If that doesn't fix it, another app may own the key combination. Microsoft warns that some macOS settings and utility apps can conflict with Excel shortcuts. Open System Settings, go to Keyboard, and check Input Sources and Keyboard Shortcuts for an entry that uses Control and the semicolon key. Until you sort it out, type =TODAY() as a fallback."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Excel for the web and older versions"
+    },
+    {
+      "type": "paragraph",
+      "text": "Excel for the web works differently. Microsoft's article uses menu steps for the web, not a keyboard shortcut. Select the cells, go to Home, open the Number Format dropdown, and pick a date or time format. Formulas behave the same way on the web as they do on Mac."
+    },
+    {
+      "type": "paragraph",
+      "text": "The shortcuts in this guide appear in Microsoft's guidance for Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac. This guide did not check older Mac versions. If you run an older release, test the shortcut on a scratch sheet before you rely on it in a file with a deadline."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check your Excel build"
+    },
+    {
+      "type": "paragraph",
+      "text": "Microsoft's release notes for Office for Mac list Excel build 16.114.3 (26102720), dated Oct 27, 2026. The build before it, 16.114.2, is dated the day before. Both are described as quality and performance improvements. The six most recent Excel entries, from Sept 29 to Oct 27, 2026, list no new Excel features."
+    },
+    {
+      "type": "paragraph",
+      "text": "To see your own build, open Excel and choose Excel > About Excel. Compare that number with the newest entry on Microsoft's page. If yours is older, update through Microsoft AutoUpdate. Date behavior in this guide has not changed in those recent builds."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common mistakes to avoid"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Pressing Command and the semicolon key for the date. That gives you the time only.",
+        "Typing the date as plain text. Excel treats text as text, so you can't sort or subtract it.",
+        "Leaving =TODAY() in a log that should stay fixed.",
+        "Pressing the shortcut while the formula bar is still open.",
+        "Skipping the date format, then reading the serial number as a bug.",
+        "Changing your Mac region and expecting asterisked formats to stay the same."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Each mistake comes from the same confusion. A date is a value, and a format is only how that value looks. Once you separate the two, the shortcut, the formula, and the format each do one clear job."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Where to go next with dates in your sheet"
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the date is in place, you may need it inside a summary. Our [pivot table guide](/how-to/make-a-pivot-table-in-excel) walks through building one in Excel on Mac for Microsoft 365 users. Date fields group well in a pivot table, so the fixed dates you set here will feed straight into it."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the shortcut to insert the current date in Excel on Mac?",
+      "answer": "Click the cell, then press Control and the semicolon key together. Excel enters today's date as a fixed value that won't change. Microsoft Support and Exceljet both list this shortcut for the Mac."
+    },
+    {
+      "question": "Why did my date change when I reopened the file?",
+      "answer": "The cell probably holds =TODAY() or =NOW(). Those functions recalculate when the sheet calculates. If you need a fixed date, select the cell, copy it, and paste it as values."
+    },
+    {
+      "question": "Why does my cell show 45213 instead of a date?",
+      "answer": "The cell has no date format. Press ⌘1, go to the Number tab, choose Date in the Category list, then pick a Type and click OK. The value underneath is already correct."
+    },
+    {
+      "question": "Does the date shortcut work in Excel for the web?",
+      "answer": "Microsoft's article uses menu steps for the web rather than a keyboard shortcut. Go to Home, open the Number Format dropdown, and choose a date or time format."
+    },
+    {
+      "question": "Which Excel versions does this apply to?",
+      "answer": "Microsoft's article covers Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac. This guide did not check older Mac versions, so test on a scratch sheet first."
+    },
+    {
+      "question": "What is the difference between the shortcut and TODAY?",
+      "answer": "The shortcut writes a fixed value. TODAY is a formula that updates when the sheet recalculates. Use the shortcut for records and TODAY for values that should refresh."
+    },
+    {
+      "question": "Why does my date show the day and month swapped?",
+      "answer": "A Microsoft Q&A thread reports this in Excel for Mac 16.107.2 with the region set to Australia. The thread has no accepted answer. Try a custom format such as dd/mm/yyyy on a copy of your file."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Insert the current date and time in a cell",
+      "url": "https://support.microsoft.com/en-us/office/insert-the-current-date-and-time-in-a-cell-b5663451-10b0-40ab-9e71-6b0ce5768138",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Keyboard shortcuts in Excel",
+      "url": "https://support.microsoft.com/en-us/accessibility/excel/keyboard-shortcuts-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Format a date the way you want in Excel",
+      "url": "https://support.microsoft.com/en-us/excel/format-a-date-the-way-you-want-in-excel",
+      "publisher": "Microsoft Support",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Release notes for Office for Mac",
+      "url": "https://learn.microsoft.com/en-us/officeupdates/release-notes-office-for-mac",
+      "publisher": "Microsoft Learn",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Date format in Excel for Mac 16.107.2 with macOS Tahoe 26.2",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/5858276/date-format-in-excel-for-mac-16-107-2-with-macos-t",
+      "publisher": "Microsoft Q&A",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Excel Shortcut: Insert current date",
+      "url": "https://exceljet.net/shortcuts/insert-current-date",
+      "publisher": "Exceljet",
+      "accessedAt": "2026-11-09"
+    },
+    {
+      "title": "Insert Current Date and Time in Excel for Mac: Shortcuts",
+      "url": "https://maccove.com/blog/insert-date-time-shortcut-excel-mac",
+      "publisher": "MacCove",
+      "accessedAt": "2026-11-09"
+    }
+  ],
+  "task": "Insert the current date in Excel on Mac",
+  "appliesTo": "Excel for Microsoft 365, Excel 2024, and Excel 2021 for Mac",
+  "timeMinutes": 3,
+  "difficulty": "Easy",
+  "requirements": [
+    "Excel for Microsoft 365, Excel 2024, or Excel 2021 for Mac",
+    "A Mac with a US keyboard layout, or the semicolon key located on yours",
+    "The target cell selected and not open for formula editing"
+  ],
+  "steps": [
+    {
+      "name": "Pick the cell",
+      "text": "Click the cell where the date belongs. Look at the formula bar to confirm the cell is selected and that you are not editing a formula."
+    },
+    {
+      "name": "Leave edit mode",
+      "text": "If the cell is still open for editing, press Esc. A shortcut pressed inside the formula bar won't put the date in the cell.",
+      "shortcut": "Esc"
+    },
+    {
+      "name": "Press the date shortcut",
+      "text": "Press Control and the semicolon key together. Excel writes today's date into the cell as a fixed value.",
+      "shortcut": "⌃ semicolon",
+      "tip": "Microsoft lists this shortcut against the US keyboard layout."
+    },
+    {
+      "name": "Check the display",
+      "text": "The cell should show a date. If it shows a number such as 45213, apply a date format using the steps below."
+    },
+    {
+      "name": "Add the time if you need it",
+      "text": "Click a cell and press Command and the semicolon key for the current time. For both at once, press Control and the semicolon key, then Space, then Command and the semicolon key.",
+      "shortcut": "⌘ semicolon"
+    },
+    {
+      "name": "Use TODAY for a live date",
+      "text": "Click a cell, type =TODAY() and press Return. The cell shows today's date and refreshes whenever the sheet recalculates.",
+      "tip": "Use this when the date should move. Use the shortcut when it should stay put."
+    },
+    {
+      "name": "Open Format Cells",
+      "text": "Select the cells you want to format. Press Command and 1 to open the Format Cells box.",
+      "menuPath": [
+        "Format",
+        "Cells"
+      ],
+      "shortcut": "⌘1"
+    },
+    {
+      "name": "Open the Number tab",
+      "text": "In the Format Cells box, select the Number tab at the top of the window."
+    },
+    {
+      "name": "Choose Date",
+      "text": "In the Category list, select Date. Under Type, pick a format that shows the day, month, and year the way you want."
+    },
+    {
+      "name": "Confirm with OK",
+      "text": "Click OK. Excel applies the format to the selected cells. Check that the date reads the way you expect for your region."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Insert today's date (fixed value)",
+      "keys": "⌃ semicolon"
+    },
+    {
+      "action": "Insert the current time (fixed value)",
+      "keys": "⌘ semicolon"
+    },
+    {
+      "action": "Insert date and time (fixed)",
+      "keys": "⌃ semicolon Space ⌘ semicolon"
+    },
+    {
+      "action": "Open the Format Cells box",
+      "keys": "⌘1"
+    },
+    {
+      "action": "Leave formula edit mode",
+      "keys": "Esc"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Shortcut types into the formula bar, not the cell",
+      "fix": "Press Esc to leave edit mode, click the cell once, then press the shortcut again."
+    },
+    {
+      "problem": "Shortcut does nothing at all",
+      "fix": "Open System Settings, go to Keyboard, and check Input Sources and Keyboard Shortcuts for a conflicting entry. Use =TODAY() as a fallback while you sort it out."
+    },
+    {
+      "problem": "Cell shows 45213 instead of a date",
+      "fix": "Select the cell, press ⌘1, go to the Number tab, choose Date in Category, pick a Type, and click OK."
+    },
+    {
+      "problem": "Day and month appear swapped",
+      "fix": "Try a custom format such as dd/mm/yyyy from Format Cells, with Custom selected in Category. The Q&A thread on this has no accepted answer, so test on a copy first."
+    },
+    {
+      "problem": "Date changes every time I open the file",
+      "fix": "The cell probably holds =TODAY() or =NOW(). Copy it and paste it as values if you need a fixed date."
+    },
+    {
+      "problem": "Date format changed after a region change",
+      "fix": "Formats that start with an asterisk follow your Mac region. Pick a format without an asterisk, or a custom format, to keep it fixed."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where's the date format setting?",
+    "capability": "point",
+    "result": "Lazur circles Format Cells on screen and names the Number tab next, so you can find the Date category without hunting.",
+    "shell": "sheet",
+    "context": "Excel for Mac, a cell shows 45213, and the user wants the date format setting",
+    "output": "Lazur draws a circle and a label around Format Cells. Ask a follow-up and it points at the Number tab next, one control at a time.",
+    "pointsAt": "Format Cells"
+  },
+  "type": "howto",
+  "slug": "insert-the-current-date-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/insert-the-current-date-in-excel/how-to-insert-the-current-date-in-1-f3d139.jpg",
+      "width": 1280,
+      "height": 782,
+      "alt": "Man at a MacBook checking a spreadsheet, the kind of work where you insert the current date in Excel on Mac",
+      "caption": "A spreadsheet open on a Mac, where a date cell often starts the job.",
+      "keywords": [
+        "how to insert the current date in excel on mac",
+        "Excel",
+        "insert the current date",
+        "Mac",
+        "man laptop spreadsheet",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/notebook-typing-coffee-computer-1850613/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/insert-the-current-date-in-excel/how-to-insert-the-current-date-in-2-38ea9b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Person working on a MacBook at a desk while updating dated records in a spreadsheet",
+      "caption": "Dated records need a fixed stamp or a live formula, depending on the job.",
+      "keywords": [
+        "how to insert the current date in excel on mac",
+        "Excel",
+        "insert the current date",
+        "Mac",
+        "person working MacBook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/insert-the-current-date-in-excel/how-to-insert-the-current-date-in-3-9f44fd.jpg",
+      "width": 1280,
+      "height": 850,
+      "alt": "Office desk with a laptop open to a spreadsheet, used for daily date entries in Excel",
+      "caption": "A quiet desk is a good place to set your date formats once.",
+      "keywords": [
+        "how to insert the current date in excel on mac",
+        "Excel",
+        "insert the current date",
+        "Mac",
+        "office desk laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Firmbee",
+        "url": "https://pixabay.com/users/Firmbee-663163/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-notes-notepad-entrepreneur-620817/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to insert the current date in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": false,
+    "bodyCount": 3,
+    "secondary": {
+      "insert current date excel mac": 1,
+      "excel mac date shortcut": 1,
+      "today function excel mac": 1,
+      "excel mac current time shortcut": 1,
+      "excel date format mac": 1,
+      "control semicolon excel mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-09",
+    "version": 1
+  }
+}

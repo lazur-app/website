@@ -5,10 +5,11 @@ import { AskGrid, FasterWithLazur } from "../FasterWithLazur";
 import { ImageFigure } from "../ImageFigure";
 import { InlineText } from "../InlineText";
 import { PageHero } from "../PageHero";
-import { CtaBand, FaqList, LazurCallout, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { CtaBand, FaqList, LazurCallout, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 import { APPS } from "@/lib/content/sources.mjs";
 
@@ -36,6 +37,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
         visual={page.images[0] ? <ImageFigure image={page.images[0]} priority /> : undefined}
       />
 
+      <ArticleLayout source={`problem-${page.role}-${page.slug}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} title="The short answer" />
 
@@ -148,6 +150,8 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
         <FaqList items={page.faq} />
         <SourcesList sources={page.sources} />
       </div>
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`problem-${page.role}-${page.slug}`} title={`Fix ${page.problem} with Lazur, free for 3 days`} />
       </div>

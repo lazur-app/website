@@ -4,10 +4,11 @@ import type { HowToPage } from "@/lib/seo-pages/types";
 import { FasterWithLazur } from "../FasterWithLazur";
 import { ImageFigure } from "../ImageFigure";
 import { PageHero } from "../PageHero";
-import { CtaBand, FaqList, LazurCallout, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { CtaBand, FaqList, LazurCallout, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 import { ShortcutTable, StepList, Troubleshooting } from "../StepList";
 
@@ -36,6 +37,7 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
         visual={hero ? <ImageFigure image={hero} priority /> : undefined}
       />
 
+      <ArticleLayout source={`howto-${page.slug}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
 
@@ -105,6 +107,8 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
         <SourcesList sources={page.sources} />
       </div>
 
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`howto-${page.slug}`} />
       </div>

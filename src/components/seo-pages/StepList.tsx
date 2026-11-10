@@ -1,3 +1,4 @@
+import { CircleHelp, Lightbulb } from "lucide-react";
 import type { HowToStep, SeoImage } from "@/lib/seo-pages/types";
 import { ImageFigure } from "./ImageFigure";
 import { InlineText } from "./InlineText";
@@ -8,7 +9,7 @@ export function StepList({ steps, images }: { steps: HowToStep[]; images: SeoIma
   return (
     <ol className="seo-steps">
       {steps.map((step, i) => (
-        <li key={step.name} id={`step-${i + 1}`} className="scroll-mt-28">
+        <li key={step.name} id={`step-${i + 1}`} className="seo-reveal">
           <span className="seo-steps__n" aria-hidden>
             {i + 1}
           </span>
@@ -25,8 +26,11 @@ export function StepList({ steps, images }: { steps: HowToStep[]; images: SeoIma
             </p>
             {step.tip ? (
               <p className="seo-steps__tip">
-                <span className="font-semibold text-[var(--foreground)]">Tip: </span>
-                <InlineText text={step.tip} />
+                <Lightbulb size={15} strokeWidth={2.2} aria-hidden className="seo-steps__tipicon" />
+                <span>
+                  <span className="font-semibold text-[var(--foreground)]">Tip: </span>
+                  <InlineText text={step.tip} />
+                </span>
               </p>
             ) : null}
             {step.image !== undefined && images[step.image] ? (
@@ -71,8 +75,11 @@ export function Troubleshooting({ items }: { items: { problem: string; fix: stri
   return (
     <dl className="seo-trouble">
       {items.map((t) => (
-        <div key={t.problem}>
-          <dt>{t.problem}</dt>
+        <div key={t.problem} className="seo-reveal">
+          <dt>
+            <CircleHelp size={17} strokeWidth={2.2} aria-hidden className="seo-trouble__icon" />
+            {t.problem}
+          </dt>
           <dd>
             <InlineText text={t.fix} />
           </dd>

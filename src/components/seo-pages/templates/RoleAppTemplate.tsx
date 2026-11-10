@@ -4,10 +4,11 @@ import type { RoleAppPage } from "@/lib/seo-pages/types";
 import { AskGrid } from "../FasterWithLazur";
 import { NotchScene } from "../NotchScene";
 import { PageHero } from "../PageHero";
-import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 
 /** /for/<role>/<app>: one job, one app. */
@@ -24,6 +25,7 @@ export function RoleAppTemplate({ page }: { page: RoleAppPage }) {
         updatedAt={page.updatedAt ?? page.publishedAt}
         visual={<NotchScene demo={page.demo} appName={page.appName} />}
       />
+      <ArticleLayout source={`role-app-${page.role}-${page.app}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
@@ -50,6 +52,8 @@ export function RoleAppTemplate({ page }: { page: RoleAppPage }) {
         <FaqList items={page.faq} />
         <SourcesList sources={page.sources} />
       </div>
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`role-app-${page.role}-${page.app}`} />
       </div>

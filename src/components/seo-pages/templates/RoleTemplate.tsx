@@ -8,10 +8,11 @@ import { LAZUR_CAPABILITIES } from "@/lib/content/lazur-facts.mjs";
 import { InlineText } from "../InlineText";
 import { NotchScene } from "../NotchScene";
 import { PageHero } from "../PageHero";
-import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 
 /** /for/<role>: Lazur for one kind of job. */
@@ -32,6 +33,7 @@ export function RoleTemplate({ page }: { page: RolePage }) {
         visual={<NotchScene demo={page.demo} appName={appName} />}
       />
 
+      <ArticleLayout source={`role-${page.slug}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
@@ -104,6 +106,8 @@ export function RoleTemplate({ page }: { page: RolePage }) {
         <FaqList items={page.faq} />
         <SourcesList sources={page.sources} />
       </div>
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`role-${page.slug}`} title={`Lazur for ${page.roleName.toLowerCase()}: free for 3 days`} />
       </div>

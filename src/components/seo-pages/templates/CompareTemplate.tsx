@@ -3,10 +3,11 @@ import { schemasFor } from "@/lib/seo-pages/schema";
 import type { ComparePage } from "@/lib/seo-pages/types";
 import { CompareGrid, ProductCards } from "../CompareGrid";
 import { PageHero } from "../PageHero";
-import { Callout, CtaBand, FaqList, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { Callout, CtaBand, FaqList, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 
 /** /compare/lazur-vs-x, /compare/x-vs-y and /alternatives/x. */
@@ -26,6 +27,7 @@ export function CompareTemplate({ page }: { page: ComparePage }) {
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={checked ? [`Prices checked ${checked}`] : []}
       />
+      <ArticleLayout source={`compare-${page.slug}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} title="The short version" />
         <section className="seo-section" aria-labelledby="table">
@@ -62,6 +64,8 @@ export function CompareTemplate({ page }: { page: ComparePage }) {
           Product names belong to their owners. Lazur is not affiliated with {others.join(", ")}. Prices and features come from each company&apos;s own site on the date shown; check there before you buy.
         </p>
       </div>
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`compare-${page.slug}`} />
       </div>

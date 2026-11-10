@@ -7,10 +7,11 @@ import type { AppPage } from "@/lib/seo-pages/types";
 import { AskGrid, FasterWithLazur } from "../FasterWithLazur";
 import { NotchScene } from "../NotchScene";
 import { PageHero } from "../PageHero";
-import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox } from "../Primitives";
+import { CtaBand, FaqList, SectionHeading, SourcesList, TldrBox, PhotoCredits } from "../Primitives";
 import { RelatedGrid } from "../RelatedGrid";
 import { SeoBlocks } from "../SeoBlocks";
 import { SeoPageFrame } from "../SeoPageFrame";
+import { ArticleLayout } from "../ArticleLayout";
 import { BarChart, StatStrip } from "../StatStrip";
 
 /** /apps/<app>: what Lazur does while you work in one Mac app. */
@@ -33,6 +34,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
         visual={<NotchScene demo={first} appName={page.appName} />}
       />
 
+      <ArticleLayout source={`app-${page.slug}`} related={related}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
@@ -86,6 +88,8 @@ export function AppTemplate({ page }: { page: AppPage }) {
         <FaqList items={page.faq} />
         <SourcesList sources={page.sources} />
       </div>
+        <PhotoCredits images={page.images} />
+      </ArticleLayout>
       <div className="px-4 sm:px-6">
         <CtaBand source={`app-${page.slug}`} title={`Try Lazur in ${page.appName}, free for 3 days`} />
       </div>

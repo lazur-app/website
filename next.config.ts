@@ -86,6 +86,7 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingIncludes: {
     "/llms.txt": ["./content/**/*"],
+    "/api/seo-stats": ["./content/**/*", "./content-runs/daily-*/manifest.json", "./content-runs/daily-*/usage.jsonl"],
     "/md/[...path]": ["./content/**/*"],
     "/blog/[slug]": ["./content/blog/**/*", "./content/seo/**/*"],
     "/blog": ["./content/blog/**/*"],

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ContentImage } from "./ContentImage";
 import type { SeoImage } from "@/lib/seo-pages/types";
 
 /** Photo with keyword alt text and a visible credit: "Image by <user> from Pixabay". */
@@ -6,15 +6,7 @@ export function ImageFigure({ image, priority = false, className = "" }: { image
   return (
     <figure className={`seo-figure ${className}`}>
       <div className="seo-figure__frame">
-        <Image
-          src={image.url}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, 720px"
-          className="h-auto w-full object-cover"
-        />
+        <ContentImage src={image.url} alt={image.alt} width={image.width} height={image.height} priority={priority} className="h-auto w-full object-cover" />
       </div>
       {image.caption || image.credit ? (
         <figcaption>

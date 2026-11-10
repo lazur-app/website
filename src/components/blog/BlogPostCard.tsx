@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ContentImage } from "@/components/seo-pages/ContentImage";
 import Link from "next/link";
 import { formatBlogDateLong } from "@/lib/blog/format";
 import type { BlogPost } from "@/lib/blog/types";
@@ -11,12 +11,11 @@ export function BlogPostCard({ post }: { post: BlogPost }) {
     >
       <div className="text-[13px] leading-relaxed text-[var(--foreground-muted)] sm:pt-1">
         {post.heroImage ? (
-          <Image
+          <ContentImage
             src={post.heroImage.url}
             alt={post.heroImage.alt}
             width={post.heroImage.width}
             height={post.heroImage.height}
-            sizes="(max-width: 640px) 100vw, 216px"
             className="mb-4 aspect-[16/10] w-full rounded-[14px] border border-[var(--border)] object-cover"
           />
         ) : null}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ContentImage } from "./ContentImage";
 import Link from "next/link";
 import type { SeoImage } from "@/lib/seo-pages/types";
 import type { ReactNode } from "react";
@@ -21,12 +21,11 @@ export function HubCard({ href, kicker, title, description, aside, image }: { hr
   return (
     <Link href={href} className="seo-hubcard group">
       {image ? (
-        <Image
+        <ContentImage
           src={image.url}
           alt={image.alt}
           width={image.width}
           height={image.height}
-          sizes="(max-width: 640px) 100vw, 360px"
           className="-mx-5 -mt-[18px] mb-4 aspect-[16/9] w-[calc(100%+40px)] max-w-none rounded-t-[18px] object-cover"
         />
       ) : null}

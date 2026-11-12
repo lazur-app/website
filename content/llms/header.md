@@ -36,7 +36,7 @@
 
 ## Pricing (October 2026)
 - Every plan starts with a 3-day Pro trial; no credit card. The trial starts when you first open the app.
-- Pro: $18/month ($15/month billed annually), 150 AI actions a month, unlimited dictation.
+- Pro: $18/month ($15/month billed annually), 250 AI actions a month, unlimited dictation.
 - Power: $120/month ($96/month billed annually), 1,000 AI actions a month, unlimited dictation.
 - An AI action is one thing you ask Lazur to do (a question, a pointed-at button, a reminder or a background job). Dictation doesn't count.
 

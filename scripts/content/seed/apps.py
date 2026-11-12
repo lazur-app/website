@@ -33,7 +33,7 @@ pages.append({
   {"type": "heading", "text": "Slack shortcuts worth knowing", "level": 2},
   {"type": "table", "headers": ["To do this", "Press"], "rows": [["Jump to a conversation", "⌘ + K"], ["See all keyboard shortcuts", "⌘ + /"], ["Search", "⌘ + G"]], "caption": "From Slack's keyboard shortcuts help page"}
  ],
- "faq": [faq("Does Lazur work in Slack on Mac?", "Yes. It works on top of the Slack Mac app and Slack in Chrome or Safari. Hold ⌥ ⌘ to ask, hold fn to dictate."), faq("Is Lazur a Slack app or integration?", "No. Nothing is installed in your Slack workspace. Lazur runs on your Mac and only sees the screen while you hold the shortcut."), faq("Can Lazur send messages for me?", "It writes the draft at your cursor. You read it and press Enter yourself."), faq("What does it cost?", "Free for 3 days, then Pro is $18/month with 150 AI actions and unlimited dictation.")],
+ "faq": [faq("Does Lazur work in Slack on Mac?", "Yes. It works on top of the Slack Mac app and Slack in Chrome or Safari. Hold ⌥ ⌘ to ask, hold fn to dictate."), faq("Is Lazur a Slack app or integration?", "No. Nothing is installed in your Slack workspace. Lazur runs on your Mac and only sees the screen while you hold the shortcut."), faq("Can Lazur send messages for me?", "It writes the draft at your cursor. You read it and press Enter yourself."), faq("What does it cost?", "Free for 3 days, then Pro is $18/month with 250 AI actions and unlimited dictation.")],
  "sources": [{"title": "Slack keyboard shortcuts", "url": "https://slack.com/help/articles/201374536-Slack-keyboard-shortcuts", "publisher": "Slack Help Center", "accessedAt": D}]
 })
 

@@ -31,7 +31,7 @@ faq:
   - question: How much does Aqua Voice cost compared with Lazur?
     answer: >-
       Aqua Pro is $12/month, or $10/month billed annually, with unlimited words.
-      Lazur Pro is $18/month, or $15/month billed annually, with 150 AI actions
+      Lazur Pro is $18/month, or $15/month billed annually, with 250 AI actions
       a month. Dictation is unlimited on both Lazur plans. Check each pricing
       page before you buy.
   - question: Is Aqua Voice more accurate than Lazur?
@@ -57,7 +57,7 @@ stats:
     sourceUrl: 'https://aquavoice.com/pricing'
     sourceTitle: Aqua Voice Pricing
   - value: $18/month
-    label: 'Lazur Pro billed monthly, with 150 AI actions a month.'
+    label: 'Lazur Pro billed monthly, with 250 AI actions a month.'
     sourceUrl: 'https://www.lazur.app/pricing'
     sourceTitle: Lazur Pricing
   - value: 3x
@@ -242,7 +242,7 @@ The table shows where the two products start to differ. Read it as a list of har
 | Sees your screen | Deep Context is listed on the free plan | Yes, while you hold ⌥ ⌘ |
 | Free option | Free plan, 1,000 words, no credit card | 3-day Pro trial, no credit card |
 | Entry paid plan | Pro, $12/month or $10/month billed annually | Pro, $18/month or $15/month billed annually |
-| Usage limit | Unlimited words on Pro | Dictation unlimited on fair usage. 150 AI actions a month on Pro |
+| Usage limit | Unlimited words on Pro | Dictation unlimited on fair usage. 250 AI actions a month on Pro |
 
 Need Windows this month? Lazur is out. Need the tool to point at a button? Aqua is out. Everything else is a tradeoff.
 
@@ -275,7 +275,7 @@ Aqua's own comparison page lists Pro at $8/month billed annually. Its pricing pa
 **Lazur**
 
 - Trial: 3 days of full Pro. No card. The clock starts when you first open the app.
-- Pro: $18/month, or $15/month billed annually. 150 AI actions a month.
+- Pro: $18/month, or $15/month billed annually. 250 AI actions a month.
 - Power: $120/month, or $96/month billed annually. 1,000 AI actions a month.
 
 Dictation is unlimited on both Lazur plans, with fair-usage limits set per plan. An AI action is one thing you ask Lazur to do. Dictation does not count toward it.
@@ -335,7 +335,7 @@ Skip Aqua if you want an assistant that sees your screen and points at things. S
 - **Comparing a dictation app with an assistant.** Lazur is not a like-for-like dictation competitor. Decide what job you are hiring the app for first.
 - **Trusting one benchmark.** A vendor test on vendor clips shows what the vendor chose. Run your own clips, with your names and jargon in them.
 - **Judging on the free start.** Aqua's 1,000 words can run out fast in one busy day. Lazur's trial lasts three days. Test with real work, not a demo sentence.
-- **Ignoring the action cap.** 150 AI actions a month is a fixed budget. Ask for help a few times an hour and it runs out.
+- **Ignoring the action cap.** 250 AI actions a month is a fixed budget. Ask for help a few times an hour and it runs out.
 - **Trusting one price.** Aqua publishes two different Pro prices. Check the pricing page on the day you buy.
 
 ## How to run a three-day test on your Mac

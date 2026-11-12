@@ -308,7 +308,7 @@ Match the app to the job, not to the logo. A pointing buddy suits learning softw
 
 **Choosing from a demo.** Demos show clean tasks. Test on a real task from your week, such as the report due on Thursday.
 
-**Ignoring limits.** Count your use for three days. Free plans cap what you can try, and paid plans cap actions too. Lazur's Pro plan includes 150 AI actions, which works out to about five a day over a 30-day month.
+**Ignoring limits.** Count your use for three days. Free plans cap what you can try, and paid plans cap actions too. Lazur's Pro plan includes 250 AI actions, which works out to about five a day over a 30-day month.
 
 **Granting full access on day one.** Start with one folder, one app or one calendar. Add access only when a task needs it.
 
@@ -326,7 +326,7 @@ Everyday requests work by voice too. You can set timers, add Apple Reminders and
 
 On privacy, Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. A record of what you asked and did stays on your Mac.
 
-The trial is 3 days of Pro, with no credit card. It starts when you first open the app. Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions. Power costs $120/month, or $96/month billed annually, and includes 1,000 AI actions. Dictation is unlimited on both plans. Check the [pricing page](/pricing) for current details, or [download Lazur](/download) for macOS to start the trial.
+The trial is 3 days of Pro, with no credit card. It starts when you first open the app. Pro costs $18/month, or $15/month billed annually, and includes 250 AI actions. Power costs $120/month, or $96/month billed annually, and includes 1,000 AI actions. Dictation is unlimited on both plans. Check the [pricing page](/pricing) for current details, or [download Lazur](/download) for macOS to start the trial.
 
 ## A one-week test before you choose
 

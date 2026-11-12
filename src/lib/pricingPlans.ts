@@ -74,7 +74,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "Start free trial",
     features: [
-      { text: "150 AI actions a month", included: true },
+      { text: "250 AI actions a month", included: true },
       { text: "Unlimited dictation", included: true },
       { text: "Background jobs, Chrome agent, reports", included: true },
     ],

@@ -375,7 +375,7 @@ Lazur is a voice assistant for the Mac that lives in the notch. Its dictation is
 
 For questions about the sheet, hold ⌥ ⌘ and ask. Lazur sees your screen only while you hold the shortcut, answers out loud, and can point. Ask where a command lives, and it draws a circle and a label around it. It does not click for you. You still do the clicks.
 
-Test it first. We have not verified dictation in every Excel cell layout, so try one cell before a long session. The 3-day Pro trial needs no credit card, and it starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 150 AI actions. Dictation is unlimited on both plans. You can [get the app here](/download).
+Test it first. We have not verified dictation in every Excel cell layout, so try one cell before a long session. The 3-day Pro trial needs no credit card, and it starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 250 AI actions. Dictation is unlimited on both plans. You can [get the app here](/download).
 
 ## Checklist before your next session
 

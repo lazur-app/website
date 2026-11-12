@@ -391,7 +391,7 @@ Before you commit to any option, run a short test. Dictate five real messages in
 
 Lazur is a voice assistant for Mac that lives in the notch. It also dictates. Hold fn to dictate clean, formatted text at the cursor in any app. Dictation includes snippets, a personal dictionary, and clipboard slots. It is unlimited on both the Pro and Power plans.
 
-Pro costs $18 a month, or $15 a month billed annually, and includes 150 AI actions. Power costs $120 a month, or $96 a month billed annually, and includes 1,000 AI actions. There is a 3-day Pro trial with no credit card. The trial starts when you first open the app. Lazur's [pricing page](/pricing) has the current terms.
+Pro costs $18 a month, or $15 a month billed annually, and includes 250 AI actions. Power costs $120 a month, or $96 a month billed annually, and includes 1,000 AI actions. There is a 3-day Pro trial with no credit card. The trial starts when you first open the app. Lazur's [pricing page](/pricing) has the current terms.
 
 On privacy, Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer your question, and they are not stored. Content is never used to train AI models.
 

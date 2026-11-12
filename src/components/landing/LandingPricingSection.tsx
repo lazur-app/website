@@ -13,7 +13,7 @@ export function LandingPricingSection() {
   const proPrice = "$18/mo";
   const plans = [
     { name: "Free trial", price: "$0", per: "3 days", detail: "Full Pro from the moment you open the app. No card.", featured: false },
-    { name: "Pro", price: "$18", per: "/mo", detail: "150 AI actions a month · unlimited dictation", featured: true },
+    { name: "Pro", price: "$18", per: "/mo", detail: "250 AI actions a month · unlimited dictation", featured: true },
     { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
   ] as const;
 

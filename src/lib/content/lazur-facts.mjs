@@ -18,7 +18,7 @@ export const LAZUR = {
   dictateShortcut: "fn (hold)",
   trial: "3-day Pro trial, no credit card. Starts when you first open the app.",
   plans: [
-    { name: "Pro", monthly: 18, annualPerMonth: 15, actions: 150, note: "150 AI actions a month, unlimited dictation" },
+    { name: "Pro", monthly: 18, annualPerMonth: 15, actions: 250, note: "250 AI actions a month, unlimited dictation" },
     { name: "Power", monthly: 120, annualPerMonth: 96, actions: 1000, note: "1,000 AI actions a month, unlimited dictation" },
   ],
   privacy:
@@ -76,7 +76,7 @@ export const LAZUR_FACTS_PROMPT = `ABOUT LAZUR (the product this site sells; fac
 - Hold ${LAZUR.dictateShortcut} to dictate clean, formatted text at the cursor in any app. Snippets, a personal dictionary and clipboard slots. Dictation is included, it is not the headline.
 - Memory of what you asked and did, kept on the Mac.
 - Platform: ${LAZUR.platform}
-- Pricing: ${LAZUR.trial} Pro $18/month ($15/month billed annually, 150 AI actions). Power $120/month ($96/month annually, 1,000 AI actions). Dictation is unlimited on both.
+- Pricing: ${LAZUR.trial} Pro $18/month ($15/month billed annually, 250 AI actions). Power $120/month ($96/month annually, 1,000 AI actions). Dictation is unlimited on both.
 - Privacy: ${LAZUR.privacy}
 - Lazur does NOT click buttons, edit files, or operate other apps for you. It is not a plugin or add-in for any app. No partnerships with any app maker.
 - In "Faster with Lazur" blocks pick one capability id: ${LAZUR_CAPABILITY_IDS.join(", ")}.`;

@@ -56,7 +56,7 @@ stats:
     sourceUrl: 'https://www.meta.com/help/subscriptions/1021145227643680/'
     sourceTitle: About Muse subscriptions (Meta Help Center)
   - value: $18/month
-    label: 'Lazur Pro plan, with 150 AI actions a month and unlimited dictation'
+    label: 'Lazur Pro plan, with 250 AI actions a month and unlimited dictation'
     sourceUrl: 'https://www.lazur.app/'
     sourceTitle: 'Lazur homepage: AI buddy for Mac'
 sources:
@@ -320,7 +320,7 @@ Three questions cover most privacy decisions for any AI assistant. Where does th
 
 ## Pricing and usage limits
 
-Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. After that, Pro costs $18/month, or $15/month billed annually, and includes 150 AI actions a month. Power costs $120/month, or $96/month annually, and includes 1,000 AI actions a month. Dictation is unlimited on both plans. Current plan details are on the [pricing page](/pricing).
+Lazur has a 3-day Pro trial with no credit card. The trial starts when you first open the app. After that, Pro costs $18/month, or $15/month billed annually, and includes 250 AI actions a month. Power costs $120/month, or $96/month annually, and includes 1,000 AI actions a month. Dictation is unlimited on both plans. Current plan details are on the [pricing page](/pricing).
 
 Muse is free to start, with weekly usage limits. Meta's help page says Muse is free with a usage limit, but it does not state the free cap. When you hit the limit, you can upgrade or wait. Meta gives no schedule for the allowance to refresh.
 

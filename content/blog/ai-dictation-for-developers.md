@@ -343,7 +343,7 @@ Lazur also works as a question tool. Hold ⌥ ⌘ to ask about anything on your 
 
 Lazur listens and looks at the screen only while you hold the shortcut. Audio and the screenshot go to AI providers to answer, and they are not stored. Content is never used to train AI models. Those are the product facts as stated on the site. Still, keep secrets out of any voice tool.
 
-Lazur for Mac starts with a 3-day Pro trial that needs no credit card. The trial starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 150 AI actions. Dictation is unlimited on Pro and on Power. Check the [pricing page](/pricing), then [download Lazur for Mac](/download) if it fits your workflow. For more on coding tasks, read the [AI assistant for developers guide](/blog/ai-assistant-for-developers-and-coding-tasks). You can also see [Lazur for Cursor](/apps/cursor) or the [developer page](/for/developers).
+Lazur for Mac starts with a 3-day Pro trial that needs no credit card. The trial starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 250 AI actions. Dictation is unlimited on Pro and on Power. Check the [pricing page](/pricing), then [download Lazur for Mac](/download) if it fits your workflow. For more on coding tasks, read the [AI assistant for developers guide](/blog/ai-assistant-for-developers-and-coding-tasks). You can also see [Lazur for Cursor](/apps/cursor) or the [developer page](/for/developers).
 
 ## A one-week test before you decide
 

@@ -354,4 +354,4 @@ Lazur is a voice assistant for the Mac. Hold fn to dictate clean, formatted text
 
 Hold ⌥⌘ to ask about anything on your screen, and Lazur answers out loud. It does not click buttons or operate other apps for you. Lazur runs on macOS, on Apple silicon and Intel Macs. Windows is planned, not available.
 
-The 3-day Pro trial needs no credit card, and it starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 150 AI actions. Power costs $120 a month, or $96 a month billed annually, with 1,000 AI actions. Check the [pricing page](/pricing) for the current plans. To run your own timed test, [download Lazur for Mac](/download).
+The 3-day Pro trial needs no credit card, and it starts when you first open the app. Pro costs $18 a month, or $15 a month billed annually, with 250 AI actions. Power costs $120 a month, or $96 a month billed annually, with 1,000 AI actions. Check the [pricing page](/pricing) for the current plans. To run your own timed test, [download Lazur for Mac](/download).

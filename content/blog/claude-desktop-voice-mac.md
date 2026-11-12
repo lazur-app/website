@@ -346,7 +346,7 @@ Lazur is a voice assistant for the Mac. Hold fn to dictate clean, formatted text
 
 Lazur is a separate app that runs on its own. It does not plug into Claude, and it does not click buttons or operate other apps for you.
 
-Lazur starts with a 3-day Pro trial that needs no credit card. The trial starts when you first open the app. Pro is $18 a month, or $15 a month billed annually, with 150 AI actions. Dictation is unlimited on Pro and on Power. Check the [pricing page](/pricing) for current plans, or [download Lazur](/download) to try it on your Mac.
+Lazur starts with a 3-day Pro trial that needs no credit card. The trial starts when you first open the app. Pro is $18 a month, or $15 a month billed annually, with 250 AI actions. Dictation is unlimited on Pro and on Power. Check the [pricing page](/pricing) for current plans, or [download Lazur](/download) to try it on your Mac.
 
 If Claude's own dictation covers your work, you do not need a second app. A second tool helps most when you switch between apps all day.
 

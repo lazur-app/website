@@ -237,7 +237,7 @@ Wispr Flow Pro costs $15 per user per month on monthly billing. On annual billin
 
 Aqua Voice Pro costs $12 per month monthly, or $10 per month annual. On annual billing, that is $120 a year. Max is $24 monthly or $19 annual. Business is $24 per seat monthly or $19 per seat annual, with a two-seat minimum. Aqua also offers a 70% student discount on Pro and Max with a school email. Pro then costs $3.60 monthly or $3 annual, and Max costs $7.20 monthly or $5.70 annual.
 
-Lazur Pro costs $18 per month, or $15 per month billed annually, which is $180 a year. It includes 150 AI actions and unlimited dictation. Power costs $120 per month, or $96 per month billed annually. It includes 1,000 AI actions and unlimited dictation.
+Lazur Pro costs $18 per month, or $15 per month billed annually, which is $180 a year. It includes 250 AI actions and unlimited dictation. Power costs $120 per month, or $96 per month billed annually. It includes 1,000 AI actions and unlimited dictation.
 
 Here is a simple check. Take the entry paid tier of each on annual billing for one year. The totals are $144 for Wispr Flow Pro, $120 for Aqua Voice Pro and $180 for Lazur Pro. Lazur's price also covers the assistant side. If you only dictate, the extra $60 a year over Aqua is hard to justify. If you also ask questions and get tasks done, it may not be.
 

@@ -72,7 +72,7 @@ const UPGRADE_PLAN_META: {
     planId: "pro",
     description: "For everyday help: questions, pointing, reminders and jobs.",
     features: [
-      "150 AI actions a month",
+      "250 AI actions a month",
       "Unlimited dictation",
       "Background jobs, Chrome agent and reports",
       "Snippets, Words and 9 clipboard slots",

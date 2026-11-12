@@ -27,7 +27,7 @@ faq:
     answer: >-
       On list prices, yes. Wispr Flow Pro is $15 per user per month billed
       monthly, or $12 billed annually. Lazur Pro is $18 per month billed
-      monthly, or $15 billed annually, with 150 AI actions. Check both pricing
+      monthly, or $15 billed annually, with 250 AI actions. Check both pricing
       pages before you buy, because prices change.
   - question: Will I lose my Wispr Flow data if I switch?
     answer: >-
@@ -68,7 +68,7 @@ stats:
     sourceUrl: 'https://wisprflow.ai/pricing'
     sourceTitle: Wispr Flow pricing
   - value: $15
-    label: 'per month for Lazur Pro when billed annually, with 150 AI actions'
+    label: 'per month for Lazur Pro when billed annually, with 250 AI actions'
     sourceUrl: 'https://www.lazur.app/pricing'
     sourceTitle: Lazur pricing
 sources:
@@ -278,7 +278,7 @@ The table covers the points that should drive the decision. Prices are list pric
 | Main job | Dictation in the apps you type in | Dictation plus voice help that sees your screen |
 | Pro price, billed monthly | $15 per user per month | $18 per month |
 | Pro price, billed annually | $12 per user per month | $15 per month |
-| Usage limits on paid plans | No limits, per its pricing page | 150 AI actions, dictation unlimited |
+| Usage limits on paid plans | No limits, per its pricing page | 250 AI actions, dictation unlimited |
 | Free start | Free plan, weekly word limit not published | 3-day Pro trial, no credit card |
 | Team plans | Growth plans, self-serve | None listed on the pricing page I checked |
 
@@ -296,7 +296,7 @@ If you are also weighing Superwhisper, the [Superwhisper vs Wispr Flow compariso
 
 ## What the switch costs each month
 
-Compare monthly list prices, then decide whether you will use the extra job. Wispr Flow Pro costs $15 per user per month when billed monthly, or $12 per user per month when billed annually. Lazur Pro costs $18 per month when billed monthly, or $15 per month when billed annually, with 150 AI actions.
+Compare monthly list prices, then decide whether you will use the extra job. Wispr Flow Pro costs $15 per user per month when billed monthly, or $12 per user per month when billed annually. Lazur Pro costs $18 per month when billed monthly, or $15 per month when billed annually, with 250 AI actions.
 
 On both billing options, Lazur is the higher list price. Whether that gap is worth it depends on how often you ask for help. Count how many times last week you needed help finding a setting, a menu item, or a button. If the count is close to zero, the cheaper plan is the better fit.
 
@@ -304,7 +304,7 @@ Three pricing details change the math:
 
 - **The Lazur trial needs no card.** It starts the first time you open the app. Do not open it until test day, or the trial clock runs while you wait.
 - **Wispr Flow's Free limit is not published.** Its pricing page says “limited words per week” with no number. Do not budget around a figure from a third-party blog.
-- **The 150 AI actions are the capped part of Lazur Pro.** Dictation is listed as unlimited. Check the pricing page for how the two fit together before you commit.
+- **The 250 AI actions are the capped part of Lazur Pro.** Dictation is listed as unlimited. Check the pricing page for how the two fit together before you commit.
 
 Dictation users and assistant users pay for different things. If you only dictate, you pay more for a feature you may skip. If you ask screen questions most days, the extra cost is easier to justify.
 

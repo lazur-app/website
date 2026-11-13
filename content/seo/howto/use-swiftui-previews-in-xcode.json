@@ -1,0 +1,319 @@
+{
+  "title": "How to use SwiftUI previews in Xcode on Mac: expert guide for modern developers",
+  "metaTitle": "How to Use SwiftUI Previews in Xcode on Mac",
+  "description": "Learn how to use SwiftUI previews in Xcode on Mac. Follow our step-by-step guide to configure the canvas, use the #Preview macro, and fix common errors.",
+  "targetKeyword": "how to use swiftui previews in xcode on mac",
+  "secondaryKeywords": [
+    "SwiftUI preview",
+    "Xcode canvas",
+    "SwiftUI macro",
+    "Xcode development",
+    "SwiftUI debugging"
+  ],
+  "intro": "To use SwiftUI previews in Xcode on Mac, open your SwiftUI file and select Editor > Canvas from the menu bar to reveal the preview window. Once the canvas is visible, you can add the #Preview macro directly into your code to render your views in real time.",
+  "tldr": [
+    "Enable the canvas via Option + Command + Return.",
+    "Use the #Preview macro for modern, boilerplate-free views.",
+    "Refresh your previews with Option + Command + P.",
+    "Use @Previewable to handle state variables inline.",
+    "Clear derived data if previews stop rendering correctly."
+  ],
+  "stats": [
+    {
+      "value": "70%",
+      "label": "New iOS apps built primarily with SwiftUI",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "40%",
+      "label": "Faster feature development with SwiftUI over UIKit",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "35% to 70%",
+      "label": "Reduction in cold-start preview times",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Setting up the SwiftUI canvas",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The canvas is the core of the SwiftUI development experience in Xcode. It provides a live representation of your UI as you write code. To get started, open any .swift file containing a SwiftUI view. Navigate to the top menu bar and select Editor > Canvas. You can also use the keyboard shortcut Option + Command + Return to toggle the canvas visibility instantly."
+    },
+    {
+      "type": "paragraph",
+      "text": "Once the canvas is open, you will see a preview of your view on the right side of the editor. If the preview is blank or shows an error, check that your code compiles. Previews require a successful build to render correctly. If you see a paused state, click the Refresh button in the canvas or press Option + Command + P."
+    },
+    {
+      "type": "heading",
+      "text": "Using the #Preview macro",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Modern SwiftUI development relies on the #Preview macro. This replaced the older PreviewProvider protocol. It is much cleaner and requires significantly less code. To use it, simply add the macro block at the bottom of your view file. Inside the braces, instantiate the view you want to preview."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Type #Preview followed by an opening brace.",
+        "Add your view name, such as ContentView().",
+        "Close the brace to finish the macro."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "paragraph",
+      "text": "The #Preview macro allows you to pass parameters to your views easily. If your view requires a specific environment object or data model, you can inject it directly within the macro. This makes testing different UI states much faster than running the full app in the simulator."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Handling state with @Previewable",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "One of the most common challenges in previous Xcode versions was managing state variables inside previews. You often had to create a wrapper view just to hold a @State variable. Xcode 16 introduced the @Previewable macro to solve this. It allows you to declare state properties directly inside the #Preview block."
+    },
+    {
+      "type": "paragraph",
+      "text": "This feature is a major improvement for testing buttons, toggles, and text fields. You no longer need to write extra boilerplate code just to see how a toggle updates your UI. Simply prefix your variable with @Previewable inside the macro, and the preview will handle the state changes automatically."
+    },
+    {
+      "type": "heading",
+      "text": "Troubleshooting preview crashes",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes, previews stop working even when your code is correct. This is often due to stale build artifacts or cache issues. The first step is to clean your build folder. Use the shortcut Shift + Command + K to perform a clean. This removes temporary files that might be causing conflicts."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Issue",
+        "Recommended Fix"
+      ],
+      "rows": [
+        [
+          "Preview Crashes",
+          "Delete preview cache via Terminal"
+        ],
+        [
+          "Build Errors",
+          "Clean build folder"
+        ],
+        [
+          "Slow Previews",
+          "Use legacy execution mode"
+        ]
+      ],
+      "caption": "Common preview issues and how to fix them."
+    },
+    {
+      "type": "paragraph",
+      "text": "If cleaning the build folder does not work, you can try resetting the preview engine. Open Terminal and run the command xcrun simctl --set previews delete all. This clears the preview-specific cache without affecting your main project files. Always ensure your Mac is running the latest version of Xcode to take advantage of the most stable preview engine."
+    },
+    {
+      "type": "stats"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why are my SwiftUI previews not showing up?",
+      "answer": "Ensure your view is properly defined and that the project builds successfully. If the build fails, the preview will not render. Try cleaning your build folder with Shift + Command + K."
+    },
+    {
+      "question": "Can I use SwiftUI previews on Windows?",
+      "answer": "No, Xcode and its SwiftUI preview feature are exclusive to macOS. Development must be performed on a Mac."
+    },
+    {
+      "question": "What is the difference between PreviewProvider and #Preview?",
+      "answer": "PreviewProvider is the deprecated, verbose way of creating previews. #Preview is the modern, macro-based standard that is faster and requires less code."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "publisher": "sqmagazine.co.uk"
+    },
+    {
+      "title": "techlila.com",
+      "url": "https://www.techlila.com/macos-developer-statistics/",
+      "publisher": "techlila.com"
+    }
+  ],
+  "task": "How to use SwiftUI previews in Xcode on Mac",
+  "appliesTo": "Xcode 27 on macOS Tahoe",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Mac with M1 chip or later",
+    "macOS Tahoe 26.6 or later",
+    "Xcode 27.1 installed"
+  ],
+  "steps": [
+    {
+      "name": "Open the SwiftUI file",
+      "text": "Navigate to the Project Navigator on the left and select the .swift file you want to preview."
+    },
+    {
+      "name": "Enable the canvas",
+      "text": "Go to the menu bar and select Editor > Canvas to show the preview pane.",
+      "menuPath": [
+        "Editor",
+        "Canvas"
+      ],
+      "shortcut": "⌥ ⌘ ⏎"
+    },
+    {
+      "name": "Add the preview macro",
+      "text": "At the bottom of your struct, type #Preview and define the view instance."
+    },
+    {
+      "name": "Refresh the preview",
+      "text": "If the preview does not update automatically, use the refresh command.",
+      "shortcut": "⌥ ⌘ P"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Toggle Canvas",
+      "keys": "⌥ ⌘ ⏎"
+    },
+    {
+      "action": "Refresh Preview",
+      "keys": "⌥ ⌘ P"
+    },
+    {
+      "action": "Clean Build Folder",
+      "keys": "⇧ ⌘ K"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Preview is stuck on 'Updating'",
+      "fix": "Restart Xcode or perform a clean build with ⇧ ⌘ K."
+    },
+    {
+      "problem": "Preview shows 'Build failed'",
+      "fix": "Check your code for syntax errors and ensure all assets are correctly linked."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the preview canvas button?",
+    "capability": "point",
+    "result": "Lazur highlights the Canvas toggle in the Editor menu.",
+    "shell": "code",
+    "pointsAt": "Editor > Canvas"
+  },
+  "type": "howto",
+  "slug": "use-swiftui-previews-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-swiftui-previews-in-xcode/how-to-use-swiftui-previews-in-xcode-1-81086f.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer using Xcode on a Mac to build apps with SwiftUI previews.",
+      "caption": "A professional developer focusing on SwiftUI code in Xcode.",
+      "keywords": [
+        "how to use swiftui previews in xcode on mac",
+        "Xcode",
+        "use SwiftUI previews",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-swiftui-previews-in-xcode/how-to-use-swiftui-previews-in-xcode-2-8a106b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a Mac showing SwiftUI code in Xcode.",
+      "caption": "A productive environment for building SwiftUI applications.",
+      "keywords": [
+        "how to use swiftui previews in xcode on mac",
+        "Xcode",
+        "use SwiftUI previews",
+        "Mac",
+        "clean modern workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Ylanite",
+        "url": "https://pixabay.com/users/Ylanite-2218222/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/office-glasses-rose-business-woman-4049636/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/use-swiftui-previews-in-xcode/how-to-use-swiftui-previews-in-xcode-3-4cf647.jpg",
+      "width": 1280,
+      "height": 826,
+      "alt": "Close up of a MacBook Pro screen displaying Xcode SwiftUI previews.",
+      "caption": "The Xcode interface showing the SwiftUI canvas in action.",
+      "keywords": [
+        "how to use swiftui previews in xcode on mac",
+        "Xcode",
+        "use SwiftUI previews",
+        "Mac",
+        "macbook pro screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-apple-macbook-room-2598310/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to use swiftui previews in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "SwiftUI preview": 12,
+      "Xcode canvas": 1,
+      "SwiftUI macro": 1,
+      "Xcode development": 1,
+      "SwiftUI debugging": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

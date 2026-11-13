@@ -1,0 +1,286 @@
+{
+  "title": "How to change the bundle identifier in Xcode on Mac: a guide for developers",
+  "metaTitle": "How to Change the Bundle Identifier in Xcode on Mac",
+  "description": "Learn how to change the bundle identifier in Xcode on Mac with this step-by-step guide. Follow our instructions to update your app settings correctly.",
+  "targetKeyword": "how to change the bundle identifier in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode bundle identifier",
+    "change bundle ID Xcode",
+    "Xcode project settings",
+    "iOS development Mac"
+  ],
+  "intro": "To change the bundle identifier in Xcode on Mac, you must access the Signing and Capabilities tab within your project settings. This process requires you to select your target, update the identifier field, and ensure your provisioning profiles remain valid for the new ID.",
+  "tldr": [
+    "Open your project file in the left navigator.",
+    "Select your target in the main editor window.",
+    "Navigate to the Signing and Capabilities tab.",
+    "Update the Bundle Identifier text field.",
+    "Clean your build folder to apply the changes."
+  ],
+  "stats": [
+    {
+      "value": "22%",
+      "label": "App Store submission rejection rate in 2025 due to configuration issues",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "88%",
+      "label": "Developers who use Xcode as their primary editor",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "33%",
+      "label": "Developers reporting struggles with hardware or macOS version limits",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Understanding the Bundle Identifier",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The bundle identifier acts as a unique string that identifies your app throughout the Apple ecosystem. It must be unique across the entire App Store. Most developers follow a reverse domain naming convention like com.companyname.appname. This structure helps organize your apps and services in your developer account."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Steps to change the bundle identifier in Xcode",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Changing this identifier involves a few specific steps in your project settings. Follow these instructions carefully to avoid build errors or signing issues."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Common mistakes when updating identifiers",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Many developers forget to update dependent targets like extensions or widgets. If your main app identifier changes, your extensions must also reflect this change to maintain the correct prefix. Another common error is failing to update the App ID in the Apple Developer Portal if automatic signing fails. Always check your portal settings after making changes in Xcode."
+    },
+    {
+      "type": "heading",
+      "text": "Handling App Store Connect restrictions",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If you have already uploaded a binary to App Store Connect, you cannot simply change the bundle identifier for that existing app record. You must create a brand new app record in App Store Connect with the new identifier. Plan your identifiers carefully before your first submission to avoid this extra work."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I change the bundle identifier after submitting to the App Store?",
+      "answer": "No, once an app is uploaded to App Store Connect, the bundle identifier is locked to that specific app record."
+    },
+    {
+      "question": "Do I need to update my provisioning profiles?",
+      "answer": "If you use automatic signing, Xcode will attempt to update them for you. If it fails, you must manually update your App IDs in the Apple Developer Portal."
+    },
+    {
+      "question": "Is there a web-based version of Xcode?",
+      "answer": "No, Xcode is a macOS-only application. You must have a Mac to use it."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "apple.com",
+      "url": "https://developer.apple.com/documentation/xcode/changing-the-bundle-identifier",
+      "accessedAt": "2026-11-13",
+      "publisher": "developer.apple.com"
+    },
+    {
+      "title": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=c4UBZmOBC0Y",
+      "accessedAt": "2026-11-13",
+      "publisher": "youtube.com"
+    }
+  ],
+  "task": "Change the bundle identifier in Xcode",
+  "appliesTo": "Xcode 27 on macOS Tahoe",
+  "timeMinutes": 10,
+  "difficulty": "Medium",
+  "requirements": [
+    "Xcode installed on a Mac",
+    "Active Apple Developer account",
+    "Access to the project file"
+  ],
+  "steps": [
+    {
+      "name": "Open Project Settings",
+      "text": "In the Project navigator on the left, click the blue project icon at the very top.",
+      "menuPath": [
+        "Project navigator"
+      ]
+    },
+    {
+      "name": "Select Target",
+      "text": "In the main editor, find the Targets section and select your app target.",
+      "menuPath": [
+        "Targets"
+      ]
+    },
+    {
+      "name": "Navigate to Signing",
+      "text": "Click the Signing and Capabilities tab in the top menu bar of the editor.",
+      "menuPath": [
+        "Signing and Capabilities"
+      ]
+    },
+    {
+      "name": "Update Identifier",
+      "text": "Find the Bundle Identifier field, type your new string, and press Return.",
+      "tip": "Ensure the new identifier matches the reverse-domain format."
+    },
+    {
+      "name": "Clean Build Folder",
+      "text": "Select Product in the menu, then click Clean Build Folder to finalize.",
+      "menuPath": [
+        "Product",
+        "Clean Build Folder"
+      ],
+      "shortcut": "⇧⌘K"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Clean build folder",
+      "keys": "⇧⌘K"
+    },
+    {
+      "action": "Build project",
+      "keys": "⌘B"
+    },
+    {
+      "action": "Run project",
+      "keys": "⌘R"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Failed to register bundle identifier",
+      "fix": "Check the Apple Developer Portal to ensure the ID is available and not taken by another team."
+    },
+    {
+      "problem": "Extensions fail after change",
+      "fix": "Ensure all extension bundle identifiers start with the new main app identifier prefix."
+    }
+  ],
+  "lazur": {
+    "spoken": "Lazur, where is the Signing and Capabilities tab?",
+    "capability": "point",
+    "result": "Lazur points to the tab in the Xcode editor, making it easy to find.",
+    "shell": "code",
+    "pointsAt": "Signing and Capabilities"
+  },
+  "type": "howto",
+  "slug": "change-the-bundle-identifier-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-bundle-identifier-in-xcode/how-to-change-the-bundle-identifier-in-1-245063.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on their Mac while learning how to change the bundle identifier in Xcode on Mac.",
+      "caption": "Professional development setup for Xcode users.",
+      "keywords": [
+        "how to change the bundle identifier in xcode on mac",
+        "Xcode",
+        "change the bundle identifier",
+        "Mac",
+        "developer working on Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-bundle-identifier-in-xcode/how-to-change-the-bundle-identifier-in-2-183555.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk with a Mac showing the process of how to change the bundle identifier in Xcode on Mac.",
+      "caption": "Minimalist workspace for focused coding.",
+      "keywords": [
+        "how to change the bundle identifier in xcode on mac",
+        "Xcode",
+        "change the bundle identifier",
+        "Mac",
+        "clean office desk Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-electronics-2593898/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-the-bundle-identifier-in-xcode/how-to-change-the-bundle-identifier-in-3-143054.jpg",
+      "width": 1280,
+      "height": 852,
+      "alt": "A focused developer managing project settings to change the bundle identifier in Xcode on Mac.",
+      "caption": "Attention to detail is vital when configuring app identifiers.",
+      "keywords": [
+        "how to change the bundle identifier in xcode on mac",
+        "Xcode",
+        "change the bundle identifier",
+        "Mac",
+        "focused software developer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "lawrence_monk",
+        "url": "https://pixabay.com/users/lawrence_monk-731125/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/website-code-html-coding-647013/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to change the bundle identifier in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "Xcode bundle identifier": 1,
+      "change bundle ID Xcode": 1,
+      "Xcode project settings": 1,
+      "iOS development Mac": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

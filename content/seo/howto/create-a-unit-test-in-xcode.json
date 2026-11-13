@@ -1,0 +1,355 @@
+{
+  "title": "How to create a unit test in Xcode on Mac: expert guide for developers",
+  "metaTitle": "How to create a unit test in Xcode on Mac: Step by Step",
+  "description": "Learn how to create a unit test in Xcode on Mac using XCTest or Swift Testing. Follow these clear steps to improve your code quality and reliability.",
+  "targetKeyword": "how to create a unit test in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode unit testing",
+    "Swift Testing framework",
+    "XCTest tutorial",
+    "Xcode testing shortcuts"
+  ],
+  "intro": "To create a unit test in Xcode on Mac, you first add a testing target to your project via the File menu. Once the target exists, you generate a test file and use the XCTest or Swift Testing framework to validate your code logic.",
+  "tldr": [
+    "Navigate to File > New > Target to add a testing bundle if missing.",
+    "Use File > New > File to create a new test case class.",
+    "Write your tests using the @Test attribute for Swift Testing or XCTestCase for XCTest.",
+    "Run your tests using the ⌘U keyboard shortcut."
+  ],
+  "stats": [
+    {
+      "value": "60 million",
+      "label": "Registered Apple Developers",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "23.00%",
+      "label": "App Store Rejection Rate",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "$90.6 billion",
+      "label": "App Store Yearly Revenue",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why you should use unit tests in Xcode",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Software development on macOS requires precision. Bugs often hide in complex logic paths that are hard to trigger manually. Unit tests allow you to isolate specific functions and verify their output against expected results. This practice saves time during the debugging process. It also prevents regressions when you add new features to your application."
+    },
+    {
+      "type": "paragraph",
+      "text": "The industry standard for testing on Apple platforms has evolved. You now have two primary choices: the long-standing XCTest framework and the modern Swift Testing framework. Both integrate deeply with the Xcode IDE. Using these tools early in your development cycle reduces the risk of rejection when you submit your app to the store."
+    },
+    {
+      "type": "heading",
+      "text": "Step 1: Verify your project test target",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you write a single line of test code, ensure your project is configured to run tests. Many project templates include a test target by default. Check your project navigator to see if a folder with a name ending in Tests exists. If it is missing, you must add it manually."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open your project in Xcode.",
+        "Select the top level of your project in the Project Navigator.",
+        "Look for the Targets section in the project editor.",
+        "If no test target is present, click the plus button at the bottom.",
+        "Search for Unit Testing Bundle.",
+        "Click Next and Finish to add the new target to your workspace."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "heading",
+      "text": "Step 2: Create a new test file",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Once your target is ready, you need a file to hold your test cases. Xcode provides templates that set up the necessary boilerplate code. This keeps your test files organized and ensures they inherit from the correct base classes."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Select the Test group in your Project Navigator.",
+        "Go to File > New > File in the menu bar.",
+        "Select the Unit Test Case Class template.",
+        "Click Next and choose a descriptive name for your test file.",
+        "Ensure the target selection matches your testing bundle.",
+        "Click Create to add the file to your project."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Writing your first unit test",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The syntax for writing tests depends on the framework you chose. If you are using XCTest, you create a class that inherits from XCTestCase. Each method starting with the word test is automatically discovered by the runner. You use assertions like XCTAssertEqual to verify results."
+    },
+    {
+      "type": "paragraph",
+      "text": "Swift Testing offers a more modern approach. You simply add the @Test attribute above a function. This removes the need for class inheritance and makes your test code cleaner. Both frameworks allow you to run tests directly from the gutter in the source editor."
+    },
+    {
+      "type": "heading",
+      "text": "Essential Xcode testing shortcuts",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Speed matters when you are iterating on code. Using keyboard shortcuts prevents you from reaching for the mouse repeatedly. Memorize these to keep your flow consistent while you build and test your application."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Action",
+        "Shortcut"
+      ],
+      "rows": [
+        [
+          "Run all tests",
+          "⌘U"
+        ],
+        [
+          "Run test at cursor",
+          "⌃⌥⌘U"
+        ],
+        [
+          "Rerun previous test",
+          "⌃⌥⌘G"
+        ],
+        [
+          "Build for testing",
+          "⇧⌘U"
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Troubleshooting common test issues",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Even experienced developers run into issues with unit tests. Most problems stem from configuration errors or missing imports. Here are the most frequent hurdles you might encounter while working in Xcode."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Unresolved identifiers: Ensure you add @testable import YourModuleName at the top of your test file.",
+        "Unexpected nil values: Check that your setup logic initializes the system under test correctly.",
+        "Flaky tests: Use expectations for asynchronous operations to ensure the test waits for completion.",
+        "Missing results: Verify that your test target is included in the current scheme."
+      ],
+      "ordered": false
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I run unit tests without a physical device?",
+      "answer": "Yes. Xcode allows you to run unit tests on any simulator installed on your Mac. You do not need a physical iPhone or iPad to execute your test suite."
+    },
+    {
+      "question": "Is Swift Testing better than XCTest?",
+      "answer": "Swift Testing is the modern successor to XCTest. It is more expressive and requires less boilerplate code. However, XCTest remains fully supported for existing projects."
+    },
+    {
+      "question": "How do I see test coverage in Xcode?",
+      "answer": "You can enable code coverage in your scheme settings. Once active, Xcode will show you which lines of code are executed during your test runs in the report navigator."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "sqmagazine.co.uk"
+    }
+  ],
+  "task": "Create a unit test in Xcode",
+  "appliesTo": "Xcode 27.1 on macOS Tahoe",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Xcode 27.1 or later",
+    "macOS Tahoe 26.6 or later",
+    "Basic knowledge of Swift"
+  ],
+  "steps": [
+    {
+      "name": "Add a test target",
+      "text": "If your project lacks a test target, go to File > New > Target, search for Unit Testing Bundle, and click Finish.",
+      "menuPath": [
+        "File",
+        "New",
+        "Target"
+      ]
+    },
+    {
+      "name": "Generate a test file",
+      "text": "Select your test folder, press ⌘N, and choose the Unit Test Case Class template to create your file.",
+      "menuPath": [
+        "File",
+        "New",
+        "File"
+      ],
+      "shortcut": "⌘N"
+    },
+    {
+      "name": "Write your test code",
+      "text": "Define your test methods or use the @Test attribute to verify your application logic.",
+      "tip": "Use XCTAssert functions to confirm that your code behaves as expected during execution."
+    },
+    {
+      "name": "Run the tests",
+      "text": "Use the keyboard shortcut ⌘U to trigger the test runner and view the results in the report navigator.",
+      "shortcut": "⌘U"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Run all tests",
+      "keys": "⌘U"
+    },
+    {
+      "action": "Run test at cursor",
+      "keys": "⌃⌥⌘U"
+    },
+    {
+      "action": "Build for testing",
+      "keys": "⇧⌘U"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Tests are not running",
+      "fix": "Ensure the test target is included in your active scheme settings."
+    },
+    {
+      "problem": "Cannot import module",
+      "fix": "Add @testable import YourModuleName to the top of your test file."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the new target button?",
+    "capability": "point",
+    "result": "Lazur circles the plus button in the project editor so you can add your test target quickly.",
+    "shell": "code",
+    "pointsAt": "Plus button"
+  },
+  "type": "howto",
+  "slug": "create-a-unit-test-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-unit-test-in-xcode/how-to-create-a-unit-test-in-1-fe29ed.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to learn how to create a unit test in Xcode on Mac.",
+      "caption": "Writing clean code is easier with a proper testing setup.",
+      "keywords": [
+        "how to create a unit test in xcode on mac",
+        "Xcode",
+        "create a unit test",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-unit-test-in-xcode/how-to-create-a-unit-test-in-2-9d3fe6.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup for a developer learning how to create a unit test in Xcode on Mac.",
+      "caption": "A dedicated workspace helps you focus on your test logic.",
+      "keywords": [
+        "how to create a unit test in xcode on mac",
+        "Xcode",
+        "create a unit test",
+        "Mac",
+        "clean modern workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/chairs-empty-indoors-office-2181939/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/create-a-unit-test-in-xcode/how-to-create-a-unit-test-in-3-f8b84e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A programmer using a computer to master how to create a unit test in Xcode on Mac.",
+      "caption": "Testing is a core part of the professional development cycle.",
+      "keywords": [
+        "how to create a unit test in xcode on mac",
+        "Xcode",
+        "create a unit test",
+        "Mac",
+        "programmer using computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-coding-computer-data-1839406/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to create a unit test in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "Xcode unit testing": 1,
+      "Swift Testing framework": 3,
+      "XCTest tutorial": 1,
+      "Xcode testing shortcuts": 2
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

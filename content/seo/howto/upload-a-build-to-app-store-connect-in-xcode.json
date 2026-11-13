@@ -1,0 +1,319 @@
+{
+  "title": "How to upload a build to App Store Connect in Xcode on Mac for developers",
+  "metaTitle": "How to Upload a Build to App Store Connect in Xcode on Mac",
+  "description": "Learn how to upload a build to App Store Connect from Xcode on Mac with these clear, step-by-step instructions for the latest version of Xcode.",
+  "targetKeyword": "how to upload a build to app store connect from xcode on mac",
+  "secondaryKeywords": [
+    "Xcode archive upload",
+    "App Store Connect distribution",
+    "iOS build submission"
+  ],
+  "intro": "To upload a build to App Store Connect from Xcode on Mac, you must first archive your project using the Product menu. Once the archive is complete, you can use the Organizer window to distribute your app directly to Apple for review.",
+  "tldr": [
+    "Open your project and set the target to Any iOS Device.",
+    "Go to Product > Archive to create your build.",
+    "Select Distribute App in the Organizer window.",
+    "Choose App Store Connect as your distribution method.",
+    "Follow the prompts to sign, validate, and upload your binary."
+  ],
+  "stats": [
+    {
+      "value": "23.00%",
+      "label": "App Store submission rejection rate in 2025",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "1,112+",
+      "label": "Recorded App Store Connect upload service outages since 2015",
+      "sourceUrl": "https://statusgator.com/services/apple-developer/app-store-connect---app-upload",
+      "sourceTitle": "statusgator.com"
+    },
+    {
+      "value": "$99",
+      "label": "Annual cost for Apple Developer Program membership",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Preparing your project for upload",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you attempt to upload a build to App Store Connect from Xcode on Mac, verify your project settings. Xcode requires specific configuration to ensure the binary is valid for distribution. Start by opening your project file in the navigator. Select your project at the top of the file list to open the project editor. Ensure your Bundle Identifier is unique and correctly registered in your Apple Developer account. Check that your version and build numbers are incremented correctly. If you reuse an old build number, the upload will fail."
+    },
+    {
+      "type": "paragraph",
+      "text": "Next, verify your signing configuration. Go to the Signing and Capabilities tab for your main target. Ensure you have a valid development or distribution certificate selected. If you see errors about provisioning profiles, click the Fix Issue button. Xcode attempts to resolve these automatically by communicating with your Apple Developer account. You must have an active membership to perform these actions. If your membership expired, you cannot generate the necessary certificates for the App Store."
+    },
+    {
+      "type": "heading",
+      "text": "The archiving process in Xcode",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Once your project settings are correct, you are ready to create an archive. An archive is a structured package that contains your compiled binary and all necessary metadata for the App Store. To begin, set your build destination to Any iOS Device in the toolbar. This ensures the build is compiled for a generic distribution target rather than a specific simulator. If you select a simulator by mistake, the Archive menu item will be disabled."
+    },
+    {
+      "type": "heading",
+      "text": "Distributing your app",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "After the archive finishes, Xcode opens the Organizer window automatically. If it does not, you can open it manually using the keyboard shortcut ⌘ ⇧ 2. In the Organizer, you will see a list of archives for your project. Select the most recent archive from the list. On the right side of the window, click the Distribute App button. This starts the distribution assistant, which guides you through the process of selecting a distribution method."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Handling common upload errors",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers often encounter issues during the upload phase. One frequent error involves missing compliance information. If you use encryption in your app, you must declare it in App Store Connect. If you fail to do this, the build status may remain in a pending state. Another common issue is the presence of an alpha channel in your marketing screenshots. Apple requires that all screenshots be flattened. If your images have transparency, the upload process may fail during the validation step."
+    },
+    {
+      "type": "paragraph",
+      "text": "If the upload appears successful but the build never appears in App Store Connect, check the status of Apple services. Sometimes, the App Store Connect upload service experiences outages. According to historical data, there have been over 1,112 recorded service interruptions since 2015. If you suspect a service issue, wait a few hours before attempting to re-upload. Do not spam the server with repeated attempts, as this can lead to temporary account blocks."
+    },
+    {
+      "type": "heading",
+      "text": "Managing builds in App Store Connect",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "After you successfully upload your build, it enters a processing state. This can take anywhere from a few minutes to several hours. Do not expect the build to be immediately available for TestFlight or store submission. You will receive an automated email from Apple once the processing is complete. If the build is rejected during processing, check the email for specific error codes or missing requirements."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Issue",
+        "Recommended Fix"
+      ],
+      "rows": [
+        [
+          "Build stuck processing",
+          "Wait up to 24 hours"
+        ],
+        [
+          "Invalid binary error",
+          "Check provisioning profiles"
+        ],
+        [
+          "Missing compliance",
+          "Update TestFlight settings"
+        ]
+      ],
+      "caption": "Common issues encountered when uploading builds."
+    },
+    {
+      "type": "heading",
+      "text": "Why build numbers matter",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Every time you upload a build to App Store Connect, the build number must be higher than the previous one. If you try to upload a build with an existing number, Xcode will throw an error. This is a common mistake for developers who manually update version strings. Always use a systematic approach to versioning, such as keeping a build counter in your project settings. This simple habit prevents many rejected uploads and saves time during the submission phase."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How long does it take for a build to process?",
+      "answer": "Processing times vary, but it usually takes between a few minutes and several hours. If it takes longer than 24 hours, you should contact Apple support."
+    },
+    {
+      "question": "Can I upload a build from a simulator?",
+      "answer": "No, you must set your build destination to Any iOS Device or a physical device to create a distribution archive."
+    },
+    {
+      "question": "What if my archive button is greyed out?",
+      "answer": "This usually happens because you have a simulator selected as the build target. Change the target to Any iOS Device to enable the Archive option."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "publisher": "sqmagazine.co.uk"
+    },
+    {
+      "title": "statusgator.com",
+      "url": "https://statusgator.com/services/apple-developer/app-store-connect---app-upload",
+      "publisher": "statusgator.com"
+    }
+  ],
+  "task": "Upload a build to App Store Connect",
+  "appliesTo": "Xcode 27 on macOS Tahoe",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Apple Developer Program membership",
+    "Xcode 27 installed",
+    "Active internet connection"
+  ],
+  "steps": [
+    {
+      "name": "Select Build Target",
+      "text": "In the Xcode toolbar, click the device selector and choose Any iOS Device.",
+      "image": 0
+    },
+    {
+      "name": "Archive the App",
+      "text": "Go to the menu bar and select Product > Archive to begin the build process.",
+      "menuPath": [
+        "Product",
+        "Archive"
+      ]
+    },
+    {
+      "name": "Open Organizer",
+      "text": "Once the archive finishes, the Organizer window will appear. If not, press the shortcut.",
+      "shortcut": "⌘ ⇧ 2"
+    },
+    {
+      "name": "Distribute App",
+      "text": "Select your archive in the list and click the Distribute App button on the right.",
+      "image": 1
+    },
+    {
+      "name": "Select Destination",
+      "text": "Choose App Store Connect and click Next to proceed with the upload.",
+      "tip": "Ensure you have the correct team selected in your project settings."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Organizer",
+      "keys": "⌘ ⇧ 2"
+    },
+    {
+      "action": "Build Project",
+      "keys": "⌘ B"
+    },
+    {
+      "action": "Clean Build Folder",
+      "keys": "⌘ ⇧ K"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Archive button is disabled",
+      "fix": "Change your build target to Any iOS Device."
+    },
+    {
+      "problem": "Upload fails due to alpha channel",
+      "fix": "Flatten your screenshots to remove transparency."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the archive button?",
+    "capability": "point",
+    "result": "Lazur circles the Product menu and highlights the Archive option.",
+    "shell": "code",
+    "pointsAt": "Product menu"
+  },
+  "type": "howto",
+  "slug": "upload-a-build-to-app-store-connect-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/upload-a-build-to-app-store-connect-in-xcode/how-to-upload-a-build-to-app-1-fb2e6f.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to upload a build to App Store Connect.",
+      "caption": "Configuring your project for the App Store.",
+      "keywords": [
+        "how to upload a build to app store connect from xcode on mac",
+        "Xcode",
+        "upload a build to App Store Connect",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/upload-a-build-to-app-store-connect-in-xcode/how-to-upload-a-build-to-app-2-f6c364.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a Mac for app development.",
+      "caption": "A tidy workspace helps when managing complex builds.",
+      "keywords": [
+        "how to upload a build to app store connect from xcode on mac",
+        "Xcode",
+        "upload a build to App Store Connect",
+        "Mac",
+        "modern office desk mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-laptop-2563737/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/upload-a-build-to-app-store-connect-in-xcode/how-to-upload-a-build-to-app-3-699e78.jpg",
+      "width": 1280,
+      "height": 942,
+      "alt": "A programmer focused on their screen while using Xcode.",
+      "caption": "Focus is key when archiving your application.",
+      "keywords": [
+        "how to upload a build to app store connect from xcode on mac",
+        "Xcode",
+        "upload a build to App Store Connect",
+        "Mac",
+        "focused programmer mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Beto_MdP",
+        "url": "https://pixabay.com/users/Beto_MdP-17561499/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/bird-birdwatching-wire-fence-yellow-10359095/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to upload a build to app store connect from xcode on mac",
+    "inTitle": false,
+    "inH1": false,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 2,
+    "secondary": {
+      "Xcode archive upload": 1,
+      "App Store Connect distribution": 1,
+      "iOS build submission": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

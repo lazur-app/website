@@ -1,0 +1,380 @@
+{
+  "title": "How to install an iOS simulator runtime in Xcode on Mac: step by step guide",
+  "metaTitle": "How to install an iOS simulator runtime in Xcode on Mac",
+  "description": "Learn how to install an iOS simulator runtime in Xcode on Mac using the Run Destination menu or the Platforms tab in Settings for efficient app testing.",
+  "targetKeyword": "how to install an ios simulator runtime in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode simulator runtime",
+    "install iOS simulator Xcode",
+    "manage Xcode platforms",
+    "Xcode development tools"
+  ],
+  "intro": "To install an iOS simulator runtime in Xcode on a Mac, click the Run Destination menu in your toolbar and select the Get button. You can also add new platforms by navigating to Xcode > Settings > Platforms and clicking the add button.",
+  "tldr": [
+    "Use the Run Destination menu in the Xcode toolbar to quickly download missing simulator runtimes.",
+    "Access the Platforms tab in Xcode Settings to manage and install specific iOS versions.",
+    "Ensure your Mac has at least 50GB of free disk space for smooth installation.",
+    "Use Terminal commands if you face persistent download issues or network restrictions.",
+    "Keep your Xcode environment updated to meet current App Store submission requirements."
+  ],
+  "stats": [
+    {
+      "value": "69%",
+      "label": "Developers using a mix of simulators and real devices",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "88%",
+      "label": "iOS developers using Xcode as their primary IDE",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "23%",
+      "label": "App Store submission rejection rate in 2025",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "8GB",
+      "label": "Minimum dedicated RAM for stable simulator performance",
+      "sourceUrl": "https://demo.leucotron.com.br/document/uEE41AF4DE141/mastering-ios-simulator-mobile-development-t99h",
+      "sourceTitle": "leucotron.com.br"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Testing your applications on various iOS versions is a critical part of the development cycle. Since Xcode 14, Apple changed how these runtimes are delivered. They are no longer part of the main application download. This change reduces the initial size of Xcode but requires you to manage simulator runtimes manually through the interface."
+    },
+    {
+      "type": "heading",
+      "text": "How to install an iOS simulator runtime via the Run Destination menu",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The fastest way to get a missing simulator is directly from the toolbar. This method is context-aware and suggests the version you need for your current project settings."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open your project in Xcode.",
+        "Locate the Run Destination menu in the top toolbar, which shows the currently selected device.",
+        "Click the menu to open the list of available simulators.",
+        "If a platform is missing, you will see a Get button next to the relevant version.",
+        "Click Get to initiate the download and installation process."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "heading",
+      "text": "Managing platforms in Xcode settings",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "For more control or to install multiple versions at once, use the main settings menu. This area was formerly called Components but is now known as Platforms."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open Xcode on your Mac.",
+        "Press ⌘ , to open the Settings window.",
+        "Click on the Platforms tab at the top of the window.",
+        "Look for the Other Installed Platforms section.",
+        "Click the + button at the bottom left to add a new platform.",
+        "Use the filter bar to find the specific iOS version you need.",
+        "Click Download & Install to start the process."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Troubleshooting common simulator installation issues",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Even with a standard setup, you might encounter problems. Network restrictions are the most common culprit. If the download stalls, check your internet connection and ensure that your network allows traffic to Apple servers like gdmf.apple.com."
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes, the simulator might appear as unavailable after an update. This usually happens when the local simulator service gets out of sync with the new Xcode version. You can clean up your local environment using the Terminal."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Run rm -rf ~/Library/Developer/CoreSimulator/Devices in the Terminal to clear old device data.",
+        "Execute sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService to restart the service.",
+        "Run xcrun simctl delete unavailable to remove references to broken or missing runtimes."
+      ],
+      "ordered": false
+    },
+    {
+      "type": "heading",
+      "text": "Advanced installation for CI/CD environments",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If you manage build servers or need to automate your setup, you do not have to use the graphical interface. The xcodebuild command line tool provides options to handle runtimes."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Use xcodebuild -downloadAllPlatforms to fetch everything needed for your environment.",
+        "Use xcodebuild -downloadPlatform iOS to target only the mobile runtimes.",
+        "For manual installation of a downloaded .dmg file, use xcrun simctl runtime add <path-to-dmg>."
+      ],
+      "ordered": false
+    },
+    {
+      "type": "heading",
+      "text": "Performance and disk space requirements",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Simulator runtimes are large. Each version can take up several gigabytes of space. We recommend having at least 50GB of free space on your Mac. This ensures that the installation does not fail halfway through and that your system remains responsive during builds."
+    },
+    {
+      "type": "paragraph",
+      "text": "Performance also depends on your hardware. The simulator requires significant resources to emulate the iOS environment. Aim for at least 8GB of dedicated RAM for the simulator to run smoothly alongside your other development tools."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "text": "Why simulator management matters for App Store compliance",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple requires that apps are built with the latest SDKs for new submissions. Managing your runtimes effectively ensures you can test your app against the latest version of iOS. This helps reduce the risk of rejection during the App Store review process."
+    },
+    {
+      "type": "paragraph",
+      "text": "Many developers rely on a mix of simulators and physical devices. While simulators are great for rapid UI testing, always perform final testing on a real device. This is the best way to verify performance, battery usage, and hardware-specific features like the camera or sensors."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where is the Platforms tab in Xcode?",
+      "answer": "You can find the Platforms tab by going to Xcode > Settings in the menu bar and selecting the Platforms icon at the top of the window."
+    },
+    {
+      "question": "How much space do I need for simulator runtimes?",
+      "answer": "It is recommended to have at least 50GB of free disk space to accommodate multiple simulator runtimes and ensure smooth operation."
+    },
+    {
+      "question": "Can I install simulator runtimes via command line?",
+      "answer": "Yes, you can use the xcodebuild command line tool to download platforms or the xcrun simctl runtime add command to install a downloaded .dmg file."
+    },
+    {
+      "question": "What should I do if my simulators show as unavailable?",
+      "answer": "Try cleaning your simulator data by running the appropriate cleanup commands in the Terminal, such as deleting unavailable devices and restarting the CoreSimulator service."
+    }
+  ],
+  "sources": [
+    {
+      "title": "macops.ca",
+      "url": "https://macops.ca/xcode-14-new-platforms-packaging-format/",
+      "accessedAt": "2026-11-13"
+    },
+    {
+      "title": "apple.com",
+      "url": "https://developer.apple.com/documentation/xcode/downloading-and-installing-additional-xcode-components",
+      "accessedAt": "2026-11-13"
+    },
+    {
+      "title": "medium.com",
+      "url": "https://vladzz.medium.com/xcode-simulator-runtime-not-available-fix-0c5195aade02",
+      "accessedAt": "2026-11-13"
+    },
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "accessedAt": "2026-11-13"
+    },
+    {
+      "title": "demo.leucotron.com.br",
+      "url": "https://demo.leucotron.com.br/document/uEE41AF4DE141/mastering-ios-simulator-mobile-development-t99h",
+      "accessedAt": "2026-11-13"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "accessedAt": "2026-11-13"
+    }
+  ],
+  "task": "Install an iOS simulator runtime in Xcode on Mac",
+  "appliesTo": "Xcode 27 and later",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Xcode installed on your Mac",
+    "macOS Tahoe 26.6 or later",
+    "At least 50GB of free disk space",
+    "Active internet connection"
+  ],
+  "steps": [
+    {
+      "name": "Open Xcode Settings",
+      "text": "Open Xcode and navigate to the Settings menu to access platform management.",
+      "shortcut": "⌘ ,",
+      "tip": "You can also access this via the Xcode menu in the top bar."
+    },
+    {
+      "name": "Navigate to Platforms",
+      "text": "Click on the Platforms tab at the top of the Settings window.",
+      "image": 1
+    },
+    {
+      "name": "Add a Platform",
+      "text": "Click the + button in the bottom left corner of the Platforms tab.",
+      "tip": "This will open a list of all available iOS and other platform runtimes."
+    },
+    {
+      "name": "Download and Install",
+      "text": "Select the iOS version you want to install and click the Download & Install button.",
+      "image": 2
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Settings",
+      "keys": "⌘ ,"
+    },
+    {
+      "action": "Build Project",
+      "keys": "⌘ B"
+    },
+    {
+      "action": "Run Project",
+      "keys": "⌘ R"
+    },
+    {
+      "action": "Clean Build Folder",
+      "keys": "⌘ ⇧ K"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Download fails repeatedly",
+      "fix": "Check your internet connection and ensure your network allows access to Apple developer domains."
+    },
+    {
+      "problem": "Simulator shows as unavailable",
+      "fix": "Run the cleanup commands in the Terminal to reset the CoreSimulator service and clear old device data."
+    },
+    {
+      "problem": "Not enough disk space",
+      "fix": "Clear out old build folders or unused simulator runtimes to free up the required 50GB."
+    }
+  ],
+  "lazur": {
+    "spoken": "Lazur, walk me through adding a new simulator runtime.",
+    "capability": "guide",
+    "result": "Lazur highlights the Platforms tab in the Settings window and guides you through the process of clicking the add button to select a new runtime.",
+    "shell": "code",
+    "pointsAt": "Platforms tab"
+  },
+  "type": "howto",
+  "slug": "install-an-ios-simulator-runtime-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-ios-simulator-runtime-in-xcode/how-to-install-an-ios-simulator-runtime-1-8bdbcd.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to install an iOS simulator runtime in Xcode",
+      "caption": "Setting up your development environment is the first step to building great apps.",
+      "keywords": [
+        "how to install an ios simulator runtime in xcode on mac",
+        "Xcode",
+        "install an iOS simulator runtime",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-ios-simulator-runtime-in-xcode/how-to-install-an-ios-simulator-runtime-2-6c053a.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a Mac used for coding in Xcode",
+      "caption": "A tidy workspace helps you focus on your code.",
+      "keywords": [
+        "how to install an ios simulator runtime in xcode on mac",
+        "Xcode",
+        "install an iOS simulator runtime",
+        "Mac",
+        "modern office desk mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-laptop-2563737/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-an-ios-simulator-runtime-in-xcode/how-to-install-an-ios-simulator-runtime-3-0ef839.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Professional coding on a laptop to install an iOS simulator runtime in Xcode",
+      "caption": "Consistent testing is key to a successful app release.",
+      "keywords": [
+        "how to install an ios simulator runtime in xcode on mac",
+        "Xcode",
+        "install an iOS simulator runtime",
+        "Mac",
+        "person coding on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/coding-programming-working-macbook-924920/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to install an ios simulator runtime in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "Xcode simulator runtime": 1,
+      "install iOS simulator Xcode": 1,
+      "manage Xcode platforms": 1,
+      "Xcode development tools": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

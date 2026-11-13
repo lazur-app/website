@@ -1,0 +1,286 @@
+{
+  "title": "How to run UI tests in Xcode on Mac: expert guide for your projects",
+  "metaTitle": "How to run UI tests in Xcode on Mac: Step-by-Step",
+  "description": "Learn how to run UI tests in Xcode on Mac. This guide covers adding testing targets, using the test navigator, and recording interactions for your app.",
+  "targetKeyword": "how to run ui tests in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode UI testing",
+    "XCTest framework",
+    "Xcode test navigator",
+    "automated UI tests"
+  ],
+  "intro": "To run UI tests in Xcode on Mac, you use the XCTest framework to interact with your application interface. You can trigger these tests using the Test Navigator, keyboard shortcuts, or by clicking the diamond icons in your source code.",
+  "tldr": [
+    "Add a UI Testing Bundle target via File > New > Target.",
+    "Use ⌘ + U to run all tests in your scheme.",
+    "Open the Test Navigator with ⌘ + 6 to run specific tests.",
+    "Click the red record button in the editor to generate test code.",
+    "Ensure accessibility identifiers are set for reliable UI interaction."
+  ],
+  "stats": [
+    {
+      "value": "70%",
+      "label": "Reduction in manual verification time for teams using automated UI tests",
+      "sourceUrl": "https://www.functionize.com/automated-testing/what-is-xcode-ui-testing",
+      "sourceTitle": "functionize.com"
+    },
+    {
+      "value": "30%",
+      "label": "Improvement in deployment frequency with CI/CD integrated UI tests",
+      "sourceUrl": "https://www.functionize.com/automated-testing/what-is-xcode-ui-testing",
+      "sourceTitle": "functionize.com"
+    },
+    {
+      "value": "22%",
+      "label": "App Store submission rejection rate in 2025",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Setting up your UI testing environment",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you can run tests, you need a UI Testing Bundle target in your project. This target contains the code that drives your app during the test process. If you do not have one, go to File > New > Target. Type Test into the search bar and select UI Testing Bundle. Click Next, provide a name like MyAppUITests, and click Finish. This adds a new folder to your project navigator."
+    },
+    {
+      "type": "heading",
+      "text": "How to run UI tests using the Test Navigator",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The Test Navigator is the central hub for managing your testing suite. Press ⌘ + 6 to bring it into view. You will see a list of your test bundles, classes, and individual methods. Hover over any item in the list to reveal a diamond-shaped run button. Clicking this button executes that specific test or group of tests. It is a clean way to isolate a single feature without running your entire suite."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Generating test code with the recorder",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Writing UI test code from scratch is tedious. Xcode includes a recorder to help you generate the necessary Swift code. Open your UI test file and place your cursor inside a test function. Look at the bottom of the editor window for the red record button. When you click it, Xcode launches your app in the Simulator. Every interaction you perform in the app is converted into code in your editor. Once you finish your sequence, click the record button again to stop. Review the generated code to ensure it captured the elements you intended to test."
+    },
+    {
+      "type": "heading",
+      "text": "Common issues and troubleshooting",
+      "level": 2
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Problem",
+        "Fix"
+      ],
+      "rows": [
+        [
+          "Waiting for accessibility to load",
+          "Ensure accessibility identifiers are assigned to your UI elements."
+        ],
+        [
+          "Simulator hangs or crashes",
+          "Go to Simulator menu: Device > Erase All Content and Settings."
+        ],
+        [
+          "Keyboard input fails",
+          "Disable Hardware > Keyboard > Connect Hardware Keyboard in the Simulator."
+        ]
+      ],
+      "caption": "Troubleshooting common UI test failures in Xcode."
+    },
+    {
+      "type": "heading",
+      "text": "Best practices for UI testing in Xcode",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Always prioritize accessibility identifiers. Your test code relies on these to find elements reliably. Avoid relying on hardcoded coordinates or visual positions. If a button moves, your test might fail if it looks for a specific screen location. Keep your test code modular. Create helper methods for common sequences like logging in or navigating to a specific screen. This makes your test suite easier to maintain as your app grows."
+    },
+    {
+      "type": "stats"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I use Swift Testing for UI tests?",
+      "answer": "No. As of current Xcode versions, Swift Testing is not supported for UI tests. You must use the XCTest framework for all UI testing tasks."
+    },
+    {
+      "question": "Why are my tests failing to find UI elements?",
+      "answer": "This is often due to missing accessibility identifiers. Check that your UI elements have unique accessibility identifiers set in your code or in the Attributes Inspector."
+    },
+    {
+      "question": "What is the keyboard shortcut to run tests?",
+      "answer": "The primary shortcut to run all tests in your current scheme is ⌘ + U."
+    }
+  ],
+  "sources": [
+    {
+      "title": "functionize.com",
+      "url": "https://www.functionize.com/automated-testing/what-is-xcode-ui-testing",
+      "publisher": "functionize.com"
+    },
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "publisher": "rentamac.io"
+    }
+  ],
+  "task": "Run a UI test in Xcode",
+  "appliesTo": "Xcode 27 and later on macOS",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Xcode 27 installed",
+    "An existing iOS or macOS project",
+    "A UI Testing Bundle target"
+  ],
+  "steps": [
+    {
+      "name": "Open your project",
+      "text": "Launch Xcode and open the project you want to test."
+    },
+    {
+      "name": "Add a UI testing bundle",
+      "text": "Go to File > New > Target, search for UI Testing Bundle, and add it to your project."
+    },
+    {
+      "name": "Open the test file",
+      "text": "Locate your new UI test file in the project navigator and click to open it."
+    },
+    {
+      "name": "Run the tests",
+      "text": "Press ⌘ + U to execute all tests or click the diamond icon in the editor gutter to run a specific one."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Run all tests",
+      "keys": "⌘ + U"
+    },
+    {
+      "action": "Open Test Navigator",
+      "keys": "⌘ + 6"
+    },
+    {
+      "action": "Open Quickly",
+      "keys": "⌘ + ⇧ + O"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Tests fail to interact with elements",
+      "fix": "Check that accessibility identifiers are correctly set for all UI components."
+    },
+    {
+      "problem": "Simulator is slow or unresponsive",
+      "fix": "Erase the simulator content and settings via the Simulator menu."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the record button for UI tests?",
+    "capability": "point",
+    "result": "Lazur circles the red record button at the bottom of the Xcode editor window.",
+    "shell": "code",
+    "pointsAt": "Record button"
+  },
+  "type": "howto",
+  "slug": "run-ui-tests-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-ui-tests-in-xcode/how-to-run-ui-tests-in-xcode-1-b92f6e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer using a Mac to run UI tests in Xcode",
+      "caption": "Setting up UI tests requires a clean workspace and focus.",
+      "keywords": [
+        "how to run ui tests in xcode on mac",
+        "Xcode",
+        "run UI tests",
+        "Mac",
+        "developer working on Mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-ui-tests-in-xcode/how-to-run-ui-tests-in-xcode-2-611e69.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a Mac for app development",
+      "caption": "A dedicated environment helps maintain consistent test results.",
+      "keywords": [
+        "how to run ui tests in xcode on mac",
+        "Xcode",
+        "run UI tests",
+        "Mac",
+        "modern office tech",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AppleServiceCenterRaipur",
+        "url": "https://pixabay.com/users/AppleServiceCenterRaipur-55058777/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/wireless-keyboard-mouse-earphones-10178112/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/run-ui-tests-in-xcode/how-to-run-ui-tests-in-xcode-3-cdcb17.jpg",
+      "width": 1280,
+      "height": 905,
+      "alt": "Close up of a developer coding on a Mac",
+      "caption": "Writing robust UI tests saves time in the development process.",
+      "keywords": [
+        "how to run ui tests in xcode on mac",
+        "Xcode",
+        "run UI tests",
+        "Mac",
+        "coding on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "422737",
+        "url": "https://pixabay.com/users/422737-422737/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/software-programming-program-486706/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to run ui tests in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "Xcode UI testing": 1,
+      "XCTest framework": 3,
+      "Xcode test navigator": 1,
+      "automated UI tests": 2
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

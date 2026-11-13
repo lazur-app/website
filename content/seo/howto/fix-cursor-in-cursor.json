@@ -1,0 +1,251 @@
+{
+  "title": "How to fix cursor in Cursor on Mac: a complete guide for developers",
+  "metaTitle": "How to fix cursor in Cursor on Mac: Troubleshooting Guide",
+  "description": "Is your cursor mac not working properly? This guide walks you through fixing keyboard shortcuts, terminal issues, and installation errors in Cursor.",
+  "targetKeyword": "cursor mac not working",
+  "secondaryKeywords": [
+    "Cursor IDE troubleshooting",
+    "Cursor editor Mac issues",
+    "Cursor keyboard shortcuts not working"
+  ],
+  "intro": "If your Cursor editor on Mac is not working as expected, most issues stem from corrupted cache files, conflicting extensions, or outdated session states. You can resolve these problems by restarting the application, resetting your keybindings, or clearing the local storage directory.",
+  "tldr": [
+    "Restart Cursor by quitting with ⌘+Q to clear transient bugs.",
+    "Use ⌘+⇧+P and type Developer: Toggle Keyboard Shortcuts Troubleshooting to find conflicts.",
+    "Reinstall the app if you see a damaged file warning.",
+    "Clear the cache at ~/Library/Application Support/Cursor/User/globalStorage/ to fix persistent freezes."
+  ],
+  "stats": [
+    {
+      "value": "2000",
+      "label": "Completions per month on the Hobby plan",
+      "sourceUrl": "https://cursor.com",
+      "sourceTitle": "Cursor: AI Coding Agent for Building Ambitious Software"
+    },
+    {
+      "value": "500",
+      "label": "Fast requests for Pro users",
+      "sourceUrl": "https://cursor.com",
+      "sourceTitle": "Cursor: AI Coding Agent for Building Ambitious Software"
+    },
+    {
+      "value": "100k",
+      "label": "File limit for codebase indexing",
+      "sourceUrl": "https://cursor.com",
+      "sourceTitle": "Cursor: AI Coding Agent for Building Ambitious Software"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Initial steps for Cursor Mac not working",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you change deep settings, try the simplest fixes. Most users find that a clean restart resolves interface glitches. Press ⌘+Q to quit the application completely. Do not just close the window. Reopening forces the app to reload its configuration files and clear temporary memory. Check your internet connection next. AI features require a stable link to the Cursor servers. If you use a VPN, toggle it off to see if the connection issues disappear."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Troubleshooting keyboard shortcuts",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "When your shortcuts stop responding, another extension might be intercepting them. Cursor allows you to debug this directly. Open the command palette with ⌘+⇧+P. Type Developer: Toggle Keyboard Shortcuts Troubleshooting. Press the key combination that is failing. A log appears in the bottom panel. This log shows if the command is being triggered or if another process is blocking it. If you have a custom keybindings.json file, try renaming it temporarily to see if the default settings return to normal."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Fixing installation and damaged app errors",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If macOS tells you that Cursor is damaged, it is usually a Gatekeeper security check. Move the app to the Trash. Download a fresh copy from the official website. If the error persists, you can remove the quarantine attribute via the terminal. Open Terminal.app and run sudo xattr -rd com.apple.quarantine /Applications/Cursor.app. Follow this with sudo xattr -cr /Applications/Cursor.app. This clears the security flag that macOS attaches to downloaded files."
+    },
+    {
+      "type": "heading",
+      "text": "Clearing cache and workspace issues",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Persistent freezes often require a deeper clean. The application stores workspace data in your user directory. You can remove the folder located at ~/Library/Application Support/Cursor/User/globalStorage/. This resets the local state without deleting your project files. If the terminal inside Cursor fails to launch, check your settings. Open Settings, search for Terminal Profile, and ensure you have a valid shell like zsh or bash selected. Workspace trust is another factor. If the AI agent cannot read your files, check System Settings, Privacy and Security, and ensure Cursor has full disk access."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why does my Cursor app say it is damaged?",
+      "answer": "This is a macOS Gatekeeper issue. Reinstall the app or use the xattr terminal commands to remove the quarantine flag."
+    },
+    {
+      "question": "How do I fix broken keyboard shortcuts?",
+      "answer": "Use the Developer: Toggle Keyboard Shortcuts Troubleshooting command in the palette to identify conflicts, or reset your keybindings.json file."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cursor: AI Coding Agent for Building Ambitious Software",
+      "url": "https://cursor.com",
+      "accessedAt": "2026-11-13",
+      "publisher": "cursor.com"
+    }
+  ],
+  "task": "Fixing common software errors in the Cursor IDE on macOS.",
+  "appliesTo": "Cursor IDE version 0.40 and newer on macOS.",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Cursor IDE installed on macOS",
+    "Access to Terminal.app",
+    "Administrator privileges"
+  ],
+  "steps": [
+    {
+      "name": "Restart Cursor",
+      "text": "Quit the application completely using the keyboard shortcut to clear transient session data.",
+      "shortcut": "⌘+Q"
+    },
+    {
+      "name": "Check for updates",
+      "text": "Open the command palette and run the update command to ensure you have the latest patches.",
+      "menuPath": [
+        "Command Palette",
+        "Cursor: Attempt Update"
+      ],
+      "shortcut": "⌘+⇧+P"
+    },
+    {
+      "name": "Debug shortcuts",
+      "text": "Enable the keyboard troubleshooting mode to see if your keys are being intercepted.",
+      "menuPath": [
+        "Command Palette",
+        "Developer: Toggle Keyboard Shortcuts Troubleshooting"
+      ],
+      "shortcut": "⌘+⇧+P"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Quit Cursor",
+      "keys": "⌘+Q"
+    },
+    {
+      "action": "Open Command Palette",
+      "keys": "⌘+⇧+P"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Cursor is damaged error",
+      "fix": "Remove the quarantine attribute using xattr commands in Terminal."
+    },
+    {
+      "problem": "Shortcuts not working",
+      "fix": "Use the shortcut debugger to find conflicts or reset keybindings.json."
+    }
+  ],
+  "lazur": {
+    "spoken": "Lazur, where is the keyboard shortcut settings menu?",
+    "capability": "point",
+    "result": "Lazur circles the Keyboard Shortcuts menu item in the command palette.",
+    "shell": "code",
+    "pointsAt": "Keyboard Shortcuts"
+  },
+  "type": "howto",
+  "slug": "fix-cursor-in-cursor",
+  "app": "cursor",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-cursor-in-cursor/cursor-mac-not-working-1-b1773e.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on their Mac to fix cursor mac not working issues",
+      "caption": "Troubleshooting your development environment is a standard part of the workflow.",
+      "keywords": [
+        "cursor mac not working",
+        "Cursor",
+        "fix cursor",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-cursor-in-cursor/cursor-mac-not-working-2-0eed1f.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a MacBook for fixing cursor mac not working",
+      "caption": "A tidy workspace helps you focus on solving editor errors.",
+      "keywords": [
+        "cursor mac not working",
+        "Cursor",
+        "fix cursor",
+        "Mac",
+        "clean modern desk setup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "kaboompics",
+        "url": "https://pixabay.com/users/kaboompics-1013994/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-apple-imac-keyboard-mouse-791392/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/fix-cursor-in-cursor/cursor-mac-not-working-3-55baca.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person using a laptop to research why their cursor mac is not working",
+      "caption": "Taking time to diagnose software issues saves hours of frustration later.",
+      "keywords": [
+        "cursor mac not working",
+        "Cursor",
+        "fix cursor",
+        "Mac",
+        "person using laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "cursor mac not working",
+    "inTitle": false,
+    "inH1": false,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Cursor IDE troubleshooting": 1,
+      "Cursor editor Mac issues": 1,
+      "Cursor keyboard shortcuts not working": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

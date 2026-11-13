@@ -1014,5 +1014,659 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "IDA gear survey (2019, 286 Part II respondents): about 75% edited their latest film on a Mac; Premiere Pro led editing (https://www.documentary.org/feature/tools-trade-documentary-makers-talk-gear, snippet, dated; source mapping unverified).",
     "discoveredAt": "2026-11-08"
+  },
+  {
+    "slug": "travel-agents",
+    "name": "Travel agents",
+    "singular": "travel agent",
+    "apps": [
+      "excel",
+      "outlook",
+      "chrome",
+      "zoom"
+    ],
+    "keywords": [
+      "travel agency itinerary software",
+      "automation tools for travel agents"
+    ],
+    "why": "Travel agents manage complex bookings and client communications, frequently searching for ways to optimize reservation workflows.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "real-estate-appraisers",
+    "name": "Real estate appraisers",
+    "singular": "real estate appraiser",
+    "apps": [
+      "excel",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "real estate appraisal report software",
+      "property valuation tools"
+    ],
+    "why": "Appraisers spend their day creating detailed valuation reports that require specific document formatting and data manipulation.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "clinical-research-coordinators",
+    "name": "Clinical research coordinators",
+    "singular": "clinical research coordinator",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "clinical trial data management software",
+      "research documentation tools"
+    ],
+    "why": "They must maintain rigorous compliance and data accuracy, often seeking software solutions for patient tracking and reporting.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "medical-transcriptionists",
+    "name": "Medical transcriptionists",
+    "singular": "medical transcriptionist",
+    "apps": [
+      "word",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "medical transcription software tools",
+      "audio to text workflow optimization"
+    ],
+    "why": "Transcriptionists rely heavily on text editors and audio playback software, frequently looking for AI-assisted typing tools.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "payroll-specialists",
+    "name": "Payroll specialists",
+    "singular": "payroll specialist",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook"
+    ],
+    "keywords": [
+      "payroll processing software help",
+      "automated payroll reporting tools"
+    ],
+    "why": "Payroll processing is highly repetitive and error-sensitive, leading to high search volume for spreadsheet automation.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "logistics-coordinators",
+    "name": "Logistics coordinators",
+    "singular": "logistics coordinator",
+    "apps": [
+      "excel",
+      "slack",
+      "chrome",
+      "gmail"
+    ],
+    "keywords": [
+      "logistics tracking software help",
+      "supply chain management tools"
+    ],
+    "why": "They constantly monitor shipments and communicate with carriers, requiring efficient software to handle high volumes of tracking data.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "curriculum-developers",
+    "name": "Curriculum developers",
+    "singular": "curriculum developer",
+    "apps": [
+      "google-docs",
+      "canva",
+      "notion",
+      "zoom"
+    ],
+    "keywords": [
+      "curriculum design software tools",
+      "educational content creation help"
+    ],
+    "why": "They create extensive educational materials and frequently look for layout and project management software to organize course content.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "tax-preparers",
+    "name": "Tax preparers",
+    "singular": "tax preparer",
+    "apps": [
+      "excel",
+      "outlook",
+      "chrome"
+    ],
+    "keywords": [
+      "tax return software help",
+      "data entry automation for tax prep"
+    ],
+    "why": "Tax preparers handle high-stakes financial documentation and often search for ways to streamline data input into tax forms.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "content-strategists",
+    "name": "Content strategists",
+    "singular": "content strategist",
+    "apps": [
+      "notion",
+      "google-docs",
+      "slack",
+      "chrome"
+    ],
+    "keywords": [
+      "content calendar management tools",
+      "content strategy workflow software"
+    ],
+    "why": "They manage elaborate editorial calendars and require organizational software to track content production cycles.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "customer-support-leads",
+    "name": "Customer support leads",
+    "singular": "customer support lead",
+    "apps": [
+      "slack",
+      "gmail",
+      "chrome",
+      "zoom"
+    ],
+    "keywords": [
+      "customer support ticket management",
+      "help desk software optimization"
+    ],
+    "why": "They manage large volumes of customer queries and search for tools to improve response times and ticket organization.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "digital-media-buyers",
+    "name": "Digital media buyers",
+    "singular": "digital media buyer",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "chrome"
+    ],
+    "keywords": [
+      "ad campaign tracking software",
+      "media buying data analysis tools"
+    ],
+    "why": "They deal with complex spreadsheet data to track ad spend and performance, searching for automation to handle reporting.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "legal-assistants",
+    "name": "Legal assistants",
+    "singular": "legal assistant",
+    "apps": [
+      "word",
+      "outlook",
+      "google-docs",
+      "slack"
+    ],
+    "keywords": [
+      "legal document management software",
+      "case file organization tools"
+    ],
+    "why": "Legal assistants manage high volumes of documentation and often look for ways to index and search files more efficiently.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "nonprofit-program-coordinators",
+    "name": "Nonprofit program coordinators",
+    "singular": "nonprofit program coordinator",
+    "apps": [
+      "google-docs",
+      "gmail",
+      "notion"
+    ],
+    "keywords": [
+      "nonprofit program management software",
+      "volunteer coordination tools"
+    ],
+    "why": "They juggle multiple administrative tasks and require organizational tools to manage program outcomes and donor communications.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "technical-recruiters",
+    "name": "Technical recruiters",
+    "singular": "technical recruiter",
+    "apps": [
+      "slack",
+      "gmail",
+      "chrome",
+      "notion"
+    ],
+    "keywords": [
+      "candidate tracking system help",
+      "automated sourcing tools for recruiters"
+    ],
+    "why": "They spend their day searching for talent and managing pipelines, often seeking software to automate candidate outreach.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "social-media-analysts",
+    "name": "Social media analysts",
+    "singular": "social media analyst",
+    "apps": [
+      "google-sheets",
+      "chrome",
+      "canva"
+    ],
+    "keywords": [
+      "social media reporting tools",
+      "analytics dashboard software help"
+    ],
+    "why": "They spend hours aggregating data from various platforms and look for tools to simplify report generation.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "estate-planners",
+    "name": "Estate planners",
+    "singular": "estate planner",
+    "apps": [
+      "word",
+      "excel",
+      "outlook"
+    ],
+    "keywords": [
+      "estate planning documentation software",
+      "client data management for lawyers"
+    ],
+    "why": "They manage sensitive legal and financial documents, requiring specialized software for document generation and tracking.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "community-managers",
+    "name": "Community managers",
+    "singular": "community manager",
+    "apps": [
+      "slack",
+      "notion",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "community engagement platform tools",
+      "online community management software"
+    ],
+    "why": "They manage interactions across multiple platforms and search for tools to streamline communication and moderation.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "seo-specialists",
+    "name": "SEO specialists",
+    "singular": "seo specialist",
+    "apps": [
+      "google-sheets",
+      "chrome",
+      "notion"
+    ],
+    "keywords": [
+      "seo reporting software help",
+      "keyword research automation tools"
+    ],
+    "why": "They depend heavily on data analysis and search for software that can automate keyword tracking and site auditing.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "virtual-assistants",
+    "name": "Virtual assistants",
+    "singular": "virtual assistant",
+    "apps": [
+      "gmail",
+      "google-docs",
+      "slack",
+      "zoom"
+    ],
+    "keywords": [
+      "virtual assistant task management tools",
+      "remote office automation software"
+    ],
+    "why": "They handle diverse tasks for multiple clients and constantly look for software to improve efficiency and organization.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "copy-editors",
+    "name": "Copy editors",
+    "singular": "copy editor",
+    "apps": [
+      "word",
+      "google-docs",
+      "chrome"
+    ],
+    "keywords": [
+      "copy editing software tools",
+      "automated proofreading help"
+    ],
+    "why": "They spend the entire day in text processors and often search for advanced grammar and consistency-checking tools.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "b2b-sales-reps",
+    "name": "B2B sales reps",
+    "singular": "b2b sales rep",
+    "apps": [
+      "gmail",
+      "slack",
+      "chrome",
+      "excel"
+    ],
+    "keywords": [
+      "sales pipeline management software",
+      "email automation tools for sales"
+    ],
+    "why": "They manage long sales cycles and search for software to automate follow-ups and track prospect engagement.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "research-librarians",
+    "name": "Research librarians",
+    "singular": "research librarian",
+    "apps": [
+      "chrome",
+      "word",
+      "google-sheets"
+    ],
+    "keywords": [
+      "academic database management tools",
+      "research organization software"
+    ],
+    "why": "They manage vast amounts of information and search for tools to better index and retrieve research materials.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "hr-compliance-specialists",
+    "name": "HR compliance specialists",
+    "singular": "hr compliance specialist",
+    "apps": [
+      "excel",
+      "word",
+      "outlook"
+    ],
+    "keywords": [
+      "hr compliance tracking software",
+      "employee record management tools"
+    ],
+    "why": "They handle highly regulated documentation and seek software to ensure compliance and audit readiness.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "grant-administrators",
+    "name": "Grant administrators",
+    "singular": "grant administrator",
+    "apps": [
+      "excel",
+      "word",
+      "google-docs"
+    ],
+    "keywords": [
+      "grant management software help",
+      "compliance reporting tools"
+    ],
+    "why": "They must track grant funding and reporting requirements, often searching for specialized project management software.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "media-planners",
+    "name": "Media planners",
+    "singular": "media planner",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "chrome"
+    ],
+    "keywords": [
+      "media planning software tools",
+      "advertising budget management help"
+    ],
+    "why": "They manage complex advertising schedules and budgets, requiring robust spreadsheet and planning software.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "it-project-coordinators",
+    "name": "IT project coordinators",
+    "singular": "it project coordinator",
+    "apps": [
+      "linear",
+      "slack",
+      "notion",
+      "vs-code"
+    ],
+    "keywords": [
+      "it project management software",
+      "agile workflow tools for it"
+    ],
+    "why": "They coordinate technical teams and search for software that integrates well with development environments.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "medical-coders",
+    "name": "Medical coders",
+    "singular": "medical coder",
+    "apps": [
+      "excel",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "medical coding software help",
+      "billing code lookup tools"
+    ],
+    "why": "They translate medical services into codes and frequently look for software to improve lookup speed and accuracy.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "academic-advisors",
+    "name": "Academic advisors",
+    "singular": "academic advisor",
+    "apps": [
+      "outlook",
+      "google-sheets",
+      "zoom"
+    ],
+    "keywords": [
+      "student advising software tools",
+      "scheduling automation for advisors"
+    ],
+    "why": "They manage large student caseloads and search for tools to organize appointments and track student progress.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "public-policy-advocates",
+    "name": "Public policy advocates",
+    "singular": "public policy advocate",
+    "apps": [
+      "word",
+      "google-docs",
+      "gmail"
+    ],
+    "keywords": [
+      "policy tracking software tools",
+      "advocacy campaign management"
+    ],
+    "why": "They track legislative changes and manage communication efforts, often looking for software to organize research and outreach.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "procurement-analysts",
+    "name": "Procurement analysts",
+    "singular": "procurement analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook"
+    ],
+    "keywords": [
+      "procurement data analysis software",
+      "vendor management tools"
+    ],
+    "why": "They analyze supply chains and vendor costs, searching for software to automate data visualization and reporting.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "technical-support-specialists",
+    "name": "Technical support specialists",
+    "singular": "technical support specialist",
+    "apps": [
+      "slack",
+      "chrome",
+      "zoom"
+    ],
+    "keywords": [
+      "remote support software help",
+      "troubleshooting documentation tools"
+    ],
+    "why": "They resolve technical issues and require efficient tools for ticket management and remote desktop access.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "data-entry-clerks",
+    "name": "Data entry clerks",
+    "singular": "data entry clerk",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "word"
+    ],
+    "keywords": [
+      "data entry automation software",
+      "spreadsheet efficiency tools"
+    ],
+    "why": "Their work is entirely focused on data input, leading to a constant search for software that speeds up typing and validation.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "financial-planners",
+    "name": "Financial planners",
+    "singular": "financial planner",
+    "apps": [
+      "excel",
+      "outlook",
+      "chrome"
+    ],
+    "keywords": [
+      "financial planning software help",
+      "client portfolio management tools"
+    ],
+    "why": "They manage client wealth and search for software that simplifies complex financial modeling and reporting.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "museum-curators",
+    "name": "Museum curators",
+    "singular": "museum curator",
+    "apps": [
+      "notion",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "collection management software",
+      "curatorial research tools"
+    ],
+    "why": "They manage large databases of artifacts and research, often searching for better ways to catalog and display information.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "compliance-analysts",
+    "name": "Compliance analysts",
+    "singular": "compliance analyst",
+    "apps": [
+      "excel",
+      "word",
+      "outlook"
+    ],
+    "keywords": [
+      "compliance monitoring software",
+      "audit trail management tools"
+    ],
+    "why": "They monitor organizational processes for regulatory adherence and need software to track and report on compliance metrics.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "marketing-operations-managers",
+    "name": "Marketing operations managers",
+    "singular": "marketing operations manager",
+    "apps": [
+      "notion",
+      "slack",
+      "google-sheets",
+      "chrome"
+    ],
+    "keywords": [
+      "marketing automation platform help",
+      "marketing workflow software"
+    ],
+    "why": "They build and maintain the tech stack for marketing teams, frequently searching for software integrations and workflow tools.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "clinical-data-managers",
+    "name": "Clinical data managers",
+    "singular": "clinical data manager",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "word"
+    ],
+    "keywords": [
+      "clinical data management software",
+      "data validation tools"
+    ],
+    "why": "They ensure the integrity of clinical trial data and often search for software to automate data cleaning and verification.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "corporate-trainers",
+    "name": "Corporate trainers",
+    "singular": "corporate trainer",
+    "apps": [
+      "powerpoint",
+      "keynote",
+      "zoom",
+      "canva"
+    ],
+    "keywords": [
+      "training material creation software",
+      "e-learning development tools"
+    ],
+    "why": "They create and deliver training programs, often looking for software to improve presentation design and engagement.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "logistics-analysts",
+    "name": "Logistics analysts",
+    "singular": "logistics analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "chrome"
+    ],
+    "keywords": [
+      "logistics optimization software",
+      "supply chain data analysis tools"
+    ],
+    "why": "They analyze shipping and inventory data to improve efficiency, frequently searching for advanced spreadsheet and modeling tools.",
+    "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "risk-management-specialists",
+    "name": "Risk management specialists",
+    "singular": "risk management specialist",
+    "apps": [
+      "excel",
+      "word",
+      "outlook"
+    ],
+    "keywords": [
+      "risk assessment software tools",
+      "enterprise risk management help"
+    ],
+    "why": "They model and mitigate organizational risks, requiring specialized software for data tracking and reporting.",
+    "discoveredAt": "2026-11-13"
   }
 ];

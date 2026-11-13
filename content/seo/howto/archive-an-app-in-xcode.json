@@ -1,0 +1,333 @@
+{
+  "title": "How to archive an app in Xcode on Mac: simple steps for developers",
+  "metaTitle": "How to archive an app in Xcode on Mac",
+  "description": "Learn how to archive an app in Xcode on Mac to prepare for distribution. Follow these clear steps to build your project for the App Store or TestFlight.",
+  "targetKeyword": "how to archive an app in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode archive build",
+    "Xcode organizer",
+    "iOS distribution build",
+    "Xcode build settings",
+    "Xcode app submission"
+  ],
+  "intro": "To archive an app in Xcode on Mac, you must select a generic device as your run destination and then choose the Archive option from the Product menu. This process creates a build of your application ready for distribution to the App Store, TestFlight, or internal testing.",
+  "tldr": [
+    "Set your run destination to Generic iOS Device in the Xcode toolbar.",
+    "Go to Product > Archive in the top menu bar to begin the process.",
+    "Wait for the build to complete, then the Organizer window will open automatically.",
+    "If the Organizer does not open, select Window > Organizer to view your archives.",
+    "Ensure your project settings and provisioning profiles are configured correctly before archiving."
+  ],
+  "stats": [
+    {
+      "value": "60 million",
+      "label": "Registered Apple Developers as of 2025",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "22%",
+      "label": "App Store submission rejection rate in 2025",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "64%",
+      "label": "Developers using CI/CD pipelines",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why archiving is essential for your app",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Archiving is the formal process of packaging your application for release. Unlike running your app in a simulator, an archive contains the full binary, assets, and metadata needed for distribution. It is the final step before you send your code to Apple for review. Without a valid archive, you cannot upload your app to App Store Connect or share it via TestFlight."
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers often confuse running an app with archiving it. When you click Run, Xcode builds a debug version of your app optimized for local testing. An archive build is optimized for performance and includes the necessary signing certificates for public release. This distinction is vital for avoiding common submission errors."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Step by step guide to creating an archive",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you begin, ensure your project is saved and your build scheme is set correctly. Follow these steps to generate your archive build."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open your project in Xcode.",
+        "Click the scheme selector in the top toolbar to choose your app target.",
+        "Select Generic iOS Device from the destination menu.",
+        "Navigate to the Product menu at the top of your screen.",
+        "Select Archive from the dropdown menu.",
+        "Wait for the build process to finish in the activity viewer.",
+        "Open the Organizer window to see your generated archive."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "heading",
+      "text": "Managing your archives in the Organizer",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The Organizer acts as a library for all your build archives. It allows you to validate your app, upload it to the App Store, or export it for manual distribution. If you accidentally close the window, you can always find it again via the Window menu. Keeping your archive list clean helps you track versions and manage disk space effectively."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Common issues and troubleshooting",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Archiving can sometimes fail due to misconfigured build settings or missing provisioning profiles. If you encounter a build error, check the report navigator on the left sidebar. It will provide detailed logs about why the archive process stopped."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Error Message",
+        "Common Cause",
+        "Recommended Fix"
+      ],
+      "rows": [
+        [
+          "Generic Xcode Archive",
+          "Skip Install setting",
+          "Set Skip Install to NO"
+        ],
+        [
+          "Provisioning Error",
+          "Invalid profile",
+          "Connect physical device"
+        ],
+        [
+          "Script Failure",
+          "Environment issue",
+          "Check build log"
+        ]
+      ],
+      "caption": "Troubleshooting common archive errors"
+    },
+    {
+      "type": "paragraph",
+      "text": "Another frequent issue involves bitcode. Apple has deprecated bitcode in recent versions of Xcode. If your project still has it enabled, you might see build errors. Go to your target build settings and set Enable Bitcode to No. This is a common hurdle for older projects moving to newer SDKs."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I archive my app while a simulator is selected?",
+      "answer": "No. Xcode requires you to select a generic device, such as Generic iOS Device, to create an archive. Simulators do not support the creation of production-ready archives."
+    },
+    {
+      "question": "Is there a keyboard shortcut for archiving in Xcode?",
+      "answer": "There is no default keyboard shortcut for the Archive command in Xcode. You can assign one manually by going to Xcode > Settings > Key Bindings."
+    },
+    {
+      "question": "Why is my archive not appearing in the Organizer?",
+      "answer": "If the archive does not appear, check the build log to see if the process actually finished. Ensure that your Skip Install setting is set to NO for your main target."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "apple.com",
+      "url": "https://developer.apple.com/documentation/technotes/tn3109-resolving-common-archiving-issues",
+      "accessedAt": "2026-11-13",
+      "publisher": "apple.com"
+    },
+    {
+      "title": "justacademy.co",
+      "url": "https://www.justacademy.co/resources/ios-app-development-tutorial-learn-swift-and-build-ios-apps/creating-archive-builds-using-xcode",
+      "accessedAt": "2026-11-13",
+      "publisher": "justacademy.co"
+    }
+  ],
+  "task": "Archive an app in Xcode on Mac",
+  "appliesTo": "Xcode 27.1 on macOS Tahoe 26.6",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Xcode 27.1 installed",
+    "macOS Tahoe 26.6 or later",
+    "Valid Apple Developer account",
+    "Project with valid signing configuration"
+  ],
+  "steps": [
+    {
+      "name": "Select the correct scheme",
+      "text": "Click on the scheme selector in the top toolbar and choose your app target.",
+      "menuPath": [
+        "Product",
+        "Scheme"
+      ]
+    },
+    {
+      "name": "Set build destination",
+      "text": "Select Generic iOS Device from the destination menu to enable archiving.",
+      "menuPath": [
+        "Product",
+        "Destination"
+      ]
+    },
+    {
+      "name": "Initiate the archive",
+      "text": "Click on the Product menu and select Archive to start the build process.",
+      "menuPath": [
+        "Product",
+        "Archive"
+      ]
+    },
+    {
+      "name": "Open the Organizer",
+      "text": "Once the build completes, the Organizer window will open. If not, go to Window > Organizer.",
+      "menuPath": [
+        "Window",
+        "Organizer"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Build project",
+      "keys": "⌘ B"
+    },
+    {
+      "action": "Clean build folder",
+      "keys": "⌘ ⇧ K"
+    },
+    {
+      "action": "Toggle Navigator",
+      "keys": "⌘ 0"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Archive option is greyed out",
+      "fix": "Ensure you have selected a Generic device as your destination instead of a simulator."
+    },
+    {
+      "problem": "Build fails with bitcode error",
+      "fix": "Set ENABLE_BITCODE to NO in your project build settings."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the archive button in Xcode?",
+    "capability": "point",
+    "result": "Lazur highlights the Product menu where the Archive command is located.",
+    "shell": "code",
+    "pointsAt": "Product menu"
+  },
+  "type": "howto",
+  "slug": "archive-an-app-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/archive-an-app-in-xcode/how-to-archive-an-app-in-xcode-1-65b4b5.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working in Xcode on a Mac to archive an app.",
+      "caption": "Professional developer using a Mac to manage app archives.",
+      "keywords": [
+        "how to archive an app in xcode on mac",
+        "Xcode",
+        "archive an app",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/archive-an-app-in-xcode/how-to-archive-an-app-in-xcode-2-df1559.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup for a developer on a Mac.",
+      "caption": "A tidy workspace helps you focus while archiving your code.",
+      "keywords": [
+        "how to archive an app in xcode on mac",
+        "Xcode",
+        "archive an app",
+        "Mac",
+        "clean modern workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/chairs-empty-indoors-office-2181939/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/archive-an-app-in-xcode/how-to-archive-an-app-in-xcode-3-c3de20.jpg",
+      "width": 1280,
+      "height": 826,
+      "alt": "Close up of a MacBook Pro screen showing code.",
+      "caption": "High performance hardware makes archiving faster.",
+      "keywords": [
+        "how to archive an app in xcode on mac",
+        "Xcode",
+        "archive an app",
+        "Mac",
+        "macbook pro screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-apple-macbook-room-2598310/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to archive an app in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "Xcode archive build": 1,
+      "Xcode organizer": 1,
+      "iOS distribution build": 1,
+      "Xcode build settings": 1,
+      "Xcode app submission": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

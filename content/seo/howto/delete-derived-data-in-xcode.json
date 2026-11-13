@@ -1,0 +1,296 @@
+{
+  "title": "How to delete derived data in Xcode on Mac: manual and modern cleanup guide",
+  "metaTitle": "How to delete derived data in Xcode on Mac (Easy Guide)",
+  "description": "Learn how to delete derived data in Xcode on Mac to fix build errors, save disk space, and improve performance with our step-by-step developer guide.",
+  "targetKeyword": "how to delete derived data in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode derived data folder",
+    "clean Xcode build folder",
+    "macOS developer storage",
+    "fix Xcode build errors"
+  ],
+  "intro": "To delete derived data in Xcode on Mac, use the Product menu to target specific projects or remove the entire folder manually via Finder. This process clears stale build artifacts and indexes that often cause mysterious compilation errors or consume excessive disk space.",
+  "tldr": [
+    "Use Product > Delete Derived Data for a targeted, project-specific clean in modern Xcode versions.",
+    "Quit Xcode before deleting the folder manually to avoid file locking issues.",
+    "Navigate to Xcode > Settings > Locations to find the exact path of your derived data folder.",
+    "Deleting derived data is safe but will trigger a full re-index of your project on the next build."
+  ],
+  "stats": [
+    {
+      "value": "20–60 GB",
+      "label": "Typical storage usage for Derived Data on active machines",
+      "sourceUrl": "https://dissectmac.com/blog/clean-xcode-derived-data",
+      "sourceTitle": "dissectmac.com"
+    },
+    {
+      "value": "70%",
+      "label": "Potential build time reduction via incremental compilation",
+      "sourceUrl": "https://medium.com/@alaxhenry0121/what-is-xcode-deriveddata-complete-guide-for-ios-developers-in-2025-5f962e402fab",
+      "sourceTitle": "medium.com"
+    },
+    {
+      "value": "3+ hours",
+      "label": "Daily productivity loss from stale caches in large teams",
+      "sourceUrl": "https://hasanalidev.medium.com/5-critical-derived-data-mistakes-that-slow-down-your-xcode-builds-2c6e1b4db5aa",
+      "sourceTitle": "hasanalidev.medium.com"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why you need to delete derived data",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Derived data acts as a cache for your Xcode projects. It stores build products, indexes, and intermediate files to make your development cycle faster. Over time, these files can become corrupted or outdated. When Xcode gets confused by old data, you see errors like no such module or strange linking failures. Clearing this data forces Xcode to rebuild the index from scratch. It is a standard troubleshooting step for any developer working on macOS."
+    },
+    {
+      "type": "heading",
+      "text": "Modern approach using the Product menu",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "In recent versions of Xcode, Apple added a direct way to handle this. You no longer need to hunt through hidden folders for every small issue. This method targets only the current project. It saves you from wiping the build data for other projects you might have open."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Manual deletion for a clean slate",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes a deep clean is necessary. If you are running out of disk space or the menu method does not resolve your build errors, manual deletion is the next step. You must quit Xcode first. This prevents the system from locking files that are currently in use."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Quit Xcode entirely.",
+        "Open Xcode > Settings.",
+        "Navigate to the Locations tab.",
+        "Click the arrow icon next to the Derived Data path.",
+        "Move the contents of the folder to the Trash."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Using System Settings to manage storage",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "macOS has a built-in storage manager that can identify large developer files. This is useful if you want to see exactly how much space your build data occupies. Go to System Settings > General > Storage. Look for the Developer category. You can delete your project build data and indexes directly from this interface."
+    },
+    {
+      "type": "heading",
+      "text": "Common mistakes to avoid",
+      "level": 2
+    },
+    {
+      "type": "list",
+      "items": [
+        "Deleting files while Xcode is running can lead to corrupted projects.",
+        "Removing the wrong folder in the Developer directory might delete your archives or device support files.",
+        "Ignoring the warning that your next build will take longer than usual.",
+        "Failing to check for pending changes before cleaning the build folder."
+      ],
+      "ordered": false
+    },
+    {
+      "type": "heading",
+      "text": "How this affects your build performance",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Deleting derived data is not a permanent performance fix. It is a reset button. Your first build after deletion will be slow. Xcode must re-compile all files and re-index the entire project. This is normal behavior. Once the process completes, your build speed will return to normal levels. If your builds remain slow after a clean, look into your project settings or dependencies."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is it safe to delete the entire DerivedData folder?",
+      "answer": "Yes, it is perfectly safe. Xcode will recreate the folder and the necessary subdirectories automatically the next time you build your project."
+    },
+    {
+      "question": "How often should I clean my build folder?",
+      "answer": "Only when you encounter persistent build errors, strange behavior in the editor, or when you need to reclaim significant disk space."
+    },
+    {
+      "question": "Does this delete my source code?",
+      "answer": "No. Derived data only contains build products and index files. Your source code remains untouched in your project directory."
+    }
+  ],
+  "sources": [
+    {
+      "title": "medium.com",
+      "url": "https://medium.com/@foks.wang/xcode-finally-added-delete-derived-data-06c6f91d48e7"
+    },
+    {
+      "title": "dissectmac.com",
+      "url": "https://dissectmac.com/blog/clean-xcode-derived-data"
+    },
+    {
+      "title": "medium.com",
+      "url": "https://medium.com/@alaxhenry0121/what-is-xcode-deriveddata-complete-guide-for-ios-developers-in-2025-5f962e402fab"
+    },
+    {
+      "title": "hasanalidev.medium.com",
+      "url": "https://hasanalidev.medium.com/5-critical-derived-data-mistakes-that-slow-down-your-xcode-builds-2c6e1b4db5aa"
+    }
+  ],
+  "task": "Delete derived data in Xcode",
+  "appliesTo": "Xcode 15 and later versions",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS",
+    "Xcode installed",
+    "Basic knowledge of Finder"
+  ],
+  "steps": [
+    {
+      "name": "Use the Product menu",
+      "text": "Open your project in Xcode. Go to the top menu bar and select Product, then click Delete Derived Data. Confirm the action when prompted.",
+      "menuPath": [
+        "Product",
+        "Delete Derived Data"
+      ]
+    },
+    {
+      "name": "Manually clear the folder",
+      "text": "Quit Xcode. Open Settings from the Xcode menu. Select the Locations tab. Click the arrow icon next to Derived Data to open it in Finder. Select the project folder and move it to the Trash.",
+      "menuPath": [
+        "Xcode",
+        "Settings",
+        "Locations"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Clean build folder",
+      "keys": "⇧ ⌘ K"
+    },
+    {
+      "action": "Open Settings",
+      "keys": "⌘ ,"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Xcode is stuck and won't delete the folder",
+      "fix": "Force quit Xcode using ⌥ ⌘ ⎋ and try deleting the folder again in Finder."
+    },
+    {
+      "problem": "Build errors persist after deletion",
+      "fix": "Ensure you have also cleaned your build folder using ⇧ ⌘ K and checked your project dependencies."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the delete derived data button?",
+    "capability": "point",
+    "result": "Lazur will highlight the Delete Derived Data option within the Product menu on your screen.",
+    "shell": "code",
+    "pointsAt": "Delete Derived Data"
+  },
+  "type": "howto",
+  "slug": "delete-derived-data-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/delete-derived-data-in-xcode/how-to-delete-derived-data-in-xcode-1-882e41.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer using a Mac to learn how to delete derived data in Xcode on Mac.",
+      "caption": "Maintain a clean workspace to keep your development environment fast.",
+      "keywords": [
+        "how to delete derived data in xcode on mac",
+        "Xcode",
+        "delete derived data",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/delete-derived-data-in-xcode/how-to-delete-derived-data-in-xcode-2-88fc8e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup for a developer managing Xcode files on Mac.",
+      "caption": "Removing unnecessary files helps keep your Mac running efficiently.",
+      "keywords": [
+        "how to delete derived data in xcode on mac",
+        "Xcode",
+        "delete derived data",
+        "Mac",
+        "clean modern office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ninabobo88",
+        "url": "https://pixabay.com/users/ninabobo88-205467/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/light-office-computer-business-300431/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/delete-derived-data-in-xcode/how-to-delete-derived-data-in-xcode-3-e67bf0.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A programmer focused on fixing build errors in Xcode on Mac.",
+      "caption": "Troubleshooting build issues is a standard part of the development process.",
+      "keywords": [
+        "how to delete derived data in xcode on mac",
+        "Xcode",
+        "delete derived data",
+        "Mac",
+        "focused programmer at computer",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/code-coding-computer-data-1839406/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to delete derived data in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Xcode derived data folder": 1,
+      "clean Xcode build folder": 1,
+      "macOS developer storage": 1,
+      "fix Xcode build errors": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

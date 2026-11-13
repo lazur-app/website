@@ -1,0 +1,300 @@
+{
+  "title": "How to check the Xcode version in Xcode on Mac: simple steps for developers",
+  "metaTitle": "How to check the Xcode version in Xcode on Mac",
+  "description": "Learn how to check the Xcode version in Xcode on Mac using the About menu, Terminal, or App Store. Follow our simple guide for current Xcode 27 users.",
+  "targetKeyword": "how to check the xcode version in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode version check",
+    "find Xcode version macOS",
+    "Xcode 27 version",
+    "check Xcode command line tools version"
+  ],
+  "intro": "To check the Xcode version in Xcode on Mac, open the application and select About Xcode from the main menu. This displays the exact version and build number currently installed on your system.",
+  "tldr": [
+    "Open Xcode from your Applications folder or use Spotlight search.",
+    "Click the Xcode menu in the top left corner of your screen.",
+    "Select About Xcode to view your version and build number.",
+    "Use Terminal command xcode-select -p to verify your active developer path.",
+    "Check the App Store for available updates to ensure you are on the latest release."
+  ],
+  "stats": [
+    {
+      "value": "60 million",
+      "label": "Registered Apple Developers",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "23.00%",
+      "label": "App Store Rejection Rate",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "~10%",
+      "label": "Global Xcode Usage",
+      "sourceUrl": "https://www.techlila.com/macos-developer-statistics/",
+      "sourceTitle": "techlila.com"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why checking your Xcode version matters",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Knowing your Xcode version is important for compatibility. Apple updates its SDKs frequently to support new macOS features. If you develop for iOS, iPadOS, or visionOS, your version must match the requirements for the current App Store submission process. Using an outdated version can prevent you from uploading your builds. It may also lead to build errors when using newer Swift features."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Check the version using the Xcode menu",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The most reliable way to see your version is through the app itself. This method shows the exact build number, which is helpful when debugging issues with Apple Support or community forums."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open Xcode on your Mac.",
+        "Look at the top menu bar.",
+        "Click the word Xcode next to the Apple icon.",
+        "Select About Xcode from the dropdown menu.",
+        "A window appears showing the version and build number."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Verify Xcode via Terminal",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers often work in the command line. You can verify the active Xcode path and version without opening the full GUI. This is useful if you manage multiple Xcode installations on one machine."
+    },
+    {
+      "type": "paragraph",
+      "text": "Run the command xcode-select -p in your terminal window. This displays the path to the active developer directory. If you need the version of the Command Line Tools, use the command pkgutil --pkg-info=com.apple.pkg.CLTools_Executables and look for the version line."
+    },
+    {
+      "type": "heading",
+      "text": "Manage multiple Xcode versions",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes you need an older version of Xcode for legacy projects. You can have several versions installed at once. Use the xcode-select command to tell your Mac which one to use for command line tasks. Run sudo xcode-select --switch followed by the path to your desired Xcode app folder."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "text": "If you see an error about an active developer directory, run xcode-select --install in your terminal to trigger the installation of the required tools.",
+      "title": "Fixing common setup issues"
+    },
+    {
+      "type": "heading",
+      "text": "Updating Xcode through the App Store",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The App Store is the official way to keep Xcode updated. Open the App Store app and search for Xcode. If an update is available, you will see an Update button. This ensures you have the latest SDKs and performance improvements. Always check your disk space before updating, as a full installation requires over 10 GB."
+    },
+    {
+      "type": "image",
+      "index": 0
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is there a web-based version of Xcode?",
+      "answer": "No. Xcode is a native macOS application. There is no web app version. While services like Xcode Cloud exist for CI/CD, they are integrated cloud services, not a web-based IDE."
+    },
+    {
+      "question": "Does Xcode 27 run on Intel Macs?",
+      "answer": "No. Xcode 27 requires an Apple silicon Mac. It marks a shift away from support for older Intel-based hardware."
+    },
+    {
+      "question": "How do I find my build number?",
+      "answer": "The build number is displayed in parentheses inside the About Xcode window, right next to the main version number."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/"
+    },
+    {
+      "title": "techlila.com",
+      "url": "https://www.techlila.com/macos-developer-statistics/"
+    },
+    {
+      "title": "apple.com",
+      "url": "https://developer.apple.com/documentation/xcode/configuring-command-line-tools-settings"
+    },
+    {
+      "title": "install.guide",
+      "url": "https://mac.install.guide/commandlinetools/2"
+    }
+  ],
+  "task": "Check the current version of the Xcode application installed on a macOS system.",
+  "appliesTo": "Xcode 27 and later versions on macOS Tahoe 26.6 or later.",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac with Apple silicon",
+    "macOS Tahoe 26.6 or later",
+    "Xcode installed from the Mac App Store"
+  ],
+  "steps": [
+    {
+      "name": "Open Xcode",
+      "text": "Launch Xcode from your Applications folder or use Spotlight search by pressing ⌘ Command + Space and typing Xcode.",
+      "shortcut": "⌘ Space"
+    },
+    {
+      "name": "Access the About menu",
+      "text": "Click on the Xcode menu in the top menu bar, then select About Xcode.",
+      "menuPath": [
+        "Xcode",
+        "About Xcode"
+      ]
+    },
+    {
+      "name": "Read the version",
+      "text": "View the version and build number in the window that appears on your screen."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Spotlight",
+      "keys": "⌘ Space"
+    },
+    {
+      "action": "Open Xcode Settings",
+      "keys": "⌘ ,"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Unable to get active developer directory",
+      "fix": "Run xcode-select --install in your Terminal to install the necessary command line tools."
+    },
+    {
+      "problem": "Wrong Xcode version active in Terminal",
+      "fix": "Use sudo xcode-select --switch followed by the path to your preferred Xcode app to change the active version."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where can I see the version of Xcode?",
+    "capability": "point",
+    "result": "Lazur circles the Xcode menu in the top bar to show you where to click for the About Xcode option.",
+    "shell": "code",
+    "pointsAt": "Xcode menu"
+  },
+  "type": "howto",
+  "slug": "check-the-xcode-version-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/check-the-xcode-version-in-xcode/how-to-check-the-xcode-version-in-1-1678f1.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on their Mac to check the Xcode version in Xcode on Mac",
+      "caption": "Professional developers use Xcode on Mac daily for building apps.",
+      "keywords": [
+        "how to check the xcode version in xcode on mac",
+        "Xcode",
+        "check the Xcode version",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/check-the-xcode-version-in-xcode/how-to-check-the-xcode-version-in-2-e02b6c.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean office desk setup for checking the Xcode version in Xcode on Mac",
+      "caption": "A tidy workspace helps keep your development workflow focused.",
+      "keywords": [
+        "how to check the xcode version in xcode on mac",
+        "Xcode",
+        "check the Xcode version",
+        "Mac",
+        "modern office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-computer-desk-workspace-1868496/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/check-the-xcode-version-in-xcode/how-to-check-the-xcode-version-in-3-4e312c.jpg",
+      "width": 1280,
+      "height": 826,
+      "alt": "A close up of a MacBook Pro screen for how to check the xcode version in xcode on mac",
+      "caption": "High resolution screens make reading Xcode version numbers easier.",
+      "keywords": [
+        "how to check the xcode version in xcode on mac",
+        "Xcode",
+        "check the Xcode version",
+        "Mac",
+        "macbook pro screen",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-computer-apple-macbook-room-2598310/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to check the xcode version in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Xcode version check": 1,
+      "find Xcode version macOS": 1,
+      "Xcode 27 version": 1,
+      "check Xcode command line tools version": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

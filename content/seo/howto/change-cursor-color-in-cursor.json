@@ -1,0 +1,280 @@
+{
+  "title": "How to change cursor color in Cursor on Mac: a complete visual guide",
+  "metaTitle": "How to change cursor color in Cursor on Mac",
+  "description": "Learn how to change cursor color on Mac for both your system mouse pointer and the text insertion line inside the Cursor IDE with our step by step guide.",
+  "targetKeyword": "change cursor color on mac",
+  "secondaryKeywords": [
+    "Cursor IDE customization",
+    "macOS accessibility pointer settings",
+    "VS Code settings JSON",
+    "Cursor text cursor color"
+  ],
+  "intro": "To change the cursor color on your Mac, you must adjust the system-wide accessibility settings in macOS. If you want to change the text insertion cursor inside the Cursor IDE, you must edit your user settings JSON file.",
+  "tldr": [
+    "Change the system mouse pointer color via System Settings > Accessibility > Display.",
+    "Change the text editor cursor color by adding workbench.colorCustomizations to your settings.json file.",
+    "System settings affect your mouse arrow everywhere, while JSON settings only affect the text cursor inside the editor."
+  ],
+  "stats": [
+    {
+      "value": "5",
+      "label": "Minutes to configure system pointer settings",
+      "sourceUrl": "https://www.macworld.com/article/353647/how-to-macos-monterey-change-cursor-color.html",
+      "sourceTitle": "macworld.com"
+    },
+    {
+      "value": "47",
+      "label": "Available color pairs for testing via third-party tools",
+      "sourceUrl": "https://github.com/mustafaabobakr/macos-pointer-colors",
+      "sourceTitle": "github.com"
+    },
+    {
+      "value": "100%",
+      "label": "Extent of control via JSON configuration",
+      "sourceUrl": "https://egghead.io/personalize-your-cursor-vs-code-theme-with-workbench-color-customizations~3w44x",
+      "sourceTitle": "egghead.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Understanding system cursor versus text cursor",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Many users get confused between the system mouse pointer and the text cursor. The system pointer is the arrow you use to click menus and buttons. This is a setting managed by macOS itself. The text cursor is the blinking vertical line inside your code editor. This is managed by the application settings."
+    },
+    {
+      "type": "paragraph",
+      "text": "Changing one does not change the other. You might want a high contrast mouse pointer for visibility. You might also want a specific color for your text cursor to track it better against a dark background. Both are possible on a Mac."
+    },
+    {
+      "type": "heading",
+      "text": "How to change cursor color on Mac system wide",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Your Mac includes built-in tools to change the appearance of your pointer. This makes it easier to see your mouse on high resolution displays. These changes take effect immediately across all applications, including Cursor."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "How to change the text editor cursor in Cursor",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The Cursor IDE allows deep customization of its interface. You can change the color of the blinking text cursor by modifying the configuration file. This requires using the Command Palette to access the settings in JSON format."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "text": "Always ensure you have a comma after the previous property in your JSON file. Missing commas are the most common reason for settings failing to apply.",
+      "title": "JSON Syntax Tip"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you are new to JSON, do not worry. You are simply adding a key value pair to a text file. The editor will highlight any syntax errors in red, which makes it easy to spot mistakes."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Troubleshooting common issues",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes your chosen color does not appear. This often happens because a theme is overriding your settings. If you use a high contrast theme, it may force its own cursor colors. Try changing your color theme first if you encounter this."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another issue is duplicate settings. If you already have a block called workbench.colorCustomizations, do not create a new one. Add your new lines inside the existing brackets. This keeps your configuration file clean and functional."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Will changing the system cursor color break Cursor?",
+      "answer": "No. The system pointer settings are handled by macOS and do not interact with the code editor's internal rendering."
+    },
+    {
+      "question": "Can I use any color for the text cursor?",
+      "answer": "Yes. You can use any valid hex code, such as #FF0000 for red or #00FF00 for green."
+    },
+    {
+      "question": "Do I need to restart Cursor after changing settings?",
+      "answer": "No. Changes to settings.json are applied as soon as you save the file."
+    }
+  ],
+  "sources": [
+    {
+      "title": "macworld.com",
+      "url": "https://www.macworld.com/article/353647/how-to-macos-monterey-change-cursor-color.html"
+    },
+    {
+      "title": "egghead.io",
+      "url": "https://egghead.io/personalize-your-cursor-vs-code-theme-with-workbench-color-customizations~3w44x"
+    },
+    {
+      "title": "github.com",
+      "url": "https://github.com/mustafaabobakr/macos-pointer-colors"
+    }
+  ],
+  "task": "Change the text insertion cursor color in the Cursor IDE",
+  "appliesTo": "Cursor IDE on macOS",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "Cursor IDE installed on macOS",
+    "Basic knowledge of JSON format",
+    "Desired hex color code"
+  ],
+  "steps": [
+    {
+      "name": "Open Command Palette",
+      "text": "Press ⌘ ⇧ P to open the command palette in Cursor.",
+      "shortcut": "⌘ ⇧ P"
+    },
+    {
+      "name": "Access User Settings",
+      "text": "Type Preferences: Open User Settings (JSON) and press Enter.",
+      "menuPath": [
+        "Preferences",
+        "Open User Settings (JSON)"
+      ]
+    },
+    {
+      "name": "Edit JSON",
+      "text": "Add the workbench.colorCustomizations block to your JSON file.",
+      "tip": "Ensure you put a comma after the previous line if it is not the last item."
+    },
+    {
+      "name": "Save File",
+      "text": "Press ⌘ S to save the file and apply the changes.",
+      "shortcut": "⌘ S"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Command Palette",
+      "keys": "⌘ ⇧ P"
+    },
+    {
+      "action": "Save File",
+      "keys": "⌘ S"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Settings not applying",
+      "fix": "Check for missing commas between JSON properties."
+    },
+    {
+      "problem": "Color does not change",
+      "fix": "Switch to a different base theme in the preferences menu."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where do I add the cursor color settings?",
+    "capability": "point",
+    "result": "Lazur circles the workbench.colorCustomizations entry in your settings.json file.",
+    "shell": "code",
+    "pointsAt": "workbench.colorCustomizations"
+  },
+  "type": "howto",
+  "slug": "change-cursor-color-in-cursor",
+  "app": "cursor",
+  "appName": "Cursor",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-cursor-color-in-cursor/change-cursor-color-on-mac-1-fa1c83.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person working on a Mac to change cursor color on Mac settings",
+      "caption": "Configuring your Mac settings for better visibility",
+      "keywords": [
+        "change cursor color on mac",
+        "Cursor",
+        "change cursor color",
+        "Mac",
+        "person using macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-cursor-color-in-cursor/change-cursor-color-on-mac-2-c66761.jpg",
+      "width": 1280,
+      "height": 720,
+      "alt": "A clean desk setup where you change cursor color on Mac devices",
+      "caption": "A tidy workspace helps when making system adjustments",
+      "keywords": [
+        "change cursor color on mac",
+        "Cursor",
+        "change cursor color",
+        "Mac",
+        "minimalist desk setup",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Setupx3D",
+        "url": "https://pixabay.com/users/Setupx3D-20380274/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/interior-design-home-office-7413418/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/change-cursor-color-in-cursor/change-cursor-color-on-mac-3-cfe831.jpg",
+      "width": 1280,
+      "height": 905,
+      "alt": "Developer working in an IDE to change cursor color on Mac",
+      "caption": "Fine tuning your editor for long coding sessions",
+      "keywords": [
+        "change cursor color on mac",
+        "Cursor",
+        "change cursor color",
+        "Mac",
+        "coding on laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "422737",
+        "url": "https://pixabay.com/users/422737-422737/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/software-programming-program-486706/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "change cursor color on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 6,
+    "secondary": {
+      "Cursor IDE customization": 1,
+      "macOS accessibility pointer settings": 1,
+      "VS Code settings JSON": 1,
+      "Cursor text cursor color": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

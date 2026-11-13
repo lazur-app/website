@@ -1,0 +1,291 @@
+{
+  "title": "How to calculate percentage change in Excel on Mac: step by step guide",
+  "metaTitle": "How to Calculate Percentage Change in Excel on Mac",
+  "description": "Learn how to calculate percentage change in Excel on Mac using simple formulas. Follow our step-by-step guide to format your data correctly every time.",
+  "targetKeyword": "how to calculate percentage change in excel on mac",
+  "secondaryKeywords": [
+    "percentage change formula excel",
+    "excel percentage change mac",
+    "excel percentage formatting"
+  ],
+  "intro": "To calculate the percentage change in Excel on a Mac, use the formula equals open parenthesis new value minus old value close parenthesis divided by old value. This simple calculation allows you to track growth or decline across any dataset in your spreadsheet.",
+  "tldr": [
+    "Enter the formula =(New_Value-Old_Value)/Old_Value into your cell.",
+    "Select the resulting cell and press ⌘ + ⇧ + % to format as a percentage.",
+    "Ensure your old value is not zero to avoid the #DIV/0! error.",
+    "Use IFERROR to handle potential blanks or zero values in your data."
+  ],
+  "stats": [
+    {
+      "value": "1.5 billion",
+      "label": "Estimated global Excel users",
+      "sourceUrl": "https://www.quora.com/How-many-people-use-Microsoft-Excel",
+      "sourceTitle": "quora.com"
+    },
+    {
+      "value": "38%",
+      "label": "Average working time spent in spreadsheets",
+      "sourceUrl": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/",
+      "sourceTitle": "acuitytraining.co.uk"
+    },
+    {
+      "value": "$4,315",
+      "label": "Average cost of a significant spreadsheet error",
+      "sourceUrl": "https://www.knime.com/blog/ten-common-issues-when-using-excel-for-data-operations",
+      "sourceTitle": "knime.com"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "The core percentage change formula",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Calculating percentage change is a common task for business analysts and casual users alike. You need two numbers to perform this calculation. The first is your starting point, which we call the old value. The second is your current point, which we call the new value. The difference between these two numbers is then divided by the old value to find the percentage."
+    },
+    {
+      "type": "paragraph",
+      "text": "Open your Excel workbook on your Mac. Suppose your original value is in cell A2. Your new value is in cell B2. Click on cell C2 to start your calculation. Type the equals sign to tell Excel you are writing a formula. Then type the open parenthesis, click cell B2, type the minus sign, click cell A2, and type the closing parenthesis. Finally, type the division symbol followed by cell A2. Your formula should look like this: =(B2-A2)/A2."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Formatting your results as percentages",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "After you press enter, Excel might show a decimal number like 0.25 instead of 25%. This is normal because Excel calculates the raw value first. You can easily change this to a percentage. Select the cell containing your result. Look at the Home tab on your ribbon. Find the Number group. Click the button labeled Percent Style, which shows a percent sign. Alternatively, use the keyboard shortcut ⌘ + ⇧ + % to apply this formatting instantly."
+    },
+    {
+      "type": "paragraph",
+      "text": "If you need more or fewer decimal places, look for the Increase Decimal or Decrease Decimal buttons in the same Number group on the Home tab. These buttons allow you to control the precision of your percentage display without changing the underlying value of the cell."
+    },
+    {
+      "type": "heading",
+      "text": "Avoiding common calculation errors",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "One common error is the #DIV/0! error. This happens when your old value is zero. You cannot divide by zero in mathematics or in Excel. If your data contains zeros, use the IFERROR function to handle it. Your formula becomes =IFERROR((B2-A2)/A2, 0). This tells Excel to return a zero if an error occurs instead of showing the error message."
+    },
+    {
+      "type": "paragraph",
+      "text": "Another frequent mistake is multiplying by 100 manually. Many people write =(B2-A2)/A2*100. This is unnecessary if you use the Percent Style format. Excel does the math for you. If you do both, your results will be off by a factor of 100. For example, a 25% increase would show up as 2500%."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Scenario",
+        "Old Value",
+        "New Value",
+        "Result"
+      ],
+      "rows": [
+        [
+          "Increase",
+          "100",
+          "150",
+          "50%"
+        ],
+        [
+          "Decrease",
+          "200",
+          "150",
+          "-25%"
+        ],
+        [
+          "No Change",
+          "100",
+          "100",
+          "0%"
+        ]
+      ],
+      "caption": "Examples of percentage change calculations"
+    },
+    {
+      "type": "image",
+      "index": 0
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I use this formula in Excel for the web?",
+      "answer": "Yes, the percentage change formula works identically in both the desktop version of Excel for Mac and the web-based version."
+    },
+    {
+      "question": "Why does my result show 5000%?",
+      "answer": "You likely multiplied your result by 100 while also applying the Percent Style format. Remove the *100 from your formula."
+    },
+    {
+      "question": "How do I fix the #DIV/0! error?",
+      "answer": "This happens if your old value is zero. Use the IFERROR function to wrap your calculation and return a default value like 0."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Microsoft Support - Calculate Percentages",
+      "url": "https://support.microsoft.com/en-gb/excel/calculate-percentages"
+    },
+    {
+      "title": "Future Savvy - How to Calculate Change",
+      "url": "https://www.futuresavvy.co.uk/tips-tricks/how-to-calculate-change-in-excel"
+    },
+    {
+      "title": "Quora - Excel Usage Statistics",
+      "url": "https://www.quora.com/How-many-people-use-Microsoft-Excel"
+    },
+    {
+      "title": "Acuity Training - Excel Facts",
+      "url": "https://www.acuitytraining.co.uk/news-tips/new-excel-facts-statistics/"
+    },
+    {
+      "title": "Knime - Common Excel Issues",
+      "url": "https://www.knime.com/blog/ten-common-issues-when-using-excel-for-data-operations"
+    }
+  ],
+  "task": "Calculate the percentage change between two values in an Excel cell.",
+  "appliesTo": "Microsoft Excel for Mac (Microsoft 365 and Excel 2024)",
+  "timeMinutes": 5,
+  "difficulty": "Easy",
+  "requirements": [
+    "Microsoft Excel for Mac installed",
+    "Two numerical values in adjacent cells"
+  ],
+  "steps": [
+    {
+      "name": "Enter the formula",
+      "text": "Click the cell where you want the result. Type =(New_Value-Old_Value)/Old_Value. Replace New_Value and Old_Value with your cell references."
+    },
+    {
+      "name": "Apply percentage formatting",
+      "text": "Select the result cell. Press ⌘ + ⇧ + % on your keyboard to format the number as a percentage."
+    },
+    {
+      "name": "Adjust decimal places",
+      "text": "If you need more precision, click the Increase Decimal button on the Home tab of the ribbon."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Format as percentage",
+      "keys": "⌘ + ⇧ + %"
+    },
+    {
+      "action": "Edit active cell",
+      "keys": "Fn + F2"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "#DIV/0! error",
+      "fix": "Ensure your old value is not zero. Use IFERROR to handle empty cells."
+    },
+    {
+      "problem": "Result is too large",
+      "fix": "Remove any manual *100 from your formula if using Percent Style."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where is the percent style button?",
+    "capability": "point",
+    "result": "Lazur will point to the Percent Style button on the Home tab.",
+    "shell": "sheet",
+    "pointsAt": "Percent Style"
+  },
+  "type": "howto",
+  "slug": "calculate-percentage-change-in-excel",
+  "app": "excel",
+  "appName": "Excel",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/calculate-percentage-change-in-excel/how-to-calculate-percentage-change-in-excel-1-14d33e.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person working on a MacBook to calculate percentage change in Excel on Mac",
+      "caption": "Staying focused while managing data in Excel on a Mac.",
+      "keywords": [
+        "how to calculate percentage change in excel on mac",
+        "Excel",
+        "calculate percentage change",
+        "Mac",
+        "person working on macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-macbook-computer-2562361/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/calculate-percentage-change-in-excel/how-to-calculate-percentage-change-in-excel-2-beeeed.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "An office desk with a MacBook displaying spreadsheet data",
+      "caption": "A clean setup for daily spreadsheet analysis.",
+      "keywords": [
+        "how to calculate percentage change in excel on mac",
+        "Excel",
+        "calculate percentage change",
+        "Mac",
+        "office desk macbook",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "itismowgli",
+        "url": "https://pixabay.com/users/itismowgli-628805/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-mockup-business-office-1035345/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/calculate-percentage-change-in-excel/how-to-calculate-percentage-change-in-excel-3-6b83ea.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A business professional using a Mac for financial data",
+      "caption": "Using professional tools to track growth and decline.",
+      "keywords": [
+        "how to calculate percentage change in excel on mac",
+        "Excel",
+        "calculate percentage change",
+        "Mac",
+        "business professional mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "fietzfotos",
+        "url": "https://pixabay.com/users/fietzfotos-6795508/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/stairs-building-businessmen-6133971/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to calculate percentage change in excel on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "percentage change formula excel": 1,
+      "excel percentage change mac": 1,
+      "excel percentage formatting": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

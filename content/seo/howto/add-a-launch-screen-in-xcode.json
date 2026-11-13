@@ -1,0 +1,316 @@
+{
+  "title": "How to add a launch screen in Xcode on Mac: simple steps for developers",
+  "metaTitle": "How to add a launch screen in Xcode on Mac",
+  "description": "Learn how to add a launch screen in Xcode on Mac using the Info.plist method or a storyboard file. Follow these simple steps for your iOS projects.",
+  "targetKeyword": "how to add a launch screen in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode launch screen tutorial",
+    "iOS development Xcode",
+    "Xcode 27 launch screen"
+  ],
+  "intro": "To add a launch screen in Xcode on Mac, you can either configure the Info.plist settings or create a dedicated launch screen storyboard file. These methods ensure your app displays a system-managed interface immediately upon startup.",
+  "tldr": [
+    "Use the Info.plist method for simple, static color or image backgrounds.",
+    "Use a Storyboard for more complex, multi-element launch layouts.",
+    "Always clean your build folder if your changes do not appear on the simulator.",
+    "Keep individual images under 0.5 MB to avoid black screen issues."
+  ],
+  "stats": [
+    {
+      "value": "88%",
+      "label": "iOS developers using Xcode as their primary editor",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "< 1 second",
+      "label": "Apple's target for Time to First Frame",
+      "sourceUrl": "https://blog.devgenius.io/ios-app-launch-time-cut-it-from-5-seconds-to-1-heres-how-c0ab81870e90",
+      "sourceTitle": "devgenius.io"
+    },
+    {
+      "value": "25 MB",
+      "label": "Maximum total file size for launch screen images",
+      "sourceUrl": "https://www.delasign.com/blog/apple-launch-screen-best-practices/",
+      "sourceTitle": "delasign.com"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Understanding the Launch Screen",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "A launch screen is not a splash screen. It is a static image or layout that the system shows while your app initializes. It provides immediate visual feedback. Apple requires this for iOS, iPadOS, and tvOS. macOS and watchOS do not use this specific mechanism. Your goal is to make the transition from the launch screen to your first app screen invisible. If the launch screen looks different from your actual app UI, the user will notice a flicker."
+    },
+    {
+      "type": "heading",
+      "text": "Method 1: Configuring via Info.plist",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "For simple apps that only need a background color and a logo, the Info.plist approach is the fastest. This method avoids the overhead of managing storyboard files."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open your project in Xcode.",
+        "Select your project target in the Project Navigator.",
+        "Click the Info tab.",
+        "Expand the Launch Screen key in the property list.",
+        "Click the (+) button to add a new entry.",
+        "Define your background color or image name."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "heading",
+      "text": "Method 2: Using a Storyboard",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If you need more control, use a storyboard. This allows you to drag and drop UI elements like labels or custom image views."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Go to File > New > File.",
+        "Select Launch Screen under the User Interface category.",
+        "Save the file in your project directory.",
+        "Open your project settings in the General tab.",
+        "Find the App Icons and Launch Screen section.",
+        "Select your new file in the Launch Screen File dropdown."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Common Troubleshooting Steps",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "If your launch screen appears black or does not update, do not panic. The system caches these files aggressively. Follow these steps to force an update."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Delete the app from your simulator or device.",
+        "Clean your build folder by pressing ⇧ ⌘ K.",
+        "Restart the simulator or your physical device.",
+        "Check that your images are smaller than 0.5 MB.",
+        "Ensure the Is Initial View Controller checkbox is checked in the Attributes Inspector."
+      ],
+      "ordered": false
+    },
+    {
+      "type": "heading",
+      "text": "Why Launch Screen Optimization Matters",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Apple targets a cold launch time of under one second. A heavy launch screen can make your app feel sluggish. Keep your assets light. Use vector images where possible. Avoid complex logic during the launch sequence. Developers often make the mistake of loading heavy data before the first frame renders. This violates the purpose of the launch screen."
+    },
+    {
+      "type": "stats"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a launch screen for macOS?",
+      "answer": "No. Launch screens are only required for iOS, iPadOS, and tvOS projects."
+    },
+    {
+      "question": "Why is my launch screen showing as a black screen?",
+      "answer": "This is usually caused by image files that are too large. Ensure your individual assets are under 0.5 MB."
+    },
+    {
+      "question": "How do I force the simulator to show my new launch screen?",
+      "answer": "Delete the app from the simulator, clean the build folder with ⇧ ⌘ K, and perform a fresh build."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/"
+    },
+    {
+      "title": "devgenius.io",
+      "url": "https://blog.devgenius.io/ios-app-launch-time-cut-it-from-5-seconds-to-1-heres-how-c0ab81870e90"
+    },
+    {
+      "title": "delasign.com",
+      "url": "https://www.delasign.com/blog/apple-launch-screen-best-practices/"
+    },
+    {
+      "title": "apple.com",
+      "url": "https://developer.apple.com/documentation/technotes/tn3118-debugging-your-apps-launch-screen"
+    }
+  ],
+  "task": "Add a launch screen in Xcode",
+  "appliesTo": "Xcode 27 on macOS Tahoe",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "Xcode 27 installed on macOS",
+    "An active iOS project",
+    "Basic knowledge of the Project Navigator"
+  ],
+  "steps": [
+    {
+      "name": "Open Project Settings",
+      "text": "Click the project icon in the top of the Navigator sidebar to open your project settings.",
+      "menuPath": [
+        "Project Navigator",
+        "Target Settings"
+      ]
+    },
+    {
+      "name": "Select Launch Screen File",
+      "text": "Navigate to the General tab and locate the App Icons and Launch Screen section to select your file.",
+      "menuPath": [
+        "General",
+        "App Icons and Launch Screen"
+      ],
+      "shortcut": "⌘ 1"
+    },
+    {
+      "name": "Clean Build Folder",
+      "text": "If changes do not appear, clean your build folder to remove cached data.",
+      "menuPath": [
+        "Product",
+        "Clean Build Folder"
+      ],
+      "shortcut": "⇧ ⌘ K"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Clean Build Folder",
+      "keys": "⇧ ⌘ K"
+    },
+    {
+      "action": "Build Project",
+      "keys": "⌘ B"
+    },
+    {
+      "action": "Run Project",
+      "keys": "⌘ R"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Launch screen not updating in simulator",
+      "fix": "Delete the app from the simulator and clean the build folder."
+    },
+    {
+      "problem": "Black screen on launch",
+      "fix": "Check that your image assets are under 0.5 MB."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where do I set the launch screen file?",
+    "capability": "point",
+    "result": "Lazur circles the Launch Screen File dropdown in your project settings.",
+    "shell": "code",
+    "pointsAt": "Launch Screen File"
+  },
+  "type": "howto",
+  "slug": "add-a-launch-screen-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-launch-screen-in-xcode/how-to-add-a-launch-screen-in-1-7f6218.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to add a launch screen in Xcode.",
+      "caption": "Professional development setup for Xcode projects.",
+      "keywords": [
+        "how to add a launch screen in xcode on mac",
+        "Xcode",
+        "add a launch screen",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-launch-screen-in-xcode/how-to-add-a-launch-screen-in-2-948faa.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk with a Mac showing Xcode development tools.",
+      "caption": "A tidy workspace helps maintain focus while coding.",
+      "keywords": [
+        "how to add a launch screen in xcode on mac",
+        "Xcode",
+        "add a launch screen",
+        "Mac",
+        "clean mac workspace",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-electronics-2593898/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-launch-screen-in-xcode/how-to-add-a-launch-screen-in-3-30e542.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "Modern office environment for iOS app developers.",
+      "caption": "Setting up your environment for efficient app building.",
+      "keywords": [
+        "how to add a launch screen in xcode on mac",
+        "Xcode",
+        "add a launch screen",
+        "Mac",
+        "modern office tech",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "AppleServiceCenterRaipur",
+        "url": "https://pixabay.com/users/AppleServiceCenterRaipur-55058777/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/wireless-keyboard-mouse-earphones-10178112/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to add a launch screen in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 4,
+    "secondary": {
+      "Xcode launch screen tutorial": 1,
+      "iOS development Xcode": 1,
+      "Xcode 27 launch screen": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

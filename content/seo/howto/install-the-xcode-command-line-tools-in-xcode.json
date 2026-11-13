@@ -1,0 +1,308 @@
+{
+  "title": "How to install the Xcode Command Line Tools in Xcode on Mac for developers",
+  "metaTitle": "How to Install Xcode Command Line Tools on Mac: Step by Step",
+  "description": "Learn how to install the Xcode Command Line Tools on Mac using the Terminal or manual download methods. Follow our guide for a quick and easy setup.",
+  "targetKeyword": "how to install xcode command line tools on mac",
+  "secondaryKeywords": [
+    "Xcode command line tools",
+    "install command line tools mac",
+    "xcode-select install",
+    "mac development setup"
+  ],
+  "intro": "To install the Xcode Command Line Tools on Mac, you can run the xcode-select install command in the Terminal application. This process provides the essential compilers and utilities needed for software development without requiring the full Xcode IDE installation.",
+  "tldr": [
+    "Open Terminal using Command + Space.",
+    "Type xcode-select --install and press Enter.",
+    "Follow the pop-up prompts to complete the installation.",
+    "Verify with xcode-select -p if needed."
+  ],
+  "stats": [
+    {
+      "value": "3.1 GB",
+      "label": "Full Xcode 27.1 download size",
+      "sourceUrl": "https://appto.store/glossary/xcode",
+      "sourceTitle": "appto.store"
+    },
+    {
+      "value": "100 to 500 MB",
+      "label": "Standalone Command Line Tools package size",
+      "sourceUrl": "https://www.ics.uci.edu/~pattis/common/handouts/macmingweclipse/allexperimental/macxcodecommandlinetools.html",
+      "sourceTitle": "ics.uci.edu"
+    },
+    {
+      "value": "20 to 35 hours",
+      "label": "Weekly time developers spend in Xcode",
+      "sourceUrl": "https://dev.to/oleksandr_masliukivskyi_1/most-essential-xcode-shortcuts-every-developer-should-know-2dff",
+      "sourceTitle": "dev.to"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why you need the Xcode Command Line Tools",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The Xcode Command Line Tools are a collection of utilities that allow you to compile and build software directly from your terminal. If you use Homebrew, Git, or any language-specific package manager, you likely need these tools. They include compilers like clang and make, which are fundamental for modern development workflows on macOS. You do not need to install the massive 20 GB Xcode application if you only require these tools for basic development tasks."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "text": "How to install the Xcode Command Line Tools via Terminal",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The most efficient way to install these tools is through the Terminal. This method is fast and automatically links the tools to your system path."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Press Command + Space to open Spotlight search.",
+        "Type Terminal and press Enter to launch the app.",
+        "In the terminal window, type the command: xcode-select --install.",
+        "Press Enter to execute the command.",
+        "A dialog box will appear on your screen asking for confirmation.",
+        "Click Install to proceed with the download.",
+        "Agree to the software license terms.",
+        "Wait for the download and installation to finish.",
+        "Click Done once the process reports success."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Manual installation for specific versions",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes the terminal command fails due to server issues or network restrictions. In these cases, you can download the installer directly from the Apple Developer website. You will need a free Apple account to access the download portal. Visit the developer downloads page, search for Command Line Tools, and choose the version that matches your installed macOS version. Once the .dmg file finishes downloading, mount it and run the included .pkg installer."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Common Issue",
+        "Probable Cause",
+        "Suggested Fix"
+      ],
+      "rows": [
+        [
+          "Can't install software",
+          "Server or network error",
+          "Download manually from Apple"
+        ],
+        [
+          "Already installed",
+          "Incorrect path linking",
+          "Run sudo xcode-select --reset"
+        ],
+        [
+          "xcrun errors",
+          "Wrong active directory",
+          "Use sudo xcode-select --switch"
+        ]
+      ],
+      "caption": "Troubleshooting common installation errors"
+    },
+    {
+      "type": "heading",
+      "text": "Verifying your installation",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "After the installation completes, you should verify that your system recognizes the path to the tools. Open a new Terminal window and type xcode-select -p. This command prints the active developer directory. If it returns /Library/Developer/CommandLineTools, your installation is correct. If you see a different path or an error, you may need to reset the path using the switch command. This ensures that your compiler and build tools are correctly linked for all your projects."
+    },
+    {
+      "type": "stats"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need the full Xcode app to get the Command Line Tools?",
+      "answer": "No, you do not. You can install the Command Line Tools as a standalone package via the terminal or the developer portal without downloading the full Xcode IDE."
+    },
+    {
+      "question": "What should I do if the installation fails?",
+      "answer": "First, check your internet connection. If the issue persists, try resetting your current path with sudo xcode-select --reset or perform a manual download from the Apple Developer website."
+    },
+    {
+      "question": "How do I update the Command Line Tools?",
+      "answer": "Usually, these tools update automatically when you update your macOS. If you need a specific version, you can download the updated package from the Apple Developer portal."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Apple Developer Documentation",
+      "url": "https://developer.apple.com/documentation/xcode/installing-the-command-line-tools",
+      "publisher": "Apple"
+    },
+    {
+      "title": "Hans Hafner Blog",
+      "url": "https://www.hanshafner.de/blog/2025/06/27/install-xcode-command-line-tools-macos/",
+      "publisher": "Hans Hafner"
+    },
+    {
+      "title": "UCI Handouts",
+      "url": "https://www.ics.uci.edu/~pattis/common/handouts/macmingweclipse/allexperimental/macxcodecommandlinetools.html",
+      "publisher": "UCI"
+    }
+  ],
+  "task": "Install the Xcode Command Line Tools on a Mac",
+  "appliesTo": "macOS users who need command line utilities for software development",
+  "timeMinutes": 10,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS",
+    "Internet connection",
+    "Terminal application",
+    "Apple ID for manual downloads"
+  ],
+  "steps": [
+    {
+      "name": "Open Terminal",
+      "text": "Press Command + Space and search for Terminal to open the command line interface.",
+      "shortcut": "⌘ + Space"
+    },
+    {
+      "name": "Run the install command",
+      "text": "Type xcode-select --install in the terminal and press Enter to trigger the installer.",
+      "tip": "Ensure you have an active internet connection for the download."
+    },
+    {
+      "name": "Confirm installation",
+      "text": "Click Install on the pop-up window that appears on your screen and accept the license agreement.",
+      "image": 0
+    },
+    {
+      "name": "Verify the path",
+      "text": "Once finished, type xcode-select -p to verify the tools are installed at the correct directory."
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Spotlight",
+      "keys": "⌘ + Space"
+    },
+    {
+      "action": "Run Command in Terminal",
+      "keys": "Enter"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Command line tools already installed error",
+      "fix": "Run sudo xcode-select --reset to fix the path links."
+    },
+    {
+      "problem": "Installation failed due to server error",
+      "fix": "Download the installer manually from the Apple Developer downloads page."
+    }
+  ],
+  "lazur": {
+    "spoken": "I'm having trouble finding the right command to install my developer tools.",
+    "capability": "guide",
+    "result": "Lazur will walk you through the Terminal steps one by one, waiting for you to confirm the installation dialog.",
+    "shell": "code",
+    "pointsAt": "Terminal window"
+  },
+  "type": "howto",
+  "slug": "install-the-xcode-command-line-tools-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-xcode-command-line-tools-in-xcode/how-to-install-xcode-command-line-tools-1-5903d2.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac using the terminal to install Xcode command line tools.",
+      "caption": "Setting up your development environment on a Mac.",
+      "keywords": [
+        "how to install xcode command line tools on mac",
+        "Xcode",
+        "install the Xcode Command Line Tools",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-xcode-command-line-tools-in-xcode/how-to-install-xcode-command-line-tools-2-ad4acc.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup with a MacBook, ideal for professional software development.",
+      "caption": "A productive workspace is essential for coding.",
+      "keywords": [
+        "how to install xcode command line tools on mac",
+        "Xcode",
+        "install the Xcode Command Line Tools",
+        "Mac",
+        "clean modern office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "ninabobo88",
+        "url": "https://pixabay.com/users/ninabobo88-205467/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/light-office-computer-business-300431/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/install-the-xcode-command-line-tools-in-xcode/how-to-install-xcode-command-line-tools-3-995cb8.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A close up of a MacBook screen showing code editor and terminal windows.",
+      "caption": "Managing your developer tools effectively.",
+      "keywords": [
+        "how to install xcode command line tools on mac",
+        "Xcode",
+        "install the Xcode Command Line Tools",
+        "Mac",
+        "macbook screen coding",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/laptop-apple-keyboard-technology-2590647/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to install xcode command line tools on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 2,
+    "secondary": {
+      "Xcode command line tools": 11,
+      "install command line tools mac": 1,
+      "xcode-select install": 5,
+      "mac development setup": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

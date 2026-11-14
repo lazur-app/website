@@ -1,0 +1,357 @@
+{
+  "title": "How to set up code signing in Xcode on Mac: a guide for developers",
+  "metaTitle": "How to set up code signing in Xcode on Mac: Easy Guide",
+  "description": "Learn how to set up code signing in Xcode on Mac using automatic signing. Follow these simple steps to manage your certificates and provisioning profiles.",
+  "targetKeyword": "how to set up code signing in xcode on mac",
+  "secondaryKeywords": [
+    "automatic signing Xcode",
+    "Xcode provisioning profiles",
+    "Apple Developer account Xcode",
+    "Xcode build settings"
+  ],
+  "intro": "To set up code signing in Xcode on Mac, link your Apple Developer account in the Settings menu. Once connected, enable automatic signing in the Signing and Capabilities tab of your project target.",
+  "tldr": [
+    "Open Xcode Settings and add your Apple ID under the Accounts tab.",
+    "Select your project in the Project Navigator.",
+    "Go to the Signing and Capabilities tab.",
+    "Check the box for Automatically manage signing.",
+    "Select your development team from the dropdown menu."
+  ],
+  "stats": [
+    {
+      "value": "89%",
+      "label": "Developers facing certificate-related problems",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "75%",
+      "label": "Code signing errors caused by expired certificates",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "23.00%",
+      "label": "App Store submission rejection rate in 2025",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Understanding Code Signing in Xcode",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Code signing is a security feature that verifies your app identity. It ensures that no one has modified your code since you signed it. Apple uses this to keep the platform secure. Xcode handles most of this work for you today. You should avoid manual signing unless you have a specific reason. Most developers find automatic signing sufficient for their needs. It reduces the chance of configuration errors significantly."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "text": "Step 1: Adding Your Apple Developer Account",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you can sign your app, Xcode needs your credentials. This links your local machine to your Apple Developer account. It allows Xcode to fetch certificates and profiles automatically."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open the Xcode app on your Mac.",
+        "Click Xcode in the top menu bar.",
+        "Select Settings or press ⌘ ,.",
+        "Click the Accounts tab at the top of the window.",
+        "Click the + button in the bottom left corner.",
+        "Select Apple ID and click Continue.",
+        "Enter your credentials to sign in."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Step 2: Enabling Automatic Signing",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Automatic signing is the standard way to handle identity in Xcode 27. It manages the lifecycle of your certificates and profiles. You do not need to download these manually from the web portal."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Select your project file at the top of the Project Navigator.",
+        "Choose your primary target from the list.",
+        "Click the Signing and Capabilities tab in the main editor area.",
+        "Find the Signing section.",
+        "Check the box labeled Automatically manage signing.",
+        "Choose your development team from the Team dropdown menu."
+      ],
+      "ordered": true
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Managing Certificates and Provisioning Profiles",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Sometimes Xcode fails to create a certificate. You may need to manage them manually within the settings. Go to the Accounts tab in Xcode Settings. Select your account and click Manage Certificates. You can create a new Apple Development certificate here if one is missing. This is often the first step in fixing build errors. Ensure your bundle identifier matches what is in your Apple Developer account."
+    },
+    {
+      "type": "heading",
+      "text": "Why Code Signing Errors Occur",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Errors often stem from expired certificates or mismatched bundle identifiers. Xcode will show red warning icons in the Signing and Capabilities tab when something is wrong. Hovering over these icons provides a brief explanation. Many developers struggle with provisioning profiles specifically. About 60 percent of developers report issues here. Keeping your environment clean helps prevent these problems. Use the Product menu to clean your build folder if errors persist."
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Common Issue",
+        "Fix"
+      ],
+      "rows": [
+        [
+          "Signing requires a development team",
+          "Enable Automatic Signing and select your team."
+        ],
+        [
+          "CSSMERR_TP_NOT_TRUSTED",
+          "Check Keychain Access and set trust to System Defaults."
+        ],
+        [
+          "Provisioning Profile Mismatch",
+          "Verify your Bundle Identifier matches your account."
+        ]
+      ],
+      "caption": "Common code signing issues and how to fix them."
+    },
+    {
+      "type": "heading",
+      "text": "Advanced Manual Signing",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Manual signing is for complex enterprise setups. You might need this if you work in a highly restricted environment. You must download your certificates from the Apple Developer website. Then you install them into your Keychain. You must also manually select the profile in the Build Settings tab. This method is prone to error and requires frequent maintenance. Most teams avoid it unless required by their CI system."
+    },
+    {
+      "type": "image",
+      "index": 1
+    },
+    {
+      "type": "heading",
+      "text": "Best Practices for Xcode Signing",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Always keep your Xcode version up to date. Xcode 27 requires macOS Tahoe 26.6 or later. Using the latest version ensures better support for new SDKs. Avoid modifying project files manually outside of Xcode. This often corrupts the signing configuration. If you face persistent issues, try disabling and re-enabling automatic signing. This forces Xcode to refresh the local state. It is a reliable way to resolve minor configuration drift."
+    },
+    {
+      "type": "image",
+      "index": 2
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a paid Apple Developer account to sign apps?",
+      "answer": "You can sign apps for personal testing with a free account. You need a paid membership to distribute apps on the App Store."
+    },
+    {
+      "question": "How often do I need to renew my certificates?",
+      "answer": "Development certificates usually last for one year. Xcode will warn you when they are close to expiring."
+    },
+    {
+      "question": "What should I do if automatic signing fails?",
+      "answer": "Check your internet connection first. Then verify your Apple ID is still valid in Xcode Settings. Finally, try cleaning your build folder with ⇧ ⌘ K."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "accessedAt": "2026-11-13",
+      "publisher": "sqmagazine.co.uk"
+    }
+  ],
+  "task": "How to set up code signing in Xcode on Mac",
+  "appliesTo": "Xcode 27 on macOS Tahoe",
+  "timeMinutes": 15,
+  "difficulty": "Medium",
+  "requirements": [
+    "Xcode 27 installed",
+    "macOS Tahoe 26.6 or later",
+    "Apple Developer account",
+    "Internet connection"
+  ],
+  "steps": [
+    {
+      "name": "Open Xcode Settings",
+      "text": "Open Xcode, then navigate to the settings menu to manage your accounts.",
+      "menuPath": [
+        "Xcode",
+        "Settings"
+      ],
+      "shortcut": "⌘ ,"
+    },
+    {
+      "name": "Add Apple ID",
+      "text": "Click the Accounts tab, then use the plus button to add your developer account.",
+      "menuPath": [
+        "Accounts",
+        "Add Account"
+      ]
+    },
+    {
+      "name": "Configure Signing",
+      "text": "Navigate to the Signing and Capabilities tab in your project settings to enable automatic signing.",
+      "menuPath": [
+        "Project Navigator",
+        "Signing and Capabilities"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open Settings",
+      "keys": "⌘ ,"
+    },
+    {
+      "action": "Clean Build Folder",
+      "keys": "⇧ ⌘ K"
+    },
+    {
+      "action": "Build Project",
+      "keys": "⌘ B"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Xcode shows a red signing error.",
+      "fix": "Check the Signing and Capabilities tab for specific error details and ensure your team is selected."
+    },
+    {
+      "problem": "Certificate not found.",
+      "fix": "Go to Xcode Settings, Accounts, Manage Certificates, and create a new development certificate."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where do I enable automatic signing?",
+    "capability": "point",
+    "result": "Lazur highlights the Automatically manage signing checkbox in the Signing and Capabilities tab.",
+    "shell": "code",
+    "pointsAt": "Automatically manage signing"
+  },
+  "type": "howto",
+  "slug": "set-up-code-signing-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-code-signing-in-xcode/how-to-set-up-code-signing-in-1-43bccc.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to set up code signing in Xcode on Mac.",
+      "caption": "Professional developer environment.",
+      "keywords": [
+        "how to set up code signing in xcode on mac",
+        "Xcode",
+        "set up code signing",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-code-signing-in-xcode/how-to-set-up-code-signing-in-2-3faa1b.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean desk setup for a developer learning how to set up code signing in Xcode on Mac.",
+      "caption": "A tidy workspace helps focus.",
+      "keywords": [
+        "how to set up code signing in xcode on mac",
+        "Xcode",
+        "set up code signing",
+        "Mac",
+        "clean modern office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StockSnap",
+        "url": "https://pixabay.com/users/StockSnap-894430/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/computer-keyboard-apple-electronics-2569653/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/set-up-code-signing-in-xcode/how-to-set-up-code-signing-in-3-1066f1.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A person using a laptop to learn how to set up code signing in Xcode on Mac.",
+      "caption": "Focusing on development tasks.",
+      "keywords": [
+        "how to set up code signing in xcode on mac",
+        "Xcode",
+        "set up code signing",
+        "Mac",
+        "person using laptop",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "StartupStockPhotos",
+        "url": "https://pixabay.com/users/StartupStockPhotos-690514/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/student-typing-keyboard-text-849825/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to set up code signing in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 7,
+    "secondary": {
+      "automatic signing Xcode": 1,
+      "Xcode provisioning profiles": 1,
+      "Apple Developer account Xcode": 1,
+      "Xcode build settings": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

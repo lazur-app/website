@@ -1,0 +1,319 @@
+{
+  "title": "How to add a language to your app in Xcode on Mac: Step by Step",
+  "metaTitle": "How to Add a Language to Your App in Xcode on Mac",
+  "description": "Learn how to add a language to your app in Xcode on Mac using the modern String Catalog system for efficient localization in Xcode 27.",
+  "targetKeyword": "how to add a language to your app in xcode on mac",
+  "secondaryKeywords": [
+    "Xcode localization",
+    "String Catalog Xcode",
+    "Xcode 27 localization",
+    "Add language to Xcode project"
+  ],
+  "intro": "To add a language to your app in Xcode on Mac, open your project settings, navigate to the Info tab, and use the Add button in the Localizations section. This process registers the new language in your project, allowing you to manage translations through the integrated String Catalog system.",
+  "tldr": [
+    "Select your project file in the Project Navigator.",
+    "Click the Info tab in the main editor area.",
+    "Find the Localizations section and click the plus button to select a new language.",
+    "Use String Catalogs (.xcstrings) to manage all your translations and pluralizations.",
+    "Test your new language by editing the scheme settings under Product > Scheme > Edit Scheme."
+  ],
+  "stats": [
+    {
+      "value": "60 million",
+      "label": "Registered Apple Developers",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    },
+    {
+      "value": "10%",
+      "label": "Global Xcode usage",
+      "sourceUrl": "https://www.techlila.com/macos-developer-statistics/",
+      "sourceTitle": "techlila.com"
+    },
+    {
+      "value": "23.00%",
+      "label": "App Store rejection rate in 2025",
+      "sourceUrl": "https://sqmagazine.co.uk/app-store-statistics/",
+      "sourceTitle": "sqmagazine.co.uk"
+    },
+    {
+      "value": "$90.6 billion",
+      "label": "2025 App Store revenue",
+      "sourceUrl": "https://rentamac.io/ios-app-development-statistics/",
+      "sourceTitle": "rentamac.io"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Why Localization Matters for Your Mac and iOS App",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Reaching a global audience requires more than just code. It requires speaking the language of your users. Xcode provides robust tools to handle this without cluttering your logic. Modern localization focuses on String Catalogs. These files replace the older, fragmented approach of managing separate strings files for every language."
+    },
+    {
+      "type": "image",
+      "index": 0
+    },
+    {
+      "type": "heading",
+      "text": "Setting Up Your Project for Multiple Languages",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you add specific translations, you must tell Xcode which languages your project supports. Start by opening your project file. This is the blue icon at the very top of the Project Navigator. Once selected, look at the main editor area and click the Info tab. Scroll down until you see the Localizations section. Click the plus button to open the language selection menu. Choose the language you want to support. Xcode will then prompt you to select existing resources to localize. This includes your Storyboards, XIB files, and your main String Catalog."
+    },
+    {
+      "type": "callout",
+      "tone": "tip",
+      "text": "If you are starting a new project, create your String Catalog early. It makes adding languages later much faster because the file structure is already set up.",
+      "title": "Pro Tip"
+    },
+    {
+      "type": "heading",
+      "text": "Using the String Catalog for Translations",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "The String Catalog, ending in the .xcstrings extension, is the heart of localization in modern Xcode. After adding a language in project settings, open your .xcstrings file. You will see a table view. Each key is on the left. Your primary language is in the middle. The new language you added appears as a new column on the right. Simply type the translation into that column. Xcode handles the underlying file storage automatically. This format is superior because it supports pluralization and device-specific variants natively."
+    },
+    {
+      "type": "stats"
+    },
+    {
+      "type": "heading",
+      "text": "Testing Languages in the Simulator",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "You do not need to change your Mac system language to test your app. Xcode allows you to override the language per scheme. Go to the top menu and select Product > Scheme > Edit Scheme. In the sidebar, click Run. Then, click the Options tab. Look for the App Language and App Region dropdown menus. Select your target language here. When you run your app using Command + R, it will launch using those specific settings. This is the fastest way to verify your layout handles different text lengths correctly."
+    },
+    {
+      "type": "lazur"
+    },
+    {
+      "type": "heading",
+      "text": "Common Pitfalls When Adding Languages",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Developers often run into issues where text does not update in the app. First, check the File Inspector. Select your file in the navigator. Ensure the Localize button has been clicked if the file is not yet localized. If you see the language checkbox in the inspector, make sure it is checked. Another common issue involves cached data. If your changes are not appearing, delete the app from the simulator. Perform a clean build using Shift + Command + K. Rebuild the app to ensure all resources are bundled correctly."
+    },
+    {
+      "type": "heading",
+      "text": "Advanced Localization Tips",
+      "level": 2
+    },
+    {
+      "type": "paragraph",
+      "text": "Xcode 27 includes AI-powered coding agents that can assist with translations. If you have a large project, these agents can suggest translations based on existing context. Always review these suggestions. Context matters, especially for short UI labels. A word that means one thing in English might have multiple meanings in another language. Use the comment field in the String Catalog to provide context to your translators. This helps prevent errors and ensures your UI remains clear."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I still need Localizable.strings files?",
+      "answer": "No, Apple now recommends using the String Catalog (.xcstrings) format. It combines the functionality of both legacy strings and stringsdict files into one interface."
+    },
+    {
+      "question": "Can I test multiple languages at once?",
+      "answer": "You can test one language at a time by changing the scheme settings. To test multiple languages simultaneously, you would need to create separate schemes for each language configuration."
+    },
+    {
+      "question": "What if my language does not appear in the list?",
+      "answer": "Ensure your project is set up correctly in the Info tab. If the language is missing from the list, check your region settings or ensure your Xcode installation is up to date."
+    }
+  ],
+  "sources": [
+    {
+      "title": "rentamac.io",
+      "url": "https://rentamac.io/ios-app-development-statistics/",
+      "publisher": "rentamac.io"
+    },
+    {
+      "title": "sqmagazine.co.uk",
+      "url": "https://sqmagazine.co.uk/app-store-statistics/",
+      "publisher": "sqmagazine.co.uk"
+    },
+    {
+      "title": "techlila.com",
+      "url": "https://techlila.com/macos-developer-statistics/",
+      "publisher": "techlila.com"
+    }
+  ],
+  "task": "Add a new language to an existing Xcode project.",
+  "appliesTo": "Xcode 27 and later versions on macOS.",
+  "timeMinutes": 15,
+  "difficulty": "Easy",
+  "requirements": [
+    "A Mac running macOS Tahoe 26.6 or later",
+    "Xcode 27 installed",
+    "An existing Xcode project"
+  ],
+  "steps": [
+    {
+      "name": "Open Project Settings",
+      "text": "Click the project file icon at the top of the Project Navigator sidebar.",
+      "menuPath": [
+        "Project Navigator",
+        "Project File"
+      ]
+    },
+    {
+      "name": "Navigate to Info Tab",
+      "text": "Select the Info tab in the main editor area to view project configurations.",
+      "menuPath": [
+        "Project Editor",
+        "Info Tab"
+      ]
+    },
+    {
+      "name": "Add Localization",
+      "text": "Find the Localizations section and click the plus button to add a new language.",
+      "menuPath": [
+        "Info Tab",
+        "Localizations",
+        "Add (+)"
+      ]
+    },
+    {
+      "name": "Choose Language",
+      "text": "Select the desired language from the dropdown menu and click Finish.",
+      "menuPath": [
+        "Language Selection",
+        "Finish"
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Build project",
+      "keys": "⌘ B"
+    },
+    {
+      "action": "Run project",
+      "keys": "⌘ R"
+    },
+    {
+      "action": "Clean build folder",
+      "keys": "⇧ ⌘ K"
+    },
+    {
+      "action": "Open Quickly",
+      "keys": "⇧ ⌘ O"
+    }
+  ],
+  "troubleshooting": [
+    {
+      "problem": "Language not showing in app",
+      "fix": "Delete the app from the simulator, clean the build folder with ⇧ ⌘ K, and run the app again."
+    },
+    {
+      "problem": "File not localizing",
+      "fix": "Select the file in the navigator, go to the File Inspector, and ensure the Localize button has been clicked."
+    }
+  ],
+  "lazur": {
+    "spoken": "Where do I add a new language in the project settings?",
+    "capability": "point",
+    "result": "Lazur circles the Add button in the Localizations section of your project settings.",
+    "shell": "code",
+    "pointsAt": "Add button"
+  },
+  "type": "howto",
+  "slug": "add-a-language-to-your-app-in-xcode",
+  "app": "xcode",
+  "appName": "Xcode",
+  "publishedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "images": [
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-language-to-your-app-in-xcode/how-to-add-a-language-to-your-1-cfebda.jpg",
+      "width": 1280,
+      "height": 854,
+      "alt": "A developer working on a Mac to learn how to add a language to your app in Xcode on Mac",
+      "caption": "Professional development environment on a Mac.",
+      "keywords": [
+        "how to add a language to your app in xcode on mac",
+        "Xcode",
+        "add a language to your app",
+        "Mac",
+        "developer working on mac",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/man-computer-screen-desktop-imac-1839500/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-language-to-your-app-in-xcode/how-to-add-a-language-to-your-2-8a258d.jpg",
+      "width": 1280,
+      "height": 853,
+      "alt": "A clean office desk setup for software development",
+      "caption": "A tidy workspace helps when managing complex app projects.",
+      "keywords": [
+        "how to add a language to your app in xcode on mac",
+        "Xcode",
+        "add a language to your app",
+        "Mac",
+        "modern office desk",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "Pexels",
+        "url": "https://pixabay.com/users/Pexels-2286921/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/apple-computer-desk-workspace-1868496/"
+      }
+    },
+    {
+      "url": "https://images.lazur.app/content-images/howto/add-a-language-to-your-app-in-xcode/how-to-add-a-language-to-your-3-1de796.jpg",
+      "width": 1280,
+      "height": 724,
+      "alt": "Close up of a screen showing code and software development",
+      "caption": "Xcode provides powerful tools for global app distribution.",
+      "keywords": [
+        "how to add a language to your app in xcode on mac",
+        "Xcode",
+        "add a language to your app",
+        "Mac",
+        "macbook screen code",
+        "Lazur"
+      ],
+      "credit": {
+        "name": "kuszapro",
+        "url": "https://pixabay.com/users/kuszapro-369349/",
+        "source": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/source-code-code-programming-c-583537/"
+      }
+    }
+  ],
+  "keywordHits": {
+    "target": "how to add a language to your app in xcode on mac",
+    "inTitle": true,
+    "inH1": true,
+    "inDescription": true,
+    "inIntro": true,
+    "bodyCount": 5,
+    "secondary": {
+      "Xcode localization": 1,
+      "String Catalog Xcode": 1,
+      "Xcode 27 localization": 1,
+      "Add language to Xcode project": 1
+    }
+  },
+  "generator": {
+    "by": "scripts/content",
+    "model": "haiku",
+    "runId": "daily-2026-11-13",
+    "version": 1
+  }
+}

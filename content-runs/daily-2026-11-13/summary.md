@@ -1,21 +1,25 @@
-Content 2026-11-13: 313 written, 0 refused, 13 failed, 0 deferred
+Content 2026-11-13: 358 written, 0 refused, 7 failed, 0 deferred
 
-- howto: 51/200
+- howto: 65/200
 - apps: 0/15
-- roles: 29/20
-- role-apps: 98/100
-- problems: 97/125
-- compare: 13/15
+- roles: 33/20
+- role-apps: 100/100
+- problems: 120/125
+- compare: 15/15
 - blog: 25/25
 
+role:operations-managers /for/operations-managers
+role:compliance-officers /for/compliance-officers
 role:documentary-filmmakers /for/documentary-filmmakers
 role:ediscovery-specialists /for/ediscovery-specialists
+role:medical-transcriptionists /for/medical-transcriptionists
 role:real-estate-appraisers /for/real-estate-appraisers
 role:clinical-research-coordinators /for/clinical-research-coordinators
 role:payroll-specialists /for/payroll-specialists
 role:logistics-coordinators /for/logistics-coordinators
 role:curriculum-developers /for/curriculum-developers
 role:tax-preparers /for/tax-preparers
+role:customer-support-leads /for/customer-support-leads
 role:digital-media-buyers /for/digital-media-buyers
 role:content-strategists /for/content-strategists
 role:legal-assistants /for/legal-assistants
@@ -38,6 +42,8 @@ role:public-policy-advocates /for/public-policy-advocates
 role:academic-advisors /for/academic-advisors
 role:procurement-analysts /for/procurement-analysts
 compare:apple-dictation-vs-macwhisper /compare/apple-dictation-vs-macwhisper
+compare:apple-dictation-vs-superwhisper /compare/apple-dictation-vs-superwhisper
+compare:apple-dictation-vs-wispr-flow /compare/apple-dictation-vs-wispr-flow
 compare:apple-dictation-vs-aqua-voice /compare/apple-dictation-vs-aqua-voice
 compare:willow-voice-vs-wispr-flow /compare/willow-voice-vs-wispr-flow
 compare:macwhisper-vs-siri /compare/macwhisper-vs-siri
@@ -94,6 +100,7 @@ role-app:copy-editors/word /for/copy-editors/word
 role-app:estate-planners/word /for/estate-planners/word
 role-app:seo-specialists/google-sheets /for/seo-specialists/google-sheets
 role-app:technical-recruiters/slack /for/technical-recruiters/slack
+role-app:media-planners/excel /for/media-planners/excel
 role-app:hr-compliance-specialists/excel /for/hr-compliance-specialists/excel
 role-app:b2b-sales-reps/gmail /for/b2b-sales-reps/gmail
 role-app:grant-administrators/excel /for/grant-administrators/excel
@@ -142,6 +149,7 @@ role-app:media-planners/google-sheets /for/media-planners/google-sheets
 role-app:medical-coders/word /for/medical-coders/word
 role-app:academic-advisors/google-sheets /for/academic-advisors/google-sheets
 role-app:procurement-analysts/google-sheets /for/procurement-analysts/google-sheets
+role-app:financial-planners/outlook /for/financial-planners/outlook
 role-app:it-project-coordinators/slack /for/it-project-coordinators/slack
 role-app:data-entry-clerks/google-sheets /for/data-entry-clerks/google-sheets
 role-app:public-policy-advocates/google-docs /for/public-policy-advocates/google-docs
@@ -279,10 +287,12 @@ howto:switch-to-landscape-orientation-in-pages /how-to/switch-to-landscape-orien
 howto:install-the-xcode-command-line-tools-in-xcode /how-to/install-the-xcode-command-line-tools-in-xcode
 howto:update-chrome-in-chrome /how-to/update-chrome-in-chrome
 howto:create-a-new-project-in-xcode /how-to/create-a-new-project-in-xcode
+howto:set-up-code-signing-in-xcode /how-to/set-up-code-signing-in-xcode
 howto:add-a-swift-package-in-xcode /how-to/add-a-swift-package-in-xcode
 howto:run-an-app-on-a-physical-iphone-in-xcode /how-to/run-an-app-on-a-physical-iphone-in-xcode
 howto:add-a-launch-screen-in-xcode /how-to/add-a-launch-screen-in-xcode
 howto:view-variables-while-debugging-in-xcode /how-to/view-variables-while-debugging-in-xcode
+howto:add-a-language-to-your-app-in-xcode /how-to/add-a-language-to-your-app-in-xcode
 howto:switch-the-active-xcode-version-in-xcode /how-to/switch-the-active-xcode-version-in-xcode
 howto:add-a-breakpoint-in-xcode /how-to/add-a-breakpoint-in-xcode
 howto:show-the-inspector-panel-in-xcode /how-to/show-the-inspector-panel-in-xcode
@@ -321,3 +331,38 @@ howto:enlarge-cursor-in-safari /how-to/enlarge-cursor-in-safari
 howto:change-cursor-in-xcode /how-to/change-cursor-in-xcode
 howto:hide-cursor-in-xcode /how-to/hide-cursor-in-xcode
 howto:enlarge-cursor-in-xcode /how-to/enlarge-cursor-in-xcode
+problem:researchers/improving-research-reliability-and-consistency /for/researchers/problems/improving-research-reliability-and-consistency
+problem:researchers/managing-research-burnout-and-fatigue /for/researchers/problems/managing-research-burnout-and-fatigue
+problem:ux-researchers/managing-ux-designer-burnout-symptoms /for/ux-researchers/problems/managing-ux-designer-burnout-symptoms
+problem:ux-researchers/justifying-ux-research-value-to-stakeholders /for/ux-researchers/problems/justifying-ux-research-value-to-stakeholders
+problem:grant-writers/overcoming-grant-writer-burnout /for/grant-writers/problems/overcoming-grant-writer-burnout
+problem:grant-writers/writing-effective-grant-problem-statements /for/grant-writers/problems/writing-effective-grant-problem-statements
+problem:researchers/choosing-between-random-sampling-methods /for/researchers/problems/choosing-between-random-sampling-methods
+problem:ux-researchers/conducting-ux-research-with-limited-resources /for/ux-researchers/problems/conducting-ux-research-with-limited-resources
+problem:grant-writers/hiring-qualified-grant-writing-professionals /for/grant-writers/problems/hiring-qualified-grant-writing-professionals
+problem:researchers/defining-variables-with-operational-definitions /for/researchers/problems/defining-variables-with-operational-definitions
+problem:ux-researchers/synthesizing-qualitative-data-for-stakeholders /for/ux-researchers/problems/synthesizing-qualitative-data-for-stakeholders
+problem:grant-writers/understanding-grant-writing-difficulty /for/grant-writers/problems/understanding-grant-writing-difficulty
+problem:researchers/implementing-random-assignment-in-experiments /for/researchers/problems/implementing-random-assignment-in-experiments
+problem:grant-writers/calculating-grant-writer-salary-expectations /for/grant-writers/problems/calculating-grant-writer-salary-expectations
+problem:researchers/calculating-standard-error-of-the-mean /for/researchers/problems/calculating-standard-error-of-the-mean
+problem:ux-researchers/navigating-ux-research-career-paths-and-salaries /for/ux-researchers/problems/navigating-ux-research-career-paths-and-salaries
+problem:grant-writers/improving-grant-writing-skills-criminal-justice /for/grant-writers/problems/improving-grant-writing-skills-criminal-justice
+problem:ux-researchers/explaining-ux-research-to-non-technical-teams /for/ux-researchers/problems/explaining-ux-research-to-non-technical-teams
+problem:researchers/solving-problems-faced-by-researchers /for/researchers/problems/solving-problems-faced-by-researchers
+problem:grant-writers/explaining-grant-writing-to-clients /for/grant-writers/problems/explaining-grant-writing-to-clients
+problem:researchers/applying-slovins-formula-for-sample-size /for/researchers/problems/applying-slovins-formula-for-sample-size
+problem:grant-writers/mastering-the-grant-proposal-workflow /for/grant-writers/problems/mastering-the-grant-proposal-workflow
+problem:ux-researchers/standardizing-ux-research-methodologies-in-teams /for/ux-researchers/problems/standardizing-ux-research-methodologies-in-teams
+howto:change-cursor-in-canva /how-to/change-cursor-in-canva
+howto:hide-cursor-in-photoshop /how-to/hide-cursor-in-photoshop
+howto:enlarge-cursor-in-photoshop /how-to/enlarge-cursor-in-photoshop
+howto:change-cursor-in-photoshop /how-to/change-cursor-in-photoshop
+howto:hide-cursor-in-canva /how-to/hide-cursor-in-canva
+howto:change-cursor-in-linear /how-to/change-cursor-in-linear
+howto:enlarge-cursor-in-canva /how-to/enlarge-cursor-in-canva
+howto:hide-cursor-in-linear /how-to/hide-cursor-in-linear
+howto:enlarge-cursor-in-linear /how-to/enlarge-cursor-in-linear
+howto:change-cursor-in-zoom /how-to/change-cursor-in-zoom
+howto:enlarge-cursor-in-zoom /how-to/enlarge-cursor-in-zoom
+howto:hide-cursor-in-zoom /how-to/hide-cursor-in-zoom

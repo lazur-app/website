@@ -1,13 +1,16 @@
-Content 2026-11-14: 279 written, 0 refused, 16 failed, 0 deferred
+Content 2026-11-14: 298 written, 0 refused, 4 failed, 0 deferred
 
 - howto: 0/200
 - apps: 0/15
-- roles: 28/20
+- roles: 34/20
 - role-apps: 100/100
-- problems: 116/125
-- compare: 12/15
-- blog: 23/25
+- problems: 124/125
+- compare: 13/15
+- blog: 27/25
 
+role:financial-planners /for/financial-planners
+role:museum-curators /for/museum-curators
+role:data-entry-clerks /for/data-entry-clerks
 role:travel-agents /for/travel-agents
 role:agile-coaches /for/agile-coaches
 role:marketing-operations-managers /for/marketing-operations-managers
@@ -16,6 +19,7 @@ role:clinical-data-managers /for/clinical-data-managers
 role:corporate-trainers /for/corporate-trainers
 role:risk-management-specialists /for/risk-management-specialists
 role:logistics-analysts /for/logistics-analysts
+role:media-buyers /for/media-buyers
 role:real-estate-analysts /for/real-estate-analysts
 role:inventory-planners /for/inventory-planners
 role:customer-onboarding-specialists /for/customer-onboarding-specialists
@@ -28,6 +32,8 @@ role:e-commerce-merchandisers /for/e-commerce-merchandisers
 role:business-development-representatives /for/business-development-representatives
 role:legal-secretaries /for/legal-secretaries
 role:social-media-content-creators /for/social-media-content-creators
+role:digital-marketing-analysts /for/digital-marketing-analysts
+role:customer-support-agents /for/customer-support-agents
 role:project-coordinators /for/project-coordinators
 role:office-managers /for/office-managers
 role:sales-operations-analysts /for/sales-operations-analysts
@@ -36,6 +42,7 @@ role:academic-researchers /for/academic-researchers
 role:financial-controllers /for/financial-controllers
 role:logistics-planners /for/logistics-planners
 role:training-coordinators /for/training-coordinators
+compare:typeless-vs-wispr-flow /compare/typeless-vs-wispr-flow
 compare:voiceink-vs-wispr-flow /compare/voiceink-vs-wispr-flow
 compare:google-voice-typing-vs-voiceink /compare/google-voice-typing-vs-voiceink
 compare:google-voice-typing-vs-typeless /compare/google-voice-typing-vs-typeless
@@ -48,6 +55,8 @@ compare:siri-vs-superwhisper /compare/siri-vs-superwhisper
 compare:siri-vs-voiceink /compare/siri-vs-voiceink
 compare:siri-vs-willow-voice /compare/siri-vs-willow-voice
 compare:siri-vs-typeless /compare/siri-vs-typeless
+blog:dictation-on-mac-microsoft-word /blog/dictation-on-mac-microsoft-word
+blog:ai-voice-assistant-names-and-capabilities /blog/ai-voice-assistant-names-and-capabilities
 blog:how-to-use-voice-control-on-mac-for-accessibility /blog/how-to-use-voice-control-on-mac-for-accessibility
 blog:how-to-learn-new-mac-app-faster /blog/how-to-learn-new-mac-app-faster
 blog:dictation-on-mac-not-working-fixes /blog/dictation-on-mac-not-working-fixes
@@ -214,6 +223,7 @@ problem:event-planners/handling-last-minute-event-changes /for/event-planners/pr
 problem:medical-billers/handling-patient-billing-inquiries-effectively /for/medical-billers/problems/handling-patient-billing-inquiries-effectively
 problem:event-planners/event-planner-marketing-and-client-acquisition /for/event-planners/problems/event-planner-marketing-and-client-acquisition
 problem:social-media-managers/social-media-manager-per-post-pricing /for/social-media-managers/problems/social-media-manager-per-post-pricing
+problem:medical-billers/medical-billing-software-integration-problems /for/medical-billers/problems/medical-billing-software-integration-problems
 problem:social-media-managers/starting-a-social-media-management-career /for/social-media-managers/problems/starting-a-social-media-management-career
 problem:medical-billers/managing-aged-accounts-receivable-reports /for/medical-billers/problems/managing-aged-accounts-receivable-reports
 problem:event-planners/organizing-event-supplies-and-inventory /for/event-planners/problems/organizing-event-supplies-and-inventory
@@ -225,6 +235,7 @@ problem:medical-billers/coping-with-medical-billing-administrative-stress /for/m
 problem:social-media-managers/social-media-manager-platform-algorithm-updates /for/social-media-managers/problems/social-media-manager-platform-algorithm-updates
 problem:event-planners/event-risk-assessment-and-safety-planning /for/event-planners/problems/event-risk-assessment-and-safety-planning
 problem:event-planners/communicating-with-difficult-event-clients /for/event-planners/problems/communicating-with-difficult-event-clients
+problem:medical-billers/interpreting-complex-insurance-coverage-policies /for/medical-billers/problems/interpreting-complex-insurance-coverage-policies
 problem:medical-billers/medical-billing-credentialing-process-delays /for/medical-billers/problems/medical-billing-credentialing-process-delays
 problem:event-planners/event-planner-time-management-techniques /for/event-planners/problems/event-planner-time-management-techniques
 problem:social-media-managers/social-media-manager-content-calendar-planning /for/social-media-managers/problems/social-media-manager-content-calendar-planning
@@ -253,6 +264,7 @@ problem:social-media-managers/social-media-manager-ad-campaign-optimization /for
 problem:event-planners/event-planner-portfolio-building-tips /for/event-planners/problems/event-planner-portfolio-building-tips
 problem:event-planners/creating-event-marketing-plans /for/event-planners/problems/creating-event-marketing-plans
 problem:social-media-managers/social-media-manager-brand-voice-consistency /for/social-media-managers/problems/social-media-manager-brand-voice-consistency
+problem:event-planners/handling-event-cancellations-and-refunds /for/event-planners/problems/handling-event-cancellations-and-refunds
 problem:social-media-managers/social-media-manager-video-editing-workflow /for/social-media-managers/problems/social-media-manager-video-editing-workflow
 problem:social-media-managers/social-media-manager-contract-negotiation /for/social-media-managers/problems/social-media-manager-contract-negotiation
 problem:event-planners/planning-sustainable-and-eco-friendly-events /for/event-planners/problems/planning-sustainable-and-eco-friendly-events
@@ -287,3 +299,10 @@ problem:social-media-managers/social-media-manager-portfolio-building /for/socia
 problem:event-planners/managing-event-security-personnel /for/event-planners/problems/managing-event-security-personnel
 problem:social-media-managers/social-media-manager-networking-strategy /for/social-media-managers/problems/social-media-manager-networking-strategy
 problem:event-planners/event-planner-workflow-automation-tools /for/event-planners/problems/event-planner-workflow-automation-tools
+blog:voice-command-on-macbook-air-tips /blog/voice-command-on-macbook-air-tips
+blog:voice-assistant-mac-mini-setup /blog/voice-assistant-mac-mini-setup
+problem:customer-success-managers/customer-success-manager-burnout-prevention /for/customer-success-managers/problems/customer-success-manager-burnout-prevention
+problem:hr-generalists/determining-hr-generalist-exempt-status /for/hr-generalists/problems/determining-hr-generalist-exempt-status
+problem:executive-assistants/managing-executive-inbox-overload /for/executive-assistants/problems/managing-executive-inbox-overload
+problem:executive-assistants/preventing-executive-assistant-burnout /for/executive-assistants/problems/preventing-executive-assistant-burnout
+problem:customer-success-managers/customer-success-manager-commission-structure-clarity /for/customer-success-managers/problems/customer-success-manager-commission-structure-clarity

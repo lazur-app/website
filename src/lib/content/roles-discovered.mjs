@@ -1668,5 +1668,599 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They model and mitigate organizational risks, requiring specialized software for data tracking and reporting.",
     "discoveredAt": "2026-11-13"
+  },
+  {
+    "slug": "inventory-planners",
+    "name": "Inventory planners",
+    "singular": "inventory planner",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "gmail"
+    ],
+    "keywords": [
+      "inventory spreadsheet automation",
+      "demand forecasting tools"
+    ],
+    "why": "Inventory planners spend their entire day managing stock levels in complex spreadsheets and require constant communication with suppliers via email and chat.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "real-estate-analysts",
+    "name": "Real estate analysts",
+    "singular": "real estate analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "powerpoint",
+      "outlook"
+    ],
+    "keywords": [
+      "real estate financial modeling",
+      "property valuation template"
+    ],
+    "why": "They rely heavily on advanced Excel modeling to value properties and create investment decks for stakeholders.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "customer-onboarding-specialists",
+    "name": "Customer onboarding specialists",
+    "singular": "customer onboarding specialist",
+    "apps": [
+      "notion",
+      "zoom",
+      "slack",
+      "gmail"
+    ],
+    "keywords": [
+      "onboarding workflow automation",
+      "client training documentation"
+    ],
+    "why": "They manage high volumes of new client setups, needing to document processes in Notion and conduct live training sessions over Zoom.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "media-buyers",
+    "name": "Media buyers",
+    "singular": "media buyer",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "chrome"
+    ],
+    "keywords": [
+      "ad spend tracking",
+      "media buying spreadsheet template"
+    ],
+    "why": "Media buyers spend their day analyzing ad performance data in spreadsheets and adjusting live campaigns in browser-based ad platforms.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "technical-account-managers",
+    "name": "Technical account managers",
+    "singular": "technical account manager",
+    "apps": [
+      "slack",
+      "zoom",
+      "notion",
+      "gmail"
+    ],
+    "keywords": [
+      "technical account management workflows",
+      "client issue tracking"
+    ],
+    "why": "They bridge the gap between technical teams and clients, requiring heavy use of documentation tools and communication platforms.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "compensation-analysts",
+    "name": "Compensation analysts",
+    "singular": "compensation analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "word",
+      "outlook"
+    ],
+    "keywords": [
+      "salary benchmarking tools",
+      "compensation data analysis"
+    ],
+    "why": "They work with highly sensitive salary data, requiring advanced spreadsheet skills to perform market benchmarking and internal equity analysis.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "patient-care-coordinators",
+    "name": "Patient care coordinators",
+    "singular": "patient care coordinator",
+    "apps": [
+      "gmail",
+      "outlook",
+      "excel",
+      "zoom"
+    ],
+    "keywords": [
+      "patient scheduling software",
+      "medical appointment tracking"
+    ],
+    "why": "They coordinate complex patient schedules and communicate with insurance providers, spending the day moving between email and scheduling software.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "e-commerce-merchandisers",
+    "name": "E-commerce merchandisers",
+    "singular": "e-commerce merchandiser",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "chrome"
+    ],
+    "keywords": [
+      "product catalog management",
+      "e-commerce inventory tracking"
+    ],
+    "why": "They spend their time updating product details and inventory levels across web platforms using spreadsheets for bulk management.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "billing-specialists",
+    "name": "Billing specialists",
+    "singular": "billing specialist",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "automated invoice generation",
+      "billing reconciliation spreadsheet"
+    ],
+    "why": "Billing specialists manage high volumes of invoices, requiring constant reconciliation between accounting documents and email communication.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "corporate-recruiters",
+    "name": "Corporate recruiters",
+    "singular": "corporate recruiter",
+    "apps": [
+      "gmail",
+      "zoom",
+      "notion",
+      "slack"
+    ],
+    "keywords": [
+      "candidate pipeline tracking",
+      "interview scheduling automation"
+    ],
+    "why": "They spend their day sourcing talent, scheduling interviews via email, and managing candidate pipelines in internal databases.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "business-development-representatives",
+    "name": "Business development representatives",
+    "singular": "business development representative",
+    "apps": [
+      "gmail",
+      "slack",
+      "excel",
+      "notion"
+    ],
+    "keywords": [
+      "lead generation tracking",
+      "outreach email templates"
+    ],
+    "why": "They spend their day conducting high-volume outreach and logging interactions in spreadsheets and CRM-like documentation tools.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "legal-secretaries",
+    "name": "Legal secretaries",
+    "singular": "legal secretary",
+    "apps": [
+      "word",
+      "outlook",
+      "gmail",
+      "pages"
+    ],
+    "keywords": [
+      "legal document formatting",
+      "court filing document templates"
+    ],
+    "why": "They spend their days drafting and formatting complex legal documents, requiring mastery of word processors and email management.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "social-media-content-creators",
+    "name": "Social media content creators",
+    "singular": "social media content creator",
+    "apps": [
+      "canva",
+      "photoshop",
+      "notion",
+      "slack"
+    ],
+    "keywords": [
+      "content calendar template",
+      "social media design workflow"
+    ],
+    "why": "They create visual assets and manage content schedules, relying on design software and project management tools.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "customer-support-agents",
+    "name": "Customer support agents",
+    "singular": "customer support agent",
+    "apps": [
+      "gmail",
+      "slack",
+      "chrome",
+      "notion"
+    ],
+    "keywords": [
+      "customer ticket response templates",
+      "support documentation management"
+    ],
+    "why": "They handle hundreds of tickets daily, using keyboard shortcuts and saved replies to manage communication efficiency.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "office-managers",
+    "name": "Office managers",
+    "singular": "office manager",
+    "apps": [
+      "excel",
+      "gmail",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "office supply inventory tracking",
+      "employee scheduling spreadsheet"
+    ],
+    "why": "They manage day-to-day operations, vendor communication, and staff scheduling, relying on office software suites.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "digital-marketing-analysts",
+    "name": "Digital marketing analysts",
+    "singular": "digital marketing analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "powerpoint",
+      "chrome"
+    ],
+    "keywords": [
+      "marketing performance dashboard",
+      "campaign data analysis"
+    ],
+    "why": "They aggregate data from various marketing channels into spreadsheets to build reports and presentations for stakeholders.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "project-coordinators",
+    "name": "Project coordinators",
+    "singular": "project coordinator",
+    "apps": [
+      "notion",
+      "slack",
+      "excel",
+      "zoom"
+    ],
+    "keywords": [
+      "project milestone tracker",
+      "team task management"
+    ],
+    "why": "They keep teams aligned on deadlines, using project management software and spreadsheets to track progress.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "sales-operations-analysts",
+    "name": "Sales operations analysts",
+    "singular": "sales operations analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "sales pipeline forecasting",
+      "sales data cleanup"
+    ],
+    "why": "They manage the infrastructure for sales teams, spending time cleaning data and building reports for leadership.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "academic-researchers",
+    "name": "Academic researchers",
+    "singular": "academic researcher",
+    "apps": [
+      "word",
+      "google-docs",
+      "excel"
+    ],
+    "keywords": [
+      "research paper formatting",
+      "bibliography management"
+    ],
+    "why": "They spend the majority of their time writing papers and managing citations in word processors.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "public-relations-managers",
+    "name": "Public relations managers",
+    "singular": "public relations manager",
+    "apps": [
+      "gmail",
+      "word",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "press release distribution",
+      "media contact list management"
+    ],
+    "why": "They manage media outreach and draft press releases, requiring constant coordination and document creation.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "financial-controllers",
+    "name": "Financial controllers",
+    "singular": "financial controller",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "financial report automation",
+      "budget reconciliation"
+    ],
+    "why": "They oversee all accounting functions, spending their day verifying data in spreadsheets and drafting financial reports.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "training-coordinators",
+    "name": "Training coordinators",
+    "singular": "training coordinator",
+    "apps": [
+      "powerpoint",
+      "zoom",
+      "notion",
+      "gmail"
+    ],
+    "keywords": [
+      "training session scheduling",
+      "employee development tracking"
+    ],
+    "why": "They organize and facilitate staff training, requiring proficiency in presentation software and communication tools.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "logistics-planners",
+    "name": "Logistics planners",
+    "singular": "logistics planner",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "gmail"
+    ],
+    "keywords": [
+      "shipping route optimization",
+      "freight cost analysis"
+    ],
+    "why": "They manage complex supply chains, using spreadsheets for route planning and email for coordination.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "compliance-coordinators",
+    "name": "Compliance coordinators",
+    "singular": "compliance coordinator",
+    "apps": [
+      "notion",
+      "excel",
+      "word",
+      "gmail"
+    ],
+    "keywords": [
+      "compliance audit checklist",
+      "regulatory documentation"
+    ],
+    "why": "They maintain records of adherence to regulations, requiring organized file management and constant document updates.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "recruitment-coordinators",
+    "name": "Recruitment coordinators",
+    "singular": "recruitment coordinator",
+    "apps": [
+      "gmail",
+      "slack",
+      "notion",
+      "zoom"
+    ],
+    "keywords": [
+      "interview scheduling workflow",
+      "candidate email templates"
+    ],
+    "why": "They handle the administrative heavy lifting of hiring, including scheduling and candidate communications.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "data-governance-analysts",
+    "name": "Data governance analysts",
+    "singular": "data governance analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "notion",
+      "slack"
+    ],
+    "keywords": [
+      "data dictionary template",
+      "data quality tracking"
+    ],
+    "why": "They define and enforce data standards, spending their day documenting policies and auditing databases.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "customer-success-associates",
+    "name": "Customer success associates",
+    "singular": "customer success associate",
+    "apps": [
+      "slack",
+      "gmail",
+      "notion",
+      "zoom"
+    ],
+    "keywords": [
+      "client health check template",
+      "customer success playbooks"
+    ],
+    "why": "They manage ongoing client relationships, documenting client progress and addressing issues through email and video calls.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "marketing-copywriters",
+    "name": "Marketing copywriters",
+    "singular": "marketing copywriter",
+    "apps": [
+      "google-docs",
+      "word",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "copywriting brief template",
+      "content editing workflow"
+    ],
+    "why": "They spend their entire day writing and editing marketing copy, requiring efficient word processing and collaboration.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "procurement-officers",
+    "name": "Procurement officers",
+    "singular": "procurement officer",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "vendor contract management",
+      "purchase order tracker"
+    ],
+    "why": "They manage purchasing and vendor relations, using spreadsheets to track orders and contracts.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "it-asset-managers",
+    "name": "IT asset managers",
+    "singular": "it asset manager",
+    "apps": [
+      "excel",
+      "notion",
+      "slack",
+      "gmail"
+    ],
+    "keywords": [
+      "hardware inventory tracker",
+      "software license management"
+    ],
+    "why": "They track all hardware and software within an organization, relying on spreadsheets to keep inventory accurate.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "market-researchers",
+    "name": "Market researchers",
+    "singular": "market researcher",
+    "apps": [
+      "excel",
+      "powerpoint",
+      "google-sheets",
+      "word"
+    ],
+    "keywords": [
+      "market analysis report template",
+      "survey data analysis"
+    ],
+    "why": "They synthesize large datasets into actionable insights for clients, using spreadsheets for analysis and presentations for delivery.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "event-coordinators",
+    "name": "Event coordinators",
+    "singular": "event coordinator",
+    "apps": [
+      "excel",
+      "notion",
+      "gmail",
+      "slack"
+    ],
+    "keywords": [
+      "event planning checklist",
+      "vendor budget tracker"
+    ],
+    "why": "They manage multiple moving parts for events, using spreadsheets for budgets and project tools for logistics.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "seo-analysts",
+    "name": "SEO analysts",
+    "singular": "seo analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "chrome",
+      "notion"
+    ],
+    "keywords": [
+      "keyword ranking tracker",
+      "seo audit checklist"
+    ],
+    "why": "They monitor search rankings and website performance, requiring constant data manipulation in spreadsheets.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "b2b-sales-representatives",
+    "name": "B2B sales representatives",
+    "singular": "b2b sales representative",
+    "apps": [
+      "gmail",
+      "excel",
+      "zoom",
+      "slack"
+    ],
+    "keywords": [
+      "sales outreach tracking",
+      "lead qualification spreadsheet"
+    ],
+    "why": "They manage long sales cycles requiring constant email follow-ups and data tracking in spreadsheets.",
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "hr-compliance-officers",
+    "name": "HR compliance officers",
+    "singular": "hr compliance officer",
+    "apps": [
+      "word",
+      "excel",
+      "notion",
+      "gmail"
+    ],
+    "keywords": [
+      "hr policy documentation",
+      "compliance audit tracker"
+    ],
+    "why": "They ensure legal adherence in HR processes, requiring careful documentation and spreadsheet-based reporting.",
+    "discoveredAt": "2026-11-14"
   }
 ];

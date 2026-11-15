@@ -2262,5 +2262,22 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They ensure legal adherence in HR processes, requiring careful documentation and spreadsheet-based reporting.",
     "discoveredAt": "2026-11-14"
+  },
+  {
+    "slug": "digital-media-planners",
+    "name": "Digital media planners",
+    "singular": "digital media planner",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "chrome"
+    ],
+    "keywords": [
+      "media plan template excel",
+      "ad budget allocation spreadsheet"
+    ],
+    "why": "They plan where ad spend goes, requiring complex spreadsheet models to forecast performance.",
+    "discoveredAt": "2026-11-15"
   }
 ];

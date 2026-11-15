@@ -1,12 +1,12 @@
-Content 2026-11-15: 259 written, 0 refused, 7 failed, 0 deferred
+Content 2026-11-15: 330 written, 0 refused, 16 failed, 0 deferred
 
 - howto: 6/200
 - apps: 0/15
 - roles: 13/20
 - role-apps: 138/100
-- problems: 86/125
+- problems: 117/125
 - compare: 0/15
-- blog: 16/25
+- blog: 56/25
 
 role:data-governance-analysts /for/data-governance-analysts
 role:technical-support-specialists /for/technical-support-specialists
@@ -262,8 +262,79 @@ problem:journalists/stress-in-journalism-jobs /for/journalists/problems/stress-i
 problem:journalists/journalist-professional-dress-code /for/journalists/problems/journalist-professional-dress-code
 problem:journalists/why-journalists-cite-sources /for/journalists/problems/why-journalists-cite-sources
 problem:journalists/journalism-burnout-recovery /for/journalists/problems/journalism-burnout-recovery
+problem:journalists/how-journalists-make-money /for/journalists/problems/how-journalists-make-money
 problem:journalists/journalists-and-public-perception /for/journalists/problems/journalists-and-public-perception
 problem:journalists/journalist-safety-risks /for/journalists/problems/journalist-safety-risks
 problem:journalists/solving-journalist-workplace-problems /for/journalists/problems/solving-journalist-workplace-problems
 problem:journalists/journalism-problems-on-reddit /for/journalists/problems/journalism-problems-on-reddit
 problem:journalists/why-journalists-talk-like-that /for/journalists/problems/why-journalists-talk-like-that
+blog:how-to-make-apps-smaller-on-macbook /blog/how-to-make-apps-smaller-on-macbook
+blog:voice-assistant-machine-learning-privacy /blog/voice-assistant-machine-learning-privacy
+blog:voice-assistant-for-mac-machine-learning-explained /blog/voice-assistant-for-mac-machine-learning-explained
+blog:dictation-on-macbook-air-not-working-fix /blog/dictation-on-macbook-air-not-working-fix
+blog:best-macbook-notch-apps-reddit-picks /blog/best-macbook-notch-apps-reddit-picks
+blog:voice-command-on-macbook-air-for-students /blog/voice-command-on-macbook-air-for-students
+blog:typing-speed-fastest-how-to-improve /blog/typing-speed-fastest-how-to-improve
+blog:how-to-use-voice-control-on-mac-for-beginners /blog/how-to-use-voice-control-on-mac-for-beginners
+blog:repetitive-strain-injury-wrist-typing-prevention /blog/repetitive-strain-injury-wrist-typing-prevention
+blog:can-typing-cause-repetitive-strain-injury /blog/can-typing-cause-repetitive-strain-injury
+blog:best-notch-apps-for-macbook-air /blog/best-notch-apps-for-macbook-air
+blog:why-do-my-app-icons-keep-disappearing /blog/why-do-my-app-icons-keep-disappearing
+blog:ai-voice-over-capcut-desktop-guide /blog/ai-voice-over-capcut-desktop-guide
+blog:why-are-my-app-icons-not-showing /blog/why-are-my-app-icons-not-showing
+blog:how-to-make-an-ai-voice-assistant /blog/how-to-make-an-ai-voice-assistant
+blog:macbook-notch-app-kostenlos-german /blog/macbook-notch-app-kostenlos-german
+blog:how-to-use-voice-control-on-mac-for-productivity /blog/how-to-use-voice-control-on-mac-for-productivity
+blog:dictation-on-mac-not-working-troubleshooting-tips /blog/dictation-on-mac-not-working-troubleshooting-tips
+blog:best-ai-voice-assistant-for-mac-features /blog/best-ai-voice-assistant-for-mac-features
+blog:how-to-use-voice-command-on-macbook-air-pro /blog/how-to-use-voice-command-on-macbook-air-pro
+blog:can-you-get-repetitive-strain-injury-from-typing /blog/can-you-get-repetitive-strain-injury-from-typing
+blog:best-macbook-notch-apps-2026 /blog/best-macbook-notch-apps-2026
+blog:how-to-cancel-dictation-on-mac /blog/how-to-cancel-dictation-on-mac
+blog:dictation-on-mac-book-pro-not-working /blog/dictation-on-mac-book-pro-not-working
+blog:macbook-notch-application-guide /blog/macbook-notch-application-guide
+blog:how-to-use-dictation-on-mac-laptop /blog/how-to-use-dictation-on-mac-laptop
+blog:what-does-dictation-on-mac-do /blog/what-does-dictation-on-mac-do
+blog:how-to-quit-dictation-on-mac /blog/how-to-quit-dictation-on-mac
+blog:dictation-on-mac-doesn-t-work-fixes /blog/dictation-on-mac-doesn-t-work-fixes
+blog:how-to-use-dictation-on-mac-google-docs-pro /blog/how-to-use-dictation-on-mac-google-docs-pro
+blog:dictation-app-mac-free-options /blog/dictation-app-mac-free-options
+blog:dictation-on-mac-computer-guide /blog/dictation-on-mac-computer-guide
+blog:how-to-use-dictation-on-mac-outlook-pro /blog/how-to-use-dictation-on-mac-outlook-pro
+blog:what-is-ai-voice-assistant-for-mac /blog/what-is-ai-voice-assistant-for-mac
+blog:best-macbook-notch-apps-reddit-2026 /blog/best-macbook-notch-apps-reddit-2026
+blog:dictation-on-apple-laptop-guide /blog/dictation-on-apple-laptop-guide
+blog:dictation-on-my-mac-not-working /blog/dictation-on-my-mac-not-working
+blog:how-to-use-voice-dictation-on-mac-laptop /blog/how-to-use-voice-dictation-on-mac-laptop
+blog:dictation-on-mac-pages-tips /blog/dictation-on-mac-pages-tips
+blog:how-to-reset-dictation-on-mac /blog/how-to-reset-dictation-on-mac
+problem:video-editors/video-editor-burnout-prevention-tips /for/video-editors/problems/video-editor-burnout-prevention-tips
+problem:translators/optimizing-translation-workflow-with-ai /for/translators/problems/optimizing-translation-workflow-with-ai
+problem:translators/calculating-fair-translation-rates /for/translators/problems/calculating-fair-translation-rates
+problem:video-editors/video-editing-time-management-strategies /for/video-editors/problems/video-editing-time-management-strategies
+problem:translators/improving-translation-speed-and-efficiency /for/translators/problems/improving-translation-speed-and-efficiency
+problem:translators/cognitive-load-in-translation /for/translators/problems/cognitive-load-in-translation
+problem:translators/maintaining-accuracy-in-complex-texts /for/translators/problems/maintaining-accuracy-in-complex-texts
+problem:video-editors/finding-legitimate-video-editing-jobs /for/video-editors/problems/finding-legitimate-video-editing-jobs
+problem:video-editors/managing-large-video-file-transfers /for/video-editors/problems/managing-large-video-file-transfers
+problem:video-editors/sourcing-high-quality-stock-footage /for/video-editors/problems/sourcing-high-quality-stock-footage
+problem:translators/fixing-poor-english-translations /for/translators/problems/fixing-poor-english-translations
+problem:video-editors/troubleshooting-video-export-errors /for/video-editors/problems/troubleshooting-video-export-errors
+problem:translators/managing-translation-project-deadlines /for/translators/problems/managing-translation-project-deadlines
+problem:video-editors/optimizing-computer-hardware-for-editing /for/video-editors/problems/optimizing-computer-hardware-for-editing
+problem:translators/calculating-hourly-rates-for-translators /for/translators/problems/calculating-hourly-rates-for-translators
+problem:video-editors/calculating-per-video-rates /for/video-editors/problems/calculating-per-video-rates
+problem:video-editors/applying-ken-burns-effect-professionally /for/video-editors/problems/applying-ken-burns-effect-professionally
+problem:translators/how-translators-get-paid /for/translators/problems/how-translators-get-paid
+problem:translators/importance-of-healthcare-translators /for/translators/problems/importance-of-healthcare-translators
+problem:video-editors/canva-video-editor-limitations-solutions /for/video-editors/problems/canva-video-editor-limitations-solutions
+problem:translators/balancing-translation-work-and-life /for/translators/problems/balancing-translation-work-and-life
+problem:video-editors/movavi-video-editor-troubleshooting-guide /for/video-editors/problems/movavi-video-editor-troubleshooting-guide
+problem:translators/improving-simultaneous-interpretation-memory /for/translators/problems/improving-simultaneous-interpretation-memory
+problem:translators/setting-fair-translation-earnings /for/translators/problems/setting-fair-translation-earnings
+problem:video-editors/managing-video-editing-technical-glitches /for/video-editors/problems/managing-video-editing-technical-glitches
+problem:video-editors/adding-fire-effects-to-video /for/video-editors/problems/adding-fire-effects-to-video
+problem:translators/streamlining-translation-business-operations /for/translators/problems/streamlining-translation-business-operations
+problem:video-editors/maximizing-annual-video-editing-income /for/video-editors/problems/maximizing-annual-video-editing-income
+problem:translators/professional-translation-pricing-models /for/translators/problems/professional-translation-pricing-models
+problem:video-editors/professional-video-editing-tool-comparison /for/video-editors/problems/professional-video-editing-tool-comparison

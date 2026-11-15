@@ -1,10 +1,10 @@
-Content 2026-11-14: 298 written, 0 refused, 4 failed, 0 deferred
+Content 2026-11-14: 307 written, 0 refused, 6 failed, 0 deferred
 
-- howto: 0/200
+- howto: 7/200
 - apps: 0/15
-- roles: 34/20
+- roles: 35/20
 - role-apps: 100/100
-- problems: 124/125
+- problems: 125/125
 - compare: 13/15
 - blog: 27/25
 
@@ -306,3 +306,12 @@ problem:hr-generalists/determining-hr-generalist-exempt-status /for/hr-generalis
 problem:executive-assistants/managing-executive-inbox-overload /for/executive-assistants/problems/managing-executive-inbox-overload
 problem:executive-assistants/preventing-executive-assistant-burnout /for/executive-assistants/problems/preventing-executive-assistant-burnout
 problem:customer-success-managers/customer-success-manager-commission-structure-clarity /for/customer-success-managers/problems/customer-success-manager-commission-structure-clarity
+role:compliance-coordinators /for/compliance-coordinators
+problem:executive-assistants/complex-calendar-scheduling-challenges /for/executive-assistants/problems/complex-calendar-scheduling-challenges
+howto:hide-cursor-in-vs-code /how-to/hide-cursor-in-vs-code
+howto:enlarge-cursor-in-vs-code /how-to/enlarge-cursor-in-vs-code
+howto:change-cursor-in-apple-mail /how-to/change-cursor-in-apple-mail
+howto:change-cursor-in-vs-code /how-to/change-cursor-in-vs-code
+howto:enlarge-cursor-in-apple-mail /how-to/enlarge-cursor-in-apple-mail
+howto:hide-cursor-in-chatgpt /how-to/hide-cursor-in-chatgpt
+howto:enlarge-cursor-in-chatgpt /how-to/enlarge-cursor-in-chatgpt

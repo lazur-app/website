@@ -224,7 +224,7 @@ Lazur is a voice assistant for the Mac that lives in the notch. It is designed t
 
 ## Getting Started with AI on Your Mac
 
-To get the most out of your assistant, ensure your hardware is up to date. Most advanced tools require Apple Silicon and macOS 14 or later. Start by identifying the most repetitive part of your day. Is it replying to emails? Is it searching for files in Finder? Once you know your biggest time sink, test your AI assistant on that specific task. If you are a developer, tools like those for [Cursor](/apps/cursor) can help you explain errors or draft commits. If you are a student, you might find an AI study buddy more useful. The key is to pick a tool that fits your specific needs rather than trying to use a generic chatbot for everything.
+To get the most out of your assistant, ensure your hardware is up to date. Most advanced tools require Apple Silicon and macOS 14 or later. Start by identifying the most repetitive part of your day. Is it replying to emails? Is it searching for files in Finder? Once you know your biggest time sink, test your AI assistant on that specific task. If you are a developer, tools like those for [Cursor](/apps/cursor) can help you explain errors or draft commits. If you are a student, you might find an AI study companion more useful. The key is to pick a tool that fits your specific needs rather than trying to use a generic chatbot for everything.
 
 ## Common Mistakes to Avoid
 

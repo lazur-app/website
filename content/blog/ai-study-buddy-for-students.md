@@ -1,14 +1,14 @@
 ---
-title: 'An AI study buddy that explains what''s on your screen, on Mac in 2026'
+title: 'An AI study companion that explains what''s on your screen, on Mac in 2026'
 description: >-
-  An AI study buddy explains what's on your screen, out loud and in context. See
+  An AI study companion explains what's on your screen, out loud and in context. See
   how students use one on a Mac, and what to watch for.
-targetKeyword: AI study buddy
+targetKeyword: AI study companion
 category: Guide
 cover: waveform
 tldr:
   - >-
-    An AI study buddy sees what you are studying and explains it in context, out
+    An AI study companion sees what you are studying and explains it in context, out
     loud.
   - >-
     Most students already use AI for schoolwork, so use it to understand
@@ -20,22 +20,22 @@ tldr:
     Check your course rules first, and keep personal material off the screen
     while you study.
 faq:
-  - question: What is an AI study buddy?
+  - question: What is an AI study companion?
     answer: >-
-      An AI study buddy is an assistant that helps you learn. It reads the page,
+      An AI study companion is an assistant that helps you learn. It reads the page,
       diagram or problem on your screen when you ask, explains it, and helps
       with timers, notes and deadlines. You still do the thinking.
-  - question: Can an AI study buddy see my whole screen?
+  - question: Can an AI study companion see my whole screen?
     answer: >-
       It depends on the tool. Lazur looks at the screen only while you hold ⌥ ⌘.
       Copilot Vision on Windows can share the entire screen or one window.
       Gemini in Chrome only works on the Chrome page you have open.
-  - question: Is using an AI study buddy cheating?
+  - question: Is using an AI study companion cheating?
     answer: >-
       Using one to understand material is like asking a tutor. Handing in
       AI-written work as your own can break school rules. Read your course
       policy, and ask your instructor if it is unclear.
-  - question: Is there a free AI study buddy for Mac?
+  - question: Is there a free AI study companion for Mac?
     answer: >-
       Gemini in Chrome is free for most features. You need Chrome, a signed-in
       Google account, and you must be 18 or older. Lazur has a 3-day Pro trial
@@ -132,10 +132,10 @@ images:
     height: 853
     alt: >-
       Student at a desk with a laptop and notes, the kind of study session where
-      an AI study buddy helps
-    caption: 'A laptop study session, the setting where an AI study buddy helps.'
+      an AI study companion helps
+    caption: 'A laptop study session, the setting where an AI study companion helps.'
     keywords:
-      - AI study buddy
+      - AI study companion
       - Guide
       - student studying laptop
       - Mac
@@ -150,14 +150,14 @@ images:
     width: 1280
     height: 823
     alt: >-
-      Person working at a Mac on a desk, using an AI study buddy to explain a
+      Person working at a Mac on a desk, using an AI study companion to explain a
       reading
     caption: A Mac study desk with a reading open.
     keywords:
-      - AI study buddy
+      - AI study companion
       - AI
       - study
-      - buddy
+      - companion
       - person using Mac desk
       - Mac
       - Lazur
@@ -172,13 +172,13 @@ images:
     height: 960
     alt: >-
       Open textbook and handwritten notes on a desk, the material an AI study
-      buddy can explain
+      companion can explain
     caption: 'Study material on a desk, ready for questions.'
     keywords:
-      - AI study buddy
+      - AI study companion
       - AI
       - study
-      - buddy
+      - companion
       - textbook notes desk
       - Mac
       - Lazur
@@ -199,10 +199,10 @@ heroImage:
   height: 853
   alt: >-
     Student at a desk with a laptop and notes, the kind of study session where
-    an AI study buddy helps
-  caption: 'A laptop study session, the setting where an AI study buddy helps.'
+    an AI study companion helps
+  caption: 'A laptop study session, the setting where an AI study companion helps.'
   keywords:
-    - AI study buddy
+    - AI study companion
     - Guide
     - student studying laptop
     - Mac
@@ -213,7 +213,7 @@ heroImage:
     source: Pixabay
     sourceUrl: 'https://pixabay.com/photos/computer-pc-workplace-home-office-1185626/'
 keywordHits:
-  target: AI study buddy
+  target: AI study companion
   inTitle: true
   inH1: true
   inDescription: true
@@ -222,23 +222,23 @@ keywordHits:
   secondary: {}
 ---
 
-An AI study buddy is an assistant that looks at what you are studying and explains it while you work. On a Mac, you can ask about the page, diagram or problem on your screen and hear the answer without leaving the document.
+An AI study companion is an assistant that looks at what you are studying and explains it while you work. On a Mac, you can ask about the page, diagram or problem on your screen and hear the answer without leaving the document.
 
-Most study help still happens in a separate chat window. You take a screenshot, paste it in, type a long description, and wait. By the time the answer comes back, you have lost your place. A screen-aware study buddy skips that step. It reads what is already on your display, so your question can be short: “What does this arrow mean?”
+Most study help still happens in a separate chat window. You take a screenshot, paste it in, type a long description, and wait. By the time the answer comes back, you have lost your place. A screen-aware study companion skips that step. It reads what is already on your display, so your question can be short: “What does this arrow mean?”
 
 This guide covers what these tools do, how many students already use them, the built-in options you can try today, and the habits that waste study time. It ends with where Lazur fits.
 
-## What an AI study buddy does with what's on screen
+## What an AI study companion does with what's on screen
 
-A good study buddy does three jobs. It explains, it organises, and it checks your understanding. The explaining job matters most, and it depends on context.
+A good study companion does three jobs. It explains, it organises, and it checks your understanding. The explaining job matters most, and it depends on context.
 
 A chatbot in a new tab knows only what you type. A screen-aware assistant knows the paragraph you are reading, the slide on your screen, or the equation in the PDF. That gap is where most of the time savings come from.
 
 Organising is the second job. It turns a rambling voice note into a numbered list. It sets a 50 minute timer. It adds a reminder for the essay due Friday. Each task is small. Across a week, they add up.
 
-Checking is the third job, and the one students skip. Explain the concept in your own words first. Then ask the buddy where you went wrong. That is the use that builds memory.
+Checking is the third job, and the one students skip. Explain the concept in your own words first. Then ask the companion where you went wrong. That is the use that builds memory.
 
-A study buddy should not sit your exam or hand in work for you. Keep that line clear in your own head before you start.
+A study companion should not sit your exam or hand in work for you. Keep that line clear in your own head before you start.
 
 ## How many students use AI for school in 2026
 
@@ -252,9 +252,9 @@ The Lumina Foundation-Gallup 2026 State of Higher Education study covers U.S. co
 
 There is a caution in the same data. The RAND results show 67% of students say using AI for schoolwork harms critical thinking, up from 54% earlier in the year. Students who did not use AI were more worried (78%) than those who did (60%). Keep that worry in mind as you set up your own habits.
 
-## Three study moments where a screen-aware buddy helps
+## Three study moments where a screen-aware companion helps
 
-Most study sessions hit the same few snags. The table shows where a study buddy earns its place and what to ask.
+Most study sessions hit the same few snags. The table shows where a study companion earns its place and what to ask.
 
 | Study moment | What is on screen | What to ask | What you get back |
 |---|---|---|---|
@@ -270,7 +270,7 @@ Here is a worked example. You are reading a chapter on the Industrial Revolution
 3. Hold fn and say what you now understand, in your own messy words. Lazur types it at the cursor.
 4. Close the chapter and explain enclosure from memory. Only then check the reading again.
 
-The fourth step is the one that matters. If you cannot explain the word without the page, the buddy did the explaining, not you.
+The fourth step is the one that matters. If you cannot explain the word without the page, the companion did the explaining, not you.
 
 ## Built-in option one: Gemini in Chrome on a Mac
 
@@ -288,7 +288,7 @@ To set it up on your Mac:
 
 Some press coverage describes a Select from screen option. Android Police reported on June 24, 2026 that it arrived in Chrome 149. Its steps: click Ask Gemini, then the + button, then Select from screen. Drag the box to adjust the selection, then type your question. Google's AI in Chrome page does not mention the option, and one reader reported not seeing it on Chrome 149. The rollout may be staged. If the option is missing, check your version first, then assume it has not reached your Chrome yet.
 
-Gemini in Chrome only sees what is in Chrome. If your notes live in Pages, Word or Preview, you need another tool. For a wider comparison of Mac options, read [best AI buddy apps for Mac in 2026](/blog/best-ai-buddy-apps-for-mac-2026).
+Gemini in Chrome only sees what is in Chrome. If your notes live in Pages, Word or Preview, you need another tool. For a wider comparison of Mac options, read [best AI companion apps for Mac in 2026](/blog/best-ai-buddy-apps-for-mac-2026).
 
 ## Built-in option two: Copilot Vision, and why it is a Windows story
 
@@ -306,12 +306,12 @@ A plan keeps a session honest. Use this routine for any reading or problem set.
 2. Read the first page yourself. Give it 30 seconds of real effort before you ask anything.
 3. When you hit a snag, ask about the exact spot on screen. Short questions get short answers.
 4. After each explanation, say it back in your own words. Dictate it with fn if that helps you think.
-5. Ask for one new example, or ask the buddy to check your explanation for mistakes.
+5. Ask for one new example, or ask the companion to check your explanation for mistakes.
 6. Ask for a list of the key points, then paste it into your notes app.
 7. When the timer ends, ask for three questions on what you just read. Answer them before you look.
 8. If a deadline is coming, say, “Remind me the quiz is Friday.” Let the reminder carry the date so you do not have to.
 
-The routine works because it moves the thinking to you. The buddy handles the stuck moments. You handle the remembering.
+The routine works because it moves the thinking to you. The companion handles the stuck moments. You handle the remembering.
 
 ## Mistakes that waste study time
 
@@ -320,7 +320,7 @@ Most failures come from habits, not the tool. Watch for these five.
 - **Asking for the answer, not the reasoning.** “What is the answer to question 4?” teaches you little. “Walk me through the steps, one at a time” teaches far more.
 - **Accepting the first explanation.** Ask, “What would make this explanation wrong?” or “Give me a case where this rule fails.”
 - **Asking about the wrong window.** Check which window is in front before you ask. The answer describes whatever the tool can see, so a question about your lecture slide asked while Chrome is in front gets an answer about the browser tab.
-- **Skipping the reading.** A buddy can explain a paragraph. It cannot read the paragraph for you and make it stick.
+- **Skipping the reading.** A companion can explain a paragraph. It cannot read the paragraph for you and make it stick.
 - **Ignoring course rules.** Some courses ban AI on graded work. Read the syllabus. If the rule is unclear, ask your instructor before you start.
 
 A sixth mistake is leaving personal material on screen. Close unrelated tabs, bank pages and private messages before you start a session.
@@ -329,7 +329,7 @@ A sixth mistake is leaving personal material on screen. Close unrelated tabs, ba
 
 A 2025 study in PNAS, titled “Generative AI without guardrails can harm learning: Evidence from high school mathematics,” was published on June 25, 2025. The title makes the point. AI that gives answers without guardrails can get in the way of learning. We have not checked the study's figures against the paper, so this page leaves them out.
 
-The lesson still applies to a study buddy. Set it up to question you, not just to answer you. Ask it to quiz you, check your work, and point at gaps. A tool that always gives the final answer will hurt your practice, even if it feels helpful.
+The lesson still applies to a study companion. Set it up to question you, not just to answer you. Ask it to quiz you, check your work, and point at gaps. A tool that always gives the final answer will hurt your practice, even if it feels helpful.
 
 ## Privacy: what a screen-aware assistant can see
 

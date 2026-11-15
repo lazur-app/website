@@ -52,7 +52,7 @@ export const APPS = [
 const BASE_ROLES = [
   { slug: "founders", name: "Founders", singular: "founder", persona: "founder", apps: ["gmail", "slack", "notion", "google-sheets", "linear", "chrome"], keywords: ["ai assistant for founders", "ai chief of staff mac"] },
   { slug: "developers", name: "Developers", singular: "developer", persona: "developer", apps: ["cursor", "vs-code", "xcode", "slack", "chrome", "linear"], keywords: ["voice assistant for developers mac", "ai pair programmer voice"] },
-  { slug: "students", name: "Students", singular: "student", persona: "student", apps: ["google-docs", "notion", "word", "chrome", "pages", "keynote"], keywords: ["ai study buddy mac", "voice assistant for students"] },
+  { slug: "students", name: "Students", singular: "student", persona: "student", apps: ["google-docs", "notion", "word", "chrome", "pages", "keynote"], keywords: ["ai study companion mac", "voice assistant for students"] },
   { slug: "lawyers", name: "Lawyers", singular: "lawyer", persona: "lawyer", apps: ["word", "outlook", "chrome", "pages", "apple-mail"], keywords: ["ai assistant for lawyers mac", "dictation for lawyers mac"] },
   { slug: "realtors", name: "Realtors", singular: "realtor", apps: ["gmail", "google-sheets", "canva", "chrome", "zoom"], keywords: ["ai assistant for realtors", "voice assistant real estate agents"] },
   { slug: "nurses", name: "Nurses", singular: "nurse", apps: ["word", "outlook", "chrome", "google-docs"], keywords: ["dictation for nurses mac", "ai assistant for nurses"] },

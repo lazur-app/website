@@ -39,7 +39,7 @@ export function buildDemoVideoSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Lazur demo: an AI buddy that works in any Mac app",
+    name: "Lazur demo: an AI companion that works in any Mac app",
     description:
       "You ask out loud; Lazur points on screen, rewrites, types, fixes code, totals a sheet, and researches in Chrome in the background.",
     thumbnailUrl: ["https://releases.lazur.app/videos/lazur-demo-v3-poster.jpg"],

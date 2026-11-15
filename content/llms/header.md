@@ -1,6 +1,6 @@
 # Lazur
 
-> Lazur is an AI buddy for Mac that lives in the MacBook notch. Hold a key and talk:
+> Lazur is an AI companion for Mac that lives at the MacBook notch or by your cursor. Hold a key and talk:
 > Lazur sees your screen when you ask, answers out loud, points at things by drawing
 > on your screen, walks you through apps step by step, gets everyday tasks done
 > (timers, reminders, calendar, notes, music, apps, links, Shortcuts), runs longer
@@ -8,8 +8,8 @@
 
 ## Product
 - Name: Lazur
-- Category: AI buddy / personal AI assistant for macOS
-- Tagline: Your AI buddy, right in the notch.
+- Category: AI companion / personal AI assistant for macOS
+- Tagline: Your AI companion, right at the notch or by your cursor.
 - Platform: macOS (Apple silicon and Intel). Windows is planned.
 - Website: https://www.lazur.app
 - Download: https://www.lazur.app/download

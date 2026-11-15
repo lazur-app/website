@@ -66,7 +66,7 @@ export const RELEASES: Release[] = [
           { name: "Automatic updates", text: "New versions download in the background and install when your Mac has been idle for a while. Never while Lazur is listening, talking, running a job or while the panel is open." },
           { name: "What's new card", text: "After an update, the notch tells you once what changed. Bigger updates leave a small dot on the notch until you're ready." },
           { name: "Timers in the notch", text: "\"Set a timer for 5 minutes\" and it ticks right in the notch. It starts when Lazur finishes speaking, rings until you press Stop (or say \"stop\"), and you can pick the sound in Settings." },
-          { name: "Cursor styles", text: "Classic, Bubble, Halo or Sparkle. Pick the little buddy that follows your pointer in Settings → Cursor." },
+          { name: "Cursor styles", text: "Classic, Bubble, Halo or Sparkle. Pick the little companion that follows your pointer in Settings → Cursor." },
           { name: "A hands-on tutorial", text: "Dictation practice now opens its own small window with a text box, so there's always somewhere to try it. The tutorial card stays up while you talk, and after it sets your first reminder, Lazur opens Reminders and circles it." },
           { name: "Tips, when they're useful", text: "Said the same email three times? Lazur suggests a snippet, already filled in. Same for clipboard slots, background jobs and Words. One tip a day at most, never the same one twice." },
         ],
@@ -93,7 +93,7 @@ export const RELEASES: Release[] = [
     version: "0.1.10",
     date: "2026-10-26",
     title: "Polish after the relaunch",
-    summary: "A quick round of fixes for the AI buddy release, mostly about privacy between accounts and getting out of your way during setup.",
+    summary: "A quick round of fixes for the AI companion release, mostly about privacy between accounts and getting out of your way during setup.",
     sections: [
       {
         label: "Fixed",
@@ -110,7 +110,7 @@ export const RELEASES: Release[] = [
   {
     version: "0.1.9",
     date: "2026-10-04",
-    title: "Lazur becomes your AI buddy",
+    title: "Lazur becomes your AI companion",
     summary:
       "The big one. Lazur moved into the notch and learned to see, talk and do. Hold a key, ask about anything on your screen, and it answers out loud, points at things and gets them done.",
     sections: [

@@ -254,7 +254,7 @@ export function HowItWorksSection() {
           className="text-center"
         >
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/40">
-            An AI buddy, not a blank text box
+            An AI companion, not a blank text box
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-white md:text-[2.5rem]">
             It sees the context. You just say what you need.
@@ -318,7 +318,7 @@ export function HowItWorksSection() {
               </div>
 
               <p className="mb-2 text-left text-[10px] font-medium uppercase tracking-[0.16em] text-white/35">
-                {isPolished ? "What your AI buddy did" : "What you asked"}
+                {isPolished ? "What your AI companion did" : "What you asked"}
               </p>
 
               <div className="min-h-[5.5rem] text-left">

@@ -305,7 +305,7 @@ function PointCircle({ show, label }: { show: boolean; label: string }) {
   );
 }
 
-/** The Mac pointer, with Lazur's sparkle buddy beside it (the "Sparkle" cursor style). */
+/** The Mac pointer, with Lazur's sparkle companion beside it (the "Sparkle" cursor style). */
 function Pointer({ at, sparkleAt }: { at: { x: string; y: string }; sparkleAt: { x: string; y: string } }) {
   return (
     <>
@@ -589,7 +589,7 @@ function pointerSpots(scene: Scene, phase: Phase) {
   const [px, py] = ({ point: [52, 56], timer: [60, 52], job: [48, 60], type: [40, 62] } as const)[scene.id];
   const pointer = { x: `${px}%`, y: `${py}%` };
   if (scene.id === "point" && (phase === "speaking" || phase === "result")) return { pointer, sparkle: { x: "79.5%", y: "14%" } };
-  // Just below-right of the pointer, like the cursor buddy in the app.
+  // Just below-right of the pointer, like the cursor companion in the app.
   return { pointer, sparkle: { x: `${px + 1.6}%`, y: `${py + 2.9}%` } };
 }
 

@@ -464,7 +464,7 @@ function BillingContent() {
                 <p className="mt-1.5 max-w-md text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {onTrial
                     ? "Pick a plan before your trial ends and nothing changes. Checkout is secure; cancel anytime."
-                    : "Subscribe to keep your AI buddy: questions, pointing, jobs and dictation."}
+                    : "Subscribe to keep your AI companion: questions, pointing, jobs and dictation."}
                 </p>
               </div>
               <BillingIntervalToggle

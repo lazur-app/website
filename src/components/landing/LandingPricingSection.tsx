@@ -37,7 +37,7 @@ export function LandingPricingSection() {
               {TRIAL_LABEL}. Then {proPrice}.
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Full AI buddy access for the whole trial. No credit card to
+              Full AI companion access for the whole trial. No credit card to
               download. Cancel anytime.
             </p>
 

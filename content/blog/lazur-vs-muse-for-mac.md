@@ -11,7 +11,7 @@ tldr:
     Muse for Mac is Meta's agent for multi-step tasks across your files,
     Messages, Calendar, Notes and Mail. It launched in September 2026.
   - >-
-    Lazur is an AI buddy in your notch. Hold ⌥⌘, ask about the screen, and it
+    Lazur is an AI companion in your notch. Hold ⌥⌘, ask about the screen, and it
     answers out loud, points at things and guides you one click at a time.
   - >-
     Pick Muse for jobs across your personal data. Pick Lazur for live help and
@@ -58,9 +58,9 @@ stats:
   - value: $18/month
     label: 'Lazur Pro plan, with 250 AI actions a month and unlimited dictation'
     sourceUrl: 'https://www.lazur.app/'
-    sourceTitle: 'Lazur homepage: AI buddy for Mac'
+    sourceTitle: 'Lazur homepage: AI companion for Mac'
 sources:
-  - title: 'Lazur homepage: AI buddy for Mac'
+  - title: 'Lazur homepage: AI companion for Mac'
     url: 'https://www.lazur.app/'
     publisher: Lazur
     accessedAt: '2026-11-07'
@@ -144,7 +144,7 @@ images:
     alt: >-
       MacBook on a tidy desk, the setup where an AI assistant for Mac helps with
       work
-    caption: A task agent and an AI buddy solve different problems at the same desk.
+    caption: A task agent and an AI companion solve different problems at the same desk.
     keywords:
       - Lazur vs Muse for Mac
       - Comparison
@@ -212,7 +212,7 @@ keywordHits:
   secondary: {}
 ---
 
-Muse for Mac is Meta's agent for handing whole tasks across your files and Apple apps, and Lazur is an AI buddy that helps while you work. Choose Muse when you want a job finished across your personal data, and choose Lazur when you want live help in the app in front of you.
+Muse for Mac is Meta's agent for handing whole tasks across your files and Apple apps, and Lazur is an AI companion that helps while you work. Choose Muse when you want a job finished across your personal data, and choose Lazur when you want live help in the app in front of you.
 
 Both tools run on a Mac and both use AI, but they answer different questions. This page compares them using public sources only: Meta's launch coverage, Meta's help center, and Lazur's own website and privacy policy. We make Lazur, so read the Lazur sections with that in mind. Where a detail is unclear or unverified, we say so.
 
@@ -261,7 +261,7 @@ This table uses what each company publishes. Where a detail is not in those publ
 
 The table makes Muse look like the bigger tool. In one sense it is. Muse reaches further into your mail, calendar and messages, and it can take actions there. Lazur reaches less far. It helps with the task you are doing yourself, in the app you already have open.
 
-## Muse is an agent, Lazur is a buddy
+## Muse is an agent, Lazur is a companion
 
 The simplest way to split them is by who does the work. With Muse, you hand off the job and check the result. With Lazur, you keep doing the job and ask for help when you hit a snag.
 
@@ -365,4 +365,4 @@ Some details are unclear in the public sources, so we do not state them as fact 
 
 ## Where Lazur fits in your day
 
-If you want an AI buddy that helps while you work in whatever app is open, Lazur is built for that. Hold ⌥⌘ to ask about the screen and hear the answer out loud. Hold fn to dictate clean text at your cursor. The trial runs three days with no card. [Download Lazur for Mac](/download) and start the trial when you open the app.
+If you want an AI companion that helps while you work in whatever app is open, Lazur is built for that. Hold ⌥⌘ to ask about the screen and hear the answer out loud. Hold fn to dictate clean text at your cursor. The trial runs three days with no card. [Download Lazur for Mac](/download) and start the trial when you open the app.

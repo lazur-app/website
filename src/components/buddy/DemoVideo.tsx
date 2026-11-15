@@ -16,6 +16,10 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [reduced, setReduced] = useState(false);
+  // The film (3.5 MB) is not requested until the hero's pen has finished, so it never competes
+  // with the page's own JS, fonts and poster on first load. Once requested it stays.
+  const [requested, setRequested] = useState(false);
+  if (!requested && !held) setRequested(true);
 
   useEffect(() => setGuide({ demoScene: "video" }), []);
 
@@ -29,14 +33,18 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
 
   useEffect(() => {
     const v = video.current;
-    if (!v || reduced) return;
+    if (!v || reduced || !requested) return;
     if (held) v.pause();
     else void v.play().catch(() => {});
-  }, [held, reduced]);
+  }, [held, reduced, requested]);
 
   const toggleSound = () => {
     const v = video.current;
     if (!v) return;
+    if (!requested) {
+      setRequested(true);
+      v.src = SRC;
+    }
     const next = !muted;
     v.muted = next;
     setMuted(next);
@@ -56,12 +64,12 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
         <video
           ref={video}
           className="h-full w-full object-cover"
-          src={SRC}
+          src={requested || reduced ? SRC : undefined}
           poster={POSTER}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={requested ? "auto" : "none"}
           controls={reduced}
           aria-label="Lazur demo: you ask out loud; Lazur points on screen, rewrites, types, fixes code, totals a sheet, and researches in Chrome in the background."
         />

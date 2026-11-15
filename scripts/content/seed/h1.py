@@ -11,7 +11,7 @@ T = {
  "roles/founders": ("ai assistant for founders", "AI assistant for founders on Mac: replies, research and scheduling by voice"),
  "roles/lawyers": ("ai assistant for lawyers on mac", "AI assistant for lawyers on Mac: find clauses, sum up documents, draft emails"),
  "roles/developers": ("voice assistant for developers on mac", "Voice assistant for developers on Mac: explain errors and talk prompts into Cursor"),
- "roles/students": ("ai study buddy for mac", "AI study buddy for Mac: explain readings, take notes by voice, never miss deadlines"),
+ "roles/students": ("ai study companion for mac", "AI study companion for Mac: explain readings, take notes by voice, never miss deadlines"),
  "role-apps/lawyers--word": ("microsoft word for lawyers on mac", "Microsoft Word for lawyers on Mac: Track Changes, Compare and faster clause review"),
  "role-apps/founders--gmail": ("gmail for founders", "Gmail for founders on Mac: answer investors and customers faster by voice"),
  "compare/google-voice-typing-alternative": ("google docs voice typing alternative for mac", "Google Docs voice typing alternative for Mac that works in every app"),

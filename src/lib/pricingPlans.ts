@@ -213,7 +213,7 @@ export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";
 export const PRO_PRICE_NOTE_IN = "Pro ₹300/mo + GST · ₹3,000/yr + GST";
 export const POWER_FROM_LABEL = "From $120/mo";
 export const POWER_FROM_LABEL_IN = "From ₹750/mo + GST";
-export const POWER_PRICE_NOTE = "Power $120/mo · unlimited AI buddy requests";
+export const POWER_PRICE_NOTE = "Power $120/mo · unlimited AI companion requests";
 export const POWER_PRICE_NOTE_IN = "Power ₹750/mo + GST · unlimited Intent";
 
 export const FAIR_USE_FOOTNOTE =

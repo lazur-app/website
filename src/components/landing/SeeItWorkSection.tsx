@@ -33,7 +33,7 @@ const CASES: UseCase[] = [
       "Hey, can you review the onboarding feedback by Friday? A few people are getting stuck.",
     spoken: "reply, yes I'll have notes by Thursday, keep it warm",
     caption:
-      "Your AI buddy reads the thread in front of you and drafts the reply with the right context.",
+      "Your AI companion reads the thread in front of you and drafts the reply with the right context.",
     output:
       "Hi Alex, yes, I'll have notes on the onboarding feedback by Thursday. Talk soon.",
     app: "Gmail",

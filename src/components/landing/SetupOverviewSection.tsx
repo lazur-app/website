@@ -41,7 +41,7 @@ export function SetupOverviewSection() {
             60-second setup
           </p>
           <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-            Your AI buddy, ready in three steps.
+            Your AI companion, ready in three steps.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[15px] text-[var(--foreground-muted)]">
             No plugins. No per-app extensions. One menu bar app for your whole Mac.

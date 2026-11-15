@@ -36,7 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "didn't think i'd ever use an AI buddy for work. i'm always bouncing between slack threads and figma comments. a few days with lazur and yeah.. it already knows what i need next.",
+      "didn't think i'd ever use an AI companion for work. i'm always bouncing between slack threads and figma comments. a few days with lazur and yeah.. it already knows what i need next.",
     highlight: "knows what i need next",
     name: "Sloane Park",
     role: "Product Designer",
@@ -149,7 +149,7 @@ export function TestimonialsSection() {
             · Early users ·
           </p>
           <h2 className="mt-3 font-display text-[1.85rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[3rem]">
-            Work feels lighter with a buddy beside you
+            Work feels lighter with a companion beside you
           </h2>
         </div>
 

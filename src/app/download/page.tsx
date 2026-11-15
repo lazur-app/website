@@ -186,7 +186,7 @@ function MacWelcome({ chip, started, available, onAgain, onSwitch }: {
         transition={{ delay: 0.2, duration: 0.5 }}
         className="font-display text-[2rem] font-semibold tracking-[-0.03em] md:text-[2.75rem]"
       >
-        {started ? "You just got a buddy." : available ? "Lazur for Mac" : "Almost there"}
+        {started ? "You just got a companion." : available ? "Lazur for Mac" : "Almost there"}
       </motion.h1>
       <motion.p
         initial={{ opacity: 0 }}

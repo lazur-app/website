@@ -46,7 +46,7 @@ export function Footer() {
           <div>
             <LogoWordmark height={28} />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
-              Your AI buddy, right in the notch.
+              Your AI companion, right at the notch or by your cursor.
             </p>
           </div>
 

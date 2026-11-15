@@ -116,7 +116,7 @@ export function Hero() {
             className="mt-5 max-w-[52rem] text-[clamp(1.15rem,2.6vw,1.55rem)] font-medium leading-tight tracking-[-0.015em] text-[var(--foreground)] md:mt-6"
           >
             <span className="block">
-              Your AI buddy that understands your screen, helps you think
+              Your AI companion that understands your screen, helps you think
             </span>
             <span className="block">and turns what you say into actions in any app.</span>
           </motion.p>
@@ -161,7 +161,7 @@ export function Hero() {
           />
         </motion.div>
 
-        {/* Temporarily hidden while the product story is being repositioned around the AI buddy. */}
+        {/* Temporarily hidden while the product story is being repositioned around the AI companion. */}
         {/* <HeroShowreel onOpen={() => setDemoOpen(true)} paused={demoOpen} /> */}
       </div>
 

@@ -95,7 +95,7 @@ export function CommandModeSection() {
               Intent
             </p>
             <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-              Your AI buddy reads the thing
+              Your AI companion reads the thing
               <br />
               you&apos;re looking at.
             </h2>

@@ -12,7 +12,7 @@ export type Persona = {
   id: PersonaId;
   /** In the switcher: "I am a founder". */
   label: string;
-  /** Headline first line; the second is always "right in the notch." */
+  /** Headline first line; the second is always "right at the notch or by your cursor." */
   title: string;
   sub: string;
   /** What the notch says about itself in the intro. */
@@ -25,9 +25,9 @@ export const PERSONAS: Persona[] = [
   {
     id: "everyone",
     label: "Just curious",
-    title: "Your AI buddy,",
+    title: "Your AI companion,",
     sub: "Hold a key and talk. Lazur sees your screen, points at things, answers out loud and gets things done, in any app.",
-    intro: "I'm your AI buddy. I live up here, in the notch.",
+    intro: "I'm your AI companion. I live up here, in the notch.",
     everyday: [
       "Set a timer for 10 minutes",
       "Remind me to call Mom at 6",
@@ -78,9 +78,9 @@ export const PERSONAS: Persona[] = [
   {
     id: "student",
     label: "a student",
-    title: "Your study buddy,",
+    title: "Your study companion,",
     sub: "Hold a key and talk. Lazur explains what's on your screen, turns notes into lists and keeps your deadlines, in any app.",
-    intro: "I'm your study buddy. I live up here, in the notch.",
+    intro: "I'm your study companion. I live up here, in the notch.",
     everyday: [
       "Explain this diagram simply",
       "What does this paragraph mean?",

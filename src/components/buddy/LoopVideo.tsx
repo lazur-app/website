@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * A short silent demo loop for a homepage section. It plays only while on screen; with reduced
- * motion it shows the poster and play controls instead of autoplaying.
+ * A short silent demo loop for a homepage section. Nothing (video or poster) is fetched until the
+ * loop comes within a screen of the viewport, so the first load only pays for the hero. It plays
+ * only while on screen; with reduced motion it shows the poster and play controls instead.
  */
 export function LoopVideo({ src, poster, label, className = "", guide }: {
   src: string;
@@ -18,6 +19,7 @@ export function LoopVideo({ src, poster, label, className = "", guide }: {
 }) {
   const video = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(false);
+  const [near, setNear] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,14 +31,24 @@ export function LoopVideo({ src, poster, label, className = "", guide }: {
 
   useEffect(() => {
     const v = video.current;
-    if (!v || reduced) return;
+    if (!v || near) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setNear(true);
+    }, { rootMargin: "100% 0px" });
+    io.observe(v);
+    return () => io.disconnect();
+  }, [near]);
+
+  useEffect(() => {
+    const v = video.current;
+    if (!v || reduced || !near) return;
     const io = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) void v.play().catch(() => {});
       else v.pause();
     }, { threshold: 0.35 });
     io.observe(v);
     return () => io.disconnect();
-  }, [reduced]);
+  }, [reduced, near]);
 
   return (
     <div
@@ -46,12 +58,12 @@ export function LoopVideo({ src, poster, label, className = "", guide }: {
       <video
         ref={video}
         className="h-full w-full object-cover"
-        src={src}
-        poster={poster}
+        src={near ? src : undefined}
+        poster={near ? poster : undefined}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload={!near ? "none" : reduced ? "metadata" : "auto"}
         controls={reduced}
         aria-label={label}
       />

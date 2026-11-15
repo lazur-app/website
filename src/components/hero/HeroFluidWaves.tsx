@@ -34,7 +34,7 @@ const WAVES_FULL: WaveConfig[] = [
     phase: 0,
     color: BRAND,
     alpha: 0.38,
-    step: 5,
+    step: 8,
     rows: 7,
     spread: 0.052,
     size: 1.35,
@@ -47,7 +47,7 @@ const WAVES_FULL: WaveConfig[] = [
     phase: 1.8,
     color: PURPLE,
     alpha: 0.45,
-    step: 4.5,
+    step: 7,
     rows: 8,
     spread: 0.048,
     size: 1.2,
@@ -60,7 +60,7 @@ const WAVES_FULL: WaveConfig[] = [
     phase: 3.2,
     color: VIOLET,
     alpha: 0.34,
-    step: 5.5,
+    step: 9,
     rows: 6,
     spread: 0.04,
     size: 1.1,
@@ -73,7 +73,7 @@ const WAVES_FULL: WaveConfig[] = [
     phase: 0.6,
     color: PURPLE,
     alpha: 0.4,
-    step: 4,
+    step: 6.5,
     rows: 9,
     spread: 0.038,
     size: 1,
@@ -136,20 +136,28 @@ function waveY(
   );
 }
 
-function drawParticle(
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  size: number,
-  color: { r: number; g: number; b: number },
-  alpha: number,
-) {
-  if (alpha < 0.02 || size < 0.2) return;
+/**
+ * One soft dot (outer glow, halo, core) pre-rendered per wave colour. Stamping this with
+ * drawImage is far cheaper than filling three arc paths per particle, which at ~9k particles a
+ * frame was the main cause of hero jank.
+ */
+type Sprite = { img: HTMLCanvasElement; radius: number };
+const SPRITE_PX = 32;
 
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, Math.PI * 2);
-  ctx.fillStyle = rgba(color, alpha);
-  ctx.fill();
+function makeSprite(color: { r: number; g: number; b: number }): Sprite {
+  const img = document.createElement("canvas");
+  img.width = img.height = SPRITE_PX;
+  const c = img.getContext("2d")!;
+  const mid = SPRITE_PX / 2;
+  // Radii relative to the outer glow (2.1 : 1.1 : 0.42), alphas relative to the core.
+  const layers: Array<[number, number]> = [[1, 0.07 / 0.75], [1.1 / 2.1, 0.22 / 0.75], [0.42 / 2.1, 1]];
+  for (const [r, a] of layers) {
+    c.beginPath();
+    c.arc(mid, mid, r * mid, 0, Math.PI * 2);
+    c.fillStyle = rgba(color, a);
+    c.fill();
+  }
+  return { img, radius: 2.1 };
 }
 
 function drawWaveParticles(
@@ -158,6 +166,7 @@ function drawWaveParticles(
   height: number,
   time: number,
   wave: WaveConfig,
+  sprite: Sprite,
 ) {
   const band = height * wave.spread;
 
@@ -178,13 +187,17 @@ function drawWaveParticles(
       const y = centerY + offset + wobble;
       const sparkle =
         0.45 + 0.55 * Math.abs(Math.sin(col * 0.42 + row * 0.85 + wave.phase));
-      const alpha =
-        wave.alpha * fade * sparkle * (0.55 + 0.45 * (1 - Math.abs(rowT - 0.5) * 1.6));
+      const alpha = Math.min(
+        0.85,
+        0.75 * wave.alpha * fade * sparkle * (0.55 + 0.45 * (1 - Math.abs(rowT - 0.5) * 1.6)),
+      );
+      if (alpha < 0.02) continue;
       const size = wave.size * (0.65 + 0.35 * Math.sin(col * 0.33 + row));
+      const r = size * sprite.radius;
+      if (r < 0.2) continue;
 
-      drawParticle(ctx, x, y, size * 2.1, wave.color, alpha * 0.07);
-      drawParticle(ctx, x, y, size * 1.1, wave.color, alpha * 0.22);
-      drawParticle(ctx, x, y, size * 0.42, wave.color, Math.min(0.85, alpha * 0.75));
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(sprite.img, x - r, y - r, r * 2, r * 2);
     }
   }
 }
@@ -195,7 +208,9 @@ function drawFrame(
   height: number,
   time: number,
   waves: WaveConfig[],
+  sprites: Sprite[],
 ) {
+  ctx.globalAlpha = 1;
   ctx.clearRect(0, 0, width, height);
 
   const wash = ctx.createRadialGradient(
@@ -214,9 +229,8 @@ function drawFrame(
 
   ctx.globalCompositeOperation = "source-over";
 
-  for (const wave of waves) {
-    drawWaveParticles(ctx, width, height, time, wave);
-  }
+  waves.forEach((wave, i) => drawWaveParticles(ctx, width, height, time, wave, sprites[i]));
+  ctx.globalAlpha = 1;
 }
 
 /** Wide particle waves, flowing dots that blend into ribbons, lazur purple palette. */
@@ -242,7 +256,8 @@ export function HeroFluidWaves() {
     if (!ctx) return;
 
     const waves = isReduced ? WAVES_REDUCED : WAVES_FULL;
-    const maxDpr = isReduced ? 1 : 2;
+    const sprites = waves.map((w) => makeSprite(w.color));
+    const maxDpr = isReduced ? 1 : 1.5;
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -259,7 +274,7 @@ export function HeroFluidWaves() {
 
       if (pausedRef.current) {
         const { w: rw, h: rh } = sizeRef.current;
-        drawFrame(ctx, rw, rh, 0, waves);
+        drawFrame(ctx, rw, rh, 0, waves, sprites);
       }
     };
 
@@ -300,13 +315,23 @@ export function HeroFluidWaves() {
 
     let cancelled = false;
     const start = performance.now();
+    // A slow ambient wave reads the same at 30fps and costs half the main thread.
+    const FRAME_MS = 1000 / 30;
+    let last = -Infinity;
     const tick = (now: number) => {
       if (cancelled || pausedRef.current) return;
+      rafRef.current = requestAnimationFrame(tick);
+      if (now - last < FRAME_MS - 1) return;
+      last = now;
       const t = (now - start) / 1000;
       const time = reducedMotionRef.current ? 0 : t;
       const { w, h } = sizeRef.current;
-      drawFrame(ctx, w, h, time, waves);
-      rafRef.current = requestAnimationFrame(tick);
+      drawFrame(ctx, w, h, time, waves, sprites);
+      // Reduced motion: one still frame is enough.
+      if (reducedMotionRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      }
     };
 
     const begin = () => {

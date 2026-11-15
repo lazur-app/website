@@ -28,7 +28,7 @@ export function FinalCtaSection() {
         className="mx-auto max-w-xl text-center"
       >
         <h2 className="font-display text-[1.7rem] font-semibold tracking-tight sm:text-[2.15rem] md:text-[2.6rem]">
-           Your AI buddy is your most powerful tool at work.{" "}
+           Your AI companion is your most powerful tool at work.{" "}
            <em className="italic font-medium text-white/80">Start collaborating with it.</em>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/55">

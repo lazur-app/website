@@ -9,7 +9,7 @@ export const HOMEPAGE_FAQ: FaqItem[] = [
   {
     question: "What is Lazur?",
     answer:
-      "An AI buddy that lives in your Mac's notch. Hold a key and talk: it can see your screen, point at things, answer out loud, set timers and reminders, open apps, run longer jobs in the background, and type for you in any app.",
+      "An AI companion that lives at your Mac's notch or by your cursor. Hold a key and talk: it can see your screen, point at things, answer out loud, set timers and reminders, open apps, run longer jobs in the background, and type for you in any app.",
   },
   {
     question: "How is it different from ChatGPT or Siri?",

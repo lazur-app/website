@@ -232,7 +232,7 @@ export function BuddyHero() {
         <p
           className="hero-rise rounded-full border border-[var(--border-strong)] bg-white/70 px-3 py-1 text-[13px] font-medium text-[var(--foreground-muted)]"
         >
-          AI buddy for Mac
+          AI companion for Mac
         </p>
         <div className="relative isolate">
         {/* The floating particle wave, centred behind the headline */}
@@ -250,9 +250,11 @@ export function BuddyHero() {
           <br />
           right{" "}
           <span ref={underline} className="relative inline-block">
-            in the notch.
+            at the notch
             <HandUnderline show={drawLine} color={INK} delay={0.85} duration={1.1} offset={2} />
           </span>
+          <br />
+          or by your cursor.
         </h1>
         </div>
         <p

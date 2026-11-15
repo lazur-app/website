@@ -275,7 +275,7 @@ function DashboardContent() {
               <div className="min-w-0">
                 <CardLabel icon={<Gift className="h-4 w-4" />}>Invite friends</CardLabel>
                 <p className="mt-3 font-display text-[1.6rem] font-semibold leading-tight tracking-[-0.02em] text-[var(--foreground)]">
-                  Know someone who&apos;d love a buddy?
+                  Know someone who&apos;d love a companion?
                 </p>
                 <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
                   {referrals?.referral_count ? (

@@ -334,7 +334,7 @@ Lazur is a different kind of notch app. It is a voice assistant that lives in th
 
 Hold ⌥ ⌘ to ask about anything on screen. Lazur answers out loud. Ask where something is, and it draws a circle and a label around it. Ask how to do something, and it guides you one click at a time, waiting for each click. It does not click buttons or operate apps for you.
 
-So Lazur helps with “where is this button” and “what does this do” questions. It does not bring back hidden menu bar icons. If you want a comparison with a chat app that can see your screen, read [ChatGPT on Mac vs Lazur](/apps/chatgpt). For a wider list of assistants, see [the best AI buddy apps for Mac in 2026](/blog/best-ai-buddy-apps-for-mac-2026). To try Lazur, [download it here](/download). There is a free trial, and it does not ask for a credit card.
+So Lazur helps with “where is this button” and “what does this do” questions. It does not bring back hidden menu bar icons. If you want a comparison with a chat app that can see your screen, read [ChatGPT on Mac vs Lazur](/apps/chatgpt). For a wider list of assistants, see [the best AI companion apps for Mac in 2026](/blog/best-ai-buddy-apps-for-mac-2026). To try Lazur, [download it here](/download). There is a free trial, and it does not ask for a credit card.
 
 ## Next steps before you install anything
 

@@ -1,20 +1,29 @@
-Content 2026-11-15: 197 written, 0 refused, 35 failed, 0 deferred
+Content 2026-11-15: 259 written, 0 refused, 7 failed, 0 deferred
 
-- howto: 4/200
+- howto: 6/200
 - apps: 0/15
-- roles: 7/20
-- role-apps: 125/100
-- problems: 53/125
+- roles: 13/20
+- role-apps: 138/100
+- problems: 86/125
 - compare: 0/15
-- blog: 8/25
+- blog: 16/25
 
+role:data-governance-analysts /for/data-governance-analysts
+role:technical-support-specialists /for/technical-support-specialists
+role:marketing-copywriters /for/marketing-copywriters
+role:procurement-officers /for/procurement-officers
+role:customer-success-associates /for/customer-success-associates
 role:recruitment-coordinators /for/recruitment-coordinators
+role:seo-analysts /for/seo-analysts
 role:it-asset-managers /for/it-asset-managers
 role:market-researchers /for/market-researchers
 role:event-coordinators /for/event-coordinators
 role:b2b-sales-representatives /for/b2b-sales-representatives
 role:hr-compliance-officers /for/hr-compliance-officers
 role:digital-media-planners /for/digital-media-planners
+blog:best-macbook-notch-apps-free-and-paid /blog/best-macbook-notch-apps-free-and-paid
+blog:voice-assistant-macos-integration /blog/voice-assistant-macos-integration
+blog:best-voice-control-assistant-for-mac /blog/best-voice-control-assistant-for-mac
 blog:voice-assistant-machine-learning-explained /blog/voice-assistant-machine-learning-explained
 blog:why-typing-speed-vs-speaking-speed-matters /blog/why-typing-speed-vs-speaking-speed-matters
 blog:how-to-fix-dictation-not-working-mac /blog/how-to-fix-dictation-not-working-mac
@@ -23,6 +32,8 @@ blog:voice-assistant-macbook-productivity /blog/voice-assistant-macbook-producti
 blog:ai-voice-mode-desktop-productivity /blog/ai-voice-mode-desktop-productivity
 blog:dictation-mac-app-free-options /blog/dictation-mac-app-free-options
 blog:macbook-notch-apps-dynamic-island /blog/macbook-notch-apps-dynamic-island
+role-app:digital-media-planners/google-sheets /for/digital-media-planners/google-sheets
+role-app:digital-media-planners/excel /for/digital-media-planners/excel
 role-app:social-media-content-creators/notion /for/social-media-content-creators/notion
 role-app:customer-support-agents/chrome /for/customer-support-agents/chrome
 role-app:real-estate-analysts/excel /for/real-estate-analysts/excel
@@ -35,6 +46,8 @@ role-app:academic-researchers/excel /for/academic-researchers/excel
 role-app:public-relations-managers/slack /for/public-relations-managers/slack
 role-app:financial-controllers/outlook /for/financial-controllers/outlook
 role-app:training-coordinators/notion /for/training-coordinators/notion
+role-app:compliance-coordinators/word /for/compliance-coordinators/word
+role-app:logistics-planners/slack /for/logistics-planners/slack
 role-app:data-governance-analysts/notion /for/data-governance-analysts/notion
 role-app:marketing-copywriters/slack /for/marketing-copywriters/slack
 role-app:customer-success-associates/notion /for/customer-success-associates/notion
@@ -63,6 +76,7 @@ role-app:computer-systems-analysts/notion /for/computer-systems-analysts/notion
 role-app:financial-analysts/chatgpt /for/financial-analysts/chatgpt
 role-app:public-relations-specialists/slack /for/public-relations-specialists/slack
 role-app:instructional-designers/zoom /for/instructional-designers/zoom
+role-app:software-qa-testers/slack /for/software-qa-testers/slack
 role-app:podcast-producers/google-docs /for/podcast-producers/google-docs
 role-app:photographers/gmail /for/photographers/gmail
 role-app:architects/gmail /for/architects/gmail
@@ -76,6 +90,7 @@ role-app:project-managers/powerpoint /for/project-managers/powerpoint
 role-app:business-analysts/slack /for/business-analysts/slack
 role-app:bookkeepers/chrome /for/bookkeepers/chrome
 role-app:urban-planners/chrome /for/urban-planners/chrome
+role-app:illustrators/chrome /for/illustrators/chrome
 role-app:interior-designers/gmail /for/interior-designers/gmail
 role-app:music-producers/finder /for/music-producers/finder
 role-app:animators/slack /for/animators/slack
@@ -86,6 +101,7 @@ role-app:literary-agents/chrome /for/literary-agents/chrome
 role-app:game-designers/slack /for/game-designers/slack
 role-app:book-editors/apple-mail /for/book-editors/apple-mail
 role-app:sales-development-representatives/google-sheets /for/sales-development-representatives/google-sheets
+role-app:economists/chrome /for/economists/chrome
 role-app:internal-auditors/chatgpt /for/internal-auditors/chatgpt
 role-app:investor-relations-officers/zoom /for/investor-relations-officers/zoom
 role-app:agile-coaches/linear /for/agile-coaches/linear
@@ -113,8 +129,10 @@ role-app:media-buyers/chrome /for/media-buyers/chrome
 role-app:technical-account-managers/gmail /for/technical-account-managers/gmail
 role-app:compensation-analysts/outlook /for/compensation-analysts/outlook
 role-app:patient-care-coordinators/zoom /for/patient-care-coordinators/zoom
+role-app:e-commerce-merchandisers/chrome /for/e-commerce-merchandisers/chrome
 role-app:billing-specialists/word /for/billing-specialists/word
 role-app:corporate-recruiters/slack /for/corporate-recruiters/slack
+role-app:business-development-representatives/notion /for/business-development-representatives/notion
 role-app:legal-secretaries/pages /for/legal-secretaries/pages
 role-app:social-media-content-creators/slack /for/social-media-content-creators/slack
 role-app:customer-support-agents/notion /for/customer-support-agents/notion
@@ -145,11 +163,18 @@ role-app:founders/linear /for/founders/linear
 role-app:designers/linear /for/designers/linear
 role-app:lawyers/apple-mail /for/lawyers/apple-mail
 role-app:realtors/zoom /for/realtors/zoom
+role-app:marketers/chrome /for/marketers/chrome
+role-app:teachers/zoom /for/teachers/zoom
+role-app:recruiters/chrome /for/recruiters/chrome
+role-app:product-managers/google-sheets /for/product-managers/google-sheets
 role-app:founders/chrome /for/founders/chrome
 role-app:developers/linear /for/developers/linear
 role-app:students/keynote /for/students/keynote
+problem:data-analysts/data-analyst-burnout-prevention /for/data-analysts/problems/data-analyst-burnout-prevention
+problem:executive-assistants/leveraging-ai-for-administrative-tasks /for/executive-assistants/problems/leveraging-ai-for-administrative-tasks
 problem:event-planners/event-planning-budget-tracking-spreadsheet-tips /for/event-planners/problems/event-planning-budget-tracking-spreadsheet-tips
 problem:executive-assistants/streamlining-corporate-travel-logistics /for/executive-assistants/problems/streamlining-corporate-travel-logistics
+problem:hr-generalists/managing-hr-generalist-salary-expectations /for/hr-generalists/problems/managing-hr-generalist-salary-expectations
 problem:executive-assistants/improving-executive-assistant-problem-solving /for/executive-assistants/problems/improving-executive-assistant-problem-solving
 problem:data-analysts/transitioning-from-analyst-to-engineer /for/data-analysts/problems/transitioning-from-analyst-to-engineer
 problem:customer-success-managers/transitioning-into-customer-success-manager-career /for/customer-success-managers/problems/transitioning-into-customer-success-manager-career
@@ -167,6 +192,7 @@ problem:hr-generalists/navigating-hr-manager-salary-benchmarks /for/hr-generalis
 problem:data-analysts/is-data-analyst-a-stressful-job /for/data-analysts/problems/is-data-analyst-a-stressful-job
 problem:data-analysts/choosing-between-python-and-sql /for/data-analysts/problems/choosing-between-python-and-sql
 problem:data-analysts/career-paths-for-data-analysts /for/data-analysts/problems/career-paths-for-data-analysts
+problem:data-analysts/integrating-ai-in-analysis /for/data-analysts/problems/integrating-ai-in-analysis
 problem:data-analysts/managing-stakeholder-data-requests /for/data-analysts/problems/managing-stakeholder-data-requests
 problem:data-analysts/automating-reporting-with-power-bi /for/data-analysts/problems/automating-reporting-with-power-bi
 problem:data-analysts/disadvantages-of-data-analyst-role /for/data-analysts/problems/disadvantages-of-data-analyst-role
@@ -185,6 +211,7 @@ problem:data-analysts/negotiating-data-analyst-pay /for/data-analysts/problems/n
 problem:data-analysts/is-data-analytics-a-good-career /for/data-analysts/problems/is-data-analytics-a-good-career
 problem:data-analysts/data-analyst-salary-in-energy /for/data-analysts/problems/data-analyst-salary-in-energy
 problem:data-analysts/environmental-data-analyst-roles /for/data-analysts/problems/environmental-data-analyst-roles
+problem:data-analysts/how-analysts-use-sql-queries /for/data-analysts/problems/how-analysts-use-sql-queries
 problem:data-analysts/why-analysts-are-paid-little /for/data-analysts/problems/why-analysts-are-paid-little
 problem:data-analysts/how-analysts-use-python /for/data-analysts/problems/how-analysts-use-python
 problem:data-analysts/what-do-data-analysts-do /for/data-analysts/problems/what-do-data-analysts-do
@@ -201,7 +228,42 @@ problem:data-analysts/data-analysis-problems-pdf-guide /for/data-analysts/proble
 problem:data-analysts/data-analysis-problems-and-solutions /for/data-analysts/problems/data-analysis-problems-and-solutions
 problem:data-analysts/data-analytics-problems-and-solutions /for/data-analysts/problems/data-analytics-problems-and-solutions
 problem:data-analysts/why-analysts-are-in-demand /for/data-analysts/problems/why-analysts-are-in-demand
+howto:change-cursor-in-chrome /how-to/change-cursor-in-chrome
+howto:hide-cursor-in-chrome /how-to/hide-cursor-in-chrome
 howto:hide-cursor-in-apple-mail /how-to/hide-cursor-in-apple-mail
 howto:make-cursor-bigger-in-cursor /how-to/make-cursor-bigger-in-cursor
 howto:change-cursor-in-chatgpt /how-to/change-cursor-in-chatgpt
 howto:enlarge-cursor-in-chrome /how-to/enlarge-cursor-in-chrome
+blog:voice-assistant-macos-integration-tips /blog/voice-assistant-macos-integration-tips
+blog:how-to-use-voice-command-on-macbook-air /blog/how-to-use-voice-command-on-macbook-air
+blog:voice-assistant-machine-learning-in-action /blog/voice-assistant-machine-learning-in-action
+blog:personal-ai-assistant-for-mac-mini-setup /blog/personal-ai-assistant-for-mac-mini-setup
+blog:voice-assistant-macbook-productivity-hacks /blog/voice-assistant-macbook-productivity-hacks
+problem:journalists/why-journalists-use-signal /for/journalists/problems/why-journalists-use-signal
+problem:journalists/verifying-information-in-journalism /for/journalists/problems/verifying-information-in-journalism
+problem:journalists/journalists-using-ai-tools /for/journalists/problems/journalists-using-ai-tools
+problem:journalists/dealing-with-journalist-burnout /for/journalists/problems/dealing-with-journalist-burnout
+problem:journalists/writing-articles-quickly /for/journalists/problems/writing-articles-quickly
+problem:journalists/becoming-a-journalist-without-degree /for/journalists/problems/becoming-a-journalist-without-degree
+problem:journalists/journalists-using-tor /for/journalists/problems/journalists-using-tor
+problem:journalists/finding-breaking-news-stories /for/journalists/problems/finding-breaking-news-stories
+problem:journalists/managing-journalist-notes /for/journalists/problems/managing-journalist-notes
+problem:journalists/journalists-using-brackets /for/journalists/problems/journalists-using-brackets
+problem:journalists/journalists-expressing-opinions /for/journalists/problems/journalists-expressing-opinions
+problem:journalists/journalists-hating-pr /for/journalists/problems/journalists-hating-pr
+problem:journalists/journalists-using-allegedly /for/journalists/problems/journalists-using-allegedly
+problem:journalists/journalists-and-low-pay /for/journalists/problems/journalists-and-low-pay
+problem:journalists/why-journalists-wear-vests /for/journalists/problems/why-journalists-wear-vests
+problem:journalists/journalist-mental-health-support /for/journalists/problems/journalist-mental-health-support
+problem:journalists/how-to-get-paid-journalism /for/journalists/problems/how-to-get-paid-journalism
+problem:journalists/journalists-using-ai-for-drafting /for/journalists/problems/journalists-using-ai-for-drafting
+problem:journalists/journalists-finding-information /for/journalists/problems/journalists-finding-information
+problem:journalists/stress-in-journalism-jobs /for/journalists/problems/stress-in-journalism-jobs
+problem:journalists/journalist-professional-dress-code /for/journalists/problems/journalist-professional-dress-code
+problem:journalists/why-journalists-cite-sources /for/journalists/problems/why-journalists-cite-sources
+problem:journalists/journalism-burnout-recovery /for/journalists/problems/journalism-burnout-recovery
+problem:journalists/journalists-and-public-perception /for/journalists/problems/journalists-and-public-perception
+problem:journalists/journalist-safety-risks /for/journalists/problems/journalist-safety-risks
+problem:journalists/solving-journalist-workplace-problems /for/journalists/problems/solving-journalist-workplace-problems
+problem:journalists/journalism-problems-on-reddit /for/journalists/problems/journalism-problems-on-reddit
+problem:journalists/why-journalists-talk-like-that /for/journalists/problems/why-journalists-talk-like-that

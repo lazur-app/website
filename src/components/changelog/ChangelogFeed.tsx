@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { RELEASES, type Release } from "@/lib/changelog";
 import { HandUnderline } from "@/components/buddy/HandLoop";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { track } from "@/lib/productAnalytics";
 
 const INK = "#2563eb";
 
@@ -29,6 +30,9 @@ function Entry({ release, latest, onSeen }: { release: Release; latest: boolean;
   useEffect(() => {
     if (current) onSeen(release.version);
   }, [current, onSeen, release.version]);
+  useEffect(() => {
+    if (seen) track("section_viewed", { location: "changelog", section: `v${release.version}`, latest });
+  }, [seen, release.version, latest]);
 
   return (
     <motion.article
@@ -59,7 +63,14 @@ function Entry({ release, latest, onSeen }: { release: Release; latest: boolean;
       {release.note ? (
         <p className="mt-5 max-w-2xl rounded-2xl border border-[#2563eb]/20 bg-[#2563eb]/[0.05] px-4 py-3 text-[14.5px] leading-relaxed text-[var(--foreground)]">
           {release.note}{" "}
-          <Link href="/download" className="font-semibold underline underline-offset-4" style={{ color: INK }}>Download the latest</Link>
+          <Link
+            href="/download"
+            className="font-semibold underline underline-offset-4"
+            style={{ color: INK }}
+            onClick={() => track("content_cta_clicked", { content_type: "changelog", slug: "changelog", location: "release_note", label: "Download the latest", version: release.version })}
+          >
+            Download the latest
+          </Link>
         </p>
       ) : null}
 
@@ -85,6 +96,7 @@ function Entry({ release, latest, onSeen }: { release: Release; latest: boolean;
       {latest ? (
         <Link
           href="/download"
+          onClick={() => track("content_cta_clicked", { content_type: "changelog", slug: "changelog", location: "latest_release", label: `Get v${release.version}`, version: release.version })}
           className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
         >
           <AppleIcon className="h-4 w-4" /> Get v{release.version}
@@ -127,6 +139,7 @@ export function ChangelogFeed() {
                   ) : null}
                   <a
                     href={`#v${r.version}`}
+                    onClick={() => track("toc_link_clicked", { content_type: "changelog", slug: "changelog", heading: `v${r.version}` })}
                     className={`block py-1.5 pl-4 text-[14px] transition-colors ${on ? "font-semibold text-[var(--foreground)]" : "text-[var(--foreground-faint)] hover:text-[var(--foreground-muted)]"}`}
                   >
                     v{r.version}

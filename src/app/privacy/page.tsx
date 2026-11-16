@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 
 export const metadata: Metadata = {
@@ -48,21 +48,25 @@ export default function PrivacyPage() {
             <>
               Lazur (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
               operates the Lazur macOS application and website at{" "}
-              <a
+              <TrackedAnchor
                 href="https://www.lazur.app"
+                event="content_link_clicked"
+                eventProps={{ content_type: "legal", slug: "privacy", location: "1_who_we_are", link_type: "internal", url: "https://www.lazur.app" }}
                 className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
               >
                 lazur.app
-              </a>
+              </TrackedAnchor>
               . This Privacy Policy describes what personal information we
               collect, how we use it, who we share it with, and your choices.
               Questions or requests:{" "}
-              <a
+              <TrackedAnchor
                 href={`mailto:${CONTACT}`}
+                event="content_link_clicked"
+                eventProps={{ content_type: "legal", slug: "privacy", location: "1_who_we_are", link_type: "email", url: "mailto" }}
                 className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
               >
                 {CONTACT}
-              </a>
+              </TrackedAnchor>
               .
             </>
           ),
@@ -333,12 +337,14 @@ export default function PrivacyPage() {
               />
               <p className="mt-3">
                 To make a request, email{" "}
-                <a
+                <TrackedAnchor
                   href={`mailto:${CONTACT}`}
+                  event="content_link_clicked"
+                  eventProps={{ content_type: "legal", slug: "privacy", location: "11_your_rights", link_type: "email", url: "mailto" }}
                   className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
                 >
                   {CONTACT}
-                </a>
+                </TrackedAnchor>
                 . We will respond within a reasonable period and as required by
                 applicable law, including under the GDPR, UK GDPR, India&apos;s
                 Digital Personal Data Protection Act (DPDP), and similar laws
@@ -372,12 +378,14 @@ export default function PrivacyPage() {
           content: (
             <>
               Your use of Lazur is also governed by our{" "}
-              <Link
+              <TrackedLink
                 href="/terms"
+                event="content_link_clicked"
+                eventProps={{ content_type: "legal", slug: "privacy", location: "15_related", link_type: "internal", url: "/terms" }}
                 className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
               >
                 Terms of Service
-              </Link>
+              </TrackedLink>
               .
             </>
           ),

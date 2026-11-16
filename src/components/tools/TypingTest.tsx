@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { track } from "@/lib/productAnalytics";
 import { wpm } from "./textMetrics";
 
 const PASSAGES = [
@@ -11,8 +12,23 @@ const PASSAGES = [
 
 const DURATION = 60;
 
-/** 60-second typing test, scored as standard WPM (5 characters = 1 word), with accuracy. */
-export function TypingTest({ onResult, duration = DURATION, passageIndex }: { onResult?: (r: { wpm: number; accuracy: number }) => void; duration?: number; passageIndex?: number }) {
+/**
+ * 60-second typing test, scored as standard WPM (5 characters = 1 word), with accuracy.
+ * `tool` / `step` name it in analytics (tool_started / tool_completed / tool_reset; numbers only).
+ */
+export function TypingTest({
+  onResult,
+  duration = DURATION,
+  passageIndex,
+  tool = "typing_speed_test",
+  step,
+}: {
+  onResult?: (r: { wpm: number; accuracy: number }) => void;
+  duration?: number;
+  passageIndex?: number;
+  tool?: string;
+  step?: string;
+}) {
   const [seed, setSeed] = useState(passageIndex ?? 0);
   const passage = PASSAGES[seed % PASSAGES.length];
   const [typed, setTyped] = useState("");
@@ -31,9 +47,12 @@ export function TypingTest({ onResult, duration = DURATION, passageIndex }: { on
   function finish(at: number, text: string) {
     if (startedAt === null) return;
     const c = [...text].filter((ch, i) => ch === passage[i]).length;
+    const ms = Math.min(duration * 1000, at - startedAt);
+    const result = { wpm: wpm(c, ms), accuracy: text.length ? Math.round((c / text.length) * 100) : 100 };
     setDone(true);
     setNow(at);
-    onResult?.({ wpm: wpm(c, Math.min(duration * 1000, at - startedAt)), accuracy: text.length ? Math.round((c / text.length) * 100) : 100 });
+    track("tool_completed", { tool, step, ...result, duration_s: Math.round(ms / 1000), finished_passage: text.length >= passage.length, passage: seed % PASSAGES.length });
+    onResult?.(result);
   }
 
   useEffect(() => {
@@ -47,6 +66,9 @@ export function TypingTest({ onResult, duration = DURATION, passageIndex }: { on
   });
 
   function reset(next = false) {
+    if (startedAt !== null || next) {
+      track("tool_reset", { tool, step, action: next ? "new_passage" : done ? "try_again" : "restart", was_completed: done, wpm: startedAt !== null ? speed : undefined });
+    }
     typedRef.current = "";
     setTyped("");
     setStartedAt(null);
@@ -88,6 +110,7 @@ export function TypingTest({ onResult, duration = DURATION, passageIndex }: { on
             const at = Date.now();
             if (startedAt === null) {
               setStartedAt(at);
+              track("tool_started", { tool, step, duration_s: duration, passage: seed % PASSAGES.length });
             }
             setNow(at);
             const text = e.target.value.slice(0, passage.length);

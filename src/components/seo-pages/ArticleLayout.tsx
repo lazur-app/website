@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { RelatedGroups } from "@/lib/seo-pages/links";
+import { ContentReadSentinel } from "./ContentAnalytics";
 import { RailCta } from "./Primitives";
 import { TocRail } from "./TocRail";
 
@@ -13,7 +14,10 @@ export function ArticleLayout({ children, source, related = [] }: { children: Re
   const links = related.flatMap((g) => g.links).slice(0, 5);
   return (
     <div className="seo-article">
-      <div className="seo-article__main">{children}</div>
+      <div className="seo-article__main">
+        {children}
+        <ContentReadSentinel />
+      </div>
       <aside className="seo-article__rail" aria-label="Page tools">
         <div className="seo-article__sticky">
           <TocRail />

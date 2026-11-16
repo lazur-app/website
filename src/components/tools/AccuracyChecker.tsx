@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Metric } from "./TypingTest";
 import { wordErrorRate } from "./textMetrics";
+import { useToolEdits } from "./useToolAnalytics";
 
 const SAMPLE_REF = "Can you move the design review to Thursday at three and add Priya to the invite";
 const SAMPLE_HYP = "can you move the design review to thursday at 3 and add pria to the invite";
@@ -12,17 +13,31 @@ export function AccuracyChecker() {
   const [ref, setRef] = useState(SAMPLE_REF);
   const [hyp, setHyp] = useState(SAMPLE_HYP);
   const r = useMemo(() => wordErrorRate(ref, hyp), [ref, hyp]);
+  const edited = useToolEdits("dictation_accuracy_checker", {
+    wer: Math.round(r.wer * 1000) / 10,
+    accuracy: Math.round(Math.max(0, 100 - r.wer * 100) * 10) / 10,
+    words: r.N,
+    substitutions: r.S,
+    deletions: r.D,
+    insertions: r.I,
+  });
 
   return (
     <div className="seo-tool">
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block">
           <span className="seo-label">What you meant to say</span>
-          <textarea className="seo-input mt-2" rows={5} value={ref} onChange={(e) => setRef(e.target.value)} />
+          <textarea className="seo-input mt-2" rows={5} value={ref} onChange={(e) => {
+              setRef(e.target.value);
+              edited();
+            }} />
         </label>
         <label className="block">
           <span className="seo-label">What your dictation app typed</span>
-          <textarea className="seo-input mt-2" rows={5} value={hyp} onChange={(e) => setHyp(e.target.value)} />
+          <textarea className="seo-input mt-2" rows={5} value={hyp} onChange={(e) => {
+              setHyp(e.target.value);
+              edited();
+            }} />
         </label>
       </div>
       <div className="mt-6 flex flex-wrap gap-8" role="status">

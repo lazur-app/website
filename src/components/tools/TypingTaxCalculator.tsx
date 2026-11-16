@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Metric } from "./TypingTest";
+import { useToolEdits } from "./useToolAnalytics";
 
 function Field({ label, value, onChange, min, max, step = 1, suffix }: { label: string; value: number; onChange: (n: number) => void; min: number; max: number; step?: number; suffix?: string }) {
   return (
@@ -33,15 +34,28 @@ export function TypingTaxCalculator() {
   const speakHours = (wordsPerDay / speakWpm / 60) * days;
   const saved = Math.max(0, typeHours - speakHours);
   const fmt = (n: number) => Math.round(n).toLocaleString("en-US");
+  // The hourly rate stays out of analytics on purpose.
+  const edited = useToolEdits("typing_tax_calculator", {
+    words_per_day: wordsPerDay,
+    type_wpm: typeWpm,
+    speak_wpm: speakWpm,
+    working_days: days,
+    hours_typing: Math.round(typeHours),
+    hours_saved: Math.round(saved),
+  });
+  const change = (set: (n: number) => void) => (n: number) => {
+    set(n);
+    edited();
+  };
 
   return (
     <div className="seo-tool grid gap-8 lg:grid-cols-2">
       <div className="space-y-5">
-        <Field label="Words you write a day" value={wordsPerDay} onChange={setWordsPerDay} min={500} max={15000} step={250} />
-        <Field label="Your typing speed" value={typeWpm} onChange={setTypeWpm} min={15} max={140} suffix=" wpm" />
-        <Field label="Your speaking speed" value={speakWpm} onChange={setSpeakWpm} min={80} max={220} suffix=" wpm" />
-        <Field label="What an hour of your time is worth" value={rate} onChange={setRate} min={10} max={500} step={5} suffix=" $" />
-        <Field label="Working days a year" value={days} onChange={setDays} min={100} max={300} />
+        <Field label="Words you write a day" value={wordsPerDay} onChange={change(setWordsPerDay)} min={500} max={15000} step={250} />
+        <Field label="Your typing speed" value={typeWpm} onChange={change(setTypeWpm)} min={15} max={140} suffix=" wpm" />
+        <Field label="Your speaking speed" value={speakWpm} onChange={change(setSpeakWpm)} min={80} max={220} suffix=" wpm" />
+        <Field label="What an hour of your time is worth" value={rate} onChange={change(setRate)} min={10} max={500} step={5} suffix=" $" />
+        <Field label="Working days a year" value={days} onChange={change(setDays)} min={100} max={300} />
       </div>
       <div className="rounded-2xl bg-[var(--background-deep)] p-5" role="status">
         <div className="grid grid-cols-2 gap-6">

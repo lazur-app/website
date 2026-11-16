@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@/lib/productAnalytics";
 import { Metric, TypingTest } from "./TypingTest";
 
 const READ_ALOUD =
   "I need the quarterly numbers by Thursday so I can send the board update on Friday morning. If the churn figure is still being checked, send me the rest first and flag that one. Thanks for pulling this together so quickly.";
 const READ_WORDS = READ_ALOUD.split(/\s+/).length;
+const TOOL = "speaking_vs_typing_test";
 
 /**
  * Step 1: a 30-second typing test. Step 2: read a passage out loud with a start/stop timer.
@@ -30,7 +32,7 @@ export function SpeakVsType() {
     <div className="space-y-6">
       <div>
         <p className="seo-label mb-3">Step 1 · Type for 30 seconds</p>
-        <TypingTest duration={30} passageIndex={1} onResult={(r) => setTyping(r.wpm)} />
+        <TypingTest duration={30} passageIndex={1} tool={TOOL} step="typing" onResult={(r) => setTyping(r.wpm)} />
       </div>
       <div className="seo-tool">
         <p className="seo-label">Step 2 · Read this out loud at a normal pace</p>
@@ -41,6 +43,7 @@ export function SpeakVsType() {
               type="button"
               className="seo-btn"
               onClick={() => {
+                track("tool_started", { tool: TOOL, step: "speaking", repeat: speakMs !== null });
                 setSpeakMs(null);
                 setStart(Date.now());
                 setTick(Date.now());
@@ -49,7 +52,23 @@ export function SpeakVsType() {
               {speakMs !== null ? "Read it again" : "Start reading"}
             </button>
           ) : (
-            <button type="button" className="seo-btn" onClick={() => setSpeakMs(Date.now() - start)}>
+            <button
+              type="button"
+              className="seo-btn"
+              onClick={() => {
+                const ms = Date.now() - start;
+                setSpeakMs(ms);
+                const speakingWpm = Math.round(READ_WORDS / (ms / 60000));
+                track("tool_completed", {
+                  tool: TOOL,
+                  step: "speaking",
+                  duration_s: Math.round(ms / 1000),
+                  speaking_wpm: speakingWpm,
+                  typing_wpm: typing ?? undefined,
+                  ratio: typing ? Math.round((speakingWpm / typing) * 10) / 10 : undefined,
+                });
+              }}
+            >
               Done reading
             </button>
           )}

@@ -1,12 +1,17 @@
 import { ContentImage } from "@/components/seo-pages/ContentImage";
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { formatBlogDateLong } from "@/lib/blog/format";
 import type { BlogPost } from "@/lib/blog/types";
+import type { AnalyticsProps } from "@/lib/productAnalytics";
 
-export function BlogPostCard({ post }: { post: BlogPost }) {
+/** With `eventProps`, the click is tracked as `event` (the blog index uses this; post pages track via ContentAnalytics). */
+export function BlogPostCard({ post, event, eventProps }: { post: BlogPost; event?: string; eventProps?: AnalyticsProps }) {
+  const CardLink = eventProps ? TrackedLink : Link;
   return (
-    <Link
+    <CardLink
       href={`/blog/${post.slug}`}
+      {...(eventProps ? { event, eventProps } : {})}
       className="group grid gap-3 py-10 sm:grid-cols-[13.5rem_minmax(0,1fr)] sm:gap-10"
     >
       <div className="text-[13px] leading-relaxed text-[var(--foreground-muted)] sm:pt-1">
@@ -39,6 +44,6 @@ export function BlogPostCard({ post }: { post: BlogPost }) {
           </span>
         </span>
       </div>
-    </Link>
+    </CardLink>
   );
 }

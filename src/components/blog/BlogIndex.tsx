@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import type { BlogPost } from "@/lib/blog/types";
+import { track } from "@/lib/productAnalytics";
 
 type BlogIndexProps = {
   posts: BlogPost[];
@@ -44,7 +45,13 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
                 type="button"
                 role="tab"
                 aria-selected={selected}
-                onClick={() => setCategory(item)}
+                onClick={() => {
+                  setCategory(item);
+                  if (item !== category) {
+                    const count = item === "All" ? posts.length : posts.filter((post) => post.category === item).length;
+                    track("blog_filter_selected", { category: item, result_count: count });
+                  }
+                }}
                 className={`rounded-full px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-colors ${
                   selected
                     ? "bg-white text-[var(--foreground)]"
@@ -60,8 +67,13 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
 
       {filtered.length > 0 ? (
         <div className="mt-6 divide-y divide-[var(--border)]">
-          {filtered.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
+          {filtered.map((post, i) => (
+            <BlogPostCard
+              key={post.slug}
+              post={post}
+              event="hub_item_clicked"
+              eventProps={{ hub: "blog", item: `/blog/${post.slug}`, item_type: "card", category: post.category, filter: category, position: i + 1 }}
+            />
           ))}
         </div>
       ) : (

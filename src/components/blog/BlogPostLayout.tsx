@@ -50,7 +50,7 @@ export function BlogPostLayout({ post, schema, children }: { post: BlogPost; sch
       </div>
       <RelatedGrid groups={relatedGroups} />
       {related.length > 0 ? (
-        <section className="seo-wrap mt-16">
+        <section className="seo-wrap mt-16" data-analytics-section="more_from_blog">
           <h2 className="seo-h2">More from the blog</h2>
           <div className="mt-2 divide-y divide-[var(--border)]">
             {related.map((p) => (

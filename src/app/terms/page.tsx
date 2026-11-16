@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 
 export const metadata: Metadata = {
@@ -35,12 +35,14 @@ export default function TermsPage() {
           after that, Lazur requires a paid Pro or Power subscription. By
           creating an account, downloading the app, or using Lazur, you agree to
           these Terms and our{" "}
-          <Link
+          <TrackedLink
             href="/privacy"
+            event="content_link_clicked"
+            eventProps={{ content_type: "legal", slug: "terms", location: "intro", link_type: "internal", url: "/privacy" }}
             className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
           >
             Privacy Policy
-          </Link>
+          </TrackedLink>
           .
         </>
       }
@@ -105,12 +107,14 @@ export default function TermsPage() {
           content: (
             <>
               Our{" "}
-              <Link
+              <TrackedLink
                 href="/privacy"
+                event="content_link_clicked"
+                eventProps={{ content_type: "legal", slug: "terms", location: "4_privacy", link_type: "internal", url: "/privacy" }}
                 className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
               >
                 Privacy Policy
-              </Link>{" "}
+              </TrackedLink>{" "}
               explains what information we collect, how we use it, and your
               choices. By using Lazur, you consent to those practices.
             </>
@@ -127,12 +131,14 @@ export default function TermsPage() {
                 continued use requires a paid <strong className="text-[var(--foreground)]">Pro</strong> or{" "}
                 <strong className="text-[var(--foreground)]">Power</strong> subscription.
                 Plan limits and pricing are shown on our{" "}
-                <Link
+                <TrackedLink
                   href="/pricing"
+                  event="content_link_clicked"
+                  eventProps={{ content_type: "legal", slug: "terms", location: "5_billing", link_type: "internal", url: "/pricing" }}
                   className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
                 >
                   pricing page
-                </Link>{" "}
+                </TrackedLink>{" "}
                 and at checkout.
               </p>
               <List
@@ -316,12 +322,14 @@ export default function TermsPage() {
               </p>
               <p className="mt-3">
                 Before filing a formal dispute, please contact us at{" "}
-                <a
+                <TrackedAnchor
                   href={`mailto:${CONTACT}`}
+                  event="content_link_clicked"
+                  eventProps={{ content_type: "legal", slug: "terms", location: "15_disputes", link_type: "email", url: "mailto" }}
                   className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
                 >
                   {CONTACT}
-                </a>{" "}
+                </TrackedAnchor>{" "}
                 so we can try to resolve the issue informally.
               </p>
             </>
@@ -332,12 +340,14 @@ export default function TermsPage() {
           content: (
             <>
               Questions about these Terms? Email{" "}
-              <a
+              <TrackedAnchor
                 href={`mailto:${CONTACT}`}
+                event="content_link_clicked"
+                eventProps={{ content_type: "legal", slug: "terms", location: "16_contact", link_type: "email", url: "mailto" }}
                 className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
               >
                 {CONTACT}
-              </a>
+              </TrackedAnchor>
               .
             </>
           ),

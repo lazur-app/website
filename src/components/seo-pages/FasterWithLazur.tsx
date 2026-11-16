@@ -69,7 +69,7 @@ export function FasterWithLazur({
         <p className="mt-6 text-[14px] text-[var(--foreground-muted)]">
           Free for 3 days, then $18/month.{" "}
           <Link href="/download" className="seo-link">
-            Download for Mac
+            Download Lazur free for Mac
           </Link>
         </p>
       </div>

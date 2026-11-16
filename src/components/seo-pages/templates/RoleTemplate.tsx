@@ -31,6 +31,7 @@ export function RoleTemplate({ page }: { page: RolePage }) {
         intro={page.intro}
         updatedAt={page.updatedAt ?? page.publishedAt}
         visual={<NotchScene demo={page.demo} appName={appName} />}
+        cta={{ label: `Try Lazur free for ${page.roleName.toLowerCase()}`, suffix: "Download for Mac", source: `role-${page.slug}` }}
       />
 
       <ArticleLayout source={`role-${page.slug}`} related={related}>

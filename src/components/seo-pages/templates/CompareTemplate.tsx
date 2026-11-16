@@ -26,6 +26,7 @@ export function CompareTemplate({ page }: { page: ComparePage }) {
         intro={page.intro}
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={checked ? [`Prices checked ${checked}`] : []}
+        cta={{ label: "Try Lazur free", suffix: "Download for Mac", source: `compare-${page.slug}` }}
       />
       <ArticleLayout source={`compare-${page.slug}`} related={related}>
       <div className="seo-col mt-12">

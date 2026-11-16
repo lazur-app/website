@@ -35,6 +35,7 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={[`Checked against ${page.appliesTo}`, `${page.timeMinutes} min`, page.difficulty]}
         visual={hero ? <ImageFigure image={hero} priority /> : undefined}
+        cta={{ label: `Try it free in ${page.appName}`, suffix: "Download for Mac", source: `howto-${page.slug}` }}
       />
 
       <ArticleLayout source={`howto-${page.slug}`} related={related}>

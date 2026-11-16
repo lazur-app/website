@@ -35,6 +35,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={[`For ${page.roleName.toLowerCase()}`, `${page.sources.length} sources`]}
         visual={page.images[0] ? <ImageFigure image={page.images[0]} priority /> : undefined}
+        cta={appName === "your Mac" ? { source: `problem-${page.role}-${page.slug}` } : { label: `Try Lazur free in ${appName}`, suffix: "Download for Mac", source: `problem-${page.role}-${page.slug}` }}
       />
 
       <ArticleLayout source={`problem-${page.role}-${page.slug}`} related={related}>

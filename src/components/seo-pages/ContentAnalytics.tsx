@@ -37,7 +37,11 @@ export function describeContent(pathname: string): ContentRef {
   return { content_type: "hub", slug: parts.join("/") };
 }
 
+/** CTA locations: `hero` = first-screen row under the intro, `sticky_bar` = bottom bar after 35%
+ * scroll, `cta_band` = closing CTA at the end of the article. */
 const CTA_AREAS: [string, string][] = [
+  [".seo-herocta", "hero"],
+  [".seo-sticky", "sticky_bar"],
   [".seo-cta", "cta_band"],
   [".seo-railcard--cta", "rail_card"],
   [".seo-nudge", "inline_nudge"],

@@ -30,6 +30,7 @@ export function BlogPostLayout({ post, schema, children }: { post: BlogPost; sch
         updatedAt={post.updatedAt ?? post.publishedAt}
         meta={[post.author, `${post.readingTimeMinutes} min read`]}
         visual={post.heroImage ? <ImageFigure image={post.heroImage} priority /> : undefined}
+        cta={{ source: `blog-${post.slug}` }}
       />
       <ArticleLayout source={`blog-${post.slug}`} related={relatedGroups}>
       <article>

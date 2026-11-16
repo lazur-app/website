@@ -32,6 +32,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={["Works with the Mac app and the web app", "macOS"]}
         visual={<NotchScene demo={first} appName={page.appName} />}
+        cta={{ label: `Try Lazur free in ${page.appName}`, suffix: "Download for Mac", source: `app-${page.slug}` }}
       />
 
       <ArticleLayout source={`app-${page.slug}`} related={related}>

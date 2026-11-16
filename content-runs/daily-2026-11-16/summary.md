@@ -1,12 +1,12 @@
-Content 2026-11-16: 252 written, 0 refused, 16 failed, 0 deferred
+Content 2026-11-16: 291 written, 0 refused, 17 failed, 0 deferred
 
-- howto: 1/200
-- apps: 0/15
-- roles: 18/20
-- role-apps: 103/100
-- problems: 117/125
-- compare: 0/15
-- blog: 13/25
+- howto: 1/0
+- apps: 0/0
+- roles: 18/0
+- role-apps: 103/0
+- problems: 117/0
+- compare: 0/0
+- blog: 13/0
 
 role:tax-advisors /for/tax-advisors
 role:medical-transcribers /for/medical-transcribers
@@ -260,3 +260,42 @@ problem:freight-brokers/freight-broker-multi-modal-coordination /for/freight-bro
 problem:freight-brokers/freight-broker-daily-workflow-checklist /for/freight-brokers/problems/freight-broker-daily-workflow-checklist
 problem:technical-writers/managing-documentation-localization-costs /for/technical-writers/problems/managing-documentation-localization-costs
 howto:change-cursor-speed-in-cursor /how-to/change-cursor-speed-in-cursor
+refresh:howto:add-a-breakpoint-in-xcode /how-to/add-a-breakpoint-in-xcode
+refresh:howto:add-a-swift-package-in-xcode /how-to/add-a-swift-package-in-xcode
+refresh:howto:add-a-language-to-your-app-in-xcode /how-to/add-a-language-to-your-app-in-xcode
+refresh:howto:add-a-launch-screen-in-xcode /how-to/add-a-launch-screen-in-xcode
+refresh:howto:archive-an-app-in-xcode /how-to/archive-an-app-in-xcode
+refresh:howto:add-a-chart-in-keynote /how-to/add-a-chart-in-keynote
+refresh:howto:calculate-percentage-change-in-excel /how-to/calculate-percentage-change-in-excel
+refresh:howto:change-cursor-in-linear /how-to/change-cursor-in-linear
+refresh:howto:change-cursor-color-in-cursor /how-to/change-cursor-color-in-cursor
+refresh:howto:change-cursor-in-canva /how-to/change-cursor-in-canva
+refresh:howto:change-cursor-in-finder /how-to/change-cursor-in-finder
+refresh:howto:change-cursor-in-pages /how-to/change-cursor-in-pages
+refresh:howto:change-cursor-in-photoshop /how-to/change-cursor-in-photoshop
+refresh:howto:change-cursor-in-zoom /how-to/change-cursor-in-zoom
+refresh:howto:change-cursor-in-powerpoint /how-to/change-cursor-in-powerpoint
+refresh:howto:change-cursor-size-in-cursor /how-to/change-cursor-size-in-cursor
+refresh:howto:change-page-orientation-to-landscape-in-word /how-to/change-page-orientation-to-landscape-in-word
+refresh:howto:change-the-bundle-identifier-in-xcode /how-to/change-the-bundle-identifier-in-xcode
+refresh:howto:change-cursor-in-xcode /how-to/change-cursor-in-xcode
+refresh:howto:change-cursor-in-safari /how-to/change-cursor-in-safari
+refresh:howto:check-the-xcode-version-in-xcode /how-to/check-the-xcode-version-in-xcode
+refresh:howto:create-a-unit-test-in-xcode /how-to/create-a-unit-test-in-xcode
+refresh:howto:delete-derived-data-in-xcode /how-to/delete-derived-data-in-xcode
+refresh:howto:enlarge-cursor-in-canva /how-to/enlarge-cursor-in-canva
+refresh:howto:customize-cursor-in-cursor /how-to/customize-cursor-in-cursor
+refresh:howto:enlarge-cursor-in-finder /how-to/enlarge-cursor-in-finder
+refresh:howto:enlarge-cursor-in-linear /how-to/enlarge-cursor-in-linear
+refresh:howto:enlarge-cursor-in-powerpoint /how-to/enlarge-cursor-in-powerpoint
+refresh:howto:enlarge-cursor-in-pages /how-to/enlarge-cursor-in-pages
+refresh:howto:enlarge-cursor-in-photoshop /how-to/enlarge-cursor-in-photoshop
+refresh:howto:enlarge-cursor-in-safari /how-to/enlarge-cursor-in-safari
+refresh:howto:enlarge-cursor-in-xcode /how-to/enlarge-cursor-in-xcode
+refresh:howto:enlarge-cursor-in-zoom /how-to/enlarge-cursor-in-zoom
+refresh:howto:fix-cursor-in-pages /how-to/fix-cursor-in-pages
+refresh:howto:fix-cursor-in-cursor /how-to/fix-cursor-in-cursor
+refresh:howto:hide-cursor-in-canva /how-to/hide-cursor-in-canva
+refresh:howto:hide-cursor-in-cursor /how-to/hide-cursor-in-cursor
+refresh:howto:hide-cursor-in-finder /how-to/hide-cursor-in-finder
+refresh:howto:hide-cursor-in-linear /how-to/hide-cursor-in-linear

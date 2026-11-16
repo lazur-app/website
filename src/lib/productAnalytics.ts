@@ -95,11 +95,28 @@ function clean(properties?: AnalyticsProps) {
  */
 export function track(event: string, properties?: AnalyticsProps) {
   const props = clean(properties);
-  const gaName = GA_EVENTS[event];
+  const gaName = event === "download_clicked" && props?.platform === "windows" ? "download_windows" : GA_EVENTS[event];
   if (gaName && typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("event", gaName, props ?? {});
   }
   withPosthog((ph) => ph.capture(event, props));
+}
+
+/**
+ * Like track(), but only once per browser for a given key (e.g. a checkout id), so reloading a
+ * success page doesn't double-count. With no key it behaves like track().
+ */
+export function trackOnce(key: string | null | undefined, event: string, properties?: AnalyticsProps) {
+  if (key && typeof window !== "undefined") {
+    const storageKey = `lazur_tracked:${event}:${key}`;
+    try {
+      if (window.localStorage.getItem(storageKey)) return;
+      window.localStorage.setItem(storageKey, "1");
+    } catch {
+      // storage blocked: send anyway
+    }
+  }
+  track(event, properties);
 }
 
 /** Link this browser to the Lazur account (same id the app and backend use). */

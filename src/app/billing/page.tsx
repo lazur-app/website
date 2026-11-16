@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
@@ -15,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { BillingPlanCard } from "@/components/billing/BillingPlanCard";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -57,6 +57,7 @@ import {
   periodEndLabel,
 } from "@/lib/subscriptionDates";
 import { LAZUR_APP_OPEN_URL } from "@/lib/appDeepLink";
+import { track } from "@/lib/productAnalytics";
 
 const UPGRADE_PLAN_META: {
   name: string;
@@ -212,23 +213,34 @@ function BillingContent() {
       setActivity(activityItems);
       setInvoices(invoiceItems);
       setLoading(false);
+      track("billing_page_viewed", {
+        plan: profile.plan_slug || profile.plan,
+        billing_source: status?.billing_source ?? profile.billing_source ?? null,
+        cancel_scheduled: Boolean(status?.cancel_at_period_end ?? profile.cancel_at_period_end),
+        trial_expired: Boolean(profile.requires_subscription || profile.trial_status === "expired"),
+        from_app: fromApp,
+        invoice_count: invoiceItems.length,
+      });
     }
 
     load();
-  }, [router, refresh]);
+  }, [router, refresh, fromApp]);
 
   const handleCheckout = useCallback(
     async (planType: PlanType) => {
       setError(null);
       setCheckoutPlan(planType);
+      track("checkout_started", { plan: planType, interval, source: "website", location: "billing_page" });
       try {
         const url = await createCheckoutSession(planType, interval, "US");
         if (url) {
           window.location.href = url;
           return;
         }
+        track("checkout_failed", { plan: planType, interval, location: "billing_page", reason: "api_error" });
         setError("Could not start checkout. Please try again.");
       } catch {
+        track("checkout_failed", { plan: planType, interval, location: "billing_page", reason: "network_error" });
         setError("Could not start checkout. Please try again.");
       } finally {
         setCheckoutPlan(null);
@@ -243,8 +255,9 @@ function BillingContent() {
     if (!canUpgradeTo(user.plan, preselectedPlan)) return;
 
     preselectStarted.current = true;
+    track("plan_selected", { plan: preselectedPlan, interval, location: "billing_preselected", from_app: fromApp });
     void handleCheckout(preselectedPlan);
-  }, [loading, user, preselectedPlan, handleCheckout]);
+  }, [loading, user, preselectedPlan, handleCheckout, interval, fromApp]);
 
   const handleManageBilling = async () => {
     setError(null);
@@ -252,11 +265,14 @@ function BillingContent() {
     try {
       const { url, error: portalError } = await fetchCustomerPortalUrl();
       if (url) {
+        track("billing_portal_opened", { location: "billing_page", plan: user?.plan_slug || user?.plan });
         window.location.href = url;
         return;
       }
+      track("billing_portal_failed", { location: "billing_page", reason: "api_error" });
       setError(portalError ?? "Could not open billing portal. Please try again.");
     } catch {
+      track("billing_portal_failed", { location: "billing_page", reason: "network_error" });
       setError("Could not open billing portal. Please try again.");
     } finally {
       setPortalLoading(false);
@@ -293,21 +309,25 @@ function BillingContent() {
           className="mb-8"
         >
           {fromApp ? (
-            <a
+            <TrackedAnchor
               href={LAZUR_APP_OPEN_URL}
+              event="cta_clicked"
+              eventProps={{ location: "billing_page_header", label: "Back to app", destination: "app" }}
               className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back to app
-            </a>
+            </TrackedAnchor>
           ) : (
-            <Link
+            <TrackedLink
               href="/dashboard"
+              event="nav_link_clicked"
+              eventProps={{ location: "billing_page_header", label: "Back to account", destination: "/dashboard" }}
               className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back to account
-            </Link>
+            </TrackedLink>
           )}
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
             Billing
@@ -439,9 +459,14 @@ function BillingContent() {
               {paid && isComp ? (
                 <p className="text-[13px] text-[var(--foreground-muted)]">
                   Complimentary access, contact{" "}
-                  <a href="mailto:hello@lazur.app" className="font-medium underline">
+                  <TrackedAnchor
+                    href="mailto:hello@lazur.app"
+                    event="support_contact_clicked"
+                    eventProps={{ channel: "email", location: "billing_page_comp" }}
+                    className="font-medium underline"
+                  >
                     support
-                  </a>{" "}
+                  </TrackedAnchor>{" "}
                   to change your plan.
                 </p>
               ) : null}
@@ -470,7 +495,13 @@ function BillingContent() {
               <BillingIntervalToggle
                 interval={interval === "year" ? "annual" : "monthly"}
                 maxSavings={maxSavings}
-                onChange={(next) => setInterval(next === "annual" ? "year" : "month")}
+                onChange={(next) => {
+                  const nextInterval = next === "annual" ? "year" : "month";
+                  if (nextInterval !== interval) {
+                    track("pricing_interval_toggled", { interval: nextInterval, location: "billing_page" });
+                  }
+                  setInterval(nextInterval);
+                }}
               />
             </div>
 
@@ -501,7 +532,17 @@ function BillingContent() {
                     eligible={eligible}
                     isCurrent={isCurrent}
                     checkoutLoading={checkoutPlan === plan.planType}
-                    onCheckout={() => handleCheckout(plan.planType)}
+                    onCheckout={() => {
+                      track("plan_selected", {
+                        plan: plan.planType,
+                        interval,
+                        location: "billing_page",
+                        label: `Upgrade to ${plan.name}`,
+                        next_step: "checkout",
+                        signed_in: true,
+                      });
+                      void handleCheckout(plan.planType);
+                    }}
                   />
                 );
               })}
@@ -583,15 +624,17 @@ function BillingContent() {
                           {formatMoney(item.amount_cents, item.currency)}
                         </p>
                         {item.invoice_url ? (
-                          <a
+                          <TrackedAnchor
                             href={item.invoice_url}
+                            event="invoice_opened"
+                            eventProps={{ location: "billing_page", status: item.status }}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="mt-1 inline-flex items-center gap-1 text-[12px] font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
                           >
                             Invoice
                             <ExternalLink className="h-3 w-3" />
-                          </a>
+                          </TrackedAnchor>
                         ) : null}
                       </div>
                     </li>
@@ -604,12 +647,14 @@ function BillingContent() {
 
         <p className="mt-10 text-center text-[12px] text-[var(--foreground-faint)]">
           Questions?{" "}
-          <a
+          <TrackedAnchor
             href="mailto:hello@lazur.app"
+            event="support_contact_clicked"
+            eventProps={{ channel: "email", location: "billing_page_footer" }}
             className="font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
           >
             Contact support
-          </a>
+          </TrackedAnchor>
         </p>
       </main>
     </MarketingPageShell>

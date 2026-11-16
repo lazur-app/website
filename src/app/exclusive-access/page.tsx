@@ -1,16 +1,17 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, Check } from "lucide-react";
 import { AuthFlowShell } from "@/components/AuthFlowShell";
 import { LogoWordmark } from "@/components/LogoWordmark";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import {
   submitExclusiveAccessRequest,
   type ExclusiveAccessResult,
 } from "@/lib/exclusiveAccess";
 import { detectPlatform } from "@/lib/platform";
+import { track } from "@/lib/productAnalytics";
 
 export default function ExclusiveAccessPage() {
   const [email, setEmail] = useState("");
@@ -37,8 +38,15 @@ export default function ExclusiveAccessPage() {
         excitedToUseFor,
         aboutYourself: aboutYourself || undefined,
       });
+      track("exclusive_access_requested", {
+        platform,
+        location: "exclusive_access_page",
+        status: response.status,
+        has_about: Boolean(aboutYourself),
+      });
       setResult(response);
     } catch (err) {
+      track("exclusive_access_failed", { platform, location: "exclusive_access_page" });
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setSubmitting(false);
@@ -161,13 +169,15 @@ export default function ExclusiveAccessPage() {
         </div>
 
         <p className="mt-8 text-center">
-          <Link
+          <TrackedLink
             href="/"
+            event="nav_link_clicked"
+            eventProps={{ location: "exclusive_access_page", label: "Back to home", destination: "/" }}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--foreground-faint)] transition-colors hover:text-[var(--foreground-muted)]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to home
-          </Link>
+          </TrackedLink>
         </p>
       </motion.div>
     </AuthFlowShell>

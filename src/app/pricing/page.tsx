@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
@@ -10,6 +9,8 @@ import { BillingIntervalToggle } from "@/components/pricing/BillingIntervalToggl
 import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
 import { PricingStudentOffer } from "@/components/pricing/PricingStudentOffer";
 import { PricingTimeCalculator } from "@/components/pricing/PricingTimeCalculator";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { useTrackInView } from "@/hooks/useTrackInView";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
   consumeCheckoutIntent,
@@ -18,6 +19,7 @@ import {
   type PlanType,
 } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
+import { track } from "@/lib/productAnalytics";
 import {
   FAIR_USE_FOOTNOTE,
   maxAnnualSavings,
@@ -34,7 +36,9 @@ export default function PricingPage() {
   const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const intentHandled = useRef(false);
+  const studentOfferRef = useRef<HTMLDivElement>(null);
   const maxSavings = maxAnnualSavings("international");
+  useTrackInView(studentOfferRef, "section_viewed", { section: "student_offer", location: "pricing_page" });
 
   const startCheckout = useCallback(
     async (planType: PlanType, billingInterval: "month" | "year") => {
@@ -57,10 +61,20 @@ export default function PricingPage() {
     if (!intent) return;
 
     intentHandled.current = true;
+    track("checkout_intent_resumed", { plan: intent.plan, interval: intent.interval, location: "pricing_page" });
     void startCheckout(intent.plan, intent.interval);
   }, [startCheckout]);
 
   const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
+    const signedIn = hasValidSessionToken();
+    track("plan_selected", {
+      plan: plan.id,
+      interval: toBillingInterval(interval),
+      location: "pricing_page",
+      label: plan.buttonText,
+      next_step: plan.cta === "download" ? "download" : signedIn ? "checkout" : "login",
+      signed_in: signedIn,
+    });
     if (plan.cta === "download") {
       window.location.href = "/download";
       return;
@@ -71,7 +85,7 @@ export default function PricingPage() {
 
     const billingInterval = toBillingInterval(interval);
 
-    if (!hasValidSessionToken()) {
+    if (!signedIn) {
       storeCheckoutIntent({ plan: planType, interval: billingInterval });
       window.location.href = loginPathWithReturn("/pricing");
       return;
@@ -109,7 +123,12 @@ export default function PricingPage() {
           <BillingIntervalToggle
             interval={interval}
             maxSavings={maxSavings}
-            onChange={setInterval}
+            onChange={(next) => {
+              if (next !== interval) {
+                track("pricing_interval_toggled", { interval: toBillingInterval(next), location: "pricing_page" });
+              }
+              setInterval(next);
+            }}
           />
         </m.div>
 
@@ -150,16 +169,18 @@ export default function PricingPage() {
         >
           An AI action is one thing you ask Lazur to do: a question, a reminder, a pointed-at button
           or a background job. Dictation doesn&apos;t count. {FAIR_USE_FOOTNOTE}{" "}
-          <Link
+          <TrackedLink
             href="/download"
+            eventProps={{ location: "pricing_footnote", label: "Download Lazur", destination: "/download" }}
             className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"
           >
             Download Lazur
-          </Link>{" "}
+          </TrackedLink>{" "}
           to start your 3-day Pro trial.
         </m.p>
 
         <m.div
+          ref={studentOfferRef}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48 }}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, Copy, Check, Download, Gift, Mic, Sparkles } from "lucide-react";
@@ -9,6 +8,7 @@ import { Navbar } from "@/components/Navbar";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { track } from "@/lib/productAnalytics";
 import { LAZUR_APP_OPEN_URL } from "@/lib/appDeepLink";
 import { useAuth } from "@/components/AuthProvider";
@@ -44,7 +44,7 @@ function DashboardContent() {
     const refreshToken = params.get("refresh_token");
     if (accessToken) {
       storeTokens(accessToken, refreshToken);
-      track("login", { method: "google" });
+      track("login", { method: "google", source: "web" });
       window.history.replaceState({}, "", "/dashboard");
     }
 
@@ -108,6 +108,7 @@ function DashboardContent() {
     const link = user?.referral_link ?? referrals?.referral_link;
     if (!link) return;
     await navigator.clipboard.writeText(link);
+    track("referral_link_copied", { location: "dashboard", referral_count: referrals?.referral_count ?? 0 });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 2000);
   };
@@ -151,12 +152,14 @@ function DashboardContent() {
               <p className="text-[14px] text-[var(--foreground-muted)]">{user.email}</p>
             </div>
           </div>
-          <a
+          <TrackedAnchor
             href={LAZUR_APP_OPEN_URL}
+            event="cta_clicked"
+            eventProps={{ location: "dashboard_header", label: "Open Lazur", destination: "app" }}
             className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--foreground)] px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90 sm:self-auto"
           >
             <AppleIcon className="h-4 w-4" /> Open Lazur
-          </a>
+          </TrackedAnchor>
         </motion.header>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -200,12 +203,18 @@ function DashboardContent() {
               )}
 
               <div className="mt-auto pt-6">
-                <Link
+                <TrackedLink
                   href="/billing"
+                  eventProps={{
+                    location: "dashboard_plan_card",
+                    label: isTrial || trialExpired ? "Choose a plan" : "Manage billing",
+                    destination: "/billing",
+                    plan: user.plan_slug || user.plan,
+                  }}
                   className="flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-[14px] font-semibold text-[#1c1917] transition-opacity hover:opacity-90"
                 >
                   {isTrial || trialExpired ? "Choose a plan" : "Manage billing"} <ArrowRight className="h-4 w-4" />
-                </Link>
+                </TrackedLink>
               </div>
             </div>
           </Reveal>
@@ -260,9 +269,9 @@ function DashboardContent() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <a href={LAZUR_APP_OPEN_URL} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Open app</a>
-                <Link href="/login/app" className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Sign in on this Mac</Link>
-                <Link href="/download" className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]"><Download className="h-4 w-4" /> Download</Link>
+                <TrackedAnchor href={LAZUR_APP_OPEN_URL} event="cta_clicked" eventProps={{ location: "dashboard_mac_card", label: "Open app", destination: "app" }} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Open app</TrackedAnchor>
+                <TrackedLink href="/login/app" eventProps={{ location: "dashboard_mac_card", label: "Sign in on this Mac", destination: "/login/app" }} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Sign in on this Mac</TrackedLink>
+                <TrackedLink href="/download" eventProps={{ location: "dashboard_mac_card", label: "Download", destination: "/download" }} className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]"><Download className="h-4 w-4" /> Download</TrackedLink>
               </div>
             </div>
           </Card>
@@ -308,9 +317,9 @@ function DashboardContent() {
         </Reveal>
 
         <nav className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--foreground-faint)]">
-          <Link href="/changelog" className="hover:text-[var(--foreground-muted)]">What&apos;s new</Link>
-          <Link href="/support" className="hover:text-[var(--foreground-muted)]">Help &amp; support</Link>
-          <Link href="/privacy" className="hover:text-[var(--foreground-muted)]">Privacy</Link>
+          <TrackedLink href="/changelog" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "What's new", destination: "/changelog" }} className="hover:text-[var(--foreground-muted)]">What&apos;s new</TrackedLink>
+          <TrackedLink href="/support" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Help & support", destination: "/support" }} className="hover:text-[var(--foreground-muted)]">Help &amp; support</TrackedLink>
+          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Privacy", destination: "/privacy" }} className="hover:text-[var(--foreground-muted)]">Privacy</TrackedLink>
         </nav>
       </main>
     </MarketingPageShell>

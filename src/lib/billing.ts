@@ -190,8 +190,20 @@ export async function redirectToCheckout(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const country = region === "india" ? "IN" : "US";
   track("checkout_started", { plan: planType, interval, source: "website" });
-  const url = await createCheckoutSession(planType, interval, country);
+  let url: string | null;
+  try {
+    url = await createCheckoutSession(planType, interval, country);
+  } catch (err) {
+    track("checkout_failed", { plan: planType, interval, source: "website", reason: "network_error" });
+    throw err;
+  }
   if (!url) {
+    track("checkout_failed", {
+      plan: planType,
+      interval,
+      source: "website",
+      reason: getAccessToken() ? "api_error" : "not_signed_in",
+    });
     return { ok: false, error: "Could not start checkout. Please try again." };
   }
   window.location.href = url;

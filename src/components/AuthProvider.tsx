@@ -43,8 +43,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Link this browser's analytics to the account (same id as the app), so web → app funnels connect.
   useEffect(() => {
-    if (user?.id) identifyUser(String(user.id));
-  }, [user?.id]);
+    if (user?.id) identifyUser(String(user.id), { email: user.email, name: user.name, plan: user.plan_slug || user.plan });
+  }, [user?.id, user?.email, user?.name, user?.plan, user?.plan_slug]);
 
   const refresh = useCallback(async (options?: { force?: boolean }) => {
     if (!hasValidSessionToken()) {

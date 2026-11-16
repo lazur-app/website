@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 import { LegalDocumentLayout } from "@/components/LegalDocumentLayout";
 
 export const metadata: Metadata = {
@@ -34,9 +34,14 @@ export default function SupportPage() {
       intro={
         <>
           Stuck, found a bug, or have a question about your plan? Email{" "}
-          <a href={`mailto:${CONTACT}`} className={linkClass}>
+          <TrackedAnchor
+            href={`mailto:${CONTACT}`}
+            event="support_contact_clicked"
+            eventProps={{ channel: "email", location: "support_page" }}
+            className={linkClass}
+          >
             {CONTACT}
-          </a>{" "}
+          </TrackedAnchor>{" "}
           and a real person will reply, usually within a day. You can also send
           feedback from the Lazur app on your Mac.
         </>
@@ -49,9 +54,13 @@ export default function SupportPage() {
               items={[
                 <>
                   Download Lazur from the{" "}
-                  <Link href="/download" className={linkClass}>
+                  <TrackedLink
+                    href="/download"
+                    eventProps={{ location: "support_page", label: "download page", destination: "/download" }}
+                    className={linkClass}
+                  >
                     download page
-                  </Link>
+                  </TrackedLink>
                   , open it and sign in with Google from the notch.
                 </>,
                 "Lazur asks for Microphone, Accessibility and Screen Recording. If a step doesn't work, check those in System Settings → Privacy & Security, then quit and reopen Lazur.",
@@ -70,9 +79,14 @@ export default function SupportPage() {
                 "It never reads your passwords. When a site needs you to sign in or confirm something, Lazur asks you to step in.",
                 <>
                   What the extension can access is described in our{" "}
-                  <Link href="/privacy#extension" className={linkClass}>
+                  <TrackedLink
+                    href="/privacy#extension"
+                    event="nav_link_clicked"
+                    eventProps={{ location: "support_page", label: "Privacy Policy", destination: "/privacy#extension" }}
+                    className={linkClass}
+                  >
                     Privacy Policy
-                  </Link>
+                  </TrackedLink>
                   .
                 </>,
               ]}
@@ -87,9 +101,13 @@ export default function SupportPage() {
                 "Your 3-day Pro trial starts the first time you use the Mac app.",
                 <>
                   Plans and prices are on the{" "}
-                  <Link href="/pricing" className={linkClass}>
+                  <TrackedLink
+                    href="/pricing"
+                    eventProps={{ location: "support_page", label: "pricing page", destination: "/pricing" }}
+                    className={linkClass}
+                  >
                     pricing page
-                  </Link>
+                  </TrackedLink>
                   . You can manage or cancel your subscription from your account
                   dashboard.
                 </>,

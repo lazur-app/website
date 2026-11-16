@@ -1,3 +1,5 @@
+import { resetAnalyticsUser, track } from "@/lib/productAnalytics";
+
 const ACCESS_TOKEN_KEY = "lazur_access_token";
 const REFRESH_TOKEN_KEY = "lazur_refresh_token";
 const USER_CACHE_KEY = "lazur_user_cache";
@@ -128,7 +130,10 @@ export function clearTokens() {
 }
 
 export function clearSession() {
+  // Only a real sign-out/expiry resets analytics; anonymous visitors keep their id (funnels stay joined).
+  const hadSession = Boolean(getAccessToken() || getRefreshToken());
   clearTokens();
+  if (hadSession) resetAnalyticsUser();
 }
 
 export function startOAuth(
@@ -136,6 +141,7 @@ export function startOAuth(
   source: "web" | "desktop",
   returnTo?: string,
 ) {
+  track("login_started", { method: provider, source, has_return_to: Boolean(returnTo) });
   const params = new URLSearchParams({ source });
   if (returnTo) {
     params.set("return_to", returnTo);

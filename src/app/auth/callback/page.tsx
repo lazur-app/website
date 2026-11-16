@@ -2,11 +2,12 @@
 
 import { useEffect, Suspense, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { AuthFlowShell } from "@/components/AuthFlowShell";
 import { LogoWordmark } from "@/components/LogoWordmark";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { track } from "@/lib/productAnalytics";
 
 function CallbackContent() {
   const searchParams = useSearchParams();
@@ -47,11 +48,13 @@ function CallbackContent() {
     const refreshToken = searchParams.get("refresh_token");
 
     if (!accessToken || !refreshToken) {
+      track("login_failed", { method: "google", source: "desktop", reason: "missing_tokens" });
       setStatus("error");
       return;
     }
 
     const timer = setTimeout(() => {
+      track("login", { method: "google", source: "desktop" });
       setStatus("success");
       triggerDeepLink();
     }, 1200);
@@ -125,7 +128,10 @@ function CallbackContent() {
                 <div className="space-y-3">
                   <button
                     type="button"
-                    onClick={triggerDeepLink}
+                    onClick={() => {
+                      track("cta_clicked", { location: "auth_callback", label: "Return to app", destination: "app" });
+                      void triggerDeepLink();
+                    }}
                     className="btn-dark group flex w-full items-center justify-center gap-2 !rounded-xl px-5 py-3 text-sm font-semibold"
                   >
                     Return to app
@@ -160,12 +166,13 @@ function CallbackContent() {
                     again from the app.
                   </p>
                 </div>
-                <Link
+                <TrackedLink
                   href="/login/app"
+                  eventProps={{ location: "auth_callback_error", label: "Back to sign in", destination: "/login/app" }}
                   className="btn-dark inline-flex w-full items-center justify-center !rounded-xl px-5 py-3 text-sm font-semibold"
                 >
                   Back to sign in
-                </Link>
+                </TrackedLink>
               </motion.div>
             )}
           </AnimatePresence>
@@ -173,9 +180,13 @@ function CallbackContent() {
 
         <p className="mt-8 text-center text-[11px] leading-relaxed text-[var(--foreground-faint)]">
           Signed in on the web?{" "}
-          <Link href="/dashboard" className="font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]">
+          <TrackedLink
+            href="/dashboard"
+            event="nav_link_clicked"
+            eventProps={{ location: "auth_callback", label: "Go to your dashboard", destination: "/dashboard" }}
+            className="font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)]">
             Go to your dashboard
-          </Link>
+          </TrackedLink>
         </p>
       </motion.div>
     </AuthFlowShell>

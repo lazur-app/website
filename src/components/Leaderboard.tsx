@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Loader2, Medal, Search, TrendingUp, Users } from "lucide-react";
 import { SoftCard } from "@/components/SoftCard";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { track } from "@/lib/productAnalytics";
 import {
   fetchLeaderboard,
   getMyReferralCode,
@@ -93,11 +94,22 @@ export function LeaderboardTable() {
   const [myCode, setMyCode] = useState<string | undefined>();
 
   useEffect(() => {
-    setMyCode(getMyReferralCode());
+    const code = getMyReferralCode();
+    setMyCode(code);
 
     fetchLeaderboard()
-      .then(setData)
+      .then((next) => {
+        const mine = code ? next.entries.find((entry) => entry.referral_code === code) : undefined;
+        track("leaderboard_loaded", {
+          location: "leaderboard_page",
+          entry_count: next.entries.length,
+          on_leaderboard: Boolean(mine),
+          my_rank: mine?.rank ?? null,
+        });
+        setData(next);
+      })
       .catch((err) => {
+        track("leaderboard_load_failed", { location: "leaderboard_page" });
         setError(err instanceof Error ? err.message : "Failed to load leaderboard.");
       })
       .finally(() => setLoading(false));
@@ -165,12 +177,13 @@ export function LeaderboardTable() {
           </div>
         </SoftCard>
 
-        <Link
+        <TrackedLink
           href="/login"
+          eventProps={{ location: "leaderboard_sidebar", label: "Get referral link", destination: "/login" }}
           className="btn-dark hidden w-full justify-center lg:inline-flex"
         >
           Get referral link
-        </Link>
+        </TrackedLink>
       </aside>
 
       <div className="min-w-0 space-y-3">
@@ -185,6 +198,11 @@ export function LeaderboardTable() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onBlur={() => {
+                if (query.trim()) {
+                  track("leaderboard_searched", { location: "leaderboard_page", result_count: filtered.length, total_count: users.length });
+                }
+              }}
               placeholder="Search name or code…"
               className="soft-card w-full py-3 pl-11 pr-4 text-[14px] text-[var(--foreground)] placeholder:text-[var(--foreground-faint)] outline-none transition-shadow focus:ring-2 focus:ring-[var(--foreground)]/8"
             />
@@ -254,12 +272,13 @@ export function LeaderboardTable() {
             </div>
           </SoftCard>
 
-          <Link
+          <TrackedLink
             href="/login"
+            eventProps={{ location: "leaderboard_table", label: "Get referral link", destination: "/login" }}
             className="btn-dark inline-flex w-full justify-center lg:hidden"
           >
             Get referral link
-          </Link>
+          </TrackedLink>
         </>
       ) : (
         <SoftCard hover={false} className="px-6 py-12 text-center">
@@ -269,9 +288,13 @@ export function LeaderboardTable() {
           <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
             Share your link, you&apos;ll appear here when friends sign up.
           </p>
-          <Link href="/login" className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]">
+          <TrackedLink
+            href="/login"
+            eventProps={{ location: "leaderboard_empty", label: "Get referral link", destination: "/login" }}
+            className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]"
+          >
             Get referral link
-          </Link>
+          </TrackedLink>
         </SoftCard>
       )}
       </div>

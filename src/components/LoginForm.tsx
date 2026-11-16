@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { hasValidSessionToken, startOAuth } from "@/lib/auth";
 import { isSafeReturnPath } from "@/lib/returnTo";
 import { AuthFlowShell } from "./AuthFlowShell";
@@ -122,13 +122,13 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
 
         <p className="mt-7 text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]">
           By continuing, you agree to Lazur&apos;s{" "}
-          <Link href="/terms" className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Terms</Link>{" "}
+          <TrackedLink href="/terms" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Terms", destination: "/terms" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Terms</TrackedLink>{" "}
           and{" "}
-          <Link href="/privacy" className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Privacy Policy</Link>.
+          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Privacy Policy", destination: "/privacy" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Privacy Policy</TrackedLink>.
           {source === "web" ? (
             <>
               <br />
-              New here? <Link href="/download" className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Download Lazur</Link> and your 3-day trial starts in the app.
+              New here? <TrackedLink href="/download" eventProps={{ location: "login_web", label: "Download Lazur", destination: "/download" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Download Lazur</TrackedLink> and your 3-day trial starts in the app.
             </>
           ) : null}
         </p>

@@ -1,10 +1,10 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { useAuth } from "@/components/AuthProvider";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
@@ -13,6 +13,7 @@ import {
   type BillingStatus,
 } from "@/lib/billing";
 import { loginPathWithReturn } from "@/lib/returnTo";
+import { trackOnce } from "@/lib/productAnalytics";
 
 const POLL_INTERVAL_MS = 2000;
 const MAX_POLLS = 30;
@@ -35,11 +36,13 @@ function BillingSuccessContent() {
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const expectedPlan = searchParams.get("plan");
+  const checkoutId = searchParams.get("checkout_id") ?? searchParams.get("session_id");
   const [status, setStatus] = useState<"polling" | "done" | "timeout">("polling");
   const [billing, setBilling] = useState<BillingStatus | null>(null);
 
   useEffect(() => {
     if (searchParams.get("desktop") === "1") {
+      trackOnce(checkoutId, "checkout_completed", { plan: expectedPlan, session_id: checkoutId, confirmed: false, source: "desktop" });
       window.location.replace("lazur://billing/complete");
       return;
     }
@@ -62,6 +65,14 @@ function BillingSuccessContent() {
 
         const next = await fetchBillingStatus();
         if (next && planMatchesExpected(next, expectedPlan)) {
+          if (!cancelled) trackOnce(checkoutId, "checkout_completed", {
+            plan: next.plan_slug,
+            interval: next.billing_interval,
+            session_id: checkoutId,
+            confirmed: true,
+            polls: attempts,
+            source: "website",
+          });
           setBilling(next);
           setStatus("done");
           await refresh({ force: true }).catch(() => null);
@@ -73,6 +84,14 @@ function BillingSuccessContent() {
         await syncBillingSubscription().catch(() => null);
         const last = await fetchBillingStatus();
         if (last) setBilling(last);
+        trackOnce(checkoutId, "checkout_completed", {
+          plan: last?.plan_slug ?? expectedPlan,
+          interval: last?.billing_interval,
+          session_id: checkoutId,
+          confirmed: false,
+          polls: attempts,
+          source: "website",
+        });
         await refresh({ force: true }).catch(() => null);
         setStatus("timeout");
       }
@@ -82,7 +101,7 @@ function BillingSuccessContent() {
     return () => {
       cancelled = true;
     };
-  }, [router, refresh, expectedPlan]);
+  }, [router, refresh, expectedPlan, checkoutId]);
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
@@ -110,19 +129,21 @@ function BillingSuccessContent() {
               Your subscription is active. Open Lazur on your Mac to use your new limits right away.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <TrackedLink
                 href="/dashboard"
+                eventProps={{ location: "billing_success", label: "Go to dashboard", destination: "/dashboard" }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)]"
               >
                 <Sparkles className="h-4 w-4" />
                 Go to dashboard
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/download"
+                eventProps={{ location: "billing_success", label: "Download for Mac", destination: "/download" }}
                 className="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] px-5 py-3 text-sm font-semibold text-[var(--foreground)]"
               >
                 Download for Mac
-              </Link>
+              </TrackedLink>
             </div>
           </>
         )}
@@ -138,12 +159,13 @@ function BillingSuccessContent() {
                 ? `Your account shows ${billing.plan}. If limits haven't updated yet, refresh the app or check back in a minute.`
                 : "We're still syncing your subscription. Check your dashboard in a minute."}
             </p>
-            <Link
+            <TrackedLink
               href="/billing"
+              eventProps={{ location: "billing_success_timeout", label: "View billing", destination: "/billing" }}
               className="mt-8 inline-flex rounded-xl bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)]"
             >
               View billing
-            </Link>
+            </TrackedLink>
           </>
         )}
       </main>

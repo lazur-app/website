@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { LeaderboardTable } from "@/components/Leaderboard";
 import { ReferralSystem } from "@/components/ReferralSystem";
@@ -42,12 +42,13 @@ export default function LeaderboardPage() {
               Share your link and move up the ranks.
             </motion.p>
           </div>
-          <Link
+          <TrackedLink
             href="/login"
+            eventProps={{ location: "leaderboard_header", label: "Get your referral link", destination: "/login" }}
             className="btn-dark inline-flex shrink-0 items-center justify-center px-6 py-3 text-[14px]"
           >
             Get your referral link
-          </Link>
+          </TrackedLink>
         </div>
 
         <LeaderboardTable />

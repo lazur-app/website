@@ -1,3 +1,5 @@
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+
 const STUDENT_BODY = [
   "hi [your name]",
   "",
@@ -27,12 +29,14 @@ export function PricingStudentOffer({ className = "" }: { className?: string }) 
             and get you set up.
           </p>
         </div>
-        <a
+        <TrackedAnchor
           href={STUDENT_MAIL}
+          event="student_offer_clicked"
+          eventProps={{ location: "pricing_page", channel: "email", label: "Reach out" }}
           className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-6 text-[14px] font-semibold text-[var(--foreground)] transition-opacity hover:opacity-90"
         >
           Reach out
-        </a>
+        </TrackedAnchor>
       </div>
     </section>
   );

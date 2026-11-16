@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Check, Download, Monitor } from "lucide-react";
@@ -8,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import {
   MAC_DOWNLOAD_URL,
   hasIntelMacBuild,
@@ -47,12 +47,14 @@ function WindowsWaitlist() {
     setError(null);
     setSubmitting(true);
     try {
-      await submitExclusiveAccessRequest(email, {
+      const result = await submitExclusiveAccessRequest(email, {
         platform: "windows",
         source: "download-page",
       });
+      track("exclusive_access_requested", { platform: "windows", location: "download_page", status: result.status });
       setDone(true);
     } catch (err) {
+      track("exclusive_access_failed", { platform: "windows", location: "download_page" });
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setSubmitting(false);
@@ -249,12 +251,13 @@ function MacWelcome({ chip, started, available, onAgain, onSwitch }: {
       </div>
 
       <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link
+        <TrackedLink
           href="/login/app"
+          eventProps={{ location: "download_page", label: "Already installed? Sign in", destination: "/login/app" }}
           className="btn-dark inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-6 text-[14px] font-semibold sm:w-auto"
         >
           Already installed? Sign in
-        </Link>
+        </TrackedLink>
         <button
           type="button"
           onClick={onAgain}
@@ -294,7 +297,10 @@ export default function DownloadPage() {
   // if they pick the other chip. Counted in PostHog and GA (download_mac, a key event).
   const startMacDownload = useCallback(async (nextChip: MacChip, how: "auto" | "switch" | "again") => {
     const url = await resolveMacDownloadUrl(nextChip);
-    if (!url) return;
+    if (!url) {
+      track("download_unavailable", { platform: "mac", chip: nextChip, how });
+      return;
+    }
     track("download_clicked", { platform: "mac", chip: nextChip, how });
     setStarted(triggerFileDownload(url, SAVE_AS));
   }, []);
@@ -314,11 +320,13 @@ export default function DownloadPage() {
 
   useEffect(() => {
     if (platform === "windows" && hasWindowsBuild()) {
+      track("download_clicked", { platform: "windows", how: "auto" });
       setStarted(triggerWindowsDownload());
     }
   }, [platform]);
 
   const switchChip = (nextChip: MacChip) => {
+    track("download_page_chip_selected", { chip: nextChip, previous_chip: chip });
     setChip(nextChip);
     void startMacDownload(nextChip, "switch");
   };
@@ -350,7 +358,10 @@ export default function DownloadPage() {
                 chip={chip}
                 started={started}
                 available={Boolean(MAC_DOWNLOAD_URL)}
-                onAgain={() => chip && void startMacDownload(chip, "again")}
+                onAgain={() => {
+                  track("download_retry_clicked", { platform: "mac", chip });
+                  if (chip) void startMacDownload(chip, "again");
+                }}
                 onSwitch={switchChip}
               />
             ) : platform === "windows" && hasWindowsBuild() ? (
@@ -366,7 +377,11 @@ export default function DownloadPage() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => setStarted(triggerWindowsDownload())}
+                  onClick={() => {
+                    track("download_retry_clicked", { platform: "windows" });
+                    track("download_clicked", { platform: "windows", how: "again" });
+                    setStarted(triggerWindowsDownload());
+                  }}
                   className="btn-dark mt-8 inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-[14px]"
                 >
                   <Download className="h-4 w-4" />
@@ -388,12 +403,14 @@ export default function DownloadPage() {
                 <WindowsWaitlist />
                 <p className="mt-6 text-[13px] text-[var(--foreground-faint)]">
                   Have a Mac?{" "}
-                  <Link
+                  <TrackedLink
                     href="/"
+                    event="nav_link_clicked"
+                    eventProps={{ location: "download_page_windows", label: "Go back home", destination: "/" }}
                     className="font-medium text-[var(--foreground-muted)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:text-[var(--foreground)]"
                   >
                     Go back home
-                  </Link>
+                  </TrackedLink>
                   , then open this page from your Mac.
                 </p>
               </>
@@ -407,12 +424,14 @@ export default function DownloadPage() {
                   Open this page from your Mac to download. We&apos;ll pick the
                   right installer for you.
                 </p>
-                <Link
+                <TrackedLink
                   href="/"
+                  event="nav_link_clicked"
+                  eventProps={{ location: "download_page_ios", label: "Back to home", destination: "/" }}
                   className="btn-dark mt-8 inline-flex min-h-[48px] items-center justify-center px-7 text-[14px]"
                 >
                   Back to home
-                </Link>
+                </TrackedLink>
               </>
             ) : (
               <>
@@ -425,24 +444,27 @@ export default function DownloadPage() {
                   you. Windows is on the way.
                 </p>
                 <div className="mt-8 flex flex-col items-center gap-3">
-                  <Link
+                  <TrackedLink
                     href="/exclusive-access"
+                    eventProps={{ location: "download_page_unsupported", label: "Get notified for Windows", destination: "/exclusive-access" }}
                     className="btn-dark inline-flex min-h-[48px] items-center justify-center px-7 text-[14px]"
                   >
                     Get notified for Windows
-                  </Link>
+                  </TrackedLink>
                 </div>
               </>
             )}
 
             <p className="mt-10">
-              <Link
+              <TrackedLink
                 href="/"
+                event="nav_link_clicked"
+                eventProps={{ location: "download_page", label: "Back to home", destination: "/" }}
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-faint)] transition-colors hover:text-[var(--foreground-muted)]"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
                 Back to home
-              </Link>
+              </TrackedLink>
             </p>
           </motion.div>
         </div>

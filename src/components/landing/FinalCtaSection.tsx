@@ -1,23 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-import { detectPlatform, type Platform } from "@/lib/platform";
 import { LoopVideo } from "@/components/buddy/LoopVideo";
+import { SendMacLink } from "@/components/download/SendMacLink";
+import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
+import { useIsMacVisitor } from "@/hooks/useIsMacVisitor";
 import { useTrackInView } from "@/hooks/useTrackInView";
 
 export function FinalCtaSection() {
-  const [platform, setPlatform] = useState<Platform | null>(null);
-
-  useEffect(() => {
-    setPlatform(detectPlatform());
-  }, []);
-
-  const isWindows = platform === "windows";
+  const isMac = useIsMacVisitor();
   const ref = useRef<HTMLElement>(null);
   useTrackInView(ref, "section_viewed", { section: "final_cta" });
 
@@ -38,18 +32,27 @@ export function FinalCtaSection() {
           Hold a hotkey. Speak. Get the finished thing in Slack, email,
           Cursor, anywhere you type.
         </p>
-        <div className="mt-8 flex flex-col items-center gap-3">
-          <GlowCta
-            href="/download"
-            eventProps={{ location: "final_cta", label: "Download for Mac", destination: "/download", platform }}
-            variant="light"
-          >
-            Download for Mac
-          </GlowCta>
-          <p className="text-[12px] text-white/40">
-            3-day Pro trial · starts when you open the app · no card needed
-          </p>
-        </div>
+        {isMac === false ? (
+          // Phones and PCs: send the Mac link instead of a download that can't run here.
+          <div className="mx-auto mt-8 flex max-w-md flex-col items-center gap-3 rounded-[1.25rem] bg-[var(--background)] px-4 py-5 text-[var(--foreground)] sm:px-5">
+            <p className="text-[13px] text-[var(--foreground-muted)]">
+              Lazur runs on Mac. Get the download link by email:
+            </p>
+            <SendMacLink location="home_final" variant="inline" />
+          </div>
+        ) : (
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <GlowCta
+              href="/download"
+              eventProps={{ location: "final_cta", label: "Download free for Mac", destination: "/download", platform: isMac ? "mac" : "unknown" }}
+              variant="light"
+            >
+              <AppleIcon />
+              Download free for Mac
+            </GlowCta>
+            <DownloadReassurance tone="dark" />
+          </div>
+        )}
       </motion.div>
       <div className="mx-auto mt-12 max-w-3xl">
         <LoopVideo

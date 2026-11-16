@@ -26,6 +26,8 @@ const VARIANT_CLASS = {
 const SIZE_CLASS = {
   sm: "min-h-8 px-4 py-1.5 text-[13px]",
   md: "min-h-[48px] px-6 py-3 text-sm",
+  /** Thumb-sized (52px) for the page's main download buttons. */
+  lg: "min-h-[52px] px-7 py-3.5 text-[15px]",
 } as const;
 
 type GlowCtaProps = {

@@ -8,6 +8,7 @@ import {
   LandingBand,
   LandingBandInner,
 } from "@/components/landing/LandingBand";
+import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
 import { TRIAL_LABEL } from "@/lib/pricingPlans";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
@@ -50,21 +51,22 @@ export function LandingPricingSection() {
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <GlowCta
                 href="/download"
-                eventProps={{ location: "landing_pricing", label: "Download for Mac", destination: "/download" }}
+                eventProps={{ location: "landing_pricing", label: "Download free for Mac", destination: "/download" }}
                 variant="light"
                 className="final-cta-btn--on-light w-full sm:w-auto"
                 wrapClassName="w-full sm:w-auto"
               >
-                Download for Mac
+                Download free for Mac
               </GlowCta>
               <Link
                 href="/pricing"
                 onClick={() => track("cta_clicked", { location: "landing_pricing", label: "See all plans", destination: "/pricing" })}
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[var(--border)] px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--border-strong)] sm:w-auto"
+                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[var(--border)] px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--border-strong)] sm:w-auto"
               >
                 See all plans
               </Link>
             </div>
+            <DownloadReassurance className="mt-3 text-center sm:text-left" />
 
           </div>
 

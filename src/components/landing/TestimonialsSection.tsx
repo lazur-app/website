@@ -9,7 +9,7 @@ import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
 
-type Testimonial = {
+export type Testimonial = {
   quote: string;
   highlight?: string;
   name: string;
@@ -18,7 +18,7 @@ type Testimonial = {
   image?: string;
 };
 
-const TESTIMONIALS: Testimonial[] = [
+export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "i was skeptical at first because i tried other voice tools. but genuinely, lazur feels different.. it understands what i'm looking at and helps me move faster.",
@@ -54,7 +54,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function TestimonialAvatar({
+export function TestimonialAvatar({
   testimonial,
   size = 40,
 }: {

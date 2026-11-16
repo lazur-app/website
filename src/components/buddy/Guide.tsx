@@ -88,7 +88,7 @@ const STOPS: Stop[] = [
   },
   {
     id: "cta",
-    steps: () => [{ target: "[data-guide-section=cta] a[href='/download']", say: "ready? let's go", mark: "circle" }],
+    steps: () => [{ target: "[data-guide-section=cta] a[href='/download'], [data-guide-section=cta] form button", say: "ready? let's go", mark: "circle" }],
   },
 ];
 

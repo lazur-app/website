@@ -32,10 +32,10 @@ export function PricingStudentOffer({ className = "" }: { className?: string }) 
         <TrackedAnchor
           href={STUDENT_MAIL}
           event="student_offer_clicked"
-          eventProps={{ location: "pricing_page", channel: "email", label: "Reach out" }}
-          className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-6 text-[14px] font-semibold text-[var(--foreground)] transition-opacity hover:opacity-90"
+          eventProps={{ location: "pricing_page", channel: "email", label: "Email for the student offer" }}
+          className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-6 text-[14px] font-semibold text-[var(--foreground)] transition-opacity hover:opacity-90"
         >
-          Reach out
+          Email for the student offer
         </TrackedAnchor>
       </div>
     </section>

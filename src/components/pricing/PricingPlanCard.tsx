@@ -27,6 +27,10 @@ type PricingPlanCardProps = {
   compact?: boolean;
   actionLoading?: boolean;
   actionDisabled?: boolean;
+  /** Overrides plan.buttonText (e.g. the marketing page's "Download free for Mac"). */
+  buttonText?: string;
+  /** A quiet risk-reducer line under the button. */
+  note?: string;
 };
 
 /** One plan. The featured plan is the dark card with the only dark-on-light flip of the page. */
@@ -38,6 +42,8 @@ export function PricingPlanCard({
   compact = false,
   actionLoading = false,
   actionDisabled = false,
+  buttonText,
+  note,
 }: PricingPlanCardProps) {
   const prices = planPrices(plan, region, interval);
   const dark = Boolean(plan.featured);
@@ -77,7 +83,7 @@ export function PricingPlanCard({
         type="button"
         onClick={onAction}
         disabled={actionDisabled || actionLoading}
-        className={`mt-8 w-full rounded-full py-3.5 text-[15px] font-semibold transition-[opacity,transform] hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 ${
+        className={`mt-8 min-h-[52px] w-full rounded-full py-3.5 text-[15px] font-semibold transition-[opacity,transform] hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 ${
           dark ? "bg-white text-[#1c1917]" : "border border-[var(--border-strong)] bg-white text-[var(--foreground)]"
         }`}
       >
@@ -87,9 +93,20 @@ export function PricingPlanCard({
             Redirecting…
           </span>
         ) : (
-          plan.buttonText
+          buttonText ?? plan.buttonText
         )}
       </button>
+      {note ? (
+        <p className={`mt-2.5 text-center text-[12px] leading-snug ${dark ? "text-white/55" : "text-[var(--foreground-faint)]"}`}>
+          {/* Wrap between items, never inside one. */}
+          {note.split(" · ").map((item, i) => (
+            <span key={item}>
+              {i > 0 ? " · " : null}
+              <span className="whitespace-nowrap">{item}</span>
+            </span>
+          ))}
+        </p>
+      ) : null}
     </article>
   );
 }

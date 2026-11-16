@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-import { detectPlatform, type Platform } from "@/lib/platform";
+import { SendMacLink } from "@/components/download/SendMacLink";
+import { useIsMacVisitor } from "@/hooks/useIsMacVisitor";
 import { track } from "@/lib/productAnalytics";
 
 type HeroDownloadCtaProps = {
@@ -14,6 +13,8 @@ type HeroDownloadCtaProps = {
   className?: string;
   /** Analytics placement for the CTA clicks (e.g. "hero", "final_cta"). */
   location?: string;
+  /** Analytics placement for the "Email me the Mac link" form non-Mac visitors see (defaults to `location`). */
+  macLinkLocation?: string;
 };
 
 export function HeroDownloadCta({
@@ -21,56 +22,42 @@ export function HeroDownloadCta({
   variant = "default",
   className = "",
   location = "hero",
+  macLinkLocation,
 }: HeroDownloadCtaProps) {
-  const [platform, setPlatform] = useState<Platform | null>(null);
-
-  useEffect(() => {
-    setPlatform(detectPlatform());
-  }, []);
+  // null on the server and first render: show the Mac button so Mac visitors (most of them) see no shift.
+  const isMac = useIsMacVisitor();
 
   const rowAlign =
     align === "start"
       ? "justify-center lg:justify-start"
       : "justify-center";
 
-  if (platform === null) {
+  // Phones, Windows and Linux can't install Lazur: let them send the Mac link to themselves.
+  if (isMac === false) {
     return (
-      <div className={`flex w-full ${rowAlign}`} aria-hidden>
-        <span
-          className={`btn-dark inline-flex min-h-[44px] min-w-[12.5rem] px-6 opacity-0 sm:min-h-[48px] ${className}`}
-        >
-          &nbsp;
-        </span>
+      <div className={`flex w-full flex-col items-center gap-2 ${align === "start" ? "lg:items-start" : ""}`}>
+        <p className="text-[13px] text-[var(--foreground-muted)]">
+          Lazur runs on Mac. Get the download link by email:
+        </p>
+        <SendMacLink location={macLinkLocation ?? location} variant="inline" />
       </div>
     );
   }
 
-  if (platform === "windows") {
-    return (
-      <GlowCta
-        href="/exclusive-access"
-        eventProps={{ location, label: "Get notified for Windows", destination: "/exclusive-access", platform }}
-        variant="dark"
-        wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
-        className={className}
-      >
-        <Monitor className="h-4 w-4" strokeWidth={2} />
-        Get notified for Windows
-      </GlowCta>
-    );
-  }
+  const label = "Download free for Mac";
 
   if (variant === "minimal") {
     return (
       <GlowCta
         href="/download"
-        eventProps={{ location, label: "Download for Mac", destination: "/download", platform }}
+        eventProps={{ location, label, destination: "/download", platform: isMac ? "mac" : "unknown" }}
         variant="dark"
+        size="lg"
         wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
         className={className}
       >
         <AppleIcon />
-        Download for Mac. Free
+        {label}
       </GlowCta>
     );
   }
@@ -81,12 +68,13 @@ export function HeroDownloadCta({
     >
       <GlowCta
         href="/download"
-        eventProps={{ location, label: "Download for Mac", destination: "/download", platform }}
+        eventProps={{ location, label, destination: "/download", platform: isMac ? "mac" : "unknown" }}
         variant="dark"
+        size="lg"
         wrapClassName="final-cta-btn-wrap--subtle"
       >
         <AppleIcon />
-        Download for Mac. Free
+        {label}
       </GlowCta>
       <Link
         href="#refer"

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -10,6 +11,8 @@ import { PricingPlanCard } from "@/components/pricing/PricingPlanCard";
 import { PricingStudentOffer } from "@/components/pricing/PricingStudentOffer";
 import { PricingTimeCalculator } from "@/components/pricing/PricingTimeCalculator";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { DOWNLOAD_REASSURANCE } from "@/components/landing/DownloadReassurance";
+import { TESTIMONIALS, TestimonialAvatar } from "@/components/landing/TestimonialsSection";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { hasValidSessionToken } from "@/lib/auth";
 import {
@@ -31,6 +34,38 @@ function toBillingInterval(interval: BillingInterval): "month" | "year" {
   return interval === "annual" ? "year" : "month";
 }
 
+type Plan = (typeof WEBSITE_PLANS)[number];
+
+/** The marketing page's button copy: verb + free + what you get, where the plan is free to start. */
+function planButtonText(plan: Plan): string {
+  return plan.id === "free" ? "Download free for Mac" : plan.buttonText;
+}
+
+/** Risk reducers under each plan's button. Download plans: the trial facts; checkout: cancel anytime. */
+function planNote(plan: Plan): string {
+  return plan.cta === "download" ? DOWNLOAD_REASSURANCE.join(" · ") : "Secure checkout · Cancel anytime";
+}
+
+/** A real early-user quote (verbatim fragment of Veer's testimonial on the homepage). */
+const PROOF = TESTIMONIALS.find((t) => t.name === "Veer Adyani");
+const PROOF_QUOTE = "it understands what i'm looking at and helps me move faster.";
+
+/** Only answers already stated in the terms, FAQ and billing copy. */
+const PRICING_FAQ = [
+  {
+    q: "What happens after the 3 days?",
+    a: "The trial ends and Lazur tells you so and shows how to subscribe. To keep using it, pick Pro ($18/month) or Power ($120/month); billed annually, that's $15 or $96 a month. There's no card on file during the trial, so nothing is charged unless you choose a plan.",
+  },
+  {
+    q: "Do I need a credit card to try it?",
+    a: "No. Download Lazur and the 3-day Pro trial starts when you first open it on your Mac.",
+  },
+  {
+    q: "Which Macs does it run on?",
+    a: "macOS on Apple Silicon and Intel. Windows is on the way.",
+  },
+] as const;
+
 export default function PricingPage() {
   const [interval, setInterval] = useState<BillingInterval>("monthly");
   const [checkoutPlan, setCheckoutPlan] = useState<PlanType | null>(null);
@@ -39,6 +74,8 @@ export default function PricingPage() {
   const studentOfferRef = useRef<HTMLDivElement>(null);
   const maxSavings = maxAnnualSavings("international");
   useTrackInView(studentOfferRef, "section_viewed", { section: "student_offer", location: "pricing_page" });
+  const faqRef = useRef<HTMLElement>(null);
+  useTrackInView(faqRef, "section_viewed", { section: "pricing_faq", location: "pricing_page" });
 
   const startCheckout = useCallback(
     async (planType: PlanType, billingInterval: "month" | "year") => {
@@ -65,13 +102,13 @@ export default function PricingPage() {
     void startCheckout(intent.plan, intent.interval);
   }, [startCheckout]);
 
-  const handlePlanAction = async (plan: (typeof WEBSITE_PLANS)[number]) => {
+  const handlePlanAction = async (plan: Plan) => {
     const signedIn = hasValidSessionToken();
     track("plan_selected", {
       plan: plan.id,
       interval: toBillingInterval(interval),
       location: "pricing_page",
-      label: plan.buttonText,
+      label: planButtonText(plan),
       next_step: plan.cta === "download" ? "download" : signedIn ? "checkout" : "login",
       signed_in: signedIn,
     });
@@ -156,6 +193,8 @@ export default function PricingPage() {
                   plan.cta === "checkout" && checkoutPlan === plan.planType
                 }
                 actionDisabled={checkoutBusy && plan.cta === "checkout"}
+                buttonText={planButtonText(plan)}
+                note={planNote(plan)}
               />
             </m.div>
           ))}
@@ -178,6 +217,49 @@ export default function PricingPage() {
           </TrackedLink>{" "}
           to start your 3-day Pro trial.
         </m.p>
+
+        {PROOF ? (
+          <m.figure
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-12 flex max-w-xl items-center gap-4 text-left"
+          >
+            <TestimonialAvatar testimonial={PROOF} size={44} />
+            <div>
+              <blockquote className="font-display text-[17px] leading-snug tracking-tight text-[var(--foreground)]">
+                &ldquo;{PROOF_QUOTE}&rdquo;
+              </blockquote>
+              <figcaption className="mt-1 text-[12.5px] text-[var(--foreground-faint)]">
+                {PROOF.name}, {PROOF.role}
+                {PROOF.company ? ` of ${PROOF.company.label}` : ""}
+              </figcaption>
+            </div>
+          </m.figure>
+        ) : null}
+
+        <section ref={faqRef} className="mt-14 w-full max-w-2xl" aria-labelledby="pricing-faq">
+          <h2 id="pricing-faq" className="font-display text-[1.5rem] font-semibold tracking-tight text-[var(--foreground)]">
+            Questions before you start
+          </h2>
+          <div className="mt-4 border-t border-[var(--border)]">
+            {PRICING_FAQ.map((item, i) => (
+              <details
+                key={item.q}
+                className="group border-b border-[var(--border)]"
+                onToggle={(e) =>
+                  track(e.currentTarget.open ? "faq_opened" : "faq_closed", { question: item.q, index: i, location: "pricing_page" })
+                }
+              >
+                <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-[16px] font-semibold tracking-tight text-[var(--foreground)] [&::-webkit-details-marker]:hidden">
+                  {item.q}
+                  <ChevronDown className="h-4 w-4 shrink-0 text-[var(--foreground-faint)] transition-transform duration-200 group-open:rotate-180" strokeWidth={2} aria-hidden />
+                </summary>
+                <p className="pb-5 pr-8 text-[15px] leading-relaxed text-[var(--foreground-muted)]">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         <m.div
           ref={studentOfferRef}

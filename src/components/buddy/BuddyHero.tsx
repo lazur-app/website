@@ -9,6 +9,10 @@ import { HandUnderline } from "./HandLoop";
 import { usePersona } from "@/lib/personas";
 import { setGuide, useGuide } from "@/lib/guide";
 import { useTrackInView } from "@/hooks/useTrackInView";
+import { useIsMacVisitor } from "@/hooks/useIsMacVisitor";
+import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
+import { HeroProof } from "@/components/landing/HeroProof";
+import { ObjectionsStrip } from "@/components/landing/ObjectionsStrip";
 
 /**
  * Lazur's coral sparkle pen introduces itself by drawing on the page: says hi, underlines "in the
@@ -184,6 +188,7 @@ function Ink({ show, d, delay = 0, duration = 0.9, viewBox, className, preserve 
 export function BuddyHero() {
   const reduced = usePrefersReducedMotion();
   const persona = usePersona();
+  const isMac = useIsMacVisitor();
   const [step, setStep] = useState(0);
   const phase: Phase = reduced ? "rest" : TIMELINE[step][0];
   const at = order(phase);
@@ -271,10 +276,10 @@ export function BuddyHero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.32, duration: 0.5 }}
-          className="relative mt-9 flex w-full max-w-[17rem] justify-center md:max-w-none"
+          className={`relative mt-9 flex w-full justify-center md:max-w-none ${isMac === false ? "max-w-md" : "max-w-[17rem]"}`}
         >
           <div ref={cta} className="relative">
-            <HeroDownloadCta align="center" variant="minimal" className="w-full md:w-auto" />
+            <HeroDownloadCta align="center" variant="minimal" location="hero" macLinkLocation="home_hero" className="w-full md:w-auto" />
 
             <motion.span
               className={`absolute left-[calc(100%+2.6rem)] top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[1.7rem] leading-none sm:block ${HAND}`}
@@ -287,6 +292,13 @@ export function BuddyHero() {
             </motion.span>
           </div>
         </motion.div>
+        {/* Risk reducers right under the button (Mac only: others get the email-me-the-link form). */}
+        {isMac === false ? null : (
+          <DownloadReassurance className="hero-rise mt-3" style={{ animationDelay: "360ms" }} />
+        )}
+        <div style={{ animationDelay: "380ms" }} className="hero-rise mt-5 flex justify-center">
+          <HeroProof />
+        </div>
 
         {/* The pen's last stop: pointing down at the demo */}
         <div ref={arrow} data-guide-start className="relative mt-6 h-16 w-40" aria-hidden>
@@ -330,6 +342,8 @@ export function BuddyHero() {
           {/* The demo starts once the pen has finished, so one thing moves at a time. */}
           <DemoVideo held={at < order("rest") && !handedOff} />
         </div>
+        {/* The top three objections, answered where the first scroll lands. */}
+        <ObjectionsStrip className="mt-10 md:mt-14" />
       </div>
     </section>
   );

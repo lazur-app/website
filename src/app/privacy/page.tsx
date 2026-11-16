@@ -293,7 +293,7 @@ export default function PrivacyPage() {
         {
           title: "8. Analytics",
           content:
-            "We use product analytics (PostHog) to understand how Lazur is used and where it falls short: for example that a dictation finished, how many words it had, which kind of action a command used, or that a background job failed. These events are tied to your account but never contain what you said, typed or saw on screen, and are sent from our servers without your IP address. On our website we also use Google Analytics, DataFast and PostHog to measure visits and downloads. We do not record your screen or sessions for analytics, and we never sell analytics data.",
+            "We use product analytics (PostHog) to understand how Lazur is used and where it falls short: for example that a dictation finished, how many words it had, which kind of action a command used, or that a background job failed. These events are tied to your account but never contain what you said, typed or saw on screen, and are sent from our servers without your IP address. On our website we also use Google Analytics, DataFast and PostHog to measure visits, clicks and downloads and to improve the site. On the website only, PostHog may record how you move through our pages (clicks, scrolling and page changes) as session replays and heatmaps; anything you type into a form is masked and never recorded. The Lazur app does not record your screen or sessions for analytics, and we never sell analytics data.",
         },
         {
           title: "9. Data security",

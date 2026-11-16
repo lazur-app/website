@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // PostHog's API paths end in "/"; Next must not redirect them (see the /ingest rewrites).
+  skipTrailingSlashRedirect: true,
   outputFileTracingRoot: path.join(__dirname),
   async headers() {
     // Safe headers for every page. No Content-Security-Policy yet: GA, DataFast, Vercel and the
@@ -21,7 +23,13 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     // Markdown copy of any content page: /how-to/x.md is served by src/app/md/[...path]/route.ts.
-    return [{ source: "/:path((?:blog|how-to|apps|for|compare|alternatives)/.+)\\.md", destination: "/md/:path" }];
+    return [
+      { source: "/:path((?:blog|how-to|apps|for|compare|alternatives)/.+)\\.md", destination: "/md/:path" },
+      // PostHog through our own domain, so ad blockers don't drop analytics (api_host: "/ingest").
+      { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
+      { source: "/ingest/array/:path*", destination: "https://us-assets.i.posthog.com/array/:path*" },
+      { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
+    ];
   },
   async redirects() {
     return [

@@ -2520,5 +2520,289 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They document issues and provide solutions, often searching for ways to optimize their ticket handling.",
     "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "payroll-clerks",
+    "name": "Payroll clerks",
+    "singular": "payroll clerk",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "slack"
+    ],
+    "keywords": [
+      "payroll automation excel",
+      "payroll clerk software tips"
+    ],
+    "why": "They spend their day calculating wages and taxes, relying heavily on spreadsheets and email communication to resolve discrepancies.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "claims-processors",
+    "name": "Claims processors",
+    "singular": "claims processor",
+    "apps": [
+      "word",
+      "excel",
+      "outlook",
+      "gmail"
+    ],
+    "keywords": [
+      "claims processing workflow",
+      "efficient data entry for insurance"
+    ],
+    "why": "They constantly process large volumes of forms and documents, needing help with data organization and template management.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "technical-support-agents",
+    "name": "Technical support agents",
+    "singular": "technical support agent",
+    "apps": [
+      "slack",
+      "zoom",
+      "chrome"
+    ],
+    "keywords": [
+      "tech support ticket automation",
+      "customer communication templates"
+    ],
+    "why": "They handle high volumes of user queries and need help organizing documentation and streamlining repetitive responses.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "credit-analysts",
+    "name": "Credit analysts",
+    "singular": "credit analyst",
+    "apps": [
+      "excel",
+      "word",
+      "outlook",
+      "notion"
+    ],
+    "keywords": [
+      "credit analysis report template",
+      "financial modeling in excel"
+    ],
+    "why": "They perform deep financial statement analysis and write detailed risk reports, requiring significant help with data modeling.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "search-engine-evaluators",
+    "name": "Search engine evaluators",
+    "singular": "search engine evaluator",
+    "apps": [
+      "chrome",
+      "google-sheets",
+      "slack"
+    ],
+    "keywords": [
+      "search quality rating tools",
+      "evaluator productivity tips"
+    ],
+    "why": "They spend their entire workday in browsers assessing search results, often looking for ways to speed up their rating workflow.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "medical-receptionists",
+    "name": "Medical receptionists",
+    "singular": "medical receptionist",
+    "apps": [
+      "outlook",
+      "word",
+      "excel",
+      "slack"
+    ],
+    "keywords": [
+      "medical scheduling software help",
+      "patient communication templates"
+    ],
+    "why": "They juggle patient scheduling and administrative tasks, often seeking better ways to manage appointments and office documentation.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "supply-chain-analysts",
+    "name": "Supply chain analysts",
+    "singular": "supply chain analyst",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "outlook"
+    ],
+    "keywords": [
+      "supply chain forecasting excel",
+      "logistics data visualization"
+    ],
+    "why": "They manage inventory levels and vendor relationships, relying on complex spreadsheets for predictive modeling.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "nonprofit-administrators",
+    "name": "Nonprofit administrators",
+    "singular": "nonprofit administrator",
+    "apps": [
+      "google-docs",
+      "google-sheets",
+      "gmail",
+      "slack"
+    ],
+    "keywords": [
+      "nonprofit donor management tips",
+      "admin task automation"
+    ],
+    "why": "They wear many hats and often seek low-cost software solutions to manage volunteers, donors, and administrative tasks.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "real-estate-transaction-coordinators",
+    "name": "Real estate transaction coordinators",
+    "singular": "real estate transaction coordinator",
+    "apps": [
+      "google-docs",
+      "gmail",
+      "outlook"
+    ],
+    "keywords": [
+      "transaction management workflow",
+      "closing checklist template"
+    ],
+    "why": "They manage time-sensitive document flows and communication between buyers, sellers, and agents.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "legal-transcriptionists",
+    "name": "Legal transcriptionists",
+    "singular": "legal transcriptionist",
+    "apps": [
+      "word",
+      "pages",
+      "apple-mail",
+      "finder"
+    ],
+    "keywords": [
+      "legal transcription speed tips",
+      "audio to text workflow"
+    ],
+    "why": "They spend their entire day typing from audio, constantly looking for tools to improve accuracy and speed.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "virtual-event-hosts",
+    "name": "Virtual event hosts",
+    "singular": "virtual event host",
+    "apps": [
+      "zoom",
+      "slack",
+      "canva",
+      "notion"
+    ],
+    "keywords": [
+      "virtual event engagement ideas",
+      "zoom production workflow"
+    ],
+    "why": "They manage the technical and social aspects of webinars, requiring help with platform settings and participant management.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "customer-onboarding-managers",
+    "name": "Customer onboarding managers",
+    "singular": "customer onboarding manager",
+    "apps": [
+      "notion",
+      "slack",
+      "zoom",
+      "google-sheets"
+    ],
+    "keywords": [
+      "onboarding process automation",
+      "client training templates"
+    ],
+    "why": "They manage the transition phase for new clients, needing help with tracking progress and delivering consistent documentation.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "market-research-analysts",
+    "name": "Market research analysts",
+    "singular": "market research analyst",
+    "apps": [
+      "excel",
+      "powerpoint",
+      "chrome",
+      "google-sheets"
+    ],
+    "keywords": [
+      "market data analysis techniques",
+      "survey data cleaning excel"
+    ],
+    "why": "They synthesize large datasets into actionable insights, heavily using spreadsheet and presentation software.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "book-publicists",
+    "name": "Book publicists",
+    "singular": "book publicist",
+    "apps": [
+      "gmail",
+      "slack",
+      "notion",
+      "excel"
+    ],
+    "keywords": [
+      "media outreach tracking",
+      "pitch email templates"
+    ],
+    "why": "They manage high-volume outreach campaigns to journalists and influencers, requiring help with CRM and email organization.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "inventory-managers",
+    "name": "Inventory managers",
+    "singular": "inventory manager",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook",
+      "slack"
+    ],
+    "keywords": [
+      "inventory tracking spreadsheet",
+      "stock level forecasting tools"
+    ],
+    "why": "They maintain accurate stock records and need help automating reorder points and data entry.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "content-moderators",
+    "name": "Content moderators",
+    "singular": "content moderator",
+    "apps": [
+      "chrome",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "content moderation workflow",
+      "speeding up review process"
+    ],
+    "why": "They review high volumes of content, constantly looking for shortcuts and browser-based productivity tools.",
+    "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "digital-product-testers",
+    "name": "Digital product testers",
+    "singular": "digital product tester",
+    "apps": [
+      "chrome",
+      "slack",
+      "notion"
+    ],
+    "keywords": [
+      "bug reporting documentation",
+      "testing workflow optimization"
+    ],
+    "why": "They document issues in software, needing help with screenshot management and consistent reporting formats.",
+    "discoveredAt": "2026-11-16"
   }
 ];

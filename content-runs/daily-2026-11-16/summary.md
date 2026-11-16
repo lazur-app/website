@@ -1,12 +1,12 @@
-Content 2026-11-16: 291 written, 0 refused, 17 failed, 0 deferred
+Content 2026-11-16: 325 written, 0 refused, 16 failed, 0 deferred
 
-- howto: 1/0
-- apps: 0/0
-- roles: 18/0
-- role-apps: 103/0
-- problems: 117/0
-- compare: 0/0
-- blog: 13/0
+- howto: 1/200
+- apps: 0/15
+- roles: 21/20
+- role-apps: 107/100
+- problems: 142/125
+- compare: 0/15
+- blog: 15/25
 
 role:tax-advisors /for/tax-advisors
 role:medical-transcribers /for/medical-transcribers
@@ -14,6 +14,9 @@ role:logistics-managers /for/logistics-managers
 role:payroll-clerks /for/payroll-clerks
 role:claims-processors /for/claims-processors
 role:legal-clerks /for/legal-clerks
+role:technical-support-agents /for/technical-support-agents
+role:search-engine-evaluators /for/search-engine-evaluators
+role:nonprofit-administrators /for/nonprofit-administrators
 role:credit-analysts /for/credit-analysts
 role:supply-chain-analysts /for/supply-chain-analysts
 role:medical-receptionists /for/medical-receptionists
@@ -56,6 +59,7 @@ role-app:technical-support-staff/slack /for/technical-support-staff/slack
 role-app:technical-support-agents/slack /for/technical-support-agents/slack
 role-app:claims-processors/word /for/claims-processors/word
 role-app:credit-analysts/excel /for/credit-analysts/excel
+role-app:search-engine-evaluators/chrome /for/search-engine-evaluators/chrome
 role-app:supply-chain-analysts/excel /for/supply-chain-analysts/excel
 role-app:real-estate-transaction-coordinators/google-docs /for/real-estate-transaction-coordinators/google-docs
 role-app:nonprofit-administrators/google-docs /for/nonprofit-administrators/google-docs
@@ -67,6 +71,7 @@ role-app:inventory-managers/excel /for/inventory-managers/excel
 role-app:book-publicists/gmail /for/book-publicists/gmail
 role-app:content-moderators/chrome /for/content-moderators/chrome
 role-app:digital-product-testers/chrome /for/digital-product-testers/chrome
+role-app:claims-adjusters/outlook /for/claims-adjusters/outlook
 role-app:logistics-managers/google-sheets /for/logistics-managers/google-sheets
 role-app:medical-transcribers/gmail /for/medical-transcribers/gmail
 role-app:curriculum-designers/canva /for/curriculum-designers/canva
@@ -93,9 +98,11 @@ role-app:real-estate-transaction-coordinators/gmail /for/real-estate-transaction
 role-app:legal-transcriptionists/pages /for/legal-transcriptionists/pages
 role-app:book-publicists/slack /for/book-publicists/slack
 role-app:content-moderators/slack /for/content-moderators/slack
+role-app:customer-onboarding-managers/slack /for/customer-onboarding-managers/slack
 role-app:inventory-managers/google-sheets /for/inventory-managers/google-sheets
 role-app:market-research-analysts/powerpoint /for/market-research-analysts/powerpoint
 role-app:digital-product-testers/slack /for/digital-product-testers/slack
+role-app:payroll-administrators/outlook /for/payroll-administrators/outlook
 role-app:logistics-managers/slack /for/logistics-managers/slack
 role-app:claims-adjusters/word /for/claims-adjusters/word
 role-app:medical-transcribers/chrome /for/medical-transcribers/chrome
@@ -191,6 +198,7 @@ problem:technical-writers/difficulty-of-technical-writing /for/technical-writers
 problem:technical-writers/technical-writing-stress-levels /for/technical-writers/problems/technical-writing-stress-levels
 problem:technical-writers/explaining-complex-technical-concepts /for/technical-writers/problems/explaining-complex-technical-concepts
 problem:freight-brokers/freight-broker-carrier-onboarding-automation /for/freight-brokers/problems/freight-broker-carrier-onboarding-automation
+problem:freight-brokers/freight-broker-load-tracking-solutions /for/freight-brokers/problems/freight-broker-load-tracking-solutions
 problem:freight-brokers/freight-broker-software-integration-challenges /for/freight-brokers/problems/freight-broker-software-integration-challenges
 problem:technical-writers/managing-subject-matter-expert-feedback /for/technical-writers/problems/managing-subject-matter-expert-feedback
 problem:technical-writers/choosing-technical-writing-tools /for/technical-writers/problems/choosing-technical-writing-tools
@@ -205,6 +213,7 @@ problem:technical-writers/standardizing-technical-writing-style /for/technical-w
 problem:technical-writers/handling-outdated-documentation-debt /for/technical-writers/problems/handling-outdated-documentation-debt
 problem:freight-brokers/freight-broker-customer-retention-strategies /for/freight-brokers/problems/freight-broker-customer-retention-strategies
 problem:technical-writers/measuring-documentation-effectiveness /for/technical-writers/problems/measuring-documentation-effectiveness
+problem:freight-brokers/freight-broker-load-tender-process /for/freight-brokers/problems/freight-broker-load-tender-process
 problem:freight-brokers/freight-broker-accessorial-charge-tracking /for/freight-brokers/problems/freight-broker-accessorial-charge-tracking
 problem:technical-writers/writing-for-global-audiences /for/technical-writers/problems/writing-for-global-audiences
 problem:freight-brokers/freight-broker-capacity-sourcing-methods /for/freight-brokers/problems/freight-broker-capacity-sourcing-methods
@@ -299,3 +308,28 @@ refresh:howto:hide-cursor-in-canva /how-to/hide-cursor-in-canva
 refresh:howto:hide-cursor-in-cursor /how-to/hide-cursor-in-cursor
 refresh:howto:hide-cursor-in-finder /how-to/hide-cursor-in-finder
 refresh:howto:hide-cursor-in-linear /how-to/hide-cursor-in-linear
+blog:dictation-on-mac-vs-ai-voice-assistants /blog/dictation-on-mac-vs-ai-voice-assistants
+blog:best-personal-ai-assistant-for-mac-mini /blog/best-personal-ai-assistant-for-mac-mini
+problem:financial-analysts/automating-complex-financial-model-error-checking /for/financial-analysts/problems/automating-complex-financial-model-error-checking
+problem:insurance-claims-adjusters/handling-excessive-claims-backlog /for/insurance-claims-adjusters/problems/handling-excessive-claims-backlog
+problem:financial-analysts/integrating-python-scripts-into-excel-workflows /for/financial-analysts/problems/integrating-python-scripts-into-excel-workflows
+problem:insurance-claims-adjusters/streamlining-complex-medical-record-review /for/insurance-claims-adjusters/problems/streamlining-complex-medical-record-review
+problem:insurance-claims-adjusters/overcoming-communication-bottlenecks-with-policyholders /for/insurance-claims-adjusters/problems/overcoming-communication-bottlenecks-with-policyholders
+problem:financial-analysts/managing-stress-in-high-pressure-finance-roles /for/financial-analysts/problems/managing-stress-in-high-pressure-finance-roles
+problem:computer-systems-analysts/optimizing-legacy-system-integration-workflows /for/computer-systems-analysts/problems/optimizing-legacy-system-integration-workflows
+problem:insurance-claims-adjusters/navigating-conflicting-coverage-policy-language /for/insurance-claims-adjusters/problems/navigating-conflicting-coverage-policy-language
+problem:financial-analysts/optimizing-financial-data-visualization-presentations /for/financial-analysts/problems/optimizing-financial-data-visualization-presentations
+problem:computer-systems-analysts/handling-scope-creep-in-software-projects /for/computer-systems-analysts/problems/handling-scope-creep-in-software-projects
+problem:financial-analysts/leveraging-ai-for-client-portfolio-summaries /for/financial-analysts/problems/leveraging-ai-for-client-portfolio-summaries
+problem:insurance-claims-adjusters/reducing-time-spent-on-manual-data-entry /for/insurance-claims-adjusters/problems/reducing-time-spent-on-manual-data-entry
+problem:computer-systems-analysts/automating-repetitive-system-analysis-tasks /for/computer-systems-analysts/problems/automating-repetitive-system-analysis-tasks
+problem:insurance-claims-adjusters/managing-stress-from-confrontational-claimants /for/insurance-claims-adjusters/problems/managing-stress-from-confrontational-claimants
+problem:computer-systems-analysts/conducting-effective-user-acceptance-testing /for/computer-systems-analysts/problems/conducting-effective-user-acceptance-testing
+problem:financial-analysts/explaining-complex-annuity-structures-to-clients /for/financial-analysts/problems/explaining-complex-annuity-structures-to-clients
+problem:insurance-claims-adjusters/improving-accuracy-in-damage-estimation-reports /for/insurance-claims-adjusters/problems/improving-accuracy-in-damage-estimation-reports
+problem:financial-analysts/standardizing-financial-reporting-across-diverse-clients /for/financial-analysts/problems/standardizing-financial-reporting-across-diverse-clients
+problem:insurance-claims-adjusters/staying-compliant-with-state-regulatory-deadlines /for/insurance-claims-adjusters/problems/staying-compliant-with-state-regulatory-deadlines
+problem:financial-analysts/managing-client-expectations-during-market-volatility /for/financial-analysts/problems/managing-client-expectations-during-market-volatility
+problem:insurance-claims-adjusters/organizing-digital-evidence-for-litigation /for/insurance-claims-adjusters/problems/organizing-digital-evidence-for-litigation
+problem:computer-systems-analysts/validating-data-accuracy-in-reports /for/computer-systems-analysts/problems/validating-data-accuracy-in-reports
+problem:financial-analysts/streamlining-data-extraction-from-unstructured-pdfs /for/financial-analysts/problems/streamlining-data-extraction-from-unstructured-pdfs

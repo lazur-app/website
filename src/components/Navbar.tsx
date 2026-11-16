@@ -10,6 +10,7 @@ import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
 import { PersonaSwitcher } from "@/components/buddy/PersonaSwitcher";
 import { track } from "@/lib/productAnalytics";
+import { useIsMacVisitor } from "@/hooks/useIsMacVisitor";
 
 const navLinks = [
   { href: "/pricing", label: "Pricing" },
@@ -28,6 +29,8 @@ export function Navbar() {
   const pathname = usePathname();
   const { user, loading, isAuthenticated } = useAuth();
   const [open, setOpen] = useState(false);
+  // Off a Mac, say where the download goes; "Download" on Mac and in the server render.
+  const downloadLabel = useIsMacVisitor() === false ? "Get it for Mac" : "Download";
   const [lastPath, setLastPath] = useState(pathname);
   if (pathname !== lastPath) {
     setLastPath(pathname);
@@ -81,10 +84,10 @@ export function Navbar() {
             )}
             <Link
               href="/download"
-              onClick={() => track("cta_clicked", { location: "navbar", label: "Download", destination: "/download" })}
-              className="rounded-full bg-[var(--foreground)] px-4 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
+              onClick={() => track("cta_clicked", { location: "navbar", label: downloadLabel, destination: "/download" })}
+              className="whitespace-nowrap rounded-full bg-[var(--foreground)] px-4 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Download
+              {downloadLabel}
             </Link>
             <button
               type="button"

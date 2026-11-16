@@ -19,6 +19,8 @@ import {
 import { submitExclusiveAccessRequest } from "@/lib/exclusiveAccess";
 import { track } from "@/lib/productAnalytics";
 import { INSTALL_STEPS, InstallDemo, useInstallStep } from "@/components/download/InstallDemo";
+import { SendMacLink } from "@/components/download/SendMacLink";
+import { isMacDesktopVisitor } from "@/hooks/useIsMacVisitor";
 import {
   detectMacChip,
   detectPlatform,
@@ -106,6 +108,71 @@ function WindowsWaitlist() {
         {submitting ? "Saving…" : "Notify me for Windows"}
       </button>
     </form>
+  );
+}
+
+/** Phones (iOS, Android) vs desktops, only to pick the right sentence. */
+function isPhoneOrTablet(platform: Platform) {
+  if (platform === "ios") return true;
+  return typeof navigator !== "undefined" && /Android|Mobi|Tablet/i.test(navigator.userAgent);
+}
+
+/**
+ * Not on a Mac (phone, Windows without a build, Linux): the next step is sending the Mac
+ * download to themselves. The Windows waitlist is still there, one tap away.
+ */
+function SendToMacPanel({ platform }: { platform: Platform }) {
+  const [showWaitlist, setShowWaitlist] = useState(false);
+  const location = `download_page_${platform}`;
+  const onPhone = isPhoneOrTablet(platform);
+
+  return (
+    <>
+      <MacMark />
+      <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
+        Get Lazur on your Mac
+      </h1>
+      <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
+        {onPhone
+          ? "Reading on your phone? Send the download to your Mac."
+          : platform === "windows"
+            ? "Lazur is a Mac app for now. Send the download to your Mac and install it there."
+            : "Lazur is a Mac app. Send the download to your Mac and install it there."}
+      </p>
+
+      <div className="mt-8">
+        <SendMacLink location={location} variant="card" />
+      </div>
+
+      <ul className="mx-auto mt-5 flex max-w-sm flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[13px] text-[var(--foreground-muted)]">
+        {["Free 3-day Pro trial", "No credit card", hasIntelMacBuild() ? "Apple Silicon & Intel" : "Apple Silicon"].map((fact) => (
+          <li key={fact} className="inline-flex items-center gap-1.5">
+            <Check className="h-3.5 w-3.5 text-[var(--brand)]" strokeWidth={2.25} aria-hidden />
+            {fact}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8 border-t border-[var(--border)] pt-5">
+        {showWaitlist ? (
+          <WindowsWaitlist />
+        ) : (
+          <p className="text-[13px] text-[var(--foreground-faint)]">
+            {platform === "windows" ? "Want Lazur on this PC? " : "On Windows? "}
+            <button
+              type="button"
+              onClick={() => {
+                track("windows_waitlist_opened", { location });
+                setShowWaitlist(true);
+              }}
+              className="font-medium text-[var(--foreground-muted)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:text-[var(--foreground)]"
+            >
+              Get notified when Windows is ready
+            </button>
+          </p>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -306,7 +373,9 @@ export default function DownloadPage() {
   }, []);
 
   useEffect(() => {
-    const detected = detectPlatform();
+    const raw = detectPlatform();
+    // iPadOS Safari claims to be a Mac; never start a .dmg download on an iPad.
+    const detected: Platform = raw === "mac" && !isMacDesktopVisitor() ? "ios" : raw;
     setPlatform(detected);
 
     if (detected !== "mac") return;
@@ -388,71 +457,8 @@ export default function DownloadPage() {
                   Download again
                 </button>
               </>
-            ) : platform === "windows" ? (
-              <>
-                <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--foreground)] text-[var(--background)]">
-                  <Monitor className="h-6 w-6" strokeWidth={1.75} />
-                </div>
-                <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
-                  Windows is next.
-                </h1>
-                <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
-                  Lazur is a Mac app today. Leave your email and we&apos;ll send
-                  the Windows build the moment it&apos;s ready.
-                </p>
-                <WindowsWaitlist />
-                <p className="mt-6 text-[13px] text-[var(--foreground-faint)]">
-                  Have a Mac?{" "}
-                  <TrackedLink
-                    href="/"
-                    event="nav_link_clicked"
-                    eventProps={{ location: "download_page_windows", label: "Go back home", destination: "/" }}
-                    className="font-medium text-[var(--foreground-muted)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:text-[var(--foreground)]"
-                  >
-                    Go back home
-                  </TrackedLink>
-                  , then open this page from your Mac.
-                </p>
-              </>
-            ) : platform === "ios" ? (
-              <>
-                <MacMark />
-                <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
-                  Lazur lives on the Mac.
-                </h1>
-                <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
-                  Open this page from your Mac to download. We&apos;ll pick the
-                  right installer for you.
-                </p>
-                <TrackedLink
-                  href="/"
-                  event="nav_link_clicked"
-                  eventProps={{ location: "download_page_ios", label: "Back to home", destination: "/" }}
-                  className="btn-dark mt-8 inline-flex min-h-[48px] items-center justify-center px-7 text-[14px]"
-                >
-                  Back to home
-                </TrackedLink>
-              </>
             ) : (
-              <>
-                <MacMark />
-                <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
-                  Lazur is a Mac app.
-                </h1>
-                <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
-                  Open this page on a Mac and we&apos;ll start the download for
-                  you. Windows is on the way.
-                </p>
-                <div className="mt-8 flex flex-col items-center gap-3">
-                  <TrackedLink
-                    href="/exclusive-access"
-                    eventProps={{ location: "download_page_unsupported", label: "Get notified for Windows", destination: "/exclusive-access" }}
-                    className="btn-dark inline-flex min-h-[48px] items-center justify-center px-7 text-[14px]"
-                  >
-                    Get notified for Windows
-                  </TrackedLink>
-                </div>
-              </>
+              <SendToMacPanel platform={platform} />
             )}
 
             <p className="mt-10">

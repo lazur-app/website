@@ -1,10 +1,10 @@
-Content 2026-11-15: 330 written, 0 refused, 16 failed, 0 deferred
+Content 2026-11-15: 345 written, 0 refused, 20 failed, 0 deferred
 
 - howto: 6/200
 - apps: 0/15
-- roles: 13/20
+- roles: 24/20
 - role-apps: 138/100
-- problems: 117/125
+- problems: 121/125
 - compare: 0/15
 - blog: 56/25
 
@@ -308,6 +308,7 @@ blog:dictation-on-my-mac-not-working /blog/dictation-on-my-mac-not-working
 blog:how-to-use-voice-dictation-on-mac-laptop /blog/how-to-use-voice-dictation-on-mac-laptop
 blog:dictation-on-mac-pages-tips /blog/dictation-on-mac-pages-tips
 blog:how-to-reset-dictation-on-mac /blog/how-to-reset-dictation-on-mac
+problem:translators/translator-burnout-prevention-strategies /for/translators/problems/translator-burnout-prevention-strategies
 problem:video-editors/video-editor-burnout-prevention-tips /for/video-editors/problems/video-editor-burnout-prevention-tips
 problem:translators/optimizing-translation-workflow-with-ai /for/translators/problems/optimizing-translation-workflow-with-ai
 problem:translators/calculating-fair-translation-rates /for/translators/problems/calculating-fair-translation-rates
@@ -330,6 +331,7 @@ problem:translators/importance-of-healthcare-translators /for/translators/proble
 problem:video-editors/canva-video-editor-limitations-solutions /for/video-editors/problems/canva-video-editor-limitations-solutions
 problem:translators/balancing-translation-work-and-life /for/translators/problems/balancing-translation-work-and-life
 problem:video-editors/movavi-video-editor-troubleshooting-guide /for/video-editors/problems/movavi-video-editor-troubleshooting-guide
+problem:video-editors/evaluating-vn-editor-security /for/video-editors/problems/evaluating-vn-editor-security
 problem:translators/improving-simultaneous-interpretation-memory /for/translators/problems/improving-simultaneous-interpretation-memory
 problem:translators/setting-fair-translation-earnings /for/translators/problems/setting-fair-translation-earnings
 problem:video-editors/managing-video-editing-technical-glitches /for/video-editors/problems/managing-video-editing-technical-glitches
@@ -338,3 +340,16 @@ problem:translators/streamlining-translation-business-operations /for/translator
 problem:video-editors/maximizing-annual-video-editing-income /for/video-editors/problems/maximizing-annual-video-editing-income
 problem:translators/professional-translation-pricing-models /for/translators/problems/professional-translation-pricing-models
 problem:video-editors/professional-video-editing-tool-comparison /for/video-editors/problems/professional-video-editing-tool-comparison
+role:payroll-administrators /for/payroll-administrators
+role:claims-adjusters /for/claims-adjusters
+role:curriculum-designers /for/curriculum-designers
+role:customer-support-specialists /for/customer-support-specialists
+role:content-planners /for/content-planners
+role:community-builders /for/community-builders
+role:program-coordinators /for/program-coordinators
+role:estate-administrators /for/estate-administrators
+role:seo-consultants /for/seo-consultants
+role:it-coordinators /for/it-coordinators
+role:technical-support-staff /for/technical-support-staff
+problem:procurement-specialists/overwhelmed-by-procurement-data-entry /for/procurement-specialists/problems/overwhelmed-by-procurement-data-entry
+problem:insurance-agents/explaining-insurance-claims-denial-reasons /for/insurance-agents/problems/explaining-insurance-claims-denial-reasons

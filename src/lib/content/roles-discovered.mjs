@@ -2279,5 +2279,246 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They plan where ad spend goes, requiring complex spreadsheet models to forecast performance.",
     "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "claims-adjusters",
+    "name": "Claims adjusters",
+    "singular": "claims adjuster",
+    "apps": [
+      "excel",
+      "outlook",
+      "word",
+      "chrome"
+    ],
+    "keywords": [
+      "claims adjuster software tutorial",
+      "how to organize claims in excel"
+    ],
+    "why": "They manage large volumes of documentation and correspondence, often needing help with spreadsheet formulas and email management.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "logistics-managers",
+    "name": "Logistics managers",
+    "singular": "logistics manager",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "zoom"
+    ],
+    "keywords": [
+      "logistics inventory tracking excel",
+      "supply chain data automation"
+    ],
+    "why": "They rely heavily on complex spreadsheets to track shipments and communicate with partners via digital collaboration tools.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "payroll-administrators",
+    "name": "Payroll administrators",
+    "singular": "payroll administrator",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "outlook"
+    ],
+    "keywords": [
+      "payroll automation excel",
+      "calculate payroll taxes in sheets"
+    ],
+    "why": "They perform repetitive data calculations and need to ensure accuracy in reporting, frequently searching for formula help.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "medical-transcribers",
+    "name": "Medical transcribers",
+    "singular": "medical transcriber",
+    "apps": [
+      "word",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "medical transcription formatting tips",
+      "word shortcuts for medical typing"
+    ],
+    "why": "They spend their entire day typing and formatting documents, often looking for efficiency hacks in word processors.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "curriculum-designers",
+    "name": "Curriculum designers",
+    "singular": "curriculum designer",
+    "apps": [
+      "google-docs",
+      "canva",
+      "powerpoint"
+    ],
+    "keywords": [
+      "curriculum design templates",
+      "how to organize learning materials"
+    ],
+    "why": "They create educational content and frequently search for ways to streamline document creation and visual layout.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "tax-advisors",
+    "name": "Tax advisors",
+    "singular": "tax advisor",
+    "apps": [
+      "excel",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "tax return automation excel",
+      "organizing client documents"
+    ],
+    "why": "They deal with heavy documentation and data analysis during tax seasons, requiring software automation tips.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "content-planners",
+    "name": "Content planners",
+    "singular": "content planner",
+    "apps": [
+      "notion",
+      "google-sheets",
+      "slack"
+    ],
+    "keywords": [
+      "content calendar template notion",
+      "organizing social media content"
+    ],
+    "why": "They manage editorial calendars and need help structuring workflows in project management software.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "customer-support-specialists",
+    "name": "Customer support specialists",
+    "singular": "customer support specialist",
+    "apps": [
+      "slack",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "email management for support",
+      "faster support ticket responses"
+    ],
+    "why": "They handle high volumes of communication and constantly look for ways to speed up their response times.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "legal-clerks",
+    "name": "Legal clerks",
+    "singular": "legal clerk",
+    "apps": [
+      "word",
+      "outlook",
+      "google-docs"
+    ],
+    "keywords": [
+      "legal document formatting tips",
+      "organizing legal case files"
+    ],
+    "why": "They prepare legal documents and require precise formatting and document management skills.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "program-coordinators",
+    "name": "Program coordinators",
+    "singular": "program coordinator",
+    "apps": [
+      "notion",
+      "google-sheets",
+      "zoom"
+    ],
+    "keywords": [
+      "coordinating programs with notion",
+      "tracking program metrics"
+    ],
+    "why": "They juggle multiple stakeholders and timelines, often needing help with organizational software.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "estate-administrators",
+    "name": "Estate administrators",
+    "singular": "estate administrator",
+    "apps": [
+      "excel",
+      "word",
+      "outlook"
+    ],
+    "keywords": [
+      "estate inventory list template",
+      "organizing legal assets"
+    ],
+    "why": "They manage sensitive asset lists and documentation, requiring structured templates and organization.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "community-builders",
+    "name": "Community builders",
+    "singular": "community builder",
+    "apps": [
+      "slack",
+      "notion",
+      "zoom"
+    ],
+    "keywords": [
+      "managing community engagement",
+      "notion for community management"
+    ],
+    "why": "They facilitate digital spaces and look for ways to manage member information and event schedules.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "seo-consultants",
+    "name": "SEO consultants",
+    "singular": "seo consultant",
+    "apps": [
+      "google-sheets",
+      "chrome",
+      "notion"
+    ],
+    "keywords": [
+      "seo keyword tracking in sheets",
+      "automated seo reporting"
+    ],
+    "why": "They analyze search data and need to build custom reports to show performance to clients.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "it-coordinators",
+    "name": "IT coordinators",
+    "singular": "it coordinator",
+    "apps": [
+      "slack",
+      "notion",
+      "vs-code"
+    ],
+    "keywords": [
+      "it ticket tracking system",
+      "organizing it assets"
+    ],
+    "why": "They bridge the gap between technical teams and management, often needing help with documentation.",
+    "discoveredAt": "2026-11-15"
+  },
+  {
+    "slug": "technical-support-staff",
+    "name": "Technical support staff",
+    "singular": "technical support staff",
+    "apps": [
+      "slack",
+      "chrome"
+    ],
+    "keywords": [
+      "troubleshooting workflow tips",
+      "organizing support tickets"
+    ],
+    "why": "They document issues and provide solutions, often searching for ways to optimize their ticket handling.",
+    "discoveredAt": "2026-11-15"
   }
 ];

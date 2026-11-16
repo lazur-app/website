@@ -1,17 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 type LogoWordmarkProps = {
   href?: string;
   className?: string;
   /** Logo height in px, maps to type size on 4px grid. */
   height?: number;
+  /** Analytics placement for the logo click. */
+  location?: string;
 };
 
 export function LogoWordmark({
   href = "/",
   className = "",
   height = 32,
+  location = "logo",
 }: LogoWordmarkProps) {
   const fontSize = Math.round(height * 0.58);
   const iconSize = Math.round(height * 0.7);
@@ -44,9 +47,14 @@ export function LogoWordmark({
 
   if (href) {
     return (
-      <Link href={href} className={wrapperClassName}>
+      <TrackedLink
+        href={href}
+        className={wrapperClassName}
+        event="nav_link_clicked"
+        eventProps={{ location, label: "Logo", destination: href }}
+      >
         {content}
-      </Link>
+      </TrackedLink>
     );
   }
 

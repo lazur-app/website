@@ -30,7 +30,10 @@ export function PersonaSwitcher() {
     <div ref={box} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => {
+          track(open ? "menu_closed" : "menu_opened", { menu: "persona_switcher" });
+          setOpen((o) => !o);
+        }}
         aria-expanded={open}
         className="flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[14px] transition-colors hover:bg-black/[0.04]"
       >
@@ -58,7 +61,7 @@ export function PersonaSwitcher() {
                   onClick={() => {
                     setPersona(p.id);
                     setOpen(false);
-                    track("persona_selected", { persona: p.id });
+                    track("persona_selected", { persona: p.id, previous_persona: persona.id });
                   }}
                   className={`w-full rounded-xl px-3 py-2 text-left text-[14px] hover:bg-black/[0.04] ${
                     p.id === persona.id ? "font-semibold text-[var(--foreground)]" : "text-[var(--foreground-muted)]"

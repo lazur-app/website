@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   AppWindow,
@@ -20,10 +20,14 @@ import { AppMarquee } from "@/components/AppMarquee";
 import { usePersona, type PersonaId } from "@/lib/personas";
 import { useGuideStep } from "@/lib/guide";
 import { LoopVideo } from "./LoopVideo";
+import { useTrackInView } from "@/hooks/useTrackInView";
+import { track } from "@/lib/productAnalytics";
 
 
-function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
+function Section({ id, name, guide, eyebrow, title, intro, children, tint = false }: {
   id?: string;
+  /** Analytics section name (section_viewed). */
+  name: string;
   /** This section is a stop for the page guide (components/buddy/Guide.tsx). */
   guide?: string;
   eyebrow: string;
@@ -32,8 +36,11 @@ function Section({ id, guide, eyebrow, title, intro, children, tint = false }: {
   children: ReactNode;
   tint?: boolean;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: name });
   return (
     <section
+      ref={ref}
       id={id}
       data-guide-section={guide}
       className="relative py-20 md:py-28"
@@ -69,6 +76,7 @@ export function ShowMeHow() {
   return (
     <Section
       tint
+      name="show_me_how"
       guide="guide"
       eyebrow="Show me how"
       title="Stuck? It walks you through."
@@ -118,6 +126,7 @@ export function EverydayThings() {
   return (
     <Section
       tint
+      name="everyday"
       guide="everyday"
       eyebrow="Everyday"
       title="The little things, out loud."
@@ -164,7 +173,9 @@ export function EverydayThings() {
 
 // --- Split sections: copy on one side, a loop on the other -----------------------------------
 
-function SplitSection({ guide, eyebrow, title, intro, points, video, flip = false }: {
+function SplitSection({ name, guide, eyebrow, title, intro, points, video, flip = false }: {
+  /** Analytics section name (section_viewed). */
+  name: string;
   guide?: string;
   eyebrow: string;
   title: ReactNode;
@@ -174,8 +185,10 @@ function SplitSection({ guide, eyebrow, title, intro, points, video, flip = fals
   /** Put the video on the left. */
   flip?: boolean;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: name });
   return (
-    <section data-guide-section={guide} className="relative py-20 md:py-28">
+    <section ref={ref} data-guide-section={guide} className="relative py-20 md:py-28">
       <div className="landing-container">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <motion.div
@@ -210,6 +223,7 @@ function SplitSection({ guide, eyebrow, title, intro, points, video, flip = fals
 export function TalkItTypes() {
   return (
     <SplitSection
+      name="dictation"
       guide="dictation"
       eyebrow="Dictation"
       title={<>Speak messy.<br />It writes clean.</>}
@@ -238,6 +252,7 @@ export function WorksWhileYouWork() {
   return (
     <SplitSection
       flip
+      name="background_jobs"
       guide="jobs"
       eyebrow="Background jobs"
       title="It works while you work."
@@ -269,8 +284,10 @@ const PRIVACY = [
 ];
 
 export function YoureInCharge() {
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: "privacy" });
   return (
-    <section data-guide-section="privacy" className="py-16 md:py-20">
+    <section ref={ref} data-guide-section="privacy" className="py-16 md:py-20">
       <div className="landing-container">
         <h2 className="mx-auto max-w-2xl text-center font-display text-[clamp(1.6rem,3vw,2.4rem)] font-medium tracking-[-0.03em] text-[var(--foreground)]">
           You&apos;re in charge.
@@ -289,7 +306,10 @@ export function YoureInCharge() {
           ))}
         </div>
         <p className="mt-6 text-center">
-          <a href="/privacy" className="text-[13px] text-[var(--foreground-muted)] underline underline-offset-4 hover:text-[var(--foreground)]">How Lazur handles your data</a>
+          <a
+            href="/privacy"
+            onClick={() => track("cta_clicked", { location: "privacy_section", label: "How Lazur handles your data", destination: "/privacy" })}
+            className="text-[13px] text-[var(--foreground-muted)] underline underline-offset-4 hover:text-[var(--foreground)]">How Lazur handles your data</a>
         </p>
       </div>
     </section>

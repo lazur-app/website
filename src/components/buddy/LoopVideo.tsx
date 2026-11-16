@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@/lib/productAnalytics";
 
 /**
  * A short silent demo loop for a homepage section. Nothing (video or poster) is fetched until the
@@ -20,6 +21,11 @@ export function LoopVideo({ src, poster, label, className = "", guide }: {
   const video = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(false);
   const [near, setNear] = useState(false);
+  // Analytics: loops never end, so "completed" is the first time it wraps back to the start.
+  const name = src.split("/").pop()?.replace(/\.mp4$/, "") ?? src;
+  const location = guide ?? "loop_video";
+  const lastTime = useRef(0);
+  const completed = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -65,6 +71,17 @@ export function LoopVideo({ src, poster, label, className = "", guide }: {
         playsInline
         preload={!near ? "none" : reduced ? "metadata" : "auto"}
         controls={reduced}
+        onTimeUpdate={(e) => {
+          const t = e.currentTarget.currentTime;
+          if (!completed.current && t + 1 < lastTime.current) {
+            completed.current = true;
+            track("video_completed", { location, video: name });
+          }
+          lastTime.current = t;
+        }}
+        // Scroll-driven play/pause isn't the visitor's choice; only report it with native controls.
+        onPlay={reduced ? () => track("video_played", { location, video: name }) : undefined}
+        onPause={reduced ? () => track("video_paused", { location, video: name }) : undefined}
         aria-label={label}
       />
     </div>

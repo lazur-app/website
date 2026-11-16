@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { User } from "lucide-react";
 import { HeroDownloadCta } from "@/components/HeroDownloadCta";
+import { useTrackInView } from "@/hooks/useTrackInView";
+import { track } from "@/lib/productAnalytics";
 
 type Testimonial = {
   quote: string;
@@ -121,6 +124,13 @@ function Person({ testimonial }: { testimonial: Testimonial }) {
                 href={testimonial.company.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  track("outbound_link_clicked", {
+                    location: "testimonials",
+                    label: testimonial.company!.label,
+                    url: testimonial.company!.href,
+                  })
+                }
                 className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline"
               >
                 {testimonial.company.label}
@@ -136,9 +146,12 @@ function Person({ testimonial }: { testimonial: Testimonial }) {
 export function TestimonialsSection() {
   const featured = TESTIMONIALS[0];
   const rest = TESTIMONIALS.slice(1);
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: "testimonials" });
 
   return (
     <section
+      ref={ref}
       data-guide-section="love"
       className="relative pt-[140px] pb-24 md:pt-[160px] md:pb-28"
     >
@@ -189,6 +202,7 @@ export function TestimonialsSection() {
             </div>
             <Link
               href="/download"
+              onClick={() => track("cta_clicked", { location: "testimonials", label: "Try Lazur free", destination: "/download" })}
               className="mt-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-[rgba(250,204,21,0.95)] transition-opacity hover:opacity-80"
             >
               Try Lazur free →
@@ -217,7 +231,7 @@ export function TestimonialsSection() {
         </div>
 
         <div className="mt-10 flex justify-center md:mt-14">
-          <HeroDownloadCta variant="minimal" className="w-full max-w-sm sm:w-auto" />
+          <HeroDownloadCta variant="minimal" location="testimonials" className="w-full max-w-sm sm:w-auto" />
         </div>
       </div>
     </section>

@@ -1,17 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useGuideStep } from "@/lib/guide";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { HOMEPAGE_FAQ } from "@/lib/seo/faq";
+import { useTrackInView } from "@/hooks/useTrackInView";
+import { track } from "@/lib/productAnalytics";
 
 export function FaqSection() {
   const [open, setOpen] = useState<number | null>(null);
   const guideStep = useGuideStep("faq");
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: "faq" });
 
   return (
-    <section id="faq" data-guide-section="faq" className="landing-container scroll-mt-24 py-16 md:py-24">
+    <section ref={ref} id="faq" data-guide-section="faq" className="landing-container scroll-mt-24 py-16 md:py-24">
       <div className="grid gap-10 border-t border-[var(--border)] pt-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16 md:pt-16">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
@@ -38,7 +42,10 @@ export function FaqSection() {
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={() => setOpen(isOpen ? null : i)}
+                    onClick={() => {
+                      track(isOpen ? "faq_closed" : "faq_opened", { question: item.question, index: i, location: "homepage" });
+                      setOpen(isOpen ? null : i);
+                    }}
                     className="flex min-h-[56px] w-full items-center justify-between gap-4 py-4 text-left"
                   >
                     <span className="font-display text-[16px] font-semibold tracking-tight text-[var(--foreground)] md:text-[17px]">
@@ -67,6 +74,9 @@ export function FaqSection() {
                           {" "}
                           <Link
                             href={item.link.href}
+                            onClick={() =>
+                              track("cta_clicked", { location: "faq", label: item.link!.label, destination: item.link!.href, question: item.question })
+                            }
                             className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/20 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
                           >
                             {item.link.label}

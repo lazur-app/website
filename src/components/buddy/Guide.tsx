@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { setGuide, useGuide } from "@/lib/guide";
 import { usePersona, type PersonaId } from "@/lib/personas";
 import { loopPath, underlinePath } from "@/lib/handDrawn";
+import { track } from "@/lib/productAnalytics";
 
 /**
  * Lazur's sparkle, travelling down the homepage. Each section is a stop (data-guide-section) with
@@ -130,7 +131,10 @@ export function Guide() {
   const phone = useIsPhone();
 
   // The × hides it until the page is loaded again (it comes back on refresh).
-  const dismiss = () => setGuide({ dismissed: true });
+  const dismiss = () => {
+    track("guide_dismissed", { stop: g.stop, step: g.step, device: phone ? "phone" : "desktop" });
+    setGuide({ dismissed: true });
+  };
 
   // Which section is under the middle of the screen. Scrolling down takes over from the hero
   // intro straight away, even if it hasn't finished drawing.

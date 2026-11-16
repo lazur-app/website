@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { track, type AnalyticsProps } from "@/lib/productAnalytics";
 
 function Orbit() {
   return (
@@ -37,6 +39,12 @@ type GlowCtaProps = {
   block?: boolean;
   className?: string;
   wrapClassName?: string;
+  /**
+   * Analytics: when set, fires `event` (default "cta_clicked") with these props on click. Safe from
+   * server components for links; for buttons it only applies when an onClick is passed too.
+   */
+  eventProps?: AnalyticsProps;
+  event?: string;
 };
 
 export function GlowCta({
@@ -50,6 +58,8 @@ export function GlowCta({
   block = false,
   className = "",
   wrapClassName = "",
+  eventProps,
+  event = "cta_clicked",
 }: GlowCtaProps) {
   const buttonClass = `${VARIANT_CLASS[variant]} ${
     variant === "light" ? "" : SIZE_CLASS[size]
@@ -63,9 +73,15 @@ export function GlowCta({
     return (
       <span className={wrapClass}>
         <Orbit />
-        <Link href={href} onClick={onClick} className={buttonClass}>
-          {children}
-        </Link>
+        {eventProps ? (
+          <TrackedLink href={href} onClick={onClick} event={event} eventProps={eventProps} className={buttonClass}>
+            {children}
+          </TrackedLink>
+        ) : (
+          <Link href={href} onClick={onClick} className={buttonClass}>
+            {children}
+          </Link>
+        )}
       </span>
     );
   }
@@ -75,7 +91,14 @@ export function GlowCta({
       <Orbit />
       <button
         type={type}
-        onClick={onClick}
+        onClick={
+          eventProps && onClick
+            ? () => {
+                track(event, eventProps);
+                onClick();
+              }
+            : onClick
+        }
         disabled={disabled}
         className={buttonClass}
       >

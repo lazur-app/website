@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -30,20 +30,22 @@ export default function NotFound() {
             The link may be old or mistyped. Lazur can&apos;t find it either, but it can take you home.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
+            <TrackedLink
               href="/"
+              eventProps={{ location: "not_found", label: "Take me home", destination: "/" }}
               className="rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-semibold text-[var(--background)] transition-opacity hover:opacity-85"
             >
               Take me home
-            </Link>
+            </TrackedLink>
             {links.map((l) => (
-              <Link
+              <TrackedLink
                 key={l.href}
                 href={l.href}
+                eventProps={{ location: "not_found", label: l.label, destination: l.href }}
                 className="rounded-full border border-[var(--foreground)]/15 bg-white/60 px-5 py-3 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--foreground)]/5"
               >
                 {l.label}
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </div>

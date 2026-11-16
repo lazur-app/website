@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { LogoWordmark } from "./LogoWordmark";
+import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 
 const footerLinks = {
   Product: [
@@ -44,7 +44,7 @@ export function Footer() {
       <div className="landing-container">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
-            <LogoWordmark height={28} />
+            <LogoWordmark height={28} location="footer" />
             <p className="mt-3 max-w-xs text-sm text-[var(--foreground-muted)]">
               Your AI companion, right at the notch or by your cursor.
             </p>
@@ -59,12 +59,14 @@ export function Footer() {
                 <ul className="space-y-2">
                   {links.map((link) => (
                     <li key={link.label}>
-                      <Link
+                      <TrackedLink
                         href={link.href}
+                        event="nav_link_clicked"
+                        eventProps={{ location: "footer", section: category, label: link.label, destination: link.href }}
                         className="text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
                       >
                         {link.label}
-                      </Link>
+                      </TrackedLink>
                     </li>
                   ))}
                 </ul>
@@ -77,15 +79,21 @@ export function Footer() {
               <ul className="space-y-2">
                 {connectLinks.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <TrackedAnchor
                       href={link.href}
+                      eventProps={{
+                        location: "footer",
+                        label: link.label,
+                        // Never send the address itself for mailto links.
+                        url: link.external ? link.href : "mailto",
+                      }}
                       {...(link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
                       className="text-sm lowercase text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
                     >
                       {link.label}
-                    </a>
+                    </TrackedAnchor>
                   </li>
                 ))}
               </ul>

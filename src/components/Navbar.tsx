@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 import { useAuth } from "@/components/AuthProvider";
 import { PersonaSwitcher } from "@/components/buddy/PersonaSwitcher";
+import { track } from "@/lib/productAnalytics";
 
 const navLinks = [
   { href: "/pricing", label: "Pricing" },
@@ -42,14 +43,24 @@ export function Navbar() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 md:pt-4">
       <div className="pointer-events-auto mx-auto w-full max-w-md rounded-[28px] md:w-fit md:max-w-none border border-white/60 bg-white/60 shadow-[0_8px_30px_rgba(28,25,23,0.08)] backdrop-blur-xl backdrop-saturate-150">
         <div className="flex h-14 items-center justify-between gap-6 pl-5 pr-2 md:justify-start">
-          <Link href="/" className="flex items-center gap-1.5" aria-label="Lazur home">
+          <Link
+            href="/"
+            className="flex items-center gap-1.5"
+            aria-label="Lazur home"
+            onClick={() => track("nav_link_clicked", { location: "navbar", label: "Logo", destination: "/" })}
+          >
             <Image src="/logo.png" alt="" width={20} height={20} />
             <span className="text-[17px] font-bold tracking-[-0.03em] text-[var(--foreground)]">lazur</span>
           </Link>
 
           <nav className="hidden items-center md:flex" aria-label="Main">
             {navLinks.map((l) => (
-              <Link key={l.href} href={l.href} className={linkClass(l.href)}>
+              <Link
+                key={l.href}
+                href={l.href}
+                className={linkClass(l.href)}
+                onClick={() => track("nav_link_clicked", { location: "navbar", label: l.label, destination: l.href })}
+              >
                 {l.label}
               </Link>
             ))}
@@ -60,19 +71,27 @@ export function Navbar() {
             {loading ? null : isAuthenticated && user ? (
               <span className="hidden md:block"><UserMenu user={user} /></span>
             ) : (
-              <Link href="/login" className={`${linkClass("/login")} hidden md:block`}>
+              <Link
+                href="/login"
+                className={`${linkClass("/login")} hidden md:block`}
+                onClick={() => track("nav_link_clicked", { location: "navbar", label: "Log in", destination: "/login" })}
+              >
                 Log in
               </Link>
             )}
             <Link
               href="/download"
+              onClick={() => track("cta_clicked", { location: "navbar", label: "Download", destination: "/download" })}
               className="rounded-full bg-[var(--foreground)] px-4 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
             >
               Download
             </Link>
             <button
               type="button"
-              onClick={() => setOpen((o) => !o)}
+              onClick={() => {
+                track(open ? "menu_closed" : "menu_opened", { menu: "mobile_nav" });
+                setOpen((o) => !o);
+              }}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               className="grid h-9 w-9 place-items-center rounded-full text-[var(--foreground-muted)] hover:bg-black/[0.04] md:hidden"
@@ -94,7 +113,12 @@ export function Navbar() {
             >
               <div className="flex flex-col gap-1 border-t border-black/[0.06] px-5 pb-4 pt-2">
                 {navLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className="py-2 text-[16px] font-medium text-[var(--foreground)]">
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="py-2 text-[16px] font-medium text-[var(--foreground)]"
+                    onClick={() => track("nav_link_clicked", { location: "mobile_menu", label: l.label, destination: l.href })}
+                  >
                     {l.label}
                   </Link>
                 ))}
@@ -102,7 +126,11 @@ export function Navbar() {
                 {loading ? null : isAuthenticated && user ? (
                   <UserMenu user={user} variant="mobile" onNavigate={() => setOpen(false)} />
                 ) : (
-                  <Link href="/login" className="py-2 text-[16px] font-medium text-[var(--foreground-muted)]">
+                  <Link
+                    href="/login"
+                    className="py-2 text-[16px] font-medium text-[var(--foreground-muted)]"
+                    onClick={() => track("nav_link_clicked", { location: "mobile_menu", label: "Log in", destination: "/login" })}
+                  >
                     Log in
                   </Link>
                 )}

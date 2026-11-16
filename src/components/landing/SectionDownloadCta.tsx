@@ -11,7 +11,7 @@ export function SectionDownloadCta({ note, className = "" }: SectionDownloadCtaP
     <div
       className={`mt-10 flex flex-col items-center gap-3 md:mt-12 ${className}`}
     >
-      <HeroDownloadCta />
+      <HeroDownloadCta location="section_cta" />
       {note ? (
         <p className="max-w-md text-center text-[13px] leading-relaxed text-[var(--foreground-faint)]">
           {note}

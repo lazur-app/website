@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
 import { LoopVideo } from "@/components/buddy/LoopVideo";
+import { useTrackInView } from "@/hooks/useTrackInView";
 
 export function FinalCtaSection() {
   const [platform, setPlatform] = useState<Platform | null>(null);
@@ -17,9 +18,11 @@ export function FinalCtaSection() {
   }, []);
 
   const isWindows = platform === "windows";
+  const ref = useRef<HTMLElement>(null);
+  useTrackInView(ref, "section_viewed", { section: "final_cta" });
 
   return (
-    <section data-guide-section="cta" className="mt-8 bg-[var(--foreground)] px-5 py-20 text-[var(--background)] sm:px-6 md:mt-12 md:py-28">
+    <section ref={ref} data-guide-section="cta" className="mt-8 bg-[var(--foreground)] px-5 py-20 text-[var(--background)] sm:px-6 md:mt-12 md:py-28">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -38,6 +41,7 @@ export function FinalCtaSection() {
         <div className="mt-8 flex flex-col items-center gap-3">
           <GlowCta
             href="/download"
+            eventProps={{ location: "final_cta", label: "Download for Mac", destination: "/download", platform }}
             variant="light"
           >
             Download for Mac

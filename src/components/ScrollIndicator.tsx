@@ -14,6 +14,7 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
+import { track } from "@/lib/productAnalytics";
 
 const REST_DOT = 5;
 const RAIL_W = 16;
@@ -103,12 +104,15 @@ export function ScrollIndicator() {
 
   const onTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).dataset.thumb) return;
-    scrollToProgress(progressFromPointer(e.clientY));
+    const p = progressFromPointer(e.clientY);
+    track("scrollbar_used", { action: "track_click", progress: Math.round(p * 100) });
+    scrollToProgress(p);
   };
 
   const onThumbDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
+    track("scrollbar_used", { action: "thumb_drag", progress: Math.round(progress * 100) });
     setDragging(true);
   };
 

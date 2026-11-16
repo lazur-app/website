@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { setGuide } from "@/lib/guide";
+import { track } from "@/lib/productAnalytics";
 
 const SRC = "https://releases.lazur.app/videos/lazur-demo-v3.mp4";
 const POSTER = "https://releases.lazur.app/videos/lazur-demo-v3-poster.jpg";
+const VIDEO_NAME = "lazur-demo-v3";
 
 /**
  * The homepage demo film. It plays muted and loops once the hero's pen has finished (`held`),
@@ -20,6 +22,9 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
   // with the page's own JS, fonts and poster on first load. Once requested it stays.
   const [requested, setRequested] = useState(false);
   if (!requested && !held) setRequested(true);
+  // Analytics: the film loops, so "completed" is the first time it wraps back to the start.
+  const lastTime = useRef(0);
+  const completed = useRef(false);
 
   useEffect(() => setGuide({ demoScene: "video" }), []);
 
@@ -46,6 +51,7 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
       v.src = SRC;
     }
     const next = !muted;
+    track("demo_interacted", { location: "hero", action: next ? "sound_off" : "sound_on", video: VIDEO_NAME });
     v.muted = next;
     setMuted(next);
     if (!next) {
@@ -71,6 +77,18 @@ export function DemoVideo({ held = false }: { held?: boolean }) {
           playsInline
           preload={requested ? "auto" : "none"}
           controls={reduced}
+          onTimeUpdate={(e) => {
+            const t = e.currentTarget.currentTime;
+            if (!completed.current && t + 1 < lastTime.current) {
+              completed.current = true;
+              track("video_completed", { location: "hero", video: VIDEO_NAME, muted: e.currentTarget.muted });
+            }
+            lastTime.current = t;
+          }}
+          // Autoplay/hold toggles play state on its own; only report the visitor's own play/pause
+          // (reduced motion shows native controls and never autoplays).
+          onPlay={reduced ? () => track("video_played", { location: "hero", video: VIDEO_NAME }) : undefined}
+          onPause={reduced ? () => track("video_paused", { location: "hero", video: VIDEO_NAME }) : undefined}
           aria-label="Lazur demo: you ask out loud; Lazur points on screen, rewrites, types, fixes code, totals a sheet, and researches in Chrome in the background."
         />
         {!reduced ? (

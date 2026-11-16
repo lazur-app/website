@@ -8,6 +8,7 @@ import { DemoVideo } from "./DemoVideo";
 import { HandUnderline } from "./HandLoop";
 import { usePersona } from "@/lib/personas";
 import { setGuide, useGuide } from "@/lib/guide";
+import { useTrackInView } from "@/hooks/useTrackInView";
 
 /**
  * Lazur's coral sparkle pen introduces itself by drawing on the page: says hi, underlines "in the
@@ -208,6 +209,8 @@ export function BuddyHero() {
   const cta = useRef<HTMLDivElement>(null);
   const arrow = useRef<HTMLDivElement>(null);
   const spots = useSpots(hero, underline, cta, arrow, persona.id);
+  const demo = useRef<HTMLDivElement>(null);
+  useTrackInView(demo, "section_viewed", { section: "hero_demo", persona: persona.id });
 
   const drawLine = at >= order("speak1");
   const drawCircle = at >= order("speak2");
@@ -303,6 +306,7 @@ export function BuddyHero() {
 
       <div className="landing-container relative flex flex-col items-center pb-16 text-center md:pb-24">
         <div
+          ref={demo}
           style={{ animationDelay: "450ms" }}
           data-guide-section="demo"
           className="hero-rise relative isolate mt-4 w-full max-w-5xl"

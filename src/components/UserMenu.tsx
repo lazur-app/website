@@ -6,6 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, LayoutDashboard, LogOut } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { logout, type UserProfile } from "@/lib/auth";
+import { track } from "@/lib/productAnalytics";
+
+/** Tracks before logout(): its clearSession() resets the analytics user (lib/auth.ts). */
+function signOut(location: string) {
+  track("logout", { location });
+  logout();
+}
 
 type UserMenuProps = {
   user: UserProfile;
@@ -80,7 +87,10 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
         </div>
         <Link
           href="/dashboard"
-          onClick={onNavigate}
+          onClick={() => {
+            track("nav_link_clicked", { location: "user_menu_mobile", label: "Account", destination: "/dashboard" });
+            onNavigate?.();
+          }}
           className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-colors ${
             onDashboard
               ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
@@ -94,7 +104,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
           type="button"
           onClick={() => {
             onNavigate?.();
-            logout();
+            signOut("user_menu_mobile");
           }}
           className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-[var(--foreground-muted)] transition-colors hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
         >
@@ -111,7 +121,10 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
         type="button"
         aria-expanded={open}
         aria-haspopup="menu"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => {
+          track(open ? "menu_closed" : "menu_opened", { menu: "user_menu" });
+          setOpen((o) => !o);
+        }}
         className={`flex h-10 items-center gap-2 rounded-full border bg-[var(--surface-solid)] px-3 text-[13px] font-semibold transition-all hover:border-[var(--border-strong)] hover:shadow-sm ${
           onDashboard
             ? "border-[var(--brand)]/35 ring-2 ring-[var(--brand)]/10"
@@ -146,7 +159,10 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
             <Link
               href="/dashboard"
               role="menuitem"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                track("nav_link_clicked", { location: "user_menu", label: "Account", destination: "/dashboard" });
+                setOpen(false);
+              }}
               className={`flex items-center gap-2.5 px-3 py-2.5 text-[13px] font-medium transition-colors ${
                 onDashboard
                   ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
@@ -161,7 +177,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
               role="menuitem"
               onClick={() => {
                 setOpen(false);
-                logout();
+                signOut("user_menu");
               }}
               className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
             >

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { SoftCard } from "./SoftCard";
+import { track } from "@/lib/productAnalytics";
 
 export function DownloadCTA() {
   return (
@@ -31,6 +32,7 @@ export function DownloadCTA() {
           <div className="mt-8 flex flex-col items-center gap-3">
             <Link
               href="/download"
+              onClick={() => track("cta_clicked", { location: "download_cta", label: "Download for Mac", destination: "/download" })}
               className="btn-dark inline-flex items-center gap-2.5 px-7 py-3.5 text-[15px]"
             >
               <AppleIcon />
@@ -38,6 +40,7 @@ export function DownloadCTA() {
             </Link>
             <Link
               href="/login"
+              onClick={() => track("cta_clicked", { location: "download_cta", label: "Refer a friend", destination: "/login" })}
               className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
             >
               Refer a friend

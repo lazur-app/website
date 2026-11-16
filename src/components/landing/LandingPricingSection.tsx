@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { GlowCta } from "@/components/GlowCta";
 import {
   LandingBand,
   LandingBandInner,
 } from "@/components/landing/LandingBand";
 import { TRIAL_LABEL } from "@/lib/pricingPlans";
+import { useTrackInView } from "@/hooks/useTrackInView";
+import { track } from "@/lib/productAnalytics";
 
 export function LandingPricingSection() {
   const proPrice = "$18/mo";
@@ -16,11 +19,14 @@ export function LandingPricingSection() {
     { name: "Pro", price: "$18", per: "/mo", detail: "250 AI actions a month · unlimited dictation", featured: true },
     { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
   ] as const;
+  const ref = useRef<HTMLDivElement>(null);
+  useTrackInView(ref, "section_viewed", { section: "pricing" });
 
   return (
     <LandingBand id="pricing" variant="light" className="py-16 md:py-24">
       <LandingBandInner>
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,6 +50,7 @@ export function LandingPricingSection() {
             <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <GlowCta
                 href="/download"
+                eventProps={{ location: "landing_pricing", label: "Download for Mac", destination: "/download" }}
                 variant="light"
                 className="final-cta-btn--on-light w-full sm:w-auto"
                 wrapClassName="w-full sm:w-auto"
@@ -52,6 +59,7 @@ export function LandingPricingSection() {
               </GlowCta>
               <Link
                 href="/pricing"
+                onClick={() => track("cta_clicked", { location: "landing_pricing", label: "See all plans", destination: "/pricing" })}
                 className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-[var(--border)] px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--border-strong)] sm:w-auto"
               >
                 See all plans

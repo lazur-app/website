@@ -6,17 +6,21 @@ import { Monitor } from "lucide-react";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { detectPlatform, type Platform } from "@/lib/platform";
+import { track } from "@/lib/productAnalytics";
 
 type HeroDownloadCtaProps = {
   align?: "center" | "start";
   variant?: "default" | "minimal";
   className?: string;
+  /** Analytics placement for the CTA clicks (e.g. "hero", "final_cta"). */
+  location?: string;
 };
 
 export function HeroDownloadCta({
   align = "center",
   variant = "default",
   className = "",
+  location = "hero",
 }: HeroDownloadCtaProps) {
   const [platform, setPlatform] = useState<Platform | null>(null);
 
@@ -45,6 +49,7 @@ export function HeroDownloadCta({
     return (
       <GlowCta
         href="/exclusive-access"
+        eventProps={{ location, label: "Get notified for Windows", destination: "/exclusive-access", platform }}
         variant="dark"
         wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
         className={className}
@@ -59,6 +64,7 @@ export function HeroDownloadCta({
     return (
       <GlowCta
         href="/download"
+        eventProps={{ location, label: "Download for Mac", destination: "/download", platform }}
         variant="dark"
         wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
         className={className}
@@ -75,6 +81,7 @@ export function HeroDownloadCta({
     >
       <GlowCta
         href="/download"
+        eventProps={{ location, label: "Download for Mac", destination: "/download", platform }}
         variant="dark"
         wrapClassName="final-cta-btn-wrap--subtle"
       >
@@ -83,6 +90,7 @@ export function HeroDownloadCta({
       </GlowCta>
       <Link
         href="#refer"
+        onClick={() => track("cta_clicked", { location, label: "Refer a friend", destination: "#refer" })}
         className="text-[var(--text-sm)] font-medium text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
       >
         Refer a friend →

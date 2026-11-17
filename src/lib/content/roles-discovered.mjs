@@ -2804,5 +2804,23 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They document issues in software, needing help with screenshot management and consistent reporting formats.",
     "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "shipping-coordinators",
+    "name": "Shipping coordinators",
+    "singular": "shipping coordinator",
+    "apps": [
+      "excel",
+      "google-sheets",
+      "slack",
+      "gmail",
+      "chrome"
+    ],
+    "keywords": [
+      "logistics software for shipping coordinators",
+      "shipping spreadsheet automation"
+    ],
+    "why": "They manage complex global logistics and tracking data, constantly switching between email and spreadsheets to resolve shipping delays.",
+    "discoveredAt": "2026-11-16"
   }
 ];

@@ -1,12 +1,12 @@
-Content 2026-11-16: 325 written, 0 refused, 16 failed, 0 deferred
+Content 2026-11-16: 339 written, 0 refused, 11 failed, 0 deferred
 
 - howto: 1/200
 - apps: 0/15
-- roles: 21/20
-- role-apps: 107/100
-- problems: 142/125
+- roles: 22/20
+- role-apps: 112/100
+- problems: 148/125
 - compare: 0/15
-- blog: 15/25
+- blog: 17/25
 
 role:tax-advisors /for/tax-advisors
 role:medical-transcribers /for/medical-transcribers
@@ -308,12 +308,16 @@ refresh:howto:hide-cursor-in-canva /how-to/hide-cursor-in-canva
 refresh:howto:hide-cursor-in-cursor /how-to/hide-cursor-in-cursor
 refresh:howto:hide-cursor-in-finder /how-to/hide-cursor-in-finder
 refresh:howto:hide-cursor-in-linear /how-to/hide-cursor-in-linear
+blog:best-ai-assistant-names-for-mac-2026 /blog/best-ai-assistant-names-for-mac-2026
+blog:how-to-use-voice-command-on-macbook-air-pro-2026 /blog/how-to-use-voice-command-on-macbook-air-pro-2026
 blog:dictation-on-mac-vs-ai-voice-assistants /blog/dictation-on-mac-vs-ai-voice-assistants
 blog:best-personal-ai-assistant-for-mac-mini /blog/best-personal-ai-assistant-for-mac-mini
+problem:computer-systems-analysts/managing-complex-system-documentation-debt /for/computer-systems-analysts/problems/managing-complex-system-documentation-debt
 problem:financial-analysts/automating-complex-financial-model-error-checking /for/financial-analysts/problems/automating-complex-financial-model-error-checking
 problem:insurance-claims-adjusters/handling-excessive-claims-backlog /for/insurance-claims-adjusters/problems/handling-excessive-claims-backlog
 problem:financial-analysts/integrating-python-scripts-into-excel-workflows /for/financial-analysts/problems/integrating-python-scripts-into-excel-workflows
 problem:insurance-claims-adjusters/streamlining-complex-medical-record-review /for/insurance-claims-adjusters/problems/streamlining-complex-medical-record-review
+problem:computer-systems-analysts/translating-technical-requirements-for-stakeholders /for/computer-systems-analysts/problems/translating-technical-requirements-for-stakeholders
 problem:insurance-claims-adjusters/overcoming-communication-bottlenecks-with-policyholders /for/insurance-claims-adjusters/problems/overcoming-communication-bottlenecks-with-policyholders
 problem:financial-analysts/managing-stress-in-high-pressure-finance-roles /for/financial-analysts/problems/managing-stress-in-high-pressure-finance-roles
 problem:computer-systems-analysts/optimizing-legacy-system-integration-workflows /for/computer-systems-analysts/problems/optimizing-legacy-system-integration-workflows
@@ -322,14 +326,24 @@ problem:financial-analysts/optimizing-financial-data-visualization-presentations
 problem:computer-systems-analysts/handling-scope-creep-in-software-projects /for/computer-systems-analysts/problems/handling-scope-creep-in-software-projects
 problem:financial-analysts/leveraging-ai-for-client-portfolio-summaries /for/financial-analysts/problems/leveraging-ai-for-client-portfolio-summaries
 problem:insurance-claims-adjusters/reducing-time-spent-on-manual-data-entry /for/insurance-claims-adjusters/problems/reducing-time-spent-on-manual-data-entry
+problem:financial-analysts/improving-financial-modeling-speed-and-accuracy /for/financial-analysts/problems/improving-financial-modeling-speed-and-accuracy
 problem:computer-systems-analysts/automating-repetitive-system-analysis-tasks /for/computer-systems-analysts/problems/automating-repetitive-system-analysis-tasks
 problem:insurance-claims-adjusters/managing-stress-from-confrontational-claimants /for/insurance-claims-adjusters/problems/managing-stress-from-confrontational-claimants
 problem:computer-systems-analysts/conducting-effective-user-acceptance-testing /for/computer-systems-analysts/problems/conducting-effective-user-acceptance-testing
 problem:financial-analysts/explaining-complex-annuity-structures-to-clients /for/financial-analysts/problems/explaining-complex-annuity-structures-to-clients
 problem:insurance-claims-adjusters/improving-accuracy-in-damage-estimation-reports /for/insurance-claims-adjusters/problems/improving-accuracy-in-damage-estimation-reports
+problem:insurance-claims-adjusters/balancing-field-inspections-and-office-work /for/insurance-claims-adjusters/problems/balancing-field-inspections-and-office-work
 problem:financial-analysts/standardizing-financial-reporting-across-diverse-clients /for/financial-analysts/problems/standardizing-financial-reporting-across-diverse-clients
 problem:insurance-claims-adjusters/staying-compliant-with-state-regulatory-deadlines /for/insurance-claims-adjusters/problems/staying-compliant-with-state-regulatory-deadlines
 problem:financial-analysts/managing-client-expectations-during-market-volatility /for/financial-analysts/problems/managing-client-expectations-during-market-volatility
 problem:insurance-claims-adjusters/organizing-digital-evidence-for-litigation /for/insurance-claims-adjusters/problems/organizing-digital-evidence-for-litigation
 problem:computer-systems-analysts/validating-data-accuracy-in-reports /for/computer-systems-analysts/problems/validating-data-accuracy-in-reports
 problem:financial-analysts/streamlining-data-extraction-from-unstructured-pdfs /for/financial-analysts/problems/streamlining-data-extraction-from-unstructured-pdfs
+role:shipping-coordinators /for/shipping-coordinators
+role-app:shipping-coordinators/google-sheets /for/shipping-coordinators/google-sheets
+role-app:shipping-coordinators/gmail /for/shipping-coordinators/gmail
+role-app:shipping-coordinators/chrome /for/shipping-coordinators/chrome
+role-app:shipping-coordinators/slack /for/shipping-coordinators/slack
+role-app:shipping-coordinators/excel /for/shipping-coordinators/excel
+problem:financial-analysts/reconciling-disparate-financial-data-sources /for/financial-analysts/problems/reconciling-disparate-financial-data-sources
+problem:insurance-claims-adjusters/handling-multiple-software-platforms-simultaneously /for/insurance-claims-adjusters/problems/handling-multiple-software-platforms-simultaneously

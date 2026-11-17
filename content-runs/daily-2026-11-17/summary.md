@@ -1,19 +1,24 @@
-Content 2026-11-17: 30 written, 0 refused, 8 failed, 0 deferred
+Content 2026-11-17: 52 written, 0 refused, 7 failed, 0 deferred
 
-- howto: 0/200
+- howto: 2/200
 - apps: 0/15
 - roles: 1/20
-- role-apps: 4/100
-- problems: 24/125
+- role-apps: 8/100
+- problems: 35/125
 - compare: 0/15
-- blog: 1/25
+- blog: 6/25
 
 role:patent-agents /for/patent-agents
 blog:why-is-there-a-black-dot-under-icons-on-mac /blog/why-is-there-a-black-dot-under-icons-on-mac
+role-app:customer-support-specialists/slack /for/customer-support-specialists/slack
+role-app:logistics-managers/excel /for/logistics-managers/excel
+role-app:program-coordinators/google-sheets /for/program-coordinators/google-sheets
+role-app:patent-agents/outlook /for/patent-agents/outlook
 role-app:customer-onboarding-managers/notion /for/customer-onboarding-managers/notion
 role-app:patent-agents/word /for/patent-agents/word
 role-app:patent-agents/notion /for/patent-agents/notion
 role-app:patent-agents/google-docs /for/patent-agents/google-docs
+problem:financial-analysts/automating-routine-client-account-reviews /for/financial-analysts/problems/automating-routine-client-account-reviews
 problem:computer-systems-analysts/mapping-as-is-versus-to-be-processes /for/computer-systems-analysts/problems/mapping-as-is-versus-to-be-processes
 problem:freight-brokers/freight-broker-billing-dispute-resolution /for/freight-brokers/problems/freight-broker-billing-dispute-resolution
 problem:podcast-producers/podcast-audio-level-inconsistency /for/podcast-producers/problems/podcast-audio-level-inconsistency
@@ -38,3 +43,20 @@ problem:computer-systems-analysts/transitioning-to-a-senior-systems-analyst-role
 problem:podcast-producers/writing-podcast-episode-titles-seo /for/podcast-producers/problems/writing-podcast-episode-titles-seo
 problem:podcast-producers/troubleshooting-podcast-rss-feed-errors /for/podcast-producers/problems/troubleshooting-podcast-rss-feed-errors
 problem:podcast-producers/managing-podcast-sponsorship-ad-insertion /for/podcast-producers/problems/managing-podcast-sponsorship-ad-insertion
+blog:macbook-notch-apps-dynamic-island-macos /blog/macbook-notch-apps-dynamic-island-macos
+blog:voice-command-on-macbook-air-shortcuts /blog/voice-command-on-macbook-air-shortcuts
+blog:dictate-on-mac-desktop-vs-laptop /blog/dictate-on-mac-desktop-vs-laptop
+blog:how-to-learn-new-mac-app-faster-with-ai /blog/how-to-learn-new-mac-app-faster-with-ai
+blog:repetitive-strain-injury-typing-prevention-tips /blog/repetitive-strain-injury-typing-prevention-tips
+problem:photographers/managing-client-expectations-with-contracts /for/photographers/problems/managing-client-expectations-with-contracts
+problem:photographers/streamlining-culling-process-for-large-shoots /for/photographers/problems/streamlining-culling-process-for-large-shoots
+problem:photographers/pricing-photography-services-for-profit /for/photographers/problems/pricing-photography-services-for-profit
+problem:photographers/organizing-digital-photo-archives-efficiently /for/photographers/problems/organizing-digital-photo-archives-efficiently
+problem:photographers/handling-difficult-clients-during-shoots /for/photographers/problems/handling-difficult-clients-during-shoots
+problem:photographers/automating-client-gallery-delivery-workflows /for/photographers/problems/automating-client-gallery-delivery-workflows
+problem:photographers/troubleshooting-color-inconsistency-in-prints /for/photographers/problems/troubleshooting-color-inconsistency-in-prints
+problem:photographers/optimizing-photos-for-faster-website-loading /for/photographers/problems/optimizing-photos-for-faster-website-loading
+problem:photographers/writing-professional-photography-invoices /for/photographers/problems/writing-professional-photography-invoices
+problem:photographers/managing-social-media-content-calendars /for/photographers/problems/managing-social-media-content-calendars
+howto:delete-behind-cursor-in-pages /how-to/delete-behind-cursor-in-pages
+howto:find-cursor-in-finder /how-to/find-cursor-in-finder

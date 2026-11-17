@@ -2822,5 +2822,22 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They manage complex global logistics and tracking data, constantly switching between email and spreadsheets to resolve shipping delays.",
     "discoveredAt": "2026-11-16"
+  },
+  {
+    "slug": "patent-agents",
+    "name": "Patent agents",
+    "singular": "patent agent",
+    "apps": [
+      "word",
+      "outlook",
+      "google-docs",
+      "notion"
+    ],
+    "keywords": [
+      "document management for patent applications",
+      "legal writing tools"
+    ],
+    "why": "They handle extremely dense technical documentation and need help managing version control and formatting requirements.",
+    "discoveredAt": "2026-11-17"
   }
 ];

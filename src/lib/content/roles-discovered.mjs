@@ -2839,5 +2839,102 @@ export const DISCOVERED_ROLES = [
     ],
     "why": "They handle extremely dense technical documentation and need help managing version control and formatting requirements.",
     "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "online-tutors",
+    "name": "Online tutors",
+    "singular": "online tutor",
+    "apps": [
+      "zoom",
+      "google-docs",
+      "notion",
+      "chatgpt"
+    ],
+    "keywords": [
+      "ai tools for online tutoring",
+      "best software for remote teaching"
+    ],
+    "why": "Online tutors rely on virtual classroom platforms and document sharing to manage lesson plans and interact with students globally.",
+    "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "nonprofit-grant-administrators",
+    "name": "Nonprofit grant administrators",
+    "singular": "nonprofit grant administrator",
+    "apps": [
+      "excel",
+      "outlook",
+      "google-docs"
+    ],
+    "keywords": [
+      "grant management software help",
+      "tracking grant deadlines excel"
+    ],
+    "why": "These professionals manage complex reporting cycles and funding requirements, requiring heavy use of spreadsheets and document management.",
+    "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "medical-claims-specialists",
+    "name": "Medical claims specialists",
+    "singular": "medical claims specialist",
+    "apps": [
+      "excel",
+      "outlook",
+      "chrome"
+    ],
+    "keywords": [
+      "medical claims processing tips",
+      "improving claim denial rates"
+    ],
+    "why": "They spend their day navigating insurance portals and tracking claim statuses in spreadsheets, requiring high accuracy and software proficiency.",
+    "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "corporate-travel-planners",
+    "name": "Corporate travel planners",
+    "singular": "corporate travel planner",
+    "apps": [
+      "outlook",
+      "excel",
+      "slack"
+    ],
+    "keywords": [
+      "corporate travel management tools",
+      "organizing business trips efficiently"
+    ],
+    "why": "They coordinate complex itineraries for large groups, requiring constant communication and data organization across multiple travel platforms.",
+    "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "public-relations-coordinators",
+    "name": "Public relations coordinators",
+    "singular": "public relations coordinator",
+    "apps": [
+      "gmail",
+      "canva",
+      "slack"
+    ],
+    "keywords": [
+      "media list management tools",
+      "press release distribution software"
+    ],
+    "why": "They constantly manage media contacts and draft content, needing streamlined workflows for outreach and asset creation.",
+    "discoveredAt": "2026-11-17"
+  },
+  {
+    "slug": "insurance-underwriters",
+    "name": "Insurance underwriters",
+    "singular": "insurance underwriter",
+    "apps": [
+      "excel",
+      "outlook",
+      "word"
+    ],
+    "keywords": [
+      "underwriting data analysis tools",
+      "automating insurance risk assessment"
+    ],
+    "why": "They analyze massive datasets to assess risk, spending their entire day in spreadsheets and specialized reporting software.",
+    "discoveredAt": "2026-11-17"
   }
 ];

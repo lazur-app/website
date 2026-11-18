@@ -1,0 +1,91 @@
+Content 2026-11-18: 81 written, 0 refused, 5 failed, 0 deferred
+
+- howto: 0/200
+- apps: 0/15
+- roles: 3/20
+- role-apps: 5/100
+- problems: 6/125
+- compare: 0/15
+- blog: 67/25
+
+role:corporate-travel-planners /for/corporate-travel-planners
+role:insurance-underwriters /for/insurance-underwriters
+role:nonprofit-grant-administrators /for/nonprofit-grant-administrators
+blog:voice-assistant-of-apple /blog/voice-assistant-of-apple
+blog:voice-assistant-in-mac /blog/voice-assistant-in-mac
+blog:what-is-the-best-voice-control-assistant /blog/what-is-the-best-voice-control-assistant
+blog:personal-assistant-ai-mac-mini-setup /blog/personal-assistant-ai-mac-mini-setup
+blog:virtual-assistant-for-mac-productivity /blog/virtual-assistant-for-mac-productivity
+blog:how-to-use-voice-on-macbook /blog/how-to-use-voice-on-macbook
+blog:what-is-ai-voice-assistant /blog/what-is-ai-voice-assistant
+blog:dictation-on-macbook-pro /blog/dictation-on-macbook-pro
+blog:smartest-ai-assistant /blog/smartest-ai-assistant
+blog:dictation-on-macbook-neo /blog/dictation-on-macbook-neo
+blog:dictation-on-mac-not-working /blog/dictation-on-mac-not-working
+blog:dictation-on-macos /blog/dictation-on-macos
+blog:dictation-on-an-imac /blog/dictation-on-an-imac
+blog:dictation-on-mac-air /blog/dictation-on-mac-air
+blog:dictation-mac-app /blog/dictation-mac-app
+blog:dictation-on-apple-mac /blog/dictation-on-apple-mac
+blog:enable-dictation-on-a-mac /blog/enable-dictation-on-a-mac
+blog:voice-dictation-on-a-mac /blog/voice-dictation-on-a-mac
+blog:using-dictation-on-a-mac /blog/using-dictation-on-a-mac
+blog:dictation-shortcut-on-a-mac /blog/dictation-shortcut-on-a-mac
+blog:better-dictation-on-mac /blog/better-dictation-on-mac
+blog:dictation-mac-button /blog/dictation-mac-button
+blog:best-voice-dictation-on-mac /blog/best-voice-dictation-on-mac
+blog:dictation-mac-commands /blog/dictation-mac-commands
+blog:dictation-on-apple-computer /blog/dictation-on-apple-computer
+blog:how-to-close-dictation-on-mac /blog/how-to-close-dictation-on-mac
+blog:dictation-on-mac-computer /blog/dictation-on-mac-computer
+blog:keyboard-command-for-dictation-on-mac /blog/keyboard-command-for-dictation-on-mac
+blog:what-is-dictation-on-mac /blog/what-is-dictation-on-mac
+blog:disable-dictation-on-mac /blog/disable-dictation-on-mac
+blog:dragon-dictation-on-mac /blog/dragon-dictation-on-mac
+blog:dictate-on-mac-desktop /blog/dictate-on-mac-desktop
+blog:mac-dictation-on-device /blog/mac-dictation-on-device
+blog:how-does-dictation-on-mac-work /blog/how-does-dictation-on-mac-work
+blog:how-to-do-dictation-on-mac /blog/how-to-do-dictation-on-mac
+blog:how-to-disable-dictation-on-mac-keyboard /blog/how-to-disable-dictation-on-mac-keyboard
+blog:dictation-on-mac-keyboard-shortcut /blog/dictation-on-mac-keyboard-shortcut
+blog:macos-dictation /blog/macos-dictation
+blog:dictation-on-mac-keyboard /blog/dictation-on-mac-keyboard
+blog:dictation-on-mac-mini /blog/dictation-on-mac-mini
+blog:dictation-on-mac-laptop /blog/dictation-on-mac-laptop
+blog:dictation-on-word-for-mac /blog/dictation-on-word-for-mac
+blog:dictation-for-mac /blog/dictation-for-mac
+blog:dictation-feature-mac /blog/dictation-feature-mac
+blog:dictation-software-mac-free /blog/dictation-software-mac-free
+blog:dictation-function-mac /blog/dictation-function-mac
+blog:dictation-on-outlook-for-mac /blog/dictation-on-outlook-for-mac
+blog:turn-on-dictation-for-mac /blog/turn-on-dictation-for-mac
+blog:how-good-is-dictation-on-mac /blog/how-good-is-dictation-on-mac
+blog:dictation-app-mac-free /blog/dictation-app-mac-free
+blog:free-dictation-on-mac /blog/free-dictation-on-mac
+blog:how-to-get-dictation-on-mac /blog/how-to-get-dictation-on-mac
+blog:find-dictation-on-mac /blog/find-dictation-on-mac
+blog:dictation-on-mac-in-word /blog/dictation-on-mac-in-word
+blog:how-to-dictation-on-mac /blog/how-to-dictation-on-mac
+blog:how-use-dictation-on-mac /blog/how-use-dictation-on-mac
+blog:dictation-mac-hotkey /blog/dictation-mac-hotkey
+blog:how-enable-dictation-on-mac /blog/how-enable-dictation-on-mac
+blog:dictation-on-mac-is-not-working /blog/dictation-on-mac-is-not-working
+blog:dictation-in-mac /blog/dictation-in-mac
+blog:dictation-in-mac-pages /blog/dictation-in-mac-pages
+blog:dictation-in-mac-shortcut /blog/dictation-in-mac-shortcut
+blog:dictation-in-mac-notes /blog/dictation-in-mac-notes
+blog:dictation-on-apple-keyboard /blog/dictation-on-apple-keyboard
+blog:dictation-key-on-mac-keyboard /blog/dictation-key-on-mac-keyboard
+blog:dictation-key-mac /blog/dictation-key-mac
+blog:dictation-button-on-apple-keyboard /blog/dictation-button-on-apple-keyboard
+role-app:insurance-underwriters/excel /for/insurance-underwriters/excel
+role-app:medical-claims-specialists/excel /for/medical-claims-specialists/excel
+role-app:corporate-travel-planners/excel /for/corporate-travel-planners/excel
+role-app:nonprofit-grant-administrators/excel /for/nonprofit-grant-administrators/excel
+role-app:nonprofit-grant-administrators/outlook /for/nonprofit-grant-administrators/outlook
+problem:public-relations-specialists/managing-media-list-spreadsheets /for/public-relations-specialists/problems/managing-media-list-spreadsheets
+problem:software-qa-testers/difficulty-prioritizing-test-cases-under-pressure /for/software-qa-testers/problems/difficulty-prioritizing-test-cases-under-pressure
+problem:insurance-claims-adjusters/minimizing-errors-in-liability-determination /for/insurance-claims-adjusters/problems/minimizing-errors-in-liability-determination
+problem:public-relations-specialists/measuring-pr-campaign-roi /for/public-relations-specialists/problems/measuring-pr-campaign-roi
+problem:podcast-producers/creating-engaging-podcast-social-clips /for/podcast-producers/problems/creating-engaging-podcast-social-clips
+problem:technical-writers/technical-writing-ict-software-development /for/technical-writers/problems/technical-writing-ict-software-development

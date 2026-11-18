@@ -1,13 +1,14 @@
-Content 2026-11-18: 81 written, 0 refused, 5 failed, 0 deferred
+Content 2026-11-18: 87 written, 0 refused, 0 failed, 0 deferred
 
 - howto: 0/200
 - apps: 0/15
-- roles: 3/20
-- role-apps: 5/100
+- roles: 4/20
+- role-apps: 6/100
 - problems: 6/125
 - compare: 0/15
-- blog: 67/25
+- blog: 71/25
 
+role:medical-claims-specialists /for/medical-claims-specialists
 role:corporate-travel-planners /for/corporate-travel-planners
 role:insurance-underwriters /for/insurance-underwriters
 role:nonprofit-grant-administrators /for/nonprofit-grant-administrators
@@ -17,6 +18,7 @@ blog:what-is-the-best-voice-control-assistant /blog/what-is-the-best-voice-contr
 blog:personal-assistant-ai-mac-mini-setup /blog/personal-assistant-ai-mac-mini-setup
 blog:virtual-assistant-for-mac-productivity /blog/virtual-assistant-for-mac-productivity
 blog:how-to-use-voice-on-macbook /blog/how-to-use-voice-on-macbook
+blog:how-can-i-see-participants-when-sharing-screen-in-zoom /blog/how-can-i-see-participants-when-sharing-screen-in-zoom
 blog:what-is-ai-voice-assistant /blog/what-is-ai-voice-assistant
 blog:dictation-on-macbook-pro /blog/dictation-on-macbook-pro
 blog:smartest-ai-assistant /blog/smartest-ai-assistant
@@ -46,6 +48,7 @@ blog:dictate-on-mac-desktop /blog/dictate-on-mac-desktop
 blog:mac-dictation-on-device /blog/mac-dictation-on-device
 blog:how-does-dictation-on-mac-work /blog/how-does-dictation-on-mac-work
 blog:how-to-do-dictation-on-mac /blog/how-to-do-dictation-on-mac
+blog:dictation-on-mac-book /blog/dictation-on-mac-book
 blog:how-to-disable-dictation-on-mac-keyboard /blog/how-to-disable-dictation-on-mac-keyboard
 blog:dictation-on-mac-keyboard-shortcut /blog/dictation-on-mac-keyboard-shortcut
 blog:macos-dictation /blog/macos-dictation
@@ -70,6 +73,7 @@ blog:how-use-dictation-on-mac /blog/how-use-dictation-on-mac
 blog:dictation-mac-hotkey /blog/dictation-mac-hotkey
 blog:how-enable-dictation-on-mac /blog/how-enable-dictation-on-mac
 blog:dictation-on-mac-is-not-working /blog/dictation-on-mac-is-not-working
+blog:dictation-isnt-working-on-mac /blog/dictation-isnt-working-on-mac
 blog:dictation-in-mac /blog/dictation-in-mac
 blog:dictation-in-mac-pages /blog/dictation-in-mac-pages
 blog:dictation-in-mac-shortcut /blog/dictation-in-mac-shortcut
@@ -78,6 +82,7 @@ blog:dictation-on-apple-keyboard /blog/dictation-on-apple-keyboard
 blog:dictation-key-on-mac-keyboard /blog/dictation-key-on-mac-keyboard
 blog:dictation-key-mac /blog/dictation-key-mac
 blog:dictation-button-on-apple-keyboard /blog/dictation-button-on-apple-keyboard
+role-app:online-tutors/zoom /for/online-tutors/zoom
 role-app:insurance-underwriters/excel /for/insurance-underwriters/excel
 role-app:medical-claims-specialists/excel /for/medical-claims-specialists/excel
 role-app:corporate-travel-planners/excel /for/corporate-travel-planners/excel
@@ -89,3 +94,4 @@ problem:insurance-claims-adjusters/minimizing-errors-in-liability-determination 
 problem:public-relations-specialists/measuring-pr-campaign-roi /for/public-relations-specialists/problems/measuring-pr-campaign-roi
 problem:podcast-producers/creating-engaging-podcast-social-clips /for/podcast-producers/problems/creating-engaging-podcast-social-clips
 problem:technical-writers/technical-writing-ict-software-development /for/technical-writers/problems/technical-writing-ict-software-development
+blog:mac-notch-apps-dynamic-island-alternatives /blog/mac-notch-apps-dynamic-island-alternatives

@@ -18,6 +18,44 @@ export type Release = {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.1.13",
+    date: "2026-11-20",
+    title: "Lazur draws while it explains",
+    summary:
+      "Ask how something works and Lazur sketches it on a whiteboard as it talks. Ask where to click and it circles the exact button on your screen. Agents can now fill in forms for you, and stop before submitting.",
+    sections: [
+      {
+        label: "New",
+        items: [
+          { name: "Whiteboard", text: "When a picture helps, Lazur draws one in handwriting while it speaks: diagrams, step-by-step flows and small lessons that grow as you ask follow-ups. Quick questions still get a quick answer, and a Clear button wipes the board. Pencil sounds can be turned off in Settings." },
+          { name: "Points at the real button", text: "Ask \"how do I fix this?\" and Lazur circles the exact control on your screen, in the order you need them, instead of guessing at a spot." },
+          { name: "Forms, drafted for you", text: "Ask an agent to fill in a form and it uses the details from your files (name, enrollment number, email and so on), fills it as a draft and stops before Submit. It works in whichever Chrome profile has the right account. Needs Lazur for Chrome 0.5." },
+          { name: "About me", text: "The details Lazur picks up from your files for forms are listed in the notch, where you can edit or delete them. They stay on your Mac." },
+          { name: "Connected apps", text: "Connect Spotify, GitHub and other apps from the new Apps tab, and ask Lazur to play, look up or check things in them." },
+          { name: "History", text: "A new History page shows your day: the apps you used, your git commits and coding sessions, alongside what you asked Lazur. Each kind can be turned off in Settings → Memory." },
+          { name: "Paste by voice", text: "Say \"paste my last copied link\" or \"paste the resume file\" and Lazur pastes the right thing where your cursor is." },
+          { name: "Messages from Lazur", text: "Important notices from the Lazur team now arrive as normal macOS notifications." },
+        ],
+      },
+      {
+        label: "Improved",
+        items: [
+          { name: "Dictation preview", text: "While you dictate, the live preview now runs on your Mac with Apple's speech recognition, so it shows up faster." },
+          { name: "Interrupting", text: "Cutting Lazur off mid-answer keeps it listening for what you say next." },
+          { name: "Trial meters", text: "During the trial, your account shows what Pro adds to each meter." },
+          { name: "Job cards", text: "Long job titles and reports fit their cards, and jobs that leave a filled-in tab open have a Show tab button." },
+        ],
+      },
+      {
+        label: "Fixed",
+        items: [
+          { name: "Crash on dictation", text: "Lazur no longer crashes the first time you dictate on some Macs." },
+        ],
+      },
+    ],
+    note: "Form drafting needs Lazur for Chrome 0.5, which reaches the Chrome Web Store over the next few days. Everything else works as soon as Lazur updates.",
+  },
+  {
     version: "0.1.12",
     date: "2026-10-30",
     title: "Lazur remembers, and keeps your files",

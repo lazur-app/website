@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // Self-contained server bundle for the Cloud Run container (see Dockerfile).
+  output: "standalone",
   // PostHog's API paths end in "/"; Next must not redirect them (see the /ingest rewrites).
   skipTrailingSlashRedirect: true,
   outputFileTracingRoot: path.join(__dirname),

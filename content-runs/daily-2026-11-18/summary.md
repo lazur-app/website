@@ -1,10 +1,10 @@
-Content 2026-11-18: 87 written, 0 refused, 0 failed, 0 deferred
+Content 2026-11-18: 109 written, 0 refused, 6 failed, 0 deferred
 
 - howto: 0/200
 - apps: 0/15
 - roles: 4/20
 - role-apps: 6/100
-- problems: 6/125
+- problems: 28/125
 - compare: 0/15
 - blog: 71/25
 
@@ -95,3 +95,25 @@ problem:public-relations-specialists/measuring-pr-campaign-roi /for/public-relat
 problem:podcast-producers/creating-engaging-podcast-social-clips /for/podcast-producers/problems/creating-engaging-podcast-social-clips
 problem:technical-writers/technical-writing-ict-software-development /for/technical-writers/problems/technical-writing-ict-software-development
 blog:mac-notch-apps-dynamic-island-alternatives /blog/mac-notch-apps-dynamic-island-alternatives
+problem:mortgage-loan-officers/calculating-mortgage-loan-officer-commission /for/mortgage-loan-officers/problems/calculating-mortgage-loan-officer-commission
+problem:architects/architect-all-caps-handwriting-legibility /for/architects/problems/architect-all-caps-handwriting-legibility
+problem:mortgage-loan-officers/mortgage-loan-officer-work-life-balance /for/mortgage-loan-officers/problems/mortgage-loan-officer-work-life-balance
+problem:mortgage-loan-officers/managing-mortgage-loan-officer-stress /for/mortgage-loan-officers/problems/managing-mortgage-loan-officer-stress
+problem:architects/architect-low-salary-career-growth /for/architects/problems/architect-low-salary-career-growth
+problem:architects/architect-burnout-recovery-strategies /for/architects/problems/architect-burnout-recovery-strategies
+problem:mortgage-loan-officers/becoming-a-mortgage-loan-officer /for/mortgage-loan-officers/problems/becoming-a-mortgage-loan-officer
+problem:mortgage-loan-officers/mortgage-loan-officer-time-management /for/mortgage-loan-officers/problems/mortgage-loan-officer-time-management
+problem:architects/architect-client-billing-strategies /for/architects/problems/architect-client-billing-strategies
+problem:mortgage-loan-officers/understanding-mortgage-loan-officer-compensation /for/mortgage-loan-officers/problems/understanding-mortgage-loan-officer-compensation
+problem:architects/architect-stress-management-techniques /for/architects/problems/architect-stress-management-techniques
+problem:mortgage-loan-officers/mortgage-loan-officer-job-stress /for/mortgage-loan-officers/problems/mortgage-loan-officer-job-stress
+problem:architects/architect-design-critique-hate /for/architects/problems/architect-design-critique-hate
+problem:architects/architect-client-communication-problems /for/architects/problems/architect-client-communication-problems
+problem:architects/architect-blue-paper-use /for/architects/problems/architect-blue-paper-use
+problem:architects/architect-black-attire-culture /for/architects/problems/architect-black-attire-culture
+problem:architects/architect-fee-structure-problems /for/architects/problems/architect-fee-structure-problems
+problem:architects/architect-squiggly-lines-meaning /for/architects/problems/architect-squiggly-lines-meaning
+problem:architects/architect-copper-roof-specification /for/architects/problems/architect-copper-roof-specification
+problem:architects/architect-brutalist-style-controversy /for/architects/problems/architect-brutalist-style-controversy
+problem:architects/architect-project-management-overload /for/architects/problems/architect-project-management-overload
+problem:architects/architect-income-growth-strategies /for/architects/problems/architect-income-growth-strategies

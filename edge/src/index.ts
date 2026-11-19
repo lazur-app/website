@@ -9,6 +9,7 @@ const CANONICAL_HOST = "www.lazur.app";
 const ORIGINS: Record<string, string> = {
   "www.lazur.app": "https://lazur-website-v2w4wqf5qa-uc.a.run.app",
   "admin.lazur.app": "https://lazur-admin-v2w4wqf5qa-uc.a.run.app",
+  "api.lazur.app": "https://lazur-api-632291817180.asia-northeast1.run.app",
 };
 
 export default {
@@ -45,6 +46,6 @@ export default {
       response.headers.set("location", `https://${url.hostname}${location.slice(origin.length)}`);
       return response;
     }
-    return upstream;
+    return upstream; // also passes WebSocket upgrades (101) straight through
   },
 };

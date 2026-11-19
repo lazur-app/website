@@ -15,6 +15,7 @@ export default defineConfig({
       "getlazur.co",
       "www.getlazur.co",
       "admin.lazur.app",
+      "api.lazur.app",
     ],
   },
 });

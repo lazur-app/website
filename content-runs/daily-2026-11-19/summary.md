@@ -1,13 +1,14 @@
-Content 2026-11-19: 27 written, 0 refused, 2 failed, 0 deferred
+Content 2026-11-19: 37 written, 0 refused, 2 failed, 0 deferred
 
 - howto: 0/200
 - apps: 0/15
 - roles: 0/20
 - role-apps: 0/100
-- problems: 25/125
+- problems: 34/125
 - compare: 0/15
-- blog: 2/25
+- blog: 3/25
 
+blog:dictation-mac-google-docs /blog/dictation-mac-google-docs
 blog:mac-notch-hidden-menu-icons /blog/mac-notch-hidden-menu-icons
 blog:mac-dictation-not-working-troubleshooting /blog/mac-dictation-not-working-troubleshooting
 problem:architects/architect-ai-workflow-automation /for/architects/problems/architect-ai-workflow-automation
@@ -33,5 +34,14 @@ problem:account-executives/improving-account-executive-prospecting-efficiency /f
 problem:account-executives/account-executive-burnout-prevention-strategies /for/account-executives/problems/account-executive-burnout-prevention-strategies
 problem:account-executives/preparing-for-account-executive-interviews /for/account-executives/problems/preparing-for-account-executive-interviews
 problem:nonprofit-fundraisers/designing-social-media-fundraising-graphics /for/nonprofit-fundraisers/problems/designing-social-media-fundraising-graphics
+problem:architects/architect-claude-ai-integration /for/architects/problems/architect-claude-ai-integration
 problem:nonprofit-fundraisers/analyzing-fundraising-campaign-roi /for/nonprofit-fundraisers/problems/analyzing-fundraising-campaign-roi
 problem:account-executives/managing-sales-pipeline-velocity /for/account-executives/problems/managing-sales-pipeline-velocity
+problem:hotel-revenue-managers/becoming-a-hotel-revenue-manager-career-path /for/hotel-revenue-managers/problems/becoming-a-hotel-revenue-manager-career-path
+problem:hotel-revenue-managers/hotel-revenue-management-system-selection-guide /for/hotel-revenue-managers/problems/hotel-revenue-management-system-selection-guide
+problem:hotel-revenue-managers/hotel-revenue-manager-salary-negotiation-tips /for/hotel-revenue-managers/problems/hotel-revenue-manager-salary-negotiation-tips
+problem:hotel-revenue-managers/effective-hotel-revenue-management-strategies-implementation /for/hotel-revenue-managers/problems/effective-hotel-revenue-management-strategies-implementation
+problem:hotel-revenue-managers/automating-hotel-revenue-manager-daily-tasks /for/hotel-revenue-managers/problems/automating-hotel-revenue-manager-daily-tasks
+problem:hotel-revenue-managers/hotel-revenue-manager-forecasting-accuracy-improvement /for/hotel-revenue-managers/problems/hotel-revenue-manager-forecasting-accuracy-improvement
+problem:hotel-revenue-managers/optimizing-hotel-revenue-management-system-settings /for/hotel-revenue-managers/problems/optimizing-hotel-revenue-management-system-settings
+problem:hotel-revenue-managers/hotel-revenue-manager-certification-requirements /for/hotel-revenue-managers/problems/hotel-revenue-manager-certification-requirements

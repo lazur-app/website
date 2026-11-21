@@ -267,7 +267,7 @@ The microphone does most of the work. Settings come second, and habits come thir
 3. **Sit away from hard surfaces.** If you can, move away from glass and bare walls, since they reflect your voice back into the mic.
 4. **Keep your volume and distance steady.** Speak at your normal volume and keep the mic at the same distance. A change in distance changes the level, and the level changes the errors.
 5. **Use the on-device enhancement if you qualify.** Check the text below Dictation in Keyboard settings. You need an M3 chip or later, at least 12GB of memory, macOS 27, and English.
-6. **Teach the engine your names.** Names and project terms are where office errors stand out most. Keep a short list and check it before you send anything. The [names and jargon guide for Mac dictation](/for/writers/problems/dictation-names-jargon-custom-vocabulary-mac) walks through custom vocabulary.
+6. **Teach the engine your names.** Names and project terms are where office errors stand out most. Keep a short list and check it before you send anything. The names and jargon guide for Mac dictation walks through custom vocabulary.
 
 ## How to measure your own error rate in the office
 

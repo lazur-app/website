@@ -230,7 +230,7 @@ The default shortcut might not fit your workflow. Some people prefer the Fn key.
 
 ## When to use dictation instead of typing
 
-Dictation is best for first drafts. It is great for getting ideas out of your head and onto the screen. It is less effective for editing or coding where precise symbol placement matters. If you are a writer, you might enjoy using it to draft long sections of a story. Learn more about how to use this for writing on our [for/writers](/for/writers) page. If you are a student, it can help you get your notes down during a lecture. If you work in a medical field, check out our [for/nurses](/for/nurses) page for specific advice on charting.
+Dictation is best for first drafts. It is great for getting ideas out of your head and onto the screen. It is less effective for editing or coding where precise symbol placement matters. If you are a writer, you might enjoy using it to draft long sections of a story. Learn more about how to use this for writing on our for/writers page. If you are a student, it can help you get your notes down during a lecture. If you work in a medical field, check out our for/nurses page for specific advice on charting.
 
 ## Faster with Lazur
 

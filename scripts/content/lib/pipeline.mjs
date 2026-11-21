@@ -155,6 +155,8 @@ export const SPECS = {
     type: "role",
     flag: "roles",
     async next(n) {
+      // Role pages (/for/<role>) were removed on 2026-11-22 and now return 410. Never write them again.
+      if (n >= 0) return [];
       const have = new Set(readType("role").map((p) => p.slug));
       if (ROLES.filter((r) => !have.has(r.slug)).length < n) await planRoles(Math.max(n, 10));
       const roles = await currentRoles();
@@ -204,6 +206,8 @@ export const SPECS = {
     type: "problem",
     flag: "problems",
     async next(n) {
+      // Problem pages (/for/<role>/problems/*) were removed on 2026-11-22 and now return 410. Never write them again.
+      if (n >= 0) return [];
       const have = new Set(readType("problem").map((p) => `${p.role}/${p.slug}`));
       let queue = readJsonl(queueFile("problem-topics.jsonl")).filter((t) => !have.has(`${t.role}/${t.slug}`) && roleBySlug(t.role));
       if (queue.length < n) {

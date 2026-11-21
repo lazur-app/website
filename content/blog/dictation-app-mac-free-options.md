@@ -207,7 +207,7 @@ Check your current workflow to see if you hit these barriers. Do you find yourse
 
 When you use a free tool, the cost is often measured in time rather than dollars. The average person speaks at 120 to 150 words per minute, which is significantly faster than the 40 to 60 words per minute achieved by typing. This creates a theoretical speed advantage of three times the output. Yet, if your dictation software has an accuracy rate that requires you to edit every third word, that speed advantage disappears. 
 
-Accuracy is the primary metric for any dictation app. While modern AI systems can reach 95 to 99 percent accuracy in perfect conditions, this drops significantly when you introduce specialized language. If you work in law, medicine, or software development, you are using words that the standard Apple model may not recognize. This is where the limitations of a free tool become a bottleneck. You end up manually typing the terms that the system consistently misinterprets. This is a common frustration for developers who need to dictate code snippets or technical documentation. You can read more about this in our guide on [Mac keyboard shortcuts I keep forgetting](/for/developers/problems/mac-keyboard-shortcuts-keep-forgetting).
+Accuracy is the primary metric for any dictation app. While modern AI systems can reach 95 to 99 percent accuracy in perfect conditions, this drops significantly when you introduce specialized language. If you work in law, medicine, or software development, you are using words that the standard Apple model may not recognize. This is where the limitations of a free tool become a bottleneck. You end up manually typing the terms that the system consistently misinterprets. This is a common frustration for developers who need to dictate code snippets or technical documentation. You can read more about this in our guide on Mac keyboard shortcuts I keep forgetting.
 
 ## Comparing Workflow Efficiency
 
@@ -221,7 +221,7 @@ To decide if you need an upgrade, perform a simple test. Time yourself dictating
 | App Awareness | Limited | Varies |
 | Privacy | On-device | Cloud/Local options |
 
-Most paid apps offer features like custom dictionaries and better handling of background noise. They are designed for professionals who dictate daily. If you are a nurse or a doctor, you might benefit from specialized tools that recognize medical terminology. For more on this, see [How to dictate nursing notes on Mac without Dragon](/for/nurses/problems/dictate-nursing-notes-mac-without-dragon).
+Most paid apps offer features like custom dictionaries and better handling of background noise. They are designed for professionals who dictate daily. If you are a nurse or a doctor, you might benefit from specialized tools that recognize medical terminology. For more on this, see How to dictate nursing notes on Mac without Dragon.
 
 ## Faster with Lazur
 

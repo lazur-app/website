@@ -313,7 +313,7 @@ IFERROR is the fastest fix and the easiest to misuse. Microsoft calls IFERROR an
 
 Here is the risk. Say you mistype a range name. The formula returns #NAME? because Excel does not recognize the name. Wrap it in =IFERROR(B6/C6,0), and the typo now shows 0. The sheet looks fine. The total is wrong.
 
-Use this order instead. Write the formula without a wrapper. Test it on a few rows where you know the answer. Add IFERROR only after that, and only where blank rows are expected. The [VLOOKUP #N/A fix guide](/for/developers/problems/excel-vlookup-na-error-fix-steps) uses the same test-first habit for a different error.
+Use this order instead. Write the formula without a wrapper. Test it on a few rows where you know the answer. Add IFERROR only after that, and only where blank rows are expected. The VLOOKUP #N/A fix guide uses the same test-first habit for a different error.
 
 ## What the error statistics say about spreadsheet mistakes
 

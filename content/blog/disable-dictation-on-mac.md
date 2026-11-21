@@ -237,7 +237,7 @@ Another point of confusion is the server processing. On modern Apple Silicon Mac
 
 If you are a heavy user of dictation, you are likely looking for ways to make it more accurate. You can improve your results by using a high-quality microphone. The built-in mic on a MacBook is good, but it picks up a lot of room noise. A dedicated headset or a USB microphone will drastically reduce errors. If you still see mistakes, you might be dealing with jargon that the system does not recognize. In such cases, third-party apps often allow for custom vocabularies that teach the software your specific industry terms. 
 
-For those who write technical documents, you can see how to optimize your setup by reading our guide on [AI assistant for technical writers on Mac](/for/technical-writers). It covers how to handle complex terminology without the software misinterpreting your words. 
+For those who write technical documents, you can see how to optimize your setup by reading our guide on AI assistant for technical writers on Mac. It covers how to handle complex terminology without the software misinterpreting your words. 
 
 ## Summary of settings
 

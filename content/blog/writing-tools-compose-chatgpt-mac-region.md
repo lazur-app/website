@@ -360,7 +360,7 @@ The routine works because you use Compose for small jobs. It fails when you use 
 
 Compose sends content to ChatGPT. The question is not whether the draft is good. The question is whether the content is allowed to leave your Mac.
 
-Check your employer's rules and any client agreement first. If you handle confidential client material, read [client confidentiality concerns with AI tools on Mac](/for/lawyers/problems/client-confidentiality-concerns-ai-tools) before you paste anything.
+Check your employer's rules and any client agreement first. If you handle confidential client material, read client confidentiality concerns with AI tools on Mac before you paste anything.
 
 Read the privacy terms for ChatGPT and the Apple pages linked above. They describe what gets stored and where. This article does not, and you should not rely on it for that.
 

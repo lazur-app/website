@@ -245,6 +245,6 @@ Finally, do not rely on outdated advice from old forums. Some users still sugges
 
 ## Next Steps for Your Workflow
 
-If you have followed these steps and dictation is still not working, consider whether you need a different approach. For those who frequently write long documents, [dictation for writers](/for/writers/word) can be a better way to structure your work. If you are working in a specialized field, you may find that [dictation for nurses](/for/nurses) or other professionals requires specific tools that handle medical or technical terminology more effectively. 
+If you have followed these steps and dictation is still not working, consider whether you need a different approach. For those who frequently write long documents, [dictation for writers](/for/writers/word) can be a better way to structure your work. If you are working in a specialized field, you may find that dictation for nurses or other professionals requires specific tools that handle medical or technical terminology more effectively. 
 
 Check your microphone input levels in System Settings > Sound > Input. If you cannot see the input meter moving when you speak, your hardware is the bottleneck. If the meter moves but the text does not appear, the software layer is the problem. By isolating where the signal stops, you can solve almost any dictation issue on your Mac.

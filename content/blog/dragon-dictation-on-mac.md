@@ -226,7 +226,7 @@ If you just need to dictate emails or short notes, start with Apple Dictation. I
 
 ## Managing Specialized Vocabulary
 
-One of the biggest concerns for former Dragon users is how to handle custom terms. If you are a lawyer or a doctor, you need the software to recognize specific Latin phrases or medical codes. Older software required a long training period. Newer AI-based tools often support custom dictionaries or context injection. You can add your list of terms once, and the AI will prioritize them during the transcription process. Check out [How to teach Mac dictation my character names and jargon in 2026](/for/writers/problems/dictation-names-jargon-custom-vocabulary-mac) for a deep dive into this topic.
+One of the biggest concerns for former Dragon users is how to handle custom terms. If you are a lawyer or a doctor, you need the software to recognize specific Latin phrases or medical codes. Older software required a long training period. Newer AI-based tools often support custom dictionaries or context injection. You can add your list of terms once, and the AI will prioritize them during the transcription process. Check out How to teach Mac dictation my character names and jargon in 2026 for a deep dive into this topic.
 
 ## Faster with Lazur
 

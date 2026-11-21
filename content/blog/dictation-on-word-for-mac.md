@@ -222,7 +222,7 @@ Complex formatting is more difficult. Do not expect the app to handle commands l
 
 The average person types at about 40 words per minute. By contrast, most people speak at 125 to 150 words per minute. This difference creates a clear speed advantage. Even with the time spent on corrections, most users report a net productivity gain of two to two and a half times faster than manual typing. If you are a prolific writer, this adds up to hundreds of hours saved over a year.
 
-Despite these benefits, only about 25 percent of people currently use voice input tools. Many people find the initial learning curve frustrating. It takes time to adjust to speaking out loud while you write. Start with short sections, such as emails or quick notes, before attempting to dictate long reports or chapters of a book. Learn more about [dictation for writers](/for/writers) to refine your process.
+Despite these benefits, only about 25 percent of people currently use voice input tools. Many people find the initial learning curve frustrating. It takes time to adjust to speaking out loud while you write. Start with short sections, such as emails or quick notes, before attempting to dictate long reports or chapters of a book. Learn more about dictation for writers to refine your process.
 
 ## Common mistakes to avoid
 

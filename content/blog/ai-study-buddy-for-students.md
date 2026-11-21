@@ -349,4 +349,4 @@ Hold fn to dictate clean, formatted text at the cursor in any app. Lazur also ha
 
 Lazur runs on macOS, on both Apple silicon and Intel Macs. Windows is planned, not available. The Pro trial lasts 3 days with no credit card, and it starts when you first open the app. For current prices, see the [pricing page](/pricing). To try it, [download Lazur](/download).
 
-If you study mostly in Chrome, Gemini in Chrome may cover you. If you move between Pages, Preview and Notes, a Mac-wide helper fits better. Students can find study setup ideas on [the students page](/for/students).
+If you study mostly in Chrome, Gemini in Chrome may cover you. If you move between Pages, Preview and Notes, a Mac-wide helper fits better. Students can find study setup ideas on the students page.

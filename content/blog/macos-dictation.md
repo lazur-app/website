@@ -235,4 +235,4 @@ Most people type at about 40 words per minute. Speech happens at 120 to 150 word
 
 ## Handling Punctuation and Formatting
 
-While auto-punctuation is great, you may need to add specific marks manually. You can say words like period, comma, or new paragraph to control the structure. This is often faster than stopping to type. If you struggle with this, practice by dictating a short paragraph and saying the punctuation out loud. It feels strange at first, but it becomes second nature after a few tries. If you need more help with this, check our guide on [how to dictate punctuation on Mac](/for/writers/problems/dictation-punctuation-new-paragraph-commands).
+While auto-punctuation is great, you may need to add specific marks manually. You can say words like period, comma, or new paragraph to control the structure. This is often faster than stopping to type. If you struggle with this, practice by dictating a short paragraph and saying the punctuation out loud. It feels strange at first, but it becomes second nature after a few tries. If you need more help with this, check our guide on how to dictate punctuation on Mac.

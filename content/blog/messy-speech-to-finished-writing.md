@@ -304,7 +304,7 @@ The same messy speech needs different cleanup depending on where it lands.
 
 **A code review or ticket** wants the specific thing. "Refactor this to use zustand" survives cleanup better than "make this cleaner." Keep the nouns exact.
 
-For more on email patterns, read [why work emails take so long to write](/for/developers/problems/work-email-writing-takes-hours-weekly). It covers where the time goes.
+For more on email patterns, read why work emails take so long to write. It covers where the time goes.
 
 ## Mistakes that make dictated writing sound wrong
 

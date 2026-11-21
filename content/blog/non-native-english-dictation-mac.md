@@ -370,4 +370,4 @@ We do not publish an accuracy number for Lazur's dictation. Run the 120-word tes
 2. Set your language and shortcut under System Settings > Keyboard > Dictation.
 3. Run the 120-word test in the app you use most, and write the error rate down.
 4. If the test fails because Dictation will not start, see [Mac dictation not working and how to fix it](/blog/mac-dictation-not-working-fixes). To compare Apple's tool with other options on price and privacy, read [Apple Dictation alternatives for Mac](/alternatives/apple-dictation).
-5. If you write academic text and language anxiety slows you down, read [non-native English writing anxiety on Mac](/for/developers/problems/non-native-english-writing-anxiety-academic).
+5. If you write academic text and language anxiety slows you down, read non-native English writing anxiety on Mac.

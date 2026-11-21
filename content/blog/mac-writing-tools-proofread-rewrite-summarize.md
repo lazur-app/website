@@ -370,4 +370,4 @@ If your slow step is getting words down rather than editing them, hold fn to dic
 2. Run Proofread on one paragraph you wrote this week, and read every change.
 3. Run the same paragraph through all three tones, then read each version out loud.
 4. Summarize one long thread, then check each name and date against the original.
-5. For the errors that slip past any tool, the [routine for catching typos in your own writing](/for/writers/problems/proofreading-own-writing-typos-missed) is a good place to start. For reading drafts aloud, see [proofread by listening on Mac](/blog/proofread-draft-by-listening-mac).
+5. For the errors that slip past any tool, the routine for catching typos in your own writing is a good place to start. For reading drafts aloud, see [proofread by listening on Mac](/blog/proofread-draft-by-listening-mac).

@@ -336,7 +336,7 @@ Run this test once before you rely on dictation for real work. It takes about te
 
 Your numbers will not match the study. The study used short messages on an iPhone, and your Mac, your voice, and your passage are different. The point of the test is to find your own gap. You will also learn which words your setup always gets wrong. Names and product names are the usual suspects.
 
-If you write for a living, the same test works on a longer draft. Dictate one full section, then edit it. Track how long the editing takes compared with typing the section. The [dictation for writers page](/for/writers) walks through that kind of workflow in Pages, Word, and Google Docs.
+If you write for a living, the same test works on a longer draft. Dictate one full section, then edit it. Track how long the editing takes compared with typing the section. The dictation for writers page walks through that kind of workflow in Pages, Word, and Google Docs.
 
 ## Where Lazur fits if you want dictation in every app
 

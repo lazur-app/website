@@ -121,9 +121,9 @@ export const BLOG_SEEDS = [
 export const DEFAULT_DAILY_COUNTS = {
   howto: 100,
   apps: 20,
-  roles: 15,
+  roles: 0, // removed 2026-11-22
   "role-apps": 50,
-  problems: 30,
+  problems: 0, // removed 2026-11-22
   compare: 5,
   blog: 5,
 };
@@ -147,12 +147,12 @@ export const RAMP = [
  */
 export const TYPE_WEIGHTS = {
   apps: 0.03,
-  roles: 0.04,
+  roles: 0, // removed 2026-11-22
   compare: 0.03,
   blog: 0.05,
   "role-apps": 0.2,
-  problems: 0.25,
-  howto: 0.4,
+  problems: 0, // removed 2026-11-22
+  howto: 0.69,
 };
 
 /** Old pages under the word minimum rewritten each day, on top of the total, until none are left. */

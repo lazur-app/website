@@ -374,4 +374,4 @@ A practical way to use it: ask Lazur to walk you through the Keyboard Shortcuts 
 - Test the new shortcut in the apps you use every day.
 - If something breaks, undo that one change. Use Remove (-) for an App Shortcut. Save Restore Defaults as the last resort.
 
-For app-specific shortcut lists, read [how to show the keyboard shortcuts list in Slack on Mac](/how-to/show-the-keyboard-shortcuts-list-in-slack) or [how to use keyboard shortcuts in Numbers on Mac](/how-to/use-keyboard-shortcuts-in-numbers). If you keep forgetting the shortcuts you already have, [these free fixes for Mac keyboard shortcuts you keep forgetting](/for/developers/problems/mac-keyboard-shortcuts-keep-forgetting) may help.
+For app-specific shortcut lists, read [how to show the keyboard shortcuts list in Slack on Mac](/how-to/show-the-keyboard-shortcuts-list-in-slack) or [how to use keyboard shortcuts in Numbers on Mac](/how-to/use-keyboard-shortcuts-in-numbers). If you keep forgetting the shortcuts you already have, these free fixes for Mac keyboard shortcuts you keep forgetting may help.

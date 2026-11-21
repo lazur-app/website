@@ -351,7 +351,7 @@ So voice is quicker to get words down, and you still need to read what you send.
 
 A figure you will see often says knowledge workers spend 28% of their workweek managing email. It traces to a 2012 McKinsey report. The version that circulates comes from a secondary blog, so treat the number as dated and rough.
 
-Voice does not fix the inbox. It shortens one part of the job, getting the body of a reply down when typing is slow. Triage, search, and deciding what to answer still take your attention. If writing replies is your bottleneck, read [why work email takes hours to write for developers](/for/developers/problems/work-email-writing-takes-hours-weekly). It covers the causes and some Mac fixes.
+Voice does not fix the inbox. It shortens one part of the job, getting the body of a reply down when typing is slow. Triage, search, and deciding what to answer still take your attention. If writing replies is your bottleneck, read why work email takes hours to write for developers. It covers the causes and some Mac fixes.
 
 ## Common mistakes when you write emails by voice on Mac
 

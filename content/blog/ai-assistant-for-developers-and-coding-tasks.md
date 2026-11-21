@@ -422,4 +422,4 @@ Lazur is a voice assistant for the Mac. Hold ⌥ ⌘ to ask about anything on sc
 
 It does not click buttons, edit files, or run commands for you. Your coding agent still does the editing. Use the voice layer to state the goal, ask about an unfamiliar menu, or talk through an error while your hands stay on the keyboard. Review anything it helps you write before you send it.
 
-You can [download it for Mac](/download), read the [Cursor guide](/apps/cursor), or see the [developer page](/for/developers). Pricing is on the [pricing page](/pricing).
+You can [download it for Mac](/download), read the [Cursor guide](/apps/cursor), or see the developer page. Pricing is on the [pricing page](/pricing).

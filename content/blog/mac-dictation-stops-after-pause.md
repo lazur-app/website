@@ -357,7 +357,7 @@ Worked example: you draft a client update before a call. You outline three point
 
 {"type":"image","index":2}
 
-If you draft in Word, see [how to use dictation in Word on Mac](/how-to/use-dictation-in-word) for Word specifics. For shortcut steps on macOS 27, see [how to use dictation on Mac for macOS 27](/for/developers/problems/mac-dictation-start-stop-change-shortcut).
+If you draft in Word, see [how to use dictation in Word on Mac](/how-to/use-dictation-in-word) for Word specifics. For shortcut steps on macOS 27, see how to use dictation on Mac for macOS 27.
 
 ## Where Lazur fits in
 

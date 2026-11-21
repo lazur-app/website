@@ -306,7 +306,7 @@ A common mistake is reading "private" as "nothing leaves my computer." Those are
 ## Who gets the most out of an AI companion
 
 - **People learning new software.** A guide that points at each control often beats a long video.
-- **Students reading dense material.** Ask about the paragraph on screen, not the whole chapter. See the [AI study companion for students](/for/students) page.
+- **Students reading dense material.** Ask about the paragraph on screen, not the whole chapter. See the AI study companion for students page.
 - **Developers.** Ask about an error without copying a long log into a chat window.
 - **People who type all day.** Hold a key, talk, and let the text land at your cursor.
 - **Anyone with many small requests.** Reminders, calendar entries and quick lookups add up across a day.

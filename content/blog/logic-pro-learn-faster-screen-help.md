@@ -330,7 +330,7 @@ For learning, Quick Help does most of the early work. Option-click a symbol in y
 
 Apple's What's New page links the Xcode documentation and the Apple Developer Forums. Start there when Quick Help is not enough. Xcode also lists errors in the Issue navigator, which you open with ⌘5. Read the first issue in the list, fix it, and build again. Later issues sometimes disappear once the first one is gone.
 
-If your goal is debugging errors rather than learning the interface, see [voice help for developers on Mac](/for/developers).
+If your goal is debugging errors rather than learning the interface, see voice help for developers on Mac.
 
 ## Mistakes that slow people down
 

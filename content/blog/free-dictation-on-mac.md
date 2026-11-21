@@ -255,7 +255,7 @@ To get the most out of your free dictation, consider your environment. While App
 
 Speak clearly and at a normal pace. You do not need to shout. If you find yourself frequently correcting the same technical terms or needing professional-grade formatting, you may eventually find that a dedicated, paid dictation tool provides better efficiency. 
 
-Also, remember that you can use dictation to navigate parts of your Mac. If you are a writer, you might find it useful to dictate into Pages or Word. You can find more specific advice on [dictation for writers](/for/writers) if you want to integrate this into your long-form drafting process. 
+Also, remember that you can use dictation to navigate parts of your Mac. If you are a writer, you might find it useful to dictate into Pages or Word. You can find more specific advice on dictation for writers if you want to integrate this into your long-form drafting process. 
 
 ## Understanding Privacy
 

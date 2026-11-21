@@ -291,7 +291,7 @@ If a task takes more than a sentence, park it for later. Batch those into one pl
 
 Some habits quietly undo everything above. Watch for these four.
 
-1. **Checking notifications on instinct.** Every banner is a switch you didn't choose. Turn off banners for apps that don't need you, and use a Focus mode for deep work. The settings are in [how to stop Mac notifications from distracting you](/for/developers/problems/mac-notifications-distracting-deep-work).
+1. **Checking notifications on instinct.** Every banner is a switch you didn't choose. Turn off banners for apps that don't need you, and use a Focus mode for deep work. The settings are in how to stop Mac notifications from distracting you.
 2. **Batching questions to save time.** It feels efficient. By the time you come back, you have forgotten half of them, and the afternoon fills with catch-up.
 3. **Sending long research into your focus block.** Long research belongs in the background. Read the result at a planned moment, not in the middle of a function you're writing.
 4. **Using a general chatbot for everything.** A chat tab with no context means you copy the whole problem every time. Ask from the window where the problem lives, or check the app's own help first.
@@ -330,4 +330,4 @@ Start with one app. Find its in-app help path today. In Google Docs, try ⌥ /. 
 
 Then run the one-week tally. Move your first few small tasks to voice reminders and timers. Turn off banners for apps that don't need you.
 
-For the bigger picture, read [what a context-aware AI assistant is](/blog/what-is-a-context-aware-ai-work-assistant) and [how private AI assistants handle your screen on a Mac](/blog/private-ai-assistants-on-mac). If you write code, the [developer guide to recovering focus after interruptions](/for/developers/problems/developer-context-switching-recovery-time) covers the rebuilding part in more depth.
+For the bigger picture, read [what a context-aware AI assistant is](/blog/what-is-a-context-aware-ai-work-assistant) and [how private AI assistants handle your screen on a Mac](/blog/private-ai-assistants-on-mac). If you write code, the developer guide to recovering focus after interruptions covers the rebuilding part in more depth.

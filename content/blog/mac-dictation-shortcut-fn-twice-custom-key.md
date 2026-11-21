@@ -225,7 +225,7 @@ That sounds like more choice than anyone needs. In practice you pick one, test i
 4. If you chose Customize, press the keys you want. Apple's example is Option-Z.
 5. Test it. Open Notes, click into a blank note, press your shortcut, say one sentence, then press Escape.
 
-Apple's Mac help page covers macOS 27 and describes these same steps. Labels can shift between releases. If your wording differs, stay in the Dictation section and look for the Shortcut pop-up. For a longer walkthrough, read [how to use dictation on Mac for macOS 27](/for/developers/problems/mac-dictation-start-stop-change-shortcut).
+Apple's Mac help page covers macOS 27 and describes these same steps. Labels can shift between releases. If your wording differs, stay in the Dictation section and look for the Shortcut pop-up. For a longer walkthrough, read how to use dictation on Mac for macOS 27.
 
 ## When the shortcut is missing or greyed out
 

@@ -297,7 +297,7 @@ Test your own numbers with the [speaking vs typing test](/tools/speaking-vs-typi
 - **Treating the first pass as final.** Speech leaves errors in the text. Build a proofreading pass into every draft, and read it out loud if that helps you catch mistakes.
 - **Leaving Voice Control on.** Standard Dictation is not available while Voice Control is on. Apple says you use Voice Control to dictate instead. Check System Settings > Accessibility > Voice Control before you blame Dictation.
 - **Using the wrong microphone.** Automatic may pick a device you did not expect. A weak input adds errors, so check the Microphone source each time you change headsets.
-- **Ignoring names and jargon.** Mac does not know your team's terms until you teach them. See [how to teach Mac dictation names and jargon](/for/writers/problems/dictation-names-jargon-custom-vocabulary-mac).
+- **Ignoring names and jargon.** Mac does not know your team's terms until you teach them. See how to teach Mac dictation names and jargon.
 - **Speaking punctuation you do not need.** With auto-punctuation on, most commas and periods appear without a spoken command. Learn the explicit commands for the cases it misses. See [Dictation commands for punctuation on Mac](/blog/mac-dictation-punctuation-commands).
 - **Dictating without a plan.** Speaking does not give you an outline. Write three or four headings first, then dictate under each one.
 - **Judging after one session.** A single test tells you about one topic and one mood. Give it a fair run before you decide.

@@ -215,4 +215,4 @@ Hold the Fn key to dictate clean, formatted text directly at your cursor. Lazur 
 
 ## Related reading
 
-If you are a writer, you might find it helpful to learn [how to use dictation in Pages](/how-to/use-dictation-in-pages) or [how to use dictation in Word](/how-to/use-dictation-in-word) to streamline your drafting process. For those working in specific fields, our guides for [writers](/for/writers) and [technical writers](/for/technical-writers) offer deeper insights into using voice tools to manage heavy workloads. Using these tools effectively can transform how you handle your daily tasks on your Mac.
+If you are a writer, you might find it helpful to learn [how to use dictation in Pages](/how-to/use-dictation-in-pages) or [how to use dictation in Word](/how-to/use-dictation-in-word) to streamline your drafting process. For those working in specific fields, our guides for writers and technical writers offer deeper insights into using voice tools to manage heavy workloads. Using these tools effectively can transform how you handle your daily tasks on your Mac.

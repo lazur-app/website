@@ -343,11 +343,11 @@ The session will end at some point. When it does, don't panic and don't start ov
 This routine works for most scripts. It has three passes: speak, read, and check. Each pass has one job, so you don't mix them.
 
 1. **Outline in text.** Write five to seven beats. Give each beat a rough time target. Keep each beat to one line. This is the only step where you think about structure.
-2. **Open your document.** Pages, Word and Google Docs all work for this. If you draft in Google Docs, read [how to use voice typing in Google Docs on Mac](/how-to/use-voice-typing-in-google-docs). For more on writing by voice, see [dictation for writers on Mac](/for/writers).
+2. **Open your document.** Pages, Word and Google Docs all work for this. If you draft in Google Docs, read [how to use voice typing in Google Docs on Mac](/how-to/use-voice-typing-in-google-docs). For more on writing by voice, see dictation for writers on Mac.
 3. **Dictate one beat per session.** Start Dictation with your shortcut. Speak in your on-camera voice. Stop when the beat is done, even if it feels short.
 4. **Say “new line” between paragraphs.** Do it at the end of each beat, then start the next one.
 5. **Tag every gap.** When you hit a fact to check, say “todo” and keep going. Don't stop mid-beat to research.
-6. **Read the full script aloud.** Mark every line you stumble on. Rewrite those lines. For a revision pass on your writing habits, see [how to find and fix passive voice on Mac](/for/writers/problems/passive-voice-find-fix-revision).
+6. **Read the full script aloud.** Mark every line you stumble on. Rewrite those lines. For a revision pass on your writing habits, see how to find and fix passive voice on Mac.
 7. **Check facts and names.** Search for “todo” and for each name on your list. Verify every number against its source before you film.
 8. **Time the script.** Count the words in your editor. Divide by your own measured speaking pace to estimate runtime. Use the 153 words per minute study figure only as a starting point.
 

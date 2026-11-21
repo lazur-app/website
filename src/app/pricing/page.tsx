@@ -147,7 +147,7 @@ export default function PricingPage() {
             Simple pricing.
           </m.h1>
           <p className="mx-auto mt-3 max-w-md text-[17px] leading-relaxed text-[var(--foreground-muted)]">
-            Every plan starts with a free 3-day trial: 30 AI actions and 10,000 words.
+            Every plan starts with a free 3-day trial: about 25 AI requests and 10,000 words.
           </p>
         </div>
 
@@ -206,8 +206,9 @@ export default function PricingPage() {
           transition={{ delay: 0.45 }}
           className="mt-6 max-w-2xl text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
         >
-          An AI action is one thing you ask Lazur to do: a question, a reminder, a pointed-at button
-          or a background job. Dictation doesn&apos;t count. {FAIR_USE_FOOTNOTE}{" "}
+          AI usage shows in the app as a percentage of your monthly allowance that resets with your plan.
+          Quick questions use a little, long lessons and background jobs use more; the request counts are
+          typical, not exact. Dictation doesn&apos;t count. {FAIR_USE_FOOTNOTE}{" "}
           <TrackedLink
             href="/download"
             eventProps={{ location: "pricing_footnote", label: "Download Lazur", destination: "/download" }}

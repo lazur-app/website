@@ -74,7 +74,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "Start free trial",
     features: [
-      { text: "250 AI actions a month", included: true },
+      { text: "About 250 AI requests a month, shown as % used", included: true },
       { text: "Unlimited dictation", included: true },
       { text: "Background jobs, Chrome agent, reports", included: true },
     ],
@@ -89,7 +89,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "checkout",
     buttonText: "Get Power",
     features: [
-      { text: "1,000 AI actions a month", included: true },
+      { text: "About 1,500 AI requests a month, shown as % used", included: true },
       { text: "Unlimited dictation", included: true },
       { text: "Everything in Pro", included: true },
     ],
@@ -206,7 +206,7 @@ export const PRICING_SNAPSHOT = WEBSITE_PLANS;
 /** Length of a new Pro trial (backend: PRO_TRIAL_DAYS). */
 export const TRIAL_DAYS = 3;
 export const TRIAL_LABEL = "3-day Pro trial";
-export const TRIAL_NOTE = "3 days · 30 AI actions · 10,000 words · starts when you open the app";
+export const TRIAL_NOTE = "3 days · about 25 AI requests · 10,000 words · starts when you open the app";
 export const PRO_FROM_LABEL = "From $18/mo";
 export const PRO_FROM_LABEL_IN = "From ₹300/mo + GST";
 export const PRO_PRICE_NOTE = "Pro $18/mo · $180/yr";

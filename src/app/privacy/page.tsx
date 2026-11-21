@@ -185,7 +185,7 @@ export default function PrivacyPage() {
                   <>
                     <strong className="text-[var(--foreground)]">Usage records.</strong>{" "}
                     For billing and plan limits we record counts (words
-                    dictated, AI actions used) and, per request, which AI model
+                    dictated, AI usage) and, per request, which AI model
                     was used and how much it cost. These records contain no
                     audio, screenshots or text you dictated.
                   </>,

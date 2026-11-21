@@ -16,9 +16,9 @@ import { track } from "@/lib/productAnalytics";
 export function LandingPricingSection() {
   const proPrice = "$18/mo";
   const plans = [
-    { name: "Free trial", price: "$0", per: "3 days", detail: "30 AI actions · 10,000 words of dictation. No card.", featured: false },
-    { name: "Pro", price: "$18", per: "/mo", detail: "250 AI actions a month · unlimited dictation", featured: true },
-    { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
+    { name: "Free trial", price: "$0", per: "3 days", detail: "About 25 AI requests · 10,000 words of dictation. No card.", featured: false },
+    { name: "Pro", price: "$18", per: "/mo", detail: "About 250 AI requests a month · unlimited dictation", featured: true },
+    { name: "Power", price: "$120", per: "/mo", detail: "About 1,500 AI requests a month · unlimited dictation", featured: false },
   ] as const;
   const ref = useRef<HTMLDivElement>(null);
   useTrackInView(ref, "section_viewed", { section: "pricing" });
@@ -44,7 +44,7 @@ export function LandingPricingSection() {
               {TRIAL_LABEL}. Then {proPrice}.
             </h2>
             <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Try everything for 3 days: 30 AI actions and 10,000 words. No
+              Try everything for 3 days: about 25 AI requests and 10,000 words. No
               credit card to download. Cancel anytime.
             </p>
 

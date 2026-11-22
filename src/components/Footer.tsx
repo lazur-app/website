@@ -23,6 +23,10 @@ const footerLinks = {
   //   { href: "/dashboard", label: "Dashboard" },
   //   { href: "/login", label: "Refer a friend" },
   // ],
+  Company: [
+    { href: "/team", label: "Team" },
+    { href: "/changelog", label: "Changelog" },
+  ],
   Legal: [
     { href: "/terms", label: "Terms" },
     { href: "/privacy", label: "Privacy" },

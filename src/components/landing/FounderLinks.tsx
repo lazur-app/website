@@ -2,33 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FounderSticker, type Pose, type Who } from "./FounderSticker";
+import { FOUNDER_LINKS } from "@/lib/founders";
 
-const LINKS: Record<Who, { name: string; links: { label: string; href: string }[] }> = {
-  vaidik: {
-    name: "vaidik",
-    links: [
-      { label: "portfolio", href: "https://vaidik.tech" },
-      { label: "linkedin", href: "https://linkedin.com/in/vaidiksule" },
-      { label: "github", href: "https://github.com/vaidiksule" },
-    ],
-  },
-  veer: {
-    name: "veer",
-    links: [
-      { label: "portfolio", href: "https://veeradyani.tech" },
-      { label: "linkedin", href: "https://www.linkedin.com/in/veer-adyani/" },
-      { label: "github", href: "https://github.com/veeradyani222" },
-    ],
-  },
-  ayush: {
-    name: "ayush",
-    links: [
-      { label: "portfolio", href: "https://interactiveportfolio-three.vercel.app/" },
-      { label: "linkedin", href: "https://www.linkedin.com/in/ayush-agrawal-869940290/" },
-      { label: "github", href: "https://github.com/Ayuussshhh" },
-    ],
-  },
-};
 
 /**
  * A founder sticker you can click: a little thought cloud pops up over their head with their
@@ -37,7 +12,7 @@ const LINKS: Record<Who, { name: string; links: { label: string; href: string }[
 export function FounderLinks({ who, pose, size, className = "", cloudClassName = "" }: { who: Who; pose: Pose; size: number | string; className?: string; cloudClassName?: string }) {
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
-  const person = LINKS[who];
+  const person = FOUNDER_LINKS[who];
 
   useEffect(() => {
     if (!open) return;

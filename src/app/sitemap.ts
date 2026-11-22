@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/pricing",
     "/changelog",
+    "/team",
     "/download",
     "/blog",
     "/compare",

@@ -15,6 +15,7 @@ const LINKS = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
   { label: "Changelog", href: "/changelog" },
+  { label: "Team", href: "/team" },
   { label: "FAQ", href: "/#faq" },
 ];
 

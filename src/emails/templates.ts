@@ -148,48 +148,80 @@ export function paymentFailed(p: { name?: string | null; plan: string; amount: s
   };
 }
 
-/* ------------------------------------------------------------------ personal notes (team mailboxes, plain) */
+/* ------------------------------------------------------------------ personal notes (team mailboxes) */
 
-/** Right after the email is confirmed. From Veer. */
-export function welcome(p: { name?: string | null }): BuiltEmail {
-  const preheader = "it's veer, one of the people who built lazur. two keys and you're set.";
+/** The three people the personal notes come from. */
+export const TEAM = ["veer", "aayush", "vaidik"] as const;
+export type TeamMember = (typeof TEAM)[number];
+
+/** How each one writes their name in the note (lowercase, like the rest of it) and signs off. */
+const PEOPLE: Record<TeamMember, { lower: string; signature: string }> = {
+  veer: { lower: "veer", signature: "Veer" },
+  aayush: { lower: "aayush", signature: "Aayush" },
+  vaidik: { lower: "vaidik", signature: "Vaidik" },
+};
+
+/**
+ * Who a person's notes come from. Spread across all three of the team, but always the same one for
+ * the same person (picked from their email address), so they hear from one human the whole way
+ * through and a reply goes back to the person who wrote to them.
+ */
+export function senderFor(to: string): TeamMember {
+  let h = 0;
+  for (const ch of to.trim().toLowerCase()) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return TEAM[h % TEAM.length];
+}
+
+type Personal = { to: string; name?: string | null; from?: TeamMember };
+
+function who(p: Personal) {
+  const id = p.from ?? senderFor(p.to);
+  return { id, ...PEOPLE[id], sender: SENDERS[id] };
+}
+
+/** Right after the email is confirmed. */
+export function welcome(p: Personal): BuiltEmail {
+  const me = who(p);
+  const preheader = `it's ${me.lower}, one of the people who built lazur. two keys and you're set.`;
   const paragraphs = [
     hey(p.name),
-    "it's veer, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself instead of sending you some newsletter.",
+    `it's ${me.lower}, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself instead of sending you some newsletter.`,
     `quick version of how it works: open lazur on your mac, hold <b>Option + Command</b> and just talk. let go and it does the thing, in whatever app you're in. if you haven't downloaded it yet, it's ${link("here", `${SITE}/download`)}.`,
     "the first thing i'd try: open an email and say \"reply that thursday works for me\". that's usually the moment it clicks.",
     "you've got 3 days of pro, no card. and if anything feels off or confusing, just hit reply. it comes straight to me and i actually read these.",
   ];
   return {
-    from: SENDERS.veer,
-    subject: "hey, it's veer from lazur",
+    from: me.sender,
+    subject: `hey, it's ${me.lower} from lazur`,
     preheader,
-    html: plainEmail({ preheader, sticker: "heart", paragraphs, signature: "Veer" }),
-    text: `${hey(p.name)}\n\nit's veer, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself.\n\nopen lazur on your mac, hold option + command and just talk. let go and it does the thing, in whatever app you're in. download: ${SITE}/download\n\nfirst thing to try: open an email and say "reply that thursday works for me".\n\nyou've got 3 days of pro, no card. anything off, just hit reply.\n\nveer`,
+    html: plainEmail({ preheader, sticker: "heart", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\nit's ${me.lower}, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself.\n\nopen lazur on your mac, hold option + command and just talk. let go and it does the thing, in whatever app you're in. download: ${SITE}/download\n\nfirst thing to try: open an email and say "reply that thursday works for me".\n\nyou've got 3 days of pro, no card. anything off, just hit reply.\n\n${me.lower}`,
   };
 }
 
-/** A day after signing up, when the app was never opened. From Aayush. */
-export function notOpenedYet(p: { name?: string | null }): BuiltEmail {
+/** A day after signing up, when the app was never opened. */
+export function notOpenedYet(p: Personal): BuiltEmail {
+  const me = who(p);
   const preheader = "noticed lazur hasn't been opened yet. stuck somewhere?";
   const paragraphs = [
     hey(p.name),
-    "aayush here from lazur. i noticed you signed up yesterday but lazur hasn't been opened on your mac yet. totally fine, life happens.",
+    `${me.lower} here from lazur. i noticed you signed up yesterday but lazur hasn't been opened on your mac yet. totally fine, life happens.`,
     "if it got stuck somewhere, it's usually one of these: the download is sitting in your Downloads folder, mac asked for a permission and it got closed, or the shortcut didn't do anything the first time.",
     `if you just want to give it another go, the download is ${link("right here", `${SITE}/download`)}. takes about a minute.`,
     "and if something actually broke, reply and tell me what you saw. i'll sort it out with you.",
   ];
   return {
-    from: SENDERS.aayush,
+    from: me.sender,
     subject: "did lazur get stuck?",
     preheader,
-    html: plainEmail({ preheader, sticker: "ghost", paragraphs, signature: "Aayush" }),
-    text: `${hey(p.name)}\n\naayush here from lazur. i noticed you signed up yesterday but lazur hasn't been opened on your mac yet.\n\nusually it's one of these: the download is still in your Downloads folder, mac asked for a permission and it got closed, or the shortcut didn't do anything the first time.\n\nanother go: ${SITE}/download\n\nif something broke, reply and tell me what you saw.\n\naayush`,
+    html: plainEmail({ preheader, sticker: "ghost", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\n${me.lower} here from lazur. i noticed you signed up yesterday but lazur hasn't been opened on your mac yet.\n\nusually it's one of these: the download is still in your Downloads folder, mac asked for a permission and it got closed, or the shortcut didn't do anything the first time.\n\nanother go: ${SITE}/download\n\nif something broke, reply and tell me what you saw.\n\n${me.lower}`,
   };
 }
 
-/** A day before the trial ends. From Vaidik. */
-export function trialEnding(p: { name?: string | null; hoursLeft: number; wordsDictated?: number }): BuiltEmail {
+/** A day before the trial ends. */
+export function trialEnding(p: Personal & { hoursLeft: number; wordsDictated?: number }): BuiltEmail {
+  const me = who(p);
   const when = p.hoursLeft <= 24 ? "tomorrow" : `in ${Math.round(p.hoursLeft / 24)} days`;
   const preheader = `your lazur trial ends ${when}. no pressure, just a heads up.`;
   const words = p.wordsDictated
@@ -197,35 +229,36 @@ export function trialEnding(p: { name?: string | null; hoursLeft: number; wordsD
     : [];
   const paragraphs = [
     hey(p.name),
-    `vaidik from lazur. just a heads up that your free trial ends ${when}.`,
+    `${me.lower} from lazur. just a heads up that your free trial ends ${when}.`,
     ...words,
     `if it's been useful, pro is $18 a month and you can keep going ${link("from here", `${SITE}/pricing`)}. if it hasn't, you don't need to do anything. you won't be charged.`,
     "either way i'd really like to know what you thought. one line is plenty, just reply.",
   ];
   return {
-    from: SENDERS.vaidik,
+    from: me.sender,
     subject: `your trial ends ${when}`,
     preheader,
-    html: plainEmail({ preheader, sticker: "smiley", paragraphs, signature: "Vaidik" }),
-    text: `${hey(p.name)}\n\nvaidik from lazur. just a heads up that your free trial ends ${when}.\n\nif it's been useful, pro is $18 a month: ${SITE}/pricing\nif not, do nothing, you won't be charged.\n\nwhat did you think? one line is plenty, just reply.\n\nvaidik`,
+    html: plainEmail({ preheader, sticker: "smiley", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\n${me.lower} from lazur. just a heads up that your free trial ends ${when}.\n\nif it's been useful, pro is $18 a month: ${SITE}/pricing\nif not, do nothing, you won't be charged.\n\nwhat did you think? one line is plenty, just reply.\n\n${me.lower}`,
   };
 }
 
-/** When someone asks to hear about the Windows app. From Aayush. */
-export function windowsWaitlist(p: { name?: string | null }): BuiltEmail {
+/** When someone asks to hear about the Windows app. */
+export function windowsWaitlist(p: Personal): BuiltEmail {
+  const me = who(p);
   const preheader = "you're on the list for lazur on windows.";
   const paragraphs = [
     hey(p.name),
-    "aayush from lazur. got your name down for the windows version.",
+    `${me.lower} from lazur. got your name down for the windows version.`,
     "right now lazur only runs on mac, but windows is being built as we speak. you'll get one email from me the day it's ready, nothing else in between.",
     "out of curiosity, what would you use it for first? reply and tell me, it helps us decide what to get right first.",
   ];
   return {
-    from: SENDERS.aayush,
+    from: me.sender,
     subject: "you're on the windows list",
     preheader,
-    html: plainEmail({ preheader, sticker: "cloud", paragraphs, signature: "Aayush" }),
-    text: `${hey(p.name)}\n\naayush from lazur. got your name down for the windows version.\n\nlazur only runs on mac right now, but windows is being built. you'll get one email from me the day it's ready.\n\nwhat would you use it for first? just reply.\n\naayush`,
+    html: plainEmail({ preheader, sticker: "cloud", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\n${me.lower} from lazur. got your name down for the windows version.\n\nlazur only runs on mac right now, but windows is being built. you'll get one email from me the day it's ready.\n\nwhat would you use it for first? just reply.\n\n${me.lower}`,
   };
 }
 
@@ -235,10 +268,10 @@ export function windowsWaitlist(p: { name?: string | null }): BuiltEmail {
 export const EMAIL_SAMPLES: { id: string; name: string; when: string; build: () => BuiltEmail }[] = [
   { id: "verify", name: "Confirm your email", when: "Someone signs up with an email address.", build: () => verifyEmail({ code: "482916" }) },
   { id: "signin", name: "Sign-in code", when: "Someone signs in with their email.", build: () => signInCode({ code: "730254" }) },
-  { id: "welcome", name: "Welcome", when: "Right after the email is confirmed.", build: () => welcome({ name: "Sam Carter" }) },
-  { id: "nudge", name: "Not opened yet", when: "24 hours after signing up, if the app was never opened.", build: () => notOpenedYet({ name: "Sam Carter" }) },
-  { id: "trial", name: "Trial ending", when: "A day before the 3-day trial ends.", build: () => trialEnding({ name: "Sam Carter", hoursLeft: 20, wordsDictated: 4380 }) },
+  { id: "welcome", name: "Welcome", when: "Right after the email is confirmed.", build: () => welcome({ to: "sam@example.com", name: "Sam Carter", from: "veer" }) },
+  { id: "nudge", name: "Not opened yet", when: "24 hours after signing up, if the app was never opened.", build: () => notOpenedYet({ to: "sam@example.com", name: "Sam Carter", from: "aayush" }) },
+  { id: "trial", name: "Trial ending", when: "A day before the 3-day trial ends.", build: () => trialEnding({ to: "sam@example.com", name: "Sam Carter", from: "vaidik", hoursLeft: 20, wordsDictated: 4380 }) },
   { id: "receipt", name: "Receipt", when: "A payment goes through.", build: () => receipt({ name: "Sam Carter", plan: "Pro", amount: "$18.00", date: "Nov 22, 2026", nextDate: "Dec 22, 2026", invoiceUrl: `${SITE}/billing` }) },
   { id: "failed", name: "Payment failed", when: "A card is declined.", build: () => paymentFailed({ name: "Sam Carter", plan: "Pro", amount: "$18.00", retryDate: "Nov 25" }) },
-  { id: "windows", name: "Windows waitlist", when: "Someone asks to hear about the Windows app.", build: () => windowsWaitlist({ name: "Sam Carter" }) },
+  { id: "windows", name: "Windows waitlist", when: "Someone asks to hear about the Windows app.", build: () => windowsWaitlist({ to: "sam@example.com", name: "Sam Carter", from: "aayush" }) },
 ];

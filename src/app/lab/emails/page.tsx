@@ -29,6 +29,7 @@ const BLOCKS: [string, string][] = [
  * backend fills these in when it sends; the samples on this page use a made-up person.
  */
 const SOURCES: [string, string][] = [
+  ["Who a personal note is from", "Veer, Aayush or Vaidik, spread evenly across sign-ups but always the same one for the same person (picked from their email address); the samples below show all three"],
   ["First name (all emails)", "the account's name (GET /auth/me: name), first word only; left out when there is none"],
   ["Codes", "made by the backend when someone signs up or signs in"],
   ["Not opened yet", "sent only if the app has not signed in 24 hours after sign-up (/auth/me: onboarding_completed is still false)"],

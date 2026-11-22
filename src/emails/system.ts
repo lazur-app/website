@@ -25,7 +25,7 @@ export const EMAIL_THEMES = {
 export type EmailThemeId = keyof typeof EMAIL_THEMES;
 
 /** The theme every real email is sent in. */
-export const EMAIL_THEME: EmailThemeId = "pink";
+export const EMAIL_THEME: EmailThemeId = "lilac";
 
 const THEME = EMAIL_THEMES[EMAIL_THEME];
 

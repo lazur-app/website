@@ -1,6 +1,6 @@
 /**
  * Lazur's email design system ("Ticket"). Every email Lazur sends is put together from the blocks
- * in this file, so they all look like one brand: an ink-outlined card, a pink top with the big
+ * in this file, so they all look like one brand: an ink-outlined card, a teal top with the big
  * wordmark, plain friendly words, one black pill button.
  *
  * The blocks return plain email HTML (tables and inline styles, system fonts, no images), which
@@ -17,10 +17,10 @@ export const EMAIL_TOKENS = {
     text: "#1c1917",
     muted: "#6b6560",
     faint: "#a8a29e",
-    pink: "#ff4f93",
-    pinkLight: "#ff8dbb",
-    pinkDeep: "#c81e63",
-    pinkWash: "#fff3f8",
+    accent: "#14b8a6",
+    accentLight: "#5eead4",
+    accentDeep: "#0f766e",
+    accentWash: "#ecfdf9",
     rule: "#e7e2dc",
   },
   font: {
@@ -54,12 +54,12 @@ function row(inner: string, pad = `0 ${T.gutter}px`, bg: string = C.card): strin
   return `<tr><td style="background:${bg};padding:${pad};">${inner}</td></tr>`;
 }
 
-/** The pink top of every email: the wordmark, the tagline, and an optional tilted stamp ("3 DAYS FREE"). */
+/** The teal top of every email: the wordmark, the tagline, and an optional tilted stamp ("3 DAYS FREE"). */
 export function header(opts: { stamp?: string } = {}): string {
   const stamp = opts.stamp
     ? `<td align="right" valign="top"><div style="display:inline-block;transform:rotate(9deg);border:${OUTLINE};background:${C.page};border-radius:${T.radius.pill}px;padding:7px 13px;font:700 12px ${F.sans};letter-spacing:.4px;color:${C.ink};white-space:nowrap;">${esc(opts.stamp)}</div></td>`
     : "";
-  return `<tr><td bgcolor="${C.pink}" style="background:${C.pink};background:linear-gradient(135deg,${C.pinkLight} 0%,${C.pink} 55%,${C.pinkDeep} 100%);padding:30px ${T.gutter}px 26px;border-bottom:${OUTLINE};">
+  return `<tr><td bgcolor="${C.accent}" style="background:${C.accent};background:linear-gradient(135deg,${C.accentLight} 0%,${C.accent} 55%,${C.accentDeep} 100%);padding:30px ${T.gutter}px 26px;border-bottom:${OUTLINE};">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
 <td style="font:800 58px/0.9 ${F.sans};letter-spacing:-3.5px;color:#ffffff;">lazur</td>${stamp}
 </tr></table>
@@ -92,15 +92,15 @@ export function button(label: string, href: string): string {
   );
 }
 
-/** A dashed pink ticket: a small label, a big value, and an optional stub on the right. Used for codes. */
+/** A dashed teal ticket: a small label, a big value, and an optional stub on the right. Used for codes. */
 export function ticket(opts: { label: string; value: string; stub?: string }): string {
   const stub = opts.stub
     ? `<td width="96" align="center" style="border-left:1.5px dashed ${C.ink};font:700 11px/1.5 ${F.sans};letter-spacing:1.5px;color:${C.text};">${esc(opts.stub).replace(/ /g, "<br>")}</td>`
     : "";
   return row(
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1.5px dashed ${C.ink};border-radius:${T.radius.block}px;background:${C.pinkWash};"><tr>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1.5px dashed ${C.ink};border-radius:${T.radius.block}px;background:${C.accentWash};"><tr>
 <td style="padding:20px 22px;">
-<div style="font:700 11px ${F.sans};letter-spacing:2px;color:${C.pinkDeep};">${esc(opts.label.toUpperCase())}</div>
+<div style="font:700 11px ${F.sans};letter-spacing:2px;color:${C.accentDeep};">${esc(opts.label.toUpperCase())}</div>
 <div style="font:700 40px ${F.mono};letter-spacing:9px;color:${C.text};padding-top:6px;">${esc(opts.value)}</div>
 </td>${stub}
 </tr></table>`,
@@ -139,11 +139,11 @@ export function facts(items: { label: string; value: string; strong?: boolean }[
   );
 }
 
-/** A pink note with a short label: a tip, a reminder, something worth a second look. */
+/** A teal note with a short label: a tip, a reminder, something worth a second look. */
 export function note(label: string, html: string): string {
   return row(
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.pinkWash};border-radius:${T.radius.block}px;"><tr><td style="padding:16px 18px;">
-<div style="font:700 11px ${F.sans};letter-spacing:2px;color:${C.pinkDeep};">${esc(label.toUpperCase())}</div>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.accentWash};border-radius:${T.radius.block}px;"><tr><td style="padding:16px 18px;">
+<div style="font:700 11px ${F.sans};letter-spacing:2px;color:${C.accentDeep};">${esc(label.toUpperCase())}</div>
 <div style="font:400 15px/1.5 ${F.sans};color:${C.text};padding-top:5px;">${html}</div>
 </td></tr></table>`,
     `20px ${T.gutter}px 0`,
@@ -177,7 +177,7 @@ ${reason}<br>
 }
 
 /**
- * Puts a whole email together. `blocks` are the rows between the pink top and the footer.
+ * Puts a whole email together. `blocks` are the rows between the teal top and the footer.
  * `preheader` is the grey preview line a mail app shows next to the subject.
  * `reason` is the footer's first line: why this person got this email.
  */
@@ -193,4 +193,30 @@ ${cardEnd()}
 </table>
 ${footer(opts.reason)}
 </td></tr></table></body></html>`;
+}
+
+/**
+ * A personal note from one of the team: no card, no logo, no colours, just words, the way a
+ * friend's email looks in an inbox. Used for everything that is not a code or a receipt.
+ * `paragraphs` are HTML you trust (run outside values through esc() first). `signature` is the
+ * sender's first name, set on its own line.
+ */
+export function plainEmail(opts: { preheader: string; paragraphs: string[]; signature: string; ps?: string }): string {
+  const p = (html: string) => `<p style="margin:0 0 16px;font:400 15px/1.6 ${F.sans};color:#222222;">${html}</p>`;
+  const ps = opts.ps ? `<p style="margin:22px 0 0;font:400 14px/1.6 ${F.sans};color:#555555;">${opts.ps}</p>` : "";
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#ffffff;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${esc(opts.preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;"><tr><td style="padding:24px 20px 40px;">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;"><tr><td>
+${opts.paragraphs.map(p).join("\n")}
+<p style="margin:0;font:400 15px/1.6 ${F.sans};color:#222222;">${esc(opts.signature)}</p>
+${ps}
+</td></tr></table>
+</td></tr></table></body></html>`;
+}
+
+/** A link inside a personal note: plain, underlined, the way a mail app shows one. */
+export function link(label: string, href: string): string {
+  return `<a href="${esc(href)}" style="color:#1a56db;text-decoration:underline;">${esc(label)}</a>`;
 }

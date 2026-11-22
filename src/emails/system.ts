@@ -196,27 +196,36 @@ ${footer(opts.reason)}
 }
 
 /**
- * A personal note from one of the team: no card, no logo, no colours, just words, the way a
- * friend's email looks in an inbox. Used for everything that is not a code or a receipt.
- * `paragraphs` are HTML you trust (run outside values through esc() first). `signature` is the
- * sender's first name, set on its own line.
+ * A personal note from one of the team, in the brand but lighter than the account emails: the
+ * same ink-outlined card with a slim teal top and a small wordmark, then plain words written
+ * like a friend would, and a signature with the sender's initial in a teal circle.
+ * `paragraphs` are HTML you trust (run outside values through esc() first).
  */
 export function plainEmail(opts: { preheader: string; paragraphs: string[]; signature: string; ps?: string }): string {
-  const p = (html: string) => `<p style="margin:0 0 16px;font:400 15px/1.6 ${F.sans};color:#222222;">${html}</p>`;
-  const ps = opts.ps ? `<p style="margin:22px 0 0;font:400 14px/1.6 ${F.sans};color:#555555;">${opts.ps}</p>` : "";
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#ffffff;">
+  const p = (html: string) => `<p style="margin:0 0 16px;font:400 16px/1.6 ${F.sans};color:${C.text};">${html}</p>`;
+  const ps = opts.ps ? `<p style="margin:18px 0 0;font:400 14px/1.6 ${F.sans};color:${C.muted};">${opts.ps}</p>` : "";
+  const initial = esc(opts.signature.trim().charAt(0).toUpperCase());
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"></head>
+<body style="margin:0;padding:0;background:${C.page};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${esc(opts.preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;"><tr><td style="padding:24px 20px 40px;">
-<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;"><tr><td>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page};"><tr><td align="center" style="padding:36px 16px 44px;">
+<table role="presentation" width="${T.width}" cellpadding="0" cellspacing="0" style="max-width:${T.width}px;width:100%;border:${OUTLINE};border-radius:${T.radius.card}px;overflow:hidden;border-collapse:separate;">
+<tr><td bgcolor="${C.accent}" style="background:${C.accent};background:linear-gradient(135deg,${C.accentLight} 0%,${C.accent} 55%,${C.accentDeep} 100%);padding:14px ${T.gutter}px;border-bottom:${OUTLINE};font:800 24px/1 ${F.sans};letter-spacing:-1.2px;color:#ffffff;">lazur</td></tr>
+<tr><td style="background:${C.card};padding:30px ${T.gutter}px 8px;">
 ${opts.paragraphs.map(p).join("\n")}
-<p style="margin:0;font:400 15px/1.6 ${F.sans};color:#222222;">${esc(opts.signature)}</p>
+</td></tr>
+<tr><td style="background:${C.card};padding:4px ${T.gutter}px 30px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td width="44" valign="middle"><div style="width:36px;height:36px;border-radius:18px;background:${C.accent};border:${OUTLINE};color:#ffffff;font:700 16px/36px ${F.sans};text-align:center;">${initial}</div></td>
+<td valign="middle" style="font:600 16px/1.3 ${F.sans};color:${C.text};">${esc(opts.signature)}<br><span style="font:400 13px ${F.sans};color:${C.muted};">from Lazur</span></td>
+</tr></table>
 ${ps}
-</td></tr></table>
+</td></tr>
+</table>
 </td></tr></table></body></html>`;
 }
 
-/** A link inside a personal note: plain, underlined, the way a mail app shows one. */
+/** A link inside a personal note: underlined, in the deep teal. */
 export function link(label: string, href: string): string {
-  return `<a href="${esc(href)}" style="color:#1a56db;text-decoration:underline;">${esc(label)}</a>`;
+  return `<a href="${esc(href)}" style="color:${C.accentDeep};font-weight:600;text-decoration:underline;">${esc(label)}</a>`;
 }

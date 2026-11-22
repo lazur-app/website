@@ -20,7 +20,7 @@ const BLOCKS: [string, string][] = [
   ["divider", "Dashed line between two parts."],
   ["finePrint", "Small grey closing words."],
   ["footer", "Why you got this, plus site, help and privacy links. Added to every branded email."],
-  ["plainEmail", "A personal note: no design, just words and a first-name signature."],
+  ["plainEmail", "A personal note: slim teal top, plain friendly words, signature with the sender’s initial."],
 ];
 
 /** The email design system on one page: the colours, the blocks, and every email built from them. */
@@ -30,7 +30,7 @@ export default function EmailSystemLab() {
     <main className="min-h-screen bg-[#e9e6e1] px-6 py-10">
       <h1 className="font-display text-3xl font-medium tracking-[-0.03em] text-[var(--foreground)]">Email design system</h1>
       <p className="mt-2 max-w-2xl text-[15px] text-[var(--foreground-muted)]">
-        Account emails (codes, receipts) go out through Resend in the branded design. Everything else is a plain personal note from
+        Account emails (codes, receipts) go out through Resend in the branded design. Everything else is a personal note, lighter but still branded, from
         Veer, Aayush or Vaidik, sent from their own mailbox. Code: src/emails/system.ts (blocks) and src/emails/templates.ts (the
         emails).
       </p>
@@ -72,7 +72,7 @@ export default function EmailSystemLab() {
                       built.from.via === "resend" ? "bg-[#ecfdf9] text-[#0f766e]" : "bg-black/[0.06] text-[var(--foreground-muted)]"
                     }`}
                   >
-                    {built.from.via === "resend" ? "Resend, branded" : "their mailbox, plain"}
+                    {built.from.via === "resend" ? "Resend, branded" : "their mailbox, personal"}
                   </span>
                 </p>
                 <p className="mt-1">

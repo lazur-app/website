@@ -4,7 +4,7 @@
  * - Account emails (codes, receipts) go out through Resend from the Lazur address, in the
  *   branded "Ticket" design from ./system.
  * - Everything else is a personal note from one of the team (Veer, Aayush or Vaidik), sent from
- *   their own mailbox, written the way you would write to a friend, with no design at all.
+ *   their own mailbox, written the way you would write to a friend, in a lighter version of the brand.
  *
  * A template takes the facts for one person and returns who it is from, the subject, the preview
  * line, the HTML and a plain-text copy. To add an email, add a function here and list it in

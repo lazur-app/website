@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { EMAIL_ASSET_BASE, EMAIL_TOKENS } from "@/emails/system";
+import { EMAIL_ASSET_BASE, EMAIL_THEME, EMAIL_THEMES, EMAIL_TOKENS, recolor, type EmailThemeId } from "@/emails/system";
+import { EmailGallery } from "./EmailGallery";
 import { EMAIL_SAMPLES } from "@/emails/templates";
 
 export const metadata: Metadata = {
@@ -8,19 +9,19 @@ export const metadata: Metadata = {
 };
 
 const BLOCKS: [string, string][] = [
-  ["header", "The teal top: wordmark, tagline, optional tilted stamp."],
+  ["header", "The tall coloured top: wordmark, tagline, stickers, optional stamp."],
   ["heading", "The one headline."],
   ["text", "Body paragraph."],
-  ["ticket", "Dashed teal ticket for codes, with a stub."],
+  ["ticket", "Dashed ticket for codes."],
   ["button", "The black pill. One per email."],
   ["steps", "Numbered steps in ink circles."],
   ["facts", "Outlined table for receipts and plan details."],
-  ["note", "Teal note with a small label."],
+  ["note", "Note in the theme colour with a small label."],
   ["sayThis", "Words to say to Lazur, in serif italic."],
   ["divider", "Dashed line between two parts."],
   ["finePrint", "Small grey closing words."],
   ["footer", "Why you got this, plus site, help and privacy links. Added to every branded email."],
-  ["plainEmail", "A personal note: slim teal top, plain friendly words, signature with the sender’s initial."],
+  ["plainEmail", "A personal note: the same tall top, plain friendly words, signed with a first name."],
 ];
 
 /**
@@ -41,6 +42,7 @@ const SOURCES: [string, string][] = [
 /** The email design system on one page: the colours, the blocks, and every email built from them. */
 export default function EmailSystemLab() {
   const colors = Object.entries(EMAIL_TOKENS.color);
+  const themeIds = Object.keys(EMAIL_THEMES) as EmailThemeId[];
   return (
     <main className="min-h-screen bg-[#e9e6e1] px-6 py-10">
       <h1 className="font-display text-3xl font-medium tracking-[-0.03em] text-[var(--foreground)]">Email design system</h1>
@@ -80,36 +82,26 @@ export default function EmailSystemLab() {
       </ul>
 
       <h2 className="mt-10 text-[17px] font-semibold text-[var(--foreground)]">The emails</h2>
-      <div className="mt-4 grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
-        {EMAIL_SAMPLES.map((sample) => {
+      <EmailGallery
+        initial={EMAIL_THEME}
+        themes={themeIds.map((id) => ({ id, name: EMAIL_THEMES[id].name, swatch: EMAIL_THEMES[id].accent }))}
+        emails={EMAIL_SAMPLES.map((sample) => {
           const built = sample.build();
-          return (
-            <section key={sample.id} id={sample.id}>
-              <h3 className="text-[16px] font-semibold text-[var(--foreground)]">{sample.name}</h3>
-              <p className="mt-0.5 text-[13px] text-[var(--foreground-muted)]">{sample.when}</p>
-              <div className="mt-2 rounded-t-xl border border-b-0 border-black/15 bg-white px-4 py-2.5 text-[13px]">
-                <p className="flex items-center gap-2">
-                  <span className="font-semibold text-[var(--foreground)]">{built.from.name}</span>
-                  <span className="text-[var(--foreground-faint)]">&lt;{built.from.address}&gt;</span>
-                  <span
-                    className={`ml-auto rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-                      built.from.via === "resend" ? "bg-[#ecfdf9] text-[#0f766e]" : "bg-black/[0.06] text-[var(--foreground-muted)]"
-                    }`}
-                  >
-                    {built.from.via === "resend" ? "Resend, branded" : "their mailbox, personal"}
-                  </span>
-                </p>
-                <p className="mt-1">
-                  <span className="font-semibold text-[var(--foreground)]">{built.subject}</span>{" "}
-                  <span className="text-[var(--foreground-faint)]">{built.preheader}</span>
-                </p>
-              </div>
-              {/* The sticker images are on this site already; production emails use the full lazur.app address. */}
-              <iframe title={sample.name} srcDoc={built.html.replaceAll(EMAIL_ASSET_BASE, "/email")} className="h-[900px] w-full rounded-b-xl border border-black/15 bg-white" />
-            </section>
-          );
+          // The sticker images are on this site already; real emails use the full lazur.app address.
+          const local = built.html.replaceAll(EMAIL_ASSET_BASE, "/email");
+          return {
+            id: sample.id,
+            name: sample.name,
+            when: sample.when,
+            fromName: built.from.name,
+            fromAddress: built.from.address,
+            via: built.from.via,
+            subject: built.subject,
+            preheader: built.preheader,
+            html: Object.fromEntries(themeIds.map((id) => [id, recolor(local, id)])),
+          };
         })}
-      </div>
+      />
     </main>
   );
 }

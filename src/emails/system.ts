@@ -1,12 +1,33 @@
 /**
  * Lazur's email design system ("Ticket"). Every email Lazur sends is put together from the blocks
- * in this file, so they all look like one brand: an ink-outlined card, a teal top with the big
+ * in this file, so they all look like one brand: an ink-outlined card, a coloured top with the big
  * wordmark, plain friendly words, one black pill button.
  *
  * The blocks return plain email HTML (tables and inline styles, system fonts, no images), which
  * is what mail apps reliably draw. Nothing here needs a browser or React, so the same strings can
  * be sent from anywhere. See /lab/emails for every block and every email drawn out.
  */
+
+/**
+ * The colour themes an email can be drawn in: the header band, the code ticket, notes and links
+ * all take their colour from the theme. EMAIL_THEME is the one the real emails use; /lab/emails
+ * can show every email in each of them.
+ */
+export const EMAIL_THEMES = {
+  pink: { name: "Pink", accent: "#ff4f93", accentLight: "#ff8dbb", accentDeep: "#c81e63", accentWash: "#fff3f8", tagline: "#fff0f6" },
+  teal: { name: "Teal", accent: "#14b8a6", accentLight: "#5eead4", accentDeep: "#0f766e", accentWash: "#ecfdf9", tagline: "#f0fdfa" },
+  lilac: { name: "Lilac", accent: "#8b5cf6", accentLight: "#c4b5fd", accentDeep: "#5b21b6", accentWash: "#f5f3ff", tagline: "#f5f3ff" },
+  blue: { name: "Blue", accent: "#3b82f6", accentLight: "#93c5fd", accentDeep: "#1d4ed8", accentWash: "#eff6ff", tagline: "#eff6ff" },
+  ember: { name: "Ember", accent: "#f97316", accentLight: "#fdba74", accentDeep: "#c2410c", accentWash: "#fff7ed", tagline: "#fff7ed" },
+  ink: { name: "Ink", accent: "#2a2724", accentLight: "#57534e", accentDeep: "#0c0b0a", accentWash: "#f5f5f4", tagline: "#e7e5e4" },
+} as const;
+
+export type EmailThemeId = keyof typeof EMAIL_THEMES;
+
+/** The theme every real email is sent in. */
+export const EMAIL_THEME: EmailThemeId = "pink";
+
+const THEME = EMAIL_THEMES[EMAIL_THEME];
 
 /** Colours, type and sizes. Change a value here and every email follows. */
 export const EMAIL_TOKENS = {
@@ -17,10 +38,11 @@ export const EMAIL_TOKENS = {
     text: "#1c1917",
     muted: "#6b6560",
     faint: "#a8a29e",
-    accent: "#14b8a6",
-    accentLight: "#5eead4",
-    accentDeep: "#0f766e",
-    accentWash: "#ecfdf9",
+    accent: THEME.accent,
+    accentLight: THEME.accentLight,
+    accentDeep: THEME.accentDeep,
+    accentWash: THEME.accentWash,
+    tagline: THEME.tagline,
     rule: "#e7e2dc",
   },
   font: {
@@ -65,7 +87,7 @@ function row(inner: string, pad = `0 ${T.gutter}px`, bg: string = C.card): strin
 }
 
 /**
- * The teal top of every email: a tall band with the big wordmark and tagline on the left and a
+ * The coloured top of every email: a tall band in the theme colour with the big wordmark and tagline on the left and a
  * cluster of chrome stickers on the right (one big one picked per email, two small ones that stay
  * the same), and an optional stamp ("3 DAYS FREE") above the wordmark.
  */
@@ -77,7 +99,7 @@ export function header(opts: { sticker: EmailSticker; stamp?: string }): string 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
 <td valign="bottom" style="padding-right:8px;">
 ${stamp}<div style="font:800 76px/0.82 ${F.sans};letter-spacing:-4.5px;color:#ffffff;">lazur</div>
-<div style="font:600 17px/1.35 ${F.sans};color:#f0fdfa;padding-top:14px;max-width:220px;">your AI companion,<br>right by your cursor.</div>
+<div style="font:600 17px/1.35 ${F.sans};color:${C.tagline};padding-top:14px;max-width:220px;">your AI companion,<br>right by your cursor.</div>
 </td>
 <td width="150" valign="middle" align="right">
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
@@ -116,7 +138,7 @@ export function button(label: string, href: string): string {
   );
 }
 
-/** A dashed teal ticket with a small label and a big value. Used for codes. */
+/** A dashed ticket in the theme colour with a small label and a big value. Used for codes. */
 export function ticket(opts: { label: string; value: string }): string {
   return row(
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1.5px dashed ${C.ink};border-radius:${T.radius.block}px;background:${C.accentWash};"><tr>
@@ -160,7 +182,7 @@ export function facts(items: { label: string; value: string; strong?: boolean }[
   );
 }
 
-/** A teal note with a short label: a tip, a reminder, something worth a second look. */
+/** A note in the theme colour with a short label: a tip, a reminder, something worth a second look. */
 export function note(label: string, html: string): string {
   return row(
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.accentWash};border-radius:${T.radius.block}px;"><tr><td style="padding:16px 18px;">
@@ -198,7 +220,7 @@ ${reason}<br>
 }
 
 /**
- * Puts a whole email together. `blocks` are the rows between the teal top and the footer.
+ * Puts a whole email together. `blocks` are the rows between the coloured top and the footer.
  * `preheader` is the grey preview line a mail app shows next to the subject.
  * `reason` is the footer's first line: why this person got this email.
  */
@@ -217,7 +239,7 @@ ${footer(opts.reason)}
 }
 
 /**
- * A personal note from one of the team: the same card and tall teal top as the account emails,
+ * A personal note from one of the team: the same card and tall coloured top as the account emails,
  * then plain words written like a friend would, signed with a first name. No buttons, no boxes.
  * `paragraphs` are HTML you trust (run outside values through esc() first).
  */
@@ -242,7 +264,22 @@ ${ps}
 </td></tr></table></body></html>`;
 }
 
-/** A link inside a personal note: underlined, in the deep teal. */
+/** A link inside a personal note: underlined, in the theme's deep colour. */
 export function link(label: string, href: string): string {
   return `<a href="${esc(href)}" style="color:${C.accentDeep};font-weight:600;text-decoration:underline;">${esc(label)}</a>`;
+}
+
+/**
+ * Redraws an email in another theme by swapping the sent theme's colours for that theme's. Used by
+ * /lab/emails to compare themes; the real emails are built in EMAIL_THEME directly.
+ */
+export function recolor(html: string, to: EmailThemeId): string {
+  if (to === EMAIL_THEME) return html;
+  const from = EMAIL_THEMES[EMAIL_THEME];
+  const target = EMAIL_THEMES[to];
+  const keys = ["accent", "accentLight", "accentDeep", "accentWash", "tagline"] as const;
+  const map = new Map<string, string>();
+  for (const k of keys) map.set(from[k].toLowerCase(), target[k]);
+  const pattern = new RegExp([...map.keys()].join("|"), "gi");
+  return html.replace(pattern, (m) => map.get(m.toLowerCase()) ?? m);
 }

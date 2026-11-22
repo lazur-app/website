@@ -42,7 +42,12 @@ function hey(name?: string | null) {
 /* ------------------------------------------------------------------ account emails (Resend, branded) */
 
 /** Confirm a new account's email address: a 6-digit code and a one-tap link. */
-export function verifyEmail(p: { code: string; link: string; minutes?: number }): BuiltEmail {
+/** The page a "Copy code" button opens: it copies the code (kept after the #, so it never reaches a server). */
+function copyLink(code: string) {
+  return `${SITE}/copy#${encodeURIComponent(code)}`;
+}
+
+export function verifyEmail(p: { code: string; minutes?: number }): BuiltEmail {
   const minutes = p.minutes ?? 10;
   const preheader = `Your Lazur code is ${p.code}. It works for ${minutes} minutes.`;
   return {
@@ -51,22 +56,23 @@ export function verifyEmail(p: { code: string; link: string; minutes?: number })
     preheader,
     html: email({
       preheader,
+      sticker: "key",
       stamp: "3 DAYS FREE",
       blocks: [
         heading("Hey, quick check."),
-        text(`Is this really your email? Use the code below, or just hit the button. It works for ${minutes} minutes.`),
-        ticket({ label: "Your code", value: p.code, stub: "ADMIT ONE" }),
-        button("Confirm my email", p.link),
+        text(`Is this really your email? Type this code into Lazur. It works for ${minutes} minutes.`),
+        ticket({ label: "Your code", value: p.code }),
+        button("Copy code", copyLink(p.code)),
         finePrint(IGNORE),
       ],
       reason: "You got this because someone signed up for Lazur with this address.",
     }),
-    text: `Hey, quick check.\n\nYour Lazur code is ${p.code}. It works for ${minutes} minutes.\nOr confirm with this link: ${p.link}\n\n${IGNORE}`,
+    text: `Hey, quick check.\n\nYour Lazur code is ${p.code}. It works for ${minutes} minutes.\n\n${IGNORE}`,
   };
 }
 
 /** Sign in with a code instead of a password. */
-export function signInCode(p: { code: string; link: string; minutes?: number }): BuiltEmail {
+export function signInCode(p: { code: string; minutes?: number }): BuiltEmail {
   const minutes = p.minutes ?? 10;
   const preheader = `Your sign-in code is ${p.code}. It works for ${minutes} minutes.`;
   return {
@@ -75,16 +81,17 @@ export function signInCode(p: { code: string; link: string; minutes?: number }):
     preheader,
     html: email({
       preheader,
+      sticker: "cursor",
       blocks: [
         heading("Welcome back."),
         text(`Here is your code to sign in. It works for ${minutes} minutes and only once.`),
-        ticket({ label: "Sign-in code", value: p.code, stub: "ONE USE" }),
-        button("Sign me in", p.link),
+        ticket({ label: "Sign-in code", value: p.code }),
+        button("Copy code", copyLink(p.code)),
         finePrint("Not you? Ignore this email and your account stays as it is."),
       ],
       reason: "You got this because someone asked to sign in to Lazur with this address.",
     }),
-    text: `Welcome back.\n\nYour Lazur sign-in code is ${p.code}. It works for ${minutes} minutes and only once.\nOr sign in with this link: ${p.link}\n\nNot you? Ignore this email and your account stays as it is.`,
+    text: `Welcome back.\n\nYour Lazur sign-in code is ${p.code}. It works for ${minutes} minutes and only once.\n\nNot you? Ignore this email and your account stays as it is.`,
   };
 }
 
@@ -98,6 +105,7 @@ export function receipt(p: { name?: string | null; plan: string; amount: string;
     preheader,
     html: email({
       preheader,
+      sticker: "crown",
       blocks: [
         heading("Paid. Thank you."),
         text(`${first ? `Hey ${esc(first)}, here` : "Here"} is your receipt.`),
@@ -126,6 +134,7 @@ export function paymentFailed(p: { name?: string | null; plan: string; amount: s
     preheader,
     html: email({
       preheader,
+      sticker: "bolt",
       blocks: [
         heading("Your card said no."),
         text(`${first ? `Hey ${esc(first)}, we` : "We"} tried to charge ${esc(p.amount)} for Lazur ${esc(p.plan)} and the bank declined it. It happens.`),
@@ -147,7 +156,7 @@ export function welcome(p: { name?: string | null }): BuiltEmail {
   const paragraphs = [
     hey(p.name),
     "it's veer, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself instead of sending you some newsletter.",
-    `quick version of how it works: open lazur on your mac, hold <b>&#8997; &#8984;</b> and just talk. let go and it does the thing, in whatever app you're in. if you haven't downloaded it yet, it's ${link("here", `${SITE}/download`)}.`,
+    `quick version of how it works: open lazur on your mac, hold <b>Option + Command</b> and just talk. let go and it does the thing, in whatever app you're in. if you haven't downloaded it yet, it's ${link("here", `${SITE}/download`)}.`,
     "the first thing i'd try: open an email and say \"reply that thursday works for me\". that's usually the moment it clicks.",
     "you've got 3 days of pro, no card. and if anything feels off or confusing, just hit reply. it comes straight to me and i actually read these.",
   ];
@@ -155,7 +164,7 @@ export function welcome(p: { name?: string | null }): BuiltEmail {
     from: SENDERS.veer,
     subject: "hey, it's veer from lazur",
     preheader,
-    html: plainEmail({ preheader, paragraphs, signature: "veer" }),
+    html: plainEmail({ preheader, sticker: "heart", paragraphs, signature: "Veer" }),
     text: `${hey(p.name)}\n\nit's veer, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself.\n\nopen lazur on your mac, hold option + command and just talk. let go and it does the thing, in whatever app you're in. download: ${SITE}/download\n\nfirst thing to try: open an email and say "reply that thursday works for me".\n\nyou've got 3 days of pro, no card. anything off, just hit reply.\n\nveer`,
   };
 }
@@ -174,7 +183,7 @@ export function notOpenedYet(p: { name?: string | null }): BuiltEmail {
     from: SENDERS.aayush,
     subject: "did lazur get stuck?",
     preheader,
-    html: plainEmail({ preheader, paragraphs, signature: "aayush" }),
+    html: plainEmail({ preheader, sticker: "ghost", paragraphs, signature: "Aayush" }),
     text: `${hey(p.name)}\n\naayush here from lazur. i noticed you signed up yesterday but lazur hasn't been opened on your mac yet.\n\nusually it's one of these: the download is still in your Downloads folder, mac asked for a permission and it got closed, or the shortcut didn't do anything the first time.\n\nanother go: ${SITE}/download\n\nif something broke, reply and tell me what you saw.\n\naayush`,
   };
 }
@@ -197,7 +206,7 @@ export function trialEnding(p: { name?: string | null; hoursLeft: number; wordsD
     from: SENDERS.vaidik,
     subject: `your trial ends ${when}`,
     preheader,
-    html: plainEmail({ preheader, paragraphs, signature: "vaidik" }),
+    html: plainEmail({ preheader, sticker: "smiley", paragraphs, signature: "Vaidik" }),
     text: `${hey(p.name)}\n\nvaidik from lazur. just a heads up that your free trial ends ${when}.\n\nif it's been useful, pro is $18 a month: ${SITE}/pricing\nif not, do nothing, you won't be charged.\n\nwhat did you think? one line is plenty, just reply.\n\nvaidik`,
   };
 }
@@ -215,7 +224,7 @@ export function windowsWaitlist(p: { name?: string | null }): BuiltEmail {
     from: SENDERS.aayush,
     subject: "you're on the windows list",
     preheader,
-    html: plainEmail({ preheader, paragraphs, signature: "aayush" }),
+    html: plainEmail({ preheader, sticker: "cloud", paragraphs, signature: "Aayush" }),
     text: `${hey(p.name)}\n\naayush from lazur. got your name down for the windows version.\n\nlazur only runs on mac right now, but windows is being built. you'll get one email from me the day it's ready.\n\nwhat would you use it for first? just reply.\n\naayush`,
   };
 }
@@ -224,8 +233,8 @@ export function windowsWaitlist(p: { name?: string | null }): BuiltEmail {
 
 /** One of each, with made-up people, for /lab/emails and for tests. In the order a person meets them. */
 export const EMAIL_SAMPLES: { id: string; name: string; when: string; build: () => BuiltEmail }[] = [
-  { id: "verify", name: "Confirm your email", when: "Someone signs up with an email address.", build: () => verifyEmail({ code: "482916", link: `${SITE}/auth/callback` }) },
-  { id: "signin", name: "Sign-in code", when: "Someone signs in with their email.", build: () => signInCode({ code: "730254", link: `${SITE}/auth/callback` }) },
+  { id: "verify", name: "Confirm your email", when: "Someone signs up with an email address.", build: () => verifyEmail({ code: "482916" }) },
+  { id: "signin", name: "Sign-in code", when: "Someone signs in with their email.", build: () => signInCode({ code: "730254" }) },
   { id: "welcome", name: "Welcome", when: "Right after the email is confirmed.", build: () => welcome({ name: "Sam Carter" }) },
   { id: "nudge", name: "Not opened yet", when: "24 hours after signing up, if the app was never opened.", build: () => notOpenedYet({ name: "Sam Carter" }) },
   { id: "trial", name: "Trial ending", when: "A day before the 3-day trial ends.", build: () => trialEnding({ name: "Sam Carter", hoursLeft: 20, wordsDictated: 4380 }) },

@@ -39,6 +39,16 @@ const C = T.color;
 const F = T.font;
 const OUTLINE = `1.5px solid ${C.ink}`;
 
+/** Where the sticker images live (public/email on the website). Mail apps need a full address. */
+export const EMAIL_ASSET_BASE = "https://www.lazur.app/email";
+
+/** The stickers drawn for emails: the site's own chrome stickers, as images (public/email/<name>.png). */
+export type EmailSticker = "star" | "heart" | "smiley" | "key" | "cursor" | "mic" | "check" | "bolt" | "planet" | "crown" | "cloud" | "ghost";
+
+function stickerImg(name: EmailSticker, size: number, extra = ""): string {
+  return `<img src="${EMAIL_ASSET_BASE}/${name}.png" width="${size}" height="${size}" alt="" style="display:block;width:${size}px;height:${size}px;border:0;${extra}">`;
+}
+
 /** Makes text from outside (a name, an email address) safe to place in the HTML. */
 export function esc(value: string): string {
   return value
@@ -54,16 +64,30 @@ function row(inner: string, pad = `0 ${T.gutter}px`, bg: string = C.card): strin
   return `<tr><td style="background:${bg};padding:${pad};">${inner}</td></tr>`;
 }
 
-/** The teal top of every email: the wordmark, the tagline, and an optional tilted stamp ("3 DAYS FREE"). */
-export function header(opts: { stamp?: string } = {}): string {
+/**
+ * The teal top of every email: a tall band with the big wordmark and tagline on the left and a
+ * cluster of chrome stickers on the right (one big one picked per email, two small ones that stay
+ * the same), and an optional stamp ("3 DAYS FREE") above the wordmark.
+ */
+export function header(opts: { sticker: EmailSticker; stamp?: string }): string {
   const stamp = opts.stamp
-    ? `<td align="right" valign="top"><div style="display:inline-block;transform:rotate(9deg);border:${OUTLINE};background:${C.page};border-radius:${T.radius.pill}px;padding:7px 13px;font:700 12px ${F.sans};letter-spacing:.4px;color:${C.ink};white-space:nowrap;">${esc(opts.stamp)}</div></td>`
+    ? `<div style="display:inline-block;border:${OUTLINE};background:${C.page};border-radius:${T.radius.pill}px;padding:6px 12px;font:700 11px ${F.sans};letter-spacing:1px;color:${C.ink};white-space:nowrap;margin-bottom:18px;">${esc(opts.stamp)}</div><br>`
     : "";
-  return `<tr><td bgcolor="${C.accent}" style="background:${C.accent};background:linear-gradient(135deg,${C.accentLight} 0%,${C.accent} 55%,${C.accentDeep} 100%);padding:30px ${T.gutter}px 26px;border-bottom:${OUTLINE};">
+  return `<tr><td bgcolor="${C.accent}" style="background:${C.accent};background:linear-gradient(150deg,${C.accentLight} 0%,${C.accent} 48%,${C.accentDeep} 100%);padding:38px 26px 34px ${T.gutter}px;border-bottom:${OUTLINE};">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="font:800 58px/0.9 ${F.sans};letter-spacing:-3.5px;color:#ffffff;">lazur</td>${stamp}
+<td valign="bottom" style="padding-right:8px;">
+${stamp}<div style="font:800 76px/0.82 ${F.sans};letter-spacing:-4.5px;color:#ffffff;">lazur</div>
+<div style="font:600 17px/1.35 ${F.sans};color:#f0fdfa;padding-top:14px;max-width:220px;">your AI companion,<br>right by your cursor.</div>
+</td>
+<td width="150" valign="middle" align="right">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td valign="top" style="padding-top:4px;">${stickerImg("star", 40)}</td>
+<td>${stickerImg(opts.sticker, 108)}</td>
+</tr><tr>
+<td></td><td align="left" style="padding-left:6px;">${stickerImg("planet", 46)}</td>
 </tr></table>
-<div style="font:italic 400 21px ${F.serif};color:#ffffff;padding-top:10px;">your AI companion, right by your cursor.</div>
+</td>
+</tr></table>
 </td></tr>`;
 }
 
@@ -92,17 +116,14 @@ export function button(label: string, href: string): string {
   );
 }
 
-/** A dashed teal ticket: a small label, a big value, and an optional stub on the right. Used for codes. */
-export function ticket(opts: { label: string; value: string; stub?: string }): string {
-  const stub = opts.stub
-    ? `<td width="96" align="center" style="border-left:1.5px dashed ${C.ink};font:700 11px/1.5 ${F.sans};letter-spacing:1.5px;color:${C.text};">${esc(opts.stub).replace(/ /g, "<br>")}</td>`
-    : "";
+/** A dashed teal ticket with a small label and a big value. Used for codes. */
+export function ticket(opts: { label: string; value: string }): string {
   return row(
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1.5px dashed ${C.ink};border-radius:${T.radius.block}px;background:${C.accentWash};"><tr>
-<td style="padding:20px 22px;">
+<td align="center" style="padding:22px 18px;">
 <div style="font:700 11px ${F.sans};letter-spacing:2px;color:${C.accentDeep};">${esc(opts.label.toUpperCase())}</div>
-<div style="font:700 40px ${F.mono};letter-spacing:9px;color:${C.text};padding-top:6px;">${esc(opts.value)}</div>
-</td>${stub}
+<div style="font:700 42px ${F.mono};letter-spacing:10px;color:${C.text};padding-top:8px;">${esc(opts.value)}</div>
+</td>
 </tr></table>`,
     `20px ${T.gutter}px 0`,
   );
@@ -181,13 +202,13 @@ ${reason}<br>
  * `preheader` is the grey preview line a mail app shows next to the subject.
  * `reason` is the footer's first line: why this person got this email.
  */
-export function email(opts: { preheader: string; stamp?: string; blocks: string[]; reason: string }): string {
+export function email(opts: { preheader: string; sticker: EmailSticker; stamp?: string; blocks: string[]; reason: string }): string {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"></head>
 <body style="margin:0;padding:0;background:${C.page};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${esc(opts.preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page};"><tr><td align="center" style="padding:36px 16px 44px;">
 <table role="presentation" width="${T.width}" cellpadding="0" cellspacing="0" style="max-width:${T.width}px;width:100%;border:${OUTLINE};border-radius:${T.radius.card}px;overflow:hidden;border-collapse:separate;">
-${header({ stamp: opts.stamp })}
+${header({ sticker: opts.sticker, stamp: opts.stamp })}
 ${opts.blocks.join("\n")}
 ${cardEnd()}
 </table>
@@ -196,29 +217,25 @@ ${footer(opts.reason)}
 }
 
 /**
- * A personal note from one of the team, in the brand but lighter than the account emails: the
- * same ink-outlined card with a slim teal top and a small wordmark, then plain words written
- * like a friend would, and a signature with the sender's initial in a teal circle.
+ * A personal note from one of the team: the same card and tall teal top as the account emails,
+ * then plain words written like a friend would, signed with a first name. No buttons, no boxes.
  * `paragraphs` are HTML you trust (run outside values through esc() first).
  */
-export function plainEmail(opts: { preheader: string; paragraphs: string[]; signature: string; ps?: string }): string {
+export function plainEmail(opts: { preheader: string; sticker: EmailSticker; paragraphs: string[]; signature: string; ps?: string }): string {
   const p = (html: string) => `<p style="margin:0 0 16px;font:400 16px/1.6 ${F.sans};color:${C.text};">${html}</p>`;
   const ps = opts.ps ? `<p style="margin:18px 0 0;font:400 14px/1.6 ${F.sans};color:${C.muted};">${opts.ps}</p>` : "";
-  const initial = esc(opts.signature.trim().charAt(0).toUpperCase());
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"></head>
 <body style="margin:0;padding:0;background:${C.page};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${esc(opts.preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.page};"><tr><td align="center" style="padding:36px 16px 44px;">
 <table role="presentation" width="${T.width}" cellpadding="0" cellspacing="0" style="max-width:${T.width}px;width:100%;border:${OUTLINE};border-radius:${T.radius.card}px;overflow:hidden;border-collapse:separate;">
-<tr><td bgcolor="${C.accent}" style="background:${C.accent};background:linear-gradient(135deg,${C.accentLight} 0%,${C.accent} 55%,${C.accentDeep} 100%);padding:14px ${T.gutter}px;border-bottom:${OUTLINE};font:800 24px/1 ${F.sans};letter-spacing:-1.2px;color:#ffffff;">lazur</td></tr>
+${header({ sticker: opts.sticker })}
 <tr><td style="background:${C.card};padding:30px ${T.gutter}px 8px;">
-${opts.paragraphs.map(p).join("\n")}
+${opts.paragraphs.map(p).join("")}
 </td></tr>
-<tr><td style="background:${C.card};padding:4px ${T.gutter}px 30px;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td width="44" valign="middle"><div style="width:36px;height:36px;border-radius:18px;background:${C.accent};border:${OUTLINE};color:#ffffff;font:700 16px/36px ${F.sans};text-align:center;">${initial}</div></td>
-<td valign="middle" style="font:600 16px/1.3 ${F.sans};color:${C.text};">${esc(opts.signature)}<br><span style="font:400 13px ${F.sans};color:${C.muted};">from Lazur</span></td>
-</tr></table>
+<tr><td style="background:${C.card};padding:4px ${T.gutter}px 32px;">
+<p style="margin:0;font:600 16px/1.3 ${F.sans};color:${C.text};">${esc(opts.signature)}</p>
+<p style="margin:2px 0 0;font:400 13px ${F.sans};color:${C.muted};">Lazur</p>
 ${ps}
 </td></tr>
 </table>

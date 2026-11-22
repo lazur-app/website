@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EMAIL_TOKENS } from "@/emails/system";
+import { EMAIL_ASSET_BASE, EMAIL_TOKENS } from "@/emails/system";
 import { EMAIL_SAMPLES } from "@/emails/templates";
 
 export const metadata: Metadata = {
@@ -21,6 +21,21 @@ const BLOCKS: [string, string][] = [
   ["finePrint", "Small grey closing words."],
   ["footer", "Why you got this, plus site, help and privacy links. Added to every branded email."],
   ["plainEmail", "A personal note: slim teal top, plain friendly words, signature with the sender’s initial."],
+];
+
+/**
+ * Where every personal detail in the emails comes from, so nothing in them is made up. The
+ * backend fills these in when it sends; the samples on this page use a made-up person.
+ */
+const SOURCES: [string, string][] = [
+  ["First name (all emails)", "the account's name (GET /auth/me: name), first word only; left out when there is none"],
+  ["Codes", "made by the backend when someone signs up or signs in"],
+  ["Not opened yet", "sent only if the app has not signed in 24 hours after sign-up (/auth/me: onboarding_completed is still false)"],
+  ["Trial ends tomorrow / in N days", "/auth/me: trial_ends_at"],
+  ["Words spoken", "/auth/me: word_quota_used; the line is left out when it is 0"],
+  ["Plan, amount, dates, invoice link", "the payment record from Polar (billing)"],
+  ["Retry date", "Polar's next attempt on a failed payment"],
+  ["Links", "real pages on lazur.app: /download, /pricing, /billing, /dashboard, /copy"],
 ];
 
 /** The email design system on one page: the colours, the blocks, and every email built from them. */
@@ -55,6 +70,15 @@ export default function EmailSystemLab() {
         ))}
       </ul>
 
+      <h2 className="mt-10 text-[17px] font-semibold text-[var(--foreground)]">Where the details come from</h2>
+      <ul className="mt-3 max-w-4xl space-y-1.5 text-[14px] text-[var(--foreground-muted)]">
+        {SOURCES.map(([what, from]) => (
+          <li key={what}>
+            <span className="font-semibold text-[var(--foreground)]">{what}:</span> {from}
+          </li>
+        ))}
+      </ul>
+
       <h2 className="mt-10 text-[17px] font-semibold text-[var(--foreground)]">The emails</h2>
       <div className="mt-4 grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {EMAIL_SAMPLES.map((sample) => {
@@ -80,7 +104,8 @@ export default function EmailSystemLab() {
                   <span className="text-[var(--foreground-faint)]">{built.preheader}</span>
                 </p>
               </div>
-              <iframe title={sample.name} srcDoc={built.html} className="h-[860px] w-full rounded-b-xl border border-black/15 bg-white" />
+              {/* The sticker images are on this site already; production emails use the full lazur.app address. */}
+              <iframe title={sample.name} srcDoc={built.html.replaceAll(EMAIL_ASSET_BASE, "/email")} className="h-[900px] w-full rounded-b-xl border border-black/15 bg-white" />
             </section>
           );
         })}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
-import { BuddyHero } from "@/components/buddy/BuddyHero";
+import { PuzzleHero } from "@/components/lab/puzzle/PuzzleHero";
+import { PlainPageStyle } from "@/components/lab/puzzle/PlainPageStyle";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
@@ -24,10 +25,12 @@ export default function Home() {
   return (
     <MarketingPageShell>
       <HomePageStructuredData />
+      <PlainPageStyle />
       <ReferralCapture />
       <Navbar />
       <main className="overflow-x-clip">
-        <BuddyHero />
+        {/* The plain puzzle hero (also at /lab/3). The earlier ribbon hero is BuddyHero; the other designs are at /lab/1, /lab/2 and /lab/5. */}
+        <PuzzleHero flat />
         <LandingPageSections />
       </main>
       <Footer />

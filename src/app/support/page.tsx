@@ -13,11 +13,11 @@ const UPDATED = "October 26, 2026";
 const CONTACT = "hello@lazur.app";
 
 const linkClass =
-  "font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2";
+  "font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4";
 
 function List({ items }: { items: ReactNode[] }) {
   return (
-    <ul className="mt-2 list-disc space-y-1.5 pl-5">
+    <ul className="mt-3 list-disc space-y-2 pl-6 marker:text-[var(--foreground)]">
       {items.map((item, i) => (
         <li key={i}>{item}</li>
       ))}

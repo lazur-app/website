@@ -11,6 +11,7 @@ import {
   type ExclusiveAccessResult,
 } from "@/lib/exclusiveAccess";
 import { detectPlatform } from "@/lib/platform";
+import { HandUnderline } from "@/components/buddy/HandLoop";
 import { track } from "@/lib/productAnalytics";
 
 export default function ExclusiveAccessPage() {
@@ -65,24 +66,24 @@ export default function ExclusiveAccessPage() {
         </div>
 
         <div className="mb-6 text-center">
-          <span className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-solid)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--foreground-faint)]">
+          <span className="inline-flex items-center rounded-full bg-[#5b4bd6] px-3 py-1 text-[12px] font-bold uppercase tracking-[0.12em] text-white">
             Early access
           </span>
         </div>
 
-        <div className="pricing-bevel-card px-6 py-8 md:px-8">
+        <div className="rounded-[28px] border-[1.5px] border-[#1c1917] bg-white px-4 py-8 shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] sm:px-8">
           {result ? (
             <div className="text-center">
-              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--brand)]/10 text-[var(--brand)]">
-                <Check className="h-6 w-6" strokeWidth={2} />
+              <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#14917a] text-white">
+                <Check className="h-6 w-6" strokeWidth={2.5} />
               </div>
-              <h1 className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+              <h1 className="text-[clamp(2rem,6vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.05em] text-[var(--foreground)]">
                 You&apos;re on the list
               </h1>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--foreground-muted)]">
+              <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
                 {result.message}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--foreground-muted)]">
+              <p className="mt-2 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
                 We&apos;re putting the finishing touches on Lazur. When it&apos;s
                 ready, we&apos;ll email you with access and next steps.
               </p>
@@ -90,20 +91,24 @@ export default function ExclusiveAccessPage() {
           ) : (
             <>
               <div className="mb-8 text-center">
-                <h1 className="font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-                  Exclusive access
+                <h1 className="text-[clamp(2rem,6vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.05em] text-[var(--foreground)]">
+                  <span className="relative inline-block whitespace-nowrap">
+                    Exclusive
+                    <HandUnderline show color="#e11d48" delay={0.4} duration={0.9} offset={2} />
+                  </span>{" "}
+                  access
                 </h1>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--foreground-muted)]">
+                <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
                   Lazur is in active development. Leave your email and we&apos;ll
                   reach out personally when it&apos;s ready for you.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="exclusive-access-email"
-                    className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
+                    className="mb-2 block text-left text-[13px] font-bold text-[var(--foreground)]"
                   >
                     Email address *
                   </label>
@@ -115,14 +120,14 @@ export default function ExclusiveAccessPage() {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="you@company.com"
-                    className="pricing-bevel-field w-full px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                    className="w-full rounded-[12px] border-[1.5px] border-[#1c1917] bg-white px-4 py-3 text-[15px] text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)] outline-none placeholder:text-[var(--foreground-muted)] focus:ring-2 focus:ring-[#1c1917]/15"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="exclusive-access-excitement"
-                    className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
+                    className="mb-2 block text-left text-[13px] font-bold text-[var(--foreground)]"
                   >
                     What are you excited to use Lazur for? *
                   </label>
@@ -132,34 +137,34 @@ export default function ExclusiveAccessPage() {
                     value={excitedToUseFor}
                     onChange={(event) => setExcitedToUseFor(event.target.value)}
                     rows={3}
-                    className="pricing-bevel-field w-full resize-y px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                    className="w-full rounded-[12px] border-[1.5px] border-[#1c1917] bg-white px-4 py-3 text-[15px] text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)] outline-none placeholder:text-[var(--foreground-muted)] focus:ring-2 focus:ring-[#1c1917]/15 resize-y"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="exclusive-access-about"
-                    className="mb-2 block text-left text-[12px] font-medium text-[var(--foreground-muted)]"
+                    className="mb-2 block text-left text-[13px] font-bold text-[var(--foreground)]"
                   >
-                    Tell me about yourself. <span className="text-[var(--foreground-faint)]">(optional)</span>
+                    Tell me about yourself. <span className="font-medium text-[var(--foreground-muted)]">(optional)</span>
                   </label>
                   <textarea
                     id="exclusive-access-about"
                     value={aboutYourself}
                     onChange={(event) => setAboutYourself(event.target.value)}
                     rows={3}
-                    className="pricing-bevel-field w-full resize-y px-4 py-3 text-sm text-[var(--foreground)] outline-none ring-[var(--brand)]/30 transition-shadow focus:ring-2"
+                    className="w-full rounded-[12px] border-[1.5px] border-[#1c1917] bg-white px-4 py-3 text-[15px] text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)] outline-none placeholder:text-[var(--foreground-muted)] focus:ring-2 focus:ring-[#1c1917]/15 resize-y"
                   />
                 </div>
 
                 {error && (
-                  <p className="text-left text-[13px] text-red-600">{error}</p>
+                  <p className="text-left text-[14px] font-medium text-[#be123c]">{error}</p>
                 )}
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="pricing-bevel-button w-full rounded-xl bg-[var(--foreground)] px-4 py-3.5 text-sm font-semibold text-[var(--background)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#1c1917] px-6 text-[16px] font-bold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? "Submitting…" : "Ask for exclusive access"}
                 </button>
@@ -173,7 +178,7 @@ export default function ExclusiveAccessPage() {
             href="/"
             event="nav_link_clicked"
             eventProps={{ location: "exclusive_access_page", label: "Back to home", destination: "/" }}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--foreground-faint)] transition-colors hover:text-[var(--foreground-muted)]"
+            className="inline-flex min-h-[44px] items-center gap-2 text-[15px] font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 transition-colors hover:decoration-[var(--foreground)]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to home

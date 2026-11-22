@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { HandUnderline } from "@/components/buddy/HandLoop";
+import { Sticker } from "@/components/landing/Sticker";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -137,16 +139,26 @@ export default function PricingPage() {
     <MarketingPageShell>
       <Navbar />
 
-      <main className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-16 pt-24 md:pt-28">
-        <div className="mb-8 text-center md:mb-10">
+      <main className="relative overflow-x-clip px-4 pb-24 pt-32 sm:px-6 md:pt-40">
+        {/* A couple of stickers either side of the header, on screens wide enough to have edges. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 hidden h-[420px] xl:block" aria-hidden>
+          <Sticker name="cloud" size={92} rotate={-10} className="absolute left-[8%] top-[160px]" />
+          <Sticker name="flower" size={96} rotate={8} className="absolute right-[8%] top-[150px]" />
+        </div>
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center">
+        <div className="mb-12 text-center">
           <m.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl font-semibold tracking-[-0.035em] text-[var(--foreground)] md:text-[3.5rem]"
+            className="font-sans text-[clamp(2.4rem,5.4vw,4.6rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]"
           >
-            Simple pricing.
+            <span className="relative inline-block whitespace-nowrap">
+              Simple
+              <HandUnderline show color="#e11d48" delay={0.4} duration={0.9} offset={2} />
+            </span>{" "}
+            pricing.
           </m.h1>
-          <p className="mx-auto mt-3 max-w-md text-[17px] leading-relaxed text-[var(--foreground-muted)]">
+          <p className="mx-auto mt-6 max-w-[30rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
             Every plan starts with a free 3-day trial: 30 AI actions and 10,000 words.
           </p>
         </div>
@@ -155,7 +167,7 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mb-8 flex w-full justify-center overflow-visible"
+          className="mb-12 flex w-full justify-center overflow-visible"
         >
           <BillingIntervalToggle
             interval={interval}
@@ -170,12 +182,12 @@ export default function PricingPage() {
         </m.div>
 
         {error ? (
-          <p className="mb-6 w-full max-w-2xl rounded-[var(--radius-card)] border border-red-200 bg-red-50 px-4 py-3 text-center text-[13px] text-red-800">
+          <p className="mb-6 w-full max-w-2xl rounded-[12px] border-[1.5px] border-[#e11d48] bg-white px-4 py-3 text-center text-[14px] font-medium text-[#9f1239]">
             {error}
           </p>
         ) : null}
 
-        <div className="grid w-full max-w-5xl items-center gap-4 md:grid-cols-3 md:gap-5">
+        <div className="mx-auto grid w-full max-w-md items-stretch gap-6 md:max-w-5xl md:grid-cols-3">
           {WEBSITE_PLANS.map((plan, idx) => (
             <m.div
               key={plan.id}
@@ -204,14 +216,14 @@ export default function PricingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.45 }}
-          className="mt-6 max-w-2xl text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]"
+          className="mt-8 max-w-2xl text-center text-[13px] leading-relaxed text-[var(--foreground-muted)]"
         >
           An AI action is one thing you ask Lazur to do: a question, a reminder, a pointed-at button
           or a background job. Dictation doesn&apos;t count. {FAIR_USE_FOOTNOTE}{" "}
           <TrackedLink
             href="/download"
             eventProps={{ location: "pricing_footnote", label: "Download Lazur", destination: "/download" }}
-            className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:underline"
+            className="font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 hover:decoration-[var(--foreground)]"
           >
             Download Lazur
           </TrackedLink>{" "}
@@ -223,14 +235,14 @@ export default function PricingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-12 flex max-w-xl items-center gap-4 text-left"
+            className="mt-16 flex w-full max-w-[680px] items-center gap-4 rounded-[20px] border-[1.5px] border-[#1c1917] bg-white p-6 text-left shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)]"
           >
             <TestimonialAvatar testimonial={PROOF} size={44} />
             <div>
-              <blockquote className="font-display text-[17px] leading-snug tracking-tight text-[var(--foreground)]">
+              <blockquote className="text-[17px] font-bold leading-snug tracking-[-0.02em] text-[var(--foreground)]">
                 &ldquo;{PROOF_QUOTE}&rdquo;
               </blockquote>
-              <figcaption className="mt-1 text-[12.5px] text-[var(--foreground-faint)]">
+              <figcaption className="mt-2 text-[13px] text-[var(--foreground-muted)]">
                 {PROOF.name}, {PROOF.role}
                 {PROOF.company ? ` of ${PROOF.company.label}` : ""}
               </figcaption>
@@ -238,24 +250,24 @@ export default function PricingPage() {
           </m.figure>
         ) : null}
 
-        <section ref={faqRef} className="mt-14 w-full max-w-2xl" aria-labelledby="pricing-faq">
-          <h2 id="pricing-faq" className="font-display text-[1.5rem] font-semibold tracking-tight text-[var(--foreground)]">
+        <section ref={faqRef} className="mt-24 w-full max-w-[680px]" aria-labelledby="pricing-faq">
+          <h2 id="pricing-faq" className="text-[clamp(1.75rem,3vw,2.25rem)] font-bold leading-[1.1] tracking-[-0.04em] text-[var(--foreground)]">
             Questions before you start
           </h2>
-          <div className="mt-4 border-t border-[var(--border)]">
+          <div className="mt-6 space-y-3">
             {PRICING_FAQ.map((item, i) => (
               <details
                 key={item.q}
-                className="group border-b border-[var(--border)]"
+                className="group rounded-[20px] border-[1.5px] border-[#1c1917] bg-white px-6 shadow-[0_2px_0_rgba(28,25,23,0.9)]"
                 onToggle={(e) =>
                   track(e.currentTarget.open ? "faq_opened" : "faq_closed", { question: item.q, index: i, location: "pricing_page" })
                 }
               >
-                <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-[16px] font-semibold tracking-tight text-[var(--foreground)] [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] font-bold tracking-[-0.02em] text-[var(--foreground)] [&::-webkit-details-marker]:hidden">
                   {item.q}
-                  <ChevronDown className="h-4 w-4 shrink-0 text-[var(--foreground-faint)] transition-transform duration-200 group-open:rotate-180" strokeWidth={2} aria-hidden />
+                  <ChevronDown className="h-4 w-4 shrink-0 text-[var(--foreground)] transition-transform duration-200 group-open:rotate-180" strokeWidth={2} aria-hidden />
                 </summary>
-                <p className="pb-5 pr-8 text-[15px] leading-relaxed text-[var(--foreground-muted)]">{item.a}</p>
+                <p className="pb-6 pr-8 text-[15px] leading-relaxed text-[var(--foreground-muted)]">{item.a}</p>
               </details>
             ))}
           </div>
@@ -266,7 +278,7 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48 }}
-          className="mt-16 w-full max-w-5xl"
+          className="mt-24 w-full max-w-5xl"
         >
           <PricingStudentOffer />
         </m.div>
@@ -279,6 +291,7 @@ export default function PricingPage() {
         >
           <PricingTimeCalculator />
         </m.div> */}
+        </div>
       </main>
 
       <Footer />

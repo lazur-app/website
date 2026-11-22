@@ -1,6 +1,5 @@
 "use client";
 
-import { GraffitiArrowCallout } from "@/components/pricing/GraffitiScribble";
 import type { BillingInterval } from "@/lib/pricingPlans";
 
 type BillingIntervalToggleProps = {
@@ -9,58 +8,41 @@ type BillingIntervalToggleProps = {
   onChange: (interval: BillingInterval) => void;
 };
 
+/** Monthly / Annual, as an ink-outlined pill; a small teal chip says what a year saves. */
 export function BillingIntervalToggle({
   interval,
   maxSavings,
   onChange,
 }: BillingIntervalToggleProps) {
-  const graffitiLabel = maxSavings > 0 ? `${maxSavings}% OFF` : null;
+  const savingsLabel = maxSavings > 0 ? `Save ${maxSavings}%` : null;
+
+  const option = (value: BillingInterval, label: string) => {
+    const on = interval === value;
+    return (
+      <button
+        type="button"
+        onClick={() => onChange(value)}
+        aria-pressed={on}
+        className={`inline-flex min-h-[44px] items-center gap-2 rounded-full px-6 text-[15px] font-bold tracking-[-0.01em] transition-colors ${
+          on ? "bg-[#1c1917] text-white" : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+        }`}
+      >
+        {label}
+        {value === "annual" && savingsLabel ? (
+          <span className="rounded-full bg-[#14917a] px-2 py-0.5 text-[12px] font-bold leading-[1.4] text-white">
+            {savingsLabel}
+          </span>
+        ) : null}
+      </button>
+    );
+  };
 
   return (
-    <div
-      className="flex items-center justify-center"
-      role="group"
-      aria-label="Billing interval"
-    >
-      {graffitiLabel ? (
-        <GraffitiArrowCallout
-          label={graffitiLabel}
-          className="invisible shrink-0 -translate-y-2.5 pointer-events-none"
-          aria-hidden
-        />
-      ) : null}
-
-      <div className="inline-flex shrink-0 gap-1 rounded-full border border-[var(--border)] bg-white/70 p-1">
-        <button
-          type="button"
-          onClick={() => onChange("monthly")}
-          className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
-            interval === "monthly"
-              ? "bg-[var(--foreground)] text-[var(--background)]"
-              : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-          }`}
-        >
-          Monthly
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange("annual")}
-          className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
-            interval === "annual"
-              ? "bg-[var(--foreground)] text-[var(--background)]"
-              : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
-          }`}
-        >
-          Annual
-        </button>
+    <div className="flex items-center justify-center" role="group" aria-label="Billing interval">
+      <div className="inline-flex shrink-0 gap-1 rounded-full border-[1.5px] border-[#1c1917] bg-white p-1 shadow-[0_2px_0_rgba(28,25,23,0.9)]">
+        {option("monthly", "Monthly")}
+        {option("annual", "Annual")}
       </div>
-
-      {graffitiLabel ? (
-        <GraffitiArrowCallout
-          label={graffitiLabel}
-          className="ml-1 shrink-0 -translate-y-2.5"
-        />
-      ) : null}
     </div>
   );
 }

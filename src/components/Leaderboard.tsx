@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Loader2, Medal, Search, TrendingUp, Users } from "lucide-react";
-import { SoftCard } from "@/components/SoftCard";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { track } from "@/lib/productAnalytics";
 import {
@@ -25,15 +24,24 @@ const MONTHLY_PRIZES = [
   { place: "3rd", amount: "$20 + 3 months" },
 ];
 
+const SHADOW = "shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)]";
+const DARK_BUTTON =
+  "inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white transition-colors hover:bg-black";
+
+/** An ink-outlined white card, the homepage's look. */
+function InkCard({ children, className = "", radius = "rounded-[20px]" }: { children: React.ReactNode; className?: string; radius?: string }) {
+  return <div className={`border-[1.5px] border-[#1c1917] bg-white ${radius} ${SHADOW} ${className}`}>{children}</div>;
+}
+
 function initials(name: string) {
   return name.slice(0, 2).toUpperCase();
 }
 
 function rankBadgeClass(rank: number) {
-  if (rank === 1) return "bg-[var(--foreground)] text-[var(--background)]";
-  if (rank === 2) return "bg-[var(--foreground-muted)] text-white";
-  if (rank === 3) return "bg-[var(--foreground-faint)] text-white";
-  return "bg-[var(--background-deep)] text-[var(--foreground-muted)]";
+  if (rank === 1) return "bg-[#d6246e] text-white";
+  if (rank === 2) return "bg-[#5b4bd6] text-white";
+  if (rank === 3) return "bg-[#e0621c] text-white";
+  return "bg-black/[0.06] text-[var(--foreground-muted)]";
 }
 
 function normalizeSearchQuery(value: string) {
@@ -72,17 +80,17 @@ function StatCard({
   icon: typeof Users;
 }) {
   return (
-    <SoftCard interactive className="px-5 py-4">
+    <InkCard className="p-4">
       <div className="flex items-center gap-2">
-        <Icon className="h-3.5 w-3.5 text-[var(--foreground-faint)]" strokeWidth={1.75} />
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+        <Icon className="h-4 w-4 text-[var(--foreground)]" strokeWidth={2} />
+        <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--foreground-muted)]">
           {label}
         </p>
       </div>
-      <p className="mt-2 font-display text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+      <p className="mt-2 text-[28px] font-bold leading-none tracking-[-0.04em] text-[var(--foreground)] tabular-nums">
         {value}
       </p>
-    </SoftCard>
+    </InkCard>
   );
 }
 
@@ -133,22 +141,22 @@ export function LeaderboardTable() {
   if (loading) {
     return (
       <div className="flex min-h-[280px] items-center justify-center">
-        <Loader2 className="h-7 w-7 animate-spin text-[var(--foreground-faint)]" />
+        <Loader2 className="h-7 w-7 animate-spin text-[var(--foreground-muted)]" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <SoftCard hover={false} className="px-6 py-12 text-center">
-        <p className="text-[14px] text-red-600">{error}</p>
-      </SoftCard>
+      <InkCard className="px-6 py-12 text-center">
+        <p className="text-[15px] font-medium text-[#be123c]">{error}</p>
+      </InkCard>
     );
   }
 
   return (
     <div className="grid gap-6 lg:grid-cols-[12.5rem_minmax(0,1fr)] lg:gap-8">
-      <aside className="space-y-3">
+      <aside className="space-y-4">
         <StatCard
           label="Total invites"
           value={(data?.total_referrals ?? 0).toLocaleString()}
@@ -161,38 +169,38 @@ export function LeaderboardTable() {
         />
         <StatCard label="Prize pool" value="$120" icon={Medal} />
 
-        <SoftCard hover={false} className="px-5 py-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+        <InkCard className="p-4">
+          <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--foreground-muted)]">
             Monthly prizes
           </p>
           <div className="mt-3 space-y-2">
             {MONTHLY_PRIZES.map((p) => (
               <div key={p.place} className="flex items-center justify-between text-[13px]">
                 <span className="font-medium text-[var(--foreground-muted)]">{p.place}</span>
-                <span className="font-display font-semibold text-[var(--foreground)]">
+                <span className="font-bold text-[var(--foreground)]">
                   {p.amount}
                 </span>
               </div>
             ))}
           </div>
-        </SoftCard>
+        </InkCard>
 
         <TrackedLink
           href="/login"
           eventProps={{ location: "leaderboard_sidebar", label: "Get referral link", destination: "/login" }}
-          className="btn-dark hidden w-full justify-center lg:inline-flex"
+          className={`${DARK_BUTTON} hidden w-full lg:inline-flex`}
         >
           Get referral link
         </TrackedLink>
       </aside>
 
-      <div className="min-w-0 space-y-3">
+      <div className="min-w-0 space-y-4">
       {users.length > 0 ? (
         <>
           <div className="relative">
             <Search
-              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--foreground-faint)]"
-              strokeWidth={1.75}
+              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--foreground-muted)]"
+              strokeWidth={2}
             />
             <input
               type="text"
@@ -204,17 +212,17 @@ export function LeaderboardTable() {
                 }
               }}
               placeholder="Search name or code…"
-              className="soft-card w-full py-3 pl-11 pr-4 text-[14px] text-[var(--foreground)] placeholder:text-[var(--foreground-faint)] outline-none transition-shadow focus:ring-2 focus:ring-[var(--foreground)]/8"
+              className="min-h-[48px] w-full rounded-full border-[1.5px] border-[#1c1917] bg-white py-3 pl-12 pr-4 text-[15px] text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)] outline-none placeholder:text-[var(--foreground-muted)] focus:ring-2 focus:ring-[#1c1917]/15"
             />
           </div>
 
-          <SoftCard hover={false} className="overflow-hidden p-0">
-            <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
+          <InkCard className="overflow-hidden">
+            <div className="flex items-center justify-between border-b-[1.5px] border-[#1c1917] bg-black/[0.04] px-4 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--foreground-muted)] sm:px-6">
               <span>Rank · User</span>
               <span>Invites</span>
             </div>
 
-            <div className="divide-y divide-[var(--border)]">
+            <div className="divide-y divide-black/10">
               {filtered.length === 0 ? (
                 <p className="px-5 py-12 text-center text-[14px] text-[var(--foreground-muted)]">
                   No users match &ldquo;{query}&rdquo;
@@ -226,31 +234,31 @@ export function LeaderboardTable() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: Math.min(i * 0.02, 0.3) }}
-                    className={`flex items-center justify-between gap-4 px-5 py-3.5 transition-colors hover:bg-[var(--background-deep)]/35 ${
-                      user.isYou ? "bg-[var(--background-deep)]/55" : ""
+                    className={`flex items-center justify-between gap-4 px-4 py-3 transition-colors hover:bg-black/[0.03] sm:px-6 ${
+                      user.isYou ? "bg-[#14917a]/[0.08]" : ""
                     }`}
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[11px] font-bold ${rankBadgeClass(user.rank)}`}
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-bold ${rankBadgeClass(user.rank)}`}
                       >
                         {user.rank}
                       </span>
 
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--background-deep)]/70 text-[11px] font-bold text-[var(--foreground-muted)]">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border-[1.5px] border-[#1c1917] bg-white text-[12px] font-bold text-[var(--foreground)]">
                         {initials(user.name)}
                       </div>
 
                       <div className="min-w-0">
-                        <p className="truncate text-[14px] font-medium text-[var(--foreground)]">
+                        <p className="truncate text-[15px] font-bold tracking-[-0.01em] text-[var(--foreground)]">
                           {user.isYou ? "You" : user.name}
                           {user.isYou && (
-                            <span className="ml-1.5 rounded-full bg-[var(--foreground)] px-1.5 py-px text-[9px] font-semibold text-[var(--background)]">
+                            <span className="ml-2 rounded-full bg-[#14917a] px-2 py-0.5 text-[11px] font-bold text-white">
                               you
                             </span>
                           )}
                         </p>
-                        <p className="truncate text-[12px] text-[var(--foreground-faint)]">
+                        <p className="truncate text-[13px] text-[var(--foreground-muted)]">
                           {user.referralCode}
                         </p>
                       </div>
@@ -258,11 +266,11 @@ export function LeaderboardTable() {
 
                     <div className="flex shrink-0 items-center gap-3">
                       {user.prize && (
-                        <span className="hidden rounded-full bg-[var(--background-deep)]/80 px-2 py-0.5 text-[11px] font-medium text-[var(--foreground-muted)] sm:inline">
+                        <span className="hidden rounded-full border-[1.5px] border-[#1c1917] bg-white px-3 py-0.5 text-[12px] font-bold text-[var(--foreground)] sm:inline">
                           {user.prize}
                         </span>
                       )}
-                      <span className="font-display text-base font-semibold tabular-nums text-[var(--foreground)]">
+                      <span className="text-[17px] font-bold tabular-nums text-[var(--foreground)]">
                         {user.invites}
                       </span>
                     </div>
@@ -270,19 +278,19 @@ export function LeaderboardTable() {
                 ))
               )}
             </div>
-          </SoftCard>
+          </InkCard>
 
           <TrackedLink
             href="/login"
             eventProps={{ location: "leaderboard_table", label: "Get referral link", destination: "/login" }}
-            className="btn-dark inline-flex w-full justify-center lg:hidden"
+            className={`${DARK_BUTTON} w-full lg:hidden`}
           >
             Get referral link
           </TrackedLink>
         </>
       ) : (
-        <SoftCard hover={false} className="px-6 py-12 text-center">
-          <p className="font-display text-lg font-semibold text-[var(--foreground)]">
+        <InkCard className="px-6 py-12 text-center" radius="rounded-[28px]">
+          <p className="text-[22px] font-bold tracking-[-0.03em] text-[var(--foreground)]">
             No referrals yet
           </p>
           <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
@@ -291,11 +299,11 @@ export function LeaderboardTable() {
           <TrackedLink
             href="/login"
             eventProps={{ location: "leaderboard_empty", label: "Get referral link", destination: "/login" }}
-            className="btn-dark mt-6 inline-flex px-6 py-3 text-[14px]"
+            className={`${DARK_BUTTON} mt-6`}
           >
             Get referral link
           </TrackedLink>
-        </SoftCard>
+        </InkCard>
       )}
       </div>
     </div>

@@ -14,7 +14,7 @@ const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
   return (
-    <ul className="mt-2 list-disc space-y-1.5 pl-5">
+    <ul className="mt-3 list-disc space-y-2 pl-6 marker:text-[var(--foreground)]">
       {items.map((item, i) => (
         <li key={i}>{item}</li>
       ))}
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
                 href="https://www.lazur.app"
                 event="content_link_clicked"
                 eventProps={{ content_type: "legal", slug: "privacy", location: "1_who_we_are", link_type: "internal", url: "https://www.lazur.app" }}
-                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
+                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4"
               >
                 lazur.app
               </TrackedAnchor>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
                 href={`mailto:${CONTACT}`}
                 event="content_link_clicked"
                 eventProps={{ content_type: "legal", slug: "privacy", location: "1_who_we_are", link_type: "email", url: "mailto" }}
-                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
+                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4"
               >
                 {CONTACT}
               </TrackedAnchor>
@@ -354,7 +354,7 @@ export default function PrivacyPage() {
                   href={`mailto:${CONTACT}`}
                   event="content_link_clicked"
                   eventProps={{ content_type: "legal", slug: "privacy", location: "11_your_rights", link_type: "email", url: "mailto" }}
-                  className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2"
+                  className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4"
                 >
                   {CONTACT}
                 </TrackedAnchor>
@@ -395,7 +395,7 @@ export default function PrivacyPage() {
                 href="/terms"
                 event="content_link_clicked"
                 eventProps={{ content_type: "legal", slug: "privacy", location: "15_related", link_type: "internal", url: "/terms" }}
-                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-2 transition-colors hover:decoration-[var(--foreground)]"
+                className="font-medium text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 transition-colors hover:decoration-[var(--foreground)]"
               >
                 Terms of Service
               </TrackedLink>

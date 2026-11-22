@@ -113,9 +113,13 @@ function Arm({ sx, sy, a, b, sleeve, forearm, hand, k = 1 }: { sx: number; sy: n
       <path d={`M${ex} ${ey} L${wx} ${wy}`} stroke={forearm} strokeWidth={19} strokeLinecap="round" />
       {hand === "fist" ? <circle cx={wx} cy={wy} r={12} fill={SKIN} stroke={INK} strokeWidth={4} /> : null}
       {hand === "thumb" ? (
-        <g>
-          <rect x={wx - 13} y={wy - 11} width={26} height={24} rx={8} fill={SKIN} stroke={INK} strokeWidth={4} />
-          <rect x={wx - 6} y={wy - 31} width={12} height={24} rx={6} fill={SKIN} stroke={INK} strokeWidth={4} />
+        // A thumbs-up, drawn upright and then turned to follow the forearm: a chunky rounded fist with the
+        // curled fingers stacked down its inner side, and a fat thumb rising off its outer top corner, leaning
+        // away from the body. (A thin bar centred on a small block read as the wrong finger.)
+        <g transform={`translate(${wx} ${wy}) rotate(${b + 90}) scale(${sx < 150 ? -1 : 1} 1)`}>
+          <rect x={-3} y={-50} width={19} height={36} rx={9.5} fill={SKIN} stroke={INK} strokeWidth={4} transform="rotate(22 8 -18)" />
+          <rect x={-18} y={-24} width={34} height={38} rx={13} fill={SKIN} stroke={INK} strokeWidth={4} />
+          <path d="M-18 -14 q8 -1 12 2 M-18 -4 q8 -1 13 2 M-18 6 q8 -1 12 2" stroke={INK} strokeWidth={3} strokeLinecap="round" fill="none" />
         </g>
       ) : null}
       {hand === "open" ? (

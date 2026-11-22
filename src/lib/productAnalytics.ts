@@ -46,7 +46,7 @@ export function startProductAnalytics() {
         api_host: API_HOST,
         ui_host: UI_HOST,
         defaults: "2025-05-24",
-        autocapture: true,
+        autocapture: { capture_copied_text: true },
         capture_pageview: false, // sent from Providers on every route change (App Router)
         capture_pageleave: true,
         capture_dead_clicks: true,
@@ -123,6 +123,16 @@ export function trackOnce(key: string | null | undefined, event: string, propert
 export function identifyUser(userId: string, traits?: AnalyticsProps) {
   if (!userId) return;
   withPosthog((ph) => ph.identify(userId, clean(traits)));
+}
+
+/**
+ * Someone gave us their email without signing in (waitlist, early access): attach it to this
+ * visitor in PostHog so their visits and replays can be found by email.
+ */
+export function rememberVisitorEmail(email: string) {
+  const value = email.trim().toLowerCase();
+  if (!value) return;
+  withPosthog((ph) => ph.setPersonProperties({ email: value }));
 }
 
 export function resetAnalyticsUser() {

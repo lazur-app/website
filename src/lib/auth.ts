@@ -1,4 +1,4 @@
-import { resetAnalyticsUser, track } from "@/lib/productAnalytics";
+import { identifyUser, resetAnalyticsUser, track } from "@/lib/productAnalytics";
 
 const ACCESS_TOKEN_KEY = "lazur_access_token";
 const REFRESH_TOKEN_KEY = "lazur_refresh_token";
@@ -89,6 +89,16 @@ function readCachedSession(): CachedSession | null {
 
 function writeCachedSession(profile: UserProfile, token: string) {
   if (typeof window === "undefined") return;
+  // Every time we learn who is signed in, PostHog links this browser (and its replays) to them.
+  identifyUser(profile.id, {
+    email: profile.email,
+    name: profile.name,
+    plan: profile.plan_slug ?? profile.plan,
+    trial_status: profile.trial_status,
+    trial_ends_at: profile.trial_ends_at,
+    onboarding_completed: profile.onboarding_completed,
+    billing_source: profile.billing_source,
+  });
   const entry: CachedSession = {
     profile,
     cachedAt: Date.now(),

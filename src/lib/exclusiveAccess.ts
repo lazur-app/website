@@ -1,3 +1,5 @@
+import { rememberVisitorEmail } from "@/lib/productAnalytics";
+
 export const EXCLUSIVE_ACCESS_PATH = "/exclusive-access";
 
 function apiBase() {
@@ -36,5 +38,6 @@ export async function submitExclusiveAccessRequest(
     throw new Error(detail?.detail || "Something went wrong. Please try again.");
   }
 
+  rememberVisitorEmail(email);
   return res.json() as Promise<ExclusiveAccessResult>;
 }

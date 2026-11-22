@@ -19,7 +19,6 @@ import {
 import { submitExclusiveAccessRequest } from "@/lib/exclusiveAccess";
 import { track } from "@/lib/productAnalytics";
 import { INSTALL_STEPS, InstallDemo, useInstallStep } from "@/components/download/InstallDemo";
-import { SendMacLink } from "@/components/download/SendMacLink";
 import { isMacDesktopVisitor } from "@/hooks/useIsMacVisitor";
 import {
   detectMacChip,
@@ -118,10 +117,11 @@ function isPhoneOrTablet(platform: Platform) {
 }
 
 /**
- * Not on a Mac (phone, Windows without a build, Linux): the next step is sending the Mac
- * download to themselves. The Windows waitlist is still there, one tap away.
+ * Not on a Mac (phone, Windows without a build, Linux): the same "Download for Mac" button as
+ * everywhere else. What it should do for these visitors is still being decided; for now it starts
+ * the Mac download (see onDownload). The Windows waitlist is still there, one tap away.
  */
-function SendToMacPanel({ platform }: { platform: Platform }) {
+function SendToMacPanel({ platform, onDownload }: { platform: Platform; onDownload: () => void }) {
   const [showWaitlist, setShowWaitlist] = useState(false);
   const location = `download_page_${platform}`;
   const onPhone = isPhoneOrTablet(platform);
@@ -134,14 +134,24 @@ function SendToMacPanel({ platform }: { platform: Platform }) {
       </h1>
       <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
         {onPhone
-          ? "Reading on your phone? Send the download to your Mac."
+          ? "Lazur is a Mac app. Download it here and open it on your Mac."
           : platform === "windows"
-            ? "Lazur is a Mac app for now. Send the download to your Mac and install it there."
-            : "Lazur is a Mac app. Send the download to your Mac and install it there."}
+            ? "Lazur is a Mac app for now. Download it and install it on your Mac."
+            : "Lazur is a Mac app. Download it and install it on your Mac."}
       </p>
 
       <div className="mt-8">
-        <SendMacLink location={location} variant="card" />
+        <button
+          type="button"
+          onClick={() => {
+            track("cta_clicked", { location, label: "Download for Mac", destination: "mac_download", platform: "not_mac" });
+            onDownload();
+          }}
+          className="btn-dark inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-8 text-[15px] font-semibold"
+        >
+          <AppleIcon className="h-4 w-4" />
+          Download for Mac
+        </button>
       </div>
 
       <ul className="mx-auto mt-5 flex max-w-sm flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[13px] text-[var(--foreground-muted)]">
@@ -458,7 +468,7 @@ export default function DownloadPage() {
                 </button>
               </>
             ) : (
-              <SendToMacPanel platform={platform} />
+              <SendToMacPanel platform={platform} onDownload={() => void startMacDownload("apple-silicon", "again")} />
             )}
 
             <p className="mt-10">

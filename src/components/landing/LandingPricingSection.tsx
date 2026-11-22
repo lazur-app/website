@@ -38,12 +38,12 @@ function PlanCard({ plan }: { plan: WebsitePlan }) {
       ) : null}
       {featured ? <Sticker name="crown" size={78} rotate={14} className="absolute -right-6 top-10 hidden sm:block" /> : null}
 
-      {/* the window's title bar */}
-      <div className={`flex h-9 items-center gap-1.5 rounded-t-[12px] border-b-[1.5px] border-[#0c0b0a] px-3.5 ${featured ? "bg-[#0c0b0a]" : "bg-black/[0.05]"}`} aria-hidden>
+      {/* the window's title bar (the trial card goes without one) */}
+      {plan.id === "free" ? null : <div className={`flex h-9 items-center gap-1.5 rounded-t-[12px] border-b-[1.5px] border-[#0c0b0a] px-3.5 ${featured ? "bg-[#0c0b0a]" : "bg-black/[0.05]"}`} aria-hidden>
         {[0, 1, 2].map((dot) => (
           <span key={dot} className={`h-2.5 w-2.5 rounded-full ${featured ? "bg-white/70" : "bg-[#0c0b0a]/55"}`} />
         ))}
-      </div>
+      </div>}
 
       <div className="flex flex-1 flex-col px-6 pb-7 pt-7 text-center md:px-7">
         <h3 className="font-display text-[30px] font-medium lowercase leading-none tracking-[-0.04em] text-[var(--foreground)]">{plan.name}</h3>

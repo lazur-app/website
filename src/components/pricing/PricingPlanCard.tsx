@@ -27,7 +27,7 @@ type PricingPlanCardProps = {
   compact?: boolean;
   actionLoading?: boolean;
   actionDisabled?: boolean;
-  /** Overrides plan.buttonText (e.g. the marketing page's "Download free for Mac"). */
+  /** Overrides plan.buttonText (e.g. the marketing page's "Download for Mac"). */
   buttonText?: string;
   /** A quiet risk-reducer line under the button. */
   note?: string;

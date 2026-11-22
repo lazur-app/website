@@ -38,7 +38,7 @@ type Plan = (typeof WEBSITE_PLANS)[number];
 
 /** The marketing page's button copy: verb + free + what you get, where the plan is free to start. */
 function planButtonText(plan: Plan): string {
-  return plan.id === "free" ? "Download free for Mac" : plan.buttonText;
+  return plan.id === "free" ? "Download for Mac" : plan.buttonText;
 }
 
 /** Risk reducers under each plan's button. Download plans: the trial facts; checkout: cancel anytime. */

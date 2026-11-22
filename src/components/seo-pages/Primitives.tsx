@@ -261,7 +261,7 @@ export function RailCta({ source }: { source?: string }) {
       <p className="seo-railcard__title">Ask instead of searching</p>
       <p className="seo-railcard__text">Hold ⌥ ⌘ and ask. Lazur sees your screen, points at the button and walks you through it.</p>
       <Link href={downloadHref(source)} className="seo-railcard__btn">
-        <AppleIcon className="h-3.5 w-3.5" /> Download free for Mac
+        <AppleIcon className="h-3.5 w-3.5" /> Download for Mac
       </Link>
       <p className="seo-railcard__fine">Free 3-day Pro trial, no credit card.</p>
       <div className="seo-railcard__links">

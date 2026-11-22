@@ -6,6 +6,7 @@
 }
 
 :root {
+  --dome: #151413; /* the dark band the app dome and the films sit in */
   /* Warm editorial base, Linear / Flow / Notion Calendar territory */
   --background: #fffdfb;
   --background-deep: #f7f4ef;
@@ -3147,4 +3148,261 @@ html {
 .seo-railcard__title,
 .seo-cta__title {
   word-spacing: 0.1em;
+}
+
+/* "Works in" logo wall: rows drift in alternating directions (two copies, so -50% loops). */
+.logo-wall-row {
+  animation: logo-wall 46s linear infinite;
+  will-change: transform;
+}
+.logo-wall-row[data-reverse] {
+  animation-direction: reverse;
+}
+@keyframes logo-wall {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-wall-row { animation: none; }
+}
+
+/* Homepage voice scenes: the dotted voice wave and the two speech bubbles. */
+.voice-wave span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--foreground);
+  opacity: 0.28;
+  transition: opacity 0.3s;
+}
+.voice-wave[data-live] span {
+  opacity: 0.9;
+  animation: voice-wave 0.9s ease-in-out infinite;
+}
+@keyframes voice-wave {
+  0%, 100% { height: 5px; }
+  50% { height: 22px; }
+}
+.voice-bubble {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 22px;
+  padding: 10px 16px;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  color: var(--foreground);
+  transform-origin: bottom left;
+}
+.voice-bubble--you {
+  border-bottom-right-radius: 6px;
+  background: linear-gradient(180deg, #e5deff 0%, #b9a8ff 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(76, 61, 153, 0.55), 0 8px 18px rgba(107, 75, 252, 0.18);
+}
+.voice-bubble--lazur {
+  border-bottom-left-radius: 6px;
+  background: linear-gradient(180deg, #ffe9d2 0%, #ffbf8a 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(180, 95, 20, 0.5), 0 8px 18px rgba(249, 115, 22, 0.16);
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-wave[data-live] span { animation: none; }
+}
+
+/* The app dome: logos bead the rim of a huge slowly turning circle; only its crown is on screen. */
+.app-dome {
+  --r: 700px; /* phones: a tighter circle, or the rim would look flat */
+  --rim: 8px; /* the dome's crown, from the top of the section */
+  --inset: 40px; /* how far inside the rim the logos' centres ride */
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+/* The smaller circle has a third of the rim, so it carries every third logo. */
+.app-dome__logo:not(:nth-child(3n + 1)) { display: none; }
+@media (min-width: 768px) {
+  /* A very large circle, so the rim reads as a long shallow rise and not as a ball. */
+  .app-dome { height: 260px; --inset: 48px; --r: max(1500px, 160vw); }
+  .app-dome__logo:not(:nth-child(3n + 1)) { display: block; }
+}
+.app-dome__ring {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--rim) + var(--r));
+  width: 0;
+  height: 0;
+  animation: app-dome-turn 280s linear infinite;
+  will-change: transform;
+}
+.app-dome__logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  max-width: none; /* the ring is a zero-size point, so the reset's max-width: 100% would hide them */
+  object-fit: contain;
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(calc(var(--inset) - var(--r)));
+}
+@media (min-width: 768px) {
+  .app-dome__logo { width: 34px; height: 34px; }
+}
+/* Logos drawn in black would vanish on the dark dome: flip those to white. */
+.app-dome__logo--flip {
+  filter: invert(1);
+}
+.app-dome__logo--mono {
+  filter: grayscale(1) contrast(1.1);
+}
+.app-dome__body {
+  position: absolute;
+  left: 50%;
+  top: var(--rim);
+  width: calc(2 * var(--r));
+  height: calc(2 * var(--r));
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--dome);
+}
+@keyframes app-dome-turn {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-dome__ring { animation: none; }
+}
+
+/* Footer jigsaw: each piece moves through its own order of colours, on its own clock. */
+.puzzle-piece {
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.puzzle-piece--0 { animation-name: puzzle-shift-0; }
+@keyframes puzzle-shift-0 {
+  0%, 12% { fill: #1d3fa8; }
+  25%, 37% { fill: #b3123f; }
+  50%, 62% { fill: #0a8a43; }
+  75%, 87% { fill: #b85a00; }
+  100% { fill: #1d3fa8; }
+}
+.puzzle-piece--1 { animation-name: puzzle-shift-1; }
+@keyframes puzzle-shift-1 {
+  0%, 12% { fill: #0b63c4; }
+  25%, 37% { fill: #c23a0e; }
+  50%, 62% { fill: #0a7d6e; }
+  75%, 87% { fill: #8a0f6b; }
+  100% { fill: #0b63c4; }
+}
+.puzzle-piece--2 { animation-name: puzzle-shift-2; }
+@keyframes puzzle-shift-2 {
+  0%, 12% { fill: #3f7d12; }
+  25%, 37% { fill: #6a1fb0; }
+  50%, 62% { fill: #4b2fc0; }
+  75%, 87% { fill: #1c1917; }
+  100% { fill: #3f7d12; }
+}
+.puzzle-piece--3 { animation-name: puzzle-shift-3; }
+@keyframes puzzle-shift-3 {
+  0%, 12% { fill: #0a8a43; }
+  25%, 37% { fill: #b85a00; }
+  50%, 62% { fill: #0b63c4; }
+  75%, 87% { fill: #b3123f; }
+  100% { fill: #0a8a43; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .puzzle-piece { animation: none; }
+}
+
+/* Lazur's chrome stickers (components/landing/Sticker.tsx): the glint, the faces and each one's own motion. */
+.ms-sticker {
+  filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.3));
+}
+/* Parts that move about their own middle (eyes, bars, dots, the counter-spinning face). */
+.ms-blink,
+.ms-bar,
+.ms-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* Whole-sticker motions turn about the middle of the 100 x 100 drawing. */
+.ms-bob,
+.ms-spin,
+.ms-unspin,
+.ms-beat,
+.ms-wiggle,
+.ms-press,
+.ms-flick,
+.ms-sweep {
+  transform-box: view-box;
+  transform-origin: 50px 50px;
+}
+.ms-sweep {
+  animation: ms-sweep 4.2s ease-in-out infinite;
+}
+@keyframes ms-sweep {
+  0%, 55% { transform: rotate(24deg) translateX(0); }
+  85%, 100% { transform: rotate(24deg) translateX(230px); }
+}
+.ms-bob { animation: ms-bob 3.6s ease-in-out infinite; }
+@keyframes ms-bob {
+  0%, 100% { transform: translateY(2px) rotate(-2deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+.ms-spin { animation: ms-spin 14s linear infinite; }
+.ms-unspin { animation: ms-spin 14s linear infinite reverse; }
+@keyframes ms-spin {
+  to { transform: rotate(360deg); }
+}
+.ms-beat { animation: ms-beat 1.5s ease-in-out infinite; }
+@keyframes ms-beat {
+  0%, 30%, 60%, 100% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  45% { transform: scale(1.06); }
+}
+.ms-wiggle { animation: ms-wiggle 2.8s ease-in-out infinite; }
+@keyframes ms-wiggle {
+  0%, 100% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg); }
+}
+.ms-press { animation: ms-press 2.2s ease-in-out infinite; }
+@keyframes ms-press {
+  0%, 62%, 100% { transform: translateY(0) scale(1); }
+  72% { transform: translateY(4px) scale(0.95); }
+  82% { transform: translateY(0) scale(1.02); }
+}
+.ms-flick { animation: ms-flick 2.4s ease-in-out infinite; }
+@keyframes ms-flick {
+  0%, 70%, 100% { transform: scale(1) rotate(0deg); }
+  76% { transform: scale(1.12) rotate(-6deg); }
+  84% { transform: scale(0.97) rotate(4deg); }
+  92% { transform: scale(1.06) rotate(-2deg); }
+}
+.ms-blink { animation: ms-blink 4.6s ease-in-out infinite; }
+@keyframes ms-blink {
+  0%, 44%, 50%, 100% { transform: scaleY(1); }
+  47% { transform: scaleY(0.1); }
+}
+.ms-bar { animation: ms-bar 1.3s ease-in-out infinite; }
+@keyframes ms-bar {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+.ms-dot { animation: ms-dot 1.2s ease-in-out infinite; }
+@keyframes ms-dot {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+/* The padlock's shackle: shut, lift and swing open about its right leg, shut again. */
+.ms-shackle {
+  transform-box: view-box;
+  transform-origin: 69px 46px;
+  animation: ms-shackle 3.4s ease-in-out infinite;
+}
+@keyframes ms-shackle {
+  0%, 22%, 82%, 100% { transform: translateY(0) rotate(0deg); }
+  36%, 66% { transform: translateY(-9px) rotate(24deg); }
+  74% { transform: translateY(1.5px) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ms-sticker * { animation: none !important; }
 }

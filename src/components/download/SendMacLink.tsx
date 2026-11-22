@@ -145,9 +145,9 @@ export function SendMacLink({ location, variant = "card" }: { location: string; 
   }
 
   const inputClass =
-    "w-full min-h-[52px] rounded-full border border-[var(--border-strong)] bg-white px-5 text-[16px] text-[#1c1917] placeholder:text-[#a8a29e] outline-none transition-shadow focus:ring-2 focus:ring-[var(--brand)]/25 sm:text-[15px]";
+    "w-full min-h-[52px] rounded-[6px] border border-[var(--border-strong)] bg-white px-5 text-[16px] text-[#1c1917] placeholder:text-[#a8a29e] outline-none transition-shadow focus:ring-2 focus:ring-[var(--brand)]/25 sm:text-[15px]";
   const buttonClass =
-    "btn-dark inline-flex min-h-[52px] w-full shrink-0 items-center justify-center whitespace-nowrap rounded-full px-6 text-[15px] font-semibold disabled:opacity-60";
+    "inline-flex min-h-[52px] w-full shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] border-[1.5px] border-[#2a1c6b] bg-[#e7dfff] px-6 text-[15px] font-semibold text-[#1c1917] transition-colors hover:bg-[#dccfff] disabled:opacity-60";
 
   if (variant === "bar") {
     return (

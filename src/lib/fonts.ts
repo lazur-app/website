@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Caveat } from "next/font/google";
+import { Caveat, EB_Garamond } from "next/font/google";
 
 /** Hand-drawn callouts, pricing graffiti, savings badges */
 export const caveat = Caveat({
@@ -52,5 +52,14 @@ export const clashDisplay = localFont({
     },
   ],
   variable: "--font-clash",
+  display: "swap",
+});
+
+/** Testimonial quotes on the homepage */
+export const garamond = EB_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-garamond",
   display: "swap",
 });

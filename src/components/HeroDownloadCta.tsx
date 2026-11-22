@@ -12,6 +12,12 @@ type HeroDownloadCtaProps = {
   align?: "center" | "start";
   variant?: "default" | "minimal";
   className?: string;
+  /** Button size; "xl" is the homepage hero. */
+  size?: "lg" | "xl";
+  /** "classic" is the hero's black pill with the circling light. */
+  look?: "dark" | "classic";
+  /** Button text for the minimal variant, on every platform (default: "Download free for Mac"). */
+  label?: string;
   /** Analytics placement for the CTA clicks (e.g. "hero", "final_cta"). */
   location?: string;
   /** Analytics placement for the "Email me the Mac link" form non-Mac visitors see (defaults to `location`). */
@@ -22,6 +28,9 @@ export function HeroDownloadCta({
   align = "center",
   variant = "default",
   className = "",
+  size = "lg",
+  look = "dark",
+  label: customLabel,
   location = "hero",
   macLinkLocation,
 }: HeroDownloadCtaProps) {
@@ -37,15 +46,15 @@ export function HeroDownloadCta({
   // Phones, Windows and Linux can't install Lazur. A friendly button first; tapping it opens the
   // "email me the Mac link" form right under it, so the hero stays clean and nobody hits a dead end.
   if (isMac === false) {
-    const meetLabel = "Meet my companion";
+    const meetLabel = customLabel ?? "Meet my companion";
     return (
       <div className={`flex w-full flex-col items-center gap-3 ${align === "start" ? "lg:items-start" : ""}`}>
         {!showMacLink && (
           <GlowCta
             onClick={() => setShowMacLink(true)}
             eventProps={{ location, label: meetLabel, destination: "send_mac_link", platform: "not_mac" }}
-            variant="dark"
-            size="lg"
+            variant={look}
+            size={size}
             wrapClassName="final-cta-btn-wrap--subtle"
           >
             {meetLabel}
@@ -63,19 +72,19 @@ export function HeroDownloadCta({
     );
   }
 
-  const label = "Download free for Mac";
+  const label = customLabel ?? "Download free for Mac";
 
   if (variant === "minimal") {
     return (
       <GlowCta
         href="/download"
         eventProps={{ location, label, destination: "/download", platform: isMac ? "mac" : "unknown" }}
-        variant="dark"
-        size="lg"
+        variant={look}
+        size={size}
         wrapClassName={`final-cta-btn-wrap--subtle ${className}`.trim()}
         className={className}
       >
-        <AppleIcon />
+        {customLabel ? null : <AppleIcon />}
         {label}
       </GlowCta>
     );

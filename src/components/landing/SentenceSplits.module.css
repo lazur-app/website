@@ -1,0 +1,150 @@
+/* SentenceSplits: layout switch between the wide and tall compositions, and the small listening
+   waveform inside the notch. The flow itself is driven from the component. */
+
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+/* Paths run past the drawing on purpose, so ribbons reach the screen edge; the section clips them. */
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+}
+
+.riding {
+  white-space: pre;
+}
+
+.wide {
+  display: none;
+  max-width: 1200px;
+}
+
+.tall {
+  max-width: 420px;
+}
+
+@media (min-width: 1024px) {
+  .wide {
+    display: block;
+  }
+  .tall {
+    display: none;
+  }
+}
+
+.bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sentence-splits-listen 1.5s ease-in-out infinite;
+}
+
+@keyframes sentence-splits-listen {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}
+
+/* One chrome glint runs round the "Get Lazur" pill. */
+.shine {
+  animation: sentence-splits-shine 3.2s linear infinite;
+}
+
+@keyframes sentence-splits-shine {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* The shared colour of the glint, the Apple mark and the words: one at a time, changing slowly, all deep enough to read on the white housing. */
+.tint {
+  color: #8f0f45;
+  animation: sentence-splits-tint 10s linear infinite;
+}
+
+@keyframes sentence-splits-tint {
+  0%,
+  100% {
+    color: #8f0f45;
+  }
+  20% {
+    color: #3d1a9e;
+  }
+  40% {
+    color: #0b3f8f;
+  }
+  60% {
+    color: #0a5a3a;
+  }
+  80% {
+    color: #8a4700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine,
+  .tint {
+    animation: none;
+  }
+}
+
+/* Stickers around the hero drawing bob a little. */
+.bob {
+  animation: sentence-splits-bob 4.5s ease-in-out infinite;
+}
+
+@keyframes sentence-splits-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* The Get Lazur housing sits a little above the ribbons it feeds. */
+.housing {
+  filter: drop-shadow(0 4px 6px rgba(28, 25, 23, 0.2));
+}
+
+/* The stitches along the ribbons' edges travel outward, one stitch-length per cycle. */
+.stitch {
+  animation-name: sentence-splits-stitch;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes sentence-splits-stitch {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: var(--stitch);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stitch {
+    animation: none;
+  }
+}

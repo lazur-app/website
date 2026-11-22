@@ -4,7 +4,8 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { GlowCta } from "@/components/GlowCta";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-import { LoopVideo } from "@/components/buddy/LoopVideo";
+import { FilmSlot } from "@/components/landing/FilmSlot";
+import { Sticker } from "@/components/landing/Sticker";
 import { SendMacLink } from "@/components/download/SendMacLink";
 import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
 import { useIsMacVisitor } from "@/hooks/useIsMacVisitor";
@@ -26,7 +27,7 @@ export function FinalCtaSection() {
       >
         <h2 className="font-display text-[1.7rem] font-semibold tracking-tight sm:text-[2.15rem] md:text-[2.6rem]">
            Your AI companion is your most powerful tool at work.{" "}
-           <em className="italic font-medium text-white/80">Start collaborating with it.</em>
+           <em className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em] text-white/85">Start collaborating with it.</em>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/55">
           Hold a hotkey. Speak. Get the finished thing in Slack, email,
@@ -54,13 +55,10 @@ export function FinalCtaSection() {
           </div>
         )}
       </motion.div>
-      <div className="mx-auto mt-12 max-w-3xl">
-        <LoopVideo
-          className="aspect-video !bg-white/5 !ring-white/10"
-          src="https://releases.lazur.app/videos/lazur-setup.mp4"
-          poster="https://releases.lazur.app/videos/lazur-setup-poster.jpg"
-          label="Setup in under a minute: drag Lazur into Applications, sign in with Google from the notch, and Lazur says hello and starts a short spoken walkthrough."
-        />
+      <div className="relative mx-auto mt-12 max-w-3xl">
+        <Sticker name="heart" size={92} rotate={-12} className="absolute -left-4 -top-10 md:-left-10" />
+        <Sticker name="puzzle" size={84} rotate={12} className="absolute -bottom-6 -right-3 md:-right-9" />
+        <FilmSlot label="Setup in under a minute" tone="dark" size="lg" />
         <p className="mt-3 text-center text-[12px] text-white/40">Install, sign in, and Lazur shows you around. About a minute.</p>
       </div>
     </section>

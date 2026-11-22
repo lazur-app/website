@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import { User } from "lucide-react";
-import { HeroDownloadCta } from "@/components/HeroDownloadCta";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
 
@@ -83,156 +81,158 @@ export function TestimonialAvatar({
   );
 }
 
-function QuoteText({
-  quote,
-  highlight,
-}: {
-  quote: string;
-  highlight?: string;
-}) {
-  if (!highlight || !quote.includes(highlight)) {
-    return <>{quote}</>;
-  }
+/** Card colours, in order. The quote sits on the colour; the photo (if any) is inset beside it. */
+/**
+ * How each card on the wall is dressed. The wall walks through these in order, so it looks thrown
+ * together however many testimonials there are: different pastel, photo above or below the words,
+ * different photo shape, bigger or smaller type, a slight tilt.
+ */
+type Look = {
+  color: string;
+  photo: "top" | "bottom";
+  /** Photo shape (Tailwind aspect class). */
+  shape: string;
+  big: boolean;
+  tilt: number;
+};
 
-  const [before, after] = quote.split(highlight);
+const LOOKS: Look[] = [
+  { color: "#c9f2dc", photo: "top", shape: "aspect-[4/3]", big: true, tilt: -1.2 },
+  { color: "#ffd9b8", photo: "bottom", shape: "aspect-square", big: false, tilt: 0.9 },
+  { color: "#d9d0ff", photo: "top", shape: "aspect-[3/4]", big: false, tilt: -0.6 },
+  { color: "#f4efc9", photo: "bottom", shape: "aspect-[4/3]", big: true, tilt: 1.1 },
+  { color: "#ffd1dc", photo: "bottom", shape: "aspect-[5/4]", big: false, tilt: -0.9 },
+  { color: "#cfe8ff", photo: "top", shape: "aspect-square", big: true, tilt: 0.7 },
+  { color: "#d7f0c2", photo: "top", shape: "aspect-[4/3]", big: false, tilt: 1.3 },
+];
+
+function Company({ t }: { t: Testimonial }) {
+  if (!t.company) return null;
   return (
     <>
-      {before}
-      <mark className="rounded-[4px] bg-[rgba(250,204,21,0.45)] px-0.5 text-inherit">
-        {highlight}
-      </mark>
-      {after}
+      {" "}
+      of{" "}
+      <Link
+        href={t.company.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() =>
+          track("outbound_link_clicked", {
+            location: "testimonials",
+            label: t.company!.label,
+            url: t.company!.href,
+          })
+        }
+        className="underline underline-offset-2 hover:opacity-70"
+      >
+        {t.company.label}
+      </Link>
     </>
   );
 }
 
-function Person({ testimonial }: { testimonial: Testimonial }) {
+function Card({ t, look }: { t: Testimonial; look: Look }) {
+  const photo = t.image ? (
+    <div className={`relative w-full overflow-hidden rounded-[16px] ${look.shape}`}>
+      <Image src={t.image} alt={t.name} fill className="object-cover" sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 92vw" />
+    </div>
+  ) : null;
   return (
-    <div className="flex items-center gap-3">
-      <TestimonialAvatar testimonial={testimonial} />
-      <div className="min-w-0">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--foreground)]">
-          {testimonial.name}
+    <blockquote
+      className="relative flex flex-col gap-4 rounded-[22px] p-2.5 text-[#1c1917]"
+      style={{ background: look.color, transform: `rotate(${look.tilt}deg)` }}
+    >
+      {look.photo === "top" ? photo : null}
+      <div className={`flex flex-col gap-4 px-2.5 ${photo && look.photo === "top" ? "pb-2.5" : photo ? "pt-3" : "py-4"}`}>
+        <p className={`font-display font-medium lowercase leading-[1.2] tracking-[-0.02em] ${look.big || !photo ? "text-[1.1rem] md:text-[1.2rem]" : "text-[0.98rem] md:text-[1.02rem]"}`}>
+          &ldquo;{t.quote}&rdquo;
         </p>
-        <p className="text-[12px] text-[var(--foreground-faint)]">
-          {testimonial.role}
-          {testimonial.company ? (
-            <>
-              {" "}
-              of{" "}
-              <Link
-                href={testimonial.company.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  track("outbound_link_clicked", {
-                    location: "testimonials",
-                    label: testimonial.company!.label,
-                    url: testimonial.company!.href,
-                  })
-                }
-                className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline"
-              >
-                {testimonial.company.label}
-              </Link>
-            </>
-          ) : null}
-        </p>
+        <footer>
+          <p className="text-[13px] font-semibold lowercase">{t.name}</p>
+          <p className="text-[12.5px] lowercase opacity-70">
+            {t.role}
+            <Company t={t} />
+          </p>
+        </footer>
       </div>
+      {look.photo === "bottom" ? photo : null}
+    </blockquote>
+  );
+}
+
+/**
+ * An empty card holding a place on the wall for a testimonial that hasn't come in yet: a blank
+ * photo frame and blank lines, no words. Set EMPTY_SLOTS to 0 once the real ones fill the wall.
+ */
+const EMPTY_SLOTS = 8;
+
+function EmptyCard({ look, lines }: { look: Look; lines: number }) {
+  const photo = <div className={`w-full rounded-[16px] bg-black/[0.07] ${look.shape}`} />;
+  return (
+    <div
+      className="flex flex-col gap-4 rounded-[22px] p-2.5"
+      style={{ background: look.color, transform: `rotate(${look.tilt}deg)` }}
+      aria-hidden
+    >
+      {look.photo === "top" ? photo : null}
+      <div className="flex flex-col gap-2 px-2.5 py-3">
+        {Array.from({ length: lines }, (_, i) => (
+          <span key={i} className="h-2.5 rounded-full bg-black/[0.09]" style={{ width: `${i === lines - 1 ? 55 : 92 - ((i * 13) % 20)}%` }} />
+        ))}
+        <span className="mt-3 h-2 w-1/3 rounded-full bg-black/[0.14]" />
+      </div>
+      {look.photo === "bottom" ? photo : null}
     </div>
   );
 }
 
+const COLUMNS = 4;
+
+/**
+ * What early users say: a wall of small pastel cards in mixed sizes. Plain scrolling, nothing
+ * pinned. Add a testimonial to TESTIMONIALS and it takes the next look and a place on the wall;
+ * empty cards hold the remaining places until then.
+ */
 export function TestimonialsSection() {
-  const featured = TESTIMONIALS[0];
-  const rest = TESTIMONIALS.slice(1);
   const ref = useRef<HTMLElement>(null);
   useTrackInView(ref, "section_viewed", { section: "testimonials" });
+  const convinced = "ok, I'm convinced";
+  // Real ones first, spread across the columns, then the empty places.
+  const slots: (Testimonial | null)[] = [...TESTIMONIALS, ...Array.from({ length: EMPTY_SLOTS }, () => null)];
 
   return (
-    <section
-      ref={ref}
-      data-guide-section="love"
-      className="relative pt-[140px] pb-24 md:pt-[160px] md:pb-28"
-    >
+    <section ref={ref} data-guide-section="love" className="relative py-20 md:py-28">
+      {/* "Trust" links land here. */}
+      <div id="love" className="absolute top-0" aria-hidden />
       <div className="landing-container">
-        {/* "Trust" in the navbar lands here: the heading, just below the floating navbar. */}
-        <div id="love" className="mb-10 scroll-mt-32 text-center md:mb-16">
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--brand-ink)]">
-            · Early users ·
-          </p>
-          <h2 className="mt-3 font-display text-[1.85rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[3rem]">
-            Work feels lighter with a companion beside you
+        <div className="text-center">
+          <h2 className="font-display text-[clamp(2.1rem,4.4vw,3.6rem)] font-medium lowercase leading-[1] tracking-[-0.04em] text-[var(--foreground)]">
+            straight from the <span className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em]">group chat</span>.
           </h2>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3 md:gap-5">
-          <motion.blockquote
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="flex flex-col rounded-[1.25rem] bg-[#f6e9a8] px-5 py-6 md:col-span-2 md:rounded-[1.5rem] md:px-8 md:py-8"
-          >
-            <p className="flex-1 font-display text-[1.2rem] leading-snug tracking-tight text-[var(--foreground)] md:text-[1.45rem]">
-              &ldquo;
-              <QuoteText quote={featured.quote} highlight={featured.highlight} />
-              &rdquo;
-            </p>
-            <footer className="mt-8">
-              <Person testimonial={featured} />
-            </footer>
-          </motion.blockquote>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.06, duration: 0.45 }}
-            className="flex flex-col justify-between rounded-[1.25rem] bg-[var(--foreground)] px-5 py-6 text-[var(--background)] md:rounded-[1.5rem] md:px-7 md:py-7"
-          >
-            <div>
-              <span
-                className="mb-5 inline-block h-2.5 w-8 rounded-full bg-[rgba(250,204,21,0.9)]"
-                aria-hidden
-              />
-              <p className="font-display text-[1.35rem] font-semibold tracking-tight md:text-[1.5rem]">
-                Lazur gets it done.
-              </p>
+        {/* Uneven columns, dealt out one card at a time; one column on phones, two on tablets. */}
+        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 items-start gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-4 lg:gap-5">
+          {Array.from({ length: COLUMNS }, (_, column) => (
+            <div key={column} className={`flex flex-col gap-4 lg:gap-5 ${column % 2 === 1 ? "lg:mt-12" : ""}`}>
+              {slots.map((slot, i) => {
+                if (i % COLUMNS !== column) return null;
+                const look = LOOKS[(i * 3 + column) % LOOKS.length];
+                return slot ? <Card key={slot.name} t={slot} look={LOOKS[i % LOOKS.length]} /> : <EmptyCard key={i} look={look} lines={2 + ((i * 7) % 4)} />;
+              })}
             </div>
-            <Link
-              href="/download"
-              onClick={() => track("cta_clicked", { location: "testimonials", label: "Try Lazur free", destination: "/download" })}
-              className="mt-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-[rgba(250,204,21,0.95)] transition-opacity hover:opacity-80"
-            >
-              Try Lazur free →
-            </Link>
-          </motion.div>
-
-          {rest.map((t, i) => (
-            <motion.blockquote
-              key={t.name}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 + i * 0.06, duration: 0.45 }}
-              className="flex flex-col rounded-[1.25rem] bg-white px-5 py-6 shadow-[0_12px_40px_rgba(28,25,23,0.06)] md:rounded-[1.5rem] md:px-6 md:py-8"
-            >
-              <p className="flex-1 text-[15px] leading-relaxed text-[var(--foreground)]">
-                &ldquo;
-                <QuoteText quote={t.quote} highlight={t.highlight} />
-                &rdquo;
-              </p>
-              <footer className="mt-6">
-                <Person testimonial={t} />
-              </footer>
-            </motion.blockquote>
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center md:mt-14">
-          <HeroDownloadCta variant="minimal" location="testimonials" className="w-full max-w-sm sm:w-auto" />
-        </div>
+        <p className="mt-12 text-center md:mt-16">
+          <Link
+            href="/download"
+            onClick={() => track("cta_clicked", { location: "testimonials", label: convinced, destination: "/download" })}
+            className="text-[15px] font-medium text-[var(--foreground-muted)] underline decoration-black/25 underline-offset-4 transition-colors hover:text-[var(--foreground)]"
+          >
+            {convinced} →
+          </Link>
+        </p>
       </div>
     </section>
   );

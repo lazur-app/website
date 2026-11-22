@@ -1,111 +1,128 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useRef } from "react";
-import { GlowCta } from "@/components/GlowCta";
-import {
-  LandingBand,
-  LandingBandInner,
-} from "@/components/landing/LandingBand";
-import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
-import { TRIAL_LABEL } from "@/lib/pricingPlans";
+import { Check } from "lucide-react";
+import { Sticker } from "@/components/landing/Sticker";
+import { TRIAL_LABEL, WEBSITE_PLANS, formatAmount, type WebsitePlan } from "@/lib/pricingPlans";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
 
+/**
+ * Pricing on the homepage: the three plans side by side as little windows, so they can be compared
+ * line by line. Everything shown comes from WEBSITE_PLANS (lib/pricingPlans); nothing is restated here.
+ */
+
+/** Where a plan's button goes from the homepage: trial and Pro start with the download, Power on the pricing page. */
+function planHref(plan: WebsitePlan) {
+  return plan.cta === "checkout" ? "/pricing" : "/download";
+}
+
+function PlanCard({ plan }: { plan: WebsitePlan }) {
+  const pricing = plan.international;
+  const free = !pricing || pricing.monthly === 0;
+  const price = pricing ? formatAmount(pricing.monthly, pricing.currency) : "$0";
+  const under = free ? "free for 3 days, no card needed" : `per month, or ${formatAmount(pricing!.annual, pricing!.currency)} a year`;
+  const href = planHref(plan);
+  const featured = Boolean(plan.featured);
+
+  return (
+    <li
+      data-guide={featured ? "pricing-pro" : plan.id === "free" ? "pricing-trial" : undefined}
+      className={`relative flex flex-col overflow-visible rounded-[14px] border-[1.5px] border-[#0c0b0a] bg-white ${featured ? "lg:-mt-4" : ""}`}
+    >
+      {featured && plan.featuredBadge ? (
+        <span className="absolute -top-3.5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border-[1.5px] border-[#0c0b0a] bg-white px-3 py-0.5 text-[13px] font-medium lowercase text-[#0c0b0a]">
+          {plan.featuredBadge}
+        </span>
+      ) : null}
+      {featured ? <Sticker name="crown" size={78} rotate={14} className="absolute -right-6 top-10 hidden sm:block" /> : null}
+
+      {/* the window's title bar */}
+      <div className={`flex h-9 items-center gap-1.5 rounded-t-[12px] border-b-[1.5px] border-[#0c0b0a] px-3.5 ${featured ? "bg-[#0c0b0a]" : "bg-black/[0.05]"}`} aria-hidden>
+        {[0, 1, 2].map((dot) => (
+          <span key={dot} className={`h-2.5 w-2.5 rounded-full ${featured ? "bg-white/70" : "bg-[#0c0b0a]/55"}`} />
+        ))}
+      </div>
+
+      <div className="flex flex-1 flex-col px-6 pb-7 pt-7 text-center md:px-7">
+        <h3 className="font-display text-[30px] font-medium lowercase leading-none tracking-[-0.04em] text-[var(--foreground)]">{plan.name}</h3>
+        <p className="mt-3 text-[17px] lowercase leading-snug text-[var(--foreground)]">{plan.descriptionLines[0]}</p>
+        {plan.descriptionLines[1] ? <p className="mt-1 text-[14px] lowercase text-[var(--foreground-faint)]">{plan.descriptionLines[1]}</p> : null}
+
+        <div className="my-6 border-t border-dashed border-black/15" />
+
+        <p className="font-display text-[64px] font-medium leading-none tracking-[-0.05em] text-[var(--foreground)] tabular-nums">{price}</p>
+        <p className="mt-3 text-[14px] lowercase text-[var(--foreground-muted)]">{under}</p>
+
+        <Link
+          href={href}
+          onClick={() => track("cta_clicked", { location: "landing_pricing", label: plan.buttonText, destination: href, plan: plan.id })}
+          className={`mx-auto mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full border-[1.5px] border-[#0c0b0a] px-7 text-[16px] font-semibold lowercase transition-colors ${
+            featured ? "bg-[#0c0b0a] text-white hover:bg-[#2a2826]" : "bg-white text-[#0c0b0a] hover:bg-black/[0.05]"
+          }`}
+        >
+          {plan.buttonText}
+        </Link>
+
+        <div className="my-6 border-t border-dashed border-black/15" />
+
+        <ul className="flex flex-col gap-2.5 text-left">
+          {plan.features
+            .filter((feature) => feature.included)
+            .map((feature) => (
+              <li key={feature.text} className="flex items-start gap-2.5 text-[15px] lowercase text-[var(--foreground)]">
+                <span className="mt-0.5 grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-[#0c0b0a]">
+                  <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                </span>
+                {feature.text}
+              </li>
+            ))}
+        </ul>
+      </div>
+    </li>
+  );
+}
+
 export function LandingPricingSection() {
-  const proPrice = "$18/mo";
-  const plans = [
-    { name: "Free trial", price: "$0", per: "3 days", detail: "30 AI actions · 10,000 words of dictation. No card.", featured: false },
-    { name: "Pro", price: "$18", per: "/mo", detail: "250 AI actions a month · unlimited dictation", featured: true },
-    { name: "Power", price: "$120", per: "/mo", detail: "1,000 AI actions a month · unlimited dictation", featured: false },
-  ] as const;
   const ref = useRef<HTMLDivElement>(null);
   useTrackInView(ref, "section_viewed", { section: "pricing" });
 
   return (
-    <LandingBand id="pricing" variant="light" className="py-16 md:py-24">
-      <LandingBandInner>
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          data-guide-section="pricing"
-          className="aura-stage px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-14"
-        >
-          <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:gap-16">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
-              Simple pricing
-            </p>
-            <h2 className="mt-3 max-w-md font-display text-[1.85rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.75rem]">
-              {TRIAL_LABEL}. Then {proPrice}.
+    <section id="pricing" className="relative overflow-x-clip py-20 md:py-32">
+      {/* Stickers scattered round the edges, well apart, on screens wide enough to have edges. */}
+      <div className="pointer-events-none absolute inset-0 hidden xl:block" aria-hidden>
+        <Sticker name="cloud" size={92} rotate={-10} className="absolute left-[7%] top-[60px]" />
+        <Sticker name="flower" size={96} rotate={8} className="absolute right-[7%] top-[50px]" />
+        <Sticker name="ghost" size={92} rotate={8} className="absolute left-[2.5%] top-[44%]" />
+        <Sticker name="bubble" size={88} rotate={-9} className="absolute right-[2.5%] top-[54%]" />
+      </div>
+      <div className="landing-container relative">
+        <div ref={ref} data-guide-section="pricing" className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <h2 className="font-display text-[clamp(2.3rem,4.6vw,4rem)] font-medium lowercase leading-[1] tracking-[-0.04em] text-[var(--foreground)]">
+              {TRIAL_LABEL}. then <span className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em]">$18</span> a month.
             </h2>
-            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-[var(--foreground-muted)]">
-              Try everything for 3 days: 30 AI actions and 10,000 words. No
-              credit card to download. Cancel anytime.
-            </p>
-
-            <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-              <GlowCta
-                href="/download"
-                eventProps={{ location: "landing_pricing", label: "Download free for Mac", destination: "/download" }}
-                variant="light"
-                className="final-cta-btn--on-light w-full sm:w-auto"
-                wrapClassName="w-full sm:w-auto"
-              >
-                Download free for Mac
-              </GlowCta>
-              <Link
-                href="/pricing"
-                onClick={() => track("cta_clicked", { location: "landing_pricing", label: "See all plans", destination: "/pricing" })}
-                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[var(--border)] px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--border-strong)] sm:w-auto"
-              >
-                See all plans
-              </Link>
-            </div>
-            <DownloadReassurance className="mt-3 text-center sm:text-left" />
-
+            <p className="mt-5 text-[17px] lowercase text-[var(--foreground-muted)]">three simple plans. no credit card to download. cancel anytime.</p>
           </div>
 
-          <ul className="space-y-2.5 md:space-y-3">
-            {plans.map((plan) => (
-              <li
-                key={plan.name}
-                data-guide={plan.featured ? "pricing-pro" : plan.name === "Free trial" ? "pricing-trial" : undefined}
-                className={`rounded-2xl border px-4 py-3.5 sm:px-5 sm:py-4 ${
-                  plan.featured
-                    ? "border-transparent bg-[#1c1917] text-white shadow-[0_14px_36px_-18px_rgba(28,25,23,0.55)]"
-                    : "border-[var(--border)] bg-white/60"
-                }`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="flex items-center gap-2">
-                    <span className={`font-display text-[16px] font-semibold tracking-tight ${plan.featured ? "text-white" : "text-[var(--foreground)]"}`}>
-                      {plan.name}
-                    </span>
-                    {plan.featured ? (
-                      <span className="rounded-full bg-[#ff6b5e] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
-                        Most popular
-                      </span>
-                    ) : null}
-                  </span>
-                  <span className="shrink-0 font-display tabular-nums">
-                    <span className={`text-[20px] font-semibold tracking-tight ${plan.featured ? "text-white" : "text-[var(--foreground)]"}`}>{plan.price}</span>
-                    <span className={`ml-0.5 text-[12px] ${plan.featured ? "text-white/55" : "text-[var(--foreground-faint)]"}`}>{plan.per}</span>
-                  </span>
-                </div>
-                <p className={`mt-1 text-[13px] leading-snug ${plan.featured ? "text-white/70" : "text-[var(--foreground-muted)]"}`}>
-                  {plan.detail}
-                </p>
-              </li>
+          <ul className="mx-auto mt-14 grid max-w-md gap-8 md:mt-20 lg:max-w-none lg:grid-cols-3 lg:gap-6">
+            {WEBSITE_PLANS.map((plan) => (
+              <PlanCard key={plan.id} plan={plan} />
             ))}
           </ul>
-          </div>
-        </motion.div>
-      </LandingBandInner>
-    </LandingBand>
+
+          <p className="mt-10 text-center">
+            <Link
+              href="/pricing"
+              onClick={() => track("cta_clicked", { location: "landing_pricing", label: "See all plans", destination: "/pricing" })}
+              className="text-[15px] font-medium text-[var(--foreground)] underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
+            >
+              See all plans and yearly prices
+            </Link>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

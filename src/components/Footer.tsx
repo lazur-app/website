@@ -1,3 +1,5 @@
+import { PuzzleWordmark } from "./PuzzleWordmark";
+import { Sticker } from "@/components/landing/Sticker";
 import { LogoWordmark } from "./LogoWordmark";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
 
@@ -40,7 +42,7 @@ const connectLinks: {
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] py-16 md:py-20">
+    <footer className="overflow-hidden border-t border-[var(--border)] py-16 md:py-20">
       <div className="landing-container">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
@@ -101,7 +103,17 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-16 text-center text-xs text-[var(--foreground-faint)] md:text-left">
+      </div>
+
+      {/* The sign-off: the mark and the name, as a finished jigsaw. */}
+      {/* The sign-off: the mark and the name as a finished jigsaw, edge to edge. */}
+      <div className="relative mt-16 px-3 md:mt-24 md:px-6">
+        <Sticker name="smiley" size={88} rotate={-8} className="absolute -top-10 right-6 md:right-16" />
+        <PuzzleWordmark />
+      </div>
+
+      <div className="landing-container">
+        <p className="mt-12 text-center text-xs text-[var(--foreground-faint)] md:mt-16 md:text-left">
           © {new Date().getFullYear()} Lazur AI · Built for macOS
         </p>
       </div>

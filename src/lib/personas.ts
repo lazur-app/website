@@ -26,7 +26,7 @@ export const PERSONAS: Persona[] = [
     id: "everyone",
     label: "Just curious",
     title: "Your AI companion,",
-    sub: "Hold a key and talk. Lazur sees your screen, points at things, answers out loud and gets things done, in any app.",
+    sub: "Hold two keys and talk. Lazur sees your screen, points at things, answers out loud and gets things done, in any app.",
     intro: "I'm your AI companion. I live up here, in the notch.",
     everyday: [
       "Set a timer for 10 minutes",
@@ -45,7 +45,7 @@ export const PERSONAS: Persona[] = [
     id: "founder",
     label: "a founder",
     title: "Your chief of staff,",
-    sub: "Hold a key and talk. Lazur drafts the reply, researches the market, books the meeting and keeps your day moving, in any app.",
+    sub: "Hold two keys and talk. Lazur drafts the reply, researches the market, books the meeting and keeps your day moving, in any app.",
     intro: "I'm your chief of staff. I live up here, in the notch.",
     everyday: [
       "Draft a reply to this investor",
@@ -62,7 +62,7 @@ export const PERSONAS: Persona[] = [
     id: "developer",
     label: "a developer",
     title: "Your pair programmer,",
-    sub: "Hold a key and talk. Lazur reads the error on your screen, points at the fix and types the commit message, in any editor.",
+    sub: "Hold two keys and talk. Lazur reads the error on your screen, points at the fix and types the commit message, in any editor.",
     intro: "I'm your pair programmer. I live up here, in the notch.",
     everyday: [
       "What does this error mean?",
@@ -79,7 +79,7 @@ export const PERSONAS: Persona[] = [
     id: "student",
     label: "a student",
     title: "Your study companion,",
-    sub: "Hold a key and talk. Lazur explains what's on your screen, turns notes into lists and keeps your deadlines, in any app.",
+    sub: "Hold two keys and talk. Lazur explains what's on your screen, turns notes into lists and keeps your deadlines, in any app.",
     intro: "I'm your study companion. I live up here, in the notch.",
     everyday: [
       "Explain this diagram simply",
@@ -96,7 +96,7 @@ export const PERSONAS: Persona[] = [
     id: "lawyer",
     label: "a lawyer",
     title: "Your paralegal,",
-    sub: "Hold a key and talk. Lazur sums up long documents, points at the clause you need and drafts the email, in any app.",
+    sub: "Hold two keys and talk. Lazur sums up long documents, points at the clause you need and drafts the email, in any app.",
     intro: "I'm your paralegal. I live up here, in the notch.",
     everyday: [
       "Sum up this contract",

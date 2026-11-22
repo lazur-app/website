@@ -5,7 +5,7 @@ import { DataFast } from "@/components/analytics/DataFast";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { GoogleAnalyticsRouteTracker } from "@/components/analytics/GoogleAnalyticsRouteTracker";
 import { Providers } from "@/components/Providers";
-import { clashDisplay, caveat, openSauceOne } from "@/lib/fonts";
+import { clashDisplay, caveat, garamond, openSauceOne } from "@/lib/fonts";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
@@ -68,7 +68,7 @@ export default function RootLayout({
         <DataFast />
       </head>
       <body
-        className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${garamond.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <Suspense fallback={null}>
           <GoogleAnalyticsRouteTracker />

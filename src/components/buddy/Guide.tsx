@@ -9,13 +9,16 @@ import { loopPath, underlinePath } from "@/lib/handDrawn";
 import { track } from "@/lib/productAnalytics";
 
 /**
- * Lazur's sparkle, travelling down the homepage. Each section is a stop (data-guide-section) with
+ * Lazur's sparkle, dropping in at a few moments on the homepage (the demo, privacy, the price,
+ * the last button), not every section. Each of those is a stop (data-guide-section) with
  * a few steps: where to point (data-guide targets), what to say, whether to circle it. The section
  * whose box crosses the middle of the screen is the active stop; its steps play once on arrival.
  * Sections read the current step from lib/guide to animate their own content.
  */
 
 const INK = "#2563eb";
+/** How long the last line of a stop stays up before the sparkle goes quiet. */
+const QUIET_AFTER_MS = 3200;
 
 /** circle: a loop around the target; underline: a stroke under it (for words). */
 type Step = { target: string; say: string; ms?: number; mark?: "circle" | "underline" };
@@ -46,44 +49,10 @@ const STOPS: Stop[] = [
     ],
   },
   {
-    id: "guide",
-    steps: () => [
-      { target: "[data-guide=guide-video]", say: "stuck? I'll walk you through it" },
-    ],
-  },
-  {
-    id: "everyday",
-    steps: () => [
-      { target: "[data-guide=chip-0]", say: "try saying this", ms: 1500 },
-      { target: "[data-guide=chip-1]", say: "or this", ms: 1300 },
-      { target: "[data-guide=chip-2]", say: "or this one", ms: 1300 },
-      { target: "[data-guide=everyday-video]", say: "like this timer, right in the notch", ms: 2600 },
-      { target: "[data-guide-section=everyday] h2", say: "I do all of these, out loud" },
-    ],
-  },
-  {
-    id: "privacy",
-    steps: () => [
-      { target: "[data-guide=privacy-key]", say: "I only listen while you hold the key", ms: 2600 },
-      { target: "[data-guide=privacy-stored]", say: "and I don't keep anything" },
-    ],
-  },
-  {
-    id: "love",
-    steps: () => [{ target: "[data-guide-section=love] mark", say: "don't take my word for it", mark: "underline" }],
-  },
-  {
     id: "pricing",
     steps: () => [
       { target: "[data-guide=pricing-pro]", say: "most people pick this one", ms: 2600, mark: "circle" },
       { target: "[data-guide=pricing-trial]", say: "and the first 3 days are free" },
-    ],
-  },
-  {
-    id: "faq",
-    steps: () => [
-      { target: "[data-guide=faq-0]", say: "ask me anything", ms: 1800 },
-      { target: "[data-guide=faq-4]", say: "this one comes up a lot" },
     ],
   },
   {
@@ -175,6 +144,18 @@ export function Guide() {
     return () => window.clearTimeout(t);
   }, [g.stop, g.step, count, holdMs]);
 
+  // Balanced, not clingy: a few seconds after a stop's last line the sparkle goes quiet, and it
+  // only speaks again at the next stop.
+  const [quietAt, setQuietAt] = useState<string | null>(null);
+  const atLast = Boolean(g.stop) && g.step >= count - 1;
+  useEffect(() => {
+    if (!atLast || !g.stop) return;
+    const here = g.stop;
+    const t = window.setTimeout(() => setQuietAt(here), holdMs + QUIET_AFTER_MS);
+    return () => window.clearTimeout(t);
+  }, [atLast, g.stop, holdMs]);
+  const quiet = quietAt !== null && quietAt === g.stop;
+
   // Follow the target every frame: springs make the sparkle trail behind when you scroll fast.
   // Over-damped: it glides into place and settles, never bounces past.
   const spring = reduced ? { stiffness: 2000, damping: 100 } : { stiffness: 220, damping: 42, mass: 1 };
@@ -226,7 +207,7 @@ export function Guide() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target, phone, mark]);
 
-  const visible = Boolean(step) && !g.dismissed;
+  const visible = Boolean(step) && !g.dismissed && !quiet;
 
   if (phone) {
     // Phones: no flying; a small note docked at the bottom.

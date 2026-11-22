@@ -11,17 +11,17 @@ type AuthFlowShellProps = {
   contentClassName?: string;
 };
 
-/** Shared layout for sign-in and OAuth callback, matches download/dashboard shell. */
+/** Shared layout for sign-in and OAuth callback, in the homepage's look (same shell as /download). */
 export function AuthFlowShell({
   children,
   contentClassName = "w-full max-w-sm",
 }: AuthFlowShellProps) {
   return (
     <PerformanceTierProvider>
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen overflow-x-clip">
         <MarketingBackdrop />
         <Navbar />
-        <main className="relative mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center px-6 pb-20 pt-28 md:pt-32">
+        <main className="relative mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 pb-24 pt-32 sm:px-6 md:pt-40">
           <div className={contentClassName}>{children}</div>
         </main>
       </div>

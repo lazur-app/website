@@ -3,7 +3,9 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Copy, Check, Download, Gift, Mic, Sparkles } from "lucide-react";
+import { ArrowRight, Copy, Check, Download, Gauge, Gift, Mic, Sparkles } from "lucide-react";
+import { HandUnderline } from "@/components/buddy/HandLoop";
+import { Sticker } from "@/components/landing/Sticker";
 import { Navbar } from "@/components/Navbar";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
@@ -136,109 +138,122 @@ function DashboardContent() {
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative mx-auto max-w-5xl px-5 pb-24 pt-28 md:pt-36">
+      <main className="relative mx-auto max-w-5xl overflow-x-clip px-4 pb-24 pt-32 sm:px-6 md:pt-40">
         {/* Who */}
         <motion.header
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+          className="relative flex flex-col items-center text-center"
         >
-          <div className="flex items-center gap-4">
-            <Avatar user={user} />
-            <div>
-              <h1 className="font-display text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-[var(--foreground)] md:text-[2.5rem]">
-                {greeting()}{firstName ? `, ${firstName}` : ""}
-              </h1>
-              <p className="text-[14px] text-[var(--foreground-muted)]">{user.email}</p>
-            </div>
-          </div>
+          <Sticker name="star" size={72} rotate={-10} className="absolute left-[6%] top-0 hidden md:block" />
+          <Sticker name="smiley" size={68} rotate={12} className="absolute right-[6%] top-12 hidden md:block" />
+          <Avatar user={user} />
+          <h1 className="mt-6 max-w-3xl font-sans text-[clamp(2.2rem,5vw,3.8rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
+            {greeting()}
+            {firstName ? (
+              <>
+                ,{" "}
+                <span className="relative inline-block whitespace-nowrap">
+                  {firstName}.
+                  <HandUnderline show color={INK} delay={0.4} duration={0.9} offset={2} />
+                </span>
+              </>
+            ) : "."}
+          </h1>
+          <p className="mt-4 text-[16px] font-medium text-[var(--foreground-muted)]">{user.email}</p>
           <TrackedAnchor
             href={LAZUR_APP_OPEN_URL}
             event="cta_clicked"
             eventProps={{ location: "dashboard_header", label: "Open Lazur", destination: "app" }}
-            className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-[var(--foreground)] px-5 py-2.5 text-[14px] font-semibold text-white transition-opacity hover:opacity-90 sm:self-auto"
+            className={`mt-8 ${PRIMARY_PILL}`}
           >
-            <AppleIcon className="h-4 w-4" /> Open Lazur
+            <AppleIcon className="h-5 w-5" /> Open Lazur
           </TrackedAnchor>
         </motion.header>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-16 grid gap-4 md:grid-cols-3 md:gap-6">
           {/* Plan */}
           <Reveal delay={0.05} className="md:col-span-1">
-            <div className="flex h-full flex-col rounded-[24px] bg-[#1c1917] p-6 text-white shadow-[0_20px_50px_rgba(28,25,23,0.22)]">
-              <div className="flex items-center justify-between">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/45">Your plan</p>
-                <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${trialExpired ? "bg-amber-400/20 text-amber-200" : isTrial ? "bg-[#2563eb] text-white" : "bg-white/10 text-white/80"}`}>
-                  {trialExpired ? "Trial ended" : isTrial ? "Trial" : cancelScheduled ? "Canceling" : "Active"}
-                </span>
-              </div>
-              <p className="mt-4 font-display text-[1.9rem] font-semibold leading-none tracking-[-0.03em]">{user.plan}</p>
-
-              {isTrial && daysLeft !== null ? (
-                <div className="mt-6">
-                  <div className="flex items-baseline justify-between">
-                    <span className="font-display text-[2.6rem] font-semibold leading-none tabular-nums">{daysLeft}</span>
-                    <span className="text-[13px] text-white/55">{daysLeft === 1 ? "day" : "days"} left · ends {endDate}</span>
-                  </div>
-                  <div className="mt-3 flex gap-1.5">
-                    {Array.from({ length: trialTotal }, (_, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scaleY: 0.4 }}
-                        animate={{ opacity: 1, scaleY: 1 }}
-                        transition={{ delay: 0.2 + i * 0.06, duration: 0.3 }}
-                        className={`h-2 flex-1 rounded-full ${i < trialTotal - daysLeft ? "bg-white/15" : "bg-[#2563eb]"}`}
-                      />
-                    ))}
-                  </div>
+            <Card>
+              <div className="flex h-full flex-col">
+                <div className="flex items-center justify-between gap-3">
+                  <CardLabel icon={<Gauge className="h-3.5 w-3.5" />} tone="#1c1917">Your plan</CardLabel>
+                  <span
+                    className={`rounded-full px-3 py-1 text-[12px] font-bold text-white ${
+                      trialExpired ? "bg-[#e0621c]" : isTrial ? "bg-[#5b4bd6]" : cancelScheduled ? "bg-[#1c1917]" : "bg-[#14917a]"
+                    }`}
+                  >
+                    {trialExpired ? "Trial ended" : isTrial ? "Trial" : cancelScheduled ? "Canceling" : "Active"}
+                  </span>
                 </div>
-              ) : (
-                <p className="mt-4 text-[14px] leading-relaxed text-white/60">
-                  {periodEndDescription(user.plan, periodEnd, {
-                    cancelAtPeriodEnd: cancelScheduled,
-                    billingSource: user.billing_source,
-                    trialStatus: user.trial_status,
-                  })}
-                </p>
-              )}
+                <p className="mt-6 font-sans text-[2rem] font-bold leading-none tracking-[-0.04em] text-[var(--foreground)]">{user.plan}</p>
 
-              <div className="mt-auto pt-6">
-                <TrackedLink
-                  href="/billing"
-                  eventProps={{
-                    location: "dashboard_plan_card",
-                    label: isTrial || trialExpired ? "Choose a plan" : "Manage billing",
-                    destination: "/billing",
-                    plan: user.plan_slug || user.plan,
-                  }}
-                  className="flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-[14px] font-semibold text-[#1c1917] transition-opacity hover:opacity-90"
-                >
-                  {isTrial || trialExpired ? "Choose a plan" : "Manage billing"} <ArrowRight className="h-4 w-4" />
-                </TrackedLink>
+                {isTrial && daysLeft !== null ? (
+                  <div className="mt-6">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <span className="font-sans text-[2.5rem] font-bold leading-none tracking-[-0.04em] tabular-nums text-[var(--foreground)]">{daysLeft}</span>
+                      <span className="text-right text-[13px] text-[var(--foreground-muted)]">{daysLeft === 1 ? "day" : "days"} left · ends {endDate}</span>
+                    </div>
+                    <div className="mt-3 flex gap-2">
+                      {Array.from({ length: trialTotal }, (_, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0, scaleY: 0.4 }}
+                          animate={{ opacity: 1, scaleY: 1 }}
+                          transition={{ delay: 0.2 + i * 0.06, duration: 0.3 }}
+                          className={`h-2 flex-1 rounded-full ${i < trialTotal - daysLeft ? "bg-[#1c1917]/10" : "bg-[#5b4bd6]"}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-4 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
+                    {periodEndDescription(user.plan, periodEnd, {
+                      cancelAtPeriodEnd: cancelScheduled,
+                      billingSource: user.billing_source,
+                      trialStatus: user.trial_status,
+                    })}
+                  </p>
+                )}
+
+                <div className="mt-auto pt-6">
+                  <TrackedLink
+                    href="/billing"
+                    eventProps={{
+                      location: "dashboard_plan_card",
+                      label: isTrial || trialExpired ? "Choose a plan" : "Manage billing",
+                      destination: "/billing",
+                      plan: user.plan_slug || user.plan,
+                    }}
+                    className={`w-full ${DARK_PILL}`}
+                  >
+                    {isTrial || trialExpired ? "Choose a plan" : "Manage billing"} <ArrowRight className="h-4 w-4" />
+                  </TrackedLink>
+                </div>
               </div>
-            </div>
+            </Card>
           </Reveal>
 
           {/* AI actions */}
           <Reveal delay={0.1}>
             <Card>
-              <CardLabel icon={<Sparkles className="h-4 w-4" />}>AI actions this month</CardLabel>
-              <div className="mt-5 flex items-center gap-5">
+              <CardLabel icon={<Sparkles className="h-3.5 w-3.5" />} tone="#5b4bd6">AI actions this month</CardLabel>
+              <div className="mt-6 flex items-center gap-6">
                 <Ring value={actionsLimit ? actionsUsed / actionsLimit : 0} />
                 <div>
-                  <p className="font-display text-[2rem] font-semibold leading-none tabular-nums text-[var(--foreground)]">
+                  <p className="font-sans text-[2rem] font-bold leading-none tracking-[-0.04em] tabular-nums text-[var(--foreground)]">
                     {actionsUsed.toLocaleString()}
                   </p>
-                  <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">
-                    of {actionsLimit ? actionsLimit.toLocaleString() : "—"} used
+                  <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
+                    of {actionsLimit ? actionsLimit.toLocaleString() : "-"} used
                   </p>
                   {preview?.commands_more ? (
-                    <p className="mt-1 text-[13px] font-semibold text-emerald-600">+{preview.commands_more} with Pro</p>
+                    <p className="mt-2 inline-flex rounded-full bg-[#14917a] px-3 py-1 text-[12px] font-bold text-white">+{preview.commands_more} with Pro</p>
                   ) : null}
                 </div>
               </div>
-              <p className="mt-5 text-[13px] leading-relaxed text-[var(--foreground-faint)]">
+              <p className="mt-6 text-[13px] leading-relaxed text-[var(--foreground-muted)]">
                 Questions, pointing, reminders and background jobs. Dictation doesn&apos;t count.
               </p>
             </Card>
@@ -247,17 +262,17 @@ function DashboardContent() {
           {/* Dictation */}
           <Reveal delay={0.15}>
             <Card>
-              <CardLabel icon={<Mic className="h-4 w-4" />}>Dictation this month</CardLabel>
-              <p className="mt-5 font-display text-[2rem] font-semibold leading-none tabular-nums text-[var(--foreground)]">
+              <CardLabel icon={<Mic className="h-3.5 w-3.5" />} tone="#d6246e">Dictation this month</CardLabel>
+              <p className="mt-6 font-sans text-[2rem] font-bold leading-none tracking-[-0.04em] tabular-nums text-[var(--foreground)]">
                 {user.word_quota_used.toLocaleString()}
               </p>
-              <p className="mt-1 text-[14px] text-[var(--foreground-muted)]">
+              <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
                 {preview ? `of ${(user.word_quota_limit ?? 0).toLocaleString()} trial words` : "words typed for you"}
               </p>
-              <p className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-700">
-                <Check className="h-3.5 w-3.5" /> {preview ? "+unlimited with Pro" : "Unlimited on your plan"}
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#14917a] px-3 py-1 text-[12px] font-bold text-white">
+                <Check className="h-3.5 w-3.5" strokeWidth={3} /> {preview ? "+unlimited with Pro" : "Unlimited on your plan"}
               </p>
-              <p className="mt-3 text-[13px] text-[var(--foreground-faint)]">
+              <p className="mt-3 text-[13px] text-[var(--foreground-muted)]">
                 That&apos;s about {Math.max(1, Math.round(user.word_quota_used / 40))} minutes of typing saved.
               </p>
             </Card>
@@ -265,34 +280,35 @@ function DashboardContent() {
         </div>
 
         {/* Your Mac */}
-        <Reveal delay={0.2} className="mt-4">
+        <Reveal delay={0.2} className="mt-4 md:mt-6">
           <Card>
-            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <CardLabel icon={<AppleIcon className="h-4 w-4" />}>Lazur on your Mac</CardLabel>
-                <p className="mt-3 text-[15px] text-[var(--foreground-muted)]">
+                <CardLabel icon={<AppleIcon className="h-3.5 w-3.5" />} tone="#1c1917">Lazur on your Mac</CardLabel>
+                <p className="mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]">
                   Hold <Kbd>⌥ ⌘</Kbd> to ask, <Kbd>fn</Kbd> to dictate. Lazur updates itself.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <TrackedAnchor href={LAZUR_APP_OPEN_URL} event="cta_clicked" eventProps={{ location: "dashboard_mac_card", label: "Open app", destination: "app" }} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Open app</TrackedAnchor>
-                <TrackedLink href="/login/app" eventProps={{ location: "dashboard_mac_card", label: "Sign in on this Mac", destination: "/login/app" }} className="rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]">Sign in on this Mac</TrackedLink>
-                <TrackedLink href="/download" eventProps={{ location: "dashboard_mac_card", label: "Download", destination: "/download" }} className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-white px-4 py-2 text-[14px] font-medium text-[var(--foreground)] hover:bg-black/[0.03]"><Download className="h-4 w-4" /> Download</TrackedLink>
+                <TrackedAnchor href={LAZUR_APP_OPEN_URL} event="cta_clicked" eventProps={{ location: "dashboard_mac_card", label: "Open app", destination: "app" }} className={SMALL_PILL}>Open app</TrackedAnchor>
+                <TrackedLink href="/login/app" eventProps={{ location: "dashboard_mac_card", label: "Sign in on this Mac", destination: "/login/app" }} className={SMALL_PILL}>Sign in on this Mac</TrackedLink>
+                <TrackedLink href="/download" eventProps={{ location: "dashboard_mac_card", label: "Download", destination: "/download" }} className={SMALL_PILL}><Download className="h-4 w-4" /> Download for Mac</TrackedLink>
               </div>
             </div>
           </Card>
         </Reveal>
 
         {/* Invite */}
-        <Reveal delay={0.25} className="mt-4">
-          <div className="relative overflow-hidden rounded-[24px] border border-[#2563eb]/15 bg-gradient-to-br from-[#2563eb]/[0.07] via-white to-white p-6 md:p-8">
+        <Reveal delay={0.25} className="mt-4 md:mt-6">
+          <div className={`relative rounded-[28px] border-[1.5px] border-[#1c1917] bg-white p-5 md:p-8 ${SHADOW}`}>
+            <Sticker name="bubble" size={64} rotate={10} className="absolute -right-4 -top-8 hidden md:block" />
             <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:items-center">
               <div className="min-w-0">
-                <CardLabel icon={<Gift className="h-4 w-4" />}>Invite friends</CardLabel>
-                <p className="mt-3 font-display text-[1.6rem] font-semibold leading-tight tracking-[-0.02em] text-[var(--foreground)]">
+                <CardLabel icon={<Gift className="h-3.5 w-3.5" />} tone="#e0621c">Invite friends</CardLabel>
+                <p className="mt-4 font-sans text-[1.6rem] font-bold leading-[1.1] tracking-[-0.04em] text-[var(--foreground)]">
                   Know someone who&apos;d love a companion?
                 </p>
-                <p className="mt-2 text-[14px] text-[var(--foreground-muted)]">
+                <p className="mt-3 text-[14px] leading-relaxed text-[var(--foreground-muted)]">
                   {referrals?.referral_count ? (
                     <>You&apos;ve invited <span className="font-semibold text-[var(--foreground)]">{referrals.referral_count}</span> {referrals.referral_count === 1 ? "friend" : "friends"}{referrals.leaderboard_rank != null ? <> · #{referrals.leaderboard_rank} on the leaderboard</> : null}.</>
                   ) : (
@@ -301,20 +317,20 @@ function DashboardContent() {
                 </p>
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-2 rounded-2xl border border-[var(--border-strong)] bg-white p-1.5 pl-4">
+                <div className="flex items-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white p-1 pl-4 shadow-[0_2px_0_rgba(28,25,23,0.9)]">
                   <span className="min-w-0 flex-1 truncate font-mono text-[13px] text-[var(--foreground-muted)]">{referralLink || "Your link is on its way…"}</span>
                   <button
                     type="button"
                     onClick={handleCopyReferral}
                     disabled={!referralLink}
-                    className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-[var(--foreground)] px-4 py-2 text-[13px] font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+                    className="inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-[#1c1917] px-4 text-[14px] font-bold text-white transition-colors hover:bg-black disabled:opacity-40"
                   >
                     {copied ? <><Check className="h-4 w-4" /> Copied</> : <><Copy className="h-4 w-4" /> Copy</>}
                   </button>
                 </div>
                 {user.referral_code ? (
-                  <p className="mt-2 pl-1 text-[12.5px] text-[var(--foreground-faint)]">
-                    Or share your code <span className="font-mono font-semibold text-[var(--foreground-muted)]">{user.referral_code}</span>
+                  <p className="mt-3 pl-4 text-[13px] text-[var(--foreground-muted)]">
+                    Or share your code <span className="font-mono font-semibold text-[var(--foreground)]">{user.referral_code}</span>
                   </p>
                 ) : null}
               </div>
@@ -322,10 +338,10 @@ function DashboardContent() {
           </div>
         </Reveal>
 
-        <nav className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--foreground-faint)]">
-          <TrackedLink href="/changelog" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "What's new", destination: "/changelog" }} className="hover:text-[var(--foreground-muted)]">What&apos;s new</TrackedLink>
-          <TrackedLink href="/support" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Help & support", destination: "/support" }} className="hover:text-[var(--foreground-muted)]">Help &amp; support</TrackedLink>
-          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Privacy", destination: "/privacy" }} className="hover:text-[var(--foreground-muted)]">Privacy</TrackedLink>
+        <nav className="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[14px] text-[var(--foreground-muted)]">
+          <TrackedLink href="/changelog" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "What's new", destination: "/changelog" }} className={FOOT_LINK}>What&apos;s new</TrackedLink>
+          <TrackedLink href="/support" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Help & support", destination: "/support" }} className={FOOT_LINK}>Help &amp; support</TrackedLink>
+          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: "dashboard_footer", label: "Privacy", destination: "/privacy" }} className={FOOT_LINK}>Privacy</TrackedLink>
         </nav>
       </main>
     </MarketingPageShell>
@@ -333,6 +349,13 @@ function DashboardContent() {
 }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+/** The homepage's red hand-drawn ink. */
+const INK = "#e11d48";
+const SHADOW = "shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)]";
+const PRIMARY_PILL = `inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white px-8 text-[16px] font-bold tracking-[-0.02em] text-[#1c1917] ${SHADOW} transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(28,25,23,0.9),0_16px_30px_-10px_rgba(28,25,23,0.24)] active:translate-y-0.5`;
+const DARK_PILL = "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white transition-colors hover:bg-black";
+const SMALL_PILL = "inline-flex min-h-[44px] items-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white px-4 text-[14px] font-bold text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9)] transition-transform hover:-translate-y-0.5";
+const FOOT_LINK = "font-medium underline decoration-[var(--foreground)]/25 underline-offset-4 hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]";
 
 function greeting() {
   const h = new Date().getHours();
@@ -343,9 +366,9 @@ function Avatar({ user }: { user: UserProfile }) {
   const initial = (user.name || user.email || "?").trim().charAt(0).toUpperCase();
   return user.avatar_url ? (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={user.avatar_url} alt="" className="h-14 w-14 rounded-full object-cover ring-4 ring-white shadow-sm" />
+    <img src={user.avatar_url} alt="" className="h-16 w-16 rounded-full border-[1.5px] border-[#1c1917] object-cover shadow-[0_2px_0_rgba(28,25,23,0.9)]" />
   ) : (
-    <span className="grid h-14 w-14 place-items-center rounded-full bg-[#2563eb] font-display text-[1.4rem] font-semibold text-white ring-4 ring-white shadow-sm">{initial}</span>
+    <span className="grid h-16 w-16 place-items-center rounded-full border-[1.5px] border-[#1c1917] bg-[#5b4bd6] font-sans text-[1.5rem] font-bold text-white shadow-[0_2px_0_rgba(28,25,23,0.9)]">{initial}</span>
   );
 }
 
@@ -358,20 +381,20 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 function Card({ children }: { children: React.ReactNode }) {
-  return <div className="h-full rounded-[24px] border border-[var(--border)] bg-white/80 p-6 shadow-[var(--shadow-card)]">{children}</div>;
+  return <div className={`h-full rounded-[20px] border-[1.5px] border-[#1c1917] bg-white p-5 md:p-6 ${SHADOW}`}>{children}</div>;
 }
 
-function CardLabel({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+function CardLabel({ icon, tone, children }: { icon: React.ReactNode; tone: string; children: React.ReactNode }) {
   return (
-    <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-faint)]">
-      <span className="text-[#2563eb]">{icon}</span>
+    <p className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--foreground-muted)]">
+      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: tone }}>{icon}</span>
       {children}
     </p>
   );
 }
 
 function Kbd({ children }: { children: React.ReactNode }) {
-  return <kbd className="mx-0.5 rounded-md border border-[var(--border-strong)] bg-white px-1.5 py-0.5 font-sans text-[12.5px] font-semibold text-[var(--foreground)] shadow-[0_1px_0_rgba(28,25,23,0.12)]">{children}</kbd>;
+  return <kbd className="mx-1 rounded-md border-[1.5px] border-[#1c1917] bg-white px-2 py-0.5 font-sans text-[13px] font-bold text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)]">{children}</kbd>;
 }
 
 /** Share of the month's AI actions used, as a ring. */
@@ -380,10 +403,10 @@ function Ring({ value }: { value: number }) {
   const c = 2 * Math.PI * r;
   const v = Math.max(0, Math.min(1, value));
   return (
-    <svg width="76" height="76" viewBox="0 0 76 76" className="-rotate-90" aria-hidden>
-      <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(28,25,23,0.08)" strokeWidth="8" />
+    <svg width="76" height="76" viewBox="0 0 76 76" className="shrink-0 -rotate-90" aria-hidden>
+      <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(28,25,23,0.1)" strokeWidth="8" />
       <motion.circle
-        cx="38" cy="38" r={r} fill="none" stroke={v > 0.9 ? "#ef5350" : "#2563eb"} strokeWidth="8" strokeLinecap="round"
+        cx="38" cy="38" r={r} fill="none" stroke={v > 0.9 ? INK : "#5b4bd6"} strokeWidth="8" strokeLinecap="round"
         strokeDasharray={c}
         initial={{ strokeDashoffset: c }}
         animate={{ strokeDashoffset: c * (1 - v) }}

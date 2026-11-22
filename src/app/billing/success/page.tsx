@@ -2,8 +2,9 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
-import { Navbar } from "@/components/Navbar";
+import { Check, Loader2, Sparkles } from "lucide-react";
+import { AuthFlowShell } from "@/components/AuthFlowShell";
+import { HandUnderline } from "@/components/buddy/HandLoop";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { useAuth } from "@/components/AuthProvider";
 import { hasValidSessionToken } from "@/lib/auth";
@@ -104,16 +105,13 @@ function BillingSuccessContent() {
   }, [router, refresh, expectedPlan, checkoutId]);
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
-      <Navbar />
-      <main className="mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center px-6 pb-20 pt-28 text-center">
+    <AuthFlowShell contentClassName="w-full max-w-[480px]">
+      <div className="rounded-[28px] border-[1.5px] border-[#1c1917] bg-white px-6 py-8 text-center shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] md:px-8">
         {status === "polling" && (
           <>
-            <Loader2 className="mb-6 h-10 w-10 animate-spin text-[var(--brand)]" />
-            <h1 className="font-display text-2xl font-semibold text-[var(--foreground)]">
-              Confirming your upgrade…
-            </h1>
-            <p className="mt-3 text-sm text-[var(--foreground-muted)]">
+            <Loader2 className="mx-auto mb-6 h-10 w-10 animate-spin text-[#1c1917]" />
+            <h1 className={TITLE}>Confirming your upgrade…</h1>
+            <p className={BODY}>
               Finalizing your subscription. This usually takes a few seconds, keep this tab open.
             </p>
           </>
@@ -121,18 +119,24 @@ function BillingSuccessContent() {
 
         {status === "done" && billing && (
           <>
-            <CheckCircle2 className="mb-6 h-12 w-12 text-emerald-600" />
-            <h1 className="font-display text-2xl font-semibold text-[var(--foreground)]">
-              You&apos;re on {billing.plan}
+            <span className="mx-auto mb-6 grid h-12 w-12 place-items-center rounded-full bg-[#14917a]">
+              <Check className="h-6 w-6 text-white" strokeWidth={3} />
+            </span>
+            <h1 className={TITLE}>
+              You&apos;re on{" "}
+              <span className="relative inline-block whitespace-nowrap">
+                {billing.plan}
+                <HandUnderline show color="#e11d48" delay={0.3} duration={0.8} offset={2} />
+              </span>
             </h1>
-            <p className="mt-3 text-sm text-[var(--foreground-muted)]">
+            <p className={BODY}>
               Your subscription is active. Open Lazur on your Mac to use your new limits right away.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <TrackedLink
                 href="/dashboard"
                 eventProps={{ location: "billing_success", label: "Go to dashboard", destination: "/dashboard" }}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)]"
+                className={DARK_PILL}
               >
                 <Sparkles className="h-4 w-4" />
                 Go to dashboard
@@ -140,7 +144,7 @@ function BillingSuccessContent() {
               <TrackedLink
                 href="/download"
                 eventProps={{ location: "billing_success", label: "Download for Mac", destination: "/download" }}
-                className="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] px-5 py-3 text-sm font-semibold text-[var(--foreground)]"
+                className={WHITE_PILL}
               >
                 Download for Mac
               </TrackedLink>
@@ -150,11 +154,11 @@ function BillingSuccessContent() {
 
         {status === "timeout" && (
           <>
-            <Sparkles className="mb-6 h-10 w-10 text-[var(--brand)]" />
-            <h1 className="font-display text-2xl font-semibold text-[var(--foreground)]">
-              Payment received
-            </h1>
-            <p className="mt-3 text-sm text-[var(--foreground-muted)]">
+            <span className="mx-auto mb-6 grid h-12 w-12 place-items-center rounded-full bg-[#5b4bd6]">
+              <Sparkles className="h-5 w-5 text-white" strokeWidth={2} />
+            </span>
+            <h1 className={TITLE}>Payment received</h1>
+            <p className={BODY}>
               {billing
                 ? `Your account shows ${billing.plan}. If limits haven't updated yet, refresh the app or check back in a minute.`
                 : "We're still syncing your subscription. Check your dashboard in a minute."}
@@ -162,16 +166,23 @@ function BillingSuccessContent() {
             <TrackedLink
               href="/billing"
               eventProps={{ location: "billing_success_timeout", label: "View billing", destination: "/billing" }}
-              className="mt-8 inline-flex rounded-xl bg-[var(--foreground)] px-5 py-3 text-sm font-semibold text-[var(--background)]"
+              className={`mt-8 ${DARK_PILL}`}
             >
               View billing
             </TrackedLink>
           </>
         )}
-      </main>
-    </div>
+      </div>
+    </AuthFlowShell>
   );
 }
+
+const TITLE = "font-sans text-[1.75rem] font-bold leading-[1.1] tracking-[-0.04em] text-[var(--foreground)]";
+const BODY = "mt-4 text-[15px] leading-relaxed text-[var(--foreground-muted)]";
+const DARK_PILL =
+  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white transition-colors hover:bg-black";
+const WHITE_PILL =
+  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white px-6 text-[15px] font-bold text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9)] transition-transform hover:-translate-y-0.5";
 
 export default function BillingSuccessPage() {
   return (

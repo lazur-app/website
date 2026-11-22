@@ -1,37 +1,40 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { Sticker } from "@/components/landing/Sticker";
 import { hasValidSessionToken, startOAuth } from "@/lib/auth";
 import { isSafeReturnPath } from "@/lib/returnTo";
 import { AuthFlowShell } from "./AuthFlowShell";
-import { HandLoop } from "./buddy/HandLoop";
+import { HandLoop, HandUnderline } from "./buddy/HandLoop";
 
 type LoginFormProps = {
   source: "web" | "desktop";
   returnTo?: string;
 };
 
-const INK = "#2563eb";
-const HAND = "font-[family-name:var(--font-caveat)]";
+/** The homepage's red hand-drawn ink. */
+const INK = "#e11d48";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const copy = {
   web: {
     eyebrow: "Your account",
-    title: "Welcome back",
+    titleLead: "Welcome",
+    titleKey: "back.",
     subtitle: "Sign in to see your plan, usage and invites.",
-    note: "one click, that's it",
+    note: "One click, that's it.",
     perks: ["No password to remember", "Same account as the Mac app", "Manage your plan any time"],
   },
   desktop: {
     eyebrow: "Mac sign-in",
-    title: "Sign in to Lazur",
+    titleLead: "Sign in to",
+    titleKey: "Lazur.",
     subtitle: "Connect your account, then you're back on your Mac.",
-    note: "then back to your Mac",
+    note: "Then you're straight back to your Mac.",
     perks: ["No password to remember", "Your trial starts in the app", "You can close this tab after"],
   },
 };
@@ -49,6 +52,9 @@ function GoogleMark() {
   );
 }
 
+const linkClass =
+  "font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 hover:decoration-[var(--foreground)]";
+
 export function LoginForm({ source, returnTo }: LoginFormProps) {
   const text = copy[source];
   const router = useRouter();
@@ -62,57 +68,51 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
   }, [source, router, safeReturnTo]);
 
   useEffect(() => {
-    const t = window.setTimeout(() => setDrawn(true), 650);
+    const t = window.setTimeout(() => setDrawn(true), 1200);
     return () => window.clearTimeout(t);
   }, []);
 
   return (
-    <AuthFlowShell contentClassName="w-full max-w-[420px]">
+    <AuthFlowShell contentClassName="w-full max-w-[440px]">
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE }}>
-        <div className="text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-white/70 px-3 py-1 text-[12px] font-medium text-[var(--foreground-muted)]">
-            <Sparkles className="h-3.5 w-3.5" style={{ color: INK }} />
+        <div className="relative text-center">
+          <Sticker name="key" size={72} rotate={-12} className="absolute -left-24 -top-4 hidden lg:block" />
+          <Sticker name="heart" size={64} rotate={10} className="absolute -right-24 top-16 hidden lg:block" />
+          <span className="inline-flex min-h-[28px] items-center rounded-full bg-[#1c1917] px-3 text-[12px] font-bold text-white">
             {text.eyebrow}
           </span>
-          <h1 className="mt-4 font-display text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[var(--foreground)]">
-            {text.title}
+          <h1 className="mt-6 font-sans text-[clamp(2.4rem,7vw,3.4rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
+            {text.titleLead}{" "}
+            <span className="relative inline-block whitespace-nowrap">
+              {text.titleKey}
+              <HandUnderline show color={INK} delay={0.4} duration={0.9} offset={2} />
+            </span>
           </h1>
-          <p className="mx-auto mt-3 max-w-[300px] text-[15px] leading-relaxed text-[var(--foreground-muted)]">{text.subtitle}</p>
+          <p className="mx-auto mt-4 max-w-[320px] text-[16px] font-medium leading-normal text-[var(--foreground-muted)]">
+            {text.subtitle}
+          </p>
         </div>
 
-        <div className="relative mt-9 rounded-[28px] border border-[var(--border)] bg-white/85 p-6 shadow-[0_24px_60px_-28px_rgba(28,25,23,0.28)] backdrop-blur md:p-7">
-          <motion.p
-            className={`${HAND} pointer-events-none absolute -top-9 right-3 flex items-end gap-1 text-[22px] leading-none`}
-            style={{ color: INK }}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: drawn ? 1 : 0, y: drawn ? 0 : 4 }}
-            transition={{ delay: 0.55, duration: 0.4, ease: EASE }}
-            aria-hidden
-          >
-            {text.note}
-            <svg width="26" height="22" viewBox="0 0 26 22" className="mb-[-10px] -scale-x-100" fill="none">
-              <path d="M2 2 C 8 6, 14 12, 22 18 M22 18 L 14 17 M22 18 L 20 10" stroke={INK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </motion.p>
-
+        <div className="mt-12 rounded-[28px] border-[1.5px] border-[#1c1917] bg-white p-6 shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] md:p-8">
           <div className="relative">
             <button
               type="button"
               onClick={() => startOAuth("google", source, safeReturnTo)}
-              className="group relative flex h-14 w-full items-center justify-center gap-3 rounded-full bg-[#1c1917] pl-2 pr-5 text-[15px] font-semibold text-white transition hover:bg-black active:scale-[0.99]"
+              className="group relative flex h-14 w-full items-center justify-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white pl-12 pr-6 text-[16px] font-bold tracking-[-0.02em] text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(28,25,23,0.9),0_16px_30px_-10px_rgba(28,25,23,0.24)] active:translate-y-0.5 active:shadow-[0_0_0_rgba(28,25,23,0.9)]"
             >
               <span className="absolute left-3"><GoogleMark /></span>
               Continue with Google
               <ArrowRight className="h-4 w-4 opacity-60 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
             </button>
-            <HandLoop show={drawn} color={INK} padX={12} padY={10} />
+            <HandLoop show={drawn} color={INK} padX={12} padY={8} />
           </div>
+          <p className="mt-4 text-center text-[13px] font-medium text-[var(--foreground-muted)]">{text.note}</p>
 
-          <ul className="mt-7 space-y-2.5">
+          <ul className="mt-6 space-y-3 border-t-[1.5px] border-dashed border-[#1c1917]/15 pt-6">
             {text.perks.map((perk) => (
-              <li key={perk} className="flex items-center gap-2.5 text-[13.5px] text-[var(--foreground-muted)]">
-                <span className="grid h-5 w-5 place-items-center rounded-full bg-[#2563eb]/10">
-                  <Check className="h-3 w-3" style={{ color: INK }} strokeWidth={3} />
+              <li key={perk} className="flex items-center gap-3 text-[14px] font-medium text-[var(--foreground)]">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#14917a]">
+                  <Check className="h-3 w-3 text-white" strokeWidth={3} />
                 </span>
                 {perk}
               </li>
@@ -120,15 +120,15 @@ export function LoginForm({ source, returnTo }: LoginFormProps) {
           </ul>
         </div>
 
-        <p className="mt-7 text-center text-[12px] leading-relaxed text-[var(--foreground-faint)]">
+        <p className="mt-8 text-center text-[13px] leading-relaxed text-[var(--foreground-muted)]">
           By continuing, you agree to Lazur&apos;s{" "}
-          <TrackedLink href="/terms" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Terms", destination: "/terms" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Terms</TrackedLink>{" "}
+          <TrackedLink href="/terms" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Terms", destination: "/terms" }} className={linkClass}>Terms</TrackedLink>{" "}
           and{" "}
-          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Privacy Policy", destination: "/privacy" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Privacy Policy</TrackedLink>.
+          <TrackedLink href="/privacy" event="nav_link_clicked" eventProps={{ location: `login_${source}`, label: "Privacy Policy", destination: "/privacy" }} className={linkClass}>Privacy Policy</TrackedLink>.
           {source === "web" ? (
             <>
               <br />
-              New here? <TrackedLink href="/download" eventProps={{ location: "login_web", label: "Download Lazur", destination: "/download" }} className="font-medium text-[var(--foreground-muted)] underline-offset-2 hover:text-[var(--foreground)] hover:underline">Download Lazur</TrackedLink> and your 3-day trial starts in the app.
+              New here? <TrackedLink href="/download" eventProps={{ location: "login_web", label: "Download Lazur", destination: "/download" }} className={linkClass}>Download Lazur</TrackedLink> and your 3-day trial starts in the app.
             </>
           ) : null}
         </p>

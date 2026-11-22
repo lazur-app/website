@@ -30,14 +30,14 @@ function UserAvatar({ user, size = "sm" }: { user: UserProfile; size?: "sm" | "m
       <img
         src={user.avatar_url}
         alt=""
-        className={`${dim} shrink-0 rounded-full border border-[var(--border)] object-cover`}
+        className={`${dim} shrink-0 rounded-full border-[1.5px] border-[#1c1917] object-cover`}
       />
     );
   }
 
   return (
     <div
-      className={`flex ${dim} shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--brand-soft)] ${text} font-semibold text-[var(--brand-ink)]`}
+      className={`flex ${dim} shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#1c1917] bg-[#5b4bd6] ${text} font-bold text-white`}
     >
       {(user.name || user.email)[0]?.toUpperCase()}
     </div>
@@ -93,8 +93,8 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
           }}
           className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-colors ${
             onDashboard
-              ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
-              : "text-[var(--foreground-muted)] hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
+              ? "bg-[#1c1917] text-white"
+              : "text-[var(--foreground-muted)] hover:bg-[#1c1917]/[0.05] hover:text-[var(--foreground)]"
           }`}
         >
           <LayoutDashboard className="h-4 w-4" />
@@ -106,7 +106,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
             onNavigate?.();
             signOut("user_menu_mobile");
           }}
-          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-[var(--foreground-muted)] transition-colors hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
+          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium text-[var(--foreground-muted)] transition-colors hover:bg-[#1c1917]/[0.05] hover:text-[var(--foreground)]"
         >
           <LogOut className="h-4 w-4" />
           Sign out
@@ -125,10 +125,8 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
           track(open ? "menu_closed" : "menu_opened", { menu: "user_menu" });
           setOpen((o) => !o);
         }}
-        className={`flex h-10 items-center gap-2 rounded-full border bg-[var(--surface-solid)] px-3 text-[13px] font-semibold transition-all hover:border-[var(--border-strong)] hover:shadow-sm ${
-          onDashboard
-            ? "border-[var(--brand)]/35 ring-2 ring-[var(--brand)]/10"
-            : "border-[var(--border)]"
+        className={`flex h-11 items-center gap-2 rounded-full border-[1.5px] border-[#1c1917] bg-white pl-2 pr-3 text-[14px] font-bold shadow-[0_2px_0_rgba(28,25,23,0.9)] transition-transform hover:-translate-y-0.5 ${
+          onDashboard ? "ring-2 ring-[#1c1917]/10" : ""
         }`}
       >
         <UserAvatar user={user} />
@@ -136,7 +134,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
           {firstName(user)}
         </span>
         <ChevronDown
-          className={`h-3.5 w-3.5 shrink-0 text-[var(--foreground-faint)] transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-4 w-4 shrink-0 text-[var(--foreground-muted)] transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -147,14 +145,14 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.15 }}
-            className="soft-card absolute right-0 top-[calc(100%+8px)] z-[200] w-56 overflow-hidden rounded-xl py-1 shadow-[var(--shadow-soft)]"
+            className="absolute right-0 top-[calc(100%+8px)] z-[200] w-60 overflow-hidden rounded-[12px] border-[1.5px] border-[#1c1917] bg-white py-1 shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)]"
             role="menu"
           >
-            <div className="border-b border-[var(--border)] px-3 py-2.5">
-              <p className="truncate text-[13px] font-semibold text-[var(--foreground)]">
+            <div className="border-b border-dashed border-[#1c1917]/15 px-4 py-3">
+              <p className="truncate text-[14px] font-bold text-[var(--foreground)]">
                 {user.name || firstName(user)}
               </p>
-              <p className="truncate text-[11px] text-[var(--foreground-muted)]">{user.email}</p>
+              <p className="mt-1 truncate text-[12px] text-[var(--foreground-muted)]">{user.email}</p>
             </div>
             <Link
               href="/dashboard"
@@ -163,10 +161,10 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
                 track("nav_link_clicked", { location: "user_menu", label: "Account", destination: "/dashboard" });
                 setOpen(false);
               }}
-              className={`flex items-center gap-2.5 px-3 py-2.5 text-[13px] font-medium transition-colors ${
+              className={`flex min-h-[44px] items-center gap-3 px-4 text-[14px] font-semibold transition-colors ${
                 onDashboard
-                  ? "bg-[var(--brand-soft)] text-[var(--brand-ink)]"
-                  : "text-[var(--foreground-muted)] hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
+                  ? "bg-[#1c1917]/[0.05] text-[var(--foreground)]"
+                  : "text-[var(--foreground-muted)] hover:bg-[#1c1917]/[0.05] hover:text-[var(--foreground)]"
               }`}
             >
               <LayoutDashboard className="h-4 w-4" />
@@ -179,7 +177,7 @@ export function UserMenu({ user, variant = "navbar", onNavigate }: UserMenuProps
                 setOpen(false);
                 signOut("user_menu");
               }}
-              className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left text-[13px] font-medium text-[var(--foreground-muted)] transition-colors hover:bg-[var(--background-deep)] hover:text-[var(--foreground)]"
+              className="flex min-h-[44px] w-full items-center gap-3 px-4 text-left text-[14px] font-semibold text-[var(--foreground-muted)] transition-colors hover:bg-[#1c1917]/[0.05] hover:text-[var(--foreground)]"
             >
               <LogOut className="h-4 w-4" />
               Sign out

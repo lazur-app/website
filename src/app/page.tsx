@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { ReferralCapture } from "@/components/ReferralCapture";
 import { PuzzleHero } from "@/components/lab/puzzle/PuzzleHero";
-import { PlainPageStyle } from "@/components/lab/puzzle/PlainPageStyle";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { LandingPageSections } from "@/components/landing/LandingPageSections";
@@ -23,9 +22,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <MarketingPageShell scrollIndicator={false}>
+    <MarketingPageShell>
       <HomePageStructuredData />
-      <PlainPageStyle />
       <ReferralCapture />
       <Navbar />
       <main className="overflow-x-clip">

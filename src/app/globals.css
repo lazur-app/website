@@ -3406,3 +3406,31 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .ms-sticker * { animation: none !important; }
 }
+
+/* ------------------------------------------------------------------ one face for the whole site
+   Every heading and accent is Open Sauce, like the homepage hero (no Clash Display, no serif italic).
+   `body[class]` so these win over the font variables next/font puts on the body's class. It also
+   gives --font-sans a real value: the one in @theme is declared on :root, where --font-open-sauce
+   does not exist yet, so the body text used to fall back to the system font. */
+body[class] {
+  --font-sans: var(--font-open-sauce), ui-sans-serif, system-ui, sans-serif;
+  --font-clash: var(--font-open-sauce);
+  --font-display: var(--font-open-sauce), ui-sans-serif, system-ui, sans-serif;
+  --font-garamond: var(--font-open-sauce);
+}
+
+body [class*="font-garamond"] {
+  font-style: normal;
+  font-size: 1em;
+  letter-spacing: inherit;
+}
+
+/* No scroll bar drawn anywhere on the site (pages still scroll). */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}

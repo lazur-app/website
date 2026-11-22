@@ -2,14 +2,14 @@
 
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Check, Download, Monitor } from "lucide-react";
+import { HandUnderline } from "@/components/buddy/HandLoop";
+import { Check } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import {
-  MAC_DOWNLOAD_URL,
   hasIntelMacBuild,
   hasWindowsBuild,
   resolveMacDownloadUrl,
@@ -28,14 +28,6 @@ import {
 } from "@/lib/platform";
 
 const SAVE_AS = "Lazur.dmg";
-
-function MacMark() {
-  return (
-    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--foreground)] text-[var(--background)]">
-      <AppleIcon className="h-6 w-6" />
-    </div>
-  );
-}
 
 function WindowsWaitlist() {
   const [email, setEmail] = useState("");
@@ -110,379 +102,239 @@ function WindowsWaitlist() {
   );
 }
 
-/** Phones (iOS, Android) vs desktops, only to pick the right sentence. */
-function isPhoneOrTablet(platform: Platform) {
-  if (platform === "ios") return true;
-  return typeof navigator !== "undefined" && /Android|Mobi|Tablet/i.test(navigator.userAgent);
+const INK = "#e11d48";
+
+/** The download button: the homepage's white pill, black outline and text. */
+function DownloadPill({ label, onClick, icon }: { label: string; onClick: () => void; icon: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="inline-flex h-[84px] min-w-[300px] items-center justify-center gap-3 rounded-[36px] border-[1.5px] border-[#1c1917] bg-white px-10 text-[22px] font-bold tracking-[-0.03em] text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(28,25,23,0.9),0_16px_30px_-10px_rgba(28,25,23,0.24)] active:translate-y-0.5 active:shadow-[0_0_0_rgba(28,25,23,0.9)]"
+    >
+      {icon}
+      {label}
+    </button>
+  );
 }
 
 /**
- * Not on a Mac (phone, Windows without a build, Linux): the same "Download for Mac" button as
- * everywhere else. What it should do for these visitors is still being decided; for now it starts
- * the Mac download (see onDownload). The Windows waitlist is still there, one tap away.
+ * The download page, in the homepage's style: one headline, one button that downloads the app,
+ * then what to do with the file. Nothing starts until the button is pressed.
+ *
+ * Mac visitors get the build for their chip. Everyone else gets the same button; for now it
+ * downloads the Apple silicon Mac build (what it should do off a Mac is still to be decided).
+ * A Windows build, when there is one, gets its own button.
  */
-function SendToMacPanel({ platform, onDownload }: { platform: Platform; onDownload: () => void }) {
-  const [showWaitlist, setShowWaitlist] = useState(false);
-  const location = `download_page_${platform}`;
-  const onPhone = isPhoneOrTablet(platform);
-
-  return (
-    <>
-      <MacMark />
-      <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
-        Get Lazur on your Mac
-      </h1>
-      <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
-        {onPhone
-          ? "Lazur is a Mac app. Download it here and open it on your Mac."
-          : platform === "windows"
-            ? "Lazur is a Mac app for now. Download it and install it on your Mac."
-            : "Lazur is a Mac app. Download it and install it on your Mac."}
-      </p>
-
-      <div className="mt-8">
-        <button
-          type="button"
-          onClick={() => {
-            track("cta_clicked", { location, label: "Download for Mac", destination: "mac_download", platform: "not_mac" });
-            onDownload();
-          }}
-          className="btn-dark inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-8 text-[15px] font-semibold"
-        >
-          <AppleIcon className="h-4 w-4" />
-          Download for Mac
-        </button>
-      </div>
-
-      <ul className="mx-auto mt-5 flex max-w-sm flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[13px] text-[var(--foreground-muted)]">
-        {["Free 3-day Pro trial", "No credit card", hasIntelMacBuild() ? "Apple Silicon & Intel" : "Apple Silicon"].map((fact) => (
-          <li key={fact} className="inline-flex items-center gap-1.5">
-            <Check className="h-3.5 w-3.5 text-[var(--brand)]" strokeWidth={2.25} aria-hidden />
-            {fact}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-8 border-t border-[var(--border)] pt-5">
-        {showWaitlist ? (
-          <WindowsWaitlist />
-        ) : (
-          <p className="text-[13px] text-[var(--foreground-faint)]">
-            {platform === "windows" ? "Want Lazur on this PC? " : "On Windows? "}
-            <button
-              type="button"
-              onClick={() => {
-                track("windows_waitlist_opened", { location });
-                setShowWaitlist(true);
-              }}
-              className="font-medium text-[var(--foreground-muted)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:text-[var(--foreground)]"
-            >
-              Get notified when Windows is ready
-            </button>
-          </p>
-        )}
-      </div>
-    </>
-  );
-}
-
-/** A small burst of blue sparkles around the check mark, once, when the page opens. */
-function SparkleBurst() {
-  const rays = Array.from({ length: 10 }, (_, i) => {
-    const angle = (i / 10) * Math.PI * 2 + 0.3;
-    const dist = 58 + (i % 3) * 14;
-    return { x: Math.cos(angle) * dist, y: Math.sin(angle) * dist, size: 9 + (i % 3) * 4, delay: 0.35 + (i % 4) * 0.05 };
-  });
-  return (
-    <div className="pointer-events-none absolute left-1/2 top-1/2" aria-hidden>
-      {rays.map((r, i) => (
-        <motion.svg
-          key={i}
-          viewBox="0 0 24 24"
-          width={r.size}
-          height={r.size}
-          className="absolute -ml-1.5 -mt-1.5"
-          initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
-          animate={{ x: r.x, y: r.y, opacity: [0, 1, 0], scale: 1 }}
-          transition={{ duration: 1.4, delay: r.delay, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <path d="M12 1.5 C12.6 7.4 16.6 11.4 22.5 12 C16.6 12.6 12.6 16.6 12 22.5 C11.4 16.6 7.4 12.6 1.5 12 C7.4 11.4 11.4 7.4 12 1.5 Z" fill="#2563eb" />
-        </motion.svg>
-      ))}
-    </div>
-  );
-}
-
-/** The Mac download: a small celebration, where the file went, and the install acted out. */
-function MacWelcome({ chip, started, available, onAgain, onSwitch }: {
-  chip: MacChip | null;
-  started: boolean;
-  available: boolean;
-  onAgain: () => void;
-  onSwitch: (chip: MacChip) => void;
-}) {
-  const step = useInstallStep();
-  return (
-    <>
-      <div className="relative mx-auto mb-7 h-16 w-16">
-        {started ? <SparkleBurst /> : null}
-        {started ? (
-          <motion.span
-            initial={{ opacity: 0, x: -6 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.4 }}
-            className="pointer-events-none absolute left-[calc(100%+1.25rem)] top-1 hidden whitespace-nowrap font-[family-name:var(--font-caveat)] text-[1.6rem] leading-none text-[#2563eb] sm:block"
-            aria-hidden
-          >
-            <svg viewBox="0 0 40 24" className="absolute -left-10 top-2 h-6 w-10 overflow-visible" aria-hidden>
-              <motion.path d="M38 6 C26 2 12 6 4 16 M4 16 L5 7 M4 16 L13 15" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 1.2, duration: 0.5 }} />
-            </svg>
-            your first step
-          </motion.span>
-        ) : null}
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid h-16 w-16 place-items-center rounded-full bg-[var(--foreground)] text-white shadow-[0_14px_30px_rgba(28,25,23,0.25)]"
-        >
-          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden>
-            <motion.path
-              d="M5 12.5 L10 17.5 L19 7"
-              fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 0.3, duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
-            />
-          </svg>
-        </motion.div>
-      </div>
-
-      <motion.h1
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="font-display text-[2rem] font-semibold tracking-[-0.03em] md:text-[2.75rem]"
-      >
-        {started ? "You just got a companion." : available ? "Lazur for Mac" : "Almost there"}
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.35, duration: 0.5 }}
-        className="mx-auto mt-3 max-w-md text-[16px] leading-relaxed text-[var(--foreground)]/70"
-      >
-        {started
-          ? "It's on its way to your Downloads folder. Three quick steps and I'm in your notch."
-          : available
-            ? "Ready when you are."
-            : "The Mac installer isn't available just yet. Try again in a bit."}
-      </motion.p>
-
-      {started ? (
-        <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-          className="mx-auto mt-6 flex max-w-xs items-center gap-3 rounded-2xl border border-black/[0.06] bg-white/70 px-4 py-3 text-left"
-        >
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#1c1917] text-white"><AppleIcon className="h-4 w-4" /></span>
-          <div className="min-w-0 flex-1">
-            <p className="text-[13.5px] font-semibold text-[var(--foreground)]">Lazur.dmg</p>
-            <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-black/[0.06]">
-              <motion.div
-                className="h-full rounded-full bg-[#2563eb]"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ delay: 0.7, duration: 2.2, ease: [0.4, 0, 0.2, 1] }}
-              />
-            </div>
-          </div>
-          <span className="text-[11.5px] text-[var(--foreground-faint)]">{chip === "intel" ? "Intel" : "Apple silicon"}</span>
-        </motion.div>
-      ) : null}
-
-      {/* The install, acted out */}
-      <div className="mt-10 grid items-center gap-8 text-left md:grid-cols-[1fr_1.35fr]">
-        <ol className="space-y-2">
-          {INSTALL_STEPS.map((s, i) => {
-            const on = i === step;
-            return (
-              <li
-                key={s.title}
-                className={`flex gap-3 rounded-2xl px-4 py-3 transition-colors duration-300 ${on ? "bg-white shadow-[var(--shadow-card)]" : ""}`}
-              >
-                <span className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold transition-colors duration-300 ${on ? "bg-[#2563eb] text-white" : "bg-black/[0.06] text-[var(--foreground-muted)]"}`}>
-                  {i + 1}
-                </span>
-                <span>
-                  <span className={`block text-[15px] font-semibold transition-colors duration-300 ${on ? "text-[var(--foreground)]" : "text-[var(--foreground)]/55"}`}>{s.title}</span>
-                  <span className="block text-[13px] text-[var(--foreground-faint)]">{s.detail}</span>
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-        <InstallDemo step={step} />
-      </div>
-
-      <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <TrackedLink
-          href="/login/app"
-          eventProps={{ location: "download_page", label: "Already installed? Sign in", destination: "/login/app" }}
-          className="btn-dark inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-6 text-[14px] font-semibold sm:w-auto"
-        >
-          Already installed? Sign in
-        </TrackedLink>
-        <button
-          type="button"
-          onClick={onAgain}
-          className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-strong)] bg-white/70 px-6 text-[14px] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--foreground)]/30 sm:w-auto"
-        >
-          <Download className="h-4 w-4" />
-          Download again
-        </button>
-      </div>
-
-      <p className="mt-6 text-[13px] text-[var(--foreground-faint)]">
-        Your free 3-day trial (30 AI actions, 10,000 words) starts when you first open the app. No card needed.
-      </p>
-
-      {hasIntelMacBuild() ? (
-        <p className="mt-3 text-[13px] text-[var(--foreground-faint)]">
-          {chip === "intel" ? "On Apple silicon? " : "On an Intel Mac? "}
-          <button
-            type="button"
-            onClick={() => onSwitch(chip === "intel" ? "apple-silicon" : "intel")}
-            className="font-medium text-[var(--foreground-muted)] underline decoration-[var(--foreground)]/20 underline-offset-2 hover:text-[var(--foreground)]"
-          >
-            {chip === "intel" ? "Get the Apple silicon version" : "Get the Intel version"}
-          </button>
-        </p>
-      ) : null}
-    </>
-  );
-}
-
 export default function DownloadPage() {
   const [platform, setPlatform] = useState<Platform | null>(null);
-  const [chip, setChip] = useState<MacChip | null>(null);
+  const [chip, setChip] = useState<MacChip>("apple-silicon");
   const [started, setStarted] = useState(false);
-
-  // Every Mac download goes through here: it starts by itself when the page opens, and again
-  // if they pick the other chip. Counted in PostHog and GA (download_mac, a key event).
-  const startMacDownload = useCallback(async (nextChip: MacChip, how: "auto" | "switch" | "again") => {
-    const url = await resolveMacDownloadUrl(nextChip);
-    if (!url) {
-      track("download_unavailable", { platform: "mac", chip: nextChip, how });
-      return;
-    }
-    track("download_clicked", { platform: "mac", chip: nextChip, how });
-    setStarted(triggerFileDownload(url, SAVE_AS));
-  }, []);
+  const [missing, setMissing] = useState(false);
+  const [showWaitlist, setShowWaitlist] = useState(false);
+  const step = useInstallStep();
 
   useEffect(() => {
     const raw = detectPlatform();
-    // iPadOS Safari claims to be a Mac; never start a .dmg download on an iPad.
+    // iPadOS Safari claims to be a Mac.
     const detected: Platform = raw === "mac" && !isMacDesktopVisitor() ? "ios" : raw;
-    setPlatform(detected);
-
-    if (detected !== "mac") return;
-
     void (async () => {
-      const nextChip = await detectMacChip();
+      const nextChip: MacChip = detected === "mac" ? await detectMacChip() : "apple-silicon";
+      setPlatform(detected);
       setChip(nextChip);
-      await startMacDownload(nextChip, "auto");
     })();
-  }, [startMacDownload]);
+  }, []);
 
-  useEffect(() => {
-    if (platform === "windows" && hasWindowsBuild()) {
-      track("download_clicked", { platform: "windows", how: "auto" });
+  const windowsBuild = platform === "windows" && hasWindowsBuild();
+  const location = `download_page_${platform ?? "unknown"}`;
+
+  const downloadMac = useCallback(
+    async (nextChip: MacChip, how: "button" | "again" | "switch") => {
+      const url = await resolveMacDownloadUrl(nextChip);
+      if (!url) {
+        track("download_unavailable", { platform: "mac", chip: nextChip, how });
+        setMissing(true);
+        return;
+      }
+      track("download_clicked", { platform: "mac", chip: nextChip, how, visitor: platform ?? "unknown" });
+      setStarted(triggerFileDownload(url, SAVE_AS));
+    },
+    [platform],
+  );
+
+  const download = (how: "button" | "again") => {
+    if (windowsBuild) {
+      track("download_clicked", { platform: "windows", how });
       setStarted(triggerWindowsDownload());
+      return;
     }
-  }, [platform]);
-
-  const switchChip = (nextChip: MacChip) => {
-    track("download_page_chip_selected", { chip: nextChip, previous_chip: chip });
-    setChip(nextChip);
-    void startMacDownload(nextChip, "switch");
+    void downloadMac(chip, how);
   };
+
+  const switchChip = () => {
+    const next: MacChip = chip === "intel" ? "apple-silicon" : "intel";
+    track("download_page_chip_selected", { chip: next, previous_chip: chip });
+    setChip(next);
+    void downloadMac(next, "switch");
+  };
+
+  const facts = ["Free 3-day Pro trial", "No credit card", hasIntelMacBuild() ? "Apple silicon & Intel" : "Apple silicon"];
+  const buttonLabel = windowsBuild ? "Download for Windows" : "Download for Mac";
 
   return (
     <MarketingPageShell>
       <Navbar />
-      <main className="relative px-4 pb-20 pt-28 sm:px-6 md:pt-32">
-        <div className="landing-container">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className={`aura-stage mx-auto px-5 py-12 text-center sm:px-10 sm:py-14 ${platform === "mac" && chip ? "max-w-4xl" : "max-w-xl"}`}
-          >
-            {platform === null || (platform === "mac" && chip === null) ? (
+      <main className="relative overflow-x-clip px-4 pb-24 pt-32 sm:px-6 md:pt-40">
+        <div className="landing-container flex flex-col items-center text-center">
+          <h1 className="max-w-4xl font-sans text-[clamp(2.4rem,5.4vw,4.6rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
+            {started ? (
               <>
-                <MacMark />
-                <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.25rem]">
-                  Finding the right installer
-                  <span className="italic font-medium"> for you.</span>
-                </h1>
-                <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/65">
-                  Hang on, this only takes a second.
-                </p>
-              </>
-            ) : platform === "mac" ? (
-              <MacWelcome
-                chip={chip}
-                started={started}
-                available={Boolean(MAC_DOWNLOAD_URL)}
-                onAgain={() => {
-                  track("download_retry_clicked", { platform: "mac", chip });
-                  if (chip) void startMacDownload(chip, "again");
-                }}
-                onSwitch={switchChip}
-              />
-            ) : platform === "windows" && hasWindowsBuild() ? (
-              <>
-                <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--foreground)] text-[var(--background)]">
-                  <Monitor className="h-6 w-6" strokeWidth={1.75} />
-                </div>
-                <h1 className="font-display text-[1.85rem] font-semibold tracking-tight md:text-[2.35rem]">
-                  {started ? "It's on its way." : "Lazur for Windows"}
-                </h1>
-                <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--foreground)]/70">
-                  Check your Downloads folder, then run the installer.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    track("download_retry_clicked", { platform: "windows" });
-                    track("download_clicked", { platform: "windows", how: "again" });
-                    setStarted(triggerWindowsDownload());
-                  }}
-                  className="btn-dark mt-8 inline-flex min-h-[48px] items-center justify-center gap-2 px-7 text-[14px]"
-                >
-                  <Download className="h-4 w-4" />
-                  Download again
-                </button>
+                It&apos;s on its way
+                <br />
+                to{" "}
+                <span className="relative inline-block whitespace-nowrap">
+                  your Mac.
+                  <HandUnderline show color={INK} delay={0.3} duration={0.9} offset={2} />
+                </span>
               </>
             ) : (
-              <SendToMacPanel platform={platform} onDownload={() => void startMacDownload("apple-silicon", "again")} />
+              <>
+                Get{" "}
+                <span className="relative inline-block whitespace-nowrap">
+                  Lazur
+                  <HandUnderline show color={INK} delay={0.4} duration={0.9} offset={2} />
+                </span>{" "}
+                on your Mac.
+              </>
             )}
+          </h1>
+          <p className="mt-5 max-w-[30rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
+            {started
+              ? "Check your Downloads folder. Three steps and I'm by your cursor."
+              : platform !== null && platform !== "mac" && !windowsBuild
+                ? "Lazur is a Mac app. Download it and open it on your Mac."
+                : "One download. Hold two keys and talk, in any app."}
+          </p>
 
-            <p className="mt-10">
+          {started ? null : (
+            <motion.div
+              className="mt-12"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <DownloadPill
+                label={buttonLabel}
+                icon={windowsBuild ? null : <AppleIcon className="h-6 w-6" />}
+                onClick={() => {
+                  track("cta_clicked", { location, label: buttonLabel, destination: "file" });
+                  download("button");
+                }}
+              />
+            </motion.div>
+          )}
+
+          {missing ? (
+            <p className="mt-5 text-[14px] text-[var(--foreground-muted)]">The installer isn&apos;t available just yet. Try again in a bit.</p>
+          ) : null}
+
+          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[14px] text-[var(--foreground-muted)]">
+            {facts.map((fact) => (
+              <li key={fact} className="inline-flex items-center gap-1.5">
+                <Check className="h-4 w-4 text-[var(--foreground)]" strokeWidth={2.5} aria-hidden />
+                {fact}
+              </li>
+            ))}
+          </ul>
+
+          {/* After the download: the install, acted out. */}
+          {started ? (
+            <motion.div
+              className="mt-14 grid w-full max-w-4xl items-center gap-8 text-left md:grid-cols-[1fr_1.35fr]"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ol className="space-y-2">
+                {INSTALL_STEPS.map((s, i) => {
+                  const on = i === step;
+                  return (
+                    <li
+                      key={s.title}
+                      className={`flex gap-3 rounded-2xl border-[1.5px] px-4 py-3 transition-colors duration-300 ${on ? "border-[#1c1917] bg-white" : "border-transparent"}`}
+                    >
+                      <span
+                        className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full text-[13px] font-bold transition-colors duration-300 ${on ? "bg-[#1c1917] text-white" : "bg-black/[0.06] text-[var(--foreground-muted)]"}`}
+                      >
+                        {i + 1}
+                      </span>
+                      <span>
+                        <span className={`block text-[16px] font-bold tracking-[-0.02em] transition-colors duration-300 ${on ? "text-[var(--foreground)]" : "text-[var(--foreground)]/50"}`}>
+                          {s.title}
+                        </span>
+                        <span className="block text-[13.5px] text-[var(--foreground-muted)]">{s.detail}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ol>
+              <InstallDemo step={step} />
+            </motion.div>
+          ) : null}
+
+          {started ? (
+            <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
               <TrackedLink
-                href="/"
-                event="nav_link_clicked"
-                eventProps={{ location: "download_page", label: "Back to home", destination: "/" }}
-                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--foreground-faint)] transition-colors hover:text-[var(--foreground-muted)]"
+                href="/login/app"
+                eventProps={{ location: "download_page", label: "Already installed? Sign in", destination: "/login/app" }}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1c1917] px-7 text-[15px] font-bold text-white transition-colors hover:bg-black"
               >
-                <ArrowLeft className="h-3.5 w-3.5" />
-                Back to home
+                Already installed? Sign in
               </TrackedLink>
+              <button
+                type="button"
+                onClick={() => download("again")}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full border-[1.5px] border-[#1c1917] bg-white px-7 text-[15px] font-bold text-[#1c1917] transition-colors hover:bg-black/[0.04]"
+              >
+                Download again
+              </button>
+            </div>
+          ) : null}
+
+          {hasIntelMacBuild() && !windowsBuild ? (
+            <p className="mt-6 text-[13.5px] text-[var(--foreground-muted)]">
+              {chip === "intel" ? "On Apple silicon? " : "On an Intel Mac? "}
+              <button
+                type="button"
+                onClick={switchChip}
+                className="font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 hover:decoration-[var(--foreground)]"
+              >
+                {chip === "intel" ? "Get the Apple silicon version" : "Get the Intel version"}
+              </button>
             </p>
-          </motion.div>
+          ) : null}
+
+          {platform === "windows" && !windowsBuild ? (
+            <div className="mt-10 w-full max-w-sm">
+              {showWaitlist ? (
+                <WindowsWaitlist />
+              ) : (
+                <p className="text-[13.5px] text-[var(--foreground-muted)]">
+                  Want Lazur on this PC?{" "}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      track("windows_waitlist_opened", { location });
+                      setShowWaitlist(true);
+                    }}
+                    className="font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4"
+                  >
+                    Get told when Windows is ready
+                  </button>
+                </p>
+              )}
+            </div>
+          ) : null}
         </div>
       </main>
       <Footer />

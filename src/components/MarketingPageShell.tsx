@@ -10,11 +10,11 @@ import {
 
 type MarketingPageShellProps = {
   children: ReactNode;
-  /** The little scroll marker on the right edge of the page. Pass false for a page without one. */
+  /** The little scroll marker on the right edge of the page. Off everywhere; pass true to bring it back on a page. */
   scrollIndicator?: boolean;
 };
 
-function MarketingPageShellInner({ children, scrollIndicator = true }: MarketingPageShellProps) {
+function MarketingPageShellInner({ children, scrollIndicator = false }: MarketingPageShellProps) {
   const { isReduced } = usePerformanceTier();
 
   return (

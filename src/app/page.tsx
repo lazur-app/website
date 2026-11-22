@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <MarketingPageShell>
+    <MarketingPageShell scrollIndicator={false}>
       <HomePageStructuredData />
       <PlainPageStyle />
       <ReferralCapture />

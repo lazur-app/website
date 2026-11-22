@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function LabPuzzlePlainPage() {
   return (
-    <MarketingPageShell>
+    <MarketingPageShell scrollIndicator={false}>
       <PlainPageStyle />
       <ReferralCapture />
       <Navbar />

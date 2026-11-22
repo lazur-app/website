@@ -10,25 +10,27 @@ import {
 
 type MarketingPageShellProps = {
   children: ReactNode;
+  /** The little scroll marker on the right edge of the page. Pass false for a page without one. */
+  scrollIndicator?: boolean;
 };
 
-function MarketingPageShellInner({ children }: MarketingPageShellProps) {
+function MarketingPageShellInner({ children, scrollIndicator = true }: MarketingPageShellProps) {
   const { isReduced } = usePerformanceTier();
 
   return (
     <div className="relative min-h-screen">
       <MarketingBackdrop />
-      {!isReduced && <ScrollIndicator />}
+      {scrollIndicator && !isReduced && <ScrollIndicator />}
       {children}
     </div>
   );
 }
 
 /** Shared backdrop for marketing pages (landing, pricing, leaderboard). */
-export function MarketingPageShell({ children }: MarketingPageShellProps) {
+export function MarketingPageShell({ children, scrollIndicator }: MarketingPageShellProps) {
   return (
     <PerformanceTierProvider>
-      <MarketingPageShellInner>{children}</MarketingPageShellInner>
+      <MarketingPageShellInner scrollIndicator={scrollIndicator}>{children}</MarketingPageShellInner>
     </PerformanceTierProvider>
   );
 }

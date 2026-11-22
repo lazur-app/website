@@ -1,0 +1,364 @@
+/* The "Puzzle" hero (lab variant 1): the headline's metal lettering and the jigsaw stage. */
+
+/* ------------------------------------------------------------------ headline */
+
+.headline {
+  font-family: var(--font-clash), sans-serif;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+}
+
+/* The pink cursors lie either side of the headline's second line, tips towards the words. */
+.cursor {
+  position: absolute;
+  top: 50%;
+  width: 94px;
+  height: 94px;
+  margin-top: -47px;
+  display: none;
+  pointer-events: none;
+}
+
+.cursorLeft {
+  right: calc(100% + 34px);
+  transform: scaleX(-1) rotate(-38deg);
+}
+
+.cursorRight {
+  left: calc(100% + 34px);
+  transform: rotate(-38deg);
+}
+
+@media (min-width: 1024px) {
+  .cursor {
+    display: block;
+  }
+}
+
+/* Still metal: the glint that sweeps across the site's stickers is left out here. */
+.cursor :global(.ms-sweep) {
+  display: none;
+  animation: none;
+}
+
+/* "AI companion" as rose metal, the colour of the cursors beside it and nothing like the black
+   chrome of the finished button. A calm gradient with no bright band through the letters, a fine
+   dark edge, and a soft glint that crosses now and then without ever washing the letters out. */
+.chrome {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  /* Room for the descender inside the painted box, taken back out of the line. */
+  padding: 0.06em 0.05em 0.16em;
+  margin: -0.06em -0.05em -0.16em;
+  color: #c2185b;
+  background-image:
+    linear-gradient(
+      108deg,
+      rgba(255, 255, 255, 0) 45%,
+      rgba(255, 236, 244, 0.42) 50%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(
+      180deg,
+      #f25c93 0%,
+      #e23a78 24%,
+      #cf1f62 46%,
+      #b3124f 64%,
+      #9c0c43 78%,
+      #b81a57 90%,
+      #d4326f 100%
+    );
+  background-size:
+    300% 100%,
+    100% 100%;
+  background-position:
+    100% 0,
+    0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 0.5px rgba(74, 4, 30, 0.95)) drop-shadow(0 0.03em 0.025em rgba(74, 4, 30, 0.28));
+  animation: puzzle-chrome-shine 6.5s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@keyframes puzzle-chrome-shine {
+  0%,
+  55% {
+    background-position:
+      100% 0,
+      0 0;
+  }
+  85%,
+  100% {
+    background-position:
+      0% 0,
+      0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chrome {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ stage */
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  height: 352px;
+  margin-inline: auto;
+}
+
+/* Everything hangs off one point, the middle of the pill, and is drawn in the pill's own px. */
+.rig {
+  --k: 0.8;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: scale(var(--k));
+}
+
+@media (min-width: 480px) {
+  .stage {
+    height: 432px;
+  }
+  .rig {
+    --k: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .stage {
+    height: 330px;
+  }
+  .rig {
+    top: 46%;
+  }
+}
+
+.tray {
+  position: absolute;
+  left: -176px;
+  top: -68px;
+  width: 352px;
+  height: 136px;
+  border-radius: 44px;
+  background: #ffffff;
+  border: 1.5px solid #1c1917;
+  box-shadow:
+    0 2px 0 rgba(28, 25, 23, 0.9),
+    0 10px 24px -8px rgba(28, 25, 23, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hit:hover ~ .tray {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 0 rgba(28, 25, 23, 0.9),
+    0 16px 30px -10px rgba(28, 25, 23, 0.24);
+}
+
+.hit:active ~ .tray {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 0 rgba(28, 25, 23, 0.9),
+    0 6px 14px -8px rgba(28, 25, 23, 0.18);
+}
+
+.trayLabel,
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-clash), sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.trayLabel svg,
+.label svg {
+  margin-top: -4px;
+  flex: none;
+}
+
+.trayLabel {
+  position: absolute;
+  inset: 0;
+  color: #1c1917;
+}
+
+.assembly {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* One layer per piece, all the same box, so a piece at rest sits exactly in its place in the pill. */
+.layer {
+  position: absolute;
+  left: -216px;
+  top: -108px;
+  width: 432px;
+  height: 216px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.layer svg {
+  display: block;
+  overflow: visible;
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+}
+
+/* Until the loop has put the pieces in their loose places, only the plain button shows. */
+.piece {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.shadow {
+  opacity: 0;
+  transform: translate3d(0, 7px, 0);
+}
+
+.shadow svg {
+  filter: blur(8px);
+}
+
+.united {
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Nothing moves with reduced motion: the finished button is simply there. */
+@media (prefers-reduced-motion: reduce) {
+  .piece,
+  .united {
+    opacity: 1;
+    transition: none;
+  }
+  .shadow {
+    opacity: 0.5;
+  }
+}
+
+
+.verb {
+  font-family: var(--font-clash), sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  top: -32px;
+  width: 78px;
+  height: 280px;
+  opacity: 0;
+  will-change: transform, opacity;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 38%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.5) 62%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.halo {
+  position: absolute;
+  left: -176px;
+  top: -68px;
+  width: 352px;
+  height: 136px;
+  border-radius: 44px;
+  border: 2px solid rgba(11, 12, 17, 0.55);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.labelBox {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 352px;
+  height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.6));
+}
+
+.labelText {
+  color: transparent;
+  background-image: linear-gradient(180deg, #ffffff 0%, #f2f4f8 40%, #a4adbf 56%, #dde2ec 66%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hit {
+  position: absolute;
+  left: -176px;
+  top: -68px;
+  width: 352px;
+  height: 136px;
+  border-radius: 44px;
+  outline-offset: 6px;
+  z-index: 5;
+}
+
+.hit:focus-visible {
+  outline: 2px solid var(--foreground);
+}
+
+/* ------------------------------------------------------------------ plain colours (lab variant 3) */
+
+/* No glints and no metal lettering: the pieces and the finished button are flat colour. */
+.flat .bar,
+.flat .halo {
+  display: none;
+}
+
+.flat .labelText {
+  color: #ffffff;
+  background-image: none;
+  -webkit-text-fill-color: #ffffff;
+}

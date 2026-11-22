@@ -1,0 +1,249 @@
+/* The /lab/2 "cursor flock" hero: the soft serif headline, its chrome letters, the stage the flock
+   flies on, and the Get Lazur pill. Sizes follow the height of the screen as well as its width, so
+   the headline, the flock, the button and the line under it all fit on a laptop without scrolling. */
+
+/* ---------- headline ---------- */
+
+/* Clear of the fixed navbar, and no more. */
+.top {
+  padding-top: clamp(6.75rem, 14svh, 8rem);
+}
+
+.headline {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 560;
+  font-size: min(9vw, 9.4svh, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--foreground);
+}
+
+.line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.sub {
+  margin-top: clamp(0.6rem, 1.8svh, 1.2rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+}
+
+/* ---------- "AI companion": solid metal letters ---------- */
+
+.chrome {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  white-space: nowrap;
+  font-weight: 780;
+  letter-spacing: -0.02em;
+}
+
+/* The side of the letters: a fine ruby edge and a short step back in deeper ruby, then a soft rose shadow on the page. */
+.extrude {
+  position: absolute;
+  inset: -0.14em -0.06em -0.3em;
+  z-index: -1;
+  padding: 0.14em 0.06em 0.3em;
+  color: #8c1050;
+  -webkit-text-stroke: 0.012em #7d0d47;
+  text-shadow:
+    0.007em 0.013em 0 #a3145c,
+    0.014em 0.026em 0 #8c1050,
+    0.02em 0.038em 0 #6e0a3e,
+    0.035em 0.1em 0.07em rgba(140, 16, 80, 0.2),
+    0.06em 0.2em 0.22em rgba(140, 16, 80, 0.13);
+}
+
+/* The face: rose chrome, the flock's own metal. One clean run from blush at the top to ruby at the foot,
+   with a lit lip at the very bottom; no band across the letters, so the words read first. */
+.face {
+  position: relative;
+  display: inline-block;
+  /* room for the background to cover the whole glyph, descenders too, taken back by the margin */
+  padding: 0.14em 0.06em 0.3em;
+  margin: -0.14em -0.06em -0.3em;
+  background-image: linear-gradient(
+    180deg,
+    #ff8fbd 12%,
+    #ff5f9f 30%,
+    #ec2c7b 50%,
+    #c9145f 68%,
+    #b30f55 80%,
+    #ee5c97 93%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: url(#flock-bevel);
+}
+
+/* One slow pass of light across the letters. */
+.shine {
+  position: absolute;
+  inset: -0.14em -0.06em -0.3em;
+  padding: 0.14em 0.06em 0.3em;
+  background-image: linear-gradient(108deg, transparent 45%, rgba(255, 255, 255, 0.85) 50%, transparent 55%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  background-position: 150% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  animation: flock-shine 6.5s ease-in-out infinite;
+}
+
+@keyframes flock-shine {
+  0%,
+  38% {
+    background-position: 150% 0;
+  }
+  78%,
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+/* ---------- the stage ---------- */
+
+.stage {
+  --flock-air: clamp(48px, min(7vw, 9svh), 104px);
+  position: relative;
+  width: 100%;
+  height: clamp(132px, min(24vw, 37svh), 320px);
+}
+
+.stageGap {
+  margin-top: clamp(0.75rem, 2svh, 1.5rem);
+}
+
+.cta {
+  margin-top: clamp(0.6rem, 1.8svh, 1.1rem);
+}
+
+.reassure {
+  margin-top: clamp(0.55rem, 1.5svh, 0.9rem);
+}
+
+/* The canvas is taller than the stage, so the flock has air above and below the word; it fades out at its edges and never takes a click. */
+.canvas {
+  position: absolute;
+  left: 0;
+  top: calc(var(--flock-air) * -1);
+  z-index: 10;
+  display: block;
+  width: 100%;
+  height: calc(100% + var(--flock-air) * 2);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+}
+
+/* ---------- Get Lazur ---------- */
+
+/* A dark pill in a band of polished metal: the band is the padding, lit by a gradient that drifts. */
+.pill {
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 3.5px;
+  background-image: linear-gradient(
+    112deg,
+    #ffffff 0%,
+    #cfd7e3 9%,
+    #596173 20%,
+    #f7f9fc 31%,
+    #ffa6cf 42%,
+    #8c1458 50%,
+    #ffd0e6 58%,
+    #f1f4f8 68%,
+    #6d7486 80%,
+    #ffffff 91%,
+    #b9c2d1 100%
+  );
+  background-size: 240% 100%;
+  box-shadow:
+    0 0 0 1.5px #0b0c11,
+    0 3px 5px rgba(28, 25, 23, 0.22),
+    0 16px 30px -12px rgba(28, 25, 23, 0.5);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  animation: flock-band 9s ease-in-out infinite alternate;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pillInner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.92em 2.2em 0.92em 1.95em;
+  background: linear-gradient(180deg, #33302e 0%, #151312 46%, #0c0a09 54%, #1b1918 100%);
+  box-shadow:
+    inset 0 0 0 1.5px #0b0c11,
+    inset 0 2.5px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.06);
+  color: #fffdfb;
+  font-family: var(--font-clash, sans-serif), var(--font-open-sauce, sans-serif), sans-serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* a glint that crosses the pill when it is hovered */
+.pillInner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(108deg, transparent 38%, rgba(255, 255, 255, 0.28) 50%, transparent 62%);
+  transform: translateX(-110%);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 1.5px #0b0c11,
+    0 4px 7px rgba(28, 25, 23, 0.24),
+    0 22px 38px -12px rgba(140, 20, 88, 0.5);
+}
+.pill:hover .pillInner::after {
+  transform: translateX(110%);
+}
+.pill:active {
+  transform: translateY(0) scale(0.985);
+}
+.pill:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+}
+
+@keyframes flock-band {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine,
+  .pill {
+    animation: none;
+  }
+  .pill,
+  .pillInner::after {
+    transition: none;
+  }
+}

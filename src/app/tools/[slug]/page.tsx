@@ -62,7 +62,7 @@ export default async function ToolPage({ params }: Props) {
   return (
     <SeoPageFrame schema={[app, breadcrumbSchema(crumbs), faqSchema(copy.faq)].filter(Boolean) as Record<string, unknown>[]}>
       <PageHero crumbs={crumbs} kicker={tool.kicker} title={tool.title} intro={copy.intro} updatedAt="2026-11-05" meta={["Free", "Runs in your browser"]} cta={{ source: `tool-${tool.slug}` }} />
-      <div className="seo-wrap mt-10">{WIDGETS[tool.slug]()}</div>
+      <div className="seo-wrap mt-16">{WIDGETS[tool.slug]()}</div>
       <div className="seo-col">
         <section className="seo-section" aria-labelledby="how">
           <SectionHeading id="how">How it works</SectionHeading>
@@ -79,7 +79,7 @@ export default async function ToolPage({ params }: Props) {
             <StatStrip stats={copy.stats} />
           </div>
         ) : null}
-        <div className="mt-10">
+        <div className="mt-12">
           <LazurCallout text={copy.nudge} />
         </div>
         <FaqList items={copy.faq} />

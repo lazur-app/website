@@ -14,7 +14,7 @@ function Field({ label, value, onChange, min, max, step = 1, suffix }: { label: 
           {suffix}
         </span>
       </span>
-      <input type="range" className="mt-2 w-full accent-[var(--brand)]" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} />
+      <input type="range" className="mt-2 w-full accent-[#1c1917]" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} />
     </label>
   );
 }
@@ -50,14 +50,14 @@ export function TypingTaxCalculator() {
 
   return (
     <div className="seo-tool grid gap-8 lg:grid-cols-2">
-      <div className="space-y-5">
+      <div className="space-y-6">
         <Field label="Words you write a day" value={wordsPerDay} onChange={change(setWordsPerDay)} min={500} max={15000} step={250} />
         <Field label="Your typing speed" value={typeWpm} onChange={change(setTypeWpm)} min={15} max={140} suffix=" wpm" />
         <Field label="Your speaking speed" value={speakWpm} onChange={change(setSpeakWpm)} min={80} max={220} suffix=" wpm" />
         <Field label="What an hour of your time is worth" value={rate} onChange={change(setRate)} min={10} max={500} step={5} suffix=" $" />
         <Field label="Working days a year" value={days} onChange={change(setDays)} min={100} max={300} />
       </div>
-      <div className="rounded-2xl bg-[var(--background-deep)] p-5" role="status">
+      <div className="rounded-[20px] border-[1.5px] border-[#1c1917] bg-[var(--background)] p-4 sm:p-6" role="status">
         <div className="grid grid-cols-2 gap-6">
           <Metric label="Hours typing a year" value={fmt(typeHours)} />
           <Metric label="Cost of that time" value={`$${fmt(typeHours * rate)}`} />

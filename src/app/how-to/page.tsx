@@ -27,6 +27,7 @@ export default function HowToHub() {
         crumbs={crumbs}
         kicker="How-to guides"
         title="How to do it on a Mac, step by step"
+        accent="step by step"
         intro="Plain instructions for the Mac apps you use every day, with the real menu paths and shortcuts. Stuck anyway? Hold ⌥ ⌘ and ask Lazur, and it points at the button on your screen."
       />
       <div className="seo-wrap">
@@ -42,7 +43,7 @@ export default function HowToHub() {
             ))}
           </HubSection>
         ))}
-        {groups.length === 0 ? <p className="mt-10 text-[var(--foreground-muted)]">Guides are on their way.</p> : null}
+        {groups.length === 0 ? <p className="mt-12 text-[var(--foreground-muted)]">Guides are on their way.</p> : null}
       </div>
       <div className="px-4 sm:px-6">
         <CtaBand source="hub-howto" />

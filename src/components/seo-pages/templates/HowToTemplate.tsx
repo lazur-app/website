@@ -31,6 +31,7 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
         crumbs={crumbs}
         kicker={`How-to · ${page.appName} for Mac`}
         title={page.title}
+        accent={page.appName}
         intro={page.intro}
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={[`Checked against ${page.appliesTo}`, `${page.timeMinutes} min`, page.difficulty]}

@@ -17,7 +17,7 @@ export default function ToolsHub() {
   ];
   return (
     <SeoPageFrame schema={[breadcrumbSchema(crumbs)]}>
-      <HubHeader crumbs={crumbs} kicker="Free tools" title="Free tools for people who type all day" intro="Measure your typing, compare it with speaking, see what it costs you, and check how accurate your dictation app is. No sign-up, nothing leaves your browser." />
+      <HubHeader crumbs={crumbs} kicker="Free tools" title="Free tools for people who type all day" accent="type all day" intro="Measure your typing, compare it with speaking, see what it costs you, and check how accurate your dictation app is. No sign-up, nothing leaves your browser." />
       <div className="seo-wrap">
         <HubSection title="Tools">
           {TOOLS.map((t) => (

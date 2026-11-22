@@ -1,24 +1,18 @@
-"use client";
-
-import { GlowCta } from "@/components/GlowCta";
-import { AppleIcon } from "@/components/icons/AppleIcon";
+import { DownloadMacPill } from "./Buttons";
 import { CTA_REDUCERS } from "./ctaCopy";
 
 /**
- * First-screen CTA row under the hero intro: the download button, the same for every visitor. Clicks are classified as `content_cta_clicked` / `hero` by
- * ContentClickTracker via the `.seo-herocta` class.
+ * First-screen CTA row under the hero intro: the download button, the same "Download for Mac" pill
+ * for every visitor. Clicks are classified as `content_cta_clicked` / `hero` by ContentClickTracker
+ * via the `.seo-herocta` class. `label` / `suffix` are still accepted from the templates but the
+ * button reads "Download for Mac" everywhere, like the rest of the site.
  */
-export function HeroCta({ label, suffix, href }: { label: string; suffix?: string; href: string }) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function HeroCta({ href, label, suffix }: { label: string; suffix?: string; href: string }) {
   return (
-    <div className="seo-herocta mt-6" data-cta-location="hero">
-      <GlowCta href={href} wrapClassName="final-cta-btn-wrap--subtle">
-        <AppleIcon className="h-4 w-4" />
-        <span>
-          {label}
-          {suffix ? <span className="hidden sm:inline"> — {suffix}</span> : null}
-        </span>
-      </GlowCta>
-      <p className="mt-2.5 text-[13px] text-[var(--foreground-muted)]">{CTA_REDUCERS}</p>
+    <div className="seo-herocta mt-8" data-cta-location="hero">
+      <DownloadMacPill href={href} size="lg" />
+      <p className="mt-3 text-[13px] text-[var(--foreground-muted)]">{CTA_REDUCERS}</p>
     </div>
   );
 }

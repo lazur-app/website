@@ -19,7 +19,7 @@ export default function RolesHub() {
   ];
   return (
     <SeoPageFrame schema={[breadcrumbSchema(crumbs)]}>
-      <HubHeader crumbs={crumbs} kicker="Roles" title="Lazur for the work you do" intro="Same notch, different day. See what people in your job ask Lazur, app by app." />
+      <HubHeader crumbs={crumbs} kicker="Roles" title="Lazur for the work you do" accent="the work you do" intro="Same notch, different day. See what people in your job ask Lazur, app by app." />
       <div className="seo-wrap">
         {roleApps.length > 0 ? (
           <HubSection title="By role and app">

@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
+import { AccentTitle } from "@/components/seo-pages/AccentTitle";
+import { Sticker } from "@/components/landing/Sticker";
 import type { BlogPost } from "@/lib/blog/types";
 import { track } from "@/lib/productAnalytics";
 
@@ -20,20 +22,23 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
 
   return (
     <div>
-      <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[var(--foreground-faint)]">
-        Blog
-      </p>
-      <h1 className="mt-2 max-w-2xl font-display text-[2.5rem] font-semibold leading-[1.08] tracking-[-0.04em] text-[var(--foreground)] md:text-[3.25rem]">
-        Voice writing, explained.
-      </h1>
-      <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[#5c564f] md:text-[17px]">
-        Comparisons, guides, and product notes for people who write by voice -
-        and want the output to sound like they typed it.
-      </p>
+      <header className="relative text-center">
+        <div className="pointer-events-none absolute inset-0 hidden xl:block" aria-hidden>
+          <Sticker name="bubble" size={84} rotate={-10} className="absolute left-0 top-0" />
+          <Sticker name="mic" size={80} rotate={10} className="absolute right-0 top-16" />
+        </div>
+        <p className="inline-flex min-h-[28px] items-center rounded-full bg-[#5b4bd6] px-3 text-[12px] font-bold uppercase tracking-[0.08em] text-white">Blog</p>
+        <h1 className="mx-auto mt-4 max-w-3xl font-sans text-[clamp(2.4rem,5.4vw,4.6rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
+          <AccentTitle title="Voice writing, explained." accent="explained." />
+        </h1>
+        <p className="mx-auto mt-6 max-w-[36rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
+          Comparisons, guides, and product notes for people who write by voice, and want the output to sound like they typed it.
+        </p>
+      </header>
 
-      <div className="mt-8 overflow-x-auto pb-1">
+      <div className="-mx-4 mt-12 overflow-x-auto px-4 pb-2">
         <div
-          className="inline-flex items-center gap-1 rounded-full bg-[var(--foreground)] p-1.5"
+          className="mx-auto flex w-max items-center gap-2"
           role="tablist"
           aria-label="Filter posts by category"
         >
@@ -52,10 +57,10 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
                     track("blog_filter_selected", { category: item, result_count: count });
                   }
                 }}
-                className={`rounded-full px-4 py-2 text-[13px] font-medium whitespace-nowrap transition-colors ${
+                className={`inline-flex min-h-[44px] items-center rounded-full border-[1.5px] border-[#1c1917] px-4 text-[14px] font-bold whitespace-nowrap transition-colors ${
                   selected
-                    ? "bg-white text-[var(--foreground)]"
-                    : "text-white/75 hover:text-white"
+                    ? "bg-[#1c1917] text-white"
+                    : "bg-white text-[var(--foreground)] shadow-[0_2px_0_rgba(28,25,23,0.9)] hover:bg-black/[0.03]"
                 }`}
               >
                 {item}
@@ -66,7 +71,7 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
       </div>
 
       {filtered.length > 0 ? (
-        <div className="mt-6 divide-y divide-[var(--border)]">
+        <div className="mx-auto mt-8 grid max-w-[52rem] gap-6">
           {filtered.map((post, i) => (
             <BlogPostCard
               key={post.slug}
@@ -77,7 +82,7 @@ export function BlogIndex({ posts, categories }: BlogIndexProps) {
           ))}
         </div>
       ) : (
-        <p className="mt-12 text-[15px] text-[var(--foreground-muted)]">
+        <p className="mt-12 text-center text-[15px] text-[var(--foreground-muted)]">
           No posts in this category yet.
         </p>
       )}

@@ -21,6 +21,7 @@ export function RoleAppTemplate({ page }: { page: RoleAppPage }) {
         crumbs={crumbs}
         kicker={`${page.appName} · for ${page.roleName.toLowerCase()}`}
         title={page.title}
+        accent={page.appName}
         intro={page.intro}
         updatedAt={page.updatedAt ?? page.publishedAt}
         visual={<NotchScene demo={page.demo} appName={page.appName} />}
@@ -30,7 +31,7 @@ export function RoleAppTemplate({ page }: { page: RoleAppPage }) {
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-12">
             <StatStrip stats={page.stats} />
           </div>
         ) : null}

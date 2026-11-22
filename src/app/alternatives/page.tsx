@@ -18,7 +18,7 @@ export default function AlternativesHub() {
   ];
   return (
     <SeoPageFrame schema={[breadcrumbSchema(crumbs)]}>
-      <HubHeader crumbs={crumbs} kicker="Alternatives" title="Alternatives, compared honestly" intro="Each page lists the real options, what they cost on their own site, and who each one suits. Lazur is one of the options, not the only one." />
+      <HubHeader crumbs={crumbs} kicker="Alternatives" title="Alternatives, compared honestly" accent="compared honestly" intro="Each page lists the real options, what they cost on their own site, and who each one suits. Lazur is one of the options, not the only one." />
       <div className="seo-wrap">
         <HubSection title="All alternatives pages" more={{ href: "/compare", label: "Head-to-head comparisons" }}>
           {pages.map((p) => (

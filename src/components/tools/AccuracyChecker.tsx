@@ -59,7 +59,7 @@ export function AccuracyChecker() {
                 [{a.ref}]
               </span>
             ) : (
-              <span className="rounded bg-[var(--brand-soft)] px-1 text-[var(--brand-ink)]" title="extra">
+              <span className="rounded bg-[#ece9fb] px-1 text-[#5b4bd6]" title="extra">
                 +{a.hyp}
               </span>
             )}

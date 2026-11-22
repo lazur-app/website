@@ -38,7 +38,7 @@ export function RoleTemplate({ page }: { page: RolePage }) {
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-12">
             <StatStrip stats={page.stats} />
           </div>
         ) : null}
@@ -48,8 +48,8 @@ export function RoleTemplate({ page }: { page: RolePage }) {
           <div className="grid gap-3 sm:grid-cols-2">
             {page.painPoints.map((p) => (
               <div key={p.title} className="seo-card">
-                <h3 className="font-display text-[17px] font-semibold tracking-[-0.015em] text-[var(--foreground)]">{p.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-[#3d3834]">
+                <h3 className="text-[17px] font-bold tracking-[-0.02em] text-[var(--foreground)]">{p.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-[#3d3834]">
                   <InlineText text={p.text} />
                 </p>
               </div>
@@ -95,7 +95,7 @@ export function RoleTemplate({ page }: { page: RolePage }) {
               const href = roleApps.has(slug) ? `/for/${page.role}/${slug}` : `/apps/${slug}`;
               return (
                 <li key={slug}>
-                  <Link href={href} className="seo-chip inline-block hover:border-[var(--brand)]">
+                  <Link href={href} className="seo-chip transition-transform hover:-translate-y-0.5">
                     {app.name}
                   </Link>
                 </li>

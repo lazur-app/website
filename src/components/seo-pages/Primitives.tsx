@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { AlertTriangle, ArrowRight, CalendarDays, Info, Lightbulb, Sparkles, Zap } from "lucide-react";
-import { GlowCta } from "@/components/GlowCta";
+import { AlertTriangle, ArrowRight, CalendarDays, Info, Lightbulb, Zap } from "lucide-react";
+import { Sticker } from "@/components/landing/Sticker";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import type { SeoFaq, SeoImage, SeoSource } from "@/lib/seo-pages/types";
+import { DARK_PILL, DownloadMacPill } from "./Buttons";
 import { CTA_REDUCERS, downloadHref } from "./ctaCopy";
 import { InlineText } from "./InlineText";
 
@@ -196,7 +197,7 @@ export function PhotoCredits({ images }: { images: (SeoImage | undefined)[] }) {
   );
 }
 
-/** Closing call to action. Same promise everywhere: free for 3 days, no card. */
+/** Closing call to action. Same promise everywhere: free for 3 days, no card. A solid ink panel like the homepage's last section. */
 export function CtaBand({
   title = "Try Lazur free for 3 days",
   text = "Hold a key and ask. Lazur sees your screen, points at the button and talks you through it, in any Mac app. No credit card.",
@@ -208,24 +209,21 @@ export function CtaBand({
 }) {
   return (
     <section className="seo-cta seo-reveal" aria-label="Download Lazur">
-      <div className="seo-cta__glow" aria-hidden />
-      <div className="seo-cta__grid" aria-hidden />
-      <p className="seo-cta__eyebrow">
-        <Sparkles size={14} aria-hidden /> Voice assistant for Mac
-      </p>
+      <div className="pointer-events-none absolute inset-0 hidden md:block" aria-hidden>
+        <Sticker name="heart" size={80} rotate={-12} className="absolute left-[6%] top-[32px]" />
+        <Sticker name="puzzle" size={76} rotate={12} className="absolute bottom-[32px] right-[6%]" />
+      </div>
+      <p className="seo-cta__eyebrow">Voice assistant for Mac</p>
       <p className="seo-cta__title">{title}</p>
       <p className="seo-cta__text">{text}</p>
-      <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <GlowCta href={downloadHref(source)} variant="light">
-          <AppleIcon className="h-4 w-4" />
-          Download Lazur free for Mac
-        </GlowCta>
+      <div className="relative mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <DownloadMacPill href={downloadHref(source)} size="lg" />
         <Link href="/pricing#pro" className="seo-cta__ghost">
           See Pro and Power plans <ArrowRight size={14} aria-hidden />
         </Link>
       </div>
-      <p className="relative mt-4 text-[13px] text-white/75">{CTA_REDUCERS}</p>
-      <p className="seo-cta__small !mt-2">
+      <p className="relative mt-6 text-[13px] text-white/75">{CTA_REDUCERS}</p>
+      <p className="seo-cta__small">
         Pro $18/month after the trial. Power $120/month for heavy use.{" "}
         <Link href={MEETING_URL} className="underline underline-offset-2 hover:text-white">
           Book a call
@@ -260,7 +258,7 @@ export function RailCta({ source }: { source?: string }) {
     <div className="seo-railcard seo-railcard--cta">
       <p className="seo-railcard__title">Ask instead of searching</p>
       <p className="seo-railcard__text">Hold ⌥ ⌘ and ask. Lazur sees your screen, points at the button and walks you through it.</p>
-      <Link href={downloadHref(source)} className="seo-railcard__btn">
+      <Link href={downloadHref(source)} className={`${DARK_PILL} mt-4 w-full !text-[14px]`}>
         <AppleIcon className="h-3.5 w-3.5" /> Download for Mac
       </Link>
       <p className="seo-railcard__fine">Free 3-day Pro trial, no credit card.</p>

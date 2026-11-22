@@ -43,7 +43,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
         <TldrBox items={page.tldr} title="The short answer" />
 
         {!usesStats && page.stats.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-12">
             <StatStrip stats={page.stats} />
           </div>
         ) : null}
@@ -53,8 +53,8 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
           <div className="grid gap-3 sm:grid-cols-2">
             {page.costs.map((c) => (
               <div key={c.title} className="seo-card">
-                <h3 className="font-display text-[17px] font-semibold tracking-[-0.015em]">{c.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-[#3d3834]">
+                <h3 className="text-[17px] font-bold tracking-[-0.02em]">{c.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-[#3d3834]">
                   <InlineText text={c.text} />
                 </p>
               </div>
@@ -98,7 +98,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
                   ✓
                 </span>
                 <div>
-                  <h3 className="font-display text-[17px] font-semibold tracking-[-0.015em]">{f.title}</h3>
+                  <h3 className="text-[17px] font-bold tracking-[-0.02em]">{f.title}</h3>
                   <p className="mt-1 text-[16px] leading-[1.7] text-[#3d3834]">
                     <InlineText text={f.text} />
                   </p>
@@ -137,7 +137,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
                 <li key={s.label + s.title}>
                   <span className="seo-timeline__label">{s.label}</span>
                   <div>
-                    <h3 className="font-display text-[17px] font-semibold tracking-[-0.015em]">{s.title}</h3>
+                    <h3 className="text-[17px] font-bold tracking-[-0.02em]">{s.title}</h3>
                     <p className="mt-1 text-[15px] leading-relaxed text-[#3d3834]">
                       <InlineText text={s.text} />
                     </p>

@@ -26,7 +26,7 @@ export default function BlogPage() {
     <MarketingPageShell>
       <Navbar />
 
-      <main className="relative mx-auto w-full max-w-4xl px-6 pb-20 pt-24 md:px-8 md:pt-28">
+      <main className="relative mx-auto w-full max-w-5xl overflow-x-clip px-4 pb-24 pt-32 sm:px-6 md:pt-40">
         <BlogIndex posts={posts} categories={categories} />
       </main>
 

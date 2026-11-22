@@ -24,6 +24,7 @@ export default function CompareHub() {
         crumbs={crumbs}
         kicker="Comparisons"
         title="How Lazur compares"
+        accent="compares"
         intro="Straight comparisons with the apps people weigh Lazur against. Where another app is the better pick, we say so. Prices come from each company's own site, with the date we checked."
       />
       <div className="seo-wrap">

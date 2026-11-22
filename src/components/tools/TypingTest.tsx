@@ -85,11 +85,11 @@ export function TypingTest({
         <Metric label="Accuracy" value={`${accuracy}%`} />
         <Metric label="Time left" value={`${left}s`} />
       </div>
-      <p className="mt-6 rounded-xl bg-[var(--background-deep)] p-4 font-mono text-[15px] leading-[1.9]" aria-label="Passage to type">
+      <p className="mt-6 rounded-[12px] border-[1.5px] border-[#1c1917]/15 bg-[var(--background)] p-4 font-mono text-[15px] leading-[1.9]" aria-label="Passage to type">
         {[...passage].map((c, i) => (
           <span
             key={i}
-            className={i < typed.length ? (typed[i] === c ? "text-[var(--foreground)]" : "bg-[#fde2e1] text-[#b42318]") : i === typed.length ? "border-b-2 border-[var(--brand)] text-[var(--foreground-muted)]" : "text-[var(--foreground-faint)]"}
+            className={i < typed.length ? (typed[i] === c ? "text-[var(--foreground)]" : "bg-[#fde2e1] text-[#b42318]") : i === typed.length ? "border-b-2 border-[#e11d48] text-[var(--foreground-muted)]" : "text-[var(--foreground-faint)]"}
           >
             {c}
           </span>
@@ -130,7 +130,7 @@ export function TypingTest({
         </button>
       </div>
       {done ? (
-        <p className="mt-5 text-[15px] leading-relaxed text-[#3d3834]" role="status">
+        <p className="mt-6 text-[15px] leading-relaxed text-[#3d3834]" role="status">
           You typed <strong>{speed} words per minute</strong> at {accuracy}% accuracy. The average in a study of 168,000 typists was 52.
         </p>
       ) : null}

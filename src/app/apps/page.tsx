@@ -24,6 +24,7 @@ export default function AppsHub() {
         crumbs={crumbs}
         kicker="Apps"
         title="Lazur works in the app you already have open"
+        accent="already have open"
         intro="Lazur sits in the notch, on top of every Mac app. Pick an app to see what to ask, what Lazur does, and the guides for it."
       />
       <div className="seo-wrap">

@@ -36,7 +36,7 @@ export function SpeakVsType() {
       </div>
       <div className="seo-tool">
         <p className="seo-label">Step 2 · Read this out loud at a normal pace</p>
-        <p className="mt-3 rounded-xl bg-[var(--background-deep)] p-4 text-[17px] leading-[1.8] text-[var(--foreground)]">{READ_ALOUD}</p>
+        <p className="mt-3 rounded-[12px] border-[1.5px] border-[#1c1917]/15 bg-[var(--background)] p-4 text-[17px] leading-[1.8] text-[var(--foreground)]">{READ_ALOUD}</p>
         <div className="mt-4 flex flex-wrap items-center gap-3">
           {start === null || speakMs !== null ? (
             <button

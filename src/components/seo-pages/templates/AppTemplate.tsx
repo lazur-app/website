@@ -28,6 +28,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
         crumbs={crumbs}
         kicker={`Lazur in ${page.appName} · ${page.appCategory}`}
         title={page.title}
+        accent={page.appName}
         intro={page.intro}
         updatedAt={page.updatedAt ?? page.publishedAt}
         meta={["Works with the Mac app and the web app", "macOS"]}
@@ -39,7 +40,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-12">
             <StatStrip stats={page.stats} />
           </div>
         ) : null}
@@ -69,7 +70,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
             <ul className="flex flex-wrap gap-2">
               {roleApps.map((r) => (
                 <li key={r.role}>
-                  <Link href={`/for/${r.role}/${r.app}`} className="seo-chip inline-block hover:border-[var(--brand)]">
+                  <Link href={`/for/${r.role}/${r.app}`} className="seo-chip transition-transform hover:-translate-y-0.5">
                     {ROLES.find((x) => x.slug === r.role)?.name ?? r.roleName}
                   </Link>
                 </li>

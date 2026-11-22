@@ -37,7 +37,7 @@ export default async function AppHowToHub({ params }: Props) {
   ];
   return (
     <SeoPageFrame schema={[breadcrumbSchema(crumbs)]}>
-      <HubHeader crumbs={crumbs} kicker={`${app.name} for Mac`} title={`${app.name} how-to guides`} intro={`Every ${app.name} guide we have, newest first. Each one lists the menu path, the shortcut and what to do when it does not work.`} />
+      <HubHeader crumbs={crumbs} kicker={`${app.name} for Mac`} title={`${app.name} how-to guides`} accent={app.name} intro={`Every ${app.name} guide we have, newest first. Each one lists the menu path, the shortcut and what to do when it does not work.`} />
       <div className="seo-wrap">
         <HubSection title={`${pages.length} guides`} more={{ href: `/apps/${app.slug}`, label: `Lazur in ${app.name}` }}>
           {pages.map((p) => (

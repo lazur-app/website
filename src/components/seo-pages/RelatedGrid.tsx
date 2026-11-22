@@ -9,7 +9,7 @@ export function RelatedGrid({ groups }: { groups: RelatedGroups }) {
       <h2 id="related" className="seo-h2">
         Keep going
       </h2>
-      <div className="mt-6 grid gap-10 md:grid-cols-2">
+      <div className="mt-6 grid gap-12 md:grid-cols-2">
         {groups.map((g) => (
           <div key={g.title}>
             <h3 className="seo-label !text-[12px]">{g.title}</h3>

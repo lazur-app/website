@@ -36,11 +36,11 @@ export function BlogPostLayout({ post, schema, children }: { post: BlogPost; sch
       <article>
         <TldrBox items={post.tldr} title="TL;DR" />
         {post.stats.length > 0 ? (
-          <div className="mt-10">
+          <div className="mt-12">
             <StatStrip stats={post.stats} />
           </div>
         ) : null}
-        <div className="mt-10">{children}</div>
+        <div className="mt-12">{children}</div>
         <FaqList items={post.faq} id="blog-faq" title="FAQ" />
         <SourcesList sources={post.sources} />
         <PhotoCredits images={[post.heroImage]} />
@@ -51,9 +51,9 @@ export function BlogPostLayout({ post, schema, children }: { post: BlogPost; sch
       </div>
       <RelatedGrid groups={relatedGroups} />
       {related.length > 0 ? (
-        <section className="seo-wrap mt-16" data-analytics-section="more_from_blog">
+        <section className="seo-wrap mt-24" data-analytics-section="more_from_blog">
           <h2 className="seo-h2">More from the blog</h2>
-          <div className="mt-2 divide-y divide-[var(--border)]">
+          <div className="mt-6 grid gap-6">
             {related.map((p) => (
               <BlogPostCard key={p.slug} post={p} />
             ))}

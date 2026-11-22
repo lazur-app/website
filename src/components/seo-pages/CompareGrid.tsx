@@ -41,7 +41,7 @@ export function ProductCards({ products }: { products: CompareProduct[] }) {
       {products.map((p) => (
         <article key={p.slug} className={`seo-card ${p.isLazur ? "seo-card--lazur" : ""}`}>
           <p className="seo-label">{p.isLazur ? "Our app" : "Alternative"}</p>
-          <h3 className="mt-1 font-display text-[1.2rem] font-semibold tracking-[-0.02em]">{p.name}</h3>
+          <h3 className="mt-2 text-[1.25rem] font-bold tracking-[-0.03em]">{p.name}</h3>
           <p className="mt-2 text-[15px] leading-relaxed text-[#3d3834]">
             <InlineText text={p.summary} />
           </p>
@@ -65,7 +65,7 @@ export function ProductCards({ products }: { products: CompareProduct[] }) {
           {p.bestFor.length > 0 ? (
             <>
               <p className="seo-label mt-4 !text-[10px]">Pick it if</p>
-              <ul className="mt-1.5 list-disc space-y-1 pl-5 text-[14px] leading-relaxed text-[#3d3834]">
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-[14px] leading-relaxed text-[#3d3834]">
                 {p.bestFor.map((b) => (
                   <li key={b}>
                     <InlineText text={b} />

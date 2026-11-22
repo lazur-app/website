@@ -26,8 +26,8 @@ export function FasterWithLazur({
   return (
     <section className="seo-faster" aria-labelledby="faster-with-lazur">
       <div className="seo-faster__copy">
-        <p className="seo-kicker !text-[var(--brand-ink)]">Faster with Lazur</p>
-        <h2 id="faster-with-lazur" className="seo-h2 mt-2">
+        <p className="seo-kicker !bg-[#14917a]">Faster with Lazur</p>
+        <h2 id="faster-with-lazur" className="seo-h2 mt-4">
           {title ?? `Ask instead of hunting through ${appName} menus`}
         </h2>
         <p className="mt-3 text-[16px] leading-[1.7] text-[#3d3834]">
@@ -38,7 +38,7 @@ export function FasterWithLazur({
             }
           />
         </p>
-        <ul className="mt-5 space-y-3">
+        <ul className="mt-6 space-y-3">
           <li className="seo-step-mini">
             <span>1</span>
             <p>

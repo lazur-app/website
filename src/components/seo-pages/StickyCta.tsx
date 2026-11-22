@@ -119,7 +119,7 @@ function StickyCtaBar({ contentType, slug }: { contentType: string; slug: string
       type="button"
       onClick={dismiss}
       aria-label="Dismiss"
-      className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[var(--foreground-muted)] transition-colors hover:bg-[var(--foreground)]/[0.06] hover:text-[var(--foreground)]"
+      className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[var(--foreground-muted)] transition-colors hover:bg-[var(--foreground)]/[0.06] hover:text-[var(--foreground)]"
     >
       <X size={16} aria-hidden />
     </button>
@@ -130,14 +130,14 @@ function StickyCtaBar({ contentType, slug }: { contentType: string; slug: string
       ref={barRef}
       inert={!visible}
       aria-hidden={!visible}
-      className={`seo-sticky fixed inset-x-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-[90] mx-auto rounded-2xl border border-[var(--border)] bg-white/95 shadow-[0_10px_40px_rgba(28,25,23,0.16)] backdrop-blur-md motion-safe:transition-[opacity,transform] motion-safe:duration-300 sm:bottom-[calc(20px+env(safe-area-inset-bottom))] max-w-[34rem] ${visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
+      className={`seo-sticky fixed inset-x-4 bottom-[calc(16px+env(safe-area-inset-bottom))] z-[90] mx-auto rounded-[20px] border-[1.5px] border-[#1c1917] bg-white shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] motion-safe:transition-[opacity,transform] motion-safe:duration-300 sm:bottom-[calc(24px+env(safe-area-inset-bottom))] max-w-[34rem] ${visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
     >
       {isMac !== null ? (
-        <div className="flex items-center gap-3 py-1.5 pl-4 pr-1.5">
-          <p className="line-clamp-2 min-w-0 flex-1 text-[13.5px] font-medium leading-snug text-[var(--foreground)] sm:text-[14.5px]">{lineFor(contentType)}</p>
+        <div className="flex items-center gap-3 py-2 pl-4 pr-2">
+          <p className="line-clamp-2 min-w-0 flex-1 text-[14px] font-semibold leading-snug tracking-[-0.01em] text-[var(--foreground)] sm:text-[15px]">{lineFor(contentType)}</p>
           <Link
             href={downloadHref(`sticky-${contentType}-${slug}`)}
-            className="btn-dark inline-flex !min-h-[44px] h-11 shrink-0 items-center gap-2 rounded-full px-4 text-[14px] font-semibold"
+            className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full bg-[#1c1917] px-4 text-[14px] font-bold text-white transition-colors hover:bg-black"
           >
             <AppleIcon className="h-3.5 w-3.5" /> Download for Mac
           </Link>

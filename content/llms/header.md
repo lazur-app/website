@@ -15,7 +15,7 @@
 - Download: https://www.lazur.app/download
 - Pricing: https://www.lazur.app/pricing
 - Changelog: https://www.lazur.app/changelog
-- Latest version: 0.1.12 (October 30, 2026); updates install automatically
+- Latest version: 0.1.14 (November 2026); updates install automatically
 
 ## How it works
 - Hold ⌥ ⌘ (Option + Command) to ask about anything on screen; Lazur answers out loud.
@@ -26,6 +26,9 @@
 - Hold fn to dictate clean, formatted text at the cursor in any app; snippets, a personal dictionary (Words) and clipboard slots included.
 - Memory: Lazur remembers what you asked and what it did, by session and day, on your Mac. Ask "what were we doing yesterday?" or say "remember this". Browse, search or delete it in the Memory tab.
 - Saved files: drop a file on the notch to keep it in Lazur; ask about it later, or let a background job attach it to a web form (e.g. a resume).
+- Whiteboard: when a picture helps, Lazur sketches it in handwriting while it explains (diagrams, flows, maths and science), and keeps adding to it as you ask follow-ups.
+- Connected apps: connect Spotify, GitHub, Gmail, Calendar, Slack, Notion and more from the Apps tab, and ask Lazur to look things up or act in them.
+- A guided first minute: a short welcome tour in the notch where you try each skill once, ending with a board about what you're working on.
 
 ## Privacy
 - Lazur listens and looks at the screen only while you hold its shortcut.
@@ -34,11 +37,11 @@
 - Memory and saved files are kept on the Mac only; Lazur's servers only see the text needed to write a one-line summary, and don't keep it. Memory never includes dictation, audio or screenshots.
 - Details: https://www.lazur.app/privacy
 
-## Pricing (October 2026)
-- Every plan starts with a free 3-day trial: 30 AI actions and 10,000 words of dictation, no credit card. The trial starts when you first open the app.
-- Pro: $18/month ($15/month billed annually), 250 AI actions a month, unlimited dictation.
-- Power: $120/month ($96/month billed annually), 1,000 AI actions a month, unlimited dictation.
-- An AI action is one thing you ask Lazur to do (a question, a pointed-at button, a reminder or a background job). Dictation doesn't count.
+## Pricing (November 2026)
+- Every plan starts with a free 3-day trial: about 25 AI requests and 10,000 words of dictation, no credit card. The trial starts when you first open the app.
+- Pro: $18/month ($15/month billed annually), about 250 AI requests a month, unlimited dictation.
+- Power: $120/month ($96/month billed annually), about 1,500 AI requests a month, unlimited dictation.
+- AI usage shows in the app as a percentage of the monthly allowance, resetting with the plan. Quick questions use a little; long lessons and background jobs use more, so request counts are typical, not exact. Dictation doesn't count.
 
 ## Who it's for
 - Anyone learning new software (step-by-step guidance on their own screen)

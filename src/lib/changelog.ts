@@ -18,6 +18,38 @@ export type Release = {
 
 export const RELEASES: Release[] = [
   {
+    version: "0.1.14",
+    date: "2026-11-22",
+    title: "A first minute made for you",
+    summary:
+      "New users get a short welcome tour in the notch that ends with a board about what they're working on. Boards are clearer, Lazur only marks what it can actually find, and AI usage now shows as a simple percentage.",
+    sections: [
+      {
+        label: "New",
+        items: [
+          { name: "Welcome tour", text: "A guided first minute in the notch: check your mic, ask with two keys, dictate what you're working on, ask about your own screen, circle something and hand over a small job. Each key lights up as you hold it, and the tour ends with a board made from what you told it. Tour requests don't count toward your AI usage." },
+          { name: "AI usage as a percentage", text: "The notch shows how much of this month's AI you've used, with the date it resets, instead of counting requests. Quick questions use a little; long lessons and background jobs use more." },
+          { name: "Your name, spelled right", text: "Dictation knows your name and \"Lazur\" from the first time you use it." },
+        ],
+      },
+      {
+        label: "Improved",
+        items: [
+          { name: "Boards", text: "Each board says what it's about in its top strip, starts with your question and ends with a short takeaway. Every part is drawn as Lazur says it." },
+          { name: "Marks on your screen", text: "Circles and boxes are drawn by hand in one red line, and Lazur only marks things it actually found on your screen." },
+          { name: "Cursor buddy", text: "Small reactions show beside your cursor, and the buddy, marks and boards always stay above the notch." },
+        ],
+      },
+      {
+        label: "Fixed",
+        items: [
+          { name: "Leftover dot", text: "Clearing boards no longer leaves a red close button behind." },
+          { name: "Lazur's screenshots", text: "When Lazur looks at your screen it leaves out its own notch and drawings, so it answers about your work, while your screen recordings still show everything." },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.1.13",
     date: "2026-11-20",
     title: "Lazur draws while it explains",

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useGuideStep } from "@/lib/guide";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { Plus } from "lucide-react";
 import { HOMEPAGE_FAQ } from "@/lib/seo/faq";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
@@ -15,18 +15,15 @@ export function FaqSection() {
   useTrackInView(ref, "section_viewed", { section: "faq" });
 
   return (
-    <section ref={ref} id="faq" data-guide-section="faq" className="landing-container scroll-mt-24 py-16 md:py-24">
-      <div className="grid gap-10 border-t border-[var(--border)] pt-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16 md:pt-16">
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--foreground-faint)]">
-            FAQ
-          </p>
-          <h2 className="mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-[var(--foreground)] md:text-[2.5rem]">
-            Straight answers.
-          </h2>
-        </div>
+    <section ref={ref} id="faq" data-guide-section="faq" className="landing-container scroll-mt-24 py-20 md:py-32">
+      <div className="mx-auto max-w-3xl">
+        {/* The page's section heading: lowercase display sans with one serif word. */}
+        <h2 className="text-center font-display text-[clamp(2.3rem,4.6vw,4rem)] font-medium lowercase leading-[1] tracking-[-0.04em] text-[var(--foreground)]">
+          questions, <span className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em]">answered</span>.
+        </h2>
+        <p className="mt-5 text-center text-[17px] lowercase text-[var(--foreground-muted)]">the things people ask us before they download.</p>
 
-        <div className="border-t border-[var(--border)]">
+        <div className="mt-12 flex flex-col gap-3 md:mt-16">
           {HOMEPAGE_FAQ.map((item, i) => {
             // The page guide opens "Is it always listening…" when it points at it.
             const isOpen = open === i || (open === null && guideStep === 1 && i === 4);
@@ -34,7 +31,7 @@ export function FaqSection() {
             const buttonId = `faq-button-${i}`;
 
             return (
-              <div key={item.question} className="border-b border-[var(--border)]">
+              <div key={item.question} className={`frame-apple relative transition-colors ${isOpen ? "!bg-white" : ""}`}>
                 <h3>
                   <button
                     id={buttonId}
@@ -46,18 +43,19 @@ export function FaqSection() {
                       track(isOpen ? "faq_closed" : "faq_opened", { question: item.question, index: i, location: "homepage" });
                       setOpen(isOpen ? null : i);
                     }}
-                    className="flex min-h-[56px] w-full items-center justify-between gap-4 py-4 text-left"
+                    className="flex min-h-[64px] w-full items-center justify-between gap-4 px-6 py-4 text-left"
                   >
-                    <span className="font-display text-[16px] font-semibold tracking-tight text-[var(--foreground)] md:text-[17px]">
+                    <span className="font-display text-[17px] font-medium tracking-[-0.02em] text-[var(--foreground)] md:text-[18px]">
                       {item.question}
                     </span>
-                    <ChevronDown
-                      className={`h-4 w-4 shrink-0 text-[var(--foreground-faint)] transition-transform duration-200 ${
-                        isOpen ? "rotate-180" : ""
+                    <span
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-[transform,background-color] duration-200 ${
+                        isOpen ? "rotate-45 bg-[#0c0b0a] text-white" : "bg-[#f3f1ec] text-[var(--foreground)]"
                       }`}
-                      strokeWidth={2}
                       aria-hidden
-                    />
+                    >
+                      <Plus className="h-4 w-4" strokeWidth={2.2} />
+                    </span>
                   </button>
                 </h3>
                 {isOpen ? (
@@ -65,9 +63,9 @@ export function FaqSection() {
                     id={panelId}
                     role="region"
                     aria-labelledby={buttonId}
-                    className="pb-5 pr-8"
+                    className="px-6 pb-6 pr-14"
                   >
-                    <p className="text-[15px] leading-relaxed text-[var(--foreground-muted)]">
+                    <p className="text-[16px] leading-relaxed text-[var(--foreground-muted)]">
                       {item.answer}
                       {item.link ? (
                         <>

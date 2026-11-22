@@ -1,4 +1,5 @@
 import { PuzzleWordmark } from "./PuzzleWordmark";
+import { FounderLinks } from "@/components/landing/FounderLinks";
 import { Sticker } from "@/components/landing/Sticker";
 import { LogoWordmark } from "./LogoWordmark";
 import { TrackedAnchor, TrackedLink } from "@/components/analytics/TrackedLink";
@@ -109,6 +110,13 @@ export function Footer() {
       <div className="relative mt-16 px-4 md:mt-24 md:px-6">
         <Sticker name="smiley" size={88} rotate={-8} className="absolute -top-10 right-6 md:right-16" />
         <PuzzleWordmark />
+        {/* The three of us on the wordmark (positions measured from its letters): Vaidik sitting cross-legged on the mark,
+            Ayush perched on the z, Veer leaning on the u. Click one for their links. */}
+        <div className="pointer-events-none absolute inset-x-4 inset-y-0 hidden [container-type:inline-size] sm:block md:inset-x-6">
+          <FounderLinks who="vaidik" pose="sitcross" size="11.21cqw" className="absolute bottom-[calc(81.25%-1.3cqw)] left-[22.2%] -translate-x-1/2" />
+          <FounderLinks who="ayush" pose="sitwave" size="12.1cqw" className="absolute bottom-[calc(60.4%-3.3cqw)] left-[61.4%] -translate-x-1/2" />
+          <FounderLinks who="veer" pose="lean" size="13.57cqw" className="absolute bottom-[calc(4.7%-1.05cqw)] left-[calc(85.7%-2.74cqw)] -translate-x-1/2" />
+        </div>
       </div>
 
       <div className="landing-container">

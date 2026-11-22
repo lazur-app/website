@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
+import { MAC_DOWNLOAD_URL, triggerMacDownload } from "@/lib/download";
 import { LAYER_OUTLINES, OUTLINES, PAD, PIECES, PILL_H, PILL_W, TONES } from "./geometry";
 import styles from "./puzzle.module.css";
 
@@ -298,7 +299,14 @@ export function PuzzleStage({ flat = false }: { flat?: boolean }) {
           <Link
             href="/download"
             aria-label="Download Lazur for Mac"
-            onClick={() => track("cta_clicked", { location: "hero", label: "Get Lazur", destination: "/download" })}
+            onClick={(e) => {
+              track("cta_clicked", { location: "hero", label: "Get Lazur", destination: MAC_DOWNLOAD_URL ? "direct_download" : "/download" });
+              // Straight to the download (the right build for the Mac's chip); the download page is the fallback.
+              if (MAC_DOWNLOAD_URL) {
+                e.preventDefault();
+                void triggerMacDownload();
+              }
+            }}
             className={styles.hit}
           />
           {/* The button before the puzzle is done: a plain, flat pill. The metal is earned when the pieces join. */}
@@ -421,6 +429,7 @@ function PieceArt({ index, flat }: { index: number; flat: boolean }) {
   if (flat) {
     return (
       <svg className={styles.art} viewBox={VIEW_BOX} width={LAYER_W} height={LAYER_H} focusable="false">
+        {/* Each piece in its own deep colour with white words, as in the first puzzle design. */}
         <path d={d} fill={body} stroke={INK} strokeWidth={1.5} strokeLinejoin="round" />
         <text className={styles.verb} x={piece.text[0]} y={piece.text[1]} fill="#fff" textAnchor="middle" dominantBaseline="central">
           {piece.verb}

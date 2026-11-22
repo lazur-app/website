@@ -14,6 +14,8 @@ export type Testimonial = {
   role: string;
   company?: { label: string; href: string };
   image?: string;
+  /** Pins the card to a column on the wall (0 to 3). Otherwise cards are dealt out in turn. */
+  column?: number;
 };
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -50,6 +52,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Kai",
     role: "Engineer",
   },
+
 ];
 
 export function TestimonialAvatar({
@@ -164,7 +167,7 @@ function Card({ t, look }: { t: Testimonial; look: Look }) {
  * An empty card holding a place on the wall for a testimonial that hasn't come in yet: a blank
  * photo frame and blank lines, no words. Set EMPTY_SLOTS to 0 once the real ones fill the wall.
  */
-const EMPTY_SLOTS = 8;
+const EMPTY_SLOTS = 0;
 
 function EmptyCard({ look, lines }: { look: Look; lines: number }) {
   const photo = <div className={`w-full rounded-[16px] bg-black/[0.07] ${look.shape}`} />;
@@ -216,7 +219,7 @@ export function TestimonialsSection() {
           {Array.from({ length: COLUMNS }, (_, column) => (
             <div key={column} className={`flex flex-col gap-4 lg:gap-5 ${column % 2 === 1 ? "lg:mt-12" : ""}`}>
               {slots.map((slot, i) => {
-                if (i % COLUMNS !== column) return null;
+                if ((slot?.column ?? i % COLUMNS) !== column) return null;
                 const look = LOOKS[(i * 3 + column) % LOOKS.length];
                 return slot ? <Card key={slot.name} t={slot} look={LOOKS[i % LOOKS.length]} /> : <EmptyCard key={i} look={look} lines={2 + ((i * 7) % 4)} />;
               })}

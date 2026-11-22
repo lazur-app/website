@@ -10,13 +10,13 @@ import { ROWS } from "@/components/landing/WorksInWall";
  */
 const APPS = ROWS.flat();
 /** Logos that are plain black and need flipping to show on the dark dome. */
-const BLACK_LOGOS = new Set(["github", "x", "notion", "cursor", "openai", "intercom", "framer", "linear"]);
+const BLACK_LOGOS = new Set(["github", "x", "notion", "cursor", "openai", "intercom", "framer", "linear", "instagram"]);
 /** Three times round, so the rim of the very large circle stays evenly beaded. */
 const BEADS = [...APPS, ...APPS, ...APPS];
 
-export function AppDome({ mono = false }: { mono?: boolean }) {
+export function AppDome({ mono = false, behind = false }: { mono?: boolean; /** Sits behind the launch film: no top gap, no label (the band shows it lower down). */ behind?: boolean }) {
   return (
-    <section className="app-dome mt-12 md:mt-16" aria-label="Apps Lazur works in">
+    <section className={`app-dome ${behind ? "" : "mt-12 md:mt-16"}`} aria-label="Apps Lazur works in">
       <div className="app-dome__body" aria-hidden />
       <div className="app-dome__ring">
         {BEADS.map((app, i) => (
@@ -30,9 +30,11 @@ export function AppDome({ mono = false }: { mono?: boolean }) {
           />
         ))}
       </div>
-      <p className="absolute inset-x-0 top-[112px] text-center text-[14px] text-white/55 md:top-[128px]">
-        works in every app on your Mac
-      </p>
+      {behind ? null : (
+        <p className="absolute inset-x-0 top-[112px] text-center text-[14px] text-white/55 md:top-[128px]">
+          works in every app on your Mac
+        </p>
+      )}
     </section>
   );
 }

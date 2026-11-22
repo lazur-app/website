@@ -23,6 +23,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <MarketingPageShell>
+      {/* The whole homepage is set in lowercase, navbar to footer. */}
+      <div>
       <HomePageStructuredData />
       <ReferralCapture />
       <Navbar />
@@ -32,6 +34,7 @@ export default function Home() {
         <LandingPageSections />
       </main>
       <Footer />
+      </div>
     </MarketingPageShell>
   );
 }

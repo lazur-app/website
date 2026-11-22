@@ -68,7 +68,7 @@ export default function RootLayout({
         <DataFast />
       </head>
       <body
-        className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${garamond.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${openSauceOne.variable} ${clashDisplay.variable} ${caveat.variable} ${garamond.variable} ${geistMono.variable} site-lowercase font-sans antialiased`}
       >
         <Suspense fallback={null}>
           <GoogleAnalyticsRouteTracker />

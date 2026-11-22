@@ -74,7 +74,7 @@ const UPGRADE_PLAN_META: {
     planId: "pro",
     description: "For everyday help: questions, pointing, reminders and jobs.",
     features: [
-      "250 AI actions a month",
+      "10× more usage than free",
       "Unlimited dictation",
       "Background jobs, Chrome agent and reports",
       "Snippets, Words and 9 clipboard slots",
@@ -87,7 +87,7 @@ const UPGRADE_PLAN_META: {
     planId: "power",
     description: "For people who live in Lazur all day.",
     features: [
-      "1,000 AI actions a month",
+      "60× more usage than free",
       "Unlimited dictation",
       "Priority support",
       "Everything in Pro",

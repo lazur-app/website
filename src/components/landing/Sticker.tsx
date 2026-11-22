@@ -38,7 +38,7 @@ export type StickerName =
   | "pointer"
   | "pointer2";
 
-type Tone = "silver" | "pink" | "blue" | "gold" | "lilac" | "mint" | "holo" | "onyx" | "indigo" | "ember" | "nightholo" | "ruby";
+type Tone = "silver" | "pink" | "blue" | "gold" | "lilac" | "mint" | "holo" | "onyx" | "indigo" | "ember" | "nightholo" | "ruby" | "keygold";
 type Motion = "bob" | "spin" | "beat" | "wiggle" | "press" | "flick" | "still";
 
 const INK = "#0b0c11";
@@ -60,6 +60,8 @@ const TONES: Record<Tone, [number, string][]> = {
   ember: [[0, "#ffd6b0"], [0.16, "#ff8a3c"], [0.4, "#d9480f"], [0.5, "#6e1c02"], [0.56, "#2e0a00"], [0.62, "#b53a0a"], [0.82, "#ff8b45"], [1, "#ffdcc2"]],
   nightholo: [[0, "#8a6cff"], [0.18, "#1f4fd6"], [0.36, "#0a8f8a"], [0.5, "#3a1c8f"], [0.64, "#b0237a"], [0.8, "#2a2fb5"], [0.92, "#0c7fa8"], [1, "#9a86ff"]],
   ruby: [[0, "#ffc6d8"], [0.16, "#ff4d88"], [0.4, "#c20f4e"], [0.5, "#5c0322"], [0.56, "#26000d"], [0.62, "#a00c40"], [0.82, "#ff5c93"], [1, "#ffd3e1"]],
+  // Warm gold, only for the "fn" key, so it pops on the page instead of reading as plain chrome.
+  keygold: [[0, "#fffbe8"], [0.16, "#fff4c2"], [0.4, "#f5c542"], [0.5, "#b8860b"], [0.56, "#7a5a00"], [0.62, "#d9a21f"], [0.82, "#ffe58a"], [1, "#fff8d6"]],
   holo: [[0, "#ffe1f3"], [0.18, "#c8d6ff"], [0.36, "#b4f5e2"], [0.5, "#fff1b0"], [0.64, "#ffc2e2"], [0.8, "#c9c4ff"], [0.92, "#b9f0ff"], [1, "#ffffff"]],
 };
 
@@ -210,8 +212,8 @@ const DESIGNS: Record<StickerName, Design> = {
     d: KEY,
     art: (
       <>
-        <Body name="key" d={KEY} tone="silver" delay={-1.7} />
-        <rect x={23} y={21} width={54} height={48} rx={9} fill="#fff" opacity={0.3} stroke={INK} strokeWidth={1.4} />
+        <Body name="key" d={KEY} tone="keygold" delay={-1.7} />
+        <rect x={23} y={21} width={54} height={48} rx={9} fill="#fff4c2" opacity={0.35} stroke={INK} strokeWidth={1.4} />
         <text x={50} y={55} textAnchor="middle" fontSize={25} fontWeight={700} fill={INK} className="font-sans" letterSpacing="-0.04em">
           fn
         </text>
@@ -407,7 +409,7 @@ export function Sticker({ name, className = "", size = 72, rotate = 0, x, y }: {
       aria-hidden
       focusable="false"
       overflow="visible"
-      className={`ms-sticker pointer-events-none z-10 select-none ${nested ? "" : "max-w-none"} ${className}`}
+      className={`ms-sticker z-10 select-none ${nested ? "pointer-events-none" : "ms-hover max-w-none"} ${className}`}
       style={style}
     >
       <Defs name={name} d={design.d} />

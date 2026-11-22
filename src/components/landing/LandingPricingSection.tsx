@@ -1,5 +1,6 @@
 "use client";
 
+import { FounderSticker } from "@/components/landing/FounderSticker";
 import Link from "next/link";
 import { useRef } from "react";
 import { Check } from "lucide-react";
@@ -96,6 +97,7 @@ export function LandingPricingSection() {
         <Sticker name="flower" size={96} rotate={8} className="absolute right-[7%] top-[50px]" />
         <Sticker name="ghost" size={92} rotate={8} className="absolute left-[2.5%] top-[44%]" />
         <Sticker name="bubble" size={88} rotate={-9} className="absolute right-[2.5%] top-[54%]" />
+        <FounderSticker who="vaidik" pose="thumbs" size={130} className="!absolute left-[3%] top-[72%]" />
       </div>
       <div className="landing-container relative">
         <div ref={ref} data-guide-section="pricing" className="mx-auto max-w-6xl">

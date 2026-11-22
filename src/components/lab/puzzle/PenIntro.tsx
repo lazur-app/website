@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 /**
  * The live site's hero intro, for the plain puzzle hero: Lazur's cursor appears above the headline
  * and says hi, flies down and underlines "AI companion", then leaves a second note. Here the pen
- * is Lazur's own pink cursor (the live site uses a blue sparkle), and the ink is red.
+ * is Lazur's own red triangle (the live site uses a blue sparkle), and the ink is red.
  *
  * It only moves the cursor and shows the notes; the underline itself is drawn by the headline,
  * which is told when to start through `onUnderline`.
@@ -111,9 +111,9 @@ export function PenIntro({ hero, phrase, version, onUnderline }: {
       {reduced ? null : (
         // Lazur's cursor. Its tip is the top left corner of the drawing, so the tip is what draws.
         <motion.svg
-          viewBox="0 0 26 28"
-          className="pointer-events-none absolute z-30 hidden h-[34px] w-[32px] md:block"
-          style={{ filter: "drop-shadow(0 3px 5px rgba(12,11,10,0.28))" }}
+          viewBox="0 0 28 28"
+          className="pointer-events-none absolute z-30 hidden h-[30px] w-[30px] md:block"
+          style={{ filter: "drop-shadow(0 3px 6px rgba(225,29,72,0.35))" }}
           initial={{ opacity: 0, scale: 0.6, left: spots.hello[0], top: spots.hello[1] }}
           animate={{ opacity: at >= order("hello") ? 1 : 0, scale: at >= order("hello") ? 1 : 0.6, ...target }}
           transition={{
@@ -124,7 +124,8 @@ export function PenIntro({ hero, phrase, version, onUnderline }: {
           }}
           aria-hidden
         >
-          <path d="M1.5 1.5 L1.5 21.5 L7.2 16.6 L11 25.6 L15.2 23.8 L11.4 15 L19 15 Z" fill="#ff4f93" stroke="#0c0b0a" strokeWidth="1.6" strokeLinejoin="round" />
+          {/* Lazur's buddy: the soft red triangle that sits next to your cursor. */}
+          <path d="M3 3 L25 12 L13.5 14.5 L11 26 Z" fill="#ef4444" stroke="#ef4444" strokeWidth="3.2" strokeLinejoin="round" />
         </motion.svg>
       )}
       <Note at={[spots.hello[0] + 34, spots.hello[1] - 10]} show={at >= order("hello") && at < order("rest")}>

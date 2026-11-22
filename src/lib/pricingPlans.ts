@@ -74,7 +74,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "download",
     buttonText: "Start free trial",
     features: [
-      { text: "250 AI actions a month", included: true },
+      { text: "10× more usage than free", included: true },
       { text: "Unlimited dictation", included: true },
       { text: "Background jobs, Chrome agent, reports", included: true },
     ],
@@ -89,7 +89,7 @@ export const WEBSITE_PLANS: WebsitePlan[] = [
     cta: "checkout",
     buttonText: "Get Power",
     features: [
-      { text: "1,000 AI actions a month", included: true },
+      { text: "60× more usage than free", included: true },
       { text: "Unlimited dictation", included: true },
       { text: "Everything in Pro", included: true },
     ],

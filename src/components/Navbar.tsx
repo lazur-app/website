@@ -8,10 +8,16 @@ import { AppleIcon } from "@/components/icons/AppleIcon";
 import { track } from "@/lib/productAnalytics";
 
 /**
- * An ink-outlined white bar across the top of the page, in the homepage's look: the logo on the left and the Mac download
- * button on the right, nothing else to click. Signed-in visitors also get their account menu.
- * Pricing, changelog and the rest are linked from the footer.
+ * An ink-outlined white bar across the top of the page, in the homepage's look: the logo on the left, a few links in the
+ * middle (wide screens), and the Mac download button on the right. Signed-in visitors also get their account menu.
  */
+const LINKS = [
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Changelog", href: "/changelog" },
+  { label: "FAQ", href: "/#faq" },
+];
+
 export function Navbar() {
   const { user, loading, isAuthenticated } = useAuth();
   const downloadLabel = "Meet my companion";
@@ -29,6 +35,19 @@ export function Navbar() {
             <Image src="/logo.png" alt="" width={28} height={28} />
             <span className="text-[22px] font-bold tracking-[-0.03em] text-[var(--foreground)] md:text-[24px]">lazur</span>
           </Link>
+
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+            {LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => track("nav_link_clicked", { location: "navbar", label: l.label, destination: l.href })}
+                className="rounded-full px-3.5 py-2 text-[15px] font-medium tracking-[-0.01em] text-[var(--foreground-muted)] transition-colors hover:bg-[#f3f1ec] hover:text-[var(--foreground)]"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
           <div className="flex items-center gap-2">
             {!loading && isAuthenticated && user ? <UserMenu user={user} /> : null}

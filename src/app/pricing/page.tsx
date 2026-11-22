@@ -49,8 +49,8 @@ function planNote(plan: Plan): string {
 }
 
 /** A real early-user quote (verbatim fragment of Veer's testimonial on the homepage). */
-const PROOF = TESTIMONIALS.find((t) => t.name === "Veer Adyani");
-const PROOF_QUOTE = "it understands what i'm looking at and helps me move faster.";
+const PROOF = TESTIMONIALS.find((t) => t.name === "Akshat Thakur");
+const PROOF_QUOTE = "it's one of those tools that quietly becomes part of your daily workflow. it feels like having a smart teammate in every app.";
 
 /** Only answers already stated in the terms, FAQ and billing copy. */
 const PRICING_FAQ = [

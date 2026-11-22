@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { usePersona } from "@/lib/personas";
 import { setGuide } from "@/lib/guide";
 import { useTrackInView } from "@/hooks/useTrackInView";
-import { AppDome, AppLine } from "@/components/landing/AppDome";
-import { FilmSlot } from "@/components/landing/FilmSlot";
+import { AppDome } from "@/components/landing/AppDome";
+import { LaunchFilm } from "@/components/landing/LaunchFilm";
 import { Sticker } from "@/components/landing/Sticker";
 import { PuzzleStage } from "./PuzzleStage";
 import { HandUnderline } from "@/components/buddy/HandLoop";
@@ -64,7 +64,7 @@ export function PuzzleHero({ flat = false }: { flat?: boolean }) {
   return (
     <section ref={hero} className="relative overflow-x-clip">
       {flat ? <PenIntro hero={hero} phrase={phrase} version={persona.id} onUnderline={startUnderline} /> : null}
-      <div className="landing-container relative flex flex-col items-center pt-32 text-center md:pt-36">
+      <div className="landing-container relative flex flex-col items-center pt-28 text-center md:pt-32 lg:pt-36">
         {/* Painted straight away with the HTML (no entrance): it is the page's Largest Contentful Paint. */}
         <h1
           key={persona.id}
@@ -102,30 +102,30 @@ export function PuzzleHero({ flat = false }: { flat?: boolean }) {
         <PuzzleStage flat={flat} />
       </div>
 
-      {/* The apps it works in, flowing over a dome. */}
-      <AppDome />
-
-      {/* The films sit inside the dome: its colour carries on down to a flat edge. */}
+      {/* The launch film right under the button, so it peeks up from the bottom of the first screen. The dark band
+          of apps runs behind it, its crown crossing the middle of the film. */}
+      <div className="landing-container relative z-10 mt-6 md:mt-10">
+        <div ref={demo} data-guide-section="demo" className="relative mx-auto w-full max-w-4xl">
+          {/* A soft black shadow behind the film. */}
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 rounded-[18px]"
+            style={{ boxShadow: "0 0 60px 2px rgba(12,11,10,0.16), 0 22px 90px 4px rgba(12,11,10,0.2)" }}
+            aria-hidden
+          />
+          <LaunchFilm guide="demo-screen" dark={false} label="" />
+        </div>
+      </div>
+      {/* Pulled up by half the film's height (its width is min(56rem, 100vw - gutters), its shape 1480:1080). */}
+      <div style={{ marginTop: "calc(-0.365 * min(56rem, 100vw - 2.5rem) - 70px)" }}>
+        <AppDome behind />
+      </div>
       <div className="bg-[var(--dome)] pb-10 md:pb-12">
-        <div className="landing-container">
-          <div ref={demo} data-guide-section="demo" className="mx-auto w-full max-w-6xl">
-            {/* Empty frames for the product films, filled in later: one big film, two small ones beside it. */}
-            <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,2.6fr)] md:gap-4">
-              <div className="order-2 grid grid-cols-2 gap-3 md:order-1 md:grid-cols-1 md:grid-rows-2 md:gap-4">
-                <FilmSlot label="Film 2" className="aspect-video md:aspect-auto md:h-full" size="sm" tone="dark" />
-                <FilmSlot label="Film 3" className="aspect-video md:aspect-auto md:h-full" size="sm" tone="dark" />
-              </div>
-              <div className="relative order-1 md:order-2">
-                <FilmSlot label="Main film" size="lg" tone="dark" guide="demo-screen" />
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* The apps once more, in a straight line along the bottom of the band. */}
-        <div className="mt-14 md:mt-20">
-          <AppLine />
-        </div>
+        {/* Below the film's bottom edge, which hangs into the band. */}
+        <p className="text-center text-[14px] text-white/55" style={{ paddingTop: "max(16px, calc(0.365 * min(56rem, 100vw - 2.5rem) - 260px + 70px + 28px))" }}>
+          works in every app on your Mac
+        </p>
       </div>
     </section>
   );
 }
+

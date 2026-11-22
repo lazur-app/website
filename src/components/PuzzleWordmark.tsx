@@ -13,7 +13,7 @@ const ROWS = 10;
 const CELL_W = W / COLS;
 const CELL_H = H / ROWS;
 
-/** Deep, saturated colours for the pieces. */
+/** Deep, saturated colours for the pieces (the first puzzle design's palette). */
 const COLORS = ["#1d3fa8", "#6a1fb0", "#0a7d6e", "#b3123f", "#3f7d12", "#1c1917", "#b85a00", "#0b63c4", "#4b2fc0", "#0a8a43", "#c23a0e", "#8a0f6b"];
 
 /** A small seeded random number generator (mulberry32). */
@@ -85,13 +85,15 @@ const SEAMS = PIECES.map((piece) => piece.d).join(" ");
 
 export function PuzzleWordmark({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="100 46 986 244" className={`block h-auto w-full ${className}`} aria-hidden focusable="false">
+    <svg viewBox="88 48 900 256" className={`block h-auto w-full ${className}`} aria-hidden focusable="false">
       <defs>
         {/* Only the mark and the letters let the puzzle show through. */}
         <mask id="puzzle-wordmark-shape" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={W} height={H}>
-          <image href="/logo.png" x={104} y={58} width={224} height={224} preserveAspectRatio="xMidYMid meet" />
+          {/* The mark's visible glyph (logo.png has ~14% padding) runs from the top of the "l" to the baseline;
+              the word is a lighter weight so its strokes match the mark's bars. */}
+          <image href="/logo.png" x={68} y={60} width={269} height={269} preserveAspectRatio="xMidYMid meet" />
           {/* textLength pins the word's width, so it fills the frame whichever font loads. */}
-          <text x={356} y={270} fontSize={292} fontWeight={700} textLength={722} lengthAdjust="spacingAndGlyphs" fill="#000" className="font-sans">
+          <text x={334} y={292} fontSize={256} fontWeight={500} textLength={640} lengthAdjust="spacingAndGlyphs" fill="#000" className="font-sans">
             lazur
           </text>
         </mask>

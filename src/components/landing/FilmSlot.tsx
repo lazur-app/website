@@ -1,5 +1,5 @@
 /**
- * An empty, square-cornered frame where a product film will go. Black and white like the rest of
+ * An empty frame (the shared Apple-style .frame-apple) where a product film will go. Black and white like the rest of
  * the page: a flat panel with a small play mark. `tone="dark"` is for dark bands.
  */
 export function FilmSlot({ label, className = "aspect-video", tone = "light", size = "md", guide }: {
@@ -20,9 +20,9 @@ export function FilmSlot({ label, className = "aspect-video", tone = "light", si
       data-guide={guide}
       role="img"
       aria-label={`${label}: film coming soon`}
-      className={`relative grid w-full place-items-center border ${dark ? "border-white/15 bg-white/[0.06]" : "border-black/15 bg-black/[0.045]"} ${className}`}
+      className={`frame-apple relative grid w-full place-items-center ${dark ? "frame-apple-dark !bg-white/[0.06]" : "!bg-[#f3f1ec]"} ${className}`}
     >
-      <span className={`grid place-items-center ${dark ? "bg-white" : "bg-[#0c0b0a]"} ${mark}`} aria-hidden>
+      <span className={`grid place-items-center rounded-full shadow-[0_6px_18px_rgba(0,0,0,0.18)] ${dark ? "bg-white" : "bg-[#0c0b0a]"} ${mark}`} aria-hidden>
         <svg viewBox="0 0 24 24" className={`ml-0.5 ${dark ? "fill-[#0c0b0a]" : "fill-white"} ${glyph}`}>
           <path d="M7 4.5v15l12-7.5z" />
         </svg>

@@ -11,7 +11,7 @@ Short feature films for lazur.app, cut from real screen recordings of the produc
 
 | Thing | Where |
 |---|---|
-| Raw recordings | Google Drive folder **"website videos"** (ask Veer for the link; it is not written here because this repo is public and the raw footage shows a real inbox and a card ending). Reachable with the `work-drive` skill in company-brain, folder id from the link. |
+| Raw recordings | Google Drive folder **"website videos"**: https://drive.google.com/drive/folders/1qV_9W5lW3YT4cZ05QGnIho0GqshL2JIt (folder id `1qV_9W5lW3YT4cZ05QGnIho0GqshL2JIt`). Reachable with the `work-drive` skill in company-brain. The raw footage shows a real inbox and a card ending, so blur before publishing anything cut from it. |
 | Finished clips | Same Drive folder. Finals are prefixed `final_` (`final_it-does.mp4`). Work-in-progress uploads are prefixed `clips_`. |
 | The kit | `kit/` beside this file: a Remotion project (engine, one finished film spec, tools, sound effects). |
 | Working copy used in the session | `Desktop/servicerobotco/output/lazur-films` on Veer's machine (raw clips, renders, logs). Not in git. |

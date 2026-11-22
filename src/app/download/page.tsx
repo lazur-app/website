@@ -9,6 +9,8 @@ import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { Sticker } from "@/components/landing/Sticker";
+import { FounderSticker } from "@/components/landing/FounderSticker";
 import {
   hasIntelMacBuild,
   hasWindowsBuild,
@@ -56,7 +58,7 @@ function WindowsWaitlist() {
 
   if (done) {
     return (
-      <div className="mx-auto mt-8 max-w-sm text-center">
+      <div className="py-6 text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--foreground)] text-[var(--background)]">
           <Check className="h-5 w-5" strokeWidth={2.25} />
         </div>
@@ -71,7 +73,7 @@ function WindowsWaitlist() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mx-auto mt-8 w-full max-w-sm text-left">
+    <form onSubmit={onSubmit} className="w-full text-left">
       <label
         htmlFor="windows-waitlist-email"
         className="mb-2 block text-[12px] font-medium text-[var(--foreground-muted)]"
@@ -86,7 +88,7 @@ function WindowsWaitlist() {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder="you@company.com"
-        className="w-full rounded-full border border-[var(--border)] bg-white px-4 py-3 text-[14px] text-[var(--foreground)] outline-none transition-shadow focus:ring-2 focus:ring-[var(--brand)]/25"
+        className="w-full rounded-full border-[1.5px] border-[#1c1917] bg-white px-5 py-3.5 text-[16px] text-[var(--foreground)] outline-none transition-shadow focus:ring-2 focus:ring-[#e11d48]/30"
       />
       {error ? (
         <p className="mt-2 text-[13px] text-red-600">{error}</p>
@@ -94,7 +96,7 @@ function WindowsWaitlist() {
       <button
         type="submit"
         disabled={submitting}
-        className="btn-dark mt-3 flex w-full min-h-[48px] items-center justify-center rounded-full text-[14px] font-semibold disabled:opacity-60"
+        className="mt-3 flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#1c1917] text-[16px] font-bold text-white transition-colors hover:bg-black disabled:opacity-60"
       >
         {submitting ? "Saving…" : "Notify me for Windows"}
       </button>
@@ -104,13 +106,89 @@ function WindowsWaitlist() {
 
 const INK = "#e11d48";
 
+/** Mr Bean in a field, checking his watch: us, waiting on the Windows build. Streams from GIPHY, like the homepage's GIFs. */
+const WAITING_GIF = "QBd2kLB5qDmysEXre9";
+
+/**
+ * What a Windows visitor sees while there is no Windows build: the waitlist up front, in an ink-outlined card with a
+ * GIF, Veer and Ayush perched on top (Ayush already hard at work on it). A Mac download stays one tap away below.
+ */
+function WindowsView({ onMacDownload }: { onMacDownload: () => void }) {
+  return (
+    <div className="flex w-full flex-col items-center">
+      <h1 className="max-w-4xl font-sans text-[clamp(2.2rem,4.8vw,4.2rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
+        Lazur for{" "}
+        <span className="relative inline-block whitespace-nowrap">
+          Windows
+          <HandUnderline show color={INK} delay={0.4} duration={0.9} offset={2} />
+        </span>
+        <br className="hidden sm:block" /> is on its way.
+      </h1>
+      <p className="mt-4 max-w-[32rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
+        Lazur is Mac-only for now. Leave your email and we&apos;ll write the day it lands on your PC.
+      </p>
+
+      <motion.div
+        className="relative mt-24 w-full max-w-[880px] sm:mt-28"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* Veer waving and Ayush on his laptop, sitting on the card's top edge. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-full flex items-end justify-between px-5 sm:px-10" aria-hidden>
+          <FounderSticker who="veer" pose="wave" size="clamp(96px, 16vw, 132px)" className="-mb-2" />
+          <FounderSticker who="ayush" pose="laptop" size="clamp(84px, 13vw, 112px)" label="on it…" className="-mb-1 mr-10 sm:mr-12" />
+        </div>
+        <Sticker name="cloud" size={64} rotate={-10} className="absolute -left-3 top-1/2 hidden md:-left-9 md:block" />
+
+        <div className="relative grid overflow-hidden rounded-[28px] border-[1.5px] border-[#1c1917] bg-white text-left shadow-[0_2px_0_rgba(28,25,23,0.9),0_18px_40px_-18px_rgba(28,25,23,0.25)] md:grid-cols-[1.05fr_1fr]">
+          <figure className="relative border-b-[1.5px] border-[#1c1917] bg-[#1c1917] md:border-b-0 md:border-r-[1.5px]">
+            <video
+              src={`https://media.giphy.com/media/${WAITING_GIF}/giphy.mp4`}
+              poster={`https://media.giphy.com/media/${WAITING_GIF}/giphy_s.gif`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Mr Bean standing in a field, checking his watch"
+              className="block aspect-[5/3] h-full w-full object-cover md:aspect-auto"
+            />
+            <figcaption className="absolute bottom-3 left-3 rotate-[-2deg] rounded-full border-[1.5px] border-[#1c1917] bg-white px-3 py-1 font-[family-name:var(--font-caveat)] text-[19px] font-semibold leading-none text-[#1c1917]">
+              us, checking on the windows build
+            </figcaption>
+          </figure>
+          <div className="flex flex-col justify-center p-6 sm:p-8">
+            <p className="font-display text-[22px] font-bold tracking-[-0.03em] text-[var(--foreground)]">Get told first</p>
+            <p className="mb-5 mt-1 text-[14.5px] leading-snug text-[var(--foreground-muted)]">One email when it&apos;s ready. Nothing else.</p>
+            <WindowsWaitlist />
+          </div>
+        </div>
+        <p className="mt-3 text-center text-[11px] tracking-wide text-[var(--foreground-faint)]">gifs powered by giphy</p>
+      </motion.div>
+
+      <p className="mt-10 text-[14px] text-[var(--foreground-muted)]">
+        Got a Mac too?{" "}
+        <button
+          type="button"
+          onClick={onMacDownload}
+          className="inline-flex items-center gap-1 font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4 hover:decoration-[var(--foreground)]"
+        >
+          <AppleIcon className="-mt-0.5 h-3.5 w-3.5" />
+          Download for Mac
+        </button>
+      </p>
+    </div>
+  );
+}
+
+
 /** The download button: the homepage's white pill, black outline and text. */
 function DownloadPill({ label, onClick, icon }: { label: string; onClick: () => void; icon: React.ReactNode }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex h-[84px] min-w-[300px] items-center justify-center gap-3 rounded-[36px] border-[1.5px] border-[#1c1917] bg-white px-10 text-[22px] font-bold tracking-[-0.03em] text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(28,25,23,0.9),0_16px_30px_-10px_rgba(28,25,23,0.24)] active:translate-y-0.5 active:shadow-[0_0_0_rgba(28,25,23,0.9)]"
+      className="inline-flex h-[72px] min-w-[260px] items-center justify-center gap-3 rounded-[32px] border-[1.5px] border-[#1c1917] bg-white px-8 text-[20px] sm:h-[84px] sm:min-w-[300px] sm:rounded-[36px] sm:px-10 sm:text-[22px] font-bold tracking-[-0.03em] text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9),0_10px_24px_-8px_rgba(28,25,23,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(28,25,23,0.9),0_16px_30px_-10px_rgba(28,25,23,0.24)] active:translate-y-0.5 active:shadow-[0_0_0_rgba(28,25,23,0.9)]"
     >
       {icon}
       {label}
@@ -131,13 +209,14 @@ export default function DownloadPage() {
   const [chip, setChip] = useState<MacChip>("apple-silicon");
   const [started, setStarted] = useState(false);
   const [missing, setMissing] = useState(false);
-  const [showWaitlist, setShowWaitlist] = useState(false);
   const step = useInstallStep();
 
   useEffect(() => {
-    const raw = detectPlatform();
+    // ?platform=windows (or mac / ios) previews another visitor's view of this page.
+    const forced = new URLSearchParams(window.location.search).get("platform");
+    const raw: Platform = forced === "windows" || forced === "mac" || forced === "ios" ? forced : detectPlatform();
     // iPadOS Safari claims to be a Mac.
-    const detected: Platform = raw === "mac" && !isMacDesktopVisitor() ? "ios" : raw;
+    const detected: Platform = raw === "mac" && !forced && !isMacDesktopVisitor() ? "ios" : raw;
     void (async () => {
       const nextChip: MacChip = detected === "mac" ? await detectMacChip() : "apple-silicon";
       setPlatform(detected);
@@ -146,6 +225,8 @@ export default function DownloadPage() {
   }, []);
 
   const windowsBuild = platform === "windows" && hasWindowsBuild();
+  // Windows without a build of its own: the waitlist is the page (until the download has started).
+  const waitlistView = platform === "windows" && !windowsBuild && !started;
   const location = `download_page_${platform ?? "unknown"}`;
 
   const downloadMac = useCallback(
@@ -185,7 +266,21 @@ export default function DownloadPage() {
     <MarketingPageShell>
       <Navbar />
       <main className="relative overflow-x-clip px-4 pb-24 pt-32 sm:px-6 md:pt-40">
+        {waitlistView ? (
+          <div className="landing-container flex flex-col items-center text-center">
+            <WindowsView
+              onMacDownload={() => {
+                track("cta_clicked", { location, label: "Download for Mac", destination: "file" });
+                void downloadMac(chip, "button");
+              }}
+            />
+          </div>
+        ) : (
         <div className="landing-container flex flex-col items-center text-center">
+          <div className="relative">
+            {/* A couple of stickers tucked around the headline. */}
+            <Sticker name="cursor" size={64} rotate={-14} className="absolute -left-2 -top-12 origin-bottom-left scale-[0.75] sm:-left-14 sm:-top-8 sm:scale-100" />
+            <Sticker name="heart" size={60} rotate={12} className="absolute -right-1 -top-14 origin-bottom-right scale-[0.75] sm:-right-14 sm:-top-6 sm:scale-100" />
           <h1 className="max-w-4xl font-sans text-[clamp(2.4rem,5.4vw,4.6rem)] font-bold leading-[1.04] tracking-[-0.05em] text-[var(--foreground)]">
             {started ? (
               <>
@@ -208,6 +303,7 @@ export default function DownloadPage() {
               </>
             )}
           </h1>
+          </div>
           <p className="mt-5 max-w-[30rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
             {started
               ? "Check your Downloads folder. Three steps and I'm by your cursor."
@@ -218,11 +314,14 @@ export default function DownloadPage() {
 
           {started ? null : (
             <motion.div
-              className="mt-12"
+              className="relative mt-16 sm:mt-12"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
+              {/* Vaidik: pointing at the button from its left on wider screens, perched on its corner on phones. */}
+              <FounderSticker who="vaidik" pose="point" size={150} className="!absolute bottom-[-18px] right-full mr-6 max-sm:!hidden" />
+              <FounderSticker who="vaidik" pose="sitwave" size={74} className="!absolute bottom-[calc(100%-14px)] right-5 sm:hidden" />
               <DownloadPill
                 label={buttonLabel}
                 icon={windowsBuild ? null : <AppleIcon className="h-6 w-6" />}
@@ -314,28 +413,8 @@ export default function DownloadPage() {
             </p>
           ) : null}
 
-          {platform === "windows" && !windowsBuild ? (
-            <div className="mt-10 w-full max-w-sm">
-              {showWaitlist ? (
-                <WindowsWaitlist />
-              ) : (
-                <p className="text-[13.5px] text-[var(--foreground-muted)]">
-                  Want Lazur on this PC?{" "}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      track("windows_waitlist_opened", { location });
-                      setShowWaitlist(true);
-                    }}
-                    className="font-semibold text-[var(--foreground)] underline decoration-[var(--foreground)]/25 underline-offset-4"
-                  >
-                    Get told when Windows is ready
-                  </button>
-                </p>
-              )}
-            </div>
-          ) : null}
         </div>
+        )}
       </main>
       <Footer />
     </MarketingPageShell>

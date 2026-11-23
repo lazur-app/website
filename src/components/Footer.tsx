@@ -1,4 +1,4 @@
-import { PuzzleWordmark } from "./PuzzleWordmark";
+import { PuzzleWordmarkDeferred } from "./PuzzleWordmarkDeferred";
 import { FounderLinks } from "@/components/landing/FounderLinks";
 import { Sticker } from "@/components/landing/Sticker";
 import { LogoWordmark } from "./LogoWordmark";
@@ -113,7 +113,7 @@ export function Footer() {
       {/* The sign-off: the mark and the name as a finished jigsaw, edge to edge. */}
       <div className="relative mt-16 px-4 md:mt-24 md:px-6">
         <Sticker name="smiley" size={88} rotate={-8} className="absolute -top-12 right-1 origin-top-right scale-[0.55] sm:-top-10 sm:right-6 sm:scale-100 md:right-16" />
-        <PuzzleWordmark />
+        <PuzzleWordmarkDeferred />
         {/* The three of us on the wordmark (positions measured from its letters): Vaidik sitting cross-legged on the mark,
             Ayush perched on the z, Veer leaning on the u. Click one for their links.
             On phones they are drawn a little bigger (scaled from their feet) so they still read. */}

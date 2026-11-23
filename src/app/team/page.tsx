@@ -7,12 +7,25 @@ import { HandUnderline } from "@/components/buddy/HandLoop";
 import { Sticker } from "@/components/landing/Sticker";
 import { FounderSticker, type Pose, type Who } from "@/components/landing/FounderSticker";
 import { FOUNDER_LINKS } from "@/lib/founders";
-import { SITE_URL } from "@/lib/seo/constants";
+import { SITE_URL, shareImages } from "@/lib/seo/constants";
 
 export const metadata: Metadata = {
   title: "Team | Lazur",
   description: "Meet Vaidik, Veer and Ayush, the three people building Lazur, your AI companion by your cursor.",
   alternates: { canonical: `${SITE_URL}/team` },
+  openGraph: {
+    title: "The three of us behind Lazur",
+    description: "Meet Vaidik, Veer and Ayush, the three people building Lazur, your AI companion by your cursor.",
+    type: "website",
+    url: `${SITE_URL}/team`,
+    images: shareImages("team").openGraph,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The three of us behind Lazur",
+    description: "Meet Vaidik, Veer and Ayush, the three people building Lazur.",
+    images: shareImages("team").twitter,
+  },
 };
 
 /**

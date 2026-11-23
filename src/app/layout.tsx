@@ -10,7 +10,7 @@ import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
   OG_DESCRIPTION,
-  OG_IMAGE,
+  shareImages,
   SITE_URL,
 } from "@/lib/seo/constants";
 import "./globals.css";
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     description: OG_DESCRIPTION,
     type: "website",
     url: SITE_URL,
-    images: [OG_IMAGE],
+    images: shareImages("home").openGraph,
   },
   twitter: {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
     description: OG_DESCRIPTION,
-    images: [OG_IMAGE.url],
+    images: shareImages("home").twitter,
   },
 };
 

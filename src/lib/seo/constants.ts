@@ -16,7 +16,7 @@ export const OG_DESCRIPTION =
  *   og     1200x630   Open Graph: Facebook, LinkedIn, WhatsApp, iMessage, Slack, Discord, Telegram
  *   x      1200x675   X (Twitter) summary_large_image
  *   square 1200x1200  a second og:image for apps that show square previews
- * Drawn at /lab/og in the site's own look; re-render with `node scripts/og/render-cards.mjs` (dev server running).
+ * Drawn at /lab/share in the site's own look; re-render with `node scripts/og/render-cards.mjs` (dev server running).
  * Give the files new names when they change: apps cache previews by image URL.
  */
 export type SharePage = "home" | "team" | "download" | "pricing";

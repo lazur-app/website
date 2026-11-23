@@ -10,7 +10,7 @@ export const metadata = { title: "Share cards", robots: { index: false } };
 
 /**
  * The link-preview cards (Open Graph / X), drawn in the site's own look so they can be screenshotted into
- * public/og/ at each platform's size: /lab/og?v=home&w=1200&h=630. See scripts/og/render-cards.mjs (the older card, og-buddy.png, is scripts/og/render.mjs).
+ * public/og/ at each platform's size: /lab/share?v=home&w=1200&h=630. See scripts/og/render-cards.mjs (the older card, og-buddy.png, is scripts/og/render.mjs).
  *   v: home | team | download | pricing
  *   w, h: the card's size in px (1200x630 for Open Graph, 1200x675 for X, 1200x1200 square)
  */

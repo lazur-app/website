@@ -1,4 +1,4 @@
-// Renders the link-preview cards from /lab/og into public/og/ at each platform's size.
+// Renders the link-preview cards from /lab/share into public/og/ at each platform's size.
 // Needs `npm run dev` running and Google Chrome installed:  node scripts/og/render-cards.mjs [http://localhost:3000]
 // Output: public/og/<page>-<size>.jpg, e.g. home-og.jpg (Open Graph 1200x630), home-x.jpg (X 1200x675), home-square.jpg.
 import { spawn } from "node:child_process";
@@ -34,7 +34,7 @@ await send("Page.enable");
 for (const page of PAGES) {
   for (const [name, [w, h]] of Object.entries(SIZES)) {
     await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: false });
-    await send("Page.navigate", { url: `${BASE}/lab/og?v=${page}&w=${w}&h=${h}` });
+    await send("Page.navigate", { url: `${BASE}/lab/share?v=${page}&w=${w}&h=${h}` });
     await sleep(3500); // fonts, images and the stickers settle
     const shot = await send("Page.captureScreenshot", { format: "png", clip: { x: 0, y: 0, width: w, height: h, scale: 1 } });
     const file = path.join(OUT, `${page}-${name}.jpg`);

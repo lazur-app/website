@@ -16,16 +16,17 @@ export const metadata: Metadata = {
 };
 
 /**
- * DRAFT COPY: the stories and the mission below are placeholders, clearly marked on the page, until the founders send
- * their own words. Vaidik's and Ayush's photos are still to come; until then their cartoon stands in the photo frame.
+ * The founders, in their own stories (written from what each of them told us; edit freely). `does` is what each
+ * one looks after at Lazur.
  */
 type Founder = {
   who: Who;
   name: string;
   role: string;
-  photo: string | null;
+  photo: string;
   pose: Pose;
   story: string[];
+  does: string;
 };
 
 const FOUNDERS: Founder[] = [
@@ -33,12 +34,13 @@ const FOUNDERS: Founder[] = [
     who: "vaidik",
     name: "Vaidik Sule",
     role: "Founder",
-    photo: null,
+    photo: "/vaidik-img.jpg",
     pose: "wave",
     story: [
-      "Vaidik's story goes here: what got him building Lazur, what he was doing before, and the moment the idea clicked.",
-      "A second short paragraph: what he works on day to day and what he cares about most in the product.",
+      "I've always been the curious one. I play music, I love art, and I could never leave something alone until I knew how it worked. In 9th grade I found Python and game development, and something clicked: I could build fixes for my own everyday problems, with code and an Arduino on my desk.",
+      "That habit never left. It grew into real products: a tool for YouTubers, then one for podcast hosts, four ventures before this one. Each taught me something, and all of them led here. With Lazur, I believe we can change how people use their computers.",
     ],
+    does: "I look after the overall direction of the product and where it's headed.",
   },
   {
     who: "veer",
@@ -47,33 +49,26 @@ const FOUNDERS: Founder[] = [
     photo: "/veer-img.jpeg",
     pose: "thumbs",
     story: [
-      "Veer's story goes here: how he met the others, what he brings to Lazur, and why he joined.",
-      "A second short paragraph: the part of Lazur he looks after and what he hopes it does for people.",
+      "I'm the youngest in my family, and the youngest is always running to keep up. Maybe that's why I never stopped trying things: hackathons (I've won a few international ones), trading, side projects, and Preffer.me, the company I founded before this.",
+      "Not everything worked, and I'm proud of that part too. Every try taught me something. I want to build something big that pays off, and I joined Lazur because it's where I grow the fastest.",
     ],
+    does: "I handle growth and operations: getting Lazur to the people who need it, and keeping everything running.",
   },
   {
     who: "ayush",
     name: "Ayush Agrawal",
     role: "Co-founder",
-    photo: null,
+    photo: "/ayush-img.jpg",
     pose: "yay",
     story: [
-      "Ayush's story goes here: his path to Lazur, what he built before, and what pulled him in.",
-      "A second short paragraph: what he works on at Lazur and what he is most excited to ship.",
+      "I grew up in a business family, around talk of running something of your own. So from early on I knew I wanted to own something one day.",
+      "Tech pulled me in because it was exciting, and because it gave me the freedom to make something real: something people actually use and pay for. I kept picking the complex projects, the hard ones, and that road led me to co-founding Lazur.",
     ],
+    does: "I handle the tech: everything that lets Lazur hear you, see your screen and get things done.",
   },
 ];
 
 const INK = "#e11d48";
-
-/** A small red tag on every block of placeholder copy, so nobody mistakes it for the real thing. */
-function DraftTag({ note = "placeholder text" }: { note?: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#e11d48] bg-[#fff1f4] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.08em] text-[#e11d48] [text-transform:uppercase]">
-      draft · {note}
-    </span>
-  );
-}
 
 function FounderRow({ founder, index }: { founder: Founder; index: number }) {
   const flip = index % 2 === 1;
@@ -85,30 +80,22 @@ function FounderRow({ founder, index }: { founder: Founder; index: number }) {
         <div
           className={`overflow-hidden rounded-[24px] border-[1.5px] border-[#1c1917] bg-white p-3 shadow-[0_2px_0_rgba(28,25,23,0.9),0_18px_40px_-18px_rgba(28,25,23,0.3)] ${flip ? "rotate-[2deg]" : "rotate-[-2deg]"}`}
         >
-          {founder.photo ? (
-            <Image
-              src={founder.photo}
-              alt={`${founder.name}, ${founder.role.toLowerCase()} of Lazur`}
-              width={460}
-              height={460}
-              className="aspect-square w-full rounded-[16px] object-cover"
-            />
-          ) : (
-            <div className="flex aspect-square w-full flex-col items-center justify-center gap-3 rounded-[16px] bg-[#f3f1ec]">
-              <FounderSticker who={founder.who} pose="sitcross" size={170} />
-              <span className="font-[family-name:var(--font-caveat)] text-[22px] font-semibold text-[var(--foreground-muted)]">real photo coming soon</span>
-            </div>
-          )}
+          <Image
+            src={founder.photo}
+            alt={`${founder.name}, ${founder.role.toLowerCase()} of Lazur`}
+            width={704}
+            height={800}
+            sizes="(min-width: 768px) 340px, 90vw"
+            className="aspect-[22/25] w-full rounded-[16px] object-cover"
+          />
           <p className="pt-3 text-center font-[family-name:var(--font-caveat)] text-[24px] font-semibold leading-none text-[#1c1917]">{founder.name.split(" ")[0]}</p>
         </div>
-        {founder.photo ? (
-          <FounderSticker
-            who={founder.who}
-            pose={founder.pose}
-            size={128}
-            className={`!absolute -bottom-6 ${flip ? "-left-8 sm:-left-14" : "-right-8 sm:-right-14"}`}
-          />
-        ) : null}
+        <FounderSticker
+          who={founder.who}
+          pose={founder.pose}
+          size={128}
+          className={`!absolute -bottom-6 ${flip ? "-left-6 sm:-left-14" : "-right-6 sm:-right-14"}`}
+        />
       </div>
 
       <div className="text-center md:text-left">
@@ -116,14 +103,15 @@ function FounderRow({ founder, index }: { founder: Founder; index: number }) {
           <h2 className="font-display text-[clamp(2rem,3.6vw,2.9rem)] font-bold leading-none tracking-[-0.04em] text-[var(--foreground)]">{founder.name}</h2>
           <span className="rounded-full bg-[#1c1917] px-3 py-1 text-[13px] font-bold text-white">{founder.role}</span>
         </div>
-        <div className="mt-4">
-          <DraftTag note="their story, in their words, soon" />
-        </div>
-        <div className="mx-auto mt-4 max-w-[36rem] space-y-3 text-[17px] leading-relaxed text-[var(--foreground-muted)] md:mx-0">
+        <div className="mx-auto mt-5 max-w-[36rem] space-y-3 text-[17px] leading-relaxed text-[var(--foreground-muted)] md:mx-0">
           {founder.story.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
+        <p className="mx-auto mt-5 max-w-[36rem] rounded-[16px] border-[1.5px] border-dashed border-[#1c1917]/30 bg-white/70 px-4 py-3 text-left text-[16px] leading-snug text-[var(--foreground)] md:mx-0">
+          <span className="mr-1.5 font-[family-name:var(--font-caveat)] text-[22px] font-semibold leading-none text-[#e11d48]">at lazur:</span>
+          {founder.does}
+        </p>
         <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-2.5 md:justify-start">
           {links.map((link) => (
             <li key={link.label}>
@@ -163,7 +151,7 @@ export default function TeamPage() {
               </span>
             </h1>
             <p className="mx-auto mt-5 max-w-[32rem] text-[clamp(1rem,1.4vw,1.12rem)] font-medium leading-snug text-[var(--foreground-muted)]">
-              Vaidik, Veer and Ayush. We build the companion that sits by your cursor, and we answer every email ourselves.
+              Vaidik, Veer and Ayush. Three different roads, one idea: your computer should feel like a friend sitting right next to you.
             </p>
             <div className="mt-8 flex items-end justify-center gap-4 sm:gap-8" aria-hidden>
               <FounderSticker who="veer" pose="wave" size={110} />
@@ -183,16 +171,20 @@ export default function TeamPage() {
             <Sticker name="heart" size={80} rotate={-12} className="absolute -left-3 -top-8 z-10 md:-left-8" />
             <div className="rounded-[28px] border-[1.5px] border-[#1c1917] bg-white px-6 pb-0 pt-12 text-center shadow-[0_2px_0_rgba(28,25,23,0.9),0_18px_40px_-18px_rgba(28,25,23,0.25)] sm:px-10 md:pt-16">
               <p className="text-[13px] font-bold tracking-[0.12em] text-[var(--foreground-faint)] [text-transform:uppercase]">our mission</p>
-              <div className="mt-3">
-                <DraftTag note="our own words, soon" />
-              </div>
-              <h2 className="mx-auto mt-5 max-w-2xl font-display text-[clamp(1.9rem,3.8vw,3.1rem)] font-medium leading-[1.05] tracking-[-0.04em] text-[var(--foreground)]">
-                Our shared mission goes here, in{" "}
-                <span className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em]">one</span> line.
+              <h2 className="mx-auto mt-4 max-w-2xl font-display text-[clamp(1.9rem,3.8vw,3.1rem)] font-medium leading-[1.05] tracking-[-0.04em] text-[var(--foreground)]">
+                Make your computer feel like a{" "}
+                <span className="font-[family-name:var(--font-garamond)] text-[1.12em] font-normal italic tracking-[-0.02em]">friend</span> sitting next to you.
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-[var(--foreground-muted)]">
-                A short paragraph on why the three of us are building Lazur together, and what we want it to change for the people who use it.
-              </p>
+              <div className="mx-auto mt-5 max-w-xl space-y-3 text-[17px] leading-relaxed text-[var(--foreground-muted)]">
+                <p>
+                  Computers get faster every year, yet using one still means hunting through menus, digging for settings and typing out
+                  everything by hand. We think you should be able to just say what you want, and have it done, or be shown how.
+                </p>
+                <p>
+                  That&apos;s what we&apos;re building, together: a companion that sees what you see, listens when you ask, and helps
+                  in any app. Not another app to learn. One that learns you.
+                </p>
+              </div>
               <div className="mt-10 flex items-end justify-center gap-6 sm:gap-12" aria-hidden>
                 <FounderSticker who="veer" pose="yay" size={120} />
                 <FounderSticker who="vaidik" pose="thumbs" size={130} />

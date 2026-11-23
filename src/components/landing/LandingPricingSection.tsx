@@ -7,12 +7,16 @@ import { Check } from "lucide-react";
 import { Sticker } from "@/components/landing/Sticker";
 import { TRIAL_LABEL, WEBSITE_PLANS, formatAmount, type WebsitePlan } from "@/lib/pricingPlans";
 import { useTrackInView } from "@/hooks/useTrackInView";
+import { useIsWindowsVisitor, WINDOWS_WAITLIST_LABEL } from "@/hooks/useIsWindowsVisitor";
 import { track } from "@/lib/productAnalytics";
 
 /**
  * Pricing on the homepage: the three plans side by side as little windows, so they can be compared
  * line by line. Everything shown comes from WEBSITE_PLANS (lib/pricingPlans); nothing is restated here.
  */
+
+/** GIPHY sticker id: a smug cat, sunglasses dropping onto its face ("deal with it"). */
+const SAVAGE_CAT = "7JA8CIHsr0IfYPZpOE";
 
 /** Where a plan's button goes from the homepage: trial and Pro start with the download, Power on the pricing page. */
 function planHref(plan: WebsitePlan) {
@@ -26,18 +30,33 @@ function PlanCard({ plan }: { plan: WebsitePlan }) {
   const under = free ? "free for 3 days, no card needed" : `per month, or ${formatAmount(pricing!.annual, pricing!.currency)} a year`;
   const href = planHref(plan);
   const featured = Boolean(plan.featured);
+  // On Windows nothing downloads yet: the plans that start with the download say so (they lead to the waitlist).
+  const windows = useIsWindowsVisitor();
+  const buttonText = windows && href === "/download" ? WINDOWS_WAITLIST_LABEL : plan.buttonText;
 
   return (
     <li
       data-guide={featured ? "pricing-pro" : plan.id === "free" ? "pricing-trial" : undefined}
-      className={`relative flex flex-col overflow-visible rounded-[14px] border-[1.5px] border-[#0c0b0a] bg-white ${featured ? "lg:-mt-4" : ""}`}
+      className={`relative flex flex-col overflow-visible rounded-[14px] border-[1.5px] border-[#0c0b0a] bg-white ${featured ? "z-10 lg:-mt-4" : ""}`}
     >
       {featured && plan.featuredBadge ? (
         <span className="absolute -top-3.5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border-[1.5px] border-[#0c0b0a] bg-white px-3 py-0.5 text-[13px] font-medium lowercase text-[#0c0b0a]">
           {plan.featuredBadge}
         </span>
       ) : null}
-      {featured ? <Sticker name="crown" size={78} rotate={14} className="absolute -right-6 top-10 hidden sm:block" /> : null}
+      {/* The most popular plan wears a savage cat: GIPHY's "deal with it" sticker, sunglasses dropping on cue. */}
+      {featured ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`https://media.giphy.com/media/${SAVAGE_CAT}/giphy.webp`}
+          alt=""
+          aria-hidden
+          width={140}
+          height={140}
+          loading="lazy"
+          className="pointer-events-none absolute -right-3 -top-14 z-20 h-[104px] w-[104px] rotate-[10deg] object-contain drop-shadow-[0_6px_10px_rgba(28,25,23,0.22)] sm:-right-14 sm:top-2 sm:h-[140px] sm:w-[140px]"
+        />
+      ) : null}
 
       {/* the window's title bar (the trial card goes without one) */}
       {plan.id === "free" ? null : <div className={`flex h-9 items-center gap-1.5 rounded-t-[12px] border-b-[1.5px] border-[#0c0b0a] px-3.5 ${featured ? "bg-[#0c0b0a]" : "bg-black/[0.05]"}`} aria-hidden>
@@ -58,12 +77,12 @@ function PlanCard({ plan }: { plan: WebsitePlan }) {
 
         <Link
           href={href}
-          onClick={() => track("cta_clicked", { location: "landing_pricing", label: plan.buttonText, destination: href, plan: plan.id })}
+          onClick={() => track("cta_clicked", { location: "landing_pricing", label: buttonText, destination: href, plan: plan.id })}
           className={`mx-auto mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full border-[1.5px] border-[#0c0b0a] px-7 text-[16px] font-semibold lowercase transition-colors ${
             featured ? "bg-[#0c0b0a] text-white hover:bg-[#2a2826]" : "bg-white text-[#0c0b0a] hover:bg-black/[0.05]"
           }`}
         >
-          {plan.buttonText}
+          {buttonText}
         </Link>
 
         <div className="my-6 border-t border-dashed border-black/15" />
@@ -124,6 +143,7 @@ export function LandingPricingSection() {
               See all plans and yearly prices
             </Link>
           </p>
+          <p className="mt-4 text-center text-[11px] tracking-wide text-[var(--foreground-faint)]">sticker powered by giphy</p>
         </div>
       </div>
     </section>

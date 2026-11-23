@@ -4,6 +4,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppleIcon } from "@/components/icons/AppleIcon";
+import { WindowsIcon } from "@/components/icons/WindowsIcon";
+import { useIsWindowsVisitor, WINDOWS_WAITLIST_LABEL } from "@/hooks/useIsWindowsVisitor";
 import { Sticker } from "@/components/landing/Sticker";
 import { FounderSticker } from "@/components/landing/FounderSticker";
 import { DownloadReassurance } from "@/components/landing/DownloadReassurance";
@@ -15,6 +17,8 @@ import { MAC_DOWNLOAD_URL, triggerMacDownload } from "@/lib/download";
 export function FinalCtaSection() {
   const ref = useRef<HTMLElement>(null);
   useTrackInView(ref, "section_viewed", { section: "final_cta" });
+  const windows = useIsWindowsVisitor();
+  const label = windows ? WINDOWS_WAITLIST_LABEL : "Download for Mac";
 
   return (
     <section ref={ref} data-guide-section="cta" className="landing-container relative pb-24 pt-8 md:pb-32">
@@ -37,18 +41,23 @@ export function FinalCtaSection() {
           <Link
             href="/download"
             onClick={(e) => {
-              track("cta_clicked", { location: "final_cta", label: "Download for Mac", destination: MAC_DOWNLOAD_URL ? "direct_download" : "/download" });
-              if (MAC_DOWNLOAD_URL) {
+              track("cta_clicked", { location: "final_cta", label, destination: MAC_DOWNLOAD_URL && !windows ? "direct_download" : "/download" });
+              // Windows visitors go to the download page, which is the waitlist for them.
+              if (MAC_DOWNLOAD_URL && !windows) {
                 e.preventDefault();
                 void triggerMacDownload();
               }
             }}
             className="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-[#0c0b0a] px-8 text-[17px] font-bold tracking-[-0.01em] text-white shadow-[0_10px_30px_rgba(12,11,10,0.25)] transition-transform hover:scale-[1.02]"
           >
-            <AppleIcon className="-mt-0.5 h-4 w-4" />
-            Download for Mac
+            {windows ? <WindowsIcon className="h-4 w-4" /> : <AppleIcon className="-mt-0.5 h-4 w-4" />}
+            {label}
           </Link>
-          <DownloadReassurance tone="light" />
+          {windows ? (
+            <p className="text-[12.5px] leading-snug text-[var(--foreground-faint)]">Mac-only for now · we&apos;ll email you when Windows is ready</p>
+          ) : (
+            <DownloadReassurance tone="light" />
+          )}
         </div>
         {/* The three of us, cheering along the bottom edge. */}
         <div className="mt-10 flex items-end justify-center gap-6 sm:gap-12" aria-hidden>

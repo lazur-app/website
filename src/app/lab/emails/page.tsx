@@ -29,7 +29,7 @@ const BLOCKS: [string, string][] = [
  * backend fills these in when it sends; the samples on this page use a made-up person.
  */
 const SOURCES: [string, string][] = [
-  ["Who a personal note is from", "Veer, Aayush or Vaidik, spread evenly across sign-ups but always the same one for the same person (picked from their email address); the samples below show all three"],
+  ["Who a personal note is from", "Veer, Aayush or Vaidik, picked at random for each email; a reply goes to whoever sent that one"],
   ["First name (all emails)", "the account's name (GET /auth/me: name), first word only; left out when there is none"],
   ["Welcome", "sent right after a new account (Google or GitHub sign-in); the Windows backend sends the Windows wording"],
   ["Not opened yet", "sent 24-72 hours after making an account if the app never checked in (users.app_activated_at is empty)"],
@@ -38,7 +38,7 @@ const SOURCES: [string, string][] = [
   ["Words spoken", "/auth/me: word_quota_used; the line is left out when it is 0"],
   ["Plan, amount, dates, invoice link", "the Polar order.paid webhook (billing_orders)"],
   ["Payment failed", "the Polar subscription.past_due webhook; Polar doesn't send a retry date, so the line is left out"],
-  ["Admin messages", "whatever the admin writes: a short first line becomes the headline, the button is optional"],
+  ["Admin messages", "from and signed by whoever is signed in to the admin (Veer, Aayush or Vaidik); a short first line becomes the headline, the button is optional"],
   ["Links", "real pages on lazur.app: /download, /pricing, /billing, /dashboard, /copy"],
 ];
 

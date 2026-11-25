@@ -168,20 +168,18 @@ const PEOPLE: Record<TeamMember, { lower: string; signature: string }> = {
 };
 
 /**
- * Who a person's notes come from. Spread across all three of the team, but always the same one for
- * the same person (picked from their email address), so they hear from one human the whole way
- * through and a reply goes back to the person who wrote to them.
+ * Who an automatic note comes from: one of the three, picked at random for each email (not tied to
+ * the person). A reply goes to whoever that email came from. Messages sent from the admin pass
+ * `from` instead: the one who is signed in.
  */
-export function senderFor(to: string): TeamMember {
-  let h = 0;
-  for (const ch of to.trim().toLowerCase()) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  return TEAM[h % TEAM.length];
+export function randomSender(): TeamMember {
+  return TEAM[Math.floor(Math.random() * TEAM.length)];
 }
 
 type Personal = { to: string; name?: string | null; from?: TeamMember };
 
 function who(p: Personal) {
-  const id = p.from ?? senderFor(p.to);
+  const id = p.from ?? randomSender();
   return { id, ...PEOPLE[id], sender: SENDERS[id] };
 }
 
@@ -316,8 +314,11 @@ export function onTheList(p: Personal): BuiltEmail {
  * A message someone on the team writes in the admin (an update notice, a one-off note) to one person
  * or a list. Their words go into the branded card: a short first line becomes the headline, the
  * rest are paragraphs, and the button is optional. `paragraphs` are plain text (escaped here).
+ * `from` is whoever is signed in to the admin and sending it: it goes from their address and is
+ * signed with their name. Without it (an admin who isn't Veer, Aayush or Vaidik) it comes from Lazur.
  */
-export function adminMessage(p: { subject: string; paragraphs: string[]; button?: string; url?: string }): BuiltEmail {
+export function adminMessage(p: { from?: TeamMember; subject: string; paragraphs: string[]; button?: string; url?: string }): BuiltEmail {
+  const me = p.from ? { ...PEOPLE[p.from], sender: SENDERS[p.from] } : null;
   const escLines = (t: string) => esc(t).replace(/\n/g, "<br>");
   const [first = "", ...rest] = p.paragraphs;
   const headline = first.length <= 40 ? first : "";
@@ -327,15 +328,16 @@ export function adminMessage(p: { subject: string; paragraphs: string[]; button?
   const blocks = [
     ...(headline ? [heading(escLines(headline))] : []),
     ...body.map((para) => text(escLines(para))),
+    ...(me ? [text(`<span style="font-weight:600;color:#1c1917;">${esc(me.signature)}</span><br>Lazur`)] : []),
     ...(withButton ? [button(p.button!, p.url!), finePrint(`Or open <a href="${esc(p.url!)}" style="color:#6b6560;">${esc(p.url!)}</a>`)] : []),
   ];
   const reason = "You got this because you use Lazur. Reply if you'd rather not hear from us.";
   return {
-    from: SENDERS.lazur,
+    from: me ? me.sender : SENDERS.lazur,
     subject: p.subject,
     preheader,
     html: email({ preheader, sticker: "star", blocks, reason }),
-    text: `${p.paragraphs.join("\n\n")}${withButton ? `\n\n${p.button}: ${p.url}` : ""}\n\n--\n${reason}`,
+    text: `${p.paragraphs.join("\n\n")}${me ? `\n\n${me.signature}\nLazur` : ""}${withButton ? `\n\n${p.button}: ${p.url}` : ""}\n\n--\n${reason}`,
   };
 }
 
@@ -357,9 +359,10 @@ export const EMAIL_SAMPLES: { id: string; name: string; when: string; build: () 
   {
     id: "admin",
     name: "Message from the admin",
-    when: "Someone on the team sends a message from the admin.",
+    when: "Someone signed in to the admin sends a message; it comes from them.",
     build: () =>
       adminMessage({
+        from: "vaidik",
         subject: "Please update Lazur to 0.1.14",
         paragraphs: [
           "Hi Sam,",

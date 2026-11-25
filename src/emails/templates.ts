@@ -3,8 +3,14 @@
  *
  * - Account emails (codes, receipts) go out through Resend from the Lazur address, in the
  *   branded "Ticket" design from ./system.
- * - Everything else is a personal note from one of the team (Veer, Aayush or Vaidik), sent from
- *   their own mailbox, written the way you would write to a friend, in a lighter version of the brand.
+ * - Everything else is a personal note from one of the team (Veer, Aayush or Vaidik), sent through
+ *   Resend from their own @lazur.app address (replies go to their inbox), written the way you would
+ *   write to a friend, in a lighter version of the brand.
+ *
+ * The backend sends these. It keeps a Python copy of this file (app/email_templates.py in
+ * lazur-app/backend and lazur-app/backend-windows) and a test that checks the copy draws exactly
+ * what this file draws: after changing an email here, refresh the backend's fixture from
+ * http://localhost:3000/lab/emails/samples (npm run dev) and update the Python copy to match.
  *
  * A template takes the facts for one person and returns who it is from, the subject, the preview
  * line, the HTML and a plain-text copy. To add an email, add a function here and list it in
@@ -12,7 +18,7 @@
  */
 import { button, email, esc, facts, finePrint, heading, link, note, plainEmail, text, ticket } from "./system";
 
-/** Who an email is from. `via` is how it is sent: Resend for account emails, the person's own mailbox otherwise. */
+/** Who an email is from. `via`: "resend" is the Lazur address, "mailbox" a person's own address (also sent through Resend, replies go to them). */
 export type Sender = { name: string; address: string; via: "resend" | "mailbox" };
 
 export const SENDERS = {
@@ -125,7 +131,7 @@ export function receipt(p: { name?: string | null; plan: string; amount: string;
 }
 
 /** Sent when a card is declined. */
-export function paymentFailed(p: { name?: string | null; plan: string; amount: string; retryDate: string }): BuiltEmail {
+export function paymentFailed(p: { name?: string | null; plan: string; amount: string; retryDate?: string | null }): BuiltEmail {
   const preheader = `We could not charge ${p.amount}. Update your card to keep Lazur ${p.plan}.`;
   const first = firstName(p.name);
   return {
@@ -138,13 +144,13 @@ export function paymentFailed(p: { name?: string | null; plan: string; amount: s
       blocks: [
         heading("Your card said no."),
         text(`${first ? `Hey ${esc(first)}, we` : "We"} tried to charge ${esc(p.amount)} for Lazur ${esc(p.plan)} and the bank declined it. It happens.`),
-        note("What happens next", `We try again on <b>${esc(p.retryDate)}</b>. Until then everything keeps working.`),
+        note("What happens next", `${p.retryDate ? `We try again on <b>${esc(p.retryDate)}</b>. ` : ""}Pro is paused until the payment goes through. Update your card and it comes straight back.`),
         button("Update my card", `${SITE}/billing`),
         finePrint("Already fixed it? Then ignore this."),
       ],
       reason: "You got this because a payment for your Lazur plan failed.",
     }),
-    text: `Your card said no.\n\nWe tried to charge ${p.amount} for Lazur ${p.plan} and the bank declined it.\nWe try again on ${p.retryDate}. Until then everything keeps working.\n\nUpdate my card: ${SITE}/billing`,
+    text: `Your card said no.\n\nWe tried to charge ${p.amount} for Lazur ${p.plan} and the bank declined it.\n${p.retryDate ? `We try again on ${p.retryDate}. ` : ""}Pro is paused until the payment goes through. Update your card and it comes straight back.\n\nUpdate my card: ${SITE}/billing`,
   };
 }
 
@@ -179,14 +185,21 @@ function who(p: Personal) {
   return { id, ...PEOPLE[id], sender: SENDERS[id] };
 }
 
-/** Right after the email is confirmed. */
-export function welcome(p: Personal): BuiltEmail {
+/** The computer and the hold-to-talk keys, for the copy that says how to use it. */
+const DEVICE = {
+  mac: { computer: "mac", keys: "Option + Command", keysLower: "option + command", download: `${SITE}/download` },
+  windows: { computer: "pc", keys: "Ctrl + Space", keysLower: "ctrl + space", download: `${SITE}/download` },
+} as const;
+
+/** Right after the account is made (Google sign-in). `platform` is the app they signed up from. */
+export function welcome(p: Personal & { platform?: "mac" | "windows" }): BuiltEmail {
   const me = who(p);
+  const d = DEVICE[p.platform ?? "mac"];
   const preheader = `it's ${me.lower}, one of the people who built lazur. two keys and you're set.`;
   const paragraphs = [
     hey(p.name),
     `it's ${me.lower}, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself instead of sending you some newsletter.`,
-    `quick version of how it works: open lazur on your mac, hold <b>Option + Command</b> and just talk. let go and it does the thing, in whatever app you're in. if you haven't downloaded it yet, it's ${link("here", `${SITE}/download`)}.`,
+    `quick version of how it works: open lazur on your ${d.computer}, hold <b>${d.keys}</b> and just talk. let go and it does the thing, in whatever app you're in. if you haven't downloaded it yet, it's ${link("here", d.download)}.`,
     "the first thing i'd try: open an email and say \"reply that thursday works for me\". that's usually the moment it clicks.",
     "you've got 3 days of pro, no card. and if anything feels off or confusing, just hit reply. it comes straight to me and i actually read these.",
   ];
@@ -195,7 +208,7 @@ export function welcome(p: Personal): BuiltEmail {
     subject: `hey, it's ${me.lower} from lazur`,
     preheader,
     html: plainEmail({ preheader, sticker: "heart", paragraphs, signature: me.signature }),
-    text: `${hey(p.name)}\n\nit's ${me.lower}, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself.\n\nopen lazur on your mac, hold option + command and just talk. let go and it does the thing, in whatever app you're in. download: ${SITE}/download\n\nfirst thing to try: open an email and say "reply that thursday works for me".\n\nyou've got 3 days of pro, no card. anything off, just hit reply.\n\n${me.lower}`,
+    text: `${hey(p.name)}\n\nit's ${me.lower}, one of the people who built lazur. saw you just signed up, so i wanted to say hi myself.\n\nopen lazur on your ${d.computer}, hold ${d.keysLower} and just talk. let go and it does the thing, in whatever app you're in. download: ${d.download}\n\nfirst thing to try: open an email and say "reply that thursday works for me".\n\nyou've got 3 days of pro, no card. anything off, just hit reply.\n\n${me.lower}`,
   };
 }
 
@@ -262,16 +275,100 @@ export function windowsWaitlist(p: Personal): BuiltEmail {
   };
 }
 
+/** Someone on a phone or PC asked for the Mac download link by email, to open later on their Mac. */
+export function macLink(p: Personal): BuiltEmail {
+  const me = who(p);
+  const preheader = "the download link, for when you're at your mac.";
+  const paragraphs = [
+    hey(p.name),
+    `${me.lower} from lazur. here's the link you asked for: ${link("download lazur for mac", `${SITE}/download`)}. open it on your mac and lazur downloads straight away.`,
+    "once it's installed, hold <b>Option + Command</b> and just talk. let go and it does the thing, in whatever app you're in.",
+    "if anything gets stuck along the way, just reply. it comes straight to me.",
+  ];
+  return {
+    from: me.sender,
+    subject: "lazur for your mac",
+    preheader,
+    html: plainEmail({ preheader, sticker: "mic", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\n${me.lower} from lazur. here's the link you asked for. open it on your mac:\n${SITE}/download\n\nonce it's installed, hold option + command and just talk.\n\nanything stuck, just reply.\n\n${me.lower}`,
+  };
+}
+
+/** Someone joined the early-access list on the website. */
+export function onTheList(p: Personal): BuiltEmail {
+  const me = who(p);
+  const preheader = "you're on the list. i'll write when your access is ready.";
+  const paragraphs = [
+    hey(p.name),
+    `${me.lower} from lazur. you're on the list, and i'll write the moment your access is ready.`,
+    "if you want to tell me what you'd use it for, just reply. i read every one, and it helps us decide what to get right first.",
+  ];
+  return {
+    from: me.sender,
+    subject: "you're on the lazur list",
+    preheader,
+    html: plainEmail({ preheader, sticker: "star", paragraphs, signature: me.signature }),
+    text: `${hey(p.name)}\n\n${me.lower} from lazur. you're on the list, and i'll write the moment your access is ready.\n\nwhat would you use it for? just reply.\n\n${me.lower}`,
+  };
+}
+
+/**
+ * A message someone on the team writes in the admin (an update notice, a one-off note) to one person
+ * or a list. Their words go into the branded card: a short first line becomes the headline, the
+ * rest are paragraphs, and the button is optional. `paragraphs` are plain text (escaped here).
+ */
+export function adminMessage(p: { subject: string; paragraphs: string[]; button?: string; url?: string }): BuiltEmail {
+  const escLines = (t: string) => esc(t).replace(/\n/g, "<br>");
+  const [first = "", ...rest] = p.paragraphs;
+  const headline = first.length <= 40 ? first : "";
+  const body = headline ? rest : p.paragraphs;
+  const preheader = (body[0] ?? first).slice(0, 140);
+  const withButton = Boolean(p.button && p.url);
+  const blocks = [
+    ...(headline ? [heading(escLines(headline))] : []),
+    ...body.map((para) => text(escLines(para))),
+    ...(withButton ? [button(p.button!, p.url!), finePrint(`Or open <a href="${esc(p.url!)}" style="color:#6b6560;">${esc(p.url!)}</a>`)] : []),
+  ];
+  const reason = "You got this because you use Lazur. Reply if you'd rather not hear from us.";
+  return {
+    from: SENDERS.lazur,
+    subject: p.subject,
+    preheader,
+    html: email({ preheader, sticker: "star", blocks, reason }),
+    text: `${p.paragraphs.join("\n\n")}${withButton ? `\n\n${p.button}: ${p.url}` : ""}\n\n--\n${reason}`,
+  };
+}
+
 /* ------------------------------------------------------------------ the preview list */
 
 /** One of each, with made-up people, for /lab/emails and for tests. In the order a person meets them. */
 export const EMAIL_SAMPLES: { id: string; name: string; when: string; build: () => BuiltEmail }[] = [
   { id: "verify", name: "Confirm your email", when: "Someone signs up with an email address.", build: () => verifyEmail({ code: "482916" }) },
   { id: "signin", name: "Sign-in code", when: "Someone signs in with their email.", build: () => signInCode({ code: "730254" }) },
-  { id: "welcome", name: "Welcome", when: "Right after the email is confirmed.", build: () => welcome({ to: "sam@example.com", name: "Sam Carter", from: "veer" }) },
-  { id: "nudge", name: "Not opened yet", when: "24 hours after signing up, if the app was never opened.", build: () => notOpenedYet({ to: "sam@example.com", name: "Sam Carter", from: "aayush" }) },
+  { id: "welcome", name: "Welcome", when: "Right after someone makes an account (Google sign-in).", build: () => welcome({ to: "sam@example.com", name: "Sam Carter", from: "veer" }) },
+  { id: "welcome-windows", name: "Welcome (Windows app)", when: "Right after someone makes an account from the Windows app.", build: () => welcome({ to: "sam@example.com", name: "Sam Carter", from: "vaidik", platform: "windows" }) },
+  { id: "nudge", name: "Not opened yet", when: "24 hours after making an account, if the app was never opened.", build: () => notOpenedYet({ to: "sam@example.com", name: "Sam Carter", from: "aayush" }) },
   { id: "trial", name: "Trial ending", when: "A day before the 3-day trial ends.", build: () => trialEnding({ to: "sam@example.com", name: "Sam Carter", from: "vaidik", hoursLeft: 20, wordsDictated: 4380 }) },
   { id: "receipt", name: "Receipt", when: "A payment goes through.", build: () => receipt({ name: "Sam Carter", plan: "Pro", amount: "$18.00", date: "Nov 22, 2026", nextDate: "Dec 22, 2026", invoiceUrl: `${SITE}/billing` }) },
   { id: "failed", name: "Payment failed", when: "A card is declined.", build: () => paymentFailed({ name: "Sam Carter", plan: "Pro", amount: "$18.00", retryDate: "Nov 25" }) },
   { id: "windows", name: "Windows waitlist", when: "Someone asks to hear about the Windows app.", build: () => windowsWaitlist({ to: "sam@example.com", name: "Sam Carter", from: "aayush" }) },
+  { id: "maclink", name: "Mac download link", when: "Someone on a phone or PC asks for the Mac link by email.", build: () => macLink({ to: "sam@example.com", from: "veer" }) },
+  { id: "list", name: "On the list", when: "Someone joins the early-access list on the website.", build: () => onTheList({ to: "sam@example.com", from: "vaidik" }) },
+  {
+    id: "admin",
+    name: "Message from the admin",
+    when: "Someone on the team sends a message from the admin.",
+    build: () =>
+      adminMessage({
+        subject: "Please update Lazur to 0.1.14",
+        paragraphs: [
+          "Hi Sam,",
+          "You're on Lazur 0.1.12. Version 0.1.14 is out, and from this version on Lazur keeps itself up to date automatically.",
+          "Your version can't update itself, so please download the new one once: open the link below, drag Lazur into Applications and replace the old one. Your settings stay as they are.",
+          "Thanks for using Lazur!",
+        ],
+        button: "Download Lazur 0.1.14",
+        url: `${SITE}/download`,
+      }),
+  },
 ];

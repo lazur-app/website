@@ -3,7 +3,7 @@
  *
  * - Account emails (codes, receipts) go out through Resend from the Lazur address, in the
  *   branded "Ticket" design from ./system.
- * - Everything else is a personal note from one of the team (Veer, Aayush or Vaidik), sent through
+ * - Everything else is a personal note from one of the team (Veer, Ayush or Vaidik), sent through
  *   Resend from their own @lazur.app address (replies go to their inbox), written the way you would
  *   write to a friend, in a lighter version of the brand.
  *
@@ -25,7 +25,7 @@ export const SENDERS = {
   /** Account emails. The address still needs to be set up and verified in Resend. */
   lazur: { name: "Lazur", address: "hello@lazur.app", via: "resend" },
   veer: { name: "Veer from Lazur", address: "veer@lazur.app", via: "mailbox" },
-  aayush: { name: "Aayush from Lazur", address: "ayush@lazur.app", via: "mailbox" },
+  aayush: { name: "Ayush from Lazur", address: "ayush@lazur.app", via: "mailbox" },
   vaidik: { name: "Vaidik from Lazur", address: "vaidik@lazur.app", via: "mailbox" },
 } satisfies Record<string, Sender>;
 
@@ -163,7 +163,7 @@ export type TeamMember = (typeof TEAM)[number];
 /** How each one writes their name in the note (lowercase, like the rest of it) and signs off. */
 const PEOPLE: Record<TeamMember, { lower: string; signature: string }> = {
   veer: { lower: "veer", signature: "Veer" },
-  aayush: { lower: "aayush", signature: "Aayush" },
+  aayush: { lower: "ayush", signature: "Ayush" },
   vaidik: { lower: "vaidik", signature: "Vaidik" },
 };
 
@@ -315,7 +315,7 @@ export function onTheList(p: Personal): BuiltEmail {
  * or a list. Their words go into the branded card: a short first line becomes the headline, the
  * rest are paragraphs, and the button is optional. `paragraphs` are plain text (escaped here).
  * `from` is whoever is signed in to the admin and sending it: it goes from their address and is
- * signed with their name. Without it (an admin who isn't Veer, Aayush or Vaidik) it comes from Lazur.
+ * signed with their name. Without it (an admin who isn't Veer, Ayush or Vaidik) it comes from Lazur.
  */
 export function adminMessage(p: { from?: TeamMember; subject: string; paragraphs: string[]; button?: string; url?: string }): BuiltEmail {
   const me = p.from ? { ...PEOPLE[p.from], sender: SENDERS[p.from] } : null;

@@ -48,7 +48,7 @@ export function Navbar() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-3 md:pt-4">
-      <div className="pointer-events-auto mx-auto w-full max-w-6xl overflow-hidden rounded-[20px] border-[1.5px] border-[#1c1917] bg-white shadow-[0_2px_0_rgba(28,25,23,0.9)]">
+      <div className="pointer-events-auto mx-auto w-full max-w-6xl overflow-hidden rounded-[20px] border-[1.5px] border-[#1c1917] bg-white shadow-[0_2px_0_rgba(28,25,23,0.9)] md:overflow-visible">
         <div className="flex h-16 items-center justify-between gap-4 pl-4 pr-2 md:h-[72px] md:gap-6 md:pl-6 md:pr-3">
           <Link
             href="/"

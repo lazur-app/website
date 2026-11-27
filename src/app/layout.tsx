@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
-import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { DataFast } from "@/components/analytics/DataFast";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { GoogleAnalyticsRouteTracker } from "@/components/analytics/GoogleAnalyticsRouteTracker";
@@ -15,9 +15,10 @@ import {
 } from "@/lib/seo/constants";
 import "./globals.css";
 
-const geistMono = Geist_Mono({
+// Self-hosted (see src/fonts/google/README.md).
+const geistMono = localFont({
+  src: [{ path: "../fonts/google/geist-mono/geist-mono-variable.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {

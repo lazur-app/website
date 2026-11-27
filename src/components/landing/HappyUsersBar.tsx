@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const FACES = [
-  { src: "/veer-img.jpeg", name: "Veer" },
   { src: "/akshat-img.jpeg", name: "Akshat" },
-  { src: "/sloane-img.jpeg", name: "Sloane" },
+  { src: "/kushagra-img.jpeg", name: "Kushagra" },
 ] as const;
 
 const DOCK_HEIGHT = 112;

@@ -21,15 +21,6 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "i was skeptical at first because i tried other voice tools. but genuinely, lazur feels different.. it understands what i'm looking at and helps me move faster.",
-    highlight: "helps me move faster",
-    name: "Veer Adyani",
-    role: "Founder",
-    company: { label: "Preffer", href: "https://preffer.me" },
-    image: "/veer-img.jpeg",
-  },
-  {
-    quote:
       "using lazur for 3 months now. it's one of those tools that quietly becomes part of your daily workflow. it feels like having a smart teammate in every app.",
     highlight: "smart teammate in every app",
     name: "Akshat Thakur",
@@ -39,11 +30,18 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "didn't think i'd ever use an AI companion for work. i'm always bouncing between slack threads and figma comments. a few days with lazur and yeah.. it already knows what i need next.",
-    highlight: "knows what i need next",
-    name: "Sloane Park",
-    role: "Product Designer",
-    image: "/sloane-img.jpeg",
+      "i keep lazur running while i code. i point at a broken layout, ask what's wrong, and it tells me exactly what to change. no more pasting screenshots into a chat window.",
+    highlight: "no more pasting screenshots",
+    name: "Kushagra Gangrade",
+    role: "Web Developer",
+    image: "/kushagra-img.jpeg",
+  },
+  {
+    quote:
+      "i hold two keys and ask how to do something in figma, and it shows me right there on the screen. it's like sitting next to someone who never minds a silly question.",
+    highlight: "never minds a silly question",
+    name: "Vince DSouza",
+    role: "Lead Designer",
   },
   {
     quote:
@@ -52,7 +50,6 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Kai",
     role: "Engineer",
   },
-
 ];
 
 export function TestimonialAvatar({

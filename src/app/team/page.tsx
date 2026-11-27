@@ -59,7 +59,7 @@ const FOUNDERS: Founder[] = [
     who: "veer",
     name: "Veer Adyani",
     role: "Co-founder",
-    photo: "/veer-img.jpeg",
+    photo: "/veer-team.jpg",
     pose: "thumbs",
     story: [
       "I'm the youngest in my family, and the youngest is always running to keep up. Maybe that's why I never stopped trying things: hackathons (I've won a few international ones), trading, side projects, and Preffer.me, the company I founded before this.",

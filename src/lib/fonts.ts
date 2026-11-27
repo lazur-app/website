@@ -1,10 +1,9 @@
 import localFont from "next/font/local";
-import { Caveat, EB_Garamond } from "next/font/google";
 
 /** Hand-drawn callouts, pricing graffiti, savings badges */
-export const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+export const caveat = localFont({
+  // Self-hosted (see src/fonts/google/README.md): the variable font, used at 600 and 700.
+  src: [{ path: "../fonts/google/caveat/caveat-variable.woff2", weight: "600 700", style: "normal" }],
   variable: "--font-caveat",
   display: "swap",
 });
@@ -56,10 +55,11 @@ export const clashDisplay = localFont({
 });
 
 /** Testimonial quotes on the homepage */
-export const garamond = EB_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
+export const garamond = localFont({
+  src: [
+    { path: "../fonts/google/eb-garamond/eb-garamond-variable.woff2", weight: "400 500", style: "normal" },
+    { path: "../fonts/google/eb-garamond/eb-garamond-italic-variable.woff2", weight: "400 500", style: "italic" },
+  ],
   variable: "--font-garamond",
   display: "swap",
 });

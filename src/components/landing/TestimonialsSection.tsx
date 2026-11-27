@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { User } from "lucide-react";
 import { useTrackInView } from "@/hooks/useTrackInView";
 import { track } from "@/lib/productAnalytics";
+import { Sticker } from "@/components/landing/Sticker";
+import { FounderSticker } from "@/components/landing/FounderSticker";
 
 export type Testimonial = {
   quote: string;
@@ -186,6 +188,33 @@ function EmptyCard({ look, lines }: { look: Look; lines: number }) {
   );
 }
 
+/**
+ * The last card on the wall: not a review, an invitation to send one. Same paper-card look, dashed ink border so it
+ * reads as an open slot. It also fills the gap the short columns leave.
+ */
+function AddYoursCard() {
+  return (
+    <div
+      className="relative flex flex-col items-start gap-4 rounded-[22px] border-[1.5px] border-dashed border-[#1c1917]/40 bg-white/70 p-5 text-[#1c1917]"
+      style={{ transform: "rotate(-0.8deg)" }}
+    >
+      <Sticker name="heart" size={58} rotate={-12} className="absolute -right-3 -top-5" />
+      <p className="font-display text-[1.1rem] font-medium lowercase leading-[1.2] tracking-[-0.02em] md:text-[1.2rem]">
+        using lazur? your words could go here.
+      </p>
+      <p className="text-[14px] lowercase leading-snug text-[#1c1917]/70">tell us what it does for you, good or bad. we read every one.</p>
+      <a
+        href="mailto:hello@lazur.app?subject=My%20Lazur%20review"
+        onClick={() => track("cta_clicked", { location: "testimonials", label: "Send us yours", destination: "mailto" })}
+        className="inline-flex min-h-[44px] items-center rounded-full border-[1.5px] border-[#1c1917] bg-white px-5 text-[15px] font-bold lowercase text-[#1c1917] shadow-[0_2px_0_rgba(28,25,23,0.9)] transition-transform hover:-translate-y-0.5"
+      >
+        send us yours →
+      </a>
+      <FounderSticker who="vaidik" pose="wave" size={88} className="!absolute -bottom-3 -right-3" />
+    </div>
+  );
+}
+
 const COLUMNS = 4;
 
 /**
@@ -220,6 +249,8 @@ export function TestimonialsSection() {
                 const look = LOOKS[(i * 3 + column) % LOOKS.length];
                 return slot ? <Card key={slot.name} t={slot} look={LOOKS[i % LOOKS.length]} /> : <EmptyCard key={i} look={look} lines={2 + ((i * 7) % 4)} />;
               })}
+              {/* Last on phones too, after every review. */}
+              {column === COLUMNS - 1 ? <AddYoursCard /> : null}
             </div>
           ))}
         </div>

@@ -70,7 +70,7 @@ function Polaroid({ src, name, rotate, className = "" }: { src: string; name: st
 function TeamArt() {
   return (
     <div className="relative h-[400px] w-[560px]">
-      <Polaroid src="/veer-img.jpeg" name="veer" rotate={-8} className="absolute left-0 top-10" />
+      <Polaroid src="/veer-team.jpg" name="veer" rotate={-8} className="absolute left-0 top-10" />
       <Polaroid src="/vaidik-img.jpg" name="vaidik" rotate={2} className="absolute left-[165px] top-0 z-10" />
       <Polaroid src="/ayush-img.jpg" name="ayush" rotate={9} className="absolute left-[330px] top-12" />
       <FounderSticker who="vaidik" pose="thumbs" size={120} className="!absolute -bottom-6 left-[230px] z-20" />

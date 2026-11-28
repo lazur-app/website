@@ -6,7 +6,7 @@ import { useIsWindowsVisitor } from "@/hooks/useIsWindowsVisitor";
 import { rememberVisitorEmail, track } from "@/lib/productAnalytics";
 import { SITE_URL } from "@/lib/seo/constants";
 import { AI_TOOLS, type AiField } from "./ai-config";
-import { useLazurNudge } from "./Letter";
+import { useLazurMoment, useLazurNudge, useMomentWhen } from "./Letter";
 import { Btn, copyText, Field, inputClass, Notice, Panel } from "./ui";
 
 /**
@@ -78,6 +78,9 @@ export function AiTool({ tool }: { tool: string }) {
     [nudge],
   );
 
+  const moment = useLazurMoment();
+  // Copying opens the note right away; someone who only reads the result gets it once, after a while.
+  useMomentWhen(!!result && !busy, "your result is ready", 9000);
   if (!config) return null;
 
   const hasFile = config.fields.some((f) => f.kind === "file");
@@ -154,6 +157,7 @@ export function AiTool({ tool }: { tool: string }) {
     a.href = url;
     a.download = `${tool}.csv`;
     a.click();
+    moment({ label: "your spreadsheet is downloading", every: true, delay: 500 });
     URL.revokeObjectURL(url);
   };
 
@@ -189,7 +193,7 @@ export function AiTool({ tool }: { tool: string }) {
           </Btn>
           <div className="mt-3 flex flex-col items-center gap-1 text-[14px] text-[var(--foreground-muted)] sm:flex-row sm:justify-center sm:gap-4">
             {hasExample && !result ? (
-              <button type="button" onClick={useExample} className="min-h-[32px] underline underline-offset-4 hover:text-[var(--foreground)]">
+              <button type="button" onClick={useExample} className="min-h-[44px] underline underline-offset-4 hover:text-[var(--foreground)]">
                 Not sure? Try an example
               </button>
             ) : null}
@@ -296,15 +300,15 @@ function CopyArea({ text, onCopy }: { text: string; onCopy: () => void }) {
 function ResultBox({ label, text, copied, onCopy, onDownload }: { label: string; text: string; copied: boolean; onCopy: () => void; onDownload?: () => void }) {
   return (
     <div className="overflow-hidden rounded-2xl border-[1.5px] border-[#1c1917] bg-white">
-      <div className="flex items-center justify-between gap-2 border-b-[1.5px] border-[#1c1917]/15 bg-[var(--background-deep)] px-4 py-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b-[1.5px] border-[#1c1917]/15 bg-[var(--background-deep)] px-4 py-2.5">
         <span className="text-[14px] font-bold">{label}</span>
-        <span className="flex gap-2">
+        <span className="ml-auto flex gap-2">
           {onDownload ? (
-            <Btn tone="ghost" className="!px-4 !py-2 !text-[14px]" onClick={onDownload}>
+            <Btn tone="ghost" className="min-h-[42px] !px-4 !py-2 !text-[14px]" onClick={onDownload}>
               Download
             </Btn>
           ) : null}
-          <Btn tone="brand" className="!px-4 !py-2 !text-[14px]" onClick={onCopy}>
+          <Btn tone="brand" className="min-h-[42px] !px-4 !py-2 !text-[14px]" onClick={onCopy}>
             {copied ? "✓ Copied" : "Copy"}
           </Btn>
         </span>
@@ -372,7 +376,7 @@ function SignUp({ tool, onDone }: { tool: string; onDone: (left: number, email: 
     }
   }
   return (
-    <form onSubmit={submit} className="relative rounded-2xl border-[1.5px] border-[#1c1917] bg-[#fffcf3] p-5 pr-16 sm:p-6 sm:pr-24">
+    <form onSubmit={submit} className="relative rounded-[24px] border-[1.5px] border-[#1c1917] bg-[linear-gradient(135deg,#fff6dc_0%,#fff1f4_100%)] p-5 pr-16 shadow-[0_3px_0_#1c1917] sm:p-6 sm:pr-24">
       <Sticker name="heart" size={56} rotate={10} className="absolute right-3 top-3" />
       <h3 className="text-[20px] font-bold tracking-[-0.02em]">That&apos;s your 3 free runs for today</h3>
       <p className="mt-1 text-[15px] leading-[1.55] text-[var(--foreground-muted)]">Leave your email and we&apos;ll immediately unlock 3 more runs today. We&apos;ll only write about Lazur and new tools.</p>
@@ -422,7 +426,7 @@ function FeedbackPass({ tool, email, onDone }: { tool: string; email: string | n
   }
   if (windows) {
     return (
-      <div className="relative rounded-2xl border-[1.5px] border-[#1c1917] bg-[#fffcf3] p-5 pr-16 sm:p-6 sm:pr-24">
+      <div className="relative rounded-[24px] border-[1.5px] border-[#1c1917] bg-[linear-gradient(135deg,#fff6dc_0%,#fff1f4_100%)] p-5 pr-16 shadow-[0_3px_0_#1c1917] sm:p-6 sm:pr-24">
         <Sticker name="star" size={56} rotate={-10} className="absolute right-3 top-3" />
         <h3 className="text-[20px] font-bold tracking-[-0.02em]">That&apos;s all the free runs for today</h3>
         <p className="mt-1 text-[15px] leading-[1.55] text-[var(--foreground-muted)]">Lazur for Windows is still being built. Join the waitlist and we&apos;ll tell you the day it&apos;s ready. Your free runs come back tomorrow.</p>
@@ -433,7 +437,7 @@ function FeedbackPass({ tool, email, onDone }: { tool: string; email: string | n
     );
   }
   return (
-    <div className="relative rounded-2xl border-[1.5px] border-[#1c1917] bg-[#fffcf3] p-5 pr-16 sm:p-6 sm:pr-24">
+    <div className="relative rounded-[24px] border-[1.5px] border-[#1c1917] bg-[linear-gradient(135deg,#fff6dc_0%,#fff1f4_100%)] p-5 pr-16 shadow-[0_3px_0_#1c1917] sm:p-6 sm:pr-24">
       <Sticker name="star" size={56} rotate={-10} className="absolute right-3 top-3" />
       <h3 className="text-[20px] font-bold tracking-[-0.02em]">Want this tool free for 20 days?</h3>
       <p className="mt-1 text-[15px] leading-[1.55] text-[var(--foreground-muted)]">Download Lazur, send us a little feedback from inside the app, and this tool is yours free for 20 days.</p>

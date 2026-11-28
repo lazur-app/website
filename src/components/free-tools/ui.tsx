@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { useLazurNudge } from "./Letter";
+import { copyGuard, useLazurNudge } from "./Letter";
 
 /**
  * Shared pieces for every free-tool widget, so all 49 look like one product (Lazur's warm
@@ -47,7 +47,10 @@ export async function copyText(text: string): Promise<boolean> {
       el.style.cssText = "position:fixed;top:0;left:0;opacity:0";
       document.body.appendChild(el);
       el.select();
+      // The old copy command fires a "copy" event; tell the hand-copy listener it's ours.
+      copyGuard.on = true;
       const ok = document.execCommand("copy");
+      copyGuard.on = false;
       el.remove();
       return ok;
     } catch {

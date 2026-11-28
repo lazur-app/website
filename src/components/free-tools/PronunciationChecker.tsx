@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Stat, Unsupported, inputClass } from "./ui";
 import { ScoreBox } from "./ScoreBox";
 import { DICTATION_LANGS, PulseDot, speechErrorMessage, useSpeechRecognition } from "./Dictation";
@@ -99,6 +100,11 @@ export function PronunciationChecker(_props: { page?: string }) {
     start();
   };
 
+  const targetWords = splitWords(target);
+  const result = heard !== null && !listening ? diffWords(targetWords, splitWords(heard)) : null;
+  const correct = result ? result.items.filter((x) => x.ok).length : 0;
+  const score = result && targetWords.length ? Math.round((correct / targetWords.length) * 100) : 0;
+  useMomentWhen(!!result, `${score}% pronunciation score`, 2500);
   if (supported === false) {
     return (
       <Panel>
@@ -107,10 +113,6 @@ export function PronunciationChecker(_props: { page?: string }) {
     );
   }
 
-  const targetWords = splitWords(target);
-  const result = heard !== null && !listening ? diffWords(targetWords, splitWords(heard)) : null;
-  const correct = result ? result.items.filter((x) => x.ok).length : 0;
-  const score = result && targetWords.length ? Math.round((correct / targetWords.length) * 100) : 0;
   const verdict = score >= 90 ? " Excellent!" : score >= 60 ? " Getting there" : " Keep practising";
 
   return (
@@ -135,7 +137,7 @@ export function PronunciationChecker(_props: { page?: string }) {
               setTarget(s);
               setHeard(null);
             }}
-            className="rounded-full border border-[var(--border-strong)] bg-white px-3 py-1.5 text-[13px] text-[var(--foreground)] transition hover:bg-[var(--brand-soft)]"
+            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--border-strong)] bg-white px-3.5 py-1.5 text-[13px] text-[var(--foreground)] transition hover:bg-[var(--brand-soft)]"
           >
             {s.length > 28 ? s.slice(0, 26) + "…" : s}
           </button>

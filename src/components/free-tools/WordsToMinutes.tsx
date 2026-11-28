@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Field, Panel, Stat, inputClass } from "./ui";
 
 const PACES = [
@@ -39,6 +40,7 @@ export function WordsToMinutes(props: { page?: string }) {
     `A single page (500 words) takes ${mmss(500 / wpm)} to read aloud`,
   ];
 
+  useMomentWhen(words >= 30, `${words} words takes ${mmss(minutes)} to say`, 3500);
   return (
     <Panel className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
@@ -73,7 +75,7 @@ export function WordsToMinutes(props: { page?: string }) {
               key={p.id}
               type="button"
               onClick={() => setPace(p.id)}
-              className={`rounded-full border px-4 py-2 text-[14px] font-medium transition ${pace === p.id ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
+              className={`inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-[14px] font-medium transition ${pace === p.id ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
             >
               {p.label}
               {p.wpm ? ` · ${p.wpm}` : ""}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Unsupported, inputClass } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
 
@@ -184,6 +185,8 @@ export function ReadPdfAloud(props: { page?: string }) {
     }
   };
 
+  // Let it read for a while first, so the note never cuts in on the first sentence.
+  useMomentWhen(state === "playing", "your pdf is being read aloud", 12000);
   if (!supported) return <Panel><Unsupported what="Speech synthesis" /></Panel>;
 
   const current = chunks[index];

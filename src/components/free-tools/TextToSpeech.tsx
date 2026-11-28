@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Unsupported, inputClass } from "./ui";
 
 const SAMPLE =
@@ -115,6 +116,7 @@ export function TextToSpeech(_props: { page?: string }) {
     setProgress(0);
   };
 
+  useMomentWhen(mode === "playing", "your text is being read aloud", 8000);
   if (supported === false) {
     return (
       <Panel>
@@ -136,7 +138,7 @@ export function TextToSpeech(_props: { page?: string }) {
       </Field>
       <div className="mt-2 flex items-center justify-between text-[13px] text-[var(--foreground-muted)]">
         <span>{text.length.toLocaleString()} characters</span>
-        <button type="button" onClick={() => setText(SAMPLE)} className="font-medium text-[var(--brand)] underline-offset-2 hover:underline">
+        <button type="button" onClick={() => setText(SAMPLE)} className="-my-2 min-h-[44px] px-1 font-medium text-[var(--brand)] underline-offset-2 hover:underline">
            Use sample text
         </button>
       </div>

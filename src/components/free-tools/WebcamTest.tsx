@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLazurMoment, useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Stat, Unsupported } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
 
@@ -67,6 +68,7 @@ export function WebcamTest(props: { page?: string }) {
     }
   }, [status]);
 
+  const moment = useLazurMoment();
   const snapshot = () => {
     const v = videoRef.current;
     if (!v || !v.videoWidth) return;
@@ -83,6 +85,7 @@ export function WebcamTest(props: { page?: string }) {
     setShot(c.toDataURL("image/png"));
   };
 
+  useMomentWhen(status === "live", "your camera is working", 5000);
   if (!supported) {
     return (
       <Panel>
@@ -175,6 +178,7 @@ export function WebcamTest(props: { page?: string }) {
           <a
             href={shot}
             download="webcam-snapshot.png"
+            onClick={() => moment({ label: "your snapshot is downloading", every: true, delay: 500 })}
             className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] px-5 py-3 text-[15px] font-semibold hover:bg-[var(--background-deep)]"
           >
             Download PNG

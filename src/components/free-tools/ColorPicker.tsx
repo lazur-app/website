@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState, type DragEvent, type PointerEvent } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, CopyBtn, Notice, Panel } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
 
@@ -192,6 +193,7 @@ export function ColorPicker(props: { page?: string }) {
 
   const chips = color ? [hex(color), rgbStr(color), hslStr(color)] : [];
 
+  useMomentWhen(palette.length > 0, "your colors are picked", 4000);
   return (
     <Panel className="space-y-5">
       <div

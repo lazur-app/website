@@ -80,7 +80,12 @@ export function ToolFrame({
                 <Sticker name={tool.sticker} size={56} rotate={-8} />
                 <Sticker name={tool.sticker2} size={48} rotate={10} />
               </div>
-              {challenge ? <p className="mx-auto mb-3 inline-flex rounded-full bg-[#1c1917] px-4 py-1.5 text-[15px] font-bold text-white">{challenge}</p> : null}
+              {challenge ? (
+                <p className="mx-auto mb-4 inline-flex max-w-[calc(100%-24px)] -rotate-1 items-center gap-2 rounded-[18px] border-[1.5px] border-[#1c1917] bg-[#ffd84d] px-4 py-2 text-left text-[14px] font-bold leading-[1.3] text-[#1c1917] shadow-[0_3px_0_#1c1917] sm:-rotate-2 sm:rounded-full sm:text-[15px]">
+                  <Sticker name="crown" size={26} rotate={-8} className="shrink-0" />
+                  {challenge}
+                </p>
+              ) : null}
               <h1 className="seo-h1 mx-auto max-w-4xl">{h1}</h1>
               {claim ? (
                 <>

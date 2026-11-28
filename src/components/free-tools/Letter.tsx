@@ -12,35 +12,102 @@ import { SITE_URL } from "@/lib/seo/constants";
  * The note from the founders that opens the first time someone copies a result. It confirms the
  * copy at the top, says one short human thing, and points to Lazur: Mac visitors get the download,
  * Windows visitors the waitlist (that build isn't out yet). It is built to fit one screen with no
- * scrolling, and opens every time something is copied.
+ * scrolling. It opens every time something is copied or saved, and once per visit when a tool with
+ * nothing to copy does its job (see useLazurMoment).
  */
 
 /** `text` is what was copied, so the note can say what the visitor just did. */
 type Nudge = (copied?: boolean, text?: string) => void;
-const Ctx = createContext<{ nudge: Nudge }>({ nudge: () => {} });
+
+/**
+ * A moment the tool just worked, for tools with nothing to copy (a mic that picked up sound, a
+ * finished test, a downloaded recording). `label` is the line at the top of the note, in the
+ * visitor's own result when we have one ("9.2 clicks a second"). Moments open the note once per
+ * page visit unless `every` is set (downloads, like copies, open it every time). `delay` lets the
+ * visitor see their result before the note covers it.
+ */
+export type Moment = { label: string; every?: boolean; delay?: number; words?: number };
+type MomentFn = (m: Moment) => void;
+
+const Ctx = createContext<{ nudge: Nudge; moment: MomentFn }>({ nudge: () => {}, moment: () => {} });
 
 /** Call after a visitor copies a result, with whether the copy worked. */
 export const useLazurNudge = () => useContext(Ctx).nudge;
 
+/** Set while one of our Copy buttons is copying, so the hand-copy listener doesn't open the note twice. */
+export const copyGuard = { on: false };
+
+/** Call when a tool with nothing to copy just did its job. */
+export const useLazurMoment = () => useContext(Ctx).moment;
+
+/** Opens the note once `when` has stayed true for `after` ms (a mic heard for a few seconds, a camera live for a while). */
+export function useMomentWhen(when: boolean, label: string, after = 2500) {
+  const moment = useLazurMoment();
+  useEffect(() => {
+    if (!when) return;
+    const t = setTimeout(() => moment({ label, delay: 0 }), after);
+    return () => clearTimeout(t);
+  }, [when, label, after, moment]);
+}
+
+type Open = { ok: boolean; status: string; words: number };
+
 export function LazurLetterProvider({ tool, name, children }: { tool: string; name: string; children: ReactNode }) {
-  const [open, setOpen] = useState<null | { copied: boolean; words: number }>(null);
+  const [open, setOpen] = useState<Open | null>(null);
+  const openRef = useRef(false);
+  const usedMoment = useRef(false);
+  useEffect(() => {
+    openRef.current = !!open;
+  }, [open]);
 
   // Every copy opens the note, on purpose: it is the moment the visitor just got value.
   const nudge = useCallback<Nudge>(
     (copied = true, text = "") => {
       const words = (text.match(/\S+/g) ?? []).length;
-      setOpen({ copied, words });
+      // A copy counts as this visit's moment, so the read-only fallback doesn't open it a second time.
+      usedMoment.current = true;
+      setOpen({ ok: copied, status: copied ? "your text is copied" : "couldn't copy automatically. select the text and press ctrl+c", words });
       track("tool_result_copied", { tool, copied, words });
-      track("letter_shown", { tool });
+      track("letter_shown", { tool, trigger: "copy" });
     },
     [tool],
   );
 
-  const value = useMemo(() => ({ nudge }), [nudge]);
+  const moment = useCallback<MomentFn>(
+    ({ label, every = false, delay = 1400, words = 0 }) => {
+      if (!every && usedMoment.current) return;
+      usedMoment.current = true;
+      setTimeout(() => {
+        if (openRef.current) return;
+        setOpen({ ok: true, status: label, words });
+        track("letter_shown", { tool, trigger: every ? "save" : "moment", label });
+      }, delay);
+    },
+    [tool],
+  );
+
+  // Copying by hand (select, then ctrl+c, the right-click menu, or a long press on a phone) opens
+  // the note too. Copies made by our own Copy buttons are skipped here: they call nudge themselves.
+  useEffect(() => {
+    const onCopy = () => {
+      if (copyGuard.on) return;
+      const el = document.activeElement;
+      let text = window.getSelection()?.toString() ?? "";
+      if (!text && (el instanceof HTMLTextAreaElement || el instanceof HTMLInputElement) && el.selectionStart !== null && el.selectionEnd !== null)
+        text = el.value.slice(el.selectionStart, el.selectionEnd);
+      if (!text.trim()) return;
+      track("tool_text_copied_by_hand", { tool });
+      nudge(true, text);
+    };
+    document.addEventListener("copy", onCopy);
+    return () => document.removeEventListener("copy", onCopy);
+  }, [nudge, tool]);
+
+  const value = useMemo(() => ({ nudge, moment }), [nudge, moment]);
   return (
     <Ctx.Provider value={value}>
       {children}
-      {open ? <Note tool={tool} name={name} copied={open.copied} words={open.words} onClose={() => setOpen(null)} /> : null}
+      {open ? <Note tool={tool} name={name} ok={open.ok} status={open.status} words={open.words} onClose={() => setOpen(null)} /> : null}
     </Ctx.Provider>
   );
 }
@@ -71,7 +138,7 @@ function opener(tool: string, name: string, words: number) {
   return `you just used ${name.toLowerCase()} for free, and we're really glad it worked. one small thing, from the three of us.`;
 }
 
-function Note({ tool, name, copied, words, onClose }: { tool: string; name: string; copied: boolean; words: number; onClose: () => void }) {
+function Note({ tool, name, ok, status, words, onClose }: { tool: string; name: string; ok: boolean; status: string; words: number; onClose: () => void }) {
   const windows = useIsWindowsVisitor();
   const closeRef = useRef<HTMLButtonElement>(null);
   const href = `${SITE_URL}/download?src=tool-${tool}-letter`;
@@ -113,10 +180,10 @@ function Note({ tool, name, copied, words, onClose }: { tool: string; name: stri
 
         <p
           role="status"
-          className={`mr-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-bold ${copied ? "bg-[#e3f6e8] text-[#17612c]" : "bg-[#fff1d6] text-[#7a4b00]"}`}
+          className={`mr-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-bold ${ok ? "bg-[#e3f6e8] text-[#17612c]" : "bg-[#fff1d6] text-[#7a4b00]"}`}
         >
           <Check className="h-4 w-4" strokeWidth={3} aria-hidden />
-          {copied ? "your text is copied" : "couldn't copy automatically. select the text and press ctrl+c"}
+          {status}
         </p>
 
         <div className="mt-4 flex items-center gap-3">
@@ -129,7 +196,7 @@ function Note({ tool, name, copied, words, onClose }: { tool: string; name: stri
           <p className="font-[family-name:var(--font-caveat)] text-[22px] font-bold leading-none text-[#1c1917] sm:text-[24px]">veer, vaidik &amp; ayush</p>
         </div>
 
-        <h2 className="mt-4 text-[26px] font-bold leading-[1.08] tracking-[-0.03em] text-[#1c1917] sm:text-[30px]">hey, thanks for stopping by.</h2>
+        <h2 className="mt-4 text-[23px] font-bold leading-[1.08] tracking-[-0.03em] text-[#1c1917] sm:text-[30px]">hey, thanks for stopping by.</h2>
         <p className="mt-2.5 text-[15.5px] leading-[1.55] text-[#3d3834]">{opener(tool, name, words)}</p>
         <p className="mt-2.5 text-[15.5px] leading-[1.55] text-[#3d3834]">
           isn&apos;t it a pain to go hunting the web for a tool every time you need something done? lazur lives on your desktop. hold two keys, say what you want, and it&apos;s done, right in the app you&apos;re already in. no tabs, no searching.

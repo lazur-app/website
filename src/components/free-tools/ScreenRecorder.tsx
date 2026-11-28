@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLazurMoment, useMomentWhen } from "./Letter";
 import { Btn, Notice, Panel, Unsupported } from "./ui";
 import { PulseDot, downloadBlob } from "./Dictation";
 
@@ -19,6 +20,7 @@ function fmt(sec: number) {
 
 /** Screen recorder: record a screen, window or tab (optionally with audio and mic) straight in the browser. */
 export function ScreenRecorder(props: { page?: string }) {
+  const moment = useLazurMoment();
   const [supported, setSupported] = useState<boolean | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [count, setCount] = useState(3);
@@ -200,6 +202,7 @@ export function ScreenRecorder(props: { page?: string }) {
     if (recRef.current && recRef.current.state !== "inactive") recRef.current.stop();
   };
 
+  useMomentWhen(status === "done", "your recording is ready", 1800);
   if (supported === false) {
     return (
       <Panel>
@@ -298,7 +301,11 @@ export function ScreenRecorder(props: { page?: string }) {
         <div className="mt-6 space-y-3">
           <p className="text-[14px] font-medium text-[#2f7a3d]"> Done. Watch it back, then download.</p>
           <video controls src={url} className="w-full rounded-2xl bg-black" />
-          <Btn tone="dark" onClick={() => blobRef.current && downloadBlob(blobRef.current, `screen-recording.${ext}`)}>
+          <Btn tone="dark" onClick={() => {
+              if (!blobRef.current) return;
+              downloadBlob(blobRef.current, `screen-recording.${ext}`);
+              moment({ label: "your recording is downloading", every: true, delay: 500 });
+            }}>
             Download screen-recording.{ext}
           </Btn>
         </div>

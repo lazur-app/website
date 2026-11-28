@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, inputClass } from "./ui";
 
 const KEY = "lazur-teleprompter-script";
@@ -169,6 +170,7 @@ export function Teleprompter(props: { page?: string }) {
 
   const speedLabel = unit === "px" ? `${speedPx} px/s` : `${speedWpm} wpm`;
 
+  useMomentWhen(open && playing, "your script is rolling", 15000);
   return (
     <Panel className="space-y-5">
       <Field label=" Your script" hint="Saved in this browser only. Nothing is uploaded.">
@@ -194,7 +196,7 @@ export function Teleprompter(props: { page?: string }) {
         <div>
           <span className="mb-1.5 flex items-center justify-between text-[14px] font-medium">
             <span> Scroll speed: {speedLabel}</span>
-            <button type="button" className="text-[13px] text-[var(--brand)] underline" onClick={() => setUnit(unit === "px" ? "wpm" : "px")}>
+            <button type="button" className="-my-2 min-h-[44px] px-1 text-[13px] text-[var(--brand)] underline" onClick={() => setUnit(unit === "px" ? "wpm" : "px")}>
               switch to {unit === "px" ? "words/min" : "px/s"}
             </button>
           </span>

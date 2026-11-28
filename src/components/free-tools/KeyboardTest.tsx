@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Panel, Stat } from "./ui";
 
 type Key = { code: string; label: string; w?: number };
@@ -99,6 +100,7 @@ export function KeyboardTest(props: { page?: string }) {
     );
   };
 
+  useMomentWhen(testedCount >= 15, "your keyboard is registering keys", 1500);
   return (
     <Panel className="max-w-[1000px] space-y-5">
       <div

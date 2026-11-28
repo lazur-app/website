@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Notice, Panel, Stat, Unsupported, inputClass } from "./ui";
 import { ScoreBox } from "./ScoreBox";
 import { diffWords, splitWords } from "./PronunciationChecker";
@@ -106,6 +107,7 @@ export function DictationPractice(_props: { page?: string }) {
     setIndex((i) => (i + 1) % SENTENCES[level].length);
   };
 
+  useMomentWhen(session.sentences >= 3, `${session.total ? Math.round((session.right / session.total) * 100) : 0}% across ${session.sentences} sentences`, 2200);
   if (supported === false) {
     return (
       <Panel>

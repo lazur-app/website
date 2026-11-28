@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLazurMoment, useMomentWhen } from "./Letter";
 import { Btn, CopyBtn, Notice, Panel, Unsupported } from "./ui";
 import { PulseDot, downloadBlob, useSpeechRecognition } from "./Dictation";
 
@@ -26,6 +27,7 @@ function fmt(sec: number) {
 /** Voice recorder: record from the mic, pause, play back and download. A live transcript runs alongside where supported. */
 export function VoiceRecorder(_props: { page?: string }) {
   void _props;
+  const moment = useLazurMoment();
   const [status, setStatus] = useState<Status>("idle");
   const [level, setLevel] = useState(0);
   const [elapsed, setElapsed] = useState(0);
@@ -168,6 +170,7 @@ export function VoiceRecorder(_props: { page?: string }) {
     if (recRef.current && recRef.current.state !== "inactive") recRef.current.stop();
   };
 
+  useMomentWhen(status === "done", "your recording is ready", 1800);
   if (supported === false) {
     return (
       <Panel>
@@ -235,7 +238,11 @@ export function VoiceRecorder(_props: { page?: string }) {
       {url ? (
         <div className="mt-6 space-y-3">
           <audio controls src={url} className="w-full" />
-          <Btn tone="dark" onClick={() => blobRef.current && downloadBlob(blobRef.current, `voice-recording.${ext}`)}>
+          <Btn tone="dark" onClick={() => {
+              if (!blobRef.current) return;
+              downloadBlob(blobRef.current, `voice-recording.${ext}`);
+              moment({ label: "your recording is downloading", every: true, delay: 500 });
+            }}>
             Download voice-recording.{ext}
           </Btn>
         </div>

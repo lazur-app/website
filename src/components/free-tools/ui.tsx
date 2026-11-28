@@ -69,7 +69,7 @@ export function CopyBtn({ text, label = "Copy" }: { text: string; label?: string
           setDone(true);
           setTimeout(() => setDone(false), 1500);
         }
-        nudge(ok);
+        nudge(ok, text);
       }}
     >
       {done ? "✓ Copied" : label}

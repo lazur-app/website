@@ -36,7 +36,7 @@ export function AppTemplate({ page }: { page: AppPage }) {
         cta={{ label: `Try Lazur free in ${page.appName}`, suffix: "Download for Mac", source: `app-${page.slug}` }}
       />
 
-      <ArticleLayout source={`app-${page.slug}`} related={related}>
+      <ArticleLayout source={`app-${page.slug}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (

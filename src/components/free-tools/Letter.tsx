@@ -15,20 +15,22 @@ import { SITE_URL } from "@/lib/seo/constants";
  * scrolling, and opens every time something is copied.
  */
 
-type Nudge = (copied?: boolean) => void;
+/** `text` is what was copied, so the note can say what the visitor just did. */
+type Nudge = (copied?: boolean, text?: string) => void;
 const Ctx = createContext<{ nudge: Nudge }>({ nudge: () => {} });
 
 /** Call after a visitor copies a result, with whether the copy worked. */
 export const useLazurNudge = () => useContext(Ctx).nudge;
 
 export function LazurLetterProvider({ tool, name, children }: { tool: string; name: string; children: ReactNode }) {
-  const [open, setOpen] = useState<null | { copied: boolean }>(null);
+  const [open, setOpen] = useState<null | { copied: boolean; words: number }>(null);
 
   // Every copy opens the note, on purpose: it is the moment the visitor just got value.
   const nudge = useCallback<Nudge>(
-    (copied = true) => {
-      setOpen({ copied });
-      track("tool_result_copied", { tool, copied });
+    (copied = true, text = "") => {
+      const words = (text.match(/\S+/g) ?? []).length;
+      setOpen({ copied, words });
+      track("tool_result_copied", { tool, copied, words });
       track("letter_shown", { tool });
     },
     [tool],
@@ -38,7 +40,7 @@ export function LazurLetterProvider({ tool, name, children }: { tool: string; na
   return (
     <Ctx.Provider value={value}>
       {children}
-      {open ? <Note tool={tool} name={name} copied={open.copied} onClose={() => setOpen(null)} /> : null}
+      {open ? <Note tool={tool} name={name} copied={open.copied} words={open.words} onClose={() => setOpen(null)} /> : null}
     </Ctx.Provider>
   );
 }
@@ -49,7 +51,27 @@ const FOUNDERS = [
   { src: "/ayush-img.jpg", alt: "Ayush" },
 ];
 
-function Note({ tool, name, copied, onClose }: { tool: string; name: string; copied: boolean; onClose: () => void }) {
+/** Tools where the visitor's own voice became the text. */
+const VOICE_TOOLS = new Set(["dictation", "voice-typing", "voice-recorder", "audio-to-text", "voice-note-to-text", "audio-to-notes", "meeting-minutes", "youtube-transcript"]);
+/** Tools that wrote or rewrote text for them. */
+const WRITING_TOOLS = new Set(["grammar-checker", "paraphrasing-tool", "ai-humanizer", "summarizer", "email-reply", "linkedin-message", "linkedin-post", "linkedin-headline", "text-reply", "bio-generator", "caption-generator", "cover-letter", "resignation-letter", "prompt-generator", "youtube-summarizer", "image-to-text", "handwriting-to-text", "pdf-to-text"]);
+
+/** "about 3 minutes" / "under a minute", from words at a pace in words per minute. */
+function minutes(words: number, wpm: number) {
+  const m = words / wpm;
+  return m < 1 ? "under a minute" : `about ${Math.round(m)} minute${Math.round(m) === 1 ? "" : "s"}`;
+}
+
+/** The first line of the note: what the visitor just did, in their own numbers when we have them. */
+function opener(tool: string, name: string, words: number) {
+  // 40 wpm is the commonly cited average typing speed; people speak about 130 wpm.
+  if (VOICE_TOOLS.has(tool) && words >= 15)
+    return `you just turned a voice into ${words} words for free. typing that takes ${minutes(words, 40)}; saying it takes ${minutes(words, 130)}.`;
+  if (WRITING_TOOLS.has(tool) && words >= 5) return `you just got ${words} words ready to paste, for free. we're really glad it worked. one small thing, from the three of us.`;
+  return `you just used ${name.toLowerCase()} for free, and we're really glad it worked. one small thing, from the three of us.`;
+}
+
+function Note({ tool, name, copied, words, onClose }: { tool: string; name: string; copied: boolean; words: number; onClose: () => void }) {
   const windows = useIsWindowsVisitor();
   const closeRef = useRef<HTMLButtonElement>(null);
   const href = `${SITE_URL}/download?src=tool-${tool}-letter`;
@@ -108,7 +130,7 @@ function Note({ tool, name, copied, onClose }: { tool: string; name: string; cop
         </div>
 
         <h2 className="mt-4 text-[26px] font-bold leading-[1.08] tracking-[-0.03em] text-[#1c1917] sm:text-[30px]">hey, thanks for stopping by.</h2>
-        <p className="mt-2.5 text-[15.5px] leading-[1.55] text-[#3d3834]">you just used {name.toLowerCase()} for free, and we&apos;re really glad it worked. one small thing, from the three of us.</p>
+        <p className="mt-2.5 text-[15.5px] leading-[1.55] text-[#3d3834]">{opener(tool, name, words)}</p>
         <p className="mt-2.5 text-[15.5px] leading-[1.55] text-[#3d3834]">
           isn&apos;t it a pain to go hunting the web for a tool every time you need something done? lazur lives on your desktop. hold two keys, say what you want, and it&apos;s done, right in the app you&apos;re already in. no tabs, no searching.
         </p>

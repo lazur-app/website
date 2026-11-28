@@ -16,10 +16,18 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
         ],
+      },
+      {
+        // Every page refuses to be framed, except a free tool's /embed page, which other sites embed.
+        source: "/:path((?!embed$).*)",
+        headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }],
+      },
+      {
+        source: "/embed",
+        headers: [{ key: "Content-Security-Policy", value: "frame-ancestors *" }],
       },
     ];
   },
@@ -95,6 +103,11 @@ const nextConfig: NextConfig = {
     ],
   },
   outputFileTracingIncludes: {
+    // Free tools' written pages (src/lib/free-tools/content.ts reads them at request time).
+    "/sub/[tool]": ["./content/free-tools/pages/**/*"],
+    "/sub/[tool]/[page]": ["./content/free-tools/pages/**/*"],
+    "/sub/[tool]/sitemap.xml": ["./content/free-tools/pages/**/*"],
+    "/sitemap.xml": ["./content/free-tools/pages/**/*"],
     "/llms.txt": ["./content/**/*"],
     "/api/seo-stats": ["./content/**/*", "./content-runs/daily-*/manifest.json", "./content-runs/daily-*/usage.jsonl"],
     "/md/[...path]": ["./content/**/*"],

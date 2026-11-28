@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Btn, Field, Notice, Panel, Stat, Unsupported, inputClass } from "./ui";
+import { ScoreBox } from "./ScoreBox";
 import { DICTATION_LANGS, PulseDot, speechErrorMessage, useSpeechRecognition } from "./Dictation";
 import { Check, X } from "lucide-react";
 
@@ -192,6 +193,7 @@ export function PronunciationChecker(_props: { page?: string }) {
             <Stat label={verdict} value={`${score}%`} />
             <Stat label="words correct" value={`${correct}/${targetWords.length}`} />
           </div>
+          <ScoreBox tool="pronunciation-checker" value={score} unit="%" noun="pronunciation checker" />
           <ul className="flex flex-wrap gap-2">
             {result.items.map((it, k) => (
               <li

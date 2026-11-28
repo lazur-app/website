@@ -10,6 +10,9 @@ import {
 import { seoPath } from "@/lib/seo-pages/routes";
 import type { SeoPage } from "@/lib/seo-pages/types";
 import { SITE_URL } from "@/lib/seo/constants";
+import { getToolContent } from "@/lib/free-tools/content";
+import { toolOrigin } from "@/lib/free-tools/host";
+import { FREE_TOOLS } from "@/lib/free-tools/registry";
 import { TOOLS } from "@/lib/tools";
 
 /** Static marketing pages, bump when content meaningfully changes. */
@@ -70,9 +73,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
+  // The free tools live on their own subdomains (all under the verified lazur.app domain property,
+  // so one sitemap may list them): each tool's home and its keyword pages.
+  const freeToolRoutes = FREE_TOOLS.flatMap((t) => {
+    const origin = toolOrigin(t.subdomain);
+    const pages = getToolContent(t.subdomain)?.pages ?? [];
+    return [
+      { url: origin, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly" as const, priority: 0.8 },
+      ...pages.map((p) => ({ url: `${origin}/${p.slug}`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly" as const, priority: 0.6 })),
+    ];
+  });
+
   return [
     ...staticRoutes,
     ...toolRoutes,
+    ...freeToolRoutes,
     ...seo(getComparePages(), 0.85),
     ...seo(getAlternativesPages(), 0.85),
     ...seo(getAppPages(), 0.85),

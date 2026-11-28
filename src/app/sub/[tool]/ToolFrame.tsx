@@ -4,7 +4,10 @@ import { Footer } from "@/components/Footer";
 import { MarketingPageShell } from "@/components/MarketingPageShell";
 import { Navbar } from "@/components/Navbar";
 import { SiteBaseProvider } from "@/components/SiteBase";
+import { TrackedAnchor } from "@/components/analytics/TrackedLink";
+import { AI_TOOLS } from "@/components/free-tools/ai-config";
 import { LazurLetterProvider } from "@/components/free-tools/Letter";
+import { ToolAnalytics, ToolUsage } from "@/components/free-tools/ToolAnalytics";
 import { HubCard } from "@/components/seo-pages/Hub";
 import { FaqList } from "@/components/seo-pages/Primitives";
 import { toolOrigin } from "@/lib/free-tools/host";
@@ -37,6 +40,7 @@ export function ToolFrame({
   const widget = renderWidget(tool.subdomain, page);
   const faq = tool.faq.filter((f) => f.a).map((f) => ({ question: f.q, answer: f.a as string }));
   const download = `${SITE_URL}/download?src=tool-${tool.subdomain}`;
+  const kind = AI_TOOLS[tool.subdomain] ? "ai" : "browser";
 
   return (
     <SiteBaseProvider base={SITE_URL}>
@@ -45,6 +49,7 @@ export function ToolFrame({
         {jsonLd.map((d, i) => (
           <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
         ))}
+        <ToolAnalytics tool={tool.subdomain} category={tool.category} kind={kind} />
         <Navbar />
         <main className="seo-main">
           <header className="seo-hub-head">
@@ -65,7 +70,11 @@ export function ToolFrame({
           </header>
 
           <div className="pt-12 md:pt-16">
-            <div className="seo-wrap">{widget}</div>
+            <div className="seo-wrap">
+              <ToolUsage tool={tool.subdomain} kind={kind}>
+                {widget}
+              </ToolUsage>
+            </div>
           </div>
 
           {tool.pages.length > 0 ? (
@@ -113,9 +122,9 @@ export function ToolFrame({
               <Sticker name="heart" size={56} rotate={12} className="absolute -right-1 top-6 hidden sm:block" />
               <h2 className="text-[30px] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--foreground)] md:text-[40px]">want this in every app?</h2>
               <p className="mx-auto mt-3 max-w-[30rem] text-[17px] leading-[1.55] text-[var(--foreground-muted)]">Hold two keys and talk. Lazur types it, answers it and gets it done, wherever your cursor is.</p>
-              <a href={download} target="_blank" rel="noopener" className="mt-7 inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#1c1917] px-8 text-[16px] font-bold tracking-[-0.01em] text-white transition-colors hover:bg-black">
+              <TrackedAnchor href={download} target="_blank" rel="noopener" event="cta_clicked" eventProps={{ location: "tool_cta", tool: tool.subdomain, destination: "/download" }} className="mt-7 inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#1c1917] px-8 text-[16px] font-bold tracking-[-0.01em] text-white transition-colors hover:bg-black">
                 meet my companion
-              </a>
+              </TrackedAnchor>
               <FounderSticker who="veer" pose="wave" size={96} className="!absolute -bottom-2 left-4 hidden md:block" />
             </div>
             </div>

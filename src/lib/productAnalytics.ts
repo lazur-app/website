@@ -135,6 +135,12 @@ export function rememberVisitorEmail(email: string) {
   withPosthog((ph) => ph.setPersonProperties({ email: value }));
 }
 
+/** Properties attached to every later event from this page (e.g. which free tool it is). */
+export function registerAnalyticsProps(props: AnalyticsProps) {
+  const p = clean(props);
+  if (p) withPosthog((ph) => ph.register(p));
+}
+
 export function resetAnalyticsUser() {
   withPosthog((ph) => ph.reset());
 }

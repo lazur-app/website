@@ -28,6 +28,7 @@ export function LazurLetterProvider({ tool, name, children }: { tool: string; na
   const nudge = useCallback<Nudge>(
     (copied = true) => {
       setOpen({ copied });
+      track("tool_result_copied", { tool, copied });
       track("letter_shown", { tool });
     },
     [tool],

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Sticker } from "@/components/landing/Sticker";
 import { useIsWindowsVisitor } from "@/hooks/useIsWindowsVisitor";
+import { rememberVisitorEmail, track } from "@/lib/productAnalytics";
 import { SITE_URL } from "@/lib/seo/constants";
 import { AI_TOOLS, type AiField } from "./ai-config";
 import { useLazurNudge } from "./Letter";
@@ -86,6 +87,9 @@ export function AiTool({ tool }: { tool: string }) {
   const missing = inputs.some((f) => !f.optional && !filled(f)) || (inputs.every((f) => f.optional) && !inputs.some(filled));
 
   async function run() {
+    const started = Date.now();
+    const kinds = config.fields.filter((f) => (f.kind === "file" ? files[f.id] : f.kind !== "select" && values[f.id]?.trim())).map((f) => f.kind);
+    track("tool_run_started", { tool, inputs: kinds.join(",") || "none" });
     setBusy(true);
     setError("");
     setResult(null);
@@ -109,11 +113,18 @@ export function AiTool({ tool }: { tool: string }) {
       if (left !== null && !Number.isNaN(Number(left))) setStatus((s) => ({ ...s, left: Number(left) }));
       const data = (await res.json().catch(() => ({}))) as Partial<Result> & { message?: string; limit?: boolean; stage?: Stage; email?: string | null };
       if (res.status === 429 && data.limit) {
+        track("tool_limit_hit", { tool, stage: data.stage ?? "free" });
         setStatus((s) => ({ left: 0, stage: data.stage ?? s.stage, email: data.email ?? s.email }));
         setLimited(true);
-      } else if (!res.ok || !data.text) setError(data.message ?? "Something went wrong. Please try again.");
-      else setResult({ text: data.text, notes: data.notes, options: data.options });
+      } else if (!res.ok || !data.text) {
+        track("tool_run_failed", { tool, status: res.status, reason: (data.message ?? "").slice(0, 80) });
+        setError(data.message ?? "Something went wrong. Please try again.");
+      } else {
+        track("tool_run_succeeded", { tool, ms: Date.now() - started, options: data.options?.length ?? 0, has_notes: !!data.notes, chars: data.text.length });
+        setResult({ text: data.text, notes: data.notes, options: data.options });
+      }
     } catch {
+      track("tool_run_failed", { tool, status: 0, reason: "network" });
       setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
       setBusy(false);
@@ -123,7 +134,11 @@ export function AiTool({ tool }: { tool: string }) {
   const sample = (f: AiField) =>
     f.kind === "text" || f.kind === "textarea" || f.kind === "url" ? f.example ?? (f.placeholder && !/^(paste|e\.g\.)/i.test(f.placeholder) ? f.placeholder : undefined) : undefined;
   const hasExample = config.fields.some((f) => sample(f));
-  const useExample = () =>
+  const useExample = () => {
+    track("tool_example_used", { tool });
+    fillExample();
+  };
+  const fillExample = () =>
     setValues((s) => {
       const next = { ...s };
       for (const f of config.fields) {
@@ -341,8 +356,15 @@ function SignUp({ tool, onDone }: { tool: string; onDone: (left: number, email: 
     try {
       const res = await fetch("/api/free-tools/signup", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email, tool }) });
       const d = (await res.json().catch(() => ({}))) as { ok?: boolean; left?: number; message?: string };
-      if (res.ok && d.ok) onDone(d.left ?? 3, email.trim().toLowerCase());
-      else setErr(d.message ?? "That didn't work. Check the email and try again.");
+      if (res.ok && d.ok) {
+        const clean = email.trim().toLowerCase();
+        rememberVisitorEmail(clean);
+        track("tool_signup_completed", { tool });
+        onDone(d.left ?? 3, clean);
+      } else {
+        track("tool_signup_failed", { tool, reason: (d.message ?? "").slice(0, 80) });
+        setErr(d.message ?? "That didn't work. Check the email and try again.");
+      }
     } catch {
       setErr("Couldn't reach the server. Try again.");
     } finally {
@@ -375,14 +397,23 @@ function FeedbackPass({ tool, email, onDone }: { tool: string; email: string | n
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const download = `${SITE_URL}/download?src=tool-${tool}-pass`;
+  useEffect(() => {
+    track("tool_pass_card_shown", { tool, platform: windows ? "windows" : "mac" });
+  }, [tool, windows]);
   async function claim() {
+    track("tool_pass_claim_clicked", { tool });
     setBusy(true);
     setMsg("");
     try {
       const res = await fetch("/api/free-tools/claim", { method: "POST" });
       const d = (await res.json().catch(() => ({}))) as { ok?: boolean; left?: number; message?: string };
-      if (res.ok && d.ok) onDone(d.left ?? 1);
-      else setMsg(d.message ?? "That didn't work. Try again in a minute.");
+      if (res.ok && d.ok) {
+        track("tool_pass_claimed", { tool });
+        onDone(d.left ?? 1);
+      } else {
+        track("tool_pass_claim_refused", { tool, reason: (d.message ?? "").slice(0, 80) });
+        setMsg(d.message ?? "That didn't work. Try again in a minute.");
+      }
     } catch {
       setMsg("Couldn't reach the server. Try again.");
     } finally {
@@ -395,7 +426,7 @@ function FeedbackPass({ tool, email, onDone }: { tool: string; email: string | n
         <Sticker name="star" size={56} rotate={-10} className="absolute right-3 top-3" />
         <h3 className="text-[20px] font-bold tracking-[-0.02em]">That&apos;s all the free runs for today</h3>
         <p className="mt-1 text-[15px] leading-[1.55] text-[var(--foreground-muted)]">Lazur for Windows is still being built. Join the waitlist and we&apos;ll tell you the day it&apos;s ready. Your free runs come back tomorrow.</p>
-        <a href={download} target="_blank" rel="noopener" className="mt-4 inline-flex min-h-[48px] items-center rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white hover:bg-black">
+        <a href={download} target="_blank" rel="noopener" onClick={() => track("tool_pass_waitlist_clicked", { tool })} className="mt-4 inline-flex min-h-[48px] items-center rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white hover:bg-black">
           Join the Windows waitlist
         </a>
       </div>
@@ -431,7 +462,7 @@ function FeedbackPass({ tool, email, onDone }: { tool: string; email: string | n
         </li>
       </ol>
       <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-        <a href={download} target="_blank" rel="noopener" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white hover:bg-black">
+        <a href={download} target="_blank" rel="noopener" onClick={() => track("tool_pass_download_clicked", { tool })} className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1c1917] px-6 text-[15px] font-bold text-white hover:bg-black">
           Download Lazur
         </a>
         <Btn tone="ghost" onClick={claim} disabled={busy} className="min-h-[48px]">

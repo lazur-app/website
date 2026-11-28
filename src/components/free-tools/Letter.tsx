@@ -144,6 +144,8 @@ function Note({ tool, name, ok, status, words, onClose }: { tool: string; name: 
   const href = `${SITE_URL}/download?src=tool-${tool}-letter`;
 
   useEffect(() => {
+    // Give focus back to wherever the visitor was (a keyboard test, a text box) when the note closes.
+    const before = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
     const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", esc);
@@ -152,6 +154,7 @@ function Note({ tool, name, ok, status, words, onClose }: { tool: string; name: 
       document.removeEventListener("keydown", esc);
       // Always hand scrolling back, whatever order effects ran in.
       document.body.style.overflow = "";
+      if (before && before !== document.body && document.contains(before)) before.focus({ preventScroll: true });
     };
   }, [onClose]);
 

@@ -137,7 +137,7 @@ export function PronunciationChecker(_props: { page?: string }) {
               setTarget(s);
               setHeard(null);
             }}
-            className="rounded-full border border-[var(--border-strong)] bg-white px-3 py-1.5 text-[13px] text-[var(--foreground)] transition hover:bg-[var(--brand-soft)]"
+            className="inline-flex min-h-[40px] items-center rounded-full border border-[var(--border-strong)] bg-white px-3.5 py-1.5 text-[13px] text-[var(--foreground)] transition hover:bg-[var(--brand-soft)]"
           >
             {s.length > 28 ? s.slice(0, 26) + "…" : s}
           </button>

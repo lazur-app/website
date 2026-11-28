@@ -193,7 +193,7 @@ export function AiTool({ tool }: { tool: string }) {
           </Btn>
           <div className="mt-3 flex flex-col items-center gap-1 text-[14px] text-[var(--foreground-muted)] sm:flex-row sm:justify-center sm:gap-4">
             {hasExample && !result ? (
-              <button type="button" onClick={useExample} className="min-h-[32px] underline underline-offset-4 hover:text-[var(--foreground)]">
+              <button type="button" onClick={useExample} className="min-h-[44px] underline underline-offset-4 hover:text-[var(--foreground)]">
                 Not sure? Try an example
               </button>
             ) : null}
@@ -300,15 +300,15 @@ function CopyArea({ text, onCopy }: { text: string; onCopy: () => void }) {
 function ResultBox({ label, text, copied, onCopy, onDownload }: { label: string; text: string; copied: boolean; onCopy: () => void; onDownload?: () => void }) {
   return (
     <div className="overflow-hidden rounded-2xl border-[1.5px] border-[#1c1917] bg-white">
-      <div className="flex items-center justify-between gap-2 border-b-[1.5px] border-[#1c1917]/15 bg-[var(--background-deep)] px-4 py-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b-[1.5px] border-[#1c1917]/15 bg-[var(--background-deep)] px-4 py-2.5">
         <span className="text-[14px] font-bold">{label}</span>
-        <span className="flex gap-2">
+        <span className="ml-auto flex gap-2">
           {onDownload ? (
-            <Btn tone="ghost" className="!px-4 !py-2 !text-[14px]" onClick={onDownload}>
+            <Btn tone="ghost" className="min-h-[42px] !px-4 !py-2 !text-[14px]" onClick={onDownload}>
               Download
             </Btn>
           ) : null}
-          <Btn tone="brand" className="!px-4 !py-2 !text-[14px]" onClick={onCopy}>
+          <Btn tone="brand" className="min-h-[42px] !px-4 !py-2 !text-[14px]" onClick={onCopy}>
             {copied ? "✓ Copied" : "Copy"}
           </Btn>
         </span>

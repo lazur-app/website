@@ -96,7 +96,7 @@ export function WordCounter(props: { page?: string }) {
               key={l.label}
               type="button"
               onClick={() => setLimit(limit === l.n ? null : l.n)}
-              className={`rounded-full border px-4 py-2 text-[14px] font-medium transition ${limit === l.n ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
+              className={`inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-[14px] font-medium transition ${limit === l.n ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
             >
               {l.label} · {l.n}
             </button>

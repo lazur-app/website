@@ -196,7 +196,7 @@ export function Teleprompter(props: { page?: string }) {
         <div>
           <span className="mb-1.5 flex items-center justify-between text-[14px] font-medium">
             <span> Scroll speed: {speedLabel}</span>
-            <button type="button" className="text-[13px] text-[var(--brand)] underline" onClick={() => setUnit(unit === "px" ? "wpm" : "px")}>
+            <button type="button" className="-my-2 min-h-[44px] px-1 text-[13px] text-[var(--brand)] underline" onClick={() => setUnit(unit === "px" ? "wpm" : "px")}>
               switch to {unit === "px" ? "words/min" : "px/s"}
             </button>
           </span>

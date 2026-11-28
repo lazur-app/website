@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Btn, CopyBtn, Field, Notice, Panel, inputClass } from "./ui";
-import { copyGuard, useLazurNudge } from "./Letter";
+import { copyGuard, useLazurNudge, useMomentWhen } from "./Letter";
 
 type Form = {
   name: string;
@@ -153,6 +153,8 @@ export function EmailSignature(props: { page?: string }) {
     </Field>
   );
 
+  // A signature with a name and a way to reach them is a finished result, even before it is copied.
+  useMomentWhen(!!f.name.trim() && !!(f.email.trim() || f.phone.trim()), "your signature is ready", 6000);
   return (
     <Panel className="space-y-6">
       <div className="flex flex-wrap gap-2">
@@ -161,7 +163,7 @@ export function EmailSignature(props: { page?: string }) {
             key={s.id}
             type="button"
             onClick={() => setStyle(s.id)}
-            className={`rounded-full border px-4 py-2 text-[14px] font-medium transition ${style === s.id ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
+            className={`inline-flex min-h-[44px] items-center rounded-full border px-4 py-2 text-[14px] font-medium transition ${style === s.id ? "border-[var(--brand)] bg-[var(--brand)] text-white" : "border-[var(--border-strong)] hover:bg-[var(--background-deep)]"}`}
           >
             {s.label}
           </button>

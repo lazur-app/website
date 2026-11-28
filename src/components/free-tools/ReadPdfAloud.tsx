@@ -104,9 +104,10 @@ export function ReadPdfAloud(props: { page?: string }) {
     };
     load();
     synth.addEventListener("voiceschanged", load);
+    const tokenRef = token;
     return () => {
       synth.removeEventListener("voiceschanged", load);
-      token.current++;
+      tokenRef.current++;
       synth.cancel();
     };
   }, []);

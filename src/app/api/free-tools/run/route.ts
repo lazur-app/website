@@ -11,7 +11,14 @@ import { TOOL_PROMPTS } from "@/lib/free-tools/prompts";
  * With FREE_TOOLS_LOCAL_LIMIT=1 this route enforces it too (localhost). The in-memory guard below is
  * only a backstop against abuse that skips the Worker (the run.app address).
  */
-export const maxDuration = 120;
+export const maxDuration = 280;
+
+/**
+ * Tools whose answer is the whole input written out (a transcript, a PDF's text). The usual 8k-token
+ * cap cut a long video or recording off at about 40 minutes of speech, so these get 32k and longer
+ * to finish. Cloud Run allows 300 s per request.
+ */
+const LONG_OUTPUT = new Set(["youtube-transcript", "audio-to-text", "pdf-to-text", "meeting-minutes", "audio-to-notes", "voice-note-to-text"]);
 
 const MAX_FILE_BYTES = 15 * 1024 * 1024;
 const MAX_TEXT_CHARS = 60_000;
@@ -113,11 +120,17 @@ async function run(request: Request) {
     systemInstruction: { parts: [{ text: spec.instruction }] },
     contents: [{ role: "user", parts: [...parts, { text: text.trim() || "Go." }] }],
     // "minimal" thinking answers in about a second; tools that reason (SQL, regex…) get a little more.
-    generationConfig: { temperature: 0.5, maxOutputTokens: 8192, thinkingConfig: { thinkingLevel: spec.think ?? "minimal" } },
+    generationConfig: {
+      temperature: 0.5,
+      maxOutputTokens: LONG_OUTPUT.has(tool) ? 32_768 : 8192,
+      thinkingConfig: { thinkingLevel: spec.think ?? "minimal" },
+      // Videos are read for their speech, not their pictures: low-detail frames cost about a third as much.
+      ...(spec.youtube ? { mediaResolution: "MEDIA_RESOLUTION_LOW" } : {}),
+    },
   };
 
   const hasMedia = parts.length > 0;
-  const r = await generate(body, { timeoutMs: hasMedia ? 90_000 : 25_000 });
+  const r = await generate(body, { timeoutMs: LONG_OUTPUT.has(tool) ? 200_000 : hasMedia ? 90_000 : 25_000 });
   if (r.ok) return NextResponse.json(shape(r.text, spec.format));
   if (r.kind === "busy") return fail("We're getting a lot of visitors right now. Please try again in a few seconds. This run won't count.", 503);
   if (r.kind === "blocked") return fail("That input can't be processed.", 422);

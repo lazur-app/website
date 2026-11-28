@@ -12,6 +12,7 @@ import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { FounderSticker } from "@/components/landing/FounderSticker";
 import { useIsWindowsVisitor, WINDOWS_WAITLIST_LABEL } from "@/hooks/useIsWindowsVisitor";
 import { track } from "@/lib/productAnalytics";
+import { useSiteBase } from "@/components/SiteBase";
 
 /**
  * An ink-outlined white bar across the top of the page, in the homepage's look: the logo on the left, a few links in the
@@ -29,6 +30,9 @@ const LINKS = [
 ];
 
 export function Navbar() {
+  const base = useSiteBase();
+  // On a tool subdomain the navbar leads to the main site: open it in a new tab so the tool stays put.
+  const ext = base ? ({ target: "_blank", rel: "noopener" } as const) : {};
   const { user, loading, isAuthenticated } = useAuth();
   const windows = useIsWindowsVisitor();
   const downloadLabel = windows ? WINDOWS_WAITLIST_LABEL : "Meet my companion";
@@ -51,7 +55,8 @@ export function Navbar() {
       <div className="pointer-events-auto mx-auto w-full max-w-6xl overflow-hidden rounded-[20px] border-[1.5px] border-[#1c1917] bg-white shadow-[0_2px_0_rgba(28,25,23,0.9)] md:overflow-visible">
         <div className="flex h-16 items-center justify-between gap-4 pl-4 pr-2 md:h-[72px] md:gap-6 md:pl-6 md:pr-3">
           <Link
-            href="/"
+            href={`${base}/`}
+            {...ext}
             className="flex min-h-[44px] items-center gap-2"
             aria-label="Lazur home"
             onClick={() => track("nav_link_clicked", { location: "navbar", label: "Logo", destination: "/" })}
@@ -64,7 +69,8 @@ export function Navbar() {
             {LINKS.map((l) => (
               <Link
                 key={l.href}
-                href={l.href}
+                href={base + l.href}
+                {...ext}
                 onClick={() => track("nav_link_clicked", { location: "navbar", label: l.label, destination: l.href })}
                 className="rounded-full px-3.5 py-2 text-[15px] font-medium tracking-[-0.01em] text-[var(--foreground-muted)] transition-colors hover:bg-[#f3f1ec] hover:text-[var(--foreground)]"
               >
@@ -77,7 +83,8 @@ export function Navbar() {
             {!loading && isAuthenticated && user ? <UserMenu user={user} /> : null}
             {/* Wide screens: the full pill. */}
             <Link
-              href="/download"
+              href={base + "/download"}
+              {...ext}
               onClick={() => track("cta_clicked", { location: "navbar", label: downloadLabel, destination: "/download" })}
               aria-label={downloadLabel}
               className="hidden min-h-[48px] items-center gap-2 whitespace-nowrap rounded-full bg-[#1c1917] px-6 text-[16px] font-bold tracking-[-0.01em] text-white transition-colors hover:bg-black md:inline-flex"
@@ -87,7 +94,8 @@ export function Navbar() {
             </Link>
             {/* Phones: a round black button with the platform's mark, and the menu button. */}
             <Link
-              href="/download"
+              href={base + "/download"}
+              {...ext}
               onClick={() => track("cta_clicked", { location: "navbar_mobile", label: downloadLabel, destination: "/download" })}
               aria-label={downloadLabel}
               className="grid h-11 w-11 place-items-center rounded-full bg-[#1c1917] text-white shadow-[0_2px_0_rgba(28,25,23,0.35)] transition-transform active:scale-95 md:hidden"
@@ -134,7 +142,8 @@ export function Navbar() {
                       transition={{ delay: 0.04 + i * 0.04, duration: 0.25 }}
                     >
                       <Link
-                        href={l.href}
+                        href={base + l.href}
+                {...ext}
                         onClick={() => {
                           track("nav_link_clicked", { location: "navbar_mobile", label: l.label, destination: l.href });
                           setOpen(false);
@@ -149,7 +158,8 @@ export function Navbar() {
                 {/* One of us, waving from the corner of the menu. */}
                 <FounderSticker who="vaidik" pose="wave" size={96} className="!absolute bottom-[84px] right-4" />
                 <Link
-                  href="/download"
+                  href={base + "/download"}
+              {...ext}
                   onClick={() => {
                     track("cta_clicked", { location: "navbar_menu", label: downloadLabel, destination: "/download" });
                     setOpen(false);

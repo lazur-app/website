@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { HubCard, HubHeader, HubSection, SeoPageFrame } from "@/components/seo-pages";
 import { breadcrumbSchema } from "@/lib/seo-pages/schema";
 import { SITE_URL } from "@/lib/seo/constants";
+import { Sticker } from "@/components/landing/Sticker";
+import { toolOrigin } from "@/lib/free-tools/host";
+import { FREE_TOOLS, FREE_TOOL_CATEGORIES } from "@/lib/free-tools/registry";
 import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
   title: "Free typing and dictation tools | Lazur",
-  description: "Free tools: typing speed test, speaking vs typing test, typing tax calculator and a dictation accuracy checker. No sign-up, runs in your browser.",
+  description: "Free online tools: mic test, webcam test, dictation, voice typing, audio to text, teleprompter, word counter and more. No sign-up, runs in your browser.",
   alternates: { canonical: `${SITE_URL}/tools` },
 };
 
@@ -24,6 +27,13 @@ export default function ToolsHub() {
             <HubCard key={t.slug} href={`/tools/${t.slug}`} kicker="Free tool" title={t.name} description={t.description} />
           ))}
         </HubSection>
+        {FREE_TOOL_CATEGORIES.map((category) => (
+          <HubSection key={category} title={category}>
+            {FREE_TOOLS.filter((t) => t.category === category).map((t) => (
+              <HubCard key={t.subdomain} href={toolOrigin(t.subdomain)} kicker="Free tool" aside={<Sticker name={t.sticker} size={44} />} title={t.name} description={t.tagline} />
+            ))}
+          </HubSection>
+        ))}
       </div>
     </SeoPageFrame>
   );

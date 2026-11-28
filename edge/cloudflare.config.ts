@@ -1,4 +1,4 @@
-import { defineConfig } from "cf/config";
+import { bindings, defineConfig, triggers } from "cf/config";
 
 export default defineConfig({
   accountId: "757e338376ceb0b7f84a35f256911236",
@@ -7,6 +7,12 @@ export default defineConfig({
     entrypoint: "./src/index.ts",
     compatibilityDate: "2026-11-01",
     workersDev: false,
+    // Free-tool limits and sign-ups (see src/index.ts).
+    env: {
+      LIMITS: bindings.kv({ id: "60c21531d139444d9f58d155fd017cc0" }),
+      LAZUR_API: bindings.text("https://api.lazur.app"),
+      FREE_TOOLS_INTERNAL_KEY: bindings.secret(),
+    },
     domains: [
       "www.lazur.app",
       "lazur.app",
@@ -17,5 +23,9 @@ export default defineConfig({
       "admin.lazur.app",
       "api.lazur.app",
     ],
+    // Free tools: every other *.lazur.app host reaches the Worker. Known tools (src/tool-subdomains.ts)
+    // are served by the website; anything else is redirected to www. Needs a wildcard DNS record
+    // (proxied, "*") in the lazur.app zone. Explicit records (www, admin, api, images) still win.
+    triggers: [triggers.fetch({ pattern: "*.lazur.app/*", zone: "lazur.app" })],
   },
 });

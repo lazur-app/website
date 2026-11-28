@@ -45,13 +45,13 @@ const connectLinks: {
   { href: "https://www.linkedin.com/company/lazur-app", label: "linkedin", external: true },
 ];
 
-export function Footer() {
+export function Footer({ base = "" }: { base?: string } = {}) {
   return (
     <footer className="overflow-hidden border-t-[1.5px] border-[#1c1917] py-16 md:py-24">
       <div className="landing-container">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div>
-            <LogoWordmark height={28} location="footer" />
+            <LogoWordmark height={28} location="footer" href={`${base}/`} />
             <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-[var(--foreground-muted)]">
               Your AI companion, right at the notch or by your cursor.
             </p>
@@ -67,7 +67,8 @@ export function Footer() {
                   {links.map((link) => (
                     <li key={link.label}>
                       <TrackedLink
-                        href={link.href}
+                        href={base + link.href}
+                        {...(base ? { target: "_blank", rel: "noopener" } : {})}
                         event="nav_link_clicked"
                         eventProps={{ location: "footer", section: category, label: link.label, destination: link.href }}
                         className="text-[15px] text-[var(--foreground-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--foreground)] hover:decoration-[var(--foreground)]/40"

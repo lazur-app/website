@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Terms of Service for Lazur, a context-aware AI work assistant for macOS, including writing, rewriting, voice actions, subscriptions, and website use.",
 };
 
-const UPDATED = "October 28, 2026";
+const UPDATED = "November 28, 2026";
 const CONTACT = "hello@lazur.app";
 
 function List({ items }: { items: ReactNode[] }) {
@@ -243,7 +243,31 @@ export default function TermsPage() {
           ),
         },
         {
-          title: "10. Disclaimers",
+          id: "free-tools",
+          title: "10. Free tools",
+          content: (
+            <>
+              <p>
+                Our free online tools (for example mic-test.lazur.app or grammar-checker.lazur.app) are offered as they
+                are, without an account. Tools that use AI have a daily limit per visitor: 3 free uses a day, and 3 more
+                that day after you leave your email address. We may change these limits at any time.
+              </p>
+              <p>
+                <strong>Free tool pass.</strong> If you download Lazur, sign in with the same email address you gave us
+                on a free tool, and send us feedback from inside the app, you can unlock a free pass for that tool. The
+                pass lasts 20 days from the moment you unlock it and allows up to 50 uses a day. One pass per person;
+                we may decline or end a pass we believe is being misused.
+              </p>
+              <p>
+                When you leave your email address on a free tool, we use it to unlock extra uses, to check whether you
+                have sent feedback, and to write to you about Lazur and new tools. You can unsubscribe from those emails
+                at any time.
+              </p>
+            </>
+          ),
+        },
+        {
+          title: "11. Disclaimers",
           content: (
             <>
               <p>
@@ -263,7 +287,7 @@ export default function TermsPage() {
           ),
         },
         {
-          title: "11. Limitation of liability",
+          title: "12. Limitation of liability",
           content: (
             <>
               <p>
@@ -288,12 +312,12 @@ export default function TermsPage() {
           ),
         },
         {
-          title: "12. Indemnification",
+          title: "13. Indemnification",
           content:
             "You agree to indemnify and hold harmless Lazur from claims, damages, and expenses (including reasonable legal fees) arising from your misuse of the service, your content, or your violation of these Terms or applicable law.",
         },
         {
-          title: "13. Termination",
+          title: "14. Termination",
           content: (
             <>
               <p>
@@ -307,12 +331,12 @@ export default function TermsPage() {
           ),
         },
         {
-          title: "14. Changes to these Terms",
+          title: "15. Changes to these Terms",
           content:
             "We may update these Terms from time to time. We will post the revised Terms on this page and update the \"Last updated\" date. Material changes may be communicated through the app or by email. Continued use after changes take effect constitutes acceptance.",
         },
         {
-          title: "15. Governing law and disputes",
+          title: "16. Governing law and disputes",
           content: (
             <>
               <p>
@@ -336,7 +360,7 @@ export default function TermsPage() {
           ),
         },
         {
-          title: "16. Contact",
+          title: "17. Contact",
           content: (
             <>
               Questions about these Terms? Email{" "}

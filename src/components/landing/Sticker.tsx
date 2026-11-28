@@ -36,7 +36,19 @@ export type StickerName =
   | "eye"
   | "arrow"
   | "pointer"
-  | "pointer2";
+  | "pointer2"
+  | "youtube"
+  | "camera"
+  | "doc"
+  | "pencil"
+  | "mail"
+  | "speaker"
+  | "grid"
+  | "clock"
+  | "globe"
+  | "briefcase"
+  | "code"
+  | "text";
 
 type Tone = "silver" | "pink" | "blue" | "gold" | "lilac" | "mint" | "holo" | "onyx" | "indigo" | "ember" | "nightholo" | "ruby" | "keygold";
 type Motion = "bob" | "spin" | "beat" | "wiggle" | "press" | "flick" | "still";
@@ -171,6 +183,15 @@ const PLAY = "M27 13 C22 11 17 14 17 20 V80 C17 86 22 89 27 87 L85 56 C90 53 90 
 const DONUT = "M50 6 A44 44 0 1 1 49.9 6 Z M50 32 A18 18 0 1 0 50.1 32 Z";
 const EYE = "M4 50 C22 20 78 20 96 50 C78 80 22 80 4 50 Z";
 const UPRIGHT = "M32 18 H82 V68 H65 V47 L30 82 L18 70 L53 35 H32 Z";
+
+const YOUTUBE = "M22 22 H78 A18 18 0 0 1 96 40 V60 A18 18 0 0 1 78 78 H22 A18 18 0 0 1 4 60 V40 A18 18 0 0 1 22 22 Z";
+const CAMERA = "M14 26 H30 L36 16 H64 L70 26 H86 A10 10 0 0 1 96 36 V78 A10 10 0 0 1 86 88 H14 A10 10 0 0 1 4 78 V36 A10 10 0 0 1 14 26 Z";
+const DOC = "M22 6 H62 L84 28 V86 A8 8 0 0 1 76 94 H22 A8 8 0 0 1 14 86 V14 A8 8 0 0 1 22 6 Z";
+const PENCIL = "M68 6 L94 32 L38 88 L8 94 L12 64 Z";
+const MAIL = "M10 22 H90 A6 6 0 0 1 96 28 V74 A6 6 0 0 1 90 80 H10 A6 6 0 0 1 4 74 V28 A6 6 0 0 1 10 22 Z";
+const SPEAKER = "M8 38 H28 L52 14 V86 L28 62 H8 Z";
+const GRID = "M14 10 H86 A8 8 0 0 1 94 18 V82 A8 8 0 0 1 86 90 H14 A8 8 0 0 1 6 82 V18 A8 8 0 0 1 14 10 Z";
+const CASE = "M10 30 H90 A6 6 0 0 1 96 36 V80 A6 6 0 0 1 90 86 H10 A6 6 0 0 1 4 80 V36 A6 6 0 0 1 10 30 Z";
 
 /** A scalloped seal: a circle with twelve soft bumps. */
 const SEAL = (() => {
@@ -379,6 +400,145 @@ const DESIGNS: Record<StickerName, Design> = {
           <Orb key={`${x}-${y}`} cx={x} cy={y} r={19} tone="mint" />
         ))}
         <Face cx={50} cy={41} s={0.8} />
+      </>
+    ),
+  },
+  youtube: {
+    motion: "beat",
+    d: YOUTUBE,
+    art: (
+      <>
+        <Body name="youtube" d={YOUTUBE} tone="ruby" delay={-1.1} />
+        <path d="M41 35 L67 50 L41 65 Z" fill="#fff" stroke={INK} strokeWidth={2.4} strokeLinejoin="round" />
+      </>
+    ),
+  },
+  camera: {
+    motion: "bob",
+    d: CAMERA,
+    art: (
+      <>
+        <Body name="camera" d={CAMERA} tone="onyx" delay={-0.8} />
+        <Orb cx={50} cy={57} r={23} tone="silver" />
+        <Orb cx={50} cy={57} r={12} tone="indigo" />
+        <circle cx={44} cy={51} r={3.2} fill="#fff" opacity={0.85} />
+        <circle cx={81} cy={40} r={3.4} fill="#ff6b6b" stroke={INK} strokeWidth={1.2} />
+      </>
+    ),
+  },
+  doc: {
+    motion: "wiggle",
+    d: DOC,
+    art: (
+      <>
+        <Body name="doc" d={DOC} tone="silver" delay={-1.5} />
+        <path d="M62 6 V28 H84" fill="none" stroke={INK} strokeWidth={2.2} strokeLinejoin="round" />
+        <path d="M28 48 H70 M28 62 H70 M28 76 H52" fill="none" stroke={INK} strokeWidth={4.4} strokeLinecap="round" />
+      </>
+    ),
+  },
+  pencil: {
+    motion: "wiggle",
+    d: PENCIL,
+    art: (
+      <>
+        <Body name="pencil" d={PENCIL} tone="gold" delay={-2.3} />
+        <path d="M60 14 L86 40" fill="none" stroke={INK} strokeWidth={2} />
+        <path d="M12 64 L38 88 L8 94 Z" fill="#f3d9b5" stroke={INK} strokeWidth={1.8} strokeLinejoin="round" />
+        <path d="M10 80 L22 92 L8 94 Z" fill={INK} />
+        <path d="M68 6 L94 32 L86 40 L60 14 Z" fill="#ff7fbe" stroke={INK} strokeWidth={1.8} strokeLinejoin="round" />
+      </>
+    ),
+  },
+  mail: {
+    motion: "bob",
+    d: MAIL,
+    art: (
+      <>
+        <Body name="mail" d={MAIL} tone="blue" delay={-1.8} />
+        <path d="M6 28 L50 58 L94 28" fill="none" stroke={INK} strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M6 76 L36 50 M94 76 L64 50" fill="none" stroke={INK} strokeWidth={1.6} strokeLinecap="round" opacity={0.7} />
+      </>
+    ),
+  },
+  speaker: {
+    motion: "beat",
+    d: SPEAKER,
+    art: (
+      <>
+        <path d="M66 36 A20 20 0 0 1 66 64 M77 25 A35 35 0 0 1 77 75" fill="none" stroke={INK} strokeWidth={8} strokeLinecap="round" />
+        <path d="M66 36 A20 20 0 0 1 66 64 M77 25 A35 35 0 0 1 77 75" fill="none" stroke="url(#ms-mint)" strokeWidth={4.6} strokeLinecap="round" />
+        <Body name="speaker" d={SPEAKER} tone="mint" delay={-2.7} />
+      </>
+    ),
+  },
+  grid: {
+    motion: "bob",
+    d: GRID,
+    art: (
+      <>
+        <Body name="grid" d={GRID} tone="mint" delay={-0.5} />
+        <path d="M6 28 H94 V18 A8 8 0 0 0 86 10 H14 A8 8 0 0 0 6 18 Z" fill={INK} opacity={0.88} />
+        <path d="M6 48 H94 M6 68 H94 M36 10 V90 M64 10 V90" fill="none" stroke={INK} strokeWidth={2.4} />
+      </>
+    ),
+  },
+  clock: {
+    motion: "wiggle",
+    d: BALL,
+    art: (
+      <>
+        <Body name="clock" d={BALL} tone="lilac" delay={-1.3} />
+        <circle cx={50} cy={50} r={33} fill="#fff" opacity={0.55} stroke={INK} strokeWidth={1.6} />
+        <path d="M50 50 V27 M50 50 L66 59" fill="none" stroke={INK} strokeWidth={5} strokeLinecap="round" />
+        <circle cx={50} cy={50} r={3.6} fill={INK} />
+      </>
+    ),
+  },
+  globe: {
+    motion: "spin",
+    d: BALL,
+    art: (
+      <>
+        <Body name="globe" d={BALL} tone="blue" delay={-2.5} />
+        <path d="M7 50 H93 M50 7 C26 26 26 74 50 93 M50 7 C74 26 74 74 50 93 M14 28 H86 M14 72 H86" fill="none" stroke="#fff" strokeWidth={1.8} opacity={0.75} />
+      </>
+    ),
+  },
+  briefcase: {
+    motion: "bob",
+    d: CASE,
+    art: (
+      <>
+        <path d="M36 30 V20 A6 6 0 0 1 42 14 H58 A6 6 0 0 1 64 20 V30" fill="none" stroke={INK} strokeWidth={9} strokeLinecap="round" />
+        <path d="M36 30 V20 A6 6 0 0 1 42 14 H58 A6 6 0 0 1 64 20 V30" fill="none" stroke="url(#ms-silver)" strokeWidth={5.4} strokeLinecap="round" />
+        <Body name="briefcase" d={CASE} tone="onyx" delay={-0.3} />
+        <path d="M4 56 H96" fill="none" stroke={INK} strokeWidth={2.2} />
+        <rect x={42} y={50} width={16} height={12} rx={3} fill="#f5c542" stroke={INK} strokeWidth={1.8} />
+      </>
+    ),
+  },
+  code: {
+    motion: "press",
+    d: KEY,
+    art: (
+      <>
+        <Body name="code" d={KEY} tone="indigo" delay={-1.9} />
+        <text x={50} y={56} textAnchor="middle" fontSize={27} fontWeight={800} fill="#fff" className="font-sans" letterSpacing="-0.06em">
+          {"</>"}
+        </text>
+      </>
+    ),
+  },
+  text: {
+    motion: "press",
+    d: KEY,
+    art: (
+      <>
+        <Body name="text" d={KEY} tone="mint" delay={-0.6} />
+        <text x={50} y={57} textAnchor="middle" fontSize={27} fontWeight={800} fill={INK} className="font-sans" letterSpacing="-0.05em">
+          abc
+        </text>
       </>
     ),
   },

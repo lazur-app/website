@@ -64,7 +64,24 @@ export function triggerFileDownload(url: string, saveAs: string) {
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
+  pingDownload(saveAs.endsWith(".exe") ? "windows" : url === MAC_DOWNLOAD_URL_INTEL ? "mac-intel" : "mac");
   return true;
+}
+
+/** Tells the team (Slack #lazur-signups) a download started. Fire and forget. */
+function pingDownload(platform: string) {
+  try {
+    const api = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!api) return;
+    void fetch(`${api}/exclusive-access/download`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ platform, location: window.location.pathname.slice(0, 64) || "/" }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    // never block a download
+  }
 }
 
 export async function triggerMacDownload(

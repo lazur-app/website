@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLazurMoment, useMomentWhen } from "./Letter";
+import { useEmailGate } from "./EmailGate";
 import { Btn, CopyBtn, Notice, Panel, Unsupported } from "./ui";
 import { PulseDot, downloadBlob, useSpeechRecognition } from "./Dictation";
 
@@ -28,6 +29,7 @@ function fmt(sec: number) {
 export function VoiceRecorder(_props: { page?: string }) {
   void _props;
   const moment = useLazurMoment();
+  const gate = useEmailGate();
   const [status, setStatus] = useState<Status>("idle");
   const [level, setLevel] = useState(0);
   const [elapsed, setElapsed] = useState(0);
@@ -237,11 +239,14 @@ export function VoiceRecorder(_props: { page?: string }) {
 
       {url ? (
         <div className="mt-6 space-y-3">
-          <audio controls src={url} className="w-full" />
+          <audio controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} src={url} className="w-full" />
           <Btn tone="dark" onClick={() => {
-              if (!blobRef.current) return;
-              downloadBlob(blobRef.current, `voice-recording.${ext}`);
-              moment({ label: "your recording is downloading", every: true, delay: 500 });
+              const blob = blobRef.current;
+              if (!blob) return;
+              gate("recording", () => {
+                downloadBlob(blob, `voice-recording.${ext}`);
+                moment({ label: "your recording is downloading", every: true, delay: 500 });
+              });
             }}>
             Download voice-recording.{ext}
           </Btn>

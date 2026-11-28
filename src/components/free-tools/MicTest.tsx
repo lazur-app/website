@@ -205,7 +205,7 @@ export function MicTest() {
           {clipUrl ? (
             <div>
               <p className="mb-2 text-[14px] text-[var(--foreground-muted)]">Your recording. Play it to hear how you sound.</p>
-              <audio controls src={clipUrl} className="w-full" />
+              <audio controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} src={clipUrl} className="w-full" />
             </div>
           ) : null}
         </div>

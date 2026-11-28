@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { SiteBaseProvider } from "@/components/SiteBase";
 import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import { AI_TOOLS } from "@/components/free-tools/ai-config";
+import { EmailGateProvider } from "@/components/free-tools/EmailGate";
 import { LazurLetterProvider } from "@/components/free-tools/Letter";
 import { ToolAnalytics, ToolUsage } from "@/components/free-tools/ToolAnalytics";
 import { EmbedCode } from "@/components/free-tools/embed";
@@ -63,6 +64,7 @@ export function ToolFrame({
   return (
     <SiteBaseProvider base={SITE_URL}>
       <LazurLetterProvider tool={tool.subdomain} name={tool.name}>
+      <EmailGateProvider tool={tool.subdomain}>
       <MarketingPageShell>
         {jsonLd.map((d, i) => (
           <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
@@ -184,6 +186,7 @@ export function ToolFrame({
         </main>
         <Footer base={SITE_URL} />
       </MarketingPageShell>
+      </EmailGateProvider>
       </LazurLetterProvider>
     </SiteBaseProvider>
   );

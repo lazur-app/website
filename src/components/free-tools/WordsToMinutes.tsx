@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Field, Panel, Stat, inputClass } from "./ui";
 
 const PACES = [
@@ -39,6 +40,7 @@ export function WordsToMinutes(props: { page?: string }) {
     `A single page (500 words) takes ${mmss(500 / wpm)} to read aloud`,
   ];
 
+  useMomentWhen(words >= 30, `${words} words takes ${mmss(minutes)} to say`, 3500);
   return (
     <Panel className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">

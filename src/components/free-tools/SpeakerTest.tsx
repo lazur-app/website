@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Unsupported } from "./ui";
 import { Volume1, Volume2 } from "lucide-react";
 
@@ -13,6 +14,7 @@ export function SpeakerTest(props: { page?: string }) {
   const [freq, setFreq] = useState(440);
   const [volume, setVolume] = useState(40);
   const [playing, setPlaying] = useState<Side | "sweep" | null>(null);
+  const [plays, setPlays] = useState(0);
 
   const ctxRef = useRef<AudioContext | null>(null);
   const oscRef = useRef<OscillatorNode | null>(null);
@@ -91,11 +93,13 @@ export function SpeakerTest(props: { page?: string }) {
       oscRef.current = osc;
       gainRef.current = gain;
       setPlaying(mode);
+      setPlays((n) => n + 1);
     } catch {
       setSupported(false);
     }
   };
 
+  useMomentWhen(plays >= 2 && playing === null, "sound test done", 1200);
   if (!supported) {
     return (
       <Panel>

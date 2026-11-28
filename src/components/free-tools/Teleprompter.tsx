@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, inputClass } from "./ui";
 
 const KEY = "lazur-teleprompter-script";
@@ -169,6 +170,7 @@ export function Teleprompter(props: { page?: string }) {
 
   const speedLabel = unit === "px" ? `${speedPx} px/s` : `${speedWpm} wpm`;
 
+  useMomentWhen(open && playing, "your script is rolling", 15000);
   return (
     <Panel className="space-y-5">
       <Field label=" Your script" hint="Saved in this browser only. Nothing is uploaded.">

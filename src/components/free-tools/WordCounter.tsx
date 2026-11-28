@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, CopyBtn, Panel, Stat, inputClass } from "./ui";
 
 const STOP = new Set(
@@ -55,6 +56,8 @@ export function WordCounter(props: { page?: string }) {
   const remaining = limit === null ? null : limit - s.chars;
   const maxTop = s.top[0]?.[1] ?? 1;
 
+  const counted = (text.match(/\S+/g) ?? []).length;
+  useMomentWhen(counted >= 50, `${counted} words counted`, 4000);
   return (
     <Panel className="space-y-5">
       <div>

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Btn, CopyBtn, Field, Notice, Panel, inputClass } from "./ui";
+import { copyGuard, useLazurNudge } from "./Letter";
 
 type Form = {
   name: string;
@@ -114,6 +115,7 @@ export function EmailSignature(props: { page?: string }) {
     setTimeout(() => setStatus(""), 2000);
   };
 
+  const nudge = useLazurNudge();
   const copyRich = async () => {
     try {
       if (typeof ClipboardItem !== "undefined" && navigator.clipboard?.write) {
@@ -124,6 +126,7 @@ export function EmailSignature(props: { page?: string }) {
           }),
         ]);
         flash("✓ Signature copied. Paste it into your email settings.");
+        nudge(true, plain(f));
         return;
       }
     } catch {
@@ -136,8 +139,11 @@ export function EmailSignature(props: { page?: string }) {
     range.selectNodeContents(el);
     sel?.removeAllRanges();
     sel?.addRange(range);
+    copyGuard.on = true;
     const ok = document.execCommand("copy");
+    copyGuard.on = false;
     sel?.removeAllRanges();
+    nudge(ok, plain(f));
     flash(ok ? "✓ Signature copied. Paste it into your email settings." : "Couldn't copy. Select the preview and press Ctrl/Cmd+C.");
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, CopyBtn, Field, Notice, Panel, Unsupported, inputClass } from "./ui";
 import { MicButton, PulseDot, appendDictated, countWords, speechErrorMessage, useSpeechRecognition } from "./Dictation";
 
@@ -43,6 +44,8 @@ export function VoiceTyping(props: { page?: string }) {
     setText(v);
   };
 
+  const spoken = (text.match(/\S+/g) ?? []).length;
+  useMomentWhen(!listening && spoken >= 15, `${spoken} words, typed by your voice`, 2000);
   if (supported === false) {
     return (
       <Panel>

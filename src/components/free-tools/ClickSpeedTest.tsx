@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Panel, Stat } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
 import { ScoreBox } from "./ScoreBox";
@@ -128,6 +129,7 @@ export function ClickSpeedTest(props: { page?: string }) {
   const left = Math.max(0, seconds - elapsed);
   const verb = spaceMode ? "press Space" : rightMode ? "right-click" : "click";
 
+  useMomentWhen(phase === "done", `${finalCps.toFixed(1)} ${spaceMode ? "presses" : "clicks"} a second`, 2200);
   return (
     <Panel className="space-y-5">
       <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Test length">

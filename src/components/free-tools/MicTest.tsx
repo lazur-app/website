@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 
 type Status = "idle" | "asking" | "listening" | "denied" | "error";
 
@@ -107,6 +108,8 @@ export function MicTest() {
 
   const heard = peak > 4;
 
+  // Once the mic has picked the visitor up for a few seconds, the test has done its job.
+  useMomentWhen(heard && status === "listening", "your mic is working", 2500);
   return (
     <div className="mx-auto w-full max-w-[640px] keep-case rounded-[28px] border-[1.5px] border-[#1c1917] bg-white p-6 shadow-[0_2px_0_rgba(28,25,23,0.9),0_18px_40px_-16px_rgba(28,25,23,0.22)] sm:p-8">
       {status === "idle" || status === "asking" ? (

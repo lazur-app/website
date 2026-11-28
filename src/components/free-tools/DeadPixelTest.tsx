@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Notice, Panel } from "./ui";
 
 const COLORS: { name: string; css: string }[] = [
@@ -20,6 +21,8 @@ export function DeadPixelTest(props: { page?: string }) {
   const [running, setRunning] = useState(false);
   const [index, setIndex] = useState(props.page === "oled" ? 0 : 0);
   const [hintVisible, setHintVisible] = useState(true);
+  const [finished, setFinished] = useState(false);
+  const ranRef = useRef(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -37,6 +40,8 @@ export function DeadPixelTest(props: { page?: string }) {
   const start = async () => {
     setIndex(props.page === "oled" ? 0 : 0);
     setRunning(true);
+    ranRef.current = true;
+    setFinished(false);
     flashHint();
   };
 
@@ -102,6 +107,12 @@ export function DeadPixelTest(props: { page?: string }) {
   const color = COLORS[index];
   const darkBg = ["Black", "Blue", "Red", "Magenta", "Gradient"].includes(color.name);
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (!running && ranRef.current) setFinished(true);
+  }, [running]);
+  // Opens after the visitor leaves the full-screen colours, never on top of them.
+  useMomentWhen(finished, "pixel test done", 900);
   return (
     <Panel className="space-y-5 text-center">
       <div className="flex justify-center gap-1.5" aria-hidden>

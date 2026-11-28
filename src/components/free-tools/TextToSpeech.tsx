@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useMomentWhen } from "./Letter";
 import { Btn, Field, Notice, Panel, Unsupported, inputClass } from "./ui";
 
 const SAMPLE =
@@ -115,6 +116,7 @@ export function TextToSpeech(_props: { page?: string }) {
     setProgress(0);
   };
 
+  useMomentWhen(mode === "playing", "your text is being read aloud", 8000);
   if (supported === false) {
     return (
       <Panel>

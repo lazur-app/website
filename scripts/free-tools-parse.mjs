@@ -2,7 +2,8 @@
 // Run: node scripts/free-tools-parse.mjs
 import { readFileSync, writeFileSync } from "node:fs";
 
-const md = readFileSync("docs/free-tools-naming.md", "utf8").split("\n");
+// Windows checkouts may have CRLF line endings: split on both.
+const md = readFileSync("docs/free-tools-naming.md", "utf8").split(/\r?\n/);
 const tools = [];
 let category = "";
 let cur = null;

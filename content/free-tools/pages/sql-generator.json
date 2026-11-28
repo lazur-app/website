@@ -1,0 +1,166 @@
+{
+  "tool": "sql-generator",
+  "main": {
+    "claim": "Describe the query in plain English, choose your database, and copy the SQL with one click. The generator writes SQL for PostgreSQL, MySQL, SQL Server, SQLite and BigQuery. Free: 3 runs a day, no account.",
+    "sections": [
+      {
+        "heading": "What this SQL query generator does",
+        "body": "This page turns a request in plain English into a SQL query. You say what you need, such as a list of orders from last month or the total sales for each region. The generator writes the query for the database you name, so the SQL uses that database's syntax.\n\nYou can add table names and columns if you know them. Without them, the generator has to guess your names, so type them in when you can. The answer usually comes back in about 1 to 3 seconds, and the SQL can be copied with one click.\n\nThe tool is built for writing queries. It does not replace checking them. Read the SQL, compare it with your real table and column names, and test it on a copy of your data before you use it on a live database."
+      },
+      {
+        "heading": "How to generate a query",
+        "body": "Open the [SQL query generator](https://sql-generator.lazur.app/) and follow these steps.\n\n1. Type what you need in the box labeled What do you need?\n2. Optional: fill in Table names and columns, for example orders(id, customer_id, created_at, total).\n3. Choose your database: PostgreSQL, MySQL, SQL Server, SQLite or BigQuery.\n4. Run it, read the result, and copy it with one click.\n\nThe more exact your request, the closer the query gets to what you want. Say which table to read, which columns to return, how to filter the rows and how to sort them. A request like list the 10 newest orders from the last 30 days, with customer name and total gives the generator far more to work with than show orders.\n\nIf you want a step-by-step guide to plain English requests, see [SQL query generator from text](https://sql-generator.lazur.app/from-text)."
+      },
+      {
+        "heading": "Why the database choice matters",
+        "body": "SQL is a shared language, but each database has its own details. A simple example is the row limit. SQL Server uses TOP, as in SELECT TOP 10 at the start of the query. PostgreSQL, MySQL, SQLite and BigQuery use LIMIT 10 at the end. A query written for one of these can fail on another.\n\n**Choose the database you actually use.** If you are not sure, check the connection settings of the app or the tool where the query will run."
+      },
+      {
+        "heading": "Check the query before you run it",
+        "body": "Treat the output as a draft. Before you run it, check each table and column name against your real schema. Read the WHERE line to confirm the filter matches what you asked for. If there are JOIN lines, check that the keys they join on are the right columns.\n\nRun the query on a copy of the database or on a small test table first. If the result is not what you expected, make the request more specific and generate again. Do not paste live personal or financial records into any tool to get help. Use made-up rows or only the column names, which is enough to get the shape of the query right."
+      },
+      {
+        "heading": "Free use and what it includes",
+        "body": "You can use the generator for free. You get 3 runs a day with no account. Leave your email and you get 3 more runs. The generator runs on Lazur's servers and answers in about 1 to 3 seconds. Your results can be copied with one click.\n\nIf you write SQL and also dictate every day, Lazur does this in any app on your Mac. Hold two keys and talk, and it types into whatever app you are in, at [lazur.app](https://www.lazur.app)."
+      }
+    ],
+    "imageQuery": "laptop code on desk",
+    "imageAlt": "A laptop on a desk with code open on the screen"
+  },
+  "pages": [
+    {
+      "slug": "from-text",
+      "keyword": "sql query generator from text",
+      "title": "SQL Query Generator From Text: Plain English to SQL | Lazur",
+      "description": "Turn plain English into SQL. Type what you need, name your database and copy the query in one click. Free: 3 runs a day, no account needed.",
+      "h1": "SQL query generator from text",
+      "claim": "Type what you need in plain English, name your database, and get the SQL in about 1 to 3 seconds. The generator covers PostgreSQL, MySQL, SQL Server, SQLite and BigQuery. Free, no account, one-click copy.",
+      "sections": [
+        {
+          "heading": "How to write SQL from text",
+          "body": "Use the [text to SQL generator](https://sql-generator.lazur.app/from-text) in four steps.\n\n1. Describe the result in the box labeled What do you need?\n2. Add table names and columns in the optional box, if you know them.\n3. Pick the database you use.\n4. Read the SQL, then copy it with one click.\n\nYou do not need to know SQL to write the request. You do need to know what you want back: which table, which columns, which rows to keep, and in what order. If you can say that in one or two sentences, you can get a usable query in one run. Keep the sentences plain. Words like recent or top are vague, so give a number of days or a number of rows instead."
+        },
+        {
+          "heading": "Words that make a better request",
+          "body": "A vague request gives a vague query. Compare these two.\n\n- Weak: show sales.\n- Better: total sales for each region over the last 30 days, highest total first, from the orders table.\n\nName the table, list the columns you want, state the date range in full, and say how many rows you need. Use the column names exactly as they appear in your database, because the generator builds the query from the names you give it. If a name is wrong, the query will use that wrong name too.\n\n**The table and column box is the fastest fix.** It is optional, but a line such as orders(id, region, created_at, total) keeps the query close to your own setup."
+        },
+        {
+          "heading": "When the SQL needs a second look",
+          "body": "Read the result before you run it. Check that each table and column name exists in your database. Check that the WHERE line filters the rows you meant, for example the right date range or status. If you use GROUP BY, check that every column you return is either grouped or summarized.\n\nTest the query on a copy of your data or on a small sample first. If the rows look wrong, change one part of your request at a time, such as the filter or the sort, and generate again. Changing one thing at a time shows you which change made the difference."
+        },
+        {
+          "heading": "Pick the database first",
+          "body": "The same request can produce different SQL for different databases. Row limits are one example. SQL Server writes SELECT TOP 10 at the start of the query, while PostgreSQL, MySQL, SQLite and BigQuery use LIMIT 10 at the end. Date functions and quoting rules also differ between databases.\n\n**Choose the database before you generate.** That setting changes the syntax of the query, so a query for the wrong database can fail even when the logic is right."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can AI generate SQL query?",
+          "a": "Yes. A text to SQL generator takes a request in plain English and writes a query for the database you name. Lazur's generator returns the SQL in about 1 to 3 seconds. Describe the result you want, add table names if you have them, and check the query against your own schema before you run it."
+        },
+        {
+          "q": "How do I write a SQL query from text?",
+          "a": "Say what you want back: which table, which columns, which rows to keep and how to sort them. Then name your database and generate. The more exact your words, the closer the SQL matches what you meant. Read the result and test it on a copy of your data before you rely on it."
+        },
+        {
+          "q": "Is the text to SQL generator free?",
+          "a": "Yes. You get 3 free runs a day with no account. Leave your email and you get 3 more runs. The generator writes SQL for PostgreSQL, MySQL, SQL Server, SQLite and BigQuery, and you can copy the result with one click."
+        }
+      ],
+      "imageQuery": "person typing on laptop",
+      "imageAlt": "A person typing on a laptop keyboard at a desk"
+    },
+    {
+      "slug": "tool",
+      "keyword": "sql query generator tool online free",
+      "title": "Free SQL Query Generator Online, No Sign-Up | Lazur",
+      "description": "Free online SQL query generator for PostgreSQL, MySQL, SQL Server, SQLite and BigQuery. Describe the query, copy the SQL and test it. No account needed.",
+      "h1": "Free SQL query generator online",
+      "claim": "Open the SQL query generator, describe what you need, choose PostgreSQL, MySQL, SQL Server, SQLite or BigQuery, and copy the SQL with one click. Free: 3 runs a day, and 3 more after you leave an email.",
+      "sections": [
+        {
+          "heading": "Use the free SQL generator in your browser",
+          "body": "Open the [free SQL query generator](https://sql-generator.lazur.app/tool) in any browser. There is nothing to install, and you do not need an account to start.\n\n1. Type what you need in What do you need?\n2. Optional: type table names and columns, such as customers(id, name, city).\n3. Choose the database.\n4. Run the generator and read the SQL.\n5. Copy it with one click, then paste it into your database tool.\n\nOnce you have typed the request, the answer usually comes back in about 1 to 3 seconds. Keep the request short and specific, and generate again if the first answer misses a column or a filter."
+        },
+        {
+          "heading": "What is free and what is not",
+          "body": "The generator is free. You get 3 runs a day without an account. After you leave an email on the page, you get 3 more runs. You do not need to make an account, install an app or pay to use the free runs.\n\nThe free runs are enough to try the tool and to write a few simple queries. If you need many queries each day, plan around the run limit, and batch your questions into one clear request per query so that each run counts."
+        },
+        {
+          "heading": "Databases the tool covers",
+          "body": "The generator writes SQL for five databases:\n\n- PostgreSQL\n- MySQL\n- SQL Server\n- SQLite\n- BigQuery\n\nPick the one your project uses. A query written for one database can break on another, because row limits, date functions and quoting rules differ. If your database is not on this list, read the SQL with extra care before you run it, and test it on a copy."
+        },
+        {
+          "heading": "Check the query before it runs",
+          "body": "A generated query is a starting point. Compare each table and column name with your real schema. Read the WHERE and JOIN lines to confirm they match your request. Then run the query on test data or on a copy of your database first.\n\nIf the result is off, make the request more specific. Name the table, list the columns and state the filter in full, then generate again.\n\n**The tool writes the SQL.** Running it is your step, in your own database, after you have checked it."
+        },
+        {
+          "heading": "If the SQL is not what you wanted",
+          "body": "Most misses come from the request, not the browser. If the query selects the wrong columns, name each column you want in the request. If it filters too much or too little, write the condition in words, such as only orders with status shipped and a total above 50. If it sorts the wrong way, say ascending or descending and name the column to sort by.\n\nIf the query uses a table name you do not recognize, paste your table names into the optional box and generate again. The generator can only use the names it is given, so the box is the quickest fix.\n\nKeep the first result, even when it is wrong. Comparing two versions side by side shows you which part of the request changed the query."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Is there a free SQL query generator online?",
+          "a": "Yes. Lazur's SQL query generator is free to use in your browser. You get 3 runs a day with no account, and 3 more after you leave an email. It writes SQL for PostgreSQL, MySQL, SQL Server, SQLite and BigQuery."
+        },
+        {
+          "q": "Do I need an account to use it?",
+          "a": "No. You can start without an account and get 3 runs a day for free. If you want 3 more runs, leave your email on the page. Your free runs do not need a password, and you can copy each result with one click."
+        },
+        {
+          "q": "Does the SQL generator run my query?",
+          "a": "The generator writes the SQL and shows it to you. Copy the query and run it in your own database tool, after you have checked the table names and columns. That keeps you in control of what runs on your data."
+        }
+      ],
+      "imageQuery": "developer working on laptop",
+      "imageAlt": "A developer at a desk working on a laptop with a code editor open"
+    },
+    {
+      "slug": "chatgpt",
+      "keyword": "sql query generator chatgpt",
+      "title": "SQL Query Generator Like ChatGPT: Free, No Account | Lazur",
+      "description": "Get SQL from plain English with a form instead of a chat. Name your database, add table names if you like, and copy the query. Free, 3 runs a day.",
+      "h1": "SQL query generator, like ChatGPT",
+      "claim": "If you want SQL from a plain English request, this generator asks for what you need, the database and optional table names, then writes the query. Free: 3 runs a day, no account, one-click copy.",
+      "sections": [
+        {
+          "heading": "Same idea as a chat, with a form",
+          "body": "A chat assistant can write SQL from a question. This page gives you the same kind of help through a short form. You type what you need, add table names and columns if you have them, and choose the database. The generator then writes the query for that database.\n\nOpen the [SQL query generator](https://sql-generator.lazur.app/chatgpt) and follow these steps.\n\n1. Type the result you want in What do you need?\n2. Add table names and columns in the optional box.\n3. Choose PostgreSQL, MySQL, SQL Server, SQLite or BigQuery.\n4. Copy the SQL with one click."
+        },
+        {
+          "heading": "Give any AI the same details",
+          "body": "Whatever tool you use, a SQL request works best with the same details. A general chat tool cannot see your database unless you paste its structure in, so it has to guess table and column names. Tell it the database, the tables, the columns and the rows you need.\n\nThe same goes for this generator. The table and column box is optional, but filling it in means the query uses your names rather than guessed ones. A line such as orders(id, customer_id, total, created_at) is enough to start."
+        },
+        {
+          "heading": "Ask for one query at a time",
+          "body": "Long requests often produce long answers that mix several goals. Split the work. Ask for the first query, check it, then ask for the next step, such as a filter or a sort. Keep each request to one result.\n\n**Read the SQL line by line** before you run it, the way you would check a query someone else sent you. Look at the table names, the filter and the sort order."
+        },
+        {
+          "heading": "Free runs and what you get",
+          "body": "The generator is free. You get 3 runs a day with no account. Leave your email and you get 3 more runs. Answers come back in about 1 to 3 seconds, and each result can be copied with one click.\n\nThe generator writes SQL for PostgreSQL, MySQL, SQL Server, SQLite and BigQuery. Check the query, then run it in your own database. Test on a copy of your data first if the query changes anything."
+        },
+        {
+          "heading": "What to check in the answer",
+          "body": "Before you copy the SQL, look at the parts that usually go wrong. Check that the FROM line names the right table. Check that each column in the SELECT line exists and means what you think it means. Check the WHERE line for dates, status values and numbers, since a wrong filter returns plausible but incorrect rows.\n\nIf the query has a LIMIT or TOP line, confirm that the number matches how many rows you need. A query that returns only 10 rows when you expected all of them can look correct until someone counts.\n\nSave the query with a short note on what it does. You will want to know later why it was written this way, and the note makes it easy to reuse or change."
+        }
+      ],
+      "faq": [
+        {
+          "q": "Can ChatGPT write SQL code?",
+          "a": "Yes. A general AI chat can write SQL, and it does better when you give it the table names, the columns and the database you use. This generator asks for those same details in its form and writes the query for PostgreSQL, MySQL, SQL Server, SQLite or BigQuery, with one-click copy."
+        },
+        {
+          "q": "Can AI generate SQL query?",
+          "a": "Yes. Describe the result in plain English, name the database, and the AI writes a query for it. Lazur's generator answers in about 1 to 3 seconds. Check the table and column names against your own database before you run the query, because the names in it are only as right as the names you give."
+        },
+        {
+          "q": "Is this SQL generator free to use?",
+          "a": "Yes. You get 3 free runs a day with no account. Leave your email to get 3 more runs. Copy the result with one click, and use it for PostgreSQL, MySQL, SQL Server, SQLite or BigQuery."
+        }
+      ],
+      "imageQuery": "laptop on desk with notebook",
+      "imageAlt": "A laptop and notebook on a desk ready for work"
+    }
+  ]
+}

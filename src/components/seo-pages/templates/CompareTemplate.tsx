@@ -28,7 +28,7 @@ export function CompareTemplate({ page }: { page: ComparePage }) {
         meta={checked ? [`Prices checked ${checked}`] : []}
         cta={{ label: "Try Lazur free", suffix: "Download for Mac", source: `compare-${page.slug}` }}
       />
-      <ArticleLayout source={`compare-${page.slug}`} related={related}>
+      <ArticleLayout source={`compare-${page.slug}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} title="The short version" />
         <section className="seo-section" aria-labelledby="table">

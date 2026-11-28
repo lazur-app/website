@@ -27,7 +27,7 @@ export function RoleAppTemplate({ page }: { page: RoleAppPage }) {
         visual={<NotchScene demo={page.demo} appName={page.appName} />}
         cta={{ label: `Try Lazur free in ${page.appName}`, suffix: "Download for Mac", source: `role-app-${page.role}-${page.app}` }}
       />
-      <ArticleLayout source={`role-app-${page.role}-${page.app}`} related={related}>
+      <ArticleLayout source={`role-app-${page.role}-${page.app}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (

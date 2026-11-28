@@ -34,7 +34,7 @@ export function RoleTemplate({ page }: { page: RolePage }) {
         cta={{ label: `Try Lazur free for ${page.roleName.toLowerCase()}`, suffix: "Download for Mac", source: `role-${page.slug}` }}
       />
 
-      <ArticleLayout source={`role-${page.slug}`} related={related}>
+      <ArticleLayout source={`role-${page.slug}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
         {page.stats.length > 0 ? (

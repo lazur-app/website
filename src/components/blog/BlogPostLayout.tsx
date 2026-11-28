@@ -32,7 +32,7 @@ export function BlogPostLayout({ post, schema, children }: { post: BlogPost; sch
         visual={post.heroImage ? <ImageFigure image={post.heroImage} priority /> : undefined}
         cta={{ source: `blog-${post.slug}` }}
       />
-      <ArticleLayout source={`blog-${post.slug}`} related={relatedGroups}>
+      <ArticleLayout source={`blog-${post.slug}`} related={relatedGroups} topic={`${post.title} ${post.description ?? ""}`}>
       <article>
         <TldrBox items={post.tldr} title="TL;DR" />
         {post.stats.length > 0 ? (

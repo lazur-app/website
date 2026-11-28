@@ -73,7 +73,7 @@ export function AiTool({ tool }: { tool: string }) {
         setCopiedKey(key);
         setTimeout(() => setCopiedKey((k) => (k === key ? null : k)), 1600);
       }
-      nudge(ok);
+      nudge(ok, text);
     },
     [nudge],
   );

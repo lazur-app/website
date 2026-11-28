@@ -112,7 +112,7 @@ Search numbers (monthly volume) are not checked yet. That needs a DataForSEO top
 
 ### 12. Online Voice Recorder
 - **Subdomain:** `voice-recorder.lazur.app`
-- **Title:** Online Voice Recorder – Free, With Transcription, MP3 | Lazur
+- **Title:** Online Voice Recorder – Free, With Live Transcript, No Sign-up | Lazur
 - **H1:** Online Voice Recorder
 - **Tagline:** Record from your mic, download the audio, and get the transcript.
 - **Pages:** `/with-transcription` · `/mp3` · `/noise-cancellation` · `/free`
@@ -188,7 +188,7 @@ Search numbers (monthly volume) are not checked yet. That needs a DataForSEO top
 
 ### 21. Read PDF Aloud
 - **Subdomain:** `read-pdf-aloud.lazur.app`
-- **Title:** Read PDF Aloud – Free PDF to Audio Online | Lazur
+- **Title:** Read PDF Aloud – Listen to Any PDF Free Online | Lazur
 - **H1:** Read PDF Aloud
 - **Tagline:** Upload a PDF and listen to it.
 - **Pages:** `/pdf-to-audio` · `/pdf-to-audiobook` · `/mac` · `/iphone` · `/chrome`

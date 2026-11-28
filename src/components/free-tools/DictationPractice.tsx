@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Btn, Notice, Panel, Stat, Unsupported, inputClass } from "./ui";
+import { ScoreBox } from "./ScoreBox";
 import { diffWords, splitWords } from "./PronunciationChecker";
 
 type Level = "Easy" | "Medium" | "Hard";
@@ -213,6 +214,7 @@ export function DictationPractice(_props: { page?: string }) {
         <Stat label="session score" value={session.total ? `${sessionPct}%` : "–"} />
         <Stat label="words right" value={`${session.right}/${session.total}`} />
       </div>
+      {session.sentences >= 3 ? <ScoreBox tool="dictation-practice" value={sessionPct} unit="%" noun="English dictation practice" /> : null}
       <p className="mt-4 text-[13px] text-[var(--foreground-muted)]">Your browser reads each sentence aloud. Nothing is uploaded.</p>
     </Panel>
   );

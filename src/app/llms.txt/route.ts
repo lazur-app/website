@@ -13,6 +13,8 @@ import {
 import { seoPath } from "@/lib/seo-pages/routes";
 import type { SeoPage } from "@/lib/seo-pages/types";
 import { SITE_URL } from "@/lib/seo/constants";
+import { toolOrigin } from "@/lib/free-tools/host";
+import { FREE_TOOLS } from "@/lib/free-tools/registry";
 import { TOOLS } from "@/lib/tools";
 
 /**
@@ -37,7 +39,7 @@ export function GET() {
     section("Job and app", getRoleAppPages()),
     section("How-to guides for Mac apps", getHowTos()),
     `## Blog\n\n${getAllPosts().map((p) => line(p.title, `/blog/${p.slug}`, p.description)).join("\n")}\n`,
-    `## Free tools\n\n${TOOLS.map((t) => `- [${t.name}](${SITE_URL}/tools/${t.slug}): ${t.description}`).join("\n")}\n`,
+    `## Free tools\n\n${TOOLS.map((t) => `- [${t.name}](${SITE_URL}/tools/${t.slug}): ${t.description}`).join("\n")}\n${FREE_TOOLS.map((t) => `- [${t.name}](${toolOrigin(t.subdomain)}): ${t.tagline} Free, no sign-up.`).join("\n")}\n`,
   ]
     .filter(Boolean)
     .join("\n\n");

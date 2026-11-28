@@ -8,11 +8,15 @@ import { TrackedAnchor } from "@/components/analytics/TrackedLink";
 import { AI_TOOLS } from "@/components/free-tools/ai-config";
 import { LazurLetterProvider } from "@/components/free-tools/Letter";
 import { ToolAnalytics, ToolUsage } from "@/components/free-tools/ToolAnalytics";
+import { EmbedCode } from "@/components/free-tools/embed";
+import { EMBEDDABLE } from "@/lib/free-tools/embeddable";
 import { HubCard } from "@/components/seo-pages/Hub";
 import { FaqList } from "@/components/seo-pages/Primitives";
 import { toolOrigin } from "@/lib/free-tools/host";
 import { FREE_TOOLS, freeToolBySubdomain, type FreeTool } from "@/lib/free-tools/registry";
 import { SITE_URL } from "@/lib/seo/constants";
+import type { ContentFaq, ContentImage, ContentSection } from "@/lib/free-tools/content";
+import { ToolArticle } from "./ToolArticle";
 import { renderWidget } from "./widgets";
 
 /**
@@ -28,6 +32,11 @@ export function ToolFrame({
   showFaq,
   jsonLd,
   page,
+  claim,
+  article,
+  pageLinks = [],
+  faqItems,
+  challenge,
 }: {
   tool: FreeTool;
   h1: string;
@@ -35,10 +44,19 @@ export function ToolFrame({
   showFaq: boolean;
   jsonLd: Record<string, unknown>[];
   page?: string;
+  /** The direct, factual answer under the H1 (from the written content). */
+  claim?: string;
+  article?: { sections: ContentSection[]; image?: ContentImage };
+  /** Links to the tool's other pages ("" = the tool's home page). */
+  pageLinks?: { slug: string; label: string }[];
+  /** FAQ for this page; defaults to the tool's FAQ. */
+  faqItems?: ContentFaq[];
+  /** From a shared score link: "A friend got 9.2 CPS. Can you beat it?" */
+  challenge?: string;
 }) {
   const related = tool.related.map(freeToolBySubdomain).filter((t): t is FreeTool => !!t);
   const widget = renderWidget(tool.subdomain, page);
-  const faq = tool.faq.filter((f) => f.a).map((f) => ({ question: f.q, answer: f.a as string }));
+  const faq = (faqItems ?? tool.faq.filter((f) => f.a).map((f) => ({ q: f.q, a: f.a as string }))).map((f) => ({ question: f.q, answer: f.a }));
   const download = `${SITE_URL}/download?src=tool-${tool.subdomain}`;
   const kind = AI_TOOLS[tool.subdomain] ? "ai" : "browser";
 
@@ -62,10 +80,20 @@ export function ToolFrame({
                 <Sticker name={tool.sticker} size={56} rotate={-8} />
                 <Sticker name={tool.sticker2} size={48} rotate={10} />
               </div>
+              {challenge ? <p className="mx-auto mb-3 inline-flex rounded-full bg-[#1c1917] px-4 py-1.5 text-[15px] font-bold text-white">{challenge}</p> : null}
               <h1 className="seo-h1 mx-auto max-w-4xl">{h1}</h1>
-              <p className="seo-hero__intro mx-auto max-w-[34rem]">Don&apos;t worry, we won&apos;t ask you to log in or pay anything before you use this tool.</p>
-              {/* What the tool does, for search engines and screen readers. */}
-              <p className="sr-only">{intro}</p>
+              {claim ? (
+                <>
+                  <p className="seo-hero__intro mx-auto max-w-[40rem] text-[var(--foreground)]">{claim}</p>
+                  <p className="mx-auto mt-2 max-w-[34rem] text-[14px] text-[var(--foreground-muted)]">Don&apos;t worry, we won&apos;t ask you to log in or pay anything before you use this tool.</p>
+                </>
+              ) : (
+                <>
+                  <p className="seo-hero__intro mx-auto max-w-[34rem]">Don&apos;t worry, we won&apos;t ask you to log in or pay anything before you use this tool.</p>
+                  {/* What the tool does, for search engines and screen readers. */}
+                  <p className="sr-only">{intro}</p>
+                </>
+              )}
             </div>
           </header>
 
@@ -77,14 +105,33 @@ export function ToolFrame({
             </div>
           </div>
 
-          {tool.pages.length > 0 ? (
-            <nav aria-label={`More ${tool.name.toLowerCase()} pages`} className="seo-wrap flex flex-wrap justify-center gap-2 !mt-10">
-              {tool.pages.map((p) => (
-                <a key={p.slug} href={`/${p.slug}`} className="rounded-full border-[1.5px] border-[#1c1917]/15 bg-white px-4 py-2 text-[14px] text-[var(--foreground-muted)] hover:text-[var(--foreground)]">
-                  {p.h1}
-                </a>
-              ))}
+          {article ? <ToolArticle sections={article.sections} image={article.image} /> : null}
+
+          {EMBEDDABLE.has(tool.subdomain) ? (
+            <div className="pt-14">
+              <div className="seo-col">
+                <EmbedCode tool={tool.subdomain} name={tool.name} />
+              </div>
+            </div>
+          ) : null}
+
+          {pageLinks.length > 0 ? (
+            <div className="pt-14">
+            <nav aria-labelledby="more-pages" className="seo-col">
+              <h2 id="more-pages" className="seo-h2">
+                More on {tool.name.toLowerCase()}
+              </h2>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {pageLinks.map((p) => (
+                  <li key={p.slug}>
+                    <a href={`/${p.slug}`} className="inline-flex min-h-[40px] items-center rounded-full border-[1.5px] border-[#1c1917]/15 bg-white px-4 text-[14px] text-[var(--foreground-muted)] hover:border-[#1c1917] hover:text-[var(--foreground)]">
+                      {p.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </nav>
+            </div>
           ) : null}
 
           {showFaq && faq.length > 0 ? (

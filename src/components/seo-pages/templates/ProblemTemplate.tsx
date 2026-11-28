@@ -38,7 +38,7 @@ export function ProblemTemplate({ page }: { page: ProblemPage }) {
         cta={appName === "your Mac" ? { source: `problem-${page.role}-${page.slug}` } : { label: `Try Lazur free in ${appName}`, suffix: "Download for Mac", source: `problem-${page.role}-${page.slug}` }}
       />
 
-      <ArticleLayout source={`problem-${page.role}-${page.slug}`} related={related}>
+      <ArticleLayout source={`problem-${page.role}-${page.slug}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} title="The short answer" />
 

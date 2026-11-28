@@ -39,7 +39,7 @@ export function HowToTemplate({ page }: { page: HowToPage }) {
         cta={{ label: `Try it free in ${page.appName}`, suffix: "Download for Mac", source: `howto-${page.slug}` }}
       />
 
-      <ArticleLayout source={`howto-${page.slug}`} related={related}>
+      <ArticleLayout source={`howto-${page.slug}`} related={related} topic={`${page.title} ${page.description} ${page.targetKeyword}`}>
       <div className="seo-col mt-12">
         <TldrBox items={page.tldr} />
 

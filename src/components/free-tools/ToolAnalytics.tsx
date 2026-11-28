@@ -21,11 +21,11 @@ import { registerAnalyticsProps, track } from "@/lib/productAnalytics";
  *   tool_result_copied     a result was copied (copied: worked?) (Letter)
  *   letter_shown / letter_cta_clicked   the founders' note     (Letter)
  */
-export function ToolAnalytics({ tool, category, kind }: { tool: string; category: string; kind: "ai" | "browser" }) {
+export function ToolAnalytics({ tool, category, kind, embedded = false }: { tool: string; category: string; kind: "ai" | "browser"; embedded?: boolean }) {
   useEffect(() => {
-    registerAnalyticsProps({ tool, tool_category: category, tool_kind: kind });
-    track("tool_viewed", { tool, tool_category: category, tool_kind: kind });
-  }, [tool, category, kind]);
+    registerAnalyticsProps({ tool, tool_category: category, tool_kind: kind, tool_embedded: embedded });
+    track("tool_viewed", { tool, tool_category: category, tool_kind: kind, embedded, referrer_host: embedded ? document.referrer.split("/")[2] ?? "" : undefined });
+  }, [tool, category, kind, embedded]);
   return null;
 }
 

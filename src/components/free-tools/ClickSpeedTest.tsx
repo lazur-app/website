@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Btn, Panel, Stat } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
+import { ScoreBox } from "./ScoreBox";
 
 const MODES = [1, 5, 10, 30, 60];
 
@@ -153,6 +154,7 @@ export function ClickSpeedTest(props: { page?: string }) {
         <Stat label="Time left" value={`${left.toFixed(1)}s`} />
         <Stat label={phase === "done" ? "Final CPS" : "Live CPS"} value={(phase === "done" ? finalCps : liveCps).toFixed(1)} />
       </div>
+      {phase === "done" && !spaceMode && !rightMode ? <ScoreBox tool="click-speed-test" value={Math.round(finalCps * 10) / 10} unit="CPS" noun="click speed test" /> : null}
 
       {phase !== "done" ? (
         <div

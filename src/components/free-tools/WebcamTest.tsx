@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLazurMoment, useMomentWhen } from "./Letter";
+import { useEmailGate } from "./EmailGate";
 import { Btn, Field, Notice, Panel, Stat, Unsupported } from "./ui";
 import { Sticker } from "@/components/landing/Sticker";
 
@@ -69,6 +70,7 @@ export function WebcamTest(props: { page?: string }) {
   }, [status]);
 
   const moment = useLazurMoment();
+  const gate = useEmailGate();
   const snapshot = () => {
     const v = videoRef.current;
     if (!v || !v.videoWidth) return;
@@ -174,15 +176,22 @@ export function WebcamTest(props: { page?: string }) {
         <div className="space-y-3">
           <p className="text-[14px] font-medium"> Your snapshot</p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={shot} alt="Webcam snapshot" className="w-full rounded-2xl border border-[var(--border-strong)]" />
-          <a
-            href={shot}
-            download="webcam-snapshot.png"
-            onClick={() => moment({ label: "your snapshot is downloading", every: true, delay: 500 })}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] px-5 py-3 text-[15px] font-semibold hover:bg-[var(--background-deep)]"
+          <img src={shot} alt="Webcam snapshot" draggable={false} onContextMenu={(e) => e.preventDefault()} className="w-full rounded-2xl border border-[var(--border-strong)]" />
+          <button
+            type="button"
+            onClick={() =>
+              gate("snapshot", () => {
+                const a = document.createElement("a");
+                a.href = shot;
+                a.download = "webcam-snapshot.png";
+                a.click();
+                moment({ label: "your snapshot is downloading", every: true, delay: 500 });
+              })
+            }
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[var(--border-strong)] px-5 py-3 text-[15px] font-semibold hover:bg-[var(--background-deep)]"
           >
             Download PNG
-          </a>
+          </button>
         </div>
       ) : null}
     </Panel>

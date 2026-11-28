@@ -7,6 +7,7 @@ import { rememberVisitorEmail, track } from "@/lib/productAnalytics";
 import { SITE_URL } from "@/lib/seo/constants";
 import { AI_TOOLS, type AiField } from "./ai-config";
 import { useLazurMoment, useLazurNudge, useMomentWhen } from "./Letter";
+import { useEmailGate } from "./EmailGate";
 import { Btn, copyText, Field, inputClass, Notice, Panel } from "./ui";
 
 /**
@@ -79,6 +80,7 @@ export function AiTool({ tool }: { tool: string }) {
   );
 
   const moment = useLazurMoment();
+  const gate = useEmailGate();
   // Copying opens the note right away; someone who only reads the result gets it once, after a while.
   useMomentWhen(!!result && !busy, "your result is ready", 9000);
   if (!config) return null;
@@ -151,7 +153,7 @@ export function AiTool({ tool }: { tool: string }) {
       return next;
     });
 
-  const download = () => {
+  const download = () => gate("spreadsheet", () => {
     const url = URL.createObjectURL(new Blob([result?.text ?? ""], { type: "text/csv" }));
     const a = document.createElement("a");
     a.href = url;
@@ -159,7 +161,7 @@ export function AiTool({ tool }: { tool: string }) {
     a.click();
     moment({ label: "your spreadsheet is downloading", every: true, delay: 500 });
     URL.revokeObjectURL(url);
-  };
+  });
 
   return (
     <Panel>

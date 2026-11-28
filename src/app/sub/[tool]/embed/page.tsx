@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { EmailGateProvider } from "@/components/free-tools/EmailGate";
 import { ToolAnalytics } from "@/components/free-tools/ToolAnalytics";
 import { EMBEDDABLE } from "@/lib/free-tools/embeddable";
 import { toolOrigin } from "@/lib/free-tools/host";
@@ -24,7 +25,7 @@ export default async function EmbedPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-[var(--background)] p-3 sm:p-4">
       <ToolAnalytics tool={tool.subdomain} category={tool.category} kind="browser" embedded />
-      {renderWidget(tool.subdomain)}
+      <EmailGateProvider tool={tool.subdomain}>{renderWidget(tool.subdomain)}</EmailGateProvider>
       <p className="mt-3 text-center text-[13px] text-[var(--foreground-muted)]">
         <a href={toolOrigin(tool.subdomain)} target="_blank" rel="noopener" className="underline underline-offset-2">
           {tool.name}

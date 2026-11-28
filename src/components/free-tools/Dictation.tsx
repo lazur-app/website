@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLazurMoment, useMomentWhen } from "./Letter";
+import { useEmailGate } from "./EmailGate";
 import { Btn, CopyBtn, Field, Notice, Panel, Stat, Unsupported, inputClass } from "./ui";
 import { Mic, Square } from "lucide-react";
 
@@ -312,6 +313,7 @@ export function Dictation(props: { page?: string }) {
   const spoken = (text.match(/\S+/g) ?? []).length;
   useMomentWhen(!listening && spoken >= 15, `${spoken} words, typed by your voice`, 2000);
   const moment = useLazurMoment();
+  const gate = useEmailGate();
   if (supported === false) {
     return (
       <Panel>
@@ -386,8 +388,10 @@ export function Dictation(props: { page?: string }) {
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <CopyBtn text={text} />
         <Btn tone="ghost" disabled={!text} onClick={() => {
-            downloadBlob(new Blob([text], { type: "text/plain;charset=utf-8" }), "dictation.txt");
-            moment({ label: "your text is downloading", every: true, delay: 500, words: spoken });
+            gate("text", () => {
+              downloadBlob(new Blob([text], { type: "text/plain;charset=utf-8" }), "dictation.txt");
+              moment({ label: "your text is downloading", every: true, delay: 500, words: spoken });
+            });
           }}>
           Download .txt
         </Btn>

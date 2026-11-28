@@ -10,7 +10,9 @@ export default defineConfig({
     // Free-tool limits and sign-ups (see src/index.ts).
     env: {
       LIMITS: bindings.kv({ id: "60c21531d139444d9f58d155fd017cc0" }),
-      LAZUR_API: bindings.text("https://api.lazur.app"),
+      // The API's Cloud Run address, not api.lazur.app: that host is served by this same Worker,
+      // and a Worker can't fetch its own route.
+      LAZUR_API: bindings.text("https://lazur-api-632291817180.asia-northeast1.run.app"),
       FREE_TOOLS_INTERNAL_KEY: bindings.secret(),
     },
     domains: [
